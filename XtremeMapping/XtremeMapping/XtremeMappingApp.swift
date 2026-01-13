@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct XtremeMappingApp: App {
     var body: some Scene {
-        DocumentGroup(newDocument: XtremeMappingDocument()) { file in
+        DocumentGroup(newDocument: TraktorMappingDocument()) { file in
             ContentView(document: file.$document)
         }
     }

@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Binding var document: XtremeMappingDocument
+    @Binding var document: TraktorMappingDocument
 
     var body: some View {
-        TextEditor(text: $document.text)
+        Text("Mappings: \(document.mappingFile.allMappings.count)")
     }
 }
 
 #Preview {
-    ContentView(document: .constant(XtremeMappingDocument()))
+    ContentView(document: .constant(TraktorMappingDocument()))
 }

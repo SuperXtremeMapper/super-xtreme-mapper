@@ -8,28 +8,35 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-nonisolated struct XtremeMappingDocument: FileDocument {
-    var text: String
-
-    init(text: String = "Hello, world!") {
-        self.text = text
+extension UTType {
+    static var tsi: UTType {
+        UTType(exportedAs: "com.native-instruments.traktor.tsi")
     }
+}
 
-    static let readableContentTypes = [
-        UTType(importedAs: "com.example.plain-text")
-    ]
+struct TraktorMappingDocument: FileDocument {
+    var mappingFile: MappingFile
+
+    static var readableContentTypes: [UTType] { [.tsi] }
+
+    init(mappingFile: MappingFile = MappingFile()) {
+        self.mappingFile = mappingFile
+    }
 
     init(configuration: ReadConfiguration) throws {
-        guard let data = configuration.file.regularFileContents,
-              let string = String(data: data, encoding: .utf8)
-        else {
+        guard let data = configuration.file.regularFileContents else {
             throw CocoaError(.fileReadCorruptFile)
         }
-        text = string
+
+        // For now, create empty MappingFile - full parsing comes later
+        // TODO: Parse TSI data using TSIParser
+        _ = data // Suppress unused warning
+        self.mappingFile = MappingFile()
     }
-    
+
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
-        let data = text.data(using: .utf8)!
-        return .init(regularFileWithContents: data)
+        // TODO: Serialize using TSIWriter
+        // For now, return empty data
+        return FileWrapper(regularFileWithContents: Data())
     }
 }
