@@ -1,12 +1,13 @@
 //
 //  XtremeMappingDocument.swift
-//  XtremeMapping
+//  XXtremeMapping
 //
-//  Created by Noah Raford on 13/01/2026.
+//  Created by u/nonomomomo2 on 13/01/2026.
 //
 
 import SwiftUI
 import UniformTypeIdentifiers
+import Combine
 
 extension UTType {
     static var tsi: UTType {
@@ -14,8 +15,11 @@ extension UTType {
     }
 }
 
-struct TraktorMappingDocument: FileDocument {
-    var mappingFile: MappingFile
+/// Reference-based document that properly tracks changes for save prompts
+final class TraktorMappingDocument: ReferenceFileDocument {
+    typealias Snapshot = MappingFile
+
+    @Published var mappingFile: MappingFile
 
     static var readableContentTypes: [UTType] { [.tsi] }
 
@@ -23,20 +27,41 @@ struct TraktorMappingDocument: FileDocument {
         self.mappingFile = mappingFile
     }
 
-    init(configuration: ReadConfiguration) throws {
+    required init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents else {
             throw CocoaError(.fileReadCorruptFile)
         }
 
-        // For now, create empty MappingFile - full parsing comes later
-        // TODO: Parse TSI data using TSIParser
-        _ = data // Suppress unused warning
-        self.mappingFile = MappingFile()
+        // Parse TSI file
+        let parser = TSIParser()
+
+        do {
+            // Step 1: Extract Base64-encoded binary data from XML
+            let base64String = try TSIParser.extractControllerData(from: data)
+
+            // Step 2: Decode Base64 to binary data
+            let binaryData = try parser.decodeBase64(base64String)
+
+            // Step 3: Parse frames from binary data
+            let frames = try parser.parseFrames(from: binaryData)
+
+            // Step 4: Interpret frames into mappings
+            self.mappingFile = try TSIInterpreter.interpret(frames: frames)
+
+        } catch {
+            print("TSI Parser error: \(error)")
+            // Fall back to empty file on parse error
+            self.mappingFile = MappingFile()
+        }
     }
 
-    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
-        // TODO: Serialize using TSIWriter
-        // For now, return empty data
-        return FileWrapper(regularFileWithContents: Data())
+    func snapshot(contentType: UTType) throws -> MappingFile {
+        return mappingFile
+    }
+
+    func fileWrapper(snapshot: MappingFile, configuration: WriteConfiguration) throws -> FileWrapper {
+        let writer = TSIWriter()
+        let data = writer.write(snapshot)
+        return FileWrapper(regularFileWithContents: data)
     }
 }

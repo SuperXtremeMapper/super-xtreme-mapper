@@ -1,8 +1,8 @@
 //
 //  ControllerType.swift
-//  XtremeMapping
+//  XXtremeMapping
 //
-//  Created by Noah Raford on 13/01/2026.
+//  Created by u/nonomomomo2 on 13/01/2026.
 //
 
 import Foundation
@@ -35,6 +35,38 @@ enum ControllerType: Int, Codable, CaseIterable, Sendable {
             return "Encoder"
         case .led:
             return "LED"
+        }
+    }
+
+    /// Returns the valid interaction modes for this controller type
+    var validInteractionModes: [InteractionMode] {
+        switch self {
+        case .button:
+            // Button modes: Direct, Inc, Dec, Reset (plus Hold, Toggle, Trigger for non-direct)
+            return [.hold, .toggle, .trigger, .direct, .increment, .decrement, .reset]
+        case .faderOrKnob:
+            // Fader/Knob modes: Direct, Relative
+            return [.direct, .relative]
+        case .encoder:
+            // Encoder modes: Direct, Relative
+            return [.direct, .relative]
+        case .led:
+            // LED is output only
+            return [.output]
+        }
+    }
+
+    /// Returns the default interaction mode for this controller type
+    var defaultInteractionMode: InteractionMode {
+        switch self {
+        case .button:
+            return .hold
+        case .faderOrKnob:
+            return .direct
+        case .encoder:
+            return .relative
+        case .led:
+            return .output
         }
     }
 }

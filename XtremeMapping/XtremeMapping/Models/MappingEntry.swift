@@ -1,8 +1,8 @@
 //
 //  MappingEntry.swift
-//  XtremeMapping
+//  XXtremeMapping
 //
-//  Created by Noah Raford on 13/01/2026.
+//  Created by u/nonomomomo2 on 13/01/2026.
 //
 
 import Foundation
@@ -51,6 +51,43 @@ struct MappingEntry: Identifiable, Codable, Hashable, Sendable {
     /// Whether to invert the control value
     var invert: Bool
 
+    // MARK: - Type-specific options
+
+    /// For Fader/Knob: enables soft takeover to prevent value jumps
+    var softTakeover: Bool
+
+    /// For Button (Direct mode): the value to set when pressed (0.0 - 1.0)
+    var setToValue: Float
+
+    /// For Encoder: rotary sensitivity (0.0 - 3.0, displayed as 0-300%)
+    var rotarySensitivity: Float
+
+    /// For Encoder: rotary acceleration (0.0 - 1.0, displayed as 0-100%)
+    var rotaryAcceleration: Float
+
+    /// For Encoder: the encoder communication mode
+    var encoderMode: EncoderMode
+
+    // MARK: - Sort Keys (for table column sorting)
+
+    /// Sort key for I/O column
+    var ioTypeSortKey: String { ioType.rawValue }
+
+    /// Sort key for Assignment column
+    var assignmentSortKey: String { assignment.displayName }
+
+    /// Sort key for Controller Type column
+    var controllerTypeSortKey: String { controllerType.displayName }
+
+    /// Sort key for Interaction column
+    var interactionSortKey: String { interactionMode.displayName }
+
+    /// Sort key for Modifier 1 column
+    var modifier1SortKey: String { modifier1Condition?.displayString ?? "zzz" }
+
+    /// Sort key for Modifier 2 column
+    var modifier2SortKey: String { modifier2Condition?.displayString ?? "zzz" }
+
     /// Display string showing the MIDI assignment (e.g., "Ch01 CC 008" or "Ch02 Note C4")
     var mappedToDisplay: String {
         let channelStr = String(format: "Ch%02d", midiChannel)
@@ -92,7 +129,12 @@ struct MappingEntry: Identifiable, Codable, Hashable, Sendable {
         modifier2Condition: ModifierCondition? = nil,
         comment: String = "",
         controllerType: ControllerType = .button,
-        invert: Bool = false
+        invert: Bool = false,
+        softTakeover: Bool = false,
+        setToValue: Float = 0.0,
+        rotarySensitivity: Float = 1.0,
+        rotaryAcceleration: Float = 0.0,
+        encoderMode: EncoderMode = .mode7Fh01h
     ) {
         self.id = id
         self.commandName = commandName
@@ -107,6 +149,11 @@ struct MappingEntry: Identifiable, Codable, Hashable, Sendable {
         self.comment = comment
         self.controllerType = controllerType
         self.invert = invert
+        self.softTakeover = softTakeover
+        self.setToValue = setToValue
+        self.rotarySensitivity = rotarySensitivity
+        self.rotaryAcceleration = rotaryAcceleration
+        self.encoderMode = encoderMode
     }
 }
 
