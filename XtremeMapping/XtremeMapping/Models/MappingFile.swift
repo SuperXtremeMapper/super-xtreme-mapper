@@ -1,6 +1,6 @@
 //
 //  MappingFile.swift
-//  XXtremeMapping
+//  SuperXtremeMapping
 //
 //  Created by u/nonomomomo2 on 13/01/2026.
 //

@@ -1,6 +1,6 @@
 //
 //  MappingTransferable.swift
-//  XXtremeMapping
+//  SuperXtremeMapping
 //
 //  Created by u/nonomomomo2 on 13/01/2026.
 //
@@ -13,7 +13,7 @@ import UniformTypeIdentifiers
 extension UTType {
     /// Custom UTType for mapping entry data during drag and drop
     static var mappingEntry: UTType {
-        UTType(exportedAs: "com.xtrememapping.mapping-entry")
+        UTType(exportedAs: "com.superxtrememapping.mapping-entry")
     }
 }
 
@@ -42,7 +42,7 @@ struct MappingDragPreview: View {
     var body: some View {
         HStack(spacing: 8) {
             Image(systemName: entry.ioType == .input ? "arrow.down" : "arrow.up")
-                .foregroundColor(entry.ioType == .input ? AppTheme.inputColor : AppTheme.outputColor)
+                .foregroundColor(entry.ioType == .input ? AppThemeV2.Colors.inputBadge : AppThemeV2.Colors.outputBadge)
                 .fontWeight(.semibold)
 
             Text(entry.commandName)
@@ -55,19 +55,19 @@ struct MappingDragPreview: View {
                     .fontWeight(.bold)
                     .padding(.horizontal, 6)
                     .padding(.vertical, 2)
-                    .background(AppTheme.accentColor)
+                    .background(AppThemeV2.Colors.amber)
                     .foregroundColor(.black)
                     .clipShape(Capsule())
             }
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
-        .background(AppTheme.surfaceColor)
+        .background(AppThemeV2.Colors.stone800)
         .overlay(
-            RoundedRectangle(cornerRadius: AppTheme.cornerRadius)
-                .stroke(AppTheme.accentColor.opacity(0.5), lineWidth: 1)
+            RoundedRectangle(cornerRadius: AppThemeV2.Radius.md)
+                .stroke(AppThemeV2.Colors.amber.opacity(0.5), lineWidth: 1)
         )
-        .cornerRadius(AppTheme.cornerRadius)
-        .shadow(color: AppTheme.accentColor.opacity(0.3), radius: 8, x: 0, y: 2)
+        .cornerRadius(AppThemeV2.Radius.md)
+        .shadow(color: AppThemeV2.Colors.amber.opacity(0.3), radius: 8, x: 0, y: 2)
     }
 }

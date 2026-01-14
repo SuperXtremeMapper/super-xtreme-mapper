@@ -66,7 +66,9 @@ struct V2LockButton: View {
     @Binding var isLocked: Bool
 
     var body: some View {
-        Button(action: { isLocked.toggle() }) {
+        Button {
+            isLocked.toggle()
+        } label: {
             HStack(spacing: AppThemeV2.Spacing.xs) {
                 Image(systemName: isLocked ? "lock.fill" : "lock.open")
                     .font(.system(size: 11, weight: .medium))

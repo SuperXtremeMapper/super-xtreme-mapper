@@ -1,0 +1,38 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Xcode user-specific files
+xcuserdata/
+*.xcuserstate
+
+# Xcode build artifacts
+build/
+DerivedData/
+*.xccheckout
+*.moved-aside
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# CocoaPods (if used)
+Pods/
+
+# Carthage (if used)
+Carthage/Build/
+
+# Archives and distribution
+*.xcarchive
+*.ipa
+
+# DMG files (use GitHub Releases instead)
+*.dmg
+
+# Backup folders
+_V1Backup/
+_V2Backup*/
+
+# Claude Code
+.claude/

@@ -1,0 +1,826 @@
+/* ==========================================================================
+   Download Page Styles
+   Extends the main styles.css
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Download Hero
+   -------------------------------------------------------------------------- */
+.download-hero {
+    min-height: 45vh;
+    display: flex;
+    align-items: center;
+    padding: calc(var(--space-4xl) + 60px) var(--space-xl) var(--space-3xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.download-hero .container {
+    position: relative;
+    z-index: var(--z-base);
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--color-stone-500);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: var(--space-2xl);
+    transition: color var(--transition-fast);
+}
+
+.back-link svg {
+    width: 18px;
+    height: 18px;
+}
+
+.back-link:hover {
+    color: var(--color-amber);
+}
+
+.download-hero-content {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.beta-badge-large {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-lg);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    border-radius: 100px;
+    margin-bottom: var(--space-xl);
+    animation: fadeInDown 0.6s ease-out;
+}
+
+.badge-pulse {
+    width: 8px;
+    height: 8px;
+    background: var(--color-danger);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.badge-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-danger);
+    letter-spacing: 0.15em;
+}
+
+.download-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, 6rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    margin-bottom: var(--space-lg);
+    animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.title-download {
+    display: block;
+    color: var(--color-stone-500);
+    font-size: 0.4em;
+    letter-spacing: 0.3em;
+}
+
+.title-sxm {
+    display: block;
+    color: var(--color-amber);
+    text-shadow: 0 0 60px var(--color-amber-glow);
+}
+
+.download-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-stone-400);
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.download-hero .hero-glow {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 600px;
+    background: radial-gradient(circle, var(--color-amber-glow), transparent 70%);
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Main Content
+   -------------------------------------------------------------------------- */
+.download-main {
+    padding: var(--space-3xl) 0 var(--space-4xl);
+    position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   Warning Card
+   -------------------------------------------------------------------------- */
+.warning-card {
+    display: flex;
+    gap: var(--space-xl);
+    padding: var(--space-2xl);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.03));
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-3xl);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.warning-card-icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(239, 68, 68, 0.15);
+    border-radius: var(--radius-lg);
+    color: var(--color-danger);
+}
+
+.warning-card-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.warning-card-content {
+    flex: 1;
+}
+
+.warning-card-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-danger);
+    letter-spacing: 0.03em;
+    margin-bottom: var(--space-sm);
+}
+
+.warning-card-text {
+    color: var(--color-stone-400);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+}
+
+.warning-card-text strong {
+    color: var(--color-stone-200);
+}
+
+.warning-checklist {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md) var(--space-2xl);
+}
+
+.warning-checklist li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.9375rem;
+    color: var(--color-stone-400);
+}
+
+.warning-checklist li svg {
+    width: 18px;
+    height: 18px;
+    color: var(--color-danger);
+    flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Download Grid
+   -------------------------------------------------------------------------- */
+.download-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--space-2xl);
+}
+
+.download-column,
+.community-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+/* --------------------------------------------------------------------------
+   Download Card
+   -------------------------------------------------------------------------- */
+.download-card {
+    background: var(--color-stone-800);
+    border: 1px solid var(--color-stone-700);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.download-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-xl);
+    background: linear-gradient(135deg, var(--color-stone-700), var(--color-stone-800));
+    border-bottom: 1px solid var(--color-stone-700);
+}
+
+.download-card-header .platform-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--color-stone-300);
+}
+
+.download-card-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.download-platform-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-stone-100);
+    letter-spacing: 0.02em;
+}
+
+.download-version {
+    font-size: 0.875rem;
+    color: var(--color-amber);
+    font-weight: 600;
+}
+
+.download-card-body {
+    padding: var(--space-xl);
+}
+
+.download-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-lg) var(--space-2xl);
+    margin-bottom: var(--space-xl);
+}
+
+.spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.spec-label {
+    font-size: 0.75rem;
+    color: var(--color-stone-500);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.spec-value {
+    font-size: 0.9375rem;
+    color: var(--color-stone-200);
+    font-weight: 500;
+}
+
+.btn-download {
+    width: 100%;
+    justify-content: center;
+    font-size: 1.125rem;
+    padding: var(--space-lg) var(--space-2xl);
+}
+
+/* --------------------------------------------------------------------------
+   Instructions Card
+   -------------------------------------------------------------------------- */
+.instructions-card {
+    padding: var(--space-2xl);
+    background: var(--color-stone-800);
+    border: 1px solid var(--color-stone-700);
+    border-radius: var(--radius-xl);
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.instructions-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    color: var(--color-stone-100);
+    letter-spacing: 0.02em;
+    margin-bottom: var(--space-md);
+}
+
+.instructions-title svg {
+    width: 24px;
+    height: 24px;
+    color: var(--color-amber);
+}
+
+.instructions-intro {
+    color: var(--color-stone-400);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-stone-700);
+}
+
+.instructions-list {
+    list-style: none;
+    padding: 0;
+    counter-reset: step;
+}
+
+.instructions-list li {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.instructions-list li:last-child {
+    margin-bottom: 0;
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-amber-subtle);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 50%;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    color: var(--color-amber);
+}
+
+.step-content {
+    flex: 1;
+    padding-top: var(--space-xs);
+}
+
+.step-content strong {
+    display: block;
+    color: var(--color-stone-200);
+    font-size: 0.9375rem;
+    margin-bottom: var(--space-xs);
+}
+
+.step-content p {
+    color: var(--color-stone-500);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.step-content code {
+    display: inline;
+    padding: 2px 6px;
+    background: var(--color-stone-700);
+    border-radius: var(--radius-sm);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8125rem;
+    color: var(--color-amber);
+}
+
+.instructions-note {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+    padding: var(--space-lg);
+    background: var(--color-stone-900);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-amber);
+}
+
+.instructions-note svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: var(--color-amber);
+    margin-top: 2px;
+}
+
+.instructions-note p {
+    color: var(--color-stone-400);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.instructions-note strong {
+    color: var(--color-stone-300);
+}
+
+.instructions-note code {
+    display: inline;
+    padding: 2px 6px;
+    background: var(--color-stone-700);
+    border-radius: var(--radius-sm);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8125rem;
+    color: var(--color-amber);
+}
+
+/* --------------------------------------------------------------------------
+   Signup Card
+   -------------------------------------------------------------------------- */
+.signup-card {
+    padding: var(--space-2xl);
+    background: var(--color-stone-800);
+    border: 1px solid var(--color-stone-700);
+    border-radius: var(--radius-xl);
+    animation: fadeInUp 0.6s ease-out 0.15s both;
+}
+
+.signup-title {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    color: var(--color-stone-100);
+    letter-spacing: 0.02em;
+    margin-bottom: var(--space-sm);
+}
+
+.signup-description {
+    color: var(--color-stone-500);
+    font-size: 0.9375rem;
+    margin-bottom: var(--space-xl);
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.form-label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-stone-400);
+}
+
+.form-label .optional {
+    color: var(--color-stone-600);
+    font-weight: 400;
+}
+
+.form-input {
+    padding: var(--space-md);
+    background: var(--color-stone-900);
+    border: 1px solid var(--color-stone-700);
+    border-radius: var(--radius-md);
+    color: var(--color-stone-200);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input::placeholder {
+    color: var(--color-stone-600);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--color-amber);
+    box-shadow: 0 0 0 3px var(--color-amber-subtle);
+}
+
+.checkbox-group {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--space-md);
+}
+
+.form-checkbox {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--color-amber);
+    cursor: pointer;
+}
+
+.checkbox-label {
+    font-size: 0.8125rem;
+    color: var(--color-stone-500);
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.btn-signup {
+    width: 100%;
+    justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   Discord Card
+   -------------------------------------------------------------------------- */
+.discord-card {
+    padding: var(--space-2xl);
+    background: linear-gradient(135deg, rgba(88, 101, 242, 0.1), rgba(88, 101, 242, 0.03));
+    border: 1px solid rgba(88, 101, 242, 0.25);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    animation: fadeInUp 0.6s ease-out 0.25s both;
+}
+
+.discord-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto var(--space-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(88, 101, 242, 0.2);
+    border-radius: var(--radius-lg);
+}
+
+.discord-icon svg {
+    width: 32px;
+    height: 32px;
+    color: #5865F2;
+}
+
+.discord-title {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    color: var(--color-stone-100);
+    letter-spacing: 0.02em;
+    margin-bottom: var(--space-sm);
+}
+
+.discord-description {
+    color: var(--color-stone-500);
+    font-size: 0.9375rem;
+    margin-bottom: var(--space-xl);
+}
+
+.btn-discord {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-xl);
+    background: #5865F2;
+    color: white;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+.btn-discord:hover {
+    background: #4752C4;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -10px rgba(88, 101, 242, 0.5);
+}
+
+.btn-discord .btn-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.discord-note {
+    margin-top: var(--space-md);
+    font-size: 0.75rem;
+    color: var(--color-stone-600);
+    font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   GitHub Card
+   -------------------------------------------------------------------------- */
+.github-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: var(--color-stone-800);
+    border: 1px solid var(--color-stone-700);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
+    animation: fadeInUp 0.6s ease-out 0.35s both;
+}
+
+.github-card:hover {
+    border-color: var(--color-stone-600);
+}
+
+.github-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    color: var(--color-stone-400);
+}
+
+.github-card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.github-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-amber);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.github-text {
+    font-size: 0.875rem;
+    color: var(--color-stone-500);
+}
+
+.github-card-link {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-stone-700);
+    border-radius: var(--radius-md);
+    color: var(--color-stone-400);
+    transition: all var(--transition-fast);
+}
+
+.github-card-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+.github-card-link:hover {
+    background: var(--color-amber);
+    color: var(--color-stone-950);
+}
+
+/* --------------------------------------------------------------------------
+   Legal Footer
+   -------------------------------------------------------------------------- */
+.download-footer {
+    padding: var(--space-4xl) 0 var(--space-3xl);
+    background: var(--color-stone-900);
+    border-top: 1px solid var(--color-stone-800);
+}
+
+.legal-section {
+    margin-bottom: var(--space-3xl);
+    padding-bottom: var(--space-3xl);
+    border-bottom: 1px solid var(--color-stone-800);
+}
+
+.legal-heading {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-stone-400);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-xl);
+    text-align: center;
+}
+
+.legal-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+}
+
+.legal-block {
+    padding: var(--space-lg);
+    background: var(--color-stone-800);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-stone-700);
+}
+
+.legal-block h5 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--color-amber);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-sm);
+}
+
+.legal-block p {
+    font-size: 0.8125rem;
+    color: var(--color-stone-500);
+    line-height: 1.7;
+}
+
+.legal-block p strong {
+    color: var(--color-stone-300);
+}
+
+.legal-block p a {
+    color: var(--color-amber);
+    border-bottom: 1px solid transparent;
+}
+
+.legal-block p a:hover {
+    border-bottom-color: var(--color-amber);
+}
+
+.footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    text-align: center;
+}
+
+.footer-bottom .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.footer-bottom .footer-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.footer-bottom .footer-name {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    color: var(--color-stone-400);
+    letter-spacing: 0.05em;
+}
+
+.footer-bottom .copyright {
+    font-size: 0.75rem;
+    color: var(--color-stone-600);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .download-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .legal-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .download-hero {
+        min-height: auto;
+        padding: calc(var(--space-3xl) + 60px) var(--space-md) var(--space-2xl);
+    }
+
+    .warning-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .warning-card-icon {
+        margin: 0 auto;
+    }
+
+    .warning-checklist {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .download-specs {
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .download-title {
+        font-size: clamp(2.5rem, 15vw, 4rem);
+    }
+
+    .instructions-list li {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+
+    .step-number {
+        align-self: flex-start;
+    }
+
+    .step-content {
+        padding-top: 0;
+    }
+}

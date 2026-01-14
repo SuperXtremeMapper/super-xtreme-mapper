@@ -139,7 +139,9 @@ struct WelcomeButton: View {
     @State private var isHovered = false
 
     var body: some View {
-        Button(action: action) {
+        Button {
+            action()
+        } label: {
             HStack(spacing: AppThemeV2.Spacing.md) {
                 // Icon with background
                 ZStack {

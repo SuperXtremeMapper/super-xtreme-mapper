@@ -1,0 +1,561 @@
+Super Xtreme Mapper<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Xtreme Mapper- TSI Editor for Traktor Pro</title>
+    <meta name="description" content="A free, open-source TSI editor for Traktor Pro. Create and edit MIDI controller mappings with an intuitive interface.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+<body>
+    <!-- Ambient background -->
+    <div class="ambient-bg"></div>
+    <div class="circuit-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="assets/logo.png" alt="SXM" class="nav-logo-img">
+                <span class="nav-logo-text">SXM</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#backstory">Story</a>
+                <a href="download.html">Download</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Split Layout -->
+    <header class="hero">
+        <div class="hero-split">
+            <div class="hero-left">
+                <img src="assets/logo.png" alt="Super Xtreme Mapping" class="hero-logo">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    BETA v0.1
+                </div>
+            </div>
+            <div class="hero-right">
+                <h1 class="hero-title">
+                    <span class="title-super">SUPER</span>
+                    <span class="title-xtreme">XTREME</span>
+                    <span class="title-mapping">MAPPER</span>
+                </h1>
+                <p class="hero-tagline">The TSI editor Traktor deserves.</p>
+                <p class="hero-subtitle">Create, edit, and manage your Traktor Pro MIDI mappings with a modern, intuitive interface. Free and open source.</p>
+                <div class="hero-actions">
+                    <a href="download.html" class="btn btn-primary" onclick="triggerDownload(event)">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                        </svg>
+                        Download for macOS
+                    </a>
+                    <a href="https://github.com/SuperXtremeMapper/super-xtreme-mapper" class="btn btn-secondary">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-glow"></div>
+    </header>
+
+    <!-- Overview Section -->
+    <section class="section overview" id="overview">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2 class="section-title">What is SXM?</h2>
+            </div>
+            <div class="overview-grid">
+                <div class="overview-text">
+                    <p class="lead">Super Xtreme Mapper is a native macOS application for creating and editing Traktor Pro TSI mapping files.</p>
+                    <p>Whether you're building custom controller mappings from scratch, tweaking existing setups, or diving deep into modifier logic, SXM gives you a clean, modern interface to work with Traktor's powerful but notoriously opaque mapping system.</p>
+                    <p>No more hunting through endless menu trees or fighting with Traktor's built-in controller manager. Just open your TSI, see everything at a glance, and make your changes.</p>
+		<p>Inspired by the much loved, long dead, <a href=https://www.xtrememapping.com/>Xtreme Mapping.</a></p>                
+</div>
+                <div class="overview-visual">
+                    <div class="app-preview">
+                        <div class="app-preview-header">
+                            <div class="window-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="window-title">Super Xtreme Mapping</span>
+                        </div>
+                        <div class="app-preview-content">
+                            <div class="preview-sidebar">
+                                <div class="preview-item active"></div>
+                                <div class="preview-item"></div>
+                                <div class="preview-item"></div>
+                                <div class="preview-item"></div>
+                                <div class="preview-item"></div>
+                            </div>
+                            <div class="preview-main">
+                                <div class="preview-row header">
+                                    <span>I/O</span>
+                                    <span>ASSIGNMENT</span>
+                                    <span>COMMAND</span>
+                                    <span>MIDI</span>
+                                </div>
+                                <div class="preview-row">
+                                    <span class="io-in">IN</span>
+                                    <span>Deck A</span>
+                                    <span>Play/Pause</span>
+                                    <span>Ch1 CC 20</span>
+                                </div>
+                                <div class="preview-row selected">
+                                    <span class="io-in">IN</span>
+                                    <span>Deck A</span>
+                                    <span>Sync</span>
+                                    <span>Ch1 CC 21</span>
+                                </div>
+                                <div class="preview-row">
+                                    <span class="io-out">OUT</span>
+                                    <span>Deck A</span>
+                                    <span>Play State LED</span>
+                                    <span>Ch1 CC 40</span>
+                                </div>
+                                <div class="preview-row">
+                                    <span class="io-in">IN</span>
+                                    <span>Deck B</span>
+                                    <span>Play/Pause</span>
+                                    <span>Ch2 CC 20</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Backstory Section -->
+    <section class="section backstory" id="backstory">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">The Story</h2>
+            </div>
+            <div class="backstory-content">
+                <div class="quote-mark">"</div>
+                <p class="backstory-text">
+                    We used to love <a href=https://www.xtrememapping.com/>Xtreme Mapping</a>. It was the only decent TSI editor out there, and it made creating custom Traktor mappings almost enjoyable. <br> <br> Then Apple Silicon happened, and Xtreme Mapping stopped working. Our attempts to contact the original author, Vincenzo Pietropaolo, were met with silence. After years of waiting and hoping, we decided to take matters into our own hands. <br> <br> Using <strong>Claude Code</strong>, we <b>reverse-engineered</b> a <b>completely new TSI editor</b> from a combination of <b>Xtreme Mapping screenshots</b>, the <a href="https://cmdr-editor.github.io/cmdr/" target="_blank">CMDR editor</a> source code (thank you, cmdr-editor team!), and <a href="https://github.com/ivanz" target="_blank">IvanZ's</a> invaluable TSI format research. The result is Super Xtreme Mapping: a love letter to the original, rebuilt from the ground up for modern Macs.
+                </p>
+                <div class="backstory-signature">
+                    <span class="signature-dash">—</span>
+                    <span class="signature-name">The SXM Team</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section with Mockups -->
+    <section class="section features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2 class="section-title">Features</h2>
+            </div>
+
+            <!-- Feature 1: Visual Mapping Table -->
+            <div class="feature-row">
+                <div class="feature-info">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3 10h18M3 14h18M3 6h18M3 18h18"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Visual Mapping Table</h3>
+                    <p class="feature-desc">See all your mappings at a glance in a clean, sortable table. Filter by I/O type, assignment, or search for specific commands. No more endless scrolling through Traktor's clunky interface.</p>
+                </div>
+                <div class="feature-mockup">
+                    <div class="mockup-window">
+                        <div class="mockup-header">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                        </div>
+                        <div class="mockup-content mockup-table">
+                            <div class="mock-toolbar">
+                                <span class="mock-filter active">All</span>
+                                <span class="mock-filter">Input</span>
+                                <span class="mock-filter">Output</span>
+                                <span class="mock-search">Search...</span>
+                            </div>
+                            <div class="mock-table-header">
+                                <span>I/O</span><span>Assignment</span><span>Command</span><span>MIDI</span>
+                            </div>
+                            <div class="mock-row"><span class="io-badge in">IN</span><span>Deck A</span><span>Play/Pause</span><span>Ch1 Note 42</span></div>
+                            <div class="mock-row selected"><span class="io-badge in">IN</span><span>Deck A</span><span>Tempo Bend +</span><span>Ch1 CC 20</span></div>
+                            <div class="mock-row"><span class="io-badge out">OUT</span><span>Deck A</span><span>Play State</span><span>Ch1 Note 42</span></div>
+                            <div class="mock-row"><span class="io-badge in">IN</span><span>Deck B</span><span>Play/Pause</span><span>Ch2 Note 42</span></div>
+                            <div class="mock-row"><span class="io-badge in">IN</span><span>Global</span><span>Master Volume</span><span>Ch1 CC 7</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 2: Full MIDI Control -->
+            <div class="feature-row reverse">
+                <div class="feature-info">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="2" y="6" width="20" height="12" rx="2"/>
+                            <path d="M6 10v4M10 10v4M14 10v4M18 10v4"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Full MIDI Control</h3>
+                    <p class="feature-desc">Edit channels, CC numbers, notes, and all MIDI parameters with intuitive controls. Full support for buttons, faders, encoders, and LEDs with proper controller type settings.</p>
+                </div>
+                <div class="feature-mockup">
+                    <div class="mockup-window">
+                        <div class="mockup-header">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                        </div>
+                        <div class="mockup-content mockup-midi">
+                            <div class="mock-panel-title">MIDI Settings</div>
+                            <div class="mock-form-row">
+                                <span class="mock-label">Type</span>
+                                <span class="mock-dropdown">Button</span>
+                            </div>
+                            <div class="mock-form-row">
+                                <span class="mock-label">Channel</span>
+                                <span class="mock-input">1</span>
+                            </div>
+                            <div class="mock-form-row">
+                                <span class="mock-label">Note/CC</span>
+                                <span class="mock-input highlight">CC 20</span>
+                            </div>
+                            <div class="mock-form-row">
+                                <span class="mock-label">Interaction</span>
+                                <span class="mock-dropdown">Hold</span>
+                            </div>
+                            <div class="mock-divider"></div>
+                            <div class="mock-form-row">
+                                <span class="mock-label">Invert</span>
+                                <span class="mock-toggle off"></span>
+                            </div>
+                            <div class="mock-form-row">
+                                <span class="mock-label">Soft Takeover</span>
+                                <span class="mock-toggle on"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 3: Modifier Logic -->
+            <div class="feature-row">
+                <div class="feature-info">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Modifier Logic</h3>
+                    <p class="feature-desc">Full support for Traktor's powerful 8-modifier system. Set conditions for when mappings activate and define modifier changes. Build complex, layered controller setups with ease.</p>
+                </div>
+                <div class="feature-mockup">
+                    <div class="mockup-window">
+                        <div class="mockup-header">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                        </div>
+                        <div class="mockup-content mockup-modifiers">
+                            <div class="mock-panel-title">Modifier Conditions</div>
+                            <div class="mock-modifier-row">
+                                <span class="mod-label">M1</span>
+                                <span class="mod-condition active">=0</span>
+                                <span class="mod-condition">=1</span>
+                                <span class="mod-condition">=2</span>
+                                <span class="mod-action">→ Set to 1</span>
+                            </div>
+                            <div class="mock-modifier-row">
+                                <span class="mod-label">M2</span>
+                                <span class="mod-condition">=0</span>
+                                <span class="mod-condition active">=1</span>
+                                <span class="mod-condition">=2</span>
+                                <span class="mod-action dim">No change</span>
+                            </div>
+                            <div class="mock-modifier-row">
+                                <span class="mod-label">M3</span>
+                                <span class="mod-condition active">Any</span>
+                                <span class="mod-condition">=0</span>
+                                <span class="mod-condition">=1</span>
+                                <span class="mod-action dim">No change</span>
+                            </div>
+                            <div class="mock-divider"></div>
+                            <div class="mock-logic-summary">
+                                <span class="logic-icon">⚡</span>
+                                <span>Active when M1=0 AND M2=1</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 4: Drag & Drop -->
+            <div class="feature-row reverse">
+                <div class="feature-info">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2M16 8h2a2 2 0 012 2v8a2 2 0 01-2 2h-8a2 2 0 01-2-2v-2"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Drag & Drop</h3>
+                    <p class="feature-desc">Copy mappings between files with simple drag and drop. Open multiple TSI files side by side and transfer configurations between controllers or templates instantly.</p>
+                </div>
+                <div class="feature-mockup">
+                    <div class="mockup-window mockup-dual">
+                        <div class="mockup-pane">
+                            <div class="mockup-header small">
+                                <div class="window-dots small"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                                <span class="pane-title">Kontrol S4.tsi</span>
+                            </div>
+                            <div class="mockup-content mockup-list">
+                                <div class="mock-list-item">Play/Pause → Deck A</div>
+                                <div class="mock-list-item dragging">Sync → Deck A</div>
+                                <div class="mock-list-item">Cue → Deck A</div>
+                            </div>
+                        </div>
+                        <div class="drag-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                        <div class="mockup-pane">
+                            <div class="mockup-header small">
+                                <div class="window-dots small"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                                <span class="pane-title">My Controller.tsi</span>
+                            </div>
+                            <div class="mockup-content mockup-list">
+                                <div class="mock-list-item">Play/Pause → Deck A</div>
+                                <div class="mock-list-item drop-target">Drop here...</div>
+                                <div class="mock-list-item dim">Cue → Deck A</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 5: Native macOS -->
+            <div class="feature-row">
+                <div class="feature-info">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Native macOS</h3>
+                    <p class="feature-desc">Built with SwiftUI specifically for Apple Silicon. Blazing fast, memory efficient, and feels right at home on your Mac. Full support for dark mode, keyboard shortcuts, and multi-window workflows.</p>
+                </div>
+                <div class="feature-mockup">
+                    <div class="mockup-window mockup-macos">
+                        <div class="mockup-header">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                        </div>
+                        <div class="mockup-content mockup-native">
+                            <div class="native-badge">
+                                <svg viewBox="0 0 24 24" fill="currentColor" class="apple-chip">
+                                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                                </svg>
+                                <span>Apple Silicon Native</span>
+                            </div>
+                            <div class="native-features">
+                                <div class="native-item"><span class="check">✓</span> Universal Binary (M1/M2/Intel)</div>
+                                <div class="native-item"><span class="check">✓</span> Dark Mode Support</div>
+                                <div class="native-item"><span class="check">✓</span> Multi-Window</div>
+                                <div class="native-item"><span class="check">✓</span> Keyboard Shortcuts</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 6: All Traktor Commands -->
+            <div class="feature-row reverse">
+                <div class="feature-info">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">All Traktor Commands</h3>
+                    <p class="feature-desc">Access to the complete Traktor command library with over 500 commands. Browse by category or search for exactly what you need. Every deck, FX, mixer, and global command at your fingertips.</p>
+                </div>
+                <div class="feature-mockup">
+                    <div class="mockup-window">
+                        <div class="mockup-header">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                        </div>
+                        <div class="mockup-content mockup-commands">
+                            <div class="mock-search-bar">
+                                <span class="search-icon">🔍</span>
+                                <span class="search-text">tempo</span>
+                            </div>
+                            <div class="mock-categories">
+                                <span class="cat active">Transport</span>
+                                <span class="cat">Tempo</span>
+                                <span class="cat">FX</span>
+                                <span class="cat">Mixer</span>
+                            </div>
+                            <div class="mock-command-list">
+                                <div class="cmd-item"><span class="cmd-name">Tempo Bend +</span><span class="cmd-cat">Tempo</span></div>
+                                <div class="cmd-item"><span class="cmd-name">Tempo Bend -</span><span class="cmd-cat">Tempo</span></div>
+                                <div class="cmd-item highlight"><span class="cmd-name">Tempo Range</span><span class="cmd-cat">Tempo</span></div>
+                                <div class="cmd-item"><span class="cmd-name">Tempo Sync</span><span class="cmd-cat">Tempo</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Combined Beta Warning + Download Section -->
+    <section class="section download-section" id="download">
+        <div class="container">
+            <div class="section-header centered">
+                <span class="section-number">04</span>
+                <h2 class="section-title">Get Started</h2>
+            </div>
+            <div class="download-split">
+                <!-- Warning Side -->
+                <div class="warning-side">
+                    <div class="warning-icon-large">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="warning-title">Beta Software</h3>
+                    <p class="warning-text">SXM is currently in beta. While we've tested extensively, bugs may exist. <strong>Always backup your TSI files before editing.</strong></p>
+                    <ul class="warning-list">
+                        <li>Make copies of important mappings</li>
+                        <li>Report bugs on GitHub</li>
+                        <li>Use at your own risk</li>
+                    </ul>
+                </div>
+                <!-- Download Side -->
+                <div class="download-side">
+                    <div class="download-platform">
+                        <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                        </svg>
+                        <span>macOS</span>
+                    </div>
+                    <p class="download-requirements">Requires macOS 13.0+<br>Apple Silicon & Intel</p>
+                    <a href="download.html" class="btn btn-primary btn-large" onclick="triggerDownload(event)">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                        </svg>
+                        Download v0.1 Beta
+                    </a>
+                    <p class="download-note">Free & Open Source (MIT License)</p>
+                    <a href="https://github.com/SuperXtremeMapper/super-xtreme-mapper" class="github-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        View Source on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <h2 class="section-title">Contact & Feedback</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3>Bug Reports</h3>
+                    <p>Found a bug? Open an issue on GitHub with details about what happened and how to reproduce it.</p>
+                    <a href="https://github.com/SuperXtremeMapper/super-xtreme-mapper/issues" class="contact-link">Report on GitHub</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3>Feature Requests</h3>
+                    <p>Have an idea for a new feature? We'd love to hear it. Submit your suggestions via GitHub or email.</p>
+                    <a href="https://github.com/SuperXtremeMapper/super-xtreme-mapper/discussions" class="contact-link">Start a Discussion</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3>General Inquiries</h3>
+                    <p>Questions, feedback, or just want to say hi? Drop us a line and we'll get back to you.</p>
+                    <a href="mailto:SXTREMEMAPPER@PROTON.ME" class="contact-link">SXTREMEMAPPER@PROTON.ME</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="SXM" class="footer-logo">
+                    <span class="footer-name">Super Xtreme Mapping</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#features">Features</a>
+                    <a href="#backstory">Story</a>
+                    <a href="download.html">Download</a>
+                    <a href="#contact">Contact</a>
+                    <a href="https://github.com/SuperXtremeMapper/super-xtreme-mapper">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-legal">
+                <p class="legal-text">Super Xtreme Mapper is free, open-source software released under the MIT License.</p>
+                <p class="legal-disclaimer">Traktor is a registered trademark of Native Instruments GmbH. This project is not affiliated with, endorsed by, or sponsored by Native Instruments. All product names, trademarks, and registered trademarks are property of their respective owners.</p>
+                <p class="copyright">&copy; 2026 Super Xtreme Mapping. Made with love for the DJ community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        function triggerDownload(event) {
+            // Start the DMG download
+            const downloadLink = document.createElement('a');
+            downloadLink.href = 'https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases/latest/download/XtremeMapping-Beta.dmg';
+            downloadLink.download = 'XtremeMapping-Beta.dmg';
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+
+            // Let the normal navigation to download.html proceed
+            // (the href on the button handles this)
+        }
+    </script>
+</body>
+</html>

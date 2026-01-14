@@ -298,8 +298,8 @@
 				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = XtremeMapping/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "XXtreme Mapping";
-				INFOPLIST_KEY_CFBundleName = "XXtreme Mapping";
+				INFOPLIST_KEY_CFBundleDisplayName = "Super Xtreme Mapping";
+				INFOPLIST_KEY_CFBundleName = "Super Xtreme Mapping";
 				INFOPLIST_KEY_NSDocumentAutosavesInPlace = NO;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -307,7 +307,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xtrememapping.XtremeMapping;
+				PRODUCT_BUNDLE_IDENTIFIER = com.superxtrememapping.XtremeMapping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -332,8 +332,8 @@
 				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = XtremeMapping/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "XXtreme Mapping";
-				INFOPLIST_KEY_CFBundleName = "XXtreme Mapping";
+				INFOPLIST_KEY_CFBundleDisplayName = "Super Xtreme Mapping";
+				INFOPLIST_KEY_CFBundleName = "Super Xtreme Mapping";
 				INFOPLIST_KEY_NSDocumentAutosavesInPlace = NO;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -341,7 +341,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xtrememapping.XtremeMapping;
+				PRODUCT_BUNDLE_IDENTIFIER = com.superxtrememapping.XtremeMapping;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -480,7 +480,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 26.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xtrememapping.XtremeMappingTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.superxtrememapping.XtremeMappingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -500,7 +500,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 26.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xtrememapping.XtremeMappingTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.superxtrememapping.XtremeMappingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -518,7 +518,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xtrememapping.XtremeMappingUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.superxtrememapping.XtremeMappingUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -536,7 +536,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.xtrememapping.XtremeMappingUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.superxtrememapping.XtremeMappingUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
