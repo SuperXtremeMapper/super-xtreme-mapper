@@ -177,6 +177,8 @@ struct EditCommands: Commands {
               let selected = selectedMappings,
               !selected.isEmpty else { return }
 
+        doc.noteChange()
+
         for deviceIndex in doc.mappingFile.devices.indices {
             let device = doc.mappingFile.devices[deviceIndex]
             let toDuplicate = device.mappings.filter { selected.contains($0.id) }
@@ -213,6 +215,8 @@ struct EditCommands: Commands {
         guard let doc = document,
               let selected = selectedMappings else { return }
 
+        doc.noteChange()
+
         for deviceIndex in doc.mappingFile.devices.indices {
             for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
                 if selected.contains(doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].id) {
@@ -228,6 +232,8 @@ struct EditCommands: Commands {
         guard let doc = document,
               let selected = selectedMappings else { return }
 
+        doc.noteChange()
+
         for deviceIndex in doc.mappingFile.devices.indices {
             for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
                 if selected.contains(doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].id) {
@@ -241,6 +247,8 @@ struct EditCommands: Commands {
         guard let doc = document,
               let selected = selectedMappings else { return }
 
+        doc.noteChange()
+
         for deviceIndex in doc.mappingFile.devices.indices {
             for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
                 if selected.contains(doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].id) {
@@ -253,6 +261,8 @@ struct EditCommands: Commands {
     private func changeControllerType(to type: ControllerType) {
         guard let doc = document,
               let selected = selectedMappings else { return }
+
+        doc.noteChange()
 
         for deviceIndex in doc.mappingFile.devices.indices {
             for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
@@ -272,6 +282,8 @@ struct EditCommands: Commands {
         guard let doc = document,
               let selected = selectedMappings else { return }
 
+        doc.noteChange()
+
         for deviceIndex in doc.mappingFile.devices.indices {
             for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
                 if selected.contains(doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].id) {
@@ -288,6 +300,8 @@ struct EditCommands: Commands {
     private func changeEncoderMode(to mode: EncoderMode) {
         guard let doc = document,
               let selected = selectedMappings else { return }
+
+        doc.noteChange()
 
         for deviceIndex in doc.mappingFile.devices.indices {
             for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
@@ -309,6 +323,8 @@ struct EditCommands: Commands {
     private func clearModifiers() {
         guard let doc = document,
               let selected = selectedMappings else { return }
+
+        doc.noteChange()
 
         for deviceIndex in doc.mappingFile.devices.indices {
             for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {

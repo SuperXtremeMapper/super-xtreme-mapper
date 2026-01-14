@@ -12,7 +12,7 @@ import Foundation
 /// A mapping file contains one or more devices, each with their own
 /// collection of MIDI mappings. The version number indicates the
 /// TSI format version.
-struct MappingFile: Codable, Sendable {
+struct MappingFile: Codable, Sendable, Equatable {
     /// The devices defined in this mapping file
     var devices: [Device]
 

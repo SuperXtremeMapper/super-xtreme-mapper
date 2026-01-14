@@ -11,7 +11,7 @@ import Foundation
 ///
 /// A mapping entry connects a MIDI control (note or CC) to a Traktor command,
 /// with optional modifier conditions and assignment targets.
-struct MappingEntry: Identifiable, Codable, Hashable, Sendable {
+struct MappingEntry: Identifiable, Codable, Hashable, Sendable, Equatable {
     /// Unique identifier for this mapping entry
     let id: UUID
 
@@ -161,7 +161,7 @@ struct MappingEntry: Identifiable, Codable, Hashable, Sendable {
 ///
 /// Traktor supports 8 modifiers (M1-M8), each with values 0-7.
 /// A mapping can require specific modifier values to be active.
-struct ModifierCondition: Codable, Hashable, Sendable {
+struct ModifierCondition: Codable, Hashable, Sendable, Equatable {
     /// The modifier number (1-8 for M1-M8)
     var modifier: Int
 

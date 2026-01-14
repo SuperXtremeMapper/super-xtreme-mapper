@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AppKit
 import UniformTypeIdentifiers
 import Combine
 
@@ -20,6 +21,13 @@ final class TraktorMappingDocument: ReferenceFileDocument {
     typealias Snapshot = MappingFile
 
     @Published var mappingFile: MappingFile
+    @Published private(set) var fileURL: URL?
+    @Published private(set) var isDirty = false
+
+    private static let documentRegistry = NSMapTable<NSURL, TraktorMappingDocument>(
+        keyOptions: .strongMemory,
+        valueOptions: .weakMemory
+    )
 
     static var readableContentTypes: [UTType] { [.tsi] }
 
@@ -63,5 +71,54 @@ final class TraktorMappingDocument: ReferenceFileDocument {
         let writer = TSIWriter()
         let data = writer.write(snapshot)
         return FileWrapper(regularFileWithContents: data)
+    }
+
+    @MainActor
+    func noteChange() {
+        isDirty = true
+        objectWillChange.send()
+        let controller = NSDocumentController.shared
+        if let fileURL, let document = controller.document(for: fileURL) {
+            document.updateChangeCount(.changeDone)
+            print("noteChange: update via fileURL", fileURL.lastPathComponent, "edited:", document.isDocumentEdited,
+                  "docId:", ObjectIdentifier(document))
+        } else if let document = controller.currentDocument {
+            document.updateChangeCount(.changeDone)
+            print("noteChange: update via currentDocument", document.displayName ?? "Unknown",
+                  "edited:", document.isDocumentEdited, "docId:", ObjectIdentifier(document))
+        } else {
+            print("noteChange: no NSDocument found", "fileURL:", fileURL?.absoluteString ?? "nil",
+                  "documents:", controller.documents.count)
+        }
+    }
+
+    @MainActor
+    func updateFileURL(_ fileURL: URL?) {
+        if let oldURL = self.fileURL as NSURL? {
+            TraktorMappingDocument.documentRegistry.removeObject(forKey: oldURL)
+        }
+
+        self.fileURL = fileURL
+
+        if let fileURL = fileURL as NSURL? {
+            TraktorMappingDocument.documentRegistry.setObject(self, forKey: fileURL)
+        }
+
+        if let fileURL {
+            print("updateFileURL:", fileURL.lastPathComponent)
+        } else {
+            print("updateFileURL: nil")
+        }
+    }
+
+    static func isDirty(for fileURL: URL?) -> Bool {
+        guard let fileURL = fileURL as NSURL? else { return false }
+        return documentRegistry.object(forKey: fileURL)?.isDirty ?? false
+    }
+
+    @MainActor
+    static func markClean(for fileURL: URL?) {
+        guard let fileURL = fileURL as NSURL? else { return }
+        documentRegistry.object(forKey: fileURL)?.isDirty = false
     }
 }

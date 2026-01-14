@@ -300,6 +300,7 @@
 				INFOPLIST_FILE = XtremeMapping/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "XXtreme Mapping";
 				INFOPLIST_KEY_CFBundleName = "XXtreme Mapping";
+				INFOPLIST_KEY_NSDocumentAutosavesInPlace = NO;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -333,6 +334,7 @@
 				INFOPLIST_FILE = XtremeMapping/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "XXtreme Mapping";
 				INFOPLIST_KEY_CFBundleName = "XXtreme Mapping";
+				INFOPLIST_KEY_NSDocumentAutosavesInPlace = NO;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import AppKit
 
 /// Shared state for managing welcome window visibility
 class WelcomeWindowState: ObservableObject {
@@ -44,7 +45,13 @@ struct XtremeMappingApp: App {
 
         // Document windows for TSI files
         DocumentGroup(newDocument: { TraktorMappingDocument() }) { file in
-            ContentView(document: file.document)
+            ContentView(document: file.document, fileURL: file.fileURL)
+                .onAppear {
+                    file.document.updateFileURL(file.fileURL)
+                }
+                .onChange(of: file.fileURL) { _, newURL in
+                    file.document.updateFileURL(newURL)
+                }
         }
         .commands {
             EditCommands()
@@ -243,10 +250,14 @@ struct AboutView: View {
 
 /// App delegate to handle launch behavior and document management
 class AppDelegate: NSObject, NSApplicationDelegate {
+    private var windowDelegates: [ObjectIdentifier: DocumentWindowDelegateProxy] = [:]
+    private var didSaveObserver: NSObjectProtocol?
+    private var pendingTerminationDocuments: [NSDocument] = []
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         // Register our custom document controller
         _ = XtremeMappingDocumentController.shared
+        NSDocumentController.shared.autosavingDelay = -1
 
         // Observe window close notifications to reopen welcome when last document closes
         NotificationCenter.default.addObserver(
@@ -255,6 +266,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             name: NSWindow.willCloseNotification,
             object: nil
         )
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(windowDidBecomeMain(_:)),
+            name: NSWindow.didBecomeMainNotification,
+            object: nil
+        )
+
+        didSaveObserver = NotificationCenter.default.addObserver(
+            forName: Notification.Name("NSDocumentDidSaveNotification"),
+            object: nil,
+            queue: .main
+        ) { notification in
+            guard let document = notification.object as? NSDocument else { return }
+            let opKey = "NSDocumentSaveOperation"
+            let opValue = (notification.userInfo?[opKey] as? NSNumber)?.intValue
+            if let opValue, opValue == NSDocument.SaveOperationType.autosaveElsewhereOperation.rawValue {
+                return
+            }
+            Task { @MainActor in
+                TraktorMappingDocument.markClean(for: document.fileURL)
+            }
+        }
     }
 
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
@@ -275,6 +309,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
 
+    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+        let dirtyDocuments = NSDocumentController.shared.documents.filter { document in
+            TraktorMappingDocument.isDirty(for: document.fileURL)
+        }
+
+        if dirtyDocuments.isEmpty {
+            return .terminateNow
+        }
+
+        pendingTerminationDocuments = dirtyDocuments
+        promptNextTerminationDocument()
+        return .terminateLater
+    }
+
     @objc private func windowWillClose(_ notification: Notification) {
         guard let closingWindow = notification.object as? NSWindow else { return }
 
@@ -290,11 +338,38 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // Only check for welcome reopen if a document window is closing
         if isDocumentWindow {
+            if let doc = NSDocumentController.shared.documents.first(where: { document in
+                document.windowControllers.contains { $0.window == closingWindow }
+            }) {
+                print("windowWillClose: doc", doc.displayName ?? "Unknown", "edited:", doc.isDocumentEdited)
+            } else {
+                print("windowWillClose: document window but no matching NSDocument")
+            }
             // Delay check to allow document to fully close
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
                 self?.checkAndShowWelcomeIfNeeded()
             }
         }
+    }
+
+    @objc private func windowDidBecomeMain(_ notification: Notification) {
+        guard let window = notification.object as? NSWindow else { return }
+        attachDocumentDelegateIfNeeded(to: window)
+    }
+
+    private func attachDocumentDelegateIfNeeded(to window: NSWindow) {
+        guard window.windowController?.document != nil else { return }
+        guard !(window.delegate is DocumentWindowDelegateProxy) else { return }
+
+        let identifier = ObjectIdentifier(window)
+        if windowDelegates[identifier] == nil {
+            windowDelegates[identifier] = DocumentWindowDelegateProxy(
+                originalDelegate: window.delegate,
+                appDelegate: self
+            )
+        }
+
+        window.delegate = windowDelegates[identifier]
     }
 
     private func checkAndShowWelcomeIfNeeded() {
@@ -322,6 +397,146 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
+
+    fileprivate func promptToSave(document: NSDocument, window: NSWindow?, completion: @escaping (SaveDecision) -> Void) {
+        let alert = NSAlert()
+        alert.messageText = "Do you want to save the changes made to the document \"\(document.displayName ?? "Untitled")\"?"
+        alert.informativeText = "Your changes will be lost if you don't save them."
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "Save")
+        alert.addButton(withTitle: "Discard")
+        alert.addButton(withTitle: "Cancel")
+
+        let handler: (NSApplication.ModalResponse) -> Void = { response in
+            switch response {
+            case .alertFirstButtonReturn:
+                completion(.save)
+            case .alertSecondButtonReturn:
+                completion(.discard)
+            default:
+                completion(.cancel)
+            }
+        }
+
+        if let window {
+            alert.beginSheetModal(for: window, completionHandler: handler)
+        } else {
+            handler(alert.runModal())
+        }
+    }
+
+    private func promptNextTerminationDocument() {
+        guard !pendingTerminationDocuments.isEmpty else {
+            NSApp.reply(toApplicationShouldTerminate: true)
+            return
+        }
+
+        let document = pendingTerminationDocuments.removeFirst()
+        let window = document.windowControllers.first?.window
+
+        promptToSave(document: document, window: window) { [weak self] decision in
+            guard let self else { return }
+            switch decision {
+            case .save:
+                self.save(document: document) { didSave in
+                    if didSave {
+                        self.promptNextTerminationDocument()
+                    } else {
+                        NSApp.reply(toApplicationShouldTerminate: false)
+                    }
+                }
+            case .discard:
+                Task { @MainActor in
+                    TraktorMappingDocument.markClean(for: document.fileURL)
+                    document.updateChangeCount(.changeCleared)
+                }
+                document.close()
+                self.promptNextTerminationDocument()
+            case .cancel:
+                NSApp.reply(toApplicationShouldTerminate: false)
+            }
+        }
+    }
+
+    fileprivate func save(document: NSDocument, completion: @escaping (Bool) -> Void) {
+        let identifier = ObjectIdentifier(document)
+        SaveCallbackStore.shared.register(identifier: identifier, completion: completion)
+        document.save(withDelegate: SaveCallbackStore.shared, didSave: #selector(SaveCallbackStore.document(_:didSave:contextInfo:)), contextInfo: UnsafeMutableRawPointer(Unmanaged.passUnretained(document).toOpaque()))
+    }
+}
+
+// MARK: - Document Window Delegate
+
+final class DocumentWindowDelegateProxy: NSObject, NSWindowDelegate {
+    private weak var originalDelegate: NSWindowDelegate?
+    private let appDelegate: AppDelegate
+
+    init(originalDelegate: NSWindowDelegate?, appDelegate: AppDelegate) {
+        self.originalDelegate = originalDelegate
+        self.appDelegate = appDelegate
+        super.init()
+    }
+
+    func windowShouldClose(_ sender: NSWindow) -> Bool {
+        if let originalDelegate = originalDelegate,
+           let shouldClose = originalDelegate.windowShouldClose?(sender) {
+            if !shouldClose {
+                return false
+            }
+        }
+
+        guard let document = sender.windowController?.document as? NSDocument else { return true }
+        let dirty = TraktorMappingDocument.isDirty(for: document.fileURL)
+        if !dirty {
+            return true
+        }
+
+        appDelegate.promptToSave(document: document, window: sender) { [weak self] decision in
+            guard let self else { return }
+            switch decision {
+            case .save:
+                self.appDelegate.save(document: document) { didSave in
+                    if didSave {
+                        document.close()
+                    }
+                }
+            case .discard:
+                Task { @MainActor in
+                    TraktorMappingDocument.markClean(for: document.fileURL)
+                    document.updateChangeCount(.changeCleared)
+                }
+                document.close()
+            case .cancel:
+                break
+            }
+        }
+        return false
+    }
+}
+
+// MARK: - Save Callback Store
+
+private final class SaveCallbackStore: NSObject {
+    static let shared = SaveCallbackStore()
+    private var completions: [ObjectIdentifier: (Bool) -> Void] = [:]
+
+    func register(identifier: ObjectIdentifier, completion: @escaping (Bool) -> Void) {
+        completions[identifier] = completion
+    }
+
+    @objc(document:didSave:contextInfo:)
+    func document(_ document: AnyObject, didSave didSave: Bool, contextInfo: UnsafeMutableRawPointer?) {
+        guard let document = document as? NSDocument else { return }
+        let identifier = ObjectIdentifier(document)
+        let completion = completions.removeValue(forKey: identifier)
+        completion?(didSave)
+    }
+}
+
+private enum SaveDecision {
+    case save
+    case discard
+    case cancel
 }
 
 // MARK: - Custom Document Controller

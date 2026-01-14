@@ -10,6 +10,7 @@ import Combine
 
 struct ContentView: View {
     @ObservedObject var document: TraktorMappingDocument
+    let fileURL: URL?
     @Environment(\.undoManager) var undoManager
     @State private var selectedMappings: Set<MappingEntry.ID> = []
     @State private var categoryFilter: CommandCategory = .all
@@ -19,9 +20,10 @@ struct ContentView: View {
 
     /// Registers a change with the undo manager to mark document as edited
     private func registerChange() {
+        document.noteChange()
         undoManager?.registerUndo(withTarget: document) { doc in
             // Undo action - we don't fully implement undo, just mark as changed
-            doc.objectWillChange.send()
+            doc.noteChange()
         }
     }
 
@@ -370,5 +372,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(document: TraktorMappingDocument())
+    ContentView(document: TraktorMappingDocument(), fileURL: nil)
 }

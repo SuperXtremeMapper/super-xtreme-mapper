@@ -11,7 +11,7 @@ import Foundation
 ///
 /// A device groups related mappings together and specifies the MIDI ports
 /// used for communication with the physical controller.
-struct Device: Identifiable, Codable, Sendable {
+struct Device: Identifiable, Codable, Sendable, Equatable {
     /// Unique identifier for this device
     let id: UUID
 

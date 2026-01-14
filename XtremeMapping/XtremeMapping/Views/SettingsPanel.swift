@@ -28,8 +28,9 @@ struct SettingsPanel: View {
 
     /// Registers a change with the undo manager to mark document as edited
     private func registerChange() {
+        document.noteChange()
         undoManager?.registerUndo(withTarget: document) { doc in
-            doc.objectWillChange.send()
+            doc.noteChange()
         }
     }
 
