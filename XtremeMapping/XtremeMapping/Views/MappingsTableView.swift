@@ -1,6 +1,6 @@
 //
 //  MappingsTableView.swift
-//  XXtremeMapping
+//  SuperXtremeMapping
 //
 //  Created by u/nonomomomo2 on 13/01/2026.
 //
@@ -42,7 +42,7 @@ struct MappingsTableView: View {
     @State private var selectionAnchor: MappingEntry.ID?
 
     /// Current sort order for columns
-    @State private var sortOrder = [KeyPathComparator(\MappingEntry.commandName)]
+    @State private var sortOrder = [KeyPathComparator(\MappingEntry.ioTypeSortKey)]
 
     /// Sorted mappings based on current sort order
     private var sortedMappings: [MappingEntry] {
@@ -76,186 +76,211 @@ struct MappingsTableView: View {
 
     var body: some View {
         Table(sortedMappings, selection: $selection, sortOrder: $sortOrder) {
-            TableColumn("Command", value: \.commandName) { entry in
-                Text(entry.commandName)
-                    .lineLimit(1)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .contentShape(Rectangle())
-            }
-            .width(min: 100, ideal: 150)
+            // Column order: I/O, Assignment, Command, Type, Interaction, MIDI, Mod 1, Mod 2
 
             TableColumn("I/O", value: \.ioTypeSortKey) { entry in
-                Text(entry.ioType == .input ? "In" : "Out")
-                    .foregroundColor(entry.ioType == .input ? AppTheme.inputColor : AppTheme.outputColor)
-                    .fontWeight(entry.ioType == .output ? .medium : .regular)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .contentShape(Rectangle())
-            }
-            .width(35)
-
-            TableColumn("Assignment", value: \.assignmentSortKey) { entry in
-                Text(entry.assignment.displayName)
-                    .lineLimit(1)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .contentShape(Rectangle())
-            }
-            .width(min: 60, ideal: 80)
-
-            TableColumn("Type", value: \.controllerTypeSortKey) { entry in
-                Text(entry.controllerType.displayName)
-                    .lineLimit(1)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .contentShape(Rectangle())
-            }
-            .width(min: 60, ideal: 80)
-
-            TableColumn("Interaction", value: \.interactionSortKey) { entry in
-                Text(entry.interactionMode.displayName)
-                    .lineLimit(1)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .contentShape(Rectangle())
-            }
-            .width(min: 50, ideal: 70)
-
-            TableColumn("Mapped to", value: \.mappedToDisplay) { entry in
-                Text(entry.mappedToDisplay)
-                    .font(.system(.body, design: .monospaced))
-                    .lineLimit(1)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .contentShape(Rectangle())
-            }
-            .width(min: 90, ideal: 110)
-
-            TableColumn("Mod. 1", value: \.modifier1SortKey) { entry in
-                Group {
-                    if let mod = entry.modifier1Condition {
-                        Text(mod.displayString)
-                            .font(.system(.body, design: .monospaced))
-                    } else {
-                        Text("-")
-                            .foregroundColor(.secondary)
-                    }
+                    Text(entry.ioType == .input ? "IN" : "OUT")
+                        .font(.system(size: 10, weight: .semibold))
+                        .foregroundColor(entry.ioType == .input ? AppThemeV2.Colors.stone400 : AppThemeV2.Colors.stone900)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 3)
+                        .background(
+                            RoundedRectangle(cornerRadius: 4)
+                                .fill(entry.ioType == .input ? AppThemeV2.Colors.stone700 : AppThemeV2.Colors.amber)
+                        )
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .contentShape(Rectangle())
-            }
-            .width(55)
+                .width(60)
 
-            TableColumn("Mod. 2", value: \.modifier2SortKey) { entry in
-                Group {
-                    if let mod = entry.modifier2Condition {
-                        Text(mod.displayString)
-                            .font(.system(.body, design: .monospaced))
-                    } else {
-                        Text("-")
-                            .foregroundColor(.secondary)
-                    }
+                TableColumn("Assignment", value: \.assignmentSortKey) { entry in
+                    Text(entry.assignment.displayName)
+                        .font(.system(size: 12))
+                        .foregroundColor(AppThemeV2.Colors.stone200)
+                        .lineLimit(1)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .contentShape(Rectangle())
-            }
-            .width(55)
+                .width(min: 70, ideal: 90)
+
+                TableColumn("Command", value: \.commandName) { entry in
+                    Text(entry.commandName)
+                        .font(.system(size: 12))
+                        .foregroundColor(AppThemeV2.Colors.stone100)
+                        .lineLimit(1)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                }
+                .width(min: 120, ideal: 180)
+
+                TableColumn("Type", value: \.controllerTypeSortKey) { entry in
+                    Text(entry.controllerType.displayName)
+                        .font(.system(size: 12))
+                        .foregroundColor(AppThemeV2.Colors.stone300)
+                        .lineLimit(1)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                }
+                .width(min: 60, ideal: 75)
+
+                TableColumn("Interaction", value: \.interactionSortKey) { entry in
+                    Text(entry.interactionMode.displayName)
+                        .font(.system(size: 12))
+                        .foregroundColor(AppThemeV2.Colors.stone300)
+                        .lineLimit(1)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                }
+                .width(min: 60, ideal: 80)
+
+                TableColumn("MIDI", value: \.mappedToDisplay) { entry in
+                    Text(entry.mappedToDisplay)
+                        .font(.system(size: 12, design: .monospaced))
+                        .foregroundColor(AppThemeV2.Colors.stone200)
+                        .lineLimit(1)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                }
+                .width(min: 90, ideal: 110)
+
+                TableColumn("Mod 1", value: \.modifier1SortKey) { entry in
+                    Group {
+                        if let mod = entry.modifier1Condition {
+                            Text(mod.displayString)
+                                .font(.system(size: 11, design: .monospaced))
+                                .foregroundColor(AppThemeV2.Colors.stone300)
+                        } else {
+                            Text("-")
+                                .font(.system(size: 11))
+                                .foregroundColor(AppThemeV2.Colors.stone600)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .contentShape(Rectangle())
+                }
+                .width(50)
+
+                TableColumn("Mod 2", value: \.modifier2SortKey) { entry in
+                    Group {
+                        if let mod = entry.modifier2Condition {
+                            Text(mod.displayString)
+                                .font(.system(size: 11, design: .monospaced))
+                                .foregroundColor(AppThemeV2.Colors.stone300)
+                        } else {
+                            Text("-")
+                                .font(.system(size: 11))
+                                .foregroundColor(AppThemeV2.Colors.stone600)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .contentShape(Rectangle())
+                }
+                .width(50)
         }
-        .tableStyle(.bordered)
-        .alternatingRowBackgrounds(.enabled)
-        .dropDestination(for: MappingEntry.self) { items, location in
-            // Handle drop from another window
-            onDrop?(items)
-            return !items.isEmpty
+        .tableStyle(.inset(alternatesRowBackgrounds: false))
+        .scrollContentBackground(.hidden)
+        .background(AppThemeV2.Colors.stone800)
+        .introspectTableView { _ in
+            // Introspection triggers amber selection proxy installation
         }
-        .contextMenu {
-            if !selection.isEmpty && !isLocked {
-                Button("Copy") { onCopy?() }
-                    .keyboardShortcut("c", modifiers: .command)
+            .dropDestination(for: MappingEntry.self) { items, location in
+                // Handle drop from another window
+                onDrop?(items)
+                return !items.isEmpty
+            }
+            .contextMenu {
+                if !selection.isEmpty && !isLocked {
+                    Button("Copy") { onCopy?() }
+                        .keyboardShortcut("c", modifiers: .command)
 
-                Button("Paste") { onPaste?() }
-                    .keyboardShortcut("v", modifiers: .command)
+                    Button("Paste") { onPaste?() }
+                        .keyboardShortcut("v", modifiers: .command)
 
-                Divider()
+                    Divider()
 
-                Button("Duplicate") { onDuplicate?() }
-                    .keyboardShortcut("d", modifiers: .command)
+                    Button("Duplicate") { onDuplicate?() }
+                        .keyboardShortcut("d", modifiers: .command)
 
-                Button("Delete") { onDelete?() }
-                    .keyboardShortcut(.delete, modifiers: [])
+                    Button("Delete") { onDelete?() }
+                        .keyboardShortcut(.delete, modifiers: [])
 
-                Divider()
+                    Divider()
 
-                // Assignment submenu
-                Menu("Assignment") {
-                    ForEach(TargetAssignment.allCases, id: \.self) { assignment in
-                        Button(assignment.displayName) {
-                            onAssignmentChange?(assignment)
+                    // Assignment submenu
+                    Menu("Assignment") {
+                        ForEach(TargetAssignment.allCases, id: \.self) { assignment in
+                            Button(assignment.displayName) {
+                                onAssignmentChange?(assignment)
+                            }
                         }
                     }
-                }
 
-                // Controller Type submenu
-                Menu("Type") {
-                    ForEach(ControllerType.allCases.filter { $0 != .led }, id: \.self) { type in
-                        Button(type.displayName) {
-                            onControllerTypeChange?(type)
+                    // Controller Type submenu
+                    Menu("Type") {
+                        ForEach(ControllerType.allCases.filter { $0 != .led }, id: \.self) { type in
+                            Button(type.displayName) {
+                                onControllerTypeChange?(type)
+                            }
                         }
                     }
-                }
 
-                // Interaction submenu - only shows valid modes for selected controller type(s)
-                Menu("Interaction") {
-                    ForEach(validInteractionModesForSelection, id: \.self) { mode in
-                        Button(mode.displayName) {
-                            onInteractionChange?(mode)
-                        }
-                    }
-                }
-
-                // Encoder Mode submenu - only shown when encoder type is selected
-                if showEncoderModeMenu {
-                    Menu("Encoder Mode") {
-                        ForEach(EncoderMode.allCases, id: \.self) { mode in
+                    // Interaction submenu - only shows valid modes for selected controller type(s)
+                    Menu("Interaction") {
+                        ForEach(validInteractionModesForSelection, id: \.self) { mode in
                             Button(mode.displayName) {
-                                onEncoderModeChange?(mode)
+                                onInteractionChange?(mode)
                             }
                         }
                     }
-                }
 
-                Divider()
-
-                // Modifier 1 submenu
-                Menu("Modifier 1") {
-                    Button("None") { onModifier1Change?(nil) }
-                    Divider()
-                    ForEach(1...8, id: \.self) { mod in
-                        Menu("M\(mod)") {
-                            ForEach(0...7, id: \.self) { value in
-                                Button("= \(value)") {
-                                    onModifier1Change?(ModifierCondition(modifier: mod, value: value))
+                    // Encoder Mode submenu - only shown when encoder type is selected
+                    if showEncoderModeMenu {
+                        Menu("Encoder Mode") {
+                            ForEach(EncoderMode.allCases, id: \.self) { mode in
+                                Button(mode.displayName) {
+                                    onEncoderModeChange?(mode)
                                 }
                             }
                         }
                     }
-                }
 
-                // Modifier 2 submenu
-                Menu("Modifier 2") {
-                    Button("None") { onModifier2Change?(nil) }
                     Divider()
-                    ForEach(1...8, id: \.self) { mod in
-                        Menu("M\(mod)") {
-                            ForEach(0...7, id: \.self) { value in
-                                Button("= \(value)") {
-                                    onModifier2Change?(ModifierCondition(modifier: mod, value: value))
+
+                    // Modifier 1 submenu
+                    Menu("Modifier 1") {
+                        Button("None") { onModifier1Change?(nil) }
+                        Divider()
+                        ForEach(1...8, id: \.self) { mod in
+                            Menu("M\(mod)") {
+                                ForEach(0...7, id: \.self) { value in
+                                    Button("= \(value)") {
+                                        onModifier1Change?(ModifierCondition(modifier: mod, value: value))
+                                    }
                                 }
                             }
                         }
                     }
+
+                    // Modifier 2 submenu
+                    Menu("Modifier 2") {
+                        Button("None") { onModifier2Change?(nil) }
+                        Divider()
+                        ForEach(1...8, id: \.self) { mod in
+                            Menu("M\(mod)") {
+                                ForEach(0...7, id: \.self) { value in
+                                    Button("= \(value)") {
+                                        onModifier2Change?(ModifierCondition(modifier: mod, value: value))
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Divider()
+
+                    Button("Invert") { onInvertToggle?() }
                 }
-
-                Divider()
-
-                Button("Invert") { onInvertToggle?() }
             }
-        }
         .onChange(of: selection) { oldSelection, newSelection in
             handleSelectionChange(oldSelection: oldSelection, newSelection: newSelection)
         }
@@ -305,31 +330,44 @@ struct MappingsTableView: View {
 #Preview {
     let sampleMappings = [
         MappingEntry(
-            commandName: "Filter",
-            ioType: .input,
-            assignment: .deckA,
-            interactionMode: .direct,
-            midiChannel: 1,
-            midiCC: 8
-        ),
-        MappingEntry(
-            commandName: "Filter On",
+            commandName: "Play/Pause",
             ioType: .input,
             assignment: .deckA,
             interactionMode: .toggle,
             midiChannel: 1,
-            midiNote: 36,
-            modifier1Condition: ModifierCondition(modifier: 1, value: 0)
+            midiNote: 42
         ),
         MappingEntry(
-            commandName: "Key On",
+            commandName: "Tempo Bend +",
+            ioType: .input,
+            assignment: .deckA,
+            interactionMode: .hold,
+            midiChannel: 1,
+            midiCC: 20
+        ),
+        MappingEntry(
+            commandName: "Play State",
             ioType: .output,
-            assignment: .deckB,
+            assignment: .deckA,
             interactionMode: .output,
+            midiChannel: 1,
+            midiNote: 42
+        ),
+        MappingEntry(
+            commandName: "Play/Pause",
+            ioType: .input,
+            assignment: .deckB,
+            interactionMode: .toggle,
             midiChannel: 2,
-            midiNote: 48,
-            modifier1Condition: ModifierCondition(modifier: 2, value: 1),
-            modifier2Condition: ModifierCondition(modifier: 3, value: 2)
+            midiNote: 42
+        ),
+        MappingEntry(
+            commandName: "Master Volume",
+            ioType: .input,
+            assignment: .global,
+            interactionMode: .direct,
+            midiChannel: 1,
+            midiCC: 7
         )
     ]
 
@@ -338,5 +376,138 @@ struct MappingsTableView: View {
         selection: .constant([]),
         isLocked: false
     )
-    .frame(width: 700, height: 300)
+    .frame(width: 800, height: 300)
+    .preferredColorScheme(.dark)
+}
+
+// MARK: - Table Introspection for Custom Selection Color
+
+/// Extension to introspect and customize NSTableView
+extension View {
+    func introspectTableView(customize: @escaping (NSTableView) -> Void) -> some View {
+        background(TableViewFinder(customize: customize))
+    }
+}
+
+/// Helper view to find and customize NSTableView with amber selection
+private struct TableViewFinder: NSViewRepresentable {
+    let customize: (NSTableView) -> Void
+
+    func makeNSView(context: Context) -> NSView {
+        let view = NSView()
+        DispatchQueue.main.async {
+            if let tableView = findTableView(in: view) {
+                customize(tableView)
+                // Install custom delegate that forwards to original
+                AmberSelectionDelegateProxy.install(on: tableView)
+            }
+        }
+        return view
+    }
+
+    func updateNSView(_ nsView: NSView, context: Context) {
+        // No updates needed - delegate proxy handles everything
+    }
+
+    private func findTableView(in view: NSView) -> NSTableView? {
+        var current: NSView? = view
+        while let v = current {
+            if let scrollView = v as? NSScrollView,
+               let tableView = scrollView.documentView as? NSTableView {
+                return tableView
+            }
+            for subview in v.subviews {
+                if let found = findTableViewInHierarchy(subview) {
+                    return found
+                }
+            }
+            current = v.superview
+        }
+        return nil
+    }
+
+    private func findTableViewInHierarchy(_ view: NSView) -> NSTableView? {
+        if let scrollView = view as? NSScrollView,
+           let tableView = scrollView.documentView as? NSTableView {
+            return tableView
+        }
+        for subview in view.subviews {
+            if let found = findTableViewInHierarchy(subview) {
+                return found
+            }
+        }
+        return nil
+    }
+}
+
+/// Proxy delegate that forwards all calls to original delegate while providing custom row views
+private class AmberSelectionDelegateProxy: NSObject, NSTableViewDelegate {
+    private weak var originalDelegate: NSTableViewDelegate?
+    private static var installedTables = Set<ObjectIdentifier>()
+
+    static func install(on tableView: NSTableView) {
+        let tableId = ObjectIdentifier(tableView)
+        guard !installedTables.contains(tableId) else { return }
+
+        let proxy = AmberSelectionDelegateProxy()
+        proxy.originalDelegate = tableView.delegate
+        tableView.delegate = proxy
+
+        // Store strong reference to prevent deallocation
+        objc_setAssociatedObject(tableView, "amberProxy", proxy, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        installedTables.insert(tableId)
+    }
+
+    // MARK: - Row View (our customization)
+
+    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
+        return AmberTableRowView()
+    }
+
+    // MARK: - Forward all other delegate methods
+
+    override func responds(to aSelector: Selector!) -> Bool {
+        if super.responds(to: aSelector) {
+            return true
+        }
+        return originalDelegate?.responds(to: aSelector) ?? false
+    }
+
+    override func forwardingTarget(for aSelector: Selector!) -> Any? {
+        if originalDelegate?.responds(to: aSelector) == true {
+            return originalDelegate
+        }
+        return super.forwardingTarget(for: aSelector)
+    }
+}
+
+/// Custom row view with amber selection highlight
+private class AmberTableRowView: NSTableRowView {
+    override func drawSelection(in dirtyRect: NSRect) {
+        if selectionHighlightStyle != .none {
+            // Golden yellow selection color - more visible
+            let goldColor = NSColor(red: 245/255, green: 158/255, blue: 11/255, alpha: 0.35)
+            goldColor.setFill()
+            let selectionRect = bounds.insetBy(dx: 2, dy: 1)
+            let path = NSBezierPath(roundedRect: selectionRect, xRadius: 4, yRadius: 4)
+            path.fill()
+
+            // Golden border - more prominent
+            let borderColor = NSColor(red: 245/255, green: 158/255, blue: 11/255, alpha: 0.7)
+            borderColor.setStroke()
+            path.lineWidth = 1
+            path.stroke()
+        }
+    }
+
+    override var isEmphasized: Bool {
+        get { true }  // Always use emphasized (focused) appearance
+        set { }
+    }
+
+    // Prevent system selection color from showing
+    override var selectionHighlightStyle: NSTableView.SelectionHighlightStyle {
+        get { .regular }
+        set { }
+    }
 }

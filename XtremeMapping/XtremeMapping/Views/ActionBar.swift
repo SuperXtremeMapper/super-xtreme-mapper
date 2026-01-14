@@ -376,7 +376,7 @@ struct AboutSheet: View {
                 Button(action: { dismiss() }) {
                     Image(systemName: "xmark.circle.fill")
                         .font(.system(size: 20))
-                        .foregroundColor(AppTheme.mutedTextColor)
+                        .foregroundColor(AppThemeV2.Colors.stone500)
                 }
                 .buttonStyle(.plain)
                 .padding(12)
@@ -394,26 +394,28 @@ struct AboutSheet: View {
                     Text("Super Xtreme Mapper")
                         .font(.title)
                         .fontWeight(.bold)
+                        .foregroundColor(AppThemeV2.Colors.stone100)
 
                     Text("A revived TSI Editor for Traktor,\nin the spirit of Xtreme Mapping (RIP)")
                         .font(.subheadline)
-                        .foregroundColor(AppTheme.mutedTextColor)
+                        .foregroundColor(AppThemeV2.Colors.stone500)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
 
                     Text("Version 0.1")
                         .font(.caption)
-                        .foregroundColor(AppTheme.accentColor)
+                        .foregroundColor(AppThemeV2.Colors.amber)
                 }
 
                 Divider()
-                    .background(AppTheme.dividerColor)
+                    .background(AppThemeV2.Colors.stone700)
 
                 // Credits section
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Credits & Acknowledgments")
                         .font(.subheadline)
                         .fontWeight(.semibold)
+                        .foregroundColor(AppThemeV2.Colors.stone200)
                         .frame(maxWidth: .infinity, alignment: .leading)
 
                     VStack(alignment: .leading, spacing: 6) {
@@ -442,7 +444,7 @@ struct AboutSheet: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 Divider()
-                    .background(AppTheme.dividerColor)
+                    .background(AppThemeV2.Colors.stone700)
 
                 // Feedback button
                 Button(action: sendFeedback) {
@@ -452,19 +454,19 @@ struct AboutSheet: View {
                     }
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(AppTheme.accentColor)
+                .tint(AppThemeV2.Colors.amber)
 
                 Text("XXtremeMapper@protonmail.com")
                     .font(.caption)
-                    .foregroundColor(AppTheme.mutedTextColor)
+                    .foregroundColor(AppThemeV2.Colors.stone500)
 
                 Divider()
-                    .background(AppTheme.dividerColor)
+                    .background(AppThemeV2.Colors.stone700)
 
                 // Trademark disclaimer
                 Text("Traktor is a registered trademark of Native Instruments GmbH. Its use does not imply affiliation with or endorsement by the trademark owner.")
                     .font(.caption2)
-                    .foregroundColor(AppTheme.mutedTextColor)
+                    .foregroundColor(AppThemeV2.Colors.stone500)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(.horizontal, 16)
@@ -473,7 +475,8 @@ struct AboutSheet: View {
             .padding(.bottom, 24)
         }
         .frame(width: 400)
-        .background(AppTheme.surfaceColor)
+        .background(AppThemeV2.Colors.stone900)
+        .preferredColorScheme(.dark)
     }
 
     @ViewBuilder
@@ -483,6 +486,7 @@ struct AboutSheet: View {
                 Text(title)
                     .font(.caption)
                     .fontWeight(.semibold)
+                    .foregroundColor(AppThemeV2.Colors.stone200)
 
                 if let link = link {
                     Button(action: { openURL(URL(string: link)!) }) {
@@ -490,17 +494,17 @@ struct AboutSheet: View {
                             .font(.system(size: 9))
                     }
                     .buttonStyle(.plain)
-                    .foregroundColor(AppTheme.accentColor)
+                    .foregroundColor(AppThemeV2.Colors.amber)
                 }
             }
 
             Text(name)
                 .font(.caption2)
-                .foregroundColor(AppTheme.mutedTextColor)
+                .foregroundColor(AppThemeV2.Colors.stone500)
 
             Text(description)
                 .font(.caption2)
-                .foregroundColor(AppTheme.mutedTextColor)
+                .foregroundColor(AppThemeV2.Colors.stone500)
                 .italic()
         }
         .padding(.vertical, 3)

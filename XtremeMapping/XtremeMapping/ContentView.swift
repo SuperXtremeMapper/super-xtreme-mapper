@@ -18,6 +18,7 @@ struct ContentView: View {
     @State private var isLocked: Bool = false
     @State private var clipboard: [MappingEntry] = []
     @State private var searchText: String = ""
+    @State private var showingAbout = false
 
     /// Registers a change with the undo manager to mark document as edited
     private func registerChange() {
@@ -48,7 +49,8 @@ struct ContentView: View {
                 searchText: $searchText,
                 onAddInput: addInputMapping,
                 onAddOutput: addOutputMapping,
-                onAddInOut: addInOutPair
+                onAddInOut: addInOutPair,
+                onAbout: { showingAbout = true }
             )
 
             // Main content
@@ -156,6 +158,9 @@ struct ContentView: View {
         .preferredColorScheme(.dark)
         .onDeleteCommand {
             deleteSelectedMappings()
+        }
+        .sheet(isPresented: $showingAbout) {
+            AboutSheet()
         }
     }
 
@@ -428,6 +433,7 @@ struct V2ActionBarFull: View {
     var onAddInput: (String) -> Void
     var onAddOutput: (String) -> Void
     var onAddInOut: (String) -> Void
+    var onAbout: () -> Void
 
     var body: some View {
         HStack(spacing: AppThemeV2.Spacing.md) {
@@ -457,6 +463,9 @@ struct V2ActionBarFull: View {
                 V2FilterDropdown(label: "I/O", selection: $ioFilter, options: IODirection.allCases)
 
                 V2LockButtonIcon(isLocked: $isLocked)
+
+                // About button
+                V2ToolbarIconButton(icon: "info.circle", action: onAbout)
             }
         }
         .padding(.horizontal, AppThemeV2.Spacing.lg)
@@ -600,6 +609,38 @@ struct V2DisabledToolbarButton: View {
             RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
                 .stroke(AppThemeV2.Colors.stone700, lineWidth: 1)
         )
+    }
+}
+
+// MARK: - V2 Toolbar Icon Button
+
+/// Simple icon-only toolbar button with hover effects
+struct V2ToolbarIconButton: View {
+    let icon: String
+    let action: () -> Void
+    @State private var isHovered = false
+
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: icon)
+                .font(.system(size: 12, weight: .medium))
+                .foregroundColor(isHovered ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone400)
+                .frame(width: 28, height: 28)
+                .background(
+                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                        .fill(isHovered ? AppThemeV2.Colors.amberSubtle : AppThemeV2.Colors.stone700)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                        .stroke(isHovered ? AppThemeV2.Colors.amber.opacity(0.5) : AppThemeV2.Colors.stone600, lineWidth: 1)
+                )
+        }
+        .buttonStyle(.plain)
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
+        }
     }
 }
 
