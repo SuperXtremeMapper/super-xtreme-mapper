@@ -16,6 +16,17 @@ A native macOS TSI editor for Traktor Pro, based in the beloved but long dead Xt
 
 - **Native macOS** - Built with SwiftUI for Apple Silicon. Fast, memory efficient, with full dark mode and keyboard shortcut support.
 
+## The Story
+
+We used to love [Xtreme Mapping](https://www.xtrememapping.com/). It was the only decent TSI editor out there, and it made creating custom Traktor mappings almost enjoyable.
+
+Then Apple Silicon happened, and Xtreme Mapping stopped working. Our attempts to contact the original author were met with silence. After years of waiting and hoping, we decided to take matters into our own hands.
+
+Using **Claude Code**, we reverse-engineered a completely new TSI editor from a combination of Xtreme Mapping screenshots, the [CMDR editor](https://cmdr-editor.github.io/cmdr/) source code, and [IvanZ's](https://github.com/ivanz) invaluable TSI format research.
+
+The result is Super Xtreme Mapper: a love letter to the original, rebuilt from the ground up for modern Macs.
+
+
 **Free and open source.**
 
 ![macOS](https://img.shields.io/badge/macOS-13.0+-blue)
@@ -63,16 +74,6 @@ open XtremeMapping.xcodeproj
 ```
 
 Build and run with `Cmd+R` in Xcode.
-
-## The Story
-
-We used to love [Xtreme Mapping](https://www.xtrememapping.com/). It was the only decent TSI editor out there, and it made creating custom Traktor mappings almost enjoyable.
-
-Then Apple Silicon happened, and Xtreme Mapping stopped working. Our attempts to contact the original author were met with silence. After years of waiting and hoping, we decided to take matters into our own hands.
-
-Using **Claude Code**, we reverse-engineered a completely new TSI editor from a combination of Xtreme Mapping screenshots, the [CMDR editor](https://cmdr-editor.github.io/cmdr/) source code, and [IvanZ's](https://github.com/ivanz) invaluable TSI format research.
-
-The result is Super Xtreme Mapper: a love letter to the original, rebuilt from the ground up for modern Macs.
 
 ## Technical Details
 
