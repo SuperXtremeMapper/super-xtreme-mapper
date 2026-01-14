@@ -1,6 +1,6 @@
 //
 //  XtremeMappingApp.swift
-//  XXtremeMapping
+//  SuperXtremeMapping
 //
 //  Created by u/nonomomomo2 on 13/01/2026.
 //
@@ -23,7 +23,7 @@ struct XtremeMappingApp: App {
 
     var body: some Scene {
         // Welcome window shown on launch
-        Window("Welcome to XXtreme Mapping", id: "welcome") {
+        Window("Welcome to Super Xtreme Mapper", id: "welcome") {
             WelcomeView(
                 onNewMapping: {
                     NSDocumentController.shared.newDocument(nil)
@@ -59,7 +59,7 @@ struct XtremeMappingApp: App {
             // Help menu with feedback and about
             CommandGroup(replacing: .help) {
                 Button("Bug Report / Feedback") {
-                    let subject = "XXtreme Mapper Feedback"
+                    let subject = "Super Xtreme Mapper Feedback"
                     let email = "XXtremeMapper@protonmail.com"
                     if let url = URL(string: "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? subject)") {
                         NSWorkspace.shared.open(url)
@@ -68,7 +68,7 @@ struct XtremeMappingApp: App {
 
                 Divider()
 
-                Button("About XXtreme Mapping") {
+                Button("About Super Xtreme Mapper") {
                     if let aboutWindow = NSApplication.shared.windows.first(where: { $0.title.contains("About") }) {
                         aboutWindow.makeKeyAndOrderFront(nil)
                     }
@@ -111,7 +111,7 @@ struct XtremeMappingApp: App {
         }
 
         // About window
-        Window("About XXtreme Mapping", id: "about") {
+        Window("About Super Xtreme Mapper", id: "about") {
             AboutView()
         }
         .windowStyle(.hiddenTitleBar)
@@ -123,41 +123,67 @@ struct XtremeMappingApp: App {
 
 // MARK: - About View
 
-/// About window showing credits and acknowledgments
+/// About window showing credits and acknowledgments with V2 styling
 struct AboutView: View {
     @Environment(\.openURL) private var openURL
 
     var body: some View {
-        VStack(spacing: 20) {
-            // App icon and name
-            VStack(spacing: 8) {
-                Image("Logo")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 64, height: 64)
+        VStack(spacing: AppThemeV2.Spacing.lg) {
+            // App icon and name with glow
+            VStack(spacing: AppThemeV2.Spacing.sm) {
+                ZStack {
+                    Circle()
+                        .fill(AppThemeV2.Colors.amberGlow)
+                        .frame(width: 80, height: 80)
+                        .blur(radius: 20)
 
-                Text("XXtreme Mapping")
-                    .font(.title)
-                    .fontWeight(.bold)
+                    Image("Logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 64, height: 64)
+                }
+
+                VStack(spacing: AppThemeV2.Spacing.xxs) {
+                    Text("SUPER XTREME")
+                        .font(.system(size: 18, weight: .black))
+                        .tracking(1.5)
+                        .foregroundColor(AppThemeV2.Colors.stone100)
+
+                    Text("MAPPER")
+                        .font(.system(size: 22, weight: .black))
+                        .tracking(2)
+                        .foregroundColor(AppThemeV2.Colors.amber)
+                }
 
                 Text("A revived TSI Editor for Traktor,\nin the spirit of Xtreme Mapping (RIP)")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
+                    .font(AppThemeV2.Typography.body)
+                    .foregroundColor(AppThemeV2.Colors.stone400)
                     .multilineTextAlignment(.center)
 
-                Text("Version 0.1")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                Text("VERSION 0.1")
+                    .font(AppThemeV2.Typography.micro)
+                    .tracking(1)
+                    .foregroundColor(AppThemeV2.Colors.stone950)
+                    .padding(.horizontal, AppThemeV2.Spacing.sm)
+                    .padding(.vertical, AppThemeV2.Spacing.xxs)
+                    .background(
+                        Capsule()
+                            .fill(AppThemeV2.Colors.amber)
+                    )
             }
 
-            Divider()
+            Rectangle()
+                .fill(AppThemeV2.Colors.stone700)
+                .frame(height: 1)
 
             // Credits section
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Credits & Acknowledgments")
-                    .font(.headline)
+            VStack(alignment: .leading, spacing: AppThemeV2.Spacing.md) {
+                Text("CREDITS & ACKNOWLEDGMENTS")
+                    .font(AppThemeV2.Typography.micro)
+                    .tracking(1)
+                    .foregroundColor(AppThemeV2.Colors.amber)
 
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
                     creditRow(
                         title: "Original Xtreme Mapping",
                         name: "Vincenzo Pietropaolo",
@@ -181,31 +207,47 @@ struct AboutView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
 
-            Divider()
+            Rectangle()
+                .fill(AppThemeV2.Colors.stone700)
+                .frame(height: 1)
 
             // Feedback button
             Button(action: sendFeedback) {
-                HStack {
+                HStack(spacing: AppThemeV2.Spacing.xs) {
                     Image(systemName: "envelope")
-                    Text("Bug Report / Feedback")
+                        .font(.system(size: 12, weight: .semibold))
+                    Text("BUG REPORT / FEEDBACK")
+                        .font(AppThemeV2.Typography.micro)
+                        .tracking(0.5)
                 }
+                .foregroundColor(AppThemeV2.Colors.stone950)
+                .padding(.horizontal, AppThemeV2.Spacing.md)
+                .padding(.vertical, AppThemeV2.Spacing.sm)
+                .background(
+                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                        .fill(AppThemeV2.Colors.amber)
+                )
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(.plain)
 
             Text("XXtremeMapper@protonmail.com")
-                .font(.caption)
-                .foregroundColor(.secondary)
+                .font(AppThemeV2.Typography.caption)
+                .foregroundColor(AppThemeV2.Colors.stone500)
 
-            Divider()
+            Rectangle()
+                .fill(AppThemeV2.Colors.stone700)
+                .frame(height: 1)
 
             // Trademark disclaimer
             Text("Traktor is a registered trademark of Native Instruments GmbH. Its use does not imply affiliation with or endorsement by the trademark owner.")
-                .font(.caption2)
-                .foregroundColor(.secondary)
+                .font(AppThemeV2.Typography.caption)
+                .foregroundColor(AppThemeV2.Colors.stone500)
                 .multilineTextAlignment(.center)
         }
         .padding(30)
         .frame(width: 400)
+        .background(AppThemeV2.Colors.stone900)
+        .preferredColorScheme(.dark)
     }
 
     @ViewBuilder
@@ -213,32 +255,34 @@ struct AboutView: View {
         VStack(alignment: .leading, spacing: 2) {
             HStack {
                 Text(title)
+                    .font(AppThemeV2.Typography.body)
                     .fontWeight(.semibold)
+                    .foregroundColor(AppThemeV2.Colors.stone200)
 
                 if let link = link {
                     Button(action: { openURL(URL(string: link)!) }) {
                         Image(systemName: "link")
-                            .font(.caption)
+                            .font(.system(size: 10))
                     }
                     .buttonStyle(.plain)
-                    .foregroundColor(AppTheme.accentColor)
+                    .foregroundColor(AppThemeV2.Colors.amber)
                 }
             }
 
             Text(name)
-                .font(.caption)
-                .foregroundColor(.secondary)
+                .font(AppThemeV2.Typography.caption)
+                .foregroundColor(AppThemeV2.Colors.stone400)
 
             Text(description)
-                .font(.caption)
-                .foregroundColor(.secondary)
+                .font(AppThemeV2.Typography.caption)
+                .foregroundColor(AppThemeV2.Colors.stone500)
                 .italic()
         }
         .padding(.vertical, 4)
     }
 
     private func sendFeedback() {
-        let subject = "XXtreme Mapper Feedback"
+        let subject = "Super Xtreme Mapper Feedback"
         let email = "XXtremeMapper@protonmail.com"
         if let url = URL(string: "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? subject)") {
             NSWorkspace.shared.open(url)

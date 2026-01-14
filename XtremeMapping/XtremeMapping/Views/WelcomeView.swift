@@ -1,6 +1,6 @@
 //
 //  WelcomeView.swift
-//  XXtremeMapping
+//  SuperXtremeMapping
 //
 //  Created by u/nonomomomo2 on 13/01/2026.
 //
@@ -16,33 +16,65 @@ struct WelcomeView: View {
     var body: some View {
         VStack(spacing: 0) {
             // Header
-            VStack(spacing: 12) {
-                Image("Logo")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 80, height: 80)
+            VStack(spacing: AppThemeV2.Spacing.md) {
+                // Logo with glow effect
+                ZStack {
+                    // Glow behind logo
+                    Circle()
+                        .fill(AppThemeV2.Colors.amberGlow)
+                        .frame(width: 100, height: 100)
+                        .blur(radius: 30)
 
-                Text("XXtreme Mapping")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+                    Image("Logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 80, height: 80)
+                }
 
+                // App name with amber accent
+                VStack(spacing: AppThemeV2.Spacing.xs) {
+                    Text("SUPER XTREME")
+                        .font(.system(size: 24, weight: .black))
+                        .tracking(2)
+                        .foregroundColor(AppThemeV2.Colors.stone100)
+
+                    Text("MAPPER")
+                        .font(.system(size: 32, weight: .black))
+                        .tracking(4)
+                        .foregroundColor(AppThemeV2.Colors.amber)
+                }
+
+                // Version badge
                 Text("BETA v0.1")
-                    .font(.caption)
-                    .fontWeight(.semibold)
-                    .foregroundColor(AppTheme.accentColor)
-
-                Text("A revived TSI Editor for Traktor,\nin the spirit of Xtreme Mapping (RIP)")
-                    .font(.subheadline)
+                    .font(AppThemeV2.Typography.micro)
+                    .tracking(1)
                     .fontWeight(.bold)
-                    .foregroundColor(AppTheme.mutedTextColor)
+                    .foregroundColor(AppThemeV2.Colors.stone950)
+                    .padding(.horizontal, AppThemeV2.Spacing.sm)
+                    .padding(.vertical, AppThemeV2.Spacing.xxs)
+                    .background(
+                        Capsule()
+                            .fill(AppThemeV2.Colors.amber)
+                    )
+
+                // Tagline
+                Text("A revived TSI Editor for Traktor,\nin the spirit of Xtreme Mapping (RIP)")
+                    .font(AppThemeV2.Typography.body)
+                    .foregroundColor(AppThemeV2.Colors.stone400)
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            .padding(.top, 32)
-            .padding(.bottom, 32)
+            .padding(.top, 40)
+            .padding(.bottom, 40)
+
+            // Divider
+            Rectangle()
+                .fill(AppThemeV2.Colors.stone700)
+                .frame(height: 1)
+                .padding(.horizontal, 32)
 
             // Options
-            VStack(spacing: 16) {
+            VStack(spacing: AppThemeV2.Spacing.md) {
                 WelcomeButton(
                     title: "New Mapping",
                     subtitle: "Create a blank controller mapping",
@@ -72,25 +104,33 @@ struct WelcomeView: View {
                 )
             }
             .padding(.horizontal, 32)
+            .padding(.top, 32)
             .padding(.bottom, 32)
 
             Spacer()
 
             // Footer with beta warning
-            Text("Warning: This is a private beta for testing purposes only. Be sure to make a copy of any .tsi file you want to edit… just in case it gets totally fucked.")
-                .font(.caption2)
-                .foregroundColor(AppTheme.mutedTextColor)
-                .multilineTextAlignment(.center)
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(.horizontal, 24)
-                .padding(.bottom, 32)
+            HStack(spacing: AppThemeV2.Spacing.xs) {
+                Circle()
+                    .fill(AppThemeV2.Colors.amber)
+                    .frame(width: 6, height: 6)
+
+                Text("Warning: This is a private beta for testing purposes only. Be sure to make a copy of any .tsi file you want to edit... just in case it gets totally fucked.")
+                    .font(AppThemeV2.Typography.caption)
+                    .foregroundColor(AppThemeV2.Colors.amber.opacity(0.8))
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .padding(.horizontal, 24)
+            .padding(.bottom, 32)
         }
-        .frame(width: 420, height: 580)
-        .background(AppTheme.surfaceColor)
+        .frame(width: 420, height: 680)
+        .background(AppThemeV2.Colors.stone900)
+        .preferredColorScheme(.dark)
     }
 }
 
-/// A styled button for the welcome screen
+/// A styled button for the welcome screen with V2 styling
 struct WelcomeButton: View {
     let title: String
     let subtitle: String
@@ -102,45 +142,61 @@ struct WelcomeButton: View {
 
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 16) {
-                Image(systemName: icon)
-                    .font(.system(size: 24))
-                    .foregroundColor(isDisabled ? AppTheme.mutedTextColor : AppTheme.accentColor)
-                    .frame(width: 32)
+            HStack(spacing: AppThemeV2.Spacing.md) {
+                // Icon with background
+                ZStack {
+                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                        .fill(isDisabled ? AppThemeV2.Colors.stone700 : AppThemeV2.Colors.amberSubtle)
+                        .frame(width: 44, height: 44)
+
+                    Image(systemName: icon)
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundColor(isDisabled ? AppThemeV2.Colors.stone500 : AppThemeV2.Colors.amber)
+                }
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(title)
-                        .font(.headline)
-                        .foregroundColor(isDisabled ? AppTheme.mutedTextColor : .primary)
+                    Text(title.uppercased())
+                        .font(AppThemeV2.Typography.display)
+                        .tracking(0.5)
+                        .foregroundColor(isDisabled ? AppThemeV2.Colors.stone500 : AppThemeV2.Colors.stone100)
 
                     Text(subtitle)
-                        .font(.caption)
-                        .foregroundColor(AppTheme.mutedTextColor)
+                        .font(AppThemeV2.Typography.caption)
+                        .foregroundColor(AppThemeV2.Colors.stone500)
                 }
 
                 Spacer()
 
                 if !isDisabled {
                     Image(systemName: "chevron.right")
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(AppTheme.mutedTextColor)
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundColor(AppThemeV2.Colors.stone500)
                 }
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 14)
+            .padding(.horizontal, AppThemeV2.Spacing.md)
+            .padding(.vertical, AppThemeV2.Spacing.md)
             .background(
-                RoundedRectangle(cornerRadius: AppTheme.cornerRadius)
-                    .fill(isHovered && !isDisabled ? AppTheme.hoverColor : Color.clear)
+                RoundedRectangle(cornerRadius: AppThemeV2.Radius.md)
+                    .fill(isHovered && !isDisabled ? AppThemeV2.Colors.stone800 : AppThemeV2.Colors.stone800.opacity(0.5))
             )
             .overlay(
-                RoundedRectangle(cornerRadius: AppTheme.cornerRadius)
-                    .stroke(isDisabled ? AppTheme.mutedTextColor.opacity(0.3) : AppTheme.dividerColor, lineWidth: 1)
+                RoundedRectangle(cornerRadius: AppThemeV2.Radius.md)
+                    .stroke(
+                        isHovered && !isDisabled ? AppThemeV2.Colors.amber.opacity(0.5) : AppThemeV2.Colors.stone700,
+                        lineWidth: 1
+                    )
+            )
+            .shadow(
+                color: isHovered && !isDisabled ? AppThemeV2.Colors.amberGlow : .clear,
+                radius: isHovered ? 8 : 0
             )
         }
         .buttonStyle(.plain)
         .disabled(isDisabled)
         .onHover { hovering in
-            isHovered = hovering
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 //
 //  ActionBar.swift
-//  XXtremeMapping
+//  SuperXtremeMapping
 //
 //  Created by u/nonomomomo2 on 13/01/2026.
 //
@@ -391,7 +391,7 @@ struct AboutSheet: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 64, height: 64)
 
-                    Text("XXtreme Mapping")
+                    Text("Super Xtreme Mapper")
                         .font(.title)
                         .fontWeight(.bold)
 
@@ -507,7 +507,7 @@ struct AboutSheet: View {
     }
 
     private func sendFeedback() {
-        let subject = "XXtreme Mapper Feedback"
+        let subject = "Super Xtreme Mapper Feedback"
         let email = "XXtremeMapper@protonmail.com"
         if let url = URL(string: "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? subject)") {
             NSWorkspace.shared.open(url)
