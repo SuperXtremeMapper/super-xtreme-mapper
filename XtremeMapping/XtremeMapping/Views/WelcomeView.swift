@@ -65,7 +65,7 @@ struct WelcomeView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             .padding(.top, 40)
-            .padding(.bottom, 40)
+            .padding(.bottom, 32)
 
             // Divider
             Rectangle()
@@ -106,8 +106,6 @@ struct WelcomeView: View {
             .padding(.horizontal, 32)
             .padding(.top, 32)
             .padding(.bottom, 32)
-
-            Spacer()
 
             // Footer with beta warning
             HStack(spacing: AppThemeV2.Spacing.xs) {

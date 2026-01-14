@@ -506,6 +506,10 @@ struct V2AddCommandMenuButton: View {
                 RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
                     .stroke(borderColor, lineWidth: 1)
             )
+            .shadow(
+                color: isHovered && !isDisabled ? AppThemeV2.Colors.amberGlow : .clear,
+                radius: isHovered && !isDisabled ? 8 : 0
+            )
         }
         .menuStyle(.borderlessButton)
         .menuIndicator(.hidden)

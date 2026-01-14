@@ -319,14 +319,14 @@ struct SettingsPanelV2: View {
 
     private var modifierControls: some View {
         VStack(spacing: AppThemeV2.Spacing.sm) {
-            V2ModifierRow(label: "M1", condition: $modifier1, isLocked: isLocked) { newCondition in
+            V2ModifierRow(condition: $modifier1, isLocked: isLocked) { newCondition in
                 if isMultipleSelection {
                     updateSelectedEntries { $0.modifier1Condition = newCondition }
                 } else {
                     updateEntry { $0.modifier1Condition = newCondition }
                 }
             }
-            V2ModifierRow(label: "M2", condition: $modifier2, isLocked: isLocked) { newCondition in
+            V2ModifierRow(condition: $modifier2, isLocked: isLocked) { newCondition in
                 if isMultipleSelection {
                     updateSelectedEntries { $0.modifier2Condition = newCondition }
                 } else {
@@ -491,9 +491,8 @@ struct V2SmallButton: View {
     }
 }
 
-/// V2 styled modifier row with picker for M1-M8 and stepper for values 0-7
+/// V2 styled modifier row with two dropdowns: modifier number and value
 struct V2ModifierRow: View {
-    let label: String
     @Binding var condition: ModifierCondition?
     let isLocked: Bool
     let onChanged: (ModifierCondition?) -> Void
@@ -503,13 +502,6 @@ struct V2ModifierRow: View {
 
     var body: some View {
         HStack(spacing: AppThemeV2.Spacing.sm) {
-            // Label
-            Text(label)
-                .font(AppThemeV2.Typography.caption)
-                .fontWeight(.bold)
-                .foregroundColor(AppThemeV2.Colors.amber)
-                .frame(width: 24)
-
             // Modifier picker (None, M1-M8)
             Menu {
                 Button("-") {
@@ -527,6 +519,7 @@ struct V2ModifierRow: View {
                     Text(selectedModifier == 0 ? "-" : "M\(selectedModifier)")
                         .font(AppThemeV2.Typography.body)
                         .foregroundColor(AppThemeV2.Colors.stone200)
+                        .frame(minWidth: 30)
 
                     Image(systemName: "chevron.down")
                         .font(.system(size: 8, weight: .bold))
@@ -547,23 +540,44 @@ struct V2ModifierRow: View {
             .menuIndicator(.hidden)
             .disabled(isLocked)
 
-            // Value display and stepper (only if modifier selected)
+            // Value picker (0-7) - only shown if modifier is selected
             if selectedModifier > 0 {
-                HStack(spacing: AppThemeV2.Spacing.xxs) {
-                    Text("=")
-                        .font(AppThemeV2.Typography.caption)
-                        .foregroundColor(AppThemeV2.Colors.stone500)
+                Text("=")
+                    .font(AppThemeV2.Typography.caption)
+                    .foregroundColor(AppThemeV2.Colors.stone500)
 
-                    V2NumberStepper(
-                        value: $selectedValue,
-                        range: 0...7,
-                        label: nil
-                    )
-                    .disabled(isLocked)
-                    .onChange(of: selectedValue) { _, _ in
-                        updateCondition()
+                Menu {
+                    ForEach(0...7, id: \.self) { val in
+                        Button("\(val)") {
+                            selectedValue = val
+                            updateCondition()
+                        }
                     }
+                } label: {
+                    HStack(spacing: AppThemeV2.Spacing.xs) {
+                        Text("\(selectedValue)")
+                            .font(AppThemeV2.Typography.body)
+                            .foregroundColor(AppThemeV2.Colors.stone200)
+                            .frame(minWidth: 20)
+
+                        Image(systemName: "chevron.down")
+                            .font(.system(size: 8, weight: .bold))
+                            .foregroundColor(AppThemeV2.Colors.stone500)
+                    }
+                    .padding(.horizontal, AppThemeV2.Spacing.sm)
+                    .padding(.vertical, AppThemeV2.Spacing.xs)
+                    .background(
+                        RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                            .fill(AppThemeV2.Colors.stone700)
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                            .stroke(AppThemeV2.Colors.stone600, lineWidth: 1)
+                    )
                 }
+                .menuStyle(.borderlessButton)
+                .menuIndicator(.hidden)
+                .disabled(isLocked)
             }
 
             Spacer()
