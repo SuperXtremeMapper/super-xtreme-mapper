@@ -37,5 +37,8 @@ _V2Backup*/
 # Claude Code
 .claude/
 
-# Local docs/plans (not for public repo)
-docs/
+# Local planning docs (not for public repo)
+docs/plans/
+docs/Codex_Improvement_Suggestions.md
+docs/HANDOFF.md
+docs/KNOWN_ISSUES.md
