@@ -105,7 +105,7 @@ XtremeMapping/
 
 ## Credits & Acknowledgments
 
-- **Vincenzo Pietropaolo** - Creator of the original Xtreme Mapping that inspired this project (we think he was the author, at least)
+- **[Vincenzo Pietropaolo](https://www.xtrememapping.com/)** - Creator of the original Xtreme Mapping that inspired this project (we think he was the author, at least)
 - **[IvanZ](https://github.com/ivanz)** - TSI format research and documentation
 - **[CMDR Team](https://cmdr-editor.github.io/cmdr/)** - Traktor command database and editor reference
 - **[Anthropic Claude](https://claude.ai)** - AI-assisted development
