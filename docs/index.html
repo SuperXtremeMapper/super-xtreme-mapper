@@ -545,16 +545,13 @@ Super Xtreme Mapper<!DOCTYPE html>
     <script src="main.js"></script>
     <script>
         function triggerDownload(event) {
-            // Start the DMG download
-            const downloadLink = document.createElement('a');
-            downloadLink.href = 'https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases/latest/download/SuperXtremeMapper-Beta.dmg';
-            downloadLink.download = 'SuperXtremeMapper-Beta.dmg';
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
-            document.body.removeChild(downloadLink);
+            event.preventDefault();
 
-            // Let the normal navigation to download.html proceed
-            // (the href on the button handles this)
+            // Open the download instructions page in a new tab
+            window.open('download.html', '_blank');
+
+            // Start the DMG download by navigating to the GitHub release URL
+            window.location.href = 'https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases/latest/download/SuperXtremeMapper-Beta.dmg';
         }
     </script>
 </body>
