@@ -60,7 +60,7 @@ struct XtremeMappingApp: App {
             CommandGroup(replacing: .help) {
                 Button("Bug Report / Feedback") {
                     let subject = "Super Xtreme Mapper Feedback"
-                    let email = "XXtremeMapper@protonmail.com"
+                    let email = "sxtrememapper@proton.me"
                     if let url = URL(string: "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? subject)") {
                         NSWorkspace.shared.open(url)
                     }
@@ -230,7 +230,7 @@ struct AboutView: View {
             }
             .buttonStyle(.plain)
 
-            Text("XXtremeMapper@protonmail.com")
+            Text("sxtrememapper@proton.me")
                 .font(AppThemeV2.Typography.caption)
                 .foregroundColor(AppThemeV2.Colors.stone500)
 
@@ -283,7 +283,7 @@ struct AboutView: View {
 
     private func sendFeedback() {
         let subject = "Super Xtreme Mapper Feedback"
-        let email = "XXtremeMapper@protonmail.com"
+        let email = "sxtrememapper@proton.me"
         if let url = URL(string: "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? subject)") {
             NSWorkspace.shared.open(url)
         }

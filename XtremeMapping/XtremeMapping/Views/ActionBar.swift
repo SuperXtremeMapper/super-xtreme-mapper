@@ -456,7 +456,7 @@ struct AboutSheet: View {
                 .buttonStyle(.borderedProminent)
                 .tint(AppThemeV2.Colors.amber)
 
-                Text("XXtremeMapper@protonmail.com")
+                Text("sxtrememapper@proton.me")
                     .font(.caption)
                     .foregroundColor(AppThemeV2.Colors.stone500)
 
@@ -512,7 +512,7 @@ struct AboutSheet: View {
 
     private func sendFeedback() {
         let subject = "Super Xtreme Mapper Feedback"
-        let email = "XXtremeMapper@protonmail.com"
+        let email = "sxtrememapper@proton.me"
         if let url = URL(string: "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? subject)") {
             NSWorkspace.shared.open(url)
         }
