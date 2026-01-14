@@ -569,11 +569,11 @@ private final class SaveCallbackStore: NSObject {
     }
 
     @objc(document:didSave:contextInfo:)
-    func document(_ document: AnyObject, didSave didSave: Bool, contextInfo: UnsafeMutableRawPointer?) {
+    func document(_ document: AnyObject, didSave saved: Bool, contextInfo: UnsafeMutableRawPointer?) {
         guard let document = document as? NSDocument else { return }
         let identifier = ObjectIdentifier(document)
         let completion = completions.removeValue(forKey: identifier)
-        completion?(didSave)
+        completion?(saved)
     }
 }
 

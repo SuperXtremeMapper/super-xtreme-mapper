@@ -6,7 +6,7 @@ A native macOS TSI editor for Traktor Pro. Create, edit, and manage your MIDI co
 
 **Website:** [superxtrememapper.github.io/super-xtreme-mapper](https://superxtrememapper.github.io/super-xtreme-mapper)
 
-![macOS](https://img.shields.io/badge/macOS-13.0+-blue)
+![macOS](https://img.shields.io/badge/macOS-14.0+-blue)
 ![Apple Silicon](https://img.shields.io/badge/Apple%20Silicon-native-green)
 ![License](https://img.shields.io/badge/license-MIT-orange)
 ![Status](https://img.shields.io/badge/status-beta-yellow)
@@ -33,7 +33,7 @@ Download the latest `.dmg` from the [Releases](https://github.com/SuperXtremeMap
 
 ### Requirements
 
-- macOS 13.0 (Ventura) or later
+- macOS 14.0 (Sonoma) or later
 - Apple Silicon (M1/M2/M3) or Intel
 
 ### Gatekeeper Notice
@@ -53,7 +53,7 @@ Since SXM is not signed with an Apple Developer certificate, macOS will initiall
 ### Prerequisites
 
 - Xcode 15.0+
-- macOS 13.0+
+- macOS 14.0+
 
 ### Build
 
