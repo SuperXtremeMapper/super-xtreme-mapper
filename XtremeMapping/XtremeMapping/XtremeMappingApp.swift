@@ -15,6 +15,24 @@ class WelcomeWindowState: ObservableObject {
     @Published var shouldShowWelcome = false
 }
 
+/// Wrapper to give WelcomeView access to dismissWindow environment
+struct WelcomeWindowContent: View {
+    @Environment(\.dismissWindow) private var dismissWindow
+
+    var body: some View {
+        WelcomeView(
+            onNewMapping: {
+                dismissWindow(id: "welcome")
+                NSDocumentController.shared.newDocument(nil)
+            },
+            onOpenMapping: {
+                // Just trigger open - AppDelegate handles closing welcome when doc window appears
+                NSDocumentController.shared.openDocument(nil)
+            }
+        )
+    }
+}
+
 @main
 struct XtremeMappingApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
@@ -24,14 +42,7 @@ struct XtremeMappingApp: App {
     var body: some Scene {
         // Welcome window shown on launch
         Window("Welcome to Super Xtreme Mapper", id: "welcome") {
-            WelcomeView(
-                onNewMapping: {
-                    NSDocumentController.shared.newDocument(nil)
-                },
-                onOpenMapping: {
-                    NSDocumentController.shared.openDocument(nil)
-                }
-            )
+            WelcomeWindowContent()
         }
         .windowStyle(.hiddenTitleBar)
         .windowResizability(.contentSize)
@@ -63,14 +74,6 @@ struct XtremeMappingApp: App {
                     let email = "sxtrememapper@proton.me"
                     if let url = URL(string: "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? subject)") {
                         NSWorkspace.shared.open(url)
-                    }
-                }
-
-                Divider()
-
-                Button("About Super Xtreme Mapper") {
-                    if let aboutWindow = NSApplication.shared.windows.first(where: { $0.title.contains("About") }) {
-                        aboutWindow.makeKeyAndOrderFront(nil)
                     }
                 }
             }
@@ -109,14 +112,6 @@ struct XtremeMappingApp: App {
                 }
             }
         }
-
-        // About window
-        Window("About Super Xtreme Mapper", id: "about") {
-            AboutView()
-        }
-        .windowStyle(.hiddenTitleBar)
-        .windowResizability(.contentSize)
-        .defaultPosition(.center)
 
         // Settings window (Command+, on macOS)
         Settings {
@@ -304,8 +299,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var pendingTerminationDocuments: [NSDocument] = []
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        // Register our custom document controller
-        _ = XtremeMappingDocumentController.shared
+        // Disable autosaving (users should save manually)
         NSDocumentController.shared.autosavingDelay = -1
 
         // Observe window close notifications to reopen welcome when last document closes
@@ -344,21 +338,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
-        // Don't auto-create untitled document - show welcome window instead
+        // Return false to prevent DocumentGroup from auto-creating a document
         return false
     }
 
     func applicationOpenUntitledFile(_ sender: NSApplication) -> Bool {
-        // Don't create untitled documents automatically
-        return false
+        // We handle untitled file by showing welcome instead
+        openWelcomeWindow()
+        return true
     }
 
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        // If no windows are visible, show the welcome window
         if !flag {
             openWelcomeWindow()
         }
-        return true
+        // Return false to prevent system from showing open dialog
+        return false
     }
 
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
@@ -406,6 +401,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc private func windowDidBecomeMain(_ notification: Notification) {
         guard let window = notification.object as? NSWindow else { return }
+
+        // If a document window became main, close the welcome window
+        if window.windowController?.document != nil {
+            if let welcomeWindow = NSApplication.shared.windows.first(where: { $0.title.contains("Welcome") }) {
+                welcomeWindow.close()
+            }
+        }
+
         attachDocumentDelegateIfNeeded(to: window)
     }
 
@@ -435,15 +438,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func openWelcomeWindow() {
-        // Check if user has opted to skip the welcome screen
-        let skipWelcome = UserDefaults.standard.bool(forKey: "skipWelcomeScreen")
-        if skipWelcome {
-            // Create a new blank document instead
-            NSDocumentController.shared.newDocument(nil)
-            return
-        }
-
-        // Find existing welcome window or trigger creation of new one
+        // Find existing welcome window or trigger creation via SwiftUI
         let welcomeWindows = NSApplication.shared.windows.filter {
             $0.title.contains("Welcome")
         }
@@ -451,7 +446,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let existingWelcome = welcomeWindows.first {
             existingWelcome.makeKeyAndOrderFront(nil)
         } else {
-            // Trigger SwiftUI to open the window via shared state
             DispatchQueue.main.async {
                 WelcomeWindowState.shared.shouldShowWelcome = true
             }
@@ -599,35 +593,3 @@ private enum SaveDecision {
     case cancel
 }
 
-// MARK: - Custom Document Controller
-
-/// Custom document controller that closes blank documents when opening files
-class XtremeMappingDocumentController: NSDocumentController {
-
-    // Singleton instance
-    private static let _shared = XtremeMappingDocumentController()
-
-    override static var shared: NSDocumentController {
-        return _shared
-    }
-
-    override func openDocument(withContentsOf url: URL, display displayDocument: Bool, completionHandler: @escaping (NSDocument?, Bool, (any Error)?) -> Void) {
-        // Before opening, find any untitled blank documents to close
-        let untitledDocs = documents.filter { doc in
-            // Document is untitled if it has no fileURL
-            return doc.fileURL == nil
-        }
-
-        // Open the document
-        super.openDocument(withContentsOf: url, display: displayDocument) { document, alreadyOpen, error in
-            // If successfully opened a new document, close the untitled ones
-            if document != nil && error == nil && !alreadyOpen {
-                for untitledDoc in untitledDocs {
-                    // Close without saving (it's blank)
-                    untitledDoc.close()
-                }
-            }
-            completionHandler(document, alreadyOpen, error)
-        }
-    }
-}
