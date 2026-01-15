@@ -109,10 +109,6 @@ struct WelcomeView: View {
 
             // Footer with beta warning
             HStack(spacing: AppThemeV2.Spacing.xs) {
-                Circle()
-                    .fill(AppThemeV2.Colors.amber)
-                    .frame(width: 6, height: 6)
-
                 Text("Warning: This is a private beta for testing purposes only. Be sure to make a copy of any .tsi file you want to edit... just in case it gets totally fucked.")
                     .font(AppThemeV2.Typography.caption)
                     .foregroundColor(AppThemeV2.Colors.amber.opacity(0.8))
