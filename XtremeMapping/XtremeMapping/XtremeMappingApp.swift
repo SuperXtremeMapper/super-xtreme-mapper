@@ -246,7 +246,7 @@ struct AboutView: View {
         }
         .padding(30)
         .frame(width: 400)
-        .background(AppThemeV2.Colors.stone900)
+        .background(AppThemeV2.Colors.stone800)
         .preferredColorScheme(.dark)
     }
 
@@ -328,7 +328,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if let opValue, opValue == NSDocument.SaveOperationType.autosaveElsewhereOperation.rawValue {
                 return
             }
-            Task { @MainActor in
+            // Clear custom dirty flag (NSDocument's isDocumentEdited is already handled by framework)
+            MainActor.assumeIsolated {
                 TraktorMappingDocument.markClean(for: document.fileURL)
             }
         }
@@ -357,9 +358,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
-        let dirtyDocuments = NSDocumentController.shared.documents.filter { document in
-            TraktorMappingDocument.isDirty(for: document.fileURL)
-        }
+        // Use NSDocument's built-in isDocumentEdited tracking
+        let dirtyDocuments = NSDocumentController.shared.documents.filter { $0.isDocumentEdited }
 
         if dirtyDocuments.isEmpty {
             return .terminateNow
@@ -540,8 +540,9 @@ final class DocumentWindowDelegateProxy: NSObject, NSWindowDelegate {
         }
 
         guard let document = sender.windowController?.document as? NSDocument else { return true }
-        let dirty = TraktorMappingDocument.isDirty(for: document.fileURL)
-        if !dirty {
+        // Use NSDocument's built-in change tracking (isDocumentEdited), not custom isDirty
+        // NSDocument properly tracks save state; our custom tracking doesn't get save notifications
+        if !document.isDocumentEdited {
             return true
         }
 
