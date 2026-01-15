@@ -108,6 +108,7 @@ enum CommandHierarchy {
                 CommandItem(id: 2294, name: "Is Tempo Master"),
                 CommandItem(id: 2476, name: "Tempo Bend Up"),
                 CommandItem(id: 2477, name: "Tempo Bend Down"),
+                CommandItem(id: 512, name: "Phase"),
             ]),
             CommandCategory2(name: "Key", commands: [
                 CommandItem(id: 400, name: "Keylock On"),
@@ -241,6 +242,14 @@ enum CommandHierarchy {
                 CommandItem(id: 2329, name: "Hotcue State"),
                 CommandItem(id: 2330, name: "Total Hotcues"),
                 CommandItem(id: 2331, name: "Delete Hotcue"),
+                CommandItem(id: 2333, name: "Hotcue 1 Type"),
+                CommandItem(id: 2334, name: "Hotcue 2 Type"),
+                CommandItem(id: 2335, name: "Hotcue 3 Type"),
+                CommandItem(id: 2336, name: "Hotcue 4 Type"),
+                CommandItem(id: 2337, name: "Hotcue 5 Type"),
+                CommandItem(id: 2338, name: "Hotcue 6 Type"),
+                CommandItem(id: 2339, name: "Hotcue 7 Type"),
+                CommandItem(id: 2340, name: "Hotcue 8 Type"),
             ]),
             CommandCategory2(name: "Move & Beatjump", commands: [
                 CommandItem(id: 2351, name: "Move"),
@@ -529,6 +538,7 @@ enum CommandHierarchy {
                 CommandItem(id: 247, name: "Slot State"),
                 CommandItem(id: 236, name: "Slot Stop/Delete/Load"),
                 CommandItem(id: 2004, name: "Slot Capture/Trigger/Mute"),
+                CommandItem(id: 361, name: "Slot Pre-Fader Level (L+R)"),
             ]),
         ]),
 
@@ -540,6 +550,33 @@ enum CommandHierarchy {
             CommandItem(id: 737, name: "Step Sequencer Current Step"),
             CommandItem(id: 738, name: "Step Sequencer Selected Sound"),
             CommandItem(id: 739, name: "Step Sequencer Selected Pattern"),
+        ]),
+
+        // Freeze Mode
+        CommandCategory2(name: "Freeze Mode", subcategories: [
+            CommandCategory2(name: "Controls", commands: [
+                CommandItem(id: 803, name: "Freeze Mode On"),
+                CommandItem(id: 802, name: "Freeze Slice Count Adjust"),
+                CommandItem(id: 804, name: "Freeze Slice Size Adjust"),
+            ]),
+            CommandCategory2(name: "Slice Triggers", commands: [
+                CommandItem(id: 810, name: "Slice Trigger 1"),
+                CommandItem(id: 811, name: "Slice Trigger 2"),
+                CommandItem(id: 812, name: "Slice Trigger 3"),
+                CommandItem(id: 813, name: "Slice Trigger 4"),
+                CommandItem(id: 814, name: "Slice Trigger 5"),
+                CommandItem(id: 815, name: "Slice Trigger 6"),
+                CommandItem(id: 816, name: "Slice Trigger 7"),
+                CommandItem(id: 817, name: "Slice Trigger 8"),
+                CommandItem(id: 818, name: "Slice Trigger 9"),
+                CommandItem(id: 819, name: "Slice Trigger 10"),
+                CommandItem(id: 820, name: "Slice Trigger 11"),
+                CommandItem(id: 821, name: "Slice Trigger 12"),
+                CommandItem(id: 822, name: "Slice Trigger 13"),
+                CommandItem(id: 823, name: "Slice Trigger 14"),
+                CommandItem(id: 824, name: "Slice Trigger 15"),
+                CommandItem(id: 825, name: "Slice Trigger 16"),
+            ]),
         ]),
 
         // Loop Recorder
