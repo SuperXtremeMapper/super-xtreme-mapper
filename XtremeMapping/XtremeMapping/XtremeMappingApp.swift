@@ -333,6 +333,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 TraktorMappingDocument.markClean(for: document.fileURL)
             }
         }
+
+        // Show welcome window on launch (or create new document if user chose to skip)
+        openWelcomeWindow()
     }
 
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
@@ -427,6 +430,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func openWelcomeWindow() {
+        // Check if user has opted to skip the welcome screen
+        let skipWelcome = UserDefaults.standard.bool(forKey: "skipWelcomeScreen")
+        if skipWelcome {
+            // Create a new blank document instead
+            NSDocumentController.shared.newDocument(nil)
+            return
+        }
+
         // Find existing welcome window or trigger creation of new one
         let welcomeWindows = NSApplication.shared.windows.filter {
             $0.title.contains("Welcome")

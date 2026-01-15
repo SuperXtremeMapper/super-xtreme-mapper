@@ -205,6 +205,7 @@ public struct TSIWriter: Sendable {
         // ControllerType: Button=0, FaderOrKnob=1, Encoder=2, LED=65535
         let ctrlType: UInt32 = {
             switch mapping.controllerType {
+            case .none: return 0  // Default to button if unassigned
             case .button: return 0
             case .faderOrKnob: return 1
             case .encoder: return 2
@@ -217,6 +218,7 @@ public struct TSIWriter: Sendable {
         // InteractionMode: Toggle=1, Hold=2, Direct=3, Relative=4, Output=8
         let intMode: UInt32 = {
             switch mapping.interactionMode {
+            case .none: return 2  // Default to hold if unassigned
             case .toggle: return 1
             case .hold: return 2
             case .direct: return 3
@@ -234,6 +236,7 @@ public struct TSIWriter: Sendable {
         // Deck/Target assignment (4 bytes, signed)
         let deckValue: Int32 = {
             switch mapping.assignment {
+            case .none: return 0  // Default to global if unassigned
             case .deviceTarget: return -1
             case .global: return 0
             case .deckA: return 1

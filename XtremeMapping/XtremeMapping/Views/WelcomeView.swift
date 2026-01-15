@@ -10,8 +10,11 @@ import SwiftUI
 /// Welcome screen shown on app launch with options to create, open, or use wizard
 struct WelcomeView: View {
     @Environment(\.dismiss) private var dismiss
+    @AppStorage("skipWelcomeScreen") private var skipWelcomeScreen = false
     var onNewMapping: () -> Void
     var onOpenMapping: () -> Void
+
+    @State private var isHoveringSkip = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -107,6 +110,12 @@ struct WelcomeView: View {
             .padding(.top, 32)
             .padding(.bottom, 32)
 
+            // Divider
+            Rectangle()
+                .fill(AppThemeV2.Colors.stone700)
+                .frame(height: 1)
+                .padding(.horizontal, 32)
+
             // Footer with beta warning
             HStack(spacing: AppThemeV2.Spacing.xs) {
                 Text("Warning: This is a private beta for testing purposes only. Be sure to make a copy of any .tsi file you want to edit... just in case it gets totally fucked.")
@@ -116,9 +125,49 @@ struct WelcomeView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             .padding(.horizontal, 24)
-            .padding(.bottom, 32)
+            .padding(.top, 24)
+            .padding(.bottom, 16)
+
+            // Don't show again option
+            Button {
+                skipWelcomeScreen.toggle()
+            } label: {
+                HStack(spacing: AppThemeV2.Spacing.sm) {
+                    // Checkbox
+                    ZStack {
+                        RoundedRectangle(cornerRadius: AppThemeV2.Radius.xs)
+                            .fill(skipWelcomeScreen ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone700)
+                            .frame(width: 18, height: 18)
+
+                        RoundedRectangle(cornerRadius: AppThemeV2.Radius.xs)
+                            .stroke(
+                                skipWelcomeScreen ? AppThemeV2.Colors.amberLight :
+                                    (isHoveringSkip ? AppThemeV2.Colors.amber.opacity(0.5) : AppThemeV2.Colors.stone600),
+                                lineWidth: 1
+                            )
+                            .frame(width: 18, height: 18)
+
+                        if skipWelcomeScreen {
+                            Image(systemName: "checkmark")
+                                .font(.system(size: 10, weight: .bold))
+                                .foregroundColor(AppThemeV2.Colors.stone900)
+                        }
+                    }
+
+                    Text("Don't show this again")
+                        .font(AppThemeV2.Typography.caption)
+                        .foregroundColor(isHoveringSkip ? AppThemeV2.Colors.stone200 : AppThemeV2.Colors.stone400)
+                }
+            }
+            .buttonStyle(.plain)
+            .onHover { hovering in
+                withAnimation(.easeInOut(duration: 0.15)) {
+                    isHoveringSkip = hovering
+                }
+            }
+            .padding(.bottom, 24)
         }
-        .frame(width: 420, height: 680)
+        .frame(width: 420, height: 720)
         .background(AppThemeV2.Colors.stone900)
         .preferredColorScheme(.dark)
     }

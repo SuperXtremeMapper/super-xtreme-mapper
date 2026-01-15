@@ -38,6 +38,7 @@ struct SettingsPanelV2: View {
     @State private var midiChannel: Int = 1
     @State private var isLearning: Bool = false
     @State private var hasLearnedMIDI: Bool = false  // True when MIDI received during current learn session
+    @State private var learnedCCValues: [Int] = []   // Track CC values to detect fader vs encoder
     @StateObject private var midiManager = MIDIInputManager.shared
 
     private func registerChange() {
@@ -58,11 +59,11 @@ struct SettingsPanelV2: View {
     }
 
     private var availableInteractionModes: [InteractionMode] {
-        var modes = controllerType.validInteractionModes
-        if !modes.contains(interactionMode) {
+        var modes = controllerType.validInteractionModes.filter { $0 != .none }
+        if !modes.contains(interactionMode) && interactionMode != .none {
             modes.append(interactionMode)
         }
-        return modes
+        return modes.isEmpty ? [.hold] : modes  // Fallback to hold if no valid modes
     }
 
     var body: some View {
@@ -260,7 +261,7 @@ struct SettingsPanelV2: View {
     private var assignmentPicker: some View {
         V2FormRow(label: "Assignment") {
             V2Dropdown(
-                options: TargetAssignment.allCases,
+                options: TargetAssignment.allCases.filter { $0 != .none },
                 selection: $assignment,
                 labelFor: { $0.displayName }
             )
@@ -288,7 +289,7 @@ struct SettingsPanelV2: View {
     private var controllerTypePicker: some View {
         V2FormRow(label: "Type") {
             V2Dropdown(
-                options: ControllerType.allCases.filter { $0 != .led },
+                options: ControllerType.allCases.filter { $0 != .led && $0 != .none },
                 selection: $controllerType,
                 labelFor: { $0.displayName }
             )
@@ -428,6 +429,9 @@ struct SettingsPanelV2: View {
 
         case .led:
             EmptyView()
+
+        case .none:
+            EmptyView()
         }
     }
 
@@ -444,6 +448,7 @@ struct SettingsPanelV2: View {
     private func startLearning() {
         isLearning = true
         hasLearnedMIDI = false  // Reset when starting a new learn session
+        learnedCCValues = []    // Reset value tracking
         midiManager.onMIDIReceived = { [self] message in
             handleMIDILearned(message)
         }
@@ -453,6 +458,7 @@ struct SettingsPanelV2: View {
     private func stopLearning() {
         isLearning = false
         hasLearnedMIDI = false  // Reset when stopping learn
+        learnedCCValues = []    // Reset value tracking
         midiManager.stopListening()
         midiManager.onMIDIReceived = nil
     }
@@ -461,7 +467,23 @@ struct SettingsPanelV2: View {
         // Mark that we've received MIDI during this learn session
         hasLearnedMIDI = true
 
-        // Update the selected mapping with the learned MIDI
+        // Track CC values for better fader vs encoder detection
+        if message.cc != nil {
+            learnedCCValues.append(message.value)
+            // Keep only last 20 values to avoid memory buildup
+            if learnedCCValues.count > 20 {
+                learnedCCValues.removeFirst()
+            }
+        } else {
+            // Reset CC tracking if we get a note (switching control types)
+            learnedCCValues = []
+        }
+
+        // Detect controller type based on accumulated data
+        let detectedType = detectControllerType(from: message)
+        let detectedInteraction = detectedType.defaultInteractionMode
+
+        // Update the selected mapping with the learned MIDI and detected type
         // Note: Stay in learn mode until user clicks the button off
         updateEntry { entry in
             entry.midiChannel = message.channel
@@ -472,10 +494,74 @@ struct SettingsPanelV2: View {
                 entry.midiCC = cc
                 entry.midiNote = nil
             }
+
+            // Auto-assign controller type and interaction mode
+            entry.controllerType = detectedType
+            entry.interactionMode = detectedInteraction
         }
 
-        // Update local state to reflect change
+        // Update local state to reflect changes
         midiChannel = message.channel
+        controllerType = detectedType
+        interactionMode = detectedInteraction
+    }
+
+    /// Detects the controller type based on MIDI message and value history
+    private func detectControllerType(from message: MIDIMessage) -> ControllerType {
+        // Note messages are typically buttons
+        if message.note != nil {
+            return .button
+        }
+
+        // For CC messages, analyze the value history to detect fader vs encoder
+        if message.cc != nil {
+            // If we have enough CC values, analyze the pattern
+            if learnedCCValues.count >= 2 {
+                // Count how many values are in encoder zones vs middle range
+                var encoderZoneCount = 0
+                var middleRangeCount = 0
+
+                for value in learnedCCValues {
+                    if isEncoderValue(value) {
+                        encoderZoneCount += 1
+                    } else if value >= 6 && value <= 121 {
+                        // Middle range values (not encoder zones) indicate fader
+                        middleRangeCount += 1
+                    }
+                }
+
+                // If ANY values are in the middle range, it's a fader
+                // (encoders never send values like 20, 50, 80, etc.)
+                if middleRangeCount > 0 {
+                    return .faderOrKnob
+                }
+
+                // If all values are in encoder zones, it's an encoder
+                if encoderZoneCount == learnedCCValues.count {
+                    return .encoder
+                }
+            }
+
+            // With limited data, check the single value
+            if isEncoderValue(message.value) {
+                return .encoder
+            }
+
+            return .faderOrKnob
+        }
+
+        // Default to button
+        return .button
+    }
+
+    /// Check if a CC value is typical of an encoder (relative mode values)
+    private func isEncoderValue(_ value: Int) -> Bool {
+        // Low zone: 0-5 (relative decrement or zero)
+        // High zone: 122-127 (relative increment in 7Fh/01h mode)
+        // Center zone: 61-67 (relative values in 3Fh/41h mode)
+        return (value >= 0 && value <= 5) ||
+               (value >= 122 && value <= 127) ||
+               (value >= 61 && value <= 67)
     }
 
     // MARK: - Helper Methods

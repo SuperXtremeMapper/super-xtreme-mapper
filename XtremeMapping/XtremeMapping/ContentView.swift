@@ -423,11 +423,11 @@ struct V2ActionBarFull: View {
 
     var body: some View {
         HStack(spacing: AppThemeV2.Spacing.md) {
-            // Left side - Add buttons with command menus
+            // Left side - Add buttons with command menus (icon-only style)
             HStack(spacing: AppThemeV2.Spacing.xs) {
-                V2AddCommandMenuButton(icon: "arrow.down", label: "Add In", isDisabled: isLocked) { onAddInput($0) }
-                V2AddCommandMenuButton(icon: "arrow.up", label: "Add Out", isDisabled: isLocked) { onAddOutput($0) }
-                V2AddCommandMenuButton(icon: "arrow.up.arrow.down", label: "In/Out", isDisabled: isLocked) { onAddInOut($0) }
+                V2AddCommandMenuIconButton(icon: "arrow.down", tooltip: "Add Input Mapping", isDisabled: isLocked) { onAddInput($0) }
+                V2AddCommandMenuIconButton(icon: "arrow.up", tooltip: "Add Output Mapping", isDisabled: isLocked) { onAddOutput($0) }
+                V2AddCommandMenuIconButton(icon: "arrow.up.arrow.down", tooltip: "Add Input/Output Pair", isDisabled: isLocked) { onAddInOut($0) }
 
                 Rectangle()
                     .fill(AppThemeV2.Colors.stone600)
@@ -558,6 +558,121 @@ struct V2AddCommandMenuButton: View {
 
     private var borderColor: Color {
         if isHovered && !isDisabled { return AppThemeV2.Colors.amber.opacity(0.5) }
+        return AppThemeV2.Colors.stone600
+    }
+}
+
+// MARK: - V2 Add Command Menu Icon Button (Overlay Technique)
+
+/// An icon-only button styled like V2ToolbarIconButton that opens a command menu
+/// Uses overlay technique: transparent Menu on top captures clicks, styled view below handles visuals
+struct V2AddCommandMenuIconButton: View {
+    let icon: String
+    let tooltip: String
+    let isDisabled: Bool
+    let onCommandSelected: (String) -> Void
+
+    @State private var isHovered = false
+
+    var body: some View {
+        // ZStack: visual button below, transparent menu on top
+        ZStack {
+            // BOTTOM LAYER: Visual button (non-interactive, just for looks)
+            visualButton
+
+            // TOP LAYER: Transparent menu that captures clicks
+            transparentMenu
+        }
+        .frame(width: 28, height: 28)
+        .onHover { hovering in
+            // Hover detection on container drives visual state
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
+        }
+        .help(tooltip)
+    }
+
+    // The visual representation - matches V2ToolbarIconButton exactly
+    private var visualButton: some View {
+        Image(systemName: icon)
+            .font(.system(size: 12, weight: .medium))
+            .foregroundColor(foregroundColor)
+            .frame(width: 28, height: 28)
+            .background(
+                RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                    .fill(backgroundColor)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                    .stroke(borderColor, lineWidth: 1)
+            )
+            .shadow(
+                color: isHovered && !isDisabled ? AppThemeV2.Colors.amberGlow : .clear,
+                radius: isHovered && !isDisabled ? 8 : 0
+            )
+    }
+
+    // Transparent menu that sits on top and captures all clicks
+    private var transparentMenu: some View {
+        Menu {
+            ForEach(CommandHierarchy.categories) { category in
+                categoryMenu(category)
+            }
+        } label: {
+            // Invisible hit area - same size as visual button
+            Color.clear
+                .frame(width: 28, height: 28)
+                .contentShape(Rectangle()) // Ensure the clear area is clickable
+        }
+        .menuStyle(.borderlessButton)
+        .menuIndicator(.hidden)
+        .disabled(isDisabled)
+    }
+
+    @ViewBuilder
+    private func categoryMenu(_ category: CommandCategory2) -> some View {
+        if let subcategories = category.subcategories {
+            Menu(category.name) {
+                ForEach(subcategories) { subcategory in
+                    subcategoryMenu(subcategory)
+                }
+            }
+        } else if let commands = category.commands {
+            Menu(category.name) {
+                ForEach(commands) { command in
+                    Button(command.name) { onCommandSelected(command.name) }
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func subcategoryMenu(_ subcategory: CommandCategory2) -> some View {
+        if let commands = subcategory.commands {
+            Menu(subcategory.name) {
+                ForEach(commands) { command in
+                    Button(command.name) { onCommandSelected(command.name) }
+                }
+            }
+        }
+    }
+
+    private var foregroundColor: Color {
+        if isDisabled { return AppThemeV2.Colors.stone600 }
+        if isHovered { return AppThemeV2.Colors.amber }
+        return AppThemeV2.Colors.stone400
+    }
+
+    private var backgroundColor: Color {
+        if isDisabled { return AppThemeV2.Colors.stone800 }
+        if isHovered { return AppThemeV2.Colors.amberSubtle }
+        return AppThemeV2.Colors.stone700
+    }
+
+    private var borderColor: Color {
+        if isDisabled { return AppThemeV2.Colors.stone700 }
+        if isHovered { return AppThemeV2.Colors.amber.opacity(0.5) }
         return AppThemeV2.Colors.stone600
     }
 }
