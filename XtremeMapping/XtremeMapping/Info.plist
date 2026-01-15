@@ -23,6 +23,10 @@
 	</array>
 	<key>NSDocumentAutosavesInPlace</key>
 	<false/>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Super Xtreme Mapper uses speech recognition for voice-controlled mapping.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Super Xtreme Mapper needs microphone access for voice commands.</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
