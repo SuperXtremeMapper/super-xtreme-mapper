@@ -85,9 +85,9 @@ Super Xtreme Mapper<!DOCTYPE html>
             <div class="overview-grid">
                 <div class="overview-text">
                     <p class="lead">Super Xtreme Mapper is a native macOS application for creating and editing Traktor Pro TSI mapping files.</p>
-                    <p>Whether you're building custom controller mappings from scratch, tweaking existing setups, or diving deep into modifier logic, SXM gives you a clean, modern interface to work with Traktor's powerful but notoriously opaque mapping system.</p>
+		<p>Inspired by the much loved, long dead, <a href=https://www.xtrememapping.com/>Xtreme Mapping,</a> we rebuilt everything from the ground up.</p>                                   
+ <p>Whether you're building custom controller mappings from scratch, tweaking existing setups, or diving deep into modifier logic, SXM gives you a clean, modern interface to work with Traktor's powerful but notoriously opaque mapping system.</p>
                     <p>No more hunting through endless menu trees or fighting with Traktor's built-in controller manager. Just open your TSI, see everything at a glance, and make your changes.</p>
-		<p>Inspired by the much loved, long dead, <a href=https://www.xtrememapping.com/>Xtreme Mapping.</a></p>                
 </div>
                 <div class="overview-visual">
                     <div class="app-preview">
@@ -156,7 +156,7 @@ Super Xtreme Mapper<!DOCTYPE html>
             <div class="backstory-content">
                 <div class="quote-mark">"</div>
                 <p class="backstory-text">
-                    We used to love <a href=https://www.xtrememapping.com/>Xtreme Mapping</a>. It was the only decent TSI editor out there, and it made creating custom Traktor mappings almost enjoyable. <br> <br> Then Apple Silicon happened, and Xtreme Mapping stopped working. Our attempts to contact the original author, Vincenzo Pietropaolo, were met with silence. After years of waiting and hoping, we decided to take matters into our own hands. <br> <br> Using <strong>Claude Code</strong>, we <b>reverse-engineered</b> a <b>completely new TSI editor</b> from a combination of <b>Xtreme Mapping screenshots</b>, the <a href="https://cmdr-editor.github.io/cmdr/" target="_blank">CMDR editor</a> source code (thank you, cmdr-editor team!), and <a href="https://github.com/ivanz" target="_blank">IvanZ's</a> invaluable TSI format research. The result is Super Xtreme Mapping: a love letter to the original, rebuilt from the ground up for modern Macs.
+                    We used to love <a href=https://www.xtrememapping.com/>Xtreme Mapping</a>. It was the only decent TSI editor out there for Mac, and it made creating custom Traktor mappings almost enjoyable. <br> <br> Then Apple Silicon happened, and Xtreme Mapping stopped working. Our attempts to contact the original author were met with silence. After years of waiting and hoping, we decided to take matters into our own hands. <br> <br> Using <strong>Claude Code</strong>, we <b>reverse-engineered</b> a <b>completely new TSI editor</b> from a combination of <b>Xtreme Mapping screenshots</b>, the <a href="https://cmdr-editor.github.io/cmdr/" target="_blank">CMDR editor</a> source code (thank you, cmdr-editor team!), and <a href="https://github.com/ivanz" target="_blank">IvanZ's</a> invaluable TSI format research. The result is Super Xtreme Mapping: a love letter to the original, rebuilt from the ground up for modern Macs.
                 </p>
                 <div class="backstory-signature">
                     <span class="signature-dash">—</span>
@@ -210,8 +210,43 @@ Super Xtreme Mapper<!DOCTYPE html>
                 </div>
             </div>
 
-            <!-- Feature 2: Full MIDI Control -->
+            <!-- Feature 2: Bulk Edit -->
             <div class="feature-row reverse">
+                <div class="feature-info">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+                            <path d="M9 5a2 2 0 012-2h2a2 2 0 012 2v0a2 2 0 01-2 2h-2a2 2 0 01-2-2v0z"/>
+                            <path d="M9 12h6M9 16h6"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Bulk Edit</h3>
+                    <p class="feature-desc">Select multiple commands and modify them all at once. Change MIDI channels, reassign decks, or update parameters in bulk. No more tedious one-by-one editing. Save time and speed up your mapping workflow dramatically.</p>
+                </div>
+                <div class="feature-mockup">
+                    <div class="mockup-window">
+                        <div class="mockup-header">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                        </div>
+                        <div class="mockup-content mockup-table">
+                            <div class="mock-toolbar">
+                                <span class="mock-filter">3 selected</span>
+                                <span class="mock-search highlight">Bulk Edit...</span>
+                            </div>
+                            <div class="mock-table-header">
+                                <span>I/O</span><span>Assignment</span><span>Command</span><span>MIDI</span>
+                            </div>
+                            <div class="mock-row selected"><span class="io-badge in">IN</span><span>Deck A</span><span>Play/Pause</span><span>Ch1 → Ch2</span></div>
+                            <div class="mock-row selected"><span class="io-badge in">IN</span><span>Deck A</span><span>Cue</span><span>Ch1 → Ch2</span></div>
+                            <div class="mock-row selected"><span class="io-badge in">IN</span><span>Deck A</span><span>Sync</span><span>Ch1 → Ch2</span></div>
+                            <div class="mock-row"><span class="io-badge out">OUT</span><span>Deck B</span><span>Play State</span><span>Ch2 Note 42</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 3: Full MIDI Control -->
+            <div class="feature-row">
                 <div class="feature-info">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -259,8 +294,8 @@ Super Xtreme Mapper<!DOCTYPE html>
                 </div>
             </div>
 
-            <!-- Feature 3: Modifier Logic -->
-            <div class="feature-row">
+            <!-- Feature 4: Modifier Logic -->
+            <div class="feature-row reverse">
                 <div class="feature-info">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -308,8 +343,8 @@ Super Xtreme Mapper<!DOCTYPE html>
                 </div>
             </div>
 
-            <!-- Feature 4: Drag & Drop -->
-            <div class="feature-row reverse">
+            <!-- Feature 5: Drag & Drop -->
+            <div class="feature-row">
                 <div class="feature-info">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -352,8 +387,8 @@ Super Xtreme Mapper<!DOCTYPE html>
                 </div>
             </div>
 
-            <!-- Feature 5: Native macOS -->
-            <div class="feature-row">
+            <!-- Feature 6: Native macOS -->
+            <div class="feature-row reverse">
                 <div class="feature-info">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="currentColor">
@@ -386,8 +421,8 @@ Super Xtreme Mapper<!DOCTYPE html>
                 </div>
             </div>
 
-            <!-- Feature 6: All Traktor Commands -->
-            <div class="feature-row reverse">
+            <!-- Feature 7: All Traktor Commands -->
+            <div class="feature-row">
                 <div class="feature-info">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">

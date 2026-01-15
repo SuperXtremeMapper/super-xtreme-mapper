@@ -177,6 +177,7 @@ struct MappingsTableView: View {
                 }
                 .width(50)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .tableStyle(.inset(alternatesRowBackgrounds: false))
         .scrollContentBackground(.hidden)
         .background(AppThemeV2.Colors.stone800)
