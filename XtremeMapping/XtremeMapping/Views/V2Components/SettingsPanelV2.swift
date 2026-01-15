@@ -36,6 +36,9 @@ struct SettingsPanelV2: View {
     @State private var rotaryAcceleration: Float = 0.0
     @State private var encoderMode: EncoderMode = .mode7Fh01h
     @State private var midiChannel: Int = 1
+    @State private var isLearning: Bool = false
+    @State private var hasLearnedMIDI: Bool = false  // True when MIDI received during current learn session
+    @StateObject private var midiManager = MIDIInputManager.shared
 
     private func registerChange() {
         document.noteChange()
@@ -104,6 +107,12 @@ struct SettingsPanelV2: View {
             }
         }
         .background(AppThemeV2.Colors.stone800)
+        .onChange(of: selectedMappings) { _, _ in
+            // Stop learning only when actual selection changes (different item selected)
+            if isLearning {
+                stopLearning()
+            }
+        }
         .onChange(of: selectedEntry) { _, newEntry in
             loadEntryValues(newEntry)
         }
@@ -191,22 +200,24 @@ struct SettingsPanelV2: View {
         VStack(alignment: .leading, spacing: AppThemeV2.Spacing.xs) {
             sectionLabel("MAPPED TO")
             HStack(spacing: AppThemeV2.Spacing.xs) {
+                // Text box is gold only when learning AND has received MIDI during this session
+                let showGold = isLearning && hasLearnedMIDI
                 Text(entry.mappedToDisplay)
                     .font(AppThemeV2.Typography.mono)
-                    .foregroundColor(AppThemeV2.Colors.amber)
+                    .foregroundColor(showGold ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone400)
                     .padding(.horizontal, AppThemeV2.Spacing.sm)
                     .padding(.vertical, AppThemeV2.Spacing.xs)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(
                         RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                            .fill(AppThemeV2.Colors.amberSubtle)
+                            .fill(showGold ? AppThemeV2.Colors.amberSubtle : AppThemeV2.Colors.stone700)
                     )
                     .overlay(
                         RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                            .stroke(AppThemeV2.Colors.amber.opacity(0.3), lineWidth: 1)
+                            .stroke(showGold ? AppThemeV2.Colors.amber.opacity(0.3) : AppThemeV2.Colors.stone600, lineWidth: 1)
                     )
 
-                V2SmallButton(label: "Learn", action: {})
+                V2SmallButton(label: "Learn", action: toggleLearnMode, isActive: isLearning)
                     .disabled(isLocked)
             }
         }
@@ -420,6 +431,53 @@ struct SettingsPanelV2: View {
         }
     }
 
+    // MARK: - Learn Mode
+
+    private func toggleLearnMode() {
+        if isLearning {
+            stopLearning()
+        } else {
+            startLearning()
+        }
+    }
+
+    private func startLearning() {
+        isLearning = true
+        hasLearnedMIDI = false  // Reset when starting a new learn session
+        midiManager.onMIDIReceived = { [self] message in
+            handleMIDILearned(message)
+        }
+        midiManager.startListening()
+    }
+
+    private func stopLearning() {
+        isLearning = false
+        hasLearnedMIDI = false  // Reset when stopping learn
+        midiManager.stopListening()
+        midiManager.onMIDIReceived = nil
+    }
+
+    private func handleMIDILearned(_ message: MIDIMessage) {
+        // Mark that we've received MIDI during this learn session
+        hasLearnedMIDI = true
+
+        // Update the selected mapping with the learned MIDI
+        // Note: Stay in learn mode until user clicks the button off
+        updateEntry { entry in
+            entry.midiChannel = message.channel
+            if let note = message.note {
+                entry.midiNote = note
+                entry.midiCC = nil
+            } else if let cc = message.cc {
+                entry.midiCC = cc
+                entry.midiNote = nil
+            }
+        }
+
+        // Update local state to reflect change
+        midiChannel = message.channel
+    }
+
     // MARK: - Helper Methods
 
     private func loadEntryValues(_ entry: MappingEntry?) {
@@ -474,20 +532,54 @@ struct SettingsPanelV2: View {
 struct V2SmallButton: View {
     let label: String
     let action: () -> Void
+    var isActive: Bool = false
+
+    @State private var isHovered = false
+
+    private var foregroundColor: Color {
+        if isActive { return AppThemeV2.Colors.stone900 }
+        if isHovered { return AppThemeV2.Colors.amber }
+        return AppThemeV2.Colors.stone300
+    }
+
+    private var backgroundColor: Color {
+        if isActive { return AppThemeV2.Colors.amber }
+        if isHovered { return AppThemeV2.Colors.amberSubtle }
+        return AppThemeV2.Colors.stone700
+    }
+
+    private var borderColor: Color {
+        if isActive { return AppThemeV2.Colors.amberLight }
+        if isHovered { return AppThemeV2.Colors.amber.opacity(0.5) }
+        return Color.clear
+    }
 
     var body: some View {
         Button(action: action) {
             Text(label.uppercased())
                 .font(AppThemeV2.Typography.micro)
-                .foregroundColor(AppThemeV2.Colors.stone300)
+                .foregroundColor(foregroundColor)
                 .padding(.horizontal, AppThemeV2.Spacing.sm)
                 .padding(.vertical, AppThemeV2.Spacing.xs)
                 .background(
                     RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                        .fill(AppThemeV2.Colors.stone700)
+                        .fill(backgroundColor)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                        .stroke(borderColor, lineWidth: 1)
                 )
         }
         .buttonStyle(.plain)
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
+        }
+        .shadow(
+            color: isActive ? AppThemeV2.Colors.amberGlow : .clear,
+            radius: isActive ? 8 : 0
+        )
     }
 }
 

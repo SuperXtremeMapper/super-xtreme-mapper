@@ -88,6 +88,11 @@ struct MappingEntry: Identifiable, Codable, Hashable, Sendable, Equatable {
     /// Sort key for Modifier 2 column
     var modifier2SortKey: String { modifier2Condition?.displayString ?? "zzz" }
 
+    /// Whether this mapping has a MIDI note or CC assigned
+    var hasMIDIAssignment: Bool {
+        midiNote != nil || midiCC != nil
+    }
+
     /// Display string showing the MIDI assignment (e.g., "Ch01 CC 008" or "Ch02 Note C4")
     var mappedToDisplay: String {
         let channelStr = String(format: "Ch%02d", midiChannel)
@@ -120,15 +125,15 @@ struct MappingEntry: Identifiable, Codable, Hashable, Sendable, Equatable {
         id: UUID = UUID(),
         commandName: String = "",
         ioType: IODirection = .input,
-        assignment: TargetAssignment = .global,
-        interactionMode: InteractionMode = .hold,
+        assignment: TargetAssignment = .none,
+        interactionMode: InteractionMode = .none,
         midiChannel: Int = 1,
         midiNote: Int? = nil,
         midiCC: Int? = nil,
         modifier1Condition: ModifierCondition? = nil,
         modifier2Condition: ModifierCondition? = nil,
         comment: String = "",
-        controllerType: ControllerType = .button,
+        controllerType: ControllerType = .none,
         invert: Bool = false,
         softTakeover: Bool = false,
         setToValue: Float = 0.0,

@@ -12,6 +12,9 @@ import Foundation
 /// TSI files categorize controller inputs by their physical type,
 /// which affects how interaction modes and values are interpreted.
 enum ControllerType: Int, Codable, CaseIterable, Sendable {
+    /// Not yet assigned
+    case none = -1
+
     /// A momentary or latching button
     case button = 0
 
@@ -27,6 +30,8 @@ enum ControllerType: Int, Codable, CaseIterable, Sendable {
     /// Human-readable name for display in the UI
     var displayName: String {
         switch self {
+        case .none:
+            return "-"
         case .button:
             return "Button"
         case .faderOrKnob:
@@ -41,6 +46,8 @@ enum ControllerType: Int, Codable, CaseIterable, Sendable {
     /// Returns the valid interaction modes for this controller type
     var validInteractionModes: [InteractionMode] {
         switch self {
+        case .none:
+            return [.none]
         case .button:
             // Button modes: Direct, Inc, Dec, Reset (plus Hold, Toggle, Trigger for non-direct)
             return [.hold, .toggle, .trigger, .direct, .increment, .decrement, .reset]
@@ -59,6 +66,8 @@ enum ControllerType: Int, Codable, CaseIterable, Sendable {
     /// Returns the default interaction mode for this controller type
     var defaultInteractionMode: InteractionMode {
         switch self {
+        case .none:
+            return .none
         case .button:
             return .hold
         case .faderOrKnob:

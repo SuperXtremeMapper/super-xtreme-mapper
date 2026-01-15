@@ -12,6 +12,9 @@ import Foundation
 /// Mappings can be assigned to specific decks, FX units, or global functions.
 /// Device Target (-1) uses the device's default assignment.
 enum TargetAssignment: Int, Codable, CaseIterable, Sendable {
+    /// Not yet assigned
+    case none = -2
+
     /// Uses the device's default target assignment
     case deviceTarget = -1
 
@@ -45,6 +48,8 @@ enum TargetAssignment: Int, Codable, CaseIterable, Sendable {
     /// Human-readable name for display in the UI
     var displayName: String {
         switch self {
+        case .none:
+            return "-"
         case .deviceTarget:
             return "Device Target"
         case .global:

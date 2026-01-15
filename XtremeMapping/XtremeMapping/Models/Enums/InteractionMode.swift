@@ -14,6 +14,9 @@ import Foundation
 /// - For faders/knobs: direct mapping or relative adjustment
 /// - For outputs: how values are sent to controller LEDs
 enum InteractionMode: Int, Codable, CaseIterable, Sendable {
+    /// Not yet assigned
+    case none = -1
+
     /// Button toggles between on/off states with each press
     case toggle = 0
 
@@ -44,6 +47,8 @@ enum InteractionMode: Int, Codable, CaseIterable, Sendable {
     /// Short display name for the UI
     var displayName: String {
         switch self {
+        case .none:
+            return "-"
         case .toggle:
             return "Toggle"
         case .hold:

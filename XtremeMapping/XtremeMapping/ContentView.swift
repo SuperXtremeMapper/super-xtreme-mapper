@@ -172,11 +172,7 @@ struct ContentView: View {
 
         let newMapping = MappingEntry(
             commandName: commandName,
-            ioType: .input,
-            assignment: .deckA,
-            interactionMode: .hold,
-            midiChannel: 1,
-            midiNote: 36
+            ioType: .input
         )
 
         if document.mappingFile.devices.isEmpty {
@@ -195,11 +191,7 @@ struct ContentView: View {
 
         let newMapping = MappingEntry(
             commandName: commandName,
-            ioType: .output,
-            assignment: .deckA,
-            interactionMode: .output,
-            midiChannel: 1,
-            midiNote: 36
+            ioType: .output
         )
 
         if document.mappingFile.devices.isEmpty {
@@ -218,18 +210,12 @@ struct ContentView: View {
 
         let inputEntry = MappingEntry(
             commandName: commandName,
-            ioType: .input,
-            assignment: .global,
-            interactionMode: .hold,
-            midiChannel: 1
+            ioType: .input
         )
 
         let outputEntry = MappingEntry(
             commandName: commandName,
-            ioType: .output,
-            assignment: .global,
-            interactionMode: .output,
-            midiChannel: 1
+            ioType: .output
         )
 
         if document.mappingFile.devices.isEmpty {

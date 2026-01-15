@@ -199,7 +199,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1E5EFBC02F160EF30042A06E /* Build configuration list for PBXProject "XtremeMapping" */;
+			buildConfigurationList = 1E5EFBC02F160EF30042A06E /* Build configuration list for PBXProject "SuperXtremeMapping" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -556,7 +556,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1E5EFBC02F160EF30042A06E /* Build configuration list for PBXProject "XtremeMapping" */ = {
+		1E5EFBC02F160EF30042A06E /* Build configuration list for PBXProject "SuperXtremeMapping" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1E5EFBEB2F160EF50042A06E /* Debug */,
