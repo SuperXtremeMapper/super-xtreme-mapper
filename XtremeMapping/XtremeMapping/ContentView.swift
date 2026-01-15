@@ -20,6 +20,16 @@ struct ContentView: View {
     @State private var searchText: String = ""
     @State private var showingAbout = false
 
+    // Voice Learn coordinator
+    @StateObject private var voiceCoordinator = VoiceMappingCoordinator(
+        midiManager: MIDIInputManager.shared,
+        voiceManager: VoiceInputManager(),
+        claudeService: ClaudeAPIService(apiKeyProvider: {
+            // TODO: Replace with APIKeyManager once implemented (Task 6)
+            UserDefaults.standard.string(forKey: "anthropicAPIKey")
+        })
+    )
+
     /// Registers a change with the undo manager to mark document as edited
     private func registerChange() {
         document.noteChange()
@@ -50,7 +60,9 @@ struct ContentView: View {
                 onAddInput: addInputMapping,
                 onAddOutput: addOutputMapping,
                 onAddInOut: addInOutPair,
-                onAbout: { showingAbout = true }
+                onAbout: { showingAbout = true },
+                voiceCoordinator: voiceCoordinator,
+                onVoiceToggle: toggleVoiceLearn
             )
 
             // Main content
@@ -162,6 +174,48 @@ struct ContentView: View {
         .sheet(isPresented: $showingAbout) {
             AboutSheet()
         }
+        // Voice Learn overlay
+        .overlay {
+            if voiceCoordinator.isActive {
+                ZStack {
+                    // Semi-transparent background
+                    Color.black.opacity(0.5)
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            // Optional: dismiss on background tap
+                        }
+
+                    VoiceLearnOverlay(coordinator: voiceCoordinator)
+                }
+            }
+        }
+        // Keyboard shortcuts for disambiguation selection (1-5)
+        .onKeyPress("1") { handleDisambiguationKey(0) }
+        .onKeyPress("2") { handleDisambiguationKey(1) }
+        .onKeyPress("3") { handleDisambiguationKey(2) }
+        .onKeyPress("4") { handleDisambiguationKey(3) }
+        .onKeyPress("5") { handleDisambiguationKey(4) }
+    }
+
+    // MARK: - Voice Learn
+
+    private func toggleVoiceLearn() {
+        if voiceCoordinator.isActive {
+            voiceCoordinator.deactivate()
+        } else {
+            voiceCoordinator.activate()
+        }
+    }
+
+    private func handleDisambiguationKey(_ index: Int) -> KeyPress.Result {
+        guard voiceCoordinator.isActive,
+              let options = voiceCoordinator.disambiguationOptions,
+              index < options.count else {
+            return .ignored
+        }
+
+        voiceCoordinator.selectOption(index)
+        return .handled
     }
 
     // MARK: - Actions
@@ -420,6 +474,8 @@ struct V2ActionBarFull: View {
     var onAddOutput: (String) -> Void
     var onAddInOut: (String) -> Void
     var onAbout: () -> Void
+    var voiceCoordinator: VoiceMappingCoordinator?
+    var onVoiceToggle: (() -> Void)?
 
     var body: some View {
         HStack(spacing: AppThemeV2.Spacing.md) {
@@ -433,6 +489,17 @@ struct V2ActionBarFull: View {
                     .fill(AppThemeV2.Colors.stone600)
                     .frame(width: 1, height: 20)
                     .padding(.horizontal, AppThemeV2.Spacing.xs)
+
+                // Voice Learn button
+                if let coordinator = voiceCoordinator, let toggle = onVoiceToggle {
+                    V2ToolbarButton(
+                        icon: "mic.fill",
+                        label: "Voice",
+                        action: toggle,
+                        isActive: coordinator.isActive
+                    )
+                    .help("Voice Learn - Speak commands to create mappings")
+                }
 
                 V2DisabledToolbarButton(icon: "wand.and.stars")
                 V2DisabledToolbarButton(icon: "slider.horizontal.3")
