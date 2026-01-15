@@ -266,6 +266,14 @@ img {
     animation: fadeInUp 0.6s ease-out 0.3s both;
 }
 
+.hero-release-date {
+    font-size: 0.7rem;
+    color: var(--color-stone-500);
+    margin-top: var(--space-xs);
+    letter-spacing: 0.05em;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
 .badge-dot {
     width: 6px;
     height: 6px;
@@ -1178,6 +1186,206 @@ img {
     font-size: 0.65rem;
     color: var(--color-stone-600);
     text-transform: uppercase;
+}
+
+/* Voice Guided Setup Mockup */
+.feature-highlight {
+    position: relative;
+}
+
+.feature-highlight::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(-135deg, rgba(245, 158, 11, 0.15), transparent 50%);
+    border-radius: var(--radius-xl);
+    pointer-events: none;
+}
+
+.feature-icon-new {
+    position: relative;
+}
+
+.new-badge {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    padding: 2px 6px;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--color-stone-950);
+    background: var(--color-amber);
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.feature-note {
+    font-size: 0.75rem;
+    color: var(--color-stone-500);
+    font-style: italic;
+    margin-top: var(--space-sm);
+}
+
+.window-title-text {
+    font-size: 0.75rem;
+    color: var(--color-stone-400);
+    margin-left: auto;
+}
+
+.mockup-voice {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.voice-status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), transparent);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.voice-mic-container {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.voice-mic-ring {
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--color-amber);
+    border-radius: 50%;
+    animation: micPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes micPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+}
+
+.voice-mic-icon {
+    font-size: 1.25rem;
+}
+
+.voice-status-text {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--color-amber);
+    letter-spacing: 0.05em;
+}
+
+.voice-step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-stone-800);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--color-stone-600);
+}
+
+.voice-step.completed {
+    border-left-color: var(--color-success);
+}
+
+.voice-step.active {
+    border-left-color: var(--color-amber);
+    background: var(--color-amber-subtle);
+}
+
+.step-icon {
+    font-size: 0.875rem;
+    width: 20px;
+    text-align: center;
+}
+
+.voice-step.completed .step-icon {
+    color: var(--color-success);
+}
+
+.step-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.step-label {
+    font-size: 0.65rem;
+    color: var(--color-stone-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.step-value {
+    font-size: 0.8rem;
+    color: var(--color-stone-200);
+    font-family: var(--font-mono);
+}
+
+.step-value.transcript {
+    font-family: var(--font-body);
+    font-style: italic;
+    color: var(--color-amber);
+}
+
+.voice-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-stone-700), transparent);
+    margin: var(--space-xs) 0;
+}
+
+.voice-result {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.result-icon {
+    font-size: 1.25rem;
+    animation: resultPulse 0.8s ease-in-out infinite;
+}
+
+@keyframes resultPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.result-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.result-label {
+    font-size: 0.65rem;
+    color: var(--color-success);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.result-value {
+    font-size: 0.85rem;
+    color: var(--color-stone-200);
+    font-weight: 500;
 }
 
 /* --------------------------------------------------------------------------

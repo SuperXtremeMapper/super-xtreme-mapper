@@ -22,6 +22,7 @@ struct APIKeySettingsView: View {
     @State private var showingClearConfirmation = false
     @State private var validationState: ValidationState = .empty
     @Environment(\.openURL) private var openURL
+    @Environment(\.dismiss) private var dismiss
 
     // MARK: - Validation State
 
@@ -108,7 +109,7 @@ struct APIKeySettingsView: View {
                         .padding(AppThemeV2.Spacing.sm)
                         .background(
                             RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                                .fill(AppThemeV2.Colors.stone900)
+                                .fill(AppThemeV2.Colors.stone800)
                         )
                         .overlay(
                             RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
@@ -209,21 +210,45 @@ struct APIKeySettingsView: View {
 
             Spacer()
 
-            // Status indicator
-            if apiKeyManager.hasAPIKey {
-                HStack(spacing: AppThemeV2.Spacing.xs) {
-                    Circle()
-                        .fill(AppThemeV2.Colors.success)
-                        .frame(width: 6, height: 6)
-                    Text("API key configured")
-                        .font(AppThemeV2.Typography.caption)
-                        .foregroundColor(AppThemeV2.Colors.success)
+            // Bottom row: Status and Done button
+            HStack {
+                // Status indicator
+                if apiKeyManager.hasAPIKey {
+                    HStack(spacing: AppThemeV2.Spacing.xs) {
+                        Circle()
+                            .fill(AppThemeV2.Colors.success)
+                            .frame(width: 6, height: 6)
+                        Text("API key configured")
+                            .font(AppThemeV2.Typography.caption)
+                            .foregroundColor(AppThemeV2.Colors.success)
+                    }
                 }
+
+                Spacer()
+
+                // Done button
+                Button {
+                    dismiss()
+                } label: {
+                    Text("DONE")
+                        .font(AppThemeV2.Typography.micro)
+                        .tracking(0.5)
+                        .fontWeight(.semibold)
+                        .foregroundColor(AppThemeV2.Colors.stone900)
+                        .padding(.horizontal, AppThemeV2.Spacing.lg)
+                        .padding(.vertical, AppThemeV2.Spacing.sm)
+                        .background(
+                            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                                .fill(AppThemeV2.Colors.amber)
+                        )
+                }
+                .buttonStyle(.plain)
+                .keyboardShortcut(.return, modifiers: [])
             }
         }
         .padding(AppThemeV2.Spacing.xl)
         .frame(width: 400, height: 400)
-        .background(AppThemeV2.Colors.stone900)
+        .background(AppThemeV2.Colors.stone800)
         .preferredColorScheme(.dark)
         .onAppear {
             // Initialize with masked indication if key exists

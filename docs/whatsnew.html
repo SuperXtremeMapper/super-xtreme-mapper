@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's New - Super Xtreme Mapper</title>
+    <meta name="description" content="Release notes and changelog for Super Xtreme Mapper. See what's new in each version.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="whatsnew.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+<body>
+    <!-- Ambient background -->
+    <div class="ambient-bg"></div>
+    <div class="circuit-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo.png" alt="SXM" class="nav-logo-img">
+                <span class="nav-logo-text">SXM</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#features">Features</a>
+                <a href="whatsnew.html" class="active">What's New</a>
+                <a href="download.html">Download</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="whatsnew-hero">
+        <div class="container">
+            <h1 class="whatsnew-title">What's New</h1>
+            <p class="whatsnew-subtitle">Release notes and changelog for Super Xtreme Mapper</p>
+        </div>
+    </header>
+
+    <!-- Changelog Section -->
+    <section class="changelog-section">
+        <div class="container">
+
+            <!-- Version 0.2 -->
+            <article class="release-entry latest">
+                <div class="release-header">
+                    <div class="release-version">
+                        <span class="version-number">v0.2</span>
+                        <span class="version-badge">Latest</span>
+                    </div>
+                    <time class="release-date" datetime="2026-01-16">January 16, 2026</time>
+                </div>
+                <div class="release-content">
+                    <h3 class="release-headline">Voice Guided Setup</h3>
+                    <p class="release-summary">The headline feature of v0.2 - create mappings just by speaking. Move a knob, say what you want, and SXM does the rest.</p>
+
+                    <div class="release-changes">
+                        <div class="change-category">
+                            <h4 class="category-title new">New Features</h4>
+                            <ul class="change-list">
+                                <li><strong>Voice Guided Setup</strong> - Create mappings using voice commands. Just move a MIDI control and speak your intent (e.g., "Map play pause to Deck A")</li>
+                                <li><strong>Apple Speech Recognition</strong> - On-device speech recognition for Apple Silicon Macs, ensuring privacy and low latency</li>
+                                <li><strong>Claude AI Integration</strong> - Natural language understanding powered by Anthropic's Claude API to interpret voice commands</li>
+                                <li><strong>Voice Learn Overlay</strong> - Visual feedback UI showing MIDI detection, voice transcription, and mapping creation in real-time</li>
+                                <li><strong>API Key Management</strong> - Secure storage of Anthropic API keys in macOS Keychain</li>
+                            </ul>
+                        </div>
+
+                        <div class="change-category">
+                            <h4 class="category-title improved">Improvements</h4>
+                            <ul class="change-list">
+                                <li>Improved welcome window flow - automatically closes when opening a document</li>
+                                <li>Fixed blank window bug when opening new mapping files</li>
+                                <li>Refined UI styling with updated section headers</li>
+                            </ul>
+                        </div>
+
+                        <div class="change-category">
+                            <h4 class="category-title note">Requirements</h4>
+                            <ul class="change-list">
+                                <li>Voice features require an Anthropic API key (set in Settings)</li>
+                                <li>On-device speech recognition requires Apple Silicon Mac</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Version 0.1 -->
+            <article class="release-entry">
+                <div class="release-header">
+                    <div class="release-version">
+                        <span class="version-number">v0.1</span>
+                        <span class="version-badge initial">Initial Release</span>
+                    </div>
+                    <time class="release-date" datetime="2026-01-14">January 14, 2026</time>
+                </div>
+                <div class="release-content">
+                    <h3 class="release-headline">Initial Beta Release</h3>
+                    <p class="release-summary">The first public beta of Super Xtreme Mapper - a modern TSI editor for Traktor Pro, rebuilt from the ground up for Apple Silicon.</p>
+
+                    <div class="release-changes">
+                        <div class="change-category">
+                            <h4 class="category-title new">Features</h4>
+                            <ul class="change-list">
+                                <li><strong>Visual Mapping Table</strong> - See all mappings at a glance with sortable columns and filtering</li>
+                                <li><strong>Bulk Edit</strong> - Select multiple mappings and modify them simultaneously</li>
+                                <li><strong>Full MIDI Control</strong> - Edit channels, CCs, notes, and all MIDI parameters</li>
+                                <li><strong>Modifier Logic</strong> - Complete support for Traktor's 8-modifier system</li>
+                                <li><strong>Drag & Drop</strong> - Copy mappings between files with drag and drop</li>
+                                <li><strong>All Traktor Commands</strong> - Access to 500+ Traktor commands organized by category</li>
+                                <li><strong>TSI Read/Write</strong> - Full support for reading and writing Traktor TSI files</li>
+                                <li><strong>Native macOS</strong> - Built with SwiftUI for Apple Silicon and Intel Macs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="SXM" class="footer-logo">
+                    <span class="footer-name">Super Xtreme Mapping</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html#features">Features</a>
+                    <a href="whatsnew.html">What's New</a>
+                    <a href="download.html">Download</a>
+                    <a href="index.html#contact">Contact</a>
+                    <a href="https://github.com/SuperXtremeMapper/super-xtreme-mapper">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-legal">
+                <p class="legal-text">Super Xtreme Mapper is free, open-source software released under the MIT License.</p>
+                <p class="legal-disclaimer">Traktor is a registered trademark of Native Instruments GmbH. This project is not affiliated with, endorsed by, or sponsored by Native Instruments.</p>
+                <p class="copyright">&copy; 2026 Super Xtreme Mapping. Made with love for the DJ community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -134,6 +134,7 @@ struct V2Dropdown<T: Hashable>: View {
                 RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
                     .stroke(AppThemeV2.Colors.stone600, lineWidth: 1)
             )
+            .contentShape(Rectangle())
         }
         .menuStyle(.borderlessButton)
         .menuIndicator(.hidden)
@@ -244,6 +245,7 @@ struct V2ModifierButton: View {
                     RoundedRectangle(cornerRadius: AppThemeV2.Radius.xs)
                         .fill(isActive ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone700)
                 )
+                .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
     }

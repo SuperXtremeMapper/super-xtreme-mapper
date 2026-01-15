@@ -30,4 +30,7 @@ protocol SpeechRecognitionProvider: AnyObject {
 
     /// Called with partial results during recognition
     var onPartialResult: ((String) -> Void)? { get set }
+
+    /// Called during model download/loading with progress (0.0 to 1.0) and status message
+    var onModelLoadProgress: ((Double, String) -> Void)? { get set }
 }

@@ -1,0 +1,227 @@
+/* --------------------------------------------------------------------------
+   What's New Page Styles
+   -------------------------------------------------------------------------- */
+
+/* Hero Section */
+.whatsnew-hero {
+    padding: calc(var(--space-3xl) + 60px) 0 var(--space-3xl);
+    text-align: center;
+    background: linear-gradient(to bottom, var(--color-stone-900), transparent);
+}
+
+.whatsnew-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 5rem);
+    color: var(--color-stone-100);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-sm);
+}
+
+.whatsnew-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-stone-400);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Changelog Section */
+.changelog-section {
+    padding: var(--space-3xl) 0;
+}
+
+.changelog-section .container {
+    max-width: 800px;
+}
+
+/* Release Entry */
+.release-entry {
+    position: relative;
+    padding: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
+    background: var(--color-stone-900);
+    border: 1px solid var(--color-stone-800);
+    border-radius: var(--radius-xl);
+    transition: border-color var(--transition-base);
+}
+
+.release-entry:hover {
+    border-color: var(--color-stone-700);
+}
+
+.release-entry.latest {
+    border-color: rgba(245, 158, 11, 0.3);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), transparent);
+}
+
+.release-entry.latest:hover {
+    border-color: rgba(245, 158, 11, 0.5);
+}
+
+/* Timeline connector */
+.release-entry:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -var(--space-2xl);
+    width: 2px;
+    height: var(--space-2xl);
+    background: linear-gradient(to bottom, var(--color-stone-700), transparent);
+    transform: translateX(-50%);
+}
+
+/* Release Header */
+.release-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-stone-800);
+}
+
+.release-version {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.version-number {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--color-stone-100);
+    letter-spacing: 0.05em;
+}
+
+.version-badge {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-stone-950);
+    background: var(--color-amber);
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.version-badge.initial {
+    background: var(--color-stone-600);
+    color: var(--color-stone-200);
+}
+
+.release-date {
+    font-size: 0.875rem;
+    color: var(--color-stone-500);
+}
+
+/* Release Content */
+.release-headline {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-amber);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-sm);
+}
+
+.release-summary {
+    font-size: 1rem;
+    color: var(--color-stone-300);
+    line-height: 1.7;
+    margin-bottom: var(--space-xl);
+}
+
+/* Change Categories */
+.release-changes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.change-category {
+    padding: var(--space-md);
+    background: var(--color-stone-800);
+    border-radius: var(--radius-md);
+}
+
+.category-title {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--color-stone-700);
+}
+
+.category-title.new {
+    color: var(--color-success);
+}
+
+.category-title.improved {
+    color: var(--color-amber);
+}
+
+.category-title.fixed {
+    color: #60a5fa; /* Blue */
+}
+
+.category-title.note {
+    color: var(--color-stone-400);
+}
+
+/* Change List */
+.change-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.change-list li {
+    position: relative;
+    padding: var(--space-sm) 0 var(--space-sm) var(--space-lg);
+    font-size: 0.9rem;
+    color: var(--color-stone-400);
+    line-height: 1.6;
+    border-bottom: 1px solid var(--color-stone-700);
+}
+
+.change-list li:last-child {
+    border-bottom: none;
+}
+
+.change-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--color-stone-600);
+}
+
+.change-list li strong {
+    color: var(--color-stone-200);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .release-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+
+    .release-entry {
+        padding: var(--space-lg);
+    }
+
+    .version-number {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .whatsnew-hero {
+        padding: calc(var(--space-2xl) + 60px) 0 var(--space-2xl);
+    }
+
+    .whatsnew-title {
+        font-size: 2.5rem;
+    }
+}

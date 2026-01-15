@@ -25,10 +25,8 @@ struct VoiceLearnOverlay: View {
 
             V2Divider()
 
-            // Captured inputs section
-            if coordinator.pendingMIDI != nil || coordinator.pendingVoice != nil {
-                capturedInputsSection
-            }
+            // Two-row input section (always visible)
+            inputRowsSection
 
             // Disambiguation options
             if let options = coordinator.disambiguationOptions {
@@ -43,11 +41,8 @@ struct VoiceLearnOverlay: View {
             // Instructions / status message
             statusSection
 
-            // Cancel button
-            HStack {
-                Spacer()
-                cancelButton
-            }
+            // Bottom buttons: Cancel (left) and Next (right)
+            buttonRow
         }
         .padding(AppThemeV2.Spacing.lg)
         .frame(width: 400)
@@ -126,52 +121,140 @@ struct VoiceLearnOverlay: View {
         }
     }
 
-    // MARK: - Captured Inputs Section
+    // MARK: - Input Rows Section (Two rows: MIDI and Command)
 
-    private var capturedInputsSection: some View {
+    private var inputRowsSection: some View {
         VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
-            // MIDI indicator
-            if let midi = coordinator.pendingMIDI {
-                capturedItemRow(
-                    icon: "pianokeys",
-                    label: "MIDI",
-                    value: describeMIDI(midi)
-                )
-            }
+            // Row 1: MIDI Input
+            midiInputRow
 
-            // Voice indicator
-            if let voice = coordinator.pendingVoice {
-                capturedItemRow(
-                    icon: "waveform",
-                    label: "Voice",
-                    value: "\"\(voice)\""
-                )
-            }
+            // Row 2: Command Result
+            commandResultRow
         }
         .padding(AppThemeV2.Spacing.md)
         .background(
             RoundedRectangle(cornerRadius: AppThemeV2.Radius.md)
-                .fill(AppThemeV2.Colors.stone900)
+                .fill(AppThemeV2.Colors.stone800)
         )
     }
 
-    private func capturedItemRow(icon: String, label: String, value: String) -> some View {
+    private var midiInputRow: some View {
         HStack(spacing: AppThemeV2.Spacing.sm) {
-            Image(systemName: icon)
+            Image(systemName: "pianokeys")
                 .font(.system(size: 12, weight: .medium))
-                .foregroundColor(AppThemeV2.Colors.amber)
+                .foregroundColor(coordinator.pendingMIDI != nil ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone600)
                 .frame(width: 16)
 
-            Text(label.uppercased())
+            Text("MIDI")
                 .font(AppThemeV2.Typography.micro)
                 .tracking(0.5)
                 .foregroundColor(AppThemeV2.Colors.stone500)
+                .frame(width: 50, alignment: .leading)
 
-            Text(value)
-                .font(AppThemeV2.Typography.body)
-                .foregroundColor(AppThemeV2.Colors.stone300)
-                .lineLimit(1)
+            if let midi = coordinator.pendingMIDI {
+                Text(describeMIDI(midi))
+                    .font(AppThemeV2.Typography.body)
+                    .foregroundColor(AppThemeV2.Colors.stone300)
+                    .lineLimit(1)
+            } else {
+                Text("Waiting for input...")
+                    .font(AppThemeV2.Typography.body)
+                    .foregroundColor(AppThemeV2.Colors.stone600)
+                    .italic()
+            }
+
+            Spacer()
         }
+    }
+
+    private var commandResultRow: some View {
+        HStack(spacing: AppThemeV2.Spacing.sm) {
+            Image(systemName: "waveform")
+                .font(.system(size: 12, weight: .medium))
+                .foregroundColor(coordinator.currentResult != nil ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone600)
+                .frame(width: 16)
+
+            Text("CMD")
+                .font(AppThemeV2.Typography.micro)
+                .tracking(0.5)
+                .foregroundColor(AppThemeV2.Colors.stone500)
+                .frame(width: 50, alignment: .leading)
+
+            if let result = coordinator.currentResult {
+                HStack(spacing: AppThemeV2.Spacing.xs) {
+                    Text(result.command)
+                        .font(AppThemeV2.Typography.body)
+                        .fontWeight(.medium)
+                        .foregroundColor(AppThemeV2.Colors.stone200)
+
+                    if let assignment = result.assignment {
+                        Text("(\(assignment))")
+                            .font(AppThemeV2.Typography.body)
+                            .foregroundColor(AppThemeV2.Colors.stone400)
+                    }
+
+                    if let controllerType = result.controllerType {
+                        Text("• \(controllerType)")
+                            .font(AppThemeV2.Typography.caption)
+                            .foregroundColor(AppThemeV2.Colors.stone500)
+                    }
+                }
+                .lineLimit(1)
+            } else if coordinator.pendingVoice != nil {
+                Text("Processing: \"\(coordinator.pendingVoice!)\"")
+                    .font(AppThemeV2.Typography.body)
+                    .foregroundColor(AppThemeV2.Colors.stone500)
+                    .italic()
+                    .lineLimit(1)
+            } else {
+                Text("Waiting for voice...")
+                    .font(AppThemeV2.Typography.body)
+                    .foregroundColor(AppThemeV2.Colors.stone600)
+                    .italic()
+            }
+
+            Spacer()
+        }
+    }
+
+    // MARK: - Button Row (Cancel left, Next right)
+
+    private var buttonRow: some View {
+        HStack {
+            // Cancel button (left)
+            cancelButton
+
+            Spacer()
+
+            // Next button (right, yellow/amber)
+            nextButton
+        }
+    }
+
+    private var nextButton: some View {
+        Button {
+            coordinator.saveAndContinue()
+        } label: {
+            Text("NEXT")
+                .font(AppThemeV2.Typography.micro)
+                .tracking(0.5)
+                .fontWeight(.semibold)
+                .foregroundColor(AppThemeV2.Colors.stone900)
+                .padding(.horizontal, AppThemeV2.Spacing.lg)
+                .padding(.vertical, AppThemeV2.Spacing.sm)
+                .background(
+                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                        .fill(canSave ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone700)
+                )
+        }
+        .buttonStyle(.plain)
+        .disabled(!canSave)
+        .keyboardShortcut(.return, modifiers: [])
+    }
+
+    /// Whether there's a valid mapping to save
+    private var canSave: Bool {
+        coordinator.currentResult != nil && coordinator.pendingMIDI != nil
     }
 
     private func describeMIDI(_ message: MIDIMessage) -> String {
@@ -243,7 +326,7 @@ struct VoiceLearnOverlay: View {
             .padding(AppThemeV2.Spacing.sm)
             .background(
                 RoundedRectangle(cornerRadius: AppThemeV2.Radius.md)
-                    .fill(AppThemeV2.Colors.stone900)
+                    .fill(AppThemeV2.Colors.stone800)
             )
             .overlay(
                 RoundedRectangle(cornerRadius: AppThemeV2.Radius.md)
@@ -566,7 +649,7 @@ private struct VoiceLearnOverlayPreview: View {
         .padding(AppThemeV2.Spacing.md)
         .background(
             RoundedRectangle(cornerRadius: AppThemeV2.Radius.md)
-                .fill(AppThemeV2.Colors.stone900)
+                .fill(AppThemeV2.Colors.stone800)
         )
     }
 
@@ -638,7 +721,7 @@ private struct VoiceLearnOverlayPreview: View {
         .padding(AppThemeV2.Spacing.sm)
         .background(
             RoundedRectangle(cornerRadius: AppThemeV2.Radius.md)
-                .fill(AppThemeV2.Colors.stone900)
+                .fill(AppThemeV2.Colors.stone800)
         )
         .overlay(
             RoundedRectangle(cornerRadius: AppThemeV2.Radius.md)

@@ -116,7 +116,7 @@ struct AboutSheet: View {
             .padding(.bottom, 24)
         }
         .frame(width: 400)
-        .background(AppThemeV2.Colors.stone900)
+        .background(AppThemeV2.Colors.stone800)
         .preferredColorScheme(.dark)
     }
 
@@ -129,9 +129,9 @@ struct AboutSheet: View {
                     .fontWeight(.semibold)
                     .foregroundColor(AppThemeV2.Colors.stone200)
 
-                if let link = link {
+                if let link = link, let url = URL(string: link) {
                     Button {
-                        openURL(URL(string: link)!)
+                        openURL(url)
                     } label: {
                         Image(systemName: "link")
                             .font(.system(size: 9))

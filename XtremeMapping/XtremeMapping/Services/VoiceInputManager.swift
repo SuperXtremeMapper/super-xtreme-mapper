@@ -29,6 +29,9 @@ final class VoiceInputManager: ObservableObject {
     /// Called when a complete transcript is ready (after silence detection)
     var onTranscriptReady: ((String) -> Void)?
 
+    /// Called during model download/loading with progress (0.0 to 1.0) and status message
+    var onModelLoadProgress: ((Double, String) -> Void)?
+
     // MARK: - Private Properties
 
     private var provider: SpeechRecognitionProvider
@@ -41,7 +44,8 @@ final class VoiceInputManager: ObservableObject {
         setupProviderCallbacks()
     }
 
-    /// Convenience initializer using AppleSpeechProvider
+    /// Convenience initializer using AppleSpeechProvider (default)
+    /// Note: WhisperKitProvider caused EXC_BAD_ACCESS crashes - needs investigation
     convenience init() {
         self.init(provider: AppleSpeechProvider())
     }
@@ -96,6 +100,13 @@ final class VoiceInputManager: ObservableObject {
                 guard let self = self else { return }
                 self.transcript = finalText
                 self.onTranscriptReady?(finalText)
+            }
+        }
+
+        // Forward model load progress
+        provider.onModelLoadProgress = { [weak self] progress, message in
+            Task { @MainActor in
+                self?.onModelLoadProgress?(progress, message)
             }
         }
     }

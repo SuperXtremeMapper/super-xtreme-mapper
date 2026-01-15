@@ -51,7 +51,17 @@ final class VoiceMappingCoordinator: ObservableObject {
     /// Human-readable status message for UI display
     @Published var statusMessage: String = ""
 
-    // MARK: - Callbacks
+    /// The interpreted command result (available after voice processing)
+    @Published private(set) var currentResult: VoiceCommandResult?
+
+    /// Published when a mapping is saved - view observes this via .onChange
+    /// Contains (MIDI message, Voice command result) tuple
+    @Published private(set) var savedMapping: (midi: MIDIMessage, result: VoiceCommandResult)?
+
+    /// Counter that increments each time a mapping is saved - used for .onChange observation
+    @Published private(set) var savedMappingCount: Int = 0
+
+    // MARK: - Callbacks (deprecated - use savedMapping instead)
 
     /// Called when a mapping is successfully created.
     /// Parameters: (MIDI message, Voice command result)
@@ -70,6 +80,9 @@ final class VoiceMappingCoordinator: ObservableObject {
 
     /// Stored MIDI for disambiguation flow (since pendingMIDI gets cleared)
     private var disambiguationMIDI: MIDIMessage?
+
+    /// Stored MIDI for the current result (for saveAndContinue)
+    private var currentMIDI: MIDIMessage?
 
     // MARK: - Initialization
 
@@ -113,6 +126,14 @@ final class VoiceMappingCoordinator: ObservableObject {
             }
         }
 
+        // Setup model load progress callback
+        voiceManager.onModelLoadProgress = { [weak self] progress, message in
+            Task { @MainActor in
+                let percentage = Int(progress * 100)
+                self?.statusMessage = "\(message) (\(percentage)%)"
+            }
+        }
+
         // Start listening
         midiManager.startListening()
 
@@ -141,6 +162,7 @@ final class VoiceMappingCoordinator: ObservableObject {
         // Clear callbacks
         midiManager.onMIDIReceived = nil
         voiceManager.onTranscriptReady = nil
+        voiceManager.onModelLoadProgress = nil
 
         // Reset state
         clearPendingState()
@@ -230,16 +252,21 @@ final class VoiceMappingCoordinator: ObservableObject {
         isProcessing = true
         statusMessage = "Understanding command..."
 
+        // Store MIDI for later save
+        currentMIDI = midi
+
         do {
             let result = try await claudeService.interpretCommand(
                 transcript: voice,
                 availableCommands: TraktorCommands.allNames
             )
 
+            // Store the result for display
+            currentResult = result
+
             if result.isHighConfidence {
-                // High confidence - create mapping directly
-                createMapping(midi: midi, result: result)
-                statusMessage = "Mapping created: \(result.command)"
+                // High confidence - ready to save
+                statusMessage = "Press Next to save"
             } else {
                 // Low confidence - show options for disambiguation
                 disambiguationMIDI = midi
@@ -248,13 +275,50 @@ final class VoiceMappingCoordinator: ObservableObject {
                 statusMessage = "Please select the correct command"
             }
         } catch {
-            // API failed - log error and let user retry
+            // API failed - let user retry
             statusMessage = "API error: \(error.localizedDescription)"
-            print("[VoiceMappingCoordinator] Claude API error: \(error)")
         }
 
         isProcessing = false
-        clearPendingState()
+        // Don't clear pending state - keep it for display until user saves
+    }
+
+    /// Save the current mapping and clear for new input
+    func saveAndContinue() {
+        guard let midi = currentMIDI ?? disambiguationMIDI,
+              let result = currentResult else {
+            statusMessage = "Nothing to save"
+            return
+        }
+
+        // Create the mapping
+        createMapping(midi: midi, result: result)
+
+        // Clear all state for next input
+        clearAllState()
+
+        // Restart listening
+        statusMessage = "Saved! Ready for next input."
+
+        // Restart voice listening
+        Task {
+            do {
+                try await voiceManager.startListening()
+            } catch {
+                statusMessage = "Voice error: \(error.localizedDescription)"
+            }
+        }
+    }
+
+    /// Clear all state for fresh input
+    private func clearAllState() {
+        pendingMIDI = nil
+        pendingVoice = nil
+        currentResult = nil
+        currentMIDI = nil
+        disambiguationOptions = nil
+        disambiguationMIDI = nil
+        pendingResult = nil
     }
 
     /// Build the list of disambiguation options from a result.
@@ -268,19 +332,11 @@ final class VoiceMappingCoordinator: ObservableObject {
 
     /// Create a mapping from MIDI and voice result.
     private func createMapping(midi: MIDIMessage, result: VoiceCommandResult) {
-        // Log what would be created
-        print("[VoiceMappingCoordinator] Creating mapping:")
-        print("  MIDI: \(describeMIDI(midi))")
-        print("  Command: \(result.command)")
-        if let assignment = result.assignment {
-            print("  Assignment: \(assignment)")
-        }
-        if let controllerType = result.controllerType {
-            print("  Controller Type: \(controllerType)")
-        }
-        print("  Confidence: \(String(format: "%.1f%%", result.confidence * 100))")
+        // Publish the saved mapping for view observation
+        savedMapping = (midi: midi, result: result)
+        savedMappingCount += 1
 
-        // Notify via callback
+        // Also notify via callback (legacy)
         onMappingCreated?(midi, result)
     }
 

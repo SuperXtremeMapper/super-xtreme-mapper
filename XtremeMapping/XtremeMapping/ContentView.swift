@@ -18,7 +18,24 @@ struct ContentView: View {
     @State private var isLocked: Bool = false
     @State private var clipboard: [MappingEntry] = []
     @State private var searchText: String = ""
-    @State private var showingAbout = false
+    @State private var activeSheet: SheetType?
+    @State private var showIntelMacAlert = false
+
+    // Sheet types for single sheet modifier (avoids crash from multiple sheets)
+    enum SheetType: Identifiable {
+        case about
+        case settings
+        var id: Self { self }
+    }
+
+    /// Check if running on Apple Silicon
+    private var isAppleSilicon: Bool {
+        #if arch(arm64)
+        return true
+        #else
+        return false
+        #endif
+    }
 
     // Voice Learn coordinator
     @StateObject private var voiceCoordinator = VoiceMappingCoordinator(
@@ -59,7 +76,8 @@ struct ContentView: View {
                 onAddInput: addInputMapping,
                 onAddOutput: addOutputMapping,
                 onAddInOut: addInOutPair,
-                onAbout: { showingAbout = true },
+                onAbout: { activeSheet = .about },
+                onSettings: { activeSheet = .settings },
                 voiceCoordinator: voiceCoordinator,
                 onVoiceToggle: toggleVoiceLearn
             )
@@ -68,16 +86,14 @@ struct ContentView: View {
             HSplitView {
                 // Left: Mappings Table
                 VStack(alignment: .leading, spacing: 0) {
-                    // Header
+                    // Section header (matches XXSETTINGS height)
                     HStack {
                         V2SectionHeader(title: "MAPPINGS")
                         Spacer()
-                        Text("\(filteredMappings.count) items")
-                            .font(AppThemeV2.Typography.caption)
-                            .foregroundColor(AppThemeV2.Colors.stone500)
                     }
                     .padding(.horizontal, AppThemeV2.Spacing.lg)
-                    .padding(.vertical, AppThemeV2.Spacing.md)
+                    .padding(.vertical, AppThemeV2.Spacing.sm)
+                    .background(AppThemeV2.Colors.stone800)
 
                     V2Divider()
 
@@ -123,7 +139,7 @@ struct ContentView: View {
                     )
                 }
                 .frame(minWidth: 500)
-                .background(AppThemeV2.Colors.stone900)
+                .background(AppThemeV2.Colors.stone800)
 
                 // Divider
                 Rectangle()
@@ -165,13 +181,24 @@ struct ContentView: View {
         }
         .focusedSceneValue(\.mappingDocument, document)
         .focusedSceneValue(\.selectedMappingIDs, $selectedMappings)
+        .frame(minWidth: 1000, minHeight: 500)
         .background(AppThemeV2.Colors.stone950)
         .preferredColorScheme(.dark)
         .onDeleteCommand {
             deleteSelectedMappings()
         }
-        .sheet(isPresented: $showingAbout) {
-            AboutSheet()
+        .sheet(item: $activeSheet) { sheet in
+            switch sheet {
+            case .about:
+                AboutSheet()
+            case .settings:
+                APIKeySettingsView()
+            }
+        }
+        .alert("Apple Silicon Required", isPresented: $showIntelMacAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Voice Learn requires an Apple Silicon Mac (M1 or later). Intel Macs are not currently supported.")
         }
         // Voice Learn overlay
         .overlay {
@@ -194,14 +221,98 @@ struct ContentView: View {
         .onKeyPress("3") { handleDisambiguationKey(2) }
         .onKeyPress("4") { handleDisambiguationKey(3) }
         .onKeyPress("5") { handleDisambiguationKey(4) }
+        // Observe when coordinator saves a mapping (counter changes trigger this)
+        .onChange(of: voiceCoordinator.savedMappingCount) { _, _ in
+            guard let mapping = voiceCoordinator.savedMapping else { return }
+            addVoiceMapping(midi: mapping.midi, result: mapping.result)
+        }
     }
 
     // MARK: - Voice Learn
+
+    private func addVoiceMapping(midi: MIDIMessage, result: VoiceCommandResult) {
+        guard !isLocked else { return }
+
+        registerChange()
+
+        // Parse assignment from result
+        let assignment = parseAssignment(result.assignment)
+
+        // Parse controller type and get its default interaction mode
+        let controllerType = parseControllerType(result.controllerType)
+        let interactionMode = controllerType.defaultInteractionMode
+
+        // Create the new mapping entry
+        let newMapping = MappingEntry(
+            commandName: result.command,
+            ioType: .input,
+            assignment: assignment,
+            interactionMode: interactionMode,
+            midiChannel: midi.channel,
+            midiNote: midi.note,
+            midiCC: midi.cc,
+            controllerType: controllerType
+        )
+
+        // Add to document
+        if document.mappingFile.devices.isEmpty {
+            let device = Device(name: "Generic MIDI", mappings: [newMapping])
+            document.mappingFile.devices.append(device)
+        } else {
+            document.mappingFile.devices[0].mappings.append(newMapping)
+        }
+
+        // Select the new mapping
+        selectedMappings = [newMapping.id]
+    }
+
+    private func parseAssignment(_ assignmentString: String?) -> TargetAssignment {
+        guard let str = assignmentString?.lowercased() else { return .global }
+
+        if str.contains("deck a") { return .deckA }
+        if str.contains("deck b") { return .deckB }
+        if str.contains("deck c") { return .deckC }
+        if str.contains("deck d") { return .deckD }
+        if str.contains("fx") || str.contains("effect") {
+            if str.contains("1") { return .fxUnit1 }
+            if str.contains("2") { return .fxUnit2 }
+            if str.contains("3") { return .fxUnit3 }
+            if str.contains("4") { return .fxUnit4 }
+            return .fxUnit1
+        }
+        if str.contains("global") || str.contains("master") || str.contains("browser") {
+            return .global
+        }
+
+        return .global
+    }
+
+    private func parseControllerType(_ controllerTypeString: String?) -> ControllerType {
+        guard let str = controllerTypeString?.lowercased() else { return .faderOrKnob }
+
+        if str.contains("button") || str.contains("pad") || str.contains("trigger") {
+            return .button
+        }
+        if str.contains("encoder") || str.contains("rotary") || str.contains("jog") {
+            return .encoder
+        }
+        if str.contains("fader") || str.contains("knob") || str.contains("slider") || str.contains("pot") {
+            return .faderOrKnob
+        }
+
+        // Default to fader/knob for continuous controls
+        return .faderOrKnob
+    }
 
     private func toggleVoiceLearn() {
         if voiceCoordinator.isActive {
             voiceCoordinator.deactivate()
         } else {
+            // Check for Apple Silicon before activating
+            guard isAppleSilicon else {
+                showIntelMacAlert = true
+                return
+            }
             voiceCoordinator.activate()
         }
     }
@@ -473,6 +584,7 @@ struct V2ActionBarFull: View {
     var onAddOutput: (String) -> Void
     var onAddInOut: (String) -> Void
     var onAbout: () -> Void
+    var onSettings: () -> Void
     var voiceCoordinator: VoiceMappingCoordinator?
     var onVoiceToggle: (() -> Void)?
 
@@ -499,25 +611,35 @@ struct V2ActionBarFull: View {
                     )
                     .help("Voice Learn - Speak commands to create mappings")
                 }
-
-                V2DisabledToolbarButton(icon: "wand.and.stars")
-                V2DisabledToolbarButton(icon: "slider.horizontal.3")
             }
 
             Spacer()
 
-            // Right side - Search, then Filters, then Lock
+            // Center-right - Filters and Search
             HStack(spacing: AppThemeV2.Spacing.sm) {
+                // Category filter
+                V2CircularFilterMenu(
+                    icon: "square.grid.2x2",
+                    selection: $categoryFilter,
+                    options: CommandCategory.allCases
+                )
+
+                // I/O filter
+                V2CircularFilterMenu(
+                    icon: "arrow.up.arrow.down",
+                    selection: $ioFilter,
+                    options: IODirection.allCases
+                )
+
+                // Search
                 V2SearchField(text: $searchText, placeholder: "Search...")
                     .frame(width: 140)
+            }
 
-                V2FilterDropdown(label: "Category", selection: $categoryFilter, options: CommandCategory.allCases)
-                V2FilterDropdown(label: "I/O", selection: $ioFilter, options: IODirection.allCases)
-
-                V2LockButtonIcon(isLocked: $isLocked)
-
-                // About button
+            // Right side - About and Settings
+            HStack(spacing: AppThemeV2.Spacing.sm) {
                 V2ToolbarIconButton(icon: "info.circle", action: onAbout)
+                V2ToolbarIconButton(icon: "gearshape", action: onSettings)
             }
         }
         .padding(.horizontal, AppThemeV2.Spacing.lg)
@@ -768,6 +890,103 @@ struct V2FilterDropdown<T: Hashable & CaseIterable & RawRepresentable>: View whe
         }
         .menuStyle(.borderlessButton)
         .fixedSize()
+    }
+}
+
+// MARK: - V2 Circular Filter Menu
+
+/// A small circular button that opens a filter dropdown menu
+/// Uses overlay technique: transparent Menu on top captures clicks, styled view below handles visuals
+struct V2CircularFilterMenu<T: Hashable & CaseIterable & RawRepresentable>: View where T.RawValue == String {
+    let icon: String
+    @Binding var selection: T
+    let options: [T]
+
+    @State private var isHovered = false
+
+    /// Check if a non-default filter is active
+    private var isFiltered: Bool {
+        selection.rawValue.lowercased() != "all"
+    }
+
+    var body: some View {
+        // ZStack: visual button below, transparent menu on top
+        ZStack {
+            // BOTTOM LAYER: Visual button (non-interactive, just for looks)
+            visualButton
+
+            // TOP LAYER: Transparent menu that captures clicks
+            transparentMenu
+        }
+        .frame(width: 28, height: 28)
+        .onHover { hovering in
+            // Hover detection on container drives visual state
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
+        }
+    }
+
+    // The visual representation
+    private var visualButton: some View {
+        Image(systemName: icon)
+            .font(.system(size: 11, weight: .medium))
+            .foregroundColor(foregroundColor)
+            .frame(width: 28, height: 28)
+            .background(
+                Circle()
+                    .fill(backgroundColor)
+            )
+            .overlay(
+                Circle()
+                    .stroke(borderColor, lineWidth: 1)
+            )
+            .shadow(
+                color: isHovered ? AppThemeV2.Colors.amberGlow : .clear,
+                radius: isHovered ? 6 : 0
+            )
+    }
+
+    // Transparent menu that sits on top and captures all clicks
+    private var transparentMenu: some View {
+        Menu {
+            ForEach(options, id: \.self) { option in
+                Button(action: { selection = option }) {
+                    HStack {
+                        Text(option.rawValue.capitalized)
+                        if selection == option {
+                            Spacer()
+                            Image(systemName: "checkmark")
+                        }
+                    }
+                }
+            }
+        } label: {
+            // Invisible hit area - same size as visual button
+            Color.clear
+                .frame(width: 24, height: 24)
+                .contentShape(Circle())
+        }
+        .menuStyle(.borderlessButton)
+        .menuIndicator(.hidden)
+    }
+
+    private var foregroundColor: Color {
+        if isFiltered { return AppThemeV2.Colors.amber }
+        if isHovered { return AppThemeV2.Colors.amber }
+        return AppThemeV2.Colors.stone500
+    }
+
+    private var backgroundColor: Color {
+        if isFiltered { return AppThemeV2.Colors.amberSubtle }
+        if isHovered { return AppThemeV2.Colors.amberSubtle }
+        return AppThemeV2.Colors.stone800
+    }
+
+    private var borderColor: Color {
+        if isFiltered { return AppThemeV2.Colors.amber.opacity(0.5) }
+        if isHovered { return AppThemeV2.Colors.amber.opacity(0.5) }
+        return AppThemeV2.Colors.stone700
     }
 }
 

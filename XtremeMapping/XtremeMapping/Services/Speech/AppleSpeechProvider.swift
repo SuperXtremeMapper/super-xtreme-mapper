@@ -33,7 +33,7 @@ enum SpeechRecognitionError: LocalizedError {
 
 /// Speech recognition provider using Apple's Speech framework
 @MainActor
-final class AppleSpeechProvider: ObservableObject, SpeechRecognitionProvider {
+final class AppleSpeechProvider: NSObject, ObservableObject, SpeechRecognitionProvider {
 
     // MARK: - SpeechRecognitionProvider Properties
 
@@ -42,6 +42,7 @@ final class AppleSpeechProvider: ObservableObject, SpeechRecognitionProvider {
 
     var onTranscriptReady: ((String) -> Void)?
     var onPartialResult: ((String) -> Void)?
+    var onModelLoadProgress: ((Double, String) -> Void)?  // Not used by Apple Speech
 
     // MARK: - Private Properties
 
@@ -55,10 +56,18 @@ final class AppleSpeechProvider: ObservableObject, SpeechRecognitionProvider {
     private var silenceTimer: Timer?
     private var lastTranscript = ""
 
+    /// Prevents concurrent restart attempts
+    private var isRestarting = false
+
+    /// Prevents double finalization from delegate callbacks
+    private var hasFinalizedCurrent = false
+
     // MARK: - Initialization
 
-    init(locale: Locale = .current) {
-        self.speechRecognizer = SFSpeechRecognizer(locale: locale)
+    override init() {
+        self.speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+        super.init()
+        speechRecognizer?.delegate = self
     }
 
     // MARK: - SpeechRecognitionProvider Methods
@@ -81,12 +90,6 @@ final class AppleSpeechProvider: ObservableObject, SpeechRecognitionProvider {
 
         guard authStatus == .authorized else {
             throw SpeechRecognitionError.notAuthorized
-        }
-
-        // Request microphone permission
-        let micPermission = await AVCaptureDevice.requestAccess(for: .audio)
-        guard micPermission else {
-            throw SpeechRecognitionError.microphoneAccessDenied
         }
 
         // Start recognition
@@ -120,9 +123,16 @@ final class AppleSpeechProvider: ObservableObject, SpeechRecognitionProvider {
         // Reset state
         transcript = ""
         lastTranscript = ""
+        hasFinalizedCurrent = false
 
-        // Configure audio session for macOS
+        // Get input node
         let inputNode = audioEngine.inputNode
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+
+        // Check if format is valid
+        guard recordingFormat.sampleRate > 0 else {
+            throw SpeechRecognitionError.recognitionFailed("Invalid audio format - no microphone available")
+        }
 
         // Create recognition request
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
@@ -131,60 +141,30 @@ final class AppleSpeechProvider: ObservableObject, SpeechRecognitionProvider {
         }
 
         recognitionRequest.shouldReportPartialResults = true
+        recognitionRequest.taskHint = .unspecified
 
-        // For on-device recognition when available (privacy + speed)
+        // Force server-based recognition (on-device can be unreliable)
         if #available(macOS 13.0, *) {
-            recognitionRequest.requiresOnDeviceRecognition = speechRecognizer?.supportsOnDeviceRecognition ?? false
-        }
-
-        // Start recognition task
-        recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest) { [weak self] result, error in
-            Task { @MainActor in
-                self?.handleRecognitionResult(result, error: error)
-            }
+            recognitionRequest.requiresOnDeviceRecognition = false
         }
 
         // Install audio tap
-        let recordingFormat = inputNode.outputFormat(forBus: 0)
-        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [weak self] buffer, _ in
+        inputNode.installTap(onBus: 0, bufferSize: 4096, format: recordingFormat) { [weak self] buffer, _ in
             self?.recognitionRequest?.append(buffer)
         }
 
-        // Start audio engine
+        // Prepare and start audio engine
         audioEngine.prepare()
         try audioEngine.start()
 
         isListening = true
-    }
 
-    private func handleRecognitionResult(_ result: SFSpeechRecognitionResult?, error: Error?) {
-        if let error = error {
-            // Log error but don't stop - some errors are recoverable
-            print("Speech recognition error: \(error.localizedDescription)")
-
-            // If the task has finished with an error, we might need to restart
-            if recognitionTask?.state == .completed || recognitionTask?.state == .canceling {
-                stopListening()
-            }
-            return
-        }
-
-        guard let result = result else { return }
-
-        let newTranscript = result.bestTranscription.formattedString
-        transcript = newTranscript
-        onPartialResult?(newTranscript)
-
-        // Reset silence timer on new speech
-        if newTranscript != lastTranscript {
-            lastTranscript = newTranscript
-            resetSilenceTimer()
-        }
-
-        // If final result from recognizer, trigger ready callback
-        if result.isFinal {
-            cancelSilenceTimer()
-            finalizeTranscript()
+        // Small delay to let audio stabilize before starting recognition
+        // This helps avoid "no speech detected" errors
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            guard let self = self, self.isListening else { return }
+            // Start recognition task using delegate pattern
+            self.recognitionTask = self.speechRecognizer?.recognitionTask(with: recognitionRequest, delegate: self)
         }
     }
 
@@ -192,7 +172,6 @@ final class AppleSpeechProvider: ObservableObject, SpeechRecognitionProvider {
         cancelSilenceTimer()
 
         silenceTimer = Timer.scheduledTimer(withTimeInterval: silenceThreshold, repeats: false) { [weak self] _ in
-            guard let self = self else { return }
             Task { @MainActor [weak self] in
                 self?.handleSilenceTimeout()
             }
@@ -211,9 +190,13 @@ final class AppleSpeechProvider: ObservableObject, SpeechRecognitionProvider {
     }
 
     private func finalizeTranscript() {
+        // Prevent double finalization from multiple delegate callbacks
+        guard !hasFinalizedCurrent else { return }
+
         let finalText = transcript.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !finalText.isEmpty else { return }
 
+        hasFinalizedCurrent = true
         onTranscriptReady?(finalText)
 
         // Reset for next utterance (continuous mode)
@@ -227,21 +210,85 @@ final class AppleSpeechProvider: ObservableObject, SpeechRecognitionProvider {
     }
 
     private func restartRecognition() {
+        // Prevent concurrent restart attempts
+        guard !isRestarting else { return }
+        isRestarting = true
+
         // Stop current recognition
         audioEngine.stop()
-        audioEngine.inputNode.removeTap(onBus: 0)
         recognitionRequest?.endAudio()
         recognitionTask?.cancel()
 
+        // Remove tap safely (check if it exists first)
+        let inputNode = audioEngine.inputNode
+        inputNode.removeTap(onBus: 0)
+
+        recognitionRequest = nil
+        recognitionTask = nil
+
         // Small delay before restarting
         Task {
-            try? await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
+            try? await Task.sleep(nanoseconds: 200_000_000) // 0.2 seconds
             if isListening {
                 do {
                     try startRecognition()
                 } catch {
-                    print("Failed to restart recognition: \(error.localizedDescription)")
                     isListening = false
+                }
+            }
+            isRestarting = false
+        }
+    }
+}
+
+// MARK: - SFSpeechRecognizerDelegate
+
+extension AppleSpeechProvider: SFSpeechRecognizerDelegate {
+    nonisolated func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
+        Task { @MainActor in
+            if !available && self.isListening {
+                self.stopListening()
+            }
+        }
+    }
+}
+
+// MARK: - SFSpeechRecognitionTaskDelegate
+
+extension AppleSpeechProvider: SFSpeechRecognitionTaskDelegate {
+    nonisolated func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didHypothesizeTranscription transcription: SFTranscription) {
+        Task { @MainActor in
+            let newTranscript = transcription.formattedString
+            self.transcript = newTranscript
+            self.onPartialResult?(newTranscript)
+
+            // Reset silence timer on new speech
+            if newTranscript != self.lastTranscript {
+                self.lastTranscript = newTranscript
+                self.resetSilenceTimer()
+            }
+        }
+    }
+
+    nonisolated func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didFinishRecognition recognitionResult: SFSpeechRecognitionResult) {
+        Task { @MainActor in
+            let finalTranscript = recognitionResult.bestTranscription.formattedString
+            self.transcript = finalTranscript
+            self.cancelSilenceTimer()
+            self.finalizeTranscript()
+        }
+    }
+
+    nonisolated func speechRecognitionTaskWasCancelled(_ task: SFSpeechRecognitionTask) {
+        // Task was cancelled, no action needed
+    }
+
+    nonisolated func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didFinishSuccessfully successfully: Bool) {
+        Task { @MainActor in
+            if !successfully {
+                // If it failed, try to use whatever transcript we have
+                if !self.transcript.isEmpty {
+                    self.finalizeTranscript()
                 }
             }
         }

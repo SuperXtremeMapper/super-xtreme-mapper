@@ -110,7 +110,7 @@ struct WelcomeView: View {
                 .padding(.bottom, 28)
         }
         .frame(width: 420, height: 640)
-        .background(AppThemeV2.Colors.stone900)
+        .background(AppThemeV2.Colors.stone800)
         .preferredColorScheme(.dark)
     }
 }

@@ -31,7 +31,7 @@ Super Xtreme Mapper<!DOCTYPE html>
             </a>
             <div class="nav-links">
                 <a href="#features">Features</a>
-                <a href="#backstory">Story</a>
+                <a href="whatsnew.html">What's New</a>
                 <a href="download.html">Download</a>
                 <a href="#contact">Contact</a>
             </div>
@@ -45,8 +45,9 @@ Super Xtreme Mapper<!DOCTYPE html>
                 <img src="assets/logo.png" alt="Super Xtreme Mapping" class="hero-logo">
                 <div class="hero-badge">
                     <span class="badge-dot"></span>
-                    BETA v0.1
+                    BETA v0.2
                 </div>
+                <div class="hero-release-date">January 2026</div>
             </div>
             <div class="hero-right">
                 <h1 class="hero-title">
@@ -174,8 +175,65 @@ Super Xtreme Mapper<!DOCTYPE html>
                 <h2 class="section-title">Features</h2>
             </div>
 
+            <!-- Feature 0: Voice Guided Setup Wizard -->
+            <div class="feature-row feature-highlight">
+                <div class="feature-info">
+                    <div class="feature-icon feature-icon-new">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                            <line x1="12" y1="19" x2="12" y2="23"/>
+                            <line x1="8" y1="23" x2="16" y2="23"/>
+                        </svg>
+                        <span class="new-badge">NEW</span>
+                    </div>
+                    <h3 class="feature-title">Voice Guided Setup</h3>
+                    <p class="feature-desc">Just move a knob and tell SXM what you want it to do. <em>"Map play pause to Deck A"</em> — boom, done. Automagical mapping with the touch of a button.</p>
+                    <p class="feature-note">Requires Anthropic API key and Apple Silicon for on-device speech recognition.</p>
+                </div>
+                <div class="feature-mockup">
+                    <div class="mockup-window">
+                        <div class="mockup-header">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                            <span class="window-title-text">Voice Learn</span>
+                        </div>
+                        <div class="mockup-content mockup-voice">
+                            <div class="voice-status">
+                                <div class="voice-mic-container">
+                                    <div class="voice-mic-ring"></div>
+                                    <div class="voice-mic-icon">🎤</div>
+                                </div>
+                                <span class="voice-status-text">Listening...</span>
+                            </div>
+                            <div class="voice-step completed">
+                                <span class="step-icon">✓</span>
+                                <div class="step-content">
+                                    <span class="step-label">MIDI Detected</span>
+                                    <span class="step-value">Ch1 CC 20</span>
+                                </div>
+                            </div>
+                            <div class="voice-step active">
+                                <span class="step-icon">🎙</span>
+                                <div class="step-content">
+                                    <span class="step-label">Voice Command</span>
+                                    <span class="step-value transcript">"Map play pause to Deck A"</span>
+                                </div>
+                            </div>
+                            <div class="voice-divider"></div>
+                            <div class="voice-result">
+                                <span class="result-icon">⚡</span>
+                                <div class="result-content">
+                                    <span class="result-label">Creating Mapping</span>
+                                    <span class="result-value">Play/Pause → Deck A → CC 20</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Feature 1: Visual Mapping Table -->
-            <div class="feature-row">
+            <div class="feature-row reverse">
                 <div class="feature-info">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -211,7 +269,7 @@ Super Xtreme Mapper<!DOCTYPE html>
             </div>
 
             <!-- Feature 2: Bulk Edit -->
-            <div class="feature-row reverse">
+            <div class="feature-row">
                 <div class="feature-info">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -246,7 +304,7 @@ Super Xtreme Mapper<!DOCTYPE html>
             </div>
 
             <!-- Feature 3: Full MIDI Control -->
-            <div class="feature-row">
+            <div class="feature-row reverse">
                 <div class="feature-info">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -295,7 +353,7 @@ Super Xtreme Mapper<!DOCTYPE html>
             </div>
 
             <!-- Feature 4: Modifier Logic -->
-            <div class="feature-row reverse">
+            <div class="feature-row">
                 <div class="feature-info">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -344,7 +402,7 @@ Super Xtreme Mapper<!DOCTYPE html>
             </div>
 
             <!-- Feature 5: Drag & Drop -->
-            <div class="feature-row">
+            <div class="feature-row reverse">
                 <div class="feature-info">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -388,7 +446,7 @@ Super Xtreme Mapper<!DOCTYPE html>
             </div>
 
             <!-- Feature 6: Native macOS -->
-            <div class="feature-row reverse">
+            <div class="feature-row">
                 <div class="feature-info">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="currentColor">
@@ -422,7 +480,7 @@ Super Xtreme Mapper<!DOCTYPE html>
             </div>
 
             <!-- Feature 7: All Traktor Commands -->
-            <div class="feature-row">
+            <div class="feature-row reverse">
                 <div class="feature-info">
                     <div class="feature-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -497,7 +555,7 @@ Super Xtreme Mapper<!DOCTYPE html>
                         <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
                         </svg>
-                        Download v0.1 Beta
+                        Download v0.2 Beta
                     </a>
                     <p class="download-note">Free & Open Source (MIT License)</p>
                     <a href="https://github.com/SuperXtremeMapper/super-xtreme-mapper" class="github-link">
@@ -563,7 +621,7 @@ Super Xtreme Mapper<!DOCTYPE html>
                 </div>
                 <div class="footer-links">
                     <a href="#features">Features</a>
-                    <a href="#backstory">Story</a>
+                    <a href="whatsnew.html">What's New</a>
                     <a href="download.html">Download</a>
                     <a href="#contact">Contact</a>
                     <a href="https://github.com/SuperXtremeMapper/super-xtreme-mapper">GitHub</a>

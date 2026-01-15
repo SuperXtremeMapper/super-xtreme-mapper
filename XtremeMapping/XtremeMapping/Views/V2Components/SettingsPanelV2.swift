@@ -89,7 +89,8 @@ struct SettingsPanelV2: View {
                 .menuStyle(.borderlessButton)
             }
             .padding(.horizontal, AppThemeV2.Spacing.lg)
-            .padding(.vertical, AppThemeV2.Spacing.md)
+            .padding(.vertical, AppThemeV2.Spacing.sm)
+            .background(AppThemeV2.Colors.stone800)
 
             V2Divider()
 
@@ -104,8 +105,11 @@ struct SettingsPanelV2: View {
                         singleSelectionView(entry: entry)
                     }
                 }
-                .padding(AppThemeV2.Spacing.md)
+                .padding(.horizontal, AppThemeV2.Spacing.md)
+                .padding(.top, AppThemeV2.Spacing.sm)  // Less top padding to align with table headers
+                .padding(.bottom, AppThemeV2.Spacing.md)
             }
+            .background(AppThemeV2.Colors.stone800)
         }
         .background(AppThemeV2.Colors.stone800)
         .onChange(of: selectedMappings) { _, _ in
@@ -179,10 +183,10 @@ struct SettingsPanelV2: View {
 
     @ViewBuilder
     private func singleSelectionView(entry: MappingEntry) -> some View {
-        // Command name
+        // Command name (smaller than section headers, but prominent)
         Text(entry.commandName)
-            .font(AppThemeV2.Typography.display)
-            .foregroundColor(AppThemeV2.Colors.stone100)
+            .font(.system(size: 12, weight: .semibold))
+            .foregroundColor(AppThemeV2.Colors.stone200)
             .frame(maxWidth: .infinity, alignment: .leading)
 
         // Comment
@@ -207,8 +211,7 @@ struct SettingsPanelV2: View {
                     .font(AppThemeV2.Typography.mono)
                     .foregroundColor(showGold ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone400)
                     .padding(.horizontal, AppThemeV2.Spacing.sm)
-                    .padding(.vertical, AppThemeV2.Spacing.xs)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity, minHeight: 24, alignment: .leading)
                     .background(
                         RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
                             .fill(showGold ? AppThemeV2.Colors.amberSubtle : AppThemeV2.Colors.stone700)
@@ -646,7 +649,7 @@ struct V2SmallButton: View {
                 .font(AppThemeV2.Typography.micro)
                 .foregroundColor(foregroundColor)
                 .padding(.horizontal, AppThemeV2.Spacing.sm)
-                .padding(.vertical, AppThemeV2.Spacing.xs)
+                .frame(height: 24)  // Match text field height
                 .background(
                     RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
                         .fill(backgroundColor)
@@ -655,6 +658,7 @@ struct V2SmallButton: View {
                     RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
                         .stroke(borderColor, lineWidth: 1)
                 )
+                .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .onHover { hovering in

@@ -111,7 +111,7 @@ struct V2IOFilterPills: View {
     }
 }
 
-/// Search field matching mockup style
+/// Search field matching mockup style - subdued appearance to reduce visual weight
 struct V2SearchField: View {
     @Binding var text: String
     let placeholder: String
@@ -120,18 +120,22 @@ struct V2SearchField: View {
         HStack(spacing: AppThemeV2.Spacing.xs) {
             Image(systemName: "magnifyingglass")
                 .font(.system(size: 10, weight: .medium))
-                .foregroundColor(AppThemeV2.Colors.stone500)
+                .foregroundColor(AppThemeV2.Colors.stone600)
 
             TextField(placeholder, text: $text)
                 .textFieldStyle(.plain)
                 .font(AppThemeV2.Typography.caption)
-                .foregroundColor(AppThemeV2.Colors.stone300)
+                .foregroundColor(AppThemeV2.Colors.stone400)
         }
         .padding(.horizontal, AppThemeV2.Spacing.sm)
-        .padding(.vertical, AppThemeV2.Spacing.xs)
+        .frame(height: 28)
         .background(
-            Capsule()
-                .fill(AppThemeV2.Colors.stone700)
+            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                .fill(AppThemeV2.Colors.stone800)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                .stroke(AppThemeV2.Colors.stone700, lineWidth: 1)
         )
     }
 }
@@ -159,6 +163,6 @@ struct V2SearchField: View {
             .frame(width: 150)
     }
     .padding(40)
-    .background(AppThemeV2.Colors.stone900)
+    .background(AppThemeV2.Colors.stone800)
     .preferredColorScheme(.dark)
 }

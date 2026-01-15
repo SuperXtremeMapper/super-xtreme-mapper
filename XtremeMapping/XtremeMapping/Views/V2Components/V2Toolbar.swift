@@ -15,6 +15,8 @@ struct V2ToolbarButton: View {
     var isActive: Bool = false
     var isDestructive: Bool = false
 
+    @State private var isHovered = false
+
     var body: some View {
         Button(action: action) {
             HStack(spacing: AppThemeV2.Spacing.xs) {
@@ -38,25 +40,34 @@ struct V2ToolbarButton: View {
                 RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
                     .stroke(borderColor, lineWidth: 1)
             )
+            .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
+        }
         .shadow(color: isActive ? AppThemeV2.Colors.amberGlow : .clear, radius: isActive ? 8 : 0)
     }
 
     private var foregroundColor: Color {
         if isDestructive { return AppThemeV2.Colors.danger }
         if isActive { return AppThemeV2.Colors.amber }
+        if isHovered { return AppThemeV2.Colors.amber }
         return AppThemeV2.Colors.stone400
     }
 
     private var backgroundColor: Color {
         if isActive { return AppThemeV2.Colors.amberSubtle }
+        if isHovered { return AppThemeV2.Colors.amberSubtle }
         return AppThemeV2.Colors.stone700
     }
 
     private var borderColor: Color {
         if isDestructive { return AppThemeV2.Colors.danger.opacity(0.5) }
         if isActive { return AppThemeV2.Colors.amber.opacity(0.5) }
+        if isHovered { return AppThemeV2.Colors.amber.opacity(0.5) }
         return AppThemeV2.Colors.stone600
     }
 }
@@ -88,6 +99,7 @@ struct V2LockButton: View {
                 RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
                     .stroke(isLocked ? AppThemeV2.Colors.danger.opacity(0.4) : AppThemeV2.Colors.success.opacity(0.4), lineWidth: 1)
             )
+            .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .animation(.easeInOut(duration: 0.2), value: isLocked)
@@ -113,6 +125,7 @@ struct V2LockButtonIcon: View {
                     RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
                         .stroke(borderColor, lineWidth: 1)
                 )
+                .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .onHover { hovering in
@@ -212,7 +225,7 @@ struct V2ActionBar: View {
         )
 
         Rectangle()
-            .fill(AppThemeV2.Colors.stone900)
+            .fill(AppThemeV2.Colors.stone800)
             .frame(height: 300)
     }
     .frame(width: 900)
@@ -229,7 +242,7 @@ struct V2ActionBar: View {
         )
 
         Rectangle()
-            .fill(AppThemeV2.Colors.stone900)
+            .fill(AppThemeV2.Colors.stone800)
             .frame(height: 300)
     }
     .frame(width: 900)
