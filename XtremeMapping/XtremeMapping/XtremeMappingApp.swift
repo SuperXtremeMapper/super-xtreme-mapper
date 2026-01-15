@@ -117,6 +117,11 @@ struct XtremeMappingApp: App {
         .windowStyle(.hiddenTitleBar)
         .windowResizability(.contentSize)
         .defaultPosition(.center)
+
+        // Settings window (Command+, on macOS)
+        Settings {
+            APIKeySettingsView()
+        }
     }
 
 }

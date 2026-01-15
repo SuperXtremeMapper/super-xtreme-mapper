@@ -25,8 +25,7 @@ struct ContentView: View {
         midiManager: MIDIInputManager.shared,
         voiceManager: VoiceInputManager(),
         claudeService: ClaudeAPIService(apiKeyProvider: {
-            // TODO: Replace with APIKeyManager once implemented (Task 6)
-            UserDefaults.standard.string(forKey: "anthropicAPIKey")
+            APIKeyManager.shared.activeKey
         })
     )
 
