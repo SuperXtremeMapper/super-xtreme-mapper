@@ -11,6 +11,14 @@ import Foundation
 /// Based on CMDR TSI Editor: https://github.com/cmdr-editor/cmdr
 enum TraktorCommands {
 
+    /// Returns all command names from the lookup table.
+    ///
+    /// Used by the Claude API service to provide the list of available
+    /// commands for voice command interpretation.
+    static var allNames: [String] {
+        commandLookup.values.sorted()
+    }
+
     /// Returns the command ID for a human-readable name
     /// If the name is not found, returns 0
     static func id(for name: String) -> Int {
@@ -297,6 +305,11 @@ enum TraktorCommands {
         375: "FX Reset",
 
         // ===========================================
+        // PHASE OUTPUT
+        // ===========================================
+        512: "Phase",
+
+        // ===========================================
         // KEY & TEMPO
         // ===========================================
         400: "Keylock On",
@@ -306,6 +319,29 @@ enum TraktorCommands {
         404: "Tempo Bend (Stepless)",
         405: "Keylock On (Preserve Pitch)",
         406: "Tempo Bend",
+
+        // ===========================================
+        // FREEZE MODE
+        // ===========================================
+        802: "Freeze Slice Count Adjust",
+        803: "Freeze Mode On",
+        804: "Freeze Slice Size Adjust",
+        810: "Slice Trigger 1",
+        811: "Slice Trigger 2",
+        812: "Slice Trigger 3",
+        813: "Slice Trigger 4",
+        814: "Slice Trigger 5",
+        815: "Slice Trigger 6",
+        816: "Slice Trigger 7",
+        817: "Slice Trigger 8",
+        818: "Slice Trigger 9",
+        819: "Slice Trigger 10",
+        820: "Slice Trigger 11",
+        821: "Slice Trigger 12",
+        822: "Slice Trigger 13",
+        823: "Slice Trigger 14",
+        824: "Slice Trigger 15",
+        825: "Slice Trigger 16",
 
         // ===========================================
         // REMIX DECK CELL MODIFIERS & STEP SEQUENCER
