@@ -1591,6 +1591,30 @@ img {
     background: linear-gradient(to bottom, transparent, var(--color-stone-900), transparent);
 }
 
+.unique-features {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--space-2xl);
+    padding: var(--space-lg) var(--space-xl);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), transparent);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(245, 158, 11, 0.15);
+}
+
+.unique-features-text {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-stone-300);
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+.unique-features-text strong {
+    color: var(--color-amber);
+    font-weight: 400;
+}
+
 .download-split {
     display: grid;
     grid-template-columns: 1fr 1fr;
