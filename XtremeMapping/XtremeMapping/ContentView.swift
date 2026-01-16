@@ -608,7 +608,7 @@ struct V2ActionBarFull: View {
     var body: some View {
         HStack(spacing: AppThemeV2.Spacing.md) {
             // Left side - Add buttons with command menus (labeled style)
-            HStack(spacing: 2) {
+            HStack(spacing: AppThemeV2.Spacing.xs) {
                 V2AddCommandMenuButton(icon: "arrow.down", label: "IN", tooltip: "Add Input Mapping", isDisabled: isLocked) { onAddInput($0) }
                 V2AddCommandMenuButton(icon: "arrow.up", label: "OUT", tooltip: "Add Output Mapping", isDisabled: isLocked) { onAddOutput($0) }
                 V2AddCommandMenuButton(icon: "arrow.up.arrow.down", label: "IN/OUT", tooltip: "Add Input/Output Pair", isDisabled: isLocked) { onAddInOut($0) }
@@ -618,27 +618,30 @@ struct V2ActionBarFull: View {
                     .frame(width: 1, height: 20)
                     .padding(.horizontal, AppThemeV2.Spacing.xs)
 
-                // Voice Learn button
-                if let coordinator = voiceCoordinator, let toggle = onVoiceToggle {
-                    V2ToolbarButton(
-                        icon: "mic.fill",
-                        label: "Voice",
-                        action: toggle,
-                        isActive: coordinator.isActive,
-                        minWidth: 70
-                    )
-                    .help("Voice Learn - Speak commands to create mappings")
-                }
+                // Voice and Wizard buttons with consistent spacing
+                HStack(spacing: AppThemeV2.Spacing.xs) {
+                    // Voice Learn button
+                    if let coordinator = voiceCoordinator, let toggle = onVoiceToggle {
+                        V2ToolbarButton(
+                            icon: "mic.fill",
+                            label: "Voice",
+                            action: toggle,
+                            isActive: coordinator.isActive,
+                            minWidth: 70
+                        )
+                        .help("Voice Learn - Speak commands to create mappings")
+                    }
 
-                // Wizard button
-                if let wizardAction = onWizard {
-                    V2ToolbarButton(
-                        icon: "wand.and.stars",
-                        label: "Wizard",
-                        action: wizardAction,
-                        minWidth: 70
-                    )
-                    .help("Mapping Wizard - Guided setup for your controller")
+                    // Wizard button
+                    if let wizardAction = onWizard {
+                        V2ToolbarButton(
+                            icon: "wand.and.stars",
+                            label: "Wizard",
+                            action: wizardAction,
+                            minWidth: 70
+                        )
+                        .help("Mapping Wizard - Guided setup for your controller")
+                    }
                 }
             }
 
