@@ -81,7 +81,10 @@ struct ContentView: View {
                 onSettings: { activeSheet = .settings },
                 voiceCoordinator: voiceCoordinator,
                 onVoiceToggle: toggleVoiceLearn,
-                onWizard: { openWindow(id: "wizard") }
+                onWizard: {
+                    WizardCoordinator.pendingDocument = document
+                    openWindow(id: "wizard")
+                }
             )
 
             // Main content
@@ -238,6 +241,7 @@ struct ContentView: View {
         .onReceive(NotificationCenter.default.publisher(for: .activateWizardMode)) { _ in
             // Delay to ensure document is ready
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                WizardCoordinator.pendingDocument = document
                 openWindow(id: "wizard")
             }
         }

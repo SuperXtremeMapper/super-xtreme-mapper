@@ -79,7 +79,7 @@ struct MappingWizardWindow: View {
 
                 Spacer()
 
-                WizardPrimaryButton(title: "Done", action: {
+                WizardPrimaryButton(title: "Save!", action: {
                     dismiss()
                 })
                 .keyboardShortcut(.return, modifiers: [])
@@ -99,7 +99,14 @@ struct MappingWizardWindowContent: View {
     var body: some View {
         MappingWizardWindow(coordinator: coordinator)
             .onAppear {
-                // Get the current document - try multiple sources
+                // First check for document passed via shared state (most reliable)
+                if let doc = WizardCoordinator.pendingDocument {
+                    coordinator.start(document: doc)
+                    WizardCoordinator.pendingDocument = nil
+                    return
+                }
+
+                // Fallback: try NSDocumentController
                 if let doc = NSDocumentController.shared.currentDocument as? TraktorMappingDocument {
                     coordinator.start(document: doc)
                 } else if let frontDoc = NSDocumentController.shared.documents.first as? TraktorMappingDocument {

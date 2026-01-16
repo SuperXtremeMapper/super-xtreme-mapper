@@ -20,6 +20,12 @@ enum WizardPhase {
 @MainActor
 final class WizardCoordinator: ObservableObject {
 
+    // MARK: - Shared State for Document Passing
+
+    /// Temporarily holds document reference when opening wizard window.
+    /// Set this before calling openWindow(id: "wizard"), then cleared after use.
+    static var pendingDocument: TraktorMappingDocument?
+
     // MARK: - Published State
 
     @Published private(set) var phase: WizardPhase = .setup

@@ -166,12 +166,11 @@ struct WizardLearningView: View {
 
                 Spacer()
 
-                // Save & Finish - far right
+                // Save & Finish - far right (never highlighted/yellow)
                 WizardPrimaryButton(
                     title: "Save & Finish",
                     action: { coordinator.saveToDocument() },
-                    isEnabled: !coordinator.capturedMappings.isEmpty,
-                    isHighlighted: coordinator.isAtLastStep
+                    isEnabled: !coordinator.capturedMappings.isEmpty
                 )
                     .keyboardShortcut(.return, modifiers: [.command])
             }
