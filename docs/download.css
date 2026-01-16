@@ -524,6 +524,9 @@
 }
 
 .support-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
     padding: var(--space-sm) var(--space-md);
     font-size: 0.75rem;
     font-weight: 600;
@@ -533,6 +536,12 @@
     background: var(--color-stone-700);
     color: var(--color-stone-300);
     transition: all var(--transition-fast);
+}
+
+.support-btn-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
 }
 
 .support-btn:hover {

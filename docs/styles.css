@@ -1748,8 +1748,8 @@ img {
 .support-banner {
     margin: var(--space-2xl) auto 0;
     padding: var(--space-xl) var(--space-2xl);
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(245, 158, 11, 0.02));
-    border: 1px solid rgba(245, 158, 11, 0.2);
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(34, 197, 94, 0.02));
+    border: 1px solid rgba(34, 197, 94, 0.2);
     border-radius: var(--radius-lg);
     text-align: center;
 }
@@ -1768,7 +1768,7 @@ img {
 }
 
 .support-banner-text strong {
-    color: var(--color-amber);
+    color: #22c55e;
 }
 
 .support-banner-buttons {
@@ -1776,6 +1776,21 @@ img {
     gap: var(--space-md);
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.support-banner-buttons .btn-primary {
+    background: #22c55e;
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.3);
+}
+
+.support-banner-buttons .btn-primary:hover {
+    background: #4ade80;
+    box-shadow: 0 0 50px rgba(34, 197, 94, 0.4);
+}
+
+.support-banner-buttons .btn-secondary:hover {
+    border-color: #22c55e;
+    color: #22c55e;
 }
 
 .contact-grid {
