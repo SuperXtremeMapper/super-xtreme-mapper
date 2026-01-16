@@ -62,6 +62,14 @@ struct XtremeMappingApp: App {
         .windowResizability(.contentSize)
         .defaultPosition(.center)
 
+        // Mode Selection window
+        Window("Create New Mapping", id: "modeSelection") {
+            ModeSelectionWindow()
+        }
+        .windowStyle(.hiddenTitleBar)
+        .windowResizability(.contentSize)
+        .defaultPosition(.center)
+
         // Document windows for TSI files
         DocumentGroup(newDocument: { TraktorMappingDocument() }) { file in
             ContentView(document: file.document, fileURL: file.fileURL)
