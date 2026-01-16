@@ -225,7 +225,7 @@ struct APIKeySettingsView: View {
                     .fixedSize(horizontal: false, vertical: true)
 
                 HStack(spacing: AppThemeV2.Spacing.sm) {
-                    Button(action: { openURL(URL(string: "https://github.com/sponsors/SuperXtremeMapper")!) }) {
+                    Button(action: { openURL(URL(string: "https://github.com/sponsors/nraford7")!) }) {
                         HStack(spacing: AppThemeV2.Spacing.xs) {
                             Image(systemName: "heart.fill")
                                 .font(.system(size: 10))

@@ -101,7 +101,7 @@ struct XtremeMappingApp: App {
 
                 Menu("Support SXM") {
                     Button("GitHub Sponsors") {
-                        if let url = URL(string: "https://github.com/sponsors/SuperXtremeMapper") {
+                        if let url = URL(string: "https://github.com/sponsors/nraford7") {
                             NSWorkspace.shared.open(url)
                         }
                     }

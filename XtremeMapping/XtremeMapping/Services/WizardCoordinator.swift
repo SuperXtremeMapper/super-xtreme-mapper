@@ -36,6 +36,15 @@ final class WizardCoordinator: ObservableObject {
     /// Set to true when wizard should close
     @Published var shouldDismiss = false
 
+    /// Whether to auto-advance after MIDI capture
+    @Published var autoAdvanceEnabled = true
+
+    /// Countdown before auto-advance (for UI animation)
+    @Published private(set) var autoAdvanceCountdown: Double = 0
+
+    /// Timer for auto-advance
+    private var autoAdvanceTask: Task<Void, Never>?
+
     // MARK: - Dependencies
 
     private let midiManager: MIDIInputManager
@@ -146,7 +155,12 @@ final class WizardCoordinator: ObservableObject {
         let captured = WizardCapturedMapping(function: function, assignment: assignment, midiMessage: message)
         capturedMappings.removeAll { $0.function.id == function.id && $0.assignment == assignment }
         capturedMappings.append(captured)
-        statusMessage = "Captured! Press Next or move another control."
+        statusMessage = "Captured!"
+
+        // Auto-advance if enabled
+        if autoAdvanceEnabled {
+            startAutoAdvance()
+        }
     }
 
     func next() {
@@ -299,5 +313,33 @@ final class WizardCoordinator: ObservableObject {
         let allTabs = WizardTab.allCases
         guard let currentIndex = allTabs.firstIndex(of: currentTab), currentIndex > 0 else { return nil }
         return allTabs[currentIndex - 1]
+    }
+
+    private func startAutoAdvance() {
+        // Cancel any existing auto-advance
+        autoAdvanceTask?.cancel()
+
+        // Start countdown
+        autoAdvanceCountdown = 1.0
+
+        autoAdvanceTask = Task { @MainActor in
+            // Animate countdown
+            for _ in 0..<10 {
+                try? await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
+                if Task.isCancelled { return }
+                autoAdvanceCountdown -= 0.1
+            }
+
+            // Auto-advance
+            if !Task.isCancelled {
+                autoAdvanceCountdown = 0
+                next()
+            }
+        }
+    }
+
+    func cancelAutoAdvance() {
+        autoAdvanceTask?.cancel()
+        autoAdvanceCountdown = 0
     }
 }

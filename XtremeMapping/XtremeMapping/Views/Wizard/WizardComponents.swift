@@ -187,6 +187,7 @@ struct WizardSecondaryButton: View {
     let title: String
     let action: () -> Void
     var isHighlighted: Bool = false
+    var isPulsing: Bool = false
 
     @State private var isHovered = false
 
@@ -226,14 +227,21 @@ struct WizardSecondaryButton: View {
                 )
         }
         .buttonStyle(.plain)
+        .scaleEffect(isPulsing ? 1.05 : 1.0)
+        .animation(
+            isPulsing ?
+                Animation.easeInOut(duration: 0.3).repeatForever(autoreverses: true) :
+                .default,
+            value: isPulsing
+        )
         .onHover { hovering in
             withAnimation(.easeInOut(duration: 0.15)) {
                 isHovered = hovering
             }
         }
         .shadow(
-            color: isHighlighted ? AppThemeV2.Colors.amberGlow : .clear,
-            radius: isHighlighted ? 8 : 0
+            color: isPulsing ? AppThemeV2.Colors.amberGlow : (isHighlighted ? AppThemeV2.Colors.amberGlow : .clear),
+            radius: isPulsing ? 12 : (isHighlighted ? 8 : 0)
         )
     }
 }
