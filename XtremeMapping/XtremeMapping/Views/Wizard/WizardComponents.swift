@@ -204,25 +204,54 @@ struct WizardPrimaryButton: View {
     var isEnabled: Bool = true
     var isHighlighted: Bool = false
 
+    @State private var isHovered = false
+
+    private var foregroundColor: Color {
+        if !isEnabled { return AppThemeV2.Colors.stone500 }
+        if isHovered { return AppThemeV2.Colors.amber }
+        return AppThemeV2.Colors.stone200
+    }
+
+    private var backgroundColor: Color {
+        if !isEnabled { return AppThemeV2.Colors.stone700 }
+        if isHovered { return AppThemeV2.Colors.amberSubtle }
+        return AppThemeV2.Colors.stone700
+    }
+
+    private var borderColor: Color {
+        if !isEnabled { return AppThemeV2.Colors.stone600 }
+        if isHovered { return AppThemeV2.Colors.amber.opacity(0.5) }
+        return AppThemeV2.Colors.stone600
+    }
+
     var body: some View {
         Button(action: action) {
             Text(title.uppercased())
                 .font(AppThemeV2.Typography.micro)
                 .tracking(0.5)
                 .fontWeight(.semibold)
-                .foregroundColor(AppThemeV2.Colors.stone900)
+                .foregroundColor(foregroundColor)
                 .padding(.horizontal, AppThemeV2.Spacing.lg)
                 .padding(.vertical, AppThemeV2.Spacing.sm)
                 .background(
                     RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                        .fill(isEnabled ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone700)
+                        .fill(backgroundColor)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                        .stroke(borderColor, lineWidth: 1)
                 )
         }
         .buttonStyle(.plain)
         .disabled(!isEnabled)
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
+        }
         .shadow(
-            color: isHighlighted && isEnabled ? AppThemeV2.Colors.amberGlow : .clear,
-            radius: isHighlighted && isEnabled ? 8 : 0
+            color: isHovered && isEnabled ? AppThemeV2.Colors.amberGlow : .clear,
+            radius: isHovered && isEnabled ? 8 : 0
         )
     }
 }

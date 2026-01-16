@@ -225,24 +225,7 @@ struct APIKeySettingsView: View {
                     .fixedSize(horizontal: false, vertical: true)
 
                 HStack(spacing: AppThemeV2.Spacing.sm) {
-                    Button(action: { openURL(URL(string: "https://github.com/sponsors/nraford7")!) }) {
-                        HStack(spacing: AppThemeV2.Spacing.xs) {
-                            Image(systemName: "heart.fill")
-                                .font(.system(size: 10))
-                            Text("SPONSOR")
-                                .font(AppThemeV2.Typography.micro)
-                                .tracking(0.5)
-                        }
-                        .foregroundColor(AppThemeV2.Colors.stone200)
-                        .padding(.horizontal, AppThemeV2.Spacing.md)
-                        .padding(.vertical, AppThemeV2.Spacing.sm)
-                        .background(
-                            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                                .fill(AppThemeV2.Colors.stone700)
-                        )
-                    }
-                    .buttonStyle(.plain)
-
+                    SponsorButton(openURL: openURL)
                     CoffeeButton(openURL: openURL)
                 }
             }

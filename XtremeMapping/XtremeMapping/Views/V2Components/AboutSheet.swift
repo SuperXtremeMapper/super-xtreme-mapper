@@ -50,9 +50,9 @@ struct AboutSheet: View {
                 .fill(AppThemeV2.Colors.stone700)
                 .frame(height: 1)
 
-            // Credits section
+            // Acknowledgements section
             VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
-                Text("CREDITS")
+                Text("ACKNOWLEDGEMENTS")
                     .font(AppThemeV2.Typography.micro)
                     .tracking(0.5)
                     .foregroundColor(AppThemeV2.Colors.stone400)
@@ -115,62 +115,42 @@ struct AboutSheet: View {
                     .fixedSize(horizontal: false, vertical: true)
 
                 HStack(spacing: AppThemeV2.Spacing.sm) {
-                    Button(action: { openURL(URL(string: "https://github.com/sponsors/nraford7")!) }) {
-                        HStack(spacing: AppThemeV2.Spacing.xs) {
-                            Image(systemName: "heart.fill")
-                                .font(.system(size: 10))
-                            Text("SPONSOR")
-                                .font(AppThemeV2.Typography.micro)
-                                .tracking(0.5)
-                        }
-                        .foregroundColor(AppThemeV2.Colors.stone200)
-                        .padding(.horizontal, AppThemeV2.Spacing.md)
-                        .padding(.vertical, AppThemeV2.Spacing.sm)
-                        .background(
-                            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                                .fill(AppThemeV2.Colors.stone700)
-                        )
-                    }
-                    .buttonStyle(.plain)
-
+                    SponsorButton(openURL: openURL)
                     CoffeeButton(openURL: openURL)
                 }
             }
 
             Spacer()
 
-            // Trademark disclaimer and Done button
-            VStack(spacing: AppThemeV2.Spacing.md) {
+            // Bottom row: Trademark and Done button
+            HStack {
                 Text("Traktor is a registered trademark of Native Instruments GmbH.")
                     .font(AppThemeV2.Typography.micro)
                     .foregroundColor(AppThemeV2.Colors.stone600)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity)
 
-                HStack {
-                    Spacer()
-                    Button {
-                        dismiss()
-                    } label: {
-                        Text("DONE")
-                            .font(AppThemeV2.Typography.micro)
-                            .tracking(0.5)
-                            .fontWeight(.semibold)
-                            .foregroundColor(AppThemeV2.Colors.stone900)
-                            .padding(.horizontal, AppThemeV2.Spacing.lg)
-                            .padding(.vertical, AppThemeV2.Spacing.sm)
-                            .background(
-                                RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                                    .fill(AppThemeV2.Colors.amber)
-                            )
-                    }
-                    .buttonStyle(.plain)
-                    .keyboardShortcut(.return, modifiers: [])
+                Spacer()
+
+                Button {
+                    dismiss()
+                } label: {
+                    Text("DONE")
+                        .font(AppThemeV2.Typography.micro)
+                        .tracking(0.5)
+                        .fontWeight(.semibold)
+                        .foregroundColor(AppThemeV2.Colors.stone900)
+                        .padding(.horizontal, AppThemeV2.Spacing.lg)
+                        .padding(.vertical, AppThemeV2.Spacing.sm)
+                        .background(
+                            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                                .fill(AppThemeV2.Colors.amber)
+                        )
                 }
+                .buttonStyle(.plain)
+                .keyboardShortcut(.return, modifiers: [])
             }
         }
         .padding(AppThemeV2.Spacing.xl)
-        .frame(width: 460, height: 600)
+        .frame(width: 400, height: 500)
         .background(AppThemeV2.Colors.stone800)
         .preferredColorScheme(.dark)
     }
@@ -205,6 +185,49 @@ struct AboutSheet: View {
         if let url = URL(string: "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? subject)") {
             NSWorkspace.shared.open(url)
         }
+    }
+}
+
+// MARK: - Sponsor Button with Green Hover Glow
+
+struct SponsorButton: View {
+    let openURL: OpenURLAction
+    @State private var isHovered = false
+
+    private var successSubtle: Color { AppThemeV2.Colors.success.opacity(0.1) }
+    private var successGlow: Color { AppThemeV2.Colors.success.opacity(0.4) }
+
+    var body: some View {
+        Button(action: { openURL(URL(string: "https://github.com/sponsors/nraford7")!) }) {
+            HStack(spacing: AppThemeV2.Spacing.xs) {
+                Image(systemName: "heart.fill")
+                    .font(.system(size: 10))
+                Text("SPONSOR")
+                    .font(AppThemeV2.Typography.micro)
+                    .tracking(0.5)
+            }
+            .foregroundColor(isHovered ? AppThemeV2.Colors.success : AppThemeV2.Colors.stone200)
+            .padding(.horizontal, AppThemeV2.Spacing.md)
+            .padding(.vertical, AppThemeV2.Spacing.sm)
+            .background(
+                RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                    .fill(isHovered ? successSubtle : AppThemeV2.Colors.stone700)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                    .stroke(isHovered ? AppThemeV2.Colors.success.opacity(0.5) : Color.clear, lineWidth: 1)
+            )
+        }
+        .buttonStyle(.plain)
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
+        }
+        .shadow(
+            color: isHovered ? successGlow : .clear,
+            radius: isHovered ? 8 : 0
+        )
     }
 }
 

@@ -79,7 +79,7 @@ struct MappingWizardWindow: View {
 
                 Spacer()
 
-                WizardPrimaryButton(title: "Save!", action: {
+                WizardPrimaryButton(title: "Great!", action: {
                     dismiss()
                 })
                 .keyboardShortcut(.return, modifiers: [])
