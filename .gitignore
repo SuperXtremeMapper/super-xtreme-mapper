@@ -40,6 +40,9 @@ SuperXtremeMapping_Beta*/
 # Claude Code
 .claude/
 
+# Git worktrees
+.worktrees/
+
 # Local planning docs (not for public repo)
 docs/plans/
 docs/Codex_Improvement_Suggestions.md
