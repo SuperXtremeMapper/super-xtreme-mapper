@@ -34,6 +34,9 @@ Carthage/Build/
 _V1Backup/
 _V2Backup*/
 
+# Built app bundles
+SuperXtremeMapping_Beta*/
+
 # Claude Code
 .claude/
 
