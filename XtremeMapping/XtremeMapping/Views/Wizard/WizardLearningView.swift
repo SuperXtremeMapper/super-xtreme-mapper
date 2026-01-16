@@ -27,7 +27,7 @@ struct WizardLearningView: View {
                     .foregroundColor(AppThemeV2.Colors.stone200)
                 Spacer()
                 Toggle("Auto-advance", isOn: $coordinator.autoAdvanceEnabled)
-                    .toggleStyle(.switch)
+                    .toggleStyle(AmberToggleStyle())
                     .font(AppThemeV2.Typography.caption)
                     .foregroundColor(AppThemeV2.Colors.stone400)
                 ModeToggle(isBasicMode: $coordinator.isBasicMode)

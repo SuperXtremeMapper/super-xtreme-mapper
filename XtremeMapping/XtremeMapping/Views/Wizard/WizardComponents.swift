@@ -245,3 +245,30 @@ struct WizardSecondaryButton: View {
         )
     }
 }
+
+// MARK: - Amber Toggle Style
+
+struct AmberToggleStyle: ToggleStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: AppThemeV2.Spacing.xs) {
+            configuration.label
+
+            ZStack {
+                // Track
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(configuration.isOn ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone700)
+                    .frame(width: 36, height: 20)
+
+                // Thumb
+                Circle()
+                    .fill(configuration.isOn ? AppThemeV2.Colors.stone900 : AppThemeV2.Colors.stone400)
+                    .frame(width: 16, height: 16)
+                    .offset(x: configuration.isOn ? 8 : -8)
+                    .animation(.easeInOut(duration: 0.15), value: configuration.isOn)
+            }
+            .onTapGesture {
+                configuration.isOn.toggle()
+            }
+        }
+    }
+}
