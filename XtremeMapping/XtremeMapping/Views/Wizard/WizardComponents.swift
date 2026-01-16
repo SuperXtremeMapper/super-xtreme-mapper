@@ -12,6 +12,8 @@ struct WizardTabButton: View {
     let isSelected: Bool
     let action: () -> Void
 
+    @State private var isHovered = false
+
     var body: some View {
         Button(action: action) {
             VStack(spacing: AppThemeV2.Spacing.xxs) {
@@ -21,15 +23,32 @@ struct WizardTabButton: View {
                     .font(AppThemeV2.Typography.micro)
                     .lineLimit(1)
             }
-            .foregroundColor(isSelected ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone400)
+            .foregroundColor(foregroundColor)
             .padding(.horizontal, AppThemeV2.Spacing.sm)
             .padding(.vertical, AppThemeV2.Spacing.xs)
             .background(
                 RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                    .fill(isSelected ? AppThemeV2.Colors.amberSubtle : Color.clear)
+                    .fill(backgroundColor)
             )
         }
         .buttonStyle(.plain)
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
+        }
+    }
+
+    private var foregroundColor: Color {
+        if isSelected { return AppThemeV2.Colors.amber }
+        if isHovered { return AppThemeV2.Colors.amber }
+        return AppThemeV2.Colors.stone400
+    }
+
+    private var backgroundColor: Color {
+        if isSelected { return AppThemeV2.Colors.amberSubtle }
+        if isHovered { return AppThemeV2.Colors.amberSubtle.opacity(0.5) }
+        return Color.clear
     }
 }
 
