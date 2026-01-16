@@ -123,8 +123,8 @@ struct ModeToggle: View {
 
     var body: some View {
         HStack(spacing: 0) {
-            modeButton(title: "Basic", isSelected: isBasicMode) { isBasicMode = true }
-            modeButton(title: "Advanced", isSelected: !isBasicMode) { isBasicMode = false }
+            ModeButton(title: "Basic", isSelected: isBasicMode) { isBasicMode = true }
+            ModeButton(title: "Advanced", isSelected: !isBasicMode) { isBasicMode = false }
         }
         .background(
             RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
@@ -135,20 +135,45 @@ struct ModeToggle: View {
                 .stroke(AppThemeV2.Colors.stone700, lineWidth: 1)
         )
     }
+}
 
-    private func modeButton(title: String, isSelected: Bool, action: @escaping () -> Void) -> some View {
+private struct ModeButton: View {
+    let title: String
+    let isSelected: Bool
+    let action: () -> Void
+
+    @State private var isHovered = false
+
+    var body: some View {
         Button(action: action) {
             Text(title)
                 .font(AppThemeV2.Typography.caption)
-                .foregroundColor(isSelected ? AppThemeV2.Colors.stone900 : AppThemeV2.Colors.stone400)
+                .foregroundColor(foregroundColor)
                 .padding(.horizontal, AppThemeV2.Spacing.md)
                 .padding(.vertical, AppThemeV2.Spacing.xs)
                 .background(
                     RoundedRectangle(cornerRadius: AppThemeV2.Radius.xs)
-                        .fill(isSelected ? AppThemeV2.Colors.amber : Color.clear)
+                        .fill(backgroundColor)
                 )
         }
         .buttonStyle(.plain)
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
+        }
+    }
+
+    private var foregroundColor: Color {
+        if isSelected { return AppThemeV2.Colors.stone900 }
+        if isHovered { return AppThemeV2.Colors.amber }
+        return AppThemeV2.Colors.stone400
+    }
+
+    private var backgroundColor: Color {
+        if isSelected { return AppThemeV2.Colors.amber }
+        if isHovered { return AppThemeV2.Colors.amberSubtle }
+        return Color.clear
     }
 }
 
