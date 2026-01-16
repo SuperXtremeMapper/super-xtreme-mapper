@@ -78,7 +78,7 @@ struct VoiceLearnOverlay: View {
                 .foregroundColor(AppThemeV2.Colors.amber)
                 .shadow(color: AppThemeV2.Colors.amberGlow, radius: 8)
 
-            Text("VOICE LEARN")
+            Text("VOICE COMMANDER")
                 .font(AppThemeV2.Typography.display)
                 .foregroundColor(AppThemeV2.Colors.stone200)
 
@@ -433,30 +433,55 @@ struct VoiceLearnOverlay: View {
     // MARK: - Cancel Button
 
     private var cancelButton: some View {
-        Button {
-            if coordinator.disambiguationOptions != nil {
-                coordinator.dismissOptions()
-            } else {
-                coordinator.deactivate()
+        VoiceCloseButton(
+            title: coordinator.disambiguationOptions != nil ? "CANCEL" : "CLOSE",
+            action: {
+                if coordinator.disambiguationOptions != nil {
+                    coordinator.dismissOptions()
+                } else {
+                    coordinator.deactivate()
+                }
             }
-        } label: {
-            Text(coordinator.disambiguationOptions != nil ? "CANCEL" : "CLOSE")
+        )
+        .keyboardShortcut(.escape, modifiers: [])
+    }
+}
+
+// MARK: - Voice Close Button with Hover
+
+struct VoiceCloseButton: View {
+    let title: String
+    let action: () -> Void
+
+    @State private var isHovered = false
+
+    var body: some View {
+        Button(action: action) {
+            Text(title)
                 .font(AppThemeV2.Typography.micro)
                 .tracking(0.5)
-                .foregroundColor(AppThemeV2.Colors.stone400)
+                .foregroundColor(isHovered ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone400)
                 .padding(.horizontal, AppThemeV2.Spacing.md)
                 .padding(.vertical, AppThemeV2.Spacing.sm)
                 .background(
                     RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                        .fill(AppThemeV2.Colors.stone700)
+                        .fill(isHovered ? AppThemeV2.Colors.amberSubtle : AppThemeV2.Colors.stone700)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                        .stroke(AppThemeV2.Colors.stone600, lineWidth: 1)
+                        .stroke(isHovered ? AppThemeV2.Colors.amber.opacity(0.5) : AppThemeV2.Colors.stone600, lineWidth: 1)
                 )
         }
         .buttonStyle(.plain)
-        .keyboardShortcut(.escape, modifiers: [])
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
+        }
+        .shadow(
+            color: isHovered ? AppThemeV2.Colors.amberGlow : .clear,
+            radius: isHovered ? 8 : 0
+        )
     }
 }
 
@@ -528,7 +553,7 @@ private struct VoiceLearnOverlayPreview: View {
                     .font(.system(size: 16, weight: .medium))
                     .foregroundColor(AppThemeV2.Colors.amber)
 
-                Text("VOICE LEARN")
+                Text("VOICE COMMANDER")
                     .font(AppThemeV2.Typography.display)
                     .foregroundColor(AppThemeV2.Colors.stone200)
 

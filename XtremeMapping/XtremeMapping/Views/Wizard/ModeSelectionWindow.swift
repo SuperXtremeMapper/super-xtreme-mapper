@@ -92,21 +92,25 @@ struct ModeSelectionWindow: View {
 
     private func selectVoiceMode() {
         dismiss()
-        // Create new document and activate voice mode
+        // Create new document first
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             NSDocumentController.shared.newDocument(nil)
-            // Post notification to activate voice mode
-            NotificationCenter.default.post(name: .activateVoiceMode, object: nil)
+            // Give ContentView time to mount before posting notification
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                NotificationCenter.default.post(name: .activateVoiceMode, object: nil)
+            }
         }
     }
 
     private func selectGuidedMode() {
         dismiss()
-        // Create new document and open wizard
+        // Create new document first
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             NSDocumentController.shared.newDocument(nil)
-            // Post notification to open wizard
-            NotificationCenter.default.post(name: .activateWizardMode, object: nil)
+            // Give ContentView time to mount before posting notification
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                NotificationCenter.default.post(name: .activateWizardMode, object: nil)
+            }
         }
     }
 }
