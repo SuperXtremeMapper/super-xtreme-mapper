@@ -28,24 +28,17 @@ struct WizardSetupView: View {
             Image(systemName: "wand.and.stars")
                 .font(.system(size: 16, weight: .medium))
                 .foregroundColor(AppThemeV2.Colors.amber)
-            Text("MAPPING WIZARD")
+            Text("GUIDED MAPPING WIZARD")
                 .font(AppThemeV2.Typography.display)
                 .foregroundColor(AppThemeV2.Colors.stone200)
             Spacer()
-            Text("SETUP")
-                .font(AppThemeV2.Typography.micro)
-                .tracking(0.5)
-                .foregroundColor(AppThemeV2.Colors.stone500)
-                .padding(.horizontal, AppThemeV2.Spacing.sm)
-                .padding(.vertical, AppThemeV2.Spacing.xs)
-                .background(RoundedRectangle(cornerRadius: AppThemeV2.Radius.pill).fill(AppThemeV2.Colors.stone800))
         }
     }
 
     private var formSection: some View {
         VStack(alignment: .leading, spacing: AppThemeV2.Spacing.md) {
             formRow(label: "Controller Name") {
-                TextField("My Controller", text: $coordinator.setupConfig.controllerName)
+                TextField("Controller Name", text: $coordinator.setupConfig.controllerName)
                     .textFieldStyle(.plain)
                     .font(AppThemeV2.Typography.body)
                     .foregroundColor(AppThemeV2.Colors.stone200)

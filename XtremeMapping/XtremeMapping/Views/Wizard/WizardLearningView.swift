@@ -22,7 +22,7 @@ struct WizardLearningView: View {
                 Image(systemName: "wand.and.stars")
                     .font(.system(size: 16, weight: .medium))
                     .foregroundColor(AppThemeV2.Colors.amber)
-                Text("MAPPING WIZARD")
+                Text("GUIDED MAPPING WIZARD")
                     .font(AppThemeV2.Typography.display)
                     .foregroundColor(AppThemeV2.Colors.stone200)
                 Spacer()
