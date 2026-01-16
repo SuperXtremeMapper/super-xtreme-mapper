@@ -57,6 +57,19 @@
     animation: fadeInUp 0.6s ease-out 0.1s both;
 }
 
+/* Version Badge */
+.version-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--color-amber-subtle);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 100px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-amber);
+    letter-spacing: 0.05em;
+}
+
 /* --------------------------------------------------------------------------
    Main Content
    -------------------------------------------------------------------------- */
