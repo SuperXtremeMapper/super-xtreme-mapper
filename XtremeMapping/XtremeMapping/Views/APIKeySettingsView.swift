@@ -208,6 +208,61 @@ struct APIKeySettingsView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
 
+            Rectangle()
+                .fill(AppThemeV2.Colors.stone700)
+                .frame(height: 1)
+
+            // Support section
+            VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
+                Text("SUPPORT SXM")
+                    .font(AppThemeV2.Typography.micro)
+                    .tracking(0.5)
+                    .foregroundColor(AppThemeV2.Colors.stone400)
+
+                Text("Super Xtreme Mapper is free and open source. If you find it useful, consider supporting development!")
+                    .font(AppThemeV2.Typography.caption)
+                    .foregroundColor(AppThemeV2.Colors.stone500)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                HStack(spacing: AppThemeV2.Spacing.sm) {
+                    Button(action: { openURL(URL(string: "https://github.com/sponsors/SuperXtremeMapper")!) }) {
+                        HStack(spacing: AppThemeV2.Spacing.xs) {
+                            Image(systemName: "heart.fill")
+                                .font(.system(size: 10))
+                            Text("SPONSOR")
+                                .font(AppThemeV2.Typography.micro)
+                                .tracking(0.5)
+                        }
+                        .foregroundColor(AppThemeV2.Colors.stone200)
+                        .padding(.horizontal, AppThemeV2.Spacing.md)
+                        .padding(.vertical, AppThemeV2.Spacing.sm)
+                        .background(
+                            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                                .fill(AppThemeV2.Colors.stone700)
+                        )
+                    }
+                    .buttonStyle(.plain)
+
+                    Button(action: { openURL(URL(string: "https://ko-fi.com/superxtrememapper")!) }) {
+                        HStack(spacing: AppThemeV2.Spacing.xs) {
+                            Image(systemName: "cup.and.saucer.fill")
+                                .font(.system(size: 10))
+                            Text("KO-FI")
+                                .font(AppThemeV2.Typography.micro)
+                                .tracking(0.5)
+                        }
+                        .foregroundColor(AppThemeV2.Colors.stone200)
+                        .padding(.horizontal, AppThemeV2.Spacing.md)
+                        .padding(.vertical, AppThemeV2.Spacing.sm)
+                        .background(
+                            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                                .fill(AppThemeV2.Colors.stone700)
+                        )
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+
             Spacer()
 
             // Bottom row: Status and Done button
@@ -247,7 +302,7 @@ struct APIKeySettingsView: View {
             }
         }
         .padding(AppThemeV2.Spacing.xl)
-        .frame(width: 400, height: 400)
+        .frame(width: 400, height: 500)
         .background(AppThemeV2.Colors.stone800)
         .preferredColorScheme(.dark)
         .onAppear {
