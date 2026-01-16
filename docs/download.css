@@ -380,6 +380,23 @@
 }
 
 /* --------------------------------------------------------------------------
+   Community Section Header
+   -------------------------------------------------------------------------- */
+.community-header {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto var(--space-xl);
+    animation: fadeInUp 0.6s ease-out 0.25s both;
+}
+
+.community-header h2 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--color-stone-200);
+    letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------------------------------
    Community Row
    -------------------------------------------------------------------------- */
 .community-row {
