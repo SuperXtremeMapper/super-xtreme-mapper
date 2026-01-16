@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AppKit
 
 struct MappingWizardWindow: View {
     @ObservedObject var coordinator: WizardCoordinator

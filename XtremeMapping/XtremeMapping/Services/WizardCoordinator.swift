@@ -49,6 +49,8 @@ final class WizardCoordinator: ObservableObject {
     // MARK: - Dependencies
 
     private let midiManager: MIDIInputManager
+    /// Strong reference required to prevent document from being released during wizard session.
+    /// No retain cycle risk: TraktorMappingDocument does not reference WizardCoordinator.
     private var document: TraktorMappingDocument?
 
     // MARK: - Computed Properties
