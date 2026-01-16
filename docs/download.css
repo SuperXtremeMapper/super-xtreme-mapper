@@ -6,12 +6,8 @@
    Download Hero
    -------------------------------------------------------------------------- */
 .download-hero {
-    min-height: 40vh;
-    display: flex;
-    align-items: center;
-    padding: calc(var(--space-4xl) + 60px) var(--space-xl) var(--space-2xl);
+    padding: calc(var(--space-3xl) + 60px) var(--space-xl) var(--space-xl);
     position: relative;
-    overflow: hidden;
 }
 
 .download-hero .container {
@@ -26,7 +22,7 @@
     color: var(--color-stone-500);
     font-size: 0.875rem;
     font-weight: 500;
-    margin-bottom: var(--space-2xl);
+    margin-bottom: var(--space-lg);
     transition: color var(--transition-fast);
 }
 
@@ -45,71 +41,20 @@
     margin: 0 auto;
 }
 
-.beta-badge-large {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-sm);
-    padding: var(--space-sm) var(--space-lg);
-    background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
-    border: 1px solid rgba(239, 68, 68, 0.4);
-    border-radius: 100px;
-    margin-bottom: var(--space-xl);
-    animation: fadeInDown 0.6s ease-out;
-}
-
-.badge-pulse {
-    width: 8px;
-    height: 8px;
-    background: var(--color-danger);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-}
-
-.badge-text {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--color-danger);
-    letter-spacing: 0.15em;
-}
-
 .download-title {
     font-family: var(--font-display);
-    font-size: clamp(3rem, 10vw, 5rem);
-    line-height: 0.9;
-    letter-spacing: 0.02em;
-    margin-bottom: var(--space-lg);
-    animation: fadeInUp 0.6s ease-out 0.1s both;
-}
-
-.title-download {
-    display: block;
-    color: var(--color-stone-500);
-    font-size: 0.4em;
-    letter-spacing: 0.3em;
-}
-
-.title-sxm {
-    display: block;
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
     color: var(--color-amber);
+    letter-spacing: 0.02em;
+    margin-bottom: var(--space-sm);
     text-shadow: 0 0 60px var(--color-amber-glow);
+    animation: fadeInUp 0.6s ease-out;
 }
 
 .download-subtitle {
     font-size: 1.125rem;
     color: var(--color-stone-400);
-    animation: fadeInUp 0.6s ease-out 0.2s both;
-}
-
-.download-hero .hero-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    height: 400px;
-    background: radial-gradient(circle, var(--color-amber-glow), transparent 70%);
-    opacity: 0.15;
-    pointer-events: none;
+    animation: fadeInUp 0.6s ease-out 0.1s both;
 }
 
 /* --------------------------------------------------------------------------
