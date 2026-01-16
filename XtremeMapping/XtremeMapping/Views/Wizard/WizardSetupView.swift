@@ -68,7 +68,7 @@ struct WizardSetupView: View {
             Image(systemName: "wand.and.stars")
                 .font(.system(size: 16, weight: .medium))
                 .foregroundColor(AppThemeV2.Colors.amber)
-            Text("GUIDED MAPPING WIZARD")
+            Text("GUIDED MAPPING SETUP")
                 .font(AppThemeV2.Typography.display)
                 .foregroundColor(AppThemeV2.Colors.stone200)
             Spacer()

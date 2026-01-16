@@ -38,25 +38,13 @@ struct ModeSelectionWindow: View {
             }
             .padding(.horizontal, AppThemeV2.Spacing.lg)
 
-            Spacer()
-
             // Cancel button
             HStack {
                 Spacer()
-                Button("Cancel") {
-                    dismiss()
-                }
-                .buttonStyle(.plain)
-                .foregroundColor(AppThemeV2.Colors.stone400)
-                .padding(.horizontal, AppThemeV2.Spacing.md)
-                .padding(.vertical, AppThemeV2.Spacing.sm)
-                .background(
-                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                        .fill(AppThemeV2.Colors.stone700)
-                )
-                .keyboardShortcut(.escape, modifiers: [])
+                ModeSelectionCancelButton(action: { dismiss() })
             }
-            .padding(AppThemeV2.Spacing.lg)
+            .padding(.horizontal, AppThemeV2.Spacing.lg)
+            .padding(.bottom, AppThemeV2.Spacing.lg)
         }
         .frame(width: 420, height: 380)
         .background(AppThemeV2.Colors.stone800)
@@ -185,6 +173,44 @@ struct ModeOptionButton: View {
                 isHovered = hovering
             }
         }
+    }
+}
+
+// MARK: - Mode Selection Cancel Button
+
+struct ModeSelectionCancelButton: View {
+    let action: () -> Void
+
+    @State private var isHovered = false
+
+    var body: some View {
+        Button(action: action) {
+            Text("CANCEL")
+                .font(AppThemeV2.Typography.micro)
+                .tracking(0.5)
+                .foregroundColor(isHovered ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone400)
+                .padding(.horizontal, AppThemeV2.Spacing.md)
+                .padding(.vertical, AppThemeV2.Spacing.sm)
+                .background(
+                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                        .fill(isHovered ? AppThemeV2.Colors.amberSubtle : AppThemeV2.Colors.stone700)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                        .stroke(isHovered ? AppThemeV2.Colors.amber.opacity(0.5) : AppThemeV2.Colors.stone600, lineWidth: 1)
+                )
+        }
+        .buttonStyle(.plain)
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
+        }
+        .shadow(
+            color: isHovered ? AppThemeV2.Colors.amberGlow : .clear,
+            radius: isHovered ? 8 : 0
+        )
+        .keyboardShortcut(.escape, modifiers: [])
     }
 }
 

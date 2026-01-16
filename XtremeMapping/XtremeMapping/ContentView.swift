@@ -607,11 +607,11 @@ struct V2ActionBarFull: View {
 
     var body: some View {
         HStack(spacing: AppThemeV2.Spacing.md) {
-            // Left side - Add buttons with command menus (icon-only style)
+            // Left side - Add buttons with command menus (labeled style)
             HStack(spacing: AppThemeV2.Spacing.xs) {
-                V2AddCommandMenuIconButton(icon: "arrow.down", tooltip: "Add Input Mapping", isDisabled: isLocked) { onAddInput($0) }
-                V2AddCommandMenuIconButton(icon: "arrow.up", tooltip: "Add Output Mapping", isDisabled: isLocked) { onAddOutput($0) }
-                V2AddCommandMenuIconButton(icon: "arrow.up.arrow.down", tooltip: "Add Input/Output Pair", isDisabled: isLocked) { onAddInOut($0) }
+                V2AddCommandMenuButton(icon: "arrow.down", label: "IN", tooltip: "Add Input Mapping", isDisabled: isLocked) { onAddInput($0) }
+                V2AddCommandMenuButton(icon: "arrow.up", label: "OUT", tooltip: "Add Output Mapping", isDisabled: isLocked) { onAddOutput($0) }
+                V2AddCommandMenuButton(icon: "arrow.up.arrow.down", label: "IN/OUT", tooltip: "Add Input/Output Pair", isDisabled: isLocked) { onAddInOut($0) }
 
                 Rectangle()
                     .fill(AppThemeV2.Colors.stone600)
@@ -745,6 +745,120 @@ struct V2AddCommandMenuIconButton: View {
             Color.clear
                 .frame(width: 28, height: 28)
                 .contentShape(Rectangle()) // Ensure the clear area is clickable
+        }
+        .menuStyle(.borderlessButton)
+        .menuIndicator(.hidden)
+        .disabled(isDisabled)
+    }
+
+    @ViewBuilder
+    private func categoryMenu(_ category: CommandCategory2) -> some View {
+        if let subcategories = category.subcategories {
+            Menu(category.name) {
+                ForEach(subcategories) { subcategory in
+                    subcategoryMenu(subcategory)
+                }
+            }
+        } else if let commands = category.commands {
+            Menu(category.name) {
+                ForEach(commands) { command in
+                    Button(command.name) { onCommandSelected(command.name) }
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func subcategoryMenu(_ subcategory: CommandCategory2) -> some View {
+        if let commands = subcategory.commands {
+            Menu(subcategory.name) {
+                ForEach(commands) { command in
+                    Button(command.name) { onCommandSelected(command.name) }
+                }
+            }
+        }
+    }
+
+    private var foregroundColor: Color {
+        if isDisabled { return AppThemeV2.Colors.stone600 }
+        if isHovered { return AppThemeV2.Colors.amber }
+        return AppThemeV2.Colors.stone400
+    }
+
+    private var backgroundColor: Color {
+        if isDisabled { return AppThemeV2.Colors.stone800 }
+        if isHovered { return AppThemeV2.Colors.amberSubtle }
+        return AppThemeV2.Colors.stone700
+    }
+
+    private var borderColor: Color {
+        if isDisabled { return AppThemeV2.Colors.stone700 }
+        if isHovered { return AppThemeV2.Colors.amber.opacity(0.5) }
+        return AppThemeV2.Colors.stone600
+    }
+}
+
+// MARK: - V2 Add Command Menu Button (with label)
+
+/// A button with icon AND label that opens a command menu
+struct V2AddCommandMenuButton: View {
+    let icon: String
+    let label: String
+    let tooltip: String
+    let isDisabled: Bool
+    let onCommandSelected: (String) -> Void
+
+    @State private var isHovered = false
+
+    var body: some View {
+        ZStack {
+            visualButton
+            transparentMenu
+        }
+        .frame(minWidth: 56)
+        .fixedSize()
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
+        }
+        .help(tooltip)
+    }
+
+    private var visualButton: some View {
+        HStack(spacing: AppThemeV2.Spacing.xs) {
+            Image(systemName: icon)
+                .font(.system(size: 12, weight: .medium))
+            Text(label)
+                .font(AppThemeV2.Typography.micro)
+                .tracking(0.5)
+        }
+        .foregroundColor(foregroundColor)
+        .padding(.horizontal, AppThemeV2.Spacing.sm)
+        .padding(.vertical, AppThemeV2.Spacing.xs + 2)
+        .background(
+            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                .fill(backgroundColor)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                .stroke(borderColor, lineWidth: 1)
+        )
+        .shadow(
+            color: isHovered && !isDisabled ? AppThemeV2.Colors.amberGlow : .clear,
+            radius: isHovered && !isDisabled ? 8 : 0
+        )
+    }
+
+    private var transparentMenu: some View {
+        Menu {
+            ForEach(CommandHierarchy.categories) { category in
+                categoryMenu(category)
+            }
+        } label: {
+            Color.clear
+                .frame(minWidth: 56, minHeight: 28)
+                .contentShape(Rectangle())
         }
         .menuStyle(.borderlessButton)
         .menuIndicator(.hidden)
