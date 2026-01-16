@@ -55,6 +55,17 @@ struct VoiceLearnOverlay: View {
                 .stroke(AppThemeV2.Colors.stone700, lineWidth: 1)
         )
         .shadow(color: Color.black.opacity(0.5), radius: 20)
+        .alert("Overwrite Existing Mappings?", isPresented: $coordinator.showOverwriteAlert) {
+            Button("Overwrite") {
+                coordinator.performVoiceSave(overwrite: true)
+            }
+            Button("Add New Only") {
+                coordinator.performVoiceSave(overwrite: false)
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("These commands already have mappings: \(coordinator.conflictingCommands.joined(separator: ", "))")
+        }
     }
 
     // MARK: - Header Section
@@ -217,7 +228,7 @@ struct VoiceLearnOverlay: View {
         }
     }
 
-    // MARK: - Button Row (Cancel left, Next right)
+    // MARK: - Button Row (Cancel left, Finish middle, Next right)
 
     private var buttonRow: some View {
         HStack {
@@ -226,9 +237,33 @@ struct VoiceLearnOverlay: View {
 
             Spacer()
 
+            // Finish & Save button (when mappings exist)
+            if !coordinator.sessionMappings.isEmpty {
+                finishButton
+            }
+
             // Next button (right, yellow/amber)
             nextButton
         }
+    }
+
+    private var finishButton: some View {
+        Button {
+            coordinator.finishAndSave()
+        } label: {
+            Text("FINISH & SAVE")
+                .font(AppThemeV2.Typography.micro)
+                .tracking(0.5)
+                .fontWeight(.semibold)
+                .foregroundColor(AppThemeV2.Colors.stone900)
+                .padding(.horizontal, AppThemeV2.Spacing.md)
+                .padding(.vertical, AppThemeV2.Spacing.sm)
+                .background(
+                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                        .fill(AppThemeV2.Colors.success)
+                )
+        }
+        .buttonStyle(.plain)
     }
 
     private var nextButton: some View {

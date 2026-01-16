@@ -61,6 +61,18 @@ final class VoiceMappingCoordinator: ObservableObject {
     /// Counter that increments each time a mapping is saved - used for .onChange observation
     @Published private(set) var savedMappingCount: Int = 0
 
+    /// Show overwrite confirmation alert
+    @Published var showOverwriteAlert = false
+
+    /// Commands that conflict with existing mappings
+    @Published var conflictingCommands: [String] = []
+
+    /// Reference to current document for saving
+    private weak var document: TraktorMappingDocument?
+
+    /// Accumulated mappings from this voice session
+    @Published private(set) var sessionMappings: [(midi: MIDIMessage, result: VoiceCommandResult)] = []
+
     // MARK: - Callbacks (deprecated - use savedMapping instead)
 
     /// Called when a mapping is successfully created.
@@ -212,6 +224,106 @@ final class VoiceMappingCoordinator: ObservableObject {
         statusMessage = "Cancelled. Ready for next."
     }
 
+    /// Set the document reference for saving
+    func setDocument(_ doc: TraktorMappingDocument) {
+        self.document = doc
+    }
+
+    /// Called when user clicks "Finish & Save" - checks for conflicts
+    func finishAndSave() {
+        guard let document = document else {
+            statusMessage = "Error: No document reference"
+            return
+        }
+
+        // Collect command names from session
+        let newCommands = Set(sessionMappings.map { $0.result.command })
+        let existingCommands = Set(document.mappingFile.allMappings.map { $0.commandName })
+        let conflicts = existingCommands.intersection(newCommands)
+
+        if !conflicts.isEmpty {
+            conflictingCommands = Array(conflicts).sorted()
+            showOverwriteAlert = true
+            return
+        }
+
+        performVoiceSave(overwrite: false)
+    }
+
+    /// Perform the actual save operation
+    func performVoiceSave(overwrite: Bool) {
+        guard let document = document else { return }
+
+        // Convert session mappings to MappingEntry objects
+        var newMappings: [MappingEntry] = []
+        for (midi, result) in sessionMappings {
+            let controllerType = parseControllerType(result.controllerType)
+            let entry = MappingEntry(
+                commandName: result.command,
+                ioType: .input,
+                assignment: parseAssignment(result.assignment),
+                interactionMode: controllerType.defaultInteractionMode,
+                midiChannel: midi.channel,
+                midiNote: midi.note,
+                midiCC: midi.cc,
+                controllerType: controllerType
+            )
+            newMappings.append(entry)
+        }
+
+        if overwrite {
+            let commandsToReplace = Set(sessionMappings.map { $0.result.command })
+            if !document.mappingFile.devices.isEmpty {
+                document.mappingFile.devices[0].mappings.removeAll {
+                    commandsToReplace.contains($0.commandName)
+                }
+            }
+        }
+
+        // Add new mappings
+        if document.mappingFile.devices.isEmpty {
+            let newDevice = Device(
+                name: "Voice Mapped Controller",
+                comment: "Created by Voice Learn",
+                mappings: newMappings
+            )
+            document.mappingFile.devices.append(newDevice)
+        } else {
+            document.mappingFile.devices[0].mappings.append(contentsOf: newMappings)
+        }
+
+        document.noteChange()
+        let savedCount = newMappings.count
+        sessionMappings = []
+        statusMessage = "Saved \(savedCount) mappings!"
+        deactivate()
+    }
+
+    private func parseAssignment(_ assignment: String?) -> TargetAssignment {
+        guard let assignment = assignment else { return .global }
+        switch assignment.lowercased() {
+        case "deck a": return .deckA
+        case "deck b": return .deckB
+        case "deck c": return .deckC
+        case "deck d": return .deckD
+        case "fx unit 1": return .fxUnit1
+        case "fx unit 2": return .fxUnit2
+        case "fx unit 3": return .fxUnit3
+        case "fx unit 4": return .fxUnit4
+        default: return .global
+        }
+    }
+
+    private func parseControllerType(_ controllerType: String?) -> ControllerType {
+        guard let controllerType = controllerType else { return .faderOrKnob }
+        switch controllerType.lowercased() {
+        case "button": return .button
+        case "fader", "knob": return .faderOrKnob
+        case "encoder": return .encoder
+        default: return .faderOrKnob
+        }
+    }
+
     // MARK: - Private Methods
 
     /// Handle incoming MIDI message.
@@ -291,14 +403,17 @@ final class VoiceMappingCoordinator: ObservableObject {
             return
         }
 
-        // Create the mapping
+        // Add to session mappings
+        sessionMappings.append((midi: midi, result: result))
+
+        // Create the mapping (for immediate feedback)
         createMapping(midi: midi, result: result)
 
         // Clear all state for next input
         clearAllState()
 
         // Restart listening
-        statusMessage = "Saved! Ready for next input."
+        statusMessage = "Saved! Ready for next input. (\(sessionMappings.count) total)"
 
         // Restart voice listening
         Task {

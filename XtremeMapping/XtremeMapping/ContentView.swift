@@ -328,6 +328,7 @@ struct ContentView: View {
                 showIntelMacAlert = true
                 return
             }
+            voiceCoordinator.setDocument(document)
             voiceCoordinator.activate()
         }
     }
