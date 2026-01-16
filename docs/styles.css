@@ -1743,27 +1743,80 @@ img {
 }
 
 /* --------------------------------------------------------------------------
-   Contact Section
+   Community & Support Section
    -------------------------------------------------------------------------- */
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-xl);
-}
-
-.contact-card {
-    padding: var(--space-2xl);
-    background: var(--color-stone-800);
-    border: 1px solid var(--color-stone-700);
+.support-banner {
+    max-width: 800px;
+    margin: 0 auto var(--space-2xl);
+    padding: var(--space-xl) var(--space-2xl);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(245, 158, 11, 0.02));
+    border: 1px solid rgba(245, 158, 11, 0.2);
     border-radius: var(--radius-lg);
     text-align: center;
 }
 
-.contact-icon {
-    width: 40px;
-    height: 40px;
-    margin: 0 auto var(--space-lg);
+.support-banner-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.support-banner-text {
+    font-size: 1.1rem;
+    color: var(--color-stone-300);
+    margin: 0;
+}
+
+.support-banner-text strong {
     color: var(--color-amber);
+}
+
+.support-banner-buttons {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+}
+
+.contact-card {
+    padding: var(--space-xl);
+    background: var(--color-stone-800);
+    border: 1px solid var(--color-stone-700);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.contact-card:hover {
+    border-color: var(--color-stone-600);
+    transform: translateY(-2px);
+}
+
+.contact-card.discord-card-alt {
+    border-color: rgba(88, 101, 242, 0.3);
+    background: linear-gradient(135deg, rgba(88, 101, 242, 0.08), var(--color-stone-800));
+}
+
+.contact-card.discord-card-alt:hover {
+    border-color: rgba(88, 101, 242, 0.5);
+}
+
+.contact-icon {
+    width: 36px;
+    height: 36px;
+    margin: 0 auto var(--space-md);
+    color: var(--color-amber);
+}
+
+.contact-icon.discord {
+    color: #5865F2;
 }
 
 .contact-icon svg {
@@ -1773,22 +1826,31 @@ img {
 
 .contact-card h3 {
     font-family: var(--font-display);
-    font-size: 1.375rem;
+    font-size: 1.2rem;
     color: var(--color-stone-100);
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-xs);
 }
 
 .contact-card p {
     color: var(--color-stone-400);
-    font-size: 0.9375rem;
-    margin-bottom: var(--space-lg);
+    font-size: 0.875rem;
+    margin-bottom: var(--space-md);
+    line-height: 1.5;
 }
 
 .contact-link {
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+}
+
+.discord-card-alt .contact-link {
+    color: #5865F2;
+}
+
+.discord-card-alt .contact-link:hover {
+    color: #7289da;
 }
 
 /* --------------------------------------------------------------------------
@@ -1937,8 +1999,8 @@ img {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .contact-card:last-child {
-        grid-column: span 2;
+    .support-banner {
+        padding: var(--space-lg);
     }
 
     /* Feature rows stack on tablet */
@@ -2029,8 +2091,14 @@ img {
         grid-template-columns: 1fr;
     }
 
-    .contact-card:last-child {
-        grid-column: span 1;
+    .support-banner-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .support-banner-buttons .btn {
+        width: 100%;
+        max-width: 250px;
     }
 
     .warning-box {
