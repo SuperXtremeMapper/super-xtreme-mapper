@@ -54,6 +54,14 @@ struct XtremeMappingApp: App {
             }
         }
 
+        // Mapping Wizard window
+        Window("Mapping Wizard", id: "wizard") {
+            MappingWizardWindowContent()
+        }
+        .windowStyle(.hiddenTitleBar)
+        .windowResizability(.contentSize)
+        .defaultPosition(.center)
+
         // Document windows for TSI files
         DocumentGroup(newDocument: { TraktorMappingDocument() }) { file in
             ContentView(document: file.document, fileURL: file.fileURL)
@@ -90,9 +98,8 @@ struct XtremeMappingApp: App {
                     Divider()
 
                     Button("Setup Wizard...") {
-                        // TODO: Implement wizard
+                        openWindow(id: "wizard")
                     }
-                    .disabled(true)
 
                     Divider()
 
