@@ -122,7 +122,108 @@
 }
 
 /* --------------------------------------------------------------------------
-   Warning Card
+   Download + Warning Split
+   -------------------------------------------------------------------------- */
+.download-warning-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    margin-bottom: var(--space-3xl);
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.warning-card-split {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-2xl);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.03));
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    border-radius: var(--radius-xl);
+}
+
+.warning-card-split .warning-card-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(239, 68, 68, 0.15);
+    border-radius: var(--radius-lg);
+    color: var(--color-danger);
+    margin-bottom: var(--space-lg);
+}
+
+.warning-card-split .warning-card-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.warning-card-split .warning-card-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-danger);
+    letter-spacing: 0.03em;
+    margin-bottom: var(--space-sm);
+}
+
+.warning-card-split .warning-card-text {
+    color: var(--color-stone-400);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+}
+
+.warning-card-split .warning-card-text strong {
+    color: var(--color-stone-200);
+}
+
+.warning-checklist-vertical {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.warning-checklist-vertical li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.9375rem;
+    color: var(--color-stone-400);
+}
+
+.warning-checklist-vertical li svg {
+    width: 18px;
+    height: 18px;
+    color: var(--color-danger);
+    flex-shrink: 0;
+}
+
+.github-link-inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+    padding: var(--space-md);
+    color: var(--color-stone-500);
+    font-size: 0.875rem;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.github-link-inline svg {
+    width: 18px;
+    height: 18px;
+}
+
+.github-link-inline:hover {
+    color: var(--color-amber);
+    background: var(--color-stone-700);
+}
+
+/* --------------------------------------------------------------------------
+   Warning Card (Legacy - full width)
    -------------------------------------------------------------------------- */
 .warning-card {
     display: flex;
@@ -603,6 +704,112 @@
 }
 
 /* --------------------------------------------------------------------------
+   Support Card
+   -------------------------------------------------------------------------- */
+.support-card {
+    padding: var(--space-2xl);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(245, 158, 11, 0.02));
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+.support-card-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto var(--space-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-amber-subtle);
+    border-radius: var(--radius-lg);
+}
+
+.support-card-icon svg {
+    width: 28px;
+    height: 28px;
+    color: var(--color-amber);
+}
+
+.support-card-title {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    color: var(--color-stone-100);
+    letter-spacing: 0.02em;
+    margin-bottom: var(--space-sm);
+}
+
+.support-card-description {
+    color: var(--color-stone-500);
+    font-size: 0.9375rem;
+    margin-bottom: var(--space-xl);
+}
+
+.support-card-buttons {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+}
+
+.btn-support-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-xl);
+    background: var(--color-amber);
+    color: var(--color-stone-950);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+.btn-support-primary:hover {
+    background: var(--color-amber-light);
+    color: var(--color-stone-950);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -10px var(--color-amber-glow);
+}
+
+.btn-support-primary .btn-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.btn-support-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-xl);
+    background: var(--color-stone-700);
+    color: var(--color-stone-200);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-stone-600);
+    transition: all var(--transition-base);
+}
+
+.btn-support-secondary:hover {
+    background: var(--color-stone-600);
+    color: var(--color-amber);
+    border-color: var(--color-amber);
+    transform: translateY(-2px);
+}
+
+.btn-support-secondary .btn-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* --------------------------------------------------------------------------
    GitHub Card
    -------------------------------------------------------------------------- */
 .github-card {
@@ -771,6 +978,10 @@
    Responsive
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
+    .download-warning-split {
+        grid-template-columns: 1fr;
+    }
+
     .download-grid {
         grid-template-columns: 1fr;
     }
