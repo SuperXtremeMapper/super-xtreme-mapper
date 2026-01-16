@@ -215,6 +215,14 @@ final class WizardCoordinator: ObservableObject {
         next()
     }
 
+    /// Clears the mapping for the current function/assignment
+    func clearCurrentMapping() {
+        guard let function = currentFunction, let assignment = currentAssignment else { return }
+        capturedMappings.removeAll { $0.function.id == function.id && $0.assignment == assignment }
+        pendingMIDI = nil
+        statusMessage = "Cleared - press a control to re-map"
+    }
+
     func switchToTab(_ tab: WizardTab) {
         currentTab = tab
         currentFunctionIndex = 0

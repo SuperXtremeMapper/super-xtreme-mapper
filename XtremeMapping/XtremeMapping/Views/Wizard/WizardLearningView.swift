@@ -140,28 +140,40 @@ struct WizardLearningView: View {
         VStack(spacing: 0) {
             V2Divider()
             HStack {
+                // Cancel - far left
+                WizardSecondaryButton(title: "Cancel") { coordinator.cancel() }
+                    .keyboardShortcut(.escape, modifiers: [])
+
+                Spacer()
+
+                // Prev, Clear, Next - centered
                 HStack(spacing: AppThemeV2.Spacing.sm) {
-                    WizardSecondaryButton(title: "Cancel") { coordinator.cancel() }
-                        .keyboardShortcut(.escape, modifiers: [])
                     WizardSecondaryButton(title: "Prev") { coordinator.previous() }
                         .keyboardShortcut(.leftArrow, modifiers: [])
-                }
-                Spacer()
-                HStack(spacing: AppThemeV2.Spacing.sm) {
-                    WizardSecondaryButton(title: "Skip") { coordinator.skip() }
+
+                    WizardSecondaryButton(title: "Clear") { coordinator.clearCurrentMapping() }
+
                     WizardSecondaryButton(
                         title: "Next",
                         action: {
                             coordinator.cancelAutoAdvance()
                             coordinator.next()
                         },
-                        isHighlighted: !coordinator.isAtLastStep,
                         isPulsing: coordinator.autoAdvanceCountdown > 0
                     )
                         .keyboardShortcut(.rightArrow, modifiers: [])
-                    WizardPrimaryButton(title: "Save & Finish", action: { coordinator.saveToDocument() }, isEnabled: !coordinator.capturedMappings.isEmpty, isHighlighted: coordinator.isAtLastStep)
-                        .keyboardShortcut(.return, modifiers: [.command])
                 }
+
+                Spacer()
+
+                // Save & Finish - far right
+                WizardPrimaryButton(
+                    title: "Save & Finish",
+                    action: { coordinator.saveToDocument() },
+                    isEnabled: !coordinator.capturedMappings.isEmpty,
+                    isHighlighted: coordinator.isAtLastStep
+                )
+                    .keyboardShortcut(.return, modifiers: [.command])
             }
             .padding(AppThemeV2.Spacing.md)
             .background(AppThemeV2.Colors.stone800)
