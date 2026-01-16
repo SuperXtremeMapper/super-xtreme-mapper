@@ -492,21 +492,30 @@
 
 /* Support Card */
 .community-card.support {
-    border-color: rgba(245, 158, 11, 0.2);
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), var(--color-stone-800));
+    border-color: rgba(34, 197, 94, 0.2);
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.05), var(--color-stone-800));
 }
 
 .community-card.support:hover {
-    border-color: rgba(245, 158, 11, 0.4);
+    border-color: rgba(34, 197, 94, 0.4);
     transform: translateY(-4px);
 }
 
 .community-card.support .community-card-icon {
-    background: var(--color-amber-subtle);
+    background: rgba(34, 197, 94, 0.15);
 }
 
 .community-card.support .community-card-icon svg {
-    color: var(--color-amber);
+    color: #22c55e;
+}
+
+.support-btn.primary {
+    background: #22c55e;
+    color: var(--color-stone-950);
+}
+
+.support-btn.primary:hover {
+    background: #4ade80;
 }
 
 .support-buttons {
@@ -529,15 +538,6 @@
 .support-btn:hover {
     background: var(--color-stone-600);
     color: var(--color-stone-100);
-}
-
-.support-btn.primary {
-    background: var(--color-amber);
-    color: var(--color-stone-950);
-}
-
-.support-btn.primary:hover {
-    background: var(--color-amber-light);
 }
 
 /* GitHub Card */
