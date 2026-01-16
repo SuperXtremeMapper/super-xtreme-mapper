@@ -6,6 +6,46 @@
 import SwiftUI
 import CoreMIDI
 
+// MARK: - Channel Button
+
+struct ChannelButton: View {
+    let count: Int
+    let isSelected: Bool
+    let action: () -> Void
+
+    @State private var isHovered = false
+
+    var body: some View {
+        Button(action: action) {
+            Text("\(count) Channels")
+                .font(AppThemeV2.Typography.body)
+                .foregroundColor(isSelected ? AppThemeV2.Colors.stone900 : (isHovered ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone400))
+                .padding(.horizontal, AppThemeV2.Spacing.md)
+                .padding(.vertical, AppThemeV2.Spacing.sm)
+                .background(
+                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                        .fill(isSelected ? AppThemeV2.Colors.amber : (isHovered ? AppThemeV2.Colors.amberSubtle : AppThemeV2.Colors.stone700))
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                        .stroke(isSelected ? AppThemeV2.Colors.amberLight : (isHovered ? AppThemeV2.Colors.amber.opacity(0.5) : Color.clear), lineWidth: 1)
+                )
+        }
+        .buttonStyle(.plain)
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
+        }
+        .shadow(
+            color: isSelected ? AppThemeV2.Colors.amberGlow : .clear,
+            radius: isSelected ? 8 : 0
+        )
+    }
+}
+
+// MARK: - Wizard Setup View
+
 struct WizardSetupView: View {
     @ObservedObject var coordinator: WizardCoordinator
     @State private var availableInputPorts: [String] = []
@@ -47,8 +87,8 @@ struct WizardSetupView: View {
             }
             formRow(label: "Number of Channels") {
                 HStack(spacing: AppThemeV2.Spacing.sm) {
-                    channelButton(count: 2)
-                    channelButton(count: 4)
+                    ChannelButton(count: 2, isSelected: coordinator.setupConfig.numberOfChannels == 2, action: { coordinator.setupConfig.numberOfChannels = 2 })
+                    ChannelButton(count: 4, isSelected: coordinator.setupConfig.numberOfChannels == 4, action: { coordinator.setupConfig.numberOfChannels = 4 })
                     Spacer()
                 }
             }
@@ -96,23 +136,6 @@ struct WizardSetupView: View {
                 .foregroundColor(AppThemeV2.Colors.stone500)
             content()
         }
-    }
-
-    private func channelButton(count: Int) -> some View {
-        Button {
-            coordinator.setupConfig.numberOfChannels = count
-        } label: {
-            Text("\(count) Channels")
-                .font(AppThemeV2.Typography.body)
-                .foregroundColor(coordinator.setupConfig.numberOfChannels == count ? AppThemeV2.Colors.stone900 : AppThemeV2.Colors.stone400)
-                .padding(.horizontal, AppThemeV2.Spacing.md)
-                .padding(.vertical, AppThemeV2.Spacing.sm)
-                .background(
-                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                        .fill(coordinator.setupConfig.numberOfChannels == count ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone700)
-                )
-        }
-        .buttonStyle(.plain)
     }
 
     private var buttonSection: some View {

@@ -181,24 +181,54 @@ struct WizardPrimaryButton: View {
 struct WizardSecondaryButton: View {
     let title: String
     let action: () -> Void
+    var isHighlighted: Bool = false
+
+    @State private var isHovered = false
+
+    private var foregroundColor: Color {
+        if isHighlighted { return AppThemeV2.Colors.stone900 }
+        if isHovered { return AppThemeV2.Colors.amber }
+        return AppThemeV2.Colors.stone400
+    }
+
+    private var backgroundColor: Color {
+        if isHighlighted { return AppThemeV2.Colors.amber }
+        if isHovered { return AppThemeV2.Colors.amberSubtle }
+        return AppThemeV2.Colors.stone700
+    }
+
+    private var borderColor: Color {
+        if isHighlighted { return AppThemeV2.Colors.amberLight }
+        if isHovered { return AppThemeV2.Colors.amber.opacity(0.5) }
+        return AppThemeV2.Colors.stone600
+    }
 
     var body: some View {
         Button(action: action) {
             Text(title.uppercased())
                 .font(AppThemeV2.Typography.micro)
                 .tracking(0.5)
-                .foregroundColor(AppThemeV2.Colors.stone400)
+                .foregroundColor(foregroundColor)
                 .padding(.horizontal, AppThemeV2.Spacing.md)
                 .padding(.vertical, AppThemeV2.Spacing.sm)
                 .background(
                     RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                        .fill(AppThemeV2.Colors.stone700)
+                        .fill(backgroundColor)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                        .stroke(AppThemeV2.Colors.stone600, lineWidth: 1)
+                        .stroke(borderColor, lineWidth: 1)
                 )
         }
         .buttonStyle(.plain)
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
+        }
+        .shadow(
+            color: isHighlighted ? AppThemeV2.Colors.amberGlow : .clear,
+            radius: isHighlighted ? 8 : 0
+        )
     }
 }
