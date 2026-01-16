@@ -26,6 +26,10 @@ struct WizardLearningView: View {
                     .font(AppThemeV2.Typography.display)
                     .foregroundColor(AppThemeV2.Colors.stone200)
                 Spacer()
+                Toggle("Auto-advance", isOn: $coordinator.autoAdvanceEnabled)
+                    .toggleStyle(.switch)
+                    .font(AppThemeV2.Typography.caption)
+                    .foregroundColor(AppThemeV2.Colors.stone400)
                 ModeToggle(isBasicMode: $coordinator.isBasicMode)
             }
             .padding(AppThemeV2.Spacing.md)
@@ -145,7 +149,15 @@ struct WizardLearningView: View {
                 Spacer()
                 HStack(spacing: AppThemeV2.Spacing.sm) {
                     WizardSecondaryButton(title: "Skip") { coordinator.skip() }
-                    WizardSecondaryButton(title: "Next", action: { coordinator.next() }, isHighlighted: !coordinator.isAtLastStep)
+                    WizardSecondaryButton(
+                        title: "Next",
+                        action: {
+                            coordinator.cancelAutoAdvance()
+                            coordinator.next()
+                        },
+                        isHighlighted: !coordinator.isAtLastStep,
+                        isPulsing: coordinator.autoAdvanceCountdown > 0
+                    )
                         .keyboardShortcut(.rightArrow, modifiers: [])
                     WizardPrimaryButton(title: "Save & Finish", action: { coordinator.saveToDocument() }, isEnabled: !coordinator.capturedMappings.isEmpty, isHighlighted: coordinator.isAtLastStep)
                         .keyboardShortcut(.return, modifiers: [.command])
