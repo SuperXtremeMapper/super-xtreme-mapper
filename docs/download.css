@@ -79,21 +79,25 @@
 }
 
 /* --------------------------------------------------------------------------
-   Primary Download Section
+   Download Split Layout
    -------------------------------------------------------------------------- */
-.download-primary {
-    margin-bottom: var(--space-2xl);
+.download-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    max-width: 900px;
+    margin: 0 auto var(--space-3xl);
     animation: fadeInUp 0.6s ease-out;
 }
 
 .download-box {
-    max-width: 500px;
-    margin: 0 auto;
     padding: var(--space-2xl);
     background: var(--color-stone-800);
     border: 1px solid var(--color-stone-700);
     border-radius: var(--radius-xl);
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .download-box-header {
@@ -124,9 +128,7 @@
 
 .download-box-version {
     display: block;
-    font-size: 0.875rem;
-    color: var(--color-amber);
-    font-weight: 500;
+    margin-top: var(--space-xs);
 }
 
 .btn-download-main {
@@ -181,12 +183,12 @@
 .source-link {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: var(--space-sm);
-    margin-top: var(--space-lg);
-    padding: var(--space-sm) var(--space-md);
+    margin-top: auto;
+    padding-top: var(--space-lg);
     color: var(--color-stone-500);
     font-size: 0.875rem;
-    border-radius: var(--radius-sm);
     transition: all var(--transition-fast);
 }
 
@@ -197,63 +199,68 @@
 
 .source-link:hover {
     color: var(--color-stone-200);
-    background: var(--color-stone-700);
 }
 
-/* --------------------------------------------------------------------------
-   Warning Banner
-   -------------------------------------------------------------------------- */
-.warning-banner {
-    display: flex;
-    align-items: center;
-    gap: var(--space-lg);
-    max-width: 700px;
-    margin: 0 auto var(--space-3xl);
-    padding: var(--space-lg) var(--space-xl);
+/* Warning Box */
+.warning-box {
+    padding: var(--space-2xl);
     background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), rgba(239, 68, 68, 0.02));
     border: 1px solid rgba(239, 68, 68, 0.2);
-    border-radius: var(--radius-lg);
-    animation: fadeInUp 0.6s ease-out 0.1s both;
+    border-radius: var(--radius-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-.warning-banner-icon {
-    flex-shrink: 0;
-    width: 44px;
-    height: 44px;
+.warning-box-icon {
+    width: 56px;
+    height: 56px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: rgba(239, 68, 68, 0.15);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     color: var(--color-danger);
+    margin-bottom: var(--space-lg);
 }
 
-.warning-banner-icon svg {
-    width: 24px;
-    height: 24px;
+.warning-box-icon svg {
+    width: 28px;
+    height: 28px;
 }
 
-.warning-banner-content {
-    flex: 1;
-}
-
-.warning-banner-title {
+.warning-box-title {
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: 1.25rem;
     color: var(--color-danger);
     letter-spacing: 0.05em;
-    margin-bottom: var(--space-xs);
+    margin-bottom: var(--space-md);
 }
 
-.warning-banner-text {
+.warning-box-text {
     font-size: 0.9375rem;
     color: var(--color-stone-400);
-    line-height: 1.5;
-    margin: 0;
+    line-height: 1.6;
+    margin: 0 0 var(--space-sm);
 }
 
-.warning-banner-text strong {
+.warning-box-text:last-child {
+    margin-bottom: 0;
+}
+
+.warning-box-text strong {
     color: var(--color-stone-200);
+}
+
+.warning-box-text a {
+    color: var(--color-amber);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.warning-box-text a:hover {
+    color: var(--color-amber-light);
 }
 
 /* --------------------------------------------------------------------------
@@ -619,9 +626,8 @@
         padding: calc(var(--space-3xl) + 60px) var(--space-md) var(--space-xl);
     }
 
-    .warning-banner {
-        flex-direction: column;
-        text-align: center;
+    .download-split {
+        grid-template-columns: 1fr;
     }
 
     .install-alt {
