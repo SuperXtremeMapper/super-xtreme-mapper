@@ -624,7 +624,8 @@ struct V2ActionBarFull: View {
                         icon: "mic.fill",
                         label: "Voice",
                         action: toggle,
-                        isActive: coordinator.isActive
+                        isActive: coordinator.isActive,
+                        minWidth: 70
                     )
                     .help("Voice Learn - Speak commands to create mappings")
                 }
@@ -634,7 +635,8 @@ struct V2ActionBarFull: View {
                     V2ToolbarButton(
                         icon: "wand.and.stars",
                         label: "Wizard",
-                        action: wizardAction
+                        action: wizardAction,
+                        minWidth: 70
                     )
                     .help("Mapping Wizard - Guided setup for your controller")
                 }

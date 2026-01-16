@@ -14,6 +14,7 @@ struct V2ToolbarButton: View {
     let action: () -> Void
     var isActive: Bool = false
     var isDestructive: Bool = false
+    var minWidth: CGFloat? = nil
 
     @State private var isHovered = false
 
@@ -32,6 +33,7 @@ struct V2ToolbarButton: View {
             .foregroundColor(foregroundColor)
             .padding(.horizontal, AppThemeV2.Spacing.sm)
             .padding(.vertical, AppThemeV2.Spacing.xs + 2)
+            .frame(minWidth: minWidth)
             .background(
                 RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
                     .fill(backgroundColor)
