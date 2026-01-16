@@ -608,7 +608,7 @@ struct V2ActionBarFull: View {
     var body: some View {
         HStack(spacing: AppThemeV2.Spacing.md) {
             // Left side - Add buttons with command menus (labeled style)
-            HStack(spacing: AppThemeV2.Spacing.xs) {
+            HStack(spacing: 2) {
                 V2AddCommandMenuButton(icon: "arrow.down", label: "IN", tooltip: "Add Input Mapping", isDisabled: isLocked) { onAddInput($0) }
                 V2AddCommandMenuButton(icon: "arrow.up", label: "OUT", tooltip: "Add Output Mapping", isDisabled: isLocked) { onAddOutput($0) }
                 V2AddCommandMenuButton(icon: "arrow.up.arrow.down", label: "IN/OUT", tooltip: "Add Input/Output Pair", isDisabled: isLocked) { onAddInOut($0) }
@@ -815,8 +815,8 @@ struct V2AddCommandMenuButton: View {
             visualButton
             transparentMenu
         }
-        .frame(minWidth: 56)
         .fixedSize()
+        .contentShape(Rectangle())  // Make entire ZStack clickable
         .onHover { hovering in
             withAnimation(.easeInOut(duration: 0.15)) {
                 isHovered = hovering
@@ -857,7 +857,7 @@ struct V2AddCommandMenuButton: View {
             }
         } label: {
             Color.clear
-                .frame(minWidth: 56, minHeight: 28)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)  // Fill the ZStack
                 .contentShape(Rectangle())
         }
         .menuStyle(.borderlessButton)

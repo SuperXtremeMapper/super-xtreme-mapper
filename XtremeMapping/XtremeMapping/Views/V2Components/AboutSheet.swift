@@ -104,6 +104,45 @@ struct AboutSheet: View {
                 Divider()
                     .background(AppThemeV2.Colors.stone700)
 
+                // Support section
+                VStack(spacing: 12) {
+                    Text("Support Development")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(AppThemeV2.Colors.stone200)
+
+                    HStack(spacing: 16) {
+                        Button {
+                            if let url = URL(string: "https://github.com/sponsors/nraford7") {
+                                NSWorkspace.shared.open(url)
+                            }
+                        } label: {
+                            HStack(spacing: 6) {
+                                Image(systemName: "heart.fill")
+                                Text("GitHub Sponsors")
+                            }
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(AppThemeV2.Colors.stone600)
+
+                        Button {
+                            if let url = URL(string: "https://ko-fi.com/superxtrememapper") {
+                                NSWorkspace.shared.open(url)
+                            }
+                        } label: {
+                            HStack(spacing: 6) {
+                                Image(systemName: "cup.and.saucer.fill")
+                                Text("Buy Me a Coffee")
+                            }
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(AppThemeV2.Colors.stone600)
+                    }
+                }
+
+                Divider()
+                    .background(AppThemeV2.Colors.stone700)
+
                 // Trademark disclaimer
                 Text("Traktor is a registered trademark of Native Instruments GmbH. Its use does not imply affiliation with or endorsement by the trademark owner.")
                     .font(.caption2)
