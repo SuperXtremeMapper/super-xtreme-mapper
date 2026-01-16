@@ -1746,7 +1746,6 @@ img {
    Community & Support Section
    -------------------------------------------------------------------------- */
 .support-banner {
-    max-width: 800px;
     margin: 0 auto var(--space-2xl);
     padding: var(--space-xl) var(--space-2xl);
     background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(245, 158, 11, 0.02));
