@@ -145,9 +145,9 @@ struct WizardLearningView: View {
                 Spacer()
                 HStack(spacing: AppThemeV2.Spacing.sm) {
                     WizardSecondaryButton(title: "Skip") { coordinator.skip() }
-                    WizardSecondaryButton(title: "Next") { coordinator.next() }
+                    WizardSecondaryButton(title: "Next", action: { coordinator.next() }, isHighlighted: !coordinator.isAtLastStep)
                         .keyboardShortcut(.rightArrow, modifiers: [])
-                    WizardPrimaryButton(title: "Save & Finish", action: { coordinator.saveToDocument() }, isEnabled: !coordinator.capturedMappings.isEmpty)
+                    WizardPrimaryButton(title: "Save & Finish", action: { coordinator.saveToDocument() }, isEnabled: !coordinator.capturedMappings.isEmpty, isHighlighted: coordinator.isAtLastStep)
                         .keyboardShortcut(.return, modifiers: [.command])
                 }
             }

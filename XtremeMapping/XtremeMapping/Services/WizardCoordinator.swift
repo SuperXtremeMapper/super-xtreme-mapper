@@ -93,6 +93,21 @@ final class WizardCoordinator: ObservableObject {
         return totalSteps > 0 ? Double(completedSteps) / Double(totalSteps) : 0
     }
 
+    /// Whether we're at the last function of the last tab
+    var isAtLastStep: Bool {
+        let allTabs = WizardTab.allCases
+        guard let currentTabIndex = allTabs.firstIndex(of: currentTab) else { return false }
+
+        // Must be on last tab
+        guard currentTabIndex == allTabs.count - 1 else { return false }
+
+        // Must be on last function
+        guard currentFunctionIndex >= currentFunctions.count - 1 else { return false }
+
+        // Must be on last assignment
+        return currentAssignmentIndex >= currentAssignments.count - 1
+    }
+
     func isCaptured(function: WizardFunction, assignment: TargetAssignment) -> Bool {
         capturedMappings.contains { $0.function.id == function.id && $0.assignment == assignment }
     }

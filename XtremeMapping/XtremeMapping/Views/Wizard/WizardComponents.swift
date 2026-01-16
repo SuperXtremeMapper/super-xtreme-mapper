@@ -158,6 +158,7 @@ struct WizardPrimaryButton: View {
     let title: String
     let action: () -> Void
     var isEnabled: Bool = true
+    var isHighlighted: Bool = false
 
     var body: some View {
         Button(action: action) {
@@ -175,6 +176,10 @@ struct WizardPrimaryButton: View {
         }
         .buttonStyle(.plain)
         .disabled(!isEnabled)
+        .shadow(
+            color: isHighlighted && isEnabled ? AppThemeV2.Colors.amberGlow : .clear,
+            radius: isHighlighted && isEnabled ? 8 : 0
+        )
     }
 }
 
