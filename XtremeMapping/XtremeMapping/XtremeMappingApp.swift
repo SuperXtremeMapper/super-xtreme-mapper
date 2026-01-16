@@ -91,6 +91,30 @@ struct XtremeMappingApp: App {
 
             // Help menu with feedback and about
             CommandGroup(replacing: .help) {
+                Button("Super Xtreme Mapper Help") {
+                    if let url = URL(string: "https://superxtrememapper.github.io/super-xtreme-mapper/") {
+                        NSWorkspace.shared.open(url)
+                    }
+                }
+
+                Divider()
+
+                Menu("Support SXM") {
+                    Button("GitHub Sponsors") {
+                        if let url = URL(string: "https://github.com/sponsors/SuperXtremeMapper") {
+                            NSWorkspace.shared.open(url)
+                        }
+                    }
+
+                    Button("Buy Me a Coffee") {
+                        if let url = URL(string: "https://ko-fi.com/superxtrememapper") {
+                            NSWorkspace.shared.open(url)
+                        }
+                    }
+                }
+
+                Divider()
+
                 Button("Bug Report / Feedback") {
                     let subject = "Super Xtreme Mapper Feedback"
                     let email = "sxtrememapper@proton.me"
