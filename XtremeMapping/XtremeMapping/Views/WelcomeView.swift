@@ -11,6 +11,7 @@ import SwiftUI
 struct WelcomeView: View {
     var onNewMapping: () -> Void
     var onOpenMapping: () -> Void
+    var onWizard: () -> Void
 
     var body: some View {
         VStack(spacing: 0) {
@@ -90,10 +91,9 @@ struct WelcomeView: View {
 
                 WelcomeButton(
                     title: "Mapping Wizard",
-                    subtitle: "Coming soon...",
+                    subtitle: "Voice or guided controller setup",
                     icon: "wand.and.stars",
-                    isDisabled: true,
-                    action: {}
+                    action: onWizard
                 )
             }
             .padding(.horizontal, 32)
@@ -191,6 +191,7 @@ struct WelcomeButton: View {
 #Preview {
     WelcomeView(
         onNewMapping: {},
-        onOpenMapping: {}
+        onOpenMapping: {},
+        onWizard: {}
     )
 }

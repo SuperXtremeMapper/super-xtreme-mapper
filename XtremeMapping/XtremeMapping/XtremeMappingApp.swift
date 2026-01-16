@@ -18,6 +18,7 @@ class WelcomeWindowState: ObservableObject {
 /// Wrapper to give WelcomeView access to dismissWindow environment
 struct WelcomeWindowContent: View {
     @Environment(\.dismissWindow) private var dismissWindow
+    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         WelcomeView(
@@ -28,6 +29,10 @@ struct WelcomeWindowContent: View {
             onOpenMapping: {
                 // Just trigger open - AppDelegate handles closing welcome when doc window appears
                 NSDocumentController.shared.openDocument(nil)
+            },
+            onWizard: {
+                dismissWindow(id: "welcome")
+                openWindow(id: "modeSelection")
             }
         )
     }
