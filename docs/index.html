@@ -86,10 +86,10 @@ Super Xtreme Mapper<!DOCTYPE html>
             </div>
             <div class="overview-grid">
                 <div class="overview-text">
-                    <p class="lead">Super Xtreme Mapper is a native macOS application for creating and editing Traktor Pro TSI mapping files.</p>
-		<p>Inspired by the much loved, long dead, <a href=https://www.xtrememapping.com/>Xtreme Mapping,</a> we rebuilt everything from the ground up.</p>                                   
- <p>Whether you're building custom controller mappings from scratch, tweaking existing setups, or diving deep into modifier logic, SXM gives you a clean, modern interface to work with Traktor's powerful but notoriously opaque mapping system.</p>
-                    <p>No more hunting through endless menu trees or fighting with Traktor's built-in controller manager. Just open your TSI, see everything at a glance, and make your changes.</p>
+                    <p class="lead">Super Xtreme Mapper is the only native macOS application for creating and editing Traktor Pro TSI mapping files.</p>
+		<p>Inspired by the much loved, long dead, <a href=https://www.xtrememapping.com/>Xtreme Mapping,</a> we built everything new from the ground up... the way we always wanted it to be.</p>                                   
+ <p>Whether you're building custom  mappings from scratch, tweaking existing setups, or diving deep into modifier logic, SXM gives you a clean, modern interface that works with Traktor's powerful but notoriously opaque mapping system.</p>
+                    <p>No more hunting through endless menu trees. Just open your TSI, see everything at a glance, and make your changes - in bulk, individually, by voice, or by wizard.</p>
 </div>
                 <div class="overview-visual">
                     <div class="app-preview">
@@ -158,7 +158,7 @@ Super Xtreme Mapper<!DOCTYPE html>
             <div class="backstory-content">
                 <div class="quote-mark">"</div>
                 <p class="backstory-text">
-                    We used to love <a href=https://www.xtrememapping.com/>Xtreme Mapping</a>. It was the only decent TSI editor out there for Mac. It made creating custom Traktor mappings almost enjoyable. <br> <br> Then Apple Silicon happened, and Xtreme Mapping stopped working. Our attempts to contact the original author were met with silence. After years of waiting and hoping, we decided to build it ourselves. <br> <br> Using <strong>Claude Code</strong>, we <b>reverse-engineered</b> a <b>completely new TSI editor</b> from a combination of <b>Xtreme Mapping screenshots</b>, the <a href="https://cmdr-editor.github.io/cmdr/" target="_blank">CMDR editor</a> source code (thank you, cmdr-editor team!), and <a href="https://github.com/ivanz" target="_blank">IvanZ's</a> invaluable TSI format research. The result is Super Xtreme Mapping: a love letter to the original, rebuilt from the ground up for modern Macs.
+                    We used to love <a href=https://www.xtrememapping.com/>Xtreme Mapping</a>. It was the only decent TSI editor out there for Mac. It made creating custom Traktor mappings almost fun. <br> <br> Then Apple Silicon happened and Xtreme Mapping stopped working. Our attempts to contact the original author were met with silence. After years of waiting and hoping, we decided to build it ourselves, but updated for 2026. <br> <br> Using <strong>Claude Code</strong>, we <b>reverse-engineered</b> a <b>completely new TSI editor</b> from a combination of <b>Xtreme Mapping screenshots</b>, the <a href="https://cmdr-editor.github.io/cmdr/" target="_blank">CMDR editor</a> source code (thank you, cmdr-editor team!), and <a href="https://github.com/ivanz" target="_blank">IvanZ's</a> invaluable TSI format research. The result is Super Xtreme Mapping: a love letter to the original, rebuilt from the ground up for modern Macs, doing it the way nothing else can.
                 </p>
                 <div class="backstory-signature">
                     <span class="signature-dash">—</span>
@@ -227,6 +227,53 @@ Super Xtreme Mapper<!DOCTYPE html>
                                     <span class="result-label">Creating Mapping</span>
                                     <span class="result-value">Play/Pause → Deck A → CC 20</span>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 0.5: Guided Mapping Wizard -->
+            <div class="feature-row feature-highlight reverse">
+                <div class="feature-info">
+                    <div class="feature-icon feature-icon-new">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 12l2 2 4-4"/>
+                            <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c1.66 0 3.21.45 4.54 1.23"/>
+                            <path d="M15 3l3 3-3 3"/>
+                        </svg>
+                        <span class="new-badge">NEW</span>
+                    </div>
+                    <h3 class="feature-title">Guided Mapping Wizard</h3>
+                    <p class="feature-desc">No MIDI knowledge? No problem. The wizard walks you through every step — just pick what you want to control, move your knob or button, and you're done. <strong>Fast. Easy. Flawless.</strong></p>
+                    <p class="feature-note">Perfect for beginners or anyone who wants quick, reliable mappings without the learning curve.</p>
+                </div>
+                <div class="feature-mockup">
+                    <div class="mockup-window">
+                        <div class="mockup-header">
+                            <div class="window-dots"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+                            <span class="window-title-text">Guided Setup</span>
+                        </div>
+                        <div class="mockup-content mockup-wizard">
+                            <div class="wizard-progress">
+                                <div class="wizard-step completed"><span class="step-num">1</span><span class="step-name">Function</span></div>
+                                <div class="wizard-connector done"></div>
+                                <div class="wizard-step completed"><span class="step-num">2</span><span class="step-name">Target</span></div>
+                                <div class="wizard-connector done"></div>
+                                <div class="wizard-step active"><span class="step-num">3</span><span class="step-name">MIDI</span></div>
+                                <div class="wizard-connector"></div>
+                                <div class="wizard-step"><span class="step-num">4</span><span class="step-name">Done</span></div>
+                            </div>
+                            <div class="wizard-current">
+                                <div class="wizard-instruction">Move a control on your MIDI device</div>
+                                <div class="wizard-midi-detect">
+                                    <div class="midi-pulse"></div>
+                                    <span class="midi-waiting">Waiting for MIDI...</span>
+                                </div>
+                            </div>
+                            <div class="wizard-summary">
+                                <div class="summary-row"><span class="summary-label">Function:</span><span class="summary-value">Play / Pause</span></div>
+                                <div class="summary-row"><span class="summary-label">Target:</span><span class="summary-value">Deck A</span></div>
                             </div>
                         </div>
                     </div>

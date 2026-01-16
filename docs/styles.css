@@ -1388,6 +1388,158 @@ img {
     font-weight: 500;
 }
 
+/* Guided Wizard Mockup */
+.mockup-wizard {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.wizard-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: var(--space-sm) 0;
+}
+
+.wizard-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.wizard-step .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-stone-700);
+    border: 2px solid var(--color-stone-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-stone-400);
+    transition: all 0.3s ease;
+}
+
+.wizard-step .step-name {
+    font-size: 0.6rem;
+    color: var(--color-stone-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.wizard-step.completed .step-num {
+    background: var(--color-success);
+    border-color: var(--color-success);
+    color: white;
+}
+
+.wizard-step.completed .step-name {
+    color: var(--color-success);
+}
+
+.wizard-step.active .step-num {
+    background: var(--color-amber);
+    border-color: var(--color-amber);
+    color: var(--color-stone-900);
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+}
+
+.wizard-step.active .step-name {
+    color: var(--color-amber);
+    font-weight: 600;
+}
+
+.wizard-connector {
+    width: 24px;
+    height: 2px;
+    background: var(--color-stone-700);
+    margin: 0 4px;
+    margin-bottom: 18px;
+}
+
+.wizard-connector.done {
+    background: var(--color-success);
+}
+
+.wizard-current {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), transparent);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.wizard-instruction {
+    font-size: 0.9rem;
+    color: var(--color-stone-200);
+    text-align: center;
+    font-weight: 500;
+}
+
+.wizard-midi-detect {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.midi-pulse {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-amber);
+    animation: midiPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes midiPulse {
+    0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.5); }
+    50% { transform: scale(1.1); opacity: 0.8; box-shadow: 0 0 12px 4px rgba(245, 158, 11, 0.3); }
+}
+
+.midi-waiting {
+    font-size: 0.75rem;
+    color: var(--color-amber);
+    font-family: var(--font-mono);
+    letter-spacing: 0.02em;
+}
+
+.wizard-summary {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-stone-800);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--color-success);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+}
+
+.summary-label {
+    color: var(--color-stone-500);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: 0.65rem;
+}
+
+.summary-value {
+    color: var(--color-stone-200);
+    font-weight: 500;
+}
+
 /* --------------------------------------------------------------------------
    Beta Warning Section
    -------------------------------------------------------------------------- */
