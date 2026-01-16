@@ -61,6 +61,12 @@ struct WizardSetupView: View {
         }
         .padding(AppThemeV2.Spacing.lg)
         .onAppear { loadMIDIPorts() }
+        .onChange(of: coordinator.setupConfig.inputPort) { _, newInput in
+            // Auto-sync output port to match input port if available
+            if availableOutputPorts.contains(newInput) {
+                coordinator.setupConfig.outputPort = newInput
+            }
+        }
     }
 
     private var headerSection: some View {
@@ -163,8 +169,14 @@ struct WizardSetupView: View {
         }
         availableInputPorts = inputPorts
         availableOutputPorts = outputPorts
+
+        // Default input port to first available
         if coordinator.setupConfig.inputPort.isEmpty, let first = inputPorts.first {
             coordinator.setupConfig.inputPort = first
+            // Also default output port to same device if available
+            if outputPorts.contains(first) {
+                coordinator.setupConfig.outputPort = first
+            }
         }
     }
 

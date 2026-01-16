@@ -58,7 +58,7 @@ struct AboutSheet: View {
                     .foregroundColor(AppThemeV2.Colors.stone400)
 
                 VStack(alignment: .leading, spacing: AppThemeV2.Spacing.xs) {
-                    creditRow(title: "Original Xtreme Mapping", name: "Vincenzo Pietropaolo")
+                    creditRow(title: "Xtreme Mapping (inspiration)", name: "Vincenzo Pietropaolo", link: "https://www.xtrememapping.com/")
                     creditRow(title: "TSI Research", name: "IvanZ", link: "https://github.com/ivanz")
                     creditRow(title: "CMDR Editor", name: "cmdr-editor", link: "https://cmdr-editor.github.io/cmdr/")
                 }
@@ -133,23 +133,7 @@ struct AboutSheet: View {
                     }
                     .buttonStyle(.plain)
 
-                    Button(action: { openURL(URL(string: "https://ko-fi.com/superxtrememapper")!) }) {
-                        HStack(spacing: AppThemeV2.Spacing.xs) {
-                            Image(systemName: "cup.and.saucer.fill")
-                                .font(.system(size: 10))
-                            Text("KO-FI")
-                                .font(AppThemeV2.Typography.micro)
-                                .tracking(0.5)
-                        }
-                        .foregroundColor(AppThemeV2.Colors.stone200)
-                        .padding(.horizontal, AppThemeV2.Spacing.md)
-                        .padding(.vertical, AppThemeV2.Spacing.sm)
-                        .background(
-                            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                                .fill(AppThemeV2.Colors.stone700)
-                        )
-                    }
-                    .buttonStyle(.plain)
+                    CoffeeButton(openURL: openURL)
                 }
             }
 
@@ -186,7 +170,7 @@ struct AboutSheet: View {
             }
         }
         .padding(AppThemeV2.Spacing.xl)
-        .frame(width: 400, height: 520)
+        .frame(width: 460, height: 600)
         .background(AppThemeV2.Colors.stone800)
         .preferredColorScheme(.dark)
     }
@@ -221,6 +205,46 @@ struct AboutSheet: View {
         if let url = URL(string: "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? subject)") {
             NSWorkspace.shared.open(url)
         }
+    }
+}
+
+// MARK: - Coffee Button with Hover Glow
+
+struct CoffeeButton: View {
+    let openURL: OpenURLAction
+    @State private var isHovered = false
+
+    var body: some View {
+        Button(action: { openURL(URL(string: "https://ko-fi.com/superxtrememapper")!) }) {
+            HStack(spacing: AppThemeV2.Spacing.xs) {
+                Image(systemName: "cup.and.saucer.fill")
+                    .font(.system(size: 10))
+                Text("BUY US A COFFEE")
+                    .font(AppThemeV2.Typography.micro)
+                    .tracking(0.5)
+            }
+            .foregroundColor(isHovered ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone200)
+            .padding(.horizontal, AppThemeV2.Spacing.md)
+            .padding(.vertical, AppThemeV2.Spacing.sm)
+            .background(
+                RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                    .fill(isHovered ? AppThemeV2.Colors.amberSubtle : AppThemeV2.Colors.stone700)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                    .stroke(isHovered ? AppThemeV2.Colors.amber.opacity(0.5) : Color.clear, lineWidth: 1)
+            )
+        }
+        .buttonStyle(.plain)
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.15)) {
+                isHovered = hovering
+            }
+        }
+        .shadow(
+            color: isHovered ? AppThemeV2.Colors.amberGlow : .clear,
+            radius: isHovered ? 8 : 0
+        )
     }
 }
 

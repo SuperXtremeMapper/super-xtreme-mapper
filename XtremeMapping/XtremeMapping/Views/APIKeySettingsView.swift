@@ -243,23 +243,7 @@ struct APIKeySettingsView: View {
                     }
                     .buttonStyle(.plain)
 
-                    Button(action: { openURL(URL(string: "https://ko-fi.com/superxtrememapper")!) }) {
-                        HStack(spacing: AppThemeV2.Spacing.xs) {
-                            Image(systemName: "cup.and.saucer.fill")
-                                .font(.system(size: 10))
-                            Text("KO-FI")
-                                .font(AppThemeV2.Typography.micro)
-                                .tracking(0.5)
-                        }
-                        .foregroundColor(AppThemeV2.Colors.stone200)
-                        .padding(.horizontal, AppThemeV2.Spacing.md)
-                        .padding(.vertical, AppThemeV2.Spacing.sm)
-                        .background(
-                            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                                .fill(AppThemeV2.Colors.stone700)
-                        )
-                    }
-                    .buttonStyle(.plain)
+                    CoffeeButton(openURL: openURL)
                 }
             }
 
