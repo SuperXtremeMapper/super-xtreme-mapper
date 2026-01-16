@@ -228,6 +228,19 @@ struct ContentView: View {
             guard let mapping = voiceCoordinator.savedMapping else { return }
             addVoiceMapping(midi: mapping.midi, result: mapping.result)
         }
+        // Handle mode activation from welcome screen
+        .onReceive(NotificationCenter.default.publisher(for: .activateVoiceMode)) { _ in
+            // Delay to ensure document is ready
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                toggleVoiceLearn()
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .activateWizardMode)) { _ in
+            // Delay to ensure document is ready
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                openWindow(id: "wizard")
+            }
+        }
     }
 
     // MARK: - Voice Learn
