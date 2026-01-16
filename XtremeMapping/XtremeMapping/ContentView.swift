@@ -12,6 +12,7 @@ struct ContentView: View {
     @ObservedObject var document: TraktorMappingDocument
     let fileURL: URL?
     @Environment(\.undoManager) var undoManager
+    @Environment(\.openWindow) private var openWindow
     @State private var selectedMappings: Set<MappingEntry.ID> = []
     @State private var categoryFilter: CommandCategory = .all
     @State private var ioFilter: IODirection = .all
@@ -79,7 +80,8 @@ struct ContentView: View {
                 onAbout: { activeSheet = .about },
                 onSettings: { activeSheet = .settings },
                 voiceCoordinator: voiceCoordinator,
-                onVoiceToggle: toggleVoiceLearn
+                onVoiceToggle: toggleVoiceLearn,
+                onWizard: { openWindow(id: "wizard") }
             )
 
             // Main content
@@ -587,6 +589,7 @@ struct V2ActionBarFull: View {
     var onSettings: () -> Void
     var voiceCoordinator: VoiceMappingCoordinator?
     var onVoiceToggle: (() -> Void)?
+    var onWizard: (() -> Void)?
 
     var body: some View {
         HStack(spacing: AppThemeV2.Spacing.md) {
@@ -610,6 +613,16 @@ struct V2ActionBarFull: View {
                         isActive: coordinator.isActive
                     )
                     .help("Voice Learn - Speak commands to create mappings")
+                }
+
+                // Wizard button
+                if let wizardAction = onWizard {
+                    V2ToolbarButton(
+                        icon: "wand.and.stars",
+                        label: "Wizard",
+                        action: wizardAction
+                    )
+                    .help("Mapping Wizard - Guided setup for your controller")
                 }
             }
 
