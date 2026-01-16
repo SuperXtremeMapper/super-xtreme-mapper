@@ -98,11 +98,20 @@ struct MappingWizardWindowContent: View {
     var body: some View {
         MappingWizardWindow(coordinator: coordinator)
             .onAppear {
-                // Get the current document from NSDocumentController
+                // Get the current document - try multiple sources
                 if let doc = NSDocumentController.shared.currentDocument as? TraktorMappingDocument {
                     coordinator.start(document: doc)
                 } else if let frontDoc = NSDocumentController.shared.documents.first as? TraktorMappingDocument {
                     coordinator.start(document: frontDoc)
+                } else {
+                    // Delay and retry - document may not be registered yet
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        if let doc = NSDocumentController.shared.documents.first as? TraktorMappingDocument {
+                            coordinator.start(document: doc)
+                        } else {
+                            coordinator.statusMessage = "Error: Please open a document first"
+                        }
+                    }
                 }
             }
     }

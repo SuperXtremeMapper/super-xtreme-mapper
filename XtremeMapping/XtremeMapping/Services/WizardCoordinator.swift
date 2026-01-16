@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import AppKit
 
 /// Phases of the wizard workflow
 enum WizardPhase {
@@ -48,7 +49,7 @@ final class WizardCoordinator: ObservableObject {
     // MARK: - Dependencies
 
     private let midiManager: MIDIInputManager
-    private weak var document: TraktorMappingDocument?
+    private var document: TraktorMappingDocument?
 
     // MARK: - Computed Properties
 
@@ -221,8 +222,15 @@ final class WizardCoordinator: ObservableObject {
     }
 
     func saveToDocument() {
+        // Try to recover document reference if lost
+        if document == nil {
+            if let doc = NSDocumentController.shared.documents.first as? TraktorMappingDocument {
+                self.document = doc
+            }
+        }
+
         guard let document = document else {
-            statusMessage = "Error: No document reference"
+            statusMessage = "Error: No document reference. Please save your work and reopen the wizard."
             return
         }
         let existingCommands = Set(document.mappingFile.allMappings.map { $0.commandName })
