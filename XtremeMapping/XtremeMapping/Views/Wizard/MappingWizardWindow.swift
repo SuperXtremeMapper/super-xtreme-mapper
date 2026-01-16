@@ -94,13 +94,15 @@ struct MappingWizardWindow: View {
 /// Wrapper that creates the coordinator and passes document
 struct MappingWizardWindowContent: View {
     @StateObject private var coordinator = WizardCoordinator()
-    @FocusedObject var document: TraktorMappingDocument?
 
     var body: some View {
         MappingWizardWindow(coordinator: coordinator)
             .onAppear {
-                if let doc = document {
+                // Get the current document from NSDocumentController
+                if let doc = NSDocumentController.shared.currentDocument as? TraktorMappingDocument {
                     coordinator.start(document: doc)
+                } else if let frontDoc = NSDocumentController.shared.documents.first as? TraktorMappingDocument {
+                    coordinator.start(document: frontDoc)
                 }
             }
     }
