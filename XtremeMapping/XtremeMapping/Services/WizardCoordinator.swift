@@ -33,6 +33,8 @@ final class WizardCoordinator: ObservableObject {
     @Published private(set) var isListening: Bool = false
     @Published var showOverwriteAlert: Bool = false
     @Published var conflictingCommands: [String] = []
+    /// Set to true when wizard should close
+    @Published var shouldDismiss = false
 
     // MARK: - Dependencies
 
@@ -239,6 +241,7 @@ final class WizardCoordinator: ObservableObject {
         phase = .setup
         capturedMappings = []
         pendingMIDI = nil
+        shouldDismiss = true  // Signal window to close
     }
 
     func reset() {

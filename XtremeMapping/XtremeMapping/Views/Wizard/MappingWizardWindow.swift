@@ -43,6 +43,12 @@ struct MappingWizardWindow: View {
                 dismiss()
             }
         }
+        .onChange(of: coordinator.shouldDismiss) { _, shouldDismiss in
+            if shouldDismiss {
+                coordinator.shouldDismiss = false
+                dismiss()
+            }
+        }
     }
 
     // MARK: - Complete View
