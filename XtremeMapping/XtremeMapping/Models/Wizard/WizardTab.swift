@@ -7,6 +7,7 @@ import Foundation
 
 /// Wizard tab sections with their associated functions
 enum WizardTab: String, CaseIterable, Identifiable {
+    case setup = "Setup"
     case mixer = "Mixer"
     case decks = "Decks"
     case cueLoop = "Cue/Loop"
@@ -20,6 +21,7 @@ enum WizardTab: String, CaseIterable, Identifiable {
 
     var icon: String {
         switch self {
+        case .setup: return "gearshape"
         case .mixer: return "slider.horizontal.3"
         case .decks: return "play.circle"
         case .cueLoop: return "arrow.triangle.2.circlepath"
@@ -34,6 +36,7 @@ enum WizardTab: String, CaseIterable, Identifiable {
     /// All functions for this tab
     var functions: [WizardFunction] {
         switch self {
+        case .setup: return Self.setupFunctions
         case .mixer: return Self.mixerFunctions
         case .decks: return Self.decksFunctions
         case .cueLoop: return Self.cueLoopFunctions
@@ -53,6 +56,11 @@ enum WizardTab: String, CaseIterable, Identifiable {
         return functions
     }
 
+    // MARK: - Setup Functions
+    private static let setupFunctions: [WizardFunction] = [
+        WizardFunction(displayName: "Shift Button", commandName: "Modifier #1", controllerType: .button, interactionMode: .hold, isBasic: true, perDeck: false, fixedAssignment: .global),
+    ]
+
     // MARK: - Mixer Functions
     private static let mixerFunctions: [WizardFunction] = [
         WizardFunction(displayName: "Master Volume", commandName: "Master Volume", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false, fixedAssignment: .global),
@@ -60,7 +68,6 @@ enum WizardTab: String, CaseIterable, Identifiable {
         WizardFunction(displayName: "Monitor Volume", commandName: "Monitor Volume", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false, fixedAssignment: .global),
         WizardFunction(displayName: "Monitor Mix", commandName: "Monitor Mix", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: false, perDeck: false, fixedAssignment: .global),
         WizardFunction(displayName: "Crossfader Curve", commandName: "Crossfader Curve", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: false, perDeck: false, fixedAssignment: .global),
-        WizardFunction(displayName: "Shift", commandName: "Modifier #1", controllerType: .button, interactionMode: .hold, isBasic: true, perDeck: false, fixedAssignment: .global),
     ]
 
     // MARK: - Decks Functions
