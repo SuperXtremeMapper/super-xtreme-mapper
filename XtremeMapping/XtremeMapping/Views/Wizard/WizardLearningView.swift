@@ -26,6 +26,12 @@ struct WizardLearningView: View {
                     .font(AppThemeV2.Typography.display)
                     .foregroundColor(AppThemeV2.Colors.stone200)
                 Spacer()
+
+                // Shift indicator (only shown if shift button is assigned)
+                if coordinator.shiftMIDI != nil {
+                    ShiftIndicator(isActive: coordinator.isShiftHeld)
+                }
+
                 Toggle("Auto-advance", isOn: $coordinator.autoAdvanceEnabled)
                     .toggleStyle(AmberToggleStyle())
                     .font(AppThemeV2.Typography.caption)
@@ -177,5 +183,29 @@ struct WizardLearningView: View {
             .padding(AppThemeV2.Spacing.md)
             .background(AppThemeV2.Colors.stone800)
         }
+    }
+}
+
+// MARK: - Shift Indicator
+
+struct ShiftIndicator: View {
+    let isActive: Bool
+
+    var body: some View {
+        HStack(spacing: 4) {
+            Circle()
+                .fill(isActive ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone600)
+                .frame(width: 8, height: 8)
+            Text("SHIFT")
+                .font(AppThemeV2.Typography.micro)
+                .foregroundColor(isActive ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone500)
+        }
+        .padding(.horizontal, AppThemeV2.Spacing.sm)
+        .padding(.vertical, 4)
+        .background(
+            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                .fill(isActive ? AppThemeV2.Colors.amberSubtle : AppThemeV2.Colors.stone700)
+        )
+        .animation(.easeInOut(duration: 0.1), value: isActive)
     }
 }
