@@ -146,8 +146,8 @@ final class WizardCoordinator: ObservableObject {
 
     // MARK: - Initialization
 
-    init(midiManager: MIDIInputManager = .shared) {
-        self.midiManager = midiManager
+    init(midiManager: MIDIInputManager? = nil) {
+        self.midiManager = midiManager ?? .shared
     }
 
     // MARK: - Public Methods

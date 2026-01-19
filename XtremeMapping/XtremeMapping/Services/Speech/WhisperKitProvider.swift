@@ -45,7 +45,7 @@ final class WhisperKitProvider: NSObject, ObservableObject, SpeechRecognitionPro
 
     /// Thread-safe audio state (accessed from audio thread)
     /// Using nonisolated(unsafe) because we manually synchronize with audioLock
-    private nonisolated(unsafe) let audioLock = NSLock()
+    private let audioLock = NSLock()
     private nonisolated(unsafe) var _lastAudioLevel: Float = 0
     private nonisolated(unsafe) var _hasDetectedSpeech = false
     private nonisolated(unsafe) var _audioFile: AVAudioFile?
@@ -65,7 +65,7 @@ final class WhisperKitProvider: NSObject, ObservableObject, SpeechRecognitionPro
         guard !isListening else { return }
 
         // Use shared WhisperKit model if already loaded
-        if Self.sharedModelLoaded, let kit = Self.sharedWhisperKit {
+        if Self.sharedModelLoaded, Self.sharedWhisperKit != nil {
             onModelLoadProgress?(1.0, "WhisperKit ready")
             try startRecording()
             return

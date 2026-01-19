@@ -19,7 +19,7 @@ extension UTType {
 
 // MARK: - Transferable Conformance
 
-extension MappingEntry: Transferable {
+extension MappingEntry: @preconcurrency Transferable {
     /// Transfer representation for drag and drop operations
     nonisolated static var transferRepresentation: some TransferRepresentation {
         ProxyRepresentation { entry in
