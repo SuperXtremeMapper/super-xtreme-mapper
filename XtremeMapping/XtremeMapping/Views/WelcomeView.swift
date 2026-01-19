@@ -45,7 +45,7 @@ struct WelcomeView: View {
                 }
 
                 // Version badge
-                Text("BETA v0.1")
+                Text("BETA v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0")")
                     .font(AppThemeV2.Typography.micro)
                     .tracking(1)
                     .fontWeight(.bold)

@@ -45,7 +45,7 @@ struct AboutSheet: View {
                         .font(AppThemeV2.Typography.caption)
                         .foregroundColor(AppThemeV2.Colors.stone500)
 
-                    Text("Version 0.1")
+                    Text("Version \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0")")
                         .font(AppThemeV2.Typography.micro)
                         .foregroundColor(AppThemeV2.Colors.amber)
                 }

@@ -240,7 +240,7 @@ struct AboutView: View {
                     .foregroundColor(AppThemeV2.Colors.stone400)
                     .multilineTextAlignment(.center)
 
-                Text("VERSION 0.1")
+                Text("VERSION \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0")")
                     .font(AppThemeV2.Typography.micro)
                     .tracking(1)
                     .foregroundColor(AppThemeV2.Colors.stone950)
