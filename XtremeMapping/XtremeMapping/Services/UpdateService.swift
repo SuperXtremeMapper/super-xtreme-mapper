@@ -5,6 +5,7 @@
 //  Checks GitHub Releases for updates and downloads DMG files.
 //
 
+import Combine
 import Foundation
 import SwiftUI
 
