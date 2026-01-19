@@ -61,6 +61,28 @@ enum TraktorCommands {
             }
         }
 
+        // Per-slot commands: Slot 1-4 Volume, Mute, Filter, FX
+        // Using command ID ranges: 2900-2903 (Volume), 2904-2907 (Mute), 2908-2911 (Filter),
+        // 2912-2915 (Filter On), 2916-2919 (FX Send), 2920-2923 (FX On)
+        if name.hasPrefix("Slot ") && name.count > 6 {
+            let slotCommands = [
+                "Volume": 2900,
+                "Mute": 2904,
+                "Filter": 2908,
+                "Filter On": 2912,
+                "FX Send": 2916,
+                "FX On": 2920
+            ]
+            for (suffix, baseId) in slotCommands {
+                if name.hasSuffix(" \(suffix)") {
+                    let slotStr = name.dropFirst(5).prefix(1)
+                    if let slot = Int(slotStr), slot >= 1 && slot <= 4 {
+                        return baseId + (slot - 1)
+                    }
+                }
+            }
+        }
+
         return 0
     }
 
@@ -100,6 +122,22 @@ enum TraktorCommands {
         // Modifiers 1-8
         if commandId >= 2548 && commandId <= 2555 {
             return "Modifier #\(commandId - 2547)"
+        }
+
+        // Per-slot commands
+        let slotCommandRanges: [(ClosedRange<Int>, String)] = [
+            (2900...2903, "Volume"),
+            (2904...2907, "Mute"),
+            (2908...2911, "Filter"),
+            (2912...2915, "Filter On"),
+            (2916...2919, "FX Send"),
+            (2920...2923, "FX On")
+        ]
+        for (range, suffix) in slotCommandRanges {
+            if range.contains(commandId) {
+                let slot = commandId - range.lowerBound + 1
+                return "Slot \(slot) \(suffix)"
+            }
         }
 
         // Duplicate Track Deck A-D
