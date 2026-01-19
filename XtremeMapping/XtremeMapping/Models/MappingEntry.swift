@@ -11,7 +11,7 @@ import Foundation
 ///
 /// A mapping entry connects a MIDI control (note or CC) to a Traktor command,
 /// with optional modifier conditions and assignment targets.
-struct MappingEntry: Identifiable, Codable, Hashable, Sendable, Equatable {
+struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
     /// Unique identifier for this mapping entry
     let id: UUID
 
@@ -162,11 +162,68 @@ struct MappingEntry: Identifiable, Codable, Hashable, Sendable, Equatable {
     }
 }
 
+// MARK: - Nonisolated Codable Conformance
+
+extension MappingEntry: Codable {
+    nonisolated init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        commandName = try container.decode(String.self, forKey: .commandName)
+        ioType = try container.decode(IODirection.self, forKey: .ioType)
+        assignment = try container.decode(TargetAssignment.self, forKey: .assignment)
+        interactionMode = try container.decode(InteractionMode.self, forKey: .interactionMode)
+        midiChannel = try container.decode(Int.self, forKey: .midiChannel)
+        midiNote = try container.decodeIfPresent(Int.self, forKey: .midiNote)
+        midiCC = try container.decodeIfPresent(Int.self, forKey: .midiCC)
+        modifier1Condition = try container.decodeIfPresent(ModifierCondition.self, forKey: .modifier1Condition)
+        modifier2Condition = try container.decodeIfPresent(ModifierCondition.self, forKey: .modifier2Condition)
+        comment = try container.decode(String.self, forKey: .comment)
+        controllerType = try container.decode(ControllerType.self, forKey: .controllerType)
+        invert = try container.decode(Bool.self, forKey: .invert)
+        softTakeover = try container.decode(Bool.self, forKey: .softTakeover)
+        setToValue = try container.decode(Float.self, forKey: .setToValue)
+        rotarySensitivity = try container.decode(Float.self, forKey: .rotarySensitivity)
+        rotaryAcceleration = try container.decode(Float.self, forKey: .rotaryAcceleration)
+        encoderMode = try container.decode(EncoderMode.self, forKey: .encoderMode)
+    }
+
+    nonisolated func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(commandName, forKey: .commandName)
+        try container.encode(ioType, forKey: .ioType)
+        try container.encode(assignment, forKey: .assignment)
+        try container.encode(interactionMode, forKey: .interactionMode)
+        try container.encode(midiChannel, forKey: .midiChannel)
+        try container.encodeIfPresent(midiNote, forKey: .midiNote)
+        try container.encodeIfPresent(midiCC, forKey: .midiCC)
+        try container.encodeIfPresent(modifier1Condition, forKey: .modifier1Condition)
+        try container.encodeIfPresent(modifier2Condition, forKey: .modifier2Condition)
+        try container.encode(comment, forKey: .comment)
+        try container.encode(controllerType, forKey: .controllerType)
+        try container.encode(invert, forKey: .invert)
+        try container.encode(softTakeover, forKey: .softTakeover)
+        try container.encode(setToValue, forKey: .setToValue)
+        try container.encode(rotarySensitivity, forKey: .rotarySensitivity)
+        try container.encode(rotaryAcceleration, forKey: .rotaryAcceleration)
+        try container.encode(encoderMode, forKey: .encoderMode)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case id, commandName, ioType, assignment, interactionMode
+        case midiChannel, midiNote, midiCC
+        case modifier1Condition, modifier2Condition
+        case comment, controllerType, invert
+        case softTakeover, setToValue
+        case rotarySensitivity, rotaryAcceleration, encoderMode
+    }
+}
+
 /// A modifier condition that must be met for a mapping to be active.
 ///
 /// Traktor supports 8 modifiers (M1-M8), each with values 0-7.
 /// A mapping can require specific modifier values to be active.
-struct ModifierCondition: Codable, Hashable, Sendable, Equatable {
+struct ModifierCondition: Hashable, Sendable, Equatable {
     /// The modifier number (1-8 for M1-M8)
     var modifier: Int
 
@@ -176,5 +233,25 @@ struct ModifierCondition: Codable, Hashable, Sendable, Equatable {
     /// Display string for the condition (e.g., "M4 = 2")
     var displayString: String {
         "M\(modifier) = \(value)"
+    }
+}
+
+// MARK: - Nonisolated Codable Conformance for ModifierCondition
+
+extension ModifierCondition: Codable {
+    nonisolated init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        modifier = try container.decode(Int.self, forKey: .modifier)
+        value = try container.decode(Int.self, forKey: .value)
+    }
+
+    nonisolated func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(modifier, forKey: .modifier)
+        try container.encode(value, forKey: .value)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case modifier, value
     }
 }

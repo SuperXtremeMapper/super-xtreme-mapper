@@ -12,7 +12,7 @@ import UniformTypeIdentifiers
 
 extension UTType {
     /// Custom UTType for mapping entry data during drag and drop
-    static var mappingEntry: UTType {
+    nonisolated static var mappingEntry: UTType {
         UTType(exportedAs: "com.superxtrememapping.mapping-entry")
     }
 }
@@ -21,7 +21,7 @@ extension UTType {
 
 extension MappingEntry: Transferable {
     /// Transfer representation for drag and drop operations
-    static var transferRepresentation: some TransferRepresentation {
+    nonisolated static var transferRepresentation: some TransferRepresentation {
         CodableRepresentation(contentType: .mappingEntry)
     }
 }
