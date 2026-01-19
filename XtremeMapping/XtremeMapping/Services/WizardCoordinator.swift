@@ -284,6 +284,8 @@ final class WizardCoordinator: ObservableObject {
             document.mappingFile.devices[0].inPort = setupConfig.inputPort
             document.mappingFile.devices[0].outPort = setupConfig.outputPort
         }
+        // Force @Published to detect the change (struct mutation doesn't trigger automatically)
+        document.mappingFile = document.mappingFile
         document.noteChange()
         statusMessage = "Saved \(newMappings.count) mappings!"
         phase = .complete
