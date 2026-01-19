@@ -43,6 +43,12 @@ final class WizardCoordinator: ObservableObject {
     /// Set to true when wizard should close
     @Published var shouldDismiss = false
 
+    /// The assigned shift button's MIDI identity (channel + note/CC)
+    @Published var shiftMIDI: MIDIMessage?
+
+    /// Whether the shift button is currently held
+    @Published private(set) var isShiftHeld: Bool = false
+
     /// Whether to auto-advance after MIDI capture
     @Published var autoAdvanceEnabled = true
 
@@ -130,6 +136,14 @@ final class WizardCoordinator: ObservableObject {
         capturedMappings.contains { $0.function.id == function.id && $0.assignment == assignment }
     }
 
+    /// Check if a MIDI message matches the assigned shift button
+    func isShiftButton(_ message: MIDIMessage) -> Bool {
+        guard let shift = shiftMIDI else { return false }
+        return message.channel == shift.channel &&
+               message.note == shift.note &&
+               message.cc == shift.cc
+    }
+
     // MARK: - Initialization
 
     init(midiManager: MIDIInputManager = .shared) {
@@ -150,7 +164,7 @@ final class WizardCoordinator: ObservableObject {
             return
         }
         phase = .learning
-        currentTab = .mixer
+        currentTab = .setup
         currentFunctionIndex = 0
         currentAssignmentIndex = 0
         capturedMappings = []
@@ -159,14 +173,62 @@ final class WizardCoordinator: ObservableObject {
     }
 
     func handleMIDIReceived(_ message: MIDIMessage) {
-        guard phase == .learning, let function = currentFunction, let assignment = currentAssignment else { return }
-        pendingMIDI = message
-        let captured = WizardCapturedMapping(function: function, assignment: assignment, midiMessage: message, modifierCondition: nil)
-        capturedMappings.removeAll { $0.function.id == function.id && $0.assignment == assignment }
-        capturedMappings.append(captured)
-        statusMessage = "Captured!"
+        guard phase == .learning else { return }
 
-        // Auto-advance if enabled
+        // Special handling for Setup tab - assigning shift button
+        if currentTab == .setup {
+            guard let function = currentFunction, let assignment = currentAssignment else { return }
+
+            // Store this as the shift button
+            shiftMIDI = message
+            isShiftHeld = false
+
+            pendingMIDI = message
+            let captured = WizardCapturedMapping(
+                function: function,
+                assignment: assignment,
+                midiMessage: message,
+                modifierCondition: nil  // Shift button itself has no modifier condition
+            )
+            capturedMappings.removeAll { $0.function.id == function.id && $0.assignment == assignment }
+            capturedMappings.append(captured)
+            statusMessage = "Shift button assigned!"
+
+            if autoAdvanceEnabled {
+                startAutoAdvance()
+            }
+            return
+        }
+
+        // Check if this is the shift button (on non-setup tabs)
+        if isShiftButton(message) {
+            isShiftHeld = message.value > 0
+            return  // Don't create a mapping for the shift button itself
+        }
+
+        guard let function = currentFunction, let assignment = currentAssignment else { return }
+
+        // Determine modifier condition based on shift state
+        let modifier: ModifierCondition? = shiftMIDI != nil
+            ? ModifierCondition(modifier: 1, value: isShiftHeld ? 1 : 0)
+            : nil
+
+        pendingMIDI = message
+        let captured = WizardCapturedMapping(
+            function: function,
+            assignment: assignment,
+            midiMessage: message,
+            modifierCondition: modifier
+        )
+        // Remove existing mapping with same function/assignment/modifier value
+        capturedMappings.removeAll {
+            $0.function.id == function.id &&
+            $0.assignment == assignment &&
+            $0.modifierCondition?.value == modifier?.value
+        }
+        capturedMappings.append(captured)
+        statusMessage = isShiftHeld ? "Captured! [SHIFT]" : "Captured!"
+
         if autoAdvanceEnabled {
             startAutoAdvance()
         }
@@ -307,6 +369,8 @@ final class WizardCoordinator: ObservableObject {
         currentAssignmentIndex = 0
         capturedMappings = []
         pendingMIDI = nil
+        shiftMIDI = nil
+        isShiftHeld = false
         isBasicMode = true
         statusMessage = "Configure your controller settings"
     }
