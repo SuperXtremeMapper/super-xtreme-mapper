@@ -51,12 +51,54 @@
     <section class="changelog-section">
         <div class="container">
 
-            <!-- Version 0.3 -->
+            <!-- Version 0.4 -->
             <article class="release-entry latest">
                 <div class="release-header">
                     <div class="release-version">
-                        <span class="version-number">v0.3</span>
+                        <span class="version-number">v0.4</span>
                         <span class="version-badge">Latest</span>
+                    </div>
+                    <time class="release-date" datetime="2026-01-19">January 19, 2026</time>
+                </div>
+                <div class="release-content">
+                    <h3 class="release-headline">Shift Button Support & Stability Fixes</h3>
+                    <p class="release-summary">The Guided Wizard now supports shift button modifiers, plus critical bug fixes for document saving and table display.</p>
+
+                    <div class="release-changes">
+                        <div class="change-category">
+                            <h4 class="category-title new">New Features</h4>
+                            <ul class="change-list">
+                                <li><strong>Shift Button Support</strong> - Wizard now includes a Setup tab to assign a shift button before mapping functions</li>
+                                <li><strong>Modifier Conditions</strong> - Mappings captured with shift held are automatically assigned modifier conditions (M1=1 for shifted, M1=0 for unshifted)</li>
+                                <li><strong>Shift State Indicator</strong> - Visual indicator shows when shift is held during MIDI capture</li>
+                            </ul>
+                        </div>
+
+                        <div class="change-category">
+                            <h4 class="category-title fixed">Bug Fixes</h4>
+                            <ul class="change-list">
+                                <li><strong>Wizard Save Fix</strong> - Wizard now properly saves mappings to the open document (fixed cross-window document reference issue)</li>
+                                <li><strong>Table Display Fix</strong> - Mappings now display immediately when opening files (no longer requires window resize)</li>
+                                <li><strong>New Document Support</strong> - Fixed save detection for untitled/new documents when wizard window is focused</li>
+                            </ul>
+                        </div>
+
+                        <div class="change-category">
+                            <h4 class="category-title improved">Improvements</h4>
+                            <ul class="change-list">
+                                <li>Swift 6 concurrency compliance for improved stability</li>
+                                <li>Better error messaging when wizard is opened without a document</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Version 0.3 -->
+            <article class="release-entry">
+                <div class="release-header">
+                    <div class="release-version">
+                        <span class="version-number">v0.3</span>
                     </div>
                     <time class="release-date" datetime="2026-01-16">January 16, 2026</time>
                 </div>
