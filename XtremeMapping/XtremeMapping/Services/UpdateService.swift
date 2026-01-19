@@ -165,4 +165,75 @@ final class UpdateService: ObservableObject {
 
         return nil
     }
+
+    /// Find the DMG asset in release assets
+    func findDMGAsset(in release: GitHubRelease) -> GitHubAsset? {
+        return release.assets.first { $0.name.lowercased().hasSuffix(".dmg") }
+    }
+
+    /// Download the DMG file with progress tracking
+    func downloadUpdate(asset: GitHubAsset) async throws -> URL {
+        guard let url = URL(string: asset.browserDownloadUrl) else {
+            throw UpdateError.noDMGAsset
+        }
+
+        isDownloading = true
+        downloadProgress = 0
+
+        defer { isDownloading = false }
+
+        // Create download destination in Downloads folder
+        let downloadsURL = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first!
+        let destinationURL = downloadsURL.appendingPathComponent(asset.name)
+
+        // Remove existing file if present
+        try? FileManager.default.removeItem(at: destinationURL)
+
+        // Download with progress
+        let (asyncBytes, response) = try await session.bytes(from: url)
+
+        let expectedLength = (response as? HTTPURLResponse)?.expectedContentLength ?? Int64(asset.size)
+
+        var data = Data()
+        data.reserveCapacity(Int(expectedLength))
+
+        for try await byte in asyncBytes {
+            data.append(byte)
+            let progress = Double(data.count) / Double(expectedLength)
+            await MainActor.run {
+                self.downloadProgress = min(progress, 1.0)
+            }
+        }
+
+        // Write to file
+        try data.write(to: destinationURL)
+
+        return destinationURL
+    }
+
+    /// Mount the downloaded DMG
+    func mountDMG(at url: URL) throws {
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/hdiutil")
+        process.arguments = ["attach", url.path, "-autoopen"]
+
+        let pipe = Pipe()
+        process.standardError = pipe
+
+        try process.run()
+        process.waitUntilExit()
+
+        if process.terminationStatus != 0 {
+            let errorData = pipe.fileHandleForReading.readDataToEndOfFile()
+            let errorMessage = String(data: errorData, encoding: .utf8) ?? "Unknown error"
+            throw UpdateError.mountFailed(errorMessage)
+        }
+    }
+
+    /// Open the website download page (fallback when DMG not found)
+    func openWebsiteDownload() {
+        if let url = URL(string: websiteURL) {
+            NSWorkspace.shared.open(url)
+        }
+    }
 }
