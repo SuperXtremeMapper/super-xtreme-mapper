@@ -172,7 +172,7 @@ struct WizardLearningView: View {
                     action: { coordinator.saveToDocument() },
                     isEnabled: !coordinator.capturedMappings.isEmpty
                 )
-                    .keyboardShortcut(.return, modifiers: [.command])
+                    .keyboardShortcut(.return, modifiers: [])
             }
             .padding(AppThemeV2.Spacing.md)
             .background(AppThemeV2.Colors.stone800)
