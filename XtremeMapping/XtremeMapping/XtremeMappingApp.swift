@@ -15,6 +15,13 @@ class WelcomeWindowState: ObservableObject {
     @Published var shouldShowWelcome = false
 }
 
+/// Shared state for managing update window visibility and pending release
+class UpdateWindowState: ObservableObject {
+    static let shared = UpdateWindowState()
+    @Published var shouldShowUpdate = false
+    @Published var pendingRelease: GitHubRelease?
+}
+
 /// Wrapper to give WelcomeView access to dismissWindow environment
 struct WelcomeWindowContent: View {
     @Environment(\.dismissWindow) private var dismissWindow
@@ -42,7 +49,9 @@ struct WelcomeWindowContent: View {
 struct XtremeMappingApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.dismissWindow) private var dismissWindow
     @StateObject private var welcomeState = WelcomeWindowState.shared
+    @StateObject private var updateState = UpdateWindowState.shared
 
     var body: some Scene {
         // Welcome window shown on launch
@@ -74,6 +83,25 @@ struct XtremeMappingApp: App {
         .windowStyle(.hiddenTitleBar)
         .windowResizability(.contentSize)
         .defaultPosition(.center)
+
+        // Update Available window
+        Window("Update Available", id: "update") {
+            if let release = updateState.pendingRelease {
+                UpdateAvailableSheet(release: release) {
+                    dismissWindow(id: "update")
+                    updateState.pendingRelease = nil
+                }
+            }
+        }
+        .windowStyle(.hiddenTitleBar)
+        .windowResizability(.contentSize)
+        .defaultPosition(.center)
+        .onChange(of: updateState.shouldShowUpdate) { _, shouldShow in
+            if shouldShow {
+                openWindow(id: "update")
+                updateState.shouldShowUpdate = false
+            }
+        }
 
         // Document windows for TSI files
         DocumentGroup(newDocument: { TraktorMappingDocument() }) { file in
@@ -386,8 +414,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
 
-        // Show welcome window on launch (or create new document if user chose to skip)
-        openWelcomeWindow()
+        // Check for updates on launch, then show welcome window
+        checkForUpdatesOnLaunch()
+    }
+
+    /// Check for updates on app launch, then show welcome window
+    private func checkForUpdatesOnLaunch() {
+        Task { @MainActor in
+            do {
+                if let release = try await UpdateService.shared.checkForUpdate() {
+                    // Update available - show update window first
+                    UpdateWindowState.shared.pendingRelease = release
+                    UpdateWindowState.shared.shouldShowUpdate = true
+                    // Show welcome window after a short delay so update window appears on top
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                        self?.openWelcomeWindow()
+                    }
+                } else {
+                    // No update - show welcome window immediately
+                    openWelcomeWindow()
+                }
+            } catch {
+                // Silent fail for auto-check, still show welcome window
+                print("Update check failed: \(error)")
+                openWelcomeWindow()
+            }
+        }
     }
 
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
