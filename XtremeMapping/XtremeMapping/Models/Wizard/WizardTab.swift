@@ -69,6 +69,8 @@ enum WizardTab: String, CaseIterable, Identifiable {
         WizardFunction(displayName: "Cue", commandName: "Cue", controllerType: .button, interactionMode: .hold, isBasic: true),
         WizardFunction(displayName: "Sync", commandName: "Sync On", controllerType: .button, interactionMode: .toggle, isBasic: true),
         WizardFunction(displayName: "Tempo", commandName: "Tempo Adjust", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
+        WizardFunction(displayName: "Tempo Bend +", commandName: "Tempo Bend Up", controllerType: .button, interactionMode: .hold, isBasic: true),
+        WizardFunction(displayName: "Tempo Bend -", commandName: "Tempo Bend Down", controllerType: .button, interactionMode: .hold, isBasic: true),
         WizardFunction(displayName: "Jog Turn", commandName: "Jog Turn", controllerType: .encoder, interactionMode: .relative, isBasic: true),
         WizardFunction(displayName: "Jog Scratch", commandName: "Jog Scratch", controllerType: .encoder, interactionMode: .relative, isBasic: false),
         WizardFunction(displayName: "Monitor Cue", commandName: "Monitor Cue On", controllerType: .button, interactionMode: .toggle, isBasic: true),
