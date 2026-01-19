@@ -60,6 +60,7 @@ enum WizardTab: String, CaseIterable, Identifiable {
         WizardFunction(displayName: "Monitor Volume", commandName: "Monitor Volume", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false, fixedAssignment: .global),
         WizardFunction(displayName: "Monitor Mix", commandName: "Monitor Mix", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: false, perDeck: false, fixedAssignment: .global),
         WizardFunction(displayName: "Crossfader Curve", commandName: "Crossfader Curve", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: false, perDeck: false, fixedAssignment: .global),
+        WizardFunction(displayName: "Shift", commandName: "Modifier #1", controllerType: .button, interactionMode: .hold, isBasic: true, perDeck: false, fixedAssignment: .global),
     ]
 
     // MARK: - Decks Functions
