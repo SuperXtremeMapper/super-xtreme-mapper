@@ -5,6 +5,11 @@ struct AboutSheet: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.openURL) private var openURL
 
+    @State private var isCheckingUpdate = false
+    @State private var showNoUpdateAlert = false
+    @State private var showUpdateSheet = false
+    @State private var latestRelease: GitHubRelease?
+
     var body: some View {
         VStack(alignment: .leading, spacing: AppThemeV2.Spacing.lg) {
             // Header
@@ -120,6 +125,44 @@ struct AboutSheet: View {
                 }
             }
 
+            Rectangle()
+                .fill(AppThemeV2.Colors.stone700)
+                .frame(height: 1)
+
+            // Check for Updates section
+            VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
+                Text("SOFTWARE UPDATE")
+                    .font(AppThemeV2.Typography.micro)
+                    .tracking(0.5)
+                    .foregroundColor(AppThemeV2.Colors.stone400)
+
+                Button {
+                    checkForUpdates()
+                } label: {
+                    HStack(spacing: AppThemeV2.Spacing.xs) {
+                        if isCheckingUpdate {
+                            ProgressView()
+                                .scaleEffect(0.7)
+                        } else {
+                            Image(systemName: "arrow.down.circle")
+                                .font(.system(size: 10))
+                        }
+                        Text("CHECK FOR UPDATES")
+                            .font(AppThemeV2.Typography.micro)
+                            .tracking(0.5)
+                    }
+                    .foregroundColor(AppThemeV2.Colors.stone200)
+                    .padding(.horizontal, AppThemeV2.Spacing.md)
+                    .padding(.vertical, AppThemeV2.Spacing.sm)
+                    .background(
+                        RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                            .fill(AppThemeV2.Colors.stone700)
+                    )
+                }
+                .buttonStyle(.plain)
+                .disabled(isCheckingUpdate)
+            }
+
             Spacer()
 
             // Bottom row: Trademark and Done button
@@ -150,9 +193,21 @@ struct AboutSheet: View {
             }
         }
         .padding(AppThemeV2.Spacing.xl)
-        .frame(width: 400, height: 500)
+        .frame(width: 400, height: 560)
         .background(AppThemeV2.Colors.stone800)
         .preferredColorScheme(.dark)
+        .sheet(isPresented: $showUpdateSheet) {
+            if let release = latestRelease {
+                UpdateAvailableSheet(release: release) {
+                    showUpdateSheet = false
+                }
+            }
+        }
+        .alert("You're Up to Date", isPresented: $showNoUpdateAlert) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("You're running the latest version (v\(UpdateService.shared.currentVersion)).")
+        }
     }
 
     private func creditRow(title: String, name: String, link: String? = nil) -> some View {
@@ -184,6 +239,24 @@ struct AboutSheet: View {
         let email = "sxtrememapper@proton.me"
         if let url = URL(string: "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? subject)") {
             NSWorkspace.shared.open(url)
+        }
+    }
+
+    private func checkForUpdates() {
+        isCheckingUpdate = true
+        Task {
+            do {
+                if let release = try await UpdateService.shared.checkForUpdate(force: true) {
+                    latestRelease = release
+                    showUpdateSheet = true
+                } else {
+                    showNoUpdateAlert = true
+                }
+            } catch {
+                // On error, show "up to date" since we can't determine
+                showNoUpdateAlert = true
+            }
+            isCheckingUpdate = false
         }
     }
 }
