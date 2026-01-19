@@ -55,6 +55,7 @@ struct WizardCapturedMapping: Identifiable {
     let function: WizardFunction
     let assignment: TargetAssignment
     let midiMessage: MIDIMessage
+    let modifierCondition: ModifierCondition?
 
     /// Generate the MappingEntry for saving
     func toMappingEntry(channel: Int) -> MappingEntry {
@@ -66,6 +67,7 @@ struct WizardCapturedMapping: Identifiable {
             midiChannel: midiMessage.channel,
             midiNote: midiMessage.note,
             midiCC: midiMessage.cc,
+            modifier1Condition: modifierCondition,
             controllerType: function.controllerType
         )
     }

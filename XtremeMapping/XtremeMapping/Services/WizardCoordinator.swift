@@ -161,7 +161,7 @@ final class WizardCoordinator: ObservableObject {
     func handleMIDIReceived(_ message: MIDIMessage) {
         guard phase == .learning, let function = currentFunction, let assignment = currentAssignment else { return }
         pendingMIDI = message
-        let captured = WizardCapturedMapping(function: function, assignment: assignment, midiMessage: message)
+        let captured = WizardCapturedMapping(function: function, assignment: assignment, midiMessage: message, modifierCondition: nil)
         capturedMappings.removeAll { $0.function.id == function.id && $0.assignment == assignment }
         capturedMappings.append(captured)
         statusMessage = "Captured!"
