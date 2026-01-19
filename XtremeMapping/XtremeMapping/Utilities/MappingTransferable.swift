@@ -19,16 +19,10 @@ extension UTType {
 
 // MARK: - Transferable Conformance
 
-extension MappingEntry: @preconcurrency Transferable {
+extension MappingEntry: Transferable {
     /// Transfer representation for drag and drop operations
-    nonisolated static var transferRepresentation: some TransferRepresentation {
-        ProxyRepresentation { entry in
-            // Encode to JSON data for transfer
-            try JSONEncoder().encode(entry)
-        } importing: { data in
-            // Decode from JSON data
-            try JSONDecoder().decode(MappingEntry.self, from: data)
-        }
+    static var transferRepresentation: some TransferRepresentation {
+        CodableRepresentation(contentType: .mappingEntry)
     }
 }
 
