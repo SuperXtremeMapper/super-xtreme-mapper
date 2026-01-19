@@ -122,10 +122,41 @@ enum WizardTab: String, CaseIterable, Identifiable {
 
     // MARK: - Sample Decks Functions
     private static let sampleDecksFunctions: [WizardFunction] = [
-        WizardFunction(displayName: "Slot Volume", commandName: "Slot Volume", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false),
-        WizardFunction(displayName: "Slot Trigger", commandName: "Slot Trigger", controllerType: .button, interactionMode: .trigger, isBasic: true, perDeck: false),
-        WizardFunction(displayName: "Slot Filter", commandName: "Slot Filter Adjust", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: false, perDeck: false),
-        WizardFunction(displayName: "Slot Mute", commandName: "Slot Mute On", controllerType: .button, interactionMode: .toggle, isBasic: false, perDeck: false),
+        // Slot Volume (1-4)
+        WizardFunction(displayName: "Slot 1 Volume", commandName: "Slot 1 Volume", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
+        WizardFunction(displayName: "Slot 2 Volume", commandName: "Slot 2 Volume", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
+        WizardFunction(displayName: "Slot 3 Volume", commandName: "Slot 3 Volume", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
+        WizardFunction(displayName: "Slot 4 Volume", commandName: "Slot 4 Volume", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
+
+        // Slot Mute (1-4)
+        WizardFunction(displayName: "Slot 1 Mute", commandName: "Slot 1 Mute", controllerType: .button, interactionMode: .toggle, isBasic: true),
+        WizardFunction(displayName: "Slot 2 Mute", commandName: "Slot 2 Mute", controllerType: .button, interactionMode: .toggle, isBasic: true),
+        WizardFunction(displayName: "Slot 3 Mute", commandName: "Slot 3 Mute", controllerType: .button, interactionMode: .toggle, isBasic: true),
+        WizardFunction(displayName: "Slot 4 Mute", commandName: "Slot 4 Mute", controllerType: .button, interactionMode: .toggle, isBasic: true),
+
+        // Slot FX Send (1-4)
+        WizardFunction(displayName: "Slot 1 FX Send", commandName: "Slot 1 FX Send", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
+        WizardFunction(displayName: "Slot 2 FX Send", commandName: "Slot 2 FX Send", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
+        WizardFunction(displayName: "Slot 3 FX Send", commandName: "Slot 3 FX Send", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
+        WizardFunction(displayName: "Slot 4 FX Send", commandName: "Slot 4 FX Send", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
+
+        // Slot FX On (1-4)
+        WizardFunction(displayName: "Slot 1 FX On", commandName: "Slot 1 FX On", controllerType: .button, interactionMode: .toggle, isBasic: true),
+        WizardFunction(displayName: "Slot 2 FX On", commandName: "Slot 2 FX On", controllerType: .button, interactionMode: .toggle, isBasic: true),
+        WizardFunction(displayName: "Slot 3 FX On", commandName: "Slot 3 FX On", controllerType: .button, interactionMode: .toggle, isBasic: true),
+        WizardFunction(displayName: "Slot 4 FX On", commandName: "Slot 4 FX On", controllerType: .button, interactionMode: .toggle, isBasic: true),
+
+        // Slot Filter (1-4)
+        WizardFunction(displayName: "Slot 1 Filter", commandName: "Slot 1 Filter", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
+        WizardFunction(displayName: "Slot 2 Filter", commandName: "Slot 2 Filter", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
+        WizardFunction(displayName: "Slot 3 Filter", commandName: "Slot 3 Filter", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
+        WizardFunction(displayName: "Slot 4 Filter", commandName: "Slot 4 Filter", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
+
+        // Slot Filter On (1-4)
+        WizardFunction(displayName: "Slot 1 Filter On", commandName: "Slot 1 Filter On", controllerType: .button, interactionMode: .toggle, isBasic: true),
+        WizardFunction(displayName: "Slot 2 Filter On", commandName: "Slot 2 Filter On", controllerType: .button, interactionMode: .toggle, isBasic: true),
+        WizardFunction(displayName: "Slot 3 Filter On", commandName: "Slot 3 Filter On", controllerType: .button, interactionMode: .toggle, isBasic: true),
+        WizardFunction(displayName: "Slot 4 Filter On", commandName: "Slot 4 Filter On", controllerType: .button, interactionMode: .toggle, isBasic: true),
     ]
 
     // MARK: - Loop Recorder Functions
