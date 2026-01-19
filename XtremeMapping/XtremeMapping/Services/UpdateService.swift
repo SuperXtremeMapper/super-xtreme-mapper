@@ -183,7 +183,9 @@ final class UpdateService: ObservableObject {
         defer { isDownloading = false }
 
         // Create download destination in Downloads folder
-        let downloadsURL = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first!
+        guard let downloadsURL = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first else {
+            throw UpdateError.downloadFailed(NSError(domain: "FileSystem", code: -1, userInfo: [NSLocalizedDescriptionKey: "Cannot access Downloads folder"]))
+        }
         let destinationURL = downloadsURL.appendingPathComponent(asset.name)
 
         // Remove existing file if present
@@ -191,6 +193,10 @@ final class UpdateService: ObservableObject {
 
         // Download with progress
         let (asyncBytes, response) = try await session.bytes(from: url)
+
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw UpdateError.downloadFailed(NSError(domain: "HTTP", code: (response as? HTTPURLResponse)?.statusCode ?? 0, userInfo: [NSLocalizedDescriptionKey: "Download request failed"]))
+        }
 
         let expectedLength = (response as? HTTPURLResponse)?.expectedContentLength ?? Int64(asset.size)
 
@@ -225,7 +231,7 @@ final class UpdateService: ObservableObject {
 
         if process.terminationStatus != 0 {
             let errorData = pipe.fileHandleForReading.readDataToEndOfFile()
-            let errorMessage = String(data: errorData, encoding: .utf8) ?? "Unknown error"
+            let errorMessage = String(data: errorData, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "Unknown error"
             throw UpdateError.mountFailed(errorMessage)
         }
     }
