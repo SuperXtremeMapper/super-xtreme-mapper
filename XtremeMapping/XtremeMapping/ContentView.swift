@@ -82,7 +82,9 @@ struct ContentView: View {
                 voiceCoordinator: voiceCoordinator,
                 onVoiceToggle: toggleVoiceLearn,
                 onWizard: {
+                    // Set document and notify wizard (works whether window exists or is created fresh)
                     WizardCoordinator.pendingDocument = document
+                    NotificationCenter.default.post(name: .wizardDocumentChanged, object: document)
                     openWindow(id: "wizard")
                 }
             )
@@ -241,7 +243,9 @@ struct ContentView: View {
         .onReceive(NotificationCenter.default.publisher(for: .activateWizardMode)) { _ in
             // Delay to ensure document is ready
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                // Set document and notify wizard (works whether window exists or is created fresh)
                 WizardCoordinator.pendingDocument = document
+                NotificationCenter.default.post(name: .wizardDocumentChanged, object: document)
                 openWindow(id: "wizard")
             }
         }

@@ -300,15 +300,8 @@ final class WizardCoordinator: ObservableObject {
     }
 
     func saveToDocument() {
-        // Try to recover document reference if lost
-        if document == nil {
-            if let doc = NSDocumentController.shared.documents.first as? TraktorMappingDocument {
-                self.document = doc
-            }
-        }
-
         guard let document = document else {
-            statusMessage = "Error: No document reference. Please save your work and reopen the wizard."
+            statusMessage = "Error: No document open. Please close this wizard and reopen from a document."
             return
         }
         let existingCommands = Set(document.mappingFile.allMappings.map { $0.commandName })

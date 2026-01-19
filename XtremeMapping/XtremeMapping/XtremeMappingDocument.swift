@@ -86,6 +86,12 @@ final class TraktorMappingDocument: ReferenceFileDocument {
             document.updateChangeCount(.changeDone)
             print("noteChange: update via currentDocument", document.displayName ?? "Unknown",
                   "edited:", document.isDocumentEdited, "docId:", ObjectIdentifier(document))
+        } else if let document = controller.documents.first {
+            // Fallback for new/untitled documents: use the first (and likely only) open document
+            // This works when wizard window is focused and currentDocument returns nil
+            document.updateChangeCount(.changeDone)
+            print("noteChange: update via documents.first", document.displayName ?? "Unknown",
+                  "edited:", document.isDocumentEdited, "docId:", ObjectIdentifier(document))
         } else {
             print("noteChange: no NSDocument found", "fileURL:", fileURL?.absoluteString ?? "nil",
                   "documents:", controller.documents.count)

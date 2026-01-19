@@ -99,27 +99,18 @@ struct MappingWizardWindowContent: View {
     var body: some View {
         MappingWizardWindow(coordinator: coordinator)
             .onAppear {
-                // First check for document passed via shared state (most reliable)
+                // Document passed via pendingDocument when wizard window is first created
                 if let doc = WizardCoordinator.pendingDocument {
                     coordinator.start(document: doc)
                     WizardCoordinator.pendingDocument = nil
-                    return
-                }
-
-                // Fallback: try NSDocumentController
-                if let doc = NSDocumentController.shared.currentDocument as? TraktorMappingDocument {
-                    coordinator.start(document: doc)
-                } else if let frontDoc = NSDocumentController.shared.documents.first as? TraktorMappingDocument {
-                    coordinator.start(document: frontDoc)
                 } else {
-                    // Delay and retry - document may not be registered yet
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                        if let doc = NSDocumentController.shared.documents.first as? TraktorMappingDocument {
-                            coordinator.start(document: doc)
-                        } else {
-                            coordinator.statusMessage = "Error: Please open a document first"
-                        }
-                    }
+                    coordinator.statusMessage = "Error: Please open a document first, then click Wizard."
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .wizardDocumentChanged)) { notification in
+                // Document passed via notification when wizard window already exists
+                if let doc = notification.object as? TraktorMappingDocument {
+                    coordinator.start(document: doc)
                 }
             }
     }

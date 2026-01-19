@@ -80,6 +80,11 @@ struct XtremeMappingApp: App {
             ContentView(document: file.document, fileURL: file.fileURL)
                 .onAppear {
                     file.document.updateFileURL(file.fileURL)
+                    // Force observation update after document load to ensure Table renders
+                    // (@Published doesn't fire during init, so observers may miss initial data)
+                    DispatchQueue.main.async {
+                        file.document.objectWillChange.send()
+                    }
                 }
                 .onChange(of: file.fileURL) { _, newURL in
                     file.document.updateFileURL(newURL)
@@ -135,8 +140,10 @@ struct XtremeMappingApp: App {
                     Divider()
 
                     Button("Setup Wizard...") {
-                        openWindow(id: "wizard")
+                        // Wizard requires an open document - use Wizard button in document window
+                        // or create new document first, then open wizard from there
                     }
+                    .disabled(true)
 
                     Divider()
 

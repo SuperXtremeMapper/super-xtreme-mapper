@@ -219,4 +219,5 @@ struct ModeSelectionCancelButton: View {
 extension Notification.Name {
     static let activateVoiceMode = Notification.Name("activateVoiceMode")
     static let activateWizardMode = Notification.Name("activateWizardMode")
+    static let wizardDocumentChanged = Notification.Name("wizardDocumentChanged")
 }

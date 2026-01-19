@@ -457,6 +457,10 @@ private class AmberSelectionDelegateProxy: NSObject, NSTableViewDelegate {
         // Store strong reference to prevent deallocation
         objc_setAssociatedObject(tableView, "amberProxy", proxy, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         installedTables.insert(tableId)
+
+        // Force reload after delegate swap to ensure data displays correctly
+        // (delegate change can cause NSTableView to lose sync with its data source)
+        tableView.reloadData()
     }
 
     // MARK: - Row View (our customization)
