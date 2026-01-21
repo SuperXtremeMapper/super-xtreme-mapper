@@ -108,14 +108,28 @@ struct XtremeMappingApp: App {
             ContentView(document: file.document, fileURL: file.fileURL)
                 .onAppear {
                     file.document.updateFileURL(file.fileURL)
-                    // Force observation update after document load to ensure Table renders
-                    // (@Published doesn't fire during init, so observers may miss initial data)
+
+                    // Find and cache the backing NSDocument
                     DispatchQueue.main.async {
+                        let controller = NSDocumentController.shared
+                        if let fileURL = file.fileURL,
+                           let nsDoc = controller.document(for: fileURL) {
+                            file.document.backingDocument = nsDoc
+                        } else if let nsDoc = controller.documents.first(where: { doc in
+                            doc.windowControllers.contains { wc in
+                                wc.window?.contentView != nil
+                            }
+                        }) {
+                            file.document.backingDocument = nsDoc
+                        }
                         file.document.objectWillChange.send()
                     }
                 }
                 .onChange(of: file.fileURL) { _, newURL in
                     file.document.updateFileURL(newURL)
+                    if let newURL, let nsDoc = NSDocumentController.shared.document(for: newURL) {
+                        file.document.backingDocument = nsDoc
+                    }
                 }
         }
         .defaultSize(width: 1200, height: 700)

@@ -24,6 +24,9 @@ final class TraktorMappingDocument: ReferenceFileDocument {
     @Published private(set) var fileURL: URL?
     @Published private(set) var isDirty = false
 
+    /// Weak reference to the backing NSDocument for change tracking
+    weak var backingDocument: NSDocument?
+
     private static let documentRegistry = NSMapTable<NSURL, TraktorMappingDocument>(
         keyOptions: .strongMemory,
         valueOptions: .weakMemory
@@ -77,24 +80,24 @@ final class TraktorMappingDocument: ReferenceFileDocument {
     func noteChange() {
         isDirty = true
         objectWillChange.send()
+
+        // Primary: use direct reference if available
+        if let doc = backingDocument {
+            doc.updateChangeCount(.changeDone)
+            return
+        }
+
+        // Fallback: try to find via NSDocumentController
         let controller = NSDocumentController.shared
         if let fileURL, let document = controller.document(for: fileURL) {
+            backingDocument = document  // Cache for next time
             document.updateChangeCount(.changeDone)
-            print("noteChange: update via fileURL", fileURL.lastPathComponent, "edited:", document.isDocumentEdited,
-                  "docId:", ObjectIdentifier(document))
         } else if let document = controller.currentDocument {
+            backingDocument = document
             document.updateChangeCount(.changeDone)
-            print("noteChange: update via currentDocument", document.displayName ?? "Unknown",
-                  "edited:", document.isDocumentEdited, "docId:", ObjectIdentifier(document))
         } else if let document = controller.documents.first {
-            // Fallback for new/untitled documents: use the first (and likely only) open document
-            // This works when wizard window is focused and currentDocument returns nil
+            backingDocument = document
             document.updateChangeCount(.changeDone)
-            print("noteChange: update via documents.first", document.displayName ?? "Unknown",
-                  "edited:", document.isDocumentEdited, "docId:", ObjectIdentifier(document))
-        } else {
-            print("noteChange: no NSDocument found", "fileURL:", fileURL?.absoluteString ?? "nil",
-                  "documents:", controller.documents.count)
         }
     }
 
