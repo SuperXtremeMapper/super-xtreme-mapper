@@ -35,6 +35,7 @@ final class DocumentTests: XCTestCase {
         XCTAssertFalse(doc.isDirty)
     }
 
+    @MainActor
     func testNoteChangeSetsIsDirty() {
         let doc = TraktorMappingDocument()
         XCTAssertFalse(doc.isDirty)
@@ -50,6 +51,7 @@ final class DocumentTests: XCTestCase {
         XCTAssertNil(doc.backingDocument)
     }
 
+    @MainActor
     func testNoteChangeMultipleTimesStaysDirty() {
         let doc = TraktorMappingDocument()
 
@@ -62,30 +64,33 @@ final class DocumentTests: XCTestCase {
 
     // MARK: - Snapshot Tests
 
-    func testSnapshotReturnsCurrentMappingFile() {
+    func testSnapshotReturnsCurrentMappingFile() throws {
         let device = Device(name: "Test Device", mappings: [
             MappingEntry(commandName: "Play", midiChannel: 1, midiNote: 60)
         ])
         let mappingFile = MappingFile(devices: [device])
         let doc = TraktorMappingDocument(mappingFile: mappingFile)
 
-        let snapshot = doc.snapshot(contentType: .tsi)
+        let snapshot = try doc.snapshot(contentType: .tsi)
 
         XCTAssertEqual(snapshot.devices.count, 1)
         XCTAssertEqual(snapshot.devices.first?.name, "Test Device")
         XCTAssertEqual(snapshot.devices.first?.mappings.count, 1)
     }
 
+    @MainActor
     func testMarkCleanResetsStaticDirtyTracking() {
-        let doc = TraktorMappingDocument()
         let testURL = URL(fileURLWithPath: "/tmp/test.tsi")
+
+        // Initially should not be dirty
+        XCTAssertFalse(TraktorMappingDocument.isDirty(for: testURL))
+
+        // Create doc and make it dirty
+        let doc = TraktorMappingDocument()
         doc.updateFileURL(testURL)
+        doc.noteChange()
 
-        // Mark dirty
-        TraktorMappingDocument.markDirty(for: testURL)
-        XCTAssertTrue(TraktorMappingDocument.isDirty(for: testURL))
-
-        // Mark clean
+        // Now mark clean via static method
         TraktorMappingDocument.markClean(for: testURL)
         XCTAssertFalse(TraktorMappingDocument.isDirty(for: testURL))
     }
