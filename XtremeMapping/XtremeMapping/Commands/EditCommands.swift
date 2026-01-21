@@ -21,12 +21,6 @@ struct EditCommands: Commands {
     /// Access to the currently selected mappings
     @FocusedBinding(\.selectedMappingIDs) var selectedMappings
 
-    /// Clipboard for MIDI assignment (mapped to) data
-    @FocusedValue(\.mappedToClipboard) var mappedToClipboard
-
-    /// Clipboard for modifier conditions
-    @FocusedValue(\.modifiersClipboard) var modifiersClipboard
-
     /// Returns the valid interaction modes for the current selection
     private var validInteractionModesForSelection: [InteractionMode] {
         guard let doc = document,
@@ -80,7 +74,7 @@ struct EditCommands: Commands {
                 pasteMappedTo()
             }
             .keyboardShortcut("v", modifiers: [.command, .option])
-            .disabled(selectedMappings?.isEmpty ?? true || mappedToClipboard == nil)
+            .disabled(selectedMappings?.isEmpty ?? true || !ClipboardManager.shared.hasMappedToData)
 
             // Reset MIDI assignment
             Button("Reset Mapped to") {
@@ -160,7 +154,7 @@ struct EditCommands: Commands {
                 pasteModifiers()
             }
             .keyboardShortcut("v", modifiers: [.command, .shift])
-            .disabled(selectedMappings?.isEmpty ?? true || modifiersClipboard == nil)
+            .disabled(selectedMappings?.isEmpty ?? true || !ClipboardManager.shared.hasModifiersData)
 
             // Clear modifiers
             Button("Clear Modifiers") {
@@ -204,11 +198,28 @@ struct EditCommands: Commands {
     }
 
     private func copyMappedTo() {
-        // TODO: Implement with AppStorage or custom clipboard
+        guard let doc = document,
+              let selected = selectedMappings,
+              selected.count == 1,
+              let entry = doc.mappingFile.allMappings.first(where: { selected.contains($0.id) }) else { return }
+        ClipboardManager.shared.copyMappedTo(from: entry)
     }
 
     private func pasteMappedTo() {
-        // TODO: Implement with AppStorage or custom clipboard
+        guard let doc = document,
+              let selected = selectedMappings,
+              !selected.isEmpty,
+              ClipboardManager.shared.hasMappedToData else { return }
+
+        doc.noteChange()
+
+        for deviceIndex in doc.mappingFile.devices.indices {
+            for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
+                if selected.contains(doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].id) {
+                    ClipboardManager.shared.pasteMappedTo(to: &doc.mappingFile.devices[deviceIndex].mappings[mappingIndex])
+                }
+            }
+        }
     }
 
     private func resetMappedTo() {
@@ -313,11 +324,28 @@ struct EditCommands: Commands {
     }
 
     private func copyModifiers() {
-        // TODO: Implement with AppStorage or custom clipboard
+        guard let doc = document,
+              let selected = selectedMappings,
+              selected.count == 1,
+              let entry = doc.mappingFile.allMappings.first(where: { selected.contains($0.id) }) else { return }
+        ClipboardManager.shared.copyModifiers(from: entry)
     }
 
     private func pasteModifiers() {
-        // TODO: Implement with AppStorage or custom clipboard
+        guard let doc = document,
+              let selected = selectedMappings,
+              !selected.isEmpty,
+              ClipboardManager.shared.hasModifiersData else { return }
+
+        doc.noteChange()
+
+        for deviceIndex in doc.mappingFile.devices.indices {
+            for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
+                if selected.contains(doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].id) {
+                    ClipboardManager.shared.pasteModifiers(to: &doc.mappingFile.devices[deviceIndex].mappings[mappingIndex])
+                }
+            }
+        }
     }
 
     private func clearModifiers() {
@@ -349,29 +377,6 @@ struct SelectedMappingIDsKey: FocusedValueKey {
     typealias Value = Binding<Set<MappingEntry.ID>>
 }
 
-/// Key for the mapped to clipboard (MIDI channel, note, CC)
-struct MappedToClipboardKey: FocusedValueKey {
-    typealias Value = MappedToClipboardData
-}
-
-/// Key for the modifiers clipboard
-struct ModifiersClipboardKey: FocusedValueKey {
-    typealias Value = ModifiersClipboardData
-}
-
-/// Data structure for copied MIDI assignment
-struct MappedToClipboardData {
-    var midiChannel: Int
-    var midiNote: Int?
-    var midiCC: Int?
-}
-
-/// Data structure for copied modifier conditions
-struct ModifiersClipboardData {
-    var modifier1: ModifierCondition?
-    var modifier2: ModifierCondition?
-}
-
 // MARK: - FocusedValues Extension
 
 extension FocusedValues {
@@ -385,17 +390,5 @@ extension FocusedValues {
     var selectedMappingIDs: Binding<Set<MappingEntry.ID>>? {
         get { self[SelectedMappingIDsKey.self] }
         set { self[SelectedMappingIDsKey.self] = newValue }
-    }
-
-    /// Clipboard data for mapped to (MIDI assignment)
-    var mappedToClipboard: MappedToClipboardData? {
-        get { self[MappedToClipboardKey.self] }
-        set { self[MappedToClipboardKey.self] = newValue }
-    }
-
-    /// Clipboard data for modifier conditions
-    var modifiersClipboard: ModifiersClipboardData? {
-        get { self[ModifiersClipboardKey.self] }
-        set { self[ModifiersClipboardKey.self] = newValue }
     }
 }

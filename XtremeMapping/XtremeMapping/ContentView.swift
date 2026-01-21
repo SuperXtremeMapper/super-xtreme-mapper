@@ -474,19 +474,43 @@ struct ContentView: View {
     }
 
     private func copyMappedTo() {
-        // TODO: Implement copy mapped to
+        guard selectedMappings.count == 1,
+              let entry = document.mappingFile.allMappings.first(where: { selectedMappings.contains($0.id) }) else { return }
+        ClipboardManager.shared.copyMappedTo(from: entry)
     }
 
     private func pasteMappedTo() {
-        // TODO: Implement paste mapped to
+        guard !isLocked, !selectedMappings.isEmpty, ClipboardManager.shared.hasMappedToData else { return }
+        registerChange()
+
+        for deviceIndex in document.mappingFile.devices.indices {
+            for mappingIndex in document.mappingFile.devices[deviceIndex].mappings.indices {
+                let mappingId = document.mappingFile.devices[deviceIndex].mappings[mappingIndex].id
+                if selectedMappings.contains(mappingId) {
+                    ClipboardManager.shared.pasteMappedTo(to: &document.mappingFile.devices[deviceIndex].mappings[mappingIndex])
+                }
+            }
+        }
     }
 
     private func copyModifiers() {
-        // TODO: Implement copy modifiers
+        guard selectedMappings.count == 1,
+              let entry = document.mappingFile.allMappings.first(where: { selectedMappings.contains($0.id) }) else { return }
+        ClipboardManager.shared.copyModifiers(from: entry)
     }
 
     private func pasteModifiers() {
-        // TODO: Implement paste modifiers
+        guard !isLocked, !selectedMappings.isEmpty, ClipboardManager.shared.hasModifiersData else { return }
+        registerChange()
+
+        for deviceIndex in document.mappingFile.devices.indices {
+            for mappingIndex in document.mappingFile.devices[deviceIndex].mappings.indices {
+                let mappingId = document.mappingFile.devices[deviceIndex].mappings[mappingIndex].id
+                if selectedMappings.contains(mappingId) {
+                    ClipboardManager.shared.pasteModifiers(to: &document.mappingFile.devices[deviceIndex].mappings[mappingIndex])
+                }
+            }
+        }
     }
 
     private func copySelectedMappings() {
