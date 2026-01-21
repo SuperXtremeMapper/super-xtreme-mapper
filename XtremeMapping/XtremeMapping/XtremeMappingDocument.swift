@@ -113,11 +113,13 @@ final class TraktorMappingDocument: ReferenceFileDocument {
             TraktorMappingDocument.documentRegistry.setObject(self, forKey: fileURL)
         }
 
+        #if DEBUG
         if let fileURL {
             print("updateFileURL:", fileURL.lastPathComponent)
         } else {
             print("updateFileURL: nil")
         }
+        #endif
     }
 
     static func isDirty(for fileURL: URL?) -> Bool {
