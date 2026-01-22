@@ -2205,3 +2205,108 @@ img {
         font-size: clamp(2.5rem, 12vw, 4rem);
     }
 }
+
+/* --------------------------------------------------------------------------
+   Enhanced Mobile - Tighter Spacing
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+    html {
+        font-size: 15px;
+    }
+
+    .hero {
+        padding: var(--space-2xl) var(--space-md);
+    }
+
+    .hero-tagline {
+        font-size: 1.25rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: var(--space-xl);
+    }
+
+    .hero-badge {
+        font-size: 0.65rem;
+        padding: var(--space-xs) var(--space-sm);
+    }
+
+    .section {
+        padding: var(--space-2xl) 0;
+    }
+
+    .section-header {
+        margin-bottom: var(--space-xl);
+    }
+
+    .section-number {
+        font-size: 0.75rem;
+    }
+
+    .section-title {
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+    }
+
+    .lead {
+        font-size: 1rem;
+    }
+
+    .feature-card {
+        padding: var(--space-lg);
+    }
+
+    .feature-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .feature-card p {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: var(--space-md) var(--space-lg);
+        font-size: 0.85rem;
+    }
+
+    .footer {
+        padding: var(--space-2xl) var(--space-md);
+    }
+
+    .footer-logo {
+        font-size: 1.25rem;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 380px) {
+    html {
+        font-size: 14px;
+    }
+
+    .hero {
+        padding: var(--space-xl) var(--space-sm);
+    }
+
+    .hero-logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 14vw, 3rem);
+    }
+
+    .container {
+        padding: 0 var(--space-sm);
+    }
+
+    .section {
+        padding: var(--space-xl) 0;
+    }
+
+    .btn {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.8rem;
+    }
+}
