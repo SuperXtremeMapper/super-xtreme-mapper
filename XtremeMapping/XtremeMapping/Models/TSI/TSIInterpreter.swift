@@ -287,8 +287,9 @@ struct TSIInterpreter {
         let controllerType: ControllerType
         switch cmadSettings.controllerType {
         case 0: controllerType = .button
-        case 1, 2: controllerType = .faderOrKnob
-        case 65535: controllerType = .button  // LED
+        case 1: controllerType = .faderOrKnob
+        case 2: controllerType = .encoder
+        case 65535: controllerType = .led
         default: controllerType = .button
         }
 
