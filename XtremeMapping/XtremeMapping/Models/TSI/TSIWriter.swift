@@ -402,14 +402,7 @@ public struct TSIWriter: Sendable {
         data.append(Data(bytes: &setValueBytes, count: 4))
 
         // 13. Comment (wide string with length prefix)
-        var commentLen = UInt32(mapping.comment.unicodeScalars.count).bigEndian
-        data.append(Data(bytes: &commentLen, count: 4))
-        if !mapping.comment.isEmpty {
-            for char in mapping.comment.unicodeScalars {
-                var codeUnit = UInt16(char.value).bigEndian
-                data.append(Data(bytes: &codeUnit, count: 2))
-            }
-        }
+        data.append(encodeUTF16BEString(mapping.comment))
 
         // 14-16. ConditionOne: Id (4), Target (4), Value (4)
         var cond1Id = UInt32(mapping.modifier1Condition?.modifier ?? 0).bigEndian
@@ -528,20 +521,13 @@ public struct TSIWriter: Sendable {
         if let cc = mapping.midiCC {
             return String(format: "%@.CC.%03d", channel, cc)
         } else if let note = mapping.midiNote {
-            let noteName = midiNoteName(for: note)
+            let noteName = midiNoteToName(note)
             return "\(channel).Note.\(noteName)"
         } else {
             return "\(channel).CC.000"
         }
     }
 
-    /// Converts MIDI note number to name
-    private func midiNoteName(for note: Int) -> String {
-        let noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-        let noteName = noteNames[note % 12]
-        let octave = (note / 12) - 1
-        return "\(noteName)\(octave)"
-    }
 
     /// Encodes binary data to Base64.
     public func encodeBase64(_ data: Data) -> String {

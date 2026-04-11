@@ -73,6 +73,9 @@ final class VoiceMappingCoordinator: ObservableObject {
     /// Accumulated mappings from this voice session
     @Published private(set) var sessionMappings: [(midi: MIDIMessage, result: VoiceCommandResult)] = []
 
+    /// UUIDs of MappingEntry objects created during this voice session
+    private var sessionMappingIds: Set<UUID> = []
+
     // MARK: - Callbacks (deprecated - use savedMapping instead)
 
     /// Called when a mapping is successfully created.
@@ -270,13 +273,9 @@ final class VoiceMappingCoordinator: ObservableObject {
 
         if overwrite {
             let commandsToReplace = Set(sessionMappings.map { $0.result.command })
-            let sessionCount = sessionMappings.count
-            let allMappings = document.mappingFile.devices.first?.mappings ?? []
-            let recentIds = Set(allMappings.suffix(sessionCount).map { $0.id })
-
             if !document.mappingFile.devices.isEmpty {
                 document.mappingFile.devices[0].mappings.removeAll {
-                    commandsToReplace.contains($0.commandName) && !recentIds.contains($0.id)
+                    commandsToReplace.contains($0.commandName) && !sessionMappingIds.contains($0.id)
                 }
             }
         }
@@ -284,8 +283,14 @@ final class VoiceMappingCoordinator: ObservableObject {
         document.noteChange()
         let savedCount = sessionMappings.count
         sessionMappings = []
+        sessionMappingIds = []
         statusMessage = "Saved \(savedCount) mappings!"
         deactivate()
+    }
+
+    /// Register a mapping ID created during this voice session
+    func registerSessionMappingId(_ id: UUID) {
+        sessionMappingIds.insert(id)
     }
 
     // MARK: - Private Methods

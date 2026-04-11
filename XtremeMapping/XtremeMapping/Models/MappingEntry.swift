@@ -106,17 +106,6 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         }
     }
 
-    /// Converts a MIDI note number (0-127) to a note name with octave.
-    ///
-    /// Uses the standard MIDI convention where middle C (note 60) is C4.
-    /// - Parameter note: MIDI note number (0-127)
-    /// - Returns: Note name string (e.g., "C4", "D#5", "G9")
-    private func midiNoteToName(_ note: Int) -> String {
-        let noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-        let noteName = noteNames[note % 12]
-        let octave = (note / 12) - 1  // MIDI note 0 = C-1, note 60 = C4
-        return "\(noteName)\(octave)"
-    }
 
     /// Creates a new mapping entry with the specified properties.
     ///

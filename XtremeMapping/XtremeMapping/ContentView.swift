@@ -231,7 +231,8 @@ struct ContentView: View {
         // Observe when coordinator saves a mapping (counter changes trigger this)
         .onChange(of: voiceCoordinator.savedMappingCount) { _, _ in
             guard let mapping = voiceCoordinator.savedMapping else { return }
-            addVoiceMapping(midi: mapping.midi, result: mapping.result)
+            let id = addVoiceMapping(midi: mapping.midi, result: mapping.result)
+            if let id { voiceCoordinator.registerSessionMappingId(id) }
         }
         // Handle mode activation from welcome screen
         .onReceive(NotificationCenter.default.publisher(for: .activateVoiceMode)) { _ in
@@ -253,8 +254,9 @@ struct ContentView: View {
 
     // MARK: - Voice Learn
 
-    private func addVoiceMapping(midi: MIDIMessage, result: VoiceCommandResult) {
-        guard !isLocked else { return }
+    @discardableResult
+    private func addVoiceMapping(midi: MIDIMessage, result: VoiceCommandResult) -> UUID? {
+        guard !isLocked else { return nil }
 
         registerChange()
 
@@ -287,6 +289,8 @@ struct ContentView: View {
 
         // Select the new mapping
         selectedMappings = [newMapping.id]
+
+        return newMapping.id
     }
 
     private func parseAssignment(_ assignmentString: String?) -> TargetAssignment {
