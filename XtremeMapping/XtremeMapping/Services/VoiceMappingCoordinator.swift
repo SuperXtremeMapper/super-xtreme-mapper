@@ -271,7 +271,8 @@ final class VoiceMappingCoordinator: ObservableObject {
     func performVoiceSave(overwrite: Bool) {
         guard let document = document else { return }
 
-        if overwrite {
+        // Only remove pre-existing mappings if we actually created replacements
+        if overwrite && !sessionMappingIds.isEmpty {
             let commandsToReplace = Set(sessionMappings.map { $0.result.command })
             if !document.mappingFile.devices.isEmpty {
                 document.mappingFile.devices[0].mappings.removeAll {
