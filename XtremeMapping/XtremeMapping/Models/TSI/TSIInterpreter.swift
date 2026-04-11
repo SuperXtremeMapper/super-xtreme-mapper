@@ -294,24 +294,22 @@ struct TSIInterpreter {
         // Parse MIDI info from control name
         let (channel, noteOrCC, isCc) = parseMidiControlName(midiControlName)
 
-        // Map target deck per TSI spec:
-        // -1 = Device Target (use device's default)
-        // 0 = Global/DeckA/FX1 (context dependent, treat as Global)
-        // 1-4 = Decks A-D (but TSI uses 1=B, 2=C, 3=D, 4=unused)
-        // 5-8 = FX Units 1-4
-        // Actually per spec: 0=A, 1=B, 2=C, 3=D for decks when contextual
+        // Map target assignment per TSI spec (aligned with TSIWriter encoding):
+        // -1 = Device Target
+        // 0 = Deck A (also Global for global commands - writer encodes both as 0)
+        // 1 = Deck B, 2 = Deck C, 3 = Deck D
+        // 4-7 = FX Units 1-4
         let assignment: TargetAssignment
         switch cmadSettings.targetDeck {
         case -1: assignment = .deviceTarget
-        case 0: assignment = .global  // Or DeckA depending on command type
-        case 1: assignment = .deckA
-        case 2: assignment = .deckB
-        case 3: assignment = .deckC
-        case 4: assignment = .deckD
-        case 5: assignment = .fxUnit1
-        case 6: assignment = .fxUnit2
-        case 7: assignment = .fxUnit3
-        case 8: assignment = .fxUnit4
+        case 0: assignment = .deckA
+        case 1: assignment = .deckB
+        case 2: assignment = .deckC
+        case 3: assignment = .deckD
+        case 4: assignment = .fxUnit1
+        case 5: assignment = .fxUnit2
+        case 6: assignment = .fxUnit3
+        case 7: assignment = .fxUnit4
         default: assignment = .global
         }
 
