@@ -219,13 +219,7 @@ final class VoiceMappingCoordinator: ObservableObject {
 
     /// User cancelled the disambiguation UI.
     func dismissOptions() {
-        disambiguationOptions = nil
-        disambiguationMIDI = nil
-        pendingResult = nil
-        pendingMIDI = nil
-        pendingVoice = nil
-        currentResult = nil
-        currentMIDI = nil
+        clearAllState()
         statusMessage = "Cancelled. Ready for next."
     }
 
@@ -299,12 +293,8 @@ final class VoiceMappingCoordinator: ObservableObject {
     /// Handle incoming MIDI message.
     private func handleMIDIReceived(_ message: MIDIMessage) {
         pendingMIDI = message
+        statusMessage = "MIDI captured: \(describeMIDI(message))"
 
-        // Update status with MIDI info
-        let midiDesc = describeMIDI(message)
-        statusMessage = "MIDI captured: \(midiDesc)"
-
-        // If we also have voice, process the mapping
         if pendingVoice != nil && !isProcessing {
             Task {
                 await processMapping()
@@ -315,11 +305,8 @@ final class VoiceMappingCoordinator: ObservableObject {
     /// Handle completed voice transcript.
     private func handleTranscriptReady(_ transcript: String) {
         pendingVoice = transcript
-
-        // Update status with voice info
         statusMessage = "Voice: \"\(transcript)\""
 
-        // If we also have MIDI, process the mapping
         if pendingMIDI != nil && !isProcessing {
             Task {
                 await processMapping()
@@ -333,9 +320,8 @@ final class VoiceMappingCoordinator: ObservableObject {
 
         isProcessing = true
         statusMessage = "Understanding command..."
-
-        // Store MIDI for later save
         currentMIDI = midi
+        var succeeded = false
 
         do {
             let result = try await claudeService.interpretCommand(
@@ -343,28 +329,25 @@ final class VoiceMappingCoordinator: ObservableObject {
                 availableCommands: TraktorCommands.allNames
             )
 
-            // Store the result for display
             currentResult = result
+            succeeded = true
 
             if result.isHighConfidence {
-                // High confidence - ready to save
                 statusMessage = "Press Next to save"
             } else {
-                // Low confidence - show options for disambiguation
                 disambiguationMIDI = midi
                 pendingResult = result
                 disambiguationOptions = buildDisambiguationOptions(from: result)
                 statusMessage = "Please select the correct command"
             }
         } catch {
-            // API failed - let user retry
             statusMessage = "API error: \(error.localizedDescription)"
         }
 
         isProcessing = false
 
-        // If new inputs arrived while we were processing, handle them now
-        if pendingMIDI != nil && pendingVoice != nil && currentResult == nil {
+        // Re-process if new inputs arrived during the API call (but not on error — avoid retry loop)
+        if succeeded, pendingMIDI != nil, pendingVoice != nil, currentResult == nil {
             Task {
                 await processMapping()
             }
