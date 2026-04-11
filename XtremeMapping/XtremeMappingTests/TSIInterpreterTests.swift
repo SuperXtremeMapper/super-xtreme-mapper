@@ -167,31 +167,40 @@ final class TSIInterpreterTests: XCTestCase {
     }
 
     func testTargetDeckGlobal() {
-        XCTAssertEqual(targetAssignment(from: 0), .global)
+        // Spec value 0 decodes as deckA (writer encodes both global and deckA as 0)
+        XCTAssertEqual(targetAssignment(from: 0), .deckA)
     }
 
     func testTargetDeckA() {
-        XCTAssertEqual(targetAssignment(from: 1), .deckA)
+        XCTAssertEqual(targetAssignment(from: 0), .deckA)
     }
 
     func testTargetDeckB() {
-        XCTAssertEqual(targetAssignment(from: 2), .deckB)
+        XCTAssertEqual(targetAssignment(from: 1), .deckB)
     }
 
     func testTargetDeckC() {
-        XCTAssertEqual(targetAssignment(from: 3), .deckC)
+        XCTAssertEqual(targetAssignment(from: 2), .deckC)
     }
 
     func testTargetDeckD() {
-        XCTAssertEqual(targetAssignment(from: 4), .deckD)
+        XCTAssertEqual(targetAssignment(from: 3), .deckD)
     }
 
     func testTargetFXUnit1() {
-        XCTAssertEqual(targetAssignment(from: 5), .fxUnit1)
+        XCTAssertEqual(targetAssignment(from: 4), .fxUnit1)
+    }
+
+    func testTargetFXUnit2() {
+        XCTAssertEqual(targetAssignment(from: 5), .fxUnit2)
+    }
+
+    func testTargetFXUnit3() {
+        XCTAssertEqual(targetAssignment(from: 6), .fxUnit3)
     }
 
     func testTargetFXUnit4() {
-        XCTAssertEqual(targetAssignment(from: 8), .fxUnit4)
+        XCTAssertEqual(targetAssignment(from: 7), .fxUnit4)
     }
 
     func testTargetUnknownDefaultsToGlobal() {
@@ -282,15 +291,14 @@ final class TSIInterpreterTests: XCTestCase {
     private func targetAssignment(from value: Int) -> TargetAssignment {
         switch value {
         case -1: return .deviceTarget
-        case 0: return .global
-        case 1: return .deckA
-        case 2: return .deckB
-        case 3: return .deckC
-        case 4: return .deckD
-        case 5: return .fxUnit1
-        case 6: return .fxUnit2
-        case 7: return .fxUnit3
-        case 8: return .fxUnit4
+        case 0: return .deckA
+        case 1: return .deckB
+        case 2: return .deckC
+        case 3: return .deckD
+        case 4: return .fxUnit1
+        case 5: return .fxUnit2
+        case 6: return .fxUnit3
+        case 7: return .fxUnit4
         default: return .global
         }
     }
