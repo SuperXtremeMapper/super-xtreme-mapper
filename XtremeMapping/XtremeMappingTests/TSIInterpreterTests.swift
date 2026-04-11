@@ -137,11 +137,11 @@ final class TSIInterpreterTests: XCTestCase {
     }
 
     func testControllerTypeEncoder() {
-        XCTAssertEqual(controllerType(from: 2), .faderOrKnob)
+        XCTAssertEqual(controllerType(from: 2), .encoder)
     }
 
     func testControllerTypeLED() {
-        XCTAssertEqual(controllerType(from: 65535), .button)
+        XCTAssertEqual(controllerType(from: 65535), .led)
     }
 
     // MARK: - Target Deck Mapping Tests
@@ -251,8 +251,9 @@ final class TSIInterpreterTests: XCTestCase {
     private func controllerType(from value: Int) -> ControllerType {
         switch value {
         case 0: return .button
-        case 1, 2: return .faderOrKnob
-        case 65535: return .button
+        case 1: return .faderOrKnob
+        case 2: return .encoder
+        case 65535: return .led
         default: return .button
         }
     }
