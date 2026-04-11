@@ -94,7 +94,7 @@ final class VoiceMappingCoordinator: ObservableObject {
     private var disambiguationMIDI: MIDIMessage?
 
     /// Stored MIDI for the current result (for saveAndContinue)
-    private var currentMIDI: MIDIMessage?
+    @Published private(set) var currentMIDI: MIDIMessage?
 
     // MARK: - Initialization
 
@@ -222,6 +222,10 @@ final class VoiceMappingCoordinator: ObservableObject {
         disambiguationOptions = nil
         disambiguationMIDI = nil
         pendingResult = nil
+        pendingMIDI = nil
+        pendingVoice = nil
+        currentResult = nil
+        currentMIDI = nil
         statusMessage = "Cancelled. Ready for next."
     }
 
@@ -237,10 +241,25 @@ final class VoiceMappingCoordinator: ObservableObject {
             return
         }
 
-        // Collect command names from session
         let newCommands = Set(sessionMappings.map { $0.result.command })
-        let existingCommands = Set(document.mappingFile.allMappings.map { $0.commandName })
-        let conflicts = existingCommands.intersection(newCommands)
+
+        var sessionCommandCounts: [String: Int] = [:]
+        for mapping in sessionMappings {
+            sessionCommandCounts[mapping.result.command, default: 0] += 1
+        }
+
+        var existingCommandCounts: [String: Int] = [:]
+        for mapping in document.mappingFile.allMappings {
+            if newCommands.contains(mapping.commandName) {
+                existingCommandCounts[mapping.commandName, default: 0] += 1
+            }
+        }
+
+        let conflicts = newCommands.filter { cmd in
+            let existing = existingCommandCounts[cmd, default: 0]
+            let fromSession = sessionCommandCounts[cmd, default: 0]
+            return existing > fromSession
+        }
 
         if !conflicts.isEmpty {
             conflictingCommands = Array(conflicts).sorted()
@@ -257,15 +276,17 @@ final class VoiceMappingCoordinator: ObservableObject {
 
         if overwrite {
             let commandsToReplace = Set(sessionMappings.map { $0.result.command })
+            let sessionCount = sessionMappings.count
+            let allMappings = document.mappingFile.devices.first?.mappings ?? []
+            let recentIds = Set(allMappings.suffix(sessionCount).map { $0.id })
+
             if !document.mappingFile.devices.isEmpty {
                 document.mappingFile.devices[0].mappings.removeAll {
-                    commandsToReplace.contains($0.commandName)
+                    commandsToReplace.contains($0.commandName) && !recentIds.contains($0.id)
                 }
             }
         }
 
-        // Mappings were already added to the document individually via savedMapping publisher.
-        // Just mark the document as changed and clean up.
         document.noteChange()
         let savedCount = sessionMappings.count
         sessionMappings = []
@@ -284,7 +305,7 @@ final class VoiceMappingCoordinator: ObservableObject {
         statusMessage = "MIDI captured: \(midiDesc)"
 
         // If we also have voice, process the mapping
-        if pendingVoice != nil {
+        if pendingVoice != nil && !isProcessing {
             Task {
                 await processMapping()
             }
@@ -299,7 +320,7 @@ final class VoiceMappingCoordinator: ObservableObject {
         statusMessage = "Voice: \"\(transcript)\""
 
         // If we also have MIDI, process the mapping
-        if pendingMIDI != nil {
+        if pendingMIDI != nil && !isProcessing {
             Task {
                 await processMapping()
             }

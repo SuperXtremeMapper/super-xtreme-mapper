@@ -156,7 +156,7 @@ public struct TSIWriter: Sendable {
                 var dcdtData = Data()
 
                 // String length in characters
-                var strLen = UInt32(controlName.count).bigEndian
+                var strLen = UInt32(controlName.unicodeScalars.count).bigEndian
                 dcdtData.append(Data(bytes: &strLen, count: 4))
 
                 // String content (UTF-16BE)
@@ -339,7 +339,7 @@ public struct TSIWriter: Sendable {
         data.append(Data(bytes: &interactionMode, count: 4))
 
         // 4. Target/Assignment (4 bytes, signed)
-        // Per spec: -1=DeviceTarget, 0=A/FX1/Global, 1=B/FX2, 2=C/FX3, 3=D/FX4
+        // Per spec: -1=DeviceTarget, 0=A/Global, 1=B, 2=C, 3=D, 4=FX1, 5=FX2, 6=FX3, 7=FX4
         let targetValue: Int32 = {
             switch mapping.assignment {
             case .none: return 0
@@ -349,10 +349,10 @@ public struct TSIWriter: Sendable {
             case .deckB: return 1
             case .deckC: return 2
             case .deckD: return 3
-            case .fxUnit1: return 0
-            case .fxUnit2: return 1
-            case .fxUnit3: return 2
-            case .fxUnit4: return 3
+            case .fxUnit1: return 4
+            case .fxUnit2: return 5
+            case .fxUnit3: return 6
+            case .fxUnit4: return 7
             }
         }()
         var target = UInt32(bitPattern: targetValue).bigEndian
@@ -397,12 +397,12 @@ public struct TSIWriter: Sendable {
         data.append(Data(bytes: &valueUIType, count: 4))
 
         // 12. SetValueTo (4 bytes float) - default 1.0 for sliders
-        let setValue: Float32 = mapping.setToValue != 0 ? mapping.setToValue : 1.0
+        let setValue: Float32 = mapping.setToValue
         var setValueBytes = setValue.bitPattern.bigEndian
         data.append(Data(bytes: &setValueBytes, count: 4))
 
         // 13. Comment (wide string with length prefix)
-        var commentLen = UInt32(mapping.comment.count).bigEndian
+        var commentLen = UInt32(mapping.comment.unicodeScalars.count).bigEndian
         data.append(Data(bytes: &commentLen, count: 4))
         if !mapping.comment.isEmpty {
             for char in mapping.comment.unicodeScalars {
@@ -509,7 +509,7 @@ public struct TSIWriter: Sendable {
         var data = Data()
 
         // Length in characters
-        var length = UInt32(string.count).bigEndian
+        var length = UInt32(string.unicodeScalars.count).bigEndian
         data.append(Data(bytes: &length, count: 4))
 
         // UTF-16BE characters

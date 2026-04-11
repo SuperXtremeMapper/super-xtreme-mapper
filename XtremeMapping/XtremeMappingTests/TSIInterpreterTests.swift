@@ -252,9 +252,9 @@ final class TSIInterpreterTests: XCTestCase {
     }
 
     func testRoundTripPreservesAssignments() throws {
-        // .global and .deckA both encode as 0; FX units encode as 0-3 (same as decks).
-        // These are TSI spec limitations, not bugs.
-        let assignments: [TargetAssignment] = [.deviceTarget, .deckA, .deckB, .deckC, .deckD]
+        // .global and .deckA both encode as 0 — that's a TSI spec limitation, not a bug.
+        // FX units encode as 4-7.
+        let assignments: [TargetAssignment] = [.deviceTarget, .deckA, .deckB, .deckC, .deckD, .fxUnit1, .fxUnit2, .fxUnit3, .fxUnit4]
         for assign in assignments {
             let entry = MappingEntry(
                 commandName: "Deck Common.Play/Pause",
@@ -265,6 +265,43 @@ final class TSIInterpreterTests: XCTestCase {
             let result = try roundTrip(entry)
             XCTAssertEqual(result?.assignment, assign, "TargetAssignment \(assign) did not survive round-trip")
         }
+    }
+
+    func testRoundTripFXUnitAssignments() throws {
+        let fxAssignments: [TargetAssignment] = [.fxUnit1, .fxUnit2, .fxUnit3, .fxUnit4]
+
+        for assignment in fxAssignments {
+            let entry = MappingEntry(
+                commandName: "Deck Common.Play/Pause",
+                ioType: .input,
+                assignment: assignment,
+                interactionMode: .toggle,
+                midiChannel: 1,
+                midiCC: 1,
+                controllerType: .button
+            )
+
+            let result = try roundTrip(entry)
+            XCTAssertEqual(result?.assignment, assignment,
+                           "\(assignment.displayName) did not round-trip correctly")
+        }
+    }
+
+    func testRoundTripSetToValueZero() throws {
+        let entry = MappingEntry(
+            commandName: "Deck Common.Play/Pause",
+            ioType: .input,
+            assignment: .deckA,
+            interactionMode: .direct,
+            midiChannel: 1,
+            midiCC: 7,
+            controllerType: .faderOrKnob,
+            setToValue: 0.0
+        )
+
+        let result = try roundTrip(entry)
+        XCTAssertEqual(result?.setToValue, 0.0,
+                       "setToValue of 0.0 should survive round-trip")
     }
 
     // MARK: - Helper Functions (Expose internal logic for testing)

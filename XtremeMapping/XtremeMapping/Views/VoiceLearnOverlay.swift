@@ -289,7 +289,7 @@ struct VoiceLearnOverlay: View {
 
     /// Whether there's a valid mapping to save
     private var canSave: Bool {
-        coordinator.currentResult != nil && coordinator.pendingMIDI != nil
+        coordinator.currentResult != nil && (coordinator.currentMIDI != nil || coordinator.pendingMIDI != nil)
     }
 
     private func describeMIDI(_ message: MIDIMessage) -> String {
