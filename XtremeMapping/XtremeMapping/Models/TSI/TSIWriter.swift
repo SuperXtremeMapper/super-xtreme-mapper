@@ -396,7 +396,7 @@ public struct TSIWriter: Sendable {
         var valueUIType = valueUITypeValue.bigEndian
         data.append(Data(bytes: &valueUIType, count: 4))
 
-        // 12. SetValueTo (4 bytes float) - default 1.0 for sliders
+        // 12. SetValueTo (4 bytes float)
         let setValue: Float32 = mapping.setToValue
         var setValueBytes = setValue.bitPattern.bigEndian
         data.append(Data(bytes: &setValueBytes, count: 4))

@@ -362,7 +362,13 @@ final class VoiceMappingCoordinator: ObservableObject {
         }
 
         isProcessing = false
-        // Don't clear pending state - keep it for display until user saves
+
+        // If new inputs arrived while we were processing, handle them now
+        if pendingMIDI != nil && pendingVoice != nil && currentResult == nil {
+            Task {
+                await processMapping()
+            }
+        }
     }
 
     /// Save the current mapping and clear for new input
