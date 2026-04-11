@@ -199,21 +199,42 @@ final class UpdateService: ObservableObject {
             throw UpdateError.downloadFailed(NSError(domain: "HTTP", code: (response as? HTTPURLResponse)?.statusCode ?? 0, userInfo: [NSLocalizedDescriptionKey: "Download request failed"]))
         }
 
-        let expectedLength = (response as? HTTPURLResponse)?.expectedContentLength ?? Int64(asset.size)
+        let expectedLength = httpResponse.expectedContentLength > 0
+            ? httpResponse.expectedContentLength
+            : Int64(asset.size)
 
-        var data = Data()
-        data.reserveCapacity(Int(expectedLength))
+        // Stream to disk via file handle
+        FileManager.default.createFile(atPath: destinationURL.path, contents: nil)
+        let fileHandle = try FileHandle(forWritingTo: destinationURL)
+        defer { try? fileHandle.close() }
+
+        let chunkSize = 65_536 // 64KB chunks for progress updates
+        var buffer = Data()
+        buffer.reserveCapacity(chunkSize)
+        var totalWritten: Int64 = 0
 
         for try await byte in asyncBytes {
-            data.append(byte)
-            let progress = Double(data.count) / Double(expectedLength)
-            await MainActor.run {
-                self.downloadProgress = min(progress, 1.0)
+            buffer.append(byte)
+            if buffer.count >= chunkSize {
+                fileHandle.write(buffer)
+                totalWritten += Int64(buffer.count)
+                buffer.removeAll(keepingCapacity: true)
+                let progress = Double(totalWritten) / Double(expectedLength)
+                await MainActor.run {
+                    self.downloadProgress = min(progress, 1.0)
+                }
             }
         }
 
-        // Write to file
-        try data.write(to: destinationURL)
+        // Write remaining bytes
+        if !buffer.isEmpty {
+            fileHandle.write(buffer)
+            totalWritten += Int64(buffer.count)
+        }
+
+        await MainActor.run {
+            self.downloadProgress = 1.0
+        }
 
         return destinationURL
     }
