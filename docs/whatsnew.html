@@ -51,12 +51,59 @@
     <section class="changelog-section">
         <div class="container">
 
-            <!-- Version 0.4 -->
+            <!-- Version 0.5 -->
             <article class="release-entry latest">
                 <div class="release-header">
                     <div class="release-version">
-                        <span class="version-number">v0.4</span>
+                        <span class="version-number">v0.5</span>
                         <span class="version-badge">Latest</span>
+                    </div>
+                    <time class="release-date" datetime="2026-04-11">April 11, 2026</time>
+                </div>
+                <div class="release-content">
+                    <h3 class="release-headline">Voice Learn Reliability & TSI Data Integrity</h3>
+                    <p class="release-summary">Major stability pass on the Voice Learn flow and TSI serialization. Every voice mapping path now works end-to-end, and FX unit assignments survive save/reload.</p>
+
+                    <div class="release-changes">
+                        <div class="change-category">
+                            <h4 class="category-title fixed">Voice Learn Fixes</h4>
+                            <ul class="change-list">
+                                <li><strong>Disambiguation Flow</strong> - Next button now enables after selecting a disambiguation option</li>
+                                <li><strong>State Cleanup</strong> - Cancelling disambiguation properly clears all pending MIDI and voice data</li>
+                                <li><strong>Race Prevention</strong> - Overlapping API calls blocked during voice processing</li>
+                                <li><strong>Conflict Detection</strong> - Session mappings no longer falsely trigger overwrite prompts</li>
+                                <li><strong>Overwrite Safety</strong> - Choosing "Overwrite" preserves the mappings just created this session</li>
+                                <li><strong>Input Recovery</strong> - MIDI/voice inputs arriving during API calls are now processed afterward</li>
+                                <li><strong>Data Loss Guard</strong> - Overwrite blocked when no mappings were actually created</li>
+                            </ul>
+                        </div>
+
+                        <div class="change-category">
+                            <h4 class="category-title fixed">TSI File Fixes</h4>
+                            <ul class="change-list">
+                                <li><strong>FX Unit Assignments</strong> - FX1-4 no longer corrupted to Deck A-D on save/reload</li>
+                                <li><strong>SetToValue Preservation</strong> - Zero values now persist correctly (were being forced to 1.0)</li>
+                                <li><strong>Unicode String Lengths</strong> - Non-ASCII device names and comments no longer corrupt TSI files</li>
+                            </ul>
+                        </div>
+
+                        <div class="change-category">
+                            <h4 class="category-title improved">Improvements</h4>
+                            <ul class="change-list">
+                                <li>Shared MIDI note name utility extracted from duplicated code</li>
+                                <li>Session mapping tracking now uses explicit IDs instead of array position heuristic</li>
+                                <li>New round-trip tests for FX assignments and setToValue zero</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Version 0.4 -->
+            <article class="release-entry">
+                <div class="release-header">
+                    <div class="release-version">
+                        <span class="version-number">v0.4</span>
                     </div>
                     <time class="release-date" datetime="2026-01-19">January 19, 2026</time>
                 </div>
