@@ -61,8 +61,7 @@ final class TraktorMappingDocument: ReferenceFileDocument {
 
         } catch {
             print("TSI Parser error: \(error)")
-            // Fall back to empty file on parse error
-            self.mappingFile = MappingFile()
+            throw error
         }
     }
 
