@@ -161,15 +161,10 @@ final class MIDIInputManager: ObservableObject {
         let channel = Int((status & 0x0F) + 1) // Convert 0-15 to 1-16
 
         switch messageType {
-        case 0x90: // Note On
-            if data2 > 0 {
-                return MIDIMessage(channel: channel, note: Int(data1), cc: nil, value: Int(data2))
-            } else {
-                // Note On with velocity 0 is Note Off - ignore for learning
-                return nil
-            }
-        case 0x80: // Note Off - ignore for learning
-            return nil
+        case 0x90: // Note On (velocity 0 = Note Off equivalent)
+            return MIDIMessage(channel: channel, note: Int(data1), cc: nil, value: Int(data2))
+        case 0x80: // Note Off
+            return MIDIMessage(channel: channel, note: Int(data1), cc: nil, value: 0)
         case 0xB0: // Control Change
             return MIDIMessage(channel: channel, note: nil, cc: Int(data1), value: Int(data2))
         default:
