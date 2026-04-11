@@ -171,10 +171,6 @@ final class TSIInterpreterTests: XCTestCase {
         XCTAssertEqual(targetAssignment(from: 0), .deckA)
     }
 
-    func testTargetDeckA() {
-        XCTAssertEqual(targetAssignment(from: 0), .deckA)
-    }
-
     func testTargetDeckB() {
         XCTAssertEqual(targetAssignment(from: 1), .deckB)
     }
@@ -209,90 +205,65 @@ final class TSIInterpreterTests: XCTestCase {
 
     // MARK: - Round-Trip Tests
 
+    /// Write a MappingEntry through TSIWriter, parse it back through TSIInterpreter,
+    /// and return the first mapping from the result.
+    private func roundTrip(_ entry: MappingEntry) throws -> MappingEntry? {
+        let writer = TSIWriter()
+        let device = Device(name: "Test", mappings: [entry])
+        let tsiData = writer.write(MappingFile(devices: [device]))
+
+        let parser = TSIParser()
+        let base64 = try TSIParser.extractControllerData(from: tsiData)
+        let binaryData = try parser.decodeBase64(base64)
+        let frames = try parser.parseFrames(from: binaryData)
+        let result = try TSIInterpreter.interpret(frames: frames)
+        return result.devices.first?.mappings.first
+    }
+
     func testRoundTripPreservesInteractionModes() throws {
         let modes: [InteractionMode] = [.trigger, .toggle, .hold, .direct, .relative, .increment, .decrement, .reset, .output]
         for mode in modes {
-            let original = MappingEntry(
+            let entry = MappingEntry(
                 commandName: "Deck Common.Play/Pause",
                 ioType: mode == .output ? .output : .input,
                 assignment: .deckA,
                 interactionMode: mode,
-                midiChannel: 1,
-                midiCC: 10
+                midiChannel: 1, midiCC: 10
             )
-            let writer = TSIWriter()
-            let device = Device(name: "Test", mappings: [original])
-            let mappingFile = MappingFile(devices: [device])
-            let tsiData = writer.write(mappingFile)
-
-            let parser = TSIParser()
-            let base64 = try TSIParser.extractControllerData(from: tsiData)
-            let binaryData = try parser.decodeBase64(base64)
-            let frames = try parser.parseFrames(from: binaryData)
-            let result = try TSIInterpreter.interpret(frames: frames)
-
-            XCTAssertEqual(result.devices.first?.mappings.first?.interactionMode, mode,
-                           "InteractionMode \(mode) did not survive round-trip")
+            let result = try roundTrip(entry)
+            XCTAssertEqual(result?.interactionMode, mode, "InteractionMode \(mode) did not survive round-trip")
         }
     }
 
     func testRoundTripPreservesControllerTypes() throws {
         let types: [ControllerType] = [.button, .faderOrKnob, .encoder, .led]
         for ctrlType in types {
-            let mode = ctrlType.defaultInteractionMode
-            let original = MappingEntry(
+            let entry = MappingEntry(
                 commandName: "Deck Common.Play/Pause",
                 ioType: ctrlType == .led ? .output : .input,
                 assignment: .deckA,
-                interactionMode: mode,
+                interactionMode: ctrlType.defaultInteractionMode,
                 controllerType: ctrlType,
-                midiChannel: 1,
-                midiCC: 10
+                midiChannel: 1, midiCC: 10
             )
-            let writer = TSIWriter()
-            let device = Device(name: "Test", mappings: [original])
-            let mappingFile = MappingFile(devices: [device])
-            let tsiData = writer.write(mappingFile)
-
-            let parser = TSIParser()
-            let base64 = try TSIParser.extractControllerData(from: tsiData)
-            let binaryData = try parser.decodeBase64(base64)
-            let frames = try parser.parseFrames(from: binaryData)
-            let result = try TSIInterpreter.interpret(frames: frames)
-
-            XCTAssertEqual(result.devices.first?.mappings.first?.controllerType, ctrlType,
-                           "ControllerType \(ctrlType) did not survive round-trip")
+            let result = try roundTrip(entry)
+            XCTAssertEqual(result?.controllerType, ctrlType, "ControllerType \(ctrlType) did not survive round-trip")
         }
     }
 
     func testRoundTripPreservesAssignments() throws {
-        // Note: .global and .deckA both encode as 0, so .global won't survive
-        // (it comes back as .deckA). FX units encode as 0-3 (same as decks)
-        // and are disambiguated by command name, so they also don't survive
-        // a naive round-trip. This is correct per the TSI spec.
+        // .global and .deckA both encode as 0; FX units encode as 0-3 (same as decks).
+        // These are TSI spec limitations, not bugs.
         let assignments: [TargetAssignment] = [.deviceTarget, .deckA, .deckB, .deckC, .deckD]
         for assign in assignments {
-            let original = MappingEntry(
+            let entry = MappingEntry(
                 commandName: "Deck Common.Play/Pause",
-                ioType: .input,
-                assignment: assign,
+                ioType: .input, assignment: assign,
                 interactionMode: .hold,
-                midiChannel: 1,
-                midiCC: 10
+                midiChannel: 1, midiCC: 10
             )
-            let writer = TSIWriter()
-            let device = Device(name: "Test", mappings: [original])
-            let mappingFile = MappingFile(devices: [device])
-            let tsiData = writer.write(mappingFile)
-
-            let parser = TSIParser()
-            let base64 = try TSIParser.extractControllerData(from: tsiData)
-            let binaryData = try parser.decodeBase64(base64)
-            let frames = try parser.parseFrames(from: binaryData)
-            let result = try TSIInterpreter.interpret(frames: frames)
-
-            XCTAssertEqual(result.devices.first?.mappings.first?.assignment, assign,
-                           "TargetAssignment \(assign) did not survive round-trip")
+            let result = try roundTrip(entry)
+            XCTAssertEqual(result?.assignment, assign, "TargetAssignment \(assign) did not survive round-trip")
         }
     }
 

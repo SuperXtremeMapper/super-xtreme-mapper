@@ -177,10 +177,7 @@ final class VoiceMappingCoordinator: ObservableObject {
         voiceManager.onModelLoadProgress = nil
 
         // Reset state
-        clearPendingState()
-        disambiguationOptions = nil
-        disambiguationMIDI = nil
-        pendingResult = nil
+        clearAllState()
 
         isActive = false
         statusMessage = ""
@@ -274,31 +271,6 @@ final class VoiceMappingCoordinator: ObservableObject {
         sessionMappings = []
         statusMessage = "Saved \(savedCount) mappings!"
         deactivate()
-    }
-
-    private func parseAssignment(_ assignment: String?) -> TargetAssignment {
-        guard let assignment = assignment else { return .global }
-        switch assignment.lowercased() {
-        case "deck a": return .deckA
-        case "deck b": return .deckB
-        case "deck c": return .deckC
-        case "deck d": return .deckD
-        case "fx unit 1": return .fxUnit1
-        case "fx unit 2": return .fxUnit2
-        case "fx unit 3": return .fxUnit3
-        case "fx unit 4": return .fxUnit4
-        default: return .global
-        }
-    }
-
-    private func parseControllerType(_ controllerType: String?) -> ControllerType {
-        guard let controllerType = controllerType else { return .faderOrKnob }
-        switch controllerType.lowercased() {
-        case "button": return .button
-        case "fader", "knob": return .faderOrKnob
-        case "encoder": return .encoder
-        default: return .faderOrKnob
-        }
     }
 
     // MARK: - Private Methods
@@ -443,9 +415,4 @@ final class VoiceMappingCoordinator: ObservableObject {
         }
     }
 
-    /// Clear pending MIDI and voice state.
-    private func clearPendingState() {
-        pendingMIDI = nil
-        pendingVoice = nil
-    }
 }
