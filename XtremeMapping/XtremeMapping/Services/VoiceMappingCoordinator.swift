@@ -202,18 +202,22 @@ final class VoiceMappingCoordinator: ObservableObject {
         let result = VoiceCommandResult(
             command: selected.command,
             assignment: selected.assignment,
-            controllerType: nil, // Alternatives don't carry controller type
+            controllerType: nil,
             confidence: selected.confidence,
             alternatives: nil
         )
 
-        createMapping(midi: midi, result: result)
+        // Update current state so saveAndContinue uses the correct result
+        currentResult = result
+        currentMIDI = midi
 
         // Clear disambiguation state
         disambiguationOptions = nil
         disambiguationMIDI = nil
         pendingResult = nil
-        statusMessage = "Mapping created! Ready for next."
+        pendingMIDI = nil
+        pendingVoice = nil
+        statusMessage = "Selected: \(selected.command). Press Next to save."
     }
 
     /// User cancelled the disambiguation UI.
@@ -254,23 +258,6 @@ final class VoiceMappingCoordinator: ObservableObject {
     func performVoiceSave(overwrite: Bool) {
         guard let document = document else { return }
 
-        // Convert session mappings to MappingEntry objects
-        var newMappings: [MappingEntry] = []
-        for (midi, result) in sessionMappings {
-            let controllerType = parseControllerType(result.controllerType)
-            let entry = MappingEntry(
-                commandName: result.command,
-                ioType: .input,
-                assignment: parseAssignment(result.assignment),
-                interactionMode: controllerType.defaultInteractionMode,
-                midiChannel: midi.channel,
-                midiNote: midi.note,
-                midiCC: midi.cc,
-                controllerType: controllerType
-            )
-            newMappings.append(entry)
-        }
-
         if overwrite {
             let commandsToReplace = Set(sessionMappings.map { $0.result.command })
             if !document.mappingFile.devices.isEmpty {
@@ -280,20 +267,10 @@ final class VoiceMappingCoordinator: ObservableObject {
             }
         }
 
-        // Add new mappings
-        if document.mappingFile.devices.isEmpty {
-            let newDevice = Device(
-                name: "Voice Mapped Controller",
-                comment: "Created by Voice Learn",
-                mappings: newMappings
-            )
-            document.mappingFile.devices.append(newDevice)
-        } else {
-            document.mappingFile.devices[0].mappings.append(contentsOf: newMappings)
-        }
-
+        // Mappings were already added to the document individually via savedMapping publisher.
+        // Just mark the document as changed and clean up.
         document.noteChange()
-        let savedCount = newMappings.count
+        let savedCount = sessionMappings.count
         sessionMappings = []
         statusMessage = "Saved \(savedCount) mappings!"
         deactivate()
