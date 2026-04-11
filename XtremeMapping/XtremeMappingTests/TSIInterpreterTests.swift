@@ -118,6 +118,22 @@ final class TSIInterpreterTests: XCTestCase {
         XCTAssertEqual(interactionMode(from: 8), .output)
     }
 
+    func testInteractionModeTrigger() {
+        XCTAssertEqual(interactionMode(from: 0), .trigger)
+    }
+
+    func testInteractionModeIncrement() {
+        XCTAssertEqual(interactionMode(from: 5), .increment)
+    }
+
+    func testInteractionModeDecrement() {
+        XCTAssertEqual(interactionMode(from: 6), .decrement)
+    }
+
+    func testInteractionModeReset() {
+        XCTAssertEqual(interactionMode(from: 7), .reset)
+    }
+
     func testInteractionModeUnknownDefaultsToHold() {
         XCTAssertEqual(interactionMode(from: 99, isOutput: false), .hold)
     }
@@ -238,10 +254,14 @@ final class TSIInterpreterTests: XCTestCase {
     /// Map interaction mode value - mirrors TSIInterpreter logic
     private func interactionMode(from value: Int, isOutput: Bool = false) -> InteractionMode {
         switch value {
+        case 0: return .trigger
         case 1: return .toggle
         case 2: return .hold
         case 3: return .direct
         case 4: return .relative
+        case 5: return .increment
+        case 6: return .decrement
+        case 7: return .reset
         case 8: return .output
         default: return isOutput ? .output : .hold
         }

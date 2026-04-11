@@ -271,10 +271,14 @@ struct TSIInterpreter {
         // Increment=5, Decrement=6, Reset=7, Output=8
         let interactionMode: InteractionMode
         switch cmadSettings.interactionMode {
+        case 0: interactionMode = .trigger
         case 1: interactionMode = .toggle
         case 2: interactionMode = .hold
         case 3: interactionMode = .direct
         case 4: interactionMode = .relative
+        case 5: interactionMode = .increment
+        case 6: interactionMode = .decrement
+        case 7: interactionMode = .reset
         case 8: interactionMode = .output
         default: interactionMode = ioType == .output ? .output : .hold
         }
