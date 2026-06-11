@@ -50,6 +50,17 @@ struct MappingWizardWindow: View {
                 dismiss()
             }
         }
+        .onDisappear {
+            // Window closed by any route (titlebar X included): stop MIDI
+            // listening and tear down. cancel() is idempotent and preserves
+            // a completed save's state.
+            coordinator.cancel()
+            // cancel() set shouldDismiss = true with the view already gone,
+            // so onChange never resets it; clear it here or a reused
+            // coordinator's next true→true write won't register as a change
+            // and the Cancel button would stop closing the window.
+            coordinator.shouldDismiss = false
+        }
     }
 
     // MARK: - Complete View

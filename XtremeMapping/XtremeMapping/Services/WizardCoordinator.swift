@@ -270,6 +270,7 @@ final class WizardCoordinator: ObservableObject {
     }
 
     func previous() {
+        cancelAutoAdvance()
         pendingMIDI = nil
         if currentAssignmentIndex > 0 {
             currentAssignmentIndex -= 1
@@ -291,12 +292,14 @@ final class WizardCoordinator: ObservableObject {
     }
 
     func skip() {
+        cancelAutoAdvance()
         pendingMIDI = nil
         next()
     }
 
     /// Clears the mapping for the current function/assignment
     func clearCurrentMapping() {
+        cancelAutoAdvance()
         guard let function = currentFunction, let assignment = currentAssignment else { return }
         capturedMappings.removeAll { $0.function.id == function.id && $0.assignment == assignment }
         pendingMIDI = nil
@@ -304,6 +307,7 @@ final class WizardCoordinator: ObservableObject {
     }
 
     func switchToTab(_ tab: WizardTab) {
+        cancelAutoAdvance()
         currentTab = tab
         currentFunctionIndex = 0
         currentAssignmentIndex = 0
@@ -312,11 +316,16 @@ final class WizardCoordinator: ObservableObject {
     }
 
     func saveToDocument() {
+        // Cancel before the conflict early-return below: a pending advance
+        // must not fire while the overwrite alert is open.
+        cancelAutoAdvance()
         guard let document = document else {
             statusMessage = "Error: No document open. Please close this wizard and reopen from a document."
             return
         }
-        let existingCommands = Set(document.mappingFile.allMappings.map { $0.commandName })
+        // Scope to devices[0] — the only device the wizard writes to (and the
+        // only one overwrite removal touches in performSave).
+        let existingCommands = Set(document.mappingFile.devices.first?.mappings.map { $0.commandName } ?? [])
         let newCommands = Set(capturedMappings.map { $0.function.commandName })
         let conflicts = existingCommands.intersection(newCommands)
         if !conflicts.isEmpty {
@@ -328,8 +337,9 @@ final class WizardCoordinator: ObservableObject {
     }
 
     func performSave(overwrite: Bool) {
+        cancelAutoAdvance()
         guard let document = document else { return }
-        let newMappings = capturedMappings.map { $0.toMappingEntry(channel: 1) }
+        let newMappings = capturedMappings.map { $0.toMappingEntry() }
         if overwrite {
             let commandsToReplace = Set(capturedMappings.map { $0.function.commandName })
             if !document.mappingFile.devices.isEmpty {
@@ -356,17 +366,25 @@ final class WizardCoordinator: ObservableObject {
         document.noteChange()
         statusMessage = "Saved \(newMappings.count) mappings!"
         phase = .complete
+        stopMIDIListening()
     }
 
     func cancel() {
+        cancelAutoAdvance()
         stopMIDIListening()
-        phase = .setup
-        capturedMappings = []
-        pendingMIDI = nil
+        // A window-close after a completed save also lands here (onDisappear).
+        // The save is already in the document; keep the completed state so
+        // cancel() never masquerades as a reset of a finished session.
+        if phase != .complete {
+            phase = .setup
+            capturedMappings = []
+            pendingMIDI = nil
+        }
         shouldDismiss = true  // Signal window to close
     }
 
     func reset() {
+        cancelAutoAdvance()
         phase = .setup
         setupConfig = WizardSetupConfig()
         currentTab = .mixer
@@ -437,10 +455,18 @@ final class WizardCoordinator: ObservableObject {
 
             // Auto-advance
             if !Task.isCancelled {
-                autoAdvanceCountdown = 0
-                next()
+                fireAutoAdvance()
             }
         }
+    }
+
+    /// Fires a pending auto-advance. Belt-and-braces phase guard: a stray
+    /// task must never mutate a wizard that has left the learning phase
+    /// (saved, cancelled, or completed).
+    func fireAutoAdvance() {
+        autoAdvanceCountdown = 0
+        guard phase == .learning else { return }
+        next()
     }
 
     func cancelAutoAdvance() {

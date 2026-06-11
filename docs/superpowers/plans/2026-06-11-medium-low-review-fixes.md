@@ -85,19 +85,19 @@ cd XtremeMapping && set -o pipefail && xcodebuild -project SuperXtremeMapping.xc
 **Files:** Modify `Services/WizardCoordinator.swift`, `Models/Wizard/WizardFunction.swift` (dead `channel:` param on `toMappingEntry` at line 61; call site WizardCoordinator.swift:332), wizard window/view for close hook. Tests: `WizardCoordinatorTests.swift`.
 
 ### Task 3.1: Auto-advance cancellation on navigation (M6)
-- [ ] Failing tests (autoAdvanceEnabled = true): pending advance then (a) `previous()`, (b) `clearCurrentMapping()`, (c) `switchToTab(_:)`, (d) `cancel()`, (e) `performSave()` → after >0.8s, position/phase unchanged by any stray advance.
-- [ ] Add `cancelAutoAdvance()` at the top of all five (plus `reset()` if distinct from cancel) AND `saveToDocument()` — it returns early to show the overwrite-conflict alert before `performSave` ever runs, so a pending advance would otherwise fire while the alert is open (test: pending advance + saveToDocument-with-conflict → no advance). Belt-and-braces: the auto-advance firing closure (or `next()`) guards `phase == .learning` so a stray task can never mutate a completed/cancelled wizard. Test the guard directly: force-fire with phase == .complete → no-op.
-- [ ] Run; PASS.
+- [x] Failing tests (autoAdvanceEnabled = true): pending advance then (a) `previous()`, (b) `clearCurrentMapping()`, (c) `switchToTab(_:)`, (d) `cancel()`, (e) `performSave()` → after >0.8s, position/phase unchanged by any stray advance.
+- [x] Add `cancelAutoAdvance()` at the top of all five (plus `reset()` if distinct from cancel) AND `saveToDocument()` — it returns early to show the overwrite-conflict alert before `performSave` ever runs, so a pending advance would otherwise fire while the alert is open (test: pending advance + saveToDocument-with-conflict → no advance). Belt-and-braces: the auto-advance firing closure (or `next()`) guards `phase == .learning` so a stray task can never mutate a completed/cancelled wizard. Test the guard directly: force-fire with phase == .complete → no-op.
+- [x] Run; PASS.
 
 ### Task 3.2: Stop listening on save/close (M7)
-- [ ] Failing test: drive to `performSave`/`.complete` → midiManager listening stopped (assert via the coordinator's listening flag or manager callback nil — pick the observable seam).
-- [ ] `performSave` completion → `stopMIDIListening()`. Wizard window content: `onDisappear { coordinator.cancel() }` (verify cancel() is idempotent and doesn't clobber a completed save's state — guard on phase).
-- [ ] Run; PASS.
+- [x] Failing test: drive to `performSave`/`.complete` → midiManager listening stopped (assert via the coordinator's listening flag or manager callback nil — pick the observable seam).
+- [x] `performSave` completion → `stopMIDIListening()`. Wizard window content: `onDisappear { coordinator.cancel() }` (verify cancel() is idempotent and doesn't clobber a completed save's state — guard on phase).
+- [x] Run; PASS.
 
 ### Task 3.3: Conflict/overwrite scope + dead param (L10, L9)
-- [ ] Align conflict detection and overwrite removal to the same scope (`devices[0]`, where the wizard inserts). Test: conflicting mapping in devices[1] no longer counts.
-- [ ] Remove dead `channel:` param from `toMappingEntry` and fix the call site.
-- [ ] Run; PASS.
+- [x] Align conflict detection and overwrite removal to the same scope (`devices[0]`, where the wizard inserts). Test: conflicting mapping in devices[1] no longer counts.
+- [x] Remove dead `channel:` param from `toMappingEntry` and fix the call site.
+- [x] Run; PASS.
 
 ### Task 3.4: Chunk commit
 - [ ] Commit: `fix(wizard): cancel auto-advance on navigation, stop MIDI listening on save/close, align overwrite scope`

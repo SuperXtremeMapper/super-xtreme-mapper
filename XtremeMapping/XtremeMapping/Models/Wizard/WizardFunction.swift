@@ -57,8 +57,9 @@ struct WizardCapturedMapping: Identifiable {
     let midiMessage: MIDIMessage
     let modifierCondition: ModifierCondition?
 
-    /// Generate the MappingEntry for saving
-    func toMappingEntry(channel: Int) -> MappingEntry {
+    /// Generate the MappingEntry for saving. The MIDI channel comes from
+    /// the captured message itself.
+    func toMappingEntry() -> MappingEntry {
         MappingEntry(
             commandName: function.commandName,
             ioType: .input,
