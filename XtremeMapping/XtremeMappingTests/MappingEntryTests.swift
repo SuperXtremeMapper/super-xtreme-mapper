@@ -6,9 +6,56 @@
 //
 
 import Testing
+import Foundation
 @testable import XtremeMapping
 
 struct MappingEntryTests {
+
+    // MARK: - Legacy Codable Compatibility Tests
+
+    @Test func testDeviceDecodesLegacyJSONWithoutVersionKeys() throws {
+        // Encode a current Device, strip the new DDIV keys to simulate
+        // previously-persisted data, and confirm decode falls back to defaults.
+        let device = Device(name: "Legacy", comment: "c", inPort: "in", outPort: "out")
+        var json = try #require(
+            try JSONSerialization.jsonObject(with: JSONEncoder().encode(device)) as? [String: Any]
+        )
+        json.removeValue(forKey: "tsiVersion")
+        json.removeValue(forKey: "mappingFileRevision")
+        let legacyData = try JSONSerialization.data(withJSONObject: json)
+
+        let decoded = try JSONDecoder().decode(Device.self, from: legacyData)
+        #expect(decoded.name == "Legacy")
+        #expect(decoded.comment == "c")
+        #expect(decoded.tsiVersion == "3.11.0")
+        #expect(decoded.mappingFileRevision == 2)
+    }
+
+    @Test func testMappingEntryDecodesLegacyJSONWithoutCMADFields() throws {
+        let entry = MappingEntry(commandName: "Play/Pause", midiChannel: 1, midiCC: 10)
+        var json = try #require(
+            try JSONSerialization.jsonObject(with: JSONEncoder().encode(entry)) as? [String: Any]
+        )
+        for key in ["autoRepeat", "ledMinRangeType", "ledMinRangeData", "ledMaxRangeType",
+                    "ledMaxRangeData", "ledMinMidi", "ledMaxMidi", "ledInvert", "ledBlend",
+                    "resolution"] {
+            json.removeValue(forKey: key)
+        }
+        let legacyData = try JSONSerialization.data(withJSONObject: json)
+
+        let decoded = try JSONDecoder().decode(MappingEntry.self, from: legacyData)
+        #expect(decoded.commandName == "Play/Pause")
+        #expect(decoded.autoRepeat == false)
+        #expect(decoded.ledMinRangeType == 0)
+        #expect(decoded.ledMinRangeData == 0)
+        #expect(decoded.ledMaxRangeType == 0)
+        #expect(decoded.ledMaxRangeData == 1)
+        #expect(decoded.ledMinMidi == 0)
+        #expect(decoded.ledMaxMidi == 127)
+        #expect(decoded.ledInvert == false)
+        #expect(decoded.ledBlend == false)
+        #expect(decoded.resolution == 0)
+    }
 
     // MARK: - MappedToDisplay Tests
 

@@ -55,6 +55,53 @@ enum TraktorCommands {
                 return 648 + num
             }
         }
+        // Slot N Cell M State (IDs 665-728, bases 664/680/696/712) — mirrors name(for:)
+        if name.hasPrefix("Slot 1 Cell ") && name.hasSuffix(" State") {
+            if let num = Int(name.dropFirst(12).dropLast(6)), (1...16).contains(num) {
+                return 664 + num
+            }
+        }
+        if name.hasPrefix("Slot 2 Cell ") && name.hasSuffix(" State") {
+            if let num = Int(name.dropFirst(12).dropLast(6)), (1...16).contains(num) {
+                return 680 + num
+            }
+        }
+        if name.hasPrefix("Slot 3 Cell ") && name.hasSuffix(" State") {
+            if let num = Int(name.dropFirst(12).dropLast(6)), (1...16).contains(num) {
+                return 696 + num
+            }
+        }
+        if name.hasPrefix("Slot 4 Cell ") && name.hasSuffix(" State") {
+            if let num = Int(name.dropFirst(12).dropLast(6)), (1...16).contains(num) {
+                return 712 + num
+            }
+        }
+        // Duplicate Track Deck A-D (IDs 2401-2404) — mirrors name(for:)
+        if name.hasPrefix("Duplicate Track Deck ") {
+            let decks = ["A", "B", "C", "D"]
+            let deck = String(name.dropFirst(21))
+            if let index = decks.firstIndex(of: deck) {
+                return 2401 + index
+            }
+        }
+        // Deck X Pre/Post-Fader Level (L)/(R) (IDs 2688-2703) — mirrors name(for:)
+        if name.hasPrefix("Deck ") {
+            let decks = ["A", "B", "C", "D"]
+            let meterBases: [(suffix: String, base: Int)] = [
+                (" Pre-Fader Level (L)", 2688),
+                (" Pre-Fader Level (R)", 2692),
+                (" Post-Fader Level (L)", 2696),
+                (" Post-Fader Level (R)", 2700)
+            ]
+            for (suffix, base) in meterBases {
+                if name.hasSuffix(suffix) {
+                    let deck = String(name.dropFirst(5).dropLast(suffix.count))
+                    if let index = decks.firstIndex(of: deck) {
+                        return base + index
+                    }
+                }
+            }
+        }
         if name.hasPrefix("Modifier #") {
             if let num = Int(name.dropFirst(10)) {
                 return 2547 + num

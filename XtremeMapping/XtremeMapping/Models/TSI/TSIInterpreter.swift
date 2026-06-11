@@ -83,6 +83,34 @@ struct TSIInterpreter {
             deviceName = "Unknown Device"
         }
 
+        // Parse device metadata frames (DDIV version/revision, DDIC comment, DDPT ports)
+        var tsiVersion = "3.11.0"
+        var mappingFileRevision = 2
+        var comment = ""
+        var inPort = ""
+        var outPort = ""
+
+        if let ddivOffset = findFrame("DDIV", in: data),
+           let (version, afterVersion) = readUTF16BEString(from: data, at: ddivOffset + 8) {
+            tsiVersion = version
+            if afterVersion + 4 <= data.count {
+                mappingFileRevision = Int(readUInt32BE(from: data, at: afterVersion))
+            }
+        }
+
+        if let ddicOffset = findFrame("DDIC", in: data),
+           let (parsedComment, _) = readUTF16BEString(from: data, at: ddicOffset + 8) {
+            comment = parsedComment
+        }
+
+        if let ddptOffset = findFrame("DDPT", in: data),
+           let (parsedInPort, afterInPort) = readUTF16BEString(from: data, at: ddptOffset + 8) {
+            inPort = parsedInPort
+            if let (parsedOutPort, _) = readUTF16BEString(from: data, at: afterInPort) {
+                outPort = parsedOutPort
+            }
+        }
+
         // Build DCDT lookup table (control index -> MIDI name)
         let controlLookup = buildControlLookup(from: data)
 
@@ -93,6 +121,11 @@ struct TSIInterpreter {
 
         return Device(
             name: deviceName,
+            comment: comment,
+            inPort: inPort,
+            outPort: outPort,
+            tsiVersion: tsiVersion,
+            mappingFileRevision: mappingFileRevision,
             mappings: mappings
         )
     }
@@ -134,16 +167,7 @@ struct TSIInterpreter {
                 let stringLength = Int(dcbmData.subdata(in: 4..<8).withUnsafeBytes { $0.load(as: UInt32.self).bigEndian })
 
                 if stringLength > 0 && stringLength < 200 && 8 + stringLength * 2 <= dcbmData.count {
-                    var midiNote = ""
-                    for i in stride(from: 8, to: 8 + stringLength * 2, by: 2) {
-                        let hi = UInt16(dcbmData[i])
-                        let lo = UInt16(dcbmData[i + 1])
-                        let codeUnit = (hi << 8) | lo
-                        if let scalar = UnicodeScalar(codeUnit) {
-                            midiNote.append(Character(scalar))
-                        }
-                    }
-                    lookup[bindingId] = midiNote
+                    lookup[bindingId] = decodeUTF16BE(from: dcbmData, at: 8, codeUnitCount: stringLength)
                 }
             }
 
@@ -304,6 +328,7 @@ struct TSIInterpreter {
         // 0 = Deck A (also Global for global commands - writer encodes both as 0)
         // 1 = Deck B, 2 = Deck C, 3 = Deck D
         // 4-7 = FX Units 1-4
+        // 8-15 = Remix Slots 1-8
         let assignment: TargetAssignment
         switch cmadSettings.targetDeck {
         case -1: assignment = .deviceTarget
@@ -315,6 +340,14 @@ struct TSIInterpreter {
         case 5: assignment = .fxUnit2
         case 6: assignment = .fxUnit3
         case 7: assignment = .fxUnit4
+        case 8: assignment = .remixSlot1
+        case 9: assignment = .remixSlot2
+        case 10: assignment = .remixSlot3
+        case 11: assignment = .remixSlot4
+        case 12: assignment = .remixSlot5
+        case 13: assignment = .remixSlot6
+        case 14: assignment = .remixSlot7
+        case 15: assignment = .remixSlot8
         default: assignment = .global
         }
 
@@ -342,30 +375,48 @@ struct TSIInterpreter {
             softTakeover: cmadSettings.softTakeover,
             setToValue: cmadSettings.setToValue,
             rotarySensitivity: cmadSettings.rotarySensitivity,
-            rotaryAcceleration: cmadSettings.rotaryAcceleration
+            rotaryAcceleration: cmadSettings.rotaryAcceleration,
+            autoRepeat: cmadSettings.autoRepeat,
+            ledMinRangeType: cmadSettings.ledMinRangeType,
+            ledMinRangeData: cmadSettings.ledMinRangeData,
+            ledMaxRangeType: cmadSettings.ledMaxRangeType,
+            ledMaxRangeData: cmadSettings.ledMaxRangeData,
+            ledMinMidi: cmadSettings.ledMinMidi,
+            ledMaxMidi: cmadSettings.ledMaxMidi,
+            ledInvert: cmadSettings.ledInvert,
+            ledBlend: cmadSettings.ledBlend,
+            resolution: cmadSettings.resolution
         )
     }
 
     /// Parse CMAD (Controller Mapping Assignment Data)
     /// Per TSI spec (github.com/ivanz/TraktorMappingFileFormat):
-    /// - Bytes 0-3: Unknown1 (constant 4)
+    /// - Bytes 0-3: DeviceType (constant 4 = GenericMidi)
     /// - Bytes 4-7: ControllerType (Button=0, FaderOrKnob=1, Encoder=2, LED=65535)
     /// - Bytes 8-11: InteractionMode (Toggle=1, Hold=2, Direct=3, Relative=4, Output=8)
-    /// - Bytes 12-15: Deck (-1=Device, 0-3=Decks A-D, 4-15=FX/Remix slots)
+    /// - Bytes 12-15: Deck (-1=Device, 0-3=Decks A-D, 4-7=FX Units, 8-15=Remix Slots)
     /// - Bytes 16-19: AutoRepeat
     /// - Bytes 20-23: Invert
     /// - Bytes 24-27: SoftTakeover
     /// - Bytes 28-31: RotarySensitivity (float)
     /// - Bytes 32-35: RotaryAcceleration (float)
-    /// - Bytes 36-43: Unknown
+    /// - Bytes 36-39: HasValueUI
+    /// - Bytes 40-43: ValueUIType
     /// - Bytes 44-47: SetValueTo (float)
     /// - Bytes 48-51: CommentLength
     /// - Bytes 52+: Comment (variable length wchar_t[])
-    /// - After comment: ModifierOneId, ModifierOneValue, ModifierTwoId, ModifierTwoValue, LED settings
+    /// - After comment, the 24-byte condition block:
+    ///   ConditionOneId(4), ConditionOneTarget(4), ConditionOneValue(4),
+    ///   ConditionTwoId(4), ConditionTwoTarget(4), ConditionTwoValue(4)
+    /// - Then the LED block:
+    ///   LedMinControllerRange type(4)+data(4), LedMaxControllerRange type(4)+data(4),
+    ///   LedMinMidiRange(4), LedMaxMidiRange(4), LedInvert(4), LedBlend(4),
+    ///   unknownValueUIType(4), Resolution(4), UseFactoryMap(4)
     private struct CMADParsed {
         var controllerType: Int = 0
         var interactionMode: Int = 0
         var targetDeck: Int = -1
+        var autoRepeat: Bool = false
         var invert: Bool = false
         var softTakeover: Bool = false
         var rotarySensitivity: Float = 1.0
@@ -376,6 +427,16 @@ struct TSIInterpreter {
         var modifierOneValue: Int = 0
         var modifierTwoId: Int = 0
         var modifierTwoValue: Int = 0
+        // LED block defaults match the constants TSIWriter historically wrote
+        var ledMinRangeType: Int = 0
+        var ledMinRangeData: Int = 0
+        var ledMaxRangeType: Int = 0
+        var ledMaxRangeData: Int = 1
+        var ledMinMidi: Int = 0
+        var ledMaxMidi: Int = 127
+        var ledInvert: Bool = false
+        var ledBlend: Bool = false
+        var resolution: Int = 0
     }
 
     private static func parseCMAD(from data: Data) -> CMADParsed {
@@ -393,6 +454,9 @@ struct TSIInterpreter {
         let deckValue = Int32(bitPattern: readUInt32BE(from: data, at: 12))
         result.targetDeck = Int(deckValue)
 
+        // AutoRepeat at bytes 16-19
+        result.autoRepeat = readUInt32BE(from: data, at: 16) != 0
+
         // Invert at bytes 20-23
         result.invert = readUInt32BE(from: data, at: 20) != 0
 
@@ -409,42 +473,49 @@ struct TSIInterpreter {
         result.setToValue = readFloatBE(from: data, at: 44)
 
         // Comment: length at bytes 48-51, then wchar_t[] string
-        guard data.count >= 52 else { return result }
         let commentLength = Int(readUInt32BE(from: data, at: 48))
 
+        // The 24-byte condition block follows the comment (byte 52 when no comment)
+        var conditionOffset = 52
         if commentLength > 0 && commentLength < 1000 {
             let commentStart = 52
             let commentEnd = commentStart + commentLength * 2
+            guard commentEnd <= data.count else { return result }
 
-            if commentEnd <= data.count {
-                var commentStr = ""
-                for i in stride(from: commentStart, to: commentEnd, by: 2) {
-                    let hi = UInt16(data[i])
-                    let lo = UInt16(data[i + 1])
-                    let codeUnit = (hi << 8) | lo
-                    if let scalar = UnicodeScalar(codeUnit) {
-                        commentStr.append(Character(scalar))
-                    }
-                }
-                result.comment = commentStr
+            result.comment = decodeUTF16BE(from: data, at: commentStart, codeUnitCount: commentLength)
+            conditionOffset = commentEnd
+        }
 
-                // After comment: modifier IDs and values (4 x 4 bytes)
-                let modifierOffset = commentEnd
-                if modifierOffset + 16 <= data.count {
-                    result.modifierOneId = Int(readUInt32BE(from: data, at: modifierOffset))
-                    result.modifierOneValue = Int(readUInt32BE(from: data, at: modifierOffset + 4))
-                    result.modifierTwoId = Int(readUInt32BE(from: data, at: modifierOffset + 8))
-                    result.modifierTwoValue = Int(readUInt32BE(from: data, at: modifierOffset + 12))
-                }
-            }
-        } else {
-            // No comment, modifiers start at byte 52
-            if data.count >= 68 {
-                result.modifierOneId = Int(readUInt32BE(from: data, at: 52))
-                result.modifierOneValue = Int(readUInt32BE(from: data, at: 56))
-                result.modifierTwoId = Int(readUInt32BE(from: data, at: 60))
-                result.modifierTwoValue = Int(readUInt32BE(from: data, at: 64))
-            }
+        // Condition block per spec (24 bytes):
+        // ConditionOneId(4), ConditionOneTarget(4), ConditionOneValue(4),
+        // ConditionTwoId(4), ConditionTwoTarget(4), ConditionTwoValue(4)
+        if conditionOffset + 24 <= data.count {
+            result.modifierOneId = Int(readUInt32BE(from: data, at: conditionOffset))
+            // ConditionOneTarget at +4 is skipped (always 0 in our output)
+            result.modifierOneValue = Int(readUInt32BE(from: data, at: conditionOffset + 8))
+            result.modifierTwoId = Int(readUInt32BE(from: data, at: conditionOffset + 12))
+            // ConditionTwoTarget at +16 is skipped
+            result.modifierTwoValue = Int(readUInt32BE(from: data, at: conditionOffset + 20))
+        }
+
+        // LED block after the condition block:
+        // LedMinControllerRange type+data, LedMaxControllerRange type+data,
+        // LedMinMidiRange, LedMaxMidiRange, LedInvert, LedBlend,
+        // unknownValueUIType (skipped), Resolution
+        let ledOffset = conditionOffset + 24
+        if ledOffset + 32 <= data.count {
+            result.ledMinRangeType = Int(readUInt32BE(from: data, at: ledOffset))
+            result.ledMinRangeData = Int(readUInt32BE(from: data, at: ledOffset + 4))
+            result.ledMaxRangeType = Int(readUInt32BE(from: data, at: ledOffset + 8))
+            result.ledMaxRangeData = Int(readUInt32BE(from: data, at: ledOffset + 12))
+            result.ledMinMidi = Int(readUInt32BE(from: data, at: ledOffset + 16))
+            result.ledMaxMidi = Int(readUInt32BE(from: data, at: ledOffset + 20))
+            result.ledInvert = readUInt32BE(from: data, at: ledOffset + 24) != 0
+            result.ledBlend = readUInt32BE(from: data, at: ledOffset + 28) != 0
+        }
+        if ledOffset + 40 <= data.count {
+            // unknownValueUIType at +32 is skipped
+            result.resolution = Int(readUInt32BE(from: data, at: ledOffset + 36))
         }
 
         return result
@@ -522,6 +593,25 @@ struct TSIInterpreter {
 
     // MARK: - Utility Functions
 
+    /// Decodes UTF-16 big-endian code units into a String.
+    ///
+    /// Collects raw code units before decoding so surrogate pairs (non-BMP
+    /// characters like emoji) survive — decoding code units one-by-one via
+    /// `UnicodeScalar` silently drops them. Internal for direct unit testing.
+    static func decodeUTF16BE(from data: Data, at offset: Int, codeUnitCount: Int) -> String {
+        let end = offset + codeUnitCount * 2
+        guard offset >= 0, codeUnitCount >= 0, end <= data.count else { return "" }
+
+        var codeUnits: [UInt16] = []
+        codeUnits.reserveCapacity(codeUnitCount)
+        for i in stride(from: offset, to: end, by: 2) {
+            let hi = UInt16(data[data.startIndex + i])
+            let lo = UInt16(data[data.startIndex + i + 1])
+            codeUnits.append((hi << 8) | lo)
+        }
+        return String(decoding: codeUnits, as: UTF16.self)
+    }
+
     private static func readUTF16BEString(from data: Data, at offset: Int) -> (String, Int)? {
         guard offset + 4 <= data.count else { return nil }
 
@@ -535,16 +625,7 @@ struct TSIInterpreter {
 
         guard stringEnd <= data.count else { return nil }
 
-        var decoded = ""
-        for i in stride(from: offset + 4, to: stringEnd, by: 2) {
-            let hi = UInt16(data[i])
-            let lo = UInt16(data[i + 1])
-            let codeUnit = (hi << 8) | lo
-            if let scalar = UnicodeScalar(codeUnit) {
-                decoded.append(Character(scalar))
-            }
-        }
-
+        let decoded = decodeUTF16BE(from: data, at: offset + 4, codeUnitCount: charCount)
         return (decoded, stringEnd)
     }
 

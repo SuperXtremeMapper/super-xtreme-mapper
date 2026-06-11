@@ -205,11 +205,10 @@ final class TSIInterpreterTests: XCTestCase {
 
     // MARK: - Round-Trip Tests
 
-    /// Write a MappingEntry through TSIWriter, parse it back through TSIInterpreter,
-    /// and return the first mapping from the result.
-    private func roundTrip(_ entry: MappingEntry) throws -> MappingEntry? {
+    /// Write a Device through TSIWriter, parse it back through TSIInterpreter,
+    /// and return the first device from the result.
+    private func roundTripDevice(_ device: Device) throws -> Device? {
         let writer = TSIWriter()
-        let device = Device(name: "Test", mappings: [entry])
         let tsiData = writer.write(MappingFile(devices: [device]))
 
         let parser = TSIParser()
@@ -217,7 +216,13 @@ final class TSIInterpreterTests: XCTestCase {
         let binaryData = try parser.decodeBase64(base64)
         let frames = try parser.parseFrames(from: binaryData)
         let result = try TSIInterpreter.interpret(frames: frames)
-        return result.devices.first?.mappings.first
+        return result.devices.first
+    }
+
+    /// Write a MappingEntry through TSIWriter, parse it back through TSIInterpreter,
+    /// and return the first mapping from the result.
+    private func roundTrip(_ entry: MappingEntry) throws -> MappingEntry? {
+        try roundTripDevice(Device(name: "Test", mappings: [entry]))?.mappings.first
     }
 
     func testRoundTripPreservesInteractionModes() throws {
@@ -286,6 +291,295 @@ final class TSIInterpreterTests: XCTestCase {
             XCTAssertEqual(result?.assignment, assignment,
                            "\(assignment.displayName) did not round-trip correctly")
         }
+    }
+
+    // MARK: - Modifier Condition Round-Trip Tests (Task 1.1)
+
+    func testRoundTripPreservesModifier1Only() throws {
+        let entry = MappingEntry(
+            commandName: "Play/Pause",
+            ioType: .input,
+            assignment: .deckA,
+            interactionMode: .hold,
+            midiChannel: 1,
+            midiCC: 10,
+            modifier1Condition: ModifierCondition(modifier: 2, value: 3)
+        )
+        let result = try roundTrip(entry)
+        XCTAssertEqual(result?.modifier1Condition, ModifierCondition(modifier: 2, value: 3))
+        XCTAssertNil(result?.modifier2Condition)
+    }
+
+    func testRoundTripPreservesModifier2Only() throws {
+        let entry = MappingEntry(
+            commandName: "Play/Pause",
+            ioType: .input,
+            assignment: .deckA,
+            interactionMode: .hold,
+            midiChannel: 1,
+            midiCC: 10,
+            modifier2Condition: ModifierCondition(modifier: 4, value: 5)
+        )
+        let result = try roundTrip(entry)
+        XCTAssertNil(result?.modifier1Condition)
+        XCTAssertEqual(result?.modifier2Condition, ModifierCondition(modifier: 4, value: 5))
+    }
+
+    func testRoundTripPreservesBothModifiersWithComment() throws {
+        let entry = MappingEntry(
+            commandName: "Play/Pause",
+            ioType: .input,
+            assignment: .deckA,
+            interactionMode: .hold,
+            midiChannel: 1,
+            midiCC: 10,
+            modifier1Condition: ModifierCondition(modifier: 1, value: 7),
+            modifier2Condition: ModifierCondition(modifier: 8, value: 2),
+            comment: "shifted action"
+        )
+        let result = try roundTrip(entry)
+        XCTAssertEqual(result?.modifier1Condition, ModifierCondition(modifier: 1, value: 7))
+        XCTAssertEqual(result?.modifier2Condition, ModifierCondition(modifier: 8, value: 2))
+        XCTAssertEqual(result?.comment, "shifted action")
+    }
+
+    func testRoundTripPreservesNoModifiers() throws {
+        let entry = MappingEntry(
+            commandName: "Play/Pause",
+            ioType: .input,
+            assignment: .deckA,
+            interactionMode: .hold,
+            midiChannel: 1,
+            midiCC: 10
+        )
+        let result = try roundTrip(entry)
+        XCTAssertNil(result?.modifier1Condition)
+        XCTAssertNil(result?.modifier2Condition)
+    }
+
+    // MARK: - Unresolvable Command Filtering Tests (Task 1.2)
+
+    func testRoundTripDropsUnresolvableMappingsAndKeepsBindingAlignment() throws {
+        let invalid = MappingEntry(
+            commandName: "Totally Unknown",
+            ioType: .input, assignment: .deckA, interactionMode: .hold,
+            midiChannel: 1, midiCC: 5
+        )
+        let negative = MappingEntry(
+            commandName: "Command #-1",
+            ioType: .input, assignment: .deckA, interactionMode: .hold,
+            midiChannel: 1, midiCC: 6
+        )
+        let zero = MappingEntry(
+            commandName: "Command #0",
+            ioType: .input, assignment: .deckA, interactionMode: .hold,
+            midiChannel: 1, midiCC: 7
+        )
+        let valid = MappingEntry(
+            commandName: "Play/Pause",
+            ioType: .input, assignment: .deckA, interactionMode: .hold,
+            midiChannel: 1, midiCC: 10
+        )
+
+        let writer = TSIWriter()
+        let device = Device(name: "Test", mappings: [invalid, negative, zero, valid])
+        let tsiData = writer.write(MappingFile(devices: [device]))
+
+        let parser = TSIParser()
+        let base64 = try TSIParser.extractControllerData(from: tsiData)
+        let binaryData = try parser.decodeBase64(base64)
+        let frames = try parser.parseFrames(from: binaryData)
+        let result = try TSIInterpreter.interpret(frames: frames)
+
+        let mappings = result.devices.first?.mappings ?? []
+        XCTAssertEqual(mappings.count, 1, "Only the resolvable mapping should survive")
+        XCTAssertEqual(mappings.first?.commandName, "Play/Pause")
+        XCTAssertEqual(mappings.first?.midiCC, 10, "Binding IDs must stay aligned after filtering")
+        XCTAssertEqual(mappings.first?.midiChannel, 1)
+    }
+
+    // MARK: - Full TSI Target Value Round-Trip Tests (Task 1.3)
+
+    func testRoundTripPreservesAllTSITargetValues() throws {
+        // For each TSI deck value -1...15, use the case that ENCODES to that value
+        // and assert it decodes back to the same case. .none/.global excluded —
+        // both encode to 0 and decode as .deckA (documented collapse, below).
+        let casesByTSIValue: [(tsiValue: Int, assignment: TargetAssignment)] = [
+            (-1, .deviceTarget),
+            (0, .deckA), (1, .deckB), (2, .deckC), (3, .deckD),
+            (4, .fxUnit1), (5, .fxUnit2), (6, .fxUnit3), (7, .fxUnit4),
+            (8, .remixSlot1), (9, .remixSlot2), (10, .remixSlot3), (11, .remixSlot4),
+            (12, .remixSlot5), (13, .remixSlot6), (14, .remixSlot7), (15, .remixSlot8)
+        ]
+        for (tsiValue, assignment) in casesByTSIValue {
+            let entry = MappingEntry(
+                commandName: "Play/Pause",
+                ioType: .input, assignment: assignment, interactionMode: .hold,
+                midiChannel: 1, midiCC: 10
+            )
+            let result = try roundTrip(entry)
+            XCTAssertEqual(result?.assignment, assignment,
+                           "TSI deck value \(tsiValue) (\(assignment.displayName)) did not survive round-trip")
+        }
+    }
+
+    func testGlobalAndNoneTargetsCollapseToDeckA() throws {
+        // Documented TSI ambiguity: .global and .none both encode as deck value 0,
+        // which decodes as .deckA.
+        for assignment in [TargetAssignment.global, TargetAssignment.none] {
+            let entry = MappingEntry(
+                commandName: "Play/Pause",
+                ioType: .input, assignment: assignment, interactionMode: .hold,
+                midiChannel: 1, midiCC: 10
+            )
+            let result = try roundTrip(entry)
+            XCTAssertEqual(result?.assignment, .deckA,
+                           "\(assignment.displayName) should collapse to Deck A by design")
+        }
+    }
+
+    // MARK: - Non-BMP Text Tests (Task 1.4)
+
+    func testRoundTripPreservesNonBMPCommentAndDeviceName() throws {
+        let entry = MappingEntry(
+            commandName: "Play/Pause",
+            ioType: .input, assignment: .deckA, interactionMode: .hold,
+            midiChannel: 1, midiCC: 10,
+            comment: "Fire 🔥 emoji"
+        )
+        let device = Device(name: "Mixer 🎛 Pro", mappings: [entry])
+
+        var parsed: Device?
+        XCTAssertNoThrow(parsed = try roundTripDevice(device))
+        XCTAssertEqual(parsed?.name, "Mixer 🎛 Pro")
+        XCTAssertEqual(parsed?.mappings.first?.comment, "Fire 🔥 emoji")
+    }
+
+    func testDecodeUTF16BESurrogatePair() {
+        // 🔥 = U+1F525 = surrogate pair D83D DD25
+        let bytes = Data([0xD8, 0x3D, 0xDD, 0x25])
+        XCTAssertEqual(TSIInterpreter.decodeUTF16BE(from: bytes, at: 0, codeUnitCount: 2), "🔥")
+    }
+
+    func testDecodeUTF16BEMixedBMPAndSurrogates() {
+        // "A🔥B" = 0041 D83D DD25 0042
+        let bytes = Data([0x00, 0x41, 0xD8, 0x3D, 0xDD, 0x25, 0x00, 0x42])
+        XCTAssertEqual(TSIInterpreter.decodeUTF16BE(from: bytes, at: 0, codeUnitCount: 4), "A🔥B")
+    }
+
+    func testDecodeUTF16BEOutOfBoundsReturnsEmpty() {
+        let bytes = Data([0x00, 0x41])
+        XCTAssertEqual(TSIInterpreter.decodeUTF16BE(from: bytes, at: 0, codeUnitCount: 5), "")
+    }
+
+    // MARK: - Device Metadata & CMAD Field Round-Trip Tests (Task 1.5)
+
+    func testRoundTripPreservesDeviceMetadataAndCMADFields() throws {
+        let entry = MappingEntry(
+            commandName: "Play/Pause",
+            ioType: .input, assignment: .deckA, interactionMode: .hold,
+            midiChannel: 1, midiCC: 10,
+            autoRepeat: true,
+            ledMaxRangeData: 5,
+            ledMinMidi: 10,
+            ledMaxMidi: 100,
+            ledInvert: true,
+            resolution: 2
+        )
+        let device = Device(
+            name: "Test",
+            comment: "My controller",
+            inPort: "Port A",
+            outPort: "Port B",
+            tsiVersion: "3.10.0",
+            mappingFileRevision: 3,
+            mappings: [entry]
+        )
+
+        let parsed = try roundTripDevice(device)
+        XCTAssertEqual(parsed?.comment, "My controller")
+        XCTAssertEqual(parsed?.inPort, "Port A")
+        XCTAssertEqual(parsed?.outPort, "Port B")
+        XCTAssertEqual(parsed?.tsiVersion, "3.10.0")
+        XCTAssertEqual(parsed?.mappingFileRevision, 3)
+
+        let mapping = parsed?.mappings.first
+        XCTAssertEqual(mapping?.autoRepeat, true)
+        XCTAssertEqual(mapping?.ledMaxRangeData, 5)
+        XCTAssertEqual(mapping?.ledMinMidi, 10)
+        XCTAssertEqual(mapping?.ledMaxMidi, 100)
+        XCTAssertEqual(mapping?.ledInvert, true)
+        XCTAssertEqual(mapping?.resolution, 2)
+        // Untouched fields keep their defaults
+        XCTAssertEqual(mapping?.ledMinRangeType, 0)
+        XCTAssertEqual(mapping?.ledMinRangeData, 0)
+        XCTAssertEqual(mapping?.ledMaxRangeType, 0)
+        XCTAssertEqual(mapping?.ledBlend, false)
+    }
+
+    // MARK: - Direction-Aware DCDT Tests (Task 1.6)
+
+    /// Scans raw TSI binary for DCDT frames, returning (controlName, midiControlType) pairs.
+    private func scanDCDTEntries(in data: Data) -> [(name: String, controlType: Int)] {
+        var entries: [(String, Int)] = []
+        var offset = 0
+        while offset < data.count - 8 {
+            let marker = data.subdata(in: offset..<(offset + 4))
+            guard String(data: marker, encoding: .ascii) == "DCDT" else {
+                offset += 1
+                continue
+            }
+            let size = Int(data.subdata(in: (offset + 4)..<(offset + 8)).withUnsafeBytes { $0.load(as: UInt32.self).bigEndian })
+            guard size > 8, offset + 8 + size <= data.count else {
+                offset += 1
+                continue
+            }
+            let frameData = data.subdata(in: (offset + 8)..<(offset + 8 + size))
+            let strLen = Int(frameData.prefix(4).withUnsafeBytes { $0.load(as: UInt32.self).bigEndian })
+            if strLen > 0, 4 + strLen * 2 + 4 <= frameData.count {
+                let name = TSIInterpreter.decodeUTF16BE(from: frameData, at: 4, codeUnitCount: strLen)
+                let typeOffset = 4 + strLen * 2
+                let controlType = Int(frameData.subdata(in: typeOffset..<(typeOffset + 4)).withUnsafeBytes { $0.load(as: UInt32.self).bigEndian })
+                entries.append((name, controlType))
+            }
+            offset += 8 + size
+        }
+        return entries
+    }
+
+    func testDCDTEmitsDirectionAwareEntriesForSharedControl() throws {
+        let inMapping = MappingEntry(
+            commandName: "Play/Pause",
+            ioType: .input, assignment: .deckA, interactionMode: .hold,
+            midiChannel: 1, midiCC: 20, controllerType: .button
+        )
+        let outMapping = MappingEntry(
+            commandName: "Is Playing",
+            ioType: .output, assignment: .deckA, interactionMode: .output,
+            midiChannel: 1, midiCC: 20, controllerType: .led
+        )
+        let device = Device(name: "Test", mappings: [inMapping, outMapping])
+
+        let writer = TSIWriter()
+        let tsiData = writer.write(MappingFile(devices: [device]))
+        let parser = TSIParser()
+        let base64 = try TSIParser.extractControllerData(from: tsiData)
+        let binaryData = try parser.decodeBase64(base64)
+
+        let dcdtEntries = scanDCDTEntries(in: binaryData)
+        XCTAssertEqual(dcdtEntries.count, 2, "Expected one DCDT per (control, direction) pair")
+        XCTAssertTrue(dcdtEntries.contains { $0.name == "Ch01.CC.020" && $0.controlType == 7 },
+                      "Missing IN entry (MidiControlType 7) for Ch01.CC.020")
+        XCTAssertTrue(dcdtEntries.contains { $0.name == "Ch01.CC.020" && $0.controlType == 8 },
+                      "Missing OUT entry (MidiControlType 8) for Ch01.CC.020")
+
+        // Both mappings must still resolve through the interpreter
+        let frames = try parser.parseFrames(from: binaryData)
+        let result = try TSIInterpreter.interpret(frames: frames)
+        let mappings = result.devices.first?.mappings ?? []
+        XCTAssertEqual(mappings.count, 2)
+        XCTAssertTrue(mappings.allSatisfy { $0.midiCC == 20 && $0.midiChannel == 1 },
+                      "IN/OUT pair must not shift binding indices")
     }
 
     func testRoundTripSetToValueZero() throws {

@@ -68,6 +68,38 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
     /// For Encoder: the encoder communication mode
     var encoderMode: EncoderMode
 
+    // MARK: - CMAD pass-through fields (round-tripped, not yet surfaced in UI)
+
+    /// For Button: repeat the command while held
+    var autoRepeat: Bool
+
+    /// LED min controller range value type (CMAD ValueUIType enum)
+    var ledMinRangeType: Int
+
+    /// LED min controller range value
+    var ledMinRangeData: Int
+
+    /// LED max controller range value type (CMAD ValueUIType enum)
+    var ledMaxRangeType: Int
+
+    /// LED max controller range value
+    var ledMaxRangeData: Int
+
+    /// LED minimum MIDI output value (0-127)
+    var ledMinMidi: Int
+
+    /// LED maximum MIDI output value (0-127)
+    var ledMaxMidi: Int
+
+    /// Invert the LED output range
+    var ledInvert: Bool
+
+    /// Blend the LED output between min and max
+    var ledBlend: Bool
+
+    /// Encoder/fader resolution (CMAD Resolution enum)
+    var resolution: Int
+
     // MARK: - Sort Keys (for table column sorting)
 
     /// Sort key for I/O column
@@ -128,7 +160,17 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         setToValue: Float = 0.0,
         rotarySensitivity: Float = 1.0,
         rotaryAcceleration: Float = 0.0,
-        encoderMode: EncoderMode = .mode7Fh01h
+        encoderMode: EncoderMode = .mode7Fh01h,
+        autoRepeat: Bool = false,
+        ledMinRangeType: Int = 0,
+        ledMinRangeData: Int = 0,
+        ledMaxRangeType: Int = 0,
+        ledMaxRangeData: Int = 1,
+        ledMinMidi: Int = 0,
+        ledMaxMidi: Int = 127,
+        ledInvert: Bool = false,
+        ledBlend: Bool = false,
+        resolution: Int = 0
     ) {
         self.id = id
         self.commandName = commandName
@@ -148,6 +190,16 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         self.rotarySensitivity = rotarySensitivity
         self.rotaryAcceleration = rotaryAcceleration
         self.encoderMode = encoderMode
+        self.autoRepeat = autoRepeat
+        self.ledMinRangeType = ledMinRangeType
+        self.ledMinRangeData = ledMinRangeData
+        self.ledMaxRangeType = ledMaxRangeType
+        self.ledMaxRangeData = ledMaxRangeData
+        self.ledMinMidi = ledMinMidi
+        self.ledMaxMidi = ledMaxMidi
+        self.ledInvert = ledInvert
+        self.ledBlend = ledBlend
+        self.resolution = resolution
     }
 }
 
@@ -174,6 +226,17 @@ extension MappingEntry: Codable {
         rotarySensitivity = try container.decode(Float.self, forKey: .rotarySensitivity)
         rotaryAcceleration = try container.decode(Float.self, forKey: .rotaryAcceleration)
         encoderMode = try container.decode(EncoderMode.self, forKey: .encoderMode)
+        // New CMAD pass-through fields: decode with defaults so old saved state still loads
+        autoRepeat = try container.decodeIfPresent(Bool.self, forKey: .autoRepeat) ?? false
+        ledMinRangeType = try container.decodeIfPresent(Int.self, forKey: .ledMinRangeType) ?? 0
+        ledMinRangeData = try container.decodeIfPresent(Int.self, forKey: .ledMinRangeData) ?? 0
+        ledMaxRangeType = try container.decodeIfPresent(Int.self, forKey: .ledMaxRangeType) ?? 0
+        ledMaxRangeData = try container.decodeIfPresent(Int.self, forKey: .ledMaxRangeData) ?? 1
+        ledMinMidi = try container.decodeIfPresent(Int.self, forKey: .ledMinMidi) ?? 0
+        ledMaxMidi = try container.decodeIfPresent(Int.self, forKey: .ledMaxMidi) ?? 127
+        ledInvert = try container.decodeIfPresent(Bool.self, forKey: .ledInvert) ?? false
+        ledBlend = try container.decodeIfPresent(Bool.self, forKey: .ledBlend) ?? false
+        resolution = try container.decodeIfPresent(Int.self, forKey: .resolution) ?? 0
     }
 
     nonisolated func encode(to encoder: Encoder) throws {
@@ -196,6 +259,16 @@ extension MappingEntry: Codable {
         try container.encode(rotarySensitivity, forKey: .rotarySensitivity)
         try container.encode(rotaryAcceleration, forKey: .rotaryAcceleration)
         try container.encode(encoderMode, forKey: .encoderMode)
+        try container.encode(autoRepeat, forKey: .autoRepeat)
+        try container.encode(ledMinRangeType, forKey: .ledMinRangeType)
+        try container.encode(ledMinRangeData, forKey: .ledMinRangeData)
+        try container.encode(ledMaxRangeType, forKey: .ledMaxRangeType)
+        try container.encode(ledMaxRangeData, forKey: .ledMaxRangeData)
+        try container.encode(ledMinMidi, forKey: .ledMinMidi)
+        try container.encode(ledMaxMidi, forKey: .ledMaxMidi)
+        try container.encode(ledInvert, forKey: .ledInvert)
+        try container.encode(ledBlend, forKey: .ledBlend)
+        try container.encode(resolution, forKey: .resolution)
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -205,6 +278,10 @@ extension MappingEntry: Codable {
         case comment, controllerType, invert
         case softTakeover, setToValue
         case rotarySensitivity, rotaryAcceleration, encoderMode
+        case autoRepeat
+        case ledMinRangeType, ledMinRangeData, ledMaxRangeType, ledMaxRangeData
+        case ledMinMidi, ledMaxMidi, ledInvert, ledBlend
+        case resolution
     }
 }
 

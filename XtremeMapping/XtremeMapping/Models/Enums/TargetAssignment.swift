@@ -45,6 +45,30 @@ enum TargetAssignment: Int, Codable, CaseIterable, Sendable {
     /// Effects Unit 4
     case fxUnit4 = 8
 
+    /// Remix Deck Slot 1 (TSI deck value 8; raw value continues the TSI+1 convention)
+    case remixSlot1 = 9
+
+    /// Remix Deck Slot 2
+    case remixSlot2 = 10
+
+    /// Remix Deck Slot 3
+    case remixSlot3 = 11
+
+    /// Remix Deck Slot 4
+    case remixSlot4 = 12
+
+    /// Remix Deck Slot 5
+    case remixSlot5 = 13
+
+    /// Remix Deck Slot 6
+    case remixSlot6 = 14
+
+    /// Remix Deck Slot 7
+    case remixSlot7 = 15
+
+    /// Remix Deck Slot 8 (TSI deck value 15)
+    case remixSlot8 = 16
+
     /// Human-readable name for display in the UI
     var displayName: String {
         switch self {
@@ -70,6 +94,22 @@ enum TargetAssignment: Int, Codable, CaseIterable, Sendable {
             return "FX Unit 3"
         case .fxUnit4:
             return "FX Unit 4"
+        case .remixSlot1:
+            return "Remix Slot 1"
+        case .remixSlot2:
+            return "Remix Slot 2"
+        case .remixSlot3:
+            return "Remix Slot 3"
+        case .remixSlot4:
+            return "Remix Slot 4"
+        case .remixSlot5:
+            return "Remix Slot 5"
+        case .remixSlot6:
+            return "Remix Slot 6"
+        case .remixSlot7:
+            return "Remix Slot 7"
+        case .remixSlot8:
+            return "Remix Slot 8"
         }
     }
 }

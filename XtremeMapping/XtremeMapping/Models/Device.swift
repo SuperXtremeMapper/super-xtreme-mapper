@@ -27,6 +27,12 @@ struct Device: Identifiable, Codable, Sendable, Equatable {
     /// The MIDI output port name for sending to the controller (LEDs, displays)
     var outPort: String
 
+    /// Traktor version string stored in the device's DDIV frame (e.g. "3.11.0")
+    var tsiVersion: String
+
+    /// Mapping file revision stored in the device's DDIV frame (typically 2)
+    var mappingFileRevision: Int
+
     /// The collection of mappings associated with this device
     var mappings: [MappingEntry]
 
@@ -39,6 +45,8 @@ struct Device: Identifiable, Codable, Sendable, Equatable {
         comment: String = "",
         inPort: String = "",
         outPort: String = "",
+        tsiVersion: String = "3.11.0",
+        mappingFileRevision: Int = 2,
         mappings: [MappingEntry] = []
     ) {
         self.id = id
@@ -46,6 +54,26 @@ struct Device: Identifiable, Codable, Sendable, Equatable {
         self.comment = comment
         self.inPort = inPort
         self.outPort = outPort
+        self.tsiVersion = tsiVersion
+        self.mappingFileRevision = mappingFileRevision
         self.mappings = mappings
+    }
+
+    /// Explicit decode so previously-encoded Device data (drag/drop transferables,
+    /// persisted state) lacking the new DDIV keys still loads. Encoding stays synthesized.
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        comment = try container.decode(String.self, forKey: .comment)
+        inPort = try container.decode(String.self, forKey: .inPort)
+        outPort = try container.decode(String.self, forKey: .outPort)
+        tsiVersion = try container.decodeIfPresent(String.self, forKey: .tsiVersion) ?? "3.11.0"
+        mappingFileRevision = try container.decodeIfPresent(Int.self, forKey: .mappingFileRevision) ?? 2
+        mappings = try container.decode([MappingEntry].self, forKey: .mappings)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case id, name, comment, inPort, outPort, tsiVersion, mappingFileRevision, mappings
     }
 }

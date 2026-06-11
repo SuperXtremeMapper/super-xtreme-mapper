@@ -89,6 +89,20 @@ public struct TSIWriter: Sendable {
     private func buildDDAT(from device: Device) -> Data {
         var data = Data()
 
+        // Filter to mappings whose command name resolves to a writable Traktor ID.
+        // Computed ONCE and shared by ALL frame builders (DDCI, DCBM, CMAS) so
+        // binding IDs stay aligned across frames — filtering in only one builder
+        // would make a CMAI point at the wrong MIDI control after reload.
+        // Excludes unresolvable names (id 0), "Command #0", and negative "Command #N".
+        let writableMappings = device.mappings.filter { mapping in
+            let commandId = TraktorCommands.id(for: mapping.commandName)
+            if commandId < 1 {
+                print("TSIWriter: skipping unwritable mapping '\(mapping.commandName)' (resolved ID \(commandId))")
+                return false
+            }
+            return true
+        }
+
         // DDIF (Device Info Flags) - 4 bytes, value 0
         var ddifValue = UInt32(0).bigEndian
         let ddifData = Data(bytes: &ddifValue, count: 4)
@@ -96,8 +110,8 @@ public struct TSIWriter: Sendable {
 
         // DDIV (Device Version) - version string + MappingFileRevision (int32)
         var ddivData = Data()
-        ddivData.append(encodeUTF16BEString("3.11.0"))
-        var mappingRevision = UInt32(2).bigEndian  // MappingFileRevision, typically 2
+        ddivData.append(encodeUTF16BEString(device.tsiVersion))
+        var mappingRevision = UInt32(device.mappingFileRevision).bigEndian
         ddivData.append(Data(bytes: &mappingRevision, count: 4))
         data.append(encodeFrame(TSIFrame(identifier: "DDIV", size: UInt32(ddivData.count), data: ddivData)))
 
@@ -114,81 +128,77 @@ public struct TSIWriter: Sendable {
         data.append(encodeFrame(TSIFrame(identifier: "DDPT", size: UInt32(ddptData.count), data: ddptData)))
 
         // DDDC (MIDI Definitions Container) containing DDCI
-        let ddciContent = buildDDCI(from: device.mappings)
+        let ddciContent = buildDDCI(from: writableMappings)
         let ddciFrame = encodeFrame(TSIFrame(identifier: "DDCI", size: UInt32(ddciContent.count), data: ddciContent))
         data.append(encodeFrame(TSIFrame(identifier: "DDDC", size: UInt32(ddciFrame.count), data: ddciFrame)))
 
         // DDCB (Command Bindings) containing CMAS
-        let ddcbContent = buildDDCB(from: device.mappings)
+        let ddcbContent = buildDDCB(from: writableMappings)
         data.append(encodeFrame(TSIFrame(identifier: "DDCB", size: UInt32(ddcbContent.count), data: ddcbContent)))
 
         return data
     }
 
     /// Builds the DDCI (Control Index) with DCDT entries
+    ///
+    /// Emits one DCDT per unique (control name, direction) pair so the same
+    /// physical control can carry both an IN binding (MidiControlType 7) and
+    /// an OUT/LED binding (MidiControlType 8).
     private func buildDDCI(from mappings: [MappingEntry]) -> Data {
         var data = Data()
 
-        // Collect unique MIDI control identifiers
-        var seenControls = Set<String>()
+        /// Output direction: explicit OUT mappings and LED controller types
+        func isOutput(_ mapping: MappingEntry) -> Bool {
+            mapping.ioType == .output || mapping.controllerType == .led
+        }
 
-        // First, add 4-byte count prefix (number of DCDT entries)
-        var uniqueCount: UInt32 = 0
+        // Collect unique (control name, direction) pairs in mapping order
+        var seenControls = Set<String>()
+        var uniqueEntries: [(controlName: String, isOutput: Bool)] = []
         for mapping in mappings {
             let controlName = midiControlName(for: mapping)
-            if !seenControls.contains(controlName) {
-                seenControls.insert(controlName)
-                uniqueCount += 1
+            let output = isOutput(mapping)
+            let dedupKey = "\(controlName)|\(output ? "out" : "in")"
+            if !seenControls.contains(dedupKey) {
+                seenControls.insert(dedupKey)
+                uniqueEntries.append((controlName, output))
             }
         }
-        var countBE = uniqueCount.bigEndian
+
+        // 4-byte count prefix (number of DCDT entries)
+        var countBE = UInt32(uniqueEntries.count).bigEndian
         data.append(Data(bytes: &countBE, count: 4))
 
-        // Reset and build DCDT frames
-        seenControls.removeAll()
+        for entry in uniqueEntries {
+            // Build DCDT frame with full structure
+            var dcdtData = Data()
 
-        for mapping in mappings {
-            let controlName = midiControlName(for: mapping)
-            if !seenControls.contains(controlName) {
-                seenControls.insert(controlName)
+            // String with length prefix (UTF-16BE)
+            dcdtData.append(encodeUTF16BEString(entry.controlName))
 
-                // Build DCDT frame with full structure
-                var dcdtData = Data()
+            // MidiControlType (4 bytes) - 7 for in, 8 for out
+            var controlType = UInt32(entry.isOutput ? 8 : 7).bigEndian
+            dcdtData.append(Data(bytes: &controlType, count: 4))
 
-                // String length in characters
-                var strLen = UInt32(controlName.unicodeScalars.count).bigEndian
-                dcdtData.append(Data(bytes: &strLen, count: 4))
+            // MinValue (4 bytes float) - 0.0
+            let minValue: Float32 = 0.0
+            var minValueBytes = minValue.bitPattern.bigEndian
+            dcdtData.append(Data(bytes: &minValueBytes, count: 4))
 
-                // String content (UTF-16BE)
-                for char in controlName.unicodeScalars {
-                    var codeUnit = UInt16(char.value).bigEndian
-                    dcdtData.append(Data(bytes: &codeUnit, count: 2))
-                }
+            // MaxValue (4 bytes float) - 127.0
+            let maxValue: Float32 = 127.0
+            var maxValueBytes = maxValue.bitPattern.bigEndian
+            dcdtData.append(Data(bytes: &maxValueBytes, count: 4))
 
-                // MidiControlType (4 bytes) - 7 for CC
-                var controlType = UInt32(7).bigEndian
-                dcdtData.append(Data(bytes: &controlType, count: 4))
+            // EncoderMode (4 bytes) - 1
+            var encoderMode = UInt32(1).bigEndian
+            dcdtData.append(Data(bytes: &encoderMode, count: 4))
 
-                // MinValue (4 bytes float) - 0.0
-                let minValue: Float32 = 0.0
-                var minValueBytes = minValue.bitPattern.bigEndian
-                dcdtData.append(Data(bytes: &minValueBytes, count: 4))
+            // ControlId (4 bytes) - -1 (0xFFFFFFFF)
+            var controlId = UInt32(0xFFFFFFFF).bigEndian
+            dcdtData.append(Data(bytes: &controlId, count: 4))
 
-                // MaxValue (4 bytes float) - 127.0
-                let maxValue: Float32 = 127.0
-                var maxValueBytes = maxValue.bitPattern.bigEndian
-                dcdtData.append(Data(bytes: &maxValueBytes, count: 4))
-
-                // EncoderMode (4 bytes) - 1
-                var encoderMode = UInt32(1).bigEndian
-                dcdtData.append(Data(bytes: &encoderMode, count: 4))
-
-                // ControlId (4 bytes) - -1 (0xFFFFFFFF)
-                var controlId = UInt32(0xFFFFFFFF).bigEndian
-                dcdtData.append(Data(bytes: &controlId, count: 4))
-
-                data.append(encodeFrame(TSIFrame(identifier: "DCDT", size: UInt32(dcdtData.count), data: dcdtData)))
-            }
+            data.append(encodeFrame(TSIFrame(identifier: "DCDT", size: UInt32(dcdtData.count), data: dcdtData)))
         }
 
         return data
@@ -339,7 +349,8 @@ public struct TSIWriter: Sendable {
         data.append(Data(bytes: &interactionMode, count: 4))
 
         // 4. Target/Assignment (4 bytes, signed)
-        // Per spec: -1=DeviceTarget, 0=A/Global, 1=B, 2=C, 3=D, 4=FX1, 5=FX2, 6=FX3, 7=FX4
+        // Per spec: -1=DeviceTarget, 0=A/Global, 1=B, 2=C, 3=D, 4-7=FX1-4, 8-15=Remix Slots 1-8
+        // Note: .global and .none collapse to 0 (Deck A) — documented TSI ambiguity.
         let targetValue: Int32 = {
             switch mapping.assignment {
             case .none: return 0
@@ -353,13 +364,21 @@ public struct TSIWriter: Sendable {
             case .fxUnit2: return 5
             case .fxUnit3: return 6
             case .fxUnit4: return 7
+            case .remixSlot1: return 8
+            case .remixSlot2: return 9
+            case .remixSlot3: return 10
+            case .remixSlot4: return 11
+            case .remixSlot5: return 12
+            case .remixSlot6: return 13
+            case .remixSlot7: return 14
+            case .remixSlot8: return 15
             }
         }()
         var target = UInt32(bitPattern: targetValue).bigEndian
         data.append(Data(bytes: &target, count: 4))
 
         // 5. AutoRepeat (4 bytes bool)
-        var autoRepeat = UInt32(0).bigEndian
+        var autoRepeat = UInt32(mapping.autoRepeat ? 1 : 0).bigEndian
         data.append(Data(bytes: &autoRepeat, count: 4))
 
         // 6. Invert (4 bytes bool)
@@ -421,33 +440,33 @@ public struct TSIWriter: Sendable {
         data.append(Data(bytes: &cond2Value, count: 4))
 
         // 20-21. LedMinControllerRange: ValueUIType (4), data (4)
-        var ledMinType = UInt32(0).bigEndian
+        var ledMinType = UInt32(mapping.ledMinRangeType).bigEndian
         data.append(Data(bytes: &ledMinType, count: 4))
-        var ledMinData = UInt32(0).bigEndian
+        var ledMinData = UInt32(mapping.ledMinRangeData).bigEndian
         data.append(Data(bytes: &ledMinData, count: 4))
 
         // 22-23. LedMaxControllerRange: ValueUIType (4), data (4)
-        // Per Traktor export: type=0, value=1 (integer, not float)
-        var ledMaxType = UInt32(0).bigEndian
+        // Per Traktor export: type=0, value=1 (integer, not float) by default
+        var ledMaxType = UInt32(mapping.ledMaxRangeType).bigEndian
         data.append(Data(bytes: &ledMaxType, count: 4))
-        var ledMaxData = UInt32(1).bigEndian
+        var ledMaxData = UInt32(mapping.ledMaxRangeData).bigEndian
         data.append(Data(bytes: &ledMaxData, count: 4))
 
         // 24. LedMinMidiRange (4 bytes)
-        var ledMinMidi = UInt32(0).bigEndian
+        var ledMinMidi = UInt32(mapping.ledMinMidi).bigEndian
         data.append(Data(bytes: &ledMinMidi, count: 4))
 
         // 25. LedMaxMidiRange (4 bytes)
-        var ledMaxMidi = UInt32(127).bigEndian
+        var ledMaxMidi = UInt32(mapping.ledMaxMidi).bigEndian
         data.append(Data(bytes: &ledMaxMidi, count: 4))
 
         // 26-30. Optional fields for Generic MIDI device
         // 26. LedInvert (4 bytes bool)
-        var ledInvert = UInt32(0).bigEndian
+        var ledInvert = UInt32(mapping.ledInvert ? 1 : 0).bigEndian
         data.append(Data(bytes: &ledInvert, count: 4))
 
         // 27. LedBlend (4 bytes bool)
-        var ledBlend = UInt32(0).bigEndian
+        var ledBlend = UInt32(mapping.ledBlend ? 1 : 0).bigEndian
         data.append(Data(bytes: &ledBlend, count: 4))
 
         // 28. unknownValueUIType (4 bytes)
@@ -455,7 +474,7 @@ public struct TSIWriter: Sendable {
         data.append(Data(bytes: &unknownVUI, count: 4))
 
         // 29. Resolution (4 bytes enum)
-        var resolution = UInt32(0).bigEndian
+        var resolution = UInt32(mapping.resolution).bigEndian
         data.append(Data(bytes: &resolution, count: 4))
 
         // 30. UseFactoryMap (4 bytes bool)
@@ -498,16 +517,20 @@ public struct TSIWriter: Sendable {
     }
 
     /// Encodes a UTF-16BE string with 4-byte length prefix
+    ///
+    /// Iterates UTF-16 code units (not unicode scalars) so non-BMP characters
+    /// like emoji encode as surrogate pairs instead of trapping on
+    /// `UInt16(scalar.value)`. The length prefix counts UTF-16 code units.
     private func encodeUTF16BEString(_ string: String) -> Data {
         var data = Data()
 
-        // Length in characters
-        var length = UInt32(string.unicodeScalars.count).bigEndian
+        // Length in UTF-16 code units
+        var length = UInt32(string.utf16.count).bigEndian
         data.append(Data(bytes: &length, count: 4))
 
-        // UTF-16BE characters
-        for char in string.unicodeScalars {
-            var codeUnit = UInt16(char.value).bigEndian
+        // UTF-16BE code units (surrogate pairs preserved)
+        for unit in string.utf16 {
+            var codeUnit = unit.bigEndian
             data.append(Data(bytes: &codeUnit, count: 2))
         }
 

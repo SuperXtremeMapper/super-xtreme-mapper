@@ -158,6 +158,21 @@ final class TraktorCommandsTests: XCTestCase {
         XCTAssertEqual(TraktorCommands.name(for: 2920), "Slot 1 FX On")
     }
 
+    // MARK: - Dynamic Name <-> ID Round-Trip Tests (Task 1.2)
+
+    func testDynamicCommandNameIdRoundTrip() {
+        let ranges: [ClosedRange<Int>] = [601...728, 2401...2404, 2548...2555, 2688...2703, 2900...2923]
+        for range in ranges {
+            for commandId in range {
+                let name = TraktorCommands.name(for: commandId)
+                XCTAssertEqual(
+                    TraktorCommands.id(for: name), commandId,
+                    "ID \(commandId) -> '\(name)' did not round-trip back to \(commandId)"
+                )
+            }
+        }
+    }
+
     // MARK: - Unknown Command Fallback Tests
 
     func testUnknownCommandReturnsCommandNumber() {
