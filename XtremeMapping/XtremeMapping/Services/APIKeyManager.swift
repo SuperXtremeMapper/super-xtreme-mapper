@@ -8,6 +8,7 @@
 import Foundation
 import Security
 import Combine
+import os
 
 /// Manages API key storage using macOS Keychain for secure credential handling.
 ///
@@ -43,19 +44,31 @@ final class APIKeyManager: ObservableObject {
     /// Account name for the API key entry
     private static let accountName = "anthropic"
 
+    /// Logger for Keychain status reporting
+    private static let logger = Logger(subsystem: "com.sxm.app", category: "APIKeyManager")
+
+    // MARK: - Key Storage
+
+    /// Lock-backed snapshot of the current key, readable synchronously from
+    /// any thread. This is the source of truth for `activeKey`; the
+    /// @Published property below is a main-thread mirror for UI observation.
+    private let snapshot = KeySnapshotStore()
+
     // MARK: - Published Properties
 
-    /// The user's stored API key, loaded from Keychain
+    /// The user's stored API key — main-thread mirror of the snapshot,
+    /// for SwiftUI observation only. Reads from background contexts must
+    /// go through `activeKey`.
     @Published private(set) var userAPIKey: String?
 
     // MARK: - Computed Properties
 
     /// Returns the active API key to use for requests.
     ///
-    /// Currently returns only the user's own key. This design allows
-    /// for future expansion (e.g., built-in keys, team keys).
+    /// Reads the lock-backed snapshot, so it is safe to call synchronously
+    /// from any thread (e.g. ClaudeAPIService's nonisolated key provider).
     var activeKey: String? {
-        userAPIKey
+        snapshot.read()
     }
 
     /// Returns whether a valid API key is configured.
@@ -82,7 +95,9 @@ final class APIKeyManager: ObservableObject {
 
     private init() {
         // Load any existing key from Keychain on initialization
-        userAPIKey = loadAPIKey()
+        let key = loadAPIKey()
+        snapshot.write(key)
+        userAPIKey = key
     }
 
     // MARK: - Public API
@@ -103,16 +118,16 @@ final class APIKeyManager: ObservableObject {
         }
 
         // Try to update existing key first
-        if userAPIKey != nil {
+        if snapshot.read() != nil {
             if updateKeychainItem(trimmedKey) {
-                userAPIKey = trimmedKey
+                storeKey(trimmedKey)
                 return true
             }
         }
 
         // Add new key if update failed or no existing key
         if addKeychainItem(trimmedKey) {
-            userAPIKey = trimmedKey
+            storeKey(trimmedKey)
             return true
         }
 
@@ -137,6 +152,9 @@ final class APIKeyManager: ObservableObject {
         guard status == errSecSuccess,
               let data = result as? Data,
               let key = String(data: data, encoding: .utf8) else {
+            if status != errSecSuccess && status != errSecItemNotFound {
+                Self.logger.error("Keychain load failed: OSStatus \(status)")
+            }
             return nil
         }
 
@@ -160,11 +178,28 @@ final class APIKeyManager: ObservableObject {
 
         // Success if deleted or didn't exist
         if status == errSecSuccess || status == errSecItemNotFound {
-            userAPIKey = nil
+            storeKey(nil)
             return true
         }
 
+        Self.logger.error("Keychain delete failed: OSStatus \(status)")
         return false
+    }
+
+    // MARK: - Private Storage Helpers
+
+    /// Writes the key to the lock-backed snapshot (immediately visible to
+    /// `activeKey` on any thread), then mirrors it to the @Published
+    /// property on the main thread for UI observation.
+    private func storeKey(_ key: String?) {
+        snapshot.write(key)
+        if Thread.isMainThread {
+            userAPIKey = key
+        } else {
+            DispatchQueue.main.async { [weak self] in
+                self?.userAPIKey = key
+            }
+        }
     }
 
     // MARK: - Private Keychain Methods
@@ -173,7 +208,21 @@ final class APIKeyManager: ObservableObject {
     private func addKeychainItem(_ key: String) -> Bool {
         guard let data = key.data(using: .utf8) else { return false }
 
-        let query: [String: Any] = [
+        // Delete any existing item first to avoid duplicates. The delete
+        // query must be search-only (class/service/account) — passing the
+        // add query (with kSecValueData/kSecAttrAccessible) can errSecParam,
+        // leaving a stale item that makes SecItemAdd errSecDuplicateItem.
+        let deleteQuery: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: Self.serviceName,
+            kSecAttrAccount as String: Self.accountName
+        ]
+        let deleteStatus = SecItemDelete(deleteQuery as CFDictionary)
+        if deleteStatus != errSecSuccess && deleteStatus != errSecItemNotFound {
+            Self.logger.error("Keychain pre-add delete failed: OSStatus \(deleteStatus)")
+        }
+
+        let addQuery: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: Self.serviceName,
             kSecAttrAccount as String: Self.accountName,
@@ -181,10 +230,10 @@ final class APIKeyManager: ObservableObject {
             kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlocked
         ]
 
-        // Delete any existing item first to avoid duplicates
-        SecItemDelete(query as CFDictionary)
-
-        let status = SecItemAdd(query as CFDictionary, nil)
+        let status = SecItemAdd(addQuery as CFDictionary, nil)
+        if status != errSecSuccess {
+            Self.logger.error("Keychain add failed: OSStatus \(status)")
+        }
         return status == errSecSuccess
     }
 
@@ -203,6 +252,9 @@ final class APIKeyManager: ObservableObject {
         ]
 
         let status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
+        if status != errSecSuccess && status != errSecItemNotFound {
+            Self.logger.error("Keychain update failed: OSStatus \(status)")
+        }
         return status == errSecSuccess
     }
 }

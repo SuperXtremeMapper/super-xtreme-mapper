@@ -48,7 +48,8 @@ final class AppleSpeechProvider: NSObject, ObservableObject, SpeechRecognitionPr
 
     private let speechRecognizer: SFSpeechRecognizer?
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
-    private var recognitionTask: SFSpeechRecognitionTask?
+    /// Internal getter so tests can assert the delayed-start guard no-ops.
+    private(set) var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
 
     /// Duration of silence before considering speech complete
@@ -162,10 +163,51 @@ final class AppleSpeechProvider: NSObject, ObservableObject, SpeechRecognitionPr
         // Small delay to let audio stabilize before starting recognition
         // This helps avoid "no speech detected" errors
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-            guard let self = self, self.isListening else { return }
-            // Start recognition task using delegate pattern
-            self.recognitionTask = self.speechRecognizer?.recognitionTask(with: recognitionRequest, delegate: self)
+            self?.startDelayedRecognitionTask(for: recognitionRequest)
         }
+    }
+
+    // MARK: - Stale-Task Guards (internal seams for tests)
+
+    /// Pure object-identity check behind `isCurrent(_:)`: true only when both
+    /// references exist and are the same object. Static and AnyObject-typed
+    /// so it is unit-testable without constructing SFSpeech types.
+    nonisolated static func isCurrentToken(_ candidate: AnyObject?, current: AnyObject?) -> Bool {
+        guard let candidate, let current else { return false }
+        return candidate === current
+    }
+
+    /// Whether a delegate callback's task is the provider's live task.
+    /// Every `SFSpeechRecognitionTaskDelegate` callback checks this so a
+    /// restarted recognizer's stale task can't mutate state or re-finalize
+    /// an old transcript.
+    func isCurrent(_ task: SFSpeechRecognitionTask) -> Bool {
+        Self.isCurrentToken(task, current: recognitionTask)
+    }
+
+    /// Pure decision behind the delayed task start: only start when still
+    /// listening and the captured request is still the live request.
+    nonisolated static func shouldStartDelayedTask(
+        isListening: Bool,
+        currentRequest: AnyObject?,
+        capturedRequest: AnyObject
+    ) -> Bool {
+        guard isListening, let currentRequest else { return false }
+        return currentRequest === capturedRequest
+    }
+
+    /// Starts the recognition task for `capturedRequest` only if it is still
+    /// the provider's live request. A quick stop→start swaps the request
+    /// before the 0.3s delay fires; the stale start must no-op rather than
+    /// attach a task to a dead request.
+    func startDelayedRecognitionTask(for capturedRequest: SFSpeechAudioBufferRecognitionRequest) {
+        guard Self.shouldStartDelayedTask(
+            isListening: isListening,
+            currentRequest: recognitionRequest,
+            capturedRequest: capturedRequest
+        ) else { return }
+
+        recognitionTask = speechRecognizer?.recognitionTask(with: capturedRequest, delegate: self)
     }
 
     private func resetSilenceTimer() {
@@ -258,6 +300,7 @@ extension AppleSpeechProvider: SFSpeechRecognizerDelegate {
 extension AppleSpeechProvider: SFSpeechRecognitionTaskDelegate {
     nonisolated func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didHypothesizeTranscription transcription: SFTranscription) {
         Task { @MainActor in
+            guard self.isCurrent(task) else { return }
             let newTranscript = transcription.formattedString
             self.transcript = newTranscript
             self.onPartialResult?(newTranscript)
@@ -272,6 +315,7 @@ extension AppleSpeechProvider: SFSpeechRecognitionTaskDelegate {
 
     nonisolated func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didFinishRecognition recognitionResult: SFSpeechRecognitionResult) {
         Task { @MainActor in
+            guard self.isCurrent(task) else { return }
             let finalTranscript = recognitionResult.bestTranscription.formattedString
             self.transcript = finalTranscript
             self.cancelSilenceTimer()
@@ -280,11 +324,13 @@ extension AppleSpeechProvider: SFSpeechRecognitionTaskDelegate {
     }
 
     nonisolated func speechRecognitionTaskWasCancelled(_ task: SFSpeechRecognitionTask) {
-        // Task was cancelled, no action needed
+        // No state mutation here, so no stale-task guard is needed —
+        // cancelled tasks (stale by definition) take no action.
     }
 
     nonisolated func speechRecognitionTask(_ task: SFSpeechRecognitionTask, didFinishSuccessfully successfully: Bool) {
         Task { @MainActor in
+            guard self.isCurrent(task) else { return }
             if !successfully {
                 // If it failed, try to use whatever transcript we have
                 if !self.transcript.isEmpty {

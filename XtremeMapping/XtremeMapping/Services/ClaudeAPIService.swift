@@ -37,6 +37,7 @@ final class ClaudeAPIService: Sendable {
         case invalidURL
         case networkError(Error)
         case invalidResponse(Int)
+        case apiError(statusCode: Int, message: String?)
         case decodingError(Error)
         case noContentInResponse
         case jsonExtractionFailed
@@ -51,6 +52,12 @@ final class ClaudeAPIService: Sendable {
                 return "Network error: \(error.localizedDescription)"
             case .invalidResponse(let statusCode):
                 return "API returned error status: \(statusCode)"
+            case .apiError(let statusCode, let message):
+                let detail = message.map { " — \($0)" } ?? ""
+                if statusCode == 429 {
+                    return "Rate limit reached (HTTP 429)\(detail)"
+                }
+                return "API error (HTTP \(statusCode))\(detail)"
             case .decodingError(let error):
                 return "Failed to decode response: \(error.localizedDescription)"
             case .noContentInResponse:
@@ -66,8 +73,9 @@ final class ClaudeAPIService: Sendable {
     /// Claude API endpoint
     private static let apiEndpoint = "https://api.anthropic.com/v1/messages"
 
-    /// Model to use - Haiku for speed and cost efficiency (~$0.003 per request)
-    private static let model = "claude-3-haiku-20240307"
+    /// Model to use - Haiku for speed and cost efficiency.
+    /// Current Haiku model; revisit when Anthropic announces a successor.
+    private static let model = "claude-haiku-4-5"
 
     /// API version header
     private static let apiVersion = "2023-06-01"
@@ -139,7 +147,7 @@ final class ClaudeAPIService: Sendable {
         }
 
         guard (200...299).contains(httpResponse.statusCode) else {
-            throw ClaudeError.invalidResponse(httpResponse.statusCode)
+            throw Self.apiError(statusCode: httpResponse.statusCode, data: data)
         }
 
         return try parseResponse(data)
@@ -183,10 +191,24 @@ final class ClaudeAPIService: Sendable {
         """
     }
 
+    /// Builds a descriptive error from a non-2xx response, surfacing the
+    /// Anthropic error body's message when present.
+    ///
+    /// Anthropic error bodies look like:
+    /// `{"type":"error","error":{"type":"rate_limit_error","message":"..."}}`
+    /// A malformed or empty body falls back to a status-only error.
+    /// Internal (not private) so the parsing contract is unit-testable.
+    static func apiError(statusCode: Int, data: Data) -> ClaudeError {
+        let message = (try? JSONDecoder().decode(AnthropicErrorBody.self, from: data))?.error?.message
+        return .apiError(statusCode: statusCode, message: message)
+    }
+
     /// Builds the HTTP request for the Claude API.
-    private func buildRequest(url: URL, apiKey: String, prompt: String) throws -> URLRequest {
+    /// Internal (not private) so request construction is unit-testable.
+    func buildRequest(url: URL, apiKey: String, prompt: String) throws -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        request.timeoutInterval = 30
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(apiKey, forHTTPHeaderField: "x-api-key")
         request.setValue(Self.apiVersion, forHTTPHeaderField: "anthropic-version")
@@ -286,6 +308,16 @@ private struct ClaudeAPIResponse: Decodable {
 private struct ContentBlock: Decodable {
     let type: String
     let text: String?
+}
+
+/// Anthropic error response body:
+/// `{"type":"error","error":{"type":"...","message":"..."}}`
+private struct AnthropicErrorBody: Decodable {
+    struct ErrorDetail: Decodable {
+        let type: String?
+        let message: String?
+    }
+    let error: ErrorDetail?
 }
 
 // MARK: - CommandInterpreting Conformance

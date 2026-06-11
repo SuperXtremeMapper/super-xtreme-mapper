@@ -23,8 +23,8 @@ import Combine
 ///     voiceManager: voiceManager,
 ///     claudeService: claudeService
 /// )
-/// coordinator.onMappingCreated = { midi, result in
-///     // Create the actual mapping
+/// coordinator.insertMapping = { midi, result in
+///     // Insert into the document; return the new entry's id, or nil if refused
 /// }
 /// coordinator.activate()
 /// ```
@@ -56,13 +56,6 @@ final class VoiceMappingCoordinator: ObservableObject {
     /// only inside this class.
     @Published var currentResult: VoiceCommandResult?
 
-    /// Published when a mapping is saved - view observes this via .onChange
-    /// Contains (MIDI message, Voice command result) tuple
-    @Published private(set) var savedMapping: (midi: MIDIMessage, result: VoiceCommandResult)?
-
-    /// Counter that increments each time a mapping is saved - used for .onChange observation
-    @Published private(set) var savedMappingCount: Int = 0
-
     /// Show overwrite confirmation alert
     @Published var showOverwriteAlert = false
 
@@ -78,11 +71,17 @@ final class VoiceMappingCoordinator: ObservableObject {
     /// UUIDs of MappingEntry objects created during this voice session
     private(set) var sessionMappingIds: Set<UUID> = []
 
-    // MARK: - Callbacks (deprecated - use savedMapping instead)
+    // MARK: - Document Insertion
 
-    /// Called when a mapping is successfully created.
-    /// Parameters: (MIDI message, Voice command result)
-    var onMappingCreated: ((MIDIMessage, VoiceCommandResult) -> Void)?
+    /// Inserts a mapping into the document. Injected by the owning view
+    /// (ContentView wires this to `addVoiceMapping` at activation).
+    ///
+    /// Returns the new MappingEntry's UUID, or nil when the document refuses
+    /// the insert (e.g. the document is locked). `saveAndContinue` only
+    /// records a session mapping when this returns non-nil, so the
+    /// coordinator can never report "Saved!" for a mapping the document
+    /// rejected.
+    var insertMapping: ((MIDIMessage, VoiceCommandResult) -> UUID?)?
 
     // MARK: - Dependencies
 
@@ -181,6 +180,7 @@ final class VoiceMappingCoordinator: ObservableObject {
         midiManager.onMIDIReceived = nil
         voiceManager.onTranscriptReady = nil
         voiceManager.onModelLoadProgress = nil
+        insertMapping = nil
 
         // Reset state. Session collections are cleared here (not in
         // clearAllState) because saveAndContinue calls clearAllState between
@@ -417,11 +417,17 @@ final class VoiceMappingCoordinator: ObservableObject {
             return
         }
 
-        // Add to session mappings
-        sessionMappings.append((midi: midi, result: result))
+        // Insert into the document FIRST — the document can refuse (e.g.
+        // locked). Only a successful insert becomes a session mapping.
+        guard let newId = insertMapping?(midi, result) else {
+            // Keep currentResult/currentMIDI so the user can unlock the
+            // document and press Next again without re-capturing the pair.
+            statusMessage = "Document is locked — mapping not saved"
+            return
+        }
 
-        // Create the mapping (for immediate feedback)
-        createMapping(midi: midi, result: result)
+        sessionMappings.append((midi: midi, result: result))
+        registerSessionMappingId(newId)
 
         // Clear all state for next input
         clearAllState()
@@ -459,16 +465,6 @@ final class VoiceMappingCoordinator: ObservableObject {
             options.append(contentsOf: alternatives)
         }
         return options.filter { TraktorCommands.isKnownCommand($0.command) }
-    }
-
-    /// Create a mapping from MIDI and voice result.
-    private func createMapping(midi: MIDIMessage, result: VoiceCommandResult) {
-        // Publish the saved mapping for view observation
-        savedMapping = (midi: midi, result: result)
-        savedMappingCount += 1
-
-        // Also notify via callback (legacy)
-        onMappingCreated?(midi, result)
     }
 
     /// Generate a human-readable description of a MIDI message.

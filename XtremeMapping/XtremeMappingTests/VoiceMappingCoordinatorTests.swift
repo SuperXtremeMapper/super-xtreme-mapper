@@ -78,15 +78,24 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
 
     private var mock: MockInterpreter!
     private var coordinator: VoiceMappingCoordinator!
+    /// IDs returned by the test insertMapping closure, in insertion order.
+    private var insertedIds: [UUID] = []
 
     override func setUp() async throws {
         try await super.setUp()
         mock = MockInterpreter()
+        insertedIds = []
         coordinator = VoiceMappingCoordinator(
             midiManager: MIDIInputManager.shared,
             voiceManager: VoiceInputManager(provider: MockSpeechProvider()),
             claudeService: mock
         )
+        // Default insertion seam: document accepts every mapping.
+        coordinator.insertMapping = { [weak self] _, _ in
+            let id = UUID()
+            self?.insertedIds.append(id)
+            return id
+        }
     }
 
     override func tearDown() async throws {
@@ -266,11 +275,11 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
     func testDeactivateClearsSessionState() async {
         coordinator.activate()
 
-        // Build up a session: one saved mapping plus a registered entry ID.
+        // Build up a session: one saved mapping (saveAndContinue registers
+        // the document-inserted entry ID itself).
         mock.result = makeResult(command: "Play/Pause")
         await processPair(midi: makeMIDI(cc: 10), voice: "play deck a", expectedCallCount: 1)
         coordinator.saveAndContinue()
-        coordinator.registerSessionMappingId(UUID())
         XCTAssertEqual(coordinator.sessionMappings.count, 1)
         XCTAssertEqual(coordinator.sessionMappingIds.count, 1)
 
@@ -380,6 +389,72 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
 
         XCTAssertTrue(coordinator.sessionMappings.isEmpty,
                       "saveAndContinue must refuse unknown command names")
-        XCTAssertEqual(coordinator.savedMappingCount, 0)
+        XCTAssertTrue(insertedIds.isEmpty,
+                      "Unknown commands must never reach the document insertion seam")
+    }
+
+    // MARK: - Task 2.4 (M6): Locked-document save divergence
+
+    func testSaveAndContinueLockedDocumentDoesNotRecordSession() async {
+        mock.result = makeResult(command: "Play/Pause")
+        await processPair(midi: makeMIDI(cc: 10), voice: "play deck a", expectedCallCount: 1)
+
+        // Locked document: insertion refused.
+        coordinator.insertMapping = { _, _ in nil }
+        coordinator.saveAndContinue()
+
+        XCTAssertTrue(coordinator.sessionMappings.isEmpty,
+                      "A refused insert must not grow sessionMappings")
+        XCTAssertTrue(coordinator.sessionMappingIds.isEmpty)
+        XCTAssertTrue(coordinator.statusMessage.localizedCaseInsensitiveContains("locked"),
+                      "Status must explain the refusal, got: \(coordinator.statusMessage)")
+        XCTAssertFalse(coordinator.statusMessage.contains("Saved"),
+                       "Status must not celebrate a save that didn't happen")
+        XCTAssertNotNil(coordinator.currentResult,
+                        "Pending result survives a refused save so the user can unlock and retry")
+        XCTAssertNotNil(coordinator.currentMIDI)
+
+        // After unlocking, pressing Next again saves the same pair.
+        coordinator.insertMapping = { _, _ in UUID() }
+        coordinator.saveAndContinue()
+        XCTAssertEqual(coordinator.sessionMappings.count, 1)
+        XCTAssertEqual(coordinator.sessionMappings.first?.result.command, "Play/Pause")
+        XCTAssertTrue(coordinator.statusMessage.contains("Saved"))
+    }
+
+    func testSaveAndContinueUnlockedAppendsAndRegistersId() async {
+        var receivedMIDI: MIDIMessage?
+        var receivedCommand: String?
+        let documentId = UUID()
+        coordinator.insertMapping = { midi, result in
+            receivedMIDI = midi
+            receivedCommand = result.command
+            return documentId
+        }
+
+        mock.result = makeResult(command: "Play/Pause")
+        await processPair(midi: makeMIDI(cc: 10), voice: "play deck a", expectedCallCount: 1)
+        coordinator.saveAndContinue()
+
+        XCTAssertEqual(coordinator.sessionMappings.count, 1)
+        XCTAssertTrue(coordinator.sessionMappingIds.contains(documentId),
+                      "The document's entry ID must be registered for overwrite tracking")
+        XCTAssertEqual(receivedMIDI?.cc, 10)
+        XCTAssertEqual(receivedCommand, "Play/Pause")
+        XCTAssertTrue(coordinator.statusMessage.contains("Saved"))
+        XCTAssertNil(coordinator.currentResult, "State clears for the next capture after a real save")
+        XCTAssertNil(coordinator.currentMIDI)
+    }
+
+    func testSaveAndContinueWithoutInsertionSeamBehavesAsRefused() async {
+        mock.result = makeResult(command: "Play/Pause")
+        await processPair(midi: makeMIDI(cc: 10), voice: "play deck a", expectedCallCount: 1)
+
+        coordinator.insertMapping = nil
+        coordinator.saveAndContinue()
+
+        XCTAssertTrue(coordinator.sessionMappings.isEmpty,
+                      "No insertion seam means nothing reached the document — never record a session mapping")
+        XCTAssertFalse(coordinator.statusMessage.contains("Saved"))
     }
 }

@@ -228,12 +228,6 @@ struct ContentView: View {
         .onKeyPress("3") { handleDisambiguationKey(2) }
         .onKeyPress("4") { handleDisambiguationKey(3) }
         .onKeyPress("5") { handleDisambiguationKey(4) }
-        // Observe when coordinator saves a mapping (counter changes trigger this)
-        .onChange(of: voiceCoordinator.savedMappingCount) { _, _ in
-            guard let mapping = voiceCoordinator.savedMapping else { return }
-            let id = addVoiceMapping(midi: mapping.midi, result: mapping.result)
-            if let id { voiceCoordinator.registerSessionMappingId(id) }
-        }
         // Handle mode activation from welcome screen
         .onReceive(NotificationCenter.default.publisher(for: .activateVoiceMode)) { _ in
             // Delay to ensure document is ready
@@ -341,6 +335,11 @@ struct ContentView: View {
                 return
             }
             voiceCoordinator.setDocument(document)
+            // Result-returning insertion seam: nil means the document refused
+            // the mapping (e.g. locked), and the coordinator won't record it.
+            voiceCoordinator.insertMapping = { midi, result in
+                addVoiceMapping(midi: midi, result: result)
+            }
             voiceCoordinator.activate()
         }
     }
