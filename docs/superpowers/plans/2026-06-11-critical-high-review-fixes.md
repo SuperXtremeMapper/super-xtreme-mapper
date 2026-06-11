@@ -178,26 +178,26 @@ Read side is the gap: `parseDevice` only reads name+mappings; writer already emi
 
 ### Task 4.1: Window-backed document resolution + pending-dirty (CRITICAL)
 
-- [ ] Failing tests in `DocumentTests`: (a) `noteChange()` with `backingDocument == nil` sets `hasPendingDirty` and does NOT touch any NSDocumentController fallback (assert no crash, flag set); (b) assigning `backingDocument` flushes the pending dirty via `updateChangeCount(.changeDone)` (use an NSDocument test double recording calls and assert count).
-- [ ] `TraktorMappingDocument`: add `private(set) var hasPendingDirty = false`; `backingDocument` gets a `didSet` that flushes (`if hasPendingDirty { backingDocument?.updateChangeCount(.changeDone); hasPendingDirty = false }`).
-- [ ] Rewrite `noteChange()`: keep `isDirty = true` + `objectWillChange.send()`; if `backingDocument` set → `updateChangeCount(.changeDone)`; else if `fileURL`-keyed `controller.document(for: fileURL)` resolves → cache + update; else `hasPendingDirty = true`. DELETE the `currentDocument` and `documents.first` fallbacks.
-- [ ] Create `DocumentWindowAccessor: NSViewRepresentable` — zero-size NSView; on `didMoveToWindow`/async after attach, walks `view.window?.windowController?.document as? NSDocument` and calls a `(NSDocument) -> Void` callback.
-- [ ] In the DocumentGroup closure, attach `.background(DocumentWindowAccessor { nsDoc in file.document.backingDocument = nsDoc })` to `ContentView` and DELETE the `documents.first(where:)` fallback in `onAppear` (keep the fileURL-keyed branch as fast path).
-- [ ] Run tests; expect PASS. Manual check note for reviewer: two untitled docs, edit second, close it → save prompt appears on the edited one only.
+- [x] Failing tests in `DocumentTests`: (a) `noteChange()` with `backingDocument == nil` sets `hasPendingDirty` and does NOT touch any NSDocumentController fallback (assert no crash, flag set); (b) assigning `backingDocument` flushes the pending dirty via `updateChangeCount(.changeDone)` (use an NSDocument test double recording calls and assert count).
+- [x] `TraktorMappingDocument`: add `private(set) var hasPendingDirty = false`; `backingDocument` gets a `didSet` that flushes (`if hasPendingDirty { backingDocument?.updateChangeCount(.changeDone); hasPendingDirty = false }`).
+- [x] Rewrite `noteChange()`: keep `isDirty = true` + `objectWillChange.send()`; if `backingDocument` set → `updateChangeCount(.changeDone)`; else if `fileURL`-keyed `controller.document(for: fileURL)` resolves → cache + update; else `hasPendingDirty = true`. DELETE the `currentDocument` and `documents.first` fallbacks.
+- [x] Create `DocumentWindowAccessor: NSViewRepresentable` — zero-size NSView; on `didMoveToWindow`/async after attach, walks `view.window?.windowController?.document as? NSDocument` and calls a `(NSDocument) -> Void` callback.
+- [x] In the DocumentGroup closure, attach `.background(DocumentWindowAccessor { nsDoc in file.document.backingDocument = nsDoc })` to `ContentView` and DELETE the `documents.first(where:)` fallback in `onAppear` (keep the fileURL-keyed branch as fast path).
+- [x] Run tests; expect PASS. Manual check note for reviewer: two untitled docs, edit second, close it → save prompt appears on the edited one only.
 
 ### Task 4.2: Delegate proxy forwarding (HIGH)
 
-- [ ] `DocumentWindowDelegateProxy`: hold `originalDelegate` strongly (`private let originalDelegate: NSWindowDelegate?`), add `override func responds(to:)` (self's selectors OR original's) and `override func forwardingTarget(for:)` returning the original delegate — mirror `AmberSelectionDelegateProxy` in `MappingsTableView.swift:474-486`.
-- [ ] Unit test: proxy with a stub delegate implementing `windowWillClose` → `proxy.responds(to: #selector(NSWindowDelegate.windowWillClose(_:)))` is true and forwarding target resolves; `windowShouldClose` still intercepted by proxy.
-- [ ] Build + tests green.
+- [x] `DocumentWindowDelegateProxy`: hold `originalDelegate` strongly (`private let originalDelegate: NSWindowDelegate?`), add `override func responds(to:)` (self's selectors OR original's) and `override func forwardingTarget(for:)` returning the original delegate — mirror `AmberSelectionDelegateProxy` in `MappingsTableView.swift:474-486`.
+- [x] Unit test: proxy with a stub delegate implementing `windowWillClose` → `proxy.responds(to: #selector(NSWindowDelegate.windowWillClose(_:)))` is true and forwarding target resolves; `windowShouldClose` still intercepted by proxy.
+- [x] Build + tests green.
 
 ### Task 4.3: Welcome window by identifier (HIGH)
 
-- [ ] In the welcome window's content (`WelcomeWindowContent`), embed a window accessor (`NSViewRepresentable`, reuse `DocumentWindowAccessor` generalized or a sibling `WindowIdentifierSetter`) that sets `window.identifier = NSUserInterfaceItemIdentifier("sxm-welcome")` on attach — do NOT assume SwiftUI propagates the scene id.
-- [ ] Extract `static func isWelcomeWindow(_ window: NSWindow) -> Bool`: true when `identifier?.rawValue == "sxm-welcome"` or rawValue has prefix "welcome" (SwiftUI fallback). Never match titles.
-- [ ] Replace all three `title.contains("Welcome")` sites (windowWillClose ~495, windowDidBecomeMain ~525, openWelcomeWindow ~561) with the helper. In `windowDidBecomeMain`, find the welcome window via `NSApplication.shared.windows.first(where: isWelcomeWindow)`.
-- [ ] Unit test: offscreen `NSWindow` with identifier "sxm-welcome" and title "Anything" → true; window titled "Welcome Mix.tsi" with nil identifier → false.
-- [ ] Build + tests green.
+- [x] In the welcome window's content (`WelcomeWindowContent`), embed a window accessor (`NSViewRepresentable`, reuse `DocumentWindowAccessor` generalized or a sibling `WindowIdentifierSetter`) that sets `window.identifier = NSUserInterfaceItemIdentifier("sxm-welcome")` on attach — do NOT assume SwiftUI propagates the scene id.
+- [x] Extract `static func isWelcomeWindow(_ window: NSWindow) -> Bool`: true when `identifier?.rawValue == "sxm-welcome"` or rawValue has prefix "welcome" (SwiftUI fallback). Never match titles.
+- [x] Replace all three `title.contains("Welcome")` sites (windowWillClose ~495, windowDidBecomeMain ~525, openWelcomeWindow ~561) with the helper. In `windowDidBecomeMain`, find the welcome window via `NSApplication.shared.windows.first(where: isWelcomeWindow)`.
+- [x] Unit test: offscreen `NSWindow` with identifier "sxm-welcome" and title "Anything" → true; window titled "Welcome Mix.tsi" with nil identifier → false.
+- [x] Build + tests green.
 
 ### Task 4.4: Chunk 4 commit
 

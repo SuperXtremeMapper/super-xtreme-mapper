@@ -24,8 +24,21 @@ final class TraktorMappingDocument: ReferenceFileDocument {
     @Published private(set) var fileURL: URL?
     @Published private(set) var isDirty = false
 
-    /// Weak reference to the backing NSDocument for change tracking
-    weak var backingDocument: NSDocument?
+    /// Set when a change arrives before the backing NSDocument is resolved;
+    /// flushed (once) the moment `backingDocument` attaches.
+    private(set) var hasPendingDirty = false
+
+    /// Weak reference to the backing NSDocument for change tracking.
+    /// Resolved by `DocumentWindowAccessor` when the document window attaches.
+    weak var backingDocument: NSDocument? {
+        didSet {
+            guard hasPendingDirty, let doc = backingDocument else { return }
+            hasPendingDirty = false
+            MainActor.assumeIsolated {
+                doc.updateChangeCount(.changeDone)
+            }
+        }
+    }
 
     private static let documentRegistry = NSMapTable<NSURL, TraktorMappingDocument>(
         keyOptions: .strongMemory,
@@ -80,23 +93,20 @@ final class TraktorMappingDocument: ReferenceFileDocument {
         isDirty = true
         objectWillChange.send()
 
-        // Primary: use direct reference if available
-        if let doc = backingDocument {
-            doc.updateChangeCount(.changeDone)
-            return
+        // Safe secondary: fileURL-keyed lookup (fileURL is unique per document).
+        // Never guess via currentDocument/documents.first — a wrong cache
+        // cross-wires dirty state between documents.
+        if backingDocument == nil, let fileURL,
+           let document = NSDocumentController.shared.document(for: fileURL) {
+            backingDocument = document  // didSet flushes any pending dirty
         }
 
-        // Fallback: try to find via NSDocumentController
-        let controller = NSDocumentController.shared
-        if let fileURL, let document = controller.document(for: fileURL) {
-            backingDocument = document  // Cache for next time
-            document.updateChangeCount(.changeDone)
-        } else if let document = controller.currentDocument {
-            backingDocument = document
-            document.updateChangeCount(.changeDone)
-        } else if let document = controller.documents.first {
-            backingDocument = document
-            document.updateChangeCount(.changeDone)
+        if let doc = backingDocument {
+            doc.updateChangeCount(.changeDone)
+        } else {
+            // Unresolved — remember the change; flushed when the window
+            // accessor attaches the backing document.
+            hasPendingDirty = true
         }
     }
 

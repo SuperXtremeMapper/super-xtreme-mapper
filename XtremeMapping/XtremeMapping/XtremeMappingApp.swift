@@ -42,6 +42,11 @@ struct WelcomeWindowContent: View {
                 openWindow(id: "modeSelection")
             }
         )
+        .background(DocumentWindowAccessor(configureWindow: { window in
+            // Stamp a deterministic identifier — SwiftUI does not guarantee
+            // the scene id lands on NSWindow.identifier.
+            window.identifier = AppDelegate.welcomeWindowIdentifier
+        }))
     }
 }
 
@@ -106,20 +111,18 @@ struct XtremeMappingApp: App {
         // Document windows for TSI files
         DocumentGroup(newDocument: { TraktorMappingDocument() }) { file in
             ContentView(document: file.document, fileURL: file.fileURL)
+                .background(DocumentWindowAccessor { nsDoc in
+                    file.document.backingDocument = nsDoc
+                })
                 .onAppear {
                     file.document.updateFileURL(file.fileURL)
 
-                    // Find and cache the backing NSDocument
+                    // Fast path: fileURL-keyed lookup (unique per document).
+                    // The window accessor above resolves untitled documents;
+                    // never guess via documents.first.
                     DispatchQueue.main.async {
-                        let controller = NSDocumentController.shared
                         if let fileURL = file.fileURL,
-                           let nsDoc = controller.document(for: fileURL) {
-                            file.document.backingDocument = nsDoc
-                        } else if let nsDoc = controller.documents.first(where: { doc in
-                            doc.windowControllers.contains { wc in
-                                wc.window?.contentView != nil
-                            }
-                        }) {
+                           let nsDoc = NSDocumentController.shared.document(for: fileURL) {
                             file.document.backingDocument = nsDoc
                         }
                         file.document.objectWillChange.send()
@@ -388,9 +391,20 @@ struct AboutView: View {
 
 /// App delegate to handle launch behavior and document management
 class AppDelegate: NSObject, NSApplicationDelegate {
+    /// Identifier stamped onto the welcome window by its content view's
+    /// window accessor (SwiftUI does not guarantee the scene id propagates).
+    static let welcomeWindowIdentifier = NSUserInterfaceItemIdentifier("sxm-welcome")
+
     private var windowDelegates: [ObjectIdentifier: DocumentWindowDelegateProxy] = [:]
     private var didSaveObserver: NSObjectProtocol?
     private var pendingTerminationDocuments: [NSDocument] = []
+
+    /// Identify the welcome window by identifier — NEVER by title (a document
+    /// named "Welcome Mix.tsi" must not match).
+    static func isWelcomeWindow(_ window: NSWindow) -> Bool {
+        guard let rawValue = window.identifier?.rawValue else { return false }
+        return rawValue == welcomeWindowIdentifier.rawValue || rawValue.hasPrefix("welcome")
+    }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         // Disable autosaving (users should save manually)
@@ -491,8 +505,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc private func windowWillClose(_ notification: Notification) {
         guard let closingWindow = notification.object as? NSWindow else { return }
 
+        // Release the proxy (and its strongly-held original delegate) so
+        // closed windows don't stay alive forever. Deferred one tick:
+        // NSWindow.delegate is weak and delegate windowWillClose delivery is
+        // notification-based with unspecified observer ordering — releasing
+        // synchronously here could deallocate the proxy before the original
+        // delegate receives its close callback.
+        let closingKey = ObjectIdentifier(closingWindow)
+        DispatchQueue.main.async { [weak self] in
+            self?.windowDelegates.removeValue(forKey: closingKey)
+        }
+
         // Skip if this is the welcome window closing
-        if closingWindow.title.contains("Welcome") {
+        if AppDelegate.isWelcomeWindow(closingWindow) {
             return
         }
 
@@ -522,7 +547,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // If a document window became main, close the welcome window
         if window.windowController?.document != nil {
-            if let welcomeWindow = NSApplication.shared.windows.first(where: { $0.title.contains("Welcome") }) {
+            if let welcomeWindow = NSApplication.shared.windows.first(where: AppDelegate.isWelcomeWindow) {
                 welcomeWindow.close()
             }
         }
@@ -557,9 +582,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func openWelcomeWindow() {
         // Find existing welcome window or trigger creation via SwiftUI
-        let welcomeWindows = NSApplication.shared.windows.filter {
-            $0.title.contains("Welcome")
-        }
+        let welcomeWindows = NSApplication.shared.windows.filter(AppDelegate.isWelcomeWindow)
 
         if let existingWelcome = welcomeWindows.first {
             existingWelcome.makeKeyAndOrderFront(nil)
@@ -640,13 +663,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 // MARK: - Document Window Delegate
 
 final class DocumentWindowDelegateProxy: NSObject, NSWindowDelegate {
-    private weak var originalDelegate: NSWindowDelegate?
+    private let originalDelegate: NSWindowDelegate?
     private let appDelegate: AppDelegate
 
     init(originalDelegate: NSWindowDelegate?, appDelegate: AppDelegate) {
         self.originalDelegate = originalDelegate
         self.appDelegate = appDelegate
         super.init()
+    }
+
+    // MARK: - Forward all other delegate methods (mirrors AmberSelectionDelegateProxy)
+
+    override func responds(to aSelector: Selector!) -> Bool {
+        if super.responds(to: aSelector) {
+            return true
+        }
+        return originalDelegate?.responds(to: aSelector) ?? false
+    }
+
+    override func forwardingTarget(for aSelector: Selector!) -> Any? {
+        if originalDelegate?.responds(to: aSelector) == true {
+            return originalDelegate
+        }
+        return super.forwardingTarget(for: aSelector)
     }
 
     func windowShouldClose(_ sender: NSWindow) -> Bool {
