@@ -35,6 +35,9 @@ final class MIDIInputManager: ObservableObject {
     // Callback for when a MIDI message is received during learn mode
     var onMIDIReceived: ((MIDIMessage) -> Void)?
 
+    // Callback for when the MIDI setup changes (devices connected/disconnected)
+    var onSetupChanged: (() -> Void)?
+
     private init() {
         setupMIDI()
     }
@@ -125,33 +128,28 @@ final class MIDIInputManager: ObservableObject {
             stopListening()
             startListening()
         }
+        onSetupChanged?()
     }
 
     private nonisolated func handleMIDIEvents(_ eventList: UnsafePointer<MIDIEventList>) {
-        let events = eventList.pointee
-        var packet = events.packet
+        // unsafeSequence() walks the original packet buffer; words() yields
+        // every UMP word in each packet (not just the first).
+        for packet in eventList.unsafeSequence() {
+            for word in packet.words() {
+                // Only MIDI 1.0 channel voice messages (UMP message type 2)
+                guard (word >> 28) == 2 else { continue }
 
-        for _ in 0..<events.numPackets {
-            // Parse MIDI 1.0 messages (most common)
-            let words = packet.words
-            let word = words.0
+                // Extract bytes from the word
+                let status = UInt8((word >> 16) & 0xFF)
+                let data1 = UInt8((word >> 8) & 0xFF)
+                let data2 = UInt8(word & 0xFF)
 
-            // Extract bytes from the word
-            let status = UInt8((word >> 16) & 0xFF)
-            let data1 = UInt8((word >> 8) & 0xFF)
-            let data2 = UInt8(word & 0xFF)
-
-            if let message = parseMIDIBytes(status: status, data1: data1, data2: data2) {
-                Task { @MainActor in
-                    self.lastMessage = message
-                    self.onMIDIReceived?(message)
+                if let message = parseMIDIBytes(status: status, data1: data1, data2: data2) {
+                    Task { @MainActor in
+                        self.lastMessage = message
+                        self.onMIDIReceived?(message)
+                    }
                 }
-            }
-
-            // Move to next packet
-            let currentPacket = packet
-            withUnsafePointer(to: currentPacket) { ptr in
-                packet = MIDIEventPacketNext(ptr).pointee
             }
         }
     }

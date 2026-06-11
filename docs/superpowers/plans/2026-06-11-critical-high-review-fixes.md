@@ -140,26 +140,26 @@ Read side is the gap: `parseDevice` only reads name+mappings; writer already emi
 
 `handleMIDIEvents` copies `eventList.pointee` (header only) and walks `MIDIEventPacketNext` over a stack copy — undefined behavior past packet 1.
 
-- [ ] Replace the loop with CoreMIDI's safe iterator: `for packet in eventList.unsafeSequence() { for word in packet.words() { … } }` — `unsafeSequence()` iterates the original buffer; `words()` yields each UMP word, fixing both the stack-copy UB and the only-`words.0` truncation. Keep a `(word >> 28) == 2` MIDI-1.0-channel-voice check before extracting status/data bytes (skip other UMP message types).
-- [ ] This is pure pointer plumbing — no unit test can exercise CoreMIDI buffers meaningfully; verification is compile + existing manual smoke path. Build green.
+- [x] Replace the loop with CoreMIDI's safe iterator: `for packet in eventList.unsafeSequence() { for word in packet.words() { … } }` — `unsafeSequence()` iterates the original buffer; `words()` yields each UMP word, fixing both the stack-copy UB and the only-`words.0` truncation. Keep a `(word >> 28) == 2` MIDI-1.0-channel-voice check before extracting status/data bytes (skip other UMP message types).
+- [x] This is pure pointer plumbing — no unit test can exercise CoreMIDI buffers meaningfully; verification is compile + existing manual smoke path. Build green.
 
 ### Task 3.2: Note-off never creates a capture (HIGH)
 
-- [ ] Failing tests in new `WizardCoordinatorTests` (coordinator is plain ObservableObject; drive `handleMIDIReceived` directly): (a) learning tab: note-on captures, subsequent note-off (value 0) does not add/replace a capture or restart auto-advance; (b) setup tab: a note-off does not become the shift assignment; (c) CC with value 0 still captures.
-- [ ] Fix order inside `handleMIDIReceived` per spec: shift-button state update first (must see note-offs for release), then `if message.note != nil && message.value == 0 { return }`, then setup-tab branch, then capture. (Move the `isShiftButton` check above the setup branch — guarded by `currentTab != .setup` so the shift button can still be assigned on the setup tab.)
-- [ ] Run tests; expect PASS.
+- [x] Failing tests in new `WizardCoordinatorTests` (coordinator is plain ObservableObject; drive `handleMIDIReceived` directly): (a) learning tab: note-on captures, subsequent note-off (value 0) does not add/replace a capture or restart auto-advance; (b) setup tab: a note-off does not become the shift assignment; (c) CC with value 0 still captures.
+- [x] Fix order inside `handleMIDIReceived` per spec: shift-button state update first (must see note-offs for release), then `if message.note != nil && message.value == 0 { return }`, then setup-tab branch, then capture. (Move the `isShiftButton` check above the setup branch — guarded by `currentTab != .setup` so the shift button can still be assigned on the setup tab.)
+- [x] Run tests; expect PASS.
 
 ### Task 3.3: nil/M1=0 dedup equivalence (HIGH)
 
-- [ ] Failing test: capture function F with `modifierCondition == nil` (no shift assigned), then assign shift and recapture F unshifted (M1=0) → assert exactly one capture for F remains.
-- [ ] Fix the removal predicate (line ~224): compare `($0.modifierCondition?.value ?? 0) == (modifier?.value ?? 0)`.
-- [ ] Run tests; expect PASS.
+- [x] Failing test: capture function F with `modifierCondition == nil` (no shift assigned), then assign shift and recapture F unshifted (M1=0) → assert exactly one capture for F remains.
+- [x] Fix the removal predicate (line ~224): compare `($0.modifierCondition?.value ?? 0) == (modifier?.value ?? 0)`.
+- [x] Run tests; expect PASS.
 
 ### Task 3.4: Shift state reset (HIGH)
 
-- [ ] Failing tests: (a) set `shiftMIDI` + `isShiftHeld = true`, call `beginLearning()` → both reset (shiftMIDI nil, isShiftHeld false); (b) simulate MIDI setup change → `isShiftHeld == false`.
-- [ ] Fix: reset `shiftMIDI = nil; isShiftHeld = false` in `beginLearning()`; subscribe the coordinator to the MIDI manager's setup-change path (add an `onSetupChanged` callback on `MIDIInputManager` fired from `handleSetupChange`, wired in `startMIDIListening`) → handler forces `isShiftHeld = false`.
-- [ ] Run tests; expect PASS. Full suite green.
+- [x] Failing tests: (a) set `shiftMIDI` + `isShiftHeld = true`, call `beginLearning()` → both reset (shiftMIDI nil, isShiftHeld false); (b) simulate MIDI setup change → `isShiftHeld == false`.
+- [x] Fix: reset `shiftMIDI = nil; isShiftHeld = false` in `beginLearning()`; subscribe the coordinator to the MIDI manager's setup-change path (add an `onSetupChanged` callback on `MIDIInputManager` fired from `handleSetupChange`, wired in `startMIDIListening`) → handler forces `isShiftHeld = false`.
+- [x] Run tests; expect PASS. Full suite green.
 
 ### Task 3.5: Chunk 3 commit
 

@@ -168,12 +168,29 @@ final class WizardCoordinator: ObservableObject {
         currentFunctionIndex = 0
         currentAssignmentIndex = 0
         capturedMappings = []
+        shiftMIDI = nil
+        isShiftHeld = false
         statusMessage = "Press a control on your MIDI device"
         startMIDIListening()
     }
 
     func handleMIDIReceived(_ message: MIDIMessage) {
         guard phase == .learning else { return }
+
+        // Shift-button state tracking comes first: it must ALWAYS see
+        // note-offs — including on the Setup tab, or a shift released there
+        // would stay held forever. On Setup the message still falls through
+        // so the shift button itself can be (re)assigned.
+        if isShiftButton(message) {
+            isShiftHeld = message.value > 0
+            if currentTab != .setup {
+                return  // Don't create a mapping for the shift button itself
+            }
+        }
+
+        // Discard note-offs - they must never create or replace a capture.
+        // CC value 0 is a valid position and falls through.
+        if message.note != nil && message.value == 0 { return }
 
         // Special handling for Setup tab - assigning shift button
         if currentTab == .setup {
@@ -200,12 +217,6 @@ final class WizardCoordinator: ObservableObject {
             return
         }
 
-        // Check if this is the shift button (on non-setup tabs)
-        if isShiftButton(message) {
-            isShiftHeld = message.value > 0
-            return  // Don't create a mapping for the shift button itself
-        }
-
         guard let function = currentFunction, let assignment = currentAssignment else { return }
 
         // Determine modifier condition based on shift state
@@ -220,11 +231,12 @@ final class WizardCoordinator: ObservableObject {
             midiMessage: message,
             modifierCondition: modifier
         )
-        // Remove existing mapping with same function/assignment/modifier value
+        // Remove existing mapping with same function/assignment/modifier value.
+        // nil modifier and M1=0 are equivalent (both mean "unshifted").
         capturedMappings.removeAll {
             $0.function.id == function.id &&
             $0.assignment == assignment &&
-            $0.modifierCondition?.value == modifier?.value
+            ($0.modifierCondition?.value ?? 0) == (modifier?.value ?? 0)
         }
         capturedMappings.append(captured)
         statusMessage = isShiftHeld ? "Captured! [SHIFT]" : "Captured!"
@@ -368,6 +380,12 @@ final class WizardCoordinator: ObservableObject {
         statusMessage = "Configure your controller settings"
     }
 
+    /// A MIDI setup change (device connected/disconnected) means any held
+    /// shift release may never arrive - force-release to avoid a stuck shift.
+    func handleMIDISetupChanged() {
+        isShiftHeld = false
+    }
+
     // MARK: - Private Methods
 
     private func startMIDIListening() {
@@ -376,6 +394,9 @@ final class WizardCoordinator: ObservableObject {
                 self?.handleMIDIReceived(message)
             }
         }
+        midiManager.onSetupChanged = { [weak self] in
+            self?.handleMIDISetupChanged()
+        }
         midiManager.startListening()
         isListening = true
     }
@@ -383,6 +404,7 @@ final class WizardCoordinator: ObservableObject {
     private func stopMIDIListening() {
         midiManager.stopListening()
         midiManager.onMIDIReceived = nil
+        midiManager.onSetupChanged = nil
         isListening = false
     }
 
