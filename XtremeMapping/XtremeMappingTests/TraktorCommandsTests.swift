@@ -209,6 +209,51 @@ final class TraktorCommandsTests: XCTestCase {
         XCTAssertEqual(TraktorCommands.name(for: 732), "Cell Capture Modifier")
     }
 
+    // MARK: - Duplicate Name / Deterministic Resolution Tests (M8)
+
+    func testCommandLookupNamesAreUnique() {
+        // Two distinct Traktor commands must never share a display name —
+        // id(for:) would otherwise silently rewrite one to the other on save.
+        var seen: [String: Int] = [:]
+        for (id, name) in TraktorCommands.commandLookup {
+            if let existing = seen[name] {
+                XCTFail("Duplicate command name '\(name)' for IDs \(min(existing, id)) and \(max(existing, id))")
+            }
+            seen[name] = id
+        }
+    }
+
+    func testLoopOutCommandsAreDistinctAndRoundTrip() {
+        // 201 (CUE/LOOP "Loop Out") and 2393 (advanced-deck "Loop Out / Set",
+        // paired with 2392 "Loop In / Set Cue") are different commands.
+        XCTAssertEqual(TraktorCommands.name(for: 201), "Loop Out")
+        XCTAssertEqual(TraktorCommands.name(for: 2393), "Loop Out / Set")
+        XCTAssertEqual(TraktorCommands.id(for: TraktorCommands.name(for: 201)), 201)
+        XCTAssertEqual(TraktorCommands.id(for: TraktorCommands.name(for: 2393)), 2393)
+        XCTAssertTrue(TraktorCommands.isKnownCommand("Loop Out"))
+        XCTAssertTrue(TraktorCommands.isKnownCommand("Loop Out / Set"))
+    }
+
+    func testCommandHierarchyConsistentWithCommandLookup() {
+        // Every menu item must resolve to its own ID — ContentView creates
+        // mappings from hierarchy NAMES, so a name that resolves elsewhere
+        // would silently map a different command than the one clicked.
+        func walk(_ categories: [CommandCategory2]) {
+            for category in categories {
+                if let subcategories = category.subcategories {
+                    walk(subcategories)
+                }
+                for item in category.commands ?? [] {
+                    XCTAssertEqual(
+                        TraktorCommands.id(for: item.name), item.id,
+                        "Hierarchy item '\(item.name)' (id \(item.id)) resolves to \(TraktorCommands.id(for: item.name))"
+                    )
+                }
+            }
+        }
+        walk(CommandHierarchy.categories)
+    }
+
     // MARK: - isKnownCommand Tests (Task 2.3)
 
     func testIsKnownCommandAcceptsLookupTableNames() {

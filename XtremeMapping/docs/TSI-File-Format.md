@@ -191,6 +191,12 @@ This is the most complex frame with 30 fields:
 - 3 = Proprietary_Controller
 - **4 = GenericMidi** (use this!)
 
+**Note on proprietary device types (1-3):** these are real values Traktor
+writes for its proprietary device sections. XtremeMapping reads every CMAD
+with the GenericMidi field layout above and always writes DeviceType = 4 —
+proprietary-section fidelity is a known, pre-existing limitation of this
+app, not a reason to reject the file on import.
+
 **ControllerType enum:**
 - 0 = Button
 - 1 = FaderOrKnob
@@ -210,10 +216,15 @@ This is the most complex frame with 30 fields:
 
 **Target (MappingTargetDeck) enum:**
 - -1 = DeviceTarget
-- 0 = A / FX1 / Global (context-dependent)
-- 1 = B / FX2
-- 2 = C / FX3
-- 3 = D / FX4
+- 0 = Deck A (Global commands also encode as 0 — the Global/Deck A collapse is a known TSI ambiguity)
+- 1 = Deck B
+- 2 = Deck C
+- 3 = Deck D
+- 4 = FX Unit 1
+- 5 = FX Unit 2
+- 6 = FX Unit 3
+- 7 = FX Unit 4
+- 8-15 = Remix Slots 1-8
 
 **ValueUIType enum:**
 - 1 = ComboBox (for buttons)

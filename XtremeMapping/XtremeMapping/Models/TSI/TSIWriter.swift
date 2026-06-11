@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import os
 
 /// Writer for TSI (Traktor Settings Interface) files.
 ///
 /// Converts in-memory TSI data structures back to the TSI file format.
 public struct TSIWriter: Sendable {
+
+    private static let logger = Logger(subsystem: "com.sxm.app", category: "TSIWriter")
 
     public init() {}
 
@@ -97,7 +100,7 @@ public struct TSIWriter: Sendable {
         let writableMappings = device.mappings.filter { mapping in
             let commandId = TraktorCommands.id(for: mapping.commandName)
             if commandId < 1 {
-                print("TSIWriter: skipping unwritable mapping '\(mapping.commandName)' (resolved ID \(commandId))")
+                Self.logger.warning("Skipping unwritable mapping '\(mapping.commandName, privacy: .public)' (resolved ID \(commandId))")
                 return false
             }
             return true
@@ -111,7 +114,7 @@ public struct TSIWriter: Sendable {
         // DDIV (Device Version) - version string + MappingFileRevision (int32)
         var ddivData = Data()
         ddivData.append(encodeUTF16BEString(device.tsiVersion))
-        var mappingRevision = UInt32(device.mappingFileRevision).bigEndian
+        var mappingRevision = UInt32(clamping: device.mappingFileRevision).bigEndian
         ddivData.append(Data(bytes: &mappingRevision, count: 4))
         data.append(encodeFrame(TSIFrame(identifier: "DDIV", size: UInt32(ddivData.count), data: ddivData)))
 
@@ -152,11 +155,12 @@ public struct TSIWriter: Sendable {
             mapping.ioType == .output || mapping.controllerType == .led
         }
 
-        // Collect unique (control name, direction) pairs in mapping order
+        // Collect unique (control name, direction) pairs in mapping order.
+        // Unassigned mappings have no MIDI control — they get no DCDT entry.
         var seenControls = Set<String>()
         var uniqueEntries: [(controlName: String, isOutput: Bool)] = []
         for mapping in mappings {
-            let controlName = midiControlName(for: mapping)
+            guard let controlName = midiControlName(for: mapping) else { continue }
             let output = isOutput(mapping)
             let dedupKey = "\(controlName)|\(output ? "out" : "in")"
             if !seenControls.contains(dedupKey) {
@@ -224,15 +228,8 @@ public struct TSIWriter: Sendable {
         var data = Data()
 
         // Build list of unique control names with their binding IDs
-        var controlNameToId: [String: Int] = [:]
-        var bindingId = 0
-        for mapping in mappings {
-            let controlName = midiControlName(for: mapping)
-            if controlNameToId[controlName] == nil {
-                controlNameToId[controlName] = bindingId
-                bindingId += 1
-            }
-        }
+        // (unassigned mappings have no control name and get no DCBM entry)
+        let controlNameToId = bindingIds(for: mappings)
 
         // Count prefix
         var count = UInt32(controlNameToId.count).bigEndian
@@ -264,16 +261,8 @@ public struct TSIWriter: Sendable {
         var count = UInt32(mappings.count).bigEndian
         data.append(Data(bytes: &count, count: 4))
 
-        // Build control name to binding ID lookup
-        var controlNameToId: [String: Int] = [:]
-        var bindingId = 0
-        for mapping in mappings {
-            let controlName = midiControlName(for: mapping)
-            if controlNameToId[controlName] == nil {
-                controlNameToId[controlName] = bindingId
-                bindingId += 1
-            }
-        }
+        // Build control name to binding ID lookup (must mirror buildDCBM)
+        let controlNameToId = bindingIds(for: mappings)
 
         // Each mapping as a CMAI frame
         for mapping in mappings {
@@ -284,13 +273,36 @@ public struct TSIWriter: Sendable {
         return data
     }
 
+    /// Assigns sequential binding IDs to the unique MIDI control names in
+    /// mapping order. Shared by buildDCBM and buildCMAS so CMAI binding IDs
+    /// always agree with the DCBM list. Unassigned mappings are excluded —
+    /// they carry the `TSIBindingID.unassigned` sentinel instead.
+    private func bindingIds(for mappings: [MappingEntry]) -> [String: Int] {
+        var controlNameToId: [String: Int] = [:]
+        var bindingId = 0
+        for mapping in mappings {
+            guard let controlName = midiControlName(for: mapping) else { continue }
+            if controlNameToId[controlName] == nil {
+                controlNameToId[controlName] = bindingId
+                bindingId += 1
+            }
+        }
+        return controlNameToId
+    }
+
     /// Builds the CMAI (Mapping Item) frame content
     private func buildCMAI(from mapping: MappingEntry, controlNameToId: [String: Int]) -> Data {
         var data = Data()
 
-        // MidiNoteBindingId (4 bytes)
-        let controlName = midiControlName(for: mapping)
-        var bindingId = UInt32(controlNameToId[controlName] ?? 0).bigEndian
+        // MidiNoteBindingId (4 bytes) — the unassigned sentinel when the
+        // mapping has no MIDI control (no fabricated CC 0 binding).
+        let bindingIdValue: UInt32
+        if let controlName = midiControlName(for: mapping) {
+            bindingIdValue = UInt32(controlNameToId[controlName] ?? 0)
+        } else {
+            bindingIdValue = TSIBindingID.unassigned
+        }
+        var bindingId = bindingIdValue.bigEndian
         data.append(Data(bytes: &bindingId, count: 4))
 
         // Type: 0=Input, 1=Output (4 bytes)
@@ -424,40 +436,44 @@ public struct TSIWriter: Sendable {
         data.append(encodeUTF16BEString(mapping.comment))
 
         // 14-16. ConditionOne: Id (4), Target (4), Value (4)
-        var cond1Id = UInt32(mapping.modifier1Condition?.modifier ?? 0).bigEndian
+        // (clamping — modifier values also originate from persisted JSON)
+        var cond1Id = UInt32(clamping: mapping.modifier1Condition?.modifier ?? 0).bigEndian
         data.append(Data(bytes: &cond1Id, count: 4))
         var cond1Target = UInt32(0).bigEndian  // Target enum
         data.append(Data(bytes: &cond1Target, count: 4))
-        var cond1Value = UInt32(mapping.modifier1Condition?.value ?? 0).bigEndian
+        var cond1Value = UInt32(clamping: mapping.modifier1Condition?.value ?? 0).bigEndian
         data.append(Data(bytes: &cond1Value, count: 4))
 
         // 17-19. ConditionTwo: Id (4), Target (4), Value (4)
-        var cond2Id = UInt32(mapping.modifier2Condition?.modifier ?? 0).bigEndian
+        var cond2Id = UInt32(clamping: mapping.modifier2Condition?.modifier ?? 0).bigEndian
         data.append(Data(bytes: &cond2Id, count: 4))
         var cond2Target = UInt32(0).bigEndian
         data.append(Data(bytes: &cond2Target, count: 4))
-        var cond2Value = UInt32(mapping.modifier2Condition?.value ?? 0).bigEndian
+        var cond2Value = UInt32(clamping: mapping.modifier2Condition?.value ?? 0).bigEndian
         data.append(Data(bytes: &cond2Value, count: 4))
 
         // 20-21. LedMinControllerRange: ValueUIType (4), data (4)
-        var ledMinType = UInt32(mapping.ledMinRangeType).bigEndian
+        // UInt32(clamping:) throughout the LED/range/resolution fields:
+        // these Ints come from persisted JSON, where a hand-edited negative
+        // or oversized value would otherwise trap at write time.
+        var ledMinType = UInt32(clamping: mapping.ledMinRangeType).bigEndian
         data.append(Data(bytes: &ledMinType, count: 4))
-        var ledMinData = UInt32(mapping.ledMinRangeData).bigEndian
+        var ledMinData = UInt32(clamping: mapping.ledMinRangeData).bigEndian
         data.append(Data(bytes: &ledMinData, count: 4))
 
         // 22-23. LedMaxControllerRange: ValueUIType (4), data (4)
         // Per Traktor export: type=0, value=1 (integer, not float) by default
-        var ledMaxType = UInt32(mapping.ledMaxRangeType).bigEndian
+        var ledMaxType = UInt32(clamping: mapping.ledMaxRangeType).bigEndian
         data.append(Data(bytes: &ledMaxType, count: 4))
-        var ledMaxData = UInt32(mapping.ledMaxRangeData).bigEndian
+        var ledMaxData = UInt32(clamping: mapping.ledMaxRangeData).bigEndian
         data.append(Data(bytes: &ledMaxData, count: 4))
 
         // 24. LedMinMidiRange (4 bytes)
-        var ledMinMidi = UInt32(mapping.ledMinMidi).bigEndian
+        var ledMinMidi = UInt32(clamping: mapping.ledMinMidi).bigEndian
         data.append(Data(bytes: &ledMinMidi, count: 4))
 
         // 25. LedMaxMidiRange (4 bytes)
-        var ledMaxMidi = UInt32(mapping.ledMaxMidi).bigEndian
+        var ledMaxMidi = UInt32(clamping: mapping.ledMaxMidi).bigEndian
         data.append(Data(bytes: &ledMaxMidi, count: 4))
 
         // 26-30. Optional fields for Generic MIDI device
@@ -474,7 +490,7 @@ public struct TSIWriter: Sendable {
         data.append(Data(bytes: &unknownVUI, count: 4))
 
         // 29. Resolution (4 bytes enum)
-        var resolution = UInt32(mapping.resolution).bigEndian
+        var resolution = UInt32(clamping: mapping.resolution).bigEndian
         data.append(Data(bytes: &resolution, count: 4))
 
         // 30. UseFactoryMap (4 bytes bool)
@@ -537,8 +553,13 @@ public struct TSIWriter: Sendable {
         return data
     }
 
-    /// Generates MIDI control name for a mapping (e.g., "Ch01.CC.000" or "Ch09.Note.C4")
-    private func midiControlName(for mapping: MappingEntry) -> String {
+    /// Generates the MIDI control name for a mapping (e.g., "Ch01.CC.020" or
+    /// "Ch09.Note.C4"), or nil when the mapping has no MIDI assignment.
+    ///
+    /// Returning nil (instead of fabricating "ChXX.CC.000") lets callers skip
+    /// DCDT/DCBM entries and write the unassigned sentinel binding ID, so an
+    /// unassigned mapping round-trips unassigned.
+    private func midiControlName(for mapping: MappingEntry) -> String? {
         let channel = String(format: "Ch%02d", mapping.midiChannel)
 
         if let cc = mapping.midiCC {
@@ -547,7 +568,7 @@ public struct TSIWriter: Sendable {
             let noteName = midiNoteToName(note)
             return "\(channel).Note.\(noteName)"
         } else {
-            return "\(channel).CC.000"
+            return nil
         }
     }
 

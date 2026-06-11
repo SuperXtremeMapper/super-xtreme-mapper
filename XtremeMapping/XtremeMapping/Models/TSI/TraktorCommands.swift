@@ -38,6 +38,21 @@ enum TraktorCommands {
         return self.name(for: resolved) == name
     }
 
+    /// Deterministic name → ID reverse map, precomputed once.
+    ///
+    /// Command names are unique (tested exhaustively), so the lowest-ID
+    /// tiebreak is a backstop only: should a duplicate ever slip in, every
+    /// lookup still resolves to the same ID instead of whichever entry a
+    /// Dictionary iteration happened to visit first.
+    private static let nameToLowestId: [String: Int] = {
+        var map = [String: Int](minimumCapacity: commandLookup.count)
+        for (id, name) in commandLookup {
+            if let existing = map[name], existing <= id { continue }
+            map[name] = id
+        }
+        return map
+    }()
+
     /// Returns the command ID for a human-readable name
     /// If the name is not found, returns 0
     static func id(for name: String) -> Int {
@@ -46,11 +61,9 @@ enum TraktorCommands {
             return id
         }
 
-        // Search the lookup table
-        for (id, cmdName) in commandLookup {
-            if cmdName == name {
-                return id
-            }
+        // Search the precomputed reverse map
+        if let id = nameToLowestId[name] {
+            return id
         }
 
         // Handle dynamic ranges
@@ -234,8 +247,9 @@ enum TraktorCommands {
         return "Command #\(commandId)"
     }
 
-    /// Static lookup table for known command IDs
-    private static let commandLookup: [Int: String] = [
+    /// Static lookup table for known command IDs.
+    /// Internal (not private) so tests can assert name uniqueness exhaustively.
+    static let commandLookup: [Int: String] = [
         // ===========================================
         // MIXER
         // ===========================================
@@ -584,7 +598,7 @@ enum TraktorCommands {
         2382: "Beatjump Backward",
         2391: "Move Mode Selector",
         2392: "Loop In / Set Cue",
-        2393: "Loop Out",
+        2393: "Loop Out / Set",
         2394: "Load",
         2395: "Load, Loop and Play",
 

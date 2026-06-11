@@ -219,7 +219,7 @@ enum CommandHierarchy {
                 CommandItem(id: 2317, name: "Loop Size Select+Set"),
                 CommandItem(id: 2318, name: "Backward Loop Size Select+Set"),
                 CommandItem(id: 2319, name: "Current Loop Size"),
-                CommandItem(id: 2393, name: "Loop Out"),
+                CommandItem(id: 2393, name: "Loop Out / Set"),
             ]),
             CommandCategory2(name: "Hotcue", commands: [
                 CommandItem(id: 214, name: "Hotcue 1"),

@@ -7,6 +7,108 @@
 
 import Foundation
 
+/// CMAI MidiNoteBindingId values with special meaning, shared by
+/// TSIWriter and TSIInterpreter.
+enum TSIBindingID {
+    /// "No MIDI assignment" sentinel — mirrors the −1 convention DCDT
+    /// already uses for an unassigned ControlId (TSI-File-Format.md).
+    /// A mapping carrying this ID gets no DCDT or DCBM entry.
+    static let unassigned: UInt32 = 0xFFFF_FFFF
+}
+
+/// Errors thrown when parsed TSI frames don't form a coherent mapping document.
+///
+/// Surfacing these instead of returning partial results prevents a corrupt
+/// file from silently opening as an empty/partial document that a later save
+/// would then overwrite.
+enum TSIInterpreterError: Error, Equatable, LocalizedError {
+    /// The DEVS container is too small to hold its 4-byte device count.
+    case malformedDevicesContainer
+    /// The DEVS count prefix disagrees with the number of parsed DEVI frames.
+    case deviceCountMismatch(declared: Int, parsed: Int)
+    /// The CMAS frame is too small to hold its 4-byte mapping count, or its
+    /// payload contains bytes that are not CMAI frames.
+    case malformedMappingsList
+    /// The CMAS count prefix disagrees with the number of parsed CMAI frames.
+    case mappingCountMismatch(declared: Int, parsed: Int)
+    /// A CMAI frame is truncated or its declared size overruns its container.
+    case malformedMappingItem
+    /// A CMAI's settings frame (CMAD) is missing, truncated, or its declared
+    /// size disagrees with its CMAI container.
+    case malformedMappingData
+    /// A CMAI references a MIDI binding ID that is absent from the DCBM list.
+    case danglingMidiBinding(bindingId: Int)
+    /// A DEVI frame is too small to hold its device-name length prefix.
+    case malformedDevice
+    /// A device metadata frame (DDIV/DDIC/DDPT) is present but unreadable.
+    case malformedDeviceMetadata(frame: String)
+    /// The DCBM MIDI binding list (or one of its binding entries) is malformed.
+    case malformedMidiBindingList
+    /// The frame stream contains no DIOM root frame.
+    case missingDeviceIOMappings
+    /// The DIOM frame contains no DEVS devices container.
+    case missingDevicesContainer
+    /// A DEVI frame contains no CMAS mappings list. The writer (and Traktor)
+    /// always emit one, even when empty — absence means the device's mappings
+    /// were lost to corruption, and opening it as "zero mappings" would let
+    /// the next save wipe them for good.
+    case missingMappingsList
+    /// Bytes remained after the last declared frame in a container — the
+    /// writer emits no padding anywhere, so trailing bytes are corruption
+    /// that a save would silently drop.
+    case unexpectedTrailingBytes(context: String)
+    /// A DCBM MIDI control name is not in a recognized "ChXX.CC.NNN" /
+    /// "ChXX.Note.XN" form. Defaulting it would strip the user's MIDI
+    /// assignment on the next save. TSI-File-Format.md defines exactly these
+    /// two forms, so anything else is corruption rather than a foreign
+    /// variant. (Unknown ENUM values inside CMAD are tolerated and coerced —
+    /// real Traktor writes values this app doesn't model — but a binding
+    /// NAME that doesn't parse can't be preserved through the MIDI fields.)
+    case unrecognizedMidiControl(name: String)
+    /// The CMAI MappingType field carries a value other than 0 (In) or
+    /// 1 (Out). Unlike CMAD enums, the spec is exhaustive here — Traktor
+    /// never writes anything else, and coercing the direction would flip
+    /// the mapping on the next save.
+    case unsupportedFieldValue(field: String, value: Int)
+
+    var errorDescription: String? {
+        switch self {
+        case .malformedDevicesContainer:
+            return "The TSI device list (DEVS) is malformed — the file is corrupt."
+        case .deviceCountMismatch(let declared, let parsed):
+            return "The TSI file declares \(declared) device(s) but \(parsed) could be parsed — the file is corrupt."
+        case .malformedMappingsList:
+            return "A device's mappings list (CMAS) is malformed — the file is corrupt."
+        case .mappingCountMismatch(let declared, let parsed):
+            return "A device declares \(declared) mapping(s) but \(parsed) could be parsed — the file is corrupt."
+        case .malformedMappingItem:
+            return "A mapping entry (CMAI) is truncated — the file is corrupt."
+        case .malformedMappingData:
+            return "A mapping's settings block (CMAD) is missing or truncated — the file is corrupt."
+        case .danglingMidiBinding(let bindingId):
+            return "A mapping references MIDI binding #\(bindingId), which does not exist in the file — the file is corrupt."
+        case .malformedDevice:
+            return "A device entry (DEVI) is truncated — the file is corrupt."
+        case .malformedDeviceMetadata(let frame):
+            return "A device metadata frame (\(frame)) is truncated — the file is corrupt."
+        case .malformedMidiBindingList:
+            return "The MIDI binding list (DCBM) is malformed — the file is corrupt."
+        case .missingDeviceIOMappings:
+            return "The TSI controller data has no DIOM root frame — the file is corrupt."
+        case .missingDevicesContainer:
+            return "The TSI controller data has no device list (DEVS) — the file is corrupt."
+        case .missingMappingsList:
+            return "A device has no mappings list (CMAS) — the file is corrupt."
+        case .unexpectedTrailingBytes(let context):
+            return "Stray bytes after the last frame in \(context) — the file is corrupt."
+        case .unrecognizedMidiControl(let name):
+            return "The MIDI control \"\(name)\" is not in a recognized format — the file is corrupt or uses an unsupported MIDI control type."
+        case .unsupportedFieldValue(let field, let value):
+            return "A mapping's \(field) value (\(value)) is outside the documented TSI range — the file is corrupt or unsupported."
+        }
+    }
+}
+
 /// Interprets parsed TSI frames into the app's data model.
 ///
 /// TSI binary format structure:
@@ -16,13 +118,20 @@ import Foundation
 /// └── DEVS (Devices container, 4-byte count prefix)
 ///     └── DEVI (Device) × N
 ///         ├── Device name (UTF-16BE string)
-///         ├── DDAT (Device Data)
-///         │   ├── DDCI (Control Index - DCDT lookup table)
-///         │   │   └── DCDT × N (MIDI control definitions)
-///         │   └── DDCB (Command Bindings)
-///         │       └── CMAS (Mappings list)
-///         │           └── CMAI × N (Individual mappings)
-///         │               └── CMAD (Mapping data)
+///         └── DDAT (Device Data)
+///             ├── DDIF (Device info flags)
+///             ├── DDIV (Version + MappingFileRevision)
+///             ├── DDIC (Device comment)
+///             ├── DDPT (In/out ports)
+///             ├── DDDC (MIDI Definitions Container)
+///             │   └── DDCI (Control Index, 4-byte count prefix)
+///             │       └── DCDT × N (MIDI control definitions)
+///             └── DDCB (Command Bindings)
+///                 ├── CMAS (Mappings list, 4-byte count prefix)
+///                 │   └── CMAI × N (Individual mappings)
+///                 │       └── CMAD (Mapping data)
+///                 └── DCBM (MIDI note binding list, 4-byte count prefix)
+///                     └── DCBM × N (binding id → MIDI note string)
 /// ```
 struct TSIInterpreter {
 
@@ -30,41 +139,88 @@ struct TSIInterpreter {
 
     private enum FrameID {
         static let deviceIOMappings = "DIOM"
+        static let header = "DIOI"
         static let devicesContainer = "DEVS"
         static let device = "DEVI"
+        static let deviceData = "DDAT"
+        static let deviceVersion = "DDIV"
+        static let deviceComment = "DDIC"
+        static let devicePorts = "DDPT"
+        static let midiDefinitionsContainer = "DDDC"
+        static let commandBindings = "DDCB"
         static let mappingsList = "CMAS"
         static let mappingItem = "CMAI"
         static let mappingData = "CMAD"
-        static let controlTable = "DCDT"
+        static let bindingList = "DCBM"
     }
 
     // MARK: - Public API
 
-    /// Interprets TSI frames into a MappingFile
+    /// Interprets TSI frames into a MappingFile.
+    ///
+    /// The frame stream must contain a DIOM root with a DEVS container —
+    /// a stream without them would open as an empty document that the next
+    /// save then writes over the user's real file, so both are required.
+    ///
+    /// Frame identifiers this app doesn't model are TOLERATED (skipped) when
+    /// the frame itself is structurally wellformed — real Traktor writes
+    /// frame types beyond what this app reads, and rejecting the whole file
+    /// is worse than the documented limitation that unknown frames don't
+    /// survive a save. Structural corruption (truncated frames, trailing
+    /// bytes) still throws: wellformedness is the gate, not the identifier.
     static func interpret(frames: [TSIFrame]) throws -> MappingFile {
         var devices: [Device] = []
+        var foundDIOM = false
+        var foundDEVS = false
 
         for frame in frames {
-            if frame.identifier == FrameID.deviceIOMappings {
-                let diomFrames = try parseNestedFrames(from: frame.data)
+            guard frame.identifier == FrameID.deviceIOMappings else {
+                continue // unknown-but-wellformed top-level frame — tolerated
+            }
+            foundDIOM = true
+            let diomFrames = try parseNestedFrames(from: frame.data, context: "DIOM")
 
-                for nested in diomFrames {
-                    if nested.identifier == FrameID.devicesContainer {
-                        // DEVS has 4-byte count prefix
-                        guard nested.data.count > 4 else { continue }
-                        let dataAfterCount = nested.data.subdata(in: 4..<nested.data.count)
-                        let devsFrames = try parseNestedFrames(from: dataAfterCount)
-
-                        for devsNested in devsFrames {
-                            if devsNested.identifier == FrameID.device {
-                                let device = try parseDevice(from: devsNested.data)
-                                devices.append(device)
-                            }
-                        }
+            for nested in diomFrames {
+                switch nested.identifier {
+                case FrameID.header:
+                    continue // DIOI version header — no mapping content
+                case FrameID.devicesContainer:
+                    foundDEVS = true
+                    // DEVS has 4-byte count prefix
+                    guard nested.data.count >= 4 else {
+                        throw TSIInterpreterError.malformedDevicesContainer
                     }
+                    let declaredCount = Int(readUInt32BE(from: nested.data, at: 0))
+                    let dataAfterCount = nested.data.subdata(in: 4..<nested.data.count)
+                    let devsFrames = try parseNestedFrames(from: dataAfterCount, context: "DEVS")
+
+                    var parsedCount = 0
+                    for devsNested in devsFrames {
+                        // Unknown-but-wellformed frames inside DEVS are
+                        // skipped (and don't count toward the device count,
+                        // which declares DEVI frames only).
+                        guard devsNested.identifier == FrameID.device else {
+                            continue
+                        }
+                        let device = try parseDevice(from: devsNested.data)
+                        devices.append(device)
+                        parsedCount += 1
+                    }
+
+                    // A zero-device file (declared 0, parsed 0) is valid;
+                    // any disagreement means frames were lost to corruption.
+                    guard parsedCount == declaredCount else {
+                        throw TSIInterpreterError.deviceCountMismatch(
+                            declared: declaredCount, parsed: parsedCount)
+                    }
+                default:
+                    continue // unknown-but-wellformed frame inside DIOM — tolerated
                 }
             }
         }
+
+        guard foundDIOM else { throw TSIInterpreterError.missingDeviceIOMappings }
+        guard foundDEVS else { throw TSIInterpreterError.missingDevicesContainer }
 
         return MappingFile(devices: devices)
     }
@@ -72,50 +228,78 @@ struct TSIInterpreter {
     // MARK: - Device Parsing
 
     private static func parseDevice(from data: Data) throws -> Device {
-        var offset = 0
-
-        // Parse device name (UTF-16BE string with 4-byte length prefix)
-        let deviceName: String
-        if let (name, newOffset) = readUTF16BEString(from: data, at: offset) {
-            deviceName = name
-            offset = newOffset
-        } else {
-            deviceName = "Unknown Device"
+        // Parse device name (UTF-16BE string with 4-byte length prefix).
+        // A DEVI too small (or too garbled) to hold its own name is corruption —
+        // throw instead of fabricating a placeholder device.
+        guard let (deviceName, nameEnd) = readUTF16BEString(from: data, at: 0) else {
+            throw TSIInterpreterError.malformedDevice
         }
 
-        // Parse device metadata frames (DDIV version/revision, DDIC comment, DDPT ports)
+        // WALK the declared child-frame stream after the name (no byte-scan):
+        // every frame header is read, every declared size must tile its
+        // container exactly, and unknown frames are skipped WITHOUT scanning
+        // their payload. The old marker scan had two failure modes the walk
+        // closes: a wrapper (DDAT/DDCB) with a corrupt declared size was
+        // bypassed because the scan found the inner bytes anyway, and an
+        // unknown frame whose payload coincidentally embedded "CMAS"/"DCBM"
+        // bytes misparsed.
+        let children = try collectDeviceFrames(
+            from: data.subdata(in: nameEnd..<data.count), context: "DEVI")
+
+        // Parse device metadata frames (DDIV version/revision, DDIC comment, DDPT ports).
+        // ABSENCE of a metadata frame keeps the writer-compatible default —
+        // foreign TSI variants may omit them, and nothing is lost on save.
+        // PRESENCE with an unreadable payload is corruption and throws:
+        // defaulting would silently rewrite the user's metadata on save.
+        // Every read is BOUNDED to the frame's declared payload (TSIFrame.parse
+        // cuts it) — an under-declared frame must not silently borrow bytes
+        // from the frame that follows it.
         var tsiVersion = "3.11.0"
         var mappingFileRevision = 2
         var comment = ""
         var inPort = ""
         var outPort = ""
 
-        if let ddivOffset = findFrame("DDIV", in: data),
-           let (version, afterVersion) = readUTF16BEString(from: data, at: ddivOffset + 8) {
-            tsiVersion = version
-            if afterVersion + 4 <= data.count {
-                mappingFileRevision = Int(readUInt32BE(from: data, at: afterVersion))
+        if let ddivData = children.deviceVersion {
+            guard let (version, afterVersion) = readUTF16BEString(from: ddivData, at: 0),
+                  // MappingFileRevision is required per TSI-File-Format.md —
+                  // a DDIV whose payload ends after the version string is
+                  // truncated (or under-declared).
+                  afterVersion + 4 <= ddivData.count else {
+                throw TSIInterpreterError.malformedDeviceMetadata(frame: "DDIV")
             }
+            tsiVersion = version
+            mappingFileRevision = Int(readUInt32BE(from: ddivData, at: afterVersion))
         }
 
-        if let ddicOffset = findFrame("DDIC", in: data),
-           let (parsedComment, _) = readUTF16BEString(from: data, at: ddicOffset + 8) {
+        if let ddicData = children.deviceComment {
+            guard let (parsedComment, _) = readUTF16BEString(from: ddicData, at: 0) else {
+                throw TSIInterpreterError.malformedDeviceMetadata(frame: "DDIC")
+            }
             comment = parsedComment
         }
 
-        if let ddptOffset = findFrame("DDPT", in: data),
-           let (parsedInPort, afterInPort) = readUTF16BEString(from: data, at: ddptOffset + 8) {
-            inPort = parsedInPort
-            if let (parsedOutPort, _) = readUTF16BEString(from: data, at: afterInPort) {
-                outPort = parsedOutPort
+        if let ddptData = children.devicePorts {
+            guard let (parsedInPort, afterInPort) = readUTF16BEString(from: ddptData, at: 0),
+                  let (parsedOutPort, _) = readUTF16BEString(from: ddptData, at: afterInPort) else {
+                throw TSIInterpreterError.malformedDeviceMetadata(frame: "DDPT")
             }
+            inPort = parsedInPort
+            outPort = parsedOutPort
         }
 
-        // Build DCDT lookup table (control index -> MIDI name)
-        let controlLookup = buildControlLookup(from: data)
+        // Build DCBM binding lookup (binding ID -> MIDI control name)
+        let controlLookup = try buildControlLookup(fromBindingList: children.bindingList)
 
-        // Find and parse CMAS (mappings list)
-        let mappings = parseMappings(from: data, controlLookup: controlLookup)
+        // Parse CMAS (mappings list). TSIWriter and Traktor ALWAYS emit one
+        // (count 0 when empty), so absence means the mappings were lost to
+        // corruption — opening as "zero mappings" would let the next save
+        // wipe them. (Contrast: a missing DCBM is tolerated because any CMAI
+        // that actually needs a binding then throws danglingMidiBinding.)
+        guard let cmasData = children.mappingsList else {
+            throw TSIInterpreterError.missingMappingsList
+        }
+        let mappings = try parseMappings(fromMappingsList: cmasData, controlLookup: controlLookup)
 
         print("TSI: Device '\(deviceName)' with \(mappings.count) mappings")
 
@@ -130,79 +314,119 @@ struct TSIInterpreter {
         )
     }
 
+    // MARK: - Device Child-Frame Walk
+
+    /// The frames this app models, collected from a DEVI's child-frame tree.
+    /// Each payload is already cut to its frame's DECLARED size by
+    /// TSIFrame.parse, so readers can never borrow bytes from a following
+    /// frame.
+    private struct DeviceFrames {
+        var deviceVersion: Data?   // DDIV
+        var deviceComment: Data?   // DDIC
+        var devicePorts: Data?     // DDPT
+        var mappingsList: Data?    // CMAS
+        var bindingList: Data?     // DCBM (outer list frame)
+    }
+
+    /// Walks a DEVI child-frame stream, recursing into the containers
+    /// TSIWriter nests (DDAT → metadata frames + DDDC + DDCB, DDDC → DDCI,
+    /// DDCB → CMAS + DCBM) and collecting the first occurrence of each
+    /// modeled frame. Modeled frames are dispatched wherever they appear in
+    /// the walked tree — foreign TSI variants (and this app's test fixtures)
+    /// may flatten the writer's nesting, and nothing is lost by accepting
+    /// that. Unknown-but-wellformed frames (including modeled-but-unread
+    /// ones like DDIF and DDCI) are skipped whole; their payloads are never
+    /// scanned. Structural mismatch — a declared size overrunning its
+    /// container, a truncated header, trailing bytes — throws from the walk.
+    private static func collectDeviceFrames(from data: Data, context: String) throws -> DeviceFrames {
+        var collected = DeviceFrames()
+        try collectDeviceFrames(into: &collected, from: data, context: context)
+        return collected
+    }
+
+    private static func collectDeviceFrames(into collected: inout DeviceFrames, from data: Data, context: String) throws {
+        for frame in try parseNestedFrames(from: data, context: context) {
+            switch frame.identifier {
+            case FrameID.deviceData, FrameID.midiDefinitionsContainer, FrameID.commandBindings:
+                try collectDeviceFrames(into: &collected, from: frame.data, context: frame.identifier)
+            case FrameID.deviceVersion:
+                if collected.deviceVersion == nil { collected.deviceVersion = frame.data }
+            case FrameID.deviceComment:
+                if collected.deviceComment == nil { collected.deviceComment = frame.data }
+            case FrameID.devicePorts:
+                if collected.devicePorts == nil { collected.devicePorts = frame.data }
+            case FrameID.mappingsList:
+                if collected.mappingsList == nil { collected.mappingsList = frame.data }
+            case FrameID.bindingList:
+                if collected.bindingList == nil { collected.bindingList = frame.data }
+            default:
+                continue // unknown-but-wellformed frame — tolerated, payload unscanned
+            }
+        }
+    }
+
     // MARK: - MIDI Note Binding Lookup (DCBM)
 
-    /// Builds a lookup table from DCBM frames: binding ID -> MIDI control name
-    /// DCBM structure per spec:
-    /// - Id: int (unique identifier for this binding)
-    /// - MidiNoteLength: int
-    /// - MidiNote: wchar_t[] (e.g. "Ch01.CC.100" or "Ch09.Note.A#2")
-    private static func buildControlLookup(from data: Data) -> [Int: String] {
+    /// Builds the binding lookup from the DCBM list: binding ID -> MIDI control name.
+    ///
+    /// DCBM layout per TSI-File-Format.md (mirrored by TSIWriter.buildDCBM):
+    /// - Outer DCBM frame: 4-byte binding count, then `count` nested DCBM frames.
+    /// - Each nested DCBM frame: BindingId (uint32) + MidiNote (wide string,
+    ///   e.g. "Ch01.CC.100" or "Ch09.Note.A#2").
+    ///
+    /// The DCBM list is the SOLE authority for CMAI binding-id resolution —
+    /// there is deliberately no DCDT fallback. DCDT rows define controls (and
+    /// since the direction-aware writer pass there is one row per
+    /// (control, direction) pair), so their order does not match binding ids;
+    /// resolving through them silently rebinds mappings.
+    ///
+    /// Structural corruption throws: a binding entry that can't be read is not
+    /// skippable — the CMAI that references it would then surface as a
+    /// dangling binding anyway, so fail at the source with the precise error.
+    private static func buildControlLookup(fromBindingList listData: Data?) throws -> [Int: String] {
+        // A device with no DCBM list has no MIDI bindings — valid (every CMAI
+        // must then carry the unassigned sentinel or fail as dangling).
+        guard let listData else { return [:] }
+
+        // The list payload must at least hold its 4-byte count prefix.
+        guard listData.count >= 4 else {
+            throw TSIInterpreterError.malformedMidiBindingList
+        }
+        let declaredCount = Int(readUInt32BE(from: listData, at: 0))
+
         var lookup: [Int: String] = [:]
-        var offset = 0
-
-        // Find DCBM frames
-        while offset < data.count - 8 {
-            guard offset + 4 <= data.count else { break }
-            let marker = data.subdata(in: offset..<(offset + 4))
-            guard String(data: marker, encoding: .ascii) == "DCBM" else {
-                offset += 1
-                continue
+        var offset = 4
+        for _ in 0..<declaredCount {
+            // Nested binding frame header: "DCBM" identifier + 4-byte size
+            guard offset + 8 <= listData.count,
+                  String(data: listData.subdata(in: offset..<(offset + 4)), encoding: .ascii) == FrameID.bindingList else {
+                throw TSIInterpreterError.malformedMidiBindingList
+            }
+            let entrySize = Int(readUInt32BE(from: listData, at: offset + 4))
+            // Entry payload must hold BindingId (4) + string length prefix (4)
+            guard entrySize >= 8, offset + 8 + entrySize <= listData.count else {
+                throw TSIInterpreterError.malformedMidiBindingList
             }
 
-            // Read DCBM size
-            let sizeBytes = data.subdata(in: (offset + 4)..<(offset + 8))
-            let size = Int(sizeBytes.withUnsafeBytes { $0.load(as: UInt32.self).bigEndian })
-
-            guard size > 8 && size < 500 && offset + 8 + size <= data.count else {
-                offset += 1
-                continue
+            let entryData = listData.subdata(in: (offset + 8)..<(offset + 8 + entrySize))
+            let bindingId = Int(readUInt32BE(from: entryData, at: 0))
+            guard let (midiNote, _) = readUTF16BEString(from: entryData, at: 4) else {
+                throw TSIInterpreterError.malformedMidiBindingList
             }
-
-            let dcbmData = data.subdata(in: (offset + 8)..<(offset + 8 + size))
-
-            // Parse DCBM: Id (4 bytes) + MidiNoteLength (4 bytes) + MidiNote (wchar_t[])
-            if dcbmData.count >= 8 {
-                let bindingId = Int(dcbmData.prefix(4).withUnsafeBytes { $0.load(as: UInt32.self).bigEndian })
-                let stringLength = Int(dcbmData.subdata(in: 4..<8).withUnsafeBytes { $0.load(as: UInt32.self).bigEndian })
-
-                if stringLength > 0 && stringLength < 200 && 8 + stringLength * 2 <= dcbmData.count {
-                    lookup[bindingId] = decodeUTF16BE(from: dcbmData, at: 8, codeUnitCount: stringLength)
-                }
+            // Duplicate BindingIds are corruption, not a merge: last-wins
+            // overwrite would silently rebind every CMAI referencing the id,
+            // and the next save would persist the wrong MIDI control.
+            guard lookup.updateValue(midiNote, forKey: bindingId) == nil else {
+                throw TSIInterpreterError.malformedMidiBindingList
             }
-
-            offset += 8 + size
+            offset += 8 + entrySize
         }
 
-        // Also build DCDT lookup as fallback (for control indices)
-        var dcdtIndex = 0
-        offset = 0
-        while offset < data.count - 8 {
-            guard offset + 4 <= data.count else { break }
-            let marker = data.subdata(in: offset..<(offset + 4))
-            guard String(data: marker, encoding: .ascii) == FrameID.controlTable else {
-                offset += 1
-                continue
-            }
-
-            let sizeBytes = data.subdata(in: (offset + 4)..<(offset + 8))
-            let size = Int(sizeBytes.withUnsafeBytes { $0.load(as: UInt32.self).bigEndian })
-
-            guard size > 0 && size < 500 && offset + 8 + size <= data.count else {
-                offset += 1
-                continue
-            }
-
-            let dcdtData = data.subdata(in: (offset + 8)..<(offset + 8 + size))
-            if let (name, _) = readUTF16BEString(from: dcdtData, at: 0), !name.isEmpty {
-                // Use negative indices for DCDT to avoid collision with DCBM IDs
-                if lookup[dcdtIndex] == nil {
-                    lookup[dcdtIndex] = name
-                }
-            }
-
-            dcdtIndex += 1
-            offset += 8 + size
+        // The declared count must consume the ENTIRE list payload — a low
+        // count with binding bytes left over means the count (or the list)
+        // is corrupt, and the leftover bindings would vanish on save.
+        guard offset == listData.count else {
+            throw TSIInterpreterError.malformedMidiBindingList
         }
 
         return lookup
@@ -210,47 +434,54 @@ struct TSIInterpreter {
 
     // MARK: - Mapping Parsing
 
-    private static func parseMappings(from data: Data, controlLookup: [Int: String]) -> [MappingEntry] {
+    private static func parseMappings(fromMappingsList cmasData: Data, controlLookup: [Int: String]) throws -> [MappingEntry] {
         var mappings: [MappingEntry] = []
 
-        // Find CMAS frame
-        guard let cmasOffset = findFrame(FrameID.mappingsList, in: data) else {
-            return mappings
+        // CMAS must at least hold its 4-byte mapping count
+        guard cmasData.count >= 4 else {
+            throw TSIInterpreterError.malformedMappingsList
         }
+        let declaredCount = Int(readUInt32BE(from: cmasData, at: 0))
 
-        let sizeBytes = data.subdata(in: (cmasOffset + 4)..<(cmasOffset + 8))
-        let cmasSize = Int(sizeBytes.withUnsafeBytes { $0.load(as: UInt32.self).bigEndian })
-
-        guard cmasSize > 0 && cmasOffset + 8 + cmasSize <= data.count else {
-            return mappings
-        }
-
-        let cmasData = data.subdata(in: (cmasOffset + 8)..<(cmasOffset + 8 + cmasSize))
-
-        // Parse each CMAI frame within CMAS
-        var offset = 0
-        while offset < cmasData.count - 8 {
-            let marker = cmasData.subdata(in: offset..<(offset + 4))
-            guard String(data: marker, encoding: .ascii) == FrameID.mappingItem else {
-                offset += 1
-                continue
+        // Parse the CMAI frames within CMAS (after the 4-byte count prefix).
+        // The payload is a CONTIGUOUS run of CMAI frames — per the format doc
+        // and TSIWriter, nothing else lives here. Anything that isn't a CMAI
+        // header at the expected offset (including trailing garbage after the
+        // last frame) is corruption: a byte-scan that skips over it would
+        // silently drop those bytes on the next save.
+        // Every frame counts toward the declared total — including rows that
+        // parseCMAI deliberately skips (command ID 0) — so corruption that
+        // sheds frames is caught by the count check below.
+        var parsedFrameCount = 0
+        var offset = 4
+        while offset < cmasData.count {
+            guard cmasData.count - offset >= 8,
+                  String(data: cmasData.subdata(in: offset..<(offset + 4)), encoding: .ascii) == FrameID.mappingItem else {
+                throw TSIInterpreterError.malformedMappingsList
             }
 
-            let cmaiSizeBytes = cmasData.subdata(in: (offset + 4)..<(offset + 8))
-            let cmaiSize = Int(cmaiSizeBytes.withUnsafeBytes { $0.load(as: UInt32.self).bigEndian })
+            let cmaiSize = Int(readUInt32BE(from: cmasData, at: offset + 4))
 
-            guard cmaiSize > 0 && offset + 8 + cmaiSize <= cmasData.count else {
-                offset += 1
-                continue
+            // A CMAI whose declared size overruns its container is truncation —
+            // propagate instead of skipping and returning a partial list.
+            // (A too-small payload throws inside parseCMAI.)
+            guard offset + 8 + cmaiSize <= cmasData.count else {
+                throw TSIInterpreterError.malformedMappingItem
             }
 
             let cmaiData = cmasData.subdata(in: (offset + 8)..<(offset + 8 + cmaiSize))
+            parsedFrameCount += 1
 
-            if let mapping = parseCMAI(from: cmaiData, controlLookup: controlLookup) {
+            if let mapping = try parseCMAI(from: cmaiData, controlLookup: controlLookup) {
                 mappings.append(mapping)
             }
 
             offset += 8 + cmaiSize
+        }
+
+        guard parsedFrameCount == declaredCount else {
+            throw TSIInterpreterError.mappingCountMismatch(
+                declared: declaredCount, parsed: parsedFrameCount)
         }
 
         return mappings
@@ -262,37 +493,65 @@ struct TSIInterpreter {
     /// - Type: int (0=Input, 1=Output)
     /// - TraktorControlId: int (Traktor command identifier)
     /// - Settings: CMAD frame
-    private static func parseCMAI(from data: Data, controlLookup: [Int: String]) -> MappingEntry? {
-        guard data.count >= 20 else { return nil }
+    private static func parseCMAI(from data: Data, controlLookup: [Int: String]) throws -> MappingEntry? {
+        // Too small to hold the 3-int header + CMAD frame header — truncation, not a skip.
+        guard data.count >= 20 else { throw TSIInterpreterError.malformedMappingItem }
 
         // Parse CMAI header (3 x 4-byte integers before CMAD)
         let midiBindingId = Int(readUInt32BE(from: data, at: 0))
         let ioTypeValue = readUInt32BE(from: data, at: 4)
         let traktorControlId = Int(readUInt32BE(from: data, at: 8))
 
-        // Skip unassigned/empty mappings (command ID 0 means no command assigned)
-        guard traktorControlId > 0 else { return nil }
-
-        let ioType: IODirection = ioTypeValue == 1 ? .output : .input
-
-        // Get MIDI control name from lookup table using binding ID
-        let midiControlName = controlLookup[midiBindingId] ?? "Ctrl_\(midiBindingId)"
-
-        // Find and parse CMAD frame
-        var cmadSettings = CMADParsed()
-
-        if let cmadOffset = findFrame(FrameID.mappingData, in: data) {
-            let cmadSizeBytes = data.subdata(in: (cmadOffset + 4)..<(cmadOffset + 8))
-            let cmadSize = Int(cmadSizeBytes.withUnsafeBytes { $0.load(as: UInt32.self).bigEndian })
-
-            if cmadSize > 0 && cmadOffset + 8 + cmadSize <= data.count {
-                let cmadData = data.subdata(in: (cmadOffset + 8)..<(cmadOffset + 8 + cmadSize))
-                cmadSettings = parseCMAD(from: cmadData)
-            }
+        // Type per spec: 0 = In, 1 = Out. Anything else is corruption —
+        // coercing it to .input would rewrite the mapping direction on save.
+        let ioType: IODirection
+        switch ioTypeValue {
+        case 0: ioType = .input
+        case 1: ioType = .output
+        default:
+            throw TSIInterpreterError.unsupportedFieldValue(
+                field: "MappingType", value: Int(ioTypeValue))
         }
 
-        // Map interaction mode per spec: Toggle=1, Hold=2, Direct=3, Relative=4,
-        // Increment=5, Decrement=6, Reset=7, Output=8
+        // CMAD must sit immediately after the 12-byte CMAI header (per the
+        // format doc and TSIWriter) and fill the CMAI payload EXACTLY.
+        // A missing, undersized, or overrunning CMAD used to fall through to
+        // a default-settings mapping — which an open+save would then write
+        // over the user's real settings. Any disagreement throws instead.
+        guard String(data: data.subdata(in: 12..<16), encoding: .ascii) == FrameID.mappingData else {
+            throw TSIInterpreterError.malformedMappingData
+        }
+        let cmadSize = Int(readUInt32BE(from: data, at: 16))
+        guard 20 + cmadSize == data.count else {
+            throw TSIInterpreterError.malformedMappingData
+        }
+        let cmadSettings = try parseCMAD(from: data.subdata(in: 20..<(20 + cmadSize)))
+
+        // Skip unassigned/empty mappings (command ID 0 means no command
+        // assigned — a placeholder row, not corruption; its CMAD was still
+        // structurally validated above). TSIWriter never writes such rows.
+        guard traktorControlId > 0 else { return nil }
+
+        // Resolve the MIDI control name from the DCBM lookup:
+        // - the 0xFFFFFFFF sentinel means "deliberately unassigned" (nil name)
+        // - any OTHER id missing from the lookup is corruption and must throw —
+        //   silently treating it as unassigned would erase the user's MIDI
+        //   assignment and save over it.
+        let midiControlName: String?
+        if UInt32(truncatingIfNeeded: midiBindingId) == TSIBindingID.unassigned {
+            midiControlName = nil
+        } else if let resolved = controlLookup[midiBindingId] {
+            midiControlName = resolved
+        } else {
+            throw TSIInterpreterError.danglingMidiBinding(bindingId: midiBindingId)
+        }
+
+        // Map interaction mode per spec: Trigger=0, Toggle=1, Hold=2, Direct=3,
+        // Relative=4, Increment=5, Decrement=6, Reset=7, Output=8.
+        // Unknown values are TOLERATED and coerced to the direction's default
+        // (hold for input, output for output) — real Traktor writes modes
+        // this app doesn't model, and rejecting the file is worse than the
+        // documented limitation that the coerced mode is what gets saved.
         let interactionMode: InteractionMode
         switch cmadSettings.interactionMode {
         case 0: interactionMode = .trigger
@@ -307,7 +566,9 @@ struct TSIInterpreter {
         default: interactionMode = ioType == .output ? .output : .hold
         }
 
-        // Map controller type per spec: Button=0, Fader=1, Encoder=2, LED=65535
+        // Map controller type per spec: Button=0, Fader=1, Encoder=2, LED=65535.
+        // Unknown values coerce to .button — same tolerance rationale as
+        // interaction mode above.
         let controllerType: ControllerType
         switch cmadSettings.controllerType {
         case 0: controllerType = .button
@@ -320,8 +581,13 @@ struct TSIInterpreter {
         // Look up command name from Traktor's command database
         let commandName = TraktorCommands.name(for: traktorControlId)
 
-        // Parse MIDI info from control name
-        let (channel, noteOrCC, isCc) = parseMidiControlName(midiControlName)
+        // Parse MIDI info from control name (unassigned mappings have none)
+        let (channel, noteOrCC, isCc): (Int, Int?, Bool)
+        if let midiControlName {
+            (channel, noteOrCC, isCc) = try parseMidiControlName(midiControlName)
+        } else {
+            (channel, noteOrCC, isCc) = (1, nil, false)
+        }
 
         // Map target assignment per TSI spec (aligned with TSIWriter encoding):
         // -1 = Device Target
@@ -329,6 +595,8 @@ struct TSIInterpreter {
         // 1 = Deck B, 2 = Deck C, 3 = Deck D
         // 4-7 = FX Units 1-4
         // 8-15 = Remix Slots 1-8
+        // Values outside -1...15 collapse to .global by prior design — the
+        // same tolerance as the other CMAD enums above.
         let assignment: TargetAssignment
         switch cmadSettings.targetDeck {
         case -1: assignment = .deviceTarget
@@ -439,10 +707,26 @@ struct TSIInterpreter {
         var resolution: Int = 0
     }
 
-    private static func parseCMAD(from data: Data) -> CMADParsed {
+    /// Parses a CMAD payload, throwing on structural corruption.
+    ///
+    /// The 52-byte fixed header (DeviceType through CommentLength) and the
+    /// full declared comment are REQUIRED — a payload too short for either
+    /// is corruption, not a defaults case.
+    ///
+    /// The condition block and LED block are OPTIONAL TAIL fields: older
+    /// Traktor versions emit shorter CMADs that end before them, so their
+    /// length-guarded reads keep writer-compatible defaults when absent.
+    private static func parseCMAD(from data: Data) throws -> CMADParsed {
         var result = CMADParsed()
 
-        guard data.count >= 52 else { return result }
+        guard data.count >= 52 else { throw TSIInterpreterError.malformedMappingData }
+
+        // DeviceType at bytes 0-3: 4 = GenericMidi (what this app writes);
+        // 1-3 are real proprietary Traktor values (TSI-File-Format.md).
+        // ALL device types are tolerated and read with the GenericMidi field
+        // layout — proprietary-section fidelity is a pre-existing, documented
+        // limitation, and rejecting the file would block every real Traktor
+        // export that includes a proprietary section.
 
         // Controller type at bytes 4-7
         result.controllerType = Int(readUInt32BE(from: data, at: 4))
@@ -472,15 +756,22 @@ struct TSIInterpreter {
         // SetValueTo at bytes 44-47 (float)
         result.setToValue = readFloatBE(from: data, at: 44)
 
-        // Comment: length at bytes 48-51, then wchar_t[] string
+        // Comment: length at bytes 48-51, then wchar_t[] string.
+        // The declared comment must fit inside the CMAD payload — that byte
+        // bound is the real validator (no arbitrary length cap: the old
+        // `< 1000` sanity cap silently DROPPED legitimate comments of 1000+
+        // characters and misread the condition block at the wrong offset for
+        // corrupt lengths). The payload size itself bounds the allocation.
         let commentLength = Int(readUInt32BE(from: data, at: 48))
 
         // The 24-byte condition block follows the comment (byte 52 when no comment)
         var conditionOffset = 52
-        if commentLength > 0 && commentLength < 1000 {
+        if commentLength > 0 {
             let commentStart = 52
             let commentEnd = commentStart + commentLength * 2
-            guard commentEnd <= data.count else { return result }
+            guard commentEnd <= data.count else {
+                throw TSIInterpreterError.malformedMappingData
+            }
 
             result.comment = decodeUTF16BE(from: data, at: commentStart, codeUnitCount: commentLength)
             conditionOffset = commentEnd
@@ -489,6 +780,7 @@ struct TSIInterpreter {
         // Condition block per spec (24 bytes):
         // ConditionOneId(4), ConditionOneTarget(4), ConditionOneValue(4),
         // ConditionTwoId(4), ConditionTwoTarget(4), ConditionTwoValue(4)
+        // OPTIONAL TAIL (see doc comment): absent in older/shorter CMADs.
         if conditionOffset + 24 <= data.count {
             result.modifierOneId = Int(readUInt32BE(from: data, at: conditionOffset))
             // ConditionOneTarget at +4 is skipped (always 0 in our output)
@@ -502,6 +794,7 @@ struct TSIInterpreter {
         // LedMinControllerRange type+data, LedMaxControllerRange type+data,
         // LedMinMidiRange, LedMaxMidiRange, LedInvert, LedBlend,
         // unknownValueUIType (skipped), Resolution
+        // OPTIONAL TAIL (see doc comment): absent in older/shorter CMADs.
         let ledOffset = conditionOffset + 24
         if ledOffset + 32 <= data.count {
             result.ledMinRangeType = Int(readUInt32BE(from: data, at: ledOffset))
@@ -521,7 +814,9 @@ struct TSIInterpreter {
         return result
     }
 
-    /// Reads a big-endian float from data at the given offset
+    /// Reads a big-endian float from data at the given offset.
+    /// The zero default is defensive only — every call site bounds-checks
+    /// (and throws) before reading, so corrupt input cannot reach it.
     private static func readFloatBE(from data: Data, at offset: Int) -> Float {
         guard offset + 4 <= data.count else { return 0.0 }
         let bits = readUInt32BE(from: data, at: offset)
@@ -532,36 +827,33 @@ struct TSIInterpreter {
 
     /// Parses a MIDI control name like "Ch01.CC.100" or "Ch09.Note.A#2"
     /// Returns (channel, noteOrCCNumber, isCC)
-    private static func parseMidiControlName(_ name: String) -> (Int, Int?, Bool) {
-        // Parse channel
-        var channel = 1
-        if let chRange = name.range(of: "Ch"),
-           let dotRange = name.range(of: ".", range: chRange.upperBound..<name.endIndex) {
-            let chStr = String(name[chRange.upperBound..<dotRange.lowerBound])
-            if let ch = Int(chStr) {
-                channel = ch
-            }
+    ///
+    /// Names come from the file's DCBM list. A name that doesn't parse used
+    /// to fall back to (channel 1, no number) — which the next save would
+    /// write out as an UNASSIGNED mapping, erasing the user's MIDI
+    /// assignment. Unrecognized names now throw instead.
+    private static func parseMidiControlName(_ name: String) throws -> (Int, Int?, Bool) {
+        // Channel is required: "Ch" prefix, digits, then "."
+        guard let chRange = name.range(of: "Ch"),
+              let dotRange = name.range(of: ".", range: chRange.upperBound..<name.endIndex),
+              let channel = Int(name[chRange.upperBound..<dotRange.lowerBound]) else {
+            throw TSIInterpreterError.unrecognizedMidiControl(name: name)
         }
 
-        // Check if CC or Note
-        let isCC = name.contains(".CC.")
-        var number: Int? = nil
-
-        if isCC {
-            // Parse CC number
-            if let ccRange = name.range(of: ".CC.") {
-                let ccStr = String(name[ccRange.upperBound...])
-                number = Int(ccStr)
+        // CC number or note name is required
+        if let ccRange = name.range(of: ".CC.") {
+            guard let cc = Int(name[ccRange.upperBound...]) else {
+                throw TSIInterpreterError.unrecognizedMidiControl(name: name)
             }
-        } else if name.contains(".Note.") {
-            // Parse MIDI note name
-            if let noteRange = name.range(of: ".Note.") {
-                let noteName = String(name[noteRange.upperBound...])
-                number = midiNoteNumber(from: noteName)
-            }
+            return (channel, cc, true)
         }
-
-        return (channel, number, isCC)
+        if let noteRange = name.range(of: ".Note.") {
+            guard let note = midiNoteNumber(from: String(name[noteRange.upperBound...])) else {
+                throw TSIInterpreterError.unrecognizedMidiControl(name: name)
+            }
+            return (channel, note, false)
+        }
+        throw TSIInterpreterError.unrecognizedMidiControl(name: name)
     }
 
     /// Converts a note name like "A#2" to MIDI note number
@@ -612,6 +904,11 @@ struct TSIInterpreter {
         return String(decoding: codeUnits, as: UTF16.self)
     }
 
+    /// Reads a length-prefixed UTF-16BE string. Returns nil when the prefix
+    /// or string bytes don't fit — every caller treats nil as corruption and
+    /// throws (no caller silently defaults). The 10000-char cap is an
+    /// allocation bound for absurd corrupt lengths; with throwing callers it
+    /// surfaces as an error, never as silently truncated data.
     private static func readUTF16BEString(from data: Data, at offset: Int) -> (String, Int)? {
         guard offset + 4 <= data.count else { return nil }
 
@@ -629,40 +926,36 @@ struct TSIInterpreter {
         return (decoded, stringEnd)
     }
 
+    /// Reads a big-endian UInt32 from data at the given offset.
+    /// The zero default is defensive only — every call site bounds-checks
+    /// (and throws) before reading, so corrupt input cannot reach it.
     private static func readUInt32BE(from data: Data, at offset: Int) -> UInt32 {
         guard offset + 4 <= data.count else { return 0 }
         let bytes = data.subdata(in: offset..<(offset + 4))
         return bytes.withUnsafeBytes { $0.load(as: UInt32.self).bigEndian }
     }
 
-    private static func findFrame(_ identifier: String, in data: Data) -> Int? {
-        guard let idData = identifier.data(using: .ascii), idData.count == 4 else { return nil }
-
-        for i in 0..<(data.count - 4) {
-            if data[i] == idData[0] &&
-               data[i+1] == idData[1] &&
-               data[i+2] == idData[2] &&
-               data[i+3] == idData[3] {
-                return i
-            }
-        }
-        return nil
-    }
-
-    private static func parseNestedFrames(from data: Data) throws -> [TSIFrame] {
+    /// Parses consecutive frames, propagating any malformed-frame error.
+    ///
+    /// A truncated or oversized frame mid-stream must surface — swallowing it
+    /// would silently return a partial frame list that a later save wipes.
+    /// The frames must consume the payload EXACTLY: TSIWriter emits no
+    /// padding anywhere, so 1-7 trailing bytes (which the old loop dropped
+    /// on the floor, and a save then dropped from the file) are corruption.
+    /// This mirrors the strict contract of TSIParser.parseFrames at the top
+    /// level of the file.
+    private static func parseNestedFrames(from data: Data, context: String) throws -> [TSIFrame] {
         var frames: [TSIFrame] = []
         var offset = 0
 
-        while offset < data.count - 8 {
-            let remainingData = data.subdata(in: offset..<data.count)
-
-            do {
-                let frame = try TSIFrame.parse(from: remainingData)
-                frames.append(frame)
-                offset += frame.totalSize
-            } catch {
-                break
+        while offset < data.count {
+            guard data.count - offset >= TSIFrame.headerSize else {
+                throw TSIInterpreterError.unexpectedTrailingBytes(context: context)
             }
+            let remainingData = data.subdata(in: offset..<data.count)
+            let frame = try TSIFrame.parse(from: remainingData)
+            frames.append(frame)
+            offset += frame.totalSize
         }
 
         return frames

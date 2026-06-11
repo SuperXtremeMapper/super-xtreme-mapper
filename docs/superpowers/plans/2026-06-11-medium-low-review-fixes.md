@@ -19,30 +19,30 @@ cd XtremeMapping && set -o pipefail && xcodebuild -project SuperXtremeMapping.xc
 **Files:** Modify `Models/TSI/TSIInterpreter.swift`, `Models/TSI/TSIWriter.swift`, `Models/TSI/TraktorCommands.swift`, `Models/TSI/CommandHierarchy.swift` (UI command source — duplicates the "Loop Out" name at lines 208 and 222), `XtremeMapping/docs/TSI-File-Format.md`. Tests: `TSIInterpreterTests.swift`, `TraktorCommandsTests.swift`, new `TSIParserTests` additions if parser-level.
 
 ### Task 1.1: Surface malformed-DEVS instead of silent empty/partial documents (M10)
-- [ ] Failing tests: (a) DEVS declaring 2 devices where the second DEVI frame is truncated → `interpret` throws (build bytes by writing a valid 2-device file via TSIWriter then truncating); (b) zero-device file still opens as valid empty MappingFile.
-- [ ] `parseNestedFrames` (TSIInterpreter.swift:652-668): propagate nested parse errors instead of `break`-swallowing mid-stream (tolerate only clean end-of-data after all declared frames).
-- [ ] `interpret`: read the DEVS 4-byte count, compare against parsed DEVI device count, throw descriptive error on mismatch.
-- [ ] Same contract one layer down: `parseMappings` (~TSIInterpreter.swift:213-249) validates the CMAS 4-byte mapping count vs parsed CMAI frames and propagates malformed-CMAI failures (no skip-and-return-partial). Failing test: valid device, CMAS declaring 2 mappings with the second truncated → throws. NOTE: the writableMappings filter from the C/H pass intentionally writes FEWER CMAI than mappings exist in the model — the count it writes is already the filtered count, so no conflict; assert that in a test.
-- [ ] Run; PASS. Confirm document layer surfaces the throw (existing read path).
+- [x] Failing tests: (a) DEVS declaring 2 devices where the second DEVI frame is truncated → `interpret` throws (build bytes by writing a valid 2-device file via TSIWriter then truncating); (b) zero-device file still opens as valid empty MappingFile.
+- [x] `parseNestedFrames` (TSIInterpreter.swift:652-668): propagate nested parse errors instead of `break`-swallowing mid-stream (tolerate only clean end-of-data after all declared frames).
+- [x] `interpret`: read the DEVS 4-byte count, compare against parsed DEVI device count, throw descriptive error on mismatch.
+- [x] Same contract one layer down: `parseMappings` (~TSIInterpreter.swift:213-249) validates the CMAS 4-byte mapping count vs parsed CMAI frames and propagates malformed-CMAI failures (no skip-and-return-partial). Failing test: valid device, CMAS declaring 2 mappings with the second truncated → throws. NOTE: the writableMappings filter from the C/H pass intentionally writes FEWER CMAI than mappings exist in the model — the count it writes is already the filtered count, so no conflict; assert that in a test.
+- [x] Run; PASS. Confirm document layer surfaces the throw (existing read path).
 
 ### Task 1.2: Unassigned mappings — explicit sentinel, no fabricated CC 0 (M9)
-- [ ] Failing round-trip test: MappingEntry with `midiNote = nil, midiCC = nil` round-trips with both still nil and no "Ch01.CC.000" string anywhere in the written bytes.
-- [ ] `TSIWriter`: when a mapping has no MIDI assignment — `midiControlName(for:)` callers at lines ~159 (DDCI/DCDT), ~230 (DCBM), ~271 (CMAS binding id) — skip DCDT/DCBM entries for it and emit CMAI `MidiNoteBindingId = 0xFFFFFFFF` (DCDT's −1 unassigned convention, TSI-File-Format.md:120).
-- [ ] `TSIInterpreter` mapping parse (~line 265-279): ONLY binding id 0xFFFFFFFF decodes to nil note/cc; a non-sentinel id missing from the DCBM lookup THROWS (corruption — folds into Task 1.1's validation). Tests for both: sentinel round-trips unassigned; crafted file with a dangling binding id throws.
-- [ ] Run; PASS.
+- [x] Failing round-trip test: MappingEntry with `midiNote = nil, midiCC = nil` round-trips with both still nil and no "Ch01.CC.000" string anywhere in the written bytes.
+- [x] `TSIWriter`: when a mapping has no MIDI assignment — `midiControlName(for:)` callers at lines ~159 (DDCI/DCDT), ~230 (DCBM), ~271 (CMAS binding id) — skip DCDT/DCBM entries for it and emit CMAI `MidiNoteBindingId = 0xFFFFFFFF` (DCDT's −1 unassigned convention, TSI-File-Format.md:120).
+- [x] `TSIInterpreter` mapping parse (~line 265-279): ONLY binding id 0xFFFFFFFF decodes to nil note/cc; a non-sentinel id missing from the DCBM lookup THROWS (corruption — folds into Task 1.1's validation). Tests for both: sentinel round-trips unassigned; crafted file with a dangling binding id throws.
+- [x] Run; PASS.
 
 ### Task 1.3: Distinct names for distinct commands + deterministic resolution (M8)
-- [ ] Failing test: every value in `commandLookup` is unique (exhaustive duplicate scan), and IDs 201 and 2393 BOTH survive `id(for: name(for: id)) == id`.
-- [ ] Rename 2393 (advanced-deck block, paired with 2392 "Loop In / Set Cue") to a distinct name following the section's convention — "Loop Out / Set" unless the CMDR reference table (https://cmdr-editor.github.io/cmdr/) names it otherwise; 201 ("Loop Out", CUE/LOOP) keeps its name. These are two different Traktor commands — canonicalizing to one ID would silently change user mappings.
-- [ ] `id(for:)`: replace dictionary iteration with a lazily-precomputed `[String: Int]` name→lowest-id map as a deterministic backstop for any future duplicate.
-- [ ] REQUIRED (highest-risk area per spec review): `CommandHierarchy.swift` carries the same duplicate — `CommandItem(id: 2393, name: "Loop Out")` at ~line 222 (and 201 at ~208). ContentView creates mappings from CommandHierarchy NAMES (ContentView.swift:803/918), so an un-renamed hierarchy entry would still produce a "Loop Out" mapping that resolves to 201. Rename the 2393 hierarchy entry identically to the TraktorCommands rename.
-- [ ] Cross-consistency test: for every `CommandItem` in `CommandHierarchy.allCategories` (or equivalent), assert `TraktorCommands.id(for: item.name) == item.id` — pins hierarchy↔lookup consistency for ALL commands, not just this pair.
-- [ ] Run; PASS.
+- [x] Failing test: every value in `commandLookup` is unique (exhaustive duplicate scan), and IDs 201 and 2393 BOTH survive `id(for: name(for: id)) == id`.
+- [x] Rename 2393 (advanced-deck block, paired with 2392 "Loop In / Set Cue") to a distinct name following the section's convention — "Loop Out / Set" unless the CMDR reference table (https://cmdr-editor.github.io/cmdr/) names it otherwise; 201 ("Loop Out", CUE/LOOP) keeps its name. These are two different Traktor commands — canonicalizing to one ID would silently change user mappings.
+- [x] `id(for:)`: replace dictionary iteration with a lazily-precomputed `[String: Int]` name→lowest-id map as a deterministic backstop for any future duplicate.
+- [x] REQUIRED (highest-risk area per spec review): `CommandHierarchy.swift` carries the same duplicate — `CommandItem(id: 2393, name: "Loop Out")` at ~line 222 (and 201 at ~208). ContentView creates mappings from CommandHierarchy NAMES (ContentView.swift:803/918), so an un-renamed hierarchy entry would still produce a "Loop Out" mapping that resolves to 201. Rename the 2393 hierarchy entry identically to the TraktorCommands rename.
+- [x] Cross-consistency test: for every `CommandItem` in `CommandHierarchy.allCategories` (or equivalent), assert `TraktorCommands.id(for: item.name) == item.id` — pins hierarchy↔lookup consistency for ALL commands, not just this pair.
+- [x] Run; PASS.
 
 ### Task 1.4: Doc + cosmetic hardening
-- [ ] TSI-File-Format.md FX-target table: FX1–4 = 4–7 (matches verified code), note Global/DeckA = 0 collapse.
-- [ ] `TSIWriter`: `UInt32(clamping:)` for ledMin/MaxMidi, range data, resolution writes; replace skip-log `print` with `Logger(subsystem:category:)`.
-- [ ] Build + suite green.
+- [x] TSI-File-Format.md FX-target table: FX1–4 = 4–7 (matches verified code), note Global/DeckA = 0 collapse.
+- [x] `TSIWriter`: `UInt32(clamping:)` for ledMin/MaxMidi, range data, resolution writes; replace skip-log `print` with `Logger(subsystem:category:)`.
+- [x] Build + suite green.
 
 ### Task 1.5: Chunk commit
 - [ ] Commit: `fix(tsi): surface corrupt frames, real unassigned sentinel, deterministic duplicate command IDs`
