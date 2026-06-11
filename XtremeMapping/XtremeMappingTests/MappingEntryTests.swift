@@ -193,15 +193,15 @@ struct MappingEntryTests {
         let entry = MappingEntry()
         #expect(entry.commandName == "")
         #expect(entry.ioType == .input)
-        #expect(entry.assignment == .global)
-        #expect(entry.interactionMode == .hold)
+        #expect(entry.assignment == TargetAssignment.none)
+        #expect(entry.interactionMode == InteractionMode.none)
         #expect(entry.midiChannel == 1)
         #expect(entry.midiNote == nil)
         #expect(entry.midiCC == nil)
         #expect(entry.modifier1Condition == nil)
         #expect(entry.modifier2Condition == nil)
         #expect(entry.comment == "")
-        #expect(entry.controllerType == .button)
+        #expect(entry.controllerType == ControllerType.none)
         #expect(entry.invert == false)
     }
 

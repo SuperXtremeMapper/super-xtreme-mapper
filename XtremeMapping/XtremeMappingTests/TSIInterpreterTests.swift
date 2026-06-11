@@ -224,7 +224,7 @@ final class TSIInterpreterTests: XCTestCase {
         let modes: [InteractionMode] = [.trigger, .toggle, .hold, .direct, .relative, .increment, .decrement, .reset, .output]
         for mode in modes {
             let entry = MappingEntry(
-                commandName: "Deck Common.Play/Pause",
+                commandName: "Play/Pause",
                 ioType: mode == .output ? .output : .input,
                 assignment: .deckA,
                 interactionMode: mode,
@@ -239,12 +239,13 @@ final class TSIInterpreterTests: XCTestCase {
         let types: [ControllerType] = [.button, .faderOrKnob, .encoder, .led]
         for ctrlType in types {
             let entry = MappingEntry(
-                commandName: "Deck Common.Play/Pause",
+                commandName: "Play/Pause",
                 ioType: ctrlType == .led ? .output : .input,
                 assignment: .deckA,
                 interactionMode: ctrlType.defaultInteractionMode,
-                controllerType: ctrlType,
-                midiChannel: 1, midiCC: 10
+                midiChannel: 1,
+                midiCC: 10,
+                controllerType: ctrlType
             )
             let result = try roundTrip(entry)
             XCTAssertEqual(result?.controllerType, ctrlType, "ControllerType \(ctrlType) did not survive round-trip")
@@ -257,7 +258,7 @@ final class TSIInterpreterTests: XCTestCase {
         let assignments: [TargetAssignment] = [.deviceTarget, .deckA, .deckB, .deckC, .deckD, .fxUnit1, .fxUnit2, .fxUnit3, .fxUnit4]
         for assign in assignments {
             let entry = MappingEntry(
-                commandName: "Deck Common.Play/Pause",
+                commandName: "Play/Pause",
                 ioType: .input, assignment: assign,
                 interactionMode: .hold,
                 midiChannel: 1, midiCC: 10
@@ -272,7 +273,7 @@ final class TSIInterpreterTests: XCTestCase {
 
         for assignment in fxAssignments {
             let entry = MappingEntry(
-                commandName: "Deck Common.Play/Pause",
+                commandName: "Play/Pause",
                 ioType: .input,
                 assignment: assignment,
                 interactionMode: .toggle,
@@ -289,7 +290,7 @@ final class TSIInterpreterTests: XCTestCase {
 
     func testRoundTripSetToValueZero() throws {
         let entry = MappingEntry(
-            commandName: "Deck Common.Play/Pause",
+            commandName: "Play/Pause",
             ioType: .input,
             assignment: .deckA,
             interactionMode: .direct,
