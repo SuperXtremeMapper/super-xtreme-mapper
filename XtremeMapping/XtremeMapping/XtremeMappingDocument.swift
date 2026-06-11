@@ -32,6 +32,12 @@ final class TraktorMappingDocument: ReferenceFileDocument {
     /// Resolved by `DocumentWindowAccessor` when the document window attaches.
     weak var backingDocument: NSDocument? {
         didSet {
+            if let doc = backingDocument {
+                // Instance-keyed association: the save callback resolves by
+                // NSDocument identity first, because URL lookup misses
+                // untitled first-save / Save As (new URL not registered yet).
+                TraktorMappingDocument.nsDocumentRegistry.setObject(self, forKey: doc)
+            }
             guard hasPendingDirty, let doc = backingDocument else { return }
             hasPendingDirty = false
             MainActor.assumeIsolated {
@@ -44,6 +50,10 @@ final class TraktorMappingDocument: ReferenceFileDocument {
         keyOptions: .strongMemory,
         valueOptions: .weakMemory
     )
+
+    /// NSDocument → SwiftUI document, weak on both sides so neither the
+    /// AppKit document nor ours is kept alive by the registry.
+    private static let nsDocumentRegistry = NSMapTable<NSDocument, TraktorMappingDocument>.weakToWeakObjects()
 
     static var readableContentTypes: [UTType] { [.tsi] }
 
@@ -140,5 +150,17 @@ final class TraktorMappingDocument: ReferenceFileDocument {
     static func markClean(for fileURL: URL?) {
         guard let fileURL = fileURL as NSURL? else { return }
         documentRegistry.object(forKey: fileURL)?.isDirty = false
+    }
+
+    /// Clear dirty state for the document backed by `nsDocument`.
+    /// Resolves by NSDocument identity first (covers untitled first-save and
+    /// Save As, where the new URL isn't registered yet), URL second.
+    @MainActor
+    static func markClean(nsDocument: NSDocument) {
+        if let document = nsDocumentRegistry.object(forKey: nsDocument) {
+            document.isDirty = false
+        } else {
+            markClean(for: nsDocument.fileURL)
+        }
     }
 }

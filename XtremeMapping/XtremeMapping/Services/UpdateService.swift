@@ -45,6 +45,7 @@ enum UpdateError: LocalizedError {
     case noReleaseFound
     case noDMGAsset
     case downloadFailed(Error)
+    case sizeMismatch(expected: Int64, received: Int64)
     case mountFailed(String)
 
     var errorDescription: String? {
@@ -59,6 +60,8 @@ enum UpdateError: LocalizedError {
             return "Download error, taking you to the SXM website to confirm latest release"
         case .downloadFailed(let error):
             return "Download failed: \(error.localizedDescription)"
+        case .sizeMismatch(let expected, let received):
+            return "Download incomplete: expected \(expected) bytes, received \(received)"
         case .mountFailed(let message):
             return "Failed to open download: \(message)"
         }
@@ -74,6 +77,9 @@ final class UpdateService: ObservableObject {
     @Published var latestRelease: GitHubRelease?
     @Published var downloadProgress: Double = 0
     @Published var isDownloading = false
+    /// True when neither the HTTP content length nor the asset size is known —
+    /// the UI shows an indeterminate bar instead of a fabricated percentage.
+    @Published var isDownloadProgressIndeterminate = false
     @Published var isChecking = false
 
     private let session = URLSession.shared
@@ -85,7 +91,8 @@ final class UpdateService: ObservableObject {
         Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0"
     }
 
-    /// Parse version string from GitHub tag (e.g., "v0.5-beta" -> "0.5")
+    /// Parse version string from GitHub tag for display/ignore purposes
+    /// (e.g., "v0.5-beta" -> "0.5")
     func parseVersion(from tag: String) -> String {
         var version = tag
         // Remove "v" prefix
@@ -99,18 +106,56 @@ final class UpdateService: ObservableObject {
         return version
     }
 
-    /// Compare two version strings (returns true if remote > current)
-    func isNewerVersion(_ remote: String, than current: String) -> Bool {
-        let remoteComponents = remote.split(separator: ".").compactMap { Int($0) }
-        let currentComponents = current.split(separator: ".").compactMap { Int($0) }
+    /// Parse a tag/version string into numeric components plus the
+    /// pre-release identifier, so "0.5-beta", "0.5-beta2", and "0.5" all
+    /// stay distinguishable.
+    nonisolated static func parseVersionInfo(_ raw: String) -> (numerics: [Int], prerelease: String?) {
+        var version = raw
+        if version.hasPrefix("v") {
+            version = String(version.dropFirst())
+        }
+        var prerelease: String? = nil
+        if let dashIndex = version.firstIndex(of: "-") {
+            prerelease = String(version[version.index(after: dashIndex)...])
+            version = String(version[..<dashIndex])
+        }
+        let numerics = version.split(separator: ".").compactMap { Int($0) }
+        return (numerics, prerelease)
+    }
 
-        for i in 0..<max(remoteComponents.count, currentComponents.count) {
-            let r = i < remoteComponents.count ? remoteComponents[i] : 0
-            let c = i < currentComponents.count ? currentComponents[i] : 0
+    /// Compare two version strings (returns true if remote > current).
+    /// Numeric comparison first ("0.9" < "0.10"); when the numerics are
+    /// equal, a release beats its own pre-release ("0.5" > "0.5-beta"),
+    /// and pre-releases compare by their identifier's trailing number
+    /// ("beta2" > "beta") so a respun beta is still offered to beta users.
+    nonisolated static func isNewerVersion(_ remote: String, than current: String) -> Bool {
+        let remoteInfo = parseVersionInfo(remote)
+        let currentInfo = parseVersionInfo(current)
+
+        for i in 0..<max(remoteInfo.numerics.count, currentInfo.numerics.count) {
+            let r = i < remoteInfo.numerics.count ? remoteInfo.numerics[i] : 0
+            let c = i < currentInfo.numerics.count ? currentInfo.numerics[i] : 0
             if r > c { return true }
             if r < c { return false }
         }
-        return false
+
+        switch (remoteInfo.prerelease, currentInfo.prerelease) {
+        case (nil, .some):
+            return true   // final beats its own pre-release
+        case (.some, nil), (nil, nil):
+            return false
+        case let (.some(remotePre), .some(currentPre)):
+            return prereleaseRank(remotePre) > prereleaseRank(currentPre)
+        }
+    }
+
+    /// Orders pre-release identifiers by their trailing number:
+    /// "beta" → 0, "beta2" → 2, "beta10" → 10. Different alphabetic stems
+    /// are not ordered (rank ties → not newer), which matches this repo's
+    /// single-stem tagging.
+    nonisolated static func prereleaseRank(_ identifier: String) -> Int {
+        let digits = String(identifier.reversed().prefix(while: \.isNumber).reversed())
+        return digits.isEmpty ? 0 : (Int(digits) ?? 0)
     }
 
     /// Check for updates from GitHub
@@ -147,17 +192,18 @@ final class UpdateService: ObservableObject {
         UpdatePreferences.recordCheck()
 
         let release = try JSONDecoder().decode(GitHubRelease.self, from: data)
-        let remoteVersion = parseVersion(from: release.tagName)
 
-        // Check if this version should be ignored
-        if UpdatePreferences.shouldIgnore(version: remoteVersion) {
+        // Ignore is keyed on the RAW tag so dismissing "v0.5-beta" can't
+        // swallow the eventual "v0.5" final release.
+        if UpdatePreferences.shouldIgnore(version: release.tagName) {
             return nil
         }
 
-        // Compare versions
-        if isNewerVersion(remoteVersion, than: currentVersion) {
+        // Compare versions on the RAW strings — both sides keep their
+        // pre-release suffix so a beta user is offered the final release.
+        if Self.isNewerVersion(release.tagName, than: currentVersion) {
             // Clear any previously ignored version since there's a newer one
-            if remoteVersion != UpdatePreferences.ignoredVersion {
+            if release.tagName != UpdatePreferences.ignoredVersion {
                 UpdatePreferences.clearIgnored()
             }
             latestRelease = release
@@ -172,7 +218,9 @@ final class UpdateService: ObservableObject {
         return release.assets.first { $0.name.lowercased().hasSuffix(".dmg") }
     }
 
-    /// Download the DMG file with progress tracking
+    /// Download the DMG file with progress tracking.
+    /// Streaming and file I/O run off the main actor; progress is published
+    /// back to the main actor batched per 64KB chunk.
     func downloadUpdate(asset: GitHubAsset) async throws -> URL {
         guard let url = URL(string: asset.browserDownloadUrl) else {
             throw UpdateError.noDMGAsset
@@ -180,6 +228,7 @@ final class UpdateService: ObservableObject {
 
         isDownloading = true
         downloadProgress = 0
+        isDownloadProgressIndeterminate = false
 
         defer { isDownloading = false }
 
@@ -189,19 +238,67 @@ final class UpdateService: ObservableObject {
         }
         let destinationURL = downloadsURL.appendingPathComponent(asset.name)
 
+        let session = self.session
+        let assetSize = Int64(asset.size)
+        // nil fraction = indeterminate (no known total to divide by)
+        let onProgress: @Sendable (Double?) -> Void = { [weak self] fraction in
+            Task { @MainActor in
+                guard let self else { return }
+                if let fraction {
+                    self.isDownloadProgressIndeterminate = false
+                    self.downloadProgress = fraction
+                } else {
+                    self.isDownloadProgressIndeterminate = true
+                }
+            }
+        }
+
+        do {
+            try await Task.detached(priority: .userInitiated) {
+                try await UpdateService.performDownload(
+                    session: session,
+                    from: url,
+                    to: destinationURL,
+                    assetSize: assetSize,
+                    onProgress: onProgress
+                )
+            }.value
+        } catch {
+            // Never leave a partial DMG behind
+            try? FileManager.default.removeItem(at: destinationURL)
+            throw error
+        }
+
+        isDownloadProgressIndeterminate = false
+        downloadProgress = 1.0
+        return destinationURL
+    }
+
+    /// Off-main download worker: streams bytes to disk, reports batched
+    /// progress, and verifies the byte count against the published asset size.
+    nonisolated private static func performDownload(
+        session: URLSession,
+        from url: URL,
+        to destinationURL: URL,
+        assetSize: Int64,
+        onProgress: @escaping @Sendable (Double?) -> Void
+    ) async throws {
         // Remove existing file if present
         try? FileManager.default.removeItem(at: destinationURL)
 
-        // Download with progress
         let (asyncBytes, response) = try await session.bytes(from: url)
 
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             throw UpdateError.downloadFailed(NSError(domain: "HTTP", code: (response as? HTTPURLResponse)?.statusCode ?? 0, userInfo: [NSLocalizedDescriptionKey: "Download request failed"]))
         }
 
-        let expectedLength = httpResponse.expectedContentLength > 0
-            ? httpResponse.expectedContentLength
-            : Int64(asset.size)
+        let expectedLength = resolveExpectedLength(
+            contentLength: httpResponse.expectedContentLength,
+            assetSize: assetSize
+        )
+        if expectedLength == nil {
+            onProgress(nil) // indeterminate — no total to divide by
+        }
 
         // Stream to disk via file handle
         FileManager.default.createFile(atPath: destinationURL.path, contents: nil)
@@ -216,31 +313,55 @@ final class UpdateService: ObservableObject {
         for try await byte in asyncBytes {
             buffer.append(byte)
             if buffer.count >= chunkSize {
-                fileHandle.write(buffer)
+                try fileHandle.write(contentsOf: buffer)
                 totalWritten += Int64(buffer.count)
                 buffer.removeAll(keepingCapacity: true)
-                let progress = Double(totalWritten) / Double(expectedLength)
-                await MainActor.run {
-                    self.downloadProgress = min(progress, 1.0)
+                if let fraction = progressFraction(totalWritten: totalWritten, expectedLength: expectedLength) {
+                    onProgress(fraction)
                 }
             }
         }
 
         // Write remaining bytes
         if !buffer.isEmpty {
-            fileHandle.write(buffer)
+            try fileHandle.write(contentsOf: buffer)
             totalWritten += Int64(buffer.count)
         }
 
-        await MainActor.run {
-            self.downloadProgress = 1.0
+        guard isDownloadSizeValid(written: totalWritten, assetSize: assetSize) else {
+            throw UpdateError.sizeMismatch(expected: assetSize, received: totalWritten)
         }
-
-        return destinationURL
     }
 
-    /// Mount the downloaded DMG
-    func mountDMG(at url: URL) throws {
+    /// Effective denominator for progress: prefer the HTTP content length,
+    /// fall back to the published asset size, nil when neither is known.
+    nonisolated static func resolveExpectedLength(contentLength: Int64, assetSize: Int64) -> Int64? {
+        if contentLength > 0 { return contentLength }
+        if assetSize > 0 { return assetSize }
+        return nil
+    }
+
+    /// Progress fraction clamped to 1.0; nil when the total is unknown.
+    nonisolated static func progressFraction(totalWritten: Int64, expectedLength: Int64?) -> Double? {
+        guard let expectedLength, expectedLength > 0 else { return nil }
+        return min(Double(totalWritten) / Double(expectedLength), 1.0)
+    }
+
+    /// A download is complete when the asset size is unknown or matches exactly.
+    nonisolated static func isDownloadSizeValid(written: Int64, assetSize: Int64) -> Bool {
+        assetSize <= 0 || written == assetSize
+    }
+
+    /// Mount the downloaded DMG without blocking the main actor
+    func mountDMG(at url: URL) async throws {
+        try await Task.detached(priority: .userInitiated) {
+            try await UpdateService.attachDMG(at: url)
+        }.value
+    }
+
+    /// Off-main hdiutil worker: termination handler + continuation instead
+    /// of a blocking waitUntilExit. Non-zero exit throws with stderr text.
+    nonisolated private static func attachDMG(at url: URL) async throws {
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/usr/bin/hdiutil")
         process.arguments = ["attach", url.path, "-autoopen"]
@@ -248,13 +369,27 @@ final class UpdateService: ObservableObject {
         let pipe = Pipe()
         process.standardError = pipe
 
-        try process.run()
-        process.waitUntilExit()
-
-        if process.terminationStatus != 0 {
-            let errorData = pipe.fileHandleForReading.readDataToEndOfFile()
-            let errorMessage = String(data: errorData, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "Unknown error"
-            throw UpdateError.mountFailed(errorMessage)
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+            process.terminationHandler = { process in
+                if process.terminationStatus == 0 {
+                    continuation.resume()
+                } else {
+                    let errorData = pipe.fileHandleForReading.readDataToEndOfFile()
+                    let stderrText = String(data: errorData, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+                    let errorMessage = stderrText.isEmpty
+                        ? "hdiutil exited with status \(process.terminationStatus)"
+                        : stderrText
+                    continuation.resume(throwing: UpdateError.mountFailed(errorMessage))
+                }
+            }
+            do {
+                try process.run()
+            } catch {
+                // run() threw → the process never launched, so the
+                // termination handler can never fire; safe to resume here.
+                process.terminationHandler = nil
+                continuation.resume(throwing: UpdateError.mountFailed(error.localizedDescription))
+            }
         }
     }
 

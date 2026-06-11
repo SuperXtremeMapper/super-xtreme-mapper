@@ -436,9 +436,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if let opValue, opValue == NSDocument.SaveOperationType.autosaveElsewhereOperation.rawValue {
                 return
             }
-            // Clear custom dirty flag (NSDocument's isDocumentEdited is already handled by framework)
+            // Clear custom dirty flag (NSDocument's isDocumentEdited is already
+            // handled by the framework). Instance-keyed: File > Save / Save As
+            // hit this observer, and on first-save the URL registration can lag
+            // — the NSDocument identity registry resolves regardless.
             MainActor.assumeIsolated {
-                TraktorMappingDocument.markClean(for: document.fileURL)
+                TraktorMappingDocument.markClean(nsDocument: document)
             }
         }
 
@@ -739,6 +742,15 @@ private final class SaveCallbackStore: NSObject {
     @objc(document:didSave:contextInfo:)
     func document(_ document: AnyObject, didSave saved: Bool, contextInfo: UnsafeMutableRawPointer?) {
         guard let document = document as? NSDocument else { return }
+        if saved {
+            // Instance-keyed dirty clearing — belt-and-braces alongside the
+            // "NSDocumentDidSaveNotification" observer, and the only path
+            // that covers untitled first-save / Save As (URL not yet
+            // registered when the callback fires).
+            MainActor.assumeIsolated {
+                TraktorMappingDocument.markClean(nsDocument: document)
+            }
+        }
         let identifier = ObjectIdentifier(document)
         let completion = completions.removeValue(forKey: identifier)
         completion?(saved)

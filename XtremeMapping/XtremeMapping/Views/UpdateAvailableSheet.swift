@@ -69,13 +69,25 @@ struct UpdateAvailableSheet: View {
             // Progress bar (shown during download)
             if updateService.isDownloading {
                 VStack(spacing: AppThemeV2.Spacing.xs) {
-                    ProgressView(value: updateService.downloadProgress)
-                        .progressViewStyle(.linear)
-                        .tint(AppThemeV2.Colors.amber)
+                    if updateService.isDownloadProgressIndeterminate {
+                        // Total size unknown — show an indeterminate bar
+                        // instead of a fabricated percentage
+                        ProgressView()
+                            .progressViewStyle(.linear)
+                            .tint(AppThemeV2.Colors.amber)
 
-                    Text("\(Int(updateService.downloadProgress * 100))%")
-                        .font(AppThemeV2.Typography.caption)
-                        .foregroundColor(AppThemeV2.Colors.stone400)
+                        Text("Downloading…")
+                            .font(AppThemeV2.Typography.caption)
+                            .foregroundColor(AppThemeV2.Colors.stone400)
+                    } else {
+                        ProgressView(value: updateService.downloadProgress)
+                            .progressViewStyle(.linear)
+                            .tint(AppThemeV2.Colors.amber)
+
+                        Text("\(Int(updateService.downloadProgress * 100))%")
+                            .font(AppThemeV2.Typography.caption)
+                            .foregroundColor(AppThemeV2.Colors.stone400)
+                    }
                 }
             }
 
@@ -84,7 +96,9 @@ struct UpdateAvailableSheet: View {
                 HStack(spacing: AppThemeV2.Spacing.md) {
                     Button("Not Now") {
                         if ignoreVersion {
-                            UpdatePreferences.ignore(version: remoteVersion)
+                            // Key on the RAW tag: ignoring "v0.5-beta" must not
+                            // also swallow the eventual "v0.5" final release.
+                            UpdatePreferences.ignore(version: release.tagName)
                         }
                         onDismiss()
                     }
@@ -126,7 +140,7 @@ struct UpdateAvailableSheet: View {
 
         do {
             let dmgURL = try await updateService.downloadUpdate(asset: asset)
-            try updateService.mountDMG(at: dmgURL)
+            try await updateService.mountDMG(at: dmgURL)
             onDismiss()
         } catch let error as UpdateError {
             errorMessage = error.errorDescription

@@ -5,6 +5,7 @@
 //  Tests for ClipboardManager clipboard operations
 //
 
+import Combine
 import XCTest
 @testable import XtremeMapping
 
@@ -24,6 +25,32 @@ final class ClipboardManagerTests: XCTestCase {
         clipboard.mappedToClipboard = nil
         clipboard.modifiersClipboard = nil
         super.tearDown()
+    }
+
+    // MARK: - Observation Contract Tests
+    // EditCommands observes ClipboardManager so `.disabled(...)` re-evaluates
+    // on copy — these pin the objectWillChange emissions that relies on.
+
+    func testCopyMappedToEmitsObjectWillChange() {
+        let entry = MappingEntry(midiChannel: 1, midiNote: 60)
+        var emissions = 0
+        let cancellable = clipboard.objectWillChange.sink { emissions += 1 }
+        defer { cancellable.cancel() }
+
+        clipboard.copyMappedTo(from: entry)
+
+        XCTAssertGreaterThan(emissions, 0, "copyMappedTo must publish objectWillChange")
+    }
+
+    func testCopyModifiersEmitsObjectWillChange() {
+        let entry = MappingEntry(midiChannel: 1)
+        var emissions = 0
+        let cancellable = clipboard.objectWillChange.sink { emissions += 1 }
+        defer { cancellable.cancel() }
+
+        clipboard.copyModifiers(from: entry)
+
+        XCTAssertGreaterThan(emissions, 0, "copyModifiers must publish objectWillChange")
     }
 
     // MARK: - Initial State Tests

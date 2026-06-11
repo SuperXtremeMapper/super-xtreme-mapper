@@ -444,11 +444,13 @@ private struct TableViewFinder: NSViewRepresentable {
 /// Proxy delegate that forwards all calls to original delegate while providing custom row views
 private class AmberSelectionDelegateProxy: NSObject, NSTableViewDelegate {
     private weak var originalDelegate: NSTableViewDelegate?
-    private static var installedTables = Set<ObjectIdentifier>()
+    /// Weak membership: dead tables vanish on their own, and a recycled
+    /// address re-installs cleanly (a grow-forever Set of ObjectIdentifiers
+    /// would skip it).
+    private static let installedTables = NSHashTable<NSTableView>.weakObjects()
 
     static func install(on tableView: NSTableView) {
-        let tableId = ObjectIdentifier(tableView)
-        guard !installedTables.contains(tableId) else { return }
+        guard !installedTables.contains(tableView) else { return }
 
         let proxy = AmberSelectionDelegateProxy()
         proxy.originalDelegate = tableView.delegate
@@ -456,7 +458,7 @@ private class AmberSelectionDelegateProxy: NSObject, NSTableViewDelegate {
 
         // Store strong reference to prevent deallocation
         objc_setAssociatedObject(tableView, "amberProxy", proxy, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        installedTables.insert(tableId)
+        installedTables.add(tableView)
 
         // Force reload after delegate swap to ensure data displays correctly
         // (delegate change can cause NSTableView to lose sync with its data source)

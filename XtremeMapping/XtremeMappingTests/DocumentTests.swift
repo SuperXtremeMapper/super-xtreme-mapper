@@ -143,6 +143,50 @@ final class DocumentTests: XCTestCase {
         TraktorMappingDocument.markClean(for: testURL)
         XCTAssertFalse(TraktorMappingDocument.isDirty(for: testURL))
     }
+    // MARK: - NSDocument-Instance Registry Tests (save-callback dirty clearing)
+
+    @MainActor
+    func testAssigningBackingDocumentRegistersInstanceAssociation() {
+        // Untitled document: fileURL is nil, so only the NSDocument-instance
+        // association can resolve it (URL-keyed lookup has nothing to key on).
+        let doc = TraktorMappingDocument()
+        let nsDoc = ChangeCountRecordingDocument()
+        doc.backingDocument = nsDoc
+
+        doc.noteChange()
+        XCTAssertTrue(doc.isDirty)
+
+        TraktorMappingDocument.markClean(nsDocument: nsDoc)
+        XCTAssertFalse(doc.isDirty, "instance-keyed markClean must clear isDirty with fileURL nil")
+    }
+
+    @MainActor
+    func testMarkCleanByInstanceFallsBackToURLLookup() {
+        let testURL = URL(fileURLWithPath: "/tmp/instance-fallback.tsi")
+        let doc = TraktorMappingDocument()
+        doc.updateFileURL(testURL)
+        doc.noteChange()
+        XCTAssertTrue(doc.isDirty)
+
+        // NSDocument never associated via backingDocument — only its
+        // fileURL matches, exercising the URL fallback path.
+        let nsDoc = NSDocument()
+        nsDoc.fileURL = testURL
+        TraktorMappingDocument.markClean(nsDocument: nsDoc)
+        XCTAssertFalse(doc.isDirty)
+    }
+
+    @MainActor
+    func testMarkCleanByUnknownInstanceWithNilURLIsNoOp() {
+        let doc = TraktorMappingDocument()
+        doc.noteChange()
+
+        let stranger = NSDocument()
+        TraktorMappingDocument.markClean(nsDocument: stranger)
+
+        XCTAssertTrue(doc.isDirty, "an unrelated NSDocument must not clear another document's dirty state")
+    }
+
     // MARK: - DocumentWindowDelegateProxy Forwarding Tests
 
     @MainActor

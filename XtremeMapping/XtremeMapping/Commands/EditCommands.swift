@@ -21,6 +21,11 @@ struct EditCommands: Commands {
     /// Access to the currently selected mappings
     @FocusedBinding(\.selectedMappingIDs) var selectedMappings
 
+    /// Observed so `.disabled(...)` re-evaluates the moment something is
+    /// copied — reading `ClipboardManager.shared` directly leaves the paste
+    /// items stuck disabled until the next unrelated menu rebuild.
+    @ObservedObject private var clipboard = ClipboardManager.shared
+
     /// Returns the valid interaction modes for the current selection
     private var validInteractionModesForSelection: [InteractionMode] {
         guard let doc = document,
@@ -74,7 +79,7 @@ struct EditCommands: Commands {
                 pasteMappedTo()
             }
             .keyboardShortcut("v", modifiers: [.command, .option])
-            .disabled(selectedMappings?.isEmpty ?? true || !ClipboardManager.shared.hasMappedToData)
+            .disabled(selectedMappings?.isEmpty ?? true || !clipboard.hasMappedToData)
 
             // Reset MIDI assignment
             Button("Reset Mapped to") {
@@ -154,7 +159,7 @@ struct EditCommands: Commands {
                 pasteModifiers()
             }
             .keyboardShortcut("v", modifiers: [.command, .shift])
-            .disabled(selectedMappings?.isEmpty ?? true || !ClipboardManager.shared.hasModifiersData)
+            .disabled(selectedMappings?.isEmpty ?? true || !clipboard.hasModifiersData)
 
             // Clear modifiers
             Button("Clear Modifiers") {

@@ -109,25 +109,25 @@ cd XtremeMapping && set -o pipefail && xcodebuild -project SuperXtremeMapping.xc
 **Files:** Modify `Services/UpdateService.swift`, `Views/UpdateAvailableSheet.swift` (call site `try updateService.mountDMG(at:)` at line ~129 — becomes `try await` when mount goes async), `XtremeMappingApp.swift`, `XtremeMappingDocument.swift`, `Commands/EditCommands.swift`, `Views/MappingsTableView.swift`. Tests: `DocumentTests.swift`, new `UpdateServiceTests` for version logic.
 
 ### Task 4.1: Version compare with pre-release awareness (L10)
-- [ ] Failing tests: current "0.5-beta" vs remote "v0.5" → update offered; "0.5" vs "v0.5-beta" → NOT offered; "0.9" vs "0.10" still correct; equal versions → not offered.
-- [ ] Rework `parseVersion`/`isNewerVersion`: parse into (numerics, isPrerelease); numeric compare first; if equal, release > pre-release.
-- [ ] Run; PASS.
+- [x] Failing tests: current "0.5-beta" vs remote "v0.5" → update offered; "0.5" vs "v0.5-beta" → NOT offered; "0.9" vs "0.10" still correct; equal versions → not offered.
+- [x] Rework `parseVersion`/`isNewerVersion`: parse into (numerics, isPrerelease); numeric compare first; if equal, release > pre-release. *(New `parseVersionInfo` returns `(numerics, isPrerelease)`; `isNewerVersion` is now a nonisolated static taking RAW strings — `checkForUpdate` passes `release.tagName` and `currentVersion` unstripped so both sides keep their suffix. `parseVersion(from:)` kept for display/ignore in the sheet.)*
+- [x] Run; PASS.
 
 ### Task 4.2: Download/mount safety (M6, L8)
-- [ ] Move BOTH blocking paths off the main actor (`UpdateService` is @MainActor): the byte-streaming `FileHandle.write` loop in `downloadUpdate` (lines ~176, 216-223) and `mountDMG`'s `waitUntilExit` run in a nonisolated/`Task.detached` worker; progress published back to main batched per chunk. `mountDMG`: `Process.terminationHandler` + continuation; non-zero exit throws (best-effort detach if partially attached).
-- [ ] `downloadUpdate`: delete the partial DMG in the catch path; verify byte count vs `asset.size` when size > 0 (mismatch → throw + delete); progress: when both expectedContentLength and asset.size are ≤ 0, report indeterminate (no division).
-- [ ] Unit-test the pure decision bits if extracted (size check); process plumbing is review-verified. Build green.
+- [x] Move BOTH blocking paths off the main actor (`UpdateService` is @MainActor): the byte-streaming `FileHandle.write` loop in `downloadUpdate` (lines ~176, 216-223) and `mountDMG`'s `waitUntilExit` run in a nonisolated/`Task.detached` worker; progress published back to main batched per chunk. `mountDMG`: `Process.terminationHandler` + continuation; non-zero exit throws (best-effort detach if partially attached). *(`Task.detached` wrappers chosen because the target sets `SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor` + approachable concurrency, where a bare nonisolated async func would inherit the main actor. Best-effort detach is moot: a failed `hdiutil attach` leaves nothing mounted to detach.)*
+- [x] `downloadUpdate`: delete the partial DMG in the catch path; verify byte count vs `asset.size` when size > 0 (mismatch → throw + delete, new `UpdateError.sizeMismatch`); progress: when both expectedContentLength and asset.size are ≤ 0, report indeterminate (no division — new `isDownloadProgressIndeterminate` published flag, sheet shows an indeterminate bar). Call site `UpdateAvailableSheet` updated to `try await mountDMG`.
+- [x] Unit-test the pure decision bits if extracted (size check); process plumbing is review-verified. Build green. *(Extracted `resolveExpectedLength`/`progressFraction`/`isDownloadSizeValid`, all unit-tested in new `UpdateServiceTests.swift`.)*
 
 ### Task 4.3: Dirty-clear on save via NSDocument association (M5)
-- [ ] Failing test: registry association — assigning `backingDocument` registers NSDocument→TraktorMappingDocument in a static weak/weak `NSMapTable`; `markClean(nsDocument:)` clears `isDirty` for the associated doc even when fileURL is nil (untitled).
-- [ ] Implement registry maintenance at `backingDocument` assignment; `SaveCallbackStore.document(_:didSave:contextInfo:)` calls the instance-level markClean (NSDocument identity first, URL fallback). Keep the notification observer.
-- [ ] Run; PASS.
+- [x] Failing test: registry association — assigning `backingDocument` registers NSDocument→TraktorMappingDocument in a static weak/weak `NSMapTable`; `markClean(nsDocument:)` clears `isDirty` for the associated doc even when fileURL is nil (untitled).
+- [x] Implement registry maintenance at `backingDocument` assignment; `SaveCallbackStore.document(_:didSave:contextInfo:)` calls the instance-level markClean (NSDocument identity first, URL fallback). Keep the notification observer.
+- [x] Run; PASS.
 
 ### Task 4.4: Stale-table pruning + clipboard observation (M7-rest, L9)
-- [ ] `AmberSelectionDelegateProxy.installedTables`: replace the grow-forever `Set<ObjectIdentifier>` with `NSHashTable<NSTableView>.weakObjects()` membership (dead tables vanish; recycled addresses re-install cleanly).
-- [ ] `ClipboardManager` is ALREADY ObservableObject with @Published state — the fix is only `EditCommands` observing it (`@ObservedObject var clipboard = ClipboardManager.shared`) so `.disabled(...)` re-evaluates on copy. Verify the Commands scene compiles; behavior check is manual (note for reviewer).
-- [ ] Test: ClipboardManager publishes objectWillChange on copyMappedTo/copyModifiers (subscribe, assert emission) — keeps the observation contract pinned.
-- [ ] Run; PASS.
+- [x] `AmberSelectionDelegateProxy.installedTables`: replace the grow-forever `Set<ObjectIdentifier>` with `NSHashTable<NSTableView>.weakObjects()` membership (dead tables vanish; recycled addresses re-install cleanly).
+- [x] `ClipboardManager` is ALREADY ObservableObject with @Published state — the fix is only `EditCommands` observing it (`@ObservedObject var clipboard = ClipboardManager.shared`) so `.disabled(...)` re-evaluates on copy. Verify the Commands scene compiles; behavior check is manual (note for reviewer: confirm Paste Mapped to / Paste Modifiers enable immediately after a copy with a row selected).
+- [x] Test: ClipboardManager publishes objectWillChange on copyMappedTo/copyModifiers (subscribe, assert emission) — keeps the observation contract pinned.
+- [x] Run; PASS. *(Suite: 301 pass / 0 fail — 279 baseline + 22 new.)*
 
 ### Task 4.5: Chunk commit
 - [ ] Commit: `fix(updater,shell): prerelease-aware updates, safe download/mount, instance-keyed dirty clearing, observed clipboard state`
