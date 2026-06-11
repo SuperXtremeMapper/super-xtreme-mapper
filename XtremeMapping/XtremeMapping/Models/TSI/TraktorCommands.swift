@@ -19,6 +19,25 @@ enum TraktorCommands {
         commandLookup.values.sorted()
     }
 
+    /// Returns true when the name resolves to a real Traktor command — via the
+    /// lookup table or the dynamic-range reverse parsing in `id(for:)`.
+    ///
+    /// "Command #N" fallback strings are NOT known commands: `id(for:)`
+    /// deliberately parses any "Command #N" back to N, so a nonzero ID alone
+    /// proves nothing about validity. Used to reject hallucinated command
+    /// names from voice interpretation before they reach the document.
+    static func isKnownCommand(_ name: String) -> Bool {
+        if name.hasPrefix("Command #") {
+            return false
+        }
+        let resolved = id(for: name)
+        guard resolved >= 1 else { return false }
+        // Round-trip check: id(for:) accepts out-of-range dynamic names
+        // ("Slot 1 Cell 999 Trigger", "Modifier #-1") that name(for:) would
+        // never produce; only names that survive the round-trip are real.
+        return self.name(for: resolved) == name
+    }
+
     /// Returns the command ID for a human-readable name
     /// If the name is not found, returns 0
     static func id(for name: String) -> Int {

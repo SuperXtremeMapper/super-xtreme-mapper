@@ -7,6 +7,21 @@
 
 import Foundation
 
+/// Abstraction over voice-command interpretation so the coordinator can be
+/// tested with a mock instead of the live Claude API.
+protocol CommandInterpreting {
+    /// Interprets a voice command transcript into a structured result.
+    ///
+    /// - Parameters:
+    ///   - transcript: The transcribed voice command
+    ///   - availableCommands: List of valid Traktor command names to match against
+    /// - Returns: A `VoiceCommandResult` with the best match and alternatives
+    func interpretCommand(
+        transcript: String,
+        availableCommands: [String]
+    ) async throws -> VoiceCommandResult
+}
+
 /// Service for interpreting voice commands using the Claude API.
 ///
 /// Sends transcribed speech along with the available Traktor commands
@@ -272,3 +287,7 @@ private struct ContentBlock: Decodable {
     let type: String
     let text: String?
 }
+
+// MARK: - CommandInterpreting Conformance
+
+extension ClaudeAPIService: CommandInterpreting {}

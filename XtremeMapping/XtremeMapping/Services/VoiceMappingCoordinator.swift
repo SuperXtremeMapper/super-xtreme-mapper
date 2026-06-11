@@ -51,8 +51,10 @@ final class VoiceMappingCoordinator: ObservableObject {
     /// Human-readable status message for UI display
     @Published var statusMessage: String = ""
 
-    /// The interpreted command result (available after voice processing)
-    @Published private(set) var currentResult: VoiceCommandResult?
+    /// The interpreted command result (available after voice processing).
+    /// Setter is internal so tests can seed state; production code sets it
+    /// only inside this class.
+    @Published var currentResult: VoiceCommandResult?
 
     /// Published when a mapping is saved - view observes this via .onChange
     /// Contains (MIDI message, Voice command result) tuple
@@ -74,7 +76,7 @@ final class VoiceMappingCoordinator: ObservableObject {
     @Published private(set) var sessionMappings: [(midi: MIDIMessage, result: VoiceCommandResult)] = []
 
     /// UUIDs of MappingEntry objects created during this voice session
-    private var sessionMappingIds: Set<UUID> = []
+    private(set) var sessionMappingIds: Set<UUID> = []
 
     // MARK: - Callbacks (deprecated - use savedMapping instead)
 
@@ -86,7 +88,7 @@ final class VoiceMappingCoordinator: ObservableObject {
 
     private let midiManager: MIDIInputManager
     private let voiceManager: VoiceInputManager
-    private let claudeService: ClaudeAPIService
+    private let claudeService: CommandInterpreting
 
     // MARK: - Private State
 
@@ -96,8 +98,9 @@ final class VoiceMappingCoordinator: ObservableObject {
     /// Stored MIDI for disambiguation flow (since pendingMIDI gets cleared)
     private var disambiguationMIDI: MIDIMessage?
 
-    /// Stored MIDI for the current result (for saveAndContinue)
-    @Published private(set) var currentMIDI: MIDIMessage?
+    /// Stored MIDI for the current result (for saveAndContinue).
+    /// Setter is internal so tests can seed state.
+    @Published var currentMIDI: MIDIMessage?
 
     // MARK: - Initialization
 
@@ -110,7 +113,7 @@ final class VoiceMappingCoordinator: ObservableObject {
     init(
         midiManager: MIDIInputManager,
         voiceManager: VoiceInputManager,
-        claudeService: ClaudeAPIService
+        claudeService: CommandInterpreting
     ) {
         self.midiManager = midiManager
         self.voiceManager = voiceManager
@@ -179,8 +182,12 @@ final class VoiceMappingCoordinator: ObservableObject {
         voiceManager.onTranscriptReady = nil
         voiceManager.onModelLoadProgress = nil
 
-        // Reset state
+        // Reset state. Session collections are cleared here (not in
+        // clearAllState) because saveAndContinue calls clearAllState between
+        // captures and must keep the accumulated session.
         clearAllState()
+        sessionMappings = []
+        sessionMappingIds = []
 
         isActive = false
         statusMessage = ""
@@ -294,10 +301,10 @@ final class VoiceMappingCoordinator: ObservableObject {
         sessionMappingIds.insert(id)
     }
 
-    // MARK: - Private Methods
+    // MARK: - Input Handling (internal for tests)
 
     /// Handle incoming MIDI message.
-    private func handleMIDIReceived(_ message: MIDIMessage) {
+    func handleMIDIReceived(_ message: MIDIMessage) {
         pendingMIDI = message
         statusMessage = "MIDI captured: \(describeMIDI(message))"
 
@@ -309,7 +316,7 @@ final class VoiceMappingCoordinator: ObservableObject {
     }
 
     /// Handle completed voice transcript.
-    private func handleTranscriptReady(_ transcript: String) {
+    func handleTranscriptReady(_ transcript: String) {
         pendingVoice = transcript
         statusMessage = "Voice: \"\(transcript)\""
 
@@ -321,50 +328,92 @@ final class VoiceMappingCoordinator: ObservableObject {
     }
 
     /// Process the mapping with both MIDI and voice captured.
-    private func processMapping() async {
+    func processMapping() async {
         guard let midi = pendingMIDI, let voice = pendingVoice else { return }
+
+        // Consume the pending inputs so a later MIDI press can't re-pair with
+        // this (now stale) transcript, and clear the previous result so the
+        // overlay can't save an old command against the new MIDI mid-processing.
+        pendingMIDI = nil
+        pendingVoice = nil
+        currentResult = nil
+        disambiguationOptions = nil
+        disambiguationMIDI = nil
+        pendingResult = nil
 
         isProcessing = true
         statusMessage = "Understanding command..."
         currentMIDI = midi
-        var succeeded = false
 
         do {
             let result = try await claudeService.interpretCommand(
                 transcript: voice,
                 availableCommands: TraktorCommands.allNames
             )
-
-            currentResult = result
-            succeeded = true
-
-            if result.isHighConfidence {
-                statusMessage = "Press Next to save"
-            } else {
-                disambiguationMIDI = midi
-                pendingResult = result
-                disambiguationOptions = buildDisambiguationOptions(from: result)
-                statusMessage = "Please select the correct command"
-            }
+            handleInterpretation(result, midi: midi)
         } catch {
+            // Failed state: no half-paired MIDI left behind, status shows the failure.
+            currentMIDI = nil
             statusMessage = "API error: \(error.localizedDescription)"
         }
 
         isProcessing = false
 
-        // Re-process if new inputs arrived during the API call (but not on error — avoid retry loop)
-        if succeeded, pendingMIDI != nil, pendingVoice != nil, currentResult == nil {
+        // Re-process if NEW inputs arrived during the API call. The inputs we
+        // just consumed were cleared above, so an API error cannot retry-loop.
+        if pendingMIDI != nil, pendingVoice != nil {
             Task {
                 await processMapping()
             }
         }
     }
 
+    /// Route an interpretation result to save-ready, disambiguation, or error state.
+    private func handleInterpretation(_ result: VoiceCommandResult, midi: MIDIMessage) {
+        let isKnown = TraktorCommands.isKnownCommand(result.command)
+
+        if isKnown && result.isHighConfidence {
+            currentResult = result
+            statusMessage = "Press Next to save"
+            return
+        }
+
+        // Low confidence, or Claude invented a command name — offer only known options.
+        let options = buildDisambiguationOptions(from: result)
+        guard !options.isEmpty else {
+            currentResult = nil
+            currentMIDI = nil
+            statusMessage = "\"\(result.command)\" isn't a known Traktor command. Try again."
+            return
+        }
+
+        // A known-but-low-confidence primary stays directly savable; an unknown
+        // primary never does — the user must pick a known option.
+        if isKnown {
+            currentResult = result
+        }
+        disambiguationMIDI = midi
+        pendingResult = result
+        disambiguationOptions = options
+        statusMessage = "Please select the correct command"
+    }
+
     /// Save the current mapping and clear for new input
     func saveAndContinue() {
+        guard !isProcessing else {
+            statusMessage = "Still processing — wait for the result before saving"
+            return
+        }
+
         guard let midi = currentMIDI ?? disambiguationMIDI,
               let result = currentResult else {
             statusMessage = "Nothing to save"
+            return
+        }
+
+        // Final guard at the insertion seam: never save an unknown command name.
+        guard TraktorCommands.isKnownCommand(result.command) else {
+            statusMessage = "\"\(result.command)\" isn't a known Traktor command — not saved"
             return
         }
 
@@ -402,12 +451,14 @@ final class VoiceMappingCoordinator: ObservableObject {
     }
 
     /// Build the list of disambiguation options from a result.
+    /// Unknown command names (hallucinated by the API) are filtered out so
+    /// `selectOption()` can never put an invalid command on the save path.
     private func buildDisambiguationOptions(from result: VoiceCommandResult) -> [CommandAlternative] {
         var options = [result.asAlternative]
         if let alternatives = result.alternatives {
             options.append(contentsOf: alternatives)
         }
-        return options
+        return options.filter { TraktorCommands.isKnownCommand($0.command) }
     }
 
     /// Create a mapping from MIDI and voice result.

@@ -149,11 +149,22 @@ struct VoiceLearnOverlay: View {
         )
     }
 
+    /// The MIDI shown in the input row — when a result is ready this must be
+    /// the control `saveAndContinue` will actually save (`currentMIDI`),
+    /// never a newer un-paired `pendingMIDI`.
+    private var displayedMIDI: MIDIMessage? {
+        // During disambiguation currentResult may be nil (unknown primary)
+        // while currentMIDI still holds the control that will be saved.
+        (coordinator.currentResult != nil || coordinator.disambiguationOptions != nil)
+            ? coordinator.currentMIDI
+            : coordinator.pendingMIDI
+    }
+
     private var midiInputRow: some View {
         HStack(spacing: AppThemeV2.Spacing.sm) {
             Image(systemName: "pianokeys")
                 .font(.system(size: 12, weight: .medium))
-                .foregroundColor(coordinator.pendingMIDI != nil ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone600)
+                .foregroundColor(displayedMIDI != nil ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone600)
                 .frame(width: 16)
 
             Text("MIDI")
@@ -162,7 +173,7 @@ struct VoiceLearnOverlay: View {
                 .foregroundColor(AppThemeV2.Colors.stone500)
                 .frame(width: 50, alignment: .leading)
 
-            if let midi = coordinator.pendingMIDI {
+            if let midi = displayedMIDI {
                 Text(describeMIDI(midi))
                     .font(AppThemeV2.Typography.body)
                     .foregroundColor(AppThemeV2.Colors.stone300)
@@ -287,9 +298,12 @@ struct VoiceLearnOverlay: View {
         .keyboardShortcut(.return, modifiers: [])
     }
 
-    /// Whether there's a valid mapping to save
+    /// Whether there's a valid mapping to save — gated on the same MIDI
+    /// source `saveAndContinue` uses (`currentMIDI`), never `pendingMIDI`.
     private var canSave: Bool {
-        coordinator.currentResult != nil && (coordinator.currentMIDI != nil || coordinator.pendingMIDI != nil)
+        !coordinator.isProcessing &&
+        coordinator.currentResult != nil &&
+        coordinator.currentMIDI != nil
     }
 
     private func describeMIDI(_ message: MIDIMessage) -> String {

@@ -208,4 +208,50 @@ final class TraktorCommandsTests: XCTestCase {
         XCTAssertEqual(TraktorCommands.name(for: 731), "Cell Reverse Modifier")
         XCTAssertEqual(TraktorCommands.name(for: 732), "Cell Capture Modifier")
     }
+
+    // MARK: - isKnownCommand Tests (Task 2.3)
+
+    func testIsKnownCommandAcceptsLookupTableNames() {
+        XCTAssertTrue(TraktorCommands.isKnownCommand("Play/Pause"))
+        XCTAssertTrue(TraktorCommands.isKnownCommand("Volume"))
+        XCTAssertTrue(TraktorCommands.isKnownCommand("FX Dry/Wet"))
+    }
+
+    func testIsKnownCommandAcceptsDynamicRangeNames() {
+        XCTAssertTrue(TraktorCommands.isKnownCommand("Slot 2 Cell 5 State"))
+        XCTAssertTrue(TraktorCommands.isKnownCommand("Slot 3 Cell 16 Trigger"))
+        XCTAssertTrue(TraktorCommands.isKnownCommand("Duplicate Track Deck C"))
+        XCTAssertTrue(TraktorCommands.isKnownCommand("Deck B Post-Fader Level (R)"))
+        XCTAssertTrue(TraktorCommands.isKnownCommand("Modifier #3"))
+        XCTAssertTrue(TraktorCommands.isKnownCommand("Slot 4 FX On"))
+    }
+
+    func testIsKnownCommandRejectsUnknownNames() {
+        XCTAssertFalse(TraktorCommands.isKnownCommand("Totally Made Up Knob"))
+        XCTAssertFalse(TraktorCommands.isKnownCommand(""))
+        XCTAssertFalse(TraktorCommands.isKnownCommand("Slot 9 Cell 99 State"))
+    }
+
+    func testIsKnownCommandRejectsOutOfRangeDynamicNames() {
+        // id(for:) reverse-parses dynamic families without bounds checks
+        // ("Slot 1 Cell 17 Trigger" → 617, which is really Slot 2 Cell 1) —
+        // the round-trip check must reject anything name(for:) wouldn't produce.
+        XCTAssertFalse(TraktorCommands.isKnownCommand("Slot 1 Cell 17 Trigger"))
+        XCTAssertFalse(TraktorCommands.isKnownCommand("Slot 1 Cell 999 Trigger"))
+        XCTAssertFalse(TraktorCommands.isKnownCommand("Modifier #-1"))
+        XCTAssertFalse(TraktorCommands.isKnownCommand("Modifier #999"))
+        XCTAssertFalse(TraktorCommands.isKnownCommand("Modifier #9"))
+        // In-range neighbours stay accepted
+        XCTAssertTrue(TraktorCommands.isKnownCommand("Slot 1 Cell 16 Trigger"))
+        XCTAssertTrue(TraktorCommands.isKnownCommand("Modifier #8"))
+    }
+
+    func testIsKnownCommandRejectsCommandNumberFallbackStrings() {
+        // id(for:) parses any "Command #N" back to N, so these resolve to a
+        // nonzero ID — they must still be rejected as unknown.
+        XCTAssertFalse(TraktorCommands.isKnownCommand("Command #99999"))
+        XCTAssertFalse(TraktorCommands.isKnownCommand("Command #100"))
+        XCTAssertFalse(TraktorCommands.isKnownCommand("Command #0"))
+        XCTAssertFalse(TraktorCommands.isKnownCommand("Command #-1"))
+    }
 }
