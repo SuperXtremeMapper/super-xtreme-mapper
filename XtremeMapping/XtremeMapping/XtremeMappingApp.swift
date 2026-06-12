@@ -550,7 +550,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // If a document window became main, close the welcome window
         if window.windowController?.document != nil {
-            if let welcomeWindow = NSApplication.shared.windows.first(where: AppDelegate.isWelcomeWindow) {
+            if let welcomeWindow = NSApplication.shared.windows.first(where: { AppDelegate.isWelcomeWindow($0) }) {
                 welcomeWindow.close()
             }
         }
@@ -585,7 +585,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func openWelcomeWindow() {
         // Find existing welcome window or trigger creation via SwiftUI
-        let welcomeWindows = NSApplication.shared.windows.filter(AppDelegate.isWelcomeWindow)
+        let welcomeWindows = NSApplication.shared.windows.filter { AppDelegate.isWelcomeWindow($0) }
 
         if let existingWelcome = welcomeWindows.first {
             existingWelcome.makeKeyAndOrderFront(nil)

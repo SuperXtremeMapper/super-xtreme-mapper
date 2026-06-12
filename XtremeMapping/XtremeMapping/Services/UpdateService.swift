@@ -242,8 +242,8 @@ final class UpdateService: ObservableObject {
         let assetSize = Int64(asset.size)
         // nil fraction = indeterminate (no known total to divide by)
         let onProgress: @Sendable (Double?) -> Void = { [weak self] fraction in
+            guard let self else { return }
             Task { @MainActor in
-                guard let self else { return }
                 if let fraction {
                     self.isDownloadProgressIndeterminate = false
                     self.downloadProgress = fraction
