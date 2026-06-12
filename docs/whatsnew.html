@@ -51,12 +51,66 @@
     <section class="changelog-section">
         <div class="container">
 
-            <!-- Version 0.5 -->
+            <!-- Version 0.6 -->
             <article class="release-entry latest">
                 <div class="release-header">
                     <div class="release-version">
-                        <span class="version-number">v0.5</span>
+                        <span class="version-number">v0.6</span>
                         <span class="version-badge">Latest</span>
+                    </div>
+                    <time class="release-date" datetime="2026-06-12">June 12, 2026</time>
+                </div>
+                <div class="release-content">
+                    <h3 class="release-headline">TSI Round-Trip Integrity & Wizard Reliability</h3>
+                    <p class="release-summary">A deep stability pass across the whole app. TSI files now survive save and reload without corruption in every tested case, and the Mapping Wizard's MIDI capture behaves predictably on every path.</p>
+
+                    <div class="release-changes">
+                        <div class="change-category">
+                            <h4 class="category-title fixed">TSI File Fixes</h4>
+                            <ul class="change-list">
+                                <li><strong>Round-Trip Corruption</strong> - Modifier conditions, dynamic command IDs, remix deck targets, and device metadata all survive save/reload intact</li>
+                                <li><strong>Emoji & Special Text</strong> - Device names and comments with emoji or non-Latin characters no longer corrupt files</li>
+                                <li><strong>Corrupt Frame Detection</strong> - Damaged files now produce a clear error instead of failing silently</li>
+                                <li><strong>Unassigned Bindings</strong> - Unassigned MIDI slots no longer collide with real assignments</li>
+                            </ul>
+                        </div>
+
+                        <div class="change-category">
+                            <h4 class="category-title fixed">Mapping Wizard Fixes</h4>
+                            <ul class="change-list">
+                                <li><strong>Phantom Captures</strong> - Note-off events no longer create unwanted assignments or shift mappings</li>
+                                <li><strong>Auto-Advance</strong> - Cancels correctly on back, skip, tab switch, and save</li>
+                                <li><strong>MIDI Listening</strong> - Stops cleanly when the wizard saves or closes</li>
+                                <li><strong>Modifier Dedup</strong> - Duplicate modifier captures are merged instead of stacking</li>
+                            </ul>
+                        </div>
+
+                        <div class="change-category">
+                            <h4 class="category-title fixed">Voice Learn Fixes</h4>
+                            <ul class="change-list">
+                                <li><strong>Error Reporting</strong> - API failures now show the real cause, with request timeouts</li>
+                                <li><strong>Session Reset</strong> - Voice state clears fully between activations</li>
+                                <li><strong>Command Validation</strong> - Unrecognized command names are caught before they reach the document</li>
+                            </ul>
+                        </div>
+
+                        <div class="change-category">
+                            <h4 class="category-title improved">Improvements</h4>
+                            <ul class="change-list">
+                                <li>Update checker understands prerelease versions and downloads more safely</li>
+                                <li>Unsaved-changes tracking is accurate per window</li>
+                                <li>Swift 6 concurrency fixes throughout the app shell</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Version 0.5 -->
+            <article class="release-entry">
+                <div class="release-header">
+                    <div class="release-version">
+                        <span class="version-number">v0.5</span>
                     </div>
                     <time class="release-date" datetime="2026-04-11">April 11, 2026</time>
                 </div>
