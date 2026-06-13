@@ -128,40 +128,23 @@ final class TraktorCommandsTests: XCTestCase {
         XCTAssertEqual(TraktorCommands.name(for: 2404), "Duplicate Track Deck D")
     }
 
-    // MARK: - Per-Slot Command Tests (2900-2923)
-
-    func testPerSlotCommandIds() {
-        // Test Slot Volume commands
-        XCTAssertEqual(TraktorCommands.id(for: "Slot 1 Volume"), 2900)
-        XCTAssertEqual(TraktorCommands.id(for: "Slot 2 Volume"), 2901)
-        XCTAssertEqual(TraktorCommands.id(for: "Slot 3 Volume"), 2902)
-        XCTAssertEqual(TraktorCommands.id(for: "Slot 4 Volume"), 2903)
-
-        // Test Slot Mute commands
-        XCTAssertEqual(TraktorCommands.id(for: "Slot 1 Mute"), 2904)
-        XCTAssertEqual(TraktorCommands.id(for: "Slot 4 Mute"), 2907)
-
-        // Test Slot Filter commands
-        XCTAssertEqual(TraktorCommands.id(for: "Slot 1 Filter"), 2908)
-        XCTAssertEqual(TraktorCommands.id(for: "Slot 1 Filter On"), 2912)
-
-        // Test Slot FX commands
-        XCTAssertEqual(TraktorCommands.id(for: "Slot 1 FX Send"), 2916)
-        XCTAssertEqual(TraktorCommands.id(for: "Slot 1 FX On"), 2920)
-    }
-
-    func testPerSlotCommandNames() {
-        // Test reverse lookup
-        XCTAssertEqual(TraktorCommands.name(for: 2900), "Slot 1 Volume")
-        XCTAssertEqual(TraktorCommands.name(for: 2903), "Slot 4 Volume")
-        XCTAssertEqual(TraktorCommands.name(for: 2907), "Slot 4 Mute")
-        XCTAssertEqual(TraktorCommands.name(for: 2920), "Slot 1 FX On")
+    // MARK: - Canonical Slot Commands (replacing legacy fabricated 2900-2923)
+    //
+    // The 2900-2923 block was a Traktor-3-era fabrication. Traktor 4.4 uses
+    // canonical Remix Deck commands with CMAD target = deckIndex * 4 + slotIndex.
+    // Verify the canonical names resolve to their real IDs.
+    func testCanonicalSlotCommandIds() {
+        XCTAssertEqual(TraktorCommands.id(for: "Slot Volume"), 251)
+        XCTAssertEqual(TraktorCommands.id(for: "Slot Mute On"), 259)
+        XCTAssertEqual(TraktorCommands.id(for: "Slot Filter Adjust"), 249)
+        XCTAssertEqual(TraktorCommands.id(for: "Slot Filter On"), 250)
+        XCTAssertEqual(TraktorCommands.id(for: "Slot FX On"), 239)
     }
 
     // MARK: - Dynamic Name <-> ID Round-Trip Tests (Task 1.2)
 
     func testDynamicCommandNameIdRoundTrip() {
-        let ranges: [ClosedRange<Int>] = [601...728, 2401...2404, 2548...2555, 2688...2703, 2900...2923]
+        let ranges: [ClosedRange<Int>] = [601...728, 2401...2404, 2548...2555, 2688...2703]
         for range in ranges {
             for commandId in range {
                 let name = TraktorCommands.name(for: commandId)
@@ -268,13 +251,14 @@ final class TraktorCommandsTests: XCTestCase {
         XCTAssertTrue(TraktorCommands.isKnownCommand("Duplicate Track Deck C"))
         XCTAssertTrue(TraktorCommands.isKnownCommand("Deck B Post-Fader Level (R)"))
         XCTAssertTrue(TraktorCommands.isKnownCommand("Modifier #3"))
-        XCTAssertTrue(TraktorCommands.isKnownCommand("Slot 4 FX On"))
+        XCTAssertTrue(TraktorCommands.isKnownCommand("Slot FX On"))
     }
 
     func testIsKnownCommandRejectsUnknownNames() {
         XCTAssertFalse(TraktorCommands.isKnownCommand("Totally Made Up Knob"))
         XCTAssertFalse(TraktorCommands.isKnownCommand(""))
         XCTAssertFalse(TraktorCommands.isKnownCommand("Slot 9 Cell 99 State"))
+        XCTAssertFalse(TraktorCommands.isKnownCommand("Slot 4 FX On"))
     }
 
     func testIsKnownCommandRejectsOutOfRangeDynamicNames() {

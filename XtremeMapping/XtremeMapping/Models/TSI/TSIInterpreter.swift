@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import os
 
 /// CMAI MidiNoteBindingId values with special meaning, shared by
 /// TSIWriter and TSIInterpreter.
@@ -135,6 +136,8 @@ enum TSIInterpreterError: Error, Equatable, LocalizedError {
 /// ```
 struct TSIInterpreter {
 
+    private static let logger = Logger(subsystem: "com.sxm.app", category: "TSIInterpreter")
+
     // MARK: - Frame Identifiers
 
     private enum FrameID {
@@ -152,6 +155,10 @@ struct TSIInterpreter {
         static let mappingItem = "CMAI"
         static let mappingData = "CMAD"
         static let bindingList = "DCBM"
+    }
+
+    private static func isRemixSlotCommand(_ commandId: Int) -> Bool {
+        [239, 249, 250, 251, 259].contains(commandId)
     }
 
     // MARK: - Public API
@@ -579,7 +586,7 @@ struct TSIInterpreter {
         }
 
         // Look up command name from Traktor's command database
-        let commandName = TraktorCommands.name(for: traktorControlId)
+        var commandName = TraktorCommands.name(for: traktorControlId)
 
         // Parse MIDI info from control name (unassigned mappings have none)
         let (channel, noteOrCC, isCc): (Int, Int?, Bool)
@@ -589,35 +596,62 @@ struct TSIInterpreter {
             (channel, noteOrCC, isCc) = (1, nil, false)
         }
 
-        // Map target assignment per TSI spec (aligned with TSIWriter encoding):
-        // -1 = Device Target
-        // 0 = Deck A (also Global for global commands - writer encodes both as 0)
-        // 1 = Deck B, 2 = Deck C, 3 = Deck D
-        // 4-7 = FX Units 1-4
-        // 8-15 = Remix Slots 1-8
+        // Map target assignment per TSI encoding. Remix-slot commands overload
+        // the 0...15 target range as deckIndex * 4 + slotIndex; other commands
+        // use the standard deck/FX mapping.
         // Values outside -1...15 collapse to .global by prior design — the
         // same tolerance as the other CMAD enums above.
-        let assignment: TargetAssignment
-        switch cmadSettings.targetDeck {
-        case -1: assignment = .deviceTarget
-        case 0: assignment = .deckA
-        case 1: assignment = .deckB
-        case 2: assignment = .deckC
-        case 3: assignment = .deckD
-        case 4: assignment = .fxUnit1
-        case 5: assignment = .fxUnit2
-        case 6: assignment = .fxUnit3
-        case 7: assignment = .fxUnit4
-        case 8: assignment = .remixSlot1
-        case 9: assignment = .remixSlot2
-        case 10: assignment = .remixSlot3
-        case 11: assignment = .remixSlot4
-        case 12: assignment = .remixSlot5
-        case 13: assignment = .remixSlot6
-        case 14: assignment = .remixSlot7
-        case 15: assignment = .remixSlot8
-        default: assignment = .global
+        var assignment: TargetAssignment
+        if Self.isRemixSlotCommand(traktorControlId), (0...15).contains(cmadSettings.targetDeck) {
+            assignment = TargetAssignment.remixSlotAssignment(forTargetValue: cmadSettings.targetDeck)
+        } else {
+            switch cmadSettings.targetDeck {
+            case -1: assignment = .deviceTarget
+            case 0: assignment = .deckA
+            case 1: assignment = .deckB
+            case 2: assignment = .deckC
+            case 3: assignment = .deckD
+            case 4: assignment = .fxUnit1
+            case 5: assignment = .fxUnit2
+            case 6: assignment = .fxUnit3
+            case 7: assignment = .fxUnit4
+            case 8: assignment = .remixSlot1
+            case 9: assignment = .remixSlot2
+            case 10: assignment = .remixSlot3
+            case 11: assignment = .remixSlot4
+            case 12: assignment = .remixSlot5
+            case 13: assignment = .remixSlot6
+            case 14: assignment = .remixSlot7
+            case 15: assignment = .remixSlot8
+            default: assignment = .global
+            }
         }
+
+        // Legacy per-slot ID migration (Traktor-3-era fabricated 2900..2923).
+        // Old XtremeMapping versions wrote these fabricated IDs to encode the
+        // slot index in the commandId itself. Traktor 4.4 has no such IDs.
+        // The broken K3 files were Deck-A mappings with target 0, so legacy
+        // IDs migrate to explicit Deck A Slot N assignments.
+        if (2900...2923).contains(traktorControlId) {
+            let slotIndex = (traktorControlId - 2900) / 4   // 0..5
+            let withinRange = (traktorControlId - 2900) % 4 // 0..3
+            let remixSlot: TargetAssignment = [.remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4][withinRange]
+            switch slotIndex {
+            case 0: commandName = "Slot Volume";        assignment = remixSlot
+            case 1: commandName = "Slot Mute On";       assignment = remixSlot
+            case 2: commandName = "Slot Filter Adjust"; assignment = remixSlot
+            case 3: commandName = "Slot Filter On";     assignment = remixSlot
+            case 4:
+                Self.logger.warning("Dropping legacy 'Slot N FX Send' binding from imported TSI — not supported in Traktor 4.4")
+                return nil
+            case 5: commandName = "Slot FX On";         assignment = remixSlot
+            default: break
+            }
+        }
+
+        let setToValue: Float = traktorControlId == 2328
+            ? Float(cmadSettings.setToValueRaw)
+            : cmadSettings.setToValue
 
         // Build modifier conditions from parsed values
         let modifier1: ModifierCondition? = cmadSettings.modifierOneId > 0
@@ -641,7 +675,7 @@ struct TSIInterpreter {
             controllerType: controllerType,
             invert: cmadSettings.invert,
             softTakeover: cmadSettings.softTakeover,
-            setToValue: cmadSettings.setToValue,
+            setToValue: setToValue,
             rotarySensitivity: cmadSettings.rotarySensitivity,
             rotaryAcceleration: cmadSettings.rotaryAcceleration,
             autoRepeat: cmadSettings.autoRepeat,
@@ -662,7 +696,8 @@ struct TSIInterpreter {
     /// - Bytes 0-3: DeviceType (constant 4 = GenericMidi)
     /// - Bytes 4-7: ControllerType (Button=0, FaderOrKnob=1, Encoder=2, LED=65535)
     /// - Bytes 8-11: InteractionMode (Toggle=1, Hold=2, Direct=3, Relative=4, Output=8)
-    /// - Bytes 12-15: Deck (-1=Device, 0-3=Decks A-D, 4-7=FX Units, 8-15=Remix Slots)
+    /// - Bytes 12-15: Target (-1=Device, 0-3=Decks A-D, 4-7=FX Units;
+    ///   remix-slot commands overload 0-15 as deckIndex * 4 + slotIndex)
     /// - Bytes 16-19: AutoRepeat
     /// - Bytes 20-23: Invert
     /// - Bytes 24-27: SoftTakeover
@@ -670,7 +705,7 @@ struct TSIInterpreter {
     /// - Bytes 32-35: RotaryAcceleration (float)
     /// - Bytes 36-39: HasValueUI
     /// - Bytes 40-43: ValueUIType
-    /// - Bytes 44-47: SetValueTo (float)
+    /// - Bytes 44-47: SetValueTo (float for most commands, raw index for hotcue 2328)
     /// - Bytes 48-51: CommentLength
     /// - Bytes 52+: Comment (variable length wchar_t[])
     /// - After comment, the 24-byte condition block:
@@ -689,6 +724,7 @@ struct TSIInterpreter {
         var softTakeover: Bool = false
         var rotarySensitivity: Float = 1.0
         var rotaryAcceleration: Float = 0.0
+        var setToValueRaw: UInt32 = 0
         var setToValue: Float = 0.0
         var comment: String = ""
         var modifierOneId: Int = 0
@@ -753,7 +789,11 @@ struct TSIInterpreter {
         // RotaryAcceleration at bytes 32-35 (float)
         result.rotaryAcceleration = readFloatBE(from: data, at: 32)
 
-        // SetValueTo at bytes 44-47 (float)
+        // SetValueTo at bytes 44-47 is overloaded: indexed hotcue (2328)
+        // stores a raw UInt32 selector, while fader-like commands store a
+        // float bit pattern. Preserve both interpretations; parseCMAI picks
+        // the command-specific one after it has the raw TraktorControlId.
+        result.setToValueRaw = readUInt32BE(from: data, at: 44)
         result.setToValue = readFloatBE(from: data, at: 44)
 
         // Comment: length at bytes 48-51, then wchar_t[] string.

@@ -30,6 +30,10 @@ struct WizardFunction: Identifiable {
     /// For non-perDeck functions, the fixed assignment
     let fixedAssignment: TargetAssignment?
 
+    /// Optional fixed SetToValue (e.g., hotcue index for "Select/Set+Store Hotcue" id 2328).
+    /// nil means the writer uses the MappingEntry default (0.0).
+    let setToValue: Float?
+
     init(
         displayName: String,
         commandName: String,
@@ -37,7 +41,8 @@ struct WizardFunction: Identifiable {
         interactionMode: InteractionMode,
         isBasic: Bool = true,
         perDeck: Bool = true,
-        fixedAssignment: TargetAssignment? = nil
+        fixedAssignment: TargetAssignment? = nil,
+        setToValue: Float? = nil
     ) {
         self.displayName = displayName
         self.commandName = commandName
@@ -46,6 +51,7 @@ struct WizardFunction: Identifiable {
         self.isBasic = isBasic
         self.perDeck = perDeck
         self.fixedAssignment = fixedAssignment
+        self.setToValue = setToValue
     }
 }
 
@@ -69,7 +75,8 @@ struct WizardCapturedMapping: Identifiable {
             midiNote: midiMessage.note,
             midiCC: midiMessage.cc,
             modifier1Condition: modifierCondition,
-            controllerType: function.controllerType
+            controllerType: function.controllerType,
+            setToValue: function.setToValue ?? 0
         )
     }
 }

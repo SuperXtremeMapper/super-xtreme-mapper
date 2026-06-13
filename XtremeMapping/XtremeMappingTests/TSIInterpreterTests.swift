@@ -430,6 +430,55 @@ final class TSIInterpreterTests: XCTestCase {
         }
     }
 
+    func testRoundTripPreservesRemixSlotCommandDeckAndSlotTargets() throws {
+        let cases: [(command: String, assignment: TargetAssignment)] = [
+            ("Slot Volume", .remixDeckASlot1),
+            ("Slot Volume", .remixDeckBSlot4),
+            ("Slot Mute On", .remixDeckCSlot3),
+            ("Slot FX On", .remixDeckDSlot4)
+        ]
+
+        for (command, assignment) in cases {
+            let entry = MappingEntry(
+                commandName: command,
+                ioType: .input,
+                assignment: assignment,
+                interactionMode: .direct,
+                midiChannel: 1,
+                midiCC: 10,
+                controllerType: command == "Slot Volume" ? .faderOrKnob : .button
+            )
+            let result = try roundTrip(entry)
+            XCTAssertEqual(result?.commandName, command)
+            XCTAssertEqual(result?.assignment, assignment,
+                           "\(command) \(assignment.displayName) did not survive round-trip")
+        }
+    }
+
+    func testRoundTripUsesCommandSpecificSetToValueEncoding() throws {
+        let cases: [(entry: MappingEntry, expected: Float)] = [
+            (MappingEntry(commandName: "Slot Volume", assignment: .remixDeckASlot1,
+                          interactionMode: .direct, midiChannel: 1, midiCC: 10,
+                          controllerType: .faderOrKnob), 1.0),
+            (MappingEntry(commandName: "Slot Filter Adjust", assignment: .remixDeckASlot1,
+                          interactionMode: .direct, midiChannel: 1, midiCC: 11,
+                          controllerType: .faderOrKnob), 0.5),
+            (MappingEntry(commandName: "FX Knob 1", assignment: .fxUnit1,
+                          interactionMode: .direct, midiChannel: 1, midiCC: 12,
+                          controllerType: .faderOrKnob), 0.0),
+            (MappingEntry(commandName: "Select/Set+Store Hotcue", assignment: .deckA,
+                          interactionMode: .hold, midiChannel: 1, midiCC: 13,
+                          controllerType: .button, setToValue: 3), 3.0)
+        ]
+
+        for (entry, expected) in cases {
+            let result = try roundTrip(entry)
+            XCTAssertNotNil(result?.setToValue)
+            XCTAssertEqual(result?.setToValue ?? -1, expected, accuracy: 0.0001,
+                           "\(entry.commandName) setToValue did not round-trip via the command-specific encoding")
+        }
+    }
+
     func testGlobalAndNoneTargetsCollapseToDeckA() throws {
         // Documented TSI ambiguity: .global and .none both encode as deck value 0,
         // which decodes as .deckA.
@@ -518,9 +567,9 @@ final class TSIInterpreterTests: XCTestCase {
         XCTAssertEqual(mapping?.ledInvert, true)
         XCTAssertEqual(mapping?.resolution, 2)
         // Untouched fields keep their defaults
-        XCTAssertEqual(mapping?.ledMinRangeType, 0)
+        XCTAssertEqual(mapping?.ledMinRangeType, 1)
         XCTAssertEqual(mapping?.ledMinRangeData, 0)
-        XCTAssertEqual(mapping?.ledMaxRangeType, 0)
+        XCTAssertEqual(mapping?.ledMaxRangeType, 1)
         XCTAssertEqual(mapping?.ledBlend, false)
     }
 

@@ -46,15 +46,15 @@ struct MappingEntryTests {
         let decoded = try JSONDecoder().decode(MappingEntry.self, from: legacyData)
         #expect(decoded.commandName == "Play/Pause")
         #expect(decoded.autoRepeat == false)
-        #expect(decoded.ledMinRangeType == 0)
+        #expect(decoded.ledMinRangeType == 1)
         #expect(decoded.ledMinRangeData == 0)
-        #expect(decoded.ledMaxRangeType == 0)
+        #expect(decoded.ledMaxRangeType == 1)
         #expect(decoded.ledMaxRangeData == 1)
         #expect(decoded.ledMinMidi == 0)
         #expect(decoded.ledMaxMidi == 127)
         #expect(decoded.ledInvert == false)
         #expect(decoded.ledBlend == false)
-        #expect(decoded.resolution == 0)
+        #expect(decoded.resolution == 1)
     }
 
     // MARK: - MappedToDisplay Tests
@@ -158,6 +158,8 @@ struct MappingEntryTests {
         #expect(TargetAssignment.fxUnit2.displayName == "FX Unit 2")
         #expect(TargetAssignment.fxUnit3.displayName == "FX Unit 3")
         #expect(TargetAssignment.fxUnit4.displayName == "FX Unit 4")
+        #expect(TargetAssignment.remixDeckASlot1.displayName == "Deck A Slot 1")
+        #expect(TargetAssignment.remixDeckDSlot4.displayName == "Deck D Slot 4")
     }
 
     @Test func testTargetAssignmentRawValues() {
@@ -171,6 +173,8 @@ struct MappingEntryTests {
         #expect(TargetAssignment.fxUnit2.rawValue == 6)
         #expect(TargetAssignment.fxUnit3.rawValue == 7)
         #expect(TargetAssignment.fxUnit4.rawValue == 8)
+        #expect(TargetAssignment.remixDeckASlot1.rawValue == 17)
+        #expect(TargetAssignment.remixDeckDSlot4.rawValue == 32)
     }
 
     // MARK: - CommandCategory Tests

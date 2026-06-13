@@ -8,7 +8,7 @@ import Foundation
 /// Configuration captured during wizard setup phase.
 struct WizardSetupConfig {
     var controllerName: String = ""
-    var numberOfChannels: Int = 2  // 2 or 4
+    var numberOfChannels: Int = 2  // 1, 2, or 4
     var deviceTarget: TargetAssignment = .deviceTarget
     var inputPort: String = ""
     var outputPort: String = ""
@@ -19,10 +19,19 @@ struct WizardSetupConfig {
 
     /// Returns deck assignments based on channel count
     var deckAssignments: [TargetAssignment] {
-        if numberOfChannels == 2 {
-            return [.deckA, .deckB]
-        } else {
-            return [.deckA, .deckB, .deckC, .deckD]
+        switch numberOfChannels {
+        case 1: return [.deckA]
+        case 2: return [.deckA, .deckB]
+        default: return [.deckA, .deckB, .deckC, .deckD]
+        }
+    }
+
+    /// Returns Remix Deck slot assignments for the selected deck count.
+    /// Traktor encodes remix-slot command targets as deckIndex * 4 + slotIndex,
+    /// so a two-channel setup maps Deck A Slot 1-4 and Deck B Slot 1-4.
+    var slotAssignments: [TargetAssignment] {
+        deckAssignments.flatMap { deck in
+            (1...4).compactMap { TargetAssignment.remixSlotAssignment(forDeck: deck, slot: $0) }
         }
     }
 

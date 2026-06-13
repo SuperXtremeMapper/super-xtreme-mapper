@@ -140,27 +140,13 @@ enum TraktorCommands {
             }
         }
 
-        // Per-slot commands: Slot 1-4 Volume, Mute, Filter, FX
-        // Using command ID ranges: 2900-2903 (Volume), 2904-2907 (Mute), 2908-2911 (Filter),
-        // 2912-2915 (Filter On), 2916-2919 (FX Send), 2920-2923 (FX On)
-        if name.hasPrefix("Slot ") && name.count > 6 {
-            let slotCommands = [
-                "Volume": 2900,
-                "Mute": 2904,
-                "Filter": 2908,
-                "Filter On": 2912,
-                "FX Send": 2916,
-                "FX On": 2920
-            ]
-            for (suffix, baseId) in slotCommands {
-                if name.hasSuffix(" \(suffix)") {
-                    let slotStr = name.dropFirst(5).prefix(1)
-                    if let slot = Int(slotStr), slot >= 1 && slot <= 4 {
-                        return baseId + (slot - 1)
-                    }
-                }
-            }
-        }
+        // Per-slot commands ("Slot N Volume" etc.) used to be fabricated IDs
+        // 2900-2923. Those IDs don't exist in Traktor 4.4 — real slot mappings
+        // use canonical IDs (251 Volume, 259 Mute On, 249 Filter Adjust,
+        // 250 Filter On, 239 FX On) with CMAD target = deckIndex * 4 + slotIndex.
+        // The wizard now emits the canonical "Slot Volume"/"Slot Mute On"/...
+        // names directly; legacy "Slot N ..." strings are migrated by
+        // TSIInterpreter and MappingEntry.init(from:).
 
         return 0
     }
@@ -203,21 +189,7 @@ enum TraktorCommands {
             return "Modifier #\(commandId - 2547)"
         }
 
-        // Per-slot commands
-        let slotCommandRanges: [(ClosedRange<Int>, String)] = [
-            (2900...2903, "Volume"),
-            (2904...2907, "Mute"),
-            (2908...2911, "Filter"),
-            (2912...2915, "Filter On"),
-            (2916...2919, "FX Send"),
-            (2920...2923, "FX On")
-        ]
-        for (range, suffix) in slotCommandRanges {
-            if range.contains(commandId) {
-                let slot = commandId - range.lowerBound + 1
-                return "Slot \(slot) \(suffix)"
-            }
-        }
+        // Per-slot reverse range (2900-2923) deleted — see id(for:) above.
 
         // Duplicate Track Deck A-D
         if commandId >= 2401 && commandId <= 2404 {

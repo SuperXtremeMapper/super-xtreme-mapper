@@ -430,6 +430,26 @@ final class WizardCoordinatorTests: XCTestCase {
         XCTAssertEqual(saved?.midiNote, 60)
     }
 
+    func testSampleDeckAssignmentsExpandBySelectedChannelCount() {
+        coordinator.switchToTab(.sampleDecks)
+
+        coordinator.setupConfig.numberOfChannels = 1
+        XCTAssertEqual(coordinator.currentAssignments,
+                       [.remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4])
+
+        coordinator.setupConfig.numberOfChannels = 2
+        XCTAssertEqual(coordinator.currentAssignments,
+                       [.remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4,
+                        .remixDeckBSlot1, .remixDeckBSlot2, .remixDeckBSlot3, .remixDeckBSlot4])
+
+        coordinator.setupConfig.numberOfChannels = 4
+        XCTAssertEqual(coordinator.currentAssignments,
+                       [.remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4,
+                        .remixDeckBSlot1, .remixDeckBSlot2, .remixDeckBSlot3, .remixDeckBSlot4,
+                        .remixDeckCSlot1, .remixDeckCSlot2, .remixDeckCSlot3, .remixDeckCSlot4,
+                        .remixDeckDSlot1, .remixDeckDSlot2, .remixDeckDSlot3, .remixDeckDSlot4])
+    }
+
     func testSetupChangeCallbackIsWiredToManager() {
         // beginLearning (in setUp) wires onSetupChanged on the shared manager.
         assignShift(note: 99)

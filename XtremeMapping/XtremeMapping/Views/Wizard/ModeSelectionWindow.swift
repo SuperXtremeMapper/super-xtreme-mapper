@@ -92,13 +92,23 @@ struct ModeSelectionWindow: View {
 
     private func selectGuidedMode() {
         dismiss()
-        // Create new document first
+        // Set the "next new ContentView, claim me" flag, THEN create the
+        // document. The flag is read by the brand-new ContentView's
+        // onAppear (see ContentView.swift), which captures its own
+        // `document` (the real TraktorMappingDocument from
+        // DocumentGroup) and opens the wizard with it. No timing race —
+        // the flag is set before SwiftUI mounts the new ContentView, so
+        // the onAppear check is guaranteed to see it.
+        //
+        // Why not currentDocument/openUntitled: NSDocumentController returns
+        // the AppKit NSDocument wrapper, which can't be cast to the SwiftUI
+        // TraktorMappingDocument (they're separate types linked via
+        // `backingDocument`).
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            NSLog("[WIZARD-TRACE] selectGuidedMode: setting flag + calling newDocument(nil)")
+            WizardCoordinator.pendingWizardForNextNewDocument = true
             NSDocumentController.shared.newDocument(nil)
-            // Give ContentView time to mount before posting notification
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                NotificationCenter.default.post(name: .activateWizardMode, object: nil)
-            }
+            NSLog("[WIZARD-TRACE] selectGuidedMode: newDocument returned, flag=\(WizardCoordinator.pendingWizardForNextNewDocument)")
         }
     }
 }

@@ -17,7 +17,7 @@ struct ChannelButton: View {
 
     var body: some View {
         Button(action: action) {
-            Text("\(count) Channels")
+            Text(count == 1 ? "1 Channel" : "\(count) Channels")
                 .font(AppThemeV2.Typography.body)
                 .foregroundColor(isSelected ? AppThemeV2.Colors.stone900 : (isHovered ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone400))
                 .padding(.horizontal, AppThemeV2.Spacing.md)
@@ -93,6 +93,7 @@ struct WizardSetupView: View {
             }
             formRow(label: "Number of Channels") {
                 HStack(spacing: AppThemeV2.Spacing.sm) {
+                    ChannelButton(count: 1, isSelected: coordinator.setupConfig.numberOfChannels == 1, action: { coordinator.setupConfig.numberOfChannels = 1 })
                     ChannelButton(count: 2, isSelected: coordinator.setupConfig.numberOfChannels == 2, action: { coordinator.setupConfig.numberOfChannels = 2 })
                     ChannelButton(count: 4, isSelected: coordinator.setupConfig.numberOfChannels == 4, action: { coordinator.setupConfig.numberOfChannels = 4 })
                     Spacer()

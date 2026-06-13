@@ -26,6 +26,20 @@ final class WizardCoordinator: ObservableObject {
     /// Set this before calling openWindow(id: "wizard"), then cleared after use.
     static var pendingDocument: TraktorMappingDocument?
 
+    /// Set by `ModeSelectionWindow.selectGuidedMode` to flag that the NEXT
+    /// ContentView to mount should claim it, set itself as `pendingDocument`,
+    /// and open the wizard. Replaces the older broadcast-notification scheme
+    /// which had unreliable timing — the 0.5s delay between `newDocument()`
+    /// and the notification post could miss the new ContentView's
+    /// `.onReceive` subscriber, leaving the wizard with no document and
+    /// the new document window with no mappings appearing on save.
+    ///
+    /// Main-actor isolated read/write is intentional — no atomic primitive
+    /// needed because all SwiftUI view lifecycle callbacks run on the main
+    /// actor, and the flag is only set before / read after a `newDocument()`
+    /// call that itself runs on main.
+    @MainActor static var pendingWizardForNextNewDocument: Bool = false
+
     // MARK: - Published State
 
     @Published private(set) var phase: WizardPhase = .setup
@@ -81,7 +95,7 @@ final class WizardCoordinator: ObservableObject {
         if let fixed = function.fixedAssignment { return [fixed] }
         if function.perDeck { return setupConfig.deckAssignments }
         if currentTab == .fx { return setupConfig.fxAssignments(isBasic: isBasicMode) }
-        if currentTab == .sampleDecks { return [.deckA, .deckB, .deckC, .deckD] }
+        if currentTab == .sampleDecks { return setupConfig.slotAssignments }
         return [.global]
     }
 
@@ -101,7 +115,7 @@ final class WizardCoordinator: ObservableObject {
             if fn.fixedAssignment != nil { return count + 1 }
             if fn.perDeck { return count + setupConfig.deckAssignments.count }
             if currentTab == .fx { return count + setupConfig.fxAssignments(isBasic: isBasicMode).count }
-            if currentTab == .sampleDecks { return count + 4 }
+            if currentTab == .sampleDecks { return count + setupConfig.slotAssignments.count }
             return count + 1
         }
         var completedSteps = 0
@@ -110,7 +124,7 @@ final class WizardCoordinator: ObservableObject {
             if fn.fixedAssignment != nil { completedSteps += 1 }
             else if fn.perDeck { completedSteps += setupConfig.deckAssignments.count }
             else if currentTab == .fx { completedSteps += setupConfig.fxAssignments(isBasic: isBasicMode).count }
-            else if currentTab == .sampleDecks { completedSteps += 4 }
+            else if currentTab == .sampleDecks { completedSteps += setupConfig.slotAssignments.count }
             else { completedSteps += 1 }
         }
         completedSteps += currentAssignmentIndex
@@ -263,9 +277,15 @@ final class WizardCoordinator: ObservableObject {
             switchToTab(nextTab)
             statusMessage = "Press a control for \(currentStepDisplay)"
         } else {
-            phase = .complete
+            // Auto-completion path: user walked through every function on
+            // every tab. Pre-fix this transitioned to .complete without
+            // saving — the completion view's "mappings saved" text was a
+            // lie, and clicking Great! discarded everything. Now we run
+            // the save explicitly (which itself sets phase=.complete via
+            // performSave) so the wizard's final state matches what the
+            // user expects: their captures are written to the document.
             stopMIDIListening()
-            statusMessage = "All functions mapped! Click Save & Finish."
+            saveToDocument()
         }
     }
 
@@ -315,6 +335,31 @@ final class WizardCoordinator: ObservableObject {
         statusMessage = "Press a control for \(currentStepDisplay)"
     }
 
+    /// Compound conflict key. commandName alone is no longer unique: many
+    /// wizard rows (Hotcue 1-8, Slot Volume across 4 slots) share the same
+    /// canonical commandName and disambiguate via `assignment` (deck/slot)
+    /// and `setToValue` (hotcue index 0-7). Keying on commandName alone would
+    /// collapse 8 hotcue mappings to 1 conflict and wipe siblings on overwrite.
+    private struct BindingKey: Hashable {
+        let commandName: String
+        let assignment: TargetAssignment
+        let setToValueQuantized: Int  // see bindingKey(for:)
+    }
+
+    private static func bindingKey(for entry: MappingEntry) -> BindingKey {
+        // Quantize setToValue to Int for the hash key. Wizard rows always pass
+        // integer-valued floats (hotcue index 0..7); any interpreter-derived
+        // float drift like 0.0000001 vs 0.0 would otherwise silently miss the
+        // overwrite intersection. Negative-zero / fractional inputs collapse
+        // to their nearest integer for matching purposes only — the float
+        // value on the MappingEntry itself is unchanged.
+        BindingKey(
+            commandName: entry.commandName,
+            assignment: entry.assignment,
+            setToValueQuantized: Int(entry.setToValue.rounded())
+        )
+    }
+
     func saveToDocument() {
         // Cancel before the conflict early-return below: a pending advance
         // must not fire while the overwrite alert is open.
@@ -325,11 +370,15 @@ final class WizardCoordinator: ObservableObject {
         }
         // Scope to devices[0] — the only device the wizard writes to (and the
         // only one overwrite removal touches in performSave).
-        let existingCommands = Set(document.mappingFile.devices.first?.mappings.map { $0.commandName } ?? [])
-        let newCommands = Set(capturedMappings.map { $0.function.commandName })
-        let conflicts = existingCommands.intersection(newCommands)
+        let existing = Set((document.mappingFile.devices.first?.mappings ?? []).map(Self.bindingKey(for:)))
+        let newEntries = capturedMappings.map { $0.toMappingEntry() }
+        let newKeys = Set(newEntries.map(Self.bindingKey(for:)))
+        let conflicts = existing.intersection(newKeys)
         if !conflicts.isEmpty {
-            conflictingCommands = Array(conflicts).sorted()
+            // Human-readable list for the overwrite alert. Dedupe by commandName
+            // (a single Hotcue commandName covers all deck/slot variants in the
+            // user-visible alert) so the alert isn't a wall of repeated names.
+            conflictingCommands = Array(Set(conflicts.map { $0.commandName })).sorted()
             showOverwriteAlert = true
             return
         }
@@ -338,32 +387,42 @@ final class WizardCoordinator: ObservableObject {
 
     func performSave(overwrite: Bool) {
         cancelAutoAdvance()
-        guard let document = document else { return }
+        guard let document = document else {
+            WizardTrace.write(" performSave: NO DOCUMENT attached — wizard save will be silently lost")
+            return
+        }
+        WizardTrace.write(" performSave: writing to document=\(ObjectIdentifier(document)) captured=\(capturedMappings.count)")
         let newMappings = capturedMappings.map { $0.toMappingEntry() }
         if overwrite {
-            let commandsToReplace = Set(capturedMappings.map { $0.function.commandName })
+            // Only remove the EXACT (commandName, assignment, setToValue)
+            // triples the user re-mapped — siblings (other hotcues, other
+            // slots) are preserved. Pre-fix, removing by commandName alone
+            // wiped every hotcue × deck variant when re-mapping a single one.
+            let keysToReplace = Set(newMappings.map(Self.bindingKey(for:)))
             if !document.mappingFile.devices.isEmpty {
-                document.mappingFile.devices[0].mappings.removeAll { commandsToReplace.contains($0.commandName) }
+                document.mappingFile.devices[0].mappings.removeAll { keysToReplace.contains(Self.bindingKey(for: $0)) }
             }
         }
         if document.mappingFile.devices.isEmpty {
             let newDevice = Device(
-                name: setupConfig.controllerName,
-                comment: "Created by Mapping Wizard",
+                name: "Generic MIDI",
+                comment: setupConfig.controllerName,
                 inPort: setupConfig.inputPort,
                 outPort: setupConfig.outputPort,
                 mappings: newMappings
             )
             document.mappingFile.devices.append(newDevice)
+            WizardTrace.write(" performSave: appended NEW device with \(newMappings.count) mappings — devices now=\(document.mappingFile.devices.count) total mappings=\(document.mappingFile.allMappings.count)")
         } else {
             document.mappingFile.devices[0].mappings.append(contentsOf: newMappings)
-            document.mappingFile.devices[0].name = setupConfig.controllerName
+            document.mappingFile.devices[0].comment = setupConfig.controllerName
             document.mappingFile.devices[0].inPort = setupConfig.inputPort
             document.mappingFile.devices[0].outPort = setupConfig.outputPort
+            WizardTrace.write(" performSave: appended \(newMappings.count) mappings to existing device[0] — devices=\(document.mappingFile.devices.count) total mappings=\(document.mappingFile.allMappings.count)")
         }
-        // Force @Published to detect the change (struct mutation doesn't trigger automatically)
         document.mappingFile = document.mappingFile
         document.noteChange()
+        WizardTrace.write(" performSave: post @Published trigger, document=\(ObjectIdentifier(document)) mappingFile.allMappings.count=\(document.mappingFile.allMappings.count)")
         statusMessage = "Saved \(newMappings.count) mappings!"
         phase = .complete
         stopMIDIListening()

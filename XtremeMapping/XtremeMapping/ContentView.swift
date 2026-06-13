@@ -82,7 +82,7 @@ struct ContentView: View {
                 voiceCoordinator: voiceCoordinator,
                 onVoiceToggle: toggleVoiceLearn,
                 onWizard: {
-                    // Set document and notify wizard (works whether window exists or is created fresh)
+                    WizardTrace.write(" V2ActionBar.onWizard: setting pendingDocument=\(ObjectIdentifier(document)) (doc has \(document.mappingFile.devices.count) devices, \(document.mappingFile.allMappings.count) mappings)")
                     WizardCoordinator.pendingDocument = document
                     NotificationCenter.default.post(name: .wizardDocumentChanged, object: document)
                     openWindow(id: "wizard")
@@ -242,6 +242,19 @@ struct ContentView: View {
                 WizardCoordinator.pendingDocument = document
                 NotificationCenter.default.post(name: .wizardDocumentChanged, object: document)
                 openWindow(id: "wizard")
+            }
+        }
+        .onAppear {
+            WizardTrace.write(" ContentView.onAppear: flag=\(WizardCoordinator.pendingWizardForNextNewDocument) document=\(ObjectIdentifier(document))")
+            if WizardCoordinator.pendingWizardForNextNewDocument {
+                WizardCoordinator.pendingWizardForNextNewDocument = false
+                WizardTrace.write(" ContentView.onAppear: CLAIMED flag, opening wizard")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    WizardCoordinator.pendingDocument = document
+                    NotificationCenter.default.post(name: .wizardDocumentChanged, object: document)
+                    openWindow(id: "wizard")
+                    WizardTrace.write(" ContentView.onAppear: openWindow(wizard) called, pendingDocument set")
+                }
             }
         }
     }

@@ -88,18 +88,19 @@ enum WizardTab: String, CaseIterable, Identifiable {
 
     // MARK: - Cue/Loop Functions
     private static let cueLoopFunctions: [WizardFunction] = [
-        WizardFunction(displayName: "Hotcue 1", commandName: "Hotcue 1", controllerType: .button, interactionMode: .hold, isBasic: true),
-        WizardFunction(displayName: "Hotcue 2", commandName: "Hotcue 2", controllerType: .button, interactionMode: .hold, isBasic: true),
-        WizardFunction(displayName: "Hotcue 3", commandName: "Hotcue 3", controllerType: .button, interactionMode: .hold, isBasic: true),
-        WizardFunction(displayName: "Hotcue 4", commandName: "Hotcue 4", controllerType: .button, interactionMode: .hold, isBasic: true),
-        WizardFunction(displayName: "Hotcue 5", commandName: "Hotcue 5", controllerType: .button, interactionMode: .hold, isBasic: false),
-        WizardFunction(displayName: "Hotcue 6", commandName: "Hotcue 6", controllerType: .button, interactionMode: .hold, isBasic: false),
-        WizardFunction(displayName: "Hotcue 7", commandName: "Hotcue 7", controllerType: .button, interactionMode: .hold, isBasic: false),
-        WizardFunction(displayName: "Hotcue 8", commandName: "Hotcue 8", controllerType: .button, interactionMode: .hold, isBasic: false),
-        WizardFunction(displayName: "Loop In", commandName: "Loop In", controllerType: .button, interactionMode: .trigger, isBasic: true),
-        WizardFunction(displayName: "Loop Out", commandName: "Loop Out", controllerType: .button, interactionMode: .trigger, isBasic: true),
-        WizardFunction(displayName: "Loop Active", commandName: "Loop Active On", controllerType: .button, interactionMode: .toggle, isBasic: true),
-        WizardFunction(displayName: "Loop Size", commandName: "Loop Size", controllerType: .encoder, interactionMode: .relative, isBasic: true),
+        // Hotcues 1-8 use canonical Traktor 4.4 id 2328 ("Select/Set+Store Hotcue")
+        // with setToValue selecting the hotcue index (0-based). The legacy
+        // per-cue ids 214-221 don't exist in Traktor 4.4.
+        WizardFunction(displayName: "Hotcue 1", commandName: "Select/Set+Store Hotcue", controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 0),
+        WizardFunction(displayName: "Hotcue 2", commandName: "Select/Set+Store Hotcue", controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 1),
+        WizardFunction(displayName: "Hotcue 3", commandName: "Select/Set+Store Hotcue", controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 2),
+        WizardFunction(displayName: "Hotcue 4", commandName: "Select/Set+Store Hotcue", controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 3),
+        WizardFunction(displayName: "Hotcue 5", commandName: "Select/Set+Store Hotcue", controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 4),
+        WizardFunction(displayName: "Hotcue 6", commandName: "Select/Set+Store Hotcue", controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 5),
+        WizardFunction(displayName: "Hotcue 7", commandName: "Select/Set+Store Hotcue", controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 6),
+        WizardFunction(displayName: "Hotcue 8", commandName: "Select/Set+Store Hotcue", controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 7),
+        // Note: Loop In/Loop Out/Loop Active/Loop Size rows removed — they referenced
+        // Traktor-3-era ids (200/201/202/...) that do not exist in Traktor 4.4.
         WizardFunction(displayName: "Reloop", commandName: "Reloop", controllerType: .button, interactionMode: .trigger, isBasic: false),
     ]
 
@@ -128,42 +129,25 @@ enum WizardTab: String, CaseIterable, Identifiable {
     ]
 
     // MARK: - Sample Decks Functions
+    //
+    // Each function row is unnumbered: the wizard expands it across the
+    // selected channel count as Deck A/B/C/D Slot 1-4. Traktor encodes remix
+    // slot command targets as deckIndex * 4 + slotIndex on one canonical
+    // commandId.
+    //
+    // `perDeck: false` is REQUIRED on every row. `WizardFunction.perDeck`
+    // defaults to true, and `currentAssignments` returns deck assignments
+    // ([.deckA..D]) for any perDeck function — so without this flag the
+    // wizard would emit plain deck assignments instead of deck+slot assignments
+    // and the canonical commandId would point at the wrong target.
+    //
+    // "Slot FX Send" is intentionally absent — no Traktor 4.4 command exists.
     private static let sampleDecksFunctions: [WizardFunction] = [
-        // Slot Volume (1-4)
-        WizardFunction(displayName: "Slot 1 Volume", commandName: "Slot 1 Volume", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-        WizardFunction(displayName: "Slot 2 Volume", commandName: "Slot 2 Volume", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-        WizardFunction(displayName: "Slot 3 Volume", commandName: "Slot 3 Volume", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-        WizardFunction(displayName: "Slot 4 Volume", commandName: "Slot 4 Volume", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-
-        // Slot Mute (1-4)
-        WizardFunction(displayName: "Slot 1 Mute", commandName: "Slot 1 Mute", controllerType: .button, interactionMode: .toggle, isBasic: true),
-        WizardFunction(displayName: "Slot 2 Mute", commandName: "Slot 2 Mute", controllerType: .button, interactionMode: .toggle, isBasic: true),
-        WizardFunction(displayName: "Slot 3 Mute", commandName: "Slot 3 Mute", controllerType: .button, interactionMode: .toggle, isBasic: true),
-        WizardFunction(displayName: "Slot 4 Mute", commandName: "Slot 4 Mute", controllerType: .button, interactionMode: .toggle, isBasic: true),
-
-        // Slot FX Send (1-4)
-        WizardFunction(displayName: "Slot 1 FX Send", commandName: "Slot 1 FX Send", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-        WizardFunction(displayName: "Slot 2 FX Send", commandName: "Slot 2 FX Send", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-        WizardFunction(displayName: "Slot 3 FX Send", commandName: "Slot 3 FX Send", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-        WizardFunction(displayName: "Slot 4 FX Send", commandName: "Slot 4 FX Send", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-
-        // Slot FX On (1-4)
-        WizardFunction(displayName: "Slot 1 FX On", commandName: "Slot 1 FX On", controllerType: .button, interactionMode: .toggle, isBasic: true),
-        WizardFunction(displayName: "Slot 2 FX On", commandName: "Slot 2 FX On", controllerType: .button, interactionMode: .toggle, isBasic: true),
-        WizardFunction(displayName: "Slot 3 FX On", commandName: "Slot 3 FX On", controllerType: .button, interactionMode: .toggle, isBasic: true),
-        WizardFunction(displayName: "Slot 4 FX On", commandName: "Slot 4 FX On", controllerType: .button, interactionMode: .toggle, isBasic: true),
-
-        // Slot Filter (1-4)
-        WizardFunction(displayName: "Slot 1 Filter", commandName: "Slot 1 Filter", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-        WizardFunction(displayName: "Slot 2 Filter", commandName: "Slot 2 Filter", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-        WizardFunction(displayName: "Slot 3 Filter", commandName: "Slot 3 Filter", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-        WizardFunction(displayName: "Slot 4 Filter", commandName: "Slot 4 Filter", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-
-        // Slot Filter On (1-4)
-        WizardFunction(displayName: "Slot 1 Filter On", commandName: "Slot 1 Filter On", controllerType: .button, interactionMode: .toggle, isBasic: true),
-        WizardFunction(displayName: "Slot 2 Filter On", commandName: "Slot 2 Filter On", controllerType: .button, interactionMode: .toggle, isBasic: true),
-        WizardFunction(displayName: "Slot 3 Filter On", commandName: "Slot 3 Filter On", controllerType: .button, interactionMode: .toggle, isBasic: true),
-        WizardFunction(displayName: "Slot 4 Filter On", commandName: "Slot 4 Filter On", controllerType: .button, interactionMode: .toggle, isBasic: true),
+        WizardFunction(displayName: "Volume",    commandName: "Slot Volume",        controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false),
+        WizardFunction(displayName: "Mute",      commandName: "Slot Mute On",       controllerType: .button,      interactionMode: .toggle, isBasic: true, perDeck: false),
+        WizardFunction(displayName: "FX On",     commandName: "Slot FX On",         controllerType: .button,      interactionMode: .toggle, isBasic: true, perDeck: false),
+        WizardFunction(displayName: "Filter",    commandName: "Slot Filter Adjust", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false),
+        WizardFunction(displayName: "Filter On", commandName: "Slot Filter On",     controllerType: .button,      interactionMode: .toggle, isBasic: true, perDeck: false),
     ]
 
     // MARK: - Loop Recorder Functions

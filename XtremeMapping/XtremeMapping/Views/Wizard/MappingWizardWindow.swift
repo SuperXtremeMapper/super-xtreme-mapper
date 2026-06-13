@@ -110,18 +110,20 @@ struct MappingWizardWindowContent: View {
     var body: some View {
         MappingWizardWindow(coordinator: coordinator)
             .onAppear {
-                // Document passed via pendingDocument when wizard window is first created
+                WizardTrace.write(" MappingWizardWindow.onAppear: pendingDocument=\(WizardCoordinator.pendingDocument.map { "\(ObjectIdentifier($0))" } ?? "nil")")
                 if let doc = WizardCoordinator.pendingDocument {
                     coordinator.start(document: doc)
                     WizardCoordinator.pendingDocument = nil
+                    WizardTrace.write(" MappingWizardWindow.onAppear: coordinator.start called with doc=\(ObjectIdentifier(doc))")
                 } else {
                     coordinator.statusMessage = "Error: Please open a document first, then click Wizard."
                 }
             }
             .onReceive(NotificationCenter.default.publisher(for: .wizardDocumentChanged)) { notification in
-                // Document passed via notification when wizard window already exists
+                WizardTrace.write(" MappingWizardWindow.onReceive(wizardDocumentChanged): notification object=\(notification.object.map { "\(type(of: $0))" } ?? "nil")")
                 if let doc = notification.object as? TraktorMappingDocument {
                     coordinator.start(document: doc)
+                    WizardTrace.write(" MappingWizardWindow.onReceive: coordinator.start called with doc=\(ObjectIdentifier(doc))")
                 }
             }
     }

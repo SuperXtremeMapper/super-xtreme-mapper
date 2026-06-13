@@ -224,7 +224,19 @@ app, not a reason to reject the file on import.
 - 5 = FX Unit 2
 - 6 = FX Unit 3
 - 7 = FX Unit 4
-- 8-15 = Remix Slots 1-8
+- 8-15 = command-dependent extension range
+
+**Remix-slot command target overload:** for slot commands such as `Slot FX On`
+(239), `Slot Filter Adjust` (249), `Slot Filter On` (250), `Slot Volume`
+(251), and `Slot Mute On` (259), Traktor uses the target field as
+`deckIndex * 4 + slotIndex`:
+
+| Target | Remix Deck / Slot |
+|--------|-------------------|
+| 0-3 | Deck A, Slots 1-4 |
+| 4-7 | Deck B, Slots 1-4 |
+| 8-11 | Deck C, Slots 1-4 |
+| 12-15 | Deck D, Slots 1-4 |
 
 **ValueUIType enum:**
 - 1 = ComboBox (for buttons)

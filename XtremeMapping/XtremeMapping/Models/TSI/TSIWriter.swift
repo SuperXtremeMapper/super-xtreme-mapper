@@ -74,12 +74,27 @@ public struct TSIWriter: Sendable {
         return data
     }
 
+    /// DEVI names Traktor's device registry recognizes. Anything else makes
+    /// Traktor list the file but load zero mappings (the device can't be
+    /// resolved to known hardware). User-supplied controller labels belong in
+    /// `comment` (DDIC), not in `name`.
+    private static let recognizedDeviceNames: Set<String> = [
+        "Generic MIDI",
+        "Kontrol X1",
+        "Kontrol S2",
+        "Kontrol S4",
+    ]
+
+    private func tsiDeviceName(for device: Device) -> String {
+        Self.recognizedDeviceNames.contains(device.name) ? device.name : "Generic MIDI"
+    }
+
     /// Builds the DEVI (Device) frame content
     private func buildDEVI(from device: Device) -> Data {
         var data = Data()
 
         // Device name (UTF-16BE with 4-byte length prefix)
-        data.append(encodeUTF16BEString(device.name))
+        data.append(encodeUTF16BEString(tsiDeviceName(for: device)))
 
         // DDAT (Device Data) containing DDCB (Command Bindings)
         let ddatContent = buildDDAT(from: device)
@@ -360,10 +375,17 @@ public struct TSIWriter: Sendable {
         var interactionMode = intMode.bigEndian
         data.append(Data(bytes: &interactionMode, count: 4))
 
-        // 4. Target/Assignment (4 bytes, signed)
-        // Per spec: -1=DeviceTarget, 0=A/Global, 1=B, 2=C, 3=D, 4-7=FX1-4, 8-15=Remix Slots 1-8
-        // Note: .global and .none collapse to 0 (Deck A) — documented TSI ambiguity.
+        // 4. Target/Assignment (4 bytes, signed).
+        // Most commands use -1 Device, 0..3 Deck A..D, and 4..7 FX1..4.
+        // Remix-slot commands (239/249/250/251/259) overload the same field
+        // as deckIndex * 4 + slotIndex. This is verified against local
+        // Traktor 4.4 exports where Slot Volume spans targets 0...15.
+        let cmdIdForTarget = TraktorCommands.id(for: mapping.commandName)
+        let isSlotCommand = Self.isRemixSlotCommand(cmdIdForTarget)
         let targetValue: Int32 = {
+            if isSlotCommand {
+                return mapping.assignment.remixSlotCommandTargetValue ?? 0
+            }
             switch mapping.assignment {
             case .none: return 0
             case .deviceTarget: return -1
@@ -384,6 +406,11 @@ public struct TSIWriter: Sendable {
             case .remixSlot6: return 13
             case .remixSlot7: return 14
             case .remixSlot8: return 15
+            case .remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4,
+                 .remixDeckBSlot1, .remixDeckBSlot2, .remixDeckBSlot3, .remixDeckBSlot4,
+                 .remixDeckCSlot1, .remixDeckCSlot2, .remixDeckCSlot3, .remixDeckCSlot4,
+                 .remixDeckDSlot1, .remixDeckDSlot2, .remixDeckDSlot3, .remixDeckDSlot4:
+                return mapping.assignment.deckTargetValueForNonSlotCommand ?? 0
             }
         }()
         var target = UInt32(bitPattern: targetValue).bigEndian
@@ -411,25 +438,24 @@ public struct TSIWriter: Sendable {
         var accelBytes = rotaryAccel.bitPattern.bigEndian
         data.append(Data(bytes: &accelBytes, count: 4))
 
-        // 10. HasValueUI (4 bytes bool) - 0 for most mappings
-        var hasValueUI = UInt32(0).bigEndian
+        // CMAD scalars 10-12 and 20-30 are command-type-specific in Traktor 4.4.
+        // Empirically derived from decoding the user's Traktor Settings.tsi
+        // across Hotcue(2328) / Slot Volume(251 fader) / Play-Pause(100 button) /
+        // Sync(125 button). The "universal default" approach from earlier
+        // attempts at this fix is wrong — buttons, faders, and indexed-buttons
+        // each carry a distinct LED/Range/Blend/Resolution profile.
+        let cmad = Self.cmadProfile(for: mapping)
+
+        // 10. HasValueUI
+        var hasValueUI = cmad.hasValueUI.bigEndian
         data.append(Data(bytes: &hasValueUI, count: 4))
 
-        // 11. ValueUIType (4 bytes enum) - 1=ComboBox, 2=Slider
-        // Use Slider (2) for faders/knobs/encoders, ComboBox (1) for buttons
-        let valueUITypeValue: UInt32 = {
-            switch mapping.controllerType {
-            case .faderOrKnob, .encoder: return 2  // Slider
-            case .button: return 1  // ComboBox
-            default: return 0
-            }
-        }()
-        var valueUIType = valueUITypeValue.bigEndian
+        // 11. ValueUIType (1=ComboBox button, 2=Slider fader)
+        var valueUIType = cmad.valueUIType.bigEndian
         data.append(Data(bytes: &valueUIType, count: 4))
 
-        // 12. SetValueTo (4 bytes float)
-        let setValue: Float32 = mapping.setToValue
-        var setValueBytes = setValue.bitPattern.bigEndian
+        // 12. SetValueTo (semantics overloaded — see cmadProfile())
+        var setValueBytes = cmad.setValueRaw.bigEndian
         data.append(Data(bytes: &setValueBytes, count: 4))
 
         // 13. Comment (wide string with length prefix)
@@ -452,52 +478,164 @@ public struct TSIWriter: Sendable {
         var cond2Value = UInt32(clamping: mapping.modifier2Condition?.value ?? 0).bigEndian
         data.append(Data(bytes: &cond2Value, count: 4))
 
-        // 20-21. LedMinControllerRange: ValueUIType (4), data (4)
-        // UInt32(clamping:) throughout the LED/range/resolution fields:
-        // these Ints come from persisted JSON, where a hand-edited negative
-        // or oversized value would otherwise trap at write time.
-        var ledMinType = UInt32(clamping: mapping.ledMinRangeType).bigEndian
+        // 20-25. LED/Range block — all command-type-specific (see cmadProfile()).
+        var ledMinType = cmad.ledMinType.bigEndian
         data.append(Data(bytes: &ledMinType, count: 4))
-        var ledMinData = UInt32(clamping: mapping.ledMinRangeData).bigEndian
+        var ledMinData = cmad.ledMinData.bigEndian
         data.append(Data(bytes: &ledMinData, count: 4))
-
-        // 22-23. LedMaxControllerRange: ValueUIType (4), data (4)
-        // Per Traktor export: type=0, value=1 (integer, not float) by default
-        var ledMaxType = UInt32(clamping: mapping.ledMaxRangeType).bigEndian
+        var ledMaxType = cmad.ledMaxType.bigEndian
         data.append(Data(bytes: &ledMaxType, count: 4))
-        var ledMaxData = UInt32(clamping: mapping.ledMaxRangeData).bigEndian
+        var ledMaxData = cmad.ledMaxData.bigEndian
         data.append(Data(bytes: &ledMaxData, count: 4))
-
-        // 24. LedMinMidiRange (4 bytes)
         var ledMinMidi = UInt32(clamping: mapping.ledMinMidi).bigEndian
         data.append(Data(bytes: &ledMinMidi, count: 4))
-
-        // 25. LedMaxMidiRange (4 bytes)
         var ledMaxMidi = UInt32(clamping: mapping.ledMaxMidi).bigEndian
         data.append(Data(bytes: &ledMaxMidi, count: 4))
 
-        // 26-30. Optional fields for Generic MIDI device
-        // 26. LedInvert (4 bytes bool)
+        // 26-30. Tail fields (LedInvert, LedBlend, UnknownVUI, Resolution, UseFactoryMap)
         var ledInvert = UInt32(mapping.ledInvert ? 1 : 0).bigEndian
         data.append(Data(bytes: &ledInvert, count: 4))
-
-        // 27. LedBlend (4 bytes bool)
-        var ledBlend = UInt32(mapping.ledBlend ? 1 : 0).bigEndian
+        var ledBlend = cmad.ledBlend.bigEndian
         data.append(Data(bytes: &ledBlend, count: 4))
-
-        // 28. unknownValueUIType (4 bytes)
-        var unknownVUI = UInt32(0).bigEndian
+        var unknownVUI = cmad.unknownVUI.bigEndian
         data.append(Data(bytes: &unknownVUI, count: 4))
-
-        // 29. Resolution (4 bytes enum)
-        var resolution = UInt32(clamping: mapping.resolution).bigEndian
+        var resolution = cmad.resolutionRaw.bigEndian
         data.append(Data(bytes: &resolution, count: 4))
-
-        // 30. UseFactoryMap (4 bytes bool)
         var useFactoryMap = UInt32(0).bigEndian
         data.append(Data(bytes: &useFactoryMap, count: 4))
 
         return data
+    }
+
+    // MARK: - CMAD profile per command type
+    //
+    // Traktor 4.4's CMAD scalar fields (HasValueUI, ValueUIType, SetValueTo,
+    // LedMin/MaxType, LedMin/MaxData, LedBlend, UnknownVUI, Resolution) are
+    // OVERLOADED by command type. The same 4-byte slot at the same offset
+    // carries different semantics for a button vs a fader vs an indexed
+    // hotcue — even the type of the value (uint32 vs float-bit-pattern)
+    // changes. Empirically derived by decoding 3+ real bindings per command
+    // type from the user's Traktor Settings.tsi.
+    //
+    // Pre-fix attempts to set "universal defaults" on these fields produced
+    // bindings Traktor listed in its editor but refused to fire correctly
+    // (or fired wrong actions). Round-trip-within-this-app tests passed
+    // because the writer and parser agreed with each other — but neither
+    // agreed with Traktor.
+
+    private struct CMADProfile {
+        let hasValueUI: UInt32      // 0 / 1
+        let valueUIType: UInt32     // 1 ComboBox / 2 Slider
+        let setValueRaw: UInt32     // command-specific raw bits or selector
+        let ledMinType: UInt32      // 1 (int) for buttons, 2 (float) for faders
+        let ledMinData: UInt32      // 0 / 0xFFFFFFFF / 0 (raw bits)
+        let ledMaxType: UInt32      // 1 / 2
+        let ledMaxData: UInt32      // index-max (hotcue: 7), int 1 (generic btn), float-1.0 bits (fader)
+        let ledBlend: UInt32        // 0 / 1
+        let unknownVUI: UInt32      // 1 button / 2 fader
+        let resolutionRaw: UInt32   // int 1 button / float-0.0625 fader (0x3D800000)
+    }
+
+    private static func isRemixSlotCommand(_ commandId: Int) -> Bool {
+        [239, 249, 250, 251, 259].contains(commandId)
+    }
+
+    private static func floatBits(_ value: Float32) -> UInt32 {
+        value.bitPattern
+    }
+
+    private static func setValueRaw(for mapping: MappingEntry, commandId: Int) -> UInt32 {
+        // Hotcue index is stored as a raw UInt32 selector, not a float.
+        if commandId == 2328 {
+            let index = max(0, min(7, Int(mapping.setToValue.rounded())))
+            return UInt32(index)
+        }
+
+        // Values verified from local Traktor 4.x exports. For commands not in
+        // this list, preserve the MappingEntry value instead of inventing a
+        // universal default.
+        switch commandId {
+        case 239:
+            return 1
+        case 102, 251, 6:
+            return floatBits(1.0)
+        case 117, 249, 320:
+            return floatBits(0.5)
+        case 123, 365, 366, 367, 368:
+            return floatBits(0.0)
+        default:
+            return floatBits(Float32(mapping.setToValue))
+        }
+    }
+
+    private static func cmadProfile(for mapping: MappingEntry) -> CMADProfile {
+        let cmdId = TraktorCommands.id(for: mapping.commandName)
+
+        // Indexed-hotcue path (id 2328 = "Select/Set+Store Hotcue").
+        // SetValueTo carries the hotcue index 0..7 as raw uint32.
+        if cmdId == 2328 {
+            return CMADProfile(
+                hasValueUI: 1,
+                valueUIType: 1,
+                setValueRaw: setValueRaw(for: mapping, commandId: cmdId),
+                ledMinType: 1,
+                ledMinData: 0xFFFFFFFF,
+                ledMaxType: 1,
+                ledMaxData: 7,
+                ledBlend: 1,
+                unknownVUI: 1,
+                resolutionRaw: 1
+            )
+        }
+
+        switch mapping.controllerType {
+        case .faderOrKnob, .encoder:
+            // Fader/knob profile (e.g. Slot Volume id 251, EQ, gain).
+            // SetValueTo, LedMaxData, Resolution are FLOAT bit-patterns.
+            return CMADProfile(
+                hasValueUI: 0,
+                valueUIType: 2,
+                setValueRaw: setValueRaw(for: mapping, commandId: cmdId),
+                ledMinType: 2,
+                ledMinData: 0,
+                ledMaxType: 2,
+                ledMaxData: floatBits(1.0),
+                ledBlend: 1,
+                unknownVUI: 2,
+                resolutionRaw: floatBits(0.0625)
+            )
+        case .button:
+            // Generic-button profile (Play/Pause, Sync, mute toggle, etc.)
+            return CMADProfile(
+                hasValueUI: 0,
+                valueUIType: 1,
+                setValueRaw: setValueRaw(for: mapping, commandId: cmdId),
+                ledMinType: 1,
+                ledMinData: 0,
+                ledMaxType: 1,
+                ledMaxData: 1,
+                ledBlend: 0,
+                unknownVUI: 1,
+                resolutionRaw: 1
+            )
+        default:
+            // LED outputs and any other type — fall back to the persisted
+            // MappingEntry values. Conservative: round-trips existing files
+            // without overriding fields we don't yet have decoded references
+            // for.
+            return CMADProfile(
+                hasValueUI: 0,
+                valueUIType: 1,
+                setValueRaw: UInt32(max(0, mapping.setToValue.rounded())),
+                ledMinType: UInt32(clamping: mapping.ledMinRangeType),
+                ledMinData: UInt32(clamping: mapping.ledMinRangeData),
+                ledMaxType: UInt32(clamping: mapping.ledMaxRangeType),
+                ledMaxData: UInt32(clamping: mapping.ledMaxRangeData),
+                ledBlend: UInt32(mapping.ledBlend ? 1 : 0),
+                unknownVUI: 1,
+                resolutionRaw: UInt32(clamping: mapping.resolution)
+            )
+        }
     }
 
     // MARK: - Encoding Helpers

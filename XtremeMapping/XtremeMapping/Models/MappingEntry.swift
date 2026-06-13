@@ -6,12 +6,16 @@
 //
 
 import Foundation
+import os
 
 /// Represents a single MIDI mapping in a TSI file.
 ///
 /// A mapping entry connects a MIDI control (note or CC) to a Traktor command,
 /// with optional modifier conditions and assignment targets.
 struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
+
+    nonisolated fileprivate static let logger = Logger(subsystem: "com.sxm.app", category: "MappingEntry")
+
     /// Unique identifier for this mapping entry
     let id: UUID
 
@@ -158,19 +162,19 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         invert: Bool = false,
         softTakeover: Bool = false,
         setToValue: Float = 0.0,
-        rotarySensitivity: Float = 1.0,
+        rotarySensitivity: Float = 5.0,
         rotaryAcceleration: Float = 0.0,
         encoderMode: EncoderMode = .mode7Fh01h,
         autoRepeat: Bool = false,
-        ledMinRangeType: Int = 0,
+        ledMinRangeType: Int = 1,
         ledMinRangeData: Int = 0,
-        ledMaxRangeType: Int = 0,
+        ledMaxRangeType: Int = 1,
         ledMaxRangeData: Int = 1,
         ledMinMidi: Int = 0,
         ledMaxMidi: Int = 127,
         ledInvert: Bool = false,
         ledBlend: Bool = false,
-        resolution: Int = 0
+        resolution: Int = 1
     ) {
         self.id = id
         self.commandName = commandName
@@ -209,9 +213,38 @@ extension MappingEntry: Codable {
     nonisolated init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(UUID.self, forKey: .id)
-        commandName = try container.decode(String.self, forKey: .commandName)
+
+        // Legacy migration: Traktor-3-era "Slot N <Op>" command names written
+        // by older wizard versions resolved to fabricated commandIds 2900..2923,
+        // which Traktor 4.4 silently drops. Rewrite to canonical
+        // "Slot <Op>" + Assignment = Deck A Slot N. Mirrors the TSIInterpreter
+        // post-parse fix-up for legacy v4 TSI files. Done in locals so the
+        // migrated values land in the stored properties on first assignment
+        // (avoiding closure capture before self.* is initialized).
+        var decodedCommandName = try container.decode(String.self, forKey: .commandName)
         ioType = try container.decode(IODirection.self, forKey: .ioType)
-        assignment = try container.decode(TargetAssignment.self, forKey: .assignment)
+        var decodedAssignment = try container.decode(TargetAssignment.self, forKey: .assignment)
+
+        let slotPrefixes = ["Slot 1 ", "Slot 2 ", "Slot 3 ", "Slot 4 "]
+        if let slotIdx = slotPrefixes.firstIndex(where: { decodedCommandName.hasPrefix($0) }) {
+            let suffix = String(decodedCommandName.dropFirst(7)) // strip "Slot N "
+            let remix: TargetAssignment = [.remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4][slotIdx]
+            switch suffix {
+            case "Volume":    decodedCommandName = "Slot Volume";        decodedAssignment = remix
+            case "Mute":      decodedCommandName = "Slot Mute On";       decodedAssignment = remix
+            case "Filter":    decodedCommandName = "Slot Filter Adjust"; decodedAssignment = remix
+            case "Filter On": decodedCommandName = "Slot Filter On";     decodedAssignment = remix
+            case "FX On":     decodedCommandName = "Slot FX On";         decodedAssignment = remix
+            case "FX Send":
+                // No Traktor 4.4 equivalent — left loadable to preserve any other
+                // mapping state, but the next save will route through the writer's
+                // unwritable-name filter and skip it. Logged for traceability.
+                Self.logger.warning("Loading legacy 'Slot N FX Send' commandName from JSON — will be dropped on next save")
+            default: break
+            }
+        }
+        commandName = decodedCommandName
+        assignment = decodedAssignment
         interactionMode = try container.decode(InteractionMode.self, forKey: .interactionMode)
         midiChannel = try container.decode(Int.self, forKey: .midiChannel)
         midiNote = try container.decodeIfPresent(Int.self, forKey: .midiNote)
@@ -223,20 +256,20 @@ extension MappingEntry: Codable {
         invert = try container.decode(Bool.self, forKey: .invert)
         softTakeover = try container.decode(Bool.self, forKey: .softTakeover)
         setToValue = try container.decode(Float.self, forKey: .setToValue)
-        rotarySensitivity = try container.decode(Float.self, forKey: .rotarySensitivity)
+        rotarySensitivity = try container.decodeIfPresent(Float.self, forKey: .rotarySensitivity) ?? 5.0
         rotaryAcceleration = try container.decode(Float.self, forKey: .rotaryAcceleration)
         encoderMode = try container.decode(EncoderMode.self, forKey: .encoderMode)
         // New CMAD pass-through fields: decode with defaults so old saved state still loads
         autoRepeat = try container.decodeIfPresent(Bool.self, forKey: .autoRepeat) ?? false
-        ledMinRangeType = try container.decodeIfPresent(Int.self, forKey: .ledMinRangeType) ?? 0
+        ledMinRangeType = try container.decodeIfPresent(Int.self, forKey: .ledMinRangeType) ?? 1
         ledMinRangeData = try container.decodeIfPresent(Int.self, forKey: .ledMinRangeData) ?? 0
-        ledMaxRangeType = try container.decodeIfPresent(Int.self, forKey: .ledMaxRangeType) ?? 0
+        ledMaxRangeType = try container.decodeIfPresent(Int.self, forKey: .ledMaxRangeType) ?? 1
         ledMaxRangeData = try container.decodeIfPresent(Int.self, forKey: .ledMaxRangeData) ?? 1
         ledMinMidi = try container.decodeIfPresent(Int.self, forKey: .ledMinMidi) ?? 0
         ledMaxMidi = try container.decodeIfPresent(Int.self, forKey: .ledMaxMidi) ?? 127
         ledInvert = try container.decodeIfPresent(Bool.self, forKey: .ledInvert) ?? false
         ledBlend = try container.decodeIfPresent(Bool.self, forKey: .ledBlend) ?? false
-        resolution = try container.decodeIfPresent(Int.self, forKey: .resolution) ?? 0
+        resolution = try container.decodeIfPresent(Int.self, forKey: .resolution) ?? 1
     }
 
     nonisolated func encode(to encoder: Encoder) throws {
