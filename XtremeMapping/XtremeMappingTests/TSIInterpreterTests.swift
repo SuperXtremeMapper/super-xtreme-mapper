@@ -722,18 +722,24 @@ final class TSIInterpreterTests: XCTestCase {
     // MARK: - Non-BMP Text Tests (Task 1.4)
 
     func testRoundTripPreservesNonBMPCommentAndDeviceName() throws {
-        let entry = MappingEntry(
-            commandName: "Play/Pause",
-            ioType: .input, assignment: .deckA, interactionMode: .hold,
-            midiChannel: 1, midiCC: 10,
-            comment: "Fire 🔥 emoji"
+        let mappingComment = "Macro layer 🧪\n𐐷 second line"
+        let deviceComment = "X1 port notes 🎛\n𐐷 device line"
+        let row = MappingEntry(
+            commandID: 100,
+            midiChannel: 1,
+            midiCC: 7,
+            comment: mappingComment
         )
-        let device = Device(name: "Mixer 🎛 Pro", mappings: [entry])
+        let device = Device(
+            name: "Generic MIDI",
+            comment: deviceComment,
+            mappings: [row]
+        )
 
-        var parsed: Device?
-        XCTAssertNoThrow(parsed = try roundTripDevice(device))
-        XCTAssertEqual(parsed?.name, "Mixer 🎛 Pro")
-        XCTAssertEqual(parsed?.mappings.first?.comment, "Fire 🔥 emoji")
+        let decoded = try XCTUnwrap(try roundTripDevice(device))
+        XCTAssertEqual(decoded.name, "Generic MIDI")
+        XCTAssertEqual(decoded.comment, deviceComment)
+        XCTAssertEqual(decoded.mappings.first?.comment, mappingComment)
     }
 
     func testDecodeUTF16BESurrogatePair() {

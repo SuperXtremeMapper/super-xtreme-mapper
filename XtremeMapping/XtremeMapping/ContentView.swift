@@ -85,11 +85,20 @@ struct ContentView: View {
     )
 
     var filteredMappings: [MappingEntry] {
-        document.mappingFile.allMappings.filter { entry in
-            let categoryMatch = CommandCategoryMatcher.matches(entry, category: categoryFilter)
-            let ioMatch = ioFilter == .all || entry.ioType == ioFilter
-            let searchMatch = searchText.isEmpty || entry.commandName.localizedCaseInsensitiveContains(searchText)
-            return categoryMatch && ioMatch && searchMatch
+        document.mappingFile.devices.flatMap { device in
+            device.mappings.filter { entry in
+                let categoryMatch = CommandCategoryMatcher.matches(
+                    entry,
+                    category: categoryFilter
+                )
+                let ioMatch = ioFilter == .all || entry.ioType == ioFilter
+                let searchMatch = MappingSearch.matches(
+                    entry,
+                    in: device,
+                    query: searchText
+                )
+                return categoryMatch && ioMatch && searchMatch
+            }
         }
     }
 

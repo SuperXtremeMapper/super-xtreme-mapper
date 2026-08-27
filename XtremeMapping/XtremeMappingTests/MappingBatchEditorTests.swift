@@ -202,18 +202,63 @@ final class MappingBatchEditorTests: XCTestCase {
     func testCommentEditChangesOnlySelectedMappingComments() {
         let selected = MappingEntry.fullFieldSentinel
         let untouched = MappingEntry(commandID: 201, comment: "keep")
-        var file = MappingFile(devices: [Device(mappings: [selected, untouched])])
+        let alsoSelected = MappingEntry(commandID: 202, comment: "second")
+        var file = MappingFile(devices: [
+            Device(name: "First", mappings: [selected, untouched]),
+            Device(name: "Second", mappings: [alsoSelected]),
+        ])
 
         MappingBatchEditor.applyComment(
             "shared macro comment",
-            to: [selected.id],
+            to: [selected.id, alsoSelected.id],
             in: &file
         )
 
         var expectedSelected = selected
         expectedSelected.comment = "shared macro comment"
+        var expectedAlsoSelected = alsoSelected
+        expectedAlsoSelected.comment = "shared macro comment"
         XCTAssertEqual(file.devices[0].mappings[0], expectedSelected)
         XCTAssertEqual(file.devices[0].mappings[1], untouched)
+        XCTAssertEqual(file.devices[1].mappings[0], expectedAlsoSelected)
+    }
+
+    func testDeviceCommentEditUsesStableIDAndChangesOnlyChosenComment() {
+        let firstID = UUID(uuidString: "AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE")!
+        let secondID = UUID(uuidString: "11111111-2222-3333-4444-555555555555")!
+        let first = Device(
+            id: firstID,
+            name: "Duplicate",
+            comment: "first comment",
+            inPort: "First In",
+            outPort: "First Out",
+            tsiVersion: "4.4.1",
+            mappingFileRevision: 7,
+            mappings: [MappingEntry(commandID: 100, comment: "first mapping")]
+        )
+        let second = Device(
+            id: secondID,
+            name: "Duplicate",
+            comment: "second comment",
+            inPort: "Second In",
+            outPort: "Second Out",
+            tsiVersion: "3.11.0",
+            mappingFileRevision: 2,
+            mappings: [MappingEntry(commandID: 201, comment: "second mapping")]
+        )
+        var file = MappingFile(devices: [first, second], version: 42)
+
+        MappingBatchEditor.applyDeviceComment(
+            "updated device comment",
+            to: secondID,
+            in: &file
+        )
+
+        var expectedSecond = second
+        expectedSecond.comment = "updated device comment"
+        XCTAssertEqual(file.devices[0], first)
+        XCTAssertEqual(file.devices[1], expectedSecond)
+        XCTAssertEqual(file.version, 42)
     }
 
     func testSharedAssignmentIsOneUndoableDocumentMutation() throws {

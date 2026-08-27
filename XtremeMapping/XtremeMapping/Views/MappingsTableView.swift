@@ -85,7 +85,7 @@ struct MappingsTableView: View {
 
     var body: some View {
         Table(sortedMappings, selection: $selection, sortOrder: $sortOrder) {
-            // Column order: I/O, Assignment, Command, Type, Interaction, MIDI, Mod 1, Mod 2
+            // Column order: I/O, Assignment, Command, Comment, Type, Interaction, MIDI, Mod 1, Mod 2
 
             TableColumn("I/O", value: \.ioTypeSortKey) { entry in
                     Text(entry.ioType == .input ? "IN" : "OUT")
@@ -113,14 +113,42 @@ struct MappingsTableView: View {
                 .width(min: 70, ideal: 90)
 
                 TableColumn("Command", value: \.commandName) { entry in
-                    Text(entry.commandName)
-                        .font(.system(size: 12))
-                        .foregroundColor(AppThemeV2.Colors.stone100)
-                        .lineLimit(1)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .contentShape(Rectangle())
+                    HStack(spacing: AppThemeV2.Spacing.xs) {
+                        Text(entry.commandName)
+                            .font(.system(size: 12))
+                            .foregroundColor(AppThemeV2.Colors.stone100)
+                            .lineLimit(1)
+                            .layoutPriority(1)
+
+                        if let status = commandStatusLabel(for: entry) {
+                            Text(status)
+                                .font(.system(size: 8, weight: .semibold))
+                                .tracking(0.4)
+                                .foregroundColor(AppThemeV2.Colors.stone400)
+                                .padding(.horizontal, 4)
+                                .padding(.vertical, 2)
+                                .background(
+                                    Capsule().fill(AppThemeV2.Colors.stone700)
+                                )
+                                .fixedSize()
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .contentShape(Rectangle())
                 }
                 .width(min: 120, ideal: 180)
+
+                TableColumn("Comment", value: \.comment) { entry in
+                    Text(entry.comment)
+                        .font(.system(size: 12))
+                        .foregroundColor(AppThemeV2.Colors.stone300)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                        .help(entry.comment)
+                }
+                .width(min: 120, ideal: 220)
 
                 TableColumn("Type", value: \.controllerTypeSortKey) { entry in
                     Text(entry.controllerType.displayName)
@@ -311,6 +339,17 @@ struct MappingsTableView: View {
         }
         .onChange(of: selection) { oldSelection, newSelection in
             handleSelectionChange(oldSelection: oldSelection, newSelection: newSelection)
+        }
+    }
+
+    private func commandStatusLabel(for entry: MappingEntry) -> String? {
+        switch entry.commandDescriptor.verification {
+        case .verifiedTraktor441:
+            return nil
+        case .legacy:
+            return "LEGACY"
+        case .unknown:
+            return "UNKNOWN"
         }
     }
 

@@ -30,6 +30,11 @@ struct EncoderModeDraft: Equatable, Sendable {
     }
 }
 
+private struct DeviceCommentOption: Identifiable, Hashable {
+    let id: Device.ID
+    let label: String
+}
+
 /// V2 styled settings panel
 struct SettingsPanelV2: View {
     @ObservedObject var document: TraktorMappingDocument
@@ -47,6 +52,10 @@ struct SettingsPanelV2: View {
 
     // Local state for editing
     @State private var comment: String = ""
+    @State private var batchCommentDraft: String = ""
+    @State private var selectedDeviceID: Device.ID?
+    @State private var deviceCommentDraft: String = ""
+    @State private var isDeviceCommentsExpanded: Bool = false
     @State private var assignment: TargetAssignment = .global
     @State private var controllerType: ControllerType = .button
     @State private var interactionMode: InteractionMode = .hold
@@ -83,6 +92,29 @@ struct SettingsPanelV2: View {
 
     private var isMultipleSelection: Bool {
         selectedMappings.count > 1
+    }
+
+    private var deviceCommentOptions: [DeviceCommentOption] {
+        let names = document.mappingFile.devices.map { device in
+            device.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                ? "Unnamed Device"
+                : device.name
+        }
+        let nameCounts = Dictionary(grouping: names, by: { $0 }).mapValues(\.count)
+        var ordinals: [String: Int] = [:]
+
+        return zip(document.mappingFile.devices, names).map { device, name in
+            ordinals[name, default: 0] += 1
+            let label = nameCounts[name, default: 0] > 1
+                ? "\(name) (\(ordinals[name, default: 0]))"
+                : name
+            return DeviceCommentOption(id: device.id, label: label)
+        }
+    }
+
+    private var selectedDevice: Device? {
+        guard let selectedDeviceID else { return nil }
+        return document.mappingFile.devices.first { $0.id == selectedDeviceID }
     }
 
     private var hasActiveListeningLease: Bool {
@@ -140,6 +172,9 @@ struct SettingsPanelV2: View {
                     } else if let entry = selectedEntry {
                         singleSelectionView(entry: entry)
                     }
+
+                    V2Divider()
+                    deviceCommentSection
                 }
                 .padding(.horizontal, AppThemeV2.Spacing.md)
                 .padding(.top, AppThemeV2.Spacing.sm)  // Less top padding to align with table headers
@@ -151,12 +186,23 @@ struct SettingsPanelV2: View {
         .onChange(of: selectedMappings) { _, _ in
             stopLearning()
             resetBatchAssignmentDraft()
+            batchCommentDraft = ""
         }
         .onChange(of: selectedEntry) { _, newEntry in
             loadEntryValues(newEntry)
         }
         .onChange(of: midiManager.activeListeningLease) { _, _ in
             resetLearningStateIfOwnershipWasLost()
+        }
+        .onChange(of: selectedDeviceID) { _, newDeviceID in
+            loadDeviceComment(for: newDeviceID)
+        }
+        .onChange(of: document.mappingFile.devices.map(\.id)) { _, _ in
+            synchronizeDeviceCommentSelection()
+        }
+        .onAppear {
+            loadEntryValues(selectedEntry)
+            synchronizeDeviceCommentSelection()
         }
         .onDisappear {
             stopLearning()
@@ -199,6 +245,26 @@ struct SettingsPanelV2: View {
                 Spacer()
             }
 
+            sectionLabel("COMMENT")
+            commentEditor(
+                text: $batchCommentDraft,
+                placeholder: "Comment for selected mappings...",
+                accessibilityLabel: "Comment for \(selectedMappings.count) selected mappings"
+            )
+            HStack {
+                Spacer()
+                V2SmallButton(
+                    label: "Apply to \(selectedMappings.count)",
+                    action: applyBatchComment
+                )
+                .disabled(isLocked)
+                .accessibilityLabel(
+                    "Apply comment to \(selectedMappings.count) selected mappings"
+                )
+            }
+
+            V2Divider()
+
             sectionLabel("MIDI ASSIGNMENT")
             batchMIDIAssignmentControls
 
@@ -237,11 +303,17 @@ struct SettingsPanelV2: View {
         // Comment
         VStack(alignment: .leading, spacing: AppThemeV2.Spacing.xs) {
             sectionLabel("COMMENT")
-            V2TextField(placeholder: "Add a comment...", text: $comment)
-                .disabled(isLocked)
-                .onChange(of: comment) { _, newValue in
-                    updateEntry { $0.comment = newValue }
-                }
+            commentEditor(
+                text: $comment,
+                placeholder: "Add a comment...",
+                accessibilityLabel: "Comment for 1 selected mapping"
+            )
+            HStack {
+                Spacer()
+                V2SmallButton(label: "Save", action: saveSingleMappingComment)
+                    .disabled(isLocked || comment == entry.comment)
+                    .accessibilityLabel("Save comment for 1 selected mapping")
+            }
         }
 
         V2Divider()
@@ -299,6 +371,63 @@ struct SettingsPanelV2: View {
         invertToggle
     }
 
+    // MARK: - Device Comment
+
+    private var deviceCommentSection: some View {
+        DisclosureGroup(isExpanded: $isDeviceCommentsExpanded) {
+            VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
+                if deviceCommentOptions.isEmpty {
+                    Text("No devices in this mapping file")
+                        .font(AppThemeV2.Typography.caption)
+                        .foregroundColor(AppThemeV2.Colors.stone500)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.vertical, AppThemeV2.Spacing.xs)
+                        .accessibilityLabel("No devices available for comments")
+                } else {
+                    V2FormRow(label: "Device") {
+                        Picker("Device", selection: $selectedDeviceID) {
+                            ForEach(deviceCommentOptions) { option in
+                                Text(option.label).tag(Optional(option.id))
+                            }
+                        }
+                        .labelsHidden()
+                        .pickerStyle(.menu)
+                        .disabled(isLocked)
+                        .accessibilityLabel(
+                            "Select 1 device from \(deviceCommentOptions.count) devices"
+                        )
+                    }
+
+                    commentEditor(
+                        text: $deviceCommentDraft,
+                        placeholder: "Add a device comment...",
+                        accessibilityLabel: "Comment for 1 selected device of \(deviceCommentOptions.count)"
+                    )
+
+                    HStack {
+                        Spacer()
+                        V2SmallButton(label: "Save", action: saveDeviceComment)
+                            .disabled(
+                                isLocked
+                                    || selectedDevice == nil
+                                    || deviceCommentDraft == selectedDevice?.comment
+                            )
+                            .accessibilityLabel(
+                                "Save comment for 1 selected device of \(deviceCommentOptions.count)"
+                            )
+                    }
+                }
+            }
+            .padding(.top, AppThemeV2.Spacing.sm)
+        } label: {
+            sectionLabel("DEVICE COMMENT")
+        }
+        .tint(AppThemeV2.Colors.stone400)
+        .accessibilityLabel(
+            "Device comments, \(document.mappingFile.devices.count) devices"
+        )
+    }
+
     // MARK: - Reusable Controls
 
     private func sectionLabel(_ text: String) -> some View {
@@ -307,6 +436,40 @@ struct SettingsPanelV2: View {
             .tracking(1)
             .foregroundColor(AppThemeV2.Colors.amber)
             .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func commentEditor(
+        text: Binding<String>,
+        placeholder: String,
+        accessibilityLabel: String
+    ) -> some View {
+        ZStack(alignment: .topLeading) {
+            TextEditor(text: text)
+                .font(AppThemeV2.Typography.body)
+                .foregroundColor(AppThemeV2.Colors.stone200)
+                .scrollContentBackground(.hidden)
+                .padding(4)
+
+            if text.wrappedValue.isEmpty {
+                Text(placeholder)
+                    .font(AppThemeV2.Typography.body)
+                    .foregroundColor(AppThemeV2.Colors.stone500)
+                    .padding(.horizontal, 9)
+                    .padding(.vertical, 8)
+                    .allowsHitTesting(false)
+            }
+        }
+        .frame(minHeight: 72, maxHeight: 140)
+        .background(
+            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                .fill(AppThemeV2.Colors.stone700)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                .stroke(AppThemeV2.Colors.stone600, lineWidth: 1)
+        )
+        .disabled(isLocked)
+        .accessibilityLabel(accessibilityLabel)
     }
 
     private var assignmentPicker: some View {
@@ -744,6 +907,77 @@ struct SettingsPanelV2: View {
         batchAssignmentKind = .unassigned
         batchChannel = 1
         batchNumber = 0
+    }
+
+    private func saveSingleMappingComment() {
+        guard !isLocked,
+              selectedMappings.count == 1,
+              let selectedID = selectedMappings.first else { return }
+
+        _ = document.performUndoableMutation(
+            actionName: "Edit Mapping Comment",
+            undoManager: undoManager
+        ) { file in
+            MappingBatchEditor.applyComment(comment, to: [selectedID], in: &file)
+        }
+    }
+
+    private func applyBatchComment() {
+        guard !isLocked, isMultipleSelection else { return }
+
+        _ = document.performUndoableMutation(
+            actionName: "Apply Mapping Comment",
+            undoManager: undoManager
+        ) { file in
+            MappingBatchEditor.applyComment(
+                batchCommentDraft,
+                to: selectedMappings,
+                in: &file
+            )
+        }
+    }
+
+    private func saveDeviceComment() {
+        guard !isLocked, let selectedDeviceID else { return }
+
+        _ = document.performUndoableMutation(
+            actionName: "Edit Device Comment",
+            undoManager: undoManager
+        ) { file in
+            MappingBatchEditor.applyDeviceComment(
+                deviceCommentDraft,
+                to: selectedDeviceID,
+                in: &file
+            )
+        }
+    }
+
+    private func synchronizeDeviceCommentSelection() {
+        let deviceIDs = document.mappingFile.devices.map(\.id)
+        guard !deviceIDs.isEmpty else {
+            selectedDeviceID = nil
+            deviceCommentDraft = ""
+            return
+        }
+
+        if let selectedDeviceID, deviceIDs.contains(selectedDeviceID) {
+            return
+        }
+
+        selectedDeviceID = deviceIDs[0]
+        loadDeviceComment(for: deviceIDs[0])
+    }
+
+    private func loadDeviceComment(for deviceID: Device.ID?) {
+        guard let deviceID,
+              let device = document.mappingFile.devices.first(where: {
+                  $0.id == deviceID
+              }) else {
+            deviceCommentDraft = ""
+            return
+        }
+
+        deviceCommentDraft = device.comment
     }
 
     private func applyBatchAssignmentDraft() {
