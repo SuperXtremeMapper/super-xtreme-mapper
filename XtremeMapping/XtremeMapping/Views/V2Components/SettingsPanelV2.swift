@@ -30,6 +30,28 @@ struct EncoderModeDraft: Equatable, Sendable {
     }
 }
 
+struct CommentDraftState<SelectionID: Equatable> {
+    var text: String = ""
+
+    private var reconciledSelectionID: SelectionID?
+    private var reconciledPersistedComment: String?
+    private var hasReconciled = false
+
+    mutating func reconcile(
+        selectionID: SelectionID?,
+        persistedComment: String?
+    ) {
+        guard !hasReconciled
+                || reconciledSelectionID != selectionID
+                || reconciledPersistedComment != persistedComment else { return }
+
+        reconciledSelectionID = selectionID
+        reconciledPersistedComment = persistedComment
+        hasReconciled = true
+        text = persistedComment ?? ""
+    }
+}
+
 private struct DeviceCommentOption: Identifiable, Hashable {
     let id: Device.ID
     let label: String
@@ -51,10 +73,10 @@ struct SettingsPanelV2: View {
     @Environment(\.undoManager) var undoManager
 
     // Local state for editing
-    @State private var comment: String = ""
+    @State private var mappingCommentDraft = CommentDraftState<MappingEntry.ID>()
     @State private var batchCommentDraft: String = ""
     @State private var selectedDeviceID: Device.ID?
-    @State private var deviceCommentDraft: String = ""
+    @State private var deviceCommentDraft = CommentDraftState<Device.ID>()
     @State private var isDeviceCommentsExpanded: Bool = false
     @State private var assignment: TargetAssignment = .global
     @State private var controllerType: ControllerType = .button
@@ -195,7 +217,10 @@ struct SettingsPanelV2: View {
             resetLearningStateIfOwnershipWasLost()
         }
         .onChange(of: selectedDeviceID) { _, newDeviceID in
-            loadDeviceComment(for: newDeviceID)
+            reconcileDeviceComment(for: newDeviceID)
+        }
+        .onChange(of: selectedDevice?.comment) { _, _ in
+            reconcileDeviceComment(for: selectedDeviceID)
         }
         .onChange(of: document.mappingFile.devices.map(\.id)) { _, _ in
             synchronizeDeviceCommentSelection()
@@ -304,14 +329,14 @@ struct SettingsPanelV2: View {
         VStack(alignment: .leading, spacing: AppThemeV2.Spacing.xs) {
             sectionLabel("COMMENT")
             commentEditor(
-                text: $comment,
+                text: $mappingCommentDraft.text,
                 placeholder: "Add a comment...",
                 accessibilityLabel: "Comment for 1 selected mapping"
             )
             HStack {
                 Spacer()
                 V2SmallButton(label: "Save", action: saveSingleMappingComment)
-                    .disabled(isLocked || comment == entry.comment)
+                    .disabled(isLocked || mappingCommentDraft.text == entry.comment)
                     .accessibilityLabel("Save comment for 1 selected mapping")
             }
         }
@@ -399,7 +424,7 @@ struct SettingsPanelV2: View {
                     }
 
                     commentEditor(
-                        text: $deviceCommentDraft,
+                        text: $deviceCommentDraft.text,
                         placeholder: "Add a device comment...",
                         accessibilityLabel: "Comment for 1 selected device of \(deviceCommentOptions.count)"
                     )
@@ -410,7 +435,7 @@ struct SettingsPanelV2: View {
                             .disabled(
                                 isLocked
                                     || selectedDevice == nil
-                                    || deviceCommentDraft == selectedDevice?.comment
+                                    || deviceCommentDraft.text == selectedDevice?.comment
                             )
                             .accessibilityLabel(
                                 "Save comment for 1 selected device of \(deviceCommentOptions.count)"
@@ -876,8 +901,11 @@ struct SettingsPanelV2: View {
     // MARK: - Helper Methods
 
     private func loadEntryValues(_ entry: MappingEntry?) {
+        mappingCommentDraft.reconcile(
+            selectionID: entry?.id,
+            persistedComment: entry?.comment
+        )
         guard let entry = entry else { return }
-        comment = entry.comment
         assignment = entry.assignment
         controllerType = entry.controllerType
         interactionMode = entry.interactionMode
@@ -914,11 +942,20 @@ struct SettingsPanelV2: View {
               selectedMappings.count == 1,
               let selectedID = selectedMappings.first else { return }
 
-        _ = document.performUndoableMutation(
+        let savedComment = mappingCommentDraft.text
+        let didSave = document.performUndoableMutation(
             actionName: "Edit Mapping Comment",
             undoManager: undoManager
         ) { file in
-            MappingBatchEditor.applyComment(comment, to: [selectedID], in: &file)
+            MappingBatchEditor.applyComment(savedComment, to: [selectedID], in: &file)
+            return true
+        } ?? false
+
+        if didSave {
+            mappingCommentDraft.reconcile(
+                selectionID: selectedID,
+                persistedComment: savedComment
+            )
         }
     }
 
@@ -940,14 +977,23 @@ struct SettingsPanelV2: View {
     private func saveDeviceComment() {
         guard !isLocked, let selectedDeviceID else { return }
 
-        _ = document.performUndoableMutation(
+        let savedComment = deviceCommentDraft.text
+        let didSave = document.performUndoableMutation(
             actionName: "Edit Device Comment",
             undoManager: undoManager
         ) { file in
             MappingBatchEditor.applyDeviceComment(
-                deviceCommentDraft,
+                savedComment,
                 to: selectedDeviceID,
                 in: &file
+            )
+            return true
+        } ?? false
+
+        if didSave {
+            deviceCommentDraft.reconcile(
+                selectionID: selectedDeviceID,
+                persistedComment: savedComment
             )
         }
     }
@@ -956,28 +1002,27 @@ struct SettingsPanelV2: View {
         let deviceIDs = document.mappingFile.devices.map(\.id)
         guard !deviceIDs.isEmpty else {
             selectedDeviceID = nil
-            deviceCommentDraft = ""
+            reconcileDeviceComment(for: nil)
             return
         }
 
         if let selectedDeviceID, deviceIDs.contains(selectedDeviceID) {
+            reconcileDeviceComment(for: selectedDeviceID)
             return
         }
 
         selectedDeviceID = deviceIDs[0]
-        loadDeviceComment(for: deviceIDs[0])
+        reconcileDeviceComment(for: deviceIDs[0])
     }
 
-    private func loadDeviceComment(for deviceID: Device.ID?) {
-        guard let deviceID,
-              let device = document.mappingFile.devices.first(where: {
-                  $0.id == deviceID
-              }) else {
-            deviceCommentDraft = ""
-            return
-        }
-
-        deviceCommentDraft = device.comment
+    private func reconcileDeviceComment(for deviceID: Device.ID?) {
+        let persistedComment = document.mappingFile.devices.first(where: {
+            $0.id == deviceID
+        })?.comment
+        deviceCommentDraft.reconcile(
+            selectionID: deviceID,
+            persistedComment: persistedComment
+        )
     }
 
     private func applyBatchAssignmentDraft() {

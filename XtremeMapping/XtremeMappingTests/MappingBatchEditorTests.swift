@@ -9,6 +9,37 @@ import XCTest
 @MainActor
 final class MappingBatchEditorTests: XCTestCase {
 
+    func testCommentDraftPreservesUnsavedTextForSamePersistedSelection() {
+        var state = CommentDraftState<Int>()
+        state.reconcile(selectionID: 7, persistedComment: "stored comment")
+        state.text = "unsaved local edit"
+
+        state.reconcile(selectionID: 7, persistedComment: "stored comment")
+
+        XCTAssertEqual(state.text, "unsaved local edit")
+    }
+
+    func testCommentDraftReloadsWhenPersistedCommentChangesForSameSelection() {
+        var state = CommentDraftState<Int>()
+        state.reconcile(selectionID: 7, persistedComment: "before save")
+        state.text = "saved comment"
+        state.reconcile(selectionID: 7, persistedComment: "saved comment")
+
+        state.reconcile(selectionID: 7, persistedComment: "before save")
+
+        XCTAssertEqual(state.text, "before save")
+    }
+
+    func testCommentDraftReloadsWhenSelectionIDChanges() {
+        var state = CommentDraftState<Int>()
+        state.reconcile(selectionID: 7, persistedComment: "shared persisted text")
+        state.text = "unsaved local edit"
+
+        state.reconcile(selectionID: 8, persistedComment: "shared persisted text")
+
+        XCTAssertEqual(state.text, "shared persisted text")
+    }
+
     func testStaleSettingsLeaseCannotStopOrClearReplacementListener() throws {
         var deliveries: [String] = []
         var ownership = MIDIInputManager.ListenerOwnership()
