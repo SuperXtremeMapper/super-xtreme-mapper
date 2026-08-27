@@ -32,7 +32,8 @@ final class MIDIInputManager: ObservableObject {
     }
 
     /// Pure ownership state shared by the CoreMIDI manager and its tests.
-    /// Legacy callback/start/stop calls intentionally displace a leased owner.
+    /// A new legacy callback intentionally displaces a leased owner, while stale
+    /// legacy cleanup cannot clear or stop a newer leased owner.
     struct ListenerOwnership {
         typealias Callback = (MIDIMessage) -> Void
 
@@ -67,6 +68,7 @@ final class MIDIInputManager: ObservableObject {
         }
 
         mutating func replaceCallback(_ callback: Callback?) {
+            guard callback != nil || activeLease == nil else { return }
             activeLease = nil
             self.callback = callback
         }
@@ -80,9 +82,11 @@ final class MIDIInputManager: ObservableObject {
             isListening = true
         }
 
-        mutating func stopLegacyListening() {
-            activeLease = nil
+        @discardableResult
+        mutating func stopLegacyListening() -> Bool {
+            guard activeLease == nil else { return false }
             isListening = false
+            return true
         }
 
         mutating func failCurrentListening() {
@@ -263,7 +267,7 @@ final class MIDIInputManager: ObservableObject {
 
     /// Stop listening for a legacy Wizard/Voice owner.
     func stopListening() {
-        listenerOwnership.stopLegacyListening()
+        guard listenerOwnership.stopLegacyListening() else { return }
         disconnectFromMIDISources()
         publishListenerOwnership()
     }

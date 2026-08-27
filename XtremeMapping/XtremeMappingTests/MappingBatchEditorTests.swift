@@ -27,6 +27,35 @@ final class MappingBatchEditorTests: XCTestCase {
         XCTAssertEqual(deliveries, ["replacement"])
     }
 
+    func testStaleLegacyCleanupCannotStopNewerLeasedListener() throws {
+        var deliveries: [String] = []
+        var ownership = MIDIInputManager.ListenerOwnership()
+
+        ownership.replaceCallback { _ in deliveries.append("legacy") }
+        ownership.startLegacyListening()
+        ownership.stopLegacyListening()
+        ownership.replaceCallback(nil)
+
+        let settingsLease = try XCTUnwrap(
+            ownership.acquire { _ in deliveries.append("settings") }
+        )
+        XCTAssertTrue(ownership.startLeasedListening(using: settingsLease))
+
+        ownership.stopLegacyListening()
+        ownership.replaceCallback(nil)
+        ownership.deliver(MIDIMessage(channel: 1, note: nil, cc: 0, value: 0))
+
+        XCTAssertTrue(ownership.owns(settingsLease))
+        XCTAssertEqual(ownership.activeLease, settingsLease)
+        XCTAssertTrue(ownership.isListening)
+        XCTAssertEqual(deliveries, ["settings"])
+
+        XCTAssertTrue(ownership.release(settingsLease))
+        XCTAssertFalse(ownership.isListening)
+        XCTAssertNil(ownership.activeLease)
+        XCTAssertFalse(ownership.hasCallback)
+    }
+
     func testSharedMIDIAssignmentChangesOnlySelectedRows() throws {
         let first = MappingEntry.fullFieldSentinel
         let second = MappingEntry(
