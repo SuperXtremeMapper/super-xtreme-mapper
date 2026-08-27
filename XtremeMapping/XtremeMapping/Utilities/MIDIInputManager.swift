@@ -23,17 +23,114 @@ struct MIDIMessage: Equatable {
 /// Manages MIDI input listening for the Learn feature
 @MainActor
 final class MIDIInputManager: ObservableObject {
+    struct ListeningLease: Hashable, Sendable {
+        fileprivate let id: UUID
+
+        fileprivate init() {
+            id = UUID()
+        }
+    }
+
+    /// Pure ownership state shared by the CoreMIDI manager and its tests.
+    /// Legacy callback/start/stop calls intentionally displace a leased owner.
+    struct ListenerOwnership {
+        typealias Callback = (MIDIMessage) -> Void
+
+        private(set) var isListening = false
+        private(set) var activeLease: ListeningLease?
+        private(set) var callback: Callback?
+
+        var hasCallback: Bool {
+            callback != nil
+        }
+
+        mutating func acquire(_ callback: @escaping Callback) -> ListeningLease? {
+            guard !isListening, self.callback == nil else { return nil }
+
+            let lease = ListeningLease()
+            activeLease = lease
+            self.callback = callback
+            return lease
+        }
+
+        mutating func startLeasedListening(using lease: ListeningLease) -> Bool {
+            guard activeLease == lease, !isListening else { return false }
+            isListening = true
+            return true
+        }
+
+        mutating func failLeasedListening(using lease: ListeningLease) {
+            guard activeLease == lease else { return }
+            activeLease = nil
+            callback = nil
+            isListening = false
+        }
+
+        mutating func replaceCallback(_ callback: Callback?) {
+            activeLease = nil
+            self.callback = callback
+        }
+
+        mutating func invalidateLease() {
+            activeLease = nil
+        }
+
+        mutating func startLegacyListening() {
+            activeLease = nil
+            isListening = true
+        }
+
+        mutating func stopLegacyListening() {
+            activeLease = nil
+            isListening = false
+        }
+
+        mutating func failCurrentListening() {
+            if activeLease != nil {
+                callback = nil
+            }
+            activeLease = nil
+            isListening = false
+        }
+
+        @discardableResult
+        mutating func release(_ lease: ListeningLease) -> Bool {
+            guard activeLease == lease else { return false }
+            activeLease = nil
+            callback = nil
+            isListening = false
+            return true
+        }
+
+        func owns(_ lease: ListeningLease) -> Bool {
+            activeLease == lease && isListening
+        }
+
+        func deliver(_ message: MIDIMessage) {
+            callback?(message)
+        }
+    }
+
     static let shared = MIDIInputManager()
 
     @Published private(set) var isListening = false
     @Published private(set) var lastMessage: MIDIMessage?
+    @Published private(set) var activeListeningLease: ListeningLease?
+    @Published private(set) var hasMIDIReceiver = false
 
     private var midiClient: MIDIClientRef = 0
     private var inputPort: MIDIPortRef = 0
     private var connectedSources: [MIDIEndpointRef] = []
+    private var listenerOwnership = ListenerOwnership()
 
     // Callback for when a MIDI message is received during learn mode
-    var onMIDIReceived: ((MIDIMessage) -> Void)?
+    var onMIDIReceived: ((MIDIMessage) -> Void)? {
+        get { listenerOwnership.callback }
+        set {
+            listenerOwnership.replaceCallback(newValue)
+            publishListenerOwnership()
+        }
+    }
 
     // Callback for when the MIDI setup changes (devices connected/disconnected)
     var onSetupChanged: (() -> Void)?
@@ -79,16 +176,13 @@ final class MIDIInputManager: ObservableObject {
         }
     }
 
-    /// Start listening to all MIDI inputs
-    func startListening() {
-        guard !isListening else { return }
-
+    private func connectToMIDISources() -> Bool {
         // Recreate port if needed
         createInputPort()
 
         guard inputPort != 0 else {
             print("No MIDI input port available")
-            return
+            return false
         }
 
         // Connect to all available MIDI sources
@@ -105,28 +199,83 @@ final class MIDIInputManager: ObservableObject {
             }
         }
 
-        isListening = true
         lastMessage = nil
+        return true
     }
 
-    /// Stop listening to MIDI inputs
-    func stopListening() {
-        guard isListening else { return }
-
-        // Disconnect all sources
+    private func disconnectFromMIDISources() {
         for source in connectedSources {
             MIDIPortDisconnectSource(inputPort, source)
         }
         connectedSources.removeAll()
+    }
 
-        isListening = false
+    private func publishListenerOwnership() {
+        isListening = listenerOwnership.isListening
+        activeListeningLease = listenerOwnership.activeLease
+        hasMIDIReceiver = listenerOwnership.hasCallback
+    }
+
+    var isListenerIdle: Bool {
+        !listenerOwnership.isListening && !listenerOwnership.hasCallback
+    }
+
+    func acquireListeningLease(
+        onMIDIReceived: @escaping (MIDIMessage) -> Void
+    ) -> ListeningLease? {
+        guard let lease = listenerOwnership.acquire(onMIDIReceived) else {
+            return nil
+        }
+        publishListenerOwnership()
+
+        guard connectToMIDISources(),
+              listenerOwnership.startLeasedListening(using: lease) else {
+            listenerOwnership.failLeasedListening(using: lease)
+            disconnectFromMIDISources()
+            publishListenerOwnership()
+            return nil
+        }
+
+        publishListenerOwnership()
+        return lease
+    }
+
+    func ownsListeningLease(_ lease: ListeningLease) -> Bool {
+        listenerOwnership.owns(lease)
+    }
+
+    func releaseListeningLease(_ lease: ListeningLease) {
+        guard listenerOwnership.release(lease) else { return }
+        disconnectFromMIDISources()
+        publishListenerOwnership()
+    }
+
+    /// Start listening to all MIDI inputs for a legacy Wizard/Voice owner.
+    func startListening() {
+        listenerOwnership.invalidateLease()
+        publishListenerOwnership()
+        guard !listenerOwnership.isListening else { return }
+
+        guard connectToMIDISources() else { return }
+        listenerOwnership.startLegacyListening()
+        publishListenerOwnership()
+    }
+
+    /// Stop listening for a legacy Wizard/Voice owner.
+    func stopListening() {
+        listenerOwnership.stopLegacyListening()
+        disconnectFromMIDISources()
+        publishListenerOwnership()
     }
 
     private func handleSetupChange() {
         // If we're listening, reconnect to any new sources
-        if isListening {
-            stopListening()
-            startListening()
+        if listenerOwnership.isListening {
+            disconnectFromMIDISources()
+            if !connectToMIDISources() {
+                listenerOwnership.failCurrentListening()
+                publishListenerOwnership()
+            }
         }
         onSetupChanged?()
     }
@@ -147,7 +296,7 @@ final class MIDIInputManager: ObservableObject {
                 if let message = parseMIDIBytes(status: status, data1: data1, data2: data2) {
                     Task { @MainActor in
                         self.lastMessage = message
-                        self.onMIDIReceived?(message)
+                        self.listenerOwnership.deliver(message)
                     }
                 }
             }

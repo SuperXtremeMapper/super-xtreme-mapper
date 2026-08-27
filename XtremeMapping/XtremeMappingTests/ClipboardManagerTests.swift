@@ -123,6 +123,7 @@ final class ClipboardManagerTests: XCTestCase {
         XCTAssertNil(targetEntry.midiCC)
     }
 
+    @MainActor
     func testMappedToClipboardPastesOneExclusiveAssignmentAndPreservesOtherFields() throws {
         let assignment = try MIDIAssignment.controlChange(channel: 16, number: 0)
         let source = MappingEntry(commandID: 100, midiAssignment: assignment)

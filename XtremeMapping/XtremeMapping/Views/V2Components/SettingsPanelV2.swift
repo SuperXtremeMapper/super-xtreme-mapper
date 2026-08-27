@@ -63,6 +63,7 @@ struct SettingsPanelV2: View {
     @State private var batchChannel: Int = 1
     @State private var batchNumber: Int = 0
     @State private var isLearning: Bool = false
+    @State private var midiListeningLease: MIDIInputManager.ListeningLease?
     @State private var hasLearnedMIDI: Bool = false  // True when MIDI received during current learn session
     @State private var learnedCCValues: [Int] = []   // Track CC values to detect fader vs encoder
     @StateObject private var midiManager = MIDIInputManager.shared
@@ -84,8 +85,13 @@ struct SettingsPanelV2: View {
         selectedMappings.count > 1
     }
 
+    private var hasActiveListeningLease: Bool {
+        guard let midiListeningLease else { return false }
+        return midiManager.ownsListeningLease(midiListeningLease)
+    }
+
     private var isLearnOwnedElsewhere: Bool {
-        !isLearning && (midiManager.isListening || midiManager.onMIDIReceived != nil)
+        !hasActiveListeningLease && !midiManager.isListenerIdle
     }
 
     private var availableInteractionModes: [InteractionMode] {
@@ -148,6 +154,9 @@ struct SettingsPanelV2: View {
         }
         .onChange(of: selectedEntry) { _, newEntry in
             loadEntryValues(newEntry)
+        }
+        .onChange(of: midiManager.activeListeningLease) { _, _ in
+            resetLearningStateIfOwnershipWasLost()
         }
         .onDisappear {
             stopLearning()
@@ -546,35 +555,53 @@ struct SettingsPanelV2: View {
         guard !isLocked,
               !selectedMappings.isEmpty,
               !isLearning,
-              !midiManager.isListening,
-              midiManager.onMIDIReceived == nil else { return }
+              midiListeningLease == nil else { return }
 
-        isLearning = true
         hasLearnedMIDI = false  // Reset when starting a new learn session
         learnedCCValues = []    // Reset value tracking
-        midiManager.onMIDIReceived = { [self] message in
-            handleMIDILearned(message)
+        guard let lease = midiManager.acquireListeningLease(
+            onMIDIReceived: { [self] message in
+                handleMIDILearned(message)
+            }
+        ) else {
+            return
         }
-        midiManager.startListening()
 
-        if !midiManager.isListening {
-            midiManager.onMIDIReceived = nil
-            isLearning = false
-        }
+        midiListeningLease = lease
+        isLearning = true
     }
 
     private func stopLearning() {
-        guard isLearning else { return }
+        guard isLearning || midiListeningLease != nil else { return }
 
+        if let lease = midiListeningLease,
+           midiManager.ownsListeningLease(lease) {
+            midiManager.releaseListeningLease(lease)
+        }
+
+        midiListeningLease = nil
+        resetLearningUIState()
+    }
+
+    private func resetLearningUIState() {
         isLearning = false
         hasLearnedMIDI = false  // Reset when stopping learn
         learnedCCValues = []    // Reset value tracking
-        midiManager.onMIDIReceived = nil
-        midiManager.stopListening()
+    }
+
+    private func resetLearningStateIfOwnershipWasLost() {
+        guard isLearning,
+              let lease = midiListeningLease,
+              !midiManager.ownsListeningLease(lease) else { return }
+
+        midiListeningLease = nil
+        resetLearningUIState()
     }
 
     private func handleMIDILearned(_ message: MIDIMessage) {
         guard isLearning,
+              let lease = midiListeningLease,
+              midiManager.ownsListeningLease(lease),
               let learnedAssignment = MIDIAssignment(learnMessage: message) else {
             return
         }

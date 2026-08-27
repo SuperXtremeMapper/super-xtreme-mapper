@@ -6,7 +6,26 @@
 import XCTest
 @testable import XtremeMapping
 
+@MainActor
 final class MappingBatchEditorTests: XCTestCase {
+
+    func testStaleSettingsLeaseCannotStopOrClearReplacementListener() throws {
+        var deliveries: [String] = []
+        var ownership = MIDIInputManager.ListenerOwnership()
+        let settingsLease = try XCTUnwrap(
+            ownership.acquire { _ in deliveries.append("settings") }
+        )
+        XCTAssertTrue(ownership.startLeasedListening(using: settingsLease))
+
+        ownership.replaceCallback { _ in deliveries.append("replacement") }
+        ownership.startLegacyListening()
+
+        XCTAssertFalse(ownership.release(settingsLease))
+        ownership.deliver(MIDIMessage(channel: 1, note: 60, cc: nil, value: 100))
+        XCTAssertTrue(ownership.isListening)
+        XCTAssertNil(ownership.activeLease)
+        XCTAssertEqual(deliveries, ["replacement"])
+    }
 
     func testSharedMIDIAssignmentChangesOnlySelectedRows() throws {
         let first = MappingEntry.fullFieldSentinel
@@ -168,7 +187,6 @@ final class MappingBatchEditorTests: XCTestCase {
         XCTAssertEqual(file.devices[0].mappings[1], untouched)
     }
 
-    @MainActor
     func testSharedAssignmentIsOneUndoableDocumentMutation() throws {
         let first = MappingEntry(commandID: 100, midiChannel: 1, midiNote: 60)
         let second = MappingEntry(commandID: 201, midiChannel: 2, midiCC: 7)
