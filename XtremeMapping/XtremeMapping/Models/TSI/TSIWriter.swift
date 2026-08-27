@@ -709,15 +709,16 @@ public struct TSIWriter: Sendable {
     /// DCDT/DCBM entries and write the unassigned sentinel binding ID, so an
     /// unassigned mapping round-trips unassigned.
     private func midiControlName(for mapping: MappingEntry) -> String? {
-        let channel = String(format: "Ch%02d", mapping.midiChannel)
+        let assignment = mapping.midiAssignment
+        let channel = String(format: "Ch%02d", assignment.channel)
 
-        if let cc = mapping.midiCC {
-            return String(format: "%@.CC.%03d", channel, cc)
-        } else if let note = mapping.midiNote {
-            let noteName = midiNoteToName(note)
-            return "\(channel).Note.\(noteName)"
-        } else {
+        switch assignment.kind {
+        case .unassigned:
             return nil
+        case .note:
+            return "\(channel).Note.\(midiNoteToName(assignment.number!))"
+        case .controlChange:
+            return String(format: "%@.CC.%03d", channel, assignment.number!)
         }
     }
 

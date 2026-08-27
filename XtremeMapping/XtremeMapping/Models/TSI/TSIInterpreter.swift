@@ -585,12 +585,12 @@ struct TSIInterpreter {
         default: controllerType = .button
         }
 
-        // Parse MIDI info from control name (unassigned mappings have none)
-        let (channel, noteOrCC, isCc): (Int, Int?, Bool)
+        // Parse one validated MIDI assignment from the bound control name.
+        let midiAssignment: MIDIAssignment
         if let midiControlName {
-            (channel, noteOrCC, isCc) = try parseMidiControlName(midiControlName)
+            midiAssignment = try parseMidiControlName(midiControlName)
         } else {
-            (channel, noteOrCC, isCc) = (1, nil, false)
+            midiAssignment = try MIDIAssignment.unassigned(channel: 1)
         }
 
         // Map target assignment per TSI encoding. Remix-slot commands overload
@@ -641,9 +641,7 @@ struct TSIInterpreter {
             ioType: ioType,
             assignment: assignment,
             interactionMode: interactionMode,
-            midiChannel: channel,
-            midiNote: isCc ? nil : noteOrCC,
-            midiCC: isCc ? noteOrCC : nil,
+            midiAssignment: midiAssignment,
             modifier1Condition: modifier1,
             modifier2Condition: modifier2,
             comment: cmadSettings.comment,
@@ -840,57 +838,60 @@ struct TSIInterpreter {
 
     // MARK: - MIDI Control Name Parsing
 
-    /// Parses a MIDI control name like "Ch01.CC.100" or "Ch09.Note.A#2"
-    /// Returns (channel, noteOrCCNumber, isCC)
+    /// Parses a MIDI control name like "Ch01.CC.100" or "Ch09.Note.A#2".
     ///
     /// Names come from the file's DCBM list. A name that doesn't parse used
     /// to fall back to (channel 1, no number) — which the next save would
     /// write out as an UNASSIGNED mapping, erasing the user's MIDI
     /// assignment. Unrecognized names now throw instead.
-    private static func parseMidiControlName(_ name: String) throws -> (Int, Int?, Bool) {
-        // Channel is required: "Ch" prefix, digits, then "."
-        guard let chRange = name.range(of: "Ch"),
-              let dotRange = name.range(of: ".", range: chRange.upperBound..<name.endIndex),
-              let channel = Int(name[chRange.upperBound..<dotRange.lowerBound]) else {
+    private static func parseMidiControlName(_ name: String) throws -> MIDIAssignment {
+        let components = name.split(separator: ".", omittingEmptySubsequences: false)
+        guard components.count == 3,
+              components[0].hasPrefix("Ch"),
+              components[0].count == 4 else {
             throw TSIInterpreterError.unrecognizedMidiControl(name: name)
         }
 
-        // CC number or note name is required
-        if let ccRange = name.range(of: ".CC.") {
-            guard let cc = Int(name[ccRange.upperBound...]) else {
+        let channelText = components[0].dropFirst(2)
+        guard channelText.allSatisfy(\.isNumber), let channel = Int(channelText) else {
+            throw TSIInterpreterError.unrecognizedMidiControl(name: name)
+        }
+
+        do {
+            switch components[1] {
+            case "CC":
+                let controlText = components[2]
+                guard controlText.count == 3,
+                      controlText.allSatisfy(\.isNumber),
+                      let cc = Int(controlText) else {
+                    throw TSIInterpreterError.unrecognizedMidiControl(name: name)
+                }
+                return try .controlChange(channel: channel, number: cc)
+            case "Note":
+                guard let note = midiNoteNumber(from: String(components[2])) else {
+                    throw TSIInterpreterError.unrecognizedMidiControl(name: name)
+                }
+                return try .note(channel: channel, number: note)
+            default:
                 throw TSIInterpreterError.unrecognizedMidiControl(name: name)
             }
-            return (channel, cc, true)
+        } catch is MIDIAssignment.ValidationError {
+            throw TSIInterpreterError.unrecognizedMidiControl(name: name)
         }
-        if let noteRange = name.range(of: ".Note.") {
-            guard let note = midiNoteNumber(from: String(name[noteRange.upperBound...])) else {
-                throw TSIInterpreterError.unrecognizedMidiControl(name: name)
-            }
-            return (channel, note, false)
-        }
-        throw TSIInterpreterError.unrecognizedMidiControl(name: name)
     }
 
     /// Converts a note name like "A#2" to MIDI note number
     private static func midiNoteNumber(from noteName: String) -> Int? {
         let noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 
-        var note = noteName
-        var octave = 0
-
-        // Extract octave from end
-        while let lastChar = note.last, lastChar.isNumber {
-            octave = Int(String(lastChar))! + octave * 10
-            note.removeLast()
+        guard let first = noteName.first, ("A"..."G").contains(String(first)) else {
+            return nil
         }
-
-        // Handle negative octaves (like -1)
-        if note.last == "-" {
-            octave = -octave
-            note.removeLast()
-        }
-
-        // Find note index
+        let accidentalLength = noteName.dropFirst().first == "#" ? 1 : 0
+        let noteLength = 1 + accidentalLength
+        let note = String(noteName.prefix(noteLength))
+        let octaveText = String(noteName.dropFirst(noteLength))
+        guard !octaveText.isEmpty, let octave = Int(octaveText) else { return nil }
         guard let noteIndex = noteNames.firstIndex(of: note) else { return nil }
 
         // MIDI note: (octave + 1) * 12 + noteIndex

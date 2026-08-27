@@ -41,14 +41,55 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
     /// How the control interacts with the command (toggle, hold, direct, etc.)
     var interactionMode: InteractionMode
 
-    /// MIDI channel (1-16)
-    var midiChannel: Int
+    /// The mapping's exclusive, validated MIDI state.
+    var midiAssignment: MIDIAssignment
 
-    /// MIDI note number (0-127), nil if using CC
-    var midiNote: Int?
+    /// MIDI channel (1-16). Retained as a source-compatible accessor.
+    var midiChannel: Int {
+        get { midiAssignment.channel }
+        set {
+            do {
+                midiAssignment = try midiAssignment.replacingChannel(with: newValue)
+            } catch {
+                preconditionFailure("Invalid MIDI channel: \(newValue)")
+            }
+        }
+    }
 
-    /// MIDI CC number (0-127), nil if using Note
-    var midiCC: Int?
+    /// MIDI note number (0-127), nil if using CC. Setting a note clears CC.
+    var midiNote: Int? {
+        get { midiAssignment.note }
+        set {
+            do {
+                if let newValue {
+                    midiAssignment = try .note(channel: midiAssignment.channel, number: newValue)
+                } else if midiAssignment.kind == .note {
+                    midiAssignment = try .unassigned(channel: midiAssignment.channel)
+                }
+            } catch {
+                preconditionFailure("Invalid MIDI note: \(String(describing: newValue))")
+            }
+        }
+    }
+
+    /// MIDI CC number (0-127), nil if using Note. Setting a CC clears Note.
+    var midiCC: Int? {
+        get { midiAssignment.cc }
+        set {
+            do {
+                if let newValue {
+                    midiAssignment = try .controlChange(
+                        channel: midiAssignment.channel,
+                        number: newValue
+                    )
+                } else if midiAssignment.kind == .controlChange {
+                    midiAssignment = try .unassigned(channel: midiAssignment.channel)
+                }
+            } catch {
+                preconditionFailure("Invalid MIDI CC: \(String(describing: newValue))")
+            }
+        }
+    }
 
     /// First modifier condition (M1-M8 = 0-7), nil if no condition
     var modifier1Condition: ModifierCondition?
@@ -136,20 +177,12 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
 
     /// Whether this mapping has a MIDI note or CC assigned
     var hasMIDIAssignment: Bool {
-        midiNote != nil || midiCC != nil
+        midiAssignment.kind != .unassigned
     }
 
     /// Display string showing the MIDI assignment (e.g., "Ch01 CC 008" or "Ch02 Note C4")
     var mappedToDisplay: String {
-        let channelStr = String(format: "Ch%02d", midiChannel)
-
-        if let note = midiNote {
-            return "\(channelStr) Note \(midiNoteToName(note))"
-        } else if let cc = midiCC {
-            return "\(channelStr) CC \(String(format: "%03d", cc))"
-        } else {
-            return "\(channelStr) --"
-        }
+        midiAssignment.displayName
     }
 
 
@@ -163,6 +196,7 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         ioType: IODirection = .input,
         assignment: TargetAssignment = .none,
         interactionMode: InteractionMode = .none,
+        midiAssignment: MIDIAssignment? = nil,
         midiChannel: Int = 1,
         midiNote: Int? = nil,
         midiCC: Int? = nil,
@@ -192,9 +226,19 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         self.ioType = ioType
         self.assignment = assignment
         self.interactionMode = interactionMode
-        self.midiChannel = midiChannel
-        self.midiNote = midiNote
-        self.midiCC = midiCC
+        if let midiAssignment {
+            self.midiAssignment = midiAssignment
+        } else {
+            do {
+                self.midiAssignment = try MIDIAssignment(
+                    validatingChannel: midiChannel,
+                    note: midiNote,
+                    cc: midiCC
+                )
+            } catch {
+                preconditionFailure("Invalid direct MIDI assignment: \(error)")
+            }
+        }
         self.modifier1Condition = modifier1Condition
         self.modifier2Condition = modifier2Condition
         self.comment = comment
@@ -257,9 +301,24 @@ extension MappingEntry: Codable {
         commandID = decodedCommandID ?? TraktorCommands.id(forLegacyName: decodedCommandName)
         assignment = decodedAssignment
         interactionMode = try container.decode(InteractionMode.self, forKey: .interactionMode)
-        midiChannel = try container.decode(Int.self, forKey: .midiChannel)
-        midiNote = try container.decodeIfPresent(Int.self, forKey: .midiNote)
-        midiCC = try container.decodeIfPresent(Int.self, forKey: .midiCC)
+        let decodedMIDIChannel = try container.decode(Int.self, forKey: .midiChannel)
+        let decodedMIDINote = try container.decodeIfPresent(Int.self, forKey: .midiNote)
+        let decodedMIDICC = try container.decodeIfPresent(Int.self, forKey: .midiCC)
+        do {
+            midiAssignment = try MIDIAssignment(
+                validatingChannel: decodedMIDIChannel,
+                note: decodedMIDINote,
+                cc: decodedMIDICC
+            )
+        } catch {
+            throw DecodingError.dataCorrupted(
+                .init(
+                    codingPath: container.codingPath,
+                    debugDescription: "Invalid legacy MIDI assignment.",
+                    underlyingError: error
+                )
+            )
+        }
         modifier1Condition = try container.decodeIfPresent(ModifierCondition.self, forKey: .modifier1Condition)
         modifier2Condition = try container.decodeIfPresent(ModifierCondition.self, forKey: .modifier2Condition)
         comment = try container.decode(String.self, forKey: .comment)
@@ -291,9 +350,9 @@ extension MappingEntry: Codable {
         try container.encode(ioType, forKey: .ioType)
         try container.encode(assignment, forKey: .assignment)
         try container.encode(interactionMode, forKey: .interactionMode)
-        try container.encode(midiChannel, forKey: .midiChannel)
-        try container.encodeIfPresent(midiNote, forKey: .midiNote)
-        try container.encodeIfPresent(midiCC, forKey: .midiCC)
+        try container.encode(midiAssignment.channel, forKey: .midiChannel)
+        try container.encodeIfPresent(midiAssignment.note, forKey: .midiNote)
+        try container.encodeIfPresent(midiAssignment.cc, forKey: .midiCC)
         try container.encodeIfPresent(modifier1Condition, forKey: .modifier1Condition)
         try container.encodeIfPresent(modifier2Condition, forKey: .modifier2Condition)
         try container.encode(comment, forKey: .comment)

@@ -1091,6 +1091,55 @@ final class TSIInterpreterTests: XCTestCase {
 
     // MARK: - Structural DCBM Parsing Tests
 
+    func testInvalidDCBMControlRangesReportExactOffendingName() throws {
+        let invalidNames = [
+            "Ch00.CC.001",
+            "Ch17.CC.001",
+            "Ch01.CC.128",
+            "Ch01.Note.C10",
+        ]
+
+        for name in invalidNames {
+            XCTAssertThrowsError(try interpretSingleDCBMControl(named: name), name) { error in
+                XCTAssertEqual(
+                    error as? TSIInterpreterError,
+                    .unrecognizedMidiControl(name: name)
+                )
+            }
+        }
+    }
+
+    func testValidDCBMControlBoundariesProduceValidatedAssignments() throws {
+        let cases: [(name: String, expected: MIDIAssignment)] = [
+            ("Ch01.Note.C-1", try .note(channel: 1, number: 0)),
+            ("Ch16.Note.G9", try .note(channel: 16, number: 127)),
+            ("Ch01.CC.000", try .controlChange(channel: 1, number: 0)),
+            ("Ch16.CC.127", try .controlChange(channel: 16, number: 127)),
+        ]
+
+        for testCase in cases {
+            let result = try interpretSingleDCBMControl(named: testCase.name)
+            XCTAssertEqual(
+                result.devices.first?.mappings.first?.midiAssignment,
+                testCase.expected,
+                testCase.name
+            )
+        }
+    }
+
+    private func interpretSingleDCBMControl(named name: String) throws -> MappingFile {
+        let cmai = cmaiPayload(
+            bindingId: 0,
+            commandId: 100,
+            cmadBytes: rawFrame("CMAD", validCMAD())
+        )
+        let binding = rawFrame("DCBM", be32(0) + tsiString(name))
+        let deviPayload = tsiString("Test")
+            + rawFrame("CMAS", be32(1) + rawFrame("CMAI", cmai))
+            + rawFrame("DCBM", be32(1) + binding)
+        return try interpretDEVI(deviPayload)
+    }
+
     func testSharedControlBindingIdsResolveThroughDCBMNotDCDT() throws {
         // Regression: mappings [IN CC20, OUT CC20, IN CC30] write DCBM ids
         // {CC20: 0, CC30: 1}, but the direction-aware DCDT rows are

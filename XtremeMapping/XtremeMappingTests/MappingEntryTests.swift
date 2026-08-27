@@ -11,6 +11,128 @@ import Foundation
 
 struct MappingEntryTests {
 
+    // MARK: - Validated MIDI Assignment Tests
+
+    @Test func noteAssignmentClearsControlChange() throws {
+        var entry = MappingEntry(midiChannel: 1, midiCC: 7)
+        entry.midiNote = 60
+
+        expectAssignment(entry.midiAssignment, kind: .note, channel: 1, number: 60)
+        #expect(entry.midiNote == 60)
+        #expect(entry.midiCC == nil)
+    }
+
+    @Test func controlChangeAssignmentClearsNote() throws {
+        var entry = MappingEntry(midiChannel: 2, midiNote: 61)
+        entry.midiCC = 8
+
+        expectAssignment(entry.midiAssignment, kind: .controlChange, channel: 2, number: 8)
+        #expect(entry.midiNote == nil)
+        #expect(entry.midiCC == 8)
+    }
+
+    @Test func settingNilNoteClearsOnlyCurrentNote() throws {
+        var note = MappingEntry(midiChannel: 3, midiNote: 62)
+        note.midiNote = nil
+        expectAssignment(note.midiAssignment, kind: .unassigned, channel: 3, number: nil)
+
+        var cc = MappingEntry(midiChannel: 4, midiCC: 9)
+        cc.midiNote = nil
+        expectAssignment(cc.midiAssignment, kind: .controlChange, channel: 4, number: 9)
+    }
+
+    @Test func settingNilControlChangeClearsOnlyCurrentControlChange() throws {
+        var cc = MappingEntry(midiChannel: 5, midiCC: 10)
+        cc.midiCC = nil
+        expectAssignment(cc.midiAssignment, kind: .unassigned, channel: 5, number: nil)
+
+        var note = MappingEntry(midiChannel: 6, midiNote: 63)
+        note.midiCC = nil
+        expectAssignment(note.midiAssignment, kind: .note, channel: 6, number: 63)
+    }
+
+    @Test func changingCompatibilityChannelPreservesAssignmentKindAndNumber() throws {
+        var note = MappingEntry(midiChannel: 1, midiNote: 64)
+        note.midiChannel = 16
+        expectAssignment(note.midiAssignment, kind: .note, channel: 16, number: 64)
+
+        var cc = MappingEntry(midiChannel: 2, midiCC: 11)
+        cc.midiChannel = 15
+        expectAssignment(cc.midiAssignment, kind: .controlChange, channel: 15, number: 11)
+    }
+
+    @Test func validatedAssignmentInitializerWinsOverLegacyDefaults() throws {
+        let assignment = try MIDIAssignment.note(channel: 9, number: 69)
+        let entry = MappingEntry(midiAssignment: assignment)
+
+        expectAssignment(entry.midiAssignment, kind: .note, channel: 9, number: 69)
+        #expect(entry.midiChannel == 9)
+        #expect(entry.midiNote == 69)
+        #expect(entry.midiCC == nil)
+    }
+
+    @Test func jsonRetainsLegacyMIDIKeys() throws {
+        let entry = MappingEntry(midiAssignment: try .controlChange(channel: 16, number: 127))
+        let json = try #require(
+            try JSONSerialization.jsonObject(with: JSONEncoder().encode(entry)) as? [String: Any]
+        )
+
+        #expect(json["midiChannel"] as? Int == 16)
+        #expect(json["midiNote"] == nil)
+        #expect(json["midiCC"] as? Int == 127)
+        #expect(json["midiAssignment"] == nil)
+    }
+
+    @Test(arguments: [
+        ("midiChannel", 0),
+        ("midiChannel", 17),
+        ("midiNote", -1),
+        ("midiNote", 128),
+        ("midiCC", -1),
+        ("midiCC", 128),
+    ])
+    func jsonRejectsInvalidExternalMIDIValues(key: String, value: Int) throws {
+        let entry = MappingEntry(midiChannel: 1, midiCC: 7)
+        var json = try #require(
+            try JSONSerialization.jsonObject(with: JSONEncoder().encode(entry)) as? [String: Any]
+        )
+        json[key] = value
+
+        try expectDataCorrupted(json)
+    }
+
+    @Test func jsonRejectsAmbiguousNoteAndControlChange() throws {
+        let entry = MappingEntry(midiChannel: 1, midiCC: 7)
+        var json = try #require(
+            try JSONSerialization.jsonObject(with: JSONEncoder().encode(entry)) as? [String: Any]
+        )
+        json["midiNote"] = 60
+        json["midiCC"] = 7
+
+        try expectDataCorrupted(json)
+    }
+
+    private func expectDataCorrupted(_ json: [String: Any]) throws {
+        let data = try JSONSerialization.data(withJSONObject: json)
+        do {
+            _ = try JSONDecoder().decode(MappingEntry.self, from: data)
+            Issue.record("Expected invalid MIDI JSON to throw DecodingError.dataCorrupted")
+        } catch DecodingError.dataCorrupted {
+            // Expected: MappingEntry revalidates legacy MIDI keys on decode.
+        }
+    }
+
+    private func expectAssignment(
+        _ assignment: MIDIAssignment,
+        kind: MIDIAssignment.Kind,
+        channel: Int,
+        number: Int?
+    ) {
+        #expect(assignment.kind == kind)
+        #expect(assignment.channel == channel)
+        #expect(assignment.number == number)
+    }
+
     // MARK: - Legacy Codable Compatibility Tests
 
     @Test func testExplicitCommandIDWinsOverStaleEncodedName() throws {
