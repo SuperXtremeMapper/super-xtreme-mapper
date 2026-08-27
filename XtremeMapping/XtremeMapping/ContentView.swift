@@ -306,7 +306,8 @@ struct ContentView: View {
               let command = TraktorCommands.verifiedDescriptor(
                 named: result.command,
                 supporting: .input
-              ) else { return nil }
+              ),
+              let midiAssignment = MIDIAssignment(learnMessage: midi) else { return nil }
 
         // Parse assignment from result
         let assignment = parseAssignment(result.assignment)
@@ -321,9 +322,7 @@ struct ContentView: View {
             ioType: .input,
             assignment: assignment,
             interactionMode: interactionMode,
-            midiChannel: midi.channel,
-            midiNote: midi.note,
-            midiCC: midi.cc,
+            midiAssignment: midiAssignment,
             controllerType: controllerType
         )
 

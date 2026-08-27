@@ -133,11 +133,12 @@ final class WizardCoordinator: ObservableObject {
 
     /// Whether we're at the last function of the last tab
     var isAtLastStep: Bool {
-        let allTabs = WizardTab.allCases
-        guard let currentTabIndex = allTabs.firstIndex(of: currentTab) else { return false }
+        let availableTabs = WizardTab.allCases.filter {
+            !$0.functions(isBasic: isBasicMode).isEmpty
+        }
 
-        // Must be on last tab
-        guard currentTabIndex == allTabs.count - 1 else { return false }
+        // Must be on the last tab that has an audited function.
+        guard currentTab == availableTabs.last else { return false }
 
         // Must be on last function
         guard currentFunctionIndex >= currentFunctions.count - 1 else { return false }
@@ -335,18 +336,18 @@ final class WizardCoordinator: ObservableObject {
         statusMessage = "Press a control for \(currentStepDisplay)"
     }
 
-    /// Compound conflict key. commandName alone is no longer unique: many
+    /// Compound conflict key. command ID alone is not enough: many
     /// wizard rows (Hotcue 1-8, Slot Volume across 4 slots) share the same
-    /// canonical commandName and disambiguate via `assignment` (deck/slot)
-    /// and `setToValue` (hotcue index 0-7). Keying on commandName alone would
+    /// canonical command ID and disambiguate via `assignment` (deck/slot)
+    /// and `setToValue` (hotcue index 0-7). Keying on command ID alone would
     /// collapse 8 hotcue mappings to 1 conflict and wipe siblings on overwrite.
-    private struct BindingKey: Hashable {
-        let commandName: String
+    struct BindingKey: Hashable {
+        let commandID: Int
         let assignment: TargetAssignment
         let setToValueQuantized: Int  // see bindingKey(for:)
     }
 
-    private static func bindingKey(for entry: MappingEntry) -> BindingKey {
+    static func bindingKey(for entry: MappingEntry) -> BindingKey {
         // Quantize setToValue to Int for the hash key. Wizard rows always pass
         // integer-valued floats (hotcue index 0..7); any interpreter-derived
         // float drift like 0.0000001 vs 0.0 would otherwise silently miss the
@@ -354,7 +355,7 @@ final class WizardCoordinator: ObservableObject {
         // to their nearest integer for matching purposes only — the float
         // value on the MappingEntry itself is unchanged.
         BindingKey(
-            commandName: entry.commandName,
+            commandID: entry.commandID,
             assignment: entry.assignment,
             setToValueQuantized: Int(entry.setToValue.rounded())
         )
@@ -375,10 +376,12 @@ final class WizardCoordinator: ObservableObject {
         let newKeys = Set(newEntries.map(Self.bindingKey(for:)))
         let conflicts = existing.intersection(newKeys)
         if !conflicts.isEmpty {
-            // Human-readable list for the overwrite alert. Dedupe by commandName
-            // (a single Hotcue commandName covers all deck/slot variants in the
+            // Human-readable list for the overwrite alert. Dedupe by display name
+            // (a single Hotcue command covers all deck/slot variants in the
             // user-visible alert) so the alert isn't a wall of repeated names.
-            conflictingCommands = Array(Set(conflicts.map { $0.commandName })).sorted()
+            conflictingCommands = Array(Set(conflicts.map {
+                TraktorCommands.name(for: $0.commandID)
+            })).sorted()
             showOverwriteAlert = true
             return
         }
@@ -394,7 +397,7 @@ final class WizardCoordinator: ObservableObject {
         WizardTrace.write(" performSave: writing to document=\(ObjectIdentifier(document)) captured=\(capturedMappings.count)")
         let newMappings = capturedMappings.map { $0.toMappingEntry() }
         if overwrite {
-            // Only remove the EXACT (commandName, assignment, setToValue)
+            // Only remove the EXACT (commandID, assignment, setToValue)
             // triples the user re-mapped — siblings (other hotcues, other
             // slots) are preserved. Pre-fix, removing by commandName alone
             // wiped every hotcue × deck variant when re-mapping a single one.
@@ -487,14 +490,19 @@ final class WizardCoordinator: ObservableObject {
 
     private func nextTab() -> WizardTab? {
         let allTabs = WizardTab.allCases
-        guard let currentIndex = allTabs.firstIndex(of: currentTab), currentIndex < allTabs.count - 1 else { return nil }
-        return allTabs[currentIndex + 1]
+        guard let currentIndex = allTabs.firstIndex(of: currentTab),
+              currentIndex < allTabs.count - 1 else { return nil }
+        return allTabs[(currentIndex + 1)...].first {
+            !$0.functions(isBasic: isBasicMode).isEmpty
+        }
     }
 
     private func previousTab() -> WizardTab? {
         let allTabs = WizardTab.allCases
         guard let currentIndex = allTabs.firstIndex(of: currentTab), currentIndex > 0 else { return nil }
-        return allTabs[currentIndex - 1]
+        return allTabs[..<currentIndex].reversed().first {
+            !$0.functions(isBasic: isBasicMode).isEmpty
+        }
     }
 
     private func startAutoAdvance() {
