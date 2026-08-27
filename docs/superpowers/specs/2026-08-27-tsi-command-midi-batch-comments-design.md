@@ -60,7 +60,7 @@ Each command descriptor contains:
 
 ```swift
 struct TraktorCommandDescriptor: Identifiable, Equatable, Sendable {
-    enum Verification: String, Codable, Sendable {
+    enum Verification: String, Codable, Hashable, Sendable {
         case verifiedTraktor441
         case legacy
         case unknown
@@ -69,6 +69,7 @@ struct TraktorCommandDescriptor: Identifiable, Equatable, Sendable {
     let id: Int
     let name: String
     let verification: Verification
+    let supportedDirections: Set<IODirection>
 }
 ```
 
@@ -78,19 +79,26 @@ Catalog evidence is interpreted conservatively:
 - `legacy`: the ID/name pair exists in the older reference catalog but is not verified in the 4.4.1 corpus.
 - `unknown`: the positive imported ID has no trusted catalog descriptor.
 
-The catalog is the only source for ID/name lookup. The hierarchical Add menu contains verified 4.4.1 descriptors only and passes the whole descriptor, not a bare string, to mapping creation. Voice-created mappings use the same verified list. Legacy and unknown imported rows remain visible and editable in every non-command field, with a status badge and a stable fallback such as `Unknown command #4242`.
+The catalog is the only source for ID/name lookup. Verification is conservative: a locally observed numeric ID is not promoted when its current label disagrees with the semantic cross-check until that conflict has been individually resolved. Each verified descriptor also records the input/output directions observed in Traktor 4.4.1 mappings. The hierarchical Add menus contain only verified descriptors that support the requested direction, the In/Out menu contains only commands verified in both directions, and callbacks pass the whole descriptor rather than a bare string. Voice-created mappings use the verified input list. Legacy and unknown imported rows remain visible and editable in every non-command field, with a status badge and a stable fallback such as `Unknown command #4242`.
 
 The audit will correct conflicting entries rather than perpetuating current names. Tests compare the menu hierarchy against the catalog, but do not treat internal self-consistency as external verification.
 
 ### 3. A validated MIDI assignment value
 
-MIDI control state is represented by one value:
+MIDI control state is represented by one value whose stored representation is private, so invalid states cannot be constructed through public enum cases:
 
 ```swift
-enum MIDIAssignment: Equatable, Sendable, Codable {
-    case unassigned(channel: Int)
-    case note(channel: Int, number: Int)
-    case controlChange(channel: Int, number: Int)
+struct MIDIAssignment: Hashable, Sendable, Codable {
+    enum Kind: String, Codable, Hashable, Sendable {
+        case unassigned, note, controlChange
+    }
+
+    let kind: Kind
+    let channel: Int
+    let number: Int?
+
+    init(validatingChannel: Int, note: Int?, cc: Int?) throws
+    func replacingChannel(with channel: Int) throws -> MIDIAssignment
 }
 ```
 
@@ -101,7 +109,7 @@ External boundaries behave as follows:
 - MIDI Learn ignores Note Off and stops after the first valid Note On or CC message.
 - TSI parsing rejects malformed or out-of-range generic DCBM control names with a precise import error.
 - JSON decoding rejects an impossible state such as both Note and CC.
-- The writer never emits an invalid MIDI control name. An invalid in-memory mapping is reported and omitted rather than crashing or emitting corrupt bytes.
+- The writer never emits an invalid MIDI control name because an invalid in-memory assignment is unrepresentable.
 - Unassigned mappings remain valid and keep their chosen channel for later editing.
 
 ### 4. DDCI/DCDT encoder-mode fidelity
@@ -125,9 +133,9 @@ The interpreter parses DDCI and DDCO definitions structurally and indexes them b
 
 `MappingEntry.copyWithNewID()` is the only cloning operation. It copies every property, including command ID, comments, modifiers, interaction settings, auto-repeat, LED ranges, LED MIDI values, inversion/blend flags, resolution, and encoder mode, while generating a fresh UUID.
 
-All duplicate, paste, and drop paths use the same clone operation. Pasting appends rows in their original order to the target document's first device, creating a `Generic MIDI` device only when the target contains no devices. The newly created IDs replace the current selection.
+All duplicate, paste, and drop paths use the same clone operation. Pasting appends rows in their original order to the device that owns the current destination selection when that choice is unambiguous, otherwise to the target document's first device, creating a `Generic MIDI` device only when the target contains no devices. Duplicating preserves each row's source device. The newly created IDs replace the current selection.
 
-Standard Copy/Paste commands and the table context menu call the same shared operations. Copying mappings does not overwrite the specialized “Mapped To” or modifier clipboards.
+Standard Copy/Paste commands and the table context menu call the same shared operations. A Codable batch representation is also placed on the system pasteboard so native table-focused Command-C/Command-V works across windows, while text fields retain their ordinary editing shortcuts. Copying mappings does not overwrite the specialized “Mapped To” or modifier clipboards.
 
 ### 6. Bulk MIDI assignment and Learn
 
@@ -167,7 +175,7 @@ The mappings table adds a resizable Comment column. Search is case-insensitive a
 
 A mapping-comment match returns only that row. A device name/comment match returns all rows belonging to that device.
 
-The single-selection settings panel uses a multiline comment editor. The multi-selection panel provides an explicit `Apply comment to selection` action so merely opening the editor cannot erase mixed comments. Device comments are edited in a small sheet with a device picker because one TSI may contain multiple devices. Device names are not repurposed as user labels.
+The single-selection settings panel uses a multiline comment editor. The multi-selection panel provides an explicit `Apply comment to selection` action so merely opening the editor cannot erase mixed comments. Device comments are edited through a compact, progressively disclosed settings section with a device picker because one TSI may contain multiple devices. Device names are not repurposed as user labels.
 
 Comments remain UTF-16BE TSI strings on disk and are copied losslessly with mapping batches.
 
