@@ -1097,6 +1097,7 @@ final class TSIInterpreterTests: XCTestCase {
             "Ch17.CC.001",
             "Ch01.CC.128",
             "Ch01.Note.C10",
+            "Ch01.Note.C-9223372036854775808",
             "Ch01.Note.C9223372036854775807",
         ]
 
