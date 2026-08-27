@@ -79,6 +79,126 @@ final class DocumentTests: XCTestCase {
         XCTAssertEqual(snapshot.devices.first?.mappings.count, 1)
     }
 
+    // MARK: - Undoable Mutation Tests
+
+    @MainActor
+    func testUndoableMutationRestoresWholeMappingFileAndRedo() throws {
+        let original = MappingFile(
+            devices: [
+                Device(
+                    name: "Original Device",
+                    comment: "Preserve device metadata",
+                    inPort: "Input Port",
+                    outPort: "Output Port",
+                    tsiVersion: "4.4.1",
+                    mappingFileRevision: 17,
+                    mappings: [.fullFieldSentinel]
+                )
+            ],
+            version: 7
+        )
+        let document = TraktorMappingDocument(mappingFile: original)
+        let undoManager = UndoManager()
+
+        let insertedIDs = document.performUndoableMutation(
+            actionName: "Paste Mappings",
+            undoManager: undoManager
+        ) { file in
+            file.version = 8
+            file.devices[0].comment = "Changed device metadata"
+            return MappingTransferService.insertCopies(
+                [MappingEntry(commandID: 100)],
+                into: &file,
+                targetDeviceID: file.devices[0].id
+            )
+        }
+
+        let insertedID = try XCTUnwrap(insertedIDs?.first)
+        let changed = document.mappingFile
+        XCTAssertEqual(changed.version, 8)
+        XCTAssertEqual(changed.devices[0].comment, "Changed device metadata")
+        XCTAssertEqual(changed.devices[0].mappings.last?.id, insertedID)
+
+        undoManager.undo()
+        XCTAssertEqual(document.mappingFile, original)
+
+        undoManager.redo()
+        XCTAssertEqual(document.mappingFile, changed)
+    }
+
+    @MainActor
+    func testBatchPasteRegistersOneUndoAction() {
+        let original = MappingFile(devices: [Device(name: "Generic MIDI")])
+        let document = TraktorMappingDocument(mappingFile: original)
+        let undoManager = UndoManager()
+
+        let insertedIDs = document.performUndoableMutation(
+            actionName: "Paste 2 Mappings",
+            undoManager: undoManager
+        ) { file in
+            MappingTransferService.insertCopies(
+                [MappingEntry(commandID: 100), MappingEntry(commandID: 201)],
+                into: &file
+            )
+        }
+
+        XCTAssertEqual(insertedIDs?.count, 2)
+        XCTAssertTrue(undoManager.canUndo)
+        XCTAssertEqual(undoManager.undoActionName, "Paste 2 Mappings")
+
+        undoManager.undo()
+        XCTAssertEqual(document.mappingFile, original)
+        XCTAssertFalse(undoManager.canUndo, "one undo must restore the entire batch")
+        XCTAssertTrue(undoManager.canRedo)
+    }
+
+    @MainActor
+    func testNoOpMutationReturnsNilWithoutDirtyingOrChangingSelection() {
+        let original = MappingFile(devices: [Device(name: "Generic MIDI")])
+        let document = TraktorMappingDocument(mappingFile: original)
+        let undoManager = UndoManager()
+        let existingSelection = Set([UUID()])
+        var selection = existingSelection
+
+        let insertedIDs: Set<MappingEntry.ID>? = document.performUndoableMutation(
+            actionName: "Paste Mappings",
+            undoManager: undoManager
+        ) { file in
+            MappingTransferService.insertCopies([], into: &file)
+        }
+        if let insertedIDs {
+            selection = insertedIDs
+        }
+
+        XCTAssertNil(insertedIDs)
+        XCTAssertEqual(document.mappingFile, original)
+        XCTAssertEqual(selection, existingSelection)
+        XCTAssertFalse(document.isDirty)
+        XCTAssertFalse(document.hasPendingDirty)
+        XCTAssertFalse(undoManager.canUndo)
+    }
+
+    @MainActor
+    func testPasteMutationReturnsOnlyFreshInsertedIDsForSelection() throws {
+        let source = [MappingEntry.fullFieldSentinel, MappingEntry(commandID: 100)]
+        let sourceIDs = Set(source.map(\.id))
+        let document = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [Device(name: "Destination")])
+        )
+
+        let selection = try XCTUnwrap(document.performUndoableMutation(
+            actionName: "Paste Mappings",
+            undoManager: UndoManager()
+        ) { file in
+            MappingTransferService.insertCopies(source, into: &file)
+        })
+
+        let inserted = Set(document.mappingFile.allMappings.map(\.id))
+        XCTAssertEqual(selection, inserted)
+        XCTAssertEqual(selection.count, source.count)
+        XCTAssertTrue(selection.isDisjoint(with: sourceIDs))
+    }
+
     // MARK: - Pending Dirty Tests (window-backed resolution)
 
     @MainActor

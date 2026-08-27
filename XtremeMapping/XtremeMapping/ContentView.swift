@@ -8,6 +8,44 @@
 import SwiftUI
 import Combine
 
+extension MappingTransferService {
+    /// Returns a destination only when the current selection belongs to one
+    /// device. Nil deliberately preserves Task 7's first-device fallback.
+    static func destinationDeviceID(
+        for selectedIDs: Set<MappingEntry.ID>,
+        in mappingFile: MappingFile
+    ) -> Device.ID? {
+        let owners = mappingFile.devices.filter { device in
+            device.mappings.contains { selectedIDs.contains($0.id) }
+        }
+        return owners.count == 1 ? owners[0].id : nil
+    }
+
+    /// Duplicates each selected source row at the end of its owning device.
+    /// Sources are captured before insertion so device and document order are
+    /// stable and freshly inserted IDs cannot become sources in the same pass.
+    @discardableResult
+    static func duplicateSelection(
+        _ selectedIDs: Set<MappingEntry.ID>,
+        in mappingFile: inout MappingFile
+    ) -> Set<MappingEntry.ID> {
+        let batches = mappingFile.devices.map { device in
+            (
+                device.id,
+                device.mappings.filter { selectedIDs.contains($0.id) }
+            )
+        }
+
+        var insertedIDs: Set<MappingEntry.ID> = []
+        for (deviceID, source) in batches where !source.isEmpty {
+            insertedIDs.formUnion(
+                insertCopies(source, into: &mappingFile, targetDeviceID: deviceID)
+            )
+        }
+        return insertedIDs
+    }
+}
+
 struct ContentView: View {
     @ObservedObject var document: TraktorMappingDocument
     let fileURL: URL?
@@ -17,7 +55,6 @@ struct ContentView: View {
     @State private var categoryFilter: CommandCategory = .all
     @State private var ioFilter: IODirection = .all
     @State private var isLocked: Bool = false
-    @State private var clipboard: [MappingEntry] = []
     @State private var searchText: String = ""
     @State private var activeSheet: SheetType?
     @State private var showIntelMacAlert = false
@@ -46,15 +83,6 @@ struct ContentView: View {
             APIKeyManager.shared.activeKey
         })
     )
-
-    /// Registers a change with the undo manager to mark document as edited
-    private func registerChange() {
-        document.noteChange()
-        undoManager?.registerUndo(withTarget: document) { doc in
-            // Undo action - we don't fully implement undo, just mark as changed
-            doc.noteChange()
-        }
-    }
 
     var filteredMappings: [MappingEntry] {
         document.mappingFile.allMappings.filter { entry in
@@ -114,6 +142,7 @@ struct ContentView: View {
                         },
                         onCopy: copySelectedMappings,
                         onPaste: pasteSelectedMappings,
+                        onPasteMappings: pasteMappings,
                         onDuplicate: duplicateSelected,
                         onDelete: deleteSelectedMappings,
                         onAssignmentChange: { assignment in
@@ -188,6 +217,7 @@ struct ContentView: View {
         }
         .focusedSceneValue(\.mappingDocument, document)
         .focusedSceneValue(\.selectedMappingIDs, $selectedMappings)
+        .focusedSceneValue(\.mappingIsLocked, isLocked)
         .frame(minWidth: 1000, minHeight: 500)
         .background(AppThemeV2.Colors.stone950)
         .preferredColorScheme(.dark)
@@ -269,8 +299,6 @@ struct ContentView: View {
                 supporting: .input
               ) else { return nil }
 
-        registerChange()
-
         // Parse assignment from result
         let assignment = parseAssignment(result.assignment)
 
@@ -290,18 +318,21 @@ struct ContentView: View {
             controllerType: controllerType
         )
 
-        // Add to document
-        if document.mappingFile.devices.isEmpty {
-            let device = Device(name: "Generic MIDI", mappings: [newMapping])
-            document.mappingFile.devices.append(device)
-        } else {
-            document.mappingFile.devices[0].mappings.append(newMapping)
+        let insertedID = document.performUndoableMutation(
+            actionName: "Add Voice Mapping",
+            undoManager: undoManager
+        ) { file in
+            if file.devices.isEmpty {
+                file.devices.append(Device(name: "Generic MIDI", mappings: [newMapping]))
+            } else {
+                file.devices[0].mappings.append(newMapping)
+            }
+            return newMapping.id
         }
+        guard let insertedID else { return nil }
 
-        // Select the new mapping
-        selectedMappings = [newMapping.id]
-
-        return newMapping.id
+        selectedMappings = [insertedID]
+        return insertedID
     }
 
     private func parseAssignment(_ assignmentString: String?) -> TargetAssignment {
@@ -376,45 +407,26 @@ struct ContentView: View {
 
     private func addInputMapping(command: TraktorCommandDescriptor) {
         guard !isLocked else { return }
-        registerChange()
 
         let newMapping = MappingEntry(
             commandID: command.id,
             ioType: .input
         )
-
-        if document.mappingFile.devices.isEmpty {
-            let device = Device(name: "Generic MIDI", mappings: [newMapping])
-            document.mappingFile.devices.append(device)
-        } else {
-            document.mappingFile.devices[0].mappings.append(newMapping)
-        }
-
-        selectedMappings = [newMapping.id]
+        addMappings([newMapping], actionName: "Add Input Mapping")
     }
 
     private func addOutputMapping(command: TraktorCommandDescriptor) {
         guard !isLocked else { return }
-        registerChange()
 
         let newMapping = MappingEntry(
             commandID: command.id,
             ioType: .output
         )
-
-        if document.mappingFile.devices.isEmpty {
-            let device = Device(name: "Generic MIDI", mappings: [newMapping])
-            document.mappingFile.devices.append(device)
-        } else {
-            document.mappingFile.devices[0].mappings.append(newMapping)
-        }
-
-        selectedMappings = [newMapping.id]
+        addMappings([newMapping], actionName: "Add Output Mapping")
     }
 
     private func addInOutPair(command: TraktorCommandDescriptor) {
         guard !isLocked else { return }
-        registerChange()
 
         let inputEntry = MappingEntry(
             commandID: command.id,
@@ -425,72 +437,61 @@ struct ContentView: View {
             commandID: command.id,
             ioType: .output
         )
+        addMappings([inputEntry, outputEntry], actionName: "Add Input/Output Pair")
+    }
 
-        if document.mappingFile.devices.isEmpty {
-            let device = Device(name: "Generic MIDI", mappings: [inputEntry, outputEntry])
-            document.mappingFile.devices.append(device)
-        } else {
-            document.mappingFile.devices[0].mappings.append(contentsOf: [inputEntry, outputEntry])
+    private func addMappings(_ mappings: [MappingEntry], actionName: String) {
+        guard !isLocked, !mappings.isEmpty else { return }
+
+        let insertedIDs = document.performUndoableMutation(
+            actionName: actionName,
+            undoManager: undoManager
+        ) { file -> Set<MappingEntry.ID> in
+            if file.devices.isEmpty {
+                file.devices.append(Device(name: "Generic MIDI", mappings: mappings))
+            } else {
+                file.devices[0].mappings.append(contentsOf: mappings)
+            }
+            return Set(mappings.map(\.id))
         }
 
-        selectedMappings = [inputEntry.id, outputEntry.id]
+        if let insertedIDs {
+            selectedMappings = insertedIDs
+        }
     }
 
     private func deleteSelectedMappings() {
         guard !isLocked, !selectedMappings.isEmpty else { return }
 
-        registerChange()
-
-        // Remove selected mappings from all devices
-        for deviceIndex in document.mappingFile.devices.indices {
-            document.mappingFile.devices[deviceIndex].mappings.removeAll { mapping in
-                selectedMappings.contains(mapping.id)
+        let result: Void? = document.performUndoableMutation(
+            actionName: "Delete Mappings",
+            undoManager: undoManager
+        ) { file in
+            for deviceIndex in file.devices.indices {
+                file.devices[deviceIndex].mappings.removeAll { mapping in
+                    selectedMappings.contains(mapping.id)
+                }
             }
         }
 
-        // Clear selection
-        selectedMappings.removeAll()
+        if result != nil {
+            selectedMappings.removeAll()
+        }
     }
 
     private func duplicateSelected() {
         guard !isLocked, !selectedMappings.isEmpty else { return }
 
-        registerChange()
-
-        var newMappings: [MappingEntry] = []
-
-        for deviceIndex in document.mappingFile.devices.indices {
-            let selectedFromDevice = document.mappingFile.devices[deviceIndex].mappings.filter { mapping in
-                selectedMappings.contains(mapping.id)
-            }
-
-            for original in selectedFromDevice {
-                let duplicate = MappingEntry(
-                    commandName: original.commandName,
-                    ioType: original.ioType,
-                    assignment: original.assignment,
-                    interactionMode: original.interactionMode,
-                    midiChannel: original.midiChannel,
-                    midiNote: original.midiNote,
-                    midiCC: original.midiCC,
-                    modifier1Condition: original.modifier1Condition,
-                    modifier2Condition: original.modifier2Condition,
-                    comment: original.comment,
-                    controllerType: original.controllerType,
-                    invert: original.invert,
-                    softTakeover: original.softTakeover,
-                    setToValue: original.setToValue,
-                    rotarySensitivity: original.rotarySensitivity,
-                    rotaryAcceleration: original.rotaryAcceleration,
-                    encoderMode: original.encoderMode
-                )
-                document.mappingFile.devices[deviceIndex].mappings.append(duplicate)
-                newMappings.append(duplicate)
-            }
+        let insertedIDs = document.performUndoableMutation(
+            actionName: "Duplicate Mappings",
+            undoManager: undoManager
+        ) { file in
+            MappingTransferService.duplicateSelection(selectedMappings, in: &file)
         }
 
-        // Select the duplicated items
-        selectedMappings = Set(newMappings.map { $0.id })
+        if let insertedIDs {
+            selectedMappings = insertedIDs
+        }
     }
 
     private func copyMappedTo() {
@@ -501,13 +502,19 @@ struct ContentView: View {
 
     private func pasteMappedTo() {
         guard !isLocked, !selectedMappings.isEmpty, ClipboardManager.shared.hasMappedToData else { return }
-        registerChange()
 
-        for deviceIndex in document.mappingFile.devices.indices {
-            for mappingIndex in document.mappingFile.devices[deviceIndex].mappings.indices {
-                let mappingId = document.mappingFile.devices[deviceIndex].mappings[mappingIndex].id
-                if selectedMappings.contains(mappingId) {
-                    ClipboardManager.shared.pasteMappedTo(to: &document.mappingFile.devices[deviceIndex].mappings[mappingIndex])
+        _ = document.performUndoableMutation(
+            actionName: "Paste Mapped To",
+            undoManager: undoManager
+        ) { file in
+            for deviceIndex in file.devices.indices {
+                for mappingIndex in file.devices[deviceIndex].mappings.indices {
+                    let mappingID = file.devices[deviceIndex].mappings[mappingIndex].id
+                    if selectedMappings.contains(mappingID) {
+                        ClipboardManager.shared.pasteMappedTo(
+                            to: &file.devices[deviceIndex].mappings[mappingIndex]
+                        )
+                    }
                 }
             }
         }
@@ -521,13 +528,19 @@ struct ContentView: View {
 
     private func pasteModifiers() {
         guard !isLocked, !selectedMappings.isEmpty, ClipboardManager.shared.hasModifiersData else { return }
-        registerChange()
 
-        for deviceIndex in document.mappingFile.devices.indices {
-            for mappingIndex in document.mappingFile.devices[deviceIndex].mappings.indices {
-                let mappingId = document.mappingFile.devices[deviceIndex].mappings[mappingIndex].id
-                if selectedMappings.contains(mappingId) {
-                    ClipboardManager.shared.pasteModifiers(to: &document.mappingFile.devices[deviceIndex].mappings[mappingIndex])
+        _ = document.performUndoableMutation(
+            actionName: "Paste Modifiers",
+            undoManager: undoManager
+        ) { file in
+            for deviceIndex in file.devices.indices {
+                for mappingIndex in file.devices[deviceIndex].mappings.indices {
+                    let mappingID = file.devices[deviceIndex].mappings[mappingIndex].id
+                    if selectedMappings.contains(mappingID) {
+                        ClipboardManager.shared.pasteModifiers(
+                            to: &file.devices[deviceIndex].mappings[mappingIndex]
+                        )
+                    }
                 }
             }
         }
@@ -536,63 +549,32 @@ struct ContentView: View {
     private func copySelectedMappings() {
         guard !selectedMappings.isEmpty else { return }
 
-        clipboard = document.mappingFile.allMappings.filter { mapping in
-            selectedMappings.contains(mapping.id)
-        }
+        ClipboardManager.shared.copyMappings(
+            document.mappingFile.allMappings.filter { selectedMappings.contains($0.id) }
+        )
     }
 
     private func pasteSelectedMappings() {
-        guard !isLocked, !clipboard.isEmpty else { return }
+        pasteMappings(ClipboardManager.shared.mappingsClipboard)
+    }
 
-        registerChange()
-
-        var newMappings: [MappingEntry] = []
-
-        for original in clipboard {
-            let copy = MappingEntry(
-                commandName: original.commandName,
-                ioType: original.ioType,
-                assignment: original.assignment,
-                interactionMode: original.interactionMode,
-                midiChannel: original.midiChannel,
-                midiNote: original.midiNote,
-                midiCC: original.midiCC,
-                modifier1Condition: original.modifier1Condition,
-                modifier2Condition: original.modifier2Condition,
-                comment: original.comment,
-                controllerType: original.controllerType,
-                invert: original.invert,
-                softTakeover: original.softTakeover,
-                setToValue: original.setToValue,
-                rotarySensitivity: original.rotarySensitivity,
-                rotaryAcceleration: original.rotaryAcceleration,
-                encoderMode: original.encoderMode
-            )
-            newMappings.append(copy)
-        }
-
-        // Add to first device or create one
-        if document.mappingFile.devices.isEmpty {
-            let device = Device(name: "Generic MIDI", mappings: newMappings)
-            document.mappingFile.devices.append(device)
-        } else {
-            document.mappingFile.devices[0].mappings.append(contentsOf: newMappings)
-        }
-
-        // Select the pasted items
-        selectedMappings = Set(newMappings.map { $0.id })
+    private func pasteMappings(_ mappings: [MappingEntry]) {
+        insertTransferredMappings(mappings, actionName: "Paste Mappings")
     }
 
     private func updateSelectedMappings(_ mutation: (inout MappingEntry) -> Void) {
         guard !isLocked, !selectedMappings.isEmpty else { return }
 
-        registerChange()
-
-        for deviceIndex in document.mappingFile.devices.indices {
-            for mappingIndex in document.mappingFile.devices[deviceIndex].mappings.indices {
-                let mappingId = document.mappingFile.devices[deviceIndex].mappings[mappingIndex].id
-                if selectedMappings.contains(mappingId) {
-                    mutation(&document.mappingFile.devices[deviceIndex].mappings[mappingIndex])
+        _ = document.performUndoableMutation(
+            actionName: "Edit Mappings",
+            undoManager: undoManager
+        ) { file in
+            for deviceIndex in file.devices.indices {
+                for mappingIndex in file.devices[deviceIndex].mappings.indices {
+                    let mappingID = file.devices[deviceIndex].mappings[mappingIndex].id
+                    if selectedMappings.contains(mappingID) {
+                        mutation(&file.devices[deviceIndex].mappings[mappingIndex])
+                    }
                 }
             }
         }
@@ -600,43 +582,33 @@ struct ContentView: View {
 
     /// Handles mappings dropped from another window or document
     private func handleDroppedMappings(_ mappings: [MappingEntry]) {
+        insertTransferredMappings(mappings, actionName: "Drop Mappings")
+    }
+
+    private func insertTransferredMappings(
+        _ mappings: [MappingEntry],
+        actionName: String
+    ) {
         guard !isLocked, !mappings.isEmpty else { return }
 
-        registerChange()
-
-        // Create new entries with new IDs to avoid conflicts
-        let newMappings = mappings.map { original in
-            MappingEntry(
-                commandName: original.commandName,
-                ioType: original.ioType,
-                assignment: original.assignment,
-                interactionMode: original.interactionMode,
-                midiChannel: original.midiChannel,
-                midiNote: original.midiNote,
-                midiCC: original.midiCC,
-                modifier1Condition: original.modifier1Condition,
-                modifier2Condition: original.modifier2Condition,
-                comment: original.comment,
-                controllerType: original.controllerType,
-                invert: original.invert,
-                softTakeover: original.softTakeover,
-                setToValue: original.setToValue,
-                rotarySensitivity: original.rotarySensitivity,
-                rotaryAcceleration: original.rotaryAcceleration,
-                encoderMode: original.encoderMode
+        let targetDeviceID = MappingTransferService.destinationDeviceID(
+            for: selectedMappings,
+            in: document.mappingFile
+        )
+        let insertedIDs = document.performUndoableMutation(
+            actionName: actionName,
+            undoManager: undoManager
+        ) { file in
+            MappingTransferService.insertCopies(
+                mappings,
+                into: &file,
+                targetDeviceID: targetDeviceID
             )
         }
 
-        // Add to first device or create one
-        if document.mappingFile.devices.isEmpty {
-            let device = Device(name: "Generic MIDI", mappings: newMappings)
-            document.mappingFile.devices.append(device)
-        } else {
-            document.mappingFile.devices[0].mappings.append(contentsOf: newMappings)
+        if let insertedIDs {
+            selectedMappings = insertedIDs
         }
-
-        // Select the newly added mappings
-        selectedMappings = Set(newMappings.map { $0.id })
     }
 }
 

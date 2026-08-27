@@ -72,4 +72,70 @@ final class MappingTransferServiceTests: XCTestCase {
         XCTAssertEqual(inserted, [])
         XCTAssertTrue(file.devices.isEmpty)
     }
+
+    func testDuplicateSelectionKeepsRowsInEachSourceDeviceAndDocumentOrder() {
+        let firstSelected = MappingEntry(commandID: 100)
+        let firstUnselected = MappingEntry(commandID: 7)
+        let secondSelected = MappingEntry(commandID: 201)
+        let thirdSelected = MappingEntry(commandID: 202)
+        let secondUnselected = MappingEntry(commandID: 9)
+        var file = MappingFile(devices: [
+            Device(
+                name: "First",
+                mappings: [firstSelected, firstUnselected, secondSelected]
+            ),
+            Device(
+                name: "Second",
+                mappings: [thirdSelected, secondUnselected]
+            )
+        ])
+        let sourceIDs = Set([firstSelected.id, secondSelected.id, thirdSelected.id])
+
+        let inserted = MappingTransferService.duplicateSelection(sourceIDs, in: &file)
+
+        XCTAssertEqual(
+            file.devices[0].mappings.map(\.commandID),
+            [100, 7, 201, 100, 201]
+        )
+        XCTAssertEqual(
+            file.devices[1].mappings.map(\.commandID),
+            [202, 9, 202]
+        )
+        let duplicatedIDs = Set(
+            file.devices[0].mappings.suffix(2).map(\.id)
+                + file.devices[1].mappings.suffix(1).map(\.id)
+        )
+        XCTAssertEqual(inserted, duplicatedIDs)
+        XCTAssertEqual(inserted.count, 3)
+        XCTAssertTrue(inserted.isDisjoint(with: sourceIDs))
+    }
+
+    func testDestinationDeviceRequiresExactlyOneSelectedOwner() {
+        let first = MappingEntry(commandID: 100)
+        let second = MappingEntry(commandID: 201)
+        let firstDevice = Device(name: "First", mappings: [first])
+        let secondDevice = Device(name: "Second", mappings: [second])
+        let file = MappingFile(devices: [firstDevice, secondDevice])
+
+        XCTAssertEqual(
+            MappingTransferService.destinationDeviceID(
+                for: Set([first.id]),
+                in: file
+            ),
+            firstDevice.id
+        )
+        XCTAssertNil(MappingTransferService.destinationDeviceID(for: [], in: file))
+        XCTAssertNil(
+            MappingTransferService.destinationDeviceID(
+                for: Set([first.id, second.id]),
+                in: file
+            )
+        )
+        XCTAssertNil(
+            MappingTransferService.destinationDeviceID(
+                for: Set([UUID()]),
+                in: file
+            )
+        )
+    }
 }

@@ -120,6 +120,59 @@ final class TraktorMappingDocument: ReferenceFileDocument {
         }
     }
 
+    /// Applies one value-typed document mutation and registers the complete
+    /// prior snapshot as a single undo operation. A mutation that leaves the
+    /// file unchanged has no dirty-state or undo side effects.
+    @MainActor
+    func performUndoableMutation<Result>(
+        actionName: String,
+        undoManager: UndoManager?,
+        _ mutation: (inout MappingFile) -> Result
+    ) -> Result? {
+        let before = mappingFile
+        var after = before
+        let result = mutation(&after)
+
+        guard after != before else { return nil }
+
+        mappingFile = after
+        noteChange()
+        registerUndoSnapshot(before, actionName: actionName, undoManager: undoManager)
+        return result
+    }
+
+    @MainActor
+    private func restoreSnapshot(
+        _ snapshot: MappingFile,
+        actionName: String,
+        undoManager: UndoManager
+    ) {
+        let inverse = mappingFile
+        guard inverse != snapshot else { return }
+
+        mappingFile = snapshot
+        noteChange()
+        registerUndoSnapshot(inverse, actionName: actionName, undoManager: undoManager)
+    }
+
+    @MainActor
+    private func registerUndoSnapshot(
+        _ snapshot: MappingFile,
+        actionName: String,
+        undoManager: UndoManager?
+    ) {
+        guard let undoManager else { return }
+
+        undoManager.registerUndo(withTarget: self) { document in
+            document.restoreSnapshot(
+                snapshot,
+                actionName: actionName,
+                undoManager: undoManager
+            )
+        }
+        undoManager.setActionName(actionName)
+    }
+
     @MainActor
     func updateFileURL(_ fileURL: URL?) {
         if let oldURL = self.fileURL as NSURL? {
