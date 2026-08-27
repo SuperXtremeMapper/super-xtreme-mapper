@@ -19,8 +19,18 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
     /// Unique identifier for this mapping entry
     let id: UUID
 
-    /// The name of the Traktor command being mapped
-    var commandName: String
+    /// The authoritative Traktor command ID being mapped.
+    var commandID: Int
+
+    /// The catalog metadata for the authoritative command ID.
+    var commandDescriptor: TraktorCommandDescriptor {
+        TraktorCommands.descriptor(for: commandID)
+    }
+
+    /// The display name derived from the authoritative command ID.
+    var commandName: String {
+        commandID == 0 ? "" : commandDescriptor.name
+    }
 
     /// Whether this is an input (controller to Traktor) or output (Traktor to controller)
     var ioType: IODirection
@@ -148,6 +158,7 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
     /// All parameters have sensible defaults for creating empty mappings.
     init(
         id: UUID = UUID(),
+        commandID: Int? = nil,
         commandName: String = "",
         ioType: IODirection = .input,
         assignment: TargetAssignment = .none,
@@ -177,7 +188,7 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         resolution: Int = 1
     ) {
         self.id = id
-        self.commandName = commandName
+        self.commandID = commandID ?? TraktorCommands.id(forLegacyName: commandName)
         self.ioType = ioType
         self.assignment = assignment
         self.interactionMode = interactionMode
@@ -221,29 +232,29 @@ extension MappingEntry: Codable {
         // post-parse fix-up for legacy v4 TSI files. Done in locals so the
         // migrated values land in the stored properties on first assignment
         // (avoiding closure capture before self.* is initialized).
-        var decodedCommandName = try container.decode(String.self, forKey: .commandName)
+        let decodedCommandID = try container.decodeIfPresent(Int.self, forKey: .commandID)
+        var decodedCommandName = try container.decodeIfPresent(String.self, forKey: .commandName) ?? ""
         ioType = try container.decode(IODirection.self, forKey: .ioType)
         var decodedAssignment = try container.decode(TargetAssignment.self, forKey: .assignment)
 
-        let slotPrefixes = ["Slot 1 ", "Slot 2 ", "Slot 3 ", "Slot 4 "]
-        if let slotIdx = slotPrefixes.firstIndex(where: { decodedCommandName.hasPrefix($0) }) {
-            let suffix = String(decodedCommandName.dropFirst(7)) // strip "Slot N "
-            let remix: TargetAssignment = [.remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4][slotIdx]
-            switch suffix {
-            case "Volume":    decodedCommandName = "Slot Volume";        decodedAssignment = remix
-            case "Mute":      decodedCommandName = "Slot Mute On";       decodedAssignment = remix
-            case "Filter":    decodedCommandName = "Slot Filter Adjust"; decodedAssignment = remix
-            case "Filter On": decodedCommandName = "Slot Filter On";     decodedAssignment = remix
-            case "FX On":     decodedCommandName = "Slot FX On";         decodedAssignment = remix
-            case "FX Send":
-                // No Traktor 4.4 equivalent — left loadable to preserve any other
-                // mapping state, but the next save will route through the writer's
-                // unwritable-name filter and skip it. Logged for traceability.
-                Self.logger.warning("Loading legacy 'Slot N FX Send' commandName from JSON — will be dropped on next save")
-            default: break
+        if decodedCommandID == nil {
+            let slotPrefixes = ["Slot 1 ", "Slot 2 ", "Slot 3 ", "Slot 4 "]
+            if let slotIdx = slotPrefixes.firstIndex(where: { decodedCommandName.hasPrefix($0) }) {
+                let suffix = String(decodedCommandName.dropFirst(7)) // strip "Slot N "
+                let remix: TargetAssignment = [.remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4][slotIdx]
+                switch suffix {
+                case "Volume":    decodedCommandName = "Slot Volume";        decodedAssignment = remix
+                case "Mute":      decodedCommandName = "Slot Mute On";       decodedAssignment = remix
+                case "Filter":    decodedCommandName = "Slot Filter Adjust"; decodedAssignment = remix
+                case "Filter On": decodedCommandName = "Slot Filter On";     decodedAssignment = remix
+                case "FX On":     decodedCommandName = "Slot FX On";         decodedAssignment = remix
+                case "FX Send":
+                    Self.logger.warning("Loading legacy 'Slot N FX Send' commandName from JSON as invalid command ID 0")
+                default: break
+                }
             }
         }
-        commandName = decodedCommandName
+        commandID = decodedCommandID ?? TraktorCommands.id(forLegacyName: decodedCommandName)
         assignment = decodedAssignment
         interactionMode = try container.decode(InteractionMode.self, forKey: .interactionMode)
         midiChannel = try container.decode(Int.self, forKey: .midiChannel)
@@ -275,6 +286,7 @@ extension MappingEntry: Codable {
     nonisolated func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
+        try container.encode(commandID, forKey: .commandID)
         try container.encode(commandName, forKey: .commandName)
         try container.encode(ioType, forKey: .ioType)
         try container.encode(assignment, forKey: .assignment)
@@ -305,7 +317,7 @@ extension MappingEntry: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id, commandName, ioType, assignment, interactionMode
+        case id, commandID, commandName, ioType, assignment, interactionMode
         case midiChannel, midiNote, midiCC
         case modifier1Condition, modifier2Condition
         case comment, controllerType, invert

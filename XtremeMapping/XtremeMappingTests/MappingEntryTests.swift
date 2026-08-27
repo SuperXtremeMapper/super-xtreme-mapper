@@ -13,6 +13,99 @@ struct MappingEntryTests {
 
     // MARK: - Legacy Codable Compatibility Tests
 
+    @Test func testExplicitCommandIDWinsOverStaleEncodedName() throws {
+        let entry = MappingEntry(commandID: 201)
+        var json = try #require(
+            try JSONSerialization.jsonObject(with: JSONEncoder().encode(entry)) as? [String: Any]
+        )
+        json["commandName"] = "Loop Out"
+        let data = try JSONSerialization.data(withJSONObject: json)
+
+        let decoded = try JSONDecoder().decode(MappingEntry.self, from: data)
+        #expect(decoded.commandID == 201)
+        #expect(decoded.commandName == "Reverse Playback On")
+    }
+
+    @Test func testExplicitCommandIDDoesNotRequireRedundantName() throws {
+        let entry = MappingEntry(commandID: 201)
+        var json = try #require(
+            try JSONSerialization.jsonObject(with: JSONEncoder().encode(entry)) as? [String: Any]
+        )
+        json.removeValue(forKey: "commandName")
+        let decoded = try JSONDecoder().decode(
+            MappingEntry.self,
+            from: JSONSerialization.data(withJSONObject: json)
+        )
+        #expect(decoded.commandID == 201)
+    }
+
+    @Test func testLegacyNameOnlyJSONDerivesCommandID() throws {
+        let entry = MappingEntry(commandID: 100)
+        var json = try #require(
+            try JSONSerialization.jsonObject(with: JSONEncoder().encode(entry)) as? [String: Any]
+        )
+        json.removeValue(forKey: "commandID")
+        json["commandName"] = "Play/Pause (Deck Common)"
+        let data = try JSONSerialization.data(withJSONObject: json)
+
+        let decoded = try JSONDecoder().decode(MappingEntry.self, from: data)
+        #expect(decoded.commandID == 100)
+    }
+
+    @Test func testUnknownPositiveCommandIDSurvivesCodable() throws {
+        let entry = MappingEntry(commandID: 4242, comment: "Legacy macro")
+        let decoded = try JSONDecoder().decode(
+            MappingEntry.self,
+            from: JSONEncoder().encode(entry)
+        )
+        #expect(decoded.commandID == 4242)
+        #expect(decoded.commandName == "Unknown command #4242")
+        #expect(decoded.comment == "Legacy macro")
+    }
+
+    @Test func testLegacySlotNameMigratesToCanonicalIDAndTarget() throws {
+        let entry = MappingEntry(commandID: 251, assignment: .deckA)
+        var json = try #require(
+            try JSONSerialization.jsonObject(with: JSONEncoder().encode(entry)) as? [String: Any]
+        )
+        json.removeValue(forKey: "commandID")
+        json["commandName"] = "Slot 3 Volume"
+        let data = try JSONSerialization.data(withJSONObject: json)
+
+        let decoded = try JSONDecoder().decode(MappingEntry.self, from: data)
+        #expect(decoded.commandID == 251)
+        #expect(decoded.assignment == .remixDeckASlot3)
+    }
+
+    @Test func testHistoricRenamedLabelPreservesItsOldRawID() throws {
+        let entry = MappingEntry(commandID: 100)
+        var json = try #require(
+            try JSONSerialization.jsonObject(with: JSONEncoder().encode(entry)) as? [String: Any]
+        )
+        json.removeValue(forKey: "commandID")
+        json["commandName"] = "Loop Out"
+        let decoded = try JSONDecoder().decode(
+            MappingEntry.self,
+            from: JSONSerialization.data(withJSONObject: json)
+        )
+        #expect(decoded.commandID == 201)
+    }
+
+    @Test func testUnknownNameOnlyJSONBecomesVisibleInvalidID() throws {
+        let entry = MappingEntry(commandID: 100)
+        var json = try #require(
+            try JSONSerialization.jsonObject(with: JSONEncoder().encode(entry)) as? [String: Any]
+        )
+        json.removeValue(forKey: "commandID")
+        json["commandName"] = "Not a Traktor command"
+        let decoded = try JSONDecoder().decode(
+            MappingEntry.self,
+            from: JSONSerialization.data(withJSONObject: json)
+        )
+        #expect(decoded.commandID == 0)
+        #expect(decoded.commandName == "")
+    }
+
     @Test func testDeviceDecodesLegacyJSONWithoutVersionKeys() throws {
         // Encode a current Device, strip the new DDIV keys to simulate
         // previously-persisted data, and confirm decode falls back to defaults.
