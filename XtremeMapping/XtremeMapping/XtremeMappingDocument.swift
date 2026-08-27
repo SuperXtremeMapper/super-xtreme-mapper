@@ -94,12 +94,20 @@ final class TraktorMappingDocument: ReferenceFileDocument {
 
     func fileWrapper(snapshot: MappingFile, configuration: WriteConfiguration) throws -> FileWrapper {
         let writer = TSIWriter()
-        let data = writer.write(snapshot)
+        let data = try writer.write(snapshot)
         return FileWrapper(regularFileWithContents: data)
     }
 
     @MainActor
     func noteChange() {
+        noteChange(registeredWith: nil)
+    }
+
+    /// Publishes the in-memory mutation and records a non-undo-managed AppKit
+    /// change. NSDocument observes registrations on its own UndoManager, so a
+    /// transaction using that manager must not also increment change count.
+    @MainActor
+    private func noteChange(registeredWith undoManager: UndoManager?) {
         isDirty = true
         objectWillChange.send()
 
@@ -112,12 +120,69 @@ final class TraktorMappingDocument: ReferenceFileDocument {
         }
 
         if let doc = backingDocument {
+            if let undoManager, doc.undoManager === undoManager {
+                return
+            }
             doc.updateChangeCount(.changeDone)
         } else {
             // Unresolved — remember the change; flushed when the window
             // accessor attaches the backing document.
             hasPendingDirty = true
         }
+    }
+
+    /// Applies one value-typed document mutation and registers the complete
+    /// prior snapshot as a single undo operation. A mutation that leaves the
+    /// file unchanged has no dirty-state or undo side effects.
+    @MainActor
+    func performUndoableMutation<Result>(
+        actionName: String,
+        undoManager: UndoManager?,
+        _ mutation: (inout MappingFile) -> Result
+    ) -> Result? {
+        let before = mappingFile
+        var after = before
+        let result = mutation(&after)
+
+        guard after != before else { return nil }
+
+        mappingFile = after
+        noteChange(registeredWith: undoManager)
+        registerUndoSnapshot(before, actionName: actionName, undoManager: undoManager)
+        return result
+    }
+
+    @MainActor
+    private func restoreSnapshot(
+        _ snapshot: MappingFile,
+        actionName: String,
+        undoManager: UndoManager
+    ) {
+        let inverse = mappingFile
+        guard inverse != snapshot else { return }
+
+        mappingFile = snapshot
+        noteChange(registeredWith: undoManager)
+        registerUndoSnapshot(inverse, actionName: actionName, undoManager: undoManager)
+    }
+
+    @MainActor
+    private func registerUndoSnapshot(
+        _ snapshot: MappingFile,
+        actionName: String,
+        undoManager: UndoManager?
+    ) {
+        guard let undoManager else { return }
+
+        undoManager.registerUndo(withTarget: self) { [weak undoManager] document in
+            guard let undoManager else { return }
+            document.restoreSnapshot(
+                snapshot,
+                actionName: actionName,
+                undoManager: undoManager
+            )
+        }
+        undoManager.setActionName(actionName)
     }
 
     @MainActor

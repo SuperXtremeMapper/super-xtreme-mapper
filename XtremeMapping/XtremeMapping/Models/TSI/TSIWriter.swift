@@ -8,6 +8,11 @@
 import Foundation
 import os
 
+enum TSIWriterError: Error, Equatable {
+    case invalidCommandID(Int)
+    case conflictingEncoderModes(controlName: String, direction: IODirection)
+}
+
 /// Writer for TSI (Traktor Settings Interface) files.
 ///
 /// Converts in-memory TSI data structures back to the TSI file format.
@@ -23,9 +28,9 @@ public struct TSIWriter: Sendable {
     ///
     /// - Parameter mappingFile: The mapping file to serialize
     /// - Returns: The complete TSI file data
-    func write(_ mappingFile: MappingFile) -> Data {
+    func write(_ mappingFile: MappingFile) throws -> Data {
         // Build frame hierarchy: DIOM -> DEVS -> DEVI -> CMAS -> CMAI -> CMAD
-        let diomData = buildDIOM(from: mappingFile)
+        let diomData = try buildDIOM(from: mappingFile)
 
         // Create the root DIOM frame
         let diomFrame = TSIFrame(identifier: "DIOM", size: UInt32(diomData.count), data: diomData)
@@ -43,7 +48,7 @@ public struct TSIWriter: Sendable {
     // MARK: - Frame Building
 
     /// Builds the DIOM (Device IO Mappings) frame content
-    private func buildDIOM(from mappingFile: MappingFile) -> Data {
+    private func buildDIOM(from mappingFile: MappingFile) throws -> Data {
         var data = Data()
 
         // DIOI header frame (version info - 4 bytes, must be 1 for Traktor compatibility)
@@ -51,14 +56,14 @@ public struct TSIWriter: Sendable {
         data.append(encodeFrame(TSIFrame(identifier: "DIOI", size: UInt32(dioiData.count), data: dioiData)))
 
         // DEVS (devices container) with count prefix
-        let devsContent = buildDEVS(from: mappingFile.devices)
+        let devsContent = try buildDEVS(from: mappingFile.devices)
         data.append(encodeFrame(TSIFrame(identifier: "DEVS", size: UInt32(devsContent.count), data: devsContent)))
 
         return data
     }
 
     /// Builds the DEVS (Devices) frame content with count prefix
-    private func buildDEVS(from devices: [Device]) -> Data {
+    private func buildDEVS(from devices: [Device]) throws -> Data {
         var data = Data()
 
         // 4-byte device count (big-endian)
@@ -67,7 +72,7 @@ public struct TSIWriter: Sendable {
 
         // Each device as a DEVI frame
         for device in devices {
-            let deviContent = buildDEVI(from: device)
+            let deviContent = try buildDEVI(from: device)
             data.append(encodeFrame(TSIFrame(identifier: "DEVI", size: UInt32(deviContent.count), data: deviContent)))
         }
 
@@ -90,35 +95,40 @@ public struct TSIWriter: Sendable {
     }
 
     /// Builds the DEVI (Device) frame content
-    private func buildDEVI(from device: Device) -> Data {
+    private func buildDEVI(from device: Device) throws -> Data {
         var data = Data()
 
         // Device name (UTF-16BE with 4-byte length prefix)
         data.append(encodeUTF16BEString(tsiDeviceName(for: device)))
 
         // DDAT (Device Data) containing DDCB (Command Bindings)
-        let ddatContent = buildDDAT(from: device)
+        let ddatContent = try buildDDAT(from: device)
         data.append(encodeFrame(TSIFrame(identifier: "DDAT", size: UInt32(ddatContent.count), data: ddatContent)))
 
         return data
     }
 
     /// Builds the DDAT (Device Data) frame content
-    private func buildDDAT(from device: Device) -> Data {
+    private func buildDDAT(from device: Device) throws -> Data {
         var data = Data()
 
-        // Filter to mappings whose command name resolves to a writable Traktor ID.
+        // Filter placeholders while preserving every positive stored command ID.
         // Computed ONCE and shared by ALL frame builders (DDCI, DCBM, CMAS) so
         // binding IDs stay aligned across frames — filtering in only one builder
         // would make a CMAI point at the wrong MIDI control after reload.
-        // Excludes unresolvable names (id 0), "Command #0", and negative "Command #N".
-        let writableMappings = device.mappings.filter { mapping in
-            let commandId = TraktorCommands.id(for: mapping.commandName)
-            if commandId < 1 {
-                Self.logger.warning("Skipping unwritable mapping '\(mapping.commandName, privacy: .public)' (resolved ID \(commandId))")
-                return false
+        var writableMappings: [MappingEntry] = []
+        writableMappings.reserveCapacity(device.mappings.count)
+        for mapping in device.mappings {
+            guard mapping.commandID > 0 else {
+                Self.logger.warning(
+                    "Skipping unwritable mapping '\(mapping.commandName, privacy: .public)' (stored ID \(mapping.commandID))"
+                )
+                continue
             }
-            return true
+            guard mapping.commandID <= Int(UInt32.max) else {
+                throw TSIWriterError.invalidCommandID(mapping.commandID)
+            }
+            writableMappings.append(mapping)
         }
 
         // DDIF (Device Info Flags) - 4 bytes, value 0
@@ -145,90 +155,126 @@ public struct TSIWriter: Sendable {
         ddptData.append(encodeUTF16BEString(outPort))
         data.append(encodeFrame(TSIFrame(identifier: "DDPT", size: UInt32(ddptData.count), data: ddptData)))
 
-        // DDDC (MIDI Definitions Container) containing DDCI
-        let ddciContent = buildDDCI(from: writableMappings)
-        let ddciFrame = encodeFrame(TSIFrame(identifier: "DDCI", size: UInt32(ddciContent.count), data: ddciContent))
-        data.append(encodeFrame(TSIFrame(identifier: "DDDC", size: UInt32(ddciFrame.count), data: ddciFrame)))
+        // DDDC (MIDI Definitions Container) contains direction-specific DDCI
+        // input and DDCO output definition lists as sibling frames.
+        let dddcContent = try buildDDDC(from: writableMappings)
+        data.append(encodeFrame(TSIFrame(
+            identifier: "DDDC",
+            size: UInt32(dddcContent.count),
+            data: dddcContent
+        )))
 
         // DDCB (Command Bindings) containing CMAS
-        let ddcbContent = buildDDCB(from: writableMappings)
+        let ddcbContent = try buildDDCB(from: writableMappings)
         data.append(encodeFrame(TSIFrame(identifier: "DDCB", size: UInt32(ddcbContent.count), data: ddcbContent)))
 
         return data
     }
 
-    /// Builds the DDCI (Control Index) with DCDT entries
-    ///
-    /// Emits one DCDT per unique (control name, direction) pair so the same
-    /// physical control can carry both an IN binding (MidiControlType 7) and
-    /// an OUT/LED binding (MidiControlType 8).
-    private func buildDDCI(from mappings: [MappingEntry]) -> Data {
-        var data = Data()
+    private struct MIDIControlDefinitionKey: Hashable {
+        let controlName: String
+        let direction: IODirection
+    }
 
-        /// Output direction: explicit OUT mappings and LED controller types
-        func isOutput(_ mapping: MappingEntry) -> Bool {
-            mapping.ioType == .output || mapping.controllerType == .led
-        }
+    private struct MIDIControlDefinition {
+        let key: MIDIControlDefinitionKey
+        let encoderMode: UInt32
+    }
 
-        // Collect unique (control name, direction) pairs in mapping order.
-        // Unassigned mappings have no MIDI control — they get no DCDT entry.
-        var seenControls = Set<String>()
-        var uniqueEntries: [(controlName: String, isOutput: Bool)] = []
+    /// Builds the direction-specific MIDI definition lists. DCBM remains the
+    /// authority for binding IDs; these rows carry metadata only.
+    private func buildDDDC(from mappings: [MappingEntry]) throws -> Data {
+        var modesByKey: [MIDIControlDefinitionKey: UInt32] = [:]
+        var definitions: [MIDIControlDefinition] = []
+
         for mapping in mappings {
             guard let controlName = midiControlName(for: mapping) else { continue }
-            let output = isOutput(mapping)
-            let dedupKey = "\(controlName)|\(output ? "out" : "in")"
-            if !seenControls.contains(dedupKey) {
-                seenControls.insert(dedupKey)
-                uniqueEntries.append((controlName, output))
+            let direction: IODirection = mapping.ioType == .output ? .output : .input
+            let key = MIDIControlDefinitionKey(
+                controlName: controlName,
+                direction: direction
+            )
+            let encoderMode = mapping.effectiveDCDTEncoderMode
+
+            if let existing = modesByKey[key] {
+                guard existing == encoderMode else {
+                    throw TSIWriterError.conflictingEncoderModes(
+                        controlName: controlName,
+                        direction: direction
+                    )
+                }
+                continue
             }
+
+            modesByKey[key] = encoderMode
+            definitions.append(MIDIControlDefinition(key: key, encoderMode: encoderMode))
         }
 
-        // 4-byte count prefix (number of DCDT entries)
-        var countBE = UInt32(uniqueEntries.count).bigEndian
-        data.append(Data(bytes: &countBE, count: 4))
+        var data = Data()
+        let inputDefinitions = definitions.filter { $0.key.direction == .input }
+        if !inputDefinitions.isEmpty {
+            let payload = buildDefinitionList(from: inputDefinitions)
+            data.append(encodeFrame(TSIFrame(
+                identifier: "DDCI",
+                size: UInt32(payload.count),
+                data: payload
+            )))
+        }
 
-        for entry in uniqueEntries {
-            // Build DCDT frame with full structure
-            var dcdtData = Data()
+        let outputDefinitions = definitions.filter { $0.key.direction == .output }
+        if !outputDefinitions.isEmpty {
+            let payload = buildDefinitionList(from: outputDefinitions)
+            data.append(encodeFrame(TSIFrame(
+                identifier: "DDCO",
+                size: UInt32(payload.count),
+                data: payload
+            )))
+        }
 
-            // String with length prefix (UTF-16BE)
-            dcdtData.append(encodeUTF16BEString(entry.controlName))
+        return data
+    }
 
-            // MidiControlType (4 bytes) - 7 for in, 8 for out
-            var controlType = UInt32(entry.isOutput ? 8 : 7).bigEndian
-            dcdtData.append(Data(bytes: &controlType, count: 4))
+    private func buildDefinitionList(from definitions: [MIDIControlDefinition]) -> Data {
+        var data = Data()
+        var count = UInt32(definitions.count).bigEndian
+        data.append(Data(bytes: &count, count: 4))
 
-            // MinValue (4 bytes float) - 0.0
-            let minValue: Float32 = 0.0
-            var minValueBytes = minValue.bitPattern.bigEndian
-            dcdtData.append(Data(bytes: &minValueBytes, count: 4))
+        for definition in definitions {
+            var payload = Data()
+            payload.append(encodeUTF16BEString(definition.key.controlName))
 
-            // MaxValue (4 bytes float) - 127.0
-            let maxValue: Float32 = 127.0
-            var maxValueBytes = maxValue.bitPattern.bigEndian
-            dcdtData.append(Data(bytes: &maxValueBytes, count: 4))
+            let isOutput = definition.key.direction == .output
+            var controlType = UInt32(isOutput ? 8 : 7).bigEndian
+            payload.append(Data(bytes: &controlType, count: 4))
 
-            // EncoderMode (4 bytes) - 1
-            var encoderMode = UInt32(1).bigEndian
-            dcdtData.append(Data(bytes: &encoderMode, count: 4))
+            var minValue = Float32(0).bitPattern.bigEndian
+            payload.append(Data(bytes: &minValue, count: 4))
 
-            // ControlId (4 bytes) - -1 (0xFFFFFFFF)
-            var controlId = UInt32(0xFFFFFFFF).bigEndian
-            dcdtData.append(Data(bytes: &controlId, count: 4))
+            var maxValue = Float32(127).bitPattern.bigEndian
+            payload.append(Data(bytes: &maxValue, count: 4))
 
-            data.append(encodeFrame(TSIFrame(identifier: "DCDT", size: UInt32(dcdtData.count), data: dcdtData)))
+            var encoderMode = definition.encoderMode.bigEndian
+            payload.append(Data(bytes: &encoderMode, count: 4))
+
+            var controlID = UInt32.max.bigEndian
+            payload.append(Data(bytes: &controlID, count: 4))
+
+            data.append(encodeFrame(TSIFrame(
+                identifier: "DCDT",
+                size: UInt32(payload.count),
+                data: payload
+            )))
         }
 
         return data
     }
 
     /// Builds the DDCB (Command Bindings) frame content
-    private func buildDDCB(from mappings: [MappingEntry]) -> Data {
+    private func buildDDCB(from mappings: [MappingEntry]) throws -> Data {
         var data = Data()
 
         // Build CMAS (Mappings List)
-        let cmasContent = buildCMAS(from: mappings)
+        let cmasContent = try buildCMAS(from: mappings)
         data.append(encodeFrame(TSIFrame(identifier: "CMAS", size: UInt32(cmasContent.count), data: cmasContent)))
 
         // Build DCBM (MIDI Note Binding List) - links BindingId to MidiNote strings
@@ -269,7 +315,7 @@ public struct TSIWriter: Sendable {
     }
 
     /// Builds the CMAS (Mappings List) frame content
-    private func buildCMAS(from mappings: [MappingEntry]) -> Data {
+    private func buildCMAS(from mappings: [MappingEntry]) throws -> Data {
         var data = Data()
 
         // 4-byte mapping count prefix
@@ -281,7 +327,7 @@ public struct TSIWriter: Sendable {
 
         // Each mapping as a CMAI frame
         for mapping in mappings {
-            let cmaiContent = buildCMAI(from: mapping, controlNameToId: controlNameToId)
+            let cmaiContent = try buildCMAI(from: mapping, controlNameToId: controlNameToId)
             data.append(encodeFrame(TSIFrame(identifier: "CMAI", size: UInt32(cmaiContent.count), data: cmaiContent)))
         }
 
@@ -306,7 +352,7 @@ public struct TSIWriter: Sendable {
     }
 
     /// Builds the CMAI (Mapping Item) frame content
-    private func buildCMAI(from mapping: MappingEntry, controlNameToId: [String: Int]) -> Data {
+    private func buildCMAI(from mapping: MappingEntry, controlNameToId: [String: Int]) throws -> Data {
         var data = Data()
 
         // MidiNoteBindingId (4 bytes) — the unassigned sentinel when the
@@ -324,9 +370,11 @@ public struct TSIWriter: Sendable {
         var ioType = UInt32(mapping.ioType == .output ? 1 : 0).bigEndian
         data.append(Data(bytes: &ioType, count: 4))
 
-        // TraktorControlId (4 bytes) - need reverse lookup from command name
-        let controlId = TraktorCommands.id(for: mapping.commandName)
-        var traktorId = UInt32(controlId).bigEndian
+        // TraktorControlId (4 bytes) — the stored raw integer is authoritative.
+        guard mapping.commandID > 0, mapping.commandID <= Int(UInt32.max) else {
+            throw TSIWriterError.invalidCommandID(mapping.commandID)
+        }
+        var traktorId = UInt32(mapping.commandID).bigEndian
         data.append(Data(bytes: &traktorId, count: 4))
 
         // CMAD frame
@@ -380,7 +428,7 @@ public struct TSIWriter: Sendable {
         // Remix-slot commands (239/249/250/251/259) overload the same field
         // as deckIndex * 4 + slotIndex. This is verified against local
         // Traktor 4.4 exports where Slot Volume spans targets 0...15.
-        let cmdIdForTarget = TraktorCommands.id(for: mapping.commandName)
+        let cmdIdForTarget = mapping.commandID
         let isSlotCommand = Self.isRemixSlotCommand(cmdIdForTarget)
         let targetValue: Int32 = {
             if isSlotCommand {
@@ -569,7 +617,7 @@ public struct TSIWriter: Sendable {
     }
 
     private static func cmadProfile(for mapping: MappingEntry) -> CMADProfile {
-        let cmdId = TraktorCommands.id(for: mapping.commandName)
+        let cmdId = mapping.commandID
 
         // Indexed-hotcue path (id 2328 = "Select/Set+Store Hotcue").
         // SetValueTo carries the hotcue index 0..7 as raw uint32.
@@ -698,15 +746,16 @@ public struct TSIWriter: Sendable {
     /// DCDT/DCBM entries and write the unassigned sentinel binding ID, so an
     /// unassigned mapping round-trips unassigned.
     private func midiControlName(for mapping: MappingEntry) -> String? {
-        let channel = String(format: "Ch%02d", mapping.midiChannel)
+        let assignment = mapping.midiAssignment
+        let channel = String(format: "Ch%02d", assignment.channel)
 
-        if let cc = mapping.midiCC {
-            return String(format: "%@.CC.%03d", channel, cc)
-        } else if let note = mapping.midiNote {
-            let noteName = midiNoteToName(note)
-            return "\(channel).Note.\(noteName)"
-        } else {
+        switch assignment.kind {
+        case .unassigned:
             return nil
+        case .note:
+            return "\(channel).Note.\(midiNoteToName(assignment.number!))"
+        case .controlChange:
+            return String(format: "%@.CC.%03d", channel, assignment.number!)
         }
     }
 

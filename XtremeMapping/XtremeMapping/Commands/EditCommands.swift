@@ -15,16 +15,25 @@ import SwiftUI
 /// - Copying/pasting modifier conditions (⇧⌘C/⇧⌘V)
 /// - Bulk operations for changing channel, assignment, etc.
 struct EditCommands: Commands {
+    @Environment(\.undoManager) private var undoManager
+
     /// Access to the currently focused document
     @FocusedValue(\.mappingDocument) var document
 
     /// Access to the currently selected mappings
     @FocusedBinding(\.selectedMappingIDs) var selectedMappings
 
+    /// Window-local edit lock published through focused scene values.
+    @FocusedValue(\.mappingIsLocked) private var isLocked
+
     /// Observed so `.disabled(...)` re-evaluates the moment something is
     /// copied — reading `ClipboardManager.shared` directly leaves the paste
     /// items stuck disabled until the next unrelated menu rebuild.
     @ObservedObject private var clipboard = ClipboardManager.shared
+
+    private var mutationsLocked: Bool {
+        isLocked ?? false
+    }
 
     /// Returns the valid interaction modes for the current selection
     private var validInteractionModesForSelection: [InteractionMode] {
@@ -63,7 +72,7 @@ struct EditCommands: Commands {
                 duplicateSelected()
             }
             .keyboardShortcut("d", modifiers: .command)
-            .disabled(selectedMappings?.isEmpty ?? true)
+            .disabled(mutationsLocked || (selectedMappings?.isEmpty ?? true))
 
             Divider()
 
@@ -79,13 +88,17 @@ struct EditCommands: Commands {
                 pasteMappedTo()
             }
             .keyboardShortcut("v", modifiers: [.command, .option])
-            .disabled(selectedMappings?.isEmpty ?? true || !clipboard.hasMappedToData)
+            .disabled(
+                mutationsLocked
+                    || (selectedMappings?.isEmpty ?? true)
+                    || !clipboard.hasMappedToData
+            )
 
             // Reset MIDI assignment
             Button("Reset Mapped to") {
                 resetMappedTo()
             }
-            .disabled(selectedMappings?.isEmpty ?? true)
+            .disabled(mutationsLocked || (selectedMappings?.isEmpty ?? true))
 
             // Change Mapped to submenu
             Menu("Change Mapped to") {
@@ -97,7 +110,7 @@ struct EditCommands: Commands {
                     }
                 }
             }
-            .disabled(selectedMappings?.isEmpty ?? true)
+            .disabled(mutationsLocked || (selectedMappings?.isEmpty ?? true))
 
             // Change Assignment submenu
             Menu("Change Assignment") {
@@ -115,7 +128,7 @@ struct EditCommands: Commands {
                 Button("FX Unit 3") { changeAssignment(to: .fxUnit3) }
                 Button("FX Unit 4") { changeAssignment(to: .fxUnit4) }
             }
-            .disabled(selectedMappings?.isEmpty ?? true)
+            .disabled(mutationsLocked || (selectedMappings?.isEmpty ?? true))
 
             // Change Controller Type submenu
             Menu("Change Type") {
@@ -123,7 +136,7 @@ struct EditCommands: Commands {
                 Button("Fader / Knob") { changeControllerType(to: .faderOrKnob) }
                 Button("Encoder") { changeControllerType(to: .encoder) }
             }
-            .disabled(selectedMappings?.isEmpty ?? true)
+            .disabled(mutationsLocked || (selectedMappings?.isEmpty ?? true))
 
             // Change Interaction submenu - only shows valid modes for selected controller type(s)
             Menu("Change Interaction") {
@@ -133,7 +146,7 @@ struct EditCommands: Commands {
                     }
                 }
             }
-            .disabled(selectedMappings?.isEmpty ?? true)
+            .disabled(mutationsLocked || (selectedMappings?.isEmpty ?? true))
 
             // Change Encoder Mode submenu - only enabled when encoder is selected
             Menu("Change Encoder Mode") {
@@ -143,7 +156,7 @@ struct EditCommands: Commands {
                     }
                 }
             }
-            .disabled(!hasEncoderSelected)
+            .disabled(mutationsLocked || !hasEncoderSelected)
 
             Divider()
 
@@ -159,46 +172,36 @@ struct EditCommands: Commands {
                 pasteModifiers()
             }
             .keyboardShortcut("v", modifiers: [.command, .shift])
-            .disabled(selectedMappings?.isEmpty ?? true || !clipboard.hasModifiersData)
+            .disabled(
+                mutationsLocked
+                    || (selectedMappings?.isEmpty ?? true)
+                    || !clipboard.hasModifiersData
+            )
 
             // Clear modifiers
             Button("Clear Modifiers") {
                 clearModifiers()
             }
-            .disabled(selectedMappings?.isEmpty ?? true)
+            .disabled(mutationsLocked || (selectedMappings?.isEmpty ?? true))
         }
     }
 
     // MARK: - Action Implementations
 
     private func duplicateSelected() {
-        guard let doc = document,
+        guard !mutationsLocked,
+              let doc = document,
               let selected = selectedMappings,
               !selected.isEmpty else { return }
 
-        doc.noteChange()
-
-        for deviceIndex in doc.mappingFile.devices.indices {
-            let device = doc.mappingFile.devices[deviceIndex]
-            let toDuplicate = device.mappings.filter { selected.contains($0.id) }
-
-            for mapping in toDuplicate {
-                let duplicate = MappingEntry(
-                    commandName: mapping.commandName,
-                    ioType: mapping.ioType,
-                    assignment: mapping.assignment,
-                    interactionMode: mapping.interactionMode,
-                    midiChannel: mapping.midiChannel,
-                    midiNote: mapping.midiNote,
-                    midiCC: mapping.midiCC,
-                    modifier1Condition: mapping.modifier1Condition,
-                    modifier2Condition: mapping.modifier2Condition,
-                    comment: mapping.comment,
-                    controllerType: mapping.controllerType,
-                    invert: mapping.invert
-                )
-                doc.mappingFile.devices[deviceIndex].mappings.append(duplicate)
-            }
+        let insertedIDs = doc.performUndoableMutation(
+            actionName: "Duplicate Mappings",
+            undoManager: undoManager
+        ) { file in
+            MappingTransferService.duplicateSelection(selected, in: &file)
+        }
+        if let insertedIDs {
+            selectedMappings = insertedIDs
         }
     }
 
@@ -211,120 +214,62 @@ struct EditCommands: Commands {
     }
 
     private func pasteMappedTo() {
-        guard let doc = document,
-              let selected = selectedMappings,
-              !selected.isEmpty,
-              ClipboardManager.shared.hasMappedToData else { return }
+        guard !mutationsLocked,
+              let assignment = ClipboardManager.shared.mappedToClipboard?.midiAssignment else {
+            return
+        }
 
-        doc.noteChange()
-
-        for deviceIndex in doc.mappingFile.devices.indices {
-            for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
-                if selected.contains(doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].id) {
-                    ClipboardManager.shared.pasteMappedTo(to: &doc.mappingFile.devices[deviceIndex].mappings[mappingIndex])
-                }
-            }
+        mutateSelectedFile(actionName: "Paste Mapped To") { selected, file in
+            MappingBatchEditor.apply(assignment, to: selected, in: &file)
         }
     }
 
     private func resetMappedTo() {
-        guard let doc = document,
-              let selected = selectedMappings else { return }
+        guard let assignment = try? MIDIAssignment.unassigned(channel: 1) else {
+            return
+        }
 
-        doc.noteChange()
-
-        for deviceIndex in doc.mappingFile.devices.indices {
-            for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
-                if selected.contains(doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].id) {
-                    doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].midiNote = nil
-                    doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].midiCC = nil
-                    doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].midiChannel = 1
-                }
-            }
+        mutateSelectedFile(actionName: "Reset Mapped To") { selected, file in
+            MappingBatchEditor.apply(assignment, to: selected, in: &file)
         }
     }
 
     private func changeMidiChannel(to channel: Int) {
-        guard let doc = document,
-              let selected = selectedMappings else { return }
-
-        doc.noteChange()
-
-        for deviceIndex in doc.mappingFile.devices.indices {
-            for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
-                if selected.contains(doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].id) {
-                    doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].midiChannel = channel
-                }
+        mutateSelectedFile(actionName: "Change MIDI Channel") { selected, file in
+            do {
+                try MappingBatchEditor.applyChannel(channel, to: selected, in: &file)
+            } catch {
+                assertionFailure("Invalid MIDI channel from Edit menu: \(channel)")
             }
         }
     }
 
     private func changeAssignment(to assignment: TargetAssignment) {
-        guard let doc = document,
-              let selected = selectedMappings else { return }
-
-        doc.noteChange()
-
-        for deviceIndex in doc.mappingFile.devices.indices {
-            for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
-                if selected.contains(doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].id) {
-                    doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].assignment = assignment
-                }
-            }
+        mutateSelected(actionName: "Change Assignment") { mapping in
+            mapping.assignment = assignment
         }
     }
 
     private func changeControllerType(to type: ControllerType) {
-        guard let doc = document,
-              let selected = selectedMappings else { return }
-
-        doc.noteChange()
-
-        for deviceIndex in doc.mappingFile.devices.indices {
-            for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
-                if selected.contains(doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].id) {
-                    doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].controllerType = type
-                    // Reset interaction mode if current mode is invalid for new type
-                    let currentMode = doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].interactionMode
-                    if !type.validInteractionModes.contains(currentMode) {
-                        doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].interactionMode = type.defaultInteractionMode
-                    }
-                }
+        mutateSelected(actionName: "Change Controller Type") { mapping in
+            mapping.controllerType = type
+            if !type.validInteractionModes.contains(mapping.interactionMode) {
+                mapping.interactionMode = type.defaultInteractionMode
             }
         }
     }
 
     private func changeInteractionMode(to mode: InteractionMode) {
-        guard let doc = document,
-              let selected = selectedMappings else { return }
-
-        doc.noteChange()
-
-        for deviceIndex in doc.mappingFile.devices.indices {
-            for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
-                if selected.contains(doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].id) {
-                    // Only change if the mode is valid for this controller type
-                    let controllerType = doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].controllerType
-                    if controllerType.validInteractionModes.contains(mode) {
-                        doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].interactionMode = mode
-                    }
-                }
+        mutateSelected(actionName: "Change Interaction Mode") { mapping in
+            if mapping.controllerType.validInteractionModes.contains(mode) {
+                mapping.interactionMode = mode
             }
         }
     }
 
     private func changeEncoderMode(to mode: EncoderMode) {
-        guard let doc = document,
-              let selected = selectedMappings else { return }
-
-        doc.noteChange()
-
-        for deviceIndex in doc.mappingFile.devices.indices {
-            for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
-                if selected.contains(doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].id) {
-                    doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].encoderMode = mode
-                }
-            }
+        mutateSelected(actionName: "Change Encoder Mode") { mapping in
+            mapping.setEncoderMode(mode)
         }
     }
 
@@ -337,35 +282,59 @@ struct EditCommands: Commands {
     }
 
     private func pasteModifiers() {
-        guard let doc = document,
-              let selected = selectedMappings,
-              !selected.isEmpty,
+        guard !mutationsLocked,
               ClipboardManager.shared.hasModifiersData else { return }
 
-        doc.noteChange()
+        mutateSelected(actionName: "Paste Modifiers") { mapping in
+            ClipboardManager.shared.pasteModifiers(to: &mapping)
+        }
+    }
 
-        for deviceIndex in doc.mappingFile.devices.indices {
-            for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
-                if selected.contains(doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].id) {
-                    ClipboardManager.shared.pasteModifiers(to: &doc.mappingFile.devices[deviceIndex].mappings[mappingIndex])
+    private func clearModifiers() {
+        mutateSelected(actionName: "Clear Modifiers") { mapping in
+            mapping.modifier1Condition = nil
+            mapping.modifier2Condition = nil
+        }
+    }
+
+    private func mutateSelected(
+        actionName: String,
+        _ mutation: (inout MappingEntry) -> Void
+    ) {
+        guard !mutationsLocked,
+              let doc = document,
+              let selected = selectedMappings,
+              !selected.isEmpty else { return }
+
+        _ = doc.performUndoableMutation(
+            actionName: actionName,
+            undoManager: undoManager
+        ) { file in
+            for deviceIndex in file.devices.indices {
+                for mappingIndex in file.devices[deviceIndex].mappings.indices {
+                    let mappingID = file.devices[deviceIndex].mappings[mappingIndex].id
+                    if selected.contains(mappingID) {
+                        mutation(&file.devices[deviceIndex].mappings[mappingIndex])
+                    }
                 }
             }
         }
     }
 
-    private func clearModifiers() {
-        guard let doc = document,
-              let selected = selectedMappings else { return }
+    private func mutateSelectedFile(
+        actionName: String,
+        _ mutation: (Set<MappingEntry.ID>, inout MappingFile) -> Void
+    ) {
+        guard !mutationsLocked,
+              let doc = document,
+              let selected = selectedMappings,
+              !selected.isEmpty else { return }
 
-        doc.noteChange()
-
-        for deviceIndex in doc.mappingFile.devices.indices {
-            for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
-                if selected.contains(doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].id) {
-                    doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].modifier1Condition = nil
-                    doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].modifier2Condition = nil
-                }
-            }
+        _ = doc.performUndoableMutation(
+            actionName: actionName,
+            undoManager: undoManager
+        ) { file in
+            mutation(selected, &file)
         }
     }
 }
@@ -382,6 +351,11 @@ struct SelectedMappingIDsKey: FocusedValueKey {
     typealias Value = Binding<Set<MappingEntry.ID>>
 }
 
+/// Key for disabling document mutations from the focused window's Edit menu.
+struct MappingIsLockedKey: FocusedValueKey {
+    typealias Value = Bool
+}
+
 // MARK: - FocusedValues Extension
 
 extension FocusedValues {
@@ -395,5 +369,11 @@ extension FocusedValues {
     var selectedMappingIDs: Binding<Set<MappingEntry.ID>>? {
         get { self[SelectedMappingIDsKey.self] }
         set { self[SelectedMappingIDsKey.self] = newValue }
+    }
+
+    /// Whether the focused mapping document currently refuses edits.
+    var mappingIsLocked: Bool? {
+        get { self[MappingIsLockedKey.self] }
+        set { self[MappingIsLockedKey.self] = newValue }
     }
 }

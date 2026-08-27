@@ -47,16 +47,16 @@ final class WizardCoordinatorTests: XCTestCase {
     }
 
     /// Assigns the given note as the shift button via the Setup tab,
-    /// then moves to the Mixer tab.
+    /// then moves to a tab with verified deck commands.
     private func assignShift(note: Int) {
         coordinator.switchToTab(.setup)
         coordinator.handleMIDIReceived(noteOn(note))
         XCTAssertNotNil(coordinator.shiftMIDI, "Shift button should be assigned")
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
     }
 
-    private func captures(for commandName: String) -> [WizardCapturedMapping] {
-        coordinator.capturedMappings.filter { $0.function.commandName == commandName }
+    private func captures(for commandID: Int) -> [WizardCapturedMapping] {
+        coordinator.capturedMappings.filter { $0.function.commandID == commandID }
     }
 
     /// Attaches a document and restarts learning so save paths have a target.
@@ -83,27 +83,167 @@ final class WizardCoordinatorTests: XCTestCase {
         XCTAssertEqual(coordinator.statusMessage, message, "Stray auto-advance changed the status message", file: file, line: line)
     }
 
+    // MARK: - Reliable command and MIDI propagation
+
+    func testWizardCapturedMappingUsesVerifiedCommandAndMIDIIDs() throws {
+        let function = WizardFunction(
+            displayName: "Play/Pause",
+            commandID: 100,
+            controllerType: .button,
+            interactionMode: .toggle
+        )
+        let captured = WizardCapturedMapping(
+            function: function,
+            assignment: .deckC,
+            midiMessage: MIDIMessage(channel: 9, note: 64, cc: nil, value: 127),
+            modifierCondition: ModifierCondition(modifier: 1, value: 1)
+        )
+
+        let entry = captured.toMappingEntry()
+
+        XCTAssertEqual(entry.commandID, 100)
+        XCTAssertEqual(entry.midiAssignment, try .note(channel: 9, number: 64))
+        XCTAssertEqual(entry.assignment, .deckC)
+        XCTAssertEqual(entry.modifier1Condition, ModifierCondition(modifier: 1, value: 1))
+    }
+
+    func testEveryWizardFunctionUsesVerifiedInputCommand() {
+        for tab in WizardTab.allCases {
+            for function in tab.functions {
+                let descriptor = TraktorCommands.descriptor(for: function.commandID)
+                XCTAssertEqual(
+                    descriptor.verification,
+                    .verifiedTraktor441,
+                    "\(tab): \(function.displayName)"
+                )
+                XCTAssertTrue(
+                    descriptor.supportedDirections.contains(.input),
+                    "\(tab): \(function.displayName)"
+                )
+            }
+        }
+    }
+
+    func testHotcueEightUsesCanonicalCommandAndZeroBasedSetValue() throws {
+        let function = try XCTUnwrap(
+            WizardTab.cueLoop.functions.first { $0.displayName == "Hotcue 8" }
+        )
+
+        XCTAssertEqual(function.commandID, 2328)
+        XCTAssertEqual(function.setToValue, 7)
+    }
+
+    func testCapturedRemixSlotRetainsExactTarget() throws {
+        let function = WizardFunction(
+            displayName: "Slot Trigger",
+            commandID: 601,
+            controllerType: .button,
+            interactionMode: .trigger,
+            perDeck: false
+        )
+        let captured = WizardCapturedMapping(
+            function: function,
+            assignment: .remixDeckDSlot4,
+            midiMessage: noteOn(72, channel: 16),
+            modifierCondition: nil
+        )
+
+        let entry = captured.toMappingEntry()
+
+        XCTAssertEqual(entry.commandID, 601)
+        XCTAssertEqual(entry.assignment, .remixDeckDSlot4)
+        XCTAssertEqual(entry.midiAssignment, try .note(channel: 16, number: 72))
+    }
+
+    func testConflictIdentityUsesRawCommandIDWhenNamesMatch() {
+        let observedBeatPhase = MappingEntry(
+            commandID: 513,
+            assignment: .deckB,
+            setToValue: 3
+        )
+        let historicBeatPhase = MappingEntry(
+            commandID: 2251,
+            assignment: .deckB,
+            setToValue: 3
+        )
+        XCTAssertEqual(observedBeatPhase.commandName, historicBeatPhase.commandName)
+
+        XCTAssertNotEqual(
+            WizardCoordinator.bindingKey(for: observedBeatPhase),
+            WizardCoordinator.bindingKey(for: historicBeatPhase)
+        )
+    }
+
+    func testConflictIdentityPreservesAssignmentAndQuantizedSetValueSemantics() {
+        let source = MappingEntry(commandID: 2328, assignment: .deckA, setToValue: 2.49)
+        let sameQuantizedValue = MappingEntry(commandID: 2328, assignment: .deckA, setToValue: 2.40)
+        let differentTarget = MappingEntry(commandID: 2328, assignment: .deckB, setToValue: 2.49)
+        let differentValue = MappingEntry(commandID: 2328, assignment: .deckA, setToValue: 2.51)
+
+        XCTAssertEqual(
+            WizardCoordinator.bindingKey(for: source),
+            WizardCoordinator.bindingKey(for: sameQuantizedValue)
+        )
+        XCTAssertNotEqual(
+            WizardCoordinator.bindingKey(for: source),
+            WizardCoordinator.bindingKey(for: differentTarget)
+        )
+        XCTAssertNotEqual(
+            WizardCoordinator.bindingKey(for: source),
+            WizardCoordinator.bindingKey(for: differentValue)
+        )
+    }
+
+    func testNextSkipsTabsWhoseUnverifiedFunctionsWereRemoved() {
+        coordinator.switchToTab(.setup)
+
+        coordinator.next()
+
+        XCTAssertEqual(coordinator.currentTab, .decks)
+        XCTAssertNotNil(coordinator.currentFunction)
+    }
+
+    func testPreviousSkipsTabsWhoseUnverifiedFunctionsWereRemoved() {
+        coordinator.switchToTab(.cueLoop)
+
+        coordinator.previous()
+
+        XCTAssertEqual(coordinator.currentTab, .decks)
+        XCTAssertNotNil(coordinator.currentFunction)
+    }
+
+    func testLastVerifiedWizardFunctionIsReportedAsLastStep() {
+        coordinator.setupConfig.numberOfChannels = 1
+        coordinator.switchToTab(.cueLoop)
+        for _ in 1..<WizardTab.cueLoop.functions.count {
+            coordinator.next()
+        }
+
+        XCTAssertEqual(coordinator.currentFunction?.displayName, "Hotcue 8")
+        XCTAssertTrue(coordinator.isAtLastStep)
+    }
+
     // MARK: - Task 3.2: note-off never creates a capture
 
     func testNoteOffDoesNotAddOrReplaceCapture() {
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
         guard let function = coordinator.currentFunction else {
             return XCTFail("Expected a current function on the mixer tab")
         }
 
         coordinator.handleMIDIReceived(noteOn(60))
-        XCTAssertEqual(captures(for: function.commandName).count, 1)
-        XCTAssertEqual(captures(for: function.commandName).first?.midiMessage.value, 127)
+        XCTAssertEqual(captures(for: function.commandID).count, 1)
+        XCTAssertEqual(captures(for: function.commandID).first?.midiMessage.value, 127)
 
         coordinator.handleMIDIReceived(noteOff(60))
-        let after = captures(for: function.commandName)
+        let after = captures(for: function.commandID)
         XCTAssertEqual(after.count, 1, "Note-off must not add a capture")
         XCTAssertEqual(after.first?.midiMessage.value, 127, "Note-off must not replace the note-on capture")
     }
 
     func testNoteOffDoesNotRestartAutoAdvance() {
         coordinator.autoAdvanceEnabled = true
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
 
         coordinator.handleMIDIReceived(noteOn(60))
         XCTAssertEqual(coordinator.autoAdvanceCountdown, 1.0, accuracy: 0.001)
@@ -124,13 +264,13 @@ final class WizardCoordinatorTests: XCTestCase {
     }
 
     func testCCValueZeroStillCaptures() {
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
         guard let function = coordinator.currentFunction else {
             return XCTFail("Expected a current function on the mixer tab")
         }
 
         coordinator.handleMIDIReceived(cc(7, value: 0))
-        let result = captures(for: function.commandName)
+        let result = captures(for: function.commandID)
         XCTAssertEqual(result.count, 1, "CC with value 0 is a valid position and must capture")
         XCTAssertEqual(result.first?.midiMessage.cc, 7)
         XCTAssertEqual(result.first?.midiMessage.value, 0)
@@ -139,21 +279,21 @@ final class WizardCoordinatorTests: XCTestCase {
     // MARK: - Task 3.3: nil/M1=0 dedup equivalence
 
     func testNilModifierAndM1ZeroDeduplicate() {
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
         guard let function = coordinator.currentFunction else {
             return XCTFail("Expected a current function on the mixer tab")
         }
 
         // Capture with no shift assigned → modifierCondition == nil
         coordinator.handleMIDIReceived(noteOn(60))
-        XCTAssertEqual(captures(for: function.commandName).count, 1)
-        XCTAssertNil(captures(for: function.commandName).first?.modifierCondition)
+        XCTAssertEqual(captures(for: function.commandID).count, 1)
+        XCTAssertNil(captures(for: function.commandID).first?.modifierCondition)
 
         // Assign shift, then recapture the same function unshifted → M1 = 0
         assignShift(note: 99)
         coordinator.handleMIDIReceived(noteOn(61))
 
-        let result = captures(for: function.commandName)
+        let result = captures(for: function.commandID)
         XCTAssertEqual(result.count, 1,
                        "nil modifier and M1=0 are equivalent — recapture must replace, not duplicate")
         XCTAssertEqual(result.first?.midiMessage.note, 61)
@@ -214,7 +354,7 @@ final class WizardCoordinatorTests: XCTestCase {
 
     func testSkipCancelsPendingAutoAdvance() async throws {
         coordinator.autoAdvanceEnabled = true
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
         coordinator.handleMIDIReceived(noteOn(60))
         XCTAssertEqual(coordinator.autoAdvanceCountdown, 1.0, accuracy: 0.001)
 
@@ -227,7 +367,7 @@ final class WizardCoordinatorTests: XCTestCase {
 
     func testPreviousCancelsPendingAutoAdvance() async throws {
         coordinator.autoAdvanceEnabled = true
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
         coordinator.handleMIDIReceived(noteOn(60))
         XCTAssertEqual(coordinator.autoAdvanceCountdown, 1.0, accuracy: 0.001)
 
@@ -239,7 +379,7 @@ final class WizardCoordinatorTests: XCTestCase {
 
     func testClearCurrentMappingCancelsPendingAutoAdvance() async throws {
         coordinator.autoAdvanceEnabled = true
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
         coordinator.handleMIDIReceived(noteOn(60))
         XCTAssertEqual(coordinator.autoAdvanceCountdown, 1.0, accuracy: 0.001)
 
@@ -251,7 +391,7 @@ final class WizardCoordinatorTests: XCTestCase {
 
     func testSwitchToTabCancelsPendingAutoAdvance() async throws {
         coordinator.autoAdvanceEnabled = true
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
         coordinator.handleMIDIReceived(noteOn(60))
         XCTAssertEqual(coordinator.autoAdvanceCountdown, 1.0, accuracy: 0.001)
 
@@ -263,7 +403,7 @@ final class WizardCoordinatorTests: XCTestCase {
 
     func testCancelCancelsPendingAutoAdvance() async throws {
         coordinator.autoAdvanceEnabled = true
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
         coordinator.handleMIDIReceived(noteOn(60))
         XCTAssertEqual(coordinator.autoAdvanceCountdown, 1.0, accuracy: 0.001)
 
@@ -276,7 +416,7 @@ final class WizardCoordinatorTests: XCTestCase {
     func testPerformSaveCancelsPendingAutoAdvance() async throws {
         attachDocument()
         coordinator.autoAdvanceEnabled = true
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
         coordinator.handleMIDIReceived(noteOn(60))
         XCTAssertEqual(coordinator.autoAdvanceCountdown, 1.0, accuracy: 0.001)
 
@@ -290,12 +430,18 @@ final class WizardCoordinatorTests: XCTestCase {
     func testSaveToDocumentWithConflictCancelsPendingAutoAdvance() async throws {
         let document = attachDocument()
         coordinator.autoAdvanceEnabled = true
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
         guard let function = coordinator.currentFunction else {
             return XCTFail("Expected a current function on the mixer tab")
         }
         document.mappingFile.devices = [
-            Device(mappings: [MappingEntry(commandName: function.commandName)])
+            Device(mappings: [
+                MappingEntry(
+                    commandID: function.commandID,
+                    assignment: try XCTUnwrap(coordinator.currentAssignment),
+                    setToValue: function.setToValue ?? 0
+                )
+            ])
         ]
 
         coordinator.handleMIDIReceived(noteOn(60))
@@ -311,7 +457,7 @@ final class WizardCoordinatorTests: XCTestCase {
 
     func testStrayAutoAdvanceFireIsNoOpOutsideLearning() {
         attachDocument()
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
         coordinator.handleMIDIReceived(noteOn(60))
         coordinator.performSave(overwrite: false)
         XCTAssertEqual(coordinator.phase, .complete)
@@ -334,7 +480,7 @@ final class WizardCoordinatorTests: XCTestCase {
 
     func testPerformSaveStopsMIDIListening() {
         attachDocument()
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
         coordinator.handleMIDIReceived(noteOn(60))
         XCTAssertTrue(coordinator.isListening)
 
@@ -348,7 +494,7 @@ final class WizardCoordinatorTests: XCTestCase {
 
     func testCancelAfterCompletedSavePreservesSavedState() {
         attachDocument()
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
         coordinator.handleMIDIReceived(noteOn(60))
         coordinator.performSave(overwrite: false)
         XCTAssertEqual(coordinator.phase, .complete)
@@ -372,9 +518,9 @@ final class WizardCoordinatorTests: XCTestCase {
 
     // MARK: - Task 3.3: conflict scope alignment (L10) + entry channel (L9)
 
-    func testConflictInOtherDeviceDoesNotTriggerOverwriteAlert() {
+    func testConflictInOtherDeviceDoesNotTriggerOverwriteAlert() throws {
         let document = attachDocument()
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
         guard let function = coordinator.currentFunction else {
             return XCTFail("Expected a current function on the mixer tab")
         }
@@ -382,7 +528,13 @@ final class WizardCoordinatorTests: XCTestCase {
         // so it must not count.
         document.mappingFile.devices = [
             Device(),
-            Device(mappings: [MappingEntry(commandName: function.commandName)])
+            Device(mappings: [
+                MappingEntry(
+                    commandID: function.commandID,
+                    assignment: try XCTUnwrap(coordinator.currentAssignment),
+                    setToValue: function.setToValue ?? 0
+                )
+            ])
         ]
 
         coordinator.handleMIDIReceived(noteOn(60))
@@ -397,14 +549,20 @@ final class WizardCoordinatorTests: XCTestCase {
                        "devices[1] is untouched")
     }
 
-    func testConflictInFirstDeviceStillTriggersOverwriteAlert() {
+    func testConflictInFirstDeviceStillTriggersOverwriteAlert() throws {
         let document = attachDocument()
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
         guard let function = coordinator.currentFunction else {
             return XCTFail("Expected a current function on the mixer tab")
         }
         document.mappingFile.devices = [
-            Device(mappings: [MappingEntry(commandName: function.commandName)])
+            Device(mappings: [
+                MappingEntry(
+                    commandID: function.commandID,
+                    assignment: try XCTUnwrap(coordinator.currentAssignment),
+                    setToValue: function.setToValue ?? 0
+                )
+            ])
         ]
 
         coordinator.handleMIDIReceived(noteOn(60))
@@ -416,7 +574,7 @@ final class WizardCoordinatorTests: XCTestCase {
 
     func testSavedMappingEntryUsesCapturedMIDIChannel() {
         let document = attachDocument()
-        coordinator.switchToTab(.mixer)
+        coordinator.switchToTab(.decks)
         guard let function = coordinator.currentFunction else {
             return XCTFail("Expected a current function on the mixer tab")
         }
@@ -428,26 +586,6 @@ final class WizardCoordinatorTests: XCTestCase {
         XCTAssertEqual(saved?.midiChannel, 5,
                        "The entry's channel comes from the captured MIDI message")
         XCTAssertEqual(saved?.midiNote, 60)
-    }
-
-    func testSampleDeckAssignmentsExpandBySelectedChannelCount() {
-        coordinator.switchToTab(.sampleDecks)
-
-        coordinator.setupConfig.numberOfChannels = 1
-        XCTAssertEqual(coordinator.currentAssignments,
-                       [.remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4])
-
-        coordinator.setupConfig.numberOfChannels = 2
-        XCTAssertEqual(coordinator.currentAssignments,
-                       [.remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4,
-                        .remixDeckBSlot1, .remixDeckBSlot2, .remixDeckBSlot3, .remixDeckBSlot4])
-
-        coordinator.setupConfig.numberOfChannels = 4
-        XCTAssertEqual(coordinator.currentAssignments,
-                       [.remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4,
-                        .remixDeckBSlot1, .remixDeckBSlot2, .remixDeckBSlot3, .remixDeckBSlot4,
-                        .remixDeckCSlot1, .remixDeckCSlot2, .remixDeckCSlot3, .remixDeckCSlot4,
-                        .remixDeckDSlot1, .remixDeckDSlot2, .remixDeckDSlot3, .remixDeckDSlot4])
     }
 
     func testSetupChangeCallbackIsWiredToManager() {

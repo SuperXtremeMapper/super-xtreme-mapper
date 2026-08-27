@@ -18,13 +18,14 @@ final class ClipboardManager: ObservableObject {
     /// Copied modifier conditions
     @Published var modifiersClipboard: ModifiersData?
 
+    /// Ordered mapping snapshots copied between document windows.
+    @Published private(set) var mappingsClipboard: [MappingEntry] = []
+
     private init() {}
 
     /// Data for copied MIDI assignment
     struct MappedToData {
-        let midiChannel: Int
-        let midiNote: Int?
-        let midiCC: Int?
+        let midiAssignment: MIDIAssignment
     }
 
     /// Data for copied modifier conditions
@@ -35,19 +36,13 @@ final class ClipboardManager: ObservableObject {
 
     /// Copy MIDI assignment from a mapping entry
     func copyMappedTo(from entry: MappingEntry) {
-        mappedToClipboard = MappedToData(
-            midiChannel: entry.midiChannel,
-            midiNote: entry.midiNote,
-            midiCC: entry.midiCC
-        )
+        mappedToClipboard = MappedToData(midiAssignment: entry.midiAssignment)
     }
 
     /// Paste MIDI assignment to a mapping entry
     func pasteMappedTo(to entry: inout MappingEntry) {
         guard let data = mappedToClipboard else { return }
-        entry.midiChannel = data.midiChannel
-        entry.midiNote = data.midiNote
-        entry.midiCC = data.midiCC
+        entry.midiAssignment = data.midiAssignment
     }
 
     /// Copy modifiers from a mapping entry
@@ -65,6 +60,11 @@ final class ClipboardManager: ObservableObject {
         entry.modifier2Condition = data.modifier2
     }
 
+    /// Replaces the app-wide mapping group without changing source identities.
+    func copyMappings(_ mappings: [MappingEntry]) {
+        mappingsClipboard = mappings
+    }
+
     /// Check if MIDI clipboard has data
     var hasMappedToData: Bool {
         mappedToClipboard != nil
@@ -73,5 +73,10 @@ final class ClipboardManager: ObservableObject {
     /// Check if modifiers clipboard has data
     var hasModifiersData: Bool {
         modifiersClipboard != nil
+    }
+
+    /// Whether the app-wide mapping group contains at least one source snapshot.
+    var hasMappingsData: Bool {
+        !mappingsClipboard.isEmpty
     }
 }

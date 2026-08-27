@@ -7,6 +7,56 @@
 
 import SwiftUI
 
+/// Separates programmatic selection loading from an explicit dropdown choice.
+/// Only the latter returns a mode that should be written back to the mapping.
+struct EncoderModeDraft: Equatable, Sendable {
+    enum Change: Equatable, Sendable {
+        case selectionLoad(EncoderMode)
+        case userSelection(EncoderMode)
+    }
+
+    private(set) var value: EncoderMode = .mode7Fh01h
+
+    @discardableResult
+    mutating func apply(_ change: Change) -> EncoderMode? {
+        switch change {
+        case .selectionLoad(let mode):
+            value = mode
+            return nil
+        case .userSelection(let mode):
+            value = mode
+            return mode
+        }
+    }
+}
+
+struct CommentDraftState<SelectionID: Equatable> {
+    var text: String = ""
+
+    private var reconciledSelectionID: SelectionID?
+    private var reconciledPersistedComment: String?
+    private var hasReconciled = false
+
+    mutating func reconcile(
+        selectionID: SelectionID?,
+        persistedComment: String?
+    ) {
+        guard !hasReconciled
+                || reconciledSelectionID != selectionID
+                || reconciledPersistedComment != persistedComment else { return }
+
+        reconciledSelectionID = selectionID
+        reconciledPersistedComment = persistedComment
+        hasReconciled = true
+        text = persistedComment ?? ""
+    }
+}
+
+private struct DeviceCommentOption: Identifiable, Hashable {
+    let id: Device.ID
+    let label: String
+}
+
 /// V2 styled settings panel
 struct SettingsPanelV2: View {
     @ObservedObject var document: TraktorMappingDocument
@@ -23,7 +73,11 @@ struct SettingsPanelV2: View {
     @Environment(\.undoManager) var undoManager
 
     // Local state for editing
-    @State private var comment: String = ""
+    @State private var mappingCommentDraft = CommentDraftState<MappingEntry.ID>()
+    @State private var batchCommentDraft: String = ""
+    @State private var selectedDeviceID: Device.ID?
+    @State private var deviceCommentDraft = CommentDraftState<Device.ID>()
+    @State private var isDeviceCommentsExpanded: Bool = false
     @State private var assignment: TargetAssignment = .global
     @State private var controllerType: ControllerType = .button
     @State private var interactionMode: InteractionMode = .hold
@@ -34,19 +88,16 @@ struct SettingsPanelV2: View {
     @State private var setToValue: Float = 0.0
     @State private var rotarySensitivity: Float = 1.0
     @State private var rotaryAcceleration: Float = 0.0
-    @State private var encoderMode: EncoderMode = .mode7Fh01h
+    @State private var encoderModeDraft = EncoderModeDraft()
     @State private var midiChannel: Int = 1
+    @State private var batchAssignmentKind: MIDIAssignment.Kind = .unassigned
+    @State private var batchChannel: Int = 1
+    @State private var batchNumber: Int = 0
     @State private var isLearning: Bool = false
+    @State private var midiListeningLease: MIDIInputManager.ListeningLease?
     @State private var hasLearnedMIDI: Bool = false  // True when MIDI received during current learn session
     @State private var learnedCCValues: [Int] = []   // Track CC values to detect fader vs encoder
     @StateObject private var midiManager = MIDIInputManager.shared
-
-    private func registerChange() {
-        document.noteChange()
-        undoManager?.registerUndo(withTarget: document) { doc in
-            doc.noteChange()
-        }
-    }
 
     private var selectedEntry: MappingEntry? {
         guard selectedMappings.count == 1,
@@ -56,6 +107,38 @@ struct SettingsPanelV2: View {
 
     private var isMultipleSelection: Bool {
         selectedMappings.count > 1
+    }
+
+    private var deviceCommentOptions: [DeviceCommentOption] {
+        let names = document.mappingFile.devices.map { device in
+            device.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                ? "Unnamed Device"
+                : device.name
+        }
+        let nameCounts = Dictionary(grouping: names, by: { $0 }).mapValues(\.count)
+        var ordinals: [String: Int] = [:]
+
+        return zip(document.mappingFile.devices, names).map { device, name in
+            ordinals[name, default: 0] += 1
+            let label = nameCounts[name, default: 0] > 1
+                ? "\(name) (\(ordinals[name, default: 0]))"
+                : name
+            return DeviceCommentOption(id: device.id, label: label)
+        }
+    }
+
+    private var selectedDevice: Device? {
+        guard let selectedDeviceID else { return nil }
+        return document.mappingFile.devices.first { $0.id == selectedDeviceID }
+    }
+
+    private var hasActiveListeningLease: Bool {
+        guard let midiListeningLease else { return false }
+        return midiManager.ownsListeningLease(midiListeningLease)
+    }
+
+    private var isLearnOwnedElsewhere: Bool {
+        !hasActiveListeningLease && !midiManager.isListenerIdle
     }
 
     private var availableInteractionModes: [InteractionMode] {
@@ -104,6 +187,9 @@ struct SettingsPanelV2: View {
                     } else if let entry = selectedEntry {
                         singleSelectionView(entry: entry)
                     }
+
+                    V2Divider()
+                    deviceCommentSection
                 }
                 .padding(.horizontal, AppThemeV2.Spacing.md)
                 .padding(.top, AppThemeV2.Spacing.sm)  // Less top padding to align with table headers
@@ -113,13 +199,31 @@ struct SettingsPanelV2: View {
         }
         .background(AppThemeV2.Colors.stone800)
         .onChange(of: selectedMappings) { _, _ in
-            // Stop learning only when actual selection changes (different item selected)
-            if isLearning {
-                stopLearning()
-            }
+            stopLearning()
+            resetBatchAssignmentDraft()
+            batchCommentDraft = ""
         }
         .onChange(of: selectedEntry) { _, newEntry in
             loadEntryValues(newEntry)
+        }
+        .onChange(of: midiManager.activeListeningLease) { _, _ in
+            resetLearningStateIfOwnershipWasLost()
+        }
+        .onChange(of: selectedDeviceID) { _, newDeviceID in
+            reconcileDeviceComment(for: newDeviceID)
+        }
+        .onChange(of: selectedDevice?.comment) { _, _ in
+            reconcileDeviceComment(for: selectedDeviceID)
+        }
+        .onChange(of: document.mappingFile.devices.map(\.id)) { _, _ in
+            synchronizeDeviceCommentSelection()
+        }
+        .onAppear {
+            loadEntryValues(selectedEntry)
+            synchronizeDeviceCommentSelection()
+        }
+        .onDisappear {
+            stopLearning()
         }
     }
 
@@ -159,6 +263,31 @@ struct SettingsPanelV2: View {
                 Spacer()
             }
 
+            sectionLabel("COMMENT")
+            commentEditor(
+                text: $batchCommentDraft,
+                placeholder: "Comment for selected mappings...",
+                accessibilityLabel: "Comment for \(selectedMappings.count) selected mappings"
+            )
+            HStack {
+                Spacer()
+                V2SmallButton(
+                    label: "Apply to \(selectedMappings.count)",
+                    action: applyBatchComment
+                )
+                .disabled(isLocked)
+                .accessibilityLabel(
+                    "Apply comment to \(selectedMappings.count) selected mappings"
+                )
+            }
+
+            V2Divider()
+
+            sectionLabel("MIDI ASSIGNMENT")
+            batchMIDIAssignmentControls
+
+            V2Divider()
+
             sectionLabel("ASSIGNMENT")
             assignmentPicker
 
@@ -192,11 +321,17 @@ struct SettingsPanelV2: View {
         // Comment
         VStack(alignment: .leading, spacing: AppThemeV2.Spacing.xs) {
             sectionLabel("COMMENT")
-            V2TextField(placeholder: "Add a comment...", text: $comment)
-                .disabled(isLocked)
-                .onChange(of: comment) { _, newValue in
-                    updateEntry { $0.comment = newValue }
-                }
+            commentEditor(
+                text: $mappingCommentDraft.text,
+                placeholder: "Add a comment...",
+                accessibilityLabel: "Comment for 1 selected mapping"
+            )
+            HStack {
+                Spacer()
+                V2SmallButton(label: "Save", action: saveSingleMappingComment)
+                    .disabled(isLocked || mappingCommentDraft.text == entry.comment)
+                    .accessibilityLabel("Save comment for 1 selected mapping")
+            }
         }
 
         V2Divider()
@@ -222,7 +357,10 @@ struct SettingsPanelV2: View {
                     )
 
                 V2SmallButton(label: "Learn", action: toggleLearnMode, isActive: isLearning)
-                    .disabled(isLocked)
+                    .disabled(isLocked || isLearnOwnedElsewhere)
+                    .accessibilityLabel(
+                        isLearning ? "Stop MIDI Learn" : "Learn MIDI assignment"
+                    )
             }
         }
 
@@ -251,6 +389,63 @@ struct SettingsPanelV2: View {
         invertToggle
     }
 
+    // MARK: - Device Comment
+
+    private var deviceCommentSection: some View {
+        DisclosureGroup(isExpanded: $isDeviceCommentsExpanded) {
+            VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
+                if deviceCommentOptions.isEmpty {
+                    Text("No devices in this mapping file")
+                        .font(AppThemeV2.Typography.caption)
+                        .foregroundColor(AppThemeV2.Colors.stone500)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.vertical, AppThemeV2.Spacing.xs)
+                        .accessibilityLabel("No devices available for comments")
+                } else {
+                    V2FormRow(label: "Device") {
+                        Picker("Device", selection: $selectedDeviceID) {
+                            ForEach(deviceCommentOptions) { option in
+                                Text(option.label).tag(Optional(option.id))
+                            }
+                        }
+                        .labelsHidden()
+                        .pickerStyle(.menu)
+                        .disabled(isLocked)
+                        .accessibilityLabel(
+                            "Select 1 device from \(deviceCommentOptions.count) devices"
+                        )
+                    }
+
+                    commentEditor(
+                        text: $deviceCommentDraft.text,
+                        placeholder: "Add a device comment...",
+                        accessibilityLabel: "Comment for 1 selected device of \(deviceCommentOptions.count)"
+                    )
+
+                    HStack {
+                        Spacer()
+                        V2SmallButton(label: "Save", action: saveDeviceComment)
+                            .disabled(
+                                isLocked
+                                    || selectedDevice == nil
+                                    || deviceCommentDraft.text == selectedDevice?.comment
+                            )
+                            .accessibilityLabel(
+                                "Save comment for 1 selected device of \(deviceCommentOptions.count)"
+                            )
+                    }
+                }
+            }
+            .padding(.top, AppThemeV2.Spacing.sm)
+        } label: {
+            sectionLabel("DEVICE COMMENT")
+        }
+        .tint(AppThemeV2.Colors.stone400)
+        .accessibilityLabel(
+            "Device comments, \(document.mappingFile.devices.count) devices"
+        )
+    }
+
     // MARK: - Reusable Controls
 
     private func sectionLabel(_ text: String) -> some View {
@@ -259,6 +454,40 @@ struct SettingsPanelV2: View {
             .tracking(1)
             .foregroundColor(AppThemeV2.Colors.amber)
             .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func commentEditor(
+        text: Binding<String>,
+        placeholder: String,
+        accessibilityLabel: String
+    ) -> some View {
+        ZStack(alignment: .topLeading) {
+            TextEditor(text: text)
+                .font(AppThemeV2.Typography.body)
+                .foregroundColor(AppThemeV2.Colors.stone200)
+                .scrollContentBackground(.hidden)
+                .padding(4)
+
+            if text.wrappedValue.isEmpty {
+                Text(placeholder)
+                    .font(AppThemeV2.Typography.body)
+                    .foregroundColor(AppThemeV2.Colors.stone500)
+                    .padding(.horizontal, 9)
+                    .padding(.vertical, 8)
+                    .allowsHitTesting(false)
+            }
+        }
+        .frame(minHeight: 72, maxHeight: 140)
+        .background(
+            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                .fill(AppThemeV2.Colors.stone700)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                .stroke(AppThemeV2.Colors.stone600, lineWidth: 1)
+        )
+        .disabled(isLocked)
+        .accessibilityLabel(accessibilityLabel)
     }
 
     private var assignmentPicker: some View {
@@ -286,6 +515,56 @@ struct SettingsPanelV2: View {
                 .onChange(of: midiChannel) { _, newValue in
                     updateEntry { $0.midiChannel = newValue }
                 }
+        }
+    }
+
+    private var batchMIDIAssignmentControls: some View {
+        VStack(spacing: AppThemeV2.Spacing.sm) {
+            V2FormRow(label: "Type") {
+                V2Dropdown(
+                    options: [.note, .controlChange, .unassigned],
+                    selection: $batchAssignmentKind,
+                    labelFor: batchAssignmentKindLabel
+                )
+                .disabled(isLocked)
+            }
+
+            V2FormRow(label: "Channel") {
+                V2NumberStepper(value: $batchChannel, range: 1...16, label: nil)
+                    .disabled(isLocked)
+            }
+
+            if batchAssignmentKind != .unassigned {
+                V2FormRow(label: batchAssignmentKind == .note ? "Note" : "CC") {
+                    V2NumberStepper(value: $batchNumber, range: 0...127, label: nil)
+                        .disabled(isLocked)
+                }
+            }
+
+            HStack(spacing: AppThemeV2.Spacing.xs) {
+                Spacer()
+
+                V2SmallButton(
+                    label: "Learn",
+                    action: toggleLearnMode,
+                    isActive: isLearning
+                )
+                .disabled(isLocked || isLearnOwnedElsewhere)
+                .accessibilityLabel(
+                    isLearning
+                        ? "Stop MIDI Learn for selected mappings"
+                        : "Learn one MIDI assignment for selected mappings"
+                )
+
+                V2SmallButton(
+                    label: "Apply to \(selectedMappings.count)",
+                    action: applyBatchAssignmentDraft
+                )
+                .disabled(isLocked)
+                .accessibilityLabel(
+                    "Apply MIDI assignment to \(selectedMappings.count) selected mappings"
+                )
+            }
         }
     }
 
@@ -400,13 +679,18 @@ struct SettingsPanelV2: View {
                 V2FormRow(label: "Encoder Mode") {
                     V2Dropdown(
                         options: EncoderMode.allCases,
-                        selection: $encoderMode,
+                        selection: Binding(
+                            get: { encoderModeDraft.value },
+                            set: { newValue in
+                                guard let editedMode = encoderModeDraft.apply(
+                                    .userSelection(newValue)
+                                ) else { return }
+                                updateEntry { $0.setEncoderMode(editedMode) }
+                            }
+                        ),
                         labelFor: { $0.displayName }
                     )
                     .disabled(isLocked)
-                    .onChange(of: encoderMode) { _, newValue in
-                        updateEntry { $0.encoderMode = newValue }
-                    }
                 }
 
                 V2SliderRow(
@@ -449,26 +733,74 @@ struct SettingsPanelV2: View {
     }
 
     private func startLearning() {
-        isLearning = true
+        guard !isLocked,
+              !selectedMappings.isEmpty,
+              !isLearning,
+              midiListeningLease == nil else { return }
+
         hasLearnedMIDI = false  // Reset when starting a new learn session
         learnedCCValues = []    // Reset value tracking
-        midiManager.onMIDIReceived = { [self] message in
-            handleMIDILearned(message)
+        guard let lease = midiManager.acquireListeningLease(
+            onMIDIReceived: { [self] message in
+                handleMIDILearned(message)
+            }
+        ) else {
+            return
         }
-        midiManager.startListening()
+
+        midiListeningLease = lease
+        isLearning = true
     }
 
     private func stopLearning() {
+        guard isLearning || midiListeningLease != nil else { return }
+
+        if let lease = midiListeningLease,
+           midiManager.ownsListeningLease(lease) {
+            midiManager.releaseListeningLease(lease)
+        }
+
+        midiListeningLease = nil
+        resetLearningUIState()
+    }
+
+    private func resetLearningUIState() {
         isLearning = false
         hasLearnedMIDI = false  // Reset when stopping learn
         learnedCCValues = []    // Reset value tracking
-        midiManager.stopListening()
-        midiManager.onMIDIReceived = nil
+    }
+
+    private func resetLearningStateIfOwnershipWasLost() {
+        guard isLearning,
+              let lease = midiListeningLease,
+              !midiManager.ownsListeningLease(lease) else { return }
+
+        midiListeningLease = nil
+        resetLearningUIState()
     }
 
     private func handleMIDILearned(_ message: MIDIMessage) {
+        guard isLearning,
+              let lease = midiListeningLease,
+              midiManager.ownsListeningLease(lease),
+              let learnedAssignment = MIDIAssignment(learnMessage: message) else {
+            return
+        }
+
         // Mark that we've received MIDI during this learn session
         hasLearnedMIDI = true
+
+        if isMultipleSelection {
+            batchAssignmentKind = learnedAssignment.kind
+            batchChannel = learnedAssignment.channel
+            batchNumber = learnedAssignment.number ?? 0
+            applyBatchAssignment(
+                learnedAssignment,
+                actionName: "Learn MIDI Assignment"
+            )
+            stopLearning()
+            return
+        }
 
         // Track CC values for better fader vs encoder detection
         if message.cc != nil {
@@ -486,17 +818,9 @@ struct SettingsPanelV2: View {
         let detectedType = detectControllerType(from: message)
         let detectedInteraction = detectedType.defaultInteractionMode
 
-        // Update the selected mapping with the learned MIDI and detected type
-        // Note: Stay in learn mode until user clicks the button off
+        // Single-row Learn keeps its existing controller-type inference.
         updateEntry { entry in
-            entry.midiChannel = message.channel
-            if let note = message.note {
-                entry.midiNote = note
-                entry.midiCC = nil
-            } else if let cc = message.cc {
-                entry.midiCC = cc
-                entry.midiNote = nil
-            }
+            entry.midiAssignment = learnedAssignment
 
             // Auto-assign controller type and interaction mode
             entry.controllerType = detectedType
@@ -570,8 +894,11 @@ struct SettingsPanelV2: View {
     // MARK: - Helper Methods
 
     private func loadEntryValues(_ entry: MappingEntry?) {
+        mappingCommentDraft.reconcile(
+            selectionID: entry?.id,
+            persistedComment: entry?.comment
+        )
         guard let entry = entry else { return }
-        comment = entry.comment
         assignment = entry.assignment
         controllerType = entry.controllerType
         interactionMode = entry.interactionMode
@@ -582,37 +909,194 @@ struct SettingsPanelV2: View {
         setToValue = entry.setToValue
         rotarySensitivity = entry.rotarySensitivity
         rotaryAcceleration = entry.rotaryAcceleration
-        encoderMode = entry.encoderMode
+        encoderModeDraft.apply(.selectionLoad(entry.encoderMode))
         midiChannel = entry.midiChannel
     }
 
-    private func updateEntry(_ mutation: (inout MappingEntry) -> Void) {
-        guard let selectedId = selectedMappings.first,
-              selectedMappings.count == 1 else { return }
-
-        registerChange()
-
-        for deviceIndex in document.mappingFile.devices.indices {
-            if let mappingIndex = document.mappingFile.devices[deviceIndex].mappings.firstIndex(where: { $0.id == selectedId }) {
-                mutation(&document.mappingFile.devices[deviceIndex].mappings[mappingIndex])
-                return
-            }
+    private func batchAssignmentKindLabel(_ kind: MIDIAssignment.Kind) -> String {
+        switch kind {
+        case .note:
+            return "Note"
+        case .controlChange:
+            return "CC"
+        case .unassigned:
+            return "Unassigned"
         }
     }
 
+    private func resetBatchAssignmentDraft() {
+        batchAssignmentKind = .unassigned
+        batchChannel = 1
+        batchNumber = 0
+    }
+
+    private func saveSingleMappingComment() {
+        guard !isLocked,
+              selectedMappings.count == 1,
+              let selectedID = selectedMappings.first else { return }
+
+        let savedComment = mappingCommentDraft.text
+        let didSave = document.performUndoableMutation(
+            actionName: "Edit Mapping Comment",
+            undoManager: undoManager
+        ) { file in
+            MappingBatchEditor.applyComment(savedComment, to: [selectedID], in: &file)
+            return true
+        } ?? false
+
+        if didSave {
+            mappingCommentDraft.reconcile(
+                selectionID: selectedID,
+                persistedComment: savedComment
+            )
+        }
+    }
+
+    private func applyBatchComment() {
+        guard !isLocked, isMultipleSelection else { return }
+
+        _ = document.performUndoableMutation(
+            actionName: "Apply Mapping Comment",
+            undoManager: undoManager
+        ) { file in
+            MappingBatchEditor.applyComment(
+                batchCommentDraft,
+                to: selectedMappings,
+                in: &file
+            )
+        }
+    }
+
+    private func saveDeviceComment() {
+        guard !isLocked, let selectedDeviceID else { return }
+
+        let savedComment = deviceCommentDraft.text
+        let didSave = document.performUndoableMutation(
+            actionName: "Edit Device Comment",
+            undoManager: undoManager
+        ) { file in
+            MappingBatchEditor.applyDeviceComment(
+                savedComment,
+                to: selectedDeviceID,
+                in: &file
+            )
+            return true
+        } ?? false
+
+        if didSave {
+            deviceCommentDraft.reconcile(
+                selectionID: selectedDeviceID,
+                persistedComment: savedComment
+            )
+        }
+    }
+
+    private func synchronizeDeviceCommentSelection() {
+        let deviceIDs = document.mappingFile.devices.map(\.id)
+        guard !deviceIDs.isEmpty else {
+            selectedDeviceID = nil
+            reconcileDeviceComment(for: nil)
+            return
+        }
+
+        if let selectedDeviceID, deviceIDs.contains(selectedDeviceID) {
+            reconcileDeviceComment(for: selectedDeviceID)
+            return
+        }
+
+        selectedDeviceID = deviceIDs[0]
+        reconcileDeviceComment(for: deviceIDs[0])
+    }
+
+    private func reconcileDeviceComment(for deviceID: Device.ID?) {
+        let persistedComment = document.mappingFile.devices.first(where: {
+            $0.id == deviceID
+        })?.comment
+        deviceCommentDraft.reconcile(
+            selectionID: deviceID,
+            persistedComment: persistedComment
+        )
+    }
+
+    private func applyBatchAssignmentDraft() {
+        let assignment: MIDIAssignment?
+        switch batchAssignmentKind {
+        case .note:
+            assignment = try? .note(channel: batchChannel, number: batchNumber)
+        case .controlChange:
+            assignment = try? .controlChange(channel: batchChannel, number: batchNumber)
+        case .unassigned:
+            assignment = try? .unassigned(channel: batchChannel)
+        }
+
+        guard let assignment else { return }
+        applyBatchAssignment(assignment, actionName: "Assign MIDI")
+    }
+
+    private func applyBatchAssignment(
+        _ assignment: MIDIAssignment,
+        actionName: String
+    ) {
+        guard !isLocked, isMultipleSelection else { return }
+
+        _ = document.performUndoableMutation(
+            actionName: actionName,
+            undoManager: undoManager
+        ) { file in
+            MappingBatchEditor.apply(assignment, to: selectedMappings, in: &file)
+        }
+    }
+
+    private func updateEntry(_ mutation: (inout MappingEntry) -> Void) {
+        guard selectedMappings.count == 1 else { return }
+
+        Self.updateSelectedEntries(
+            selectedMappings,
+            in: document,
+            isLocked: isLocked,
+            undoManager: undoManager,
+            mutation
+        )
+    }
+
     private func updateSelectedEntries(_ mutation: (inout MappingEntry) -> Void) {
-        guard !selectedMappings.isEmpty else { return }
+        Self.updateSelectedEntries(
+            selectedMappings,
+            in: document,
+            isLocked: isLocked,
+            undoManager: undoManager,
+            mutation
+        )
+    }
 
-        registerChange()
+    @MainActor
+    @discardableResult
+    static func updateSelectedEntries(
+        _ selectedMappings: Set<MappingEntry.ID>,
+        in document: TraktorMappingDocument,
+        isLocked: Bool,
+        undoManager: UndoManager?,
+        _ mutation: (inout MappingEntry) -> Void
+    ) -> Bool {
+        guard !isLocked, !selectedMappings.isEmpty else { return false }
 
-        for deviceIndex in document.mappingFile.devices.indices {
-            for mappingIndex in document.mappingFile.devices[deviceIndex].mappings.indices {
-                let mappingId = document.mappingFile.devices[deviceIndex].mappings[mappingIndex].id
-                if selectedMappings.contains(mappingId) {
-                    mutation(&document.mappingFile.devices[deviceIndex].mappings[mappingIndex])
+        let didChange = document.performUndoableMutation(
+            actionName: "Edit Mapping Settings",
+            undoManager: undoManager
+        ) { file in
+            for deviceIndex in file.devices.indices {
+                for mappingIndex in file.devices[deviceIndex].mappings.indices {
+                    let mappingID = file.devices[deviceIndex].mappings[mappingIndex].id
+                    if selectedMappings.contains(mappingID) {
+                        mutation(&file.devices[deviceIndex].mappings[mappingIndex])
+                    }
                 }
             }
+
+            return true
         }
+
+        return didChange ?? false
     }
 }
 

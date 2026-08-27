@@ -19,8 +19,18 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
     /// Unique identifier for this mapping entry
     let id: UUID
 
-    /// The name of the Traktor command being mapped
-    var commandName: String
+    /// The authoritative Traktor command ID being mapped.
+    var commandID: Int
+
+    /// The catalog metadata for the authoritative command ID.
+    var commandDescriptor: TraktorCommandDescriptor {
+        TraktorCommands.descriptor(for: commandID)
+    }
+
+    /// The display name derived from the authoritative command ID.
+    var commandName: String {
+        commandID == 0 ? "" : commandDescriptor.name
+    }
 
     /// Whether this is an input (controller to Traktor) or output (Traktor to controller)
     var ioType: IODirection
@@ -31,14 +41,55 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
     /// How the control interacts with the command (toggle, hold, direct, etc.)
     var interactionMode: InteractionMode
 
-    /// MIDI channel (1-16)
-    var midiChannel: Int
+    /// The mapping's exclusive, validated MIDI state.
+    var midiAssignment: MIDIAssignment
 
-    /// MIDI note number (0-127), nil if using CC
-    var midiNote: Int?
+    /// MIDI channel (1-16). Retained as a source-compatible accessor.
+    var midiChannel: Int {
+        get { midiAssignment.channel }
+        set {
+            do {
+                midiAssignment = try midiAssignment.replacingChannel(with: newValue)
+            } catch {
+                preconditionFailure("Invalid MIDI channel: \(newValue)")
+            }
+        }
+    }
 
-    /// MIDI CC number (0-127), nil if using Note
-    var midiCC: Int?
+    /// MIDI note number (0-127), nil if using CC. Setting a note clears CC.
+    var midiNote: Int? {
+        get { midiAssignment.note }
+        set {
+            do {
+                if let newValue {
+                    midiAssignment = try .note(channel: midiAssignment.channel, number: newValue)
+                } else if midiAssignment.kind == .note {
+                    midiAssignment = try .unassigned(channel: midiAssignment.channel)
+                }
+            } catch {
+                preconditionFailure("Invalid MIDI note: \(String(describing: newValue))")
+            }
+        }
+    }
+
+    /// MIDI CC number (0-127), nil if using Note. Setting a CC clears Note.
+    var midiCC: Int? {
+        get { midiAssignment.cc }
+        set {
+            do {
+                if let newValue {
+                    midiAssignment = try .controlChange(
+                        channel: midiAssignment.channel,
+                        number: newValue
+                    )
+                } else if midiAssignment.kind == .controlChange {
+                    midiAssignment = try .unassigned(channel: midiAssignment.channel)
+                }
+            } catch {
+                preconditionFailure("Invalid MIDI CC: \(String(describing: newValue))")
+            }
+        }
+    }
 
     /// First modifier condition (M1-M8 = 0-7), nil if no condition
     var modifier1Condition: ModifierCondition?
@@ -71,6 +122,21 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
 
     /// For Encoder: the encoder communication mode
     var encoderMode: EncoderMode
+
+    /// An unrecognized Traktor DCDT mode preserved opaquely from import.
+    /// Known values are represented by `encoderMode` instead.
+    var rawDCDTEncoderMode: UInt32?
+
+    /// The raw value emitted to Traktor, including opaque imported values.
+    nonisolated var effectiveDCDTEncoderMode: UInt32 {
+        rawDCDTEncoderMode ?? encoderMode.tsiDCDTValue
+    }
+
+    /// Applies an explicit user selection and ends opaque pass-through.
+    mutating func setEncoderMode(_ mode: EncoderMode) {
+        encoderMode = mode
+        rawDCDTEncoderMode = nil
+    }
 
     // MARK: - CMAD pass-through fields (round-tripped, not yet surfaced in UI)
 
@@ -126,20 +192,12 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
 
     /// Whether this mapping has a MIDI note or CC assigned
     var hasMIDIAssignment: Bool {
-        midiNote != nil || midiCC != nil
+        midiAssignment.kind != .unassigned
     }
 
     /// Display string showing the MIDI assignment (e.g., "Ch01 CC 008" or "Ch02 Note C4")
     var mappedToDisplay: String {
-        let channelStr = String(format: "Ch%02d", midiChannel)
-
-        if let note = midiNote {
-            return "\(channelStr) Note \(midiNoteToName(note))"
-        } else if let cc = midiCC {
-            return "\(channelStr) CC \(String(format: "%03d", cc))"
-        } else {
-            return "\(channelStr) --"
-        }
+        midiAssignment.displayName
     }
 
 
@@ -148,10 +206,12 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
     /// All parameters have sensible defaults for creating empty mappings.
     init(
         id: UUID = UUID(),
+        commandID: Int? = nil,
         commandName: String = "",
         ioType: IODirection = .input,
         assignment: TargetAssignment = .none,
         interactionMode: InteractionMode = .none,
+        midiAssignment: MIDIAssignment? = nil,
         midiChannel: Int = 1,
         midiNote: Int? = nil,
         midiCC: Int? = nil,
@@ -165,6 +225,7 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         rotarySensitivity: Float = 5.0,
         rotaryAcceleration: Float = 0.0,
         encoderMode: EncoderMode = .mode7Fh01h,
+        rawDCDTEncoderMode: UInt32? = nil,
         autoRepeat: Bool = false,
         ledMinRangeType: Int = 1,
         ledMinRangeData: Int = 0,
@@ -177,13 +238,23 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         resolution: Int = 1
     ) {
         self.id = id
-        self.commandName = commandName
+        self.commandID = commandID ?? TraktorCommands.id(forLegacyName: commandName)
         self.ioType = ioType
         self.assignment = assignment
         self.interactionMode = interactionMode
-        self.midiChannel = midiChannel
-        self.midiNote = midiNote
-        self.midiCC = midiCC
+        if let midiAssignment {
+            self.midiAssignment = midiAssignment
+        } else {
+            do {
+                self.midiAssignment = try MIDIAssignment(
+                    validatingChannel: midiChannel,
+                    note: midiNote,
+                    cc: midiCC
+                )
+            } catch {
+                preconditionFailure("Invalid direct MIDI assignment: \(error)")
+            }
+        }
         self.modifier1Condition = modifier1Condition
         self.modifier2Condition = modifier2Condition
         self.comment = comment
@@ -194,6 +265,9 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         self.rotarySensitivity = rotarySensitivity
         self.rotaryAcceleration = rotaryAcceleration
         self.encoderMode = encoderMode
+        self.rawDCDTEncoderMode = rawDCDTEncoderMode.flatMap {
+            EncoderMode(tsiDCDTValue: $0) == nil ? $0 : nil
+        }
         self.autoRepeat = autoRepeat
         self.ledMinRangeType = ledMinRangeType
         self.ledMinRangeData = ledMinRangeData
@@ -204,6 +278,38 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         self.ledInvert = ledInvert
         self.ledBlend = ledBlend
         self.resolution = resolution
+    }
+
+    /// Returns a value-identical mapping with a new identity for insertion.
+    func copyWithNewID() -> MappingEntry {
+        MappingEntry(
+            commandID: commandID,
+            ioType: ioType,
+            assignment: assignment,
+            interactionMode: interactionMode,
+            midiAssignment: midiAssignment,
+            modifier1Condition: modifier1Condition,
+            modifier2Condition: modifier2Condition,
+            comment: comment,
+            controllerType: controllerType,
+            invert: invert,
+            softTakeover: softTakeover,
+            setToValue: setToValue,
+            rotarySensitivity: rotarySensitivity,
+            rotaryAcceleration: rotaryAcceleration,
+            encoderMode: encoderMode,
+            rawDCDTEncoderMode: rawDCDTEncoderMode,
+            autoRepeat: autoRepeat,
+            ledMinRangeType: ledMinRangeType,
+            ledMinRangeData: ledMinRangeData,
+            ledMaxRangeType: ledMaxRangeType,
+            ledMaxRangeData: ledMaxRangeData,
+            ledMinMidi: ledMinMidi,
+            ledMaxMidi: ledMaxMidi,
+            ledInvert: ledInvert,
+            ledBlend: ledBlend,
+            resolution: resolution
+        )
     }
 }
 
@@ -221,34 +327,49 @@ extension MappingEntry: Codable {
         // post-parse fix-up for legacy v4 TSI files. Done in locals so the
         // migrated values land in the stored properties on first assignment
         // (avoiding closure capture before self.* is initialized).
-        var decodedCommandName = try container.decode(String.self, forKey: .commandName)
+        let decodedCommandID = try container.decodeIfPresent(Int.self, forKey: .commandID)
+        var decodedCommandName = try container.decodeIfPresent(String.self, forKey: .commandName) ?? ""
         ioType = try container.decode(IODirection.self, forKey: .ioType)
         var decodedAssignment = try container.decode(TargetAssignment.self, forKey: .assignment)
 
-        let slotPrefixes = ["Slot 1 ", "Slot 2 ", "Slot 3 ", "Slot 4 "]
-        if let slotIdx = slotPrefixes.firstIndex(where: { decodedCommandName.hasPrefix($0) }) {
-            let suffix = String(decodedCommandName.dropFirst(7)) // strip "Slot N "
-            let remix: TargetAssignment = [.remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4][slotIdx]
-            switch suffix {
-            case "Volume":    decodedCommandName = "Slot Volume";        decodedAssignment = remix
-            case "Mute":      decodedCommandName = "Slot Mute On";       decodedAssignment = remix
-            case "Filter":    decodedCommandName = "Slot Filter Adjust"; decodedAssignment = remix
-            case "Filter On": decodedCommandName = "Slot Filter On";     decodedAssignment = remix
-            case "FX On":     decodedCommandName = "Slot FX On";         decodedAssignment = remix
-            case "FX Send":
-                // No Traktor 4.4 equivalent — left loadable to preserve any other
-                // mapping state, but the next save will route through the writer's
-                // unwritable-name filter and skip it. Logged for traceability.
-                Self.logger.warning("Loading legacy 'Slot N FX Send' commandName from JSON — will be dropped on next save")
-            default: break
+        if decodedCommandID == nil {
+            let slotPrefixes = ["Slot 1 ", "Slot 2 ", "Slot 3 ", "Slot 4 "]
+            if let slotIdx = slotPrefixes.firstIndex(where: { decodedCommandName.hasPrefix($0) }) {
+                let suffix = String(decodedCommandName.dropFirst(7)) // strip "Slot N "
+                let remix: TargetAssignment = [.remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4][slotIdx]
+                switch suffix {
+                case "Volume":    decodedCommandName = "Slot Volume";        decodedAssignment = remix
+                case "Mute":      decodedCommandName = "Slot Mute On";       decodedAssignment = remix
+                case "Filter":    decodedCommandName = "Slot Filter Adjust"; decodedAssignment = remix
+                case "Filter On": decodedCommandName = "Slot Filter On";     decodedAssignment = remix
+                case "FX On":     decodedCommandName = "Slot FX On";         decodedAssignment = remix
+                case "FX Send":
+                    Self.logger.warning("Loading legacy 'Slot N FX Send' commandName from JSON as invalid command ID 0")
+                default: break
+                }
             }
         }
-        commandName = decodedCommandName
+        commandID = decodedCommandID ?? TraktorCommands.id(forLegacyName: decodedCommandName)
         assignment = decodedAssignment
         interactionMode = try container.decode(InteractionMode.self, forKey: .interactionMode)
-        midiChannel = try container.decode(Int.self, forKey: .midiChannel)
-        midiNote = try container.decodeIfPresent(Int.self, forKey: .midiNote)
-        midiCC = try container.decodeIfPresent(Int.self, forKey: .midiCC)
+        let decodedMIDIChannel = try container.decode(Int.self, forKey: .midiChannel)
+        let decodedMIDINote = try container.decodeIfPresent(Int.self, forKey: .midiNote)
+        let decodedMIDICC = try container.decodeIfPresent(Int.self, forKey: .midiCC)
+        do {
+            midiAssignment = try MIDIAssignment(
+                validatingChannel: decodedMIDIChannel,
+                note: decodedMIDINote,
+                cc: decodedMIDICC
+            )
+        } catch {
+            throw DecodingError.dataCorrupted(
+                .init(
+                    codingPath: container.codingPath,
+                    debugDescription: "Invalid legacy MIDI assignment.",
+                    underlyingError: error
+                )
+            )
+        }
         modifier1Condition = try container.decodeIfPresent(ModifierCondition.self, forKey: .modifier1Condition)
         modifier2Condition = try container.decodeIfPresent(ModifierCondition.self, forKey: .modifier2Condition)
         comment = try container.decode(String.self, forKey: .comment)
@@ -259,6 +380,12 @@ extension MappingEntry: Codable {
         rotarySensitivity = try container.decodeIfPresent(Float.self, forKey: .rotarySensitivity) ?? 5.0
         rotaryAcceleration = try container.decode(Float.self, forKey: .rotaryAcceleration)
         encoderMode = try container.decode(EncoderMode.self, forKey: .encoderMode)
+        rawDCDTEncoderMode = try container.decodeIfPresent(
+            UInt32.self,
+            forKey: .rawDCDTEncoderMode
+        ).flatMap {
+            EncoderMode(tsiDCDTValue: $0) == nil ? $0 : nil
+        }
         // New CMAD pass-through fields: decode with defaults so old saved state still loads
         autoRepeat = try container.decodeIfPresent(Bool.self, forKey: .autoRepeat) ?? false
         ledMinRangeType = try container.decodeIfPresent(Int.self, forKey: .ledMinRangeType) ?? 1
@@ -275,13 +402,14 @@ extension MappingEntry: Codable {
     nonisolated func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
+        try container.encode(commandID, forKey: .commandID)
         try container.encode(commandName, forKey: .commandName)
         try container.encode(ioType, forKey: .ioType)
         try container.encode(assignment, forKey: .assignment)
         try container.encode(interactionMode, forKey: .interactionMode)
-        try container.encode(midiChannel, forKey: .midiChannel)
-        try container.encodeIfPresent(midiNote, forKey: .midiNote)
-        try container.encodeIfPresent(midiCC, forKey: .midiCC)
+        try container.encode(midiAssignment.channel, forKey: .midiChannel)
+        try container.encodeIfPresent(midiAssignment.note, forKey: .midiNote)
+        try container.encodeIfPresent(midiAssignment.cc, forKey: .midiCC)
         try container.encodeIfPresent(modifier1Condition, forKey: .modifier1Condition)
         try container.encodeIfPresent(modifier2Condition, forKey: .modifier2Condition)
         try container.encode(comment, forKey: .comment)
@@ -292,6 +420,7 @@ extension MappingEntry: Codable {
         try container.encode(rotarySensitivity, forKey: .rotarySensitivity)
         try container.encode(rotaryAcceleration, forKey: .rotaryAcceleration)
         try container.encode(encoderMode, forKey: .encoderMode)
+        try container.encodeIfPresent(rawDCDTEncoderMode, forKey: .rawDCDTEncoderMode)
         try container.encode(autoRepeat, forKey: .autoRepeat)
         try container.encode(ledMinRangeType, forKey: .ledMinRangeType)
         try container.encode(ledMinRangeData, forKey: .ledMinRangeData)
@@ -305,12 +434,12 @@ extension MappingEntry: Codable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id, commandName, ioType, assignment, interactionMode
+        case id, commandID, commandName, ioType, assignment, interactionMode
         case midiChannel, midiNote, midiCC
         case modifier1Condition, modifier2Condition
         case comment, controllerType, invert
         case softTakeover, setToValue
-        case rotarySensitivity, rotaryAcceleration, encoderMode
+        case rotarySensitivity, rotaryAcceleration, encoderMode, rawDCDTEncoderMode
         case autoRepeat
         case ledMinRangeType, ledMinRangeData, ledMaxRangeType, ledMaxRangeData
         case ledMinMidi, ledMaxMidi, ledInvert, ledBlend

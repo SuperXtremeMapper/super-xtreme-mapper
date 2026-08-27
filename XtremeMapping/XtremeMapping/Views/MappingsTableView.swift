@@ -22,12 +22,16 @@ struct MappingsTableView: View {
     /// Whether editing is locked
     let isLocked: Bool
 
+    /// Observed so cross-window copy immediately updates context Paste state.
+    @ObservedObject private var clipboard = ClipboardManager.shared
+
     /// Optional callback when mappings are dropped from another window
     var onDrop: (([MappingEntry]) -> Void)?
 
     /// Context menu callbacks
     var onCopy: (() -> Void)?
     var onPaste: (() -> Void)?
+    var onPasteMappings: (([MappingEntry]) -> Void)?
     var onDuplicate: (() -> Void)?
     var onDelete: (() -> Void)?
     var onAssignmentChange: ((TargetAssignment) -> Void)?
@@ -47,6 +51,11 @@ struct MappingsTableView: View {
     /// Sorted mappings based on current sort order
     private var sortedMappings: [MappingEntry] {
         mappings.sorted(using: sortOrder)
+    }
+
+    /// Copy order follows document order, not the table's temporary sort.
+    private var orderedSelectedMappings: [MappingEntry] {
+        mappings.filter { selection.contains($0.id) }
     }
 
     /// Returns the valid interaction modes for the current selection
@@ -76,7 +85,7 @@ struct MappingsTableView: View {
 
     var body: some View {
         Table(sortedMappings, selection: $selection, sortOrder: $sortOrder) {
-            // Column order: I/O, Assignment, Command, Type, Interaction, MIDI, Mod 1, Mod 2
+            // Column order: I/O, Assignment, Command, Comment, Type, Interaction, MIDI, Mod 1, Mod 2
 
             TableColumn("I/O", value: \.ioTypeSortKey) { entry in
                     Text(entry.ioType == .input ? "IN" : "OUT")
@@ -104,14 +113,42 @@ struct MappingsTableView: View {
                 .width(min: 70, ideal: 90)
 
                 TableColumn("Command", value: \.commandName) { entry in
-                    Text(entry.commandName)
-                        .font(.system(size: 12))
-                        .foregroundColor(AppThemeV2.Colors.stone100)
-                        .lineLimit(1)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .contentShape(Rectangle())
+                    HStack(spacing: AppThemeV2.Spacing.xs) {
+                        Text(entry.commandName)
+                            .font(.system(size: 12))
+                            .foregroundColor(AppThemeV2.Colors.stone100)
+                            .lineLimit(1)
+                            .layoutPriority(1)
+
+                        if let status = commandStatusLabel(for: entry) {
+                            Text(status)
+                                .font(.system(size: 8, weight: .semibold))
+                                .tracking(0.4)
+                                .foregroundColor(AppThemeV2.Colors.stone400)
+                                .padding(.horizontal, 4)
+                                .padding(.vertical, 2)
+                                .background(
+                                    Capsule().fill(AppThemeV2.Colors.stone700)
+                                )
+                                .fixedSize()
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .contentShape(Rectangle())
                 }
                 .width(min: 120, ideal: 180)
+
+                TableColumn("Comment", value: \.comment) { entry in
+                    Text(entry.comment)
+                        .font(.system(size: 12))
+                        .foregroundColor(AppThemeV2.Colors.stone300)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                        .help(entry.comment)
+                }
+                .width(min: 120, ideal: 220)
 
                 TableColumn("Type", value: \.controllerTypeSortKey) { entry in
                     Text(entry.controllerType.displayName)
@@ -184,106 +221,135 @@ struct MappingsTableView: View {
         .introspectTableView { _ in
             // Introspection triggers amber selection proxy installation
         }
-            .dropDestination(for: MappingEntry.self) { items, location in
-                // Handle drop from another window
-                onDrop?(items)
-                return !items.isEmpty
+        .onCopyCommand {
+            let selected = orderedSelectedMappings
+            guard !selected.isEmpty else { return [] }
+            clipboard.copyMappings(selected)
+            return [MappingBatchCodec.itemProvider(for: selected)]
+        }
+        .onPasteCommand(of: [.mappingBatch]) { providers in
+            guard !isLocked else { return }
+            Task { @MainActor in
+                guard let pasted = try? await MappingBatchCodec.load(from: providers),
+                      !pasted.isEmpty else { return }
+                clipboard.copyMappings(pasted)
+                onPasteMappings?(pasted)
             }
-            .contextMenu {
-                if !selection.isEmpty && !isLocked {
-                    Button("Copy") { onCopy?() }
-                        .keyboardShortcut("c", modifiers: .command)
+        }
+        .dropDestination(for: MappingEntry.self) { items, _ in
+            // Handle drop from another window
+            onDrop?(items)
+            return !items.isEmpty
+        }
+        .contextMenu {
+            if !selection.isEmpty {
+                Button("Copy") { onCopy?() }
+                    .keyboardShortcut("c", modifiers: .command)
+            }
 
-                    Button("Paste") { onPaste?() }
-                        .keyboardShortcut("v", modifiers: .command)
+            Button("Paste") { onPaste?() }
+                .keyboardShortcut("v", modifiers: .command)
+                .disabled(isLocked || !clipboard.hasMappingsData)
 
-                    Divider()
+            if !selection.isEmpty && !isLocked {
+                Divider()
 
-                    Button("Duplicate") { onDuplicate?() }
-                        .keyboardShortcut("d", modifiers: .command)
+                Button("Duplicate") { onDuplicate?() }
+                    .keyboardShortcut("d", modifiers: .command)
 
-                    Button("Delete") { onDelete?() }
-                        .keyboardShortcut(.delete, modifiers: [])
+                Button("Delete") { onDelete?() }
+                    .keyboardShortcut(.delete, modifiers: [])
 
-                    Divider()
+                Divider()
 
-                    // Assignment submenu
-                    Menu("Assignment") {
-                        ForEach(TargetAssignment.allCases, id: \.self) { assignment in
-                            Button(assignment.displayName) {
-                                onAssignmentChange?(assignment)
-                            }
+                // Assignment submenu
+                Menu("Assignment") {
+                    ForEach(TargetAssignment.allCases, id: \.self) { assignment in
+                        Button(assignment.displayName) {
+                            onAssignmentChange?(assignment)
                         }
                     }
-
-                    // Controller Type submenu
-                    Menu("Type") {
-                        ForEach(ControllerType.allCases.filter { $0 != .led }, id: \.self) { type in
-                            Button(type.displayName) {
-                                onControllerTypeChange?(type)
-                            }
-                        }
-                    }
-
-                    // Interaction submenu - only shows valid modes for selected controller type(s)
-                    Menu("Interaction") {
-                        ForEach(validInteractionModesForSelection, id: \.self) { mode in
-                            Button(mode.displayName) {
-                                onInteractionChange?(mode)
-                            }
-                        }
-                    }
-
-                    // Encoder Mode submenu - only shown when encoder type is selected
-                    if showEncoderModeMenu {
-                        Menu("Encoder Mode") {
-                            ForEach(EncoderMode.allCases, id: \.self) { mode in
-                                Button(mode.displayName) {
-                                    onEncoderModeChange?(mode)
-                                }
-                            }
-                        }
-                    }
-
-                    Divider()
-
-                    // Modifier 1 submenu
-                    Menu("Modifier 1") {
-                        Button("None") { onModifier1Change?(nil) }
-                        Divider()
-                        ForEach(1...8, id: \.self) { mod in
-                            Menu("M\(mod)") {
-                                ForEach(0...7, id: \.self) { value in
-                                    Button("= \(value)") {
-                                        onModifier1Change?(ModifierCondition(modifier: mod, value: value))
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    // Modifier 2 submenu
-                    Menu("Modifier 2") {
-                        Button("None") { onModifier2Change?(nil) }
-                        Divider()
-                        ForEach(1...8, id: \.self) { mod in
-                            Menu("M\(mod)") {
-                                ForEach(0...7, id: \.self) { value in
-                                    Button("= \(value)") {
-                                        onModifier2Change?(ModifierCondition(modifier: mod, value: value))
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    Divider()
-
-                    Button("Invert") { onInvertToggle?() }
                 }
+
+                // Controller Type submenu
+                Menu("Type") {
+                    ForEach(ControllerType.allCases.filter { $0 != .led }, id: \.self) { type in
+                        Button(type.displayName) {
+                            onControllerTypeChange?(type)
+                        }
+                    }
+                }
+
+                // Interaction submenu - only shows valid modes for selected controller type(s)
+                Menu("Interaction") {
+                    ForEach(validInteractionModesForSelection, id: \.self) { mode in
+                        Button(mode.displayName) {
+                            onInteractionChange?(mode)
+                        }
+                    }
+                }
+
+                // Encoder Mode submenu - only shown when encoder type is selected
+                if showEncoderModeMenu {
+                    Menu("Encoder Mode") {
+                        ForEach(EncoderMode.allCases, id: \.self) { mode in
+                            Button(mode.displayName) {
+                                onEncoderModeChange?(mode)
+                            }
+                        }
+                    }
+                }
+
+                Divider()
+
+                // Modifier 1 submenu
+                Menu("Modifier 1") {
+                    Button("None") { onModifier1Change?(nil) }
+                    Divider()
+                    ForEach(1...8, id: \.self) { mod in
+                        Menu("M\(mod)") {
+                            ForEach(0...7, id: \.self) { value in
+                                Button("= \(value)") {
+                                    onModifier1Change?(ModifierCondition(modifier: mod, value: value))
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Modifier 2 submenu
+                Menu("Modifier 2") {
+                    Button("None") { onModifier2Change?(nil) }
+                    Divider()
+                    ForEach(1...8, id: \.self) { mod in
+                        Menu("M\(mod)") {
+                            ForEach(0...7, id: \.self) { value in
+                                Button("= \(value)") {
+                                    onModifier2Change?(ModifierCondition(modifier: mod, value: value))
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Divider()
+
+                Button("Invert") { onInvertToggle?() }
             }
+        }
         .onChange(of: selection) { oldSelection, newSelection in
             handleSelectionChange(oldSelection: oldSelection, newSelection: newSelection)
+        }
+    }
+
+    private func commandStatusLabel(for entry: MappingEntry) -> String? {
+        switch entry.commandDescriptor.verification {
+        case .verifiedTraktor441:
+            return nil
+        case .legacy:
+            return "LEGACY"
+        case .unknown:
+            return "UNKNOWN"
         }
     }
 

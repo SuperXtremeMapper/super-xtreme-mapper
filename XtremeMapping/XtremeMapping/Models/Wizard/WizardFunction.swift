@@ -12,8 +12,13 @@ struct WizardFunction: Identifiable {
     /// Display name shown to user (e.g., "Volume", "Play/Pause")
     let displayName: String
 
-    /// The Traktor command name (must match TraktorCommands)
-    let commandName: String
+    /// The authoritative Traktor command ID.
+    let commandID: Int
+
+    /// Catalog-derived display metadata. Command identity never depends on it.
+    var commandName: String {
+        TraktorCommands.name(for: commandID)
+    }
 
     /// Physical controller type
     let controllerType: ControllerType
@@ -36,7 +41,7 @@ struct WizardFunction: Identifiable {
 
     init(
         displayName: String,
-        commandName: String,
+        commandID: Int,
         controllerType: ControllerType,
         interactionMode: InteractionMode,
         isBasic: Bool = true,
@@ -45,7 +50,7 @@ struct WizardFunction: Identifiable {
         setToValue: Float? = nil
     ) {
         self.displayName = displayName
-        self.commandName = commandName
+        self.commandID = commandID
         self.controllerType = controllerType
         self.interactionMode = interactionMode
         self.isBasic = isBasic
@@ -66,14 +71,16 @@ struct WizardCapturedMapping: Identifiable {
     /// Generate the MappingEntry for saving. The MIDI channel comes from
     /// the captured message itself.
     func toMappingEntry() -> MappingEntry {
-        MappingEntry(
-            commandName: function.commandName,
+        guard let midiAssignment = MIDIAssignment(learnMessage: midiMessage) else {
+            preconditionFailure("WizardCapturedMapping requires a valid MIDI Note On or CC message")
+        }
+
+        return MappingEntry(
+            commandID: function.commandID,
             ioType: .input,
             assignment: assignment,
             interactionMode: function.interactionMode,
-            midiChannel: midiMessage.channel,
-            midiNote: midiMessage.note,
-            midiCC: midiMessage.cc,
+            midiAssignment: midiAssignment,
             modifier1Condition: modifierCondition,
             controllerType: function.controllerType,
             setToValue: function.setToValue ?? 0

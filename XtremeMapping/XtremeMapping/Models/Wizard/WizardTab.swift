@@ -58,32 +58,19 @@ enum WizardTab: String, CaseIterable, Identifiable {
 
     // MARK: - Setup Functions
     private static let setupFunctions: [WizardFunction] = [
-        WizardFunction(displayName: "Shift Button", commandName: "Modifier #1", controllerType: .button, interactionMode: .hold, isBasic: true, perDeck: false, fixedAssignment: .global),
+        WizardFunction(displayName: "Shift Button", commandID: 2548, controllerType: .button, interactionMode: .hold, isBasic: true, perDeck: false, fixedAssignment: .global),
     ]
 
     // MARK: - Mixer Functions
-    private static let mixerFunctions: [WizardFunction] = [
-        WizardFunction(displayName: "Master Volume", commandName: "Master Volume", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false, fixedAssignment: .global),
-        WizardFunction(displayName: "Crossfader", commandName: "X-Fader Position", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false, fixedAssignment: .global),
-        WizardFunction(displayName: "Monitor Volume", commandName: "Monitor Volume", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false, fixedAssignment: .global),
-        WizardFunction(displayName: "Monitor Mix", commandName: "Monitor Mix", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: false, perDeck: false, fixedAssignment: .global),
-        WizardFunction(displayName: "Crossfader Curve", commandName: "Crossfader Curve", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: false, perDeck: false, fixedAssignment: .global),
-    ]
+    private static let mixerFunctions: [WizardFunction] = []
 
     // MARK: - Decks Functions
     private static let decksFunctions: [WizardFunction] = [
-        WizardFunction(displayName: "Play/Pause", commandName: "Play/Pause", controllerType: .button, interactionMode: .toggle, isBasic: true),
-        WizardFunction(displayName: "Volume", commandName: "Volume", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-        WizardFunction(displayName: "Cue", commandName: "Cue", controllerType: .button, interactionMode: .hold, isBasic: true),
-        WizardFunction(displayName: "Sync", commandName: "Sync On", controllerType: .button, interactionMode: .toggle, isBasic: true),
-        WizardFunction(displayName: "Tempo", commandName: "Tempo Adjust", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-        WizardFunction(displayName: "Tempo Bend +", commandName: "Tempo Bend Up", controllerType: .button, interactionMode: .hold, isBasic: true),
-        WizardFunction(displayName: "Tempo Bend -", commandName: "Tempo Bend Down", controllerType: .button, interactionMode: .hold, isBasic: true),
-        WizardFunction(displayName: "Jog Turn", commandName: "Jog Turn", controllerType: .encoder, interactionMode: .relative, isBasic: true),
-        WizardFunction(displayName: "Jog Scratch", commandName: "Jog Scratch", controllerType: .encoder, interactionMode: .relative, isBasic: false),
-        WizardFunction(displayName: "Monitor Cue", commandName: "Monitor Cue On", controllerType: .button, interactionMode: .toggle, isBasic: true),
-        WizardFunction(displayName: "Gain", commandName: "Mixer Gain", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: false),
-        WizardFunction(displayName: "Load", commandName: "Load Selected", controllerType: .button, interactionMode: .trigger, isBasic: false),
+        WizardFunction(displayName: "Cue", commandID: 206, controllerType: .button, interactionMode: .hold, isBasic: true),
+        WizardFunction(displayName: "Sync", commandID: 125, controllerType: .button, interactionMode: .toggle, isBasic: true),
+        WizardFunction(displayName: "Tempo", commandID: 123, controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
+        WizardFunction(displayName: "Jog Turn", commandID: 120, controllerType: .encoder, interactionMode: .relative, isBasic: true),
+        WizardFunction(displayName: "Monitor Cue", commandID: 119, controllerType: .button, interactionMode: .toggle, isBasic: true),
     ]
 
     // MARK: - Cue/Loop Functions
@@ -91,42 +78,21 @@ enum WizardTab: String, CaseIterable, Identifiable {
         // Hotcues 1-8 use canonical Traktor 4.4 id 2328 ("Select/Set+Store Hotcue")
         // with setToValue selecting the hotcue index (0-based). The legacy
         // per-cue ids 214-221 don't exist in Traktor 4.4.
-        WizardFunction(displayName: "Hotcue 1", commandName: "Select/Set+Store Hotcue", controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 0),
-        WizardFunction(displayName: "Hotcue 2", commandName: "Select/Set+Store Hotcue", controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 1),
-        WizardFunction(displayName: "Hotcue 3", commandName: "Select/Set+Store Hotcue", controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 2),
-        WizardFunction(displayName: "Hotcue 4", commandName: "Select/Set+Store Hotcue", controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 3),
-        WizardFunction(displayName: "Hotcue 5", commandName: "Select/Set+Store Hotcue", controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 4),
-        WizardFunction(displayName: "Hotcue 6", commandName: "Select/Set+Store Hotcue", controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 5),
-        WizardFunction(displayName: "Hotcue 7", commandName: "Select/Set+Store Hotcue", controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 6),
-        WizardFunction(displayName: "Hotcue 8", commandName: "Select/Set+Store Hotcue", controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 7),
-        // Note: Loop In/Loop Out/Loop Active/Loop Size rows removed — they referenced
-        // Traktor-3-era ids (200/201/202/...) that do not exist in Traktor 4.4.
-        WizardFunction(displayName: "Reloop", commandName: "Reloop", controllerType: .button, interactionMode: .trigger, isBasic: false),
+        WizardFunction(displayName: "Hotcue 1", commandID: 2328, controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 0),
+        WizardFunction(displayName: "Hotcue 2", commandID: 2328, controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 1),
+        WizardFunction(displayName: "Hotcue 3", commandID: 2328, controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 2),
+        WizardFunction(displayName: "Hotcue 4", commandID: 2328, controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 3),
+        WizardFunction(displayName: "Hotcue 5", commandID: 2328, controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 4),
+        WizardFunction(displayName: "Hotcue 6", commandID: 2328, controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 5),
+        WizardFunction(displayName: "Hotcue 7", commandID: 2328, controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 6),
+        WizardFunction(displayName: "Hotcue 8", commandID: 2328, controllerType: .button, interactionMode: .hold, isBasic: true, setToValue: 7),
     ]
 
     // MARK: - EQ/Filter Functions
-    private static let eqFilterFunctions: [WizardFunction] = [
-        WizardFunction(displayName: "EQ Low", commandName: "EQ Low", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-        WizardFunction(displayName: "EQ Mid", commandName: "EQ Mid", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-        WizardFunction(displayName: "EQ High", commandName: "EQ High", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-        WizardFunction(displayName: "Filter", commandName: "Filter", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true),
-        WizardFunction(displayName: "Filter On", commandName: "Filter On", controllerType: .button, interactionMode: .toggle, isBasic: false),
-        WizardFunction(displayName: "EQ Low Kill", commandName: "EQ Low Kill", controllerType: .button, interactionMode: .hold, isBasic: false),
-        WizardFunction(displayName: "EQ Mid Kill", commandName: "EQ Mid Kill", controllerType: .button, interactionMode: .hold, isBasic: false),
-        WizardFunction(displayName: "EQ High Kill", commandName: "EQ High Kill", controllerType: .button, interactionMode: .hold, isBasic: false),
-    ]
+    private static let eqFilterFunctions: [WizardFunction] = []
 
     // MARK: - FX Functions
-    private static let fxFunctions: [WizardFunction] = [
-        WizardFunction(displayName: "FX Dry/Wet", commandName: "FX Dry/Wet", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false),
-        WizardFunction(displayName: "FX Knob 1", commandName: "FX Knob 1", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false),
-        WizardFunction(displayName: "FX Knob 2", commandName: "FX Knob 2", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false),
-        WizardFunction(displayName: "FX Knob 3", commandName: "FX Knob 3", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false),
-        WizardFunction(displayName: "FX Unit On", commandName: "FX Unit On", controllerType: .button, interactionMode: .toggle, isBasic: true, perDeck: false),
-        WizardFunction(displayName: "FX Button 1", commandName: "FX Button 1", controllerType: .button, interactionMode: .toggle, isBasic: false, perDeck: false),
-        WizardFunction(displayName: "FX Button 2", commandName: "FX Button 2", controllerType: .button, interactionMode: .toggle, isBasic: false, perDeck: false),
-        WizardFunction(displayName: "FX Button 3", commandName: "FX Button 3", controllerType: .button, interactionMode: .toggle, isBasic: false, perDeck: false),
-    ]
+    private static let fxFunctions: [WizardFunction] = []
 
     // MARK: - Sample Decks Functions
     //
@@ -142,28 +108,11 @@ enum WizardTab: String, CaseIterable, Identifiable {
     // and the canonical commandId would point at the wrong target.
     //
     // "Slot FX Send" is intentionally absent — no Traktor 4.4 command exists.
-    private static let sampleDecksFunctions: [WizardFunction] = [
-        WizardFunction(displayName: "Volume",    commandName: "Slot Volume",        controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false),
-        WizardFunction(displayName: "Mute",      commandName: "Slot Mute On",       controllerType: .button,      interactionMode: .toggle, isBasic: true, perDeck: false),
-        WizardFunction(displayName: "FX On",     commandName: "Slot FX On",         controllerType: .button,      interactionMode: .toggle, isBasic: true, perDeck: false),
-        WizardFunction(displayName: "Filter",    commandName: "Slot Filter Adjust", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false),
-        WizardFunction(displayName: "Filter On", commandName: "Slot Filter On",     controllerType: .button,      interactionMode: .toggle, isBasic: true, perDeck: false),
-    ]
+    private static let sampleDecksFunctions: [WizardFunction] = []
 
     // MARK: - Loop Recorder Functions
-    private static let loopRecorderFunctions: [WizardFunction] = [
-        WizardFunction(displayName: "Record", commandName: "Loop Recorder Record", controllerType: .button, interactionMode: .toggle, isBasic: true, perDeck: false, fixedAssignment: .global),
-        WizardFunction(displayName: "Dry/Wet", commandName: "Loop Recorder Dry/Wet", controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false, fixedAssignment: .global),
-        WizardFunction(displayName: "Delete", commandName: "Loop Recorder Delete", controllerType: .button, interactionMode: .trigger, isBasic: true, perDeck: false, fixedAssignment: .global),
-        WizardFunction(displayName: "Play/Pause", commandName: "Loop Recorder Play/Pause", controllerType: .button, interactionMode: .toggle, isBasic: false, perDeck: false, fixedAssignment: .global),
-        WizardFunction(displayName: "Size", commandName: "Loop Recorder Size", controllerType: .encoder, interactionMode: .relative, isBasic: false, perDeck: false, fixedAssignment: .global),
-    ]
+    private static let loopRecorderFunctions: [WizardFunction] = []
 
     // MARK: - Browser Functions
-    private static let browserFunctions: [WizardFunction] = [
-        WizardFunction(displayName: "Select Up/Down", commandName: "Browser Select Up/Down", controllerType: .encoder, interactionMode: .relative, isBasic: true, perDeck: false, fixedAssignment: .global),
-        WizardFunction(displayName: "Load Selected", commandName: "Browser Open", controllerType: .button, interactionMode: .trigger, isBasic: true, perDeck: false, fixedAssignment: .global),
-        WizardFunction(displayName: "Tree Navigate", commandName: "Browser Tree Select Up/Down", controllerType: .encoder, interactionMode: .relative, isBasic: false, perDeck: false, fixedAssignment: .global),
-        WizardFunction(displayName: "Tree Expand/Collapse", commandName: "Browser Tree Expand/Collapse", controllerType: .button, interactionMode: .trigger, isBasic: false, perDeck: false, fixedAssignment: .global),
-    ]
+    private static let browserFunctions: [WizardFunction] = []
 }

@@ -20,6 +20,29 @@ enum EncoderMode: Int, Codable, CaseIterable, Sendable {
     /// Used by some Native Instruments controllers
     case mode3Fh41h = 1
 
+    /// Traktor's DCDT field uses the inverse numbering from this enum's
+    /// persisted raw values. Keep this conversion explicit so existing JSON
+    /// documents retain their established Codable representation.
+    nonisolated var tsiDCDTValue: UInt32 {
+        switch self {
+        case .mode3Fh41h:
+            return 0
+        case .mode7Fh01h:
+            return 1
+        }
+    }
+
+    nonisolated init?(tsiDCDTValue: UInt32) {
+        switch tsiDCDTValue {
+        case 0:
+            self = .mode3Fh41h
+        case 1:
+            self = .mode7Fh01h
+        default:
+            return nil
+        }
+    }
+
     /// Human-readable name for display in the UI
     var displayName: String {
         switch self {

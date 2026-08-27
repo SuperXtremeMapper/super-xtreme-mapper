@@ -45,51 +45,22 @@ struct KontrolX1Template: ControllerTemplate {
     static var description = "Native Instruments Kontrol X1 MK1/MK2"
 
     static func createDocument() -> TraktorMappingDocument {
-        var mappings: [MappingEntry] = []
-
-        // FX Unit 1 controls (left side)
-        mappings.append(contentsOf: createFXMappings(unit: 1, channelOffset: 0))
-
-        // FX Unit 2 controls (right side)
-        mappings.append(contentsOf: createFXMappings(unit: 2, channelOffset: 0))
-
-        // Transport controls
-        mappings.append(MappingEntry(
-            commandName: "Play/Pause",
-            ioType: .input,
-            assignment: .deckA,
-            interactionMode: .toggle,
-            midiChannel: 1,
-            midiNote: 12
-        ))
-
-        mappings.append(MappingEntry(
-            commandName: "Play/Pause",
-            ioType: .input,
-            assignment: .deckB,
-            interactionMode: .toggle,
-            midiChannel: 1,
-            midiNote: 13
-        ))
-
-        // Cue buttons
-        mappings.append(MappingEntry(
-            commandName: "Cue",
-            ioType: .input,
-            assignment: .deckA,
-            interactionMode: .hold,
-            midiChannel: 1,
-            midiNote: 14
-        ))
-
-        mappings.append(MappingEntry(
-            commandName: "Cue",
-            ioType: .input,
-            assignment: .deckB,
-            interactionMode: .hold,
-            midiChannel: 1,
-            midiNote: 15
-        ))
+        let mappings = [
+            MappingEntry(
+                commandID: 206,
+                ioType: .input,
+                assignment: .deckA,
+                interactionMode: .hold,
+                midiAssignment: try! .note(channel: 1, number: 14)
+            ),
+            MappingEntry(
+                commandID: 206,
+                ioType: .input,
+                assignment: .deckB,
+                interactionMode: .hold,
+                midiAssignment: try! .note(channel: 1, number: 15)
+            ),
+        ]
 
         let device = Device(
             name: "Kontrol X1",
@@ -102,46 +73,6 @@ struct KontrolX1Template: ControllerTemplate {
         return TraktorMappingDocument(
             mappingFile: MappingFile(devices: [device])
         )
-    }
-
-    private static func createFXMappings(unit: Int, channelOffset: Int) -> [MappingEntry] {
-        let assignment: TargetAssignment = unit == 1 ? .fxUnit1 : .fxUnit2
-        let baseCC = unit == 1 ? 0 : 4
-
-        return [
-            MappingEntry(
-                commandName: "Dry/Wet",
-                ioType: .input,
-                assignment: assignment,
-                interactionMode: .direct,
-                midiChannel: 1,
-                midiCC: baseCC
-            ),
-            MappingEntry(
-                commandName: "FX Knob 1",
-                ioType: .input,
-                assignment: assignment,
-                interactionMode: .direct,
-                midiChannel: 1,
-                midiCC: baseCC + 1
-            ),
-            MappingEntry(
-                commandName: "FX Knob 2",
-                ioType: .input,
-                assignment: assignment,
-                interactionMode: .direct,
-                midiChannel: 1,
-                midiCC: baseCC + 2
-            ),
-            MappingEntry(
-                commandName: "FX Knob 3",
-                ioType: .input,
-                assignment: assignment,
-                interactionMode: .direct,
-                midiChannel: 1,
-                midiCC: baseCC + 3
-            )
-        ]
     }
 }
 
@@ -161,9 +92,6 @@ struct KontrolS2Template: ControllerTemplate {
         // Deck B controls
         mappings.append(contentsOf: createDeckMappings(deck: .deckB, midiChannel: 2))
 
-        // Mixer controls
-        mappings.append(contentsOf: createMixerMappings())
-
         let device = Device(
             name: "Kontrol S2",
             comment: "Native Instruments Kontrol S2",
@@ -178,76 +106,35 @@ struct KontrolS2Template: ControllerTemplate {
     }
 
     private static func createDeckMappings(deck: TargetAssignment, midiChannel: Int) -> [MappingEntry] {
-        return [
+        [
             MappingEntry(
-                commandName: "Play/Pause",
-                ioType: .input,
-                assignment: deck,
-                interactionMode: .toggle,
-                midiChannel: midiChannel,
-                midiNote: 0
-            ),
-            MappingEntry(
-                commandName: "Cue",
+                commandID: 206,
                 ioType: .input,
                 assignment: deck,
                 interactionMode: .hold,
-                midiChannel: midiChannel,
-                midiNote: 1
+                midiAssignment: try! .note(channel: midiChannel, number: 1)
             ),
             MappingEntry(
-                commandName: "Sync",
+                commandID: 125,
                 ioType: .input,
                 assignment: deck,
                 interactionMode: .toggle,
-                midiChannel: midiChannel,
-                midiNote: 2
+                midiAssignment: try! .note(channel: midiChannel, number: 2)
             ),
             MappingEntry(
-                commandName: "Tempo",
+                commandID: 123,
                 ioType: .input,
                 assignment: deck,
                 interactionMode: .direct,
-                midiChannel: midiChannel,
-                midiCC: 0
+                midiAssignment: try! .controlChange(channel: midiChannel, number: 0)
             ),
             MappingEntry(
-                commandName: "Jog Turn",
+                commandID: 120,
                 ioType: .input,
                 assignment: deck,
                 interactionMode: .relative,
-                midiChannel: midiChannel,
-                midiCC: 1
-            )
-        ]
-    }
-
-    private static func createMixerMappings() -> [MappingEntry] {
-        return [
-            MappingEntry(
-                commandName: "Crossfader",
-                ioType: .input,
-                assignment: .global,
-                interactionMode: .direct,
-                midiChannel: 1,
-                midiCC: 64
+                midiAssignment: try! .controlChange(channel: midiChannel, number: 1)
             ),
-            MappingEntry(
-                commandName: "Channel Fader",
-                ioType: .input,
-                assignment: .deckA,
-                interactionMode: .direct,
-                midiChannel: 1,
-                midiCC: 65
-            ),
-            MappingEntry(
-                commandName: "Channel Fader",
-                ioType: .input,
-                assignment: .deckB,
-                interactionMode: .direct,
-                midiChannel: 1,
-                midiCC: 66
-            )
         ]
     }
 }
@@ -272,9 +159,6 @@ struct KontrolS4Template: ControllerTemplate {
         mappings.append(contentsOf: createFXMappings(unit: .fxUnit1, midiChannel: 5))
         mappings.append(contentsOf: createFXMappings(unit: .fxUnit2, midiChannel: 6))
 
-        // Mixer
-        mappings.append(contentsOf: createMixerMappings())
-
         let device = Device(
             name: "Kontrol S4",
             comment: "Native Instruments Kontrol S4",
@@ -291,176 +175,78 @@ struct KontrolS4Template: ControllerTemplate {
     private static func createDeckMappings(deck: TargetAssignment, midiChannel: Int) -> [MappingEntry] {
         var mappings: [MappingEntry] = []
 
-        // Transport
         mappings.append(MappingEntry(
-            commandName: "Play/Pause",
-            ioType: .input,
-            assignment: deck,
-            interactionMode: .toggle,
-            midiChannel: midiChannel,
-            midiNote: 0
-        ))
-
-        mappings.append(MappingEntry(
-            commandName: "Cue",
+            commandID: 206,
             ioType: .input,
             assignment: deck,
             interactionMode: .hold,
-            midiChannel: midiChannel,
-            midiNote: 1
+            midiAssignment: try! .note(channel: midiChannel, number: 1)
         ))
 
         mappings.append(MappingEntry(
-            commandName: "Sync",
+            commandID: 125,
             ioType: .input,
             assignment: deck,
             interactionMode: .toggle,
-            midiChannel: midiChannel,
-            midiNote: 2
+            midiAssignment: try! .note(channel: midiChannel, number: 2)
         ))
 
         // Hotcues 1-4
-        for i in 1...4 {
+        for hotcueIndex in 0..<4 {
             mappings.append(MappingEntry(
-                commandName: "Hotcue \(i)",
+                commandID: 2328,
                 ioType: .input,
                 assignment: deck,
                 interactionMode: .hold,
-                midiChannel: midiChannel,
-                midiNote: 3 + i
+                midiAssignment: try! .note(channel: midiChannel, number: 4 + hotcueIndex),
+                setToValue: Float(hotcueIndex)
             ))
         }
 
         // Jog and tempo
         mappings.append(MappingEntry(
-            commandName: "Jog Turn",
+            commandID: 120,
             ioType: .input,
             assignment: deck,
             interactionMode: .relative,
-            midiChannel: midiChannel,
-            midiCC: 0
+            midiAssignment: try! .controlChange(channel: midiChannel, number: 0)
         ))
 
         mappings.append(MappingEntry(
-            commandName: "Tempo",
+            commandID: 123,
             ioType: .input,
             assignment: deck,
             interactionMode: .direct,
-            midiChannel: midiChannel,
-            midiCC: 1
+            midiAssignment: try! .controlChange(channel: midiChannel, number: 1)
         ))
 
         return mappings
     }
 
     private static func createFXMappings(unit: TargetAssignment, midiChannel: Int) -> [MappingEntry] {
+        let commandID: Int
+        switch unit {
+        case .fxUnit1:
+            commandID = 321
+        case .fxUnit2:
+            commandID = 322
+        case .fxUnit3:
+            commandID = 338
+        case .fxUnit4:
+            commandID = 339
+        default:
+            preconditionFailure("FX template mapping requires an FX unit target")
+        }
+
         return [
             MappingEntry(
-                commandName: "Dry/Wet",
-                ioType: .input,
-                assignment: unit,
-                interactionMode: .direct,
-                midiChannel: midiChannel,
-                midiCC: 0
-            ),
-            MappingEntry(
-                commandName: "FX Knob 1",
-                ioType: .input,
-                assignment: unit,
-                interactionMode: .direct,
-                midiChannel: midiChannel,
-                midiCC: 1
-            ),
-            MappingEntry(
-                commandName: "FX Knob 2",
-                ioType: .input,
-                assignment: unit,
-                interactionMode: .direct,
-                midiChannel: midiChannel,
-                midiCC: 2
-            ),
-            MappingEntry(
-                commandName: "FX Knob 3",
-                ioType: .input,
-                assignment: unit,
-                interactionMode: .direct,
-                midiChannel: midiChannel,
-                midiCC: 3
-            ),
-            MappingEntry(
-                commandName: "FX On",
+                commandID: commandID,
                 ioType: .input,
                 assignment: unit,
                 interactionMode: .toggle,
-                midiChannel: midiChannel,
-                midiNote: 0
-            )
+                midiAssignment: try! .note(channel: midiChannel, number: 0)
+            ),
         ]
-    }
-
-    private static func createMixerMappings() -> [MappingEntry] {
-        var mappings: [MappingEntry] = []
-
-        // Crossfader
-        mappings.append(MappingEntry(
-            commandName: "Crossfader",
-            ioType: .input,
-            assignment: .global,
-            interactionMode: .direct,
-            midiChannel: 7,
-            midiCC: 0
-        ))
-
-        // Channel faders and EQ for all 4 channels
-        let decks: [TargetAssignment] = [.deckA, .deckB, .deckC, .deckD]
-        for (index, deck) in decks.enumerated() {
-            mappings.append(MappingEntry(
-                commandName: "Channel Fader",
-                ioType: .input,
-                assignment: deck,
-                interactionMode: .direct,
-                midiChannel: 7,
-                midiCC: 1 + index
-            ))
-
-            mappings.append(MappingEntry(
-                commandName: "EQ Hi",
-                ioType: .input,
-                assignment: deck,
-                interactionMode: .direct,
-                midiChannel: 7,
-                midiCC: 10 + index
-            ))
-
-            mappings.append(MappingEntry(
-                commandName: "EQ Mid",
-                ioType: .input,
-                assignment: deck,
-                interactionMode: .direct,
-                midiChannel: 7,
-                midiCC: 20 + index
-            ))
-
-            mappings.append(MappingEntry(
-                commandName: "EQ Lo",
-                ioType: .input,
-                assignment: deck,
-                interactionMode: .direct,
-                midiChannel: 7,
-                midiCC: 30 + index
-            ))
-
-            mappings.append(MappingEntry(
-                commandName: "Filter",
-                ioType: .input,
-                assignment: deck,
-                interactionMode: .direct,
-                midiChannel: 7,
-                midiCC: 40 + index
-            ))
-        }
-
-        return mappings
     }
 }
 

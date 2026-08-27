@@ -144,7 +144,7 @@ final class TraktorCommandsTests: XCTestCase {
     // MARK: - Dynamic Name <-> ID Round-Trip Tests (Task 1.2)
 
     func testDynamicCommandNameIdRoundTrip() {
-        let ranges: [ClosedRange<Int>] = [601...728, 2401...2404, 2548...2555, 2688...2703]
+        let ranges: [ClosedRange<Int>] = [601...728, 2401...2404, 2548...2555]
         for range in ranges {
             for commandId in range {
                 let name = TraktorCommands.name(for: commandId)
@@ -159,7 +159,7 @@ final class TraktorCommandsTests: XCTestCase {
     // MARK: - Unknown Command Fallback Tests
 
     func testUnknownCommandReturnsCommandNumber() {
-        XCTAssertEqual(TraktorCommands.name(for: 99999), "Command #99999")
+        XCTAssertEqual(TraktorCommands.name(for: 99999), "Unknown command #99999")
     }
 
     func testZeroCommandReturnsCommandNumber() {
@@ -194,43 +194,42 @@ final class TraktorCommandsTests: XCTestCase {
 
     // MARK: - Duplicate Name / Deterministic Resolution Tests (M8)
 
-    func testCommandLookupNamesAreUnique() {
-        // Two distinct Traktor commands must never share a display name —
-        // id(for:) would otherwise silently rewrite one to the other on save.
+    func testCommandLookupNamesHaveOnlyAuditedAmbiguity() {
+        // 513 is a newly observed output descriptor whose native label is the
+        // same as legacy ID 2251. ID-driven creation avoids the ambiguity and
+        // the frozen legacy resolver deliberately keeps 2251 for name-only data.
         var seen: [String: Int] = [:]
         for (id, name) in TraktorCommands.commandLookup {
             if let existing = seen[name] {
-                XCTFail("Duplicate command name '\(name)' for IDs \(min(existing, id)) and \(max(existing, id))")
+                XCTAssertEqual(name, "Beat Phase")
+                XCTAssertEqual(Set([existing, id]), Set([513, 2251]))
             }
             seen[name] = id
         }
+        XCTAssertEqual(TraktorCommands.id(forLegacyName: "Beat Phase"), 2251)
     }
 
     func testLoopOutCommandsAreDistinctAndRoundTrip() {
-        // 201 (CUE/LOOP "Loop Out") and 2393 (advanced-deck "Loop Out / Set",
-        // paired with 2392 "Loop In / Set Cue") are different commands.
-        XCTAssertEqual(TraktorCommands.name(for: 201), "Loop Out")
+        // 201 was mislabeled "Loop Out" in the legacy app catalog; the
+        // canonical descriptor must use the audited Traktor 4.4.1 meaning.
+        XCTAssertEqual(TraktorCommands.name(for: 201), "Reverse Playback On")
         XCTAssertEqual(TraktorCommands.name(for: 2393), "Loop Out / Set")
         XCTAssertEqual(TraktorCommands.id(for: TraktorCommands.name(for: 201)), 201)
         XCTAssertEqual(TraktorCommands.id(for: TraktorCommands.name(for: 2393)), 2393)
-        XCTAssertTrue(TraktorCommands.isKnownCommand("Loop Out"))
+        XCTAssertTrue(TraktorCommands.isKnownCommand("Reverse Playback On"))
         XCTAssertTrue(TraktorCommands.isKnownCommand("Loop Out / Set"))
     }
 
     func testCommandHierarchyConsistentWithCommandLookup() {
-        // Every menu item must resolve to its own ID — ContentView creates
-        // mappings from hierarchy NAMES, so a name that resolves elsewhere
-        // would silently map a different command than the one clicked.
+        // Hierarchy labels are resolved from the authoritative descriptor,
+        // rather than maintained as an independent copy.
         func walk(_ categories: [CommandCategory2]) {
             for category in categories {
                 if let subcategories = category.subcategories {
                     walk(subcategories)
                 }
                 for item in category.commands ?? [] {
-                    XCTAssertEqual(
-                        TraktorCommands.id(for: item.name), item.id,
-                        "Hierarchy item '\(item.name)' (id \(item.id)) resolves to \(TraktorCommands.id(for: item.name))"
-                    )
+                    XCTAssertEqual(item.descriptor, TraktorCommands.descriptor(for: item.id))
                 }
             }
         }
@@ -249,7 +248,7 @@ final class TraktorCommandsTests: XCTestCase {
         XCTAssertTrue(TraktorCommands.isKnownCommand("Slot 2 Cell 5 State"))
         XCTAssertTrue(TraktorCommands.isKnownCommand("Slot 3 Cell 16 Trigger"))
         XCTAssertTrue(TraktorCommands.isKnownCommand("Duplicate Track Deck C"))
-        XCTAssertTrue(TraktorCommands.isKnownCommand("Deck B Post-Fader Level (R)"))
+        XCTAssertTrue(TraktorCommands.isKnownCommand("Deck Post-Fader Level (R)"))
         XCTAssertTrue(TraktorCommands.isKnownCommand("Modifier #3"))
         XCTAssertTrue(TraktorCommands.isKnownCommand("Slot FX On"))
     }
@@ -282,5 +281,122 @@ final class TraktorCommandsTests: XCTestCase {
         XCTAssertFalse(TraktorCommands.isKnownCommand("Command #100"))
         XCTAssertFalse(TraktorCommands.isKnownCommand("Command #0"))
         XCTAssertFalse(TraktorCommands.isKnownCommand("Command #-1"))
+    }
+
+    // MARK: - Audited Traktor 4.4.1 Catalog
+
+    func testUnknownPositiveIDGetsStableUnknownDescriptor() {
+        let descriptor = TraktorCommands.descriptor(for: 4242)
+        XCTAssertEqual(descriptor.id, 4242)
+        XCTAssertEqual(descriptor.name, "Unknown command #4242")
+        XCTAssertEqual(descriptor.verification, .unknown)
+        XCTAssertTrue(descriptor.supportedDirections.isEmpty)
+    }
+
+    func testZeroIsInvalidRatherThanUnknown() {
+        let descriptor = TraktorCommands.descriptor(for: 0)
+        XCTAssertEqual(descriptor.id, 0)
+        XCTAssertEqual(descriptor.verification, .legacy)
+        XCTAssertTrue(descriptor.supportedDirections.isEmpty)
+    }
+
+    func testKnownUnverifiedCommandIsLegacyNotCreatable() {
+        let descriptor = TraktorCommands.descriptor(for: 8194)
+        XCTAssertEqual(descriptor.verification, .legacy)
+        XCTAssertNil(TraktorCommands.verifiedDescriptor(named: descriptor.name, supporting: .input))
+    }
+
+    func testMeterCommandsUseTargetSelectedIDs() {
+        XCTAssertEqual(TraktorCommands.descriptor(for: 2688).name, "Deck Pre-Fader Level (L)")
+        XCTAssertEqual(TraktorCommands.descriptor(for: 2689).name, "Deck Pre-Fader Level (R)")
+        XCTAssertEqual(TraktorCommands.descriptor(for: 2690).name, "Deck Post-Fader Level (L)")
+        XCTAssertEqual(TraktorCommands.descriptor(for: 2691).name, "Deck Post-Fader Level (R)")
+        XCTAssertEqual(TraktorCommands.descriptor(for: 2703).name, "Master Out Level (L+R)")
+        XCTAssertEqual(TraktorCommands.descriptor(for: 2712).name, "Deck Pre-Fader Level (L+R)")
+        XCTAssertEqual(TraktorCommands.descriptor(for: 2713).name, "Deck Post-Fader Level (L+R)")
+    }
+
+    func testConfirmedSemanticConflictsAreCorrected() {
+        XCTAssertEqual(TraktorCommands.descriptor(for: 201).name, "Reverse Playback On")
+        XCTAssertEqual(TraktorCommands.descriptor(for: 203).name, "Is In Active Loop")
+        XCTAssertEqual(TraktorCommands.descriptor(for: 736).name, "Current Step")
+        XCTAssertEqual(TraktorCommands.descriptor(for: 738).name, "Pattern Length")
+        XCTAssertEqual(TraktorCommands.descriptor(for: 3139).name, "Load Preview Player into Deck")
+    }
+
+    func testCreationHierarchyContainsOnlyDirectionVerifiedCommands() {
+        let commands = CommandHierarchy.flatten(CommandHierarchy.verifiedCategories(for: .input))
+        XCTAssertFalse(commands.isEmpty)
+        XCTAssertTrue(commands.allSatisfy { $0.verification == .verifiedTraktor441 })
+        XCTAssertTrue(commands.allSatisfy { $0.supportedDirections.contains(.input) })
+        XCTAssertFalse(commands.contains { $0.id == 2688 })
+        XCTAssertFalse(commands.contains { $0.id == 728 })
+
+        let paired = CommandHierarchy.flatten(CommandHierarchy.verifiedCategories(for: .all))
+        XCTAssertTrue(paired.allSatisfy {
+            $0.supportedDirections.isSuperset(of: [.input, .output])
+        })
+    }
+
+    func testAuditedEvidenceCountsStayConservative() {
+        XCTAssertEqual(Traktor441CommandEvidence.inputOnlyIDs.count, 85)
+        XCTAssertEqual(Traktor441CommandEvidence.outputOnlyIDs.count, 79)
+        XCTAssertEqual(Traktor441CommandEvidence.bothDirectionIDs.count, 72)
+        XCTAssertEqual(
+            Traktor441CommandEvidence.correctedOutputOnlyIDs.count
+                + Traktor441CommandEvidence.correctedBothDirectionIDs.count,
+            9
+        )
+    }
+
+    func testObservedMissingDescriptorsAreVerifiedInTheirAuditedDirections() {
+        XCTAssertNotNil(TraktorCommands.verifiedDescriptor(named: "Slot FX Amount (Submix)", supporting: .input))
+        XCTAssertNotNil(TraktorCommands.verifiedDescriptor(named: "Beat Phase", supporting: .output))
+        XCTAssertNotNil(TraktorCommands.verifiedDescriptor(named: "Selected Sample", supporting: .input))
+        for step in 1...16 {
+            let name = "Enable Step \(step)"
+            XCTAssertNotNil(TraktorCommands.verifiedDescriptor(named: name, supporting: .input))
+            XCTAssertNotNil(TraktorCommands.verifiedDescriptor(named: name, supporting: .output))
+        }
+    }
+
+    func testAllNamesContainsOnlyVerifiedInputCommands() {
+        XCTAssertEqual(
+            TraktorCommands.allNames,
+            TraktorCommands.verifiedDescriptors(supporting: .input).map(\.name)
+        )
+        XCTAssertFalse(TraktorCommands.allNames.contains("Cruise Mode On"))
+        XCTAssertFalse(TraktorCommands.allNames.contains("Beat Phase"))
+    }
+
+    func testLegacyRenamedLabelsStillResolveToTheirHistoricIDs() {
+        XCTAssertEqual(TraktorCommands.id(forLegacyName: "Loop Out"), 201)
+        XCTAssertEqual(TraktorCommands.id(forLegacyName: "Reloop"), 203)
+        XCTAssertEqual(TraktorCommands.id(forLegacyName: "Slot BPM Sync"), 261)
+        XCTAssertEqual(TraktorCommands.id(forLegacyName: "Slot Color"), 262)
+        XCTAssertEqual(TraktorCommands.id(forLegacyName: "Step Sequencer Pattern Length"), 736)
+        XCTAssertEqual(TraktorCommands.id(forLegacyName: "Step Sequencer Selected Sound"), 738)
+        XCTAssertEqual(TraktorCommands.id(forLegacyName: "Main Level (L)"), 2704)
+        XCTAssertEqual(TraktorCommands.id(forLegacyName: "FX Unit 2 Level"), 2712)
+        XCTAssertEqual(TraktorCommands.id(forLegacyName: "FX Unit 3 Level"), 2713)
+        XCTAssertEqual(TraktorCommands.id(forLegacyName: "Preview Player Position"), 3139)
+        XCTAssertEqual(TraktorCommands.id(forLegacyName: "Play/Pause (Deck Common)"), 100)
+    }
+
+    func testLegacyDeckMeterLabelsStillResolveToTheirHistoricIDs() {
+        let families: [(suffix: String, base: Int)] = [
+            (" Pre-Fader Level (L)", 2688),
+            (" Pre-Fader Level (R)", 2692),
+            (" Post-Fader Level (L)", 2696),
+            (" Post-Fader Level (R)", 2700),
+        ]
+        for (suffix, base) in families {
+            for (index, deck) in ["A", "B", "C", "D"].enumerated() {
+                XCTAssertEqual(
+                    TraktorCommands.id(forLegacyName: "Deck \(deck)\(suffix)"),
+                    base + index
+                )
+            }
+        }
     }
 }
