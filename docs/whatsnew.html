@@ -51,12 +51,57 @@
     <section class="changelog-section">
         <div class="container">
 
-            <!-- Version 0.6 -->
+            <!-- Version 0.7 -->
             <article class="release-entry latest">
                 <div class="release-header">
                     <div class="release-version">
-                        <span class="version-number">v0.6</span>
+                        <span class="version-number">v0.7 Beta</span>
                         <span class="version-badge">Latest</span>
+                    </div>
+                    <time class="release-date" datetime="2026-08-27">August 27, 2026</time>
+                </div>
+                <div class="release-content">
+                    <h3 class="release-headline">Reliable MIDI Mapping, Macro Transfer & Comments</h3>
+                    <p class="release-summary">Move complete macros between TSI files, reassign their MIDI controls in one pass, and document complex mappings without losing Traktor's original command data.</p>
+
+                    <div class="release-changes">
+                        <div class="change-category">
+                            <h4 class="category-title new">New Workflow</h4>
+                            <ul class="change-list">
+                                <li><strong>Cross-TSI Macro Transfer</strong> - Copy and paste complete batches of commands between open mapping files</li>
+                                <li><strong>Batch MIDI Reassignment</strong> - Apply one manually entered or learned MIDI control to every selected command</li>
+                                <li><strong>Mapping Comments</strong> - Read, edit, write, and search comments attached to complex mappings and devices</li>
+                                <li><strong>Undo Support</strong> - Batch paste, reassignment, and shared settings edits can all be undone safely</li>
+                            </ul>
+                        </div>
+
+                        <div class="change-category">
+                            <h4 class="category-title fixed">MIDI & Command Reliability</h4>
+                            <ul class="change-list">
+                                <li><strong>Traktor 4.4.1 Command Audit</strong> - Command IDs and input/output directions now come from verified mapping evidence</li>
+                                <li><strong>CC & Note Validation</strong> - MIDI channels and control numbers are checked before they reach a mapping</li>
+                                <li><strong>Encoder Modes</strong> - Relative encoder definitions, including DDCI and DDCO, survive TSI save and reload</li>
+                                <li><strong>Legacy Safety</strong> - Unknown and historic command IDs remain visible and round-trip without being silently replaced</li>
+                            </ul>
+                        </div>
+
+                        <div class="change-category">
+                            <h4 class="category-title improved">Improvements</h4>
+                            <ul class="change-list">
+                                <li>Mapping search now includes device and command comments</li>
+                                <li>MIDI Learn protects listener ownership when windows and workflows change</li>
+                                <li>The Mapping Wizard and controller templates use the same verified command catalog</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Version 0.6 -->
+            <article class="release-entry">
+                <div class="release-header">
+                    <div class="release-version">
+                        <span class="version-number">v0.6 Beta</span>
                     </div>
                     <time class="release-date" datetime="2026-06-12">June 12, 2026</time>
                 </div>
@@ -110,7 +155,7 @@
             <article class="release-entry">
                 <div class="release-header">
                     <div class="release-version">
-                        <span class="version-number">v0.5</span>
+                        <span class="version-number">v0.5 Beta</span>
                     </div>
                     <time class="release-date" datetime="2026-04-11">April 11, 2026</time>
                 </div>
@@ -157,7 +202,7 @@
             <article class="release-entry">
                 <div class="release-header">
                     <div class="release-version">
-                        <span class="version-number">v0.4</span>
+                        <span class="version-number">v0.4 Beta</span>
                     </div>
                     <time class="release-date" datetime="2026-01-19">January 19, 2026</time>
                 </div>
@@ -199,7 +244,7 @@
             <article class="release-entry">
                 <div class="release-header">
                     <div class="release-version">
-                        <span class="version-number">v0.3</span>
+                        <span class="version-number">v0.3 Beta</span>
                     </div>
                     <time class="release-date" datetime="2026-01-16">January 16, 2026</time>
                 </div>
@@ -246,7 +291,7 @@
             <article class="release-entry">
                 <div class="release-header">
                     <div class="release-version">
-                        <span class="version-number">v0.2</span>
+                        <span class="version-number">v0.2 Beta</span>
                     </div>
                     <time class="release-date" datetime="2026-01-15">January 15, 2026</time>
                 </div>
@@ -290,7 +335,7 @@
             <article class="release-entry">
                 <div class="release-header">
                     <div class="release-version">
-                        <span class="version-number">v0.1</span>
+                        <span class="version-number">v0.1 Beta</span>
                         <span class="version-badge initial">Initial Release</span>
                     </div>
                     <time class="release-date" datetime="2026-01-14">January 14, 2026</time>
