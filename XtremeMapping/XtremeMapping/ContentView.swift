@@ -132,7 +132,7 @@ struct ContentView: View {
                             updateSelectedMappings { $0.interactionMode = mode }
                         },
                         onEncoderModeChange: { mode in
-                            updateSelectedMappings { $0.encoderMode = mode }
+                            updateSelectedMappings { $0.setEncoderMode(mode) }
                         },
                         onModifier1Change: { condition in
                             updateSelectedMappings { $0.modifier1Condition = condition }

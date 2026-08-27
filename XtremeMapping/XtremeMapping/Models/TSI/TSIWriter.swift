@@ -10,6 +10,7 @@ import os
 
 enum TSIWriterError: Error, Equatable {
     case invalidCommandID(Int)
+    case conflictingEncoderModes(controlName: String, direction: IODirection)
 }
 
 /// Writer for TSI (Traktor Settings Interface) files.
@@ -154,10 +155,14 @@ public struct TSIWriter: Sendable {
         ddptData.append(encodeUTF16BEString(outPort))
         data.append(encodeFrame(TSIFrame(identifier: "DDPT", size: UInt32(ddptData.count), data: ddptData)))
 
-        // DDDC (MIDI Definitions Container) containing DDCI
-        let ddciContent = buildDDCI(from: writableMappings)
-        let ddciFrame = encodeFrame(TSIFrame(identifier: "DDCI", size: UInt32(ddciContent.count), data: ddciContent))
-        data.append(encodeFrame(TSIFrame(identifier: "DDDC", size: UInt32(ddciFrame.count), data: ddciFrame)))
+        // DDDC (MIDI Definitions Container) contains direction-specific DDCI
+        // input and DDCO output definition lists as sibling frames.
+        let dddcContent = try buildDDDC(from: writableMappings)
+        data.append(encodeFrame(TSIFrame(
+            identifier: "DDDC",
+            size: UInt32(dddcContent.count),
+            data: dddcContent
+        )))
 
         // DDCB (Command Bindings) containing CMAS
         let ddcbContent = try buildDDCB(from: writableMappings)
@@ -166,67 +171,99 @@ public struct TSIWriter: Sendable {
         return data
     }
 
-    /// Builds the DDCI (Control Index) with DCDT entries
-    ///
-    /// Emits one DCDT per unique (control name, direction) pair so the same
-    /// physical control can carry both an IN binding (MidiControlType 7) and
-    /// an OUT/LED binding (MidiControlType 8).
-    private func buildDDCI(from mappings: [MappingEntry]) -> Data {
-        var data = Data()
+    private struct MIDIControlDefinitionKey: Hashable {
+        let controlName: String
+        let direction: IODirection
+    }
 
-        /// Output direction: explicit OUT mappings and LED controller types
-        func isOutput(_ mapping: MappingEntry) -> Bool {
-            mapping.ioType == .output || mapping.controllerType == .led
-        }
+    private struct MIDIControlDefinition {
+        let key: MIDIControlDefinitionKey
+        let encoderMode: UInt32
+    }
 
-        // Collect unique (control name, direction) pairs in mapping order.
-        // Unassigned mappings have no MIDI control — they get no DCDT entry.
-        var seenControls = Set<String>()
-        var uniqueEntries: [(controlName: String, isOutput: Bool)] = []
+    /// Builds the direction-specific MIDI definition lists. DCBM remains the
+    /// authority for binding IDs; these rows carry metadata only.
+    private func buildDDDC(from mappings: [MappingEntry]) throws -> Data {
+        var modesByKey: [MIDIControlDefinitionKey: UInt32] = [:]
+        var definitions: [MIDIControlDefinition] = []
+
         for mapping in mappings {
             guard let controlName = midiControlName(for: mapping) else { continue }
-            let output = isOutput(mapping)
-            let dedupKey = "\(controlName)|\(output ? "out" : "in")"
-            if !seenControls.contains(dedupKey) {
-                seenControls.insert(dedupKey)
-                uniqueEntries.append((controlName, output))
+            let direction: IODirection = mapping.ioType == .output ? .output : .input
+            let key = MIDIControlDefinitionKey(
+                controlName: controlName,
+                direction: direction
+            )
+            let encoderMode = mapping.effectiveDCDTEncoderMode
+
+            if let existing = modesByKey[key] {
+                guard existing == encoderMode else {
+                    throw TSIWriterError.conflictingEncoderModes(
+                        controlName: controlName,
+                        direction: direction
+                    )
+                }
+                continue
             }
+
+            modesByKey[key] = encoderMode
+            definitions.append(MIDIControlDefinition(key: key, encoderMode: encoderMode))
         }
 
-        // 4-byte count prefix (number of DCDT entries)
-        var countBE = UInt32(uniqueEntries.count).bigEndian
-        data.append(Data(bytes: &countBE, count: 4))
+        var data = Data()
+        let inputDefinitions = definitions.filter { $0.key.direction == .input }
+        if !inputDefinitions.isEmpty {
+            let payload = buildDefinitionList(from: inputDefinitions)
+            data.append(encodeFrame(TSIFrame(
+                identifier: "DDCI",
+                size: UInt32(payload.count),
+                data: payload
+            )))
+        }
 
-        for entry in uniqueEntries {
-            // Build DCDT frame with full structure
-            var dcdtData = Data()
+        let outputDefinitions = definitions.filter { $0.key.direction == .output }
+        if !outputDefinitions.isEmpty {
+            let payload = buildDefinitionList(from: outputDefinitions)
+            data.append(encodeFrame(TSIFrame(
+                identifier: "DDCO",
+                size: UInt32(payload.count),
+                data: payload
+            )))
+        }
 
-            // String with length prefix (UTF-16BE)
-            dcdtData.append(encodeUTF16BEString(entry.controlName))
+        return data
+    }
 
-            // MidiControlType (4 bytes) - 7 for in, 8 for out
-            var controlType = UInt32(entry.isOutput ? 8 : 7).bigEndian
-            dcdtData.append(Data(bytes: &controlType, count: 4))
+    private func buildDefinitionList(from definitions: [MIDIControlDefinition]) -> Data {
+        var data = Data()
+        var count = UInt32(definitions.count).bigEndian
+        data.append(Data(bytes: &count, count: 4))
 
-            // MinValue (4 bytes float) - 0.0
-            let minValue: Float32 = 0.0
-            var minValueBytes = minValue.bitPattern.bigEndian
-            dcdtData.append(Data(bytes: &minValueBytes, count: 4))
+        for definition in definitions {
+            var payload = Data()
+            payload.append(encodeUTF16BEString(definition.key.controlName))
 
-            // MaxValue (4 bytes float) - 127.0
-            let maxValue: Float32 = 127.0
-            var maxValueBytes = maxValue.bitPattern.bigEndian
-            dcdtData.append(Data(bytes: &maxValueBytes, count: 4))
+            let isOutput = definition.key.direction == .output
+            var controlType = UInt32(isOutput ? 8 : 7).bigEndian
+            payload.append(Data(bytes: &controlType, count: 4))
 
-            // EncoderMode (4 bytes) - 1
-            var encoderMode = UInt32(1).bigEndian
-            dcdtData.append(Data(bytes: &encoderMode, count: 4))
+            var minValue = Float32(0).bitPattern.bigEndian
+            payload.append(Data(bytes: &minValue, count: 4))
 
-            // ControlId (4 bytes) - -1 (0xFFFFFFFF)
-            var controlId = UInt32(0xFFFFFFFF).bigEndian
-            dcdtData.append(Data(bytes: &controlId, count: 4))
+            var maxValue = Float32(127).bitPattern.bigEndian
+            payload.append(Data(bytes: &maxValue, count: 4))
 
-            data.append(encodeFrame(TSIFrame(identifier: "DCDT", size: UInt32(dcdtData.count), data: dcdtData)))
+            var encoderMode = definition.encoderMode.bigEndian
+            payload.append(Data(bytes: &encoderMode, count: 4))
+
+            var controlID = UInt32.max.bigEndian
+            payload.append(Data(bytes: &controlID, count: 4))
+
+            data.append(encodeFrame(TSIFrame(
+                identifier: "DCDT",
+                size: UInt32(payload.count),
+                data: payload
+            )))
         }
 
         return data

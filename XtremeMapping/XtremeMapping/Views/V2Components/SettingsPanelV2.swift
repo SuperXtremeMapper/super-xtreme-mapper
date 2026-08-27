@@ -405,7 +405,7 @@ struct SettingsPanelV2: View {
                     )
                     .disabled(isLocked)
                     .onChange(of: encoderMode) { _, newValue in
-                        updateEntry { $0.encoderMode = newValue }
+                        updateEntry { $0.setEncoderMode(newValue) }
                     }
                 }
 

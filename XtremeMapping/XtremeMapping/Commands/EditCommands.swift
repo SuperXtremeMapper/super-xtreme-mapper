@@ -322,7 +322,7 @@ struct EditCommands: Commands {
         for deviceIndex in doc.mappingFile.devices.indices {
             for mappingIndex in doc.mappingFile.devices[deviceIndex].mappings.indices {
                 if selected.contains(doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].id) {
-                    doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].encoderMode = mode
+                    doc.mappingFile.devices[deviceIndex].mappings[mappingIndex].setEncoderMode(mode)
                 }
             }
         }

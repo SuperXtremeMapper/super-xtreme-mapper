@@ -123,6 +123,21 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
     /// For Encoder: the encoder communication mode
     var encoderMode: EncoderMode
 
+    /// An unrecognized Traktor DCDT mode preserved opaquely from import.
+    /// Known values are represented by `encoderMode` instead.
+    var rawDCDTEncoderMode: UInt32?
+
+    /// The raw value emitted to Traktor, including opaque imported values.
+    nonisolated var effectiveDCDTEncoderMode: UInt32 {
+        rawDCDTEncoderMode ?? encoderMode.tsiDCDTValue
+    }
+
+    /// Applies an explicit user selection and ends opaque pass-through.
+    mutating func setEncoderMode(_ mode: EncoderMode) {
+        encoderMode = mode
+        rawDCDTEncoderMode = nil
+    }
+
     // MARK: - CMAD pass-through fields (round-tripped, not yet surfaced in UI)
 
     /// For Button: repeat the command while held
@@ -210,6 +225,7 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         rotarySensitivity: Float = 5.0,
         rotaryAcceleration: Float = 0.0,
         encoderMode: EncoderMode = .mode7Fh01h,
+        rawDCDTEncoderMode: UInt32? = nil,
         autoRepeat: Bool = false,
         ledMinRangeType: Int = 1,
         ledMinRangeData: Int = 0,
@@ -249,6 +265,9 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         self.rotarySensitivity = rotarySensitivity
         self.rotaryAcceleration = rotaryAcceleration
         self.encoderMode = encoderMode
+        self.rawDCDTEncoderMode = rawDCDTEncoderMode.flatMap {
+            EncoderMode(tsiDCDTValue: $0) == nil ? $0 : nil
+        }
         self.autoRepeat = autoRepeat
         self.ledMinRangeType = ledMinRangeType
         self.ledMinRangeData = ledMinRangeData
@@ -329,6 +348,12 @@ extension MappingEntry: Codable {
         rotarySensitivity = try container.decodeIfPresent(Float.self, forKey: .rotarySensitivity) ?? 5.0
         rotaryAcceleration = try container.decode(Float.self, forKey: .rotaryAcceleration)
         encoderMode = try container.decode(EncoderMode.self, forKey: .encoderMode)
+        rawDCDTEncoderMode = try container.decodeIfPresent(
+            UInt32.self,
+            forKey: .rawDCDTEncoderMode
+        ).flatMap {
+            EncoderMode(tsiDCDTValue: $0) == nil ? $0 : nil
+        }
         // New CMAD pass-through fields: decode with defaults so old saved state still loads
         autoRepeat = try container.decodeIfPresent(Bool.self, forKey: .autoRepeat) ?? false
         ledMinRangeType = try container.decodeIfPresent(Int.self, forKey: .ledMinRangeType) ?? 1
@@ -363,6 +388,7 @@ extension MappingEntry: Codable {
         try container.encode(rotarySensitivity, forKey: .rotarySensitivity)
         try container.encode(rotaryAcceleration, forKey: .rotaryAcceleration)
         try container.encode(encoderMode, forKey: .encoderMode)
+        try container.encodeIfPresent(rawDCDTEncoderMode, forKey: .rawDCDTEncoderMode)
         try container.encode(autoRepeat, forKey: .autoRepeat)
         try container.encode(ledMinRangeType, forKey: .ledMinRangeType)
         try container.encode(ledMinRangeData, forKey: .ledMinRangeData)
@@ -381,7 +407,7 @@ extension MappingEntry: Codable {
         case modifier1Condition, modifier2Condition
         case comment, controllerType, invert
         case softTakeover, setToValue
-        case rotarySensitivity, rotaryAcceleration, encoderMode
+        case rotarySensitivity, rotaryAcceleration, encoderMode, rawDCDTEncoderMode
         case autoRepeat
         case ledMinRangeType, ledMinRangeData, ledMaxRangeType, ledMaxRangeData
         case ledMinMidi, ledMaxMidi, ledInvert, ledBlend
