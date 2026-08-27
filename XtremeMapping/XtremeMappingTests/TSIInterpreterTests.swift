@@ -10,6 +10,10 @@ import XCTest
 
 final class TSIInterpreterTests: XCTestCase {
 
+    private enum BoundedFrameScanError: Error {
+        case malformedHierarchy
+    }
+
     // MARK: - MIDI Control Name Parsing Tests
 
     func testParseCCControlName() {
@@ -216,7 +220,7 @@ final class TSIInterpreterTests: XCTestCase {
     /// and return the first device from the result.
     private func roundTripDevice(_ device: Device) throws -> Device? {
         let writer = TSIWriter()
-        let tsiData = writer.write(MappingFile(devices: [device]))
+        let tsiData = try writer.write(MappingFile(devices: [device]))
 
         let parser = TSIParser()
         let base64 = try TSIParser.extractControllerData(from: tsiData)
@@ -226,10 +230,231 @@ final class TSIInterpreterTests: XCTestCase {
         return result.devices.first
     }
 
+    private func interpretTSIData(_ data: Data) throws -> MappingFile {
+        let parser = TSIParser()
+        let base64 = try TSIParser.extractControllerData(from: data)
+        let binary = try parser.decodeBase64(base64)
+        return try TSIInterpreter.interpret(frames: parser.parseFrames(from: binary))
+    }
+
+    private func roundTripEntries(_ entries: [MappingEntry]) throws -> [MappingEntry] {
+        try XCTUnwrap(roundTripDevice(Device(name: "Generic MIDI", mappings: entries))).mappings
+    }
+
+    /// Structurally walks the emitted hierarchy and reads only fields within
+    /// their declared frame boundaries. Any malformed or ambiguous container
+    /// fails the scan instead of falling back to marker-string byte searching.
+    private func scanCMAICommandTargets(in tsi: Data) throws -> [(commandID: UInt32, target: Int32)] {
+        let parser = TSIParser()
+        let base64 = try TSIParser.extractControllerData(from: tsi)
+        let binary = try parser.decodeBase64(base64)
+        let roots = try parser.parseFrames(from: binary)
+
+        guard roots.count == 1, let diom = roots.first, diom.identifier == "DIOM" else {
+            throw BoundedFrameScanError.malformedHierarchy
+        }
+        let diomFrames = try parser.parseFrames(from: diom.data)
+        guard let devs = diomFrames.first(where: { $0.identifier == "DEVS" }),
+              devs.data.count >= 4 else {
+            throw BoundedFrameScanError.malformedHierarchy
+        }
+
+        let declaredDeviceCount = Int(readUInt32BE(devs.data, at: 0))
+        let deviceFrames = try parser.parseFrames(from: devs.data.subdata(in: 4..<devs.data.count))
+            .filter { $0.identifier == "DEVI" }
+        guard deviceFrames.count == declaredDeviceCount else {
+            throw BoundedFrameScanError.malformedHierarchy
+        }
+
+        var result: [(commandID: UInt32, target: Int32)] = []
+        for device in deviceFrames {
+            guard device.data.count >= 4 else { throw BoundedFrameScanError.malformedHierarchy }
+            let nameBytes = Int(readUInt32BE(device.data, at: 0)) * 2
+            let nestedOffset = 4 + nameBytes
+            guard nestedOffset <= device.data.count else { throw BoundedFrameScanError.malformedHierarchy }
+
+            let deviceChildren = try parser.parseFrames(
+                from: device.data.subdata(in: nestedOffset..<device.data.count)
+            )
+            guard let ddat = deviceChildren.first(where: { $0.identifier == "DDAT" }) else {
+                throw BoundedFrameScanError.malformedHierarchy
+            }
+            let dataChildren = try parser.parseFrames(from: ddat.data)
+            guard let ddcb = dataChildren.first(where: { $0.identifier == "DDCB" }) else {
+                throw BoundedFrameScanError.malformedHierarchy
+            }
+            let bindingChildren = try parser.parseFrames(from: ddcb.data)
+            guard let cmas = bindingChildren.first(where: { $0.identifier == "CMAS" }),
+                  cmas.data.count >= 4 else {
+                throw BoundedFrameScanError.malformedHierarchy
+            }
+
+            let declaredMappingCount = Int(readUInt32BE(cmas.data, at: 0))
+            let mappingFrames = try parser.parseFrames(from: cmas.data.subdata(in: 4..<cmas.data.count))
+            guard mappingFrames.count == declaredMappingCount,
+                  mappingFrames.allSatisfy({ $0.identifier == "CMAI" }) else {
+                throw BoundedFrameScanError.malformedHierarchy
+            }
+
+            for cmai in mappingFrames {
+                guard cmai.data.count >= 20 else { throw BoundedFrameScanError.malformedHierarchy }
+                let cmadFrames = try parser.parseFrames(from: cmai.data.subdata(in: 12..<cmai.data.count))
+                guard cmadFrames.count == 1, let cmad = cmadFrames.first,
+                      cmad.identifier == "CMAD", cmad.data.count >= 16 else {
+                    throw BoundedFrameScanError.malformedHierarchy
+                }
+                result.append((
+                    commandID: readUInt32BE(cmai.data, at: 8),
+                    target: Int32(bitPattern: readUInt32BE(cmad.data, at: 12))
+                ))
+            }
+        }
+        return result
+    }
+
+    private func readUInt32BE(_ data: Data, at offset: Int) -> UInt32 {
+        data.subdata(in: offset..<(offset + 4)).reduce(UInt32(0)) {
+            ($0 << 8) | UInt32($1)
+        }
+    }
+
     /// Write a MappingEntry through TSIWriter, parse it back through TSIInterpreter,
     /// and return the first mapping from the result.
     private func roundTrip(_ entry: MappingEntry) throws -> MappingEntry? {
         try roundTripDevice(Device(name: "Test", mappings: [entry]))?.mappings.first
+    }
+
+    func testUnknownPositiveCommandIDRoundTripsWithComment() throws {
+        let source = MappingEntry(
+            commandID: 4242,
+            ioType: .input,
+            assignment: .deckC,
+            interactionMode: .hold,
+            midiChannel: 3,
+            midiCC: 17,
+            comment: "Keep this legacy macro"
+        )
+        let tsi = try TSIWriter().write(
+            MappingFile(devices: [Device(name: "Generic MIDI", mappings: [source])])
+        )
+        let result = try interpretTSIData(tsi)
+        let decoded = try XCTUnwrap(result.devices.first?.mappings.first)
+
+        XCTAssertEqual(decoded.commandID, 4242)
+        XCTAssertEqual(decoded.comment, "Keep this legacy macro")
+        XCTAssertEqual(decoded.assignment, .deckC)
+        XCTAssertEqual(try scanCMAICommandTargets(in: tsi).map(\.commandID), [4242])
+    }
+
+    func testWriterUsesStoredIDNotDisplayNameReverseLookup() throws {
+        let source = MappingEntry(commandID: 201, midiChannel: 1, midiCC: 12)
+        let tsi = try TSIWriter().write(
+            MappingFile(devices: [Device(name: "Generic MIDI", mappings: [source])])
+        )
+        let decoded = try XCTUnwrap(try interpretTSIData(tsi).devices.first?.mappings.first)
+        XCTAssertEqual(decoded.commandID, 201)
+        XCTAssertEqual(decoded.commandName, "Reverse Playback On")
+    }
+
+    func testWriterDoesNotUseAmbiguousLegacyNameLookup() throws {
+        // "Beat Phase" is the catalog's one audited duplicate label. Legacy
+        // name migration intentionally resolves it to 2251, while a raw TSI
+        // row with authoritative ID 513 must remain 513 at the binary boundary.
+        let source = MappingEntry(commandID: 513, ioType: .output, midiChannel: 1, midiCC: 13)
+        let tsi = try TSIWriter().write(
+            MappingFile(devices: [Device(name: "Generic MIDI", mappings: [source])])
+        )
+        let raw = try scanCMAICommandTargets(in: tsi)
+        XCTAssertEqual(raw.map(\.commandID), [513])
+        XCTAssertEqual(try interpretTSIData(tsi).devices.first?.mappings.first?.commandID, 513)
+    }
+
+    func testMeterIDAndDeckTargetRemainIndependent() throws {
+        let decks: [TargetAssignment] = [.deckA, .deckB, .deckC, .deckD]
+        let rows = decks.map {
+            MappingEntry(
+                commandID: 2688,
+                ioType: .output,
+                assignment: $0,
+                midiChannel: 1,
+                midiCC: 20
+            )
+        }
+        let tsi = try TSIWriter().write(
+            MappingFile(devices: [Device(name: "Generic MIDI", mappings: rows)])
+        )
+        let result = try roundTripEntries(rows)
+        XCTAssertEqual(result.map(\.commandID), [2688, 2688, 2688, 2688])
+        XCTAssertEqual(result.map(\.assignment), decks)
+        let rawPairs = try scanCMAICommandTargets(in: tsi)
+        XCTAssertEqual(rawPairs.map(\.commandID), [2688, 2688, 2688, 2688])
+        XCTAssertEqual(rawPairs.map(\.target), [0, 1, 2, 3])
+    }
+
+    func testCommandIDOutsideTSIUInt32RangeThrows() {
+        let invalidID = Int(UInt32.max) + 1
+        let row = MappingEntry(commandID: invalidID, midiChannel: 1, midiCC: 1)
+        XCTAssertThrowsError(
+            try TSIWriter().write(MappingFile(devices: [Device(mappings: [row])]))
+        ) {
+            XCTAssertEqual($0 as? TSIWriterError, .invalidCommandID(invalidID))
+        }
+    }
+
+    func testRawLegacySlotIDIsPreservedInsteadOfRewritten() throws {
+        var cmad = validCMAD()
+        cmad.replaceSubrange(12..<16, with: be32(0))
+        let cmai = cmaiPayload(commandId: 2900, cmadBytes: rawFrame("CMAD", cmad))
+        let file = try interpretCMAS(be32(1) + rawFrame("CMAI", cmai))
+        let mapping = try XCTUnwrap(file.devices.first?.mappings.first)
+
+        XCTAssertEqual(mapping.commandID, 2900)
+        XCTAssertEqual(mapping.commandName, "Unknown command #2900")
+        XCTAssertEqual(mapping.assignment, .deckA)
+    }
+
+    func testAddMenusExposeOnlyDirectionVerifiedDescriptorsAndPassIDs() throws {
+        var selectedIDs: [Int] = []
+        let inputMenu = V2AddCommandMenuButton(
+            icon: "arrow.down",
+            label: "IN",
+            tooltip: "Input",
+            isDisabled: false,
+            direction: .input
+        ) { selectedIDs.append($0.id) }
+        let outputMenu = V2AddCommandMenuButton(
+            icon: "arrow.up",
+            label: "OUT",
+            tooltip: "Output",
+            isDisabled: false,
+            direction: .output
+        ) { selectedIDs.append($0.id) }
+        let pairMenu = V2AddCommandMenuIconButton(
+            icon: "arrow.up.arrow.down",
+            tooltip: "Pair",
+            isDisabled: false,
+            direction: .all
+        ) { selectedIDs.append($0.id) }
+
+        let input = CommandHierarchy.flatten(inputMenu.commandCategories)
+        let output = CommandHierarchy.flatten(outputMenu.commandCategories)
+        let paired = CommandHierarchy.flatten(pairMenu.commandCategories)
+        XCTAssertTrue(input.allSatisfy {
+            $0.verification == .verifiedTraktor441 && $0.supports(.input)
+        })
+        XCTAssertTrue(output.allSatisfy {
+            $0.verification == .verifiedTraktor441 && $0.supports(.output)
+        })
+        XCTAssertTrue(paired.allSatisfy {
+            $0.verification == .verifiedTraktor441 && $0.supports(.all)
+        })
+        XCTAssertFalse(input.contains { $0.id == 247 })
+        XCTAssertFalse(output.contains { $0.id == 232 })
+
+        inputMenu.onCommandSelected(try XCTUnwrap(input.first { $0.id == 232 }))
+        outputMenu.onCommandSelected(try XCTUnwrap(output.first { $0.id == 247 }))
+        pairMenu.onCommandSelected(try XCTUnwrap(paired.first { $0.id == 206 }))
+        XCTAssertEqual(selectedIDs, [232, 247, 206])
     }
 
     func testRoundTripPreservesInteractionModes() throws {
@@ -390,7 +615,7 @@ final class TSIInterpreterTests: XCTestCase {
 
         let writer = TSIWriter()
         let device = Device(name: "Test", mappings: [invalid, negative, zero, valid])
-        let tsiData = writer.write(MappingFile(devices: [device]))
+        let tsiData = try writer.write(MappingFile(devices: [device]))
 
         let parser = TSIParser()
         let base64 = try TSIParser.extractControllerData(from: tsiData)
@@ -617,7 +842,7 @@ final class TSIInterpreterTests: XCTestCase {
         let device = Device(name: "Test", mappings: [inMapping, outMapping])
 
         let writer = TSIWriter()
-        let tsiData = writer.write(MappingFile(devices: [device]))
+        let tsiData = try writer.write(MappingFile(devices: [device]))
         let parser = TSIParser()
         let base64 = try TSIParser.extractControllerData(from: tsiData)
         let binaryData = try parser.decodeBase64(base64)
@@ -660,7 +885,7 @@ final class TSIInterpreterTests: XCTestCase {
     /// Writes a MappingFile through TSIWriter and returns the decoded binary frame data.
     private func binaryData(for file: MappingFile) throws -> Data {
         let writer = TSIWriter()
-        let tsiData = writer.write(file)
+        let tsiData = try writer.write(file)
         let base64 = try TSIParser.extractControllerData(from: tsiData)
         return try TSIParser().decodeBase64(base64)
     }

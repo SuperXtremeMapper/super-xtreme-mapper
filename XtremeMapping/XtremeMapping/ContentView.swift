@@ -263,7 +263,11 @@ struct ContentView: View {
 
     @discardableResult
     private func addVoiceMapping(midi: MIDIMessage, result: VoiceCommandResult) -> UUID? {
-        guard !isLocked else { return nil }
+        guard !isLocked,
+              let command = TraktorCommands.verifiedDescriptor(
+                named: result.command,
+                supporting: .input
+              ) else { return nil }
 
         registerChange()
 
@@ -276,7 +280,7 @@ struct ContentView: View {
 
         // Create the new mapping entry
         let newMapping = MappingEntry(
-            commandName: result.command,
+            commandID: command.id,
             ioType: .input,
             assignment: assignment,
             interactionMode: interactionMode,
@@ -370,12 +374,12 @@ struct ContentView: View {
 
     // MARK: - Actions
 
-    private func addInputMapping(commandName: String) {
+    private func addInputMapping(command: TraktorCommandDescriptor) {
         guard !isLocked else { return }
         registerChange()
 
         let newMapping = MappingEntry(
-            commandName: commandName,
+            commandID: command.id,
             ioType: .input
         )
 
@@ -389,12 +393,12 @@ struct ContentView: View {
         selectedMappings = [newMapping.id]
     }
 
-    private func addOutputMapping(commandName: String) {
+    private func addOutputMapping(command: TraktorCommandDescriptor) {
         guard !isLocked else { return }
         registerChange()
 
         let newMapping = MappingEntry(
-            commandName: commandName,
+            commandID: command.id,
             ioType: .output
         )
 
@@ -408,17 +412,17 @@ struct ContentView: View {
         selectedMappings = [newMapping.id]
     }
 
-    private func addInOutPair(commandName: String) {
+    private func addInOutPair(command: TraktorCommandDescriptor) {
         guard !isLocked else { return }
         registerChange()
 
         let inputEntry = MappingEntry(
-            commandName: commandName,
+            commandID: command.id,
             ioType: .input
         )
 
         let outputEntry = MappingEntry(
-            commandName: commandName,
+            commandID: command.id,
             ioType: .output
         )
 
@@ -644,9 +648,9 @@ struct V2ActionBarFull: View {
     @Binding var categoryFilter: CommandCategory
     @Binding var ioFilter: IODirection
     @Binding var searchText: String
-    var onAddInput: (String) -> Void
-    var onAddOutput: (String) -> Void
-    var onAddInOut: (String) -> Void
+    var onAddInput: (TraktorCommandDescriptor) -> Void
+    var onAddOutput: (TraktorCommandDescriptor) -> Void
+    var onAddInOut: (TraktorCommandDescriptor) -> Void
     var onAbout: () -> Void
     var onSettings: () -> Void
     var voiceCoordinator: VoiceMappingCoordinator?
@@ -657,9 +661,9 @@ struct V2ActionBarFull: View {
         HStack(spacing: AppThemeV2.Spacing.md) {
             // Left side - Add buttons with command menus (labeled style)
             HStack(spacing: AppThemeV2.Spacing.xs) {
-                V2AddCommandMenuButton(icon: "arrow.down", label: "IN", tooltip: "Add Input Mapping", isDisabled: isLocked) { onAddInput($0) }
-                V2AddCommandMenuButton(icon: "arrow.up", label: "OUT", tooltip: "Add Output Mapping", isDisabled: isLocked) { onAddOutput($0) }
-                V2AddCommandMenuButton(icon: "arrow.up.arrow.down", label: "IN/OUT", tooltip: "Add Input/Output Pair", isDisabled: isLocked) { onAddInOut($0) }
+                V2AddCommandMenuButton(icon: "arrow.down", label: "IN", tooltip: "Add Input Mapping", isDisabled: isLocked, direction: .input) { onAddInput($0) }
+                V2AddCommandMenuButton(icon: "arrow.up", label: "OUT", tooltip: "Add Output Mapping", isDisabled: isLocked, direction: .output) { onAddOutput($0) }
+                V2AddCommandMenuButton(icon: "arrow.up.arrow.down", label: "IN/OUT", tooltip: "Add Input/Output Pair", isDisabled: isLocked, direction: .all) { onAddInOut($0) }
 
                 Rectangle()
                     .fill(AppThemeV2.Colors.stone600)
@@ -742,7 +746,12 @@ struct V2AddCommandMenuIconButton: View {
     let icon: String
     let tooltip: String
     let isDisabled: Bool
-    let onCommandSelected: (String) -> Void
+    let direction: IODirection
+    let onCommandSelected: (TraktorCommandDescriptor) -> Void
+
+    var commandCategories: [CommandCategory2] {
+        CommandHierarchy.verifiedCategories(for: direction)
+    }
 
     @State private var isHovered = false
 
@@ -788,7 +797,7 @@ struct V2AddCommandMenuIconButton: View {
     // Transparent menu that sits on top and captures all clicks
     private var transparentMenu: some View {
         Menu {
-            ForEach(CommandHierarchy.categories) { category in
+            ForEach(commandCategories) { category in
                 categoryMenu(category)
             }
         } label: {
@@ -813,7 +822,7 @@ struct V2AddCommandMenuIconButton: View {
         } else if let commands = category.commands {
             Menu(category.name) {
                 ForEach(commands) { command in
-                    Button(command.name) { onCommandSelected(command.name) }
+                    Button(command.name) { onCommandSelected(command.descriptor) }
                 }
             }
         }
@@ -824,7 +833,7 @@ struct V2AddCommandMenuIconButton: View {
         if let commands = subcategory.commands {
             Menu(subcategory.name) {
                 ForEach(commands) { command in
-                    Button(command.name) { onCommandSelected(command.name) }
+                    Button(command.name) { onCommandSelected(command.descriptor) }
                 }
             }
         }
@@ -857,7 +866,12 @@ struct V2AddCommandMenuButton: View {
     let label: String
     let tooltip: String
     let isDisabled: Bool
-    let onCommandSelected: (String) -> Void
+    let direction: IODirection
+    let onCommandSelected: (TraktorCommandDescriptor) -> Void
+
+    var commandCategories: [CommandCategory2] {
+        CommandHierarchy.verifiedCategories(for: direction)
+    }
 
     @State private var isHovered = false
 
@@ -903,7 +917,7 @@ struct V2AddCommandMenuButton: View {
 
     private var transparentMenu: some View {
         Menu {
-            ForEach(CommandHierarchy.categories) { category in
+            ForEach(commandCategories) { category in
                 categoryMenu(category)
             }
         } label: {
@@ -927,7 +941,7 @@ struct V2AddCommandMenuButton: View {
         } else if let commands = category.commands {
             Menu(category.name) {
                 ForEach(commands) { command in
-                    Button(command.name) { onCommandSelected(command.name) }
+                    Button(command.name) { onCommandSelected(command.descriptor) }
                 }
             }
         }
@@ -938,7 +952,7 @@ struct V2AddCommandMenuButton: View {
         if let commands = subcategory.commands {
             Menu(subcategory.name) {
                 ForEach(commands) { command in
-                    Button(command.name) { onCommandSelected(command.name) }
+                    Button(command.name) { onCommandSelected(command.descriptor) }
                 }
             }
         }

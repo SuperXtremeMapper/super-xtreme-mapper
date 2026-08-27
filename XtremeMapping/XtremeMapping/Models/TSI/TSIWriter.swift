@@ -8,6 +8,10 @@
 import Foundation
 import os
 
+enum TSIWriterError: Error, Equatable {
+    case invalidCommandID(Int)
+}
+
 /// Writer for TSI (Traktor Settings Interface) files.
 ///
 /// Converts in-memory TSI data structures back to the TSI file format.
@@ -23,9 +27,9 @@ public struct TSIWriter: Sendable {
     ///
     /// - Parameter mappingFile: The mapping file to serialize
     /// - Returns: The complete TSI file data
-    func write(_ mappingFile: MappingFile) -> Data {
+    func write(_ mappingFile: MappingFile) throws -> Data {
         // Build frame hierarchy: DIOM -> DEVS -> DEVI -> CMAS -> CMAI -> CMAD
-        let diomData = buildDIOM(from: mappingFile)
+        let diomData = try buildDIOM(from: mappingFile)
 
         // Create the root DIOM frame
         let diomFrame = TSIFrame(identifier: "DIOM", size: UInt32(diomData.count), data: diomData)
@@ -43,7 +47,7 @@ public struct TSIWriter: Sendable {
     // MARK: - Frame Building
 
     /// Builds the DIOM (Device IO Mappings) frame content
-    private func buildDIOM(from mappingFile: MappingFile) -> Data {
+    private func buildDIOM(from mappingFile: MappingFile) throws -> Data {
         var data = Data()
 
         // DIOI header frame (version info - 4 bytes, must be 1 for Traktor compatibility)
@@ -51,14 +55,14 @@ public struct TSIWriter: Sendable {
         data.append(encodeFrame(TSIFrame(identifier: "DIOI", size: UInt32(dioiData.count), data: dioiData)))
 
         // DEVS (devices container) with count prefix
-        let devsContent = buildDEVS(from: mappingFile.devices)
+        let devsContent = try buildDEVS(from: mappingFile.devices)
         data.append(encodeFrame(TSIFrame(identifier: "DEVS", size: UInt32(devsContent.count), data: devsContent)))
 
         return data
     }
 
     /// Builds the DEVS (Devices) frame content with count prefix
-    private func buildDEVS(from devices: [Device]) -> Data {
+    private func buildDEVS(from devices: [Device]) throws -> Data {
         var data = Data()
 
         // 4-byte device count (big-endian)
@@ -67,7 +71,7 @@ public struct TSIWriter: Sendable {
 
         // Each device as a DEVI frame
         for device in devices {
-            let deviContent = buildDEVI(from: device)
+            let deviContent = try buildDEVI(from: device)
             data.append(encodeFrame(TSIFrame(identifier: "DEVI", size: UInt32(deviContent.count), data: deviContent)))
         }
 
@@ -90,35 +94,40 @@ public struct TSIWriter: Sendable {
     }
 
     /// Builds the DEVI (Device) frame content
-    private func buildDEVI(from device: Device) -> Data {
+    private func buildDEVI(from device: Device) throws -> Data {
         var data = Data()
 
         // Device name (UTF-16BE with 4-byte length prefix)
         data.append(encodeUTF16BEString(tsiDeviceName(for: device)))
 
         // DDAT (Device Data) containing DDCB (Command Bindings)
-        let ddatContent = buildDDAT(from: device)
+        let ddatContent = try buildDDAT(from: device)
         data.append(encodeFrame(TSIFrame(identifier: "DDAT", size: UInt32(ddatContent.count), data: ddatContent)))
 
         return data
     }
 
     /// Builds the DDAT (Device Data) frame content
-    private func buildDDAT(from device: Device) -> Data {
+    private func buildDDAT(from device: Device) throws -> Data {
         var data = Data()
 
-        // Filter to mappings whose command name resolves to a writable Traktor ID.
+        // Filter placeholders while preserving every positive stored command ID.
         // Computed ONCE and shared by ALL frame builders (DDCI, DCBM, CMAS) so
         // binding IDs stay aligned across frames — filtering in only one builder
         // would make a CMAI point at the wrong MIDI control after reload.
-        // Excludes unresolvable names (id 0), "Command #0", and negative "Command #N".
-        let writableMappings = device.mappings.filter { mapping in
-            let commandId = TraktorCommands.id(for: mapping.commandName)
-            if commandId < 1 {
-                Self.logger.warning("Skipping unwritable mapping '\(mapping.commandName, privacy: .public)' (resolved ID \(commandId))")
-                return false
+        var writableMappings: [MappingEntry] = []
+        writableMappings.reserveCapacity(device.mappings.count)
+        for mapping in device.mappings {
+            guard mapping.commandID > 0 else {
+                Self.logger.warning(
+                    "Skipping unwritable mapping '\(mapping.commandName, privacy: .public)' (stored ID \(mapping.commandID))"
+                )
+                continue
             }
-            return true
+            guard mapping.commandID <= Int(UInt32.max) else {
+                throw TSIWriterError.invalidCommandID(mapping.commandID)
+            }
+            writableMappings.append(mapping)
         }
 
         // DDIF (Device Info Flags) - 4 bytes, value 0
@@ -151,7 +160,7 @@ public struct TSIWriter: Sendable {
         data.append(encodeFrame(TSIFrame(identifier: "DDDC", size: UInt32(ddciFrame.count), data: ddciFrame)))
 
         // DDCB (Command Bindings) containing CMAS
-        let ddcbContent = buildDDCB(from: writableMappings)
+        let ddcbContent = try buildDDCB(from: writableMappings)
         data.append(encodeFrame(TSIFrame(identifier: "DDCB", size: UInt32(ddcbContent.count), data: ddcbContent)))
 
         return data
@@ -224,11 +233,11 @@ public struct TSIWriter: Sendable {
     }
 
     /// Builds the DDCB (Command Bindings) frame content
-    private func buildDDCB(from mappings: [MappingEntry]) -> Data {
+    private func buildDDCB(from mappings: [MappingEntry]) throws -> Data {
         var data = Data()
 
         // Build CMAS (Mappings List)
-        let cmasContent = buildCMAS(from: mappings)
+        let cmasContent = try buildCMAS(from: mappings)
         data.append(encodeFrame(TSIFrame(identifier: "CMAS", size: UInt32(cmasContent.count), data: cmasContent)))
 
         // Build DCBM (MIDI Note Binding List) - links BindingId to MidiNote strings
@@ -269,7 +278,7 @@ public struct TSIWriter: Sendable {
     }
 
     /// Builds the CMAS (Mappings List) frame content
-    private func buildCMAS(from mappings: [MappingEntry]) -> Data {
+    private func buildCMAS(from mappings: [MappingEntry]) throws -> Data {
         var data = Data()
 
         // 4-byte mapping count prefix
@@ -281,7 +290,7 @@ public struct TSIWriter: Sendable {
 
         // Each mapping as a CMAI frame
         for mapping in mappings {
-            let cmaiContent = buildCMAI(from: mapping, controlNameToId: controlNameToId)
+            let cmaiContent = try buildCMAI(from: mapping, controlNameToId: controlNameToId)
             data.append(encodeFrame(TSIFrame(identifier: "CMAI", size: UInt32(cmaiContent.count), data: cmaiContent)))
         }
 
@@ -306,7 +315,7 @@ public struct TSIWriter: Sendable {
     }
 
     /// Builds the CMAI (Mapping Item) frame content
-    private func buildCMAI(from mapping: MappingEntry, controlNameToId: [String: Int]) -> Data {
+    private func buildCMAI(from mapping: MappingEntry, controlNameToId: [String: Int]) throws -> Data {
         var data = Data()
 
         // MidiNoteBindingId (4 bytes) — the unassigned sentinel when the
@@ -324,9 +333,11 @@ public struct TSIWriter: Sendable {
         var ioType = UInt32(mapping.ioType == .output ? 1 : 0).bigEndian
         data.append(Data(bytes: &ioType, count: 4))
 
-        // TraktorControlId (4 bytes) - need reverse lookup from command name
-        let controlId = TraktorCommands.id(for: mapping.commandName)
-        var traktorId = UInt32(controlId).bigEndian
+        // TraktorControlId (4 bytes) — the stored raw integer is authoritative.
+        guard mapping.commandID > 0, mapping.commandID <= Int(UInt32.max) else {
+            throw TSIWriterError.invalidCommandID(mapping.commandID)
+        }
+        var traktorId = UInt32(mapping.commandID).bigEndian
         data.append(Data(bytes: &traktorId, count: 4))
 
         // CMAD frame
@@ -380,7 +391,7 @@ public struct TSIWriter: Sendable {
         // Remix-slot commands (239/249/250/251/259) overload the same field
         // as deckIndex * 4 + slotIndex. This is verified against local
         // Traktor 4.4 exports where Slot Volume spans targets 0...15.
-        let cmdIdForTarget = TraktorCommands.id(for: mapping.commandName)
+        let cmdIdForTarget = mapping.commandID
         let isSlotCommand = Self.isRemixSlotCommand(cmdIdForTarget)
         let targetValue: Int32 = {
             if isSlotCommand {
@@ -569,7 +580,7 @@ public struct TSIWriter: Sendable {
     }
 
     private static func cmadProfile(for mapping: MappingEntry) -> CMADProfile {
-        let cmdId = TraktorCommands.id(for: mapping.commandName)
+        let cmdId = mapping.commandID
 
         // Indexed-hotcue path (id 2328 = "Select/Set+Store Hotcue").
         // SetValueTo carries the hotcue index 0..7 as raw uint32.

@@ -165,18 +165,18 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
     // MARK: - Task 2.1: Pending state consumed by processMapping
 
     func testProcessingConsumesPendingInputs() async {
-        mock.result = makeResult(command: "Play/Pause")
+        mock.result = makeResult(command: "Cue")
 
         await processPair(midi: makeMIDI(cc: 10), voice: "play deck a", expectedCallCount: 1)
 
         XCTAssertNil(coordinator.pendingMIDI, "pendingMIDI must be consumed by processMapping")
         XCTAssertNil(coordinator.pendingVoice, "pendingVoice must be consumed by processMapping")
-        XCTAssertEqual(coordinator.currentResult?.command, "Play/Pause")
+        XCTAssertEqual(coordinator.currentResult?.command, "Cue")
         XCTAssertEqual(coordinator.currentMIDI, makeMIDI(cc: 10))
     }
 
     func testNewMIDIAfterResultDoesNotRePairWithStaleTranscript() async {
-        mock.result = makeResult(command: "Play/Pause")
+        mock.result = makeResult(command: "Cue")
         await processPair(midi: makeMIDI(cc: 10), voice: "play deck a", expectedCallCount: 1)
 
         // A second MIDI press arrives while the previous result is on screen.
@@ -206,15 +206,15 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
 
         // Complete the first call; the coordinator must re-trigger for the new pair.
         mock.holdResponse = false
-        mock.result = makeResult(command: "Volume")
-        mock.resume(with: makeResult(command: "Play/Pause"))
+        mock.result = makeResult(command: "Jog Turn")
+        mock.resume(with: makeResult(command: "Cue"))
 
         await waitUntil("second processing to complete") {
             mock.callCount == 2 && !coordinator.isProcessing
         }
         XCTAssertEqual(mock.transcripts, ["voice one", "voice two"])
         XCTAssertEqual(coordinator.currentMIDI, makeMIDI(cc: 20))
-        XCTAssertEqual(coordinator.currentResult?.command, "Volume")
+        XCTAssertEqual(coordinator.currentResult?.command, "Jog Turn")
     }
 
     func testAPIErrorDoesNotRetryAndShowsFailedState() async {
@@ -245,7 +245,7 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
 
     func testSaveRefusedWhileProcessingAndStaleResultCleared() async {
         // First pair completes and its result is on screen.
-        mock.result = makeResult(command: "Play/Pause")
+        mock.result = makeResult(command: "Cue")
         await processPair(midi: makeMIDI(cc: 10), voice: "play deck a", expectedCallCount: 1)
         XCTAssertNotNil(coordinator.currentResult)
 
@@ -265,9 +265,9 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
         XCTAssertTrue(coordinator.sessionMappings.isEmpty, "saveAndContinue must refuse while processing")
 
         // The new result lands normally afterwards.
-        mock.resume(with: makeResult(command: "Volume"))
+        mock.resume(with: makeResult(command: "Jog Turn"))
         await waitUntil("second processing to complete") { !coordinator.isProcessing }
-        XCTAssertEqual(coordinator.currentResult?.command, "Volume")
+        XCTAssertEqual(coordinator.currentResult?.command, "Jog Turn")
     }
 
     // MARK: - Task 2.2: deactivate clears session state
@@ -277,7 +277,7 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
 
         // Build up a session: one saved mapping (saveAndContinue registers
         // the document-inserted entry ID itself).
-        mock.result = makeResult(command: "Play/Pause")
+        mock.result = makeResult(command: "Cue")
         await processPair(midi: makeMIDI(cc: 10), voice: "play deck a", expectedCallCount: 1)
         coordinator.saveAndContinue()
         XCTAssertEqual(coordinator.sessionMappings.count, 1)
@@ -294,27 +294,27 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
     func testStaleDisambiguationStateClearedWhenNewPairProcesses() async {
         // First pair yields a low-confidence result → disambiguation shown.
         mock.result = makeResult(
-            command: "Play/Pause",
+            command: "Cue",
             confidence: 0.4,
-            alternatives: [makeAlternative(command: "Play")]
+            alternatives: [makeAlternative(command: "Loop Active On")]
         )
         await processPair(midi: makeMIDI(cc: 10), voice: "play something", expectedCallCount: 1)
         XCTAssertNotNil(coordinator.disambiguationOptions, "Low-confidence result should show options")
 
         // User ignores the options and captures a new pair instead.
-        mock.result = makeResult(command: "Play", confidence: 0.95)
+        mock.result = makeResult(command: "Loop Active On", confidence: 0.95)
         await processPair(midi: makeMIDI(cc: 20), voice: "play it", expectedCallCount: 2)
 
         XCTAssertNil(coordinator.disambiguationOptions,
                      "Stale disambiguation options must be cleared when a new pair processes")
-        XCTAssertEqual(coordinator.currentResult?.command, "Play")
+        XCTAssertEqual(coordinator.currentResult?.command, "Loop Active On")
         XCTAssertEqual(coordinator.currentMIDI?.cc, 20)
 
         // Saving now must save the NEW pair, not the stale disambiguation MIDI.
         coordinator.saveAndContinue()
         XCTAssertEqual(coordinator.sessionMappings.count, 1)
         XCTAssertEqual(coordinator.sessionMappings.first?.midi.cc, 20)
-        XCTAssertEqual(coordinator.sessionMappings.first?.result.command, "Play")
+        XCTAssertEqual(coordinator.sessionMappings.first?.result.command, "Loop Active On")
     }
 
     func testUnknownPrimaryWithKnownAlternativeRoutesToDisambiguation() async {
@@ -322,7 +322,7 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
             command: "Totally Made Up Knob",
             confidence: 0.95,
             alternatives: [
-                makeAlternative(command: "Play/Pause"),
+                makeAlternative(command: "Cue"),
                 makeAlternative(command: "Another Fake Command")
             ]
         )
@@ -334,15 +334,15 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
         XCTAssertNil(coordinator.currentResult, "Unknown primary must not become a savable result")
 
         let options = coordinator.disambiguationOptions ?? []
-        XCTAssertEqual(options.map(\.command), ["Play/Pause"],
+        XCTAssertEqual(options.map(\.command), ["Cue"],
                        "Disambiguation must show only known commands")
 
         // Selecting the known option makes it savable.
         coordinator.selectOption(0)
-        XCTAssertEqual(coordinator.currentResult?.command, "Play/Pause")
+        XCTAssertEqual(coordinator.currentResult?.command, "Cue")
         coordinator.saveAndContinue()
         XCTAssertEqual(coordinator.sessionMappings.count, 1)
-        XCTAssertEqual(coordinator.sessionMappings.first?.result.command, "Play/Pause")
+        XCTAssertEqual(coordinator.sessionMappings.first?.result.command, "Cue")
     }
 
     func testUnknownPrimaryWithNoKnownAlternativesIsError() async {
@@ -365,18 +365,18 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
     func testDisambiguationFiltersUnknownAlternatives() async {
         // Known primary, low confidence, mixed alternatives.
         mock.result = makeResult(
-            command: "Play/Pause",
+            command: "Cue",
             confidence: 0.5,
             alternatives: [
                 makeAlternative(command: "Bogus Control"),
-                makeAlternative(command: "Volume")
+                makeAlternative(command: "Jog Turn")
             ]
         )
 
         await processPair(midi: makeMIDI(cc: 10), voice: "play something", expectedCallCount: 1)
 
         let options = coordinator.disambiguationOptions ?? []
-        XCTAssertEqual(options.map(\.command), ["Play/Pause", "Volume"],
+        XCTAssertEqual(options.map(\.command), ["Cue", "Jog Turn"],
                        "Unknown alternatives must be filtered out of disambiguation")
     }
 
@@ -393,10 +393,60 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
                       "Unknown commands must never reach the document insertion seam")
     }
 
+    func testHighConfidenceLegacyCommandIsRejected() async {
+        mock.result = makeResult(command: "Cruise Mode On")
+
+        await processPair(midi: makeMIDI(cc: 10), voice: "enable cruise", expectedCallCount: 1)
+
+        XCTAssertNil(coordinator.currentResult)
+        XCTAssertNil(coordinator.currentMIDI)
+        XCTAssertNil(coordinator.disambiguationOptions)
+        XCTAssertTrue(coordinator.statusMessage.contains("isn't a known Traktor command"))
+    }
+
+    func testHighConfidenceOutputOnlyCommandIsRejectedForVoiceInput() async {
+        mock.result = makeResult(command: "Slot State")
+
+        await processPair(midi: makeMIDI(cc: 10), voice: "show slot state", expectedCallCount: 1)
+
+        XCTAssertNil(coordinator.currentResult)
+        XCTAssertNil(coordinator.currentMIDI)
+        XCTAssertNil(coordinator.disambiguationOptions)
+        XCTAssertTrue(coordinator.statusMessage.contains("isn't a known Traktor command"))
+    }
+
+    func testDisambiguationOffersOnlyVerifiedInputCommands() async {
+        mock.result = makeResult(
+            command: "Cue",
+            confidence: 0.5,
+            alternatives: [
+                makeAlternative(command: "Slot State"),
+                makeAlternative(command: "Cruise Mode On"),
+                makeAlternative(command: "Jog Turn"),
+                makeAlternative(command: "Totally Made Up Knob")
+            ]
+        )
+
+        await processPair(midi: makeMIDI(cc: 10), voice: "choose a control", expectedCallCount: 1)
+
+        XCTAssertEqual(coordinator.disambiguationOptions?.map(\.command), ["Cue", "Jog Turn"])
+    }
+
+    func testSaveAndContinueRefusesUnverifiedCommand() {
+        coordinator.currentResult = makeResult(command: "Cruise Mode On")
+        coordinator.currentMIDI = makeMIDI(cc: 10)
+
+        coordinator.saveAndContinue()
+
+        XCTAssertTrue(coordinator.sessionMappings.isEmpty)
+        XCTAssertTrue(insertedIds.isEmpty)
+        XCTAssertTrue(coordinator.statusMessage.contains("not saved"))
+    }
+
     // MARK: - Task 2.4 (M6): Locked-document save divergence
 
     func testSaveAndContinueLockedDocumentDoesNotRecordSession() async {
-        mock.result = makeResult(command: "Play/Pause")
+        mock.result = makeResult(command: "Cue")
         await processPair(midi: makeMIDI(cc: 10), voice: "play deck a", expectedCallCount: 1)
 
         // Locked document: insertion refused.
@@ -418,7 +468,7 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
         coordinator.insertMapping = { _, _ in UUID() }
         coordinator.saveAndContinue()
         XCTAssertEqual(coordinator.sessionMappings.count, 1)
-        XCTAssertEqual(coordinator.sessionMappings.first?.result.command, "Play/Pause")
+        XCTAssertEqual(coordinator.sessionMappings.first?.result.command, "Cue")
         XCTAssertTrue(coordinator.statusMessage.contains("Saved"))
     }
 
@@ -432,7 +482,7 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
             return documentId
         }
 
-        mock.result = makeResult(command: "Play/Pause")
+        mock.result = makeResult(command: "Cue")
         await processPair(midi: makeMIDI(cc: 10), voice: "play deck a", expectedCallCount: 1)
         coordinator.saveAndContinue()
 
@@ -440,14 +490,14 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
         XCTAssertTrue(coordinator.sessionMappingIds.contains(documentId),
                       "The document's entry ID must be registered for overwrite tracking")
         XCTAssertEqual(receivedMIDI?.cc, 10)
-        XCTAssertEqual(receivedCommand, "Play/Pause")
+        XCTAssertEqual(receivedCommand, "Cue")
         XCTAssertTrue(coordinator.statusMessage.contains("Saved"))
         XCTAssertNil(coordinator.currentResult, "State clears for the next capture after a real save")
         XCTAssertNil(coordinator.currentMIDI)
     }
 
     func testSaveAndContinueWithoutInsertionSeamBehavesAsRefused() async {
-        mock.result = makeResult(command: "Play/Pause")
+        mock.result = makeResult(command: "Cue")
         await processPair(midi: makeMIDI(cc: 10), voice: "play deck a", expectedCallCount: 1)
 
         coordinator.insertMapping = nil

@@ -585,9 +585,6 @@ struct TSIInterpreter {
         default: controllerType = .button
         }
 
-        // Look up command name from Traktor's command database
-        var commandName = TraktorCommands.name(for: traktorControlId)
-
         // Parse MIDI info from control name (unassigned mappings have none)
         let (channel, noteOrCC, isCc): (Int, Int?, Bool)
         if let midiControlName {
@@ -601,7 +598,7 @@ struct TSIInterpreter {
         // use the standard deck/FX mapping.
         // Values outside -1...15 collapse to .global by prior design — the
         // same tolerance as the other CMAD enums above.
-        var assignment: TargetAssignment
+        let assignment: TargetAssignment
         if Self.isRemixSlotCommand(traktorControlId), (0...15).contains(cmadSettings.targetDeck) {
             assignment = TargetAssignment.remixSlotAssignment(forTargetValue: cmadSettings.targetDeck)
         } else {
@@ -627,28 +624,6 @@ struct TSIInterpreter {
             }
         }
 
-        // Legacy per-slot ID migration (Traktor-3-era fabricated 2900..2923).
-        // Old XtremeMapping versions wrote these fabricated IDs to encode the
-        // slot index in the commandId itself. Traktor 4.4 has no such IDs.
-        // The broken K3 files were Deck-A mappings with target 0, so legacy
-        // IDs migrate to explicit Deck A Slot N assignments.
-        if (2900...2923).contains(traktorControlId) {
-            let slotIndex = (traktorControlId - 2900) / 4   // 0..5
-            let withinRange = (traktorControlId - 2900) % 4 // 0..3
-            let remixSlot: TargetAssignment = [.remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4][withinRange]
-            switch slotIndex {
-            case 0: commandName = "Slot Volume";        assignment = remixSlot
-            case 1: commandName = "Slot Mute On";       assignment = remixSlot
-            case 2: commandName = "Slot Filter Adjust"; assignment = remixSlot
-            case 3: commandName = "Slot Filter On";     assignment = remixSlot
-            case 4:
-                Self.logger.warning("Dropping legacy 'Slot N FX Send' binding from imported TSI — not supported in Traktor 4.4")
-                return nil
-            case 5: commandName = "Slot FX On";         assignment = remixSlot
-            default: break
-            }
-        }
-
         let setToValue: Float = traktorControlId == 2328
             ? Float(cmadSettings.setToValueRaw)
             : cmadSettings.setToValue
@@ -662,7 +637,7 @@ struct TSIInterpreter {
             : nil
 
         return MappingEntry(
-            commandName: commandName,
+            commandID: traktorControlId,
             ioType: ioType,
             assignment: assignment,
             interactionMode: interactionMode,

@@ -94,7 +94,7 @@ final class TraktorMappingDocument: ReferenceFileDocument {
 
     func fileWrapper(snapshot: MappingFile, configuration: WriteConfiguration) throws -> FileWrapper {
         let writer = TSIWriter()
-        let data = writer.write(snapshot)
+        let data = try writer.write(snapshot)
         return FileWrapper(regularFileWithContents: data)
     }
 

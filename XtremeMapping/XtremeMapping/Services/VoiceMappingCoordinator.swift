@@ -370,7 +370,10 @@ final class VoiceMappingCoordinator: ObservableObject {
 
     /// Route an interpretation result to save-ready, disambiguation, or error state.
     private func handleInterpretation(_ result: VoiceCommandResult, midi: MIDIMessage) {
-        let isKnown = TraktorCommands.isKnownCommand(result.command)
+        let isKnown = TraktorCommands.verifiedDescriptor(
+            named: result.command,
+            supporting: .input
+        ) != nil
 
         if isKnown && result.isHighConfidence {
             currentResult = result
@@ -411,8 +414,12 @@ final class VoiceMappingCoordinator: ObservableObject {
             return
         }
 
-        // Final guard at the insertion seam: never save an unknown command name.
-        guard TraktorCommands.isKnownCommand(result.command) else {
+        // Final guard at the insertion seam: Voice may create only commands
+        // verified as input-capable in Traktor 4.4.1.
+        guard TraktorCommands.verifiedDescriptor(
+            named: result.command,
+            supporting: .input
+        ) != nil else {
             statusMessage = "\"\(result.command)\" isn't a known Traktor command — not saved"
             return
         }
@@ -464,7 +471,9 @@ final class VoiceMappingCoordinator: ObservableObject {
         if let alternatives = result.alternatives {
             options.append(contentsOf: alternatives)
         }
-        return options.filter { TraktorCommands.isKnownCommand($0.command) }
+        return options.filter {
+            TraktorCommands.verifiedDescriptor(named: $0.command, supporting: .input) != nil
+        }
     }
 
     /// Generate a human-readable description of a MIDI message.
