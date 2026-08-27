@@ -11,12 +11,9 @@ import Foundation
 /// Based on CMDR TSI Editor: https://github.com/cmdr-editor/cmdr
 enum TraktorCommands {
 
-    /// Returns all command names from the lookup table.
-    ///
-    /// Used by the Claude API service to provide the list of available
-    /// commands for voice command interpretation.
+    /// Names that are safe to use when creating a new input mapping.
     static var allNames: [String] {
-        commandLookup.values.sorted()
+        verifiedDescriptors(supporting: .input).map(\.name)
     }
 
     /// Returns true when the name resolves to a real Traktor command — via the
@@ -27,7 +24,7 @@ enum TraktorCommands {
     /// proves nothing about validity. Used to reject hallucinated command
     /// names from voice interpretation before they reach the document.
     static func isKnownCommand(_ name: String) -> Bool {
-        if name.hasPrefix("Command #") {
+        if name.hasPrefix("Command #") || name.hasPrefix("Unknown command #") {
             return false
         }
         let resolved = id(for: name)
@@ -53,11 +50,41 @@ enum TraktorCommands {
         return map
     }()
 
+    /// Frozen aliases emitted by older XtremeMapping versions.
+    ///
+    /// These are intentionally checked before canonical names so imported
+    /// name-only mappings preserve their historic IDs even after the audited
+    /// descriptor label changes.
+    private static let legacyAliases: [String: Int] = [
+        "Loop Out": 201,
+        "Reloop": 203,
+        "Slot BPM Sync": 261,
+        "Slot Color": 262,
+        "Step Sequencer Pattern Length": 736,
+        "Step Sequencer Selected Sound": 738,
+        "Main Level (L)": 2704,
+        "FX Unit 2 Level": 2712,
+        "FX Unit 3 Level": 2713,
+        "Preview Player Position": 3139,
+        "Play/Pause (Deck Common)": 100,
+        "Beat Phase": 2251,
+    ]
+
     /// Returns the command ID for a human-readable name
     /// If the name is not found, returns 0
-    static func id(for name: String) -> Int {
+    static func id(forLegacyName name: String) -> Int {
+        if let id = legacyAliases[name] {
+            return id
+        }
+
         // Check if it's a "Command #N" format
         if name.hasPrefix("Command #"), let idStr = name.split(separator: "#").last, let id = Int(idStr) {
+            return id
+        }
+
+        if name.hasPrefix("Unknown command #"),
+           let idStr = name.split(separator: "#").last,
+           let id = Int(idStr) {
             return id
         }
 
@@ -151,8 +178,79 @@ enum TraktorCommands {
         return 0
     }
 
+    /// Compatibility spelling retained for existing import/export call sites.
+    static func id(for name: String) -> Int {
+        id(forLegacyName: name)
+    }
+
+    static func descriptor(for commandID: Int) -> TraktorCommandDescriptor {
+        let directions = Traktor441CommandEvidence.supportedDirections(for: commandID)
+        let knownName = catalogName(for: commandID)
+
+        if !directions.isEmpty {
+            return TraktorCommandDescriptor(
+                id: commandID,
+                name: knownName ?? "Unknown command #\(commandID)",
+                verification: .verifiedTraktor441,
+                supportedDirections: directions
+            )
+        }
+
+        if let knownName {
+            return TraktorCommandDescriptor(
+                id: commandID,
+                name: knownName,
+                verification: .legacy,
+                supportedDirections: []
+            )
+        }
+
+        if commandID <= 0 {
+            return TraktorCommandDescriptor(
+                id: commandID,
+                name: "Command #\(commandID)",
+                verification: .legacy,
+                supportedDirections: []
+            )
+        }
+
+        return TraktorCommandDescriptor(
+            id: commandID,
+            name: "Unknown command #\(commandID)",
+            verification: .unknown,
+            supportedDirections: []
+        )
+    }
+
+    static func verifiedDescriptors(supporting direction: IODirection) -> [TraktorCommandDescriptor] {
+        let verifiedIDs = Traktor441CommandEvidence.inputOnlyIDs
+            .union(Traktor441CommandEvidence.outputOnlyIDs)
+            .union(Traktor441CommandEvidence.bothDirectionIDs)
+            .union(Traktor441CommandEvidence.correctedOutputOnlyIDs)
+            .union(Traktor441CommandEvidence.correctedBothDirectionIDs)
+
+        return verifiedIDs
+            .map(descriptor(for:))
+            .filter { $0.supports(direction) }
+            .sorted {
+                $0.name == $1.name ? $0.id < $1.id : $0.name < $1.name
+            }
+    }
+
+    static func verifiedDescriptor(
+        named name: String,
+        supporting direction: IODirection
+    ) -> TraktorCommandDescriptor? {
+        verifiedDescriptors(supporting: direction).first { $0.name == name }
+    }
+
     /// Returns the human-readable name for a Traktor command ID
     static func name(for commandId: Int) -> String {
+        descriptor(for: commandId).name
+    }
+
+    /// Returns a catalog/dynamic name, or nil when an ID has never been known.
+    private static func catalogName(for commandId: Int) -> String? {
         // Check static lookup first
         if let name = commandLookup[commandId] {
             return name
@@ -197,26 +295,7 @@ enum TraktorCommands {
             return "Duplicate Track Deck \(decks[commandId - 2401])"
         }
 
-        // Mixer Meters (Output only)
-        if commandId >= 2688 && commandId <= 2691 {
-            let decks = ["A", "B", "C", "D"]
-            return "Deck \(decks[commandId - 2688]) Pre-Fader Level (L)"
-        }
-        if commandId >= 2692 && commandId <= 2695 {
-            let decks = ["A", "B", "C", "D"]
-            return "Deck \(decks[commandId - 2692]) Pre-Fader Level (R)"
-        }
-        if commandId >= 2696 && commandId <= 2699 {
-            let decks = ["A", "B", "C", "D"]
-            return "Deck \(decks[commandId - 2696]) Post-Fader Level (L)"
-        }
-        if commandId >= 2700 && commandId <= 2703 {
-            let decks = ["A", "B", "C", "D"]
-            return "Deck \(decks[commandId - 2700]) Post-Fader Level (R)"
-        }
-
-        // Unknown command
-        return "Command #\(commandId)"
+        return nil
     }
 
     /// Static lookup table for known command IDs.
@@ -263,9 +342,9 @@ enum TraktorCommands {
         // CUE / LOOP
         // ===========================================
         200: "Loop In",
-        201: "Loop Out",
+        201: "Reverse Playback On",
         202: "Loop Active On",
-        203: "Reloop",
+        203: "Is In Active Loop",
         204: "CUP (Cue Play)",
         205: "Cup (Cue Play & Pause)",
         206: "Cue",
@@ -286,6 +365,7 @@ enum TraktorCommands {
         221: "Hotcue 8",
         229: "Quantize Selector",
         230: "Quantize On (Remix)",
+        232: "Slot FX Amount (Submix)",
 
         // ===========================================
         // REMIX DECK
@@ -318,8 +398,8 @@ enum TraktorCommands {
         258: "Slot Retrigger Play",
         259: "Slot Mute On",
         260: "Slot Retrigger",
-        261: "Slot BPM Sync",
-        262: "Slot Color",
+        261: "Slot Pre-Fader Level (L)",
+        262: "Slot Pre-Fader Level (R)",
         263: "Slot Capture from Loop Recorder",
         264: "Slot Copy from Slot",
         265: "Slot Play Mode",
@@ -399,6 +479,7 @@ enum TraktorCommands {
         // PHASE OUTPUT
         // ===========================================
         512: "Phase",
+        513: "Beat Phase",
 
         // ===========================================
         // KEY & TEMPO
@@ -444,10 +525,27 @@ enum TraktorCommands {
         733: "Sample Page Selector",
         734: "Step Sequencer On",
         735: "Step Sequencer Swing Amount",
-        736: "Step Sequencer Pattern Length",
+        736: "Current Step",
         737: "Step Sequencer Current Step",
-        738: "Step Sequencer Selected Sound",
+        738: "Pattern Length",
         739: "Step Sequencer Selected Pattern",
+        740: "Selected Sample",
+        741: "Enable Step 1",
+        742: "Enable Step 2",
+        743: "Enable Step 3",
+        744: "Enable Step 4",
+        745: "Enable Step 5",
+        746: "Enable Step 6",
+        747: "Enable Step 7",
+        748: "Enable Step 8",
+        749: "Enable Step 9",
+        750: "Enable Step 10",
+        751: "Enable Step 11",
+        752: "Enable Step 12",
+        753: "Enable Step 13",
+        754: "Enable Step 14",
+        755: "Enable Step 15",
+        756: "Enable Step 16",
 
         // ===========================================
         // SLOT SIZE & CAPTURE
@@ -613,7 +711,23 @@ enum TraktorCommands {
         // ===========================================
         // MIXER METERS (Output)
         // ===========================================
-        2704: "Main Level (L)",
+        2688: "Deck Pre-Fader Level (L)",
+        2689: "Deck Pre-Fader Level (R)",
+        2690: "Deck Post-Fader Level (L)",
+        2691: "Deck Post-Fader Level (R)",
+        2692: "Mixer Level (L)",
+        2693: "Mixer Level (R)",
+        2694: "Master Out Level (L)",
+        2695: "Master Out Level (R)",
+        2696: "Master Out Clip (L)",
+        2697: "Master Out Clip (R)",
+        2698: "Record Input Level (L)",
+        2699: "Record Input Level (R)",
+        2700: "Record Input Clip (L)",
+        2701: "Record Input Clip (R)",
+        2702: "Deck C Post-Fader Level (R)",
+        2703: "Master Out Level (L+R)",
+        2704: "Master Out Clip (L+R)",
         2705: "Main Level (R)",
         2706: "Booth Level (L)",
         2707: "Booth Level (R)",
@@ -621,8 +735,8 @@ enum TraktorCommands {
         2709: "Monitor Level (R)",
         2710: "Microphone Level",
         2711: "FX Unit 1 Level",
-        2712: "FX Unit 2 Level",
-        2713: "FX Unit 3 Level",
+        2712: "Deck Pre-Fader Level (L+R)",
+        2713: "Deck Post-Fader Level (L+R)",
         2714: "FX Unit 4 Level",
 
         // ===========================================
@@ -646,7 +760,7 @@ enum TraktorCommands {
         3084: "Load Last Recording",
         3137: "Load Selected (Preview)",
         3138: "Preview Player State",
-        3139: "Preview Player Position",
+        3139: "Load Preview Player into Deck",
         3172: "Consolidate",
 
         // ===========================================
