@@ -6,7 +6,7 @@
 import Foundation
 
 /// One validated generic MIDI assignment.
-struct MIDIAssignment: Hashable, Codable, Sendable {
+nonisolated struct MIDIAssignment: Hashable, Codable, Sendable {
     enum Kind: String, Codable, Hashable, Sendable {
         case unassigned
         case note
@@ -85,11 +85,11 @@ struct MIDIAssignment: Hashable, Codable, Sendable {
         try Self(validatingChannel: channel, note: note, cc: cc)
     }
 
-    nonisolated var note: Int? {
+    var note: Int? {
         kind == .note ? number : nil
     }
 
-    nonisolated var cc: Int? {
+    var cc: Int? {
         kind == .controlChange ? number : nil
     }
 

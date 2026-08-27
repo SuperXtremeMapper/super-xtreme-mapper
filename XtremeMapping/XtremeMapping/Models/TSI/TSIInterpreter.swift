@@ -896,7 +896,13 @@ struct TSIInterpreter {
 
         // MIDI note: (octave + 1) * 12 + noteIndex
         // C-1 = 0, C0 = 12, C4 = 60
-        return (octave + 1) * 12 + noteIndex
+        let (shiftedOctave, shiftOverflowed) = octave.addingReportingOverflow(1)
+        guard !shiftOverflowed else { return nil }
+        let (octaveBase, multiplyOverflowed) = shiftedOctave.multipliedReportingOverflow(by: 12)
+        guard !multiplyOverflowed else { return nil }
+        let (midiNumber, noteOverflowed) = octaveBase.addingReportingOverflow(noteIndex)
+        guard !noteOverflowed else { return nil }
+        return midiNumber
     }
 
     // MARK: - Utility Functions
