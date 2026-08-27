@@ -11,6 +11,39 @@ import Foundation
 
 struct MappingEntryTests {
 
+    @Test func copyWithNewIDChangesOnlyIdentity() {
+        let source = MappingEntry.fullFieldSentinel
+        let copy = source.copyWithNewID()
+
+        #expect(copy.id != source.id)
+        #expect(copy.commandID == source.commandID)
+        #expect(copy.ioType == source.ioType)
+        #expect(copy.assignment == source.assignment)
+        #expect(copy.interactionMode == source.interactionMode)
+        #expect(copy.midiAssignment == source.midiAssignment)
+        #expect(copy.modifier1Condition == source.modifier1Condition)
+        #expect(copy.modifier2Condition == source.modifier2Condition)
+        #expect(copy.comment == source.comment)
+        #expect(copy.controllerType == source.controllerType)
+        #expect(copy.invert == source.invert)
+        #expect(copy.softTakeover == source.softTakeover)
+        #expect(copy.setToValue == source.setToValue)
+        #expect(copy.rotarySensitivity == source.rotarySensitivity)
+        #expect(copy.rotaryAcceleration == source.rotaryAcceleration)
+        #expect(copy.encoderMode == source.encoderMode)
+        #expect(copy.rawDCDTEncoderMode == source.rawDCDTEncoderMode)
+        #expect(copy.autoRepeat == source.autoRepeat)
+        #expect(copy.ledMinRangeType == source.ledMinRangeType)
+        #expect(copy.ledMinRangeData == source.ledMinRangeData)
+        #expect(copy.ledMaxRangeType == source.ledMaxRangeType)
+        #expect(copy.ledMaxRangeData == source.ledMaxRangeData)
+        #expect(copy.ledMinMidi == source.ledMinMidi)
+        #expect(copy.ledMaxMidi == source.ledMaxMidi)
+        #expect(copy.ledInvert == source.ledInvert)
+        #expect(copy.ledBlend == source.ledBlend)
+        #expect(copy.resolution == source.resolution)
+    }
+
     // MARK: - Validated MIDI Assignment Tests
 
     @Test func noteAssignmentClearsControlChange() throws {

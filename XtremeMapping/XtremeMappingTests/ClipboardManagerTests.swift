@@ -19,11 +19,13 @@ final class ClipboardManagerTests: XCTestCase {
         clipboard = ClipboardManager.shared
         clipboard.mappedToClipboard = nil
         clipboard.modifiersClipboard = nil
+        clipboard.copyMappings([])
     }
 
     override func tearDown() {
         clipboard.mappedToClipboard = nil
         clipboard.modifiersClipboard = nil
+        clipboard.copyMappings([])
         super.tearDown()
     }
 
@@ -77,9 +79,7 @@ final class ClipboardManagerTests: XCTestCase {
         clipboard.copyMappedTo(from: entry)
 
         XCTAssertTrue(clipboard.hasMappedToData)
-        XCTAssertEqual(clipboard.mappedToClipboard?.midiChannel, 5)
-        XCTAssertEqual(clipboard.mappedToClipboard?.midiNote, 60)
-        XCTAssertNil(clipboard.mappedToClipboard?.midiCC)
+        XCTAssertEqual(clipboard.mappedToClipboard?.midiAssignment, try? .note(channel: 5, number: 60))
     }
 
     func testCopyMappedToWithCC() {
@@ -92,9 +92,10 @@ final class ClipboardManagerTests: XCTestCase {
         clipboard.copyMappedTo(from: entry)
 
         XCTAssertTrue(clipboard.hasMappedToData)
-        XCTAssertEqual(clipboard.mappedToClipboard?.midiChannel, 10)
-        XCTAssertNil(clipboard.mappedToClipboard?.midiNote)
-        XCTAssertEqual(clipboard.mappedToClipboard?.midiCC, 74)
+        XCTAssertEqual(
+            clipboard.mappedToClipboard?.midiAssignment,
+            try? .controlChange(channel: 10, number: 74)
+        )
     }
 
     // MARK: - Paste Mapped To Tests
@@ -249,8 +250,47 @@ final class ClipboardManagerTests: XCTestCase {
         clipboard.copyMappedTo(from: entry1)
         clipboard.copyMappedTo(from: entry2)
 
-        XCTAssertEqual(clipboard.mappedToClipboard?.midiChannel, 16)
-        XCTAssertNil(clipboard.mappedToClipboard?.midiNote)
-        XCTAssertEqual(clipboard.mappedToClipboard?.midiCC, 127)
+        XCTAssertEqual(
+            clipboard.mappedToClipboard?.midiAssignment,
+            try? .controlChange(channel: 16, number: 127)
+        )
+    }
+
+    // MARK: - Mapping Group Clipboard Tests
+
+    func testCopyMappingsReplacesPriorGroupAndPreservesSourceIDsAndOrder() {
+        let first = MappingEntry.fullFieldSentinel
+        let second = MappingEntry(commandID: 201)
+        let replacement = MappingEntry(commandID: 100)
+
+        clipboard.copyMappings([first, second])
+        clipboard.copyMappings([replacement])
+
+        XCTAssertTrue(clipboard.hasMappingsData)
+        XCTAssertEqual(clipboard.mappingsClipboard.map(\.id), [replacement.id])
+        XCTAssertEqual(clipboard.mappingsClipboard.map(\.commandID), [100])
+    }
+
+    func testCopyMappingsEmptyResetsGroupClipboard() {
+        clipboard.copyMappings([MappingEntry(commandID: 100)])
+
+        clipboard.copyMappings([])
+
+        XCTAssertFalse(clipboard.hasMappingsData)
+        XCTAssertTrue(clipboard.mappingsClipboard.isEmpty)
+    }
+
+    func testRepeatedInsertionOfClipboardSnapshotsCreatesFreshIDsAndPreservesOrder() {
+        let source = [MappingEntry(commandID: 100), MappingEntry(commandID: 201)]
+        clipboard.copyMappings(source)
+        var file = MappingFile()
+
+        let firstPaste = MappingTransferService.insertCopies(clipboard.mappingsClipboard, into: &file)
+        let secondPaste = MappingTransferService.insertCopies(clipboard.mappingsClipboard, into: &file)
+
+        XCTAssertEqual(file.devices[0].mappings.map(\.commandID), [100, 201, 100, 201])
+        XCTAssertTrue(firstPaste.isDisjoint(with: secondPaste))
+        XCTAssertTrue(Set(source.map(\.id)).isDisjoint(with: firstPaste))
+        XCTAssertTrue(Set(source.map(\.id)).isDisjoint(with: secondPaste))
     }
 }

@@ -279,6 +279,38 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         self.ledBlend = ledBlend
         self.resolution = resolution
     }
+
+    /// Returns a value-identical mapping with a new identity for insertion.
+    func copyWithNewID() -> MappingEntry {
+        MappingEntry(
+            commandID: commandID,
+            ioType: ioType,
+            assignment: assignment,
+            interactionMode: interactionMode,
+            midiAssignment: midiAssignment,
+            modifier1Condition: modifier1Condition,
+            modifier2Condition: modifier2Condition,
+            comment: comment,
+            controllerType: controllerType,
+            invert: invert,
+            softTakeover: softTakeover,
+            setToValue: setToValue,
+            rotarySensitivity: rotarySensitivity,
+            rotaryAcceleration: rotaryAcceleration,
+            encoderMode: encoderMode,
+            rawDCDTEncoderMode: rawDCDTEncoderMode,
+            autoRepeat: autoRepeat,
+            ledMinRangeType: ledMinRangeType,
+            ledMinRangeData: ledMinRangeData,
+            ledMaxRangeType: ledMaxRangeType,
+            ledMaxRangeData: ledMaxRangeData,
+            ledMinMidi: ledMinMidi,
+            ledMaxMidi: ledMaxMidi,
+            ledInvert: ledInvert,
+            ledBlend: ledBlend,
+            resolution: resolution
+        )
+    }
 }
 
 // MARK: - Nonisolated Codable Conformance
