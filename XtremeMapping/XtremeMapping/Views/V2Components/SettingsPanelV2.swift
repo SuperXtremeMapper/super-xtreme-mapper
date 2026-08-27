@@ -99,13 +99,6 @@ struct SettingsPanelV2: View {
     @State private var learnedCCValues: [Int] = []   // Track CC values to detect fader vs encoder
     @StateObject private var midiManager = MIDIInputManager.shared
 
-    private func registerChange() {
-        document.noteChange()
-        undoManager?.registerUndo(withTarget: document) { doc in
-            doc.noteChange()
-        }
-    }
-
     private var selectedEntry: MappingEntry? {
         guard selectedMappings.count == 1,
               let id = selectedMappings.first else { return nil }
@@ -1055,32 +1048,55 @@ struct SettingsPanelV2: View {
     }
 
     private func updateEntry(_ mutation: (inout MappingEntry) -> Void) {
-        guard let selectedId = selectedMappings.first,
-              selectedMappings.count == 1 else { return }
+        guard selectedMappings.count == 1 else { return }
 
-        registerChange()
-
-        for deviceIndex in document.mappingFile.devices.indices {
-            if let mappingIndex = document.mappingFile.devices[deviceIndex].mappings.firstIndex(where: { $0.id == selectedId }) {
-                mutation(&document.mappingFile.devices[deviceIndex].mappings[mappingIndex])
-                return
-            }
-        }
+        Self.updateSelectedEntries(
+            selectedMappings,
+            in: document,
+            isLocked: isLocked,
+            undoManager: undoManager,
+            mutation
+        )
     }
 
     private func updateSelectedEntries(_ mutation: (inout MappingEntry) -> Void) {
-        guard !selectedMappings.isEmpty else { return }
+        Self.updateSelectedEntries(
+            selectedMappings,
+            in: document,
+            isLocked: isLocked,
+            undoManager: undoManager,
+            mutation
+        )
+    }
 
-        registerChange()
+    @MainActor
+    @discardableResult
+    static func updateSelectedEntries(
+        _ selectedMappings: Set<MappingEntry.ID>,
+        in document: TraktorMappingDocument,
+        isLocked: Bool,
+        undoManager: UndoManager?,
+        _ mutation: (inout MappingEntry) -> Void
+    ) -> Bool {
+        guard !isLocked, !selectedMappings.isEmpty else { return false }
 
-        for deviceIndex in document.mappingFile.devices.indices {
-            for mappingIndex in document.mappingFile.devices[deviceIndex].mappings.indices {
-                let mappingId = document.mappingFile.devices[deviceIndex].mappings[mappingIndex].id
-                if selectedMappings.contains(mappingId) {
-                    mutation(&document.mappingFile.devices[deviceIndex].mappings[mappingIndex])
+        let didChange = document.performUndoableMutation(
+            actionName: "Edit Mapping Settings",
+            undoManager: undoManager
+        ) { file in
+            for deviceIndex in file.devices.indices {
+                for mappingIndex in file.devices[deviceIndex].mappings.indices {
+                    let mappingID = file.devices[deviceIndex].mappings[mappingIndex].id
+                    if selectedMappings.contains(mappingID) {
+                        mutation(&file.devices[deviceIndex].mappings[mappingIndex])
+                    }
                 }
             }
+
+            return true
         }
+
+        return didChange ?? false
     }
 }
 

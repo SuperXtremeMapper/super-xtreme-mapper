@@ -179,6 +179,109 @@ final class DocumentTests: XCTestCase {
     }
 
     @MainActor
+    func testSharedSettingsMultiRowEditRestoresWholeRowsAndRedoes() {
+        let first = MappingEntry.fullFieldSentinel
+        let second = MappingEntry(
+            commandID: 201,
+            assignment: .deckB,
+            interactionMode: .relative,
+            modifier1Condition: ModifierCondition(modifier: 2, value: 3),
+            comment: "second",
+            controllerType: .encoder,
+            invert: true,
+            rotarySensitivity: 1.75,
+            rotaryAcceleration: 0.25
+        )
+        let untouched = MappingEntry(
+            commandID: 202,
+            assignment: .deckC,
+            interactionMode: .direct,
+            comment: "untouched",
+            controllerType: .faderOrKnob,
+            softTakeover: true
+        )
+        let original = MappingFile(devices: [
+            Device(name: "First", mappings: [first]),
+            Device(name: "Second", mappings: [second, untouched]),
+        ])
+        let document = TraktorMappingDocument(mappingFile: original)
+        let undoManager = UndoManager()
+
+        let didChange = SettingsPanelV2.updateSelectedEntries(
+            Set([first.id, second.id]),
+            in: document,
+            isLocked: false,
+            undoManager: undoManager
+        ) { entry in
+            entry.assignment = .deckD
+        }
+
+        var expectedFirst = first
+        expectedFirst.assignment = .deckD
+        var expectedSecond = second
+        expectedSecond.assignment = .deckD
+        var edited = original
+        edited.devices[0].mappings[0] = expectedFirst
+        edited.devices[1].mappings[0] = expectedSecond
+        XCTAssertTrue(didChange)
+        XCTAssertEqual(document.mappingFile, edited)
+        XCTAssertEqual(undoManager.undoActionName, "Edit Mapping Settings")
+
+        undoManager.undo()
+        XCTAssertEqual(document.mappingFile, original)
+        XCTAssertFalse(undoManager.canUndo, "the shared edit must be one undo action")
+
+        undoManager.redo()
+        XCTAssertEqual(document.mappingFile, edited)
+    }
+
+    @MainActor
+    func testSharedSettingsNoOpDoesNotRegisterUndo() {
+        let entry = MappingEntry(commandID: 100, assignment: .deckA)
+        let original = MappingFile(devices: [Device(mappings: [entry])])
+        let document = TraktorMappingDocument(mappingFile: original)
+        let undoManager = UndoManager()
+
+        let didChange = SettingsPanelV2.updateSelectedEntries(
+            [entry.id],
+            in: document,
+            isLocked: false,
+            undoManager: undoManager
+        ) { mapping in
+            mapping.assignment = .deckA
+        }
+
+        XCTAssertFalse(didChange)
+        XCTAssertEqual(document.mappingFile, original)
+        XCTAssertFalse(document.isDirty)
+        XCTAssertFalse(document.hasPendingDirty)
+        XCTAssertFalse(undoManager.canUndo)
+    }
+
+    @MainActor
+    func testSharedSettingsLockedEditDoesNotMutateOrRegisterUndo() {
+        let entry = MappingEntry(commandID: 100, assignment: .deckA)
+        let original = MappingFile(devices: [Device(mappings: [entry])])
+        let document = TraktorMappingDocument(mappingFile: original)
+        let undoManager = UndoManager()
+
+        let didChange = SettingsPanelV2.updateSelectedEntries(
+            [entry.id],
+            in: document,
+            isLocked: true,
+            undoManager: undoManager
+        ) { mapping in
+            mapping.assignment = .deckD
+        }
+
+        XCTAssertFalse(didChange)
+        XCTAssertEqual(document.mappingFile, original)
+        XCTAssertFalse(document.isDirty)
+        XCTAssertFalse(document.hasPendingDirty)
+        XCTAssertFalse(undoManager.canUndo)
+    }
+
+    @MainActor
     func testPasteMutationReturnsOnlyFreshInsertedIDsForSelection() throws {
         let source = [MappingEntry.fullFieldSentinel, MappingEntry(commandID: 100)]
         let sourceIDs = Set(source.map(\.id))
