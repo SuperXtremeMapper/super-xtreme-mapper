@@ -215,24 +215,32 @@ struct EditCommands: Commands {
 
     private func pasteMappedTo() {
         guard !mutationsLocked,
-              ClipboardManager.shared.hasMappedToData else { return }
+              let assignment = ClipboardManager.shared.mappedToClipboard?.midiAssignment else {
+            return
+        }
 
-        mutateSelected(actionName: "Paste Mapped To") { mapping in
-            ClipboardManager.shared.pasteMappedTo(to: &mapping)
+        mutateSelectedFile(actionName: "Paste Mapped To") { selected, file in
+            MappingBatchEditor.apply(assignment, to: selected, in: &file)
         }
     }
 
     private func resetMappedTo() {
-        mutateSelected(actionName: "Reset Mapped To") { mapping in
-            mapping.midiNote = nil
-            mapping.midiCC = nil
-            mapping.midiChannel = 1
+        guard let assignment = try? MIDIAssignment.unassigned(channel: 1) else {
+            return
+        }
+
+        mutateSelectedFile(actionName: "Reset Mapped To") { selected, file in
+            MappingBatchEditor.apply(assignment, to: selected, in: &file)
         }
     }
 
     private func changeMidiChannel(to channel: Int) {
-        mutateSelected(actionName: "Change MIDI Channel") { mapping in
-            mapping.midiChannel = channel
+        mutateSelectedFile(actionName: "Change MIDI Channel") { selected, file in
+            do {
+                try MappingBatchEditor.applyChannel(channel, to: selected, in: &file)
+            } catch {
+                assertionFailure("Invalid MIDI channel from Edit menu: \(channel)")
+            }
         }
     }
 
@@ -310,6 +318,23 @@ struct EditCommands: Commands {
                     }
                 }
             }
+        }
+    }
+
+    private func mutateSelectedFile(
+        actionName: String,
+        _ mutation: (Set<MappingEntry.ID>, inout MappingFile) -> Void
+    ) {
+        guard !mutationsLocked,
+              let doc = document,
+              let selected = selectedMappings,
+              !selected.isEmpty else { return }
+
+        _ = doc.performUndoableMutation(
+            actionName: actionName,
+            undoManager: undoManager
+        ) { file in
+            mutation(selected, &file)
         }
     }
 }

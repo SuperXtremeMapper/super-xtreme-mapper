@@ -59,6 +59,9 @@ struct SettingsPanelV2: View {
     @State private var rotaryAcceleration: Float = 0.0
     @State private var encoderModeDraft = EncoderModeDraft()
     @State private var midiChannel: Int = 1
+    @State private var batchAssignmentKind: MIDIAssignment.Kind = .unassigned
+    @State private var batchChannel: Int = 1
+    @State private var batchNumber: Int = 0
     @State private var isLearning: Bool = false
     @State private var hasLearnedMIDI: Bool = false  // True when MIDI received during current learn session
     @State private var learnedCCValues: [Int] = []   // Track CC values to detect fader vs encoder
@@ -79,6 +82,10 @@ struct SettingsPanelV2: View {
 
     private var isMultipleSelection: Bool {
         selectedMappings.count > 1
+    }
+
+    private var isLearnOwnedElsewhere: Bool {
+        !isLearning && (midiManager.isListening || midiManager.onMIDIReceived != nil)
     }
 
     private var availableInteractionModes: [InteractionMode] {
@@ -136,13 +143,14 @@ struct SettingsPanelV2: View {
         }
         .background(AppThemeV2.Colors.stone800)
         .onChange(of: selectedMappings) { _, _ in
-            // Stop learning only when actual selection changes (different item selected)
-            if isLearning {
-                stopLearning()
-            }
+            stopLearning()
+            resetBatchAssignmentDraft()
         }
         .onChange(of: selectedEntry) { _, newEntry in
             loadEntryValues(newEntry)
+        }
+        .onDisappear {
+            stopLearning()
         }
     }
 
@@ -181,6 +189,11 @@ struct SettingsPanelV2: View {
                     )
                 Spacer()
             }
+
+            sectionLabel("MIDI ASSIGNMENT")
+            batchMIDIAssignmentControls
+
+            V2Divider()
 
             sectionLabel("ASSIGNMENT")
             assignmentPicker
@@ -245,7 +258,10 @@ struct SettingsPanelV2: View {
                     )
 
                 V2SmallButton(label: "Learn", action: toggleLearnMode, isActive: isLearning)
-                    .disabled(isLocked)
+                    .disabled(isLocked || isLearnOwnedElsewhere)
+                    .accessibilityLabel(
+                        isLearning ? "Stop MIDI Learn" : "Learn MIDI assignment"
+                    )
             }
         }
 
@@ -309,6 +325,56 @@ struct SettingsPanelV2: View {
                 .onChange(of: midiChannel) { _, newValue in
                     updateEntry { $0.midiChannel = newValue }
                 }
+        }
+    }
+
+    private var batchMIDIAssignmentControls: some View {
+        VStack(spacing: AppThemeV2.Spacing.sm) {
+            V2FormRow(label: "Type") {
+                V2Dropdown(
+                    options: [.note, .controlChange, .unassigned],
+                    selection: $batchAssignmentKind,
+                    labelFor: batchAssignmentKindLabel
+                )
+                .disabled(isLocked)
+            }
+
+            V2FormRow(label: "Channel") {
+                V2NumberStepper(value: $batchChannel, range: 1...16, label: nil)
+                    .disabled(isLocked)
+            }
+
+            if batchAssignmentKind != .unassigned {
+                V2FormRow(label: batchAssignmentKind == .note ? "Note" : "CC") {
+                    V2NumberStepper(value: $batchNumber, range: 0...127, label: nil)
+                        .disabled(isLocked)
+                }
+            }
+
+            HStack(spacing: AppThemeV2.Spacing.xs) {
+                Spacer()
+
+                V2SmallButton(
+                    label: "Learn",
+                    action: toggleLearnMode,
+                    isActive: isLearning
+                )
+                .disabled(isLocked || isLearnOwnedElsewhere)
+                .accessibilityLabel(
+                    isLearning
+                        ? "Stop MIDI Learn for selected mappings"
+                        : "Learn one MIDI assignment for selected mappings"
+                )
+
+                V2SmallButton(
+                    label: "Apply to \(selectedMappings.count)",
+                    action: applyBatchAssignmentDraft
+                )
+                .disabled(isLocked)
+                .accessibilityLabel(
+                    "Apply MIDI assignment to \(selectedMappings.count) selected mappings"
+                )
+            }
         }
     }
 
@@ -477,6 +543,12 @@ struct SettingsPanelV2: View {
     }
 
     private func startLearning() {
+        guard !isLocked,
+              !selectedMappings.isEmpty,
+              !isLearning,
+              !midiManager.isListening,
+              midiManager.onMIDIReceived == nil else { return }
+
         isLearning = true
         hasLearnedMIDI = false  // Reset when starting a new learn session
         learnedCCValues = []    // Reset value tracking
@@ -484,19 +556,43 @@ struct SettingsPanelV2: View {
             handleMIDILearned(message)
         }
         midiManager.startListening()
+
+        if !midiManager.isListening {
+            midiManager.onMIDIReceived = nil
+            isLearning = false
+        }
     }
 
     private func stopLearning() {
+        guard isLearning else { return }
+
         isLearning = false
         hasLearnedMIDI = false  // Reset when stopping learn
         learnedCCValues = []    // Reset value tracking
-        midiManager.stopListening()
         midiManager.onMIDIReceived = nil
+        midiManager.stopListening()
     }
 
     private func handleMIDILearned(_ message: MIDIMessage) {
+        guard isLearning,
+              let learnedAssignment = MIDIAssignment(learnMessage: message) else {
+            return
+        }
+
         // Mark that we've received MIDI during this learn session
         hasLearnedMIDI = true
+
+        if isMultipleSelection {
+            batchAssignmentKind = learnedAssignment.kind
+            batchChannel = learnedAssignment.channel
+            batchNumber = learnedAssignment.number ?? 0
+            applyBatchAssignment(
+                learnedAssignment,
+                actionName: "Learn MIDI Assignment"
+            )
+            stopLearning()
+            return
+        }
 
         // Track CC values for better fader vs encoder detection
         if message.cc != nil {
@@ -514,17 +610,9 @@ struct SettingsPanelV2: View {
         let detectedType = detectControllerType(from: message)
         let detectedInteraction = detectedType.defaultInteractionMode
 
-        // Update the selected mapping with the learned MIDI and detected type
-        // Note: Stay in learn mode until user clicks the button off
+        // Single-row Learn keeps its existing controller-type inference.
         updateEntry { entry in
-            entry.midiChannel = message.channel
-            if let note = message.note {
-                entry.midiNote = note
-                entry.midiCC = nil
-            } else if let cc = message.cc {
-                entry.midiCC = cc
-                entry.midiNote = nil
-            }
+            entry.midiAssignment = learnedAssignment
 
             // Auto-assign controller type and interaction mode
             entry.controllerType = detectedType
@@ -612,6 +700,52 @@ struct SettingsPanelV2: View {
         rotaryAcceleration = entry.rotaryAcceleration
         encoderModeDraft.apply(.selectionLoad(entry.encoderMode))
         midiChannel = entry.midiChannel
+    }
+
+    private func batchAssignmentKindLabel(_ kind: MIDIAssignment.Kind) -> String {
+        switch kind {
+        case .note:
+            return "Note"
+        case .controlChange:
+            return "CC"
+        case .unassigned:
+            return "Unassigned"
+        }
+    }
+
+    private func resetBatchAssignmentDraft() {
+        batchAssignmentKind = .unassigned
+        batchChannel = 1
+        batchNumber = 0
+    }
+
+    private func applyBatchAssignmentDraft() {
+        let assignment: MIDIAssignment?
+        switch batchAssignmentKind {
+        case .note:
+            assignment = try? .note(channel: batchChannel, number: batchNumber)
+        case .controlChange:
+            assignment = try? .controlChange(channel: batchChannel, number: batchNumber)
+        case .unassigned:
+            assignment = try? .unassigned(channel: batchChannel)
+        }
+
+        guard let assignment else { return }
+        applyBatchAssignment(assignment, actionName: "Assign MIDI")
+    }
+
+    private func applyBatchAssignment(
+        _ assignment: MIDIAssignment,
+        actionName: String
+    ) {
+        guard !isLocked, isMultipleSelection else { return }
+
+        _ = document.performUndoableMutation(
+            actionName: actionName,
+            undoManager: undoManager
+        ) { file in
+            MappingBatchEditor.apply(assignment, to: selectedMappings, in: &file)
+        }
     }
 
     private func updateEntry(_ mutation: (inout MappingEntry) -> Void) {

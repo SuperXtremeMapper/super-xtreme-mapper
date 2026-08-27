@@ -123,6 +123,22 @@ final class ClipboardManagerTests: XCTestCase {
         XCTAssertNil(targetEntry.midiCC)
     }
 
+    func testMappedToClipboardPastesOneExclusiveAssignmentAndPreservesOtherFields() throws {
+        let assignment = try MIDIAssignment.controlChange(channel: 16, number: 0)
+        let source = MappingEntry(commandID: 100, midiAssignment: assignment)
+        var target = MappingEntry.fullFieldSentinel
+        var expected = target
+        expected.midiAssignment = assignment
+
+        clipboard.copyMappedTo(from: source)
+        clipboard.pasteMappedTo(to: &target)
+
+        XCTAssertEqual(clipboard.mappedToClipboard?.midiAssignment, assignment)
+        XCTAssertEqual(target, expected)
+        XCTAssertNil(target.midiNote)
+        XCTAssertEqual(target.midiCC, 0)
+    }
+
     func testPasteMappedToDoesNothingWhenEmpty() {
         var entry = MappingEntry(
             midiChannel: 7,
