@@ -7,6 +7,29 @@
 
 import SwiftUI
 
+/// Separates programmatic selection loading from an explicit dropdown choice.
+/// Only the latter returns a mode that should be written back to the mapping.
+struct EncoderModeDraft: Equatable, Sendable {
+    enum Change: Equatable, Sendable {
+        case selectionLoad(EncoderMode)
+        case userSelection(EncoderMode)
+    }
+
+    private(set) var value: EncoderMode = .mode7Fh01h
+
+    @discardableResult
+    mutating func apply(_ change: Change) -> EncoderMode? {
+        switch change {
+        case .selectionLoad(let mode):
+            value = mode
+            return nil
+        case .userSelection(let mode):
+            value = mode
+            return mode
+        }
+    }
+}
+
 /// V2 styled settings panel
 struct SettingsPanelV2: View {
     @ObservedObject var document: TraktorMappingDocument
@@ -34,7 +57,7 @@ struct SettingsPanelV2: View {
     @State private var setToValue: Float = 0.0
     @State private var rotarySensitivity: Float = 1.0
     @State private var rotaryAcceleration: Float = 0.0
-    @State private var encoderMode: EncoderMode = .mode7Fh01h
+    @State private var encoderModeDraft = EncoderModeDraft()
     @State private var midiChannel: Int = 1
     @State private var isLearning: Bool = false
     @State private var hasLearnedMIDI: Bool = false  // True when MIDI received during current learn session
@@ -400,13 +423,18 @@ struct SettingsPanelV2: View {
                 V2FormRow(label: "Encoder Mode") {
                     V2Dropdown(
                         options: EncoderMode.allCases,
-                        selection: $encoderMode,
+                        selection: Binding(
+                            get: { encoderModeDraft.value },
+                            set: { newValue in
+                                guard let editedMode = encoderModeDraft.apply(
+                                    .userSelection(newValue)
+                                ) else { return }
+                                updateEntry { $0.setEncoderMode(editedMode) }
+                            }
+                        ),
                         labelFor: { $0.displayName }
                     )
                     .disabled(isLocked)
-                    .onChange(of: encoderMode) { _, newValue in
-                        updateEntry { $0.setEncoderMode(newValue) }
-                    }
                 }
 
                 V2SliderRow(
@@ -582,7 +610,7 @@ struct SettingsPanelV2: View {
         setToValue = entry.setToValue
         rotarySensitivity = entry.rotarySensitivity
         rotaryAcceleration = entry.rotaryAcceleration
-        encoderMode = entry.encoderMode
+        encoderModeDraft.apply(.selectionLoad(entry.encoderMode))
         midiChannel = entry.midiChannel
     }
 

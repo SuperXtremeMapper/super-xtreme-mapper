@@ -1295,6 +1295,38 @@ final class TSIInterpreterTests: XCTestCase {
         XCTAssertEqual(edited.effectiveDCDTEncoderMode, 0)
     }
 
+    func testEncoderModeDraftOnlyWritesBackExplicitUserSelection() {
+        var mapping = MappingEntry(
+            commandID: 123,
+            midiChannel: 1,
+            midiCC: 22,
+            controllerType: .encoder,
+            rawDCDTEncoderMode: 3
+        )
+        var draft = EncoderModeDraft()
+
+        let loadWriteback = draft.apply(.selectionLoad(mapping.encoderMode))
+        if let loadWriteback {
+            mapping.setEncoderMode(loadWriteback)
+        }
+
+        XCTAssertEqual(draft.value, .mode7Fh01h)
+        XCTAssertNil(loadWriteback)
+        XCTAssertEqual(mapping.rawDCDTEncoderMode, 3)
+
+        // Selecting the visible fallback again is still an explicit edit. A
+        // SwiftUI onChange observer would miss this same-value interaction.
+        let userWriteback = draft.apply(.userSelection(.mode7Fh01h))
+        if let userWriteback {
+            mapping.setEncoderMode(userWriteback)
+        }
+
+        XCTAssertEqual(draft.value, .mode7Fh01h)
+        XCTAssertEqual(userWriteback, .mode7Fh01h)
+        XCTAssertNil(mapping.rawDCDTEncoderMode)
+        XCTAssertEqual(mapping.effectiveDCDTEncoderMode, 1)
+    }
+
     func testLegacyCodableWithoutRawDCDTModeDefaultsToNil() throws {
         let entry = MappingEntry(commandID: 123, midiChannel: 1, midiCC: 22)
         var object = try XCTUnwrap(
