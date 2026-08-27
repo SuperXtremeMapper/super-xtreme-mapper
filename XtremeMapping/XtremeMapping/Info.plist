@@ -46,6 +46,17 @@
 				</array>
 			</dict>
 		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.json</string>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Super Xtreme Mapping Batch</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.superxtrememapping.mapping-batch</string>
+		</dict>
 	</array>
 </dict>
 </plist>

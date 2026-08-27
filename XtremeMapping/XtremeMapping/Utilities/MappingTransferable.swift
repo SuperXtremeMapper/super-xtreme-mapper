@@ -19,7 +19,10 @@ extension UTType {
 
     /// Ordered mapping batch used by native table Copy/Paste commands.
     nonisolated static var mappingBatch: UTType {
-        UTType(exportedAs: "com.superxtrememapping.mapping-batch")
+        UTType(
+            exportedAs: "com.superxtrememapping.mapping-batch",
+            conformingTo: .json
+        )
     }
 }
 

@@ -199,6 +199,107 @@ final class DocumentTests: XCTestCase {
         XCTAssertTrue(selection.isDisjoint(with: sourceIDs))
     }
 
+    @MainActor
+    func testBackingDocumentUndoManagerEditThenUndoReturnsClean() throws {
+        let original = MappingFile(devices: [Device(name: "Generic MIDI")])
+        let document = TraktorMappingDocument(mappingFile: original)
+        let backingDocument = NSDocument()
+        document.backingDocument = backingDocument
+        let undoManager = try XCTUnwrap(backingDocument.undoManager)
+        undoManager.groupsByEvent = false
+
+        undoManager.beginUndoGrouping()
+        let insertedIDs = document.performUndoableMutation(
+            actionName: "Paste Mappings",
+            undoManager: undoManager
+        ) { file in
+            MappingTransferService.insertCopies(
+                [MappingEntry(commandID: 100)],
+                into: &file
+            )
+        }
+        undoManager.endUndoGrouping()
+
+        XCTAssertEqual(insertedIDs?.count, 1)
+        XCTAssertTrue(backingDocument.isDocumentEdited)
+
+        undoManager.undo()
+
+        XCTAssertEqual(document.mappingFile, original)
+        XCTAssertFalse(
+            backingDocument.isDocumentEdited,
+            "undoing the only edit must return the real NSDocument to clean"
+        )
+    }
+
+    @MainActor
+    func testBackingDocumentUndoAfterSaveIsEditedBecauseStateDiverged() throws {
+        let original = MappingFile(devices: [Device(name: "Generic MIDI")])
+        let document = TraktorMappingDocument(mappingFile: original)
+        let backingDocument = NSDocument()
+        document.backingDocument = backingDocument
+        let undoManager = try XCTUnwrap(backingDocument.undoManager)
+        undoManager.groupsByEvent = false
+
+        undoManager.beginUndoGrouping()
+        _ = document.performUndoableMutation(
+            actionName: "Paste Mappings",
+            undoManager: undoManager
+        ) { file in
+            MappingTransferService.insertCopies(
+                [MappingEntry(commandID: 100)],
+                into: &file
+            )
+        }
+        undoManager.endUndoGrouping()
+        let saved = document.mappingFile
+
+        backingDocument.updateChangeCount(.changeCleared)
+        TraktorMappingDocument.markClean(nsDocument: backingDocument)
+        XCTAssertFalse(backingDocument.isDocumentEdited)
+        XCTAssertFalse(document.isDirty)
+
+        undoManager.undo()
+
+        XCTAssertEqual(document.mappingFile, original)
+        XCTAssertNotEqual(document.mappingFile, saved)
+        XCTAssertTrue(
+            backingDocument.isDocumentEdited,
+            "undoing away from the saved snapshot must mark the document edited"
+        )
+        XCTAssertTrue(document.isDirty)
+    }
+
+    @MainActor
+    func testUndoRegistrationDoesNotRetainStandaloneUndoManager() {
+        let document = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")])
+        )
+        weak var releasedUndoManager: UndoManager?
+
+        autoreleasepool {
+            let undoManager = UndoManager()
+            undoManager.groupsByEvent = false
+            undoManager.beginUndoGrouping()
+            _ = document.performUndoableMutation(
+                actionName: "Paste Mappings",
+                undoManager: undoManager
+            ) { file in
+                MappingTransferService.insertCopies(
+                    [MappingEntry(commandID: 100)],
+                    into: &file
+                )
+            }
+            undoManager.endUndoGrouping()
+            releasedUndoManager = undoManager
+        }
+
+        XCTAssertNil(
+            releasedUndoManager,
+            "undo registrations must not form an UndoManager → closure → UndoManager cycle"
+        )
+    }
+
     // MARK: - Pending Dirty Tests (window-backed resolution)
 
     @MainActor

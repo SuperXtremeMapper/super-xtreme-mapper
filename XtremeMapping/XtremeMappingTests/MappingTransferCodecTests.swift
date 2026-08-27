@@ -8,6 +8,24 @@ import UniformTypeIdentifiers
 @testable import XtremeMapping
 
 final class MappingTransferCodecTests: XCTestCase {
+    func testBuiltApplicationExportsMappingBatchUTType() throws {
+        let expectedIdentifier = "com.superxtrememapping.mapping-batch"
+        XCTAssertEqual(UTType.mappingBatch.identifier, expectedIdentifier)
+        XCTAssertTrue(UTType.mappingBatch.conforms(to: .json))
+        XCTAssertTrue(UTType.mappingBatch.conforms(to: .data))
+
+        let declarations = try XCTUnwrap(
+            Bundle.main.object(forInfoDictionaryKey: "UTExportedTypeDeclarations")
+                as? [[String: Any]]
+        )
+        let declaration = try XCTUnwrap(declarations.first { declaration in
+            declaration["UTTypeIdentifier"] as? String == expectedIdentifier
+        })
+        let conformances = try XCTUnwrap(declaration["UTTypeConformsTo"] as? [String])
+
+        XCTAssertEqual(Set(conformances), Set(["public.json", "public.data"]))
+    }
+
     func testCodecRoundTripsOrderedFullFieldMappingsWithoutChangingIDs() throws {
         let first = MappingEntry.fullFieldSentinel
         var second = first.copyWithNewID()

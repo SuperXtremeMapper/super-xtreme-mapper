@@ -100,6 +100,14 @@ final class TraktorMappingDocument: ReferenceFileDocument {
 
     @MainActor
     func noteChange() {
+        noteChange(registeredWith: nil)
+    }
+
+    /// Publishes the in-memory mutation and records a non-undo-managed AppKit
+    /// change. NSDocument observes registrations on its own UndoManager, so a
+    /// transaction using that manager must not also increment change count.
+    @MainActor
+    private func noteChange(registeredWith undoManager: UndoManager?) {
         isDirty = true
         objectWillChange.send()
 
@@ -112,6 +120,9 @@ final class TraktorMappingDocument: ReferenceFileDocument {
         }
 
         if let doc = backingDocument {
+            if let undoManager, doc.undoManager === undoManager {
+                return
+            }
             doc.updateChangeCount(.changeDone)
         } else {
             // Unresolved — remember the change; flushed when the window
@@ -136,7 +147,7 @@ final class TraktorMappingDocument: ReferenceFileDocument {
         guard after != before else { return nil }
 
         mappingFile = after
-        noteChange()
+        noteChange(registeredWith: undoManager)
         registerUndoSnapshot(before, actionName: actionName, undoManager: undoManager)
         return result
     }
@@ -151,7 +162,7 @@ final class TraktorMappingDocument: ReferenceFileDocument {
         guard inverse != snapshot else { return }
 
         mappingFile = snapshot
-        noteChange()
+        noteChange(registeredWith: undoManager)
         registerUndoSnapshot(inverse, actionName: actionName, undoManager: undoManager)
     }
 
@@ -163,7 +174,8 @@ final class TraktorMappingDocument: ReferenceFileDocument {
     ) {
         guard let undoManager else { return }
 
-        undoManager.registerUndo(withTarget: self) { document in
+        undoManager.registerUndo(withTarget: self) { [weak undoManager] document in
+            guard let undoManager else { return }
             document.restoreSnapshot(
                 snapshot,
                 actionName: actionName,
