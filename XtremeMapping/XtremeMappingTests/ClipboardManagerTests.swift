@@ -160,6 +160,71 @@ final class ClipboardManagerTests: XCTestCase {
         XCTAssertEqual(targetEntry.mappedToDisplay, "Unresolved MIDI #999")
     }
 
+    func testBatchPasteMappedToPreservesPitchBendAndCompleteDefinitionMetadata() {
+        let source = MappingEntry(
+            commandID: 100,
+            rawMidiControlName: "Ch02.PitchBend",
+            rawDCDTEncoderMode: 3,
+            rawDCDTControlType: 5,
+            rawDCDTMinValueBits: Float32(-1).bitPattern,
+            rawDCDTMaxValueBits: Float32(1).bitPattern,
+            rawDCDTControlID: 42
+        )
+        let first = MappingEntry(commandID: 201, midiChannel: 1, midiCC: 64)
+        let second = MappingEntry(commandID: 202, midiChannel: 2, midiNote: 65)
+        let untouched = MappingEntry(commandID: 203, midiChannel: 3, midiCC: 66)
+        var file = MappingFile(devices: [
+            Device(name: "Generic MIDI", mappings: [first, second, untouched])
+        ])
+
+        clipboard.copyMappedTo(from: source)
+        clipboard.pasteMappedTo(to: Set([first.id, second.id]), in: &file)
+
+        for pasted in file.devices[0].mappings.prefix(2) {
+            XCTAssertEqual(pasted.rawMidiControlName, "Ch02.PitchBend")
+            XCTAssertNil(pasted.rawMidiBindingID)
+            XCTAssertEqual(pasted.rawDCDTEncoderMode, 3)
+            XCTAssertEqual(pasted.rawDCDTControlType, 5)
+            XCTAssertEqual(pasted.rawDCDTMinValueBits, Float32(-1).bitPattern)
+            XCTAssertEqual(pasted.rawDCDTMaxValueBits, Float32(1).bitPattern)
+            XCTAssertEqual(pasted.rawDCDTControlID, 42)
+        }
+        XCTAssertEqual(file.devices[0].mappings[2], untouched)
+    }
+
+    func testBatchPasteMappedToPreservesPairedCCNameAndUnresolvedBinding() {
+        let paired = MappingEntry(
+            commandID: 100,
+            rawMidiControlName: "Ch05.CC.034+Ch05.CC.002",
+            rawDCDTControlType: 7,
+            rawDCDTMinValueBits: Float32(0).bitPattern,
+            rawDCDTMaxValueBits: Float32(16_383).bitPattern,
+            rawDCDTControlID: 88
+        )
+        let target = MappingEntry(commandID: 201, midiChannel: 1, midiCC: 64)
+        var file = MappingFile(devices: [Device(name: "Generic MIDI", mappings: [target])])
+
+        clipboard.copyMappedTo(from: paired)
+        clipboard.pasteMappedTo(to: [target.id], in: &file)
+
+        XCTAssertEqual(file.allMappings[0].rawMidiControlName, "Ch05.CC.034+Ch05.CC.002")
+        XCTAssertEqual(file.allMappings[0].rawDCDTControlType, 7)
+        XCTAssertEqual(file.allMappings[0].rawDCDTMinValueBits, Float32(0).bitPattern)
+        XCTAssertEqual(file.allMappings[0].rawDCDTMaxValueBits, Float32(16_383).bitPattern)
+        XCTAssertEqual(file.allMappings[0].rawDCDTControlID, 88)
+
+        let unresolved = MappingEntry(commandID: 100, rawMidiBindingID: 1_234)
+        clipboard.copyMappedTo(from: unresolved)
+        clipboard.pasteMappedTo(to: [target.id], in: &file)
+
+        XCTAssertNil(file.allMappings[0].rawMidiControlName)
+        XCTAssertEqual(file.allMappings[0].rawMidiBindingID, 1_234)
+        XCTAssertNil(file.allMappings[0].rawDCDTControlType)
+        XCTAssertNil(file.allMappings[0].rawDCDTMinValueBits)
+        XCTAssertNil(file.allMappings[0].rawDCDTMaxValueBits)
+        XCTAssertNil(file.allMappings[0].rawDCDTControlID)
+    }
+
     @MainActor
     func testMappedToClipboardPastesOneExclusiveAssignmentAndPreservesOtherFields() throws {
         let assignment = try MIDIAssignment.controlChange(channel: 16, number: 0)
@@ -334,13 +399,19 @@ final class ClipboardManagerTests: XCTestCase {
         XCTAssertTrue(clipboard.mappingsClipboard.isEmpty)
     }
 
-    func testRepeatedInsertionOfClipboardSnapshotsCreatesFreshIDsAndPreservesOrder() {
+    func testRepeatedInsertionOfClipboardSnapshotsCreatesFreshIDsAndPreservesOrder() throws {
         let source = [MappingEntry(commandID: 100), MappingEntry(commandID: 201)]
         clipboard.copyMappings(source)
         var file = MappingFile()
 
-        let firstPaste = MappingTransferService.insertCopies(clipboard.mappingsClipboard, into: &file)
-        let secondPaste = MappingTransferService.insertCopies(clipboard.mappingsClipboard, into: &file)
+        let first = try MappingTransferService.insertCopies(clipboard.mappingsClipboard, into: &file)
+        let second = try MappingTransferService.insertCopies(
+            clipboard.mappingsClipboard,
+            into: &file,
+            targetDeviceID: first.destinationDeviceID
+        )
+        let firstPaste = first.insertedIDs
+        let secondPaste = second.insertedIDs
 
         XCTAssertEqual(file.devices[0].mappings.map(\.commandID), [100, 201, 100, 201])
         XCTAssertTrue(firstPaste.isDisjoint(with: secondPaste))

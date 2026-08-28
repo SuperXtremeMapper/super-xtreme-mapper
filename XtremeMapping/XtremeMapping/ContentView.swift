@@ -8,44 +8,6 @@
 import SwiftUI
 import Combine
 
-extension MappingTransferService {
-    /// Returns a destination only when the current selection belongs to one
-    /// device. Nil deliberately preserves Task 7's first-device fallback.
-    static func destinationDeviceID(
-        for selectedIDs: Set<MappingEntry.ID>,
-        in mappingFile: MappingFile
-    ) -> Device.ID? {
-        let owners = mappingFile.devices.filter { device in
-            device.mappings.contains { selectedIDs.contains($0.id) }
-        }
-        return owners.count == 1 ? owners[0].id : nil
-    }
-
-    /// Duplicates each selected source row at the end of its owning device.
-    /// Sources are captured before insertion so device and document order are
-    /// stable and freshly inserted IDs cannot become sources in the same pass.
-    @discardableResult
-    static func duplicateSelection(
-        _ selectedIDs: Set<MappingEntry.ID>,
-        in mappingFile: inout MappingFile
-    ) -> Set<MappingEntry.ID> {
-        let batches = mappingFile.devices.map { device in
-            (
-                device.id,
-                device.mappings.filter { selectedIDs.contains($0.id) }
-            )
-        }
-
-        var insertedIDs: Set<MappingEntry.ID> = []
-        for (deviceID, source) in batches where !source.isEmpty {
-            insertedIDs.formUnion(
-                insertCopies(source, into: &mappingFile, targetDeviceID: deviceID)
-            )
-        }
-        return insertedIDs
-    }
-}
-
 struct ContentView: View {
     @ObservedObject var document: TraktorMappingDocument
     let fileURL: URL?
@@ -58,6 +20,26 @@ struct ContentView: View {
     @State private var searchText: String = ""
     @State private var activeSheet: SheetType?
     @State private var showIntelMacAlert = false
+    @State private var mappingTransferError: MappingTransferError?
+
+    private var mappingPasteDisabledReason: String? {
+        if isLocked {
+            return "Unlock the mapping before pasting."
+        }
+        if MappingTransferService.isTrulyEmpty(document.mappingFile) {
+            return nil
+        }
+        guard !selectedMappings.isEmpty else {
+            return "Select a mapping in the destination device before pasting."
+        }
+        guard MappingTransferService.destinationDeviceID(
+            for: selectedMappings,
+            in: document.mappingFile
+        ) != nil else {
+            return "Select mappings from only one destination device before pasting."
+        }
+        return nil
+    }
 
     // Sheet types for single sheet modifier (avoids crash from multiple sheets)
     enum SheetType: Identifiable {
@@ -156,6 +138,7 @@ struct ContentView: View {
                         onCopy: copySelectedMappings,
                         onPaste: pasteSelectedMappings,
                         onPasteMappings: pasteMappings,
+                        pasteDisabledReason: mappingPasteDisabledReason,
                         onDuplicate: duplicateSelected,
                         onDelete: deleteSelectedMappings,
                         onAssignmentChange: { assignment in
@@ -249,6 +232,17 @@ struct ContentView: View {
             Button("OK", role: .cancel) { }
         } message: {
             Text("Voice Learn requires an Apple Silicon Mac (M1 or later). Intel Macs are not currently supported.")
+        }
+        .alert(
+            "Couldn't Transfer Mappings",
+            isPresented: Binding(
+                get: { mappingTransferError != nil },
+                set: { if !$0 { mappingTransferError = nil } }
+            )
+        ) {
+            Button("OK", role: .cancel) { mappingTransferError = nil }
+        } message: {
+            Text(mappingTransferError?.localizedDescription ?? "The transfer failed.")
         }
         // Voice Learn overlay
         .overlay {
@@ -539,16 +533,7 @@ struct ContentView: View {
             actionName: "Paste Mapped To",
             undoManager: undoManager
         ) { file in
-            for deviceIndex in file.devices.indices {
-                for mappingIndex in file.devices[deviceIndex].mappings.indices {
-                    let mappingID = file.devices[deviceIndex].mappings[mappingIndex].id
-                    if selectedMappings.contains(mappingID) {
-                        ClipboardManager.shared.pasteMappedTo(
-                            to: &file.devices[deviceIndex].mappings[mappingIndex]
-                        )
-                    }
-                }
-            }
+            ClipboardManager.shared.pasteMappedTo(to: selectedMappings, in: &file)
         }
     }
 
@@ -627,19 +612,21 @@ struct ContentView: View {
             for: selectedMappings,
             in: document.mappingFile
         )
-        let insertedIDs = document.performUndoableMutation(
-            actionName: actionName,
-            undoManager: undoManager
-        ) { file in
-            MappingTransferService.insertCopies(
+        do {
+            let transfer = try MappingTransferService.insertCopies(
                 mappings,
-                into: &file,
-                targetDeviceID: targetDeviceID
+                into: document,
+                targetDeviceID: targetDeviceID,
+                actionName: actionName,
+                undoManager: undoManager
             )
-        }
-
-        if let insertedIDs {
-            selectedMappings = insertedIDs
+            if let transfer {
+                selectedMappings = transfer.insertedIDs
+            }
+        } catch let error as MappingTransferError {
+            mappingTransferError = error
+        } catch {
+            mappingTransferError = .preflightFailed(error.localizedDescription)
         }
     }
 }

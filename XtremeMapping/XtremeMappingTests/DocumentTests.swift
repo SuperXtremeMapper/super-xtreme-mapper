@@ -769,11 +769,11 @@ final class DocumentTests: XCTestCase {
         ) { file in
             file.version = 8
             file.devices[0].comment = "Changed device metadata"
-            return MappingTransferService.insertCopies(
+            return try! MappingTransferService.insertCopies(
                 [MappingEntry(commandID: 100)],
                 into: &file,
                 targetDeviceID: file.devices[0].id
-            )
+            ).insertedIDs
         }
 
         let insertedID = try XCTUnwrap(insertedIDs?.first)
@@ -790,22 +790,20 @@ final class DocumentTests: XCTestCase {
     }
 
     @MainActor
-    func testBatchPasteRegistersOneUndoAction() {
+    func testBatchPasteRegistersOneUndoAction() throws {
         let original = MappingFile(devices: [Device(name: "Generic MIDI")])
         let document = TraktorMappingDocument(mappingFile: original)
         let undoManager = UndoManager()
 
-        let insertedIDs = document.performUndoableMutation(
+        let transfer = try MappingTransferService.insertCopies(
+            [MappingEntry(commandID: 100), MappingEntry(commandID: 201)],
+            into: document,
+            targetDeviceID: original.devices[0].id,
             actionName: "Paste 2 Mappings",
             undoManager: undoManager
-        ) { file in
-            MappingTransferService.insertCopies(
-                [MappingEntry(commandID: 100), MappingEntry(commandID: 201)],
-                into: &file
-            )
-        }
+        )
 
-        XCTAssertEqual(insertedIDs?.count, 2)
+        XCTAssertEqual(transfer?.insertedIDs.count, 2)
         XCTAssertTrue(undoManager.canUndo)
         XCTAssertEqual(undoManager.undoActionName, "Paste 2 Mappings")
 
@@ -816,24 +814,60 @@ final class DocumentTests: XCTestCase {
     }
 
     @MainActor
-    func testNoOpMutationReturnsNilWithoutDirtyingOrChangingSelection() {
+    func testFailedTransferPreflightDoesNotDirtyDocumentOrRegisterUndo() {
+        let existing = MappingEntry(
+            commandID: 100,
+            ioType: .input,
+            rawMidiControlName: "Ch02.PitchBend",
+            rawDCDTControlType: 5
+        )
+        let conflicting = MappingEntry(
+            commandID: 201,
+            ioType: .input,
+            rawMidiControlName: "Ch02.PitchBend",
+            rawDCDTControlType: 7
+        )
+        let device = Device(name: "Generic MIDI", mappings: [existing])
+        let original = MappingFile(devices: [device])
+        let document = TraktorMappingDocument(mappingFile: original)
+        let undoManager = UndoManager()
+
+        XCTAssertThrowsError(
+            try MappingTransferService.insertCopies(
+                [conflicting],
+                into: document,
+                targetDeviceID: device.id,
+                actionName: "Paste Mappings",
+                undoManager: undoManager
+            )
+        )
+
+        XCTAssertEqual(document.mappingFile, original)
+        XCTAssertFalse(document.isDirty)
+        XCTAssertFalse(document.hasPendingDirty)
+        XCTAssertFalse(undoManager.canUndo)
+    }
+
+    @MainActor
+    func testNoOpMutationReturnsNilWithoutDirtyingOrChangingSelection() throws {
         let original = MappingFile(devices: [Device(name: "Generic MIDI")])
         let document = TraktorMappingDocument(mappingFile: original)
         let undoManager = UndoManager()
         let existingSelection = Set([UUID()])
         var selection = existingSelection
 
-        let insertedIDs: Set<MappingEntry.ID>? = document.performUndoableMutation(
+        let transfer = try MappingTransferService.insertCopies(
+            [],
+            into: document,
+            targetDeviceID: nil,
             actionName: "Paste Mappings",
             undoManager: undoManager
-        ) { file in
-            MappingTransferService.insertCopies([], into: &file)
-        }
-        if let insertedIDs {
-            selection = insertedIDs
+        )
+        if let transfer {
+            selection = transfer.insertedIDs
         }
 
-        XCTAssertNil(insertedIDs)
+        XCTAssertNil(transfer)
         XCTAssertEqual(document.mappingFile, original)
         XCTAssertEqual(selection, existingSelection)
         XCTAssertFalse(document.isDirty)
@@ -956,7 +990,11 @@ final class DocumentTests: XCTestCase {
             actionName: "Paste Mappings",
             undoManager: UndoManager()
         ) { file in
-            MappingTransferService.insertCopies(source, into: &file)
+            try! MappingTransferService.insertCopies(
+                source,
+                into: &file,
+                targetDeviceID: file.devices[0].id
+            ).insertedIDs
         })
 
         let inserted = Set(document.mappingFile.allMappings.map(\.id))
@@ -979,10 +1017,11 @@ final class DocumentTests: XCTestCase {
             actionName: "Paste Mappings",
             undoManager: undoManager
         ) { file in
-            MappingTransferService.insertCopies(
+            try! MappingTransferService.insertCopies(
                 [MappingEntry(commandID: 100)],
-                into: &file
-            )
+                into: &file,
+                targetDeviceID: file.devices[0].id
+            ).insertedIDs
         }
         undoManager.endUndoGrouping()
 
@@ -1012,10 +1051,11 @@ final class DocumentTests: XCTestCase {
             actionName: "Paste Mappings",
             undoManager: undoManager
         ) { file in
-            MappingTransferService.insertCopies(
+            try! MappingTransferService.insertCopies(
                 [MappingEntry(commandID: 100)],
-                into: &file
-            )
+                into: &file,
+                targetDeviceID: file.devices[0].id
+            ).insertedIDs
         }
         undoManager.endUndoGrouping()
         let saved = document.mappingFile
@@ -1051,10 +1091,11 @@ final class DocumentTests: XCTestCase {
                 actionName: "Paste Mappings",
                 undoManager: undoManager
             ) { file in
-                MappingTransferService.insertCopies(
+                try! MappingTransferService.insertCopies(
                     [MappingEntry(commandID: 100)],
-                    into: &file
-                )
+                    into: &file,
+                    targetDeviceID: file.devices[0].id
+                ).insertedIDs
             }
             undoManager.endUndoGrouping()
             releasedUndoManager = undoManager

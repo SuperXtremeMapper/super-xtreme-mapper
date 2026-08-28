@@ -49,7 +49,11 @@ final class MappingTransferCodecTests: XCTestCase {
 
         XCTAssertEqual(Set(decoded.map(\.id)), sourceIDs)
 
-        let inserted = MappingTransferService.insertCopies(decoded, into: &destination)
+        let inserted = try MappingTransferService.insertCopies(
+            decoded,
+            into: &destination,
+            targetDeviceID: destination.devices[0].id
+        ).insertedIDs
 
         XCTAssertEqual(inserted.count, source.count)
         XCTAssertTrue(inserted.isDisjoint(with: sourceIDs))

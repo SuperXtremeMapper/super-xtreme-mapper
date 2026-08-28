@@ -70,6 +70,28 @@ final class ClipboardManager: ObservableObject {
         entry.rawDCDTControlID = data.rawDCDTControlID
     }
 
+    /// Applies the complete copied assignment to every selected mapping.
+    ///
+    /// This is the shared toolbar/menu path. Calling `MappingBatchEditor` with
+    /// only `midiAssignment` would intentionally normalize the assignment and
+    /// discard native Pitch Bend, paired-CC, unresolved binding and DCDT state.
+    func pasteMappedTo(
+        to selectedIDs: Set<MappingEntry.ID>,
+        in mappingFile: inout MappingFile
+    ) {
+        guard mappedToClipboard != nil, !selectedIDs.isEmpty else { return }
+
+        for deviceIndex in mappingFile.devices.indices {
+            for mappingIndex in mappingFile.devices[deviceIndex].mappings.indices {
+                guard selectedIDs.contains(
+                    mappingFile.devices[deviceIndex].mappings[mappingIndex].id
+                ) else { continue }
+
+                pasteMappedTo(to: &mappingFile.devices[deviceIndex].mappings[mappingIndex])
+            }
+        }
+    }
+
     /// Copy modifiers from a mapping entry
     func copyModifiers(from entry: MappingEntry) {
         modifiersClipboard = ModifiersData(
