@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "fixtures": [
+    {
+      "filename": "traktor-4.4.x-sanitized-complete.tsi",
+      "sha256": "1572b47eeb8cae604b56f0695b722956f1eda808fc00f8c5b700d53b765cc647",
+      "provenance": "realExport",
+      "completeness": "completeDocument",
+      "evidencedVersion": "4.4.1",
+      "controller": "Generic MIDI",
+      "source": "User-owned controller export created by Traktor Pro 4.4.1",
+      "license": "Fixture contribution under the repository MIT License; redistribution authorized by the repository owner",
+      "sanitization": [
+        "Renamed the source to a neutral repository fixture name",
+        "Audited every decoded UTF-16 string; the source contained no personal labels, comments, filesystem paths, or account identifiers",
+        "Added one trailing LF to the XML file; XML elements and decoded controller payload are unchanged"
+      ],
+      "expectedDisposition": "lossyConvertible",
+      "expectedRiskCount": 233,
+      "expectedRiskCodes": [
+        "noncanonicalFramePlacement",
+        "missingMIDIDefinition",
+        "partialCMAD",
+        "missingSingletonFrame",
+        "noncanonicalDIOI"
+      ]
+    },
+    {
+      "filename": "generated-safe-minimal.tsi",
+      "sha256": "452ad739162e0fab2037ac047d1ad32154ef479e5130ec490b3fe2e8c12aeb59",
+      "provenance": "generated",
+      "completeness": "completeDocument",
+      "evidencedVersion": null,
+      "controller": "Generic MIDI",
+      "source": "Deterministically generated from documented non-personal frame constants",
+      "license": "MIT License",
+      "sanitization": [
+        "Not applicable; this fixture contains only generated non-personal values"
+      ],
+      "expectedDisposition": "ordinarySaveSafe",
+      "expectedRiskCount": 0,
+      "expectedRiskCodes": []
+    },
+    {
+      "filename": "generated-unsafe-native.tsi",
+      "sha256": "fa0954f2902fa19dd75b3b3eaad488eb5d0fead61d071e5a34184227d759a8b8",
+      "provenance": "generated",
+      "completeness": "completeDocument",
+      "evidencedVersion": null,
+      "controller": "Generated native-style Kontrol X1 MK3",
+      "source": "Deterministically generated from documented non-personal frame constants",
+      "license": "MIT License",
+      "sanitization": [
+        "Not applicable; this fixture contains only generated non-personal values"
+      ],
+      "expectedDisposition": "lossyConvertible",
+      "expectedRiskCount": 2,
+      "expectedRiskCodes": [
+        "proprietaryDeviceType",
+        "nativeMIDIControl"
+      ]
+    }
+  ]
+}

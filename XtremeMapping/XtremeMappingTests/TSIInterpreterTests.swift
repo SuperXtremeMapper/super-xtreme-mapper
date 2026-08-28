@@ -1115,7 +1115,7 @@ final class TSIInterpreterTests: XCTestCase {
         }
     }
 
-    func testLiteralTraktor441DCDTPayloadsParseAndDriveInterpreterMetadata() throws {
+    func testCapturedReducedTraktor441DCDTPayloadsParseAndDriveInterpreterMetadata() throws {
         let cases: [(hex: String, name: String, rawMode: UInt32, expected: EncoderMode)] = [
             (
                 "0000000b0043006800300031002e00430043002e003000320032000000070000000042fe000000000000ffffffff",
@@ -1157,7 +1157,7 @@ final class TSIInterpreterTests: XCTestCase {
         }
     }
 
-    func testLiteralTraktor441NativeInputControlTypesOpenAndRoundTripMetadata() throws {
+    func testCapturedReducedTraktor441NativeInputControlTypesOpenAndRoundTripMetadata() throws {
         // Literal DCDT payloads captured from Traktor 4.4.1 exports and reduced
         // to one mapping each. The strings and scalar bytes are unmodified.
         let cases: [(hex: String, name: String, controlType: UInt32)] = [
@@ -1214,7 +1214,9 @@ final class TSIInterpreterTests: XCTestCase {
         }
     }
 
-    func testTraktor452OpaqueMidiNamesOpenWarnAndRoundTripVerbatim() throws {
+    func testGeneratedOpaqueMidiNamesWith452VersionLabelOpenWarnAndRoundTripVerbatim() throws {
+        // This is constructed compatibility coverage. The synthetic DDIV
+        // label is not evidence of a complete Traktor 4.5.2 export.
         let names = [
             "Ch02.PitchBend",
             "Ch05.CC.034+Ch05.CC.002",

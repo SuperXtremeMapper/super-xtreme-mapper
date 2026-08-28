@@ -422,6 +422,13 @@ struct TSIInterpreter {
     private struct LocatedPayload {
         let data: Data
         let childDepth: Int
+        let countPrefixBytes: Int
+
+        init(data: Data, childDepth: Int, countPrefixBytes: Int = 4) {
+            self.data = data
+            self.childDepth = childDepth
+            self.countPrefixBytes = countPrefixBytes
+        }
     }
 
     private struct DeviceFrames {
@@ -496,11 +503,34 @@ struct TSIInterpreter {
             case FrameID.devicePorts:
                 if collected.devicePorts == nil { collected.devicePorts = located }
             case FrameID.inputDefinitions:
-                if collected.inputDefinitions == nil { collected.inputDefinitions = located }
+                // Traktor 4.4.x controller-only exports use DDCI as an
+                // uncounted stream of DCBM bindings instead of a counted DCDT
+                // definition list. The frame identifier makes the two wire
+                // layouts unambiguous without scanning arbitrary payloads.
+                if frame.data.starts(with: Data(FrameID.bindingList.utf8)) {
+                    if collected.bindingList == nil {
+                        collected.bindingList = LocatedPayload(
+                            data: frame.data,
+                            childDepth: depth + 1,
+                            countPrefixBytes: 0
+                        )
+                    }
+                } else if collected.inputDefinitions == nil {
+                    collected.inputDefinitions = located
+                }
             case FrameID.outputDefinitions:
                 if collected.outputDefinitions == nil { collected.outputDefinitions = located }
             case FrameID.mappingsList:
-                if collected.mappingsList == nil { collected.mappingsList = located }
+                if collected.mappingsList == nil {
+                    let prefixBytes = frame.data.starts(with: Data(FrameID.mappingItem.utf8))
+                        ? 0
+                        : 4
+                    collected.mappingsList = LocatedPayload(
+                        data: frame.data,
+                        childDepth: depth + 1,
+                        countPrefixBytes: prefixBytes
+                    )
+                }
             case FrameID.bindingList:
                 if collected.bindingList == nil { collected.bindingList = located }
             default:
@@ -656,23 +686,29 @@ struct TSIInterpreter {
         let listData = listPayload.data
         try budget.enterContainer(atDepth: listPayload.childDepth)
 
-        // The list payload must at least hold its 4-byte count prefix.
-        guard listData.count >= 4 else {
+        guard listPayload.countPrefixBytes == 0 || listPayload.countPrefixBytes == 4,
+              listData.count >= listPayload.countPrefixBytes else {
             throw TSIInterpreterError.malformedMidiBindingList
         }
-        let declaredCount = Int(readUInt32BE(from: listData, at: 0))
-        try budget.validateDeclaredFrameCount(declaredCount)
+        let declaredCount: Int?
+        if listPayload.countPrefixBytes == 4 {
+            let count = Int(readUInt32BE(from: listData, at: 0))
+            try budget.validateDeclaredFrameCount(count)
+            declaredCount = count
+        } else {
+            declaredCount = nil
+        }
 
         var lookup: [Int: String] = [:]
-        lookup.reserveCapacity(declaredCount)
+        lookup.reserveCapacity(declaredCount ?? min(listData.count / TSIFrame.headerSize, 256))
         let frameCursor = TSIFrameCursor(
             data: listData,
             limits: budget.limits,
             instrumentation: budget.instrumentation
         )
-        var offset = 4
+        var offset = listPayload.countPrefixBytes
         var containerFrameCount = 0
-        for _ in 0..<declaredCount {
+        while offset < listData.count {
             try budget.consumeFrame(containerCount: &containerFrameCount)
             let parsed: (frame: TSIFrame, nextOffset: Int)
             do {
@@ -703,10 +739,10 @@ struct TSIInterpreter {
             offset = parsed.nextOffset
         }
 
-        // The declared count must consume the ENTIRE list payload — a low
-        // count with binding bytes left over means the count (or the list)
-        // is corrupt, and the leftover bindings would vanish on save.
-        guard offset == listData.count else {
+        // Counted lists must agree with their prefix; the legacy uncounted
+        // form is still required to tile the payload exactly.
+        guard offset == listData.count,
+              declaredCount == nil || declaredCount == containerFrameCount else {
             throw TSIInterpreterError.malformedMidiBindingList
         }
 
@@ -725,16 +761,22 @@ struct TSIInterpreter {
         try budget.enterContainer(atDepth: cmasPayload.childDepth)
         var mappings: [MappingEntry] = []
 
-        // CMAS must at least hold its 4-byte mapping count
-        guard cmasData.count >= 4 else {
+        guard cmasPayload.countPrefixBytes == 0 || cmasPayload.countPrefixBytes == 4,
+              cmasData.count >= cmasPayload.countPrefixBytes else {
             throw TSIInterpreterError.malformedMappingsList
         }
-        let declaredCount = Int(readUInt32BE(from: cmasData, at: 0))
-        try budget.validateDeclaredFrameCount(declaredCount)
-        mappings.reserveCapacity(declaredCount)
+        let declaredCount: Int?
+        if cmasPayload.countPrefixBytes == 4 {
+            let count = Int(readUInt32BE(from: cmasData, at: 0))
+            try budget.validateDeclaredFrameCount(count)
+            declaredCount = count
+        } else {
+            declaredCount = nil
+        }
+        mappings.reserveCapacity(declaredCount ?? min(cmasData.count / TSIFrame.headerSize, 256))
 
-        // Parse the CMAI frames within CMAS (after the 4-byte count prefix).
-        // The payload is a CONTIGUOUS run of CMAI frames — per the format doc
+        // Parse the CMAI frames within CMAS after the optional count prefix.
+        // The remaining payload is a CONTIGUOUS run of CMAI frames — per the format doc
         // and TSIWriter, nothing else lives here. Anything that isn't a CMAI
         // header at the expected offset (including trailing garbage after the
         // last frame) is corruption: a byte-scan that skips over it would
@@ -748,7 +790,7 @@ struct TSIInterpreter {
             limits: budget.limits,
             instrumentation: budget.instrumentation
         )
-        var offset = 4
+        var offset = cmasPayload.countPrefixBytes
         while offset < cmasData.count {
             guard cmasData.count - offset >= TSIFrame.headerSize else {
                 throw TSIInterpreterError.malformedMappingsList
@@ -780,9 +822,9 @@ struct TSIInterpreter {
             offset = parsed.nextOffset
         }
 
-        guard parsedFrameCount == declaredCount else {
+        guard declaredCount == nil || parsedFrameCount == declaredCount else {
             throw TSIInterpreterError.mappingCountMismatch(
-                declared: declaredCount, parsed: parsedFrameCount)
+                declared: declaredCount ?? 0, parsed: parsedFrameCount)
         }
 
         return mappings
@@ -909,6 +951,23 @@ struct TSIInterpreter {
         if let midiControlName {
             if let modeledAssignment = try parseMidiControlName(midiControlName) {
                 midiAssignment = modeledAssignment
+                let canonicalName: String
+                switch modeledAssignment.kind {
+                case .controlChange:
+                    canonicalName = String(
+                        format: "Ch%02d.CC.%03d",
+                        modeledAssignment.channel,
+                        modeledAssignment.number!
+                    )
+                case .note:
+                    let channel = String(format: "Ch%02d", modeledAssignment.channel)
+                    canonicalName = "\(channel).Note.\(midiNoteToName(modeledAssignment.number!))"
+                case .unassigned:
+                    canonicalName = midiControlName
+                }
+                if canonicalName != midiControlName {
+                    rawMidiControlName = midiControlName
+                }
             } else {
                 midiAssignment = try MIDIAssignment.unassigned(
                     channel: midiChannelPrefix(from: midiControlName) ?? 1
@@ -1262,7 +1321,7 @@ struct TSIInterpreter {
             switch components[1] {
             case "CC":
                 let controlText = components[2]
-                guard controlText.count == 3,
+                guard (1...3).contains(controlText.count),
                       controlText.allSatisfy(\.isNumber),
                       let cc = Int(controlText) else {
                     throw TSIInterpreterError.unrecognizedMidiControl(name: name)

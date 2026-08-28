@@ -9,6 +9,20 @@ TSI files store MIDI controller mappings for Native Instruments Traktor Pro. The
 1. **XML wrapper** - Contains metadata and Base64-encoded binary data
 2. **Binary payload** - Hierarchical frame structure with mapping data
 
+This document describes the canonical layout the writer emits and the compatible source forms the importer preserves. It is not a claim that every proprietary/native frame has known editable semantics.
+
+## Document preservation model
+
+Opening a TSI creates an editable `MappingFile` plus a document-boundary raw envelope. The envelope retains the exact UTF-8 XML bytes, every controller entry, parsed primary frames, a semantic baseline, and a closed-world inventory of structures that the canonical writer cannot reproduce safely. Envelope data is deliberately excluded from clipboard payloads and semantic model equality.
+
+Save uses a three-state safety lattice:
+
+- **ordinarySaveSafe** — the modeled projection passes writer validation and every accepted source structure is reproducible. An edited document may regenerate normally.
+- **lossyConvertible** — the file opens and its modeled projection can be written, but typed risks would be omitted or normalized. An unchanged save is still exact; an edited ordinary save refuses. The user may explicitly export a converted copy after reviewing the risks.
+- **unwritable** — writer validation fails. Neither ordinary save nor converted export writes output.
+
+An unchanged imported document always returns the envelope's original XML byte for byte, even when it contains native controls, compact legacy layout, unknown frames, duplicate singleton frames, or extra XML. Unknown/native structures therefore do **not** simply disappear on Save. They become ordered preservation risks that block an edited overwrite. A deliberately converted export writes only the modeled projection and leaves the source URL, source envelope, dirty state, baseline, and Undo history unchanged.
+
 ### XML Structure
 
 ```xml
@@ -58,13 +72,37 @@ DIOM (Device IO Mappings - root)
                     └── DCBM[] (binding entries)
 ```
 
+Traktor 4.4.x controller-only exports may use a complete but compact variant: DDCI directly contains an uncounted stream of DCBM binding entries, and CMAS directly contains an uncounted stream of CMAI mappings. The importer recognizes these layouts only when the next bounded frame identifier is exactly DCBM or CMAI, validates that frames tile the enclosing payload, retains the original bytes, and classifies the noncanonical structure as lossy-convertible for edits. The canonical writer continues to emit counted lists.
+
+## Input validation and resource limits
+
+TSI XML must be UTF-8, optionally with a UTF-8 BOM. An encoding declaration must also name UTF-8; UTF-16 and UTF-32 are rejected. DTD and entity declarations are prohibited, external entity resolution is disabled, and Base64 must use the strict RFC 4648 alphabet with `=` only in valid final padding positions. Whitespace or ignored characters inside Base64 are not accepted.
+
+The parser uses a streaming XML scanner and offset-based, unaligned-safe big-endian frame cursor. Default limits are:
+
+| Resource | Default limit |
+|---|---:|
+| XML bytes | 96 MiB |
+| Base64 attribute characters | 64 MiB |
+| Decoded controller bytes | 48 MiB |
+| Individual frame payload | 32 MiB |
+| Frames per parsed container | 250,000 |
+| UTF-16 string bytes | 1 MiB |
+| XML elements | 100,000 |
+| XML nesting depth | 128 |
+| Controller entries | 64 |
+| Binary container depth | 16 |
+| Cumulative frames per document | 500,000 |
+
+Each XML start-element callback counts exactly once. Within both the interpreter and inventory phases, one binary budget is shared across all nested containers, so nesting cannot reset cumulative work. Each limit has a distinct parse error.
+
 ## Frame Specifications
 
 ### DIOI (Device IO Info)
 
 | Offset | Size | Type | Description |
 |--------|------|------|-------------|
-| 0 | 4 | uint32 | Version (must be 1) |
+| 0 | 4 | uint32 | Version (canonical writer emits 1; other imported values are preservation risks) |
 
 ### DDIF (Device Target Info)
 
@@ -150,7 +188,7 @@ DIOM (Device IO Mappings - root)
 
 ### CMAD (Mapping Settings)
 
-This is the most complex frame with 30 fields:
+The canonical complete form is the most complex frame with 30 fields. Short or extended imported forms remain openable and exact on no-op save, but are typed preservation risks for edits.
 
 | Offset | Size | Type | Field | Notes |
 |--------|------|------|-------|-------|
@@ -191,11 +229,7 @@ This is the most complex frame with 30 fields:
 - 3 = Proprietary_Controller
 - **4 = GenericMidi** (use this!)
 
-**Note on proprietary device types (1-3):** these are real values Traktor
-writes for its proprietary device sections. XtremeMapping reads every CMAD
-with the GenericMidi field layout above and always writes DeviceType = 4 —
-proprietary-section fidelity is a known, pre-existing limitation of this
-app, not a reason to reject the file on import.
+**Note on proprietary device types (1-3):** these are real values Traktor writes for proprietary device sections. Imported CMAD data retains its exact payload and decoded wire scalars, including DeviceType, raw floating-point bit patterns, UI fields, conditions, LED fields, resolution, factory-map flag, and optional/trailing bytes. Unchanged values are preserved exactly. Field ownership limits an edit to its corresponding wire group. If an edited native CMAD cannot be reconciled, ordinary save is lossy-convertible or unwritable instead of guessing. Converted output normalizes proprietary DeviceType to Generic MIDI value 4 and reports that normalization.
 
 **ControllerType enum:**
 - 0 = Button
@@ -274,12 +308,22 @@ Example: "Ch15.CC.016" (11 characters)
 
 ## MIDI Note String Format
 
-MIDI notes follow the pattern: `Ch{channel:02d}.{type}.{value:03d}`
+Canonical Generic MIDI output uses `Ch{channel:02d}.{type}.{value}`. CC output is zero-padded to three digits; the importer also accepts valid real Traktor CC values written with one or two digits and preserves their original spelling. Note names use their musical spelling.
 
 Examples:
 - `Ch01.CC.000` - Channel 1, CC 0
 - `Ch15.CC.016` - Channel 15, CC 16
 - `Ch09.Note.C4` - Channel 9, Note C4
+
+Pitch Bend and paired high-resolution CC bindings use native/opaque names such as `Ch02.PitchBend` and `Ch05.CC.034+Ch05.CC.002`. They open, display, copy/paste, and transfer without losing their raw control name or DCDT metadata, and unchanged source passthrough retains every original binding byte. A copied or converted row may receive a newly generated binding ID because IDs are document-local. Native names are not coerced to an arbitrary Note or CC. Reassigning MIDI explicitly replaces the opaque binding with the selected modeled assignment.
+
+## Imported device values and comments
+
+Imported device registry names and input/output port strings are wire values and are emitted verbatim while unchanged; an empty imported port is not silently changed to `All Ports`. New devices use validated canonical defaults. Device comments (DDIC) and mapping comments (CMAD) are decoded, exposed for editing, and written back. This supports annotating macro groups without treating comments as disposable metadata.
+
+## Fixture policy
+
+Regression fixtures must be registered in `XtremeMappingTests/Fixtures/TSI/manifest.json` and follow [TSI-Fixture-Provenance.md](TSI-Fixture-Provenance.md). Tests verify SHA-256 before parsing and record whether evidence is a sanitized real export, a captured/reduced fragment, or generated data. A generated version label must never be presented as a real export. Complete-source fixtures must exercise the `TraktorMappingDocument` snapshot/file-wrapper boundary, not only parser helpers.
 
 ## Common Issues and Solutions
 

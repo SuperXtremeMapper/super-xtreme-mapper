@@ -256,6 +256,22 @@ enum TSISourceInventory {
                             frame.data, path: path, depth: work.depth + 1,
                             context: .ddcb(device: device), budget: budget
                         ))
+                    case "DDCI" where frame.data.starts(with: Data("DCBM".utf8)):
+                        // Controller-only Traktor 4.4.x exports flatten their
+                        // input binding table into an uncounted DDCI stream.
+                        // Import it losslessly, but keep edited overwrite
+                        // conservative because the canonical writer nests a
+                        // counted DCBM under DDCB instead.
+                        add(
+                            .noncanonicalFramePlacement,
+                            path,
+                            detail: "uncounted DCBM bindings in DDCI",
+                            to: &risks
+                        )
+                        stack.append(try nestedWork(
+                            frame.data, path: path, depth: work.depth + 1,
+                            context: .bindings(device: device), budget: budget
+                        ))
                     default:
                         add(.unknownFrame, path, detail: frame.identifier, to: &risks)
                     }
@@ -294,11 +310,24 @@ enum TSISourceInventory {
                             add(.duplicateSingletonFrame, path, detail: "CMAS", to: &risks)
                             continue
                         }
-                        stack.append(try countedWork(
-                            frame.data, path: path, depth: work.depth + 1,
-                            context: .mappings(device: device),
-                            expectedIdentifier: "CMAI", budget: budget
-                        ))
+                        if frame.data.starts(with: Data("CMAI".utf8)) {
+                            add(
+                                .noncanonicalFramePlacement,
+                                path,
+                                detail: "uncounted CMAI mappings in CMAS",
+                                to: &risks
+                            )
+                            stack.append(try nestedWork(
+                                frame.data, path: path, depth: work.depth + 1,
+                                context: .mappings(device: device), budget: budget
+                            ))
+                        } else {
+                            stack.append(try countedWork(
+                                frame.data, path: path, depth: work.depth + 1,
+                                context: .mappings(device: device),
+                                expectedIdentifier: "CMAI", budget: budget
+                            ))
+                        }
                     case "DCBM":
                         guard index == 0 else {
                             try validateKnownContainer(
@@ -890,7 +919,7 @@ enum TSISourceInventory {
             return false
         }
         if parts[1] == "CC" {
-            return parts[2].count == 3 && parts[2].allSatisfy(\.isNumber)
+            return (1...3).contains(parts[2].count) && parts[2].allSatisfy(\.isNumber)
                 && (Int(parts[2]) ?? 128) <= 127
         }
         if parts[1] == "Note" {
