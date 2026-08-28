@@ -389,13 +389,13 @@ enum TSISourceInventory {
         // A structurally valid import must remain openable even when its
         // modeled projection cannot pass converted-writer validation. The
         // report's dry run owns that `unwritable` decision; byte comparison is
-        // only the final closed-world guard when canonical output exists.
-        if let canonicalXML = try? TSIWriter().writeConverted(mappingFile),
-           let canonicalValue = try? TSIParser.extractControllerData(
-               from: canonicalXML, limits: limits
+        // only the final closed-world guard when preserving output exists.
+        if let preservingXML = try? TSIWriter().write(mappingFile),
+           let preservingValue = try? TSIParser.extractControllerData(
+               from: preservingXML, limits: limits
            ),
-           let canonicalBinary = try? TSIParser(limits: limits).decodeBase64(canonicalValue),
-           canonicalBinary != sourceBinary,
+           let preservingBinary = try? TSIParser(limits: limits).decodeBase64(preservingValue),
+           preservingBinary != sourceBinary,
            risks.isEmpty {
             add(.unclassifiedSourceData, "/binary", to: &risks)
         }
@@ -529,10 +529,10 @@ enum TSISourceInventory {
               let semanticIndex,
               mappingFile.devices.indices.contains(device),
               mappingFile.devices[device].mappings.indices.contains(semanticIndex) else { return }
-        let canonical = TSIWriter().canonicalCMADPayload(
+        let reproducible = try TSIWriter().preservingCMADPayload(
             for: mappingFile.devices[device].mappings[semanticIndex]
         )
-        if canonical != data {
+        if reproducible != data {
             add(.unreproducibleCMAD, path, to: &risks)
         }
     }
@@ -579,8 +579,14 @@ enum TSISourceInventory {
         if output.end != data.count { add(.unclassifiedSourceData, path, to: &risks) }
         if mappingFile.devices.indices.contains(device) {
             let semantic = mappingFile.devices[device]
-            if input.value != TSIWriter.canonicalPort(semantic.inPort)
-                || output.value != TSIWriter.canonicalPort(semantic.outPort) {
+            let preserveImported = semantic.importedIdentity != nil
+            let expectedInput = preserveImported
+                ? semantic.inPort
+                : TSIWriter.canonicalPort(semantic.inPort)
+            let expectedOutput = preserveImported
+                ? semantic.outPort
+                : TSIWriter.canonicalPort(semantic.outPort)
+            if input.value != expectedInput || output.value != expectedOutput {
                 add(.unreproducibleDeviceIdentity, path, to: &risks)
             }
         }

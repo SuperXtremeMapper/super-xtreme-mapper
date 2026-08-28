@@ -1552,6 +1552,332 @@ final class TSIInterpreterTests: XCTestCase {
                        "setToValue of 0.0 should survive round-trip")
     }
 
+    func testImportedNoncanonicalCMADPayloadRegeneratesByteForByte() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        let cmai = cmaiPayload(
+            bindingId: TSIBindingID.unassigned,
+            ioType: 0,
+            commandId: 100,
+            cmadBytes: rawFrame("CMAD", rawCMAD)
+        )
+        let imported = try interpretCMAS(be32(1) + rawFrame("CMAI", cmai))
+
+        let rewritten = try TSIWriter().write(imported)
+
+        XCTAssertEqual(try firstCMADPayload(in: rewritten), rawCMAD)
+    }
+
+    func testImportedNativeDeviceNameAndEmptyPortsRegenerateVerbatim() throws {
+        let name = "Kontrol S8 MK2 — Native"
+        let devicePayload = tsiString(name)
+            + rawFrame("DDPT", tsiString("") + tsiString(""))
+            + rawFrame("CMAS", be32(0))
+        let imported = try interpretDEVI(devicePayload)
+
+        let rewritten = try TSIWriter().write(imported)
+        let reimported = try XCTUnwrap(try interpretTSIData(rewritten).devices.first)
+
+        XCTAssertEqual(reimported.name, name)
+        XCTAssertEqual(reimported.inPort, "")
+        XCTAssertEqual(reimported.outPort, "")
+    }
+
+    func testImportedCMADSurvivesCodableAndCopyWithWireFingerprint() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        let imported = try importedMappingFile(cmad: rawCMAD)
+        let mapping = try XCTUnwrap(imported.devices.first?.mappings.first)
+        let state = try XCTUnwrap(mapping.importedCMAD)
+
+        XCTAssertEqual(state.payload, rawCMAD)
+        XCTAssertEqual(state.deviceType, 4)
+        XCTAssertEqual(state.hasValueUI, 9)
+        XCTAssertEqual(state.conditionOneTarget, 0xAABB_CCDD)
+        XCTAssertEqual(state.conditionTwoTarget, 0x0102_0304)
+        XCTAssertEqual(state.ledMinRangeData, 0x7FC0_1234)
+        XCTAssertEqual(state.unknownVUI, 0x1122_3344)
+        XCTAssertEqual(state.resolutionBits, 0x7FC0_ABCD)
+        XCTAssertEqual(state.useFactoryMap, 0xA5A5_A5A5)
+        XCTAssertEqual(state.semanticAtImport.rotarySensitivityBits, 0x8000_0000)
+        XCTAssertEqual(state.semanticAtImport.setToValueBits, 0x8000_0000)
+
+        let copied = mapping.copyWithNewID()
+        XCTAssertNotEqual(copied.id, mapping.id)
+        XCTAssertEqual(copied.importedCMAD, state)
+
+        let encoded = try JSONEncoder().encode(mapping)
+        let decoded = try JSONDecoder().decode(MappingEntry.self, from: encoded)
+        XCTAssertEqual(decoded.importedCMAD, state)
+
+        var legacyObject = try XCTUnwrap(
+            JSONSerialization.jsonObject(with: encoded) as? [String: Any]
+        )
+        legacyObject.removeValue(forKey: "importedCMAD")
+        let legacy = try JSONDecoder().decode(
+            MappingEntry.self,
+            from: JSONSerialization.data(withJSONObject: legacyObject)
+        )
+        XCTAssertNil(legacy.importedCMAD)
+    }
+
+    func testImportedCommentEditReplacesOnlyCommentBytes() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].comment = "edited"
+
+        let rewritten = try TSIWriter().write(imported)
+
+        XCTAssertEqual(
+            try firstCMADPayload(in: rewritten),
+            replacingComment(in: rawCMAD, with: "edited")
+        )
+    }
+
+    func testImportedAssignmentEditReplacesOnlyTargetScalar() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].assignment = .deckD
+
+        let rewritten = try TSIWriter().write(imported)
+
+        XCTAssertEqual(
+            try firstCMADPayload(in: rewritten),
+            replacingUInt32(in: rawCMAD, at: 12, with: 3)
+        )
+    }
+
+    func testImportedIOEditLeavesCMADPayloadUntouched() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].ioType = .output
+
+        let rewritten = try TSIWriter().write(imported)
+        let reimported = try XCTUnwrap(try interpretTSIData(rewritten).devices.first?.mappings.first)
+
+        XCTAssertEqual(try firstCMADPayload(in: rewritten), rawCMAD)
+        XCTAssertEqual(reimported.ioType, .output)
+    }
+
+    func testImportedModifierEditReplacesCompleteConditionBlockOnly() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].modifier1Condition = .init(modifier: 7, value: 6)
+        imported.devices[0].mappings[0].modifier2Condition = nil
+
+        let tail = cmadTailOffset(in: rawCMAD)
+        var expected = rawCMAD
+        let replacement = [UInt32(7), 0, 6, 0, 0, 0].reduce(into: Data()) {
+            $0.append(be32($1))
+        }
+        expected.replaceSubrange(tail..<(tail + 24), with: replacement)
+
+        XCTAssertEqual(
+            try firstCMADPayload(in: TSIWriter().write(imported)),
+            expected
+        )
+    }
+
+    func testImportedInputOptionEditsReplaceEachOwningScalarIndividually() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        let cases: [(String, (inout MappingEntry) -> Void, Int, UInt32)] = [
+            ("auto repeat", { $0.autoRepeat = false }, 16, 0),
+            ("invert", { $0.invert = false }, 20, 0),
+            ("soft takeover", { $0.softTakeover = false }, 24, 0),
+            ("rotary sensitivity", { $0.rotarySensitivity = 1.5 }, 28, Float32(1.5).bitPattern),
+            ("rotary acceleration", { $0.rotaryAcceleration = 0.75 }, 32, Float32(0.75).bitPattern),
+        ]
+
+        for (label, mutate, offset, value) in cases {
+            var imported = try importedMappingFile(cmad: rawCMAD)
+            mutate(&imported.devices[0].mappings[0])
+            XCTAssertEqual(
+                try firstCMADPayload(in: TSIWriter().write(imported)),
+                replacingUInt32(in: rawCMAD, at: offset, with: value),
+                label
+            )
+        }
+    }
+
+    func testImportedSetToEditReplacesOnlySetToBits() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].setToValue = 0.5
+
+        XCTAssertEqual(
+            try firstCMADPayload(in: TSIWriter().write(imported)),
+            replacingUInt32(in: rawCMAD, at: 44, with: 0x3F00_0000)
+        )
+    }
+
+    func testImportedMIDIEditLeavesCMADPayloadUntouched() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].midiAssignment = try .controlChange(
+            channel: 2,
+            number: 77
+        )
+
+        let rewritten = try TSIWriter().write(imported)
+        let reimported = try XCTUnwrap(try interpretTSIData(rewritten).devices.first?.mappings.first)
+
+        XCTAssertEqual(try firstCMADPayload(in: rewritten), rawCMAD)
+        XCTAssertEqual(reimported.midiChannel, 2)
+        XCTAssertEqual(reimported.midiCC, 77)
+    }
+
+    func testImportedLEDEditsReplaceEachOwningScalarIndividually() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        let led = cmadTailOffset(in: rawCMAD) + 24
+        let cases: [(String, (inout MappingEntry) -> Void, Int, UInt32)] = [
+            ("min type", { $0.ledMinRangeType = 7 }, led, 7),
+            ("min data", { $0.ledMinRangeData = 42 }, led + 4, 42),
+            ("max type", { $0.ledMaxRangeType = 8 }, led + 8, 8),
+            ("max data", { $0.ledMaxRangeData = 43 }, led + 12, 43),
+            ("min MIDI", { $0.ledMinMidi = 12 }, led + 16, 12),
+            ("max MIDI", { $0.ledMaxMidi = 118 }, led + 20, 118),
+            ("invert", { $0.ledInvert = false }, led + 24, 0),
+            ("blend", { $0.ledBlend = false }, led + 28, 0),
+            ("resolution", { $0.resolution = 3 }, led + 36, 3),
+        ]
+
+        for (label, mutate, offset, value) in cases {
+            var imported = try importedMappingFile(cmad: rawCMAD)
+            mutate(&imported.devices[0].mappings[0])
+            XCTAssertEqual(
+                try firstCMADPayload(in: TSIWriter().write(imported)),
+                replacingUInt32(in: rawCMAD, at: offset, with: value),
+                label
+            )
+        }
+    }
+
+    func testImportedControllerTypeEditReplacesCoordinatedProfileOnly() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].controllerType = .button
+
+        var expected = replacingUInt32(in: rawCMAD, at: 4, with: 0)
+        expected = replacingCoordinatedProfile(
+            in: expected,
+            hasValueUI: 0,
+            valueUIType: 1,
+            setTo: 0x8000_0000,
+            ledMinType: 1,
+            ledMinData: 0,
+            ledMaxType: 1,
+            ledMaxData: 1,
+            blend: 0,
+            unknownVUI: 1,
+            resolution: 1
+        )
+
+        XCTAssertEqual(
+            try firstCMADPayload(in: TSIWriter().write(imported)),
+            expected
+        )
+    }
+
+    func testImportedCommandIDEditReplacesCoordinatedProfileOnly() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].commandID = 125
+
+        let expected = replacingCoordinatedProfile(
+            in: rawCMAD,
+            hasValueUI: 0,
+            valueUIType: 2,
+            setTo: 0x8000_0000,
+            ledMinType: 2,
+            ledMinData: 0,
+            ledMaxType: 2,
+            ledMaxData: 0x3F80_0000,
+            blend: 1,
+            unknownVUI: 2,
+            resolution: 0x3D80_0000
+        )
+
+        XCTAssertEqual(
+            try firstCMADPayload(in: TSIWriter().write(imported)),
+            expected
+        )
+    }
+
+    func testImportedInteractionEditReplacesOnlyInteractionWhenValid() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].interactionMode = .relative
+
+        XCTAssertEqual(
+            try firstCMADPayload(in: TSIWriter().write(imported)),
+            replacingUInt32(in: rawCMAD, at: 8, with: 4)
+        )
+    }
+
+    func testImportedInteractionEditToIncompatibleModeIsUnwritable() throws {
+        var imported = try importedMappingFile(
+            cmad: noncanonicalCMAD(comment: "wire fidelity")
+        )
+        imported.devices[0].mappings[0].interactionMode = .output
+
+        let report = TSIWriter().preservationReport(for: imported)
+
+        XCTAssertEqual(report.disposition, .unwritable)
+        XCTAssertNotNil(report.validationError)
+    }
+
+    func testImportedTruncatedTailRefusesEveryEditThatNeedsMissingOwnedBytes() throws {
+        let fullCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        let truncatedCMAD = Data(fullCMAD.prefix(cmadTailOffset(in: fullCMAD)))
+        let cases: [(String, (inout MappingEntry) -> Void, String)] = [
+            ("modifier", { $0.modifier1Condition = .init(modifier: 1, value: 1) }, "Conditions"),
+            ("LED", { $0.ledMaxMidi = 12 }, "LedMaxMidi"),
+            ("controller profile", { $0.controllerType = .button }, "LedMinType"),
+            ("command profile", { $0.commandID = 125 }, "LedMinType"),
+        ]
+
+        for (label, mutate, missingField) in cases {
+            var imported = try importedMappingFile(cmad: truncatedCMAD)
+            mutate(&imported.devices[0].mappings[0])
+
+            XCTAssertThrowsError(try TSIWriter().write(imported), label) { error in
+                XCTAssertEqual(
+                    error as? TSIWriterError,
+                    .unreconcilableImportedCMAD(field: missingField),
+                    label
+                )
+            }
+            let report = TSIWriter().preservationReport(for: imported)
+            XCTAssertEqual(report.disposition, .lossyConvertible, label)
+            XCTAssertTrue(report.risks.contains { $0.code == .partialCMAD }, label)
+        }
+    }
+
+    func testConvertedOutputDeliberatelyNormalizesImportedNativeWireValues() throws {
+        var rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        rawCMAD = replacingUInt32(in: rawCMAD, at: 0, with: 3)
+        let cmai = cmaiPayload(commandId: 100, cmadBytes: rawFrame("CMAD", rawCMAD))
+        let payload = tsiString("Kontrol S8 MK2 — Native")
+            + rawFrame("DDPT", tsiString("") + tsiString(""))
+            + rawFrame("CMAS", be32(1) + rawFrame("CMAI", cmai))
+        let imported = try interpretDEVI(payload)
+
+        let converted = try TSIWriter().writeConverted(imported)
+        let convertedDevice = try XCTUnwrap(try interpretTSIData(converted).devices.first)
+
+        XCTAssertEqual(readUInt32BE(try firstCMADPayload(in: converted), at: 0), 4)
+        XCTAssertEqual(convertedDevice.name, "Generic MIDI")
+        XCTAssertEqual(convertedDevice.inPort, "All Ports")
+        XCTAssertEqual(convertedDevice.outPort, "All Ports")
+    }
+
+    func testNewEmptyDeviceNameIsUnwritable() {
+        let report = TSIWriter().preservationReport(
+            for: MappingFile(devices: [Device()])
+        )
+
+        XCTAssertEqual(report.disposition, .unwritable)
+        XCTAssertNotNil(report.validationError)
+    }
+
     // MARK: - Corrupt-Frame Surfacing Tests (M10)
 
     /// Writes a MappingFile through TSIWriter and returns the decoded binary frame data.
@@ -1560,6 +1886,14 @@ final class TSIInterpreterTests: XCTestCase {
         let tsiData = try writer.write(file)
         let base64 = try TSIParser.extractControllerData(from: tsiData)
         return try TSIParser().decodeBase64(base64)
+    }
+
+    private func firstCMADPayload(in tsi: Data) throws -> Data {
+        let base64 = try TSIParser.extractControllerData(from: tsi)
+        let binary = try TSIParser().decodeBase64(base64)
+        let cmadOffset = try XCTUnwrap(frameOffsets(of: "CMAD", in: binary).first)
+        let size = Int(readUInt32BE(binary, at: cmadOffset + 4))
+        return binary.subdata(in: (cmadOffset + 8)..<(cmadOffset + 8 + size))
     }
 
     /// Parses binary frame data and interprets it into a MappingFile.
@@ -2123,6 +2457,110 @@ final class TSIInterpreterTests: XCTestCase {
         var cmad = Data(count: 120)
         cmad.replaceSubrange(0..<4, with: be32(4))
         return cmad
+    }
+
+    /// Complete CMAD carrying intentionally non-profile wire values. The
+    /// literals are independent of the writer so this catches any canonical
+    /// rebuild of fields that the user did not edit.
+    private func noncanonicalCMAD(comment: String) -> Data {
+        let fixedScalars: [UInt32] = [
+            4,              // DeviceType: Generic MIDI
+            1,              // ControllerType: fader
+            3,              // InteractionMode: direct
+            2,              // Assignment: Deck C
+            2,              // AutoRepeat: true, noncanonical bool wire value
+            3,              // Invert: true, noncanonical bool wire value
+            4,              // SoftTakeover: true, noncanonical bool wire value
+            0x8000_0000,    // RotarySensitivity: negative zero
+            0x3E80_0000,    // RotaryAcceleration: 0.25
+            9,              // HasValueUI
+            7,              // ValueUIType
+            0x8000_0000,    // SetValueTo: negative zero
+        ]
+        let conditionScalars: [UInt32] = [
+            2, 0xAABB_CCDD, 3,
+            4, 0x0102_0304, 5,
+        ]
+        let ledScalars: [UInt32] = [
+            2, 0x7FC0_1234, // min type/data: NaN payload
+            2, 0x3F80_0000, // max type/data: 1.0
+            11, 119,
+            5, 6,
+            0x1122_3344,    // UnknownVUI
+            0x7FC0_ABCD,    // Resolution raw NaN payload
+            0xA5A5_A5A5,   // UseFactoryMap
+        ]
+
+        var result = fixedScalars.reduce(into: Data()) { $0.append(be32($1)) }
+        result.append(be32(UInt32(comment.utf16.count)))
+        result.append(utf16BE(comment))
+        for scalar in conditionScalars + ledScalars {
+            result.append(be32(scalar))
+        }
+        return result
+    }
+
+    private func importedMappingFile(
+        cmad: Data,
+        commandID: UInt32 = 100,
+        ioType: UInt32 = 0
+    ) throws -> MappingFile {
+        let cmai = cmaiPayload(
+            bindingId: TSIBindingID.unassigned,
+            ioType: ioType,
+            commandId: commandID,
+            cmadBytes: rawFrame("CMAD", cmad)
+        )
+        return try interpretCMAS(be32(1) + rawFrame("CMAI", cmai))
+    }
+
+    private func replacingUInt32(in data: Data, at offset: Int, with value: UInt32) -> Data {
+        var result = data
+        result.replaceSubrange(offset..<(offset + 4), with: be32(value))
+        return result
+    }
+
+    private func cmadTailOffset(in data: Data) -> Int {
+        52 + Int(readUInt32BE(data, at: 48)) * 2
+    }
+
+    private func replacingComment(in data: Data, with comment: String) -> Data {
+        let oldTail = cmadTailOffset(in: data)
+        return data.prefix(48)
+            + be32(UInt32(comment.utf16.count))
+            + utf16BE(comment)
+            + data.suffix(from: oldTail)
+    }
+
+    private func replacingCoordinatedProfile(
+        in data: Data,
+        hasValueUI: UInt32,
+        valueUIType: UInt32,
+        setTo: UInt32,
+        ledMinType: UInt32,
+        ledMinData: UInt32,
+        ledMaxType: UInt32,
+        ledMaxData: UInt32,
+        blend: UInt32,
+        unknownVUI: UInt32,
+        resolution: UInt32
+    ) -> Data {
+        var result = data
+        for (offset, value) in [
+            (36, hasValueUI), (40, valueUIType), (44, setTo),
+        ] {
+            result = replacingUInt32(in: result, at: offset, with: value)
+        }
+        let led = cmadTailOffset(in: result) + 24
+        for (offset, value) in [
+            (led, ledMinType), (led + 4, ledMinData),
+            (led + 8, ledMaxType), (led + 12, ledMaxData),
+            (led + 28, blend), (led + 32, unknownVUI),
+            (led + 36, resolution),
+        ] {
+            result = replacingUInt32(in: result, at: offset, with: value)
+        }
+        return result
     }
 
     /// CMAI payload: 12-byte header (bindingId, ioType, commandId) + CMAD bytes.

@@ -197,6 +197,10 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
     /// Encoder/fader resolution (CMAD Resolution enum)
     var resolution: Int
 
+    /// Exact CMAD wire state and immutable semantic-at-import fingerprint.
+    /// New rows have no imported state and continue to use command profiles.
+    var importedCMAD: ImportedCMAD?
+
     // MARK: - Sort Keys (for table column sorting)
 
     /// Sort key for I/O column
@@ -286,7 +290,8 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         ledMaxMidi: Int = 127,
         ledInvert: Bool = false,
         ledBlend: Bool = false,
-        resolution: Int = 1
+        resolution: Int = 1,
+        importedCMAD: ImportedCMAD? = nil
     ) {
         self.id = id
         self.commandID = commandID ?? TraktorCommands.id(forLegacyName: commandName)
@@ -335,6 +340,7 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         self.ledInvert = ledInvert
         self.ledBlend = ledBlend
         self.resolution = resolution
+        self.importedCMAD = importedCMAD
     }
 
     /// Returns a value-identical mapping with a new identity for insertion.
@@ -371,7 +377,8 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
             ledMaxMidi: ledMaxMidi,
             ledInvert: ledInvert,
             ledBlend: ledBlend,
-            resolution: resolution
+            resolution: resolution,
+            importedCMAD: importedCMAD
         )
     }
 }
@@ -469,6 +476,7 @@ extension MappingEntry: Codable {
         ledInvert = try container.decodeIfPresent(Bool.self, forKey: .ledInvert) ?? false
         ledBlend = try container.decodeIfPresent(Bool.self, forKey: .ledBlend) ?? false
         resolution = try container.decodeIfPresent(Int.self, forKey: .resolution) ?? 1
+        importedCMAD = try container.decodeIfPresent(ImportedCMAD.self, forKey: .importedCMAD)
     }
 
     nonisolated func encode(to encoder: Encoder) throws {
@@ -509,6 +517,7 @@ extension MappingEntry: Codable {
         try container.encode(ledInvert, forKey: .ledInvert)
         try container.encode(ledBlend, forKey: .ledBlend)
         try container.encode(resolution, forKey: .resolution)
+        try container.encodeIfPresent(importedCMAD, forKey: .importedCMAD)
     }
 
     private enum CodingKeys: String, CodingKey {
@@ -522,7 +531,7 @@ extension MappingEntry: Codable {
         case autoRepeat
         case ledMinRangeType, ledMinRangeData, ledMaxRangeType, ledMaxRangeData
         case ledMinMidi, ledMaxMidi, ledInvert, ledBlend
-        case resolution
+        case resolution, importedCMAD
     }
 }
 

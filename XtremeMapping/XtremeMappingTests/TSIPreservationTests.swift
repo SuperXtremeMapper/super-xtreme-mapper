@@ -299,15 +299,16 @@ final class TSIPreservationTests: XCTestCase {
         XCTAssertEqual(extendedFile.sourceEnvelope?.risks.map(\.code), [.extendedCMAD])
     }
 
-    func testUnreproducibleCompleteCMADScalarIsRiskUntilWireFidelityTask() throws {
+    func testCompleteCMADScalarIsReproducibleThroughImportedWireState() throws {
         var cmad = completeCMAD()
-        replaceUInt32(in: &cmad, at: 36, with: 7) // HasValueUI is not retained by MappingEntry yet.
+        replaceUInt32(in: &cmad, at: 36, with: 7)
         let file = try TSIParser().parseDocument(
             completeXML(binary: mappedControllerBinary(cmad: cmad))
         )
 
-        XCTAssertEqual(file.sourceEnvelope?.risks.map(\.code), [.unreproducibleCMAD])
-        XCTAssertEqual(TSIWriter().preservationReport(for: file).disposition, .lossyConvertible)
+        XCTAssertEqual(file.sourceEnvelope?.risks, [])
+        XCTAssertEqual(TSIWriter().preservationReport(for: file).disposition, .ordinarySaveSafe)
+        XCTAssertEqual(file.devices[0].mappings[0].importedCMAD?.payload, cmad)
     }
 
     func testLossyCMADCommentHasSpecificStringRisk() throws {

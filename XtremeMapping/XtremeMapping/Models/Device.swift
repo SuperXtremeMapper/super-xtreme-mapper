@@ -7,6 +7,15 @@
 
 import Foundation
 
+/// Marks device identity that originated at the TSI wire boundary. Imported
+/// names and ports are valid wire values even when they are proprietary or
+/// empty, so ordinary regeneration must not apply new-device defaults to them.
+struct ImportedDeviceIdentity: Codable, Sendable, Equatable {
+    let name: String
+    let inPort: String
+    let outPort: String
+}
+
 /// Represents a MIDI device configuration in a TSI file.
 ///
 /// A device groups related mappings together and specifies the MIDI ports
@@ -27,6 +36,10 @@ struct Device: Identifiable, Codable, Sendable, Equatable {
     /// The MIDI output port name for sending to the controller (LEDs, displays)
     var outPort: String
 
+    /// Original imported identity. Presence distinguishes imported wire values
+    /// from genuinely new devices that still require safe defaults/validation.
+    var importedIdentity: ImportedDeviceIdentity?
+
     /// Traktor version string stored in the device's DDIV frame (e.g. "3.11.0")
     var tsiVersion: String
 
@@ -45,6 +58,7 @@ struct Device: Identifiable, Codable, Sendable, Equatable {
         comment: String = "",
         inPort: String = "",
         outPort: String = "",
+        importedIdentity: ImportedDeviceIdentity? = nil,
         tsiVersion: String = "3.11.0",
         mappingFileRevision: Int = 2,
         mappings: [MappingEntry] = []
@@ -54,6 +68,7 @@ struct Device: Identifiable, Codable, Sendable, Equatable {
         self.comment = comment
         self.inPort = inPort
         self.outPort = outPort
+        self.importedIdentity = importedIdentity
         self.tsiVersion = tsiVersion
         self.mappingFileRevision = mappingFileRevision
         self.mappings = mappings
@@ -68,12 +83,17 @@ struct Device: Identifiable, Codable, Sendable, Equatable {
         comment = try container.decode(String.self, forKey: .comment)
         inPort = try container.decode(String.self, forKey: .inPort)
         outPort = try container.decode(String.self, forKey: .outPort)
+        importedIdentity = try container.decodeIfPresent(
+            ImportedDeviceIdentity.self,
+            forKey: .importedIdentity
+        )
         tsiVersion = try container.decodeIfPresent(String.self, forKey: .tsiVersion) ?? "3.11.0"
         mappingFileRevision = try container.decodeIfPresent(Int.self, forKey: .mappingFileRevision) ?? 2
         mappings = try container.decode([MappingEntry].self, forKey: .mappings)
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id, name, comment, inPort, outPort, tsiVersion, mappingFileRevision, mappings
+        case id, name, comment, inPort, outPort, importedIdentity
+        case tsiVersion, mappingFileRevision, mappings
     }
 }

@@ -42,6 +42,7 @@ struct MappingEntryTests {
         #expect(copy.ledInvert == source.ledInvert)
         #expect(copy.ledBlend == source.ledBlend)
         #expect(copy.resolution == source.resolution)
+        #expect(copy.importedCMAD == source.importedCMAD)
     }
 
     @Test func opaqueMidiCompatibilityStateCopiesCodablesAndClearsOnAssignment() throws {
@@ -330,6 +331,7 @@ struct MappingEntryTests {
         let decoded = try JSONDecoder().decode(Device.self, from: legacyData)
         #expect(decoded.name == "Legacy")
         #expect(decoded.comment == "c")
+        #expect(decoded.importedIdentity == nil)
         #expect(decoded.tsiVersion == "3.11.0")
         #expect(decoded.mappingFileRevision == 2)
     }
@@ -358,6 +360,7 @@ struct MappingEntryTests {
         #expect(decoded.ledInvert == false)
         #expect(decoded.ledBlend == false)
         #expect(decoded.resolution == 1)
+        #expect(decoded.importedCMAD == nil)
     }
 
     // MARK: - MappedToDisplay Tests

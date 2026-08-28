@@ -402,6 +402,11 @@ struct TSIInterpreter {
             comment: comment,
             inPort: inPort,
             outPort: outPort,
+            importedIdentity: ImportedDeviceIdentity(
+                name: deviceName,
+                inPort: inPort,
+                outPort: outPort
+            ),
             tsiVersion: tsiVersion,
             mappingFileRevision: mappingFileRevision,
             mappings: mappings
@@ -979,7 +984,7 @@ struct TSIInterpreter {
             ? ModifierCondition(modifier: cmadSettings.modifierTwoId, value: cmadSettings.modifierTwoValue)
             : nil
 
-        return MappingEntry(
+        var mapping = MappingEntry(
             commandID: traktorControlId,
             ioType: ioType,
             assignment: assignment,
@@ -1013,6 +1018,14 @@ struct TSIInterpreter {
             ledBlend: cmadSettings.ledBlend,
             resolution: cmadSettings.resolution
         )
+        guard let importedCMAD = ImportedCMAD(
+            payload: parsedCMAD.frame.data,
+            semanticAtImport: mapping
+        ) else {
+            throw TSIInterpreterError.malformedMappingData
+        }
+        mapping.importedCMAD = importedCMAD
+        return mapping
     }
 
     /// Parse CMAD (Controller Mapping Assignment Data)
