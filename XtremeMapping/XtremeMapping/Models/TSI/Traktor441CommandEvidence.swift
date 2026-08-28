@@ -37,7 +37,17 @@ enum Traktor441CommandEvidence {
 
     static let correctedBothDirectionIDs: Set<Int> = [738]
 
+    /// Commands whose pinned 4.4.1 evidence plus a local multi-version
+    /// compatibility corpus establish both DCBL directions. These observations
+    /// broaden direction availability only; identity remains pinned to 4.4.1.
+    static let compatibilityCorpusBothDirectionIDs: Set<Int> = [
+        201, 323, 362, 363, 364, 740, 2253, 2302, 5129,
+    ]
+
     static func supportedDirections(for commandID: Int) -> Set<IODirection> {
+        if compatibilityCorpusBothDirectionIDs.contains(commandID) {
+            return [.input, .output]
+        }
         if inputOnlyIDs.contains(commandID) {
             return [.input]
         }

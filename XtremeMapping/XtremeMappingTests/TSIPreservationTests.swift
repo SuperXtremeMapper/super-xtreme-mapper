@@ -413,6 +413,203 @@ final class TSIPreservationTests: XCTestCase {
         }
     }
 
+    func testCompactDDCIBindingsInsideCanonicalDDDCMatchInterpreterAndInventory() throws {
+        let xml = completeXML(binary: compactControllerBinary())
+        let document = try TraktorMappingDocument(fileContents: xml)
+        let mapping = try XCTUnwrap(document.mappingFile.devices.first?.mappings.first)
+
+        XCTAssertEqual(mapping.midiCC, 10)
+        XCTAssertEqual(mapping.rawMidiControlName, nil)
+        XCTAssertEqual(document.mappingFile.sourceEnvelope?.risks.map(\.code), [
+            .noncanonicalFramePlacement,
+            .missingMIDIDefinition,
+            .missingSingletonFrame,
+            .noncanonicalFramePlacement,
+        ])
+
+        let snapshot = try document.snapshot(contentType: .tsi)
+        XCTAssertEqual(snapshot.plan.disposition, .originalPassthrough)
+        XCTAssertEqual(document.fileWrapper(for: snapshot).regularFileContents, xml)
+        document.discardPendingWrite()
+    }
+
+    func testCompactListsRejectMalformedTilingAndTruncatedHeaders() {
+        let binding = rawFrame("DCBM", be32(0) + wide("Ch01.CC.010"))
+        let mapping = rawFrame(
+            "CMAI",
+            cmai(bindingID: 0, commandID: 100, cmad: completeCMAD())
+        )
+        let malformedBinding = binding
+            + Data("DCBM".utf8) + be32(4) + Data([0x00])
+        let malformedMapping = mapping
+            + Data("CMAI".utf8) + be32(4) + Data([0x00])
+        let cases: [(String, Data, TSIInterpreterError)] = [
+            (
+                "binding malformed tiling",
+                compactControllerBinary(bindingPayload: malformedBinding),
+                .malformedMidiBindingList
+            ),
+            (
+                "binding truncated header",
+                compactControllerBinary(bindingPayload: binding + Data([0x01, 0x02, 0x03])),
+                .malformedMidiBindingList
+            ),
+            (
+                "mapping malformed tiling",
+                compactControllerBinary(mappingPayload: malformedMapping),
+                .malformedMappingItem
+            ),
+            (
+                "mapping truncated header",
+                compactControllerBinary(mappingPayload: mapping + Data([0x01, 0x02, 0x03])),
+                .malformedMappingsList
+            ),
+        ]
+
+        for (name, binary, expected) in cases {
+            XCTAssertThrowsError(try interpret(binary), name) { error in
+                XCTAssertEqual(error as? TSIInterpreterError, expected, name)
+            }
+            XCTAssertThrowsError(try inventory(binary), "inventory: \(name)")
+        }
+    }
+
+    func testCompactListsRejectWrongChildIdentifiers() {
+        let binding = rawFrame("DCBM", be32(0) + wide("Ch01.CC.010"))
+        let mapping = rawFrame(
+            "CMAI",
+            cmai(bindingID: 0, commandID: 100, cmad: completeCMAD())
+        )
+        let cases: [(String, Data, TSIInterpreterError)] = [
+            (
+                "binding",
+                compactControllerBinary(
+                    bindingPayload: binding + rawFrame("NOPE", Data())
+                ),
+                .malformedMidiBindingList
+            ),
+            (
+                "mapping",
+                compactControllerBinary(
+                    mappingPayload: mapping + rawFrame("NOPE", Data())
+                ),
+                .malformedMappingsList
+            ),
+        ]
+
+        for (name, binary, expected) in cases {
+            XCTAssertThrowsError(try interpret(binary), name) { error in
+                XCTAssertEqual(error as? TSIInterpreterError, expected, name)
+            }
+            XCTAssertThrowsError(try inventory(binary), "inventory: \(name)")
+        }
+    }
+
+    func testCompactIdentifierGateDoesNotScanUnknownPayloads() throws {
+        let decoy = rawFrame(
+            "JUNK",
+            rawFrame("DCBM", Data("CMAI inside an unknown payload".utf8))
+        )
+        let file = try TSIParser().parseDocument(completeXML(binary: mappedControllerBinary(
+            extraDDATFrames: decoy
+        )))
+
+        XCTAssertEqual(file.devices.first?.mappings.first?.midiCC, 10)
+        XCTAssertEqual(file.sourceEnvelope?.risks.map(\.code), [.unknownFrame])
+    }
+
+    func testCompactListsEnforcePerContainerFrameLimit() {
+        let bindings = (0..<3).reduce(into: Data()) { data, index in
+            data.append(rawFrame("DCBM", be32(UInt32(index)) + wide("Ch01.CC.01\(index)")))
+        }
+        let mappings = (0..<3).reduce(into: Data()) { data, index in
+            data.append(rawFrame(
+                "CMAI",
+                cmai(
+                    bindingID: UInt32.max,
+                    commandID: UInt32(100 + index),
+                    cmad: completeCMAD()
+                )
+            ))
+        }
+        let limits = TSIParseLimits(
+            maximumFramesPerContainer: 2,
+            maximumCumulativeFrames: 100
+        )
+
+        let bindingBinary = minimalCompactBinary(
+            bindingPayload: bindings,
+            mappingPayload: be32(0)
+        )
+        XCTAssertThrowsError(try interpret(bindingBinary, limits: limits)) {
+            XCTAssertEqual($0 as? TSIParserError, .frameCountLimitExceeded)
+        }
+        XCTAssertThrowsError(try inventory(bindingBinary, limits: limits)) {
+            XCTAssertEqual($0 as? TSIParserError, .frameCountLimitExceeded)
+        }
+
+        let mappingBinary = minimalCompactBinary(
+            bindingPayload: nil,
+            mappingPayload: mappings
+        )
+        XCTAssertThrowsError(try interpret(mappingBinary, limits: limits)) {
+            XCTAssertEqual($0 as? TSIParserError, .frameCountLimitExceeded)
+        }
+        XCTAssertThrowsError(try inventory(mappingBinary, limits: limits)) {
+            XCTAssertEqual($0 as? TSIParserError, .frameCountLimitExceeded)
+        }
+    }
+
+    func testCompactListsEnforceCumulativeFrameLimitAtBoundary() throws {
+        let bindings = (0..<2).reduce(into: Data()) { data, index in
+            data.append(rawFrame("DCBM", be32(UInt32(index)) + wide("Ch01.CC.01\(index)")))
+        }
+        let mappings = (0..<2).reduce(into: Data()) { data, index in
+            data.append(rawFrame(
+                "CMAI",
+                cmai(
+                    bindingID: UInt32.max,
+                    commandID: UInt32(100 + index),
+                    cmad: completeCMAD()
+                )
+            ))
+        }
+        let belowBoundary = TSIParseLimits(
+            maximumFramesPerContainer: 10,
+            maximumCumulativeFrames: 9
+        )
+        let exactBoundary = TSIParseLimits(
+            maximumFramesPerContainer: 10,
+            maximumCumulativeFrames: 10
+        )
+
+        let bindingBinary = minimalCompactBinary(
+            bindingPayload: bindings,
+            mappingPayload: be32(0)
+        )
+        XCTAssertThrowsError(try interpret(bindingBinary, limits: belowBoundary)) {
+            XCTAssertEqual($0 as? TSIParserError, .cumulativeFrameLimitExceeded)
+        }
+        XCTAssertNoThrow(try interpret(bindingBinary, limits: exactBoundary))
+        XCTAssertThrowsError(try inventory(bindingBinary, limits: belowBoundary)) {
+            XCTAssertEqual($0 as? TSIParserError, .cumulativeFrameLimitExceeded)
+        }
+        XCTAssertNoThrow(try inventory(bindingBinary, limits: exactBoundary))
+
+        let mappingBinary = minimalCompactBinary(
+            bindingPayload: nil,
+            mappingPayload: mappings
+        )
+        XCTAssertThrowsError(try interpret(mappingBinary, limits: belowBoundary)) {
+            XCTAssertEqual($0 as? TSIParserError, .cumulativeFrameLimitExceeded)
+        }
+        XCTAssertNoThrow(try interpret(mappingBinary, limits: exactBoundary))
+        XCTAssertThrowsError(try inventory(mappingBinary, limits: belowBoundary)) {
+            XCTAssertEqual($0 as? TSIParserError, .cumulativeFrameLimitExceeded)
+        }
+        XCTAssertNoThrow(try inventory(mappingBinary, limits: exactBoundary))
+    }
+
     // MARK: - Literal complete-document fixtures
 
     private func completeXML(binary: Data) -> Data {
@@ -470,7 +667,8 @@ final class TSIPreservationTests: XCTestCase {
         cmad: Data = Data(),
         definitions: Data = Data(),
         mappings: Data = Data(),
-        bindings: Data = Data()
+        bindings: Data = Data(),
+        extraDDATFrames: Data = Data()
     ) -> Data {
         let actualCMAD = cmad.isEmpty ? completeCMAD() : cmad
         let actualDefinitions = definitions.isEmpty
@@ -488,8 +686,69 @@ final class TSIPreservationTests: XCTestCase {
             + rawFrame("DDPT", wide("All Ports") + wide("All Ports"))
             + rawFrame("DDDC", actualDefinitions)
             + rawFrame("DDCB", actualMappings + actualBindings)
+            + extraDDATFrames
         let devi = rawFrame("DEVI", wide("Generic MIDI") + rawFrame("DDAT", ddat))
         return rawFrame("DIOM", rawFrame("DIOI", be32(1)) + rawFrame("DEVS", be32(1) + devi))
+    }
+
+    private func compactControllerBinary(
+        bindingPayload: Data? = nil,
+        mappingPayload: Data? = nil
+    ) -> Data {
+        let actualBinding = bindingPayload
+            ?? rawFrame("DCBM", be32(0) + wide("Ch01.CC.010"))
+        let actualMapping = mappingPayload
+            ?? rawFrame("CMAI", cmai(commandID: 100, cmad: completeCMAD()))
+        let ddat = rawFrame("DDIF", be32(0))
+            + rawFrame("DDIV", wide("3.11.0") + be32(2))
+            + rawFrame("DDIC", wide(""))
+            + rawFrame("DDPT", wide("All Ports") + wide("All Ports"))
+            + rawFrame("DDDC", rawFrame("DDCI", actualBinding))
+            + rawFrame("DDCB", rawFrame("CMAS", actualMapping))
+        let devi = rawFrame("DEVI", wide("Generic MIDI") + rawFrame("DDAT", ddat))
+        return rawFrame("DIOM", rawFrame("DIOI", be32(1)) + rawFrame("DEVS", be32(1) + devi))
+    }
+
+    private func minimalCompactBinary(
+        bindingPayload: Data?,
+        mappingPayload: Data
+    ) -> Data {
+        var children = Data()
+        if let bindingPayload {
+            children.append(rawFrame("DDDC", rawFrame("DDCI", bindingPayload)))
+        }
+        children.append(rawFrame("DDCB", rawFrame("CMAS", mappingPayload)))
+        let devi = rawFrame("DEVI", wide("Generic MIDI") + rawFrame("DDAT", children))
+        return rawFrame("DIOM", rawFrame("DEVS", be32(1) + devi))
+    }
+
+    private func interpret(
+        _ binary: Data,
+        limits: TSIParseLimits = .default
+    ) throws -> MappingFile {
+        let parser = TSIParser(limits: limits)
+        return try TSIInterpreter.interpret(
+            frames: parser.parseFrames(from: binary),
+            limits: limits
+        )
+    }
+
+    private func inventory(
+        _ binary: Data,
+        limits: TSIParseLimits = .default
+    ) throws -> [TSIPreservationRisk] {
+        let parser = TSIParser(limits: limits)
+        let xmlData = completeXML(binary: binary)
+        let xml = try parser.scanXML(xmlData)
+        let frames = try parser.parseFrames(from: binary)
+        return try TSISourceInventory.risks(
+            sourceBinary: binary,
+            primaryFrames: frames,
+            mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")]),
+            xml: xml,
+            limits: limits,
+            instrumentation: nil
+        )
     }
 
     private func cmai(bindingID: UInt32 = 0, commandID: UInt32, cmad: Data) -> Data {

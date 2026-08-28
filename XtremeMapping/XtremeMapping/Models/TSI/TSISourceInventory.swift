@@ -23,6 +23,8 @@ enum TSISourceInventory {
         case definitions(device: Int, direction: IODirection)
         case mappings(device: Int)
         case bindings(device: Int)
+        case uncountedMappings(device: Int)
+        case uncountedBindings(device: Int)
     }
 
     private struct WorkItem {
@@ -42,6 +44,8 @@ enum TSISourceInventory {
         case definitions
         case mappings
         case bindings
+        case uncountedMappings
+        case uncountedBindings
     }
 
     private struct ValidationWorkItem {
@@ -270,13 +274,40 @@ enum TSISourceInventory {
                         )
                         stack.append(try nestedWork(
                             frame.data, path: path, depth: work.depth + 1,
-                            context: .bindings(device: device), budget: budget
+                            context: .uncountedBindings(device: device), budget: budget
                         ))
                     default:
                         add(.unknownFrame, path, detail: frame.identifier, to: &risks)
                     }
 
                 case .dddc(let device):
+                    if frame.identifier == "DDCI",
+                       frame.data.starts(with: Data("DCBM".utf8)) {
+                        guard index == 0 else {
+                            try validateKnownContainer(
+                                frame.data, context: .uncountedBindings,
+                                depth: work.depth + 1, budget: budget, limits: limits
+                            )
+                            add(
+                                .duplicateSingletonFrame,
+                                path,
+                                detail: frame.identifier,
+                                to: &risks
+                            )
+                            continue
+                        }
+                        add(
+                            .noncanonicalFramePlacement,
+                            path,
+                            detail: "uncounted DCBM bindings in DDCI",
+                            to: &risks
+                        )
+                        stack.append(try nestedWork(
+                            frame.data, path: path, depth: work.depth + 1,
+                            context: .uncountedBindings(device: device), budget: budget
+                        ))
+                        continue
+                    }
                     let direction: IODirection
                     switch frame.identifier {
                     case "DDCI": direction = .input
@@ -319,7 +350,7 @@ enum TSISourceInventory {
                             )
                             stack.append(try nestedWork(
                                 frame.data, path: path, depth: work.depth + 1,
-                                context: .mappings(device: device), budget: budget
+                                context: .uncountedMappings(device: device), budget: budget
                             ))
                         } else {
                             stack.append(try countedWork(
@@ -357,8 +388,11 @@ enum TSISourceInventory {
                         name: name.value, direction: direction, path: path
                     ))
 
-                case .mappings(let device):
+                case .mappings(let device), .uncountedMappings(let device):
                     guard frame.identifier == "CMAI", frame.data.count >= 20 else {
+                        if case .uncountedMappings = work.context {
+                            throw TSIParserError.unexpectedEndOfData
+                        }
                         add(.unknownFrame, path, detail: frame.identifier, to: &risks)
                         continue
                     }
@@ -395,8 +429,11 @@ enum TSISourceInventory {
                         path: path
                     ))
 
-                case .bindings(let device):
+                case .bindings(let device), .uncountedBindings(let device):
                     guard frame.identifier == "DCBM", frame.data.count >= 8 else {
+                        if case .uncountedBindings = work.context {
+                            throw TSIParserError.unexpectedEndOfData
+                        }
                         add(.unknownFrame, path, detail: frame.identifier, to: &risks)
                         continue
                     }
@@ -678,10 +715,20 @@ enum TSISourceInventory {
                             frame.data, context: .ddcb, depth: work.depth + 1,
                             budget: budget, limits: limits
                         ))
+                    case "DDCI" where frame.data.starts(with: Data("DCBM".utf8)):
+                        stack.append(try validationWork(
+                            frame.data, context: .uncountedBindings,
+                            depth: work.depth + 1, budget: budget, limits: limits
+                        ))
                     case "DDCI", "DDCO":
                         stack.append(try validationWork(
                             frame.data, context: .definitions, depth: work.depth + 1,
                             budget: budget, limits: limits
+                        ))
+                    case "CMAS" where frame.data.starts(with: Data("CMAI".utf8)):
+                        stack.append(try validationWork(
+                            frame.data, context: .uncountedMappings,
+                            depth: work.depth + 1, budget: budget, limits: limits
                         ))
                     case "CMAS":
                         stack.append(try validationWork(
@@ -722,7 +769,7 @@ enum TSISourceInventory {
                         throw TSIParserError.unexpectedEndOfData
                     }
 
-                case .mappings:
+                case .mappings, .uncountedMappings:
                     guard frame.identifier == "CMAI", frame.data.count >= 20 else {
                         throw TSIParserError.unexpectedEndOfData
                     }
@@ -743,7 +790,7 @@ enum TSISourceInventory {
                     }
                     _ = try readWideString(parsed.frame.data, at: 48, limits: limits)
 
-                case .bindings:
+                case .bindings, .uncountedBindings:
                     guard frame.identifier == "DCBM", frame.data.count >= 8 else {
                         throw TSIParserError.unexpectedEndOfData
                     }
@@ -781,6 +828,8 @@ enum TSISourceInventory {
             frames = try countedFrames(
                 data, expectedIdentifier: "DCBM", depth: depth, budget: budget
             )
+        case .uncountedMappings, .uncountedBindings:
+            frames = try parseFrames(data, startingAt: 0, depth: depth, budget: budget)
         case .devi:
             let name = try readWideString(data, at: 0, limits: limits)
             frames = try parseFrames(data, startingAt: name.end, depth: depth, budget: budget)

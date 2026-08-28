@@ -10,6 +10,7 @@ import CryptoKit
 final class TSIFixtureTests: XCTestCase {
     private enum FixtureValidationError: Error, Equatable {
         case hashMismatch(expected: String, actual: String)
+        case unknownKeys(path: String, keys: [String])
     }
 
     private enum FixtureProvenance: String, Decodable {
@@ -26,6 +27,34 @@ final class TSIFixtureTests: XCTestCase {
     private struct FixtureManifest: Decodable {
         let schemaVersion: Int
         let fixtures: [Fixture]
+
+        private enum CodingKeys: String, CodingKey, CaseIterable {
+            case schemaVersion
+            case fixtures
+        }
+
+        init(from decoder: Decoder) throws {
+            try Self.rejectUnknownKeys(
+                from: decoder,
+                allowed: Set(CodingKeys.allCases.map(\.rawValue)),
+                path: "manifest"
+            )
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            schemaVersion = try values.decode(Int.self, forKey: .schemaVersion)
+            fixtures = try values.decode([Fixture].self, forKey: .fixtures)
+        }
+
+        private static func rejectUnknownKeys(
+            from decoder: Decoder,
+            allowed: Set<String>,
+            path: String
+        ) throws {
+            let values = try decoder.container(keyedBy: AnyCodingKey.self)
+            let unknown = values.allKeys.map(\.stringValue).filter { !allowed.contains($0) }.sorted()
+            if !unknown.isEmpty {
+                throw FixtureValidationError.unknownKeys(path: path, keys: unknown)
+            }
+        }
     }
 
     private struct Fixture: Decodable {
@@ -41,6 +70,67 @@ final class TSIFixtureTests: XCTestCase {
         let expectedDisposition: TSIPreservationDisposition
         let expectedRiskCount: Int
         let expectedRiskCodes: [TSIPreservationRisk.Code]
+
+        private enum CodingKeys: String, CodingKey, CaseIterable {
+            case filename
+            case sha256
+            case provenance
+            case completeness
+            case evidencedVersion
+            case controller
+            case source
+            case license
+            case sanitization
+            case expectedDisposition
+            case expectedRiskCount
+            case expectedRiskCodes
+        }
+
+        init(from decoder: Decoder) throws {
+            let dynamicValues = try decoder.container(keyedBy: AnyCodingKey.self)
+            let allowed = Set(CodingKeys.allCases.map(\.rawValue))
+            let unknown = dynamicValues.allKeys.map(\.stringValue)
+                .filter { !allowed.contains($0) }
+                .sorted()
+            if !unknown.isEmpty {
+                throw FixtureValidationError.unknownKeys(path: "fixture", keys: unknown)
+            }
+
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            filename = try values.decode(String.self, forKey: .filename)
+            sha256 = try values.decode(String.self, forKey: .sha256)
+            provenance = try values.decode(FixtureProvenance.self, forKey: .provenance)
+            completeness = try values.decode(FixtureCompleteness.self, forKey: .completeness)
+            evidencedVersion = try values.decodeIfPresent(String.self, forKey: .evidencedVersion)
+            controller = try values.decode(String.self, forKey: .controller)
+            source = try values.decode(String.self, forKey: .source)
+            license = try values.decode(String.self, forKey: .license)
+            sanitization = try values.decode([String].self, forKey: .sanitization)
+            expectedDisposition = try values.decode(
+                TSIPreservationDisposition.self,
+                forKey: .expectedDisposition
+            )
+            expectedRiskCount = try values.decode(Int.self, forKey: .expectedRiskCount)
+            expectedRiskCodes = try values.decode(
+                [TSIPreservationRisk.Code].self,
+                forKey: .expectedRiskCodes
+            )
+        }
+    }
+
+    private struct AnyCodingKey: CodingKey {
+        let stringValue: String
+        let intValue: Int?
+
+        init?(stringValue: String) {
+            self.stringValue = stringValue
+            intValue = nil
+        }
+
+        init?(intValue: Int) {
+            stringValue = String(intValue)
+            self.intValue = intValue
+        }
     }
 
     func testManifestMetadataAndHashesValidateBeforeFixturesAreUsed() throws {
@@ -70,13 +160,8 @@ final class TSIFixtureTests: XCTestCase {
             XCTAssertFalse(fixture.sanitization.isEmpty, fixture.filename)
             XCTAssertEqual(fixture.sha256.count, 64, fixture.filename)
             XCTAssertTrue(fixture.sha256.allSatisfy { $0.isHexDigit && !$0.isUppercase }, fixture.filename)
-            XCTAssertGreaterThanOrEqual(
-                fixture.expectedRiskCount,
-                fixture.expectedRiskCodes.count,
-                fixture.filename
-            )
             XCTAssertEqual(
-                Set(fixture.expectedRiskCodes).count,
+                fixture.expectedRiskCount,
                 fixture.expectedRiskCodes.count,
                 fixture.filename
             )
@@ -113,6 +198,59 @@ final class TSIFixtureTests: XCTestCase {
         XCTAssertThrowsError(
             try Data(contentsOf: fixtureDirectory.appendingPathComponent("missing.tsi"))
         )
+    }
+
+    func testManifestRejectsUnknownRootAndFixtureKeys() throws {
+        let manifestData = try Data(
+            contentsOf: fixtureDirectory.appendingPathComponent("manifest.json")
+        )
+        let manifestText = try XCTUnwrap(String(data: manifestData, encoding: .utf8))
+        let unknownRoot = Data(
+            manifestText.replacingOccurrences(
+                of: "\"schemaVersion\": 1,",
+                with: "\"schemaVersion\": 1, \"unexpectedRoot\": true,"
+            ).utf8
+        )
+        XCTAssertThrowsError(try decodeManifest(unknownRoot)) { error in
+            XCTAssertEqual(
+                error as? FixtureValidationError,
+                .unknownKeys(path: "manifest", keys: ["unexpectedRoot"])
+            )
+        }
+
+        let unknownFixture = Data(
+            manifestText.replacingOccurrences(
+                of: "\"filename\": \"traktor-4.4.x-sanitized-complete.tsi\",",
+                with: "\"filename\": \"traktor-4.4.x-sanitized-complete.tsi\", \"unexpectedFixture\": true,"
+            ).utf8
+        )
+        XCTAssertThrowsError(try decodeManifest(unknownFixture)) { error in
+            XCTAssertEqual(
+                error as? FixtureValidationError,
+                .unknownKeys(path: "fixture", keys: ["unexpectedFixture"])
+            )
+        }
+    }
+
+    func testEveryCompleteDocumentFixtureHasExactDocumentLayerNoOp() throws {
+        let completeFixtures = try loadManifest().fixtures.filter {
+            $0.completeness == .completeDocument
+        }
+        XCTAssertEqual(completeFixtures.count, 3)
+
+        for fixture in completeFixtures {
+            let source = try loadFixture(fixture)
+            let document = try TraktorMappingDocument(fileContents: source)
+            let snapshot = try document.snapshot(contentType: .tsi)
+
+            XCTAssertEqual(snapshot.plan.disposition, .originalPassthrough, fixture.filename)
+            XCTAssertEqual(
+                document.fileWrapper(for: snapshot).regularFileContents,
+                source,
+                fixture.filename
+            )
+            document.discardPendingWrite()
+        }
     }
 
     func testComplete441FixtureOpensAndDocumentNoOpIsByteExact() throws {
@@ -214,7 +352,11 @@ final class TSIFixtureTests: XCTestCase {
 
     private func loadManifest() throws -> FixtureManifest {
         let data = try Data(contentsOf: fixtureDirectory.appendingPathComponent("manifest.json"))
-        return try JSONDecoder().decode(FixtureManifest.self, from: data)
+        return try decodeManifest(data)
+    }
+
+    private func decodeManifest(_ data: Data) throws -> FixtureManifest {
+        try JSONDecoder().decode(FixtureManifest.self, from: data)
     }
 
     private func loadFixture(_ fixture: Fixture) throws -> Data {
@@ -238,10 +380,8 @@ final class TSIFixtureTests: XCTestCase {
         line: UInt = #line
     ) {
         XCTAssertEqual(risks.count, fixture.expectedRiskCount, fixture.filename, file: file, line: line)
-        var seen: Set<TSIPreservationRisk.Code> = []
-        let orderedUniqueCodes = risks.map(\.code).filter { seen.insert($0).inserted }
         XCTAssertEqual(
-            orderedUniqueCodes,
+            risks.map(\.code),
             fixture.expectedRiskCodes,
             fixture.filename,
             file: file,

@@ -72,7 +72,7 @@ DIOM (Device IO Mappings - root)
                     └── DCBM[] (binding entries)
 ```
 
-Traktor 4.4.x controller-only exports may use a complete but compact variant: DDCI directly contains an uncounted stream of DCBM binding entries, and CMAS directly contains an uncounted stream of CMAI mappings. The importer recognizes these layouts only when the next bounded frame identifier is exactly DCBM or CMAI, validates that frames tile the enclosing payload, retains the original bytes, and classifies the noncanonical structure as lossy-convertible for edits. The canonical writer continues to emit counted lists.
+Traktor 4.4.x controller-only exports may use a complete but compact variant: DDCI directly contains an uncounted stream of DCBM binding entries, whether DDCI appears under canonical DDDC or in the observed flattened layout, and CMAS directly contains an uncounted stream of CMAI mappings. The interpreter and preservation inventory recognize these layouts only when the next bounded frame identifier is exactly DCBM or CMAI, validate that frames tile the enclosing payload, enforce per-container and cumulative limits, retain the original bytes, and classify the noncanonical structure as lossy-convertible for edits. The canonical writer continues to emit counted lists.
 
 ## Input validation and resource limits
 

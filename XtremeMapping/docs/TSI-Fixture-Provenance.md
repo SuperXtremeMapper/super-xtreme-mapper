@@ -1,8 +1,8 @@
 # TSI Regression Fixture Provenance
 
-The fixtures in `XtremeMappingTests/Fixtures/TSI` are integrity-checked before use. `manifest.json` is the authority for each fixture's SHA-256, origin classification, completeness, evidenced Traktor version, controller description, source/license, sanitization, expected preservation disposition, total risk count, and ordered risk categories.
+The fixtures in `XtremeMappingTests/Fixtures/TSI` are integrity-checked before use. `manifest.json` is the authority for each fixture's SHA-256, origin classification, completeness, evidenced Traktor version, controller description, source/license, sanitization, expected preservation disposition, total risk count, and full ordered risk-code sequence including repeated occurrences.
 
-Tests load the manifest and fixtures from the checked-out source tree, validate every hash, and only then exercise the parser and document save boundary. A fixture change therefore requires an intentional manifest update and review.
+Tests load the manifest and fixtures from the checked-out source tree, reject unknown manifest or fixture-object keys, validate every hash, and only then exercise the parser and document save boundary. Every fixture marked `completeDocument` must pass an exact `TraktorMappingDocument` snapshot/file-wrapper no-op check. A fixture change therefore requires an intentional manifest update and review.
 
 ## Fixture inventory
 

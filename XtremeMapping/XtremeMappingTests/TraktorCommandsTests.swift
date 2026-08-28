@@ -338,6 +338,16 @@ final class TraktorCommandsTests: XCTestCase {
         })
     }
 
+    func testCompatibilityCorpusDirectionsRemainCreatable() {
+        let bothDirectionIDs = [201, 323, 362, 363, 364, 740, 2253, 2302, 5129]
+
+        for commandID in bothDirectionIDs {
+            let descriptor = TraktorCommands.descriptor(for: commandID)
+            XCTAssertTrue(descriptor.supports(.input), "command \(commandID)")
+            XCTAssertTrue(descriptor.supports(.output), "command \(commandID)")
+        }
+    }
+
     func testAuditedEvidenceCountsStayConservative() {
         XCTAssertEqual(Traktor441CommandEvidence.inputOnlyIDs.count, 85)
         XCTAssertEqual(Traktor441CommandEvidence.outputOnlyIDs.count, 79)
@@ -347,6 +357,7 @@ final class TraktorCommandsTests: XCTestCase {
                 + Traktor441CommandEvidence.correctedBothDirectionIDs.count,
             9
         )
+        XCTAssertEqual(Traktor441CommandEvidence.compatibilityCorpusBothDirectionIDs.count, 9)
     }
 
     func testObservedMissingDescriptorsAreVerifiedInTheirAuditedDirections() {

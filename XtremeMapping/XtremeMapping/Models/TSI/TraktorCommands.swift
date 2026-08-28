@@ -228,6 +228,7 @@ enum TraktorCommands {
             .union(Traktor441CommandEvidence.bothDirectionIDs)
             .union(Traktor441CommandEvidence.correctedOutputOnlyIDs)
             .union(Traktor441CommandEvidence.correctedBothDirectionIDs)
+            .union(Traktor441CommandEvidence.compatibilityCorpusBothDirectionIDs)
 
         return verifiedIDs
             .map(descriptor(for:))
