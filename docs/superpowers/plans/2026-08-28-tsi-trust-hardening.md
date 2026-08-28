@@ -321,7 +321,7 @@ Fail for missing fixture, wrong hash, unknown metadata, non-identical complete d
 
 - [ ] **Step 3: Add sanitized real and generated fixtures**
 
-Choose the smallest user-owned complete export in /Users/noahraford/Documents/Native Instruments/Traktor 4.4.1 that exercises real controller structures. Remove personal comments/labels and document every transformation without inventing version evidence. Add deterministic generated safe/unsafe files.
+Choose the smallest locally available, user-owned complete Traktor 4.4.x export that exercises real controller structures. Remove personal comments/labels and document every transformation without inventing version evidence. Add deterministic generated safe/unsafe files.
 
 If no complete 4.5.2 specimen is locally available, record the exact gap; keep existing opaque-name evidence labeled capturedFragment, never realExport or completeDocument.
 
