@@ -37,8 +37,6 @@ enum TSIInterpreterError: Error, Equatable, LocalizedError {
     /// A CMAI's settings frame (CMAD) is missing, truncated, or its declared
     /// size disagrees with its CMAI container.
     case malformedMappingData
-    /// A CMAI references a MIDI binding ID that is absent from the DCBM list.
-    case danglingMidiBinding(bindingId: Int)
     /// A DEVI frame is too small to hold its device-name length prefix.
     case malformedDevice
     /// A device metadata frame (DDIV/DDIC/DDPT) is present but unreadable.
@@ -53,10 +51,6 @@ enum TSIInterpreterError: Error, Equatable, LocalizedError {
     case malformedMidiDefinition(container: String)
     /// A device contains more than one DDCI or DDCO for the same direction.
     case duplicateMidiDefinitionsContainer(direction: IODirection)
-    /// A definition key is repeated within one direction.
-    case duplicateMidiDefinition(name: String, direction: IODirection)
-    /// The DCDT control type contradicts its DDCI/DDCO container.
-    case midiDefinitionDirectionMismatch(container: String, controlType: Int)
     /// The frame stream contains no DIOM root frame.
     case missingDeviceIOMappings
     /// The DIOM frame contains no DEVS devices container.
@@ -70,13 +64,9 @@ enum TSIInterpreterError: Error, Equatable, LocalizedError {
     /// writer emits no padding anywhere, so trailing bytes are corruption
     /// that a save would silently drop.
     case unexpectedTrailingBytes(context: String)
-    /// A DCBM MIDI control name is not in a recognized "ChXX.CC.NNN" /
-    /// "ChXX.Note.XN" form. Defaulting it would strip the user's MIDI
-    /// assignment on the next save. TSI-File-Format.md defines exactly these
-    /// two forms, so anything else is corruption rather than a foreign
-    /// variant. (Unknown ENUM values inside CMAD are tolerated and coerced —
-    /// real Traktor writes values this app doesn't model — but a binding
-    /// NAME that doesn't parse can't be preserved through the MIDI fields.)
+    /// A DCBM MIDI control name claims the supported "ChXX.CC.NNN" /
+    /// "ChXX.Note.XN" grammar but contains malformed channel/control data.
+    /// Other native/proprietary names are preserved opaquely instead.
     case unrecognizedMidiControl(name: String)
     /// The CMAI MappingType field carries a value other than 0 (In) or
     /// 1 (Out). Unlike CMAD enums, the spec is exhaustive here — Traktor
@@ -98,8 +88,6 @@ enum TSIInterpreterError: Error, Equatable, LocalizedError {
             return "A mapping entry (CMAI) is truncated — the file is corrupt."
         case .malformedMappingData:
             return "A mapping's settings block (CMAD) is missing or truncated — the file is corrupt."
-        case .danglingMidiBinding(let bindingId):
-            return "A mapping references MIDI binding #\(bindingId), which does not exist in the file — the file is corrupt."
         case .malformedDevice:
             return "A device entry (DEVI) is truncated — the file is corrupt."
         case .malformedDeviceMetadata(let frame):
@@ -114,10 +102,6 @@ enum TSIInterpreterError: Error, Equatable, LocalizedError {
             return "A MIDI control definition (DCDT) in \(container) is malformed — the file is corrupt."
         case .duplicateMidiDefinitionsContainer(let direction):
             return "A device contains duplicate MIDI definition containers for \(direction.rawValue) mappings — the file is corrupt."
-        case .duplicateMidiDefinition(let name, let direction):
-            return "The MIDI control \"\(name)\" has duplicate \(direction.rawValue) definitions — the file is corrupt."
-        case .midiDefinitionDirectionMismatch(let container, let controlType):
-            return "A \(container) MIDI definition has incompatible control type \(controlType) — the file is corrupt."
         case .missingDeviceIOMappings:
             return "The TSI controller data has no DIOM root frame — the file is corrupt."
         case .missingDevicesContainer:
@@ -333,7 +317,7 @@ struct TSIInterpreter {
         // (count 0 when empty), so absence means the mappings were lost to
         // corruption — opening as "zero mappings" would let the next save
         // wipe them. (Contrast: a missing DCBM is tolerated because any CMAI
-        // that actually needs a binding then throws danglingMidiBinding.)
+        // that needs a binding preserves its unresolved numeric ID.)
         guard let cmasData = children.mappingsList else {
             throw TSIInterpreterError.missingMappingsList
         }
@@ -450,7 +434,6 @@ struct TSIInterpreter {
                 from: inputData,
                 container: FrameID.inputDefinitions,
                 direction: .input,
-                expectedControlType: 7,
                 into: &lookup
             )
         }
@@ -459,7 +442,6 @@ struct TSIInterpreter {
                 from: outputData,
                 container: FrameID.outputDefinitions,
                 direction: .output,
-                expectedControlType: 8,
                 into: &lookup
             )
         }
@@ -470,7 +452,6 @@ struct TSIInterpreter {
         from data: Data,
         container: String,
         direction: IODirection,
-        expectedControlType: UInt32,
         into lookup: inout [MIDIControlDefinitionKey: MIDIControlDefinition]
     ) throws {
         guard data.count >= 4 else {
@@ -506,12 +487,6 @@ struct TSIInterpreter {
             }
 
             let controlType = readUInt32BE(from: frame.data, at: scalarOffset)
-            guard controlType == expectedControlType else {
-                throw TSIInterpreterError.midiDefinitionDirectionMismatch(
-                    container: container,
-                    controlType: Int(controlType)
-                )
-            }
 
             let definition = MIDIControlDefinition(
                 controlName: controlName,
@@ -526,12 +501,11 @@ struct TSIInterpreter {
                 controlName: controlName,
                 direction: direction
             )
-            guard lookup.updateValue(definition, forKey: key) == nil else {
-                throw TSIInterpreterError.duplicateMidiDefinition(
-                    name: controlName,
-                    direction: direction
-                )
-            }
+            // Native Traktor exports can repeat a DCDT name, including rows
+            // with different metadata. DCBM/CMAI identify controls by name,
+            // so Traktor's final row is the effective definition as well as
+            // the only deterministic value the mapping model can retain.
+            lookup[key] = definition
         }
     }
 
@@ -720,12 +694,14 @@ struct TSIInterpreter {
         //   silently treating it as unassigned would erase the user's MIDI
         //   assignment and save over it.
         let midiControlName: String?
+        var rawMidiBindingID: UInt32?
         if UInt32(truncatingIfNeeded: midiBindingId) == TSIBindingID.unassigned {
             midiControlName = nil
         } else if let resolved = controlLookup[midiBindingId] {
             midiControlName = resolved
         } else {
-            throw TSIInterpreterError.danglingMidiBinding(bindingId: midiBindingId)
+            midiControlName = nil
+            rawMidiBindingID = UInt32(truncatingIfNeeded: midiBindingId)
         }
 
         // Map interaction mode per spec: Trigger=0, Toggle=1, Hold=2, Direct=3,
@@ -762,19 +738,35 @@ struct TSIInterpreter {
 
         // Parse one validated MIDI assignment from the bound control name.
         let midiAssignment: MIDIAssignment
+        var rawMidiControlName: String?
         if let midiControlName {
-            midiAssignment = try parseMidiControlName(midiControlName)
+            if let modeledAssignment = try parseMidiControlName(midiControlName) {
+                midiAssignment = modeledAssignment
+            } else {
+                midiAssignment = try MIDIAssignment.unassigned(
+                    channel: midiChannelPrefix(from: midiControlName) ?? 1
+                )
+                rawMidiControlName = midiControlName
+            }
         } else {
             midiAssignment = try MIDIAssignment.unassigned(channel: 1)
         }
 
         var encoderMode = EncoderMode.mode7Fh01h
         var rawDCDTEncoderMode: UInt32?
+        var rawDCDTControlType: UInt32?
+        var rawDCDTMinValueBits: UInt32?
+        var rawDCDTMaxValueBits: UInt32?
+        var rawDCDTControlID: UInt32?
         if let midiControlName,
            let definition = definitions[MIDIControlDefinitionKey(
                controlName: midiControlName,
                direction: ioType
            )] {
+            rawDCDTControlType = definition.controlType
+            rawDCDTMinValueBits = definition.min.bitPattern
+            rawDCDTMaxValueBits = definition.max.bitPattern
+            rawDCDTControlID = definition.controlID
             if let knownMode = EncoderMode(tsiDCDTValue: definition.encoderMode) {
                 encoderMode = knownMode
             } else {
@@ -831,6 +823,8 @@ struct TSIInterpreter {
             assignment: assignment,
             interactionMode: interactionMode,
             midiAssignment: midiAssignment,
+            rawMidiControlName: rawMidiControlName,
+            rawMidiBindingID: rawMidiBindingID,
             modifier1Condition: modifier1,
             modifier2Condition: modifier2,
             comment: cmadSettings.comment,
@@ -842,6 +836,10 @@ struct TSIInterpreter {
             rotaryAcceleration: cmadSettings.rotaryAcceleration,
             encoderMode: encoderMode,
             rawDCDTEncoderMode: rawDCDTEncoderMode,
+            rawDCDTControlType: rawDCDTControlType,
+            rawDCDTMinValueBits: rawDCDTMinValueBits,
+            rawDCDTMaxValueBits: rawDCDTMaxValueBits,
+            rawDCDTControlID: rawDCDTControlID,
             autoRepeat: cmadSettings.autoRepeat,
             ledMinRangeType: cmadSettings.ledMinRangeType,
             ledMinRangeData: cmadSettings.ledMinRangeData,
@@ -1029,22 +1027,50 @@ struct TSIInterpreter {
 
     // MARK: - MIDI Control Name Parsing
 
-    /// Parses a MIDI control name like "Ch01.CC.100" or "Ch09.Note.A#2".
+    /// Parses a modeled MIDI control name like "Ch01.CC.100" or
+    /// "Ch09.Note.A#2". Valid native/proprietary names return nil so callers
+    /// can preserve them opaquely. Malformed Note/CC names still throw.
     ///
-    /// Names come from the file's DCBM list. A name that doesn't parse used
-    /// to fall back to (channel 1, no number) — which the next save would
-    /// write out as an UNASSIGNED mapping, erasing the user's MIDI
-    /// assignment. Unrecognized names now throw instead.
-    private static func parseMidiControlName(_ name: String) throws -> MIDIAssignment {
+    /// Names come from the file's DCBM list. A name that isn't modeled must
+    /// never fall back to (channel 1, no number), because the next save would
+    /// erase the user's assignment. Such names are returned for opaque
+    /// preservation; malformed names in the supported Note/CC grammar throw.
+    private static func parseMidiControlName(_ name: String) throws -> MIDIAssignment? {
+        if name.contains("+") {
+            let parts = name.split(separator: "+", omittingEmptySubsequences: false)
+            guard parts.count == 2 else {
+                throw TSIInterpreterError.unrecognizedMidiControl(name: name)
+            }
+            for part in parts {
+                guard let assignment = try parseMidiControlName(String(part)),
+                      assignment.kind == .controlChange else {
+                    throw TSIInterpreterError.unrecognizedMidiControl(name: name)
+                }
+            }
+            return nil
+        }
+
         let components = name.split(separator: ".", omittingEmptySubsequences: false)
-        guard components.count == 3,
-              components[0].hasPrefix("Ch"),
-              components[0].count == 4 else {
+        guard let channelComponent = components.first else { return nil }
+        guard channelComponent.hasPrefix("Ch") else {
+            return nil
+        }
+        guard channelComponent.count == 4 else {
             throw TSIInterpreterError.unrecognizedMidiControl(name: name)
         }
 
-        let channelText = components[0].dropFirst(2)
-        guard channelText.allSatisfy(\.isNumber), let channel = Int(channelText) else {
+        let channelText = channelComponent.dropFirst(2)
+        guard channelText.allSatisfy(\.isNumber),
+              let channel = Int(channelText),
+              (1...16).contains(channel) else {
+            throw TSIInterpreterError.unrecognizedMidiControl(name: name)
+        }
+
+        guard components.count >= 2 else { return nil }
+        guard components[1] == "CC" || components[1] == "Note" else {
+            return nil
+        }
+        guard components.count == 3 else {
             throw TSIInterpreterError.unrecognizedMidiControl(name: name)
         }
 
@@ -1069,6 +1095,17 @@ struct TSIInterpreter {
         } catch is MIDIAssignment.ValidationError {
             throw TSIInterpreterError.unrecognizedMidiControl(name: name)
         }
+    }
+
+    private static func midiChannelPrefix(from name: String) -> Int? {
+        guard name.count >= 4 else { return nil }
+        let prefix = name.prefix(4)
+        guard prefix.hasPrefix("Ch"),
+              let channel = Int(prefix.dropFirst(2)),
+              (1...16).contains(channel) else {
+            return nil
+        }
+        return channel
     }
 
     /// Converts a note name like "A#2" to MIDI note number

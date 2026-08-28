@@ -106,8 +106,13 @@ struct V2MappingRow: View {
             // Mapped To (MIDI)
             Text(mapping.mappedToDisplay)
                 .font(AppThemeV2.Typography.mono)
-                .foregroundColor(AppThemeV2.Colors.stone300)
+                .foregroundColor(
+                    mapping.tsiCompatibilityWarning == nil
+                        ? AppThemeV2.Colors.stone300
+                        : AppThemeV2.Colors.warning
+                )
                 .frame(width: 100)
+                .help(mapping.tsiCompatibilityWarning?.message ?? "")
 
             // Modifier 1
             modifierCell(mapping.modifier1Condition)

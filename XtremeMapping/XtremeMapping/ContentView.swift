@@ -126,6 +126,10 @@ struct ContentView: View {
                 }
             )
 
+            if !document.mappingFile.tsiCompatibilityWarnings.isEmpty {
+                compatibilityWarningBanner
+            }
+
             // Main content
             HSplitView {
                 // Left: Mappings Table
@@ -296,6 +300,26 @@ struct ContentView: View {
                 }
             }
         }
+    }
+
+    private var compatibilityWarningBanner: some View {
+        let warnings = document.mappingFile.tsiCompatibilityWarnings
+        return HStack(spacing: AppThemeV2.Spacing.sm) {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .foregroundColor(AppThemeV2.Colors.warning)
+            Text(
+                "\(warnings.count) native MIDI assignment\(warnings.count == 1 ? "" : "s") preserved in compatibility mode. Reassign MIDI to make \(warnings.count == 1 ? "it" : "them") editable."
+            )
+            .font(AppThemeV2.Typography.caption)
+            .foregroundColor(AppThemeV2.Colors.stone300)
+            Spacer()
+        }
+        .padding(.horizontal, AppThemeV2.Spacing.lg)
+        .padding(.vertical, AppThemeV2.Spacing.sm)
+        .background(AppThemeV2.Colors.warning.opacity(0.12))
+        .help(warnings.map(\.message).joined(separator: "\n"))
+        .accessibilityLabel("TSI compatibility warning")
+        .accessibilityValue(warnings.map(\.message).joined(separator: " "))
     }
 
     // MARK: - Voice Learn

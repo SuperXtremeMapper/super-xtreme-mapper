@@ -945,7 +945,8 @@ final class TSIInterpreterTests: XCTestCase {
     private func definitionFixtureTSI(
         definitionFrames: Data,
         controlName: String = "Ch01.CC.022",
-        mappingDirections: [IODirection] = []
+        mappingDirections: [IODirection] = [],
+        tsiVersion: String? = nil
     ) -> Data {
         var mappingFrames = Data()
         for direction in mappingDirections {
@@ -975,7 +976,13 @@ final class TSIInterpreterTests: XCTestCase {
             be32(mappingDirections.isEmpty ? 0 : 1) + bindingEntries
         )
         let ddcb = rawFrame("DDCB", cmas + dcbm)
-        let ddat = rawFrame("DDAT", rawFrame("DDDC", definitionFrames) + ddcb)
+        let versionFrame = tsiVersion.map {
+            rawFrame("DDIV", tsiString($0) + be32(2))
+        } ?? Data()
+        let ddat = rawFrame(
+            "DDAT",
+            versionFrame + rawFrame("DDDC", definitionFrames) + ddcb
+        )
         let devi = rawFrame("DEVI", tsiString("Generic MIDI") + ddat)
         let devs = rawFrame("DEVS", be32(1) + devi)
         let binary = rawFrame("DIOM", rawFrame("DIOI", be32(1)) + devs)
@@ -1077,6 +1084,37 @@ final class TSIInterpreterTests: XCTestCase {
         }
     }
 
+    func testConflictingNativeDefinitionMetadataForSameControlAndDirectionThrows() {
+        let rows = [
+            MappingEntry(
+                commandID: 123,
+                midiChannel: 1,
+                midiCC: 10,
+                rawDCDTControlType: 1
+            ),
+            MappingEntry(
+                commandID: 124,
+                midiChannel: 1,
+                midiCC: 10,
+                rawDCDTControlType: 2
+            ),
+        ]
+
+        XCTAssertThrowsError(
+            try TSIWriter().write(
+                MappingFile(devices: [Device(name: "Generic MIDI", mappings: rows)])
+            )
+        ) { error in
+            XCTAssertEqual(
+                error as? TSIWriterError,
+                .conflictingMIDIControlDefinitions(
+                    controlName: "Ch01.CC.010",
+                    direction: .input
+                )
+            )
+        }
+    }
+
     func testLiteralTraktor441DCDTPayloadsParseAndDriveInterpreterMetadata() throws {
         let cases: [(hex: String, name: String, rawMode: UInt32, expected: EncoderMode)] = [
             (
@@ -1116,6 +1154,97 @@ final class TSIInterpreterTests: XCTestCase {
             )
             XCTAssertEqual(mapping.encoderMode, testCase.expected)
             XCTAssertNil(mapping.rawDCDTEncoderMode)
+        }
+    }
+
+    func testLiteralTraktor441NativeInputControlTypesOpenAndRoundTripMetadata() throws {
+        // Literal DCDT payloads captured from Traktor 4.4.1 exports and reduced
+        // to one mapping each. The strings and scalar bytes are unmodified.
+        let cases: [(hex: String, name: String, controlType: UInt32)] = [
+            (
+                "0000000d004400650063006b002000410073007300690067006e002e004100000001000000003f80000000000003ffffffff",
+                "Deck Assign.A",
+                1
+            ),
+            (
+                "0000001200460058002e004b006e006f006200200031002e0050006f0073006900740069006f006e00000002000000003f80000000000003ffffffff",
+                "FX.Knob 1.Position",
+                2
+            ),
+            (
+                "0000001300420072006f007700730065002e0045006e0063006f006400650072002e005400750072006e00000004000000003f80000000000003ffffffff",
+                "Browse.Encoder.Turn",
+                4
+            ),
+            (
+                "000000070045006e0063006f00640065007200000005000000003f800000000000030000000d",
+                "Encoder",
+                5
+            ),
+            (
+                "0000000e004c006500660074002e004a006f0067002e0053007000650065006400000010c1800000418000000000000300000012",
+                "Left.Jog.Speed",
+                16
+            ),
+        ]
+
+        for testCase in cases {
+            let payload = try data(hex: testCase.hex)
+            let tsi = definitionFixtureTSI(
+                definitionFrames: rawFrame("DDCI", be32(1) + rawFrame("DCDT", payload)),
+                controlName: testCase.name,
+                mappingDirections: [.input]
+            )
+            let originalDefinitions = try scanDCDTEntries(inTSI: tsi)
+            let imported = try XCTUnwrap(
+                try interpretTSIData(tsi).devices.first?.mappings.first
+            )
+            XCTAssertEqual(imported.ioType, .input)
+            XCTAssertEqual(imported.rawMidiControlName, testCase.name)
+            XCTAssertEqual(imported.rawDCDTControlType, testCase.controlType)
+
+            let rewritten = try TSIWriter().write(
+                MappingFile(devices: [Device(name: "Generic MIDI", mappings: [imported])])
+            )
+            XCTAssertEqual(try scanDCDTEntries(inTSI: rewritten), originalDefinitions)
+            XCTAssertEqual(
+                try interpretTSIData(rewritten).devices.first?.mappings.first?.rawMidiControlName,
+                testCase.name
+            )
+        }
+    }
+
+    func testTraktor452OpaqueMidiNamesOpenWarnAndRoundTripVerbatim() throws {
+        let names = [
+            "Ch02.PitchBend",
+            "Ch05.CC.034+Ch05.CC.002",
+        ]
+
+        for name in names {
+            let payload = dcdtPayload(name: name, controlType: 7, encoderMode: 0)
+            let tsi = definitionFixtureTSI(
+                definitionFrames: rawFrame("DDCI", be32(1) + rawFrame("DCDT", payload)),
+                controlName: name,
+                mappingDirections: [.input],
+                tsiVersion: "4.5.2"
+            )
+            let importedFile = try interpretTSIData(tsi)
+            let imported = try XCTUnwrap(importedFile.devices.first?.mappings.first)
+
+            XCTAssertEqual(importedFile.devices.first?.tsiVersion, "4.5.2")
+            XCTAssertEqual(imported.rawMidiControlName, name)
+            XCTAssertEqual(imported.mappedToDisplay, name)
+            XCTAssertEqual(
+                imported.tsiCompatibilityWarning,
+                .opaqueMIDIControl(name: name)
+            )
+
+            let rewritten = try TSIWriter().write(importedFile)
+            let reimported = try XCTUnwrap(
+                try interpretTSIData(rewritten).devices.first?.mappings.first
+            )
+            XCTAssertEqual(reimported.rawMidiControlName, name)
+            XCTAssertEqual(reimported.mappedToDisplay, name)
         }
     }
 
@@ -1202,7 +1331,7 @@ final class TSIInterpreterTests: XCTestCase {
         }
     }
 
-    func testDuplicateControlNameAndDirectionDefinitionThrows() {
+    func testIdenticalDuplicateControlNameAndDirectionDefinitionIsTolerated() throws {
         let payload = dcdtPayload(name: "Ch01.CC.022", controlType: 7, encoderMode: 0)
         let tsi = definitionFixtureTSI(
             definitionFrames: rawFrame(
@@ -1210,16 +1339,30 @@ final class TSIInterpreterTests: XCTestCase {
                 be32(2) + rawFrame("DCDT", payload) + rawFrame("DCDT", payload)
             )
         )
-        XCTAssertThrowsError(try interpretTSIData(tsi)) { error in
-            XCTAssertEqual(
-                error as? TSIInterpreterError,
-                .duplicateMidiDefinition(name: "Ch01.CC.022", direction: .input)
-            )
-        }
+
+        XCTAssertNoThrow(try interpretTSIData(tsi))
     }
 
-    func testDefinitionContainerRejectsOppositeDirectionControlType() {
-        let cases: [(container: String, controlType: UInt32)] = [("DDCI", 8), ("DDCO", 7)]
+    func testConflictingDuplicateControlNameAndDirectionDefinitionUsesLastNativeRow() throws {
+        let first = dcdtPayload(name: "Ch01.CC.022", controlType: 7, encoderMode: 0)
+        let second = dcdtPayload(name: "Ch01.CC.022", controlType: 2, encoderMode: 0)
+        let tsi = definitionFixtureTSI(
+            definitionFrames: rawFrame(
+                "DDCI",
+                be32(2) + rawFrame("DCDT", first) + rawFrame("DCDT", second)
+            ),
+            mappingDirections: [.input]
+        )
+
+        let mapping = try XCTUnwrap(try interpretTSIData(tsi).devices.first?.mappings.first)
+        XCTAssertEqual(mapping.rawDCDTControlType, 2)
+    }
+
+    func testDefinitionContainerDeterminesDirectionRegardlessOfControlType() throws {
+        let cases: [(container: String, controlType: UInt32, direction: IODirection)] = [
+            ("DDCI", 8, .input),
+            ("DDCO", 7, .output),
+        ]
         for testCase in cases {
             let payload = dcdtPayload(
                 name: "Ch01.CC.022",
@@ -1230,17 +1373,14 @@ final class TSIInterpreterTests: XCTestCase {
                 definitionFrames: rawFrame(
                     testCase.container,
                     be32(1) + rawFrame("DCDT", payload)
-                )
+                ),
+                mappingDirections: [testCase.direction]
             )
-            XCTAssertThrowsError(try interpretTSIData(tsi), testCase.container) { error in
-                XCTAssertEqual(
-                    error as? TSIInterpreterError,
-                    .midiDefinitionDirectionMismatch(
-                        container: testCase.container,
-                        controlType: Int(testCase.controlType)
-                    )
-                )
-            }
+            let imported = try XCTUnwrap(
+                try interpretTSIData(tsi).devices.first?.mappings.first
+            )
+            XCTAssertEqual(imported.ioType, testCase.direction)
+            XCTAssertEqual(imported.rawDCDTControlType, testCase.controlType)
         }
     }
 
@@ -1331,6 +1471,36 @@ final class TSIInterpreterTests: XCTestCase {
         XCTAssertEqual(userWriteback, .mode7Fh01h)
         XCTAssertNil(mapping.rawDCDTEncoderMode)
         XCTAssertEqual(mapping.effectiveDCDTEncoderMode, 1)
+    }
+
+    func testMIDIChannelDraftOnlyWritesBackExplicitUserSelection() {
+        var mapping = MappingEntry(
+            commandID: 123,
+            midiChannel: 2,
+            rawMidiControlName: "Ch02.PitchBend",
+            rawDCDTControlType: 5
+        )
+        var draft = MIDIChannelDraft()
+
+        let loadWriteback = draft.apply(.selectionLoad(mapping.midiChannel))
+        if let loadWriteback {
+            mapping.midiChannel = loadWriteback
+        }
+
+        XCTAssertEqual(draft.value, 2)
+        XCTAssertNil(loadWriteback)
+        XCTAssertEqual(mapping.rawMidiControlName, "Ch02.PitchBend")
+        XCTAssertEqual(mapping.rawDCDTControlType, 5)
+
+        let userWriteback = draft.apply(.userSelection(3))
+        if let userWriteback {
+            mapping.midiChannel = userWriteback
+        }
+
+        XCTAssertEqual(draft.value, 3)
+        XCTAssertEqual(userWriteback, 3)
+        XCTAssertNil(mapping.rawMidiControlName)
+        XCTAssertNil(mapping.rawDCDTControlType)
     }
 
     func testLegacyCodableWithoutRawDCDTModeDefaultsToNil() throws {
@@ -1818,10 +1988,11 @@ final class TSIInterpreterTests: XCTestCase {
         XCTAssertEqual(ccs, Set(1...40), "Every binding must resolve to its own CC")
     }
 
-    func testStrippedDCBMWithIntactDCDTThrows() throws {
+    func testStrippedDCBMWithIntactDCDTOpensWithPreservedBindingWarning() throws {
         // M9: with the DCBM binding list gone, a non-sentinel CMAI id must NOT
         // quietly resolve through the DCDT control table — that fallback let
-        // corrupt files open (and rebind controls). It must throw.
+        // corrupt files open and rebind controls. The unresolved numeric ID
+        // must be preserved explicitly instead.
         let device = Device(name: "Test", mappings: [simpleEntry(cc: 10)])
         var binary = try binaryData(for: MappingFile(devices: [device]))
 
@@ -1835,9 +2006,14 @@ final class TSIInterpreterTests: XCTestCase {
             binary.replaceSubrange(offset..<(offset + 4), with: "XXXX".data(using: .ascii)!)
         }
 
-        XCTAssertThrowsError(try interpretBinary(binary)) { error in
-            XCTAssertEqual(error as? TSIInterpreterError, .danglingMidiBinding(bindingId: 0))
-        }
+        let imported = try interpretBinary(binary)
+        let mapping = try XCTUnwrap(imported.devices.first?.mappings.first)
+        XCTAssertEqual(mapping.rawMidiBindingID, 0)
+        XCTAssertEqual(mapping.mappedToDisplay, "Unresolved MIDI #0")
+        XCTAssertEqual(
+            mapping.tsiCompatibilityWarning,
+            .unresolvedMIDIBinding(id: 0)
+        )
     }
 
     func testCorruptDCBMBindingEntryThrows() throws {
@@ -1895,7 +2071,7 @@ final class TSIInterpreterTests: XCTestCase {
         }
     }
 
-    func testDanglingBindingIdThrows() throws {
+    func testDanglingBindingIdOpensAndRoundTripsWithoutColliding() throws {
         let device = Device(name: "Test", mappings: [simpleEntry(cc: 10)])
         var binary = try binaryData(for: MappingFile(devices: [device]))
 
@@ -1907,9 +2083,24 @@ final class TSIInterpreterTests: XCTestCase {
         // user's MIDI assignment on the next save.
         writeUInt32BE(999, at: cmaiOffsets[0] + 8, in: &binary)
 
-        XCTAssertThrowsError(try interpretBinary(binary)) { error in
-            XCTAssertEqual(error as? TSIInterpreterError, .danglingMidiBinding(bindingId: 999))
-        }
+        var imported = try interpretBinary(binary)
+        let unresolved = try XCTUnwrap(imported.devices.first?.mappings.first)
+        XCTAssertEqual(unresolved.rawMidiBindingID, 999)
+        XCTAssertEqual(
+            unresolved.tsiCompatibilityWarning,
+            .unresolvedMIDIBinding(id: 999)
+        )
+
+        imported.devices[0].mappings.append(simpleEntry(cc: 11))
+        let rewrittenBinary = try binaryData(for: imported)
+        let cmaiOffsetsAfterRewrite = try frameOffsets(of: "CMAI", in: rewrittenBinary)
+        XCTAssertEqual(cmaiOffsetsAfterRewrite.count, 2)
+        XCTAssertEqual(readUInt32BE(rewrittenBinary, at: cmaiOffsetsAfterRewrite[0] + 8), 999)
+        XCTAssertNotEqual(readUInt32BE(rewrittenBinary, at: cmaiOffsetsAfterRewrite[1] + 8), 999)
+
+        let reimported = try interpretBinary(rewrittenBinary)
+        XCTAssertEqual(reimported.devices.first?.mappings.first?.rawMidiBindingID, 999)
+        XCTAssertEqual(reimported.devices.first?.mappings.last?.midiCC, 11)
     }
 
     // MARK: - Manual Fixture Builders (Chunk 1: TSI Robustness)
@@ -2225,10 +2416,9 @@ final class TSIInterpreterTests: XCTestCase {
         }
     }
 
-    func testUnrecognizedDCBMControlNameThrows() throws {
-        // Corrupt the bound control's name so it is neither CC nor Note —
-        // the old fallback quietly produced an UNASSIGNED mapping, erasing
-        // the user's MIDI assignment on the next save.
+    func testUnknownDCBMControlNameIsPreservedOpaque() throws {
+        // Native/proprietary Traktor mappings use names outside the generic
+        // CC/Note grammar. They must remain visible and byte-for-byte stable.
         let device = Device(name: "Test", mappings: [simpleEntry(cc: 10)])
         var binary = try binaryData(for: MappingFile(devices: [device]))
 
@@ -2241,10 +2431,17 @@ final class TSIInterpreterTests: XCTestCase {
         }
         XCTAssertGreaterThan(replaced, 0, "Fixture must contain the control name")
 
-        XCTAssertThrowsError(try interpretBinary(binary)) { error in
-            XCTAssertEqual(error as? TSIInterpreterError,
-                           .unrecognizedMidiControl(name: "Ch01.XX.010"))
-        }
+        let imported = try interpretBinary(binary)
+        let mapping = try XCTUnwrap(imported.devices.first?.mappings.first)
+        XCTAssertEqual(mapping.rawMidiControlName, "Ch01.XX.010")
+        XCTAssertEqual(mapping.mappedToDisplay, "Ch01.XX.010")
+
+        let rewritten = try binaryData(for: imported)
+        let reimported = try interpretBinary(rewritten)
+        XCTAssertEqual(
+            reimported.devices.first?.mappings.first?.rawMidiControlName,
+            "Ch01.XX.010"
+        )
     }
 
     /// Builds a CMAS whose single CMAI carries a 120-byte CMAD with one
@@ -2349,7 +2546,7 @@ final class TSIInterpreterTests: XCTestCase {
     // MARK: - Helper Functions (Expose internal logic for testing)
 
     /// Parse MIDI control name - mirrors TSIInterpreter logic
-    /// (nil mirrors the interpreter's `unrecognizedMidiControl` throw)
+    /// (nil means the name is outside the modeled CC/Note grammar)
     private func parseMidiControlName(_ name: String) -> (channel: Int, number: Int, isCC: Bool)? {
         guard let chRange = name.range(of: "Ch"),
               let dotRange = name.range(of: ".", range: chRange.upperBound..<name.endIndex),

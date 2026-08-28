@@ -123,6 +123,43 @@ final class ClipboardManagerTests: XCTestCase {
         XCTAssertNil(targetEntry.midiCC)
     }
 
+    func testPasteMappedToPreservesOpaqueNativeAssignmentAndDefinitionMetadata() {
+        let sourceEntry = MappingEntry(
+            commandID: 100,
+            rawMidiControlName: "Ch02.PitchBend",
+            rawDCDTEncoderMode: 3,
+            rawDCDTControlType: 5,
+            rawDCDTMinValueBits: Float32(-1).bitPattern,
+            rawDCDTMaxValueBits: Float32(1).bitPattern,
+            rawDCDTControlID: 42
+        )
+        clipboard.copyMappedTo(from: sourceEntry)
+
+        var targetEntry = MappingEntry(commandID: 201, midiChannel: 1, midiCC: 64)
+        clipboard.pasteMappedTo(to: &targetEntry)
+
+        XCTAssertEqual(targetEntry.rawMidiControlName, "Ch02.PitchBend")
+        XCTAssertNil(targetEntry.rawMidiBindingID)
+        XCTAssertEqual(targetEntry.rawDCDTControlType, 5)
+        XCTAssertEqual(targetEntry.rawDCDTMinValueBits, Float32(-1).bitPattern)
+        XCTAssertEqual(targetEntry.rawDCDTMaxValueBits, Float32(1).bitPattern)
+        XCTAssertEqual(targetEntry.rawDCDTEncoderMode, 3)
+        XCTAssertEqual(targetEntry.rawDCDTControlID, 42)
+        XCTAssertEqual(targetEntry.mappedToDisplay, "Ch02.PitchBend")
+    }
+
+    func testPasteMappedToPreservesUnresolvedNativeBindingReference() {
+        let sourceEntry = MappingEntry(commandID: 100, rawMidiBindingID: 999)
+        clipboard.copyMappedTo(from: sourceEntry)
+
+        var targetEntry = MappingEntry(commandID: 201, midiChannel: 1, midiCC: 64)
+        clipboard.pasteMappedTo(to: &targetEntry)
+
+        XCTAssertEqual(targetEntry.rawMidiBindingID, 999)
+        XCTAssertNil(targetEntry.rawMidiControlName)
+        XCTAssertEqual(targetEntry.mappedToDisplay, "Unresolved MIDI #999")
+    }
+
     @MainActor
     func testMappedToClipboardPastesOneExclusiveAssignmentAndPreservesOtherFields() throws {
         let assignment = try MIDIAssignment.controlChange(channel: 16, number: 0)
