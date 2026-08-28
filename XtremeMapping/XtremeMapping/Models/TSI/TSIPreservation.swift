@@ -115,6 +115,21 @@ nonisolated struct TSIPreservationReport: Codable, Equatable, Sendable {
     let validationError: TSIWriterValidationFailure?
 }
 
+/// Whether a document write keeps exact imported bytes or emits a modeled TSI.
+nonisolated enum TSIWriteDisposition: String, Codable, Equatable, Sendable {
+    case originalPassthrough
+    case regenerated
+}
+
+/// One pure, immutable decision for a document write. The concrete bytes are
+/// retained so `ReferenceFileDocument.fileWrapper` never recalculates a save.
+nonisolated struct TSIWritePlan: Equatable, Sendable {
+    let output: Data
+    let baseline: TSISemanticBaseline
+    let report: TSIPreservationReport
+    let disposition: TSIWriteDisposition
+}
+
 nonisolated enum TSIPreservationError: Error, Equatable, Sendable, LocalizedError {
     case unsafeOverwrite(risks: [TSIPreservationRisk])
 

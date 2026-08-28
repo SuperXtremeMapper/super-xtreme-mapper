@@ -57,6 +57,7 @@ struct XtremeMappingApp: App {
     @Environment(\.dismissWindow) private var dismissWindow
     @StateObject private var welcomeState = WelcomeWindowState.shared
     @StateObject private var updateState = UpdateWindowState.shared
+    @FocusedValue(\.tsiLossyExportAvailable) private var tsiLossyExportAvailable
 
     var body: some Scene {
         // Welcome window shown on launch
@@ -111,6 +112,10 @@ struct XtremeMappingApp: App {
         // Document windows for TSI files
         DocumentGroup(newDocument: { TraktorMappingDocument() }) { file in
             ContentView(document: file.document, fileURL: file.fileURL)
+                .focusedValue(
+                    \.tsiLossyExportAvailable,
+                    !file.document.lossyExportRisks.isEmpty
+                )
                 .background(DocumentWindowAccessor { nsDoc in
                     file.document.backingDocument = nsDoc
                 })
@@ -138,6 +143,28 @@ struct XtremeMappingApp: App {
         .defaultSize(width: 1200, height: 700)
         .commands {
             EditCommands()
+
+            // Availability comes from focused document state. Consulting
+            // NSDocumentController here re-enters SwiftUI while it constructs
+            // PlatformDocumentController and crashes during launch.
+            CommandGroup(replacing: .saveItem) {
+                Button("Save") {
+                    TSIExportCommandActions.saveCurrentDocument(as: false)
+                }
+                .keyboardShortcut("s", modifiers: .command)
+
+                Button("Save As…") {
+                    TSIExportCommandActions.saveCurrentDocument(as: true)
+                }
+                .keyboardShortcut("s", modifiers: [.command, .shift])
+
+                Divider()
+
+                Button("Export Lossy Converted Copy…") {
+                    TSIExportCommandActions.exportCurrentDocument()
+                }
+                .disabled(tsiLossyExportAvailable != true)
+            }
 
             // Help menu with feedback and about
             CommandGroup(replacing: .help) {
@@ -390,13 +417,13 @@ struct AboutView: View {
 // MARK: - App Delegate
 
 /// App delegate to handle launch behavior and document management
+@MainActor
 class AppDelegate: NSObject, NSApplicationDelegate {
     /// Identifier stamped onto the welcome window by its content view's
     /// window accessor (SwiftUI does not guarantee the scene id propagates).
     static let welcomeWindowIdentifier = NSUserInterfaceItemIdentifier("sxm-welcome")
 
     private var windowDelegates: [ObjectIdentifier: DocumentWindowDelegateProxy] = [:]
-    private var didSaveObserver: NSObjectProtocol?
     private var pendingTerminationDocuments: [NSDocument] = []
 
     /// Identify the welcome window by identifier — NEVER by title (a document
@@ -424,26 +451,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             name: NSWindow.didBecomeMainNotification,
             object: nil
         )
-
-        didSaveObserver = NotificationCenter.default.addObserver(
-            forName: Notification.Name("NSDocumentDidSaveNotification"),
-            object: nil,
-            queue: .main
-        ) { notification in
-            guard let document = notification.object as? NSDocument else { return }
-            let opKey = "NSDocumentSaveOperation"
-            let opValue = (notification.userInfo?[opKey] as? NSNumber)?.intValue
-            if let opValue, opValue == NSDocument.SaveOperationType.autosaveElsewhereOperation.rawValue {
-                return
-            }
-            // Clear custom dirty flag (NSDocument's isDocumentEdited is already
-            // handled by the framework). Instance-keyed: File > Save / Save As
-            // hit this observer, and on first-save the URL registration can lag
-            // — the NSDocument identity registry resolves regardless.
-            MainActor.assumeIsolated {
-                TraktorMappingDocument.markClean(nsDocument: document)
-            }
-        }
 
         // Check for updates on launch, then show welcome window
         checkForUpdatesOnLaunch()
@@ -636,7 +643,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             guard let self else { return }
             switch decision {
             case .save:
-                self.save(document: document) { didSave in
+                self.save(document: document, intent: .termination) { didSave in
                     if didSave {
                         self.promptNextTerminationDocument()
                     } else {
@@ -656,10 +663,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    fileprivate func save(document: NSDocument, completion: @escaping (Bool) -> Void) {
-        let identifier = ObjectIdentifier(document)
-        SaveCallbackStore.shared.register(identifier: identifier, completion: completion)
-        document.save(withDelegate: SaveCallbackStore.shared, didSave: #selector(SaveCallbackStore.document(_:didSave:contextInfo:)), contextInfo: UnsafeMutableRawPointer(Unmanaged.passUnretained(document).toOpaque()))
+    fileprivate func save(
+        document: NSDocument,
+        intent: DocumentSaveCoordinator.Intent = .save,
+        completion: @escaping (Bool) -> Void
+    ) {
+        DocumentSaveCoordinator.shared.save(
+            document: document,
+            intent: intent,
+            completion: completion
+        )
     }
 }
 
@@ -710,7 +723,7 @@ final class DocumentWindowDelegateProxy: NSObject, NSWindowDelegate {
             guard let self else { return }
             switch decision {
             case .save:
-                self.appDelegate.save(document: document) { didSave in
+                self.appDelegate.save(document: document, intent: .close) { didSave in
                     if didSave {
                         document.close()
                     }
@@ -729,37 +742,8 @@ final class DocumentWindowDelegateProxy: NSObject, NSWindowDelegate {
     }
 }
 
-// MARK: - Save Callback Store
-
-private final class SaveCallbackStore: NSObject {
-    static let shared = SaveCallbackStore()
-    private var completions: [ObjectIdentifier: (Bool) -> Void] = [:]
-
-    func register(identifier: ObjectIdentifier, completion: @escaping (Bool) -> Void) {
-        completions[identifier] = completion
-    }
-
-    @objc(document:didSave:contextInfo:)
-    func document(_ document: AnyObject, didSave saved: Bool, contextInfo: UnsafeMutableRawPointer?) {
-        guard let document = document as? NSDocument else { return }
-        if saved {
-            // Instance-keyed dirty clearing — belt-and-braces alongside the
-            // "NSDocumentDidSaveNotification" observer, and the only path
-            // that covers untitled first-save / Save As (URL not yet
-            // registered when the callback fires).
-            MainActor.assumeIsolated {
-                TraktorMappingDocument.markClean(nsDocument: document)
-            }
-        }
-        let identifier = ObjectIdentifier(document)
-        let completion = completions.removeValue(forKey: identifier)
-        completion?(saved)
-    }
-}
-
 private enum SaveDecision {
     case save
     case discard
     case cancel
 }
-

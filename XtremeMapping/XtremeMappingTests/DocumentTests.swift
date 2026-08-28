@@ -65,7 +65,7 @@ final class DocumentTests: XCTestCase {
 
     // MARK: - Snapshot Tests
 
-    func testSnapshotReturnsCurrentMappingFile() throws {
+    func testSnapshotOwnsExactImmutableWritePlanBytes() throws {
         let device = Device(name: "Test Device", mappings: [
             MappingEntry(commandName: "Play", midiChannel: 1, midiNote: 60)
         ])
@@ -73,10 +73,287 @@ final class DocumentTests: XCTestCase {
         let doc = TraktorMappingDocument(mappingFile: mappingFile)
 
         let snapshot = try doc.snapshot(contentType: .tsi)
+        let plannedBytes = snapshot.plan.output
+        doc.mappingFile.devices[0].comment = "edited after snapshot"
+        let wrapper = doc.fileWrapper(for: snapshot)
 
-        XCTAssertEqual(snapshot.devices.count, 1)
-        XCTAssertEqual(snapshot.devices.first?.name, "Test Device")
-        XCTAssertEqual(snapshot.devices.first?.mappings.count, 1)
+        XCTAssertEqual(snapshot.mappingFile.devices.count, 1)
+        XCTAssertEqual(snapshot.mappingFile.devices.first?.name, "Test Device")
+        XCTAssertEqual(snapshot.mappingFile.devices.first?.mappings.count, 1)
+        XCTAssertEqual(wrapper.regularFileContents, plannedBytes)
+        XCTAssertNotEqual(snapshot.mappingFile, doc.mappingFile)
+        XCTAssertEqual(snapshot.plan.disposition, .regenerated)
+        doc.discardPendingWrite()
+    }
+
+    func testDocumentInitializationUsesDocumentParserAndRetainsSourceEnvelope() throws {
+        let source = try TSIWriter().write(
+            MappingFile(devices: [Device(name: "Generic MIDI")])
+        )
+        let document = try TraktorMappingDocument(fileContents: source)
+
+        XCTAssertEqual(document.mappingFile.sourceEnvelope?.originalXML, source)
+        XCTAssertEqual(document.mappingFile.devices.count, 1)
+    }
+
+    func testConcurrentWriteReceiptIsRefusedAndDiscardAllowsRetry() throws {
+        let document = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")])
+        )
+        let first = try document.prepareWriteSnapshot()
+
+        XCTAssertThrowsError(try document.prepareWriteSnapshot()) {
+            XCTAssertEqual($0 as? DocumentSaveLifecycleError, .writeAlreadyInFlight)
+        }
+
+        document.discardPendingWrite()
+        let retry = try document.prepareWriteSnapshot()
+        XCTAssertGreaterThan(retry.generation, first.generation)
+        document.discardPendingWrite()
+    }
+
+    @MainActor
+    func testRegeneratedSaveCommitReparsesBytesAndSecondSavePassesThemThrough() throws {
+        let document = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")])
+        )
+        document.noteChange()
+        let first = try document.prepareWriteSnapshot()
+
+        try document.commitPendingWrite()
+
+        XCTAssertEqual(document.mappingFile.sourceEnvelope?.originalXML, first.plan.output)
+        XCTAssertFalse(document.isDirty)
+        let second = try document.prepareWriteSnapshot()
+        XCTAssertEqual(second.plan.disposition, .originalPassthrough)
+        XCTAssertEqual(second.plan.output, first.plan.output)
+        document.discardPendingWrite()
+    }
+
+    @MainActor
+    func testEditDuringSaveKeepsNewerMappingDirtyAgainstCommittedEnvelope() throws {
+        let document = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")])
+        )
+        document.noteChange()
+        let savedSnapshot = try document.prepareWriteSnapshot()
+        document.mappingFile.devices[0].comment = "newer edit"
+        document.noteChange()
+
+        try document.commitPendingWrite()
+
+        XCTAssertEqual(document.mappingFile.devices[0].comment, "newer edit")
+        XCTAssertEqual(
+            document.mappingFile.sourceEnvelope?.originalXML,
+            savedSnapshot.plan.output
+        )
+        XCTAssertTrue(document.isDirty)
+        let next = try document.prepareWriteSnapshot()
+        XCTAssertEqual(next.plan.disposition, .regenerated)
+        XCTAssertNotEqual(next.plan.output, savedSnapshot.plan.output)
+        document.discardPendingWrite()
+    }
+
+    @MainActor
+    func testSaveCoordinatorDiscardsFailureAndRetryCommitsForEverySaveIntent() throws {
+        let nsDocument = ChangeCountRecordingDocument()
+        let document = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")])
+        )
+        document.backingDocument = nsDocument
+        document.noteChange()
+        var started: [DocumentSaveCoordinator.Intent] = []
+        let coordinator = DocumentSaveCoordinator { _, intent, _ in
+            started.append(intent)
+        }
+
+        for intent in DocumentSaveCoordinator.Intent.allCases {
+            var result: Bool?
+            XCTAssertTrue(coordinator.save(document: nsDocument, intent: intent) {
+                result = $0
+            })
+            let failedSnapshot = try document.prepareWriteSnapshot()
+            if intent == .saveAs {
+                XCTAssertEqual(failedSnapshot.plan.disposition, .originalPassthrough)
+            }
+            coordinator.completeSave(document: nsDocument, succeeded: false)
+            XCTAssertEqual(result, false)
+
+            if intent == .saveAs {
+                document.mappingFile.devices[0].comment = "regenerated Save As"
+                document.noteChange()
+            }
+            result = nil
+            XCTAssertTrue(coordinator.save(document: nsDocument, intent: intent) {
+                result = $0
+            })
+            let retrySnapshot = try document.prepareWriteSnapshot()
+            if intent == .saveAs {
+                XCTAssertEqual(retrySnapshot.plan.disposition, .regenerated)
+            }
+            coordinator.completeSave(document: nsDocument, succeeded: true)
+            XCTAssertEqual(result, true)
+            document.noteChange()
+        }
+
+        XCTAssertEqual(started, DocumentSaveCoordinator.Intent.allCases.flatMap { [$0, $0] })
+    }
+
+    @MainActor
+    func testCoordinatorRefusesOverlappingRequestWithoutReplacingCompletion() throws {
+        let nsDocument = ChangeCountRecordingDocument()
+        let document = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")])
+        )
+        document.backingDocument = nsDocument
+        var first: Bool?
+        var second: Bool?
+        let coordinator = DocumentSaveCoordinator { _, _, _ in }
+
+        XCTAssertTrue(coordinator.save(document: nsDocument, intent: .save) { first = $0 })
+        XCTAssertFalse(coordinator.save(document: nsDocument, intent: .saveAs) { second = $0 })
+        XCTAssertEqual(second, false)
+        _ = try document.prepareWriteSnapshot()
+        coordinator.completeSave(document: nsDocument, succeeded: true)
+
+        XCTAssertEqual(first, true)
+    }
+
+    @MainActor
+    func testUndoAfterCommittedSaveDivergesFromSavedBaseline() throws {
+        let original = MappingFile(devices: [Device(name: "Generic MIDI")])
+        let document = TraktorMappingDocument(mappingFile: original)
+        let undoManager = UndoManager()
+        undoManager.groupsByEvent = false
+        undoManager.beginUndoGrouping()
+        _ = document.performUndoableMutation(actionName: "Edit", undoManager: undoManager) {
+            $0.devices[0].comment = "saved"
+        }
+        undoManager.endUndoGrouping()
+        _ = try document.prepareWriteSnapshot()
+        try document.commitPendingWrite()
+
+        undoManager.undo()
+
+        XCTAssertEqual(document.mappingFile, original)
+        XCTAssertTrue(document.isDirty)
+        let next = try document.prepareWriteSnapshot()
+        XCTAssertEqual(next.plan.disposition, .regenerated)
+        document.discardPendingWrite()
+    }
+
+    @MainActor
+    func testLossyConvertedExportReparsesAndDoesNotMutateDocumentState() throws {
+        let directory = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString, isDirectory: true)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let sourceURL = directory.appendingPathComponent("source.tsi")
+        let destinationURL = directory.appendingPathComponent("converted.tsi")
+        let document = try makeLossyDocument(sourceURL: sourceURL)
+        let backing = NSDocument()
+        document.backingDocument = backing
+        let undoManager = try XCTUnwrap(backing.undoManager)
+        undoManager.registerUndo(withTarget: document) { _ in }
+        let beforeMapping = document.mappingFile
+        let beforeEnvelope = document.mappingFile.sourceEnvelope
+        let beforeURL = document.fileURL
+        let beforeDirty = document.isDirty
+        let beforeCanUndo = undoManager.canUndo
+
+        XCTAssertEqual(document.lossyExportRisks.map(\.code), [
+            .unknownFrame,
+            .extraXMLEntry,
+        ])
+        try document.exportLossyConvertedCopy(to: destinationURL)
+
+        let exported = try Data(contentsOf: destinationURL)
+        XCTAssertNoThrow(try TSIParser().parseDocument(exported))
+        XCTAssertEqual(document.mappingFile, beforeMapping)
+        XCTAssertEqual(document.mappingFile.sourceEnvelope, beforeEnvelope)
+        XCTAssertEqual(document.fileURL, beforeURL)
+        XCTAssertEqual(document.isDirty, beforeDirty)
+        XCTAssertEqual(undoManager.canUndo, beforeCanUndo)
+        XCTAssertThrowsError(try document.prepareWriteSnapshot()) {
+            XCTAssertTrue($0 is TSIPreservationError)
+        }
+        XCTAssertThrowsError(try document.exportLossyConvertedCopy(to: directory))
+        XCTAssertEqual(document.mappingFile, beforeMapping)
+        XCTAssertEqual(document.mappingFile.sourceEnvelope, beforeEnvelope)
+        XCTAssertEqual(document.fileURL, beforeURL)
+        XCTAssertEqual(document.isDirty, beforeDirty)
+        XCTAssertEqual(undoManager.canUndo, beforeCanUndo)
+    }
+
+    @MainActor
+    func testLossyExportRejectsStandardizedSymlinkCaseUnicodeAndResourceAliases() throws {
+        let directory = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString, isDirectory: true)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let sourceURL = directory.appendingPathComponent("Résumé.tsi")
+        let document = try makeLossyDocument(sourceURL: sourceURL)
+        let beforeMapping = document.mappingFile
+        let beforeEnvelope = document.mappingFile.sourceEnvelope
+        let beforeURL = document.fileURL
+        let beforeDirty = document.isDirty
+
+        let standardizedAlias = directory.appendingPathComponent("folder/../Résumé.tsi")
+        XCTAssertThrowsError(try document.exportLossyConvertedCopy(to: standardizedAlias)) {
+            XCTAssertEqual($0 as? TSIExportError, .destinationMatchesSource)
+        }
+
+        let symlink = directory.appendingPathComponent("source-link.tsi")
+        try FileManager.default.createSymbolicLink(at: symlink, withDestinationURL: sourceURL)
+        XCTAssertThrowsError(try document.exportLossyConvertedCopy(to: symlink)) {
+            XCTAssertEqual($0 as? TSIExportError, .destinationMatchesSource)
+        }
+
+        let hardLink = directory.appendingPathComponent("source-hard-link.tsi")
+        try FileManager.default.linkItem(at: sourceURL, to: hardLink)
+        XCTAssertThrowsError(try document.exportLossyConvertedCopy(to: hardLink)) {
+            XCTAssertEqual($0 as? TSIExportError, .destinationMatchesSource)
+        }
+
+        XCTAssertTrue(TSIExportDestinationValidator.canonicalPathsMatch(
+            sourceURL,
+            directory.appendingPathComponent("résumé.tsi"),
+            caseSensitive: false
+        ))
+        XCTAssertTrue(TSIExportDestinationValidator.canonicalPathsMatch(
+            sourceURL,
+            directory.appendingPathComponent("Résumé.tsi"),
+            caseSensitive: true
+        ))
+        XCTAssertEqual(document.mappingFile, beforeMapping)
+        XCTAssertEqual(document.mappingFile.sourceEnvelope, beforeEnvelope)
+        XCTAssertEqual(document.fileURL, beforeURL)
+        XCTAssertEqual(document.isDirty, beforeDirty)
+    }
+
+    @MainActor
+    private func makeLossyDocument(sourceURL: URL) throws -> TraktorMappingDocument {
+        let cleanBytes = try TSIWriter().write(
+            MappingFile(devices: [Device(name: "Generic MIDI")])
+        )
+        var imported = try TSIParser().parseDocument(cleanBytes)
+        let envelope = try XCTUnwrap(imported.sourceEnvelope)
+        imported.sourceEnvelope = TSIRawEnvelope(
+            originalXML: envelope.originalXML,
+            controllerValues: envelope.controllerValues,
+            primaryFrames: envelope.primaryFrames,
+            baseline: envelope.baseline,
+            risks: [
+                .init(code: .unknownFrame, path: "/DIOM[0]/JUNK[0]"),
+                .init(code: .extraXMLEntry, path: "/NIXML[0]/TraktorSettings[0]/Entry[0]"),
+            ]
+        )
+        imported.devices[0].comment = "converted edit"
+        try cleanBytes.write(to: sourceURL, options: .atomic)
+        let document = TraktorMappingDocument(mappingFile: imported)
+        document.updateFileURL(sourceURL)
+        document.noteChange()
+        return document
     }
 
     // MARK: - Undoable Mutation Tests

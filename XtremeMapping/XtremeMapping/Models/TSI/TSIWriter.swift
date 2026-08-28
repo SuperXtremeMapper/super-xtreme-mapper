@@ -76,6 +76,33 @@ public struct TSIWriter: Sendable {
         try writeRegenerated(mappingFile, mode: .converted)
     }
 
+    /// Computes the complete document-boundary write once. Callers retain the
+    /// result until the corresponding save completion is known.
+    func makeWritePlan(for mappingFile: MappingFile) throws -> TSIWritePlan {
+        let report = preservationReport(for: mappingFile)
+        let baseline = TSISemanticBaseline(
+            devices: mappingFile.devices,
+            version: mappingFile.version
+        )
+
+        if let envelope = mappingFile.sourceEnvelope,
+           envelope.baseline.matches(mappingFile) {
+            return TSIWritePlan(
+                output: envelope.originalXML,
+                baseline: baseline,
+                report: report,
+                disposition: .originalPassthrough
+            )
+        }
+
+        return TSIWritePlan(
+            output: try write(mappingFile),
+            baseline: baseline,
+            report: report,
+            disposition: .regenerated
+        )
+    }
+
     private func writeRegenerated(
         _ mappingFile: MappingFile,
         mode: OutputMode

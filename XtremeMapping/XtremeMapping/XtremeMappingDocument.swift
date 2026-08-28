@@ -16,9 +16,29 @@ extension UTType {
     }
 }
 
+nonisolated struct DocumentWriteSnapshot: Sendable {
+    let mappingFile: MappingFile
+    let plan: TSIWritePlan
+    let generation: UInt64
+}
+
+nonisolated enum DocumentSaveLifecycleError: Error, Equatable, LocalizedError {
+    case writeAlreadyInFlight
+    case noWriteInFlight
+
+    var errorDescription: String? {
+        switch self {
+        case .writeAlreadyInFlight:
+            "A save is already in progress for this document."
+        case .noWriteInFlight:
+            "There is no pending document write to complete."
+        }
+    }
+}
+
 /// Reference-based document that properly tracks changes for save prompts
 final class TraktorMappingDocument: ReferenceFileDocument {
-    typealias Snapshot = MappingFile
+    typealias Snapshot = DocumentWriteSnapshot
 
     @Published var mappingFile: MappingFile
     @Published private(set) var fileURL: URL?
@@ -27,6 +47,8 @@ final class TraktorMappingDocument: ReferenceFileDocument {
     /// Set when a change arrives before the backing NSDocument is resolved;
     /// flushed (once) the moment `backingDocument` attaches.
     private(set) var hasPendingDirty = false
+    private var nextWriteGeneration: UInt64 = 0
+    private var pendingWrite: DocumentWriteSnapshot?
 
     /// Weak reference to the backing NSDocument for change tracking.
     /// Resolved by `DocumentWindowAccessor` when the document window attaches.
@@ -61,41 +83,87 @@ final class TraktorMappingDocument: ReferenceFileDocument {
         self.mappingFile = mappingFile
     }
 
+    init(fileContents data: Data) throws {
+        self.mappingFile = try TSIParser().parseDocument(data)
+    }
+
     required init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents else {
             throw CocoaError(.fileReadCorruptFile)
         }
 
-        // Parse TSI file
-        let parser = TSIParser()
-
         do {
-            // Step 1: Extract Base64-encoded binary data from XML
-            let base64String = try TSIParser.extractControllerData(from: data)
-
-            // Step 2: Decode Base64 to binary data
-            let binaryData = try parser.decodeBase64(base64String)
-
-            // Step 3: Parse frames from binary data
-            let frames = try parser.parseFrames(from: binaryData)
-
-            // Step 4: Interpret frames into mappings
-            self.mappingFile = try TSIInterpreter.interpret(frames: frames)
-
+            self.mappingFile = try TSIParser().parseDocument(data)
         } catch {
             print("TSI Parser error: \(error)")
             throw error
         }
     }
 
-    func snapshot(contentType: UTType) throws -> MappingFile {
-        return mappingFile
+    func prepareWriteSnapshot() throws -> DocumentWriteSnapshot {
+        guard pendingWrite == nil else {
+            throw DocumentSaveLifecycleError.writeAlreadyInFlight
+        }
+
+        let capturedMapping = mappingFile
+        let plan = try TSIWriter().makeWritePlan(for: capturedMapping)
+        nextWriteGeneration &+= 1
+        let snapshot = DocumentWriteSnapshot(
+            mappingFile: capturedMapping,
+            plan: plan,
+            generation: nextWriteGeneration
+        )
+        pendingWrite = snapshot
+        return snapshot
     }
 
-    func fileWrapper(snapshot: MappingFile, configuration: WriteConfiguration) throws -> FileWrapper {
-        let writer = TSIWriter()
-        let data = try writer.write(snapshot)
-        return FileWrapper(regularFileWithContents: data)
+    func snapshot(contentType: UTType) throws -> DocumentWriteSnapshot {
+        try prepareWriteSnapshot()
+    }
+
+    func fileWrapper(for snapshot: DocumentWriteSnapshot) -> FileWrapper {
+        FileWrapper(regularFileWithContents: snapshot.plan.output)
+    }
+
+    func fileWrapper(
+        snapshot: DocumentWriteSnapshot,
+        configuration: WriteConfiguration
+    ) throws -> FileWrapper {
+        fileWrapper(for: snapshot)
+    }
+
+    /// Finalizes the sole receipt only after NSDocument reports success.
+    func commitPendingWrite() throws {
+        guard let receipt = pendingWrite else {
+            throw DocumentSaveLifecycleError.noWriteInFlight
+        }
+
+        if receipt.plan.disposition == .regenerated {
+            let reparsed = try TSIParser().parseDocument(receipt.plan.output)
+            guard let parsedEnvelope = reparsed.sourceEnvelope else {
+                throw CocoaError(.fileReadCorruptFile)
+            }
+            mappingFile.sourceEnvelope = TSIRawEnvelope(
+                originalXML: parsedEnvelope.originalXML,
+                controllerValues: parsedEnvelope.controllerValues,
+                primaryFrames: parsedEnvelope.primaryFrames,
+                baseline: receipt.plan.baseline,
+                risks: parsedEnvelope.risks
+            )
+        }
+
+        pendingWrite = nil
+        let savedMappingIsCurrent = receipt.plan.baseline.matches(mappingFile)
+        isDirty = !savedMappingIsCurrent
+        if savedMappingIsCurrent {
+            hasPendingDirty = false
+        }
+        objectWillChange.send()
+    }
+
+    /// Cancels correlation after a failed or user-cancelled NSDocument save.
+    func discardPendingWrite() {
+        pendingWrite = nil
     }
 
     @MainActor
@@ -227,5 +295,10 @@ final class TraktorMappingDocument: ReferenceFileDocument {
         } else {
             markClean(for: nsDocument.fileURL)
         }
+    }
+
+    static func registeredDocument(for nsDocument: NSDocument) -> TraktorMappingDocument? {
+        nsDocumentRegistry.object(forKey: nsDocument)
+            ?? nsDocument.fileURL.flatMap { documentRegistry.object(forKey: $0 as NSURL) }
     }
 }
