@@ -419,12 +419,37 @@ struct AboutView: View {
 /// App delegate to handle launch behavior and document management
 @MainActor
 class AppDelegate: NSObject, NSApplicationDelegate {
+    typealias SavePromptPresenter = @MainActor (
+        _ document: NSDocument,
+        _ window: NSWindow?,
+        _ completion: @escaping (SaveDecision) -> Void
+    ) -> Void
+
     /// Identifier stamped onto the welcome window by its content view's
     /// window accessor (SwiftUI does not guarantee the scene id propagates).
     static let welcomeWindowIdentifier = NSUserInterfaceItemIdentifier("sxm-welcome")
 
     private var windowDelegates: [ObjectIdentifier: DocumentWindowDelegateProxy] = [:]
+    private var closeSentinelControllers: [ObjectIdentifier: NSWindowController] = [:]
     private var pendingTerminationDocuments: [NSDocument] = []
+    private var saveReceiptObserver: DocumentSaveReceiptObserver?
+    private let saveCoordinator: DocumentSaveCoordinator
+    private let savePromptPresenter: SavePromptPresenter?
+
+    override init() {
+        self.saveCoordinator = .shared
+        self.savePromptPresenter = nil
+        super.init()
+    }
+
+    init(
+        saveCoordinator: DocumentSaveCoordinator,
+        savePromptPresenter: SavePromptPresenter?
+    ) {
+        self.saveCoordinator = saveCoordinator
+        self.savePromptPresenter = savePromptPresenter
+        super.init()
+    }
 
     /// Identify the welcome window by identifier — NEVER by title (a document
     /// named "Welcome Mix.tsi" must not match).
@@ -435,7 +460,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         // Disable autosaving (users should save manually)
-        NSDocumentController.shared.autosavingDelay = -1
+        Self.disablePeriodicAutosave(on: .shared)
+        saveReceiptObserver = DocumentSaveReceiptObserver()
 
         // Observe window close notifications to reopen welcome when last document closes
         NotificationCenter.default.addObserver(
@@ -454,6 +480,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // Check for updates on launch, then show welcome window
         checkForUpdatesOnLaunch()
+    }
+
+    static func disablePeriodicAutosave(on documentController: NSDocumentController) {
+        // AppKit documents 0 as the value that disables periodic autosaving.
+        documentController.autosavingDelay = 0
     }
 
     /// Check for updates on app launch, then show welcome window
@@ -565,9 +596,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         attachDocumentDelegateIfNeeded(to: window)
     }
 
-    private func attachDocumentDelegateIfNeeded(to window: NSWindow) {
-        guard window.windowController?.document != nil else { return }
+    func attachDocumentDelegateIfNeeded(to window: NSWindow) {
+        guard let controller = window.windowController,
+              let document = controller.document as? NSDocument else { return }
         guard !(window.delegate is DocumentWindowDelegateProxy) else { return }
+
+        // NSWindow asks NSDocument.shouldCloseWindowController before it asks
+        // windowShouldClose. A false flag bypasses native canClose only when
+        // another controller exists, so retain a no-window sentinel for the
+        // lifetime of the document and let our proxy own every close decision.
+        controller.shouldCloseDocument = false
+        let documentIdentifier = ObjectIdentifier(document)
+        if closeSentinelControllers[documentIdentifier] == nil {
+            let sentinel = NSWindowController(window: nil)
+            sentinel.shouldCloseDocument = false
+            document.addWindowController(sentinel)
+            closeSentinelControllers[documentIdentifier] = sentinel
+        }
 
         let identifier = ObjectIdentifier(window)
         if windowDelegates[identifier] == nil {
@@ -604,6 +649,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     fileprivate func promptToSave(document: NSDocument, window: NSWindow?, completion: @escaping (SaveDecision) -> Void) {
+        if let savePromptPresenter {
+            savePromptPresenter(document, window, completion)
+            return
+        }
+
         let alert = NSAlert()
         alert.messageText = "Do you want to save the changes made to the document \"\(document.displayName ?? "Untitled")\"?"
         alert.informativeText = "Your changes will be lost if you don't save them."
@@ -655,7 +705,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     TraktorMappingDocument.markClean(for: document.fileURL)
                     document.updateChangeCount(.changeCleared)
                 }
-                document.close()
+                self.closeDocument(document)
                 self.promptNextTerminationDocument()
             case .cancel:
                 NSApp.reply(toApplicationShouldTerminate: false)
@@ -668,16 +718,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         intent: DocumentSaveCoordinator.Intent = .save,
         completion: @escaping (Bool) -> Void
     ) {
-        DocumentSaveCoordinator.shared.save(
+        saveCoordinator.save(
             document: document,
             intent: intent,
             completion: completion
         )
     }
+
+    fileprivate func closeDocument(_ document: NSDocument) {
+        let identifier = ObjectIdentifier(document)
+        if let sentinel = closeSentinelControllers.removeValue(forKey: identifier) {
+            document.removeWindowController(sentinel)
+        }
+        document.close()
+    }
 }
 
 // MARK: - Document Window Delegate
 
+@MainActor
 final class DocumentWindowDelegateProxy: NSObject, NSWindowDelegate {
     private let originalDelegate: NSWindowDelegate?
     private let appDelegate: AppDelegate
@@ -713,10 +772,9 @@ final class DocumentWindowDelegateProxy: NSObject, NSWindowDelegate {
         }
 
         guard let document = sender.windowController?.document as? NSDocument else { return true }
-        // Use NSDocument's built-in change tracking (isDocumentEdited), not custom isDirty
-        // NSDocument properly tracks save state; our custom tracking doesn't get save notifications
         if !document.isDocumentEdited {
-            return true
+            appDelegate.closeDocument(document)
+            return false
         }
 
         appDelegate.promptToSave(document: document, window: sender) { [weak self] decision in
@@ -725,15 +783,15 @@ final class DocumentWindowDelegateProxy: NSObject, NSWindowDelegate {
             case .save:
                 self.appDelegate.save(document: document, intent: .close) { didSave in
                     if didSave {
-                        document.close()
+                        self.appDelegate.closeDocument(document)
                     }
                 }
             case .discard:
                 Task { @MainActor in
-                    TraktorMappingDocument.markClean(for: document.fileURL)
+                    TraktorMappingDocument.markClean(nsDocument: document)
                     document.updateChangeCount(.changeCleared)
+                    self.appDelegate.closeDocument(document)
                 }
-                document.close()
             case .cancel:
                 break
             }
@@ -742,7 +800,7 @@ final class DocumentWindowDelegateProxy: NSObject, NSWindowDelegate {
     }
 }
 
-private enum SaveDecision {
+enum SaveDecision {
     case save
     case discard
     case cancel

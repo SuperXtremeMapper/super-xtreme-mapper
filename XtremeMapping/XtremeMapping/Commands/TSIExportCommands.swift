@@ -1,4 +1,5 @@
 import AppKit
+import Darwin
 import SwiftUI
 
 private struct TSILossyExportAvailabilityKey: FocusedValueKey {
@@ -51,6 +52,12 @@ final class DocumentSaveCoordinator: NSObject {
             return false
         }
 
+        let model = TraktorMappingDocument.registeredDocument(for: document)
+        guard model?.beginCoordinatedWrite() != false else {
+            completion(false)
+            return false
+        }
+
         completions[identifier] = completion
         beginSave(document, intent, self)
         return true
@@ -63,14 +70,11 @@ final class DocumentSaveCoordinator: NSObject {
             completion(succeeded)
             return
         }
+        defer { model.endCoordinatedWrite() }
 
         if succeeded {
             do {
-                try model.commitPendingWrite()
-                completion(true)
-            } catch DocumentSaveLifecycleError.noWriteInFlight {
-                // NSDocument may complete a no-op save without requesting a
-                // file wrapper. There is no receipt to correlate in that case.
+                _ = try model.commitPendingWriteIfPresent()
                 completion(true)
             } catch {
                 model.discardPendingWrite()
@@ -116,14 +120,62 @@ final class DocumentSaveCoordinator: NSObject {
     }
 }
 
+/// Success-only compatibility path for native responder saves and Save All.
+/// The receipt commit is idempotent, so notification/callback order is safe.
+@MainActor
+final class DocumentSaveReceiptObserver: NSObject {
+    typealias ErrorHandler = @MainActor (Error) -> Void
+
+    private let center: NotificationCenter
+    private let errorHandler: ErrorHandler
+
+    init(
+        center: NotificationCenter = .default,
+        errorHandler: @escaping ErrorHandler = { NSApp.presentError($0) }
+    ) {
+        self.center = center
+        self.errorHandler = errorHandler
+        super.init()
+        center.addObserver(
+            self,
+            selector: #selector(documentDidSave(_:)),
+            name: Notification.Name("NSDocumentDidSaveNotification"),
+            object: nil
+        )
+    }
+
+    deinit {
+        center.removeObserver(self)
+    }
+
+    @objc private func documentDidSave(_ notification: Notification) {
+        guard let document = notification.object as? NSDocument else { return }
+        let operationKey = "NSDocumentSaveOperation"
+        if let operation = (notification.userInfo?[operationKey] as? NSNumber)?.intValue,
+           operation == NSDocument.SaveOperationType.autosaveElsewhereOperation.rawValue {
+            return
+        }
+        guard let model = TraktorMappingDocument.registeredDocument(for: document) else { return }
+        do {
+            _ = try model.commitPendingWriteIfPresent()
+        } catch {
+            model.discardPendingWrite()
+            errorHandler(error)
+        }
+    }
+}
+
 enum TSIExportError: Error, Equatable, LocalizedError {
     case destinationMatchesSource
+    case destinationAlreadyExists
     case requiresLossyConvertible
 
     var errorDescription: String? {
         switch self {
         case .destinationMatchesSource:
             "Choose a destination that is not the source TSI or an alias of it."
+        case .destinationAlreadyExists:
+            "Choose a new destination. Converted export never replaces an existing filesystem entry."
         case .requiresLossyConvertible:
             "Converted export is available only when the preservation report identifies lossy source data."
         }
@@ -131,6 +183,15 @@ enum TSIExportError: Error, Equatable, LocalizedError {
 }
 
 enum TSIExportDestinationValidator {
+    static func validateNewDestination(source: URL?, destination: URL) throws {
+        if let source, isSameFile(source: source, destination: destination) {
+            throw TSIExportError.destinationMatchesSource
+        }
+        if entryExistsWithoutFollowing(at: destination) {
+            throw TSIExportError.destinationAlreadyExists
+        }
+    }
+
     static func isSameFile(source: URL, destination: URL) -> Bool {
         let standardizedSource = source.standardizedFileURL
         let standardizedDestination = destination.standardizedFileURL
@@ -182,6 +243,98 @@ enum TSIExportDestinationValidator {
             forKeys: [.volumeSupportsCaseSensitiveNamesKey]
         ).volumeSupportsCaseSensitiveNames) ?? true
     }
+
+    private static func entryExistsWithoutFollowing(at url: URL) -> Bool {
+        var status = stat()
+        return url.withUnsafeFileSystemRepresentation { path in
+            guard let path else { return false }
+            return lstat(path, &status) == 0
+        }
+    }
+}
+
+/// Publishes a complete file atomically without following or replacing any
+/// destination entry. The exclusive rename closes the final TOCTOU window.
+enum TSIExclusiveAtomicWriter {
+    static func publish(_ data: Data, to destination: URL) throws {
+        let directory = destination.deletingLastPathComponent()
+        let temporary = directory.appendingPathComponent(
+            ".sxm-export-\(UUID().uuidString).tmp"
+        )
+        let descriptor: Int32 = temporary.withUnsafeFileSystemRepresentation { path in
+            guard let path else { return Int32(-1) }
+            return Darwin.open(
+                path,
+                O_WRONLY | O_CREAT | O_EXCL | O_NOFOLLOW,
+                S_IRUSR | S_IWUSR
+            )
+        }
+        guard descriptor >= 0 else { throw posixError(errno) }
+
+        var descriptorIsOpen = true
+        var temporaryExists = true
+        defer {
+            if descriptorIsOpen { _ = Darwin.close(descriptor) }
+            if temporaryExists {
+                temporary.withUnsafeFileSystemRepresentation { path in
+                    if let path { _ = unlink(path) }
+                }
+            }
+        }
+
+        try data.withUnsafeBytes { bytes in
+            var offset = 0
+            while offset < bytes.count {
+                guard let baseAddress = bytes.baseAddress else { break }
+                let count = Darwin.write(
+                    descriptor,
+                    baseAddress.advanced(by: offset),
+                    bytes.count - offset
+                )
+                if count < 0 {
+                    if errno == EINTR { continue }
+                    throw posixError(errno)
+                }
+                offset += count
+            }
+        }
+        guard fsync(descriptor) == 0 else { throw posixError(errno) }
+        guard Darwin.close(descriptor) == 0 else { throw posixError(errno) }
+        descriptorIsOpen = false
+
+        let renameResult: Int32 = temporary.withUnsafeFileSystemRepresentation { sourcePath in
+            destination.withUnsafeFileSystemRepresentation { destinationPath in
+                guard let sourcePath, let destinationPath else { return Int32(-1) }
+                return renameatx_np(
+                    AT_FDCWD,
+                    sourcePath,
+                    AT_FDCWD,
+                    destinationPath,
+                    UInt32(RENAME_EXCL)
+                )
+            }
+        }
+        guard renameResult == 0 else {
+            if errno == EEXIST {
+                throw TSIExportError.destinationAlreadyExists
+            }
+            throw posixError(errno)
+        }
+        temporaryExists = false
+    }
+
+    private static func posixError(_ code: Int32) -> POSIXError {
+        POSIXError(POSIXErrorCode(rawValue: code) ?? .EIO)
+    }
+}
+
+enum TSIExportRiskPresenter {
+    static func warningText(for risks: [TSIPreservationRisk]) -> String {
+        risks.enumerated().map { index, risk in
+            let detail = risk.detail.isEmpty ? "" : " — \(risk.detail)"
+            return "\(index + 1). \(risk.code.rawValue): \(risk.path)\(detail)"
+        }.joined(separator: "\n")
+    }
 }
 
 extension TraktorMappingDocument {
@@ -192,25 +345,20 @@ extension TraktorMappingDocument {
 
     func exportLossyConvertedCopy(to destination: URL) throws {
         let writer = TSIWriter()
-        let report = writer.preservationReport(for: mappingFile)
-        guard report.disposition == .lossyConvertible else {
-            if report.disposition == .unwritable {
-                _ = try writer.writeConverted(mappingFile)
-            }
+        let plan = try writer.makeConvertedWritePlan(for: mappingFile)
+        guard plan.report.disposition == .lossyConvertible else {
             throw TSIExportError.requiresLossyConvertible
         }
 
-        if let fileURL,
-           TSIExportDestinationValidator.isSameFile(
-               source: fileURL,
-               destination: destination
-           ) {
-            throw TSIExportError.destinationMatchesSource
-        }
-
-        let output = try writer.writeConverted(mappingFile)
-        _ = try TSIParser().parseDocument(output)
-        try output.write(to: destination, options: .atomic)
+        _ = try TSIParser().parseDocument(plan.output)
+        // Recompute identity after serialization and parsing. Publication then
+        // uses an exclusive atomic rename, so a swapped alias cannot replace
+        // the source (or any other existing filesystem entry).
+        try TSIExportDestinationValidator.validateNewDestination(
+            source: fileURL,
+            destination: destination
+        )
+        try TSIExclusiveAtomicWriter.publish(plan.output, to: destination)
         _ = try TSIParser().parseDocument(Data(contentsOf: destination))
     }
 }
@@ -238,9 +386,7 @@ enum TSIExportCommandActions {
         let alert = NSAlert()
         alert.alertStyle = .warning
         alert.messageText = "Export a lossy converted copy?"
-        alert.informativeText = risks.enumerated().map { index, risk in
-            "\(index + 1). \(risk.code.rawValue): \(risk.path)"
-        }.joined(separator: "\n")
+        alert.informativeText = TSIExportRiskPresenter.warningText(for: risks)
         alert.addButton(withTitle: "Choose Destination…")
         alert.addButton(withTitle: "Cancel")
         guard alert.runModal() == .alertFirstButtonReturn else { return }

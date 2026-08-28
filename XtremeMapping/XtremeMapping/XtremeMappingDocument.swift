@@ -40,6 +40,16 @@ nonisolated enum DocumentSaveLifecycleError: Error, Equatable, LocalizedError {
 final class TraktorMappingDocument: ReferenceFileDocument {
     typealias Snapshot = DocumentWriteSnapshot
 
+    private enum WriteReceiptOrigin: Equatable {
+        case coordinated
+        case uncoordinated
+    }
+
+    private struct PendingWriteReceipt {
+        let snapshot: DocumentWriteSnapshot
+        let origin: WriteReceiptOrigin
+    }
+
     @Published var mappingFile: MappingFile
     @Published private(set) var fileURL: URL?
     @Published private(set) var isDirty = false
@@ -48,7 +58,9 @@ final class TraktorMappingDocument: ReferenceFileDocument {
     /// flushed (once) the moment `backingDocument` attaches.
     private(set) var hasPendingDirty = false
     private var nextWriteGeneration: UInt64 = 0
-    private var pendingWrite: DocumentWriteSnapshot?
+    private var pendingWrite: PendingWriteReceipt?
+    private var coordinatedWriteInFlight = false
+    private var coordinatedSnapshotPrepared = false
 
     /// Weak reference to the backing NSDocument for change tracking.
     /// Resolved by `DocumentWindowAccessor` when the document window attaches.
@@ -101,8 +113,20 @@ final class TraktorMappingDocument: ReferenceFileDocument {
     }
 
     func prepareWriteSnapshot() throws -> DocumentWriteSnapshot {
-        guard pendingWrite == nil else {
-            throw DocumentSaveLifecycleError.writeAlreadyInFlight
+        let origin: WriteReceiptOrigin
+        if coordinatedWriteInFlight {
+            guard !coordinatedSnapshotPrepared else {
+                throw DocumentSaveLifecycleError.writeAlreadyInFlight
+            }
+            origin = .coordinated
+        } else {
+            if pendingWrite?.origin == .coordinated {
+                throw DocumentSaveLifecycleError.writeAlreadyInFlight
+            }
+            // NSDocument serializes writes. If an uncoordinated native write
+            // failed, it emits no success notification, so arrival of the next
+            // serialized snapshot is the only safe abandonment boundary.
+            origin = .uncoordinated
         }
 
         let capturedMapping = mappingFile
@@ -113,7 +137,10 @@ final class TraktorMappingDocument: ReferenceFileDocument {
             plan: plan,
             generation: nextWriteGeneration
         )
-        pendingWrite = snapshot
+        pendingWrite = PendingWriteReceipt(snapshot: snapshot, origin: origin)
+        if origin == .coordinated {
+            coordinatedSnapshotPrepared = true
+        }
         return snapshot
     }
 
@@ -134,9 +161,17 @@ final class TraktorMappingDocument: ReferenceFileDocument {
 
     /// Finalizes the sole receipt only after NSDocument reports success.
     func commitPendingWrite() throws {
-        guard let receipt = pendingWrite else {
+        guard try commitPendingWriteIfPresent() else {
             throw DocumentSaveLifecycleError.noWriteInFlight
         }
+    }
+
+    /// Idempotent completion used by both the coordinator callback and the
+    /// native NSDocument success notification fallback.
+    @discardableResult
+    func commitPendingWriteIfPresent() throws -> Bool {
+        guard let pendingReceipt = pendingWrite else { return false }
+        let receipt = pendingReceipt.snapshot
 
         if receipt.plan.disposition == .regenerated {
             let reparsed = try TSIParser().parseDocument(receipt.plan.output)
@@ -159,11 +194,27 @@ final class TraktorMappingDocument: ReferenceFileDocument {
             hasPendingDirty = false
         }
         objectWillChange.send()
+        return true
     }
 
     /// Cancels correlation after a failed or user-cancelled NSDocument save.
     func discardPendingWrite() {
         pendingWrite = nil
+    }
+
+    /// Marks the AppKit operation before it can request a SwiftUI snapshot.
+    /// The separate prepared bit prevents a notification-first completion
+    /// from allowing a second receipt before the callback ends the operation.
+    func beginCoordinatedWrite() -> Bool {
+        guard !coordinatedWriteInFlight else { return false }
+        coordinatedWriteInFlight = true
+        coordinatedSnapshotPrepared = false
+        return true
+    }
+
+    func endCoordinatedWrite() {
+        coordinatedWriteInFlight = false
+        coordinatedSnapshotPrepared = false
     }
 
     @MainActor

@@ -96,19 +96,38 @@ final class DocumentTests: XCTestCase {
         XCTAssertEqual(document.mappingFile.devices.count, 1)
     }
 
+    @MainActor
     func testConcurrentWriteReceiptIsRefusedAndDiscardAllowsRetry() throws {
+        let nsDocument = ChangeCountRecordingDocument()
         let document = TraktorMappingDocument(
             mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")])
         )
+        document.backingDocument = nsDocument
+        let coordinator = DocumentSaveCoordinator { _, _, _ in }
+        XCTAssertTrue(coordinator.save(document: nsDocument, intent: .save))
         let first = try document.prepareWriteSnapshot()
 
         XCTAssertThrowsError(try document.prepareWriteSnapshot()) {
             XCTAssertEqual($0 as? DocumentSaveLifecycleError, .writeAlreadyInFlight)
         }
 
-        document.discardPendingWrite()
+        coordinator.completeSave(document: nsDocument, succeeded: false)
         let retry = try document.prepareWriteSnapshot()
         XCTAssertGreaterThan(retry.generation, first.generation)
+        document.discardPendingWrite()
+    }
+
+    func testFailedUncoordinatedReceiptIsReplacedByNextSerializedSnapshot() throws {
+        let document = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")])
+        )
+        let orphan = try document.prepareWriteSnapshot()
+        document.mappingFile.devices[0].comment = "retry after native failure"
+
+        let retry = try document.prepareWriteSnapshot()
+
+        XCTAssertGreaterThan(retry.generation, orphan.generation)
+        XCTAssertNotEqual(retry.plan.output, orphan.plan.output)
         document.discardPendingWrite()
     }
 
@@ -217,6 +236,168 @@ final class DocumentTests: XCTestCase {
         coordinator.completeSave(document: nsDocument, succeeded: true)
 
         XCTAssertEqual(first, true)
+    }
+
+    @MainActor
+    func testAppKitCoordinatorRoutesSaveAndSaveAsThroughActualSelectorCompletion() throws {
+        let nsDocument = AppKitSaveRecordingDocument()
+        let document = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")])
+        )
+        document.backingDocument = nsDocument
+        document.noteChange()
+        let coordinator = DocumentSaveCoordinator()
+        var saveResult: Bool?
+
+        XCTAssertTrue(coordinator.save(document: nsDocument, intent: .save) {
+            saveResult = $0
+        })
+        XCTAssertEqual(nsDocument.routes, [.save])
+        _ = try document.prepareWriteSnapshot()
+        nsDocument.finishSave(succeeded: false)
+        XCTAssertEqual(saveResult, false)
+        XCTAssertTrue(nsDocument.isDocumentEdited)
+
+        var saveAsResult: Bool?
+        XCTAssertTrue(coordinator.save(document: nsDocument, intent: .saveAs) {
+            saveAsResult = $0
+        })
+        XCTAssertEqual(nsDocument.routes, [.save, .savePanel(.saveAsOperation)])
+        _ = try document.prepareWriteSnapshot()
+        nsDocument.finishSave(succeeded: true)
+
+        XCTAssertEqual(saveAsResult, true)
+        XCTAssertFalse(document.isDirty)
+        XCTAssertFalse(nsDocument.isDocumentEdited)
+    }
+
+    @MainActor
+    func testSaveNotificationFallbackCommitsNativeAndIsIdempotentWithCoordinatorOrdering() throws {
+        let center = NotificationCenter()
+        var observedErrors: [Error] = []
+        let observer = DocumentSaveReceiptObserver(center: center) {
+            observedErrors.append($0)
+        }
+        let nsDocument = ChangeCountRecordingDocument()
+        let document = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")])
+        )
+        document.backingDocument = nsDocument
+
+        let native = try document.prepareWriteSnapshot()
+        center.post(name: Notification.Name("NSDocumentDidSaveNotification"), object: nsDocument)
+        center.post(name: Notification.Name("NSDocumentDidSaveNotification"), object: nsDocument)
+        XCTAssertEqual(document.mappingFile.sourceEnvelope?.originalXML, native.plan.output)
+
+        let coordinator = DocumentSaveCoordinator { _, _, _ in }
+        document.mappingFile.devices[0].comment = "notification before callback"
+        document.noteChange()
+        var notificationFirstResult: Bool?
+        XCTAssertTrue(coordinator.save(document: nsDocument, intent: .save) {
+            notificationFirstResult = $0
+        })
+        let notificationFirst = try document.prepareWriteSnapshot()
+        center.post(name: Notification.Name("NSDocumentDidSaveNotification"), object: nsDocument)
+        XCTAssertEqual(
+            document.mappingFile.sourceEnvelope?.originalXML,
+            notificationFirst.plan.output
+        )
+        XCTAssertThrowsError(try document.prepareWriteSnapshot()) {
+            XCTAssertEqual($0 as? DocumentSaveLifecycleError, .writeAlreadyInFlight)
+        }
+        coordinator.completeSave(document: nsDocument, succeeded: true)
+        XCTAssertEqual(notificationFirstResult, true)
+
+        document.mappingFile.devices[0].comment = "callback before notification"
+        document.noteChange()
+        var callbackFirstResult: Bool?
+        XCTAssertTrue(coordinator.save(document: nsDocument, intent: .save) {
+            callbackFirstResult = $0
+        })
+        let callbackFirst = try document.prepareWriteSnapshot()
+        coordinator.completeSave(document: nsDocument, succeeded: true)
+        center.post(name: Notification.Name("NSDocumentDidSaveNotification"), object: nsDocument)
+
+        XCTAssertEqual(callbackFirstResult, true)
+        XCTAssertEqual(document.mappingFile.sourceEnvelope?.originalXML, callbackFirst.plan.output)
+        XCTAssertTrue(observedErrors.isEmpty)
+        let next = try document.prepareWriteSnapshot()
+        XCTAssertGreaterThan(next.generation, callbackFirst.generation)
+        document.discardPendingWrite()
+        withExtendedLifetime(observer) {}
+    }
+
+    @MainActor
+    func testDocumentClosePreflightDefersToProxyAndSaveCompletionControlsClose() throws {
+        let nsDocument = AppKitSaveRecordingDocument()
+        let controller = NSWindowController(window: makeOffscreenWindow())
+        let window = try XCTUnwrap(controller.window)
+        nsDocument.addWindowController(controller)
+        let document = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")])
+        )
+        document.backingDocument = nsDocument
+        document.noteChange()
+        window.orderFront(nil)
+        defer { window.orderOut(nil) }
+
+        var prompts: [(SaveDecision) -> Void] = []
+        let coordinator = DocumentSaveCoordinator()
+        let appDelegate = AppDelegate(
+            saveCoordinator: coordinator,
+            savePromptPresenter: { _, _, completion in
+                prompts.append(completion)
+            }
+        )
+        appDelegate.attachDocumentDelegateIfNeeded(to: window)
+        let proxy = try XCTUnwrap(window.delegate as? DocumentWindowDelegateProxy)
+
+        XCTAssertFalse(controller.shouldCloseDocument)
+        XCTAssertEqual(nsDocument.windowControllers.count, 2)
+        let preflight = WindowClosePreflightRecorder()
+        nsDocument.shouldCloseWindowController(
+            controller,
+            delegate: preflight,
+            shouldClose: #selector(WindowClosePreflightRecorder.document(_:shouldClose:contextInfo:)),
+            contextInfo: nil
+        )
+        XCTAssertEqual(preflight.results, [true], "AppKit preflight must complete synchronously")
+
+        XCTAssertFalse(proxy.windowShouldClose(window))
+        XCTAssertEqual(prompts.count, 1)
+        prompts.removeFirst()(.cancel)
+        XCTAssertTrue(window.isVisible)
+        XCTAssertTrue(nsDocument.isDocumentEdited)
+
+        XCTAssertFalse(proxy.windowShouldClose(window))
+        prompts.removeFirst()(.save)
+        XCTAssertEqual(nsDocument.routes.last, .save)
+        _ = try document.prepareWriteSnapshot()
+        nsDocument.finishSave(succeeded: false)
+        XCTAssertTrue(window.isVisible)
+        XCTAssertTrue(nsDocument.isDocumentEdited)
+        let failureRetry = try document.prepareWriteSnapshot()
+        document.discardPendingWrite()
+
+        XCTAssertFalse(proxy.windowShouldClose(window))
+        prompts.removeFirst()(.save)
+        let successRetry = try document.prepareWriteSnapshot()
+        XCTAssertGreaterThan(successRetry.generation, failureRetry.generation)
+        nsDocument.finishSave(succeeded: true)
+
+        XCTAssertFalse(window.isVisible)
+        XCTAssertFalse(document.isDirty)
+        XCTAssertFalse(nsDocument.isDocumentEdited)
+    }
+
+    @MainActor
+    func testAppDelegateDisablesPeriodicAutosaveWithDocumentedZeroValue() {
+        let documentController = NSDocumentController()
+        documentController.autosavingDelay = 30
+
+        AppDelegate.disablePeriodicAutosave(on: documentController)
+
+        XCTAssertEqual(documentController.autosavingDelay, 0)
     }
 
     @MainActor
@@ -329,6 +510,58 @@ final class DocumentTests: XCTestCase {
         XCTAssertEqual(document.mappingFile.sourceEnvelope, beforeEnvelope)
         XCTAssertEqual(document.fileURL, beforeURL)
         XCTAssertEqual(document.isDirty, beforeDirty)
+    }
+
+    @MainActor
+    func testLossyExportRefusesExistingDestinationWithoutChangingEitherFile() throws {
+        let directory = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString, isDirectory: true)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let sourceURL = directory.appendingPathComponent("source.tsi")
+        let destinationURL = directory.appendingPathComponent("existing.tsi")
+        let document = try makeLossyDocument(sourceURL: sourceURL)
+        let sourceBefore = try Data(contentsOf: sourceURL)
+        let destinationBefore = Data("existing destination".utf8)
+        try destinationBefore.write(to: destinationURL)
+        let mappingBefore = document.mappingFile
+
+        XCTAssertThrowsError(try document.exportLossyConvertedCopy(to: destinationURL)) {
+            XCTAssertEqual($0 as? TSIExportError, .destinationAlreadyExists)
+        }
+
+        XCTAssertEqual(try Data(contentsOf: sourceURL), sourceBefore)
+        XCTAssertEqual(try Data(contentsOf: destinationURL), destinationBefore)
+        XCTAssertEqual(document.mappingFile, mappingBefore)
+    }
+
+    func testExclusiveAtomicExportPublisherNeverFollowsOrReplacesExistingDestination() throws {
+        let directory = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString, isDirectory: true)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let destination = directory.appendingPathComponent("existing.tsi")
+        let existing = Data("keep me".utf8)
+        try existing.write(to: destination)
+
+        XCTAssertThrowsError(
+            try TSIExclusiveAtomicWriter.publish(Data("replacement".utf8), to: destination)
+        ) {
+            XCTAssertEqual($0 as? TSIExportError, .destinationAlreadyExists)
+        }
+        XCTAssertEqual(try Data(contentsOf: destination), existing)
+    }
+
+    func testLossyRiskWarningIncludesOrderedDetail() {
+        let risks = [
+            TSIPreservationRisk(code: .unknownFrame, path: "/DIOM/JUNK", detail: "JUNK"),
+            TSIPreservationRisk(code: .extraXMLEntry, path: "/NIXML/Entry"),
+        ]
+
+        XCTAssertEqual(
+            TSIExportRiskPresenter.warningText(for: risks),
+            "1. unknownFrame: /DIOM/JUNK — JUNK\n2. extraXMLEntry: /NIXML/Entry"
+        )
     }
 
     @MainActor
@@ -911,6 +1144,97 @@ final class ChangeCountRecordingDocument: NSDocument {
     override func updateChangeCount(_ change: NSDocument.ChangeType) {
         recordedChanges.append(change)
         // Deliberately no super call — keep the double inert.
+    }
+}
+
+@MainActor
+final class AppKitSaveRecordingDocument: NSDocument {
+    enum Route: Equatable {
+        case save
+        case savePanel(NSDocument.SaveOperationType)
+    }
+
+    private struct PendingCallback {
+        let delegate: AnyObject
+        let selector: Selector
+        let contextInfo: UnsafeMutableRawPointer?
+    }
+
+    private(set) var routes: [Route] = []
+    private var callbacks: [PendingCallback] = []
+
+    override func save(
+        withDelegate delegate: Any?,
+        didSave didSaveSelector: Selector?,
+        contextInfo: UnsafeMutableRawPointer?
+    ) {
+        routes.append(.save)
+        recordCallback(delegate: delegate, selector: didSaveSelector, contextInfo: contextInfo)
+    }
+
+    override func runModalSavePanel(
+        for saveOperation: NSDocument.SaveOperationType,
+        delegate: Any?,
+        didSave didSaveSelector: Selector?,
+        contextInfo: UnsafeMutableRawPointer?
+    ) {
+        routes.append(.savePanel(saveOperation))
+        recordCallback(delegate: delegate, selector: didSaveSelector, contextInfo: contextInfo)
+    }
+
+    func finishSave(succeeded: Bool) {
+        guard !callbacks.isEmpty else {
+            preconditionFailure("No AppKit save callback is pending")
+        }
+        if succeeded {
+            updateChangeCount(.changeCleared)
+        }
+        let callback = callbacks.removeFirst()
+        typealias SaveCallback = @convention(c) (
+            AnyObject,
+            Selector,
+            NSDocument,
+            Bool,
+            UnsafeMutableRawPointer?
+        ) -> Void
+        let implementation = callback.delegate.method(for: callback.selector)
+        let function = unsafeBitCast(implementation, to: SaveCallback.self)
+        function(
+            callback.delegate,
+            callback.selector,
+            self,
+            succeeded,
+            callback.contextInfo
+        )
+    }
+
+    private func recordCallback(
+        delegate: Any?,
+        selector: Selector?,
+        contextInfo: UnsafeMutableRawPointer?
+    ) {
+        guard let delegate = delegate as AnyObject?, let selector else {
+            preconditionFailure("Coordinator must provide an AppKit completion selector")
+        }
+        callbacks.append(PendingCallback(
+            delegate: delegate,
+            selector: selector,
+            contextInfo: contextInfo
+        ))
+    }
+}
+
+@MainActor
+final class WindowClosePreflightRecorder: NSObject {
+    private(set) var results: [Bool] = []
+
+    @objc(document:shouldClose:contextInfo:)
+    func document(
+        _ document: NSDocument,
+        shouldClose: Bool,
+        contextInfo: UnsafeMutableRawPointer?
+    ) {
+        results.append(shouldClose)
     }
 }
 

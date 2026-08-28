@@ -47,6 +47,11 @@ public struct TSIWriter: Sendable {
         case converted
     }
 
+    private struct WriteDecision {
+        let output: Data
+        let report: TSIPreservationReport
+    }
+
     private static let logger = Logger(subsystem: "com.sxm.app", category: "TSIWriter")
 
     public init() {}
@@ -58,16 +63,7 @@ public struct TSIWriter: Sendable {
     /// - Parameter mappingFile: The mapping file to serialize
     /// - Returns: The complete TSI file data
     func write(_ mappingFile: MappingFile) throws -> Data {
-        if let envelope = mappingFile.sourceEnvelope,
-           envelope.baseline.matches(mappingFile) {
-            return envelope.originalXML
-        }
-
-        let risks = try validatedPreservationRisks(for: mappingFile)
-        if !risks.isEmpty {
-            throw TSIPreservationError.unsafeOverwrite(risks: risks)
-        }
-        return try writeRegenerated(mappingFile, mode: .preservingImported)
+        try makeWritePlan(for: mappingFile).output
     }
 
     /// Deliberately canonicalizes the modeled projection. This bypasses exact
@@ -79,7 +75,6 @@ public struct TSIWriter: Sendable {
     /// Computes the complete document-boundary write once. Callers retain the
     /// result until the corresponding save completion is known.
     func makeWritePlan(for mappingFile: MappingFile) throws -> TSIWritePlan {
-        let report = preservationReport(for: mappingFile)
         let baseline = TSISemanticBaseline(
             devices: mappingFile.devices,
             version: mappingFile.version
@@ -87,18 +82,35 @@ public struct TSIWriter: Sendable {
 
         if let envelope = mappingFile.sourceEnvelope,
            envelope.baseline.matches(mappingFile) {
+            let risks = preservationRisks(for: mappingFile)
             return TSIWritePlan(
                 output: envelope.originalXML,
                 baseline: baseline,
-                report: report,
+                report: report(for: risks),
                 disposition: .originalPassthrough
             )
         }
 
+        let decision = try ordinaryWriteDecision(for: mappingFile)
         return TSIWritePlan(
-            output: try write(mappingFile),
+            output: decision.output,
             baseline: baseline,
-            report: report,
+            report: decision.report,
+            disposition: .regenerated
+        )
+    }
+
+    /// Performs converted validation and serialization in one pass for the
+    /// explicit export path, returning the report paired with those bytes.
+    func makeConvertedWritePlan(for mappingFile: MappingFile) throws -> TSIWritePlan {
+        let decision = try convertedWriteDecision(for: mappingFile)
+        return TSIWritePlan(
+            output: decision.output,
+            baseline: TSISemanticBaseline(
+                devices: mappingFile.devices,
+                version: mappingFile.version
+            ),
+            report: decision.report,
             disposition: .regenerated
         )
     }
@@ -127,12 +139,7 @@ public struct TSIWriter: Sendable {
     /// first lattice gate, before source risks are considered.
     func preservationReport(for mappingFile: MappingFile) -> TSIPreservationReport {
         do {
-            let risks = try validatedPreservationRisks(for: mappingFile)
-            return TSIPreservationReport(
-                risks: risks,
-                disposition: risks.isEmpty ? .ordinarySaveSafe : .lossyConvertible,
-                validationError: nil
-            )
+            return try convertedWriteDecision(for: mappingFile).report
         } catch {
             return TSIPreservationReport(
                 risks: mappingFile.sourceEnvelope?.risks ?? [],
@@ -142,15 +149,36 @@ public struct TSIWriter: Sendable {
         }
     }
 
-    /// Converted validation is the first lattice gate. Only a projection that
-    /// can be written canonically is classified as ordinary-save-safe or
-    /// lossy-convertible; preserving regeneration happens later and only for
-    /// the ordinary-safe case.
-    private func validatedPreservationRisks(
-        for mappingFile: MappingFile
-    ) throws -> [TSIPreservationRisk] {
-        _ = try writeRegenerated(mappingFile, mode: .converted)
-        return preservationRisks(for: mappingFile)
+    /// Produces the exact ordinary-save bytes and their report in one pure
+    /// decision. Risky projections are converted once only to validate the
+    /// first lattice gate, then refused before any preserving regeneration.
+    private func ordinaryWriteDecision(for mappingFile: MappingFile) throws -> WriteDecision {
+        let risks = preservationRisks(for: mappingFile)
+        guard risks.isEmpty else {
+            _ = try writeRegenerated(mappingFile, mode: .converted)
+            throw TSIPreservationError.unsafeOverwrite(risks: risks)
+        }
+        return WriteDecision(
+            output: try writeRegenerated(mappingFile, mode: .preservingImported),
+            report: report(for: risks)
+        )
+    }
+
+    /// Converted validation and the exact converted bytes are the same pass.
+    private func convertedWriteDecision(for mappingFile: MappingFile) throws -> WriteDecision {
+        let risks = preservationRisks(for: mappingFile)
+        return WriteDecision(
+            output: try writeRegenerated(mappingFile, mode: .converted),
+            report: report(for: risks)
+        )
+    }
+
+    private func report(for risks: [TSIPreservationRisk]) -> TSIPreservationReport {
+        TSIPreservationReport(
+            risks: risks,
+            disposition: risks.isEmpty ? .ordinarySaveSafe : .lossyConvertible,
+            validationError: nil
+        )
     }
 
     private func preservationRisks(for mappingFile: MappingFile) -> [TSIPreservationRisk] {
