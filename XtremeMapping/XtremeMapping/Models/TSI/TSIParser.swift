@@ -24,19 +24,46 @@ public enum TSIParserError: Error, Equatable, Sendable, LocalizedError {
     /// Decompression of the binary data failed
     case decompressionFailed
 
+    /// The XML bytes or declaration specify an encoding other than UTF-8.
     case unsupportedXMLEncoding
+
+    /// The XML contains a prohibited DTD or entity declaration.
     case prohibitedXMLDeclaration
+
+    /// The XML document exceeds `maximumXMLBytes`.
     case xmlByteLimitExceeded
+
+    /// A controller attribute exceeds `maximumBase64AttributeCharacters`.
     case base64CharacterLimitExceeded
+
+    /// A controller payload exceeds `maximumDecodedControllerBytes`.
     case decodedControllerByteLimitExceeded
+
+    /// A frame declaration exceeds `maximumIndividualFramePayload`.
     case framePayloadLimitExceeded
+
+    /// A frame container exceeds `maximumFramesPerContainer`.
     case frameCountLimitExceeded
+
+    /// A length-prefixed string exceeds `maximumUTF16StringBytes`.
     case utf16StringByteLimitExceeded
+
+    /// The XML exceeds `maximumXMLElements`.
     case xmlElementLimitExceeded
+
+    /// The XML exceeds `maximumXMLNestingDepth`.
     case xmlDepthLimitExceeded
+
+    /// The XML exceeds `maximumControllerEntries`.
     case controllerEntryLimitExceeded
+
+    /// The binary frame tree exceeds `maximumBinaryContainerDepth`.
     case binaryDepthLimitExceeded
+
+    /// The controller payload exceeds `maximumCumulativeFrames`.
     case cumulativeFrameLimitExceeded
+
+    /// Length, index, or decoded-size arithmetic cannot be represented safely.
     case integerOverflow
 
     public var errorDescription: String? {
@@ -110,8 +137,11 @@ public struct TSIParser: Sendable {
     ///
     /// - Parameter xmlData: The raw XML data
     /// - Returns: The Base64-encoded string from the Controller entry's Value attribute
-    /// - Throws: `TSIParserError.invalidXML` if the XML is malformed,
-    ///           `TSIParserError.missingControllerEntry` if the entry is not found
+    /// - Throws: `TSIParserError.invalidXML` for malformed XML,
+    ///   `unsupportedXMLEncoding` for non-UTF-8 input or declarations,
+    ///   `prohibitedXMLDeclaration` for DTD/entity declarations, a distinct
+    ///   XML resource-limit error when a configured bound is exceeded, or
+    ///   `missingControllerEntry` if no nonempty controller value is found.
     public static func extractControllerData(
         from xmlData: Data,
         limits: TSIParseLimits = .default
@@ -123,6 +153,17 @@ public struct TSIParser: Sendable {
         return value
     }
 
+    /// Validates and inventories the bounded TSI XML wrapper in one streaming pass.
+    ///
+    /// - Parameters:
+    ///   - xmlData: UTF-8 XML, optionally prefixed by a UTF-8 BOM.
+    ///   - limits: XML byte, element, depth, controller-entry, and Base64
+    ///     attribute limits.
+    /// - Returns: Controller values plus XML inventory information.
+    /// - Throws: `TSIParserError.invalidXML` for malformed XML,
+    ///   `unsupportedXMLEncoding` for non-UTF-8 input or declarations,
+    ///   `prohibitedXMLDeclaration` for DTD/entity declarations, or the
+    ///   corresponding distinct resource-limit error.
     public static func scanXML(
         _ xmlData: Data,
         limits: TSIParseLimits = .default
@@ -130,10 +171,12 @@ public struct TSIParser: Sendable {
         try TSIXMLScanner.scan(xmlData, limits: limits)
     }
 
+    /// Scans XML using the resource limits configured on this parser.
     public func scanXML(_ xmlData: Data) throws -> TSIXMLScanResult {
         try Self.scanXML(xmlData, limits: limits)
     }
 
+    /// Extracts the first nonempty controller value using this parser's limits.
     public func extractControllerData(from xmlData: Data) throws -> String {
         let result = try scanXML(xmlData)
         guard let value = result.controllerValues.first, !value.isEmpty else {
@@ -148,7 +191,11 @@ public struct TSIParser: Sendable {
     ///
     /// - Parameter string: The Base64-encoded string
     /// - Returns: The decoded binary data
-    /// - Throws: `TSIParserError.invalidBase64` if the string is not valid Base64
+    /// - Throws: `TSIParserError.invalidBase64` for noncanonical RFC 4648
+    ///   input, `base64CharacterLimitExceeded` or
+    ///   `decodedControllerByteLimitExceeded` for configured resource-limit
+    ///   failures, or `integerOverflow` if decoded-size arithmetic cannot be
+    ///   represented safely.
     public func decodeBase64(_ string: String) throws -> Data {
         let bytes = Array(string.utf8)
         guard bytes.count <= limits.maximumBase64AttributeCharacters else {
@@ -203,12 +250,20 @@ public struct TSIParser: Sendable {
     ///
     /// - Parameter binaryData: The raw binary data to parse
     /// - Returns: An array of parsed frames
-    /// - Throws: `TSIParserError.unexpectedEndOfData` if the data is malformed
+    /// - Throws: `TSIParserError.unexpectedEndOfData` for malformed or
+    ///   truncated frame bytes, a distinct frame payload/count/cumulative
+    ///   resource-limit error when configured bounds are exceeded, or
+    ///   `integerOverflow` when frame bounds cannot be represented safely.
     public func parseFrames(from binaryData: Data) throws -> [TSIFrame] {
         let budget = try TSIParseBudget(limits: limits, instrumentation: instrumentation)
         try budget.enterContainer(atDepth: 0)
         var frames: [TSIFrame] = []
         frames.reserveCapacity(min(binaryData.count / TSIFrame.headerSize, max(limits.maximumFramesPerContainer, 0)))
+        let frameCursor = TSIFrameCursor(
+            data: binaryData,
+            limits: limits,
+            instrumentation: instrumentation
+        )
         var offset = 0
         var containerFrameCount = 0
 
@@ -220,9 +275,8 @@ public struct TSIParser: Sendable {
             }
 
             try budget.consumeFrame(containerCount: &containerFrameCount)
-            let parsed = try TSIFrame.parse(from: binaryData, at: offset, limits: limits)
+            let parsed = try frameCursor.parse(at: offset)
             frames.append(parsed.frame)
-            budget.recordParsedFrame(payloadBytes: parsed.frame.data.count)
             offset = parsed.nextOffset
         }
 

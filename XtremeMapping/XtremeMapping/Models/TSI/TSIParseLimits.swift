@@ -55,9 +55,8 @@ public final class TSIParseInstrumentation: @unchecked Sendable {
         public let frameHeaderBytesRead: Int
         public let retainedPayloadCopyCount: Int
         public let retainedPayloadBytesCopied: Int
+        public let maximumRetainedPayloadCopyBytes: Int
         public let cursorBytesAdvanced: Int
-        public let remainingTailCopyCount: Int
-        public let remainingTailBytesCopied: Int
     }
 
     private let lock = NSLock()
@@ -65,9 +64,8 @@ public final class TSIParseInstrumentation: @unchecked Sendable {
     private var frameHeaderBytesRead = 0
     private var retainedPayloadCopyCount = 0
     private var retainedPayloadBytesCopied = 0
+    private var maximumRetainedPayloadCopyBytes = 0
     private var cursorBytesAdvanced = 0
-    private var remainingTailCopyCount = 0
-    private var remainingTailBytesCopied = 0
 
     public init() {}
 
@@ -78,27 +76,28 @@ public final class TSIParseInstrumentation: @unchecked Sendable {
                 frameHeaderBytesRead: frameHeaderBytesRead,
                 retainedPayloadCopyCount: retainedPayloadCopyCount,
                 retainedPayloadBytesCopied: retainedPayloadBytesCopied,
-                cursorBytesAdvanced: cursorBytesAdvanced,
-                remainingTailCopyCount: remainingTailCopyCount,
-                remainingTailBytesCopied: remainingTailBytesCopied
+                maximumRetainedPayloadCopyBytes: maximumRetainedPayloadCopyBytes,
+                cursorBytesAdvanced: cursorBytesAdvanced
             )
         }
     }
 
-    func recordFrame(payloadBytes: Int) {
+    func recordFrameAdvance(byteCount: Int) {
         lock.withLock {
             parsedFrameCount += 1
             frameHeaderBytesRead += TSIFrame.headerSize
-            retainedPayloadCopyCount += 1
-            retainedPayloadBytesCopied += payloadBytes
-            cursorBytesAdvanced += TSIFrame.headerSize + payloadBytes
+            cursorBytesAdvanced += byteCount
         }
     }
 
-    func recordRemainingTailCopy(bytes: Int) {
+    func recordRetainedPayloadCopy(byteCount: Int) {
         lock.withLock {
-            remainingTailCopyCount += 1
-            remainingTailBytesCopied += bytes
+            retainedPayloadCopyCount += 1
+            retainedPayloadBytesCopied += byteCount
+            maximumRetainedPayloadCopyBytes = max(
+                maximumRetainedPayloadCopyBytes,
+                byteCount
+            )
         }
     }
 }
@@ -156,9 +155,5 @@ final class TSIParseBudget {
 
         containerCount = nextContainerCount
         cumulativeFrameCount = nextCumulativeCount
-    }
-
-    func recordParsedFrame(payloadBytes: Int) {
-        instrumentation?.recordFrame(payloadBytes: payloadBytes)
     }
 }

@@ -7,8 +7,13 @@ import Foundation
 
 /// Bounded information retained from the TSI XML wrapper.
 public struct TSIXMLScanResult: Equatable, Sendable {
+    /// Controller `Value` attributes retained in document order.
     public let controllerValues: [String]
+
+    /// Whether the wrapper contains a settings `Entry` for another name.
     public let hasNonControllerEntries: Bool
+
+    /// Start elements observed, counted once per `didStartElement` callback.
     public let elementCount: Int
 }
 

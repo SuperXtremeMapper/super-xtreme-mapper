@@ -329,6 +329,22 @@ final class TSIParserTests: XCTestCase {
         XCTAssertEqual(parsed.nextOffset, 12)
     }
 
+    func testOffsetFrameCursorTreatsOffsetsAsRelativeToSlicedData() throws {
+        let firstFrame = Data("TEST".utf8) + Data([0, 0, 0, 3, 1, 2, 3])
+        let secondFrame = Data("NEXT".utf8) + Data([0, 0, 0, 0])
+        let backing = Data([0xAA]) + firstFrame + secondFrame + Data([0xEE])
+        let slicedData = backing[1..<(backing.count - 1)]
+        XCTAssertEqual(slicedData.startIndex, 1)
+
+        let parsed = try TSIFrame.parse(from: slicedData, at: 0, limits: .default)
+        XCTAssertEqual(parsed.frame.identifier, "TEST")
+        XCTAssertEqual(parsed.frame.data, Data([1, 2, 3]))
+        XCTAssertEqual(parsed.nextOffset, 11)
+
+        let frames = try TSIParser().parseFrames(from: slicedData)
+        XCTAssertEqual(frames.map(\.identifier), ["TEST", "NEXT"])
+    }
+
     func testFramePayloadLimitAtMinusOneLimitAndPlusOne() throws {
         let data = Data("TEST".utf8) + Data([0, 0, 0, 3, 1, 2, 3])
         for maximum in [2, 3, 4] {
@@ -384,7 +400,22 @@ final class TSIParserTests: XCTestCase {
         }
     }
 
-    func testLinearFrameParsingUsesNoRemainingTailCopies() throws {
+    func testInstrumentationMeasuresOnlyRetainedPayloadCopies() throws {
+        let firstFrame = Data("ONE!".utf8) + Data([0, 0, 0, 1, 0x11])
+        let secondFrame = Data("TWO!".utf8)
+            + Data([0, 0, 0, 3, 0x21, 0x22, 0x23])
+        let instrumentation = TSIParseInstrumentation()
+
+        let frames = try TSIParser(instrumentation: instrumentation)
+            .parseFrames(from: firstFrame + secondFrame)
+
+        XCTAssertEqual(frames.count, 2)
+        XCTAssertEqual(instrumentation.snapshot.retainedPayloadCopyCount, 2)
+        XCTAssertEqual(instrumentation.snapshot.retainedPayloadBytesCopied, 4)
+        XCTAssertEqual(instrumentation.snapshot.maximumRetainedPayloadCopyBytes, 3)
+    }
+
+    func testLinearFrameParsingCopiesOnlyRetainedPayloads() throws {
         let frame = Data("TEST".utf8) + Data([0, 0, 0, 8]) + Data(repeating: 0xA5, count: 8)
         let smallData = (0..<2_000).reduce(into: Data()) { data, _ in data.append(frame) }
         let largeData = (0..<8_000).reduce(into: Data()) { data, _ in data.append(frame) }
@@ -410,10 +441,10 @@ final class TSIParserTests: XCTestCase {
         XCTAssertEqual(largeInstrumentation.snapshot.retainedPayloadCopyCount, 8_000)
         XCTAssertEqual(smallInstrumentation.snapshot.retainedPayloadBytesCopied, 16_000)
         XCTAssertEqual(largeInstrumentation.snapshot.retainedPayloadBytesCopied, 64_000)
+        XCTAssertEqual(smallInstrumentation.snapshot.maximumRetainedPayloadCopyBytes, 8)
+        XCTAssertEqual(largeInstrumentation.snapshot.maximumRetainedPayloadCopyBytes, 8)
         XCTAssertEqual(smallInstrumentation.snapshot.cursorBytesAdvanced, smallData.count)
         XCTAssertEqual(largeInstrumentation.snapshot.cursorBytesAdvanced, largeData.count)
-        XCTAssertEqual(smallInstrumentation.snapshot.remainingTailCopyCount, 0)
-        XCTAssertEqual(largeInstrumentation.snapshot.remainingTailCopyCount, 0)
         XCTAssertLessThan(largeDuration / max(smallDuration, 0.000_001), 8.0)
     }
 }

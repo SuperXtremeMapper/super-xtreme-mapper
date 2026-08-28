@@ -664,23 +664,23 @@ struct TSIInterpreter {
 
         var lookup: [Int: String] = [:]
         lookup.reserveCapacity(declaredCount)
+        let frameCursor = TSIFrameCursor(
+            data: listData,
+            limits: budget.limits,
+            instrumentation: budget.instrumentation
+        )
         var offset = 4
         var containerFrameCount = 0
         for _ in 0..<declaredCount {
             try budget.consumeFrame(containerCount: &containerFrameCount)
             let parsed: (frame: TSIFrame, nextOffset: Int)
             do {
-                parsed = try TSIFrame.parse(
-                    from: listData,
-                    at: offset,
-                    limits: budget.limits
-                )
+                parsed = try frameCursor.parse(at: offset)
             } catch let error as TSIParserError where error.isResourceLimitFailure {
                 throw error
             } catch {
                 throw TSIInterpreterError.malformedMidiBindingList
             }
-            budget.recordParsedFrame(payloadBytes: parsed.frame.data.count)
             guard parsed.frame.identifier == FrameID.bindingList,
                   parsed.frame.data.count >= 8 else {
                 throw TSIInterpreterError.malformedMidiBindingList
@@ -744,6 +744,11 @@ struct TSIInterpreter {
         // parseCMAI deliberately skips (command ID 0) — so corruption that
         // sheds frames is caught by the count check below.
         var parsedFrameCount = 0
+        let frameCursor = TSIFrameCursor(
+            data: cmasData,
+            limits: budget.limits,
+            instrumentation: budget.instrumentation
+        )
         var offset = 4
         while offset < cmasData.count {
             guard cmasData.count - offset >= TSIFrame.headerSize else {
@@ -752,17 +757,12 @@ struct TSIInterpreter {
             try budget.consumeFrame(containerCount: &parsedFrameCount)
             let parsed: (frame: TSIFrame, nextOffset: Int)
             do {
-                parsed = try TSIFrame.parse(
-                    from: cmasData,
-                    at: offset,
-                    limits: budget.limits
-                )
+                parsed = try frameCursor.parse(at: offset)
             } catch let error as TSIParserError where error.isResourceLimitFailure {
                 throw error
             } catch {
                 throw TSIInterpreterError.malformedMappingItem
             }
-            budget.recordParsedFrame(payloadBytes: parsed.frame.data.count)
 
             guard parsed.frame.identifier == FrameID.mappingItem else {
                 throw TSIInterpreterError.malformedMappingsList
@@ -829,19 +829,19 @@ struct TSIInterpreter {
         try budget.enterContainer(atDepth: depth)
         var containerFrameCount = 0
         try budget.consumeFrame(containerCount: &containerFrameCount)
+        let frameCursor = TSIFrameCursor(
+            data: data,
+            limits: budget.limits,
+            instrumentation: budget.instrumentation
+        )
         let parsedCMAD: (frame: TSIFrame, nextOffset: Int)
         do {
-            parsedCMAD = try TSIFrame.parse(
-                from: data,
-                at: 12,
-                limits: budget.limits
-            )
+            parsedCMAD = try frameCursor.parse(at: 12)
         } catch let error as TSIParserError where error.isResourceLimitFailure {
             throw error
         } catch {
             throw TSIInterpreterError.malformedMappingData
         }
-        budget.recordParsedFrame(payloadBytes: parsedCMAD.frame.data.count)
         guard parsedCMAD.frame.identifier == FrameID.mappingData,
               parsedCMAD.nextOffset == data.count else {
             throw TSIInterpreterError.malformedMappingData
@@ -1397,6 +1397,11 @@ struct TSIInterpreter {
             (data.count - startingOffset) / TSIFrame.headerSize,
             max(budget.limits.maximumFramesPerContainer, 0)
         ))
+        let frameCursor = TSIFrameCursor(
+            data: data,
+            limits: budget.limits,
+            instrumentation: budget.instrumentation
+        )
         var offset = startingOffset
         var containerFrameCount = 0
 
@@ -1405,13 +1410,8 @@ struct TSIInterpreter {
                 throw TSIInterpreterError.unexpectedTrailingBytes(context: context)
             }
             try budget.consumeFrame(containerCount: &containerFrameCount)
-            let parsed = try TSIFrame.parse(
-                from: data,
-                at: offset,
-                limits: budget.limits
-            )
+            let parsed = try frameCursor.parse(at: offset)
             frames.append(parsed.frame)
-            budget.recordParsedFrame(payloadBytes: parsed.frame.data.count)
             offset = parsed.nextOffset
         }
 
