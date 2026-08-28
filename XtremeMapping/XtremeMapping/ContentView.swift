@@ -21,6 +21,7 @@ struct ContentView: View {
     @State private var activeSheet: SheetType?
     @State private var showIntelMacAlert = false
     @State private var mappingTransferError: MappingTransferError?
+    @State private var workflowDestinationError: MappingTransferError?
 
     private var mappingPasteDisabledReason: String? {
         if isLocked {
@@ -100,13 +101,7 @@ struct ContentView: View {
                 onSettings: { activeSheet = .settings },
                 voiceCoordinator: voiceCoordinator,
                 onVoiceToggle: toggleVoiceLearn,
-                onWizard: {
-                    WizardTrace.write(" V2ActionBar.onWizard: setting pendingDocument=\(ObjectIdentifier(document)) (doc has \(document.mappingFile.devices.count) devices, \(document.mappingFile.allMappings.count) mappings)")
-                    WizardCoordinator.pendingDocument = document
-                    WizardCoordinator.pendingDestinationDeviceID = workflowDestinationDeviceID
-                    NotificationCenter.default.post(name: .wizardDocumentChanged, object: document)
-                    openWindow(id: "wizard")
-                }
+                onWizard: launchWizard
             )
 
             if !document.mappingFile.tsiCompatibilityWarnings.isEmpty {
@@ -245,6 +240,20 @@ struct ContentView: View {
         } message: {
             Text(mappingTransferError?.localizedDescription ?? "The transfer failed.")
         }
+        .alert(
+            "Choose a Mapping Device",
+            isPresented: Binding(
+                get: { workflowDestinationError != nil },
+                set: { if !$0 { workflowDestinationError = nil } }
+            )
+        ) {
+            Button("OK", role: .cancel) { workflowDestinationError = nil }
+        } message: {
+            Text(
+                workflowDestinationError?.localizedDescription
+                    ?? "Select a mapping in the device you want to edit."
+            )
+        }
         // Voice Learn overlay
         .overlay {
             if voiceCoordinator.isActive {
@@ -319,11 +328,31 @@ struct ContentView: View {
 
     // MARK: - Voice Learn
 
-    private var workflowDestinationDeviceID: Device.ID? {
-        MappingTransferService.destinationDeviceID(
+    private func resolvedWorkflowDestinationDeviceID() throws -> Device.ID? {
+        try MappingTransferService.workflowDestinationDeviceID(
             for: selectedMappings,
             in: document.mappingFile
-        ) ?? (document.mappingFile.devices.count == 1 ? document.mappingFile.devices[0].id : nil)
+        )
+    }
+
+    private func launchWizard() {
+        guard !isLocked else { return }
+        let destinationDeviceID: Device.ID?
+        do {
+            destinationDeviceID = try resolvedWorkflowDestinationDeviceID()
+        } catch let error as MappingTransferError {
+            workflowDestinationError = error
+            return
+        } catch {
+            workflowDestinationError = .destinationRequired
+            return
+        }
+
+        WizardTrace.write(" V2ActionBar.onWizard: setting pendingDocument=\(ObjectIdentifier(document)) (doc has \(document.mappingFile.devices.count) devices, \(document.mappingFile.allMappings.count) mappings)")
+        WizardCoordinator.pendingDocument = document
+        WizardCoordinator.pendingDestinationDeviceID = destinationDeviceID
+        NotificationCenter.default.post(name: .wizardDocumentChanged, object: document)
+        openWindow(id: "wizard")
     }
 
     private func toggleVoiceLearn() {
@@ -336,10 +365,23 @@ struct ContentView: View {
                 showIntelMacAlert = true
                 return
             }
-            voiceCoordinator.setDocument(
+            let destinationDeviceID: Device.ID?
+            do {
+                destinationDeviceID = try resolvedWorkflowDestinationDeviceID()
+            } catch let error as MappingTransferError {
+                workflowDestinationError = error
+                return
+            } catch {
+                workflowDestinationError = .destinationRequired
+                return
+            }
+            guard voiceCoordinator.setDocument(
                 document,
-                destinationDeviceID: workflowDestinationDeviceID
-            )
+                destinationDeviceID: destinationDeviceID
+            ) else {
+                workflowDestinationError = .destinationUnavailable
+                return
+            }
             voiceCoordinator.activate()
         }
     }

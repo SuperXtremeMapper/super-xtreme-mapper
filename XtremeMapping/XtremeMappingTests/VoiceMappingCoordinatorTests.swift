@@ -72,6 +72,38 @@ private final class MockSpeechProvider: SpeechRecognitionProvider {
     func stopListening() { isListening = false }
 }
 
+/// Speech provider whose starts complete only when the test resumes them.
+/// Resuming sets listening after any earlier stop, reproducing providers that
+/// do not cooperatively notice Task cancellation while starting.
+private final class SuspendedSpeechProvider: SpeechRecognitionProvider {
+    var isListening = false
+    var transcript = ""
+    var onTranscriptReady: ((String) -> Void)?
+    var onPartialResult: ((String) -> Void)?
+    var onModelLoadProgress: ((Double, String) -> Void)?
+
+    private(set) var startCount = 0
+    private(set) var stopCount = 0
+    private var starts: [CheckedContinuation<Void, Never>] = []
+
+    func startListening() async throws {
+        startCount += 1
+        await withCheckedContinuation { continuation in
+            starts.append(continuation)
+        }
+        isListening = true
+    }
+
+    func stopListening() {
+        stopCount += 1
+        isListening = false
+    }
+
+    func resumeNextStart() {
+        starts.removeFirst().resume()
+    }
+}
+
 // MARK: - Tests
 
 @MainActor
@@ -265,6 +297,9 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
     // MARK: - Task 2.2: deactivate clears session state
 
     func testDeactivateClearsSessionState() async {
+        let device = Device(name: "Generic MIDI")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [device]))
+        XCTAssertTrue(coordinator.setDocument(document, destinationDeviceID: device.id))
         coordinator.activate()
 
         // Build up a session: one saved mapping (saveAndContinue registers
@@ -444,6 +479,97 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
         XCTAssertEqual(document.mappingFile, before)
         XCTAssertEqual(entry.commandName, "Cue")
         XCTAssertEqual(entry.midiCC, 10)
+    }
+
+    func testActivateRejectsInvalidMultiDeviceDestination() {
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [
+            Device(name: "First"),
+            Device(name: "Second"),
+        ]))
+
+        XCTAssertFalse(coordinator.setDocument(document, destinationDeviceID: nil))
+        coordinator.activate()
+
+        XCTAssertFalse(coordinator.isActive)
+        XCTAssertTrue(coordinator.statusMessage.localizedCaseInsensitiveContains("destination"))
+    }
+
+    func testCancelDuringSuspendedActivationCannotReactivateMicrophoneOrOverwriteStatus() async {
+        let provider = SuspendedSpeechProvider()
+        let device = Device(name: "Generic MIDI")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [device]))
+        coordinator = VoiceMappingCoordinator(
+            midiManager: MIDIInputManager.shared,
+            voiceManager: VoiceInputManager(provider: provider),
+            claudeService: mock
+        )
+        XCTAssertTrue(coordinator.setDocument(document, destinationDeviceID: device.id))
+
+        coordinator.activate()
+        await waitUntil("activation start to suspend") { provider.startCount == 1 }
+        coordinator.cancelSession()
+        provider.resumeNextStart()
+        await waitUntil("stale activation to finish and stop") { provider.stopCount >= 2 }
+
+        XCTAssertFalse(coordinator.isActive)
+        XCTAssertFalse(provider.isListening)
+        XCTAssertEqual(coordinator.statusMessage, "")
+    }
+
+    func testFinishDuringSuspendedRestartCannotReactivateMicrophoneOrOverwriteSavedStatus() async {
+        let provider = SuspendedSpeechProvider()
+        let device = Device(name: "Generic MIDI")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [device]))
+        coordinator = VoiceMappingCoordinator(
+            midiManager: MIDIInputManager.shared,
+            voiceManager: VoiceInputManager(provider: provider),
+            claudeService: mock
+        )
+        XCTAssertTrue(coordinator.setDocument(document, destinationDeviceID: device.id))
+        coordinator.activate()
+        await waitUntil("initial activation to suspend") { provider.startCount == 1 }
+        provider.resumeNextStart()
+        await waitUntil("initial activation to finish") { provider.isListening }
+
+        coordinator.currentResult = makeResult(command: "Cue")
+        coordinator.currentMIDI = makeMIDI(cc: 10)
+        coordinator.saveAndContinue()
+        await waitUntil("session restart to suspend") { provider.startCount == 2 }
+
+        coordinator.finishAndSave()
+        XCTAssertEqual(coordinator.statusMessage, "Saved 1 mappings!")
+        provider.resumeNextStart()
+        await waitUntil("stale restart to finish and stop") { provider.stopCount >= 2 }
+
+        XCTAssertFalse(coordinator.isActive)
+        XCTAssertFalse(provider.isListening)
+        XCTAssertEqual(coordinator.statusMessage, "Saved 1 mappings!")
+    }
+
+    func testFinishRefusesToDropVisibleUnstagedMapping() {
+        let device = Device(name: "Generic MIDI")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [device]))
+        XCTAssertTrue(coordinator.setDocument(document, destinationDeviceID: device.id))
+        coordinator.currentResult = makeResult(command: "Cue")
+        coordinator.currentMIDI = makeMIDI(cc: 10)
+        coordinator.saveAndContinue()
+        coordinator.currentResult = makeResult(command: "Jog Turn")
+        coordinator.currentMIDI = makeMIDI(cc: 11)
+        let beforeFinish = document.mappingFile
+
+        XCTAssertFalse(coordinator.canFinishSession)
+        coordinator.finishAndSave()
+
+        XCTAssertEqual(document.mappingFile, beforeFinish)
+        XCTAssertEqual(coordinator.stagedMappings.count, 1)
+        XCTAssertEqual(coordinator.currentResult?.command, "Jog Turn")
+        XCTAssertEqual(coordinator.currentMIDI?.cc, 11)
+        XCTAssertTrue(coordinator.statusMessage.localizedCaseInsensitiveContains("add"))
+
+        coordinator.performVoiceSave(overwrite: false)
+        XCTAssertEqual(document.mappingFile, beforeFinish)
+        XCTAssertEqual(coordinator.stagedMappings.count, 1)
+        XCTAssertEqual(coordinator.currentResult?.command, "Jog Turn")
     }
 
     func testSaveAndContinueStagesWithoutDocumentOrUndoMutation() async throws {

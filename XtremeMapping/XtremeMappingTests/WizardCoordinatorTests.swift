@@ -67,6 +67,8 @@ final class WizardCoordinatorTests: XCTestCase {
         destinationDeviceID: Device.ID? = nil
     ) -> TraktorMappingDocument {
         coordinator.start(document: document, destinationDeviceID: destinationDeviceID)
+        coordinator.setupConfig.controllerName = "Test Controller"
+        coordinator.setupConfig.inputPort = "Test In"
         coordinator.beginLearning()
         return document
     }
@@ -257,6 +259,106 @@ final class WizardCoordinatorTests: XCTestCase {
             SemanticBindingKey(entry: entry),
             "A condition target the semantic model cannot represent must never be replaceable"
         )
+    }
+
+    func testConditionOneNativeTargetRemainsNonreplaceableWhenConditionTwoChanges() throws {
+        var entry = MappingEntry(
+            commandID: 100,
+            modifier1Condition: ModifierCondition(modifier: 2, value: 3),
+            modifier2Condition: ModifierCondition(modifier: 4, value: 5)
+        )
+        var payload = Data(repeating: 0, count: 120)
+        func store(_ value: UInt32, at offset: Int) {
+            var bigEndian = value.bigEndian
+            withUnsafeBytes(of: &bigEndian) { bytes in
+                payload.replaceSubrange(offset..<(offset + 4), with: bytes)
+            }
+        }
+        store(2, at: 52)
+        store(99, at: 56)
+        store(3, at: 60)
+        entry.importedCMAD = try XCTUnwrap(ImportedCMAD(payload: payload, semanticAtImport: entry))
+        entry.modifier2Condition = ModifierCondition(modifier: 4, value: 6)
+
+        XCTAssertNil(SemanticBindingKey(entry: entry))
+    }
+
+    func testConditionTwoNativeTargetRemainsNonreplaceableWhenConditionOneChanges() throws {
+        var entry = MappingEntry(
+            commandID: 100,
+            modifier1Condition: ModifierCondition(modifier: 2, value: 3),
+            modifier2Condition: ModifierCondition(modifier: 4, value: 5)
+        )
+        var payload = Data(repeating: 0, count: 120)
+        func store(_ value: UInt32, at offset: Int) {
+            var bigEndian = value.bigEndian
+            withUnsafeBytes(of: &bigEndian) { bytes in
+                payload.replaceSubrange(offset..<(offset + 4), with: bytes)
+            }
+        }
+        store(4, at: 64)
+        store(88, at: 68)
+        store(5, at: 72)
+        entry.importedCMAD = try XCTUnwrap(ImportedCMAD(payload: payload, semanticAtImport: entry))
+        entry.modifier1Condition = ModifierCondition(modifier: 2, value: 4)
+
+        XCTAssertNil(SemanticBindingKey(entry: entry))
+    }
+
+    func testStartRejectsInvalidMultiDeviceDestination() {
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [
+            Device(name: "First"),
+            Device(name: "Second"),
+        ]))
+
+        XCTAssertFalse(coordinator.start(document: document, destinationDeviceID: nil))
+        XCTAssertFalse(coordinator.isListening)
+        XCTAssertTrue(coordinator.capturedMappings.isEmpty)
+        XCTAssertTrue(coordinator.statusMessage.localizedCaseInsensitiveContains("destination"))
+    }
+
+    func testStartRebindsCleanSessionAndOldCapturesCannotReachNewDocument() throws {
+        let firstDevice = Device(name: "First")
+        let firstDocument = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [firstDevice])
+        )
+        XCTAssertTrue(coordinator.start(document: firstDocument, destinationDeviceID: firstDevice.id))
+        coordinator.setupConfig.controllerName = "First Controller"
+        coordinator.setupConfig.inputPort = "First In"
+        coordinator.beginLearning()
+        coordinator.switchToTab(.decks)
+        coordinator.handleMIDIReceived(noteOn(60))
+        coordinator.showOverwriteAlert = true
+        coordinator.conflictingCommands = ["Old Conflict"]
+        XCTAssertFalse(coordinator.capturedMappings.isEmpty)
+        XCTAssertTrue(coordinator.isListening)
+
+        let secondDevice = Device(name: "Second")
+        let secondDocument = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [secondDevice])
+        )
+        XCTAssertTrue(coordinator.start(document: secondDocument, destinationDeviceID: secondDevice.id))
+
+        XCTAssertEqual(coordinator.phase, .setup)
+        XCTAssertFalse(coordinator.isListening)
+        XCTAssertTrue(coordinator.capturedMappings.isEmpty)
+        XCTAssertNil(coordinator.pendingMIDI)
+        XCTAssertNil(coordinator.shiftMIDI)
+        XCTAssertFalse(coordinator.isShiftHeld)
+        XCTAssertFalse(coordinator.showOverwriteAlert)
+        XCTAssertTrue(coordinator.conflictingCommands.isEmpty)
+        XCTAssertFalse(coordinator.shouldDismiss)
+
+        coordinator.setupConfig.controllerName = "Second Controller"
+        coordinator.setupConfig.inputPort = "Second In"
+        coordinator.beginLearning()
+        coordinator.switchToTab(.decks)
+        coordinator.handleMIDIReceived(noteOn(61))
+        coordinator.performSave(overwrite: false)
+
+        XCTAssertTrue(firstDocument.mappingFile.devices[0].mappings.isEmpty)
+        XCTAssertEqual(secondDocument.mappingFile.devices[0].mappings.count, 1)
+        XCTAssertEqual(secondDocument.mappingFile.devices[0].mappings[0].midiNote, 61)
     }
 
     func testNextSkipsTabsWhoseUnverifiedFunctionsWereRemoved() {

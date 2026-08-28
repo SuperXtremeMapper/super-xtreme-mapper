@@ -205,4 +205,43 @@ final class MappingTransferServiceTests: XCTestCase {
             )
         )
     }
+
+    func testWorkflowDestinationRejectsMissingAmbiguousAndStaleMultiDeviceSelection() throws {
+        let first = MappingEntry(commandID: 100)
+        let second = MappingEntry(commandID: 201)
+        let firstDevice = Device(name: "First", mappings: [first])
+        let secondDevice = Device(name: "Second", mappings: [second])
+        let file = MappingFile(devices: [firstDevice, secondDevice])
+
+        XCTAssertThrowsError(
+            try MappingTransferService.workflowDestinationDeviceID(for: [], in: file)
+        ) { error in
+            XCTAssertEqual(error as? MappingTransferError, .destinationRequired)
+        }
+        XCTAssertThrowsError(
+            try MappingTransferService.workflowDestinationDeviceID(
+                for: Set([first.id, second.id]),
+                in: file
+            )
+        ) { error in
+            XCTAssertEqual(error as? MappingTransferError, .destinationRequired)
+        }
+        XCTAssertThrowsError(
+            try MappingTransferService.workflowDestinationDeviceID(for: [UUID()], in: file)
+        ) { error in
+            XCTAssertEqual(error as? MappingTransferError, .destinationUnavailable)
+        }
+        XCTAssertThrowsError(
+            try MappingTransferService.workflowDestinationDeviceID(
+                for: Set([first.id, UUID()]),
+                in: file
+            )
+        ) { error in
+            XCTAssertEqual(error as? MappingTransferError, .destinationUnavailable)
+        }
+        XCTAssertEqual(
+            try MappingTransferService.workflowDestinationDeviceID(for: [second.id], in: file),
+            secondDevice.id
+        )
+    }
 }

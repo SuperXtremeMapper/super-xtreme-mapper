@@ -271,10 +271,20 @@ struct VoiceLearnOverlay: View {
                 .padding(.vertical, AppThemeV2.Spacing.sm)
                 .background(
                     RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                        .fill(AppThemeV2.Colors.success)
+                        .fill(
+                            coordinator.canFinishSession
+                                ? AppThemeV2.Colors.success
+                                : AppThemeV2.Colors.stone700
+                        )
                 )
         }
         .buttonStyle(.plain)
+        .disabled(!coordinator.canFinishSession)
+        .help(
+            coordinator.canFinishSession
+                ? "Save every mapping added to this session."
+                : "Add the visible mapping to the session before finishing."
+        )
     }
 
     private var nextButton: some View {

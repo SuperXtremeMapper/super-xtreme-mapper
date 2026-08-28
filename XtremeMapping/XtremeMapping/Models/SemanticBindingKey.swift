@@ -47,12 +47,18 @@ struct SemanticBindingKey: Hashable, Sendable {
     }
 
     private static func conditionTargets(for entry: MappingEntry) -> (one: UInt32, two: UInt32) {
-        guard let imported = entry.importedCMAD,
-              entry.modifier1Condition == imported.semanticAtImport.modifier1Condition,
-              entry.modifier2Condition == imported.semanticAtImport.modifier2Condition else {
+        guard let imported = entry.importedCMAD else {
             return (0, 0)
         }
-        return (imported.conditionOneTarget ?? 0, imported.conditionTwoTarget ?? 0)
+        let baseline = imported.semanticAtImport
+        return (
+            entry.modifier1Condition == baseline.modifier1Condition
+                ? imported.conditionOneTarget ?? 0
+                : 0,
+            entry.modifier2Condition == baseline.modifier2Condition
+                ? imported.conditionTwoTarget ?? 0
+                : 0
+        )
     }
 
     private static func condition(

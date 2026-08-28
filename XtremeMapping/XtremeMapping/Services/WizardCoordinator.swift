@@ -171,15 +171,30 @@ final class WizardCoordinator: ObservableObject {
 
     // MARK: - Public Methods
 
+    @discardableResult
     func start(
         document: TraktorMappingDocument,
         destinationDeviceID: Device.ID? = nil
-    ) {
+    ) -> Bool {
+        resetSessionForRebinding()
+
+        let resolvedDestinationID: Device.ID?
+        if let destinationDeviceID,
+           document.mappingFile.devices.contains(where: { $0.id == destinationDeviceID }) {
+            resolvedDestinationID = destinationDeviceID
+        } else if MappingTransferService.isTrulyEmpty(document.mappingFile) {
+            resolvedDestinationID = nil
+        } else if destinationDeviceID == nil, document.mappingFile.devices.count == 1 {
+            resolvedDestinationID = document.mappingFile.devices[0].id
+        } else {
+            statusMessage = "Cannot start: choose a valid destination device."
+            return false
+        }
+
         self.document = document
-        self.destinationDeviceID = destinationDeviceID
-            ?? (document.mappingFile.devices.count == 1 ? document.mappingFile.devices[0].id : nil)
-        phase = .setup
+        self.destinationDeviceID = resolvedDestinationID
         statusMessage = "Configure your controller settings"
+        return true
     }
 
     func beginLearning() {
@@ -467,6 +482,27 @@ final class WizardCoordinator: ObservableObject {
     }
 
     // MARK: - Private Methods
+
+    private func resetSessionForRebinding() {
+        cancelAutoAdvance()
+        stopMIDIListening()
+        document = nil
+        destinationDeviceID = nil
+        phase = .setup
+        setupConfig = WizardSetupConfig()
+        currentTab = .mixer
+        isBasicMode = true
+        currentFunctionIndex = 0
+        currentAssignmentIndex = 0
+        capturedMappings = []
+        pendingMIDI = nil
+        shiftMIDI = nil
+        isShiftHeld = false
+        showOverwriteAlert = false
+        conflictingCommands = []
+        shouldDismiss = false
+        statusMessage = ""
+    }
 
     private func startMIDIListening() {
         midiManager.onMIDIReceived = { [weak self] message in

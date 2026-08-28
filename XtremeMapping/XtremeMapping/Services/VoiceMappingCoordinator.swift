@@ -68,11 +68,22 @@ final class VoiceMappingCoordinator: ObservableObject {
     /// Finish commits this array as one validated Undo transaction.
     @Published private(set) var stagedMappings: [MappingEntry] = []
 
+    /// Finish is unavailable while any visible/in-flight row has not yet been
+    /// explicitly added to the session.
+    var canFinishSession: Bool {
+        !stagedMappings.isEmpty && !hasUnstagedMapping
+    }
+
     // MARK: - Dependencies
 
     private let midiManager: MIDIInputManager
     private let voiceManager: VoiceInputManager
     private let claudeService: CommandInterpreting
+
+    /// Owns activation/restart work so session teardown can invalidate it.
+    private var voiceListeningTask: Task<Void, Never>?
+    /// Invalidates every continuation belonging to an earlier session.
+    private var lifecycleGeneration: UInt = 0
 
     // MARK: - Private State
 
@@ -113,52 +124,61 @@ final class VoiceMappingCoordinator: ObservableObject {
     /// before processing the mapping.
     func activate() {
         guard !isActive else { return }
+        guard hasLiveDestination else {
+            statusMessage = "Cannot start: choose a valid destination device."
+            return
+        }
+
+        lifecycleGeneration &+= 1
+        let generation = lifecycleGeneration
 
         // Setup MIDI callback
         midiManager.onMIDIReceived = { [weak self] message in
             Task { @MainActor in
-                self?.handleMIDIReceived(message)
+                guard let self,
+                      self.isActive,
+                      self.lifecycleGeneration == generation else { return }
+                self.handleMIDIReceived(message)
             }
         }
 
         // Setup voice callback
         voiceManager.onTranscriptReady = { [weak self] transcript in
             Task { @MainActor in
-                self?.handleTranscriptReady(transcript)
+                guard let self,
+                      self.isActive,
+                      self.lifecycleGeneration == generation else { return }
+                self.handleTranscriptReady(transcript)
             }
         }
 
         // Setup model load progress callback
         voiceManager.onModelLoadProgress = { [weak self] progress, message in
             Task { @MainActor in
+                guard let self,
+                      self.isActive,
+                      self.lifecycleGeneration == generation else { return }
                 let percentage = Int(progress * 100)
-                self?.statusMessage = "\(message) (\(percentage)%)"
+                self.statusMessage = "\(message) (\(percentage)%)"
             }
         }
 
         // Start listening
         midiManager.startListening()
 
-        // Start voice listening (async, may throw)
-        Task {
-            do {
-                try await voiceManager.startListening()
-                statusMessage = "Ready. Press a MIDI control and say your command."
-            } catch {
-                statusMessage = "Voice error: \(error.localizedDescription)"
-            }
-        }
-
         isActive = true
         statusMessage = "Activating..."
+        startVoiceListening(
+            generation: generation,
+            successStatus: "Ready. Press a MIDI control and say your command."
+        )
     }
 
     /// Stop all listening and reset state.
     func deactivate() {
-        if isActive {
-            midiManager.stopListening()
-            voiceManager.stopListening()
-        }
+        invalidateLifecycle()
+        midiManager.stopListening()
+        voiceManager.stopListening()
 
         // Clear callbacks
         midiManager.onMIDIReceived = nil
@@ -166,6 +186,9 @@ final class VoiceMappingCoordinator: ObservableObject {
         voiceManager.onModelLoadProgress = nil
         clearAllState()
         stagedMappings = []
+        showOverwriteAlert = false
+        conflictingCommands = []
+        isProcessing = false
 
         isActive = false
         statusMessage = ""
@@ -212,13 +235,29 @@ final class VoiceMappingCoordinator: ObservableObject {
     }
 
     /// Set the document reference for saving
+    @discardableResult
     func setDocument(
         _ doc: TraktorMappingDocument,
         destinationDeviceID: Device.ID? = nil
-    ) {
+    ) -> Bool {
+        let resolvedDestinationID: Device.ID?
+        if let destinationDeviceID,
+           doc.mappingFile.devices.contains(where: { $0.id == destinationDeviceID }) {
+            resolvedDestinationID = destinationDeviceID
+        } else if MappingTransferService.isTrulyEmpty(doc.mappingFile) {
+            resolvedDestinationID = nil
+        } else if destinationDeviceID == nil, doc.mappingFile.devices.count == 1 {
+            resolvedDestinationID = doc.mappingFile.devices[0].id
+        } else {
+            document = nil
+            self.destinationDeviceID = nil
+            statusMessage = "Cannot start: choose a valid destination device."
+            return false
+        }
+
         self.document = doc
-        self.destinationDeviceID = destinationDeviceID
-            ?? (doc.mappingFile.devices.count == 1 ? doc.mappingFile.devices[0].id : nil)
+        self.destinationDeviceID = resolvedDestinationID
+        return true
     }
 
     /// Called when user clicks "Finish & Save" - checks for conflicts
@@ -230,6 +269,11 @@ final class VoiceMappingCoordinator: ObservableObject {
 
         guard !stagedMappings.isEmpty else {
             statusMessage = "Nothing has been added to this session"
+            return
+        }
+
+        guard canFinishSession else {
+            statusMessage = "Add the current mapping to the session before finishing."
             return
         }
 
@@ -264,6 +308,11 @@ final class VoiceMappingCoordinator: ObservableObject {
     /// Perform the actual save operation
     func performVoiceSave(overwrite: Bool) {
         guard let document = document else { return }
+        guard canFinishSession else {
+            showOverwriteAlert = false
+            statusMessage = "Add the current mapping to the session before finishing."
+            return
+        }
         let entries = stagedMappings
         let keysToReplace = Set(entries.compactMap(SemanticBindingKey.init(entry:)))
 
@@ -302,14 +351,14 @@ final class VoiceMappingCoordinator: ObservableObject {
         let savedCount = entries.count
         stagedMappings = []
         clearAllState()
-        if isActive {
-            midiManager.stopListening()
-            voiceManager.stopListening()
-            midiManager.onMIDIReceived = nil
-            voiceManager.onTranscriptReady = nil
-            voiceManager.onModelLoadProgress = nil
-            isActive = false
-        }
+        invalidateLifecycle()
+        midiManager.stopListening()
+        voiceManager.stopListening()
+        midiManager.onMIDIReceived = nil
+        voiceManager.onTranscriptReady = nil
+        voiceManager.onModelLoadProgress = nil
+        isProcessing = false
+        isActive = false
         statusMessage = "Saved \(savedCount) mappings!"
     }
 
@@ -347,6 +396,7 @@ final class VoiceMappingCoordinator: ObservableObject {
     /// Process the mapping with both MIDI and voice captured.
     func processMapping() async {
         guard let midi = pendingMIDI, let voice = pendingVoice else { return }
+        let generation = lifecycleGeneration
 
         // Consume the pending inputs so a later MIDI press can't re-pair with
         // this (now stale) transcript, and clear the previous result so the
@@ -367,8 +417,10 @@ final class VoiceMappingCoordinator: ObservableObject {
                 transcript: voice,
                 availableCommands: TraktorCommands.allNames
             )
+            guard generation == lifecycleGeneration else { return }
             handleInterpretation(result, midi: midi)
         } catch {
+            guard generation == lifecycleGeneration else { return }
             // Failed state: no half-paired MIDI left behind, status shows the failure.
             currentMIDI = nil
             statusMessage = "API error: \(error.localizedDescription)"
@@ -457,13 +509,11 @@ final class VoiceMappingCoordinator: ObservableObject {
         // Restart listening
         statusMessage = "Added to Session. Ready for next input. (\(stagedMappings.count) total)"
 
-        // Restart voice listening
-        Task {
-            do {
-                try await voiceManager.startListening()
-            } catch {
-                statusMessage = "Voice error: \(error.localizedDescription)"
-            }
+        if isActive {
+            startVoiceListening(
+                generation: lifecycleGeneration,
+                successStatus: nil
+            )
         }
     }
 
@@ -476,6 +526,58 @@ final class VoiceMappingCoordinator: ObservableObject {
         disambiguationOptions = nil
         disambiguationMIDI = nil
         pendingResult = nil
+    }
+
+    private var hasUnstagedMapping: Bool {
+        currentResult != nil
+            || currentMIDI != nil
+            || disambiguationOptions != nil
+            || isProcessing
+            || pendingMIDI != nil
+            || pendingVoice != nil
+    }
+
+    private var hasLiveDestination: Bool {
+        guard let document else { return false }
+        if let destinationDeviceID {
+            return document.mappingFile.devices.contains { $0.id == destinationDeviceID }
+        }
+        return MappingTransferService.isTrulyEmpty(document.mappingFile)
+    }
+
+    private func invalidateLifecycle() {
+        lifecycleGeneration &+= 1
+        voiceListeningTask?.cancel()
+        voiceListeningTask = nil
+    }
+
+    private func startVoiceListening(
+        generation: UInt,
+        successStatus: String?
+    ) {
+        voiceListeningTask?.cancel()
+        voiceListeningTask = Task { [weak self] in
+            guard let self else { return }
+            do {
+                try await self.voiceManager.startListening()
+                guard self.lifecycleGeneration == generation,
+                      self.isActive,
+                      !Task.isCancelled else {
+                    if !self.isActive {
+                        self.voiceManager.stopListening()
+                    }
+                    return
+                }
+                if let successStatus {
+                    self.statusMessage = successStatus
+                }
+            } catch {
+                guard self.lifecycleGeneration == generation,
+                      self.isActive,
+                      !Task.isCancelled else { return }
+                self.statusMessage = "Voice error: \(error.localizedDescription)"
+            }
+        }
     }
 
     /// Build the list of disambiguation options from a result.

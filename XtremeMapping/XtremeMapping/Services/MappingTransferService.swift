@@ -135,6 +135,29 @@ enum MappingTransferService {
         return owners.count == 1 ? owners[0].id : nil
     }
 
+    /// Resolves a workflow destination without ever guessing in an existing
+    /// multi-device document. A sole device is inherently unambiguous; a
+    /// truly empty file may create its destination when the workflow commits.
+    static func workflowDestinationDeviceID(
+        for selectedIDs: Set<MappingEntry.ID>,
+        in mappingFile: MappingFile
+    ) throws -> Device.ID? {
+        if isTrulyEmpty(mappingFile) { return nil }
+        if mappingFile.devices.count == 1 { return mappingFile.devices[0].id }
+
+        let liveIDs = Set(mappingFile.allMappings.map(\.id))
+        guard selectedIDs.isSubset(of: liveIDs) else {
+            throw MappingTransferError.destinationUnavailable
+        }
+        guard let destination = destinationDeviceID(
+            for: selectedIDs,
+            in: mappingFile
+        ) else {
+            throw MappingTransferError.destinationRequired
+        }
+        return destination
+    }
+
     /// Duplicates each selected source row at the end of its owning device.
     /// Duplication never needs destination guessing because every source row
     /// already has a live owning device.
