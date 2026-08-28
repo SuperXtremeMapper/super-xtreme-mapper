@@ -390,6 +390,45 @@ final class WizardCoordinatorTests: XCTestCase {
         XCTAssertTrue(coordinator.isAtLastStep)
     }
 
+    func testCancelledFinalStepConflictKeepsListeningAndCanRecapture() async throws {
+        let device = Device(name: "Generic MIDI")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [device]))
+        attachDocument(document, destinationDeviceID: device.id)
+        coordinator.setupConfig.numberOfChannels = 1
+        coordinator.autoAdvanceEnabled = false
+        coordinator.switchToTab(.cueLoop)
+        for _ in 1..<WizardTab.cueLoop.functions.count {
+            coordinator.next()
+        }
+        let function = try XCTUnwrap(coordinator.currentFunction)
+        let assignment = try XCTUnwrap(coordinator.currentAssignment)
+        document.mappingFile.devices[0].mappings = [
+            MappingEntry(
+                commandID: function.commandID,
+                assignment: assignment,
+                setToValue: function.setToValue ?? 0
+            )
+        ]
+
+        coordinator.handleMIDIReceived(noteOn(60))
+        coordinator.fireAutoAdvance()
+
+        XCTAssertTrue(coordinator.showOverwriteAlert)
+        XCTAssertEqual(coordinator.phase, .learning)
+        XCTAssertTrue(coordinator.isListening, "A pending conflict choice must keep MIDI learning active")
+
+        // SwiftUI dismisses the alert's binding before running a cancel action.
+        coordinator.showOverwriteAlert = false
+        MIDIInputManager.shared.onMIDIReceived?(noteOn(61))
+        await Task.yield()
+
+        let recaptured = coordinator.capturedMappings.first {
+            $0.function.id == function.id && $0.assignment == assignment
+        }
+        XCTAssertEqual(recaptured?.midiMessage.note, 61)
+        XCTAssertEqual(document.mappingFile.devices[0].mappings.count, 1)
+    }
+
     // MARK: - Task 3.2: note-off never creates a capture
 
     func testNoteOffDoesNotAddOrReplaceCapture() {
@@ -811,12 +850,16 @@ final class WizardCoordinatorTests: XCTestCase {
         document.mappingFile.devices[0].mappings = [conflict]
         document.mappingFile.devices[1].mappings = [conflict.copyWithNewID()]
         coordinator.handleMIDIReceived(noteOn(61))
+        XCTAssertTrue(coordinator.isListening)
 
         coordinator.performSave(overwrite: true)
 
         XCTAssertEqual(document.mappingFile.devices[0].mappings, [conflict])
         XCTAssertEqual(document.mappingFile.devices[1].mappings.count, 1)
         XCTAssertEqual(document.mappingFile.devices[1].mappings[0].midiNote, 61)
+        XCTAssertEqual(coordinator.phase, .complete)
+        XCTAssertFalse(coordinator.isListening)
+        XCTAssertNil(MIDIInputManager.shared.onMIDIReceived)
     }
 
     func testSetupChangeCallbackIsWiredToManager() {

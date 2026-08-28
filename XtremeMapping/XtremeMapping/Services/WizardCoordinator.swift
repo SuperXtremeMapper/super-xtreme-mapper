@@ -309,7 +309,8 @@ final class WizardCoordinator: ObservableObject {
             // the save explicitly (which itself sets phase=.complete via
             // performSave) so the wizard's final state matches what the
             // user expects: their captures are written to the document.
-            stopMIDIListening()
+            // Keep the current MIDI session alive while conflict validation
+            // may present a choice; performSave owns shutdown after success.
             saveToDocument()
         }
     }
