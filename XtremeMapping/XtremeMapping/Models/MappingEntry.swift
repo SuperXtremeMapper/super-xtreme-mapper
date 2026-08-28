@@ -381,6 +381,83 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
             importedCMAD: importedCMAD
         )
     }
+
+    /// Value equality is also document-semantic equality, so Float wire
+    /// distinctions must survive it. IDs remain part of equality: copying a
+    /// row for insertion still creates a distinct model identity.
+    nonisolated static func == (lhs: MappingEntry, rhs: MappingEntry) -> Bool {
+        lhs.id == rhs.id
+            && lhs.commandID == rhs.commandID
+            && lhs.ioType == rhs.ioType
+            && lhs.assignment == rhs.assignment
+            && lhs.interactionMode == rhs.interactionMode
+            && lhs.midiAssignment == rhs.midiAssignment
+            && lhs.rawMidiControlName == rhs.rawMidiControlName
+            && lhs.rawMidiBindingID == rhs.rawMidiBindingID
+            && lhs.modifier1Condition == rhs.modifier1Condition
+            && lhs.modifier2Condition == rhs.modifier2Condition
+            && lhs.comment == rhs.comment
+            && lhs.controllerType == rhs.controllerType
+            && lhs.invert == rhs.invert
+            && lhs.softTakeover == rhs.softTakeover
+            && lhs.setToValue.bitPattern == rhs.setToValue.bitPattern
+            && lhs.rotarySensitivity.bitPattern == rhs.rotarySensitivity.bitPattern
+            && lhs.rotaryAcceleration.bitPattern == rhs.rotaryAcceleration.bitPattern
+            && lhs.encoderMode == rhs.encoderMode
+            && lhs.rawDCDTEncoderMode == rhs.rawDCDTEncoderMode
+            && lhs.rawDCDTControlType == rhs.rawDCDTControlType
+            && lhs.rawDCDTMinValueBits == rhs.rawDCDTMinValueBits
+            && lhs.rawDCDTMaxValueBits == rhs.rawDCDTMaxValueBits
+            && lhs.rawDCDTControlID == rhs.rawDCDTControlID
+            && lhs.autoRepeat == rhs.autoRepeat
+            && lhs.ledMinRangeType == rhs.ledMinRangeType
+            && lhs.ledMinRangeData == rhs.ledMinRangeData
+            && lhs.ledMaxRangeType == rhs.ledMaxRangeType
+            && lhs.ledMaxRangeData == rhs.ledMaxRangeData
+            && lhs.ledMinMidi == rhs.ledMinMidi
+            && lhs.ledMaxMidi == rhs.ledMaxMidi
+            && lhs.ledInvert == rhs.ledInvert
+            && lhs.ledBlend == rhs.ledBlend
+            && lhs.resolution == rhs.resolution
+            && lhs.importedCMAD == rhs.importedCMAD
+    }
+
+    nonisolated func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(commandID)
+        hasher.combine(ioType)
+        hasher.combine(assignment)
+        hasher.combine(interactionMode)
+        hasher.combine(midiAssignment)
+        hasher.combine(rawMidiControlName)
+        hasher.combine(rawMidiBindingID)
+        hasher.combine(modifier1Condition)
+        hasher.combine(modifier2Condition)
+        hasher.combine(comment)
+        hasher.combine(controllerType)
+        hasher.combine(invert)
+        hasher.combine(softTakeover)
+        hasher.combine(setToValue.bitPattern)
+        hasher.combine(rotarySensitivity.bitPattern)
+        hasher.combine(rotaryAcceleration.bitPattern)
+        hasher.combine(encoderMode)
+        hasher.combine(rawDCDTEncoderMode)
+        hasher.combine(rawDCDTControlType)
+        hasher.combine(rawDCDTMinValueBits)
+        hasher.combine(rawDCDTMaxValueBits)
+        hasher.combine(rawDCDTControlID)
+        hasher.combine(autoRepeat)
+        hasher.combine(ledMinRangeType)
+        hasher.combine(ledMinRangeData)
+        hasher.combine(ledMaxRangeType)
+        hasher.combine(ledMaxRangeData)
+        hasher.combine(ledMinMidi)
+        hasher.combine(ledMaxMidi)
+        hasher.combine(ledInvert)
+        hasher.combine(ledBlend)
+        hasher.combine(resolution)
+        hasher.combine(importedCMAD)
+    }
 }
 
 // MARK: - Nonisolated Codable Conformance
@@ -451,9 +528,24 @@ extension MappingEntry: Codable {
         controllerType = try container.decode(ControllerType.self, forKey: .controllerType)
         invert = try container.decode(Bool.self, forKey: .invert)
         softTakeover = try container.decode(Bool.self, forKey: .softTakeover)
-        setToValue = try container.decode(Float.self, forKey: .setToValue)
-        rotarySensitivity = try container.decodeIfPresent(Float.self, forKey: .rotarySensitivity) ?? 5.0
-        rotaryAcceleration = try container.decode(Float.self, forKey: .rotaryAcceleration)
+        if let bits = try container.decodeIfPresent(UInt32.self, forKey: .setToValueBits) {
+            setToValue = Float(bitPattern: bits)
+        } else {
+            setToValue = try container.decode(Float.self, forKey: .setToValue)
+        }
+        if let bits = try container.decodeIfPresent(UInt32.self, forKey: .rotarySensitivityBits) {
+            rotarySensitivity = Float(bitPattern: bits)
+        } else {
+            rotarySensitivity = try container.decodeIfPresent(
+                Float.self,
+                forKey: .rotarySensitivity
+            ) ?? 5.0
+        }
+        if let bits = try container.decodeIfPresent(UInt32.self, forKey: .rotaryAccelerationBits) {
+            rotaryAcceleration = Float(bitPattern: bits)
+        } else {
+            rotaryAcceleration = try container.decode(Float.self, forKey: .rotaryAcceleration)
+        }
         encoderMode = try container.decode(EncoderMode.self, forKey: .encoderMode)
         rawDCDTEncoderMode = try container.decodeIfPresent(
             UInt32.self,
@@ -498,9 +590,18 @@ extension MappingEntry: Codable {
         try container.encode(controllerType, forKey: .controllerType)
         try container.encode(invert, forKey: .invert)
         try container.encode(softTakeover, forKey: .softTakeover)
-        try container.encode(setToValue, forKey: .setToValue)
-        try container.encode(rotarySensitivity, forKey: .rotarySensitivity)
-        try container.encode(rotaryAcceleration, forKey: .rotaryAcceleration)
+        try container.encode(setToValue.bitPattern, forKey: .setToValueBits)
+        try container.encode(rotarySensitivity.bitPattern, forKey: .rotarySensitivityBits)
+        try container.encode(rotaryAcceleration.bitPattern, forKey: .rotaryAccelerationBits)
+        if setToValue.isFinite {
+            try container.encode(setToValue, forKey: .setToValue)
+        }
+        if rotarySensitivity.isFinite {
+            try container.encode(rotarySensitivity, forKey: .rotarySensitivity)
+        }
+        if rotaryAcceleration.isFinite {
+            try container.encode(rotaryAcceleration, forKey: .rotaryAcceleration)
+        }
         try container.encode(encoderMode, forKey: .encoderMode)
         try container.encodeIfPresent(rawDCDTEncoderMode, forKey: .rawDCDTEncoderMode)
         try container.encodeIfPresent(rawDCDTControlType, forKey: .rawDCDTControlType)
@@ -525,8 +626,9 @@ extension MappingEntry: Codable {
         case midiChannel, midiNote, midiCC, rawMidiControlName, rawMidiBindingID
         case modifier1Condition, modifier2Condition
         case comment, controllerType, invert
-        case softTakeover, setToValue
-        case rotarySensitivity, rotaryAcceleration, encoderMode, rawDCDTEncoderMode
+        case softTakeover, setToValue, setToValueBits
+        case rotarySensitivity, rotarySensitivityBits
+        case rotaryAcceleration, rotaryAccelerationBits, encoderMode, rawDCDTEncoderMode
         case rawDCDTControlType, rawDCDTMinValueBits, rawDCDTMaxValueBits, rawDCDTControlID
         case autoRepeat
         case ledMinRangeType, ledMinRangeData, ledMaxRangeType, ledMaxRangeData

@@ -63,12 +63,11 @@ public struct TSIWriter: Sendable {
             return envelope.originalXML
         }
 
-        let regenerated = try writeRegenerated(mappingFile, mode: .preservingImported)
-        let risks = preservationRisks(for: mappingFile)
+        let risks = try validatedPreservationRisks(for: mappingFile)
         if !risks.isEmpty {
             throw TSIPreservationError.unsafeOverwrite(risks: risks)
         }
-        return regenerated
+        return try writeRegenerated(mappingFile, mode: .preservingImported)
     }
 
     /// Deliberately canonicalizes the modeled projection. This bypasses exact
@@ -101,7 +100,12 @@ public struct TSIWriter: Sendable {
     /// first lattice gate, before source risks are considered.
     func preservationReport(for mappingFile: MappingFile) -> TSIPreservationReport {
         do {
-            _ = try writeConverted(mappingFile)
+            let risks = try validatedPreservationRisks(for: mappingFile)
+            return TSIPreservationReport(
+                risks: risks,
+                disposition: risks.isEmpty ? .ordinarySaveSafe : .lossyConvertible,
+                validationError: nil
+            )
         } catch {
             return TSIPreservationReport(
                 risks: mappingFile.sourceEnvelope?.risks ?? [],
@@ -109,12 +113,17 @@ public struct TSIWriter: Sendable {
                 validationError: TSIWriterValidationFailure(error)
             )
         }
-        let risks = preservationRisks(for: mappingFile)
-        return TSIPreservationReport(
-            risks: risks,
-            disposition: risks.isEmpty ? .ordinarySaveSafe : .lossyConvertible,
-            validationError: nil
-        )
+    }
+
+    /// Converted validation is the first lattice gate. Only a projection that
+    /// can be written canonically is classified as ordinary-save-safe or
+    /// lossy-convertible; preserving regeneration happens later and only for
+    /// the ordinary-safe case.
+    private func validatedPreservationRisks(
+        for mappingFile: MappingFile
+    ) throws -> [TSIPreservationRisk] {
+        _ = try writeRegenerated(mappingFile, mode: .converted)
+        return preservationRisks(for: mappingFile)
     }
 
     private func preservationRisks(for mappingFile: MappingFile) -> [TSIPreservationRisk] {

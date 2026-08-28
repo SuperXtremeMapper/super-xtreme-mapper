@@ -311,6 +311,55 @@ final class TSIPreservationTests: XCTestCase {
         XCTAssertEqual(file.devices[0].mappings[0].importedCMAD?.payload, cmad)
     }
 
+    func testUnchangedImportedNaNUsesExactOriginalXML() throws {
+        var cmad = completeCMAD()
+        replaceUInt32(in: &cmad, at: 28, with: 0x7FC0_1234)
+        let xml = spacedXML(binary: mappedControllerBinary(cmad: cmad))
+        var file = try TSIParser().parseDocument(xml)
+
+        XCTAssertEqual(file.sourceEnvelope?.risks, [])
+        XCTAssertEqual(
+            file.devices[0].mappings[0].rotarySensitivity.bitPattern,
+            0x7FC0_1234
+        )
+        // Force value-semantic copy-on-write without changing the Float bits.
+        file.devices[0].mappings[0].rotarySensitivity = Float(bitPattern: 0x7FC0_1234)
+        XCTAssertEqual(try TSIWriter().write(file), xml)
+    }
+
+    func testNegativeZeroToPositiveZeroEditChangesOnlySetToWireBits() throws {
+        var cmad = completeCMAD()
+        replaceUInt32(in: &cmad, at: 44, with: 0x8000_0000)
+        let sourceBinary = mappedControllerBinary(cmad: cmad)
+        var file = try TSIParser().parseDocument(completeXML(binary: sourceBinary))
+        XCTAssertEqual(file.devices[0].mappings[0].setToValue.bitPattern, 0x8000_0000)
+
+        file.devices[0].mappings[0].setToValue = Float(bitPattern: 0)
+        let writtenBinary = try controllerBinary(from: TSIWriter().write(file))
+        let cmadRange = try XCTUnwrap(sourceBinary.range(of: cmad))
+        var expected = sourceBinary
+        replaceUInt32(in: &expected, at: cmadRange.lowerBound + 44, with: 0)
+
+        XCTAssertEqual(writtenBinary, expected)
+    }
+
+    func testEditedPartialCMADRefusesUnsafeOverwriteBeforePreservingPatch() throws {
+        let partial = Data(completeCMAD().prefix(52))
+        var file = try TSIParser().parseDocument(
+            completeXML(binary: mappedControllerBinary(cmad: partial))
+        )
+        file.devices[0].mappings[0].modifier1Condition = .init(modifier: 1, value: 1)
+        let risks = try XCTUnwrap(file.sourceEnvelope?.risks)
+
+        XCTAssertEqual(TSIWriter().preservationReport(for: file).disposition, .lossyConvertible)
+        XCTAssertThrowsError(try TSIWriter().write(file)) { error in
+            XCTAssertEqual(
+                error as? TSIPreservationError,
+                .unsafeOverwrite(risks: risks)
+            )
+        }
+    }
+
     func testLossyCMADCommentHasSpecificStringRisk() throws {
         var cmad = completeCMAD()
         replaceUInt32(in: &cmad, at: 48, with: 1)
@@ -372,6 +421,23 @@ final class TSIPreservationTests: XCTestCase {
         <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
         <NIXML><TraktorSettings><Entry Name="DeviceIO.Config.Controller" Type="3" Value="\(value)"/></TraktorSettings></NIXML>
         """.utf8)
+    }
+
+    private func spacedXML(binary: Data) -> Data {
+        let value = binary.base64EncodedString()
+        return Data("""
+        <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+        <NIXML>
+          <TraktorSettings>
+            <Entry Name="DeviceIO.Config.Controller" Type="3" Value="\(value)"/>
+          </TraktorSettings>
+        </NIXML>
+        """.utf8)
+    }
+
+    private func controllerBinary(from xml: Data) throws -> Data {
+        let value = try TSIParser.extractControllerData(from: xml)
+        return try TSIParser().decodeBase64(value)
     }
 
     private func emptyControllerBinary(

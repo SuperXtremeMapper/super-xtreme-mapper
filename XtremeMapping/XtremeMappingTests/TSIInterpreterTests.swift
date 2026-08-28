@@ -1824,30 +1824,29 @@ final class TSIInterpreterTests: XCTestCase {
         XCTAssertNotNil(report.validationError)
     }
 
-    func testImportedTruncatedTailRefusesEveryEditThatNeedsMissingOwnedBytes() throws {
+    func testImportedTruncatedTailRefusesBeforeTouchingMissingOwnedBytes() throws {
         let fullCMAD = noncanonicalCMAD(comment: "wire fidelity")
         let truncatedCMAD = Data(fullCMAD.prefix(cmadTailOffset(in: fullCMAD)))
-        let cases: [(String, (inout MappingEntry) -> Void, String)] = [
-            ("modifier", { $0.modifier1Condition = .init(modifier: 1, value: 1) }, "Conditions"),
-            ("LED", { $0.ledMaxMidi = 12 }, "LedMaxMidi"),
-            ("controller profile", { $0.controllerType = .button }, "LedMinType"),
-            ("command profile", { $0.commandID = 125 }, "LedMinType"),
+        let cases: [(String, (inout MappingEntry) -> Void)] = [
+            ("modifier", { $0.modifier1Condition = .init(modifier: 1, value: 1) }),
+            ("LED", { $0.ledMaxMidi = 12 }),
+            ("controller profile", { $0.controllerType = .button }),
+            ("command profile", { $0.commandID = 125 }),
         ]
 
-        for (label, mutate, missingField) in cases {
+        for (label, mutate) in cases {
             var imported = try importedMappingFile(cmad: truncatedCMAD)
             mutate(&imported.devices[0].mappings[0])
-
-            XCTAssertThrowsError(try TSIWriter().write(imported), label) { error in
-                XCTAssertEqual(
-                    error as? TSIWriterError,
-                    .unreconcilableImportedCMAD(field: missingField),
-                    label
-                )
-            }
             let report = TSIWriter().preservationReport(for: imported)
             XCTAssertEqual(report.disposition, .lossyConvertible, label)
             XCTAssertTrue(report.risks.contains { $0.code == .partialCMAD }, label)
+            XCTAssertThrowsError(try TSIWriter().write(imported), label) { error in
+                XCTAssertEqual(
+                    error as? TSIPreservationError,
+                    .unsafeOverwrite(risks: report.risks),
+                    label
+                )
+            }
         }
     }
 

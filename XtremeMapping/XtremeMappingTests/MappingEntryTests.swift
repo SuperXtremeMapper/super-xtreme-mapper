@@ -11,6 +11,31 @@ import Foundation
 
 struct MappingEntryTests {
 
+    @Test func equalityUsesFloatWireBitsAndStillIncludesIdentity() {
+        let id = UUID()
+        let nanBits: UInt32 = 0x7FC0_1234
+        let nan = MappingEntry(
+            id: id,
+            setToValue: Float(bitPattern: nanBits),
+            rotarySensitivity: Float(bitPattern: 0x8000_0000),
+            rotaryAcceleration: Float(bitPattern: nanBits)
+        )
+        let sameBits = MappingEntry(
+            id: id,
+            setToValue: Float(bitPattern: nanBits),
+            rotarySensitivity: Float(bitPattern: 0x8000_0000),
+            rotaryAcceleration: Float(bitPattern: nanBits)
+        )
+
+        #expect(nan == sameBits)
+        #expect(nan.hashValue == sameBits.hashValue)
+
+        let negativeZero = MappingEntry(id: id, setToValue: Float(bitPattern: 0x8000_0000))
+        let positiveZero = MappingEntry(id: id, setToValue: Float(bitPattern: 0))
+        #expect(negativeZero != positiveZero)
+        #expect(negativeZero != MappingEntry(id: UUID(), setToValue: negativeZero.setToValue))
+    }
+
     @Test func copyWithNewIDChangesOnlyIdentity() {
         let source = MappingEntry.fullFieldSentinel
         let copy = source.copyWithNewID()
@@ -170,6 +195,92 @@ struct MappingEntryTests {
         #expect(json["midiNote"] == nil)
         #expect(json["midiCC"] as? Int == 127)
         #expect(json["midiAssignment"] == nil)
+    }
+
+    @Test func floatWireBitsCodableRoundTripsNaNInfinityAndNegativeZero() throws {
+        let bitPatterns: [UInt32] = [
+            0x7FC0_1234,
+            0xFFC0_5678,
+            0x7F80_0000,
+            0xFF80_0000,
+            0x8000_0000,
+        ]
+
+        for bits in bitPatterns {
+            let value = Float(bitPattern: bits)
+            let source = MappingEntry(
+                setToValue: value,
+                rotarySensitivity: value,
+                rotaryAcceleration: value
+            )
+            let encoded = try JSONEncoder().encode(source)
+            let object = try #require(
+                JSONSerialization.jsonObject(with: encoded) as? [String: Any]
+            )
+            let decoded = try JSONDecoder().decode(MappingEntry.self, from: encoded)
+
+            #expect(decoded.setToValue.bitPattern == bits)
+            #expect(decoded.rotarySensitivity.bitPattern == bits)
+            #expect(decoded.rotaryAcceleration.bitPattern == bits)
+            #expect((object["setToValueBits"] as? NSNumber)?.uint32Value == bits)
+            #expect((object["rotarySensitivityBits"] as? NSNumber)?.uint32Value == bits)
+            #expect((object["rotaryAccelerationBits"] as? NSNumber)?.uint32Value == bits)
+            if value.isFinite {
+                #expect(object["setToValue"] != nil)
+                #expect(object["rotarySensitivity"] != nil)
+                #expect(object["rotaryAcceleration"] != nil)
+            } else {
+                #expect(object["setToValue"] == nil)
+                #expect(object["rotarySensitivity"] == nil)
+                #expect(object["rotaryAcceleration"] == nil)
+            }
+        }
+    }
+
+    @Test func explicitFloatWireBitsAreAuthoritativeOnDecode() throws {
+        let entry = MappingEntry(
+            setToValue: 0.25,
+            rotarySensitivity: 1.5,
+            rotaryAcceleration: 0.75
+        )
+        var object = try #require(
+            JSONSerialization.jsonObject(with: JSONEncoder().encode(entry)) as? [String: Any]
+        )
+        object["setToValueBits"] = NSNumber(value: UInt32(0x7FC0_1234))
+        object["rotarySensitivityBits"] = NSNumber(value: UInt32(0x8000_0000))
+        object["rotaryAccelerationBits"] = NSNumber(value: UInt32(0xFF80_0000))
+
+        let decoded = try JSONDecoder().decode(
+            MappingEntry.self,
+            from: JSONSerialization.data(withJSONObject: object)
+        )
+
+        #expect(decoded.setToValue.bitPattern == 0x7FC0_1234)
+        #expect(decoded.rotarySensitivity.bitPattern == 0x8000_0000)
+        #expect(decoded.rotaryAcceleration.bitPattern == 0xFF80_0000)
+    }
+
+    @Test func legacyFloatJSONWithoutWireBitsStillDecodes() throws {
+        let entry = MappingEntry(
+            setToValue: 0.25,
+            rotarySensitivity: 1.5,
+            rotaryAcceleration: 0.75
+        )
+        var object = try #require(
+            JSONSerialization.jsonObject(with: JSONEncoder().encode(entry)) as? [String: Any]
+        )
+        object.removeValue(forKey: "setToValueBits")
+        object.removeValue(forKey: "rotarySensitivityBits")
+        object.removeValue(forKey: "rotaryAccelerationBits")
+
+        let decoded = try JSONDecoder().decode(
+            MappingEntry.self,
+            from: JSONSerialization.data(withJSONObject: object)
+        )
+
+        #expect(decoded.setToValue.bitPattern == Float32(0.25).bitPattern)
+        #expect(decoded.rotarySensitivity.bitPattern == Float32(1.5).bitPattern)
+        #expect(decoded.rotaryAcceleration.bitPattern == Float32(0.75).bitPattern)
     }
 
     @Test(arguments: [
