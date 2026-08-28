@@ -103,6 +103,7 @@ struct ContentView: View {
                 onWizard: {
                     WizardTrace.write(" V2ActionBar.onWizard: setting pendingDocument=\(ObjectIdentifier(document)) (doc has \(document.mappingFile.devices.count) devices, \(document.mappingFile.allMappings.count) mappings)")
                     WizardCoordinator.pendingDocument = document
+                    WizardCoordinator.pendingDestinationDeviceID = workflowDestinationDeviceID
                     NotificationCenter.default.post(name: .wizardDocumentChanged, object: document)
                     openWindow(id: "wizard")
                 }
@@ -318,102 +319,27 @@ struct ContentView: View {
 
     // MARK: - Voice Learn
 
-    @discardableResult
-    private func addVoiceMapping(midi: MIDIMessage, result: VoiceCommandResult) -> UUID? {
-        guard !isLocked,
-              let command = TraktorCommands.verifiedDescriptor(
-                named: result.command,
-                supporting: .input
-              ),
-              let midiAssignment = MIDIAssignment(learnMessage: midi) else { return nil }
-
-        // Parse assignment from result
-        let assignment = parseAssignment(result.assignment)
-
-        // Parse controller type and get its default interaction mode
-        let controllerType = parseControllerType(result.controllerType)
-        let interactionMode = controllerType.defaultInteractionMode
-
-        // Create the new mapping entry
-        let newMapping = MappingEntry(
-            commandID: command.id,
-            ioType: .input,
-            assignment: assignment,
-            interactionMode: interactionMode,
-            midiAssignment: midiAssignment,
-            controllerType: controllerType
-        )
-
-        let insertedID = document.performUndoableMutation(
-            actionName: "Add Voice Mapping",
-            undoManager: undoManager
-        ) { file in
-            if file.devices.isEmpty {
-                file.devices.append(Device(name: "Generic MIDI", mappings: [newMapping]))
-            } else {
-                file.devices[0].mappings.append(newMapping)
-            }
-            return newMapping.id
-        }
-        guard let insertedID else { return nil }
-
-        selectedMappings = [insertedID]
-        return insertedID
-    }
-
-    private func parseAssignment(_ assignmentString: String?) -> TargetAssignment {
-        guard let str = assignmentString?.lowercased() else { return .global }
-
-        if str.contains("deck a") { return .deckA }
-        if str.contains("deck b") { return .deckB }
-        if str.contains("deck c") { return .deckC }
-        if str.contains("deck d") { return .deckD }
-        if str.contains("fx") || str.contains("effect") {
-            if str.contains("1") { return .fxUnit1 }
-            if str.contains("2") { return .fxUnit2 }
-            if str.contains("3") { return .fxUnit3 }
-            if str.contains("4") { return .fxUnit4 }
-            return .fxUnit1
-        }
-        if str.contains("global") || str.contains("master") || str.contains("browser") {
-            return .global
-        }
-
-        return .global
-    }
-
-    private func parseControllerType(_ controllerTypeString: String?) -> ControllerType {
-        guard let str = controllerTypeString?.lowercased() else { return .faderOrKnob }
-
-        if str.contains("button") || str.contains("pad") || str.contains("trigger") {
-            return .button
-        }
-        if str.contains("encoder") || str.contains("rotary") || str.contains("jog") {
-            return .encoder
-        }
-        if str.contains("fader") || str.contains("knob") || str.contains("slider") || str.contains("pot") {
-            return .faderOrKnob
-        }
-
-        // Default to fader/knob for continuous controls
-        return .faderOrKnob
+    private var workflowDestinationDeviceID: Device.ID? {
+        MappingTransferService.destinationDeviceID(
+            for: selectedMappings,
+            in: document.mappingFile
+        ) ?? (document.mappingFile.devices.count == 1 ? document.mappingFile.devices[0].id : nil)
     }
 
     private func toggleVoiceLearn() {
         if voiceCoordinator.isActive {
             voiceCoordinator.deactivate()
         } else {
+            guard !isLocked else { return }
             // Check for Apple Silicon before activating
             guard isAppleSilicon else {
                 showIntelMacAlert = true
                 return
             }
-            voiceCoordinator.setDocument(document)
-            // Result-returning insertion seam: nil means the document refused
-            // the mapping (e.g. locked), and the coordinator won't record it.
-            voiceCoordinator.insertMapping = { midi, result in
-                addVoiceMapping(midi: midi, result: result)
-            }
+            voiceCoordinator.setDocument(
+                document,
+                destinationDeviceID: workflowDestinationDeviceID
+            )
             voiceCoordinator.activate()
         }
     }

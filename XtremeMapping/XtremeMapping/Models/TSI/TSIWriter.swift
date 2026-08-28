@@ -1055,7 +1055,7 @@ public struct TSIWriter: Sendable {
         }
     }
 
-    private static func targetRaw(for mapping: MappingEntry) -> UInt32 {
+    static func targetRaw(for mapping: MappingEntry) -> UInt32 {
         let value: Int32
         if isRemixSlotCommand(mapping.commandID) {
             value = mapping.assignment.remixSlotCommandTargetValue ?? 0
@@ -1092,7 +1092,7 @@ public struct TSIWriter: Sendable {
         value.bitPattern
     }
 
-    private static func setValueRaw(for mapping: MappingEntry, commandId: Int) -> UInt32 {
+    static func setValueRaw(for mapping: MappingEntry, commandId: Int) -> UInt32 {
         // Hotcue index is stored as a raw UInt32 selector, not a float.
         if commandId == 2328 {
             let index = max(0, min(7, Int(mapping.setToValue.rounded())))

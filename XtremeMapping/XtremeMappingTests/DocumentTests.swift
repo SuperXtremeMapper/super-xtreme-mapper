@@ -790,6 +790,36 @@ final class DocumentTests: XCTestCase {
     }
 
     @MainActor
+    func testThrowingUndoableMutationDoesNotAssignDirtyOrRegisterUndo() throws {
+        struct ExpectedFailure: Error {}
+
+        let original = MappingFile(devices: [
+            Device(name: "Generic MIDI", mappings: [MappingEntry(commandID: 100)])
+        ])
+        let document = TraktorMappingDocument(mappingFile: original)
+        let backing = NSDocument()
+        document.backingDocument = backing
+        let undoManager = try XCTUnwrap(backing.undoManager)
+
+        XCTAssertThrowsError(
+            try document.performUndoableMutation(
+                actionName: "Rejected Candidate",
+                undoManager: undoManager
+            ) { file -> Void in
+                file.devices[0].mappings.append(MappingEntry(commandID: 101))
+                throw ExpectedFailure()
+            }
+        ) { error in
+            XCTAssertTrue(error is ExpectedFailure)
+        }
+
+        XCTAssertEqual(document.mappingFile, original)
+        XCTAssertFalse(document.isDirty)
+        XCTAssertFalse(backing.isDocumentEdited)
+        XCTAssertFalse(undoManager.canUndo)
+    }
+
+    @MainActor
     func testBatchPasteRegistersOneUndoAction() throws {
         let original = MappingFile(devices: [Device(name: "Generic MIDI")])
         let document = TraktorMappingDocument(mappingFile: original)

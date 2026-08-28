@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import AppKit
 @testable import XtremeMapping
 
 // MARK: - Mocks
@@ -78,24 +79,15 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
 
     private var mock: MockInterpreter!
     private var coordinator: VoiceMappingCoordinator!
-    /// IDs returned by the test insertMapping closure, in insertion order.
-    private var insertedIds: [UUID] = []
 
     override func setUp() async throws {
         try await super.setUp()
         mock = MockInterpreter()
-        insertedIds = []
         coordinator = VoiceMappingCoordinator(
             midiManager: MIDIInputManager.shared,
             voiceManager: VoiceInputManager(provider: MockSpeechProvider()),
             claudeService: mock
         )
-        // Default insertion seam: document accepts every mapping.
-        coordinator.insertMapping = { [weak self] _, _ in
-            let id = UUID()
-            self?.insertedIds.append(id)
-            return id
-        }
     }
 
     override func tearDown() async throws {
@@ -262,7 +254,7 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
 
         // Saving mid-processing is refused.
         coordinator.saveAndContinue()
-        XCTAssertTrue(coordinator.sessionMappings.isEmpty, "saveAndContinue must refuse while processing")
+        XCTAssertTrue(coordinator.stagedMappings.isEmpty, "saveAndContinue must refuse while processing")
 
         // The new result lands normally afterwards.
         mock.resume(with: makeResult(command: "Jog Turn"))
@@ -280,13 +272,11 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
         mock.result = makeResult(command: "Cue")
         await processPair(midi: makeMIDI(cc: 10), voice: "play deck a", expectedCallCount: 1)
         coordinator.saveAndContinue()
-        XCTAssertEqual(coordinator.sessionMappings.count, 1)
-        XCTAssertEqual(coordinator.sessionMappingIds.count, 1)
+        XCTAssertEqual(coordinator.stagedMappings.count, 1)
 
         coordinator.deactivate()
 
-        XCTAssertTrue(coordinator.sessionMappings.isEmpty, "deactivate must clear sessionMappings")
-        XCTAssertTrue(coordinator.sessionMappingIds.isEmpty, "deactivate must clear sessionMappingIds")
+        XCTAssertTrue(coordinator.stagedMappings.isEmpty, "deactivate must clear stagedMappings")
     }
 
     // MARK: - Task 2.3: Unknown command names never reach the document
@@ -312,9 +302,9 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
 
         // Saving now must save the NEW pair, not the stale disambiguation MIDI.
         coordinator.saveAndContinue()
-        XCTAssertEqual(coordinator.sessionMappings.count, 1)
-        XCTAssertEqual(coordinator.sessionMappings.first?.midi.cc, 20)
-        XCTAssertEqual(coordinator.sessionMappings.first?.result.command, "Loop Active On")
+        XCTAssertEqual(coordinator.stagedMappings.count, 1)
+        XCTAssertEqual(coordinator.stagedMappings.first?.midiCC, 20)
+        XCTAssertEqual(coordinator.stagedMappings.first?.commandName, "Loop Active On")
     }
 
     func testUnknownPrimaryWithKnownAlternativeRoutesToDisambiguation() async {
@@ -341,8 +331,8 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
         coordinator.selectOption(0)
         XCTAssertEqual(coordinator.currentResult?.command, "Cue")
         coordinator.saveAndContinue()
-        XCTAssertEqual(coordinator.sessionMappings.count, 1)
-        XCTAssertEqual(coordinator.sessionMappings.first?.result.command, "Cue")
+        XCTAssertEqual(coordinator.stagedMappings.count, 1)
+        XCTAssertEqual(coordinator.stagedMappings.first?.commandName, "Cue")
     }
 
     func testUnknownPrimaryWithNoKnownAlternativesIsError() async {
@@ -359,7 +349,7 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
         XCTAssertNil(coordinator.disambiguationOptions)
         XCTAssertNotEqual(coordinator.statusMessage, "Press Next to save")
         coordinator.saveAndContinue()
-        XCTAssertTrue(coordinator.sessionMappings.isEmpty)
+        XCTAssertTrue(coordinator.stagedMappings.isEmpty)
     }
 
     func testDisambiguationFiltersUnknownAlternatives() async {
@@ -387,10 +377,8 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
 
         coordinator.saveAndContinue()
 
-        XCTAssertTrue(coordinator.sessionMappings.isEmpty,
+        XCTAssertTrue(coordinator.stagedMappings.isEmpty,
                       "saveAndContinue must refuse unknown command names")
-        XCTAssertTrue(insertedIds.isEmpty,
-                      "Unknown commands must never reach the document insertion seam")
     }
 
     func testHighConfidenceLegacyCommandIsRejected() async {
@@ -438,73 +426,168 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
 
         coordinator.saveAndContinue()
 
-        XCTAssertTrue(coordinator.sessionMappings.isEmpty)
-        XCTAssertTrue(insertedIds.isEmpty)
+        XCTAssertTrue(coordinator.stagedMappings.isEmpty)
         XCTAssertTrue(coordinator.statusMessage.contains("not saved"))
     }
 
-    // MARK: - Task 2.4 (M6): Locked-document save divergence
+    // MARK: - Atomic staged session
 
-    func testSaveAndContinueLockedDocumentDoesNotRecordSession() async {
-        mock.result = makeResult(command: "Cue")
-        await processPair(midi: makeMIDI(cc: 10), voice: "play deck a", expectedCallCount: 1)
+    func testVoiceMappingBuilderCreatesEntryWithoutDocumentMutation() throws {
+        let document = TraktorMappingDocument()
+        let before = document.mappingFile
 
-        // Locked document: insertion refused.
-        coordinator.insertMapping = { _, _ in nil }
-        coordinator.saveAndContinue()
+        let entry = try VoiceMappingBuilder.makeEntry(
+            midi: makeMIDI(cc: 10),
+            result: makeResult(command: "Cue")
+        )
 
-        XCTAssertTrue(coordinator.sessionMappings.isEmpty,
-                      "A refused insert must not grow sessionMappings")
-        XCTAssertTrue(coordinator.sessionMappingIds.isEmpty)
-        XCTAssertTrue(coordinator.statusMessage.localizedCaseInsensitiveContains("locked"),
-                      "Status must explain the refusal, got: \(coordinator.statusMessage)")
-        XCTAssertFalse(coordinator.statusMessage.contains("Saved"),
-                       "Status must not celebrate a save that didn't happen")
-        XCTAssertNotNil(coordinator.currentResult,
-                        "Pending result survives a refused save so the user can unlock and retry")
-        XCTAssertNotNil(coordinator.currentMIDI)
-
-        // After unlocking, pressing Next again saves the same pair.
-        coordinator.insertMapping = { _, _ in UUID() }
-        coordinator.saveAndContinue()
-        XCTAssertEqual(coordinator.sessionMappings.count, 1)
-        XCTAssertEqual(coordinator.sessionMappings.first?.result.command, "Cue")
-        XCTAssertTrue(coordinator.statusMessage.contains("Saved"))
+        XCTAssertEqual(document.mappingFile, before)
+        XCTAssertEqual(entry.commandName, "Cue")
+        XCTAssertEqual(entry.midiCC, 10)
     }
 
-    func testSaveAndContinueUnlockedAppendsAndRegistersId() async {
-        var receivedMIDI: MIDIMessage?
-        var receivedCommand: String?
-        let documentId = UUID()
-        coordinator.insertMapping = { midi, result in
-            receivedMIDI = midi
-            receivedCommand = result.command
-            return documentId
-        }
-
+    func testSaveAndContinueStagesWithoutDocumentOrUndoMutation() async throws {
+        let device = Device(name: "Generic MIDI")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [device]))
+        let backing = NSDocument()
+        document.backingDocument = backing
+        let before = document.mappingFile
+        coordinator.setDocument(document, destinationDeviceID: device.id)
         mock.result = makeResult(command: "Cue")
-        await processPair(midi: makeMIDI(cc: 10), voice: "play deck a", expectedCallCount: 1)
+        await processPair(midi: makeMIDI(cc: 10), voice: "cue deck a", expectedCallCount: 1)
+
         coordinator.saveAndContinue()
 
-        XCTAssertEqual(coordinator.sessionMappings.count, 1)
-        XCTAssertTrue(coordinator.sessionMappingIds.contains(documentId),
-                      "The document's entry ID must be registered for overwrite tracking")
-        XCTAssertEqual(receivedMIDI?.cc, 10)
-        XCTAssertEqual(receivedCommand, "Cue")
-        XCTAssertTrue(coordinator.statusMessage.contains("Saved"))
-        XCTAssertNil(coordinator.currentResult, "State clears for the next capture after a real save")
+        XCTAssertEqual(coordinator.stagedMappings.count, 1)
+        XCTAssertEqual(document.mappingFile, before)
+        XCTAssertFalse(try XCTUnwrap(backing.undoManager).canUndo)
+        XCTAssertTrue(coordinator.statusMessage.contains("Added to Session"))
+        XCTAssertNil(coordinator.currentResult)
         XCTAssertNil(coordinator.currentMIDI)
     }
 
-    func testSaveAndContinueWithoutInsertionSeamBehavesAsRefused() async {
-        mock.result = makeResult(command: "Cue")
-        await processPair(midi: makeMIDI(cc: 10), voice: "play deck a", expectedCallCount: 1)
+    func testFinishCommitsEntireVoiceSessionAsOneUndoTransaction() async throws {
+        let existing = MappingEntry(commandID: 100, assignment: .deckA)
+        let device = Device(name: "Generic MIDI", mappings: [existing])
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [device]))
+        let backing = NSDocument()
+        document.backingDocument = backing
+        let undoManager = try XCTUnwrap(backing.undoManager)
+        coordinator.setDocument(document, destinationDeviceID: device.id)
 
-        coordinator.insertMapping = nil
+        mock.result = makeResult(command: "Cue")
+        await processPair(midi: makeMIDI(cc: 10), voice: "cue", expectedCallCount: 1)
+        coordinator.saveAndContinue()
+        mock.result = makeResult(command: "Jog Turn")
+        await processPair(midi: makeMIDI(cc: 11), voice: "jog", expectedCallCount: 2)
         coordinator.saveAndContinue()
 
-        XCTAssertTrue(coordinator.sessionMappings.isEmpty,
-                      "No insertion seam means nothing reached the document — never record a session mapping")
-        XCTAssertFalse(coordinator.statusMessage.contains("Saved"))
+        coordinator.finishAndSave()
+
+        XCTAssertEqual(document.mappingFile.devices[0].mappings.count, 3)
+        XCTAssertTrue(coordinator.stagedMappings.isEmpty)
+        XCTAssertEqual(undoManager.undoActionName, "Save Voice Mappings")
+        undoManager.undo()
+        XCTAssertEqual(document.mappingFile.devices[0].mappings, [existing])
+        XCTAssertFalse(undoManager.canUndo, "the complete voice session must be one Undo action")
+    }
+
+    func testVoiceOverwriteRemovesOnlyExactSemanticMatchInDestinationDevice() async throws {
+        let target = Device(name: "Target")
+        let other = Device(name: "Other")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [target, other]))
+        coordinator.setDocument(document, destinationDeviceID: target.id)
+        mock.result = makeResult(command: "Cue")
+        await processPair(midi: makeMIDI(cc: 10), voice: "cue", expectedCallCount: 1)
+        coordinator.saveAndContinue()
+
+        let staged = try XCTUnwrap(coordinator.stagedMappings.first)
+        let exact = staged.copyWithNewID()
+        var differentDirection = staged.copyWithNewID()
+        differentDirection.ioType = .output
+        var differentTarget = staged.copyWithNewID()
+        differentTarget.assignment = .deckB
+        var differentSetTo = staged.copyWithNewID()
+        differentSetTo.setToValue = 0.25
+        var differentModifierNumber = staged.copyWithNewID()
+        differentModifierNumber.modifier1Condition = ModifierCondition(modifier: 2, value: 3)
+        var differentModifierValue = staged.copyWithNewID()
+        differentModifierValue.modifier2Condition = ModifierCondition(modifier: 4, value: 5)
+        var unsupportedConditionTarget = staged.copyWithNewID()
+        unsupportedConditionTarget.modifier1Condition = ModifierCondition(modifier: 6, value: 7)
+        var payload = Data(repeating: 0, count: 120)
+        func store(_ value: UInt32, at offset: Int) {
+            var bigEndian = value.bigEndian
+            withUnsafeBytes(of: &bigEndian) { bytes in
+                payload.replaceSubrange(offset..<(offset + 4), with: bytes)
+            }
+        }
+        store(6, at: 52)
+        store(99, at: 56)
+        store(7, at: 60)
+        unsupportedConditionTarget.importedCMAD = try XCTUnwrap(
+            ImportedCMAD(payload: payload, semanticAtImport: unsupportedConditionTarget)
+        )
+
+        let nearMatches = [
+            differentDirection,
+            differentTarget,
+            differentSetTo,
+            differentModifierNumber,
+            differentModifierValue,
+            unsupportedConditionTarget,
+        ]
+        document.mappingFile.devices[0].mappings = [exact] + nearMatches
+        document.mappingFile.devices[1].mappings = [staged.copyWithNewID()]
+        let otherDeviceBefore = document.mappingFile.devices[1]
+
+        coordinator.performVoiceSave(overwrite: true)
+
+        let savedTarget = document.mappingFile.devices[0].mappings
+        XCTAssertFalse(savedTarget.contains(where: { $0.id == exact.id }))
+        for nearMatch in nearMatches {
+            XCTAssertTrue(
+                savedTarget.contains(where: { $0.id == nearMatch.id }),
+                "A different semantic binding component must make the row nonreplaceable"
+            )
+        }
+        XCTAssertTrue(savedTarget.contains(where: { $0.id == staged.id }))
+        XCTAssertEqual(document.mappingFile.devices[1], otherDeviceBefore)
+    }
+
+    func testCancelClearsStagingAndLeavesDocumentUnchanged() async {
+        let device = Device(name: "Generic MIDI")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [device]))
+        let before = document.mappingFile
+        coordinator.setDocument(document, destinationDeviceID: device.id)
+        mock.result = makeResult(command: "Cue")
+        await processPair(midi: makeMIDI(cc: 10), voice: "cue", expectedCallCount: 1)
+        coordinator.saveAndContinue()
+
+        coordinator.cancelSession()
+
+        XCTAssertTrue(coordinator.stagedMappings.isEmpty)
+        XCTAssertEqual(document.mappingFile, before)
+    }
+
+    func testFailedFinishKeepsStagingAndLeavesDocumentAndUndoUnchanged() async throws {
+        let device = Device(name: "Generic MIDI")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [device]))
+        let backing = NSDocument()
+        document.backingDocument = backing
+        let undoManager = try XCTUnwrap(backing.undoManager)
+        coordinator.setDocument(document, destinationDeviceID: device.id)
+        mock.result = makeResult(command: "Cue")
+        await processPair(midi: makeMIDI(cc: 10), voice: "cue", expectedCallCount: 1)
+        coordinator.saveAndContinue()
+        document.mappingFile.devices.removeAll()
+        let beforeFinish = document.mappingFile
+
+        coordinator.finishAndSave()
+
+        XCTAssertEqual(document.mappingFile, beforeFinish)
+        XCTAssertEqual(coordinator.stagedMappings.count, 1)
+        XCTAssertFalse(undoManager.canUndo)
+        XCTAssertTrue(coordinator.statusMessage.localizedCaseInsensitiveContains("destination"))
     }
 }

@@ -25,6 +25,7 @@ final class WizardCoordinator: ObservableObject {
     /// Temporarily holds document reference when opening wizard window.
     /// Set this before calling openWindow(id: "wizard"), then cleared after use.
     static var pendingDocument: TraktorMappingDocument?
+    static var pendingDestinationDeviceID: Device.ID?
 
     /// Set by `ModeSelectionWindow.selectGuidedMode` to flag that the NEXT
     /// ContentView to mount should claim it, set itself as `pendingDocument`,
@@ -78,6 +79,9 @@ final class WizardCoordinator: ObservableObject {
     /// Strong reference required to prevent document from being released during wizard session.
     /// No retain cycle risk: TraktorMappingDocument does not reference WizardCoordinator.
     private var document: TraktorMappingDocument?
+    /// The only device this wizard session may inspect or mutate. A nil value
+    /// is valid solely for a genuinely empty new document.
+    private var destinationDeviceID: Device.ID?
 
     // MARK: - Computed Properties
 
@@ -167,8 +171,13 @@ final class WizardCoordinator: ObservableObject {
 
     // MARK: - Public Methods
 
-    func start(document: TraktorMappingDocument) {
+    func start(
+        document: TraktorMappingDocument,
+        destinationDeviceID: Device.ID? = nil
+    ) {
         self.document = document
+        self.destinationDeviceID = destinationDeviceID
+            ?? (document.mappingFile.devices.count == 1 ? document.mappingFile.devices[0].id : nil)
         phase = .setup
         statusMessage = "Configure your controller settings"
     }
@@ -336,31 +345,6 @@ final class WizardCoordinator: ObservableObject {
         statusMessage = "Press a control for \(currentStepDisplay)"
     }
 
-    /// Compound conflict key. command ID alone is not enough: many
-    /// wizard rows (Hotcue 1-8, Slot Volume across 4 slots) share the same
-    /// canonical command ID and disambiguate via `assignment` (deck/slot)
-    /// and `setToValue` (hotcue index 0-7). Keying on command ID alone would
-    /// collapse 8 hotcue mappings to 1 conflict and wipe siblings on overwrite.
-    struct BindingKey: Hashable {
-        let commandID: Int
-        let assignment: TargetAssignment
-        let setToValueQuantized: Int  // see bindingKey(for:)
-    }
-
-    static func bindingKey(for entry: MappingEntry) -> BindingKey {
-        // Quantize setToValue to Int for the hash key. Wizard rows always pass
-        // integer-valued floats (hotcue index 0..7); any interpreter-derived
-        // float drift like 0.0000001 vs 0.0 would otherwise silently miss the
-        // overwrite intersection. Negative-zero / fractional inputs collapse
-        // to their nearest integer for matching purposes only — the float
-        // value on the MappingEntry itself is unchanged.
-        BindingKey(
-            commandID: entry.commandID,
-            assignment: entry.assignment,
-            setToValueQuantized: Int(entry.setToValue.rounded())
-        )
-    }
-
     func saveToDocument() {
         // Cancel before the conflict early-return below: a pending advance
         // must not fire while the overwrite alert is open.
@@ -369,11 +353,20 @@ final class WizardCoordinator: ObservableObject {
             statusMessage = "Error: No document open. Please close this wizard and reopen from a document."
             return
         }
-        // Scope to devices[0] — the only device the wizard writes to (and the
-        // only one overwrite removal touches in performSave).
-        let existing = Set((document.mappingFile.devices.first?.mappings ?? []).map(Self.bindingKey(for:)))
         let newEntries = capturedMappings.map { $0.toMappingEntry() }
-        let newKeys = Set(newEntries.map(Self.bindingKey(for:)))
+        let targetMappings: [MappingEntry]
+        if let destinationDeviceID,
+           let device = document.mappingFile.devices.first(where: { $0.id == destinationDeviceID }) {
+            targetMappings = device.mappings
+        } else if MappingTransferService.isTrulyEmpty(document.mappingFile) {
+            targetMappings = []
+        } else {
+            statusMessage = "Cannot save: choose a valid destination device and reopen the wizard."
+            return
+        }
+
+        let existing = Set(targetMappings.compactMap(SemanticBindingKey.init(entry:)))
+        let newKeys = Set(newEntries.compactMap(SemanticBindingKey.init(entry:)))
         let conflicts = existing.intersection(newKeys)
         if !conflicts.isEmpty {
             // Human-readable list for the overwrite alert. Dedupe by display name
@@ -394,38 +387,45 @@ final class WizardCoordinator: ObservableObject {
             WizardTrace.write(" performSave: NO DOCUMENT attached — wizard save will be silently lost")
             return
         }
-        WizardTrace.write(" performSave: writing to document=\(ObjectIdentifier(document)) captured=\(capturedMappings.count)")
         let newMappings = capturedMappings.map { $0.toMappingEntry() }
-        if overwrite {
-            // Only remove the EXACT (commandID, assignment, setToValue)
-            // triples the user re-mapped — siblings (other hotcues, other
-            // slots) are preserved. Pre-fix, removing by commandName alone
-            // wiped every hotcue × deck variant when re-mapping a single one.
-            let keysToReplace = Set(newMappings.map(Self.bindingKey(for:)))
-            if !document.mappingFile.devices.isEmpty {
-                document.mappingFile.devices[0].mappings.removeAll { keysToReplace.contains(Self.bindingKey(for: $0)) }
+        let keysToReplace = Set(newMappings.compactMap(SemanticBindingKey.init(entry:)))
+
+        do {
+            _ = try document.performUndoableMutation(
+                actionName: "Save Wizard Mappings",
+                undoManager: document.backingDocument?.undoManager
+            ) { file in
+                let destinationIndex: Int
+                if let destinationDeviceID {
+                    guard let index = file.devices.firstIndex(where: { $0.id == destinationDeviceID }) else {
+                        throw MappingTransferError.destinationUnavailable
+                    }
+                    destinationIndex = index
+                } else if MappingTransferService.isTrulyEmpty(file) {
+                    file.devices.append(Device(name: "Generic MIDI"))
+                    destinationIndex = file.devices.startIndex
+                } else {
+                    throw MappingTransferError.destinationRequired
+                }
+
+                if overwrite {
+                    file.devices[destinationIndex].mappings.removeAll { mapping in
+                        guard let key = SemanticBindingKey(entry: mapping) else { return false }
+                        return keysToReplace.contains(key)
+                    }
+                }
+                file.devices[destinationIndex].mappings.append(contentsOf: newMappings)
+                file.devices[destinationIndex].comment = setupConfig.controllerName
+                file.devices[destinationIndex].inPort = setupConfig.inputPort
+                file.devices[destinationIndex].outPort = setupConfig.outputPort
+
+                _ = try TSIWriter().writeConverted(file)
             }
+        } catch {
+            statusMessage = "Cannot save wizard mappings: \(error.localizedDescription)"
+            return
         }
-        if document.mappingFile.devices.isEmpty {
-            let newDevice = Device(
-                name: "Generic MIDI",
-                comment: setupConfig.controllerName,
-                inPort: setupConfig.inputPort,
-                outPort: setupConfig.outputPort,
-                mappings: newMappings
-            )
-            document.mappingFile.devices.append(newDevice)
-            WizardTrace.write(" performSave: appended NEW device with \(newMappings.count) mappings — devices now=\(document.mappingFile.devices.count) total mappings=\(document.mappingFile.allMappings.count)")
-        } else {
-            document.mappingFile.devices[0].mappings.append(contentsOf: newMappings)
-            document.mappingFile.devices[0].comment = setupConfig.controllerName
-            document.mappingFile.devices[0].inPort = setupConfig.inputPort
-            document.mappingFile.devices[0].outPort = setupConfig.outputPort
-            WizardTrace.write(" performSave: appended \(newMappings.count) mappings to existing device[0] — devices=\(document.mappingFile.devices.count) total mappings=\(document.mappingFile.allMappings.count)")
-        }
-        document.mappingFile = document.mappingFile
-        document.noteChange()
-        WizardTrace.write(" performSave: post @Published trigger, document=\(ObjectIdentifier(document)) mappingFile.allMappings.count=\(document.mappingFile.allMappings.count)")
+
         statusMessage = "Saved \(newMappings.count) mappings!"
         phase = .complete
         stopMIDIListening()

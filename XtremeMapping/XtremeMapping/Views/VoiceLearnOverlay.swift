@@ -249,7 +249,7 @@ struct VoiceLearnOverlay: View {
             Spacer()
 
             // Finish & Save button (when mappings exist)
-            if !coordinator.sessionMappings.isEmpty {
+            if !coordinator.stagedMappings.isEmpty {
                 finishButton
             }
 
@@ -281,7 +281,7 @@ struct VoiceLearnOverlay: View {
         Button {
             coordinator.saveAndContinue()
         } label: {
-            Text("NEXT")
+            Text("ADD TO SESSION")
                 .font(AppThemeV2.Typography.micro)
                 .tracking(0.5)
                 .fontWeight(.semibold)
@@ -453,7 +453,7 @@ struct VoiceLearnOverlay: View {
                 if coordinator.disambiguationOptions != nil {
                     coordinator.dismissOptions()
                 } else {
-                    coordinator.deactivate()
+                    coordinator.cancelSession()
                 }
             }
         )

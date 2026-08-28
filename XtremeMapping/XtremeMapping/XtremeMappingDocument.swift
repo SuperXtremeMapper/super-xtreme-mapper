@@ -256,11 +256,11 @@ final class TraktorMappingDocument: ReferenceFileDocument {
     func performUndoableMutation<Result>(
         actionName: String,
         undoManager: UndoManager?,
-        _ mutation: (inout MappingFile) -> Result
-    ) -> Result? {
+        _ mutation: (inout MappingFile) throws -> Result
+    ) rethrows -> Result? {
         let before = mappingFile
         var after = before
-        let result = mutation(&after)
+        let result = try mutation(&after)
 
         guard after != before else { return nil }
 

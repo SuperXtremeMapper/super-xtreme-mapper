@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import AppKit
 
 /// Coordinates the voice mapping workflow: MIDI capture + voice command + AI interpretation.
 ///
@@ -23,9 +24,6 @@ import Combine
 ///     voiceManager: voiceManager,
 ///     claudeService: claudeService
 /// )
-/// coordinator.insertMapping = { midi, result in
-///     // Insert into the document; return the new entry's id, or nil if refused
-/// }
 /// coordinator.activate()
 /// ```
 @MainActor
@@ -64,24 +62,11 @@ final class VoiceMappingCoordinator: ObservableObject {
 
     /// Reference to current document for saving
     private weak var document: TraktorMappingDocument?
+    private var destinationDeviceID: Device.ID?
 
-    /// Accumulated mappings from this voice session
-    @Published private(set) var sessionMappings: [(midi: MIDIMessage, result: VoiceCommandResult)] = []
-
-    /// UUIDs of MappingEntry objects created during this voice session
-    private(set) var sessionMappingIds: Set<UUID> = []
-
-    // MARK: - Document Insertion
-
-    /// Inserts a mapping into the document. Injected by the owning view
-    /// (ContentView wires this to `addVoiceMapping` at activation).
-    ///
-    /// Returns the new MappingEntry's UUID, or nil when the document refuses
-    /// the insert (e.g. the document is locked). `saveAndContinue` only
-    /// records a session mapping when this returns non-nil, so the
-    /// coordinator can never report "Saved!" for a mapping the document
-    /// rejected.
-    var insertMapping: ((MIDIMessage, VoiceCommandResult) -> UUID?)?
+    /// Complete entries accumulated in memory. The document is untouched until
+    /// Finish commits this array as one validated Undo transaction.
+    @Published private(set) var stagedMappings: [MappingEntry] = []
 
     // MARK: - Dependencies
 
@@ -170,24 +155,17 @@ final class VoiceMappingCoordinator: ObservableObject {
 
     /// Stop all listening and reset state.
     func deactivate() {
-        guard isActive else { return }
-
-        // Stop listening
-        midiManager.stopListening()
-        voiceManager.stopListening()
+        if isActive {
+            midiManager.stopListening()
+            voiceManager.stopListening()
+        }
 
         // Clear callbacks
         midiManager.onMIDIReceived = nil
         voiceManager.onTranscriptReady = nil
         voiceManager.onModelLoadProgress = nil
-        insertMapping = nil
-
-        // Reset state. Session collections are cleared here (not in
-        // clearAllState) because saveAndContinue calls clearAllState between
-        // captures and must keep the accumulated session.
         clearAllState()
-        sessionMappings = []
-        sessionMappingIds = []
+        stagedMappings = []
 
         isActive = false
         statusMessage = ""
@@ -234,8 +212,13 @@ final class VoiceMappingCoordinator: ObservableObject {
     }
 
     /// Set the document reference for saving
-    func setDocument(_ doc: TraktorMappingDocument) {
+    func setDocument(
+        _ doc: TraktorMappingDocument,
+        destinationDeviceID: Device.ID? = nil
+    ) {
         self.document = doc
+        self.destinationDeviceID = destinationDeviceID
+            ?? (doc.mappingFile.devices.count == 1 ? doc.mappingFile.devices[0].id : nil)
     }
 
     /// Called when user clicks "Finish & Save" - checks for conflicts
@@ -245,28 +228,32 @@ final class VoiceMappingCoordinator: ObservableObject {
             return
         }
 
-        let newCommands = Set(sessionMappings.map { $0.result.command })
-
-        var sessionCommandCounts: [String: Int] = [:]
-        for mapping in sessionMappings {
-            sessionCommandCounts[mapping.result.command, default: 0] += 1
+        guard !stagedMappings.isEmpty else {
+            statusMessage = "Nothing has been added to this session"
+            return
         }
 
-        var existingCommandCounts: [String: Int] = [:]
-        for mapping in document.mappingFile.allMappings {
-            if newCommands.contains(mapping.commandName) {
-                existingCommandCounts[mapping.commandName, default: 0] += 1
+        let targetMappings: [MappingEntry]
+        if let destinationDeviceID,
+           let device = document.mappingFile.devices.first(where: { $0.id == destinationDeviceID }) {
+            targetMappings = device.mappings
+        } else if MappingTransferService.isTrulyEmpty(document.mappingFile) {
+            targetMappings = []
+        } else {
+            statusMessage = "Cannot save: the destination device is unavailable."
+            return
+        }
+
+        let stagedKeys = Set(stagedMappings.compactMap(SemanticBindingKey.init(entry:)))
+        let conflicts = targetMappings.compactMap { mapping -> MappingEntry? in
+            guard let key = SemanticBindingKey(entry: mapping), stagedKeys.contains(key) else {
+                return nil
             }
-        }
-
-        let conflicts = newCommands.filter { cmd in
-            let existing = existingCommandCounts[cmd, default: 0]
-            let fromSession = sessionCommandCounts[cmd, default: 0]
-            return existing > fromSession
+            return mapping
         }
 
         if !conflicts.isEmpty {
-            conflictingCommands = Array(conflicts).sorted()
+            conflictingCommands = Array(Set(conflicts.map(\.commandName))).sorted()
             showOverwriteAlert = true
             return
         }
@@ -277,28 +264,58 @@ final class VoiceMappingCoordinator: ObservableObject {
     /// Perform the actual save operation
     func performVoiceSave(overwrite: Bool) {
         guard let document = document else { return }
+        let entries = stagedMappings
+        let keysToReplace = Set(entries.compactMap(SemanticBindingKey.init(entry:)))
 
-        // Only remove pre-existing mappings if we actually created replacements
-        if overwrite && !sessionMappingIds.isEmpty {
-            let commandsToReplace = Set(sessionMappings.map { $0.result.command })
-            if !document.mappingFile.devices.isEmpty {
-                document.mappingFile.devices[0].mappings.removeAll {
-                    commandsToReplace.contains($0.commandName) && !sessionMappingIds.contains($0.id)
+        do {
+            _ = try document.performUndoableMutation(
+                actionName: "Save Voice Mappings",
+                undoManager: document.backingDocument?.undoManager
+            ) { file in
+                let destinationIndex: Int
+                if let destinationDeviceID {
+                    guard let index = file.devices.firstIndex(where: { $0.id == destinationDeviceID }) else {
+                        throw MappingTransferError.destinationUnavailable
+                    }
+                    destinationIndex = index
+                } else if MappingTransferService.isTrulyEmpty(file) {
+                    file.devices.append(Device(name: "Generic MIDI"))
+                    destinationIndex = file.devices.startIndex
+                } else {
+                    throw MappingTransferError.destinationRequired
                 }
+
+                if overwrite {
+                    file.devices[destinationIndex].mappings.removeAll { mapping in
+                        guard let key = SemanticBindingKey(entry: mapping) else { return false }
+                        return keysToReplace.contains(key)
+                    }
+                }
+                file.devices[destinationIndex].mappings.append(contentsOf: entries)
+                _ = try TSIWriter().writeConverted(file)
             }
+        } catch {
+            statusMessage = "Cannot save voice mappings: \(error.localizedDescription)"
+            return
         }
 
-        document.noteChange()
-        let savedCount = sessionMappings.count
-        sessionMappings = []
-        sessionMappingIds = []
+        let savedCount = entries.count
+        stagedMappings = []
+        clearAllState()
+        if isActive {
+            midiManager.stopListening()
+            voiceManager.stopListening()
+            midiManager.onMIDIReceived = nil
+            voiceManager.onTranscriptReady = nil
+            voiceManager.onModelLoadProgress = nil
+            isActive = false
+        }
         statusMessage = "Saved \(savedCount) mappings!"
-        deactivate()
     }
 
-    /// Register a mapping ID created during this voice session
-    func registerSessionMappingId(_ id: UUID) {
-        sessionMappingIds.insert(id)
+    /// Cancel discards only in-memory session work; it never touches the file.
+    func cancelSession() {
+        deactivate()
     }
 
     // MARK: - Input Handling (internal for tests)
@@ -424,23 +441,21 @@ final class VoiceMappingCoordinator: ObservableObject {
             return
         }
 
-        // Insert into the document FIRST — the document can refuse (e.g.
-        // locked). Only a successful insert becomes a session mapping.
-        guard let newId = insertMapping?(midi, result) else {
-            // Keep currentResult/currentMIDI so the user can unlock the
-            // document and press Next again without re-capturing the pair.
-            statusMessage = "Document is locked — mapping not saved"
+        let entry: MappingEntry
+        do {
+            entry = try VoiceMappingBuilder.makeEntry(midi: midi, result: result)
+        } catch {
+            statusMessage = "Mapping not added: \(error.localizedDescription)"
             return
         }
 
-        sessionMappings.append((midi: midi, result: result))
-        registerSessionMappingId(newId)
+        stagedMappings.append(entry)
 
         // Clear all state for next input
         clearAllState()
 
         // Restart listening
-        statusMessage = "Saved! Ready for next input. (\(sessionMappings.count) total)"
+        statusMessage = "Added to Session. Ready for next input. (\(stagedMappings.count) total)"
 
         // Restart voice listening
         Task {
