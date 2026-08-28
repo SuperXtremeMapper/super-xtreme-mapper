@@ -44,6 +44,61 @@ struct MappingEntryTests {
         #expect(copy.resolution == source.resolution)
     }
 
+    @Test func opaqueMidiCompatibilityStateCopiesCodablesAndClearsOnAssignment() throws {
+        var source = MappingEntry(
+            commandID: 100,
+            rawMidiControlName: "Ch02.PitchBend",
+            rawDCDTControlType: 5,
+            rawDCDTMinValueBits: Float32(-1).bitPattern,
+            rawDCDTMaxValueBits: Float32(1).bitPattern,
+            rawDCDTControlID: 42
+        )
+
+        let copy = source.copyWithNewID()
+        #expect(copy.rawMidiControlName == "Ch02.PitchBend")
+        #expect(copy.rawDCDTControlType == 5)
+        #expect(copy.rawDCDTMinValueBits == Float32(-1).bitPattern)
+        #expect(copy.rawDCDTMaxValueBits == Float32(1).bitPattern)
+        #expect(copy.rawDCDTControlID == 42)
+
+        let decoded = try JSONDecoder().decode(
+            MappingEntry.self,
+            from: JSONEncoder().encode(source)
+        )
+        #expect(decoded.rawMidiControlName == source.rawMidiControlName)
+        #expect(decoded.rawDCDTControlType == source.rawDCDTControlType)
+        #expect(decoded.rawDCDTMinValueBits == source.rawDCDTMinValueBits)
+        #expect(decoded.rawDCDTMaxValueBits == source.rawDCDTMaxValueBits)
+        #expect(decoded.rawDCDTControlID == source.rawDCDTControlID)
+
+        source.midiAssignment = try .controlChange(channel: 3, number: 12)
+        #expect(source.rawMidiControlName == nil)
+        #expect(source.rawMidiBindingID == nil)
+        #expect(source.rawDCDTControlType == nil)
+        #expect(source.rawDCDTMinValueBits == nil)
+        #expect(source.rawDCDTMaxValueBits == nil)
+        #expect(source.rawDCDTControlID == nil)
+    }
+
+    @Test func mappingFileAggregatesCompatibilityWarnings() {
+        let opaque = MappingEntry(
+            commandID: 100,
+            rawMidiControlName: "Ch02.PitchBend"
+        )
+        let unresolved = MappingEntry(
+            commandID: 201,
+            rawMidiBindingID: 95
+        )
+        let file = MappingFile(devices: [
+            Device(name: "Generic MIDI", mappings: [opaque, unresolved])
+        ])
+
+        #expect(file.tsiCompatibilityWarnings == [
+            .opaqueMIDIControl(name: "Ch02.PitchBend"),
+            .unresolvedMIDIBinding(id: 95),
+        ])
+    }
+
     // MARK: - Validated MIDI Assignment Tests
 
     @Test func noteAssignmentClearsControlChange() throws {

@@ -42,7 +42,28 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
     var interactionMode: InteractionMode
 
     /// The mapping's exclusive, validated MIDI state.
-    var midiAssignment: MIDIAssignment
+    var midiAssignment: MIDIAssignment {
+        didSet {
+            // An explicit edit replaces any opaque import-only assignment and
+            // its definition metadata. Property observers do not run during
+            // initialization/decoding, so imported state can still be loaded.
+            rawMidiControlName = nil
+            rawMidiBindingID = nil
+            rawDCDTControlType = nil
+            rawDCDTMinValueBits = nil
+            rawDCDTMaxValueBits = nil
+            rawDCDTEncoderMode = nil
+            rawDCDTControlID = nil
+        }
+    }
+
+    /// A native/proprietary MIDI control name not modeled as Note or CC.
+    /// The writer emits this value verbatim until the user reassigns MIDI.
+    var rawMidiControlName: String?
+
+    /// A CMAI binding ID absent from DCBM. Kept verbatim so opening and saving
+    /// cannot silently turn the mapping into a different or unassigned control.
+    var rawMidiBindingID: UInt32?
 
     /// MIDI channel (1-16). Retained as a source-compatible accessor.
     var midiChannel: Int {
@@ -127,6 +148,12 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
     /// Known values are represented by `encoderMode` instead.
     var rawDCDTEncoderMode: UInt32?
 
+    /// Remaining DCDT scalar metadata preserved bit-for-bit from native files.
+    var rawDCDTControlType: UInt32?
+    var rawDCDTMinValueBits: UInt32?
+    var rawDCDTMaxValueBits: UInt32?
+    var rawDCDTControlID: UInt32?
+
     /// The raw value emitted to Traktor, including opaque imported values.
     nonisolated var effectiveDCDTEncoderMode: UInt32 {
         rawDCDTEncoderMode ?? encoderMode.tsiDCDTValue
@@ -190,14 +217,32 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
     /// Sort key for Modifier 2 column
     var modifier2SortKey: String { modifier2Condition?.displayString ?? "zzz" }
 
-    /// Whether this mapping has a MIDI note or CC assigned
+    /// Whether this mapping has a modeled or opaquely preserved MIDI assignment.
     var hasMIDIAssignment: Bool {
         midiAssignment.kind != .unassigned
+            || rawMidiControlName != nil
+            || rawMidiBindingID != nil
     }
 
     /// Display string showing the MIDI assignment (e.g., "Ch01 CC 008" or "Ch02 Note C4")
     var mappedToDisplay: String {
-        midiAssignment.displayName
+        if let rawMidiControlName {
+            return rawMidiControlName
+        }
+        if let rawMidiBindingID {
+            return "Unresolved MIDI #\(rawMidiBindingID)"
+        }
+        return midiAssignment.displayName
+    }
+
+    var tsiCompatibilityWarning: TSICompatibilityWarning? {
+        if let rawMidiBindingID {
+            return .unresolvedMIDIBinding(id: rawMidiBindingID)
+        }
+        if let rawMidiControlName {
+            return .opaqueMIDIControl(name: rawMidiControlName)
+        }
+        return nil
     }
 
 
@@ -215,6 +260,8 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         midiChannel: Int = 1,
         midiNote: Int? = nil,
         midiCC: Int? = nil,
+        rawMidiControlName: String? = nil,
+        rawMidiBindingID: UInt32? = nil,
         modifier1Condition: ModifierCondition? = nil,
         modifier2Condition: ModifierCondition? = nil,
         comment: String = "",
@@ -226,6 +273,10 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         rotaryAcceleration: Float = 0.0,
         encoderMode: EncoderMode = .mode7Fh01h,
         rawDCDTEncoderMode: UInt32? = nil,
+        rawDCDTControlType: UInt32? = nil,
+        rawDCDTMinValueBits: UInt32? = nil,
+        rawDCDTMaxValueBits: UInt32? = nil,
+        rawDCDTControlID: UInt32? = nil,
         autoRepeat: Bool = false,
         ledMinRangeType: Int = 1,
         ledMinRangeData: Int = 0,
@@ -255,6 +306,8 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
                 preconditionFailure("Invalid direct MIDI assignment: \(error)")
             }
         }
+        self.rawMidiControlName = rawMidiControlName
+        self.rawMidiBindingID = rawMidiControlName == nil ? rawMidiBindingID : nil
         self.modifier1Condition = modifier1Condition
         self.modifier2Condition = modifier2Condition
         self.comment = comment
@@ -268,6 +321,10 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
         self.rawDCDTEncoderMode = rawDCDTEncoderMode.flatMap {
             EncoderMode(tsiDCDTValue: $0) == nil ? $0 : nil
         }
+        self.rawDCDTControlType = rawDCDTControlType
+        self.rawDCDTMinValueBits = rawDCDTMinValueBits
+        self.rawDCDTMaxValueBits = rawDCDTMaxValueBits
+        self.rawDCDTControlID = rawDCDTControlID
         self.autoRepeat = autoRepeat
         self.ledMinRangeType = ledMinRangeType
         self.ledMinRangeData = ledMinRangeData
@@ -288,6 +345,8 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
             assignment: assignment,
             interactionMode: interactionMode,
             midiAssignment: midiAssignment,
+            rawMidiControlName: rawMidiControlName,
+            rawMidiBindingID: rawMidiBindingID,
             modifier1Condition: modifier1Condition,
             modifier2Condition: modifier2Condition,
             comment: comment,
@@ -299,6 +358,10 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
             rotaryAcceleration: rotaryAcceleration,
             encoderMode: encoderMode,
             rawDCDTEncoderMode: rawDCDTEncoderMode,
+            rawDCDTControlType: rawDCDTControlType,
+            rawDCDTMinValueBits: rawDCDTMinValueBits,
+            rawDCDTMaxValueBits: rawDCDTMaxValueBits,
+            rawDCDTControlID: rawDCDTControlID,
             autoRepeat: autoRepeat,
             ledMinRangeType: ledMinRangeType,
             ledMinRangeData: ledMinRangeData,
@@ -370,6 +433,11 @@ extension MappingEntry: Codable {
                 )
             )
         }
+        rawMidiControlName = try container.decodeIfPresent(String.self, forKey: .rawMidiControlName)
+        rawMidiBindingID = try container.decodeIfPresent(UInt32.self, forKey: .rawMidiBindingID)
+        if rawMidiControlName != nil {
+            rawMidiBindingID = nil
+        }
         modifier1Condition = try container.decodeIfPresent(ModifierCondition.self, forKey: .modifier1Condition)
         modifier2Condition = try container.decodeIfPresent(ModifierCondition.self, forKey: .modifier2Condition)
         comment = try container.decode(String.self, forKey: .comment)
@@ -386,6 +454,10 @@ extension MappingEntry: Codable {
         ).flatMap {
             EncoderMode(tsiDCDTValue: $0) == nil ? $0 : nil
         }
+        rawDCDTControlType = try container.decodeIfPresent(UInt32.self, forKey: .rawDCDTControlType)
+        rawDCDTMinValueBits = try container.decodeIfPresent(UInt32.self, forKey: .rawDCDTMinValueBits)
+        rawDCDTMaxValueBits = try container.decodeIfPresent(UInt32.self, forKey: .rawDCDTMaxValueBits)
+        rawDCDTControlID = try container.decodeIfPresent(UInt32.self, forKey: .rawDCDTControlID)
         // New CMAD pass-through fields: decode with defaults so old saved state still loads
         autoRepeat = try container.decodeIfPresent(Bool.self, forKey: .autoRepeat) ?? false
         ledMinRangeType = try container.decodeIfPresent(Int.self, forKey: .ledMinRangeType) ?? 1
@@ -410,6 +482,8 @@ extension MappingEntry: Codable {
         try container.encode(midiAssignment.channel, forKey: .midiChannel)
         try container.encodeIfPresent(midiAssignment.note, forKey: .midiNote)
         try container.encodeIfPresent(midiAssignment.cc, forKey: .midiCC)
+        try container.encodeIfPresent(rawMidiControlName, forKey: .rawMidiControlName)
+        try container.encodeIfPresent(rawMidiBindingID, forKey: .rawMidiBindingID)
         try container.encodeIfPresent(modifier1Condition, forKey: .modifier1Condition)
         try container.encodeIfPresent(modifier2Condition, forKey: .modifier2Condition)
         try container.encode(comment, forKey: .comment)
@@ -421,6 +495,10 @@ extension MappingEntry: Codable {
         try container.encode(rotaryAcceleration, forKey: .rotaryAcceleration)
         try container.encode(encoderMode, forKey: .encoderMode)
         try container.encodeIfPresent(rawDCDTEncoderMode, forKey: .rawDCDTEncoderMode)
+        try container.encodeIfPresent(rawDCDTControlType, forKey: .rawDCDTControlType)
+        try container.encodeIfPresent(rawDCDTMinValueBits, forKey: .rawDCDTMinValueBits)
+        try container.encodeIfPresent(rawDCDTMaxValueBits, forKey: .rawDCDTMaxValueBits)
+        try container.encodeIfPresent(rawDCDTControlID, forKey: .rawDCDTControlID)
         try container.encode(autoRepeat, forKey: .autoRepeat)
         try container.encode(ledMinRangeType, forKey: .ledMinRangeType)
         try container.encode(ledMinRangeData, forKey: .ledMinRangeData)
@@ -435,11 +513,12 @@ extension MappingEntry: Codable {
 
     private enum CodingKeys: String, CodingKey {
         case id, commandID, commandName, ioType, assignment, interactionMode
-        case midiChannel, midiNote, midiCC
+        case midiChannel, midiNote, midiCC, rawMidiControlName, rawMidiBindingID
         case modifier1Condition, modifier2Condition
         case comment, controllerType, invert
         case softTakeover, setToValue
         case rotarySensitivity, rotaryAcceleration, encoderMode, rawDCDTEncoderMode
+        case rawDCDTControlType, rawDCDTMinValueBits, rawDCDTMaxValueBits, rawDCDTControlID
         case autoRepeat
         case ledMinRangeType, ledMinRangeData, ledMaxRangeType, ledMaxRangeData
         case ledMinMidi, ledMaxMidi, ledInvert, ledBlend

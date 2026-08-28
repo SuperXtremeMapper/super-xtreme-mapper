@@ -11,6 +11,7 @@ import os
 enum TSIWriterError: Error, Equatable {
     case invalidCommandID(Int)
     case conflictingEncoderModes(controlName: String, direction: IODirection)
+    case conflictingMIDIControlDefinitions(controlName: String, direction: IODirection)
 }
 
 /// Writer for TSI (Traktor Settings Interface) files.
@@ -176,15 +177,19 @@ public struct TSIWriter: Sendable {
         let direction: IODirection
     }
 
-    private struct MIDIControlDefinition {
+    private struct MIDIControlDefinition: Equatable {
         let key: MIDIControlDefinitionKey
+        let controlType: UInt32
+        let minValueBits: UInt32
+        let maxValueBits: UInt32
         let encoderMode: UInt32
+        let controlID: UInt32
     }
 
     /// Builds the direction-specific MIDI definition lists. DCBM remains the
     /// authority for binding IDs; these rows carry metadata only.
     private func buildDDDC(from mappings: [MappingEntry]) throws -> Data {
-        var modesByKey: [MIDIControlDefinitionKey: UInt32] = [:]
+        var definitionsByKey: [MIDIControlDefinitionKey: MIDIControlDefinition] = [:]
         var definitions: [MIDIControlDefinition] = []
 
         for mapping in mappings {
@@ -195,10 +200,27 @@ public struct TSIWriter: Sendable {
                 direction: direction
             )
             let encoderMode = mapping.effectiveDCDTEncoderMode
+            let definition = MIDIControlDefinition(
+                key: key,
+                controlType: mapping.rawDCDTControlType
+                    ?? (direction == .output ? 8 : 7),
+                minValueBits: mapping.rawDCDTMinValueBits
+                    ?? Float32(0).bitPattern,
+                maxValueBits: mapping.rawDCDTMaxValueBits
+                    ?? Float32(127).bitPattern,
+                encoderMode: encoderMode,
+                controlID: mapping.rawDCDTControlID ?? UInt32.max
+            )
 
-            if let existing = modesByKey[key] {
-                guard existing == encoderMode else {
+            if let existing = definitionsByKey[key] {
+                guard existing.encoderMode == encoderMode else {
                     throw TSIWriterError.conflictingEncoderModes(
+                        controlName: controlName,
+                        direction: direction
+                    )
+                }
+                guard existing == definition else {
+                    throw TSIWriterError.conflictingMIDIControlDefinitions(
                         controlName: controlName,
                         direction: direction
                     )
@@ -206,8 +228,8 @@ public struct TSIWriter: Sendable {
                 continue
             }
 
-            modesByKey[key] = encoderMode
-            definitions.append(MIDIControlDefinition(key: key, encoderMode: encoderMode))
+            definitionsByKey[key] = definition
+            definitions.append(definition)
         }
 
         var data = Data()
@@ -243,20 +265,19 @@ public struct TSIWriter: Sendable {
             var payload = Data()
             payload.append(encodeUTF16BEString(definition.key.controlName))
 
-            let isOutput = definition.key.direction == .output
-            var controlType = UInt32(isOutput ? 8 : 7).bigEndian
+            var controlType = definition.controlType.bigEndian
             payload.append(Data(bytes: &controlType, count: 4))
 
-            var minValue = Float32(0).bitPattern.bigEndian
+            var minValue = definition.minValueBits.bigEndian
             payload.append(Data(bytes: &minValue, count: 4))
 
-            var maxValue = Float32(127).bitPattern.bigEndian
+            var maxValue = definition.maxValueBits.bigEndian
             payload.append(Data(bytes: &maxValue, count: 4))
 
             var encoderMode = definition.encoderMode.bigEndian
             payload.append(Data(bytes: &encoderMode, count: 4))
 
-            var controlID = UInt32.max.bigEndian
+            var controlID = definition.controlID.bigEndian
             payload.append(Data(bytes: &controlID, count: 4))
 
             data.append(encodeFrame(TSIFrame(
@@ -340,10 +361,17 @@ public struct TSIWriter: Sendable {
     /// they carry the `TSIBindingID.unassigned` sentinel instead.
     private func bindingIds(for mappings: [MappingEntry]) -> [String: Int] {
         var controlNameToId: [String: Int] = [:]
+        let reservedIds = Set(mappings.compactMap { mapping -> UInt32? in
+            guard mapping.rawMidiControlName == nil else { return nil }
+            return mapping.rawMidiBindingID
+        })
         var bindingId = 0
         for mapping in mappings {
             guard let controlName = midiControlName(for: mapping) else { continue }
             if controlNameToId[controlName] == nil {
+                while reservedIds.contains(UInt32(bindingId)) {
+                    bindingId += 1
+                }
                 controlNameToId[controlName] = bindingId
                 bindingId += 1
             }
@@ -360,6 +388,8 @@ public struct TSIWriter: Sendable {
         let bindingIdValue: UInt32
         if let controlName = midiControlName(for: mapping) {
             bindingIdValue = UInt32(controlNameToId[controlName] ?? 0)
+        } else if let rawBindingID = mapping.rawMidiBindingID {
+            bindingIdValue = rawBindingID
         } else {
             bindingIdValue = TSIBindingID.unassigned
         }
@@ -746,6 +776,10 @@ public struct TSIWriter: Sendable {
     /// DCDT/DCBM entries and write the unassigned sentinel binding ID, so an
     /// unassigned mapping round-trips unassigned.
     private func midiControlName(for mapping: MappingEntry) -> String? {
+        if let rawMidiControlName = mapping.rawMidiControlName {
+            return rawMidiControlName
+        }
+
         let assignment = mapping.midiAssignment
         let channel = String(format: "Ch%02d", assignment.channel)
 

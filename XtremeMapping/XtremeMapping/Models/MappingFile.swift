@@ -27,6 +27,11 @@ struct MappingFile: Codable, Sendable, Equatable {
         devices.flatMap { $0.mappings }
     }
 
+    /// Native MIDI details currently preserved opaquely by the editor.
+    var tsiCompatibilityWarnings: [TSICompatibilityWarning] {
+        allMappings.compactMap(\.tsiCompatibilityWarning)
+    }
+
     /// Creates a new mapping file with the specified properties.
     ///
     /// Defaults to an empty file with version 0.

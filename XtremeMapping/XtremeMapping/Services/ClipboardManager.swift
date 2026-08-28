@@ -12,7 +12,7 @@ import Combine
 final class ClipboardManager: ObservableObject {
     static let shared = ClipboardManager()
 
-    /// Copied MIDI assignment data (channel, note, CC)
+    /// Copied MIDI assignment data, including opaque native pass-through state.
     @Published var mappedToClipboard: MappedToData?
 
     /// Copied modifier conditions
@@ -26,6 +26,13 @@ final class ClipboardManager: ObservableObject {
     /// Data for copied MIDI assignment
     struct MappedToData {
         let midiAssignment: MIDIAssignment
+        let rawMidiControlName: String?
+        let rawMidiBindingID: UInt32?
+        let rawDCDTEncoderMode: UInt32?
+        let rawDCDTControlType: UInt32?
+        let rawDCDTMinValueBits: UInt32?
+        let rawDCDTMaxValueBits: UInt32?
+        let rawDCDTControlID: UInt32?
     }
 
     /// Data for copied modifier conditions
@@ -36,13 +43,31 @@ final class ClipboardManager: ObservableObject {
 
     /// Copy MIDI assignment from a mapping entry
     func copyMappedTo(from entry: MappingEntry) {
-        mappedToClipboard = MappedToData(midiAssignment: entry.midiAssignment)
+        mappedToClipboard = MappedToData(
+            midiAssignment: entry.midiAssignment,
+            rawMidiControlName: entry.rawMidiControlName,
+            rawMidiBindingID: entry.rawMidiBindingID,
+            rawDCDTEncoderMode: entry.rawDCDTEncoderMode,
+            rawDCDTControlType: entry.rawDCDTControlType,
+            rawDCDTMinValueBits: entry.rawDCDTMinValueBits,
+            rawDCDTMaxValueBits: entry.rawDCDTMaxValueBits,
+            rawDCDTControlID: entry.rawDCDTControlID
+        )
     }
 
     /// Paste MIDI assignment to a mapping entry
     func pasteMappedTo(to entry: inout MappingEntry) {
         guard let data = mappedToClipboard else { return }
+        // Assigning modeled MIDI intentionally clears compatibility state;
+        // restore the copied native state immediately afterward.
         entry.midiAssignment = data.midiAssignment
+        entry.rawMidiControlName = data.rawMidiControlName
+        entry.rawMidiBindingID = data.rawMidiControlName == nil ? data.rawMidiBindingID : nil
+        entry.rawDCDTEncoderMode = data.rawDCDTEncoderMode
+        entry.rawDCDTControlType = data.rawDCDTControlType
+        entry.rawDCDTMinValueBits = data.rawDCDTMinValueBits
+        entry.rawDCDTMaxValueBits = data.rawDCDTMaxValueBits
+        entry.rawDCDTControlID = data.rawDCDTControlID
     }
 
     /// Copy modifiers from a mapping entry

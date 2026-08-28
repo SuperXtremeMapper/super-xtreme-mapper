@@ -30,6 +30,29 @@ struct EncoderModeDraft: Equatable, Sendable {
     }
 }
 
+/// Separates selection loading from an explicit MIDI channel edit. This keeps
+/// SwiftUI state reconciliation from replacing an opaque native assignment.
+struct MIDIChannelDraft: Equatable, Sendable {
+    enum Change: Equatable, Sendable {
+        case selectionLoad(Int)
+        case userSelection(Int)
+    }
+
+    private(set) var value: Int = 1
+
+    @discardableResult
+    mutating func apply(_ change: Change) -> Int? {
+        switch change {
+        case .selectionLoad(let channel):
+            value = channel
+            return nil
+        case .userSelection(let channel):
+            value = channel
+            return channel
+        }
+    }
+}
+
 struct CommentDraftState<SelectionID: Equatable> {
     var text: String = ""
 
@@ -89,7 +112,7 @@ struct SettingsPanelV2: View {
     @State private var rotarySensitivity: Float = 1.0
     @State private var rotaryAcceleration: Float = 0.0
     @State private var encoderModeDraft = EncoderModeDraft()
-    @State private var midiChannel: Int = 1
+    @State private var midiChannelDraft = MIDIChannelDraft()
     @State private var batchAssignmentKind: MIDIAssignment.Kind = .unassigned
     @State private var batchChannel: Int = 1
     @State private var batchNumber: Int = 0
@@ -344,7 +367,11 @@ struct SettingsPanelV2: View {
                 let showGold = isLearning && hasLearnedMIDI
                 Text(entry.mappedToDisplay)
                     .font(AppThemeV2.Typography.mono)
-                    .foregroundColor(showGold ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone400)
+                    .foregroundColor(
+                        entry.tsiCompatibilityWarning != nil
+                            ? AppThemeV2.Colors.warning
+                            : (showGold ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone400)
+                    )
                     .padding(.horizontal, AppThemeV2.Spacing.sm)
                     .frame(maxWidth: .infinity, minHeight: 24, alignment: .leading)
                     .background(
@@ -355,6 +382,7 @@ struct SettingsPanelV2: View {
                         RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
                             .stroke(showGold ? AppThemeV2.Colors.amber.opacity(0.3) : AppThemeV2.Colors.stone600, lineWidth: 1)
                     )
+                    .help(entry.tsiCompatibilityWarning?.message ?? "")
 
                 V2SmallButton(label: "Learn", action: toggleLearnMode, isActive: isLearning)
                     .disabled(isLocked || isLearnOwnedElsewhere)
@@ -510,11 +538,25 @@ struct SettingsPanelV2: View {
 
     private var midiChannelControl: some View {
         V2FormRow(label: "Channel") {
-            V2NumberStepper(value: $midiChannel, range: 1...16, label: nil)
-                .disabled(isLocked)
-                .onChange(of: midiChannel) { _, newValue in
-                    updateEntry { $0.midiChannel = newValue }
-                }
+            V2NumberStepper(
+                value: Binding(
+                    get: { midiChannelDraft.value },
+                    set: { newValue in
+                        guard let editedChannel = midiChannelDraft.apply(
+                            .userSelection(newValue)
+                        ) else { return }
+                        updateEntry { $0.midiChannel = editedChannel }
+                    }
+                ),
+                range: 1...16,
+                label: nil
+            )
+            .disabled(isLocked || selectedEntry?.tsiCompatibilityWarning != nil)
+            .help(
+                selectedEntry?.tsiCompatibilityWarning == nil
+                    ? ""
+                    : "Use MIDI Learn to replace this preserved native assignment."
+            )
         }
     }
 
@@ -828,7 +870,7 @@ struct SettingsPanelV2: View {
         }
 
         // Update local state to reflect changes
-        midiChannel = message.channel
+        midiChannelDraft.apply(.selectionLoad(message.channel))
         controllerType = detectedType
         interactionMode = detectedInteraction
     }
@@ -910,7 +952,7 @@ struct SettingsPanelV2: View {
         rotarySensitivity = entry.rotarySensitivity
         rotaryAcceleration = entry.rotaryAcceleration
         encoderModeDraft.apply(.selectionLoad(entry.encoderMode))
-        midiChannel = entry.midiChannel
+        midiChannelDraft.apply(.selectionLoad(entry.midiChannel))
     }
 
     private func batchAssignmentKindLabel(_ kind: MIDIAssignment.Kind) -> String {
