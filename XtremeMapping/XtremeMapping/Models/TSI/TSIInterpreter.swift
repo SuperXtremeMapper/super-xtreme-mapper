@@ -186,7 +186,17 @@ struct TSIInterpreter {
     /// is worse than the documented limitation that unknown frames don't
     /// survive a save. Structural corruption (truncated frames, trailing
     /// bytes) still throws: wellformedness is the gate, not the identifier.
-    static func interpret(frames: [TSIFrame]) throws -> MappingFile {
+    static func interpret(
+        frames: [TSIFrame],
+        limits: TSIParseLimits = .default,
+        instrumentation: TSIParseInstrumentation? = nil
+    ) throws -> MappingFile {
+        let budget = try TSIParseBudget(
+            limits: limits,
+            instrumentation: instrumentation,
+            initialFrameCount: frames.count
+        )
+        try budget.enterContainer(atDepth: 0)
         var devices: [Device] = []
         var foundDIOM = false
         var foundDEVS = false
@@ -196,7 +206,13 @@ struct TSIInterpreter {
                 continue // unknown-but-wellformed top-level frame — tolerated
             }
             foundDIOM = true
-            let diomFrames = try parseNestedFrames(from: frame.data, context: "DIOM")
+            let diomFrames = try parseNestedFrames(
+                from: frame.data,
+                startingAt: 0,
+                depth: 1,
+                budget: budget,
+                context: "DIOM"
+            )
 
             for nested in diomFrames {
                 switch nested.identifier {
@@ -209,10 +225,17 @@ struct TSIInterpreter {
                         throw TSIInterpreterError.malformedDevicesContainer
                     }
                     let declaredCount = Int(readUInt32BE(from: nested.data, at: 0))
-                    let dataAfterCount = nested.data.subdata(in: 4..<nested.data.count)
-                    let devsFrames = try parseNestedFrames(from: dataAfterCount, context: "DEVS")
+                    try budget.validateDeclaredFrameCount(declaredCount)
+                    let devsFrames = try parseNestedFrames(
+                        from: nested.data,
+                        startingAt: 4,
+                        depth: 2,
+                        budget: budget,
+                        context: "DEVS"
+                    )
 
                     var parsedCount = 0
+                    devices.reserveCapacity(devices.count + declaredCount)
                     for devsNested in devsFrames {
                         // Unknown-but-wellformed frames inside DEVS are
                         // skipped (and don't count toward the device count,
@@ -220,7 +243,11 @@ struct TSIInterpreter {
                         guard devsNested.identifier == FrameID.device else {
                             continue
                         }
-                        let device = try parseDevice(from: devsNested.data)
+                        let device = try parseDevice(
+                            from: devsNested.data,
+                            depth: 3,
+                            budget: budget
+                        )
                         devices.append(device)
                         parsedCount += 1
                     }
@@ -245,11 +272,19 @@ struct TSIInterpreter {
 
     // MARK: - Device Parsing
 
-    private static func parseDevice(from data: Data) throws -> Device {
+    private static func parseDevice(
+        from data: Data,
+        depth: Int,
+        budget: TSIParseBudget
+    ) throws -> Device {
         // Parse device name (UTF-16BE string with 4-byte length prefix).
         // A DEVI too small (or too garbled) to hold its own name is corruption —
         // throw instead of fabricating a placeholder device.
-        guard let (deviceName, nameEnd) = readUTF16BEString(from: data, at: 0) else {
+        guard let (deviceName, nameEnd) = try readUTF16BEString(
+            from: data,
+            at: 0,
+            limits: budget.limits
+        ) else {
             throw TSIInterpreterError.malformedDevice
         }
 
@@ -262,7 +297,12 @@ struct TSIInterpreter {
         // unknown frame whose payload coincidentally embedded "CMAS"/"DCBM"
         // bytes misparsed.
         let children = try collectDeviceFrames(
-            from: data.subdata(in: nameEnd..<data.count), context: "DEVI")
+            from: data,
+            startingAt: nameEnd,
+            depth: depth,
+            budget: budget,
+            context: "DEVI"
+        )
 
         // Parse device metadata frames (DDIV version/revision, DDIC comment, DDPT ports).
         // ABSENCE of a metadata frame keeps the writer-compatible default —
@@ -278,8 +318,13 @@ struct TSIInterpreter {
         var inPort = ""
         var outPort = ""
 
-        if let ddivData = children.deviceVersion {
-            guard let (version, afterVersion) = readUTF16BEString(from: ddivData, at: 0),
+        if let ddivPayload = children.deviceVersion {
+            let ddivData = ddivPayload.data
+            guard let (version, afterVersion) = try readUTF16BEString(
+                    from: ddivData,
+                    at: 0,
+                    limits: budget.limits
+                  ),
                   // MappingFileRevision is required per TSI-File-Format.md —
                   // a DDIV whose payload ends after the version string is
                   // truncated (or under-declared).
@@ -290,16 +335,28 @@ struct TSIInterpreter {
             mappingFileRevision = Int(readUInt32BE(from: ddivData, at: afterVersion))
         }
 
-        if let ddicData = children.deviceComment {
-            guard let (parsedComment, _) = readUTF16BEString(from: ddicData, at: 0) else {
+        if let ddicPayload = children.deviceComment {
+            guard let (parsedComment, _) = try readUTF16BEString(
+                from: ddicPayload.data,
+                at: 0,
+                limits: budget.limits
+            ) else {
                 throw TSIInterpreterError.malformedDeviceMetadata(frame: "DDIC")
             }
             comment = parsedComment
         }
 
-        if let ddptData = children.devicePorts {
-            guard let (parsedInPort, afterInPort) = readUTF16BEString(from: ddptData, at: 0),
-                  let (parsedOutPort, _) = readUTF16BEString(from: ddptData, at: afterInPort) else {
+        if let ddptPayload = children.devicePorts {
+            guard let (parsedInPort, afterInPort) = try readUTF16BEString(
+                    from: ddptPayload.data,
+                    at: 0,
+                    limits: budget.limits
+                  ),
+                  let (parsedOutPort, _) = try readUTF16BEString(
+                    from: ddptPayload.data,
+                    at: afterInPort,
+                    limits: budget.limits
+                  ) else {
                 throw TSIInterpreterError.malformedDeviceMetadata(frame: "DDPT")
             }
             inPort = parsedInPort
@@ -307,10 +364,14 @@ struct TSIInterpreter {
         }
 
         // Build DCBM binding lookup (binding ID -> MIDI control name)
-        let controlLookup = try buildControlLookup(fromBindingList: children.bindingList)
+        let controlLookup = try buildControlLookup(
+            fromBindingList: children.bindingList,
+            budget: budget
+        )
         let definitions = try buildMIDIControlDefinitionLookup(
             inputData: children.inputDefinitions,
-            outputData: children.outputDefinitions
+            outputData: children.outputDefinitions,
+            budget: budget
         )
 
         // Parse CMAS (mappings list). TSIWriter and Traktor ALWAYS emit one
@@ -324,7 +385,8 @@ struct TSIInterpreter {
         let mappings = try parseMappings(
             fromMappingsList: cmasData,
             controlLookup: controlLookup,
-            definitions: definitions
+            definitions: definitions,
+            budget: budget
         )
 
         print("TSI: Device '\(deviceName)' with \(mappings.count) mappings")
@@ -346,14 +408,19 @@ struct TSIInterpreter {
     /// Each payload is already cut to its frame's DECLARED size by
     /// TSIFrame.parse, so readers can never borrow bytes from a following
     /// frame.
+    private struct LocatedPayload {
+        let data: Data
+        let childDepth: Int
+    }
+
     private struct DeviceFrames {
-        var deviceVersion: Data?   // DDIV
-        var deviceComment: Data?   // DDIC
-        var devicePorts: Data?     // DDPT
-        var inputDefinitions: Data?  // DDCI
-        var outputDefinitions: Data? // DDCO
-        var mappingsList: Data?    // CMAS
-        var bindingList: Data?     // DCBM (outer list frame)
+        var deviceVersion: LocatedPayload?   // DDIV
+        var deviceComment: LocatedPayload?   // DDIC
+        var devicePorts: LocatedPayload?     // DDPT
+        var inputDefinitions: LocatedPayload?  // DDCI
+        var outputDefinitions: LocatedPayload? // DDCO
+        var mappingsList: LocatedPayload?    // CMAS
+        var bindingList: LocatedPayload?     // DCBM (outer list frame)
     }
 
     /// Walks a DEVI child-frame stream, recursing into the containers
@@ -366,41 +433,75 @@ struct TSIInterpreter {
     /// ones like DDIF) are skipped whole; their payloads are never
     /// scanned. Structural mismatch — a declared size overrunning its
     /// container, a truncated header, trailing bytes — throws from the walk.
-    private static func collectDeviceFrames(from data: Data, context: String) throws -> DeviceFrames {
+    private static func collectDeviceFrames(
+        from data: Data,
+        startingAt offset: Int,
+        depth: Int,
+        budget: TSIParseBudget,
+        context: String
+    ) throws -> DeviceFrames {
         var collected = DeviceFrames()
-        try collectDeviceFrames(into: &collected, from: data, context: context)
+        try collectDeviceFrames(
+            into: &collected,
+            from: data,
+            startingAt: offset,
+            depth: depth,
+            budget: budget,
+            context: context
+        )
         return collected
     }
 
-    private static func collectDeviceFrames(into collected: inout DeviceFrames, from data: Data, context: String) throws {
-        for frame in try parseNestedFrames(from: data, context: context) {
+    private static func collectDeviceFrames(
+        into collected: inout DeviceFrames,
+        from data: Data,
+        startingAt offset: Int,
+        depth: Int,
+        budget: TSIParseBudget,
+        context: String
+    ) throws {
+        for frame in try parseNestedFrames(
+            from: data,
+            startingAt: offset,
+            depth: depth,
+            budget: budget,
+            context: context
+        ) {
+            let located = LocatedPayload(data: frame.data, childDepth: depth + 1)
             switch frame.identifier {
             case FrameID.deviceData, FrameID.midiDefinitionsContainer, FrameID.commandBindings:
-                try collectDeviceFrames(into: &collected, from: frame.data, context: frame.identifier)
+                try collectDeviceFrames(
+                    into: &collected,
+                    from: frame.data,
+                    startingAt: 0,
+                    depth: depth + 1,
+                    budget: budget,
+                    context: frame.identifier
+                )
             case FrameID.deviceVersion:
-                if collected.deviceVersion == nil { collected.deviceVersion = frame.data }
+                if collected.deviceVersion == nil { collected.deviceVersion = located }
             case FrameID.deviceComment:
-                if collected.deviceComment == nil { collected.deviceComment = frame.data }
+                if collected.deviceComment == nil { collected.deviceComment = located }
             case FrameID.devicePorts:
-                if collected.devicePorts == nil { collected.devicePorts = frame.data }
+                if collected.devicePorts == nil { collected.devicePorts = located }
             case FrameID.inputDefinitions:
                 guard collected.inputDefinitions == nil else {
                     throw TSIInterpreterError.duplicateMidiDefinitionsContainer(
                         direction: .input
                     )
                 }
-                collected.inputDefinitions = frame.data
+                collected.inputDefinitions = located
             case FrameID.outputDefinitions:
                 guard collected.outputDefinitions == nil else {
                     throw TSIInterpreterError.duplicateMidiDefinitionsContainer(
                         direction: .output
                     )
                 }
-                collected.outputDefinitions = frame.data
+                collected.outputDefinitions = located
             case FrameID.mappingsList:
-                if collected.mappingsList == nil { collected.mappingsList = frame.data }
+                if collected.mappingsList == nil { collected.mappingsList = located }
             case FrameID.bindingList:
-                if collected.bindingList == nil { collected.bindingList = frame.data }
+                if collected.bindingList == nil { collected.bindingList = located }
             default:
                 continue // unknown-but-wellformed frame — tolerated, payload unscanned
             }
@@ -425,23 +526,28 @@ struct TSIInterpreter {
     }
 
     private static func buildMIDIControlDefinitionLookup(
-        inputData: Data?,
-        outputData: Data?
+        inputData: LocatedPayload?,
+        outputData: LocatedPayload?,
+        budget: TSIParseBudget
     ) throws -> [MIDIControlDefinitionKey: MIDIControlDefinition] {
         var lookup: [MIDIControlDefinitionKey: MIDIControlDefinition] = [:]
         if let inputData {
             try parseMIDIControlDefinitions(
-                from: inputData,
+                from: inputData.data,
+                depth: inputData.childDepth,
                 container: FrameID.inputDefinitions,
                 direction: .input,
+                budget: budget,
                 into: &lookup
             )
         }
         if let outputData {
             try parseMIDIControlDefinitions(
-                from: outputData,
+                from: outputData.data,
+                depth: outputData.childDepth,
                 container: FrameID.outputDefinitions,
                 direction: .output,
+                budget: budget,
                 into: &lookup
             )
         }
@@ -450,21 +556,29 @@ struct TSIInterpreter {
 
     private static func parseMIDIControlDefinitions(
         from data: Data,
+        depth: Int,
         container: String,
         direction: IODirection,
+        budget: TSIParseBudget,
         into lookup: inout [MIDIControlDefinitionKey: MIDIControlDefinition]
     ) throws {
         guard data.count >= 4 else {
             throw TSIInterpreterError.malformedMidiDefinitions(container: container)
         }
         let declaredCount = Int(readUInt32BE(from: data, at: 0))
+        try budget.validateDeclaredFrameCount(declaredCount)
 
         let frames: [TSIFrame]
         do {
             frames = try parseNestedFrames(
-                from: data.subdata(in: 4..<data.count),
+                from: data,
+                startingAt: 4,
+                depth: depth,
+                budget: budget,
                 context: container
             )
+        } catch let error as TSIParserError where error.isResourceLimitFailure {
+            throw error
         } catch {
             throw TSIInterpreterError.malformedMidiDefinitions(container: container)
         }
@@ -481,7 +595,11 @@ struct TSIInterpreter {
         }
 
         for frame in frames {
-            guard let (controlName, scalarOffset) = readUTF16BEString(from: frame.data, at: 0),
+            guard let (controlName, scalarOffset) = try readUTF16BEString(
+                    from: frame.data,
+                    at: 0,
+                    limits: budget.limits
+                  ),
                   scalarOffset + 20 == frame.data.count else {
                 throw TSIInterpreterError.malformedMidiDefinition(container: container)
             }
@@ -527,34 +645,54 @@ struct TSIInterpreter {
     /// Structural corruption throws: a binding entry that can't be read is not
     /// skippable — the CMAI that references it would then surface as a
     /// dangling binding anyway, so fail at the source with the precise error.
-    private static func buildControlLookup(fromBindingList listData: Data?) throws -> [Int: String] {
+    private static func buildControlLookup(
+        fromBindingList listPayload: LocatedPayload?,
+        budget: TSIParseBudget
+    ) throws -> [Int: String] {
         // A device with no DCBM list has no MIDI bindings — valid (every CMAI
         // must then carry the unassigned sentinel or fail as dangling).
-        guard let listData else { return [:] }
+        guard let listPayload else { return [:] }
+        let listData = listPayload.data
+        try budget.enterContainer(atDepth: listPayload.childDepth)
 
         // The list payload must at least hold its 4-byte count prefix.
         guard listData.count >= 4 else {
             throw TSIInterpreterError.malformedMidiBindingList
         }
         let declaredCount = Int(readUInt32BE(from: listData, at: 0))
+        try budget.validateDeclaredFrameCount(declaredCount)
 
         var lookup: [Int: String] = [:]
+        lookup.reserveCapacity(declaredCount)
         var offset = 4
+        var containerFrameCount = 0
         for _ in 0..<declaredCount {
-            // Nested binding frame header: "DCBM" identifier + 4-byte size
-            guard offset + 8 <= listData.count,
-                  String(data: listData.subdata(in: offset..<(offset + 4)), encoding: .ascii) == FrameID.bindingList else {
+            try budget.consumeFrame(containerCount: &containerFrameCount)
+            let parsed: (frame: TSIFrame, nextOffset: Int)
+            do {
+                parsed = try TSIFrame.parse(
+                    from: listData,
+                    at: offset,
+                    limits: budget.limits
+                )
+            } catch let error as TSIParserError where error.isResourceLimitFailure {
+                throw error
+            } catch {
                 throw TSIInterpreterError.malformedMidiBindingList
             }
-            let entrySize = Int(readUInt32BE(from: listData, at: offset + 4))
-            // Entry payload must hold BindingId (4) + string length prefix (4)
-            guard entrySize >= 8, offset + 8 + entrySize <= listData.count else {
+            budget.recordParsedFrame(payloadBytes: parsed.frame.data.count)
+            guard parsed.frame.identifier == FrameID.bindingList,
+                  parsed.frame.data.count >= 8 else {
                 throw TSIInterpreterError.malformedMidiBindingList
             }
 
-            let entryData = listData.subdata(in: (offset + 8)..<(offset + 8 + entrySize))
-            let bindingId = Int(readUInt32BE(from: entryData, at: 0))
-            guard let (midiNote, _) = readUTF16BEString(from: entryData, at: 4) else {
+            let bindingId = Int(readUInt32BE(from: parsed.frame.data, at: 0))
+            guard let (midiNote, stringEnd) = try readUTF16BEString(
+                    from: parsed.frame.data,
+                    at: 4,
+                    limits: budget.limits
+                  ),
+                  stringEnd == parsed.frame.data.count else {
                 throw TSIInterpreterError.malformedMidiBindingList
             }
             // Duplicate BindingIds are corruption, not a merge: last-wins
@@ -563,7 +701,7 @@ struct TSIInterpreter {
             guard lookup.updateValue(midiNote, forKey: bindingId) == nil else {
                 throw TSIInterpreterError.malformedMidiBindingList
             }
-            offset += 8 + entrySize
+            offset = parsed.nextOffset
         }
 
         // The declared count must consume the ENTIRE list payload — a low
@@ -579,10 +717,13 @@ struct TSIInterpreter {
     // MARK: - Mapping Parsing
 
     private static func parseMappings(
-        fromMappingsList cmasData: Data,
+        fromMappingsList cmasPayload: LocatedPayload,
         controlLookup: [Int: String],
-        definitions: [MIDIControlDefinitionKey: MIDIControlDefinition]
+        definitions: [MIDIControlDefinitionKey: MIDIControlDefinition],
+        budget: TSIParseBudget
     ) throws -> [MappingEntry] {
+        let cmasData = cmasPayload.data
+        try budget.enterContainer(atDepth: cmasPayload.childDepth)
         var mappings: [MappingEntry] = []
 
         // CMAS must at least hold its 4-byte mapping count
@@ -590,6 +731,8 @@ struct TSIInterpreter {
             throw TSIInterpreterError.malformedMappingsList
         }
         let declaredCount = Int(readUInt32BE(from: cmasData, at: 0))
+        try budget.validateDeclaredFrameCount(declaredCount)
+        mappings.reserveCapacity(declaredCount)
 
         // Parse the CMAI frames within CMAS (after the 4-byte count prefix).
         // The payload is a CONTIGUOUS run of CMAI frames — per the format doc
@@ -603,32 +746,39 @@ struct TSIInterpreter {
         var parsedFrameCount = 0
         var offset = 4
         while offset < cmasData.count {
-            guard cmasData.count - offset >= 8,
-                  String(data: cmasData.subdata(in: offset..<(offset + 4)), encoding: .ascii) == FrameID.mappingItem else {
+            guard cmasData.count - offset >= TSIFrame.headerSize else {
+                throw TSIInterpreterError.malformedMappingsList
+            }
+            try budget.consumeFrame(containerCount: &parsedFrameCount)
+            let parsed: (frame: TSIFrame, nextOffset: Int)
+            do {
+                parsed = try TSIFrame.parse(
+                    from: cmasData,
+                    at: offset,
+                    limits: budget.limits
+                )
+            } catch let error as TSIParserError where error.isResourceLimitFailure {
+                throw error
+            } catch {
+                throw TSIInterpreterError.malformedMappingItem
+            }
+            budget.recordParsedFrame(payloadBytes: parsed.frame.data.count)
+
+            guard parsed.frame.identifier == FrameID.mappingItem else {
                 throw TSIInterpreterError.malformedMappingsList
             }
 
-            let cmaiSize = Int(readUInt32BE(from: cmasData, at: offset + 4))
-
-            // A CMAI whose declared size overruns its container is truncation —
-            // propagate instead of skipping and returning a partial list.
-            // (A too-small payload throws inside parseCMAI.)
-            guard offset + 8 + cmaiSize <= cmasData.count else {
-                throw TSIInterpreterError.malformedMappingItem
-            }
-
-            let cmaiData = cmasData.subdata(in: (offset + 8)..<(offset + 8 + cmaiSize))
-            parsedFrameCount += 1
-
             if let mapping = try parseCMAI(
-                from: cmaiData,
+                from: parsed.frame.data,
+                depth: cmasPayload.childDepth + 1,
                 controlLookup: controlLookup,
-                definitions: definitions
+                definitions: definitions,
+                budget: budget
             ) {
                 mappings.append(mapping)
             }
 
-            offset += 8 + cmaiSize
+            offset = parsed.nextOffset
         }
 
         guard parsedFrameCount == declaredCount else {
@@ -647,8 +797,10 @@ struct TSIInterpreter {
     /// - Settings: CMAD frame
     private static func parseCMAI(
         from data: Data,
+        depth: Int,
         controlLookup: [Int: String],
-        definitions: [MIDIControlDefinitionKey: MIDIControlDefinition]
+        definitions: [MIDIControlDefinitionKey: MIDIControlDefinition],
+        budget: TSIParseBudget
     ) throws -> MappingEntry? {
         // Too small to hold the 3-int header + CMAD frame header — truncation, not a skip.
         guard data.count >= 20 else { throw TSIInterpreterError.malformedMappingItem }
@@ -674,14 +826,30 @@ struct TSIInterpreter {
         // A missing, undersized, or overrunning CMAD used to fall through to
         // a default-settings mapping — which an open+save would then write
         // over the user's real settings. Any disagreement throws instead.
-        guard String(data: data.subdata(in: 12..<16), encoding: .ascii) == FrameID.mappingData else {
+        try budget.enterContainer(atDepth: depth)
+        var containerFrameCount = 0
+        try budget.consumeFrame(containerCount: &containerFrameCount)
+        let parsedCMAD: (frame: TSIFrame, nextOffset: Int)
+        do {
+            parsedCMAD = try TSIFrame.parse(
+                from: data,
+                at: 12,
+                limits: budget.limits
+            )
+        } catch let error as TSIParserError where error.isResourceLimitFailure {
+            throw error
+        } catch {
             throw TSIInterpreterError.malformedMappingData
         }
-        let cmadSize = Int(readUInt32BE(from: data, at: 16))
-        guard 20 + cmadSize == data.count else {
+        budget.recordParsedFrame(payloadBytes: parsedCMAD.frame.data.count)
+        guard parsedCMAD.frame.identifier == FrameID.mappingData,
+              parsedCMAD.nextOffset == data.count else {
             throw TSIInterpreterError.malformedMappingData
         }
-        let cmadSettings = try parseCMAD(from: data.subdata(in: 20..<(20 + cmadSize)))
+        let cmadSettings = try parseCMAD(
+            from: parsedCMAD.frame.data,
+            limits: budget.limits
+        )
 
         // Skip unassigned/empty mappings (command ID 0 means no command
         // assigned — a placeholder row, not corruption; its CMAD was still
@@ -914,7 +1082,10 @@ struct TSIInterpreter {
     /// The condition block and LED block are OPTIONAL TAIL fields: older
     /// Traktor versions emit shorter CMADs that end before them, so their
     /// length-guarded reads keep writer-compatible defaults when absent.
-    private static func parseCMAD(from data: Data) throws -> CMADParsed {
+    private static func parseCMAD(
+        from data: Data,
+        limits: TSIParseLimits
+    ) throws -> CMADParsed {
         var result = CMADParsed()
 
         guard data.count >= 52 else { throw TSIInterpreterError.malformedMappingData }
@@ -965,14 +1136,20 @@ struct TSIInterpreter {
         // characters and misread the condition block at the wrong offset for
         // corrupt lengths). The payload size itself bounds the allocation.
         let commentLength = Int(readUInt32BE(from: data, at: 48))
+        let (commentByteCount, commentByteOverflow) = commentLength.multipliedReportingOverflow(by: 2)
+        guard !commentByteOverflow else { throw TSIParserError.integerOverflow }
 
         // The 24-byte condition block follows the comment (byte 52 when no comment)
         var conditionOffset = 52
         if commentLength > 0 {
             let commentStart = 52
-            let commentEnd = commentStart + commentLength * 2
+            let (commentEnd, commentEndOverflow) = commentStart.addingReportingOverflow(commentByteCount)
+            guard !commentEndOverflow else { throw TSIParserError.integerOverflow }
             guard commentEnd <= data.count else {
                 throw TSIInterpreterError.malformedMappingData
+            }
+            guard commentByteCount <= limits.maximumUTF16StringBytes else {
+                throw TSIParserError.utf16StringByteLimitExceeded
             }
 
             result.comment = decodeUTF16BE(from: data, at: commentStart, codeUnitCount: commentLength)
@@ -1141,8 +1318,11 @@ struct TSIInterpreter {
     /// characters like emoji) survive — decoding code units one-by-one via
     /// `UnicodeScalar` silently drops them. Internal for direct unit testing.
     static func decodeUTF16BE(from data: Data, at offset: Int, codeUnitCount: Int) -> String {
-        let end = offset + codeUnitCount * 2
-        guard offset >= 0, codeUnitCount >= 0, end <= data.count else { return "" }
+        guard offset >= 0, codeUnitCount >= 0 else { return "" }
+        let (byteCount, byteOverflow) = codeUnitCount.multipliedReportingOverflow(by: 2)
+        guard !byteOverflow else { return "" }
+        let (end, endOverflow) = offset.addingReportingOverflow(byteCount)
+        guard !endOverflow, end <= data.count else { return "" }
 
         var codeUnits: [UInt16] = []
         codeUnits.reserveCapacity(codeUnitCount)
@@ -1156,23 +1336,29 @@ struct TSIInterpreter {
 
     /// Reads a length-prefixed UTF-16BE string. Returns nil when the prefix
     /// or string bytes don't fit — every caller treats nil as corruption and
-    /// throws (no caller silently defaults). The 10000-char cap is an
-    /// allocation bound for absurd corrupt lengths; with throwing callers it
-    /// surfaces as an error, never as silently truncated data.
-    private static func readUTF16BEString(from data: Data, at offset: Int) -> (String, Int)? {
-        guard offset + 4 <= data.count else { return nil }
+    /// throws (no caller silently defaults). A string that fits structurally
+    /// but exceeds `maximumUTF16StringBytes` throws the dedicated resource
+    /// limit error before any code-unit allocation.
+    private static func readUTF16BEString(
+        from data: Data,
+        at offset: Int,
+        limits: TSIParseLimits
+    ) throws -> (String, Int)? {
+        guard offset >= 0, offset <= data.count, data.count - offset >= 4 else { return nil }
 
-        let lengthBytes = data.subdata(in: offset..<(offset + 4))
-        let charCount = Int(lengthBytes.withUnsafeBytes { $0.load(as: UInt32.self).bigEndian })
-
-        guard charCount >= 0 && charCount < 10000 else { return nil }
-
-        let byteCount = charCount * 2
-        let stringEnd = offset + 4 + byteCount
-
+        let charCount = Int(readUInt32BE(from: data, at: offset))
+        let (byteCount, byteOverflow) = charCount.multipliedReportingOverflow(by: 2)
+        guard !byteOverflow else { throw TSIParserError.integerOverflow }
+        let (stringStart, startOverflow) = offset.addingReportingOverflow(4)
+        guard !startOverflow else { throw TSIParserError.integerOverflow }
+        let (stringEnd, endOverflow) = stringStart.addingReportingOverflow(byteCount)
+        guard !endOverflow else { throw TSIParserError.integerOverflow }
         guard stringEnd <= data.count else { return nil }
+        guard byteCount <= limits.maximumUTF16StringBytes else {
+            throw TSIParserError.utf16StringByteLimitExceeded
+        }
 
-        let decoded = decodeUTF16BE(from: data, at: offset + 4, codeUnitCount: charCount)
+        let decoded = decodeUTF16BE(from: data, at: stringStart, codeUnitCount: charCount)
         return (decoded, stringEnd)
     }
 
@@ -1180,9 +1366,10 @@ struct TSIInterpreter {
     /// The zero default is defensive only — every call site bounds-checks
     /// (and throws) before reading, so corrupt input cannot reach it.
     private static func readUInt32BE(from data: Data, at offset: Int) -> UInt32 {
-        guard offset + 4 <= data.count else { return 0 }
-        let bytes = data.subdata(in: offset..<(offset + 4))
-        return bytes.withUnsafeBytes { $0.load(as: UInt32.self).bigEndian }
+        guard offset >= 0, offset <= data.count, data.count - offset >= 4 else { return 0 }
+        return data.withUnsafeBytes {
+            $0.loadUnaligned(fromByteOffset: offset, as: UInt32.self).bigEndian
+        }
     }
 
     /// Parses consecutive frames, propagating any malformed-frame error.
@@ -1194,18 +1381,38 @@ struct TSIInterpreter {
     /// on the floor, and a save then dropped from the file) are corruption.
     /// This mirrors the strict contract of TSIParser.parseFrames at the top
     /// level of the file.
-    private static func parseNestedFrames(from data: Data, context: String) throws -> [TSIFrame] {
+    private static func parseNestedFrames(
+        from data: Data,
+        startingAt startingOffset: Int,
+        depth: Int,
+        budget: TSIParseBudget,
+        context: String
+    ) throws -> [TSIFrame] {
+        try budget.enterContainer(atDepth: depth)
+        guard startingOffset >= 0, startingOffset <= data.count else {
+            throw TSIParserError.integerOverflow
+        }
         var frames: [TSIFrame] = []
-        var offset = 0
+        frames.reserveCapacity(min(
+            (data.count - startingOffset) / TSIFrame.headerSize,
+            max(budget.limits.maximumFramesPerContainer, 0)
+        ))
+        var offset = startingOffset
+        var containerFrameCount = 0
 
         while offset < data.count {
             guard data.count - offset >= TSIFrame.headerSize else {
                 throw TSIInterpreterError.unexpectedTrailingBytes(context: context)
             }
-            let remainingData = data.subdata(in: offset..<data.count)
-            let frame = try TSIFrame.parse(from: remainingData)
-            frames.append(frame)
-            offset += frame.totalSize
+            try budget.consumeFrame(containerCount: &containerFrameCount)
+            let parsed = try TSIFrame.parse(
+                from: data,
+                at: offset,
+                limits: budget.limits
+            )
+            frames.append(parsed.frame)
+            budget.recordParsedFrame(payloadBytes: parsed.frame.data.count)
+            offset = parsed.nextOffset
         }
 
         return frames

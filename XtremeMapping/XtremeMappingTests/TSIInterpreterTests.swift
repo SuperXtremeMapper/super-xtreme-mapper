@@ -2543,6 +2543,132 @@ final class TSIInterpreterTests: XCTestCase {
         }
     }
 
+    // MARK: - Shared Binary Resource Budgets
+
+    func testUTF16StringByteLimitAtMinusOneLimitAndPlusOne() throws {
+        let deviPayload = tsiString("AB") + rawFrame("CMAS", be32(0))
+        let binary = rawFrame("DIOM", rawFrame("DEVS", be32(1) + rawFrame("DEVI", deviPayload)))
+        let frames = try TSIParser().parseFrames(from: binary)
+
+        for maximum in [3, 4, 5] {
+            let limits = TSIParseLimits(maximumUTF16StringBytes: maximum)
+            if maximum == 3 {
+                XCTAssertThrowsError(try TSIInterpreter.interpret(frames: frames, limits: limits)) {
+                    XCTAssertEqual($0 as? TSIParserError, .utf16StringByteLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try TSIInterpreter.interpret(frames: frames, limits: limits).devices.first?.name, "AB")
+            }
+        }
+    }
+
+    func testNestedDCBMStringsUseTheSameUTF16ByteBudget() throws {
+        let binding = rawFrame("DCBM", be32(0) + tsiString("AB"))
+        let deviPayload = tsiString("T")
+            + rawFrame("DCBM", be32(1) + binding)
+            + rawFrame("CMAS", be32(0))
+        let binary = rawFrame("DIOM", rawFrame("DEVS", be32(1) + rawFrame("DEVI", deviPayload)))
+        let frames = try TSIParser().parseFrames(from: binary)
+
+        XCTAssertThrowsError(try TSIInterpreter.interpret(
+            frames: frames,
+            limits: TSIParseLimits(maximumUTF16StringBytes: 3)
+        )) {
+            XCTAssertEqual($0 as? TSIParserError, .utf16StringByteLimitExceeded)
+        }
+    }
+
+    func testBinaryDepthLimitAtMinusOneLimitAndPlusOne() throws {
+        var child = rawFrame("CMAS", be32(0))
+        child = rawFrame("DDAT", rawFrame("DDAT", child))
+        let deviPayload = tsiString("T") + child
+        let binary = rawFrame("DIOM", rawFrame("DEVS", be32(1) + rawFrame("DEVI", deviPayload)))
+        let frames = try TSIParser().parseFrames(from: binary)
+
+        for maximum in [5, 6, 7] {
+            let limits = TSIParseLimits(maximumBinaryContainerDepth: maximum)
+            if maximum == 5 {
+                XCTAssertThrowsError(try TSIInterpreter.interpret(frames: frames, limits: limits)) {
+                    XCTAssertEqual($0 as? TSIParserError, .binaryDepthLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try TSIInterpreter.interpret(frames: frames, limits: limits).devices.count, 1)
+            }
+        }
+    }
+
+    func testCMASPerContainerFrameLimitAtMinusOneLimitAndPlusOne() throws {
+        let placeholder = rawFrame(
+            "CMAI",
+            cmaiPayload(commandId: 0, cmadBytes: rawFrame("CMAD", validCMAD()))
+        )
+        let cmas = rawFrame("CMAS", be32(3) + placeholder + placeholder + placeholder)
+        let binary = rawFrame(
+            "DIOM",
+            rawFrame("DEVS", be32(1) + rawFrame("DEVI", tsiString("T") + cmas))
+        )
+        let frames = try TSIParser().parseFrames(from: binary)
+
+        for maximum in [2, 3, 4] {
+            let limits = TSIParseLimits(maximumFramesPerContainer: maximum)
+            if maximum == 2 {
+                XCTAssertThrowsError(try TSIInterpreter.interpret(frames: frames, limits: limits)) {
+                    XCTAssertEqual($0 as? TSIParserError, .frameCountLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try TSIInterpreter.interpret(frames: frames, limits: limits).devices.first?.mappings.count, 0)
+            }
+        }
+    }
+
+    func testDCBMPerContainerFrameLimitAtMinusOneLimitAndPlusOne() throws {
+        let entries = (0..<3).reduce(into: Data()) { data, index in
+            data.append(rawFrame("DCBM", be32(UInt32(index)) + tsiString("Ch01.CC.00\(index)")))
+        }
+        let deviPayload = tsiString("T")
+            + rawFrame("DCBM", be32(3) + entries)
+            + rawFrame("CMAS", be32(0))
+        let binary = rawFrame("DIOM", rawFrame("DEVS", be32(1) + rawFrame("DEVI", deviPayload)))
+        let frames = try TSIParser().parseFrames(from: binary)
+
+        for maximum in [2, 3, 4] {
+            let limits = TSIParseLimits(maximumFramesPerContainer: maximum)
+            if maximum == 2 {
+                XCTAssertThrowsError(try TSIInterpreter.interpret(frames: frames, limits: limits)) {
+                    XCTAssertEqual($0 as? TSIParserError, .frameCountLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try TSIInterpreter.interpret(frames: frames, limits: limits).devices.count, 1)
+            }
+        }
+    }
+
+    func testCumulativeFrameBudgetIsSharedAcrossNestedContainers() throws {
+        let placeholder = rawFrame(
+            "CMAI",
+            cmaiPayload(commandId: 0, cmadBytes: rawFrame("CMAD", validCMAD()))
+        )
+        let binary = rawFrame(
+            "DIOM",
+            rawFrame("DEVS", be32(1) + rawFrame(
+                "DEVI",
+                tsiString("T") + rawFrame("CMAS", be32(3) + placeholder + placeholder + placeholder)
+            ))
+        )
+        let frames = try TSIParser().parseFrames(from: binary)
+
+        for maximum in [9, 10, 11] {
+            let limits = TSIParseLimits(maximumCumulativeFrames: maximum)
+            if maximum == 9 {
+                XCTAssertThrowsError(try TSIInterpreter.interpret(frames: frames, limits: limits)) {
+                    XCTAssertEqual($0 as? TSIParserError, .cumulativeFrameLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try TSIInterpreter.interpret(frames: frames, limits: limits).devices.count, 1)
+            }
+        }
+    }
+
     // MARK: - Helper Functions (Expose internal logic for testing)
 
     /// Parse MIDI control name - mirrors TSIInterpreter logic

@@ -42,38 +42,43 @@ public struct TSIFrame: Equatable, Sendable {
     /// - Returns: The parsed TSIFrame
     /// - Throws: `TSIParserError.unexpectedEndOfData` if the data is too short
     public static func parse(from data: Data) throws -> TSIFrame {
-        // Check minimum header size
-        guard data.count >= headerSize else {
+        try parse(from: data, at: 0, limits: .default).frame
+    }
+
+    /// Parses one frame from a shared byte buffer without copying the unparsed tail.
+    public static func parse(
+        from data: Data,
+        at offset: Int,
+        limits: TSIParseLimits
+    ) throws -> (frame: TSIFrame, nextOffset: Int) {
+        guard offset >= 0 else { throw TSIParserError.integerOverflow }
+        let (headerEnd, headerOverflow) = offset.addingReportingOverflow(headerSize)
+        guard !headerOverflow else { throw TSIParserError.integerOverflow }
+        guard headerEnd <= data.count else { throw TSIParserError.unexpectedEndOfData }
+
+        guard let identifier = String(
+            bytes: data[offset..<(offset + 4)],
+            encoding: .ascii
+        ) else {
             throw TSIParserError.unexpectedEndOfData
         }
 
-        // Parse identifier (first 4 bytes as ASCII)
-        let identifierData = data.prefix(4)
-        guard let identifier = String(data: identifierData, encoding: .ascii) else {
-            throw TSIParserError.unexpectedEndOfData
+        let size = data.withUnsafeBytes { bytes in
+            bytes.loadUnaligned(fromByteOffset: offset + 4, as: UInt32.self).bigEndian
+        }
+        let payloadSize = Int(size)
+        guard payloadSize <= limits.maximumIndividualFramePayload else {
+            throw TSIParserError.framePayloadLimitExceeded
         }
 
-        // Parse size (next 4 bytes as big-endian UInt32)
-        let sizeBytes = data.subdata(in: 4..<8)
-        let size = sizeBytes.withUnsafeBytes { bytes in
-            bytes.load(as: UInt32.self).bigEndian
-        }
+        let (nextOffset, payloadOverflow) = headerEnd.addingReportingOverflow(payloadSize)
+        guard !payloadOverflow else { throw TSIParserError.integerOverflow }
+        guard nextOffset <= data.count else { throw TSIParserError.unexpectedEndOfData }
 
-        // Check if we have enough data for the payload
-        let totalNeeded = headerSize + Int(size)
-        guard data.count >= totalNeeded else {
-            throw TSIParserError.unexpectedEndOfData
-        }
-
-        // Extract payload data
-        let payloadData: Data
-        if size > 0 {
-            payloadData = data.subdata(in: headerSize..<totalNeeded)
-        } else {
-            payloadData = Data()
-        }
-
-        return TSIFrame(identifier: identifier, size: size, data: payloadData)
+        let payload = payloadSize == 0
+            ? Data()
+            : data.subdata(in: headerEnd..<nextOffset)
+        return (TSIFrame(identifier: identifier, size: size, data: payload), nextOffset)
     }
 
     /// The total size of this frame in bytes (header + data)

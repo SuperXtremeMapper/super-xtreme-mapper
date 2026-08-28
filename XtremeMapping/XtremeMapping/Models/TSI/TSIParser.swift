@@ -8,7 +8,7 @@
 import Foundation
 
 /// Errors that can occur during TSI file parsing
-public enum TSIParserError: Error, Equatable, Sendable {
+public enum TSIParserError: Error, Equatable, Sendable, LocalizedError {
     /// The binary data ended unexpectedly while parsing
     case unexpectedEndOfData
 
@@ -23,6 +23,59 @@ public enum TSIParserError: Error, Equatable, Sendable {
 
     /// Decompression of the binary data failed
     case decompressionFailed
+
+    case unsupportedXMLEncoding
+    case prohibitedXMLDeclaration
+    case xmlByteLimitExceeded
+    case base64CharacterLimitExceeded
+    case decodedControllerByteLimitExceeded
+    case framePayloadLimitExceeded
+    case frameCountLimitExceeded
+    case utf16StringByteLimitExceeded
+    case xmlElementLimitExceeded
+    case xmlDepthLimitExceeded
+    case controllerEntryLimitExceeded
+    case binaryDepthLimitExceeded
+    case cumulativeFrameLimitExceeded
+    case integerOverflow
+
+    public var errorDescription: String? {
+        switch self {
+        case .unexpectedEndOfData: "The TSI binary data ended unexpectedly."
+        case .invalidXML: "The TSI XML is malformed."
+        case .missingControllerEntry: "The TSI XML has no controller entry."
+        case .invalidBase64: "The TSI controller value is not strict RFC 4648 Base64."
+        case .decompressionFailed: "The TSI controller data could not be decompressed."
+        case .unsupportedXMLEncoding: "TSI XML must be encoded as UTF-8."
+        case .prohibitedXMLDeclaration: "TSI XML may not contain DTD or entity declarations."
+        case .xmlByteLimitExceeded: "The TSI XML exceeds the configured byte limit."
+        case .base64CharacterLimitExceeded: "A TSI controller value exceeds the configured Base64 character limit."
+        case .decodedControllerByteLimitExceeded: "Decoded TSI controller data exceeds the configured byte limit."
+        case .framePayloadLimitExceeded: "A TSI frame payload exceeds the configured byte limit."
+        case .frameCountLimitExceeded: "A TSI container exceeds the configured frame limit."
+        case .utf16StringByteLimitExceeded: "A TSI string exceeds the configured UTF-16 byte limit."
+        case .xmlElementLimitExceeded: "The TSI XML exceeds the configured element limit."
+        case .xmlDepthLimitExceeded: "The TSI XML exceeds the configured nesting-depth limit."
+        case .controllerEntryLimitExceeded: "The TSI XML exceeds the configured controller-entry limit."
+        case .binaryDepthLimitExceeded: "The TSI binary data exceeds the configured container-depth limit."
+        case .cumulativeFrameLimitExceeded: "The TSI document exceeds the configured cumulative frame limit."
+        case .integerOverflow: "A TSI length or offset cannot be represented safely."
+        }
+    }
+
+    var isResourceLimitFailure: Bool {
+        switch self {
+        case .xmlByteLimitExceeded, .base64CharacterLimitExceeded,
+             .decodedControllerByteLimitExceeded, .framePayloadLimitExceeded,
+             .frameCountLimitExceeded, .utf16StringByteLimitExceeded,
+             .xmlElementLimitExceeded, .xmlDepthLimitExceeded,
+             .controllerEntryLimitExceeded, .binaryDepthLimitExceeded,
+             .cumulativeFrameLimitExceeded, .integerOverflow:
+            true
+        default:
+            false
+        }
+    }
 }
 
 /// Parser for TSI (Traktor Settings Interface) files.
@@ -30,8 +83,16 @@ public enum TSIParserError: Error, Equatable, Sendable {
 /// TSI files are XML documents containing Base64-encoded binary data.
 /// The binary data uses an ID3v2-like frame format for storing controller mappings.
 public struct TSIParser: Sendable {
+    public let limits: TSIParseLimits
+    public let instrumentation: TSIParseInstrumentation?
 
-    public init() {}
+    public init(
+        limits: TSIParseLimits = .default,
+        instrumentation: TSIParseInstrumentation? = nil
+    ) {
+        self.limits = limits
+        self.instrumentation = instrumentation
+    }
 
     // MARK: - XML Extraction
 
@@ -51,31 +112,33 @@ public struct TSIParser: Sendable {
     /// - Returns: The Base64-encoded string from the Controller entry's Value attribute
     /// - Throws: `TSIParserError.invalidXML` if the XML is malformed,
     ///           `TSIParserError.missingControllerEntry` if the entry is not found
-    public static func extractControllerData(from xmlData: Data) throws -> String {
-        // Parse the XML document
-        let document: XMLDocument
-        do {
-            document = try XMLDocument(data: xmlData)
-        } catch {
-            throw TSIParserError.invalidXML
-        }
-
-        // Use XPath to find the Entry with Name="DeviceIO.Config.Controller"
-        let xpath = "//Entry[@Name='DeviceIO.Config.Controller']/@Value"
-        let nodes: [XMLNode]
-        do {
-            nodes = try document.nodes(forXPath: xpath)
-        } catch {
-            throw TSIParserError.invalidXML
-        }
-
-        // Extract the Value attribute
-        guard let valueNode = nodes.first,
-              let value = valueNode.stringValue,
-              !value.isEmpty else {
+    public static func extractControllerData(
+        from xmlData: Data,
+        limits: TSIParseLimits = .default
+    ) throws -> String {
+        let result = try scanXML(xmlData, limits: limits)
+        guard let value = result.controllerValues.first, !value.isEmpty else {
             throw TSIParserError.missingControllerEntry
         }
+        return value
+    }
 
+    public static func scanXML(
+        _ xmlData: Data,
+        limits: TSIParseLimits = .default
+    ) throws -> TSIXMLScanResult {
+        try TSIXMLScanner.scan(xmlData, limits: limits)
+    }
+
+    public func scanXML(_ xmlData: Data) throws -> TSIXMLScanResult {
+        try Self.scanXML(xmlData, limits: limits)
+    }
+
+    public func extractControllerData(from xmlData: Data) throws -> String {
+        let result = try scanXML(xmlData)
+        guard let value = result.controllerValues.first, !value.isEmpty else {
+            throw TSIParserError.missingControllerEntry
+        }
         return value
     }
 
@@ -87,7 +150,43 @@ public struct TSIParser: Sendable {
     /// - Returns: The decoded binary data
     /// - Throws: `TSIParserError.invalidBase64` if the string is not valid Base64
     public func decodeBase64(_ string: String) throws -> Data {
-        guard let data = Data(base64Encoded: string, options: .ignoreUnknownCharacters) else {
+        let bytes = Array(string.utf8)
+        guard bytes.count <= limits.maximumBase64AttributeCharacters else {
+            throw TSIParserError.base64CharacterLimitExceeded
+        }
+        guard bytes.count.isMultiple(of: 4) else {
+            throw TSIParserError.invalidBase64
+        }
+
+        var paddingCount = 0
+        if bytes.last == 0x3D {
+            paddingCount = 1
+            if bytes.count >= 2, bytes[bytes.count - 2] == 0x3D { paddingCount = 2 }
+        }
+        let alphabetEnd = bytes.count - paddingCount
+        for (index, byte) in bytes.enumerated() {
+            let isAlphabet = (0x41...0x5A).contains(byte)
+                || (0x61...0x7A).contains(byte)
+                || (0x30...0x39).contains(byte)
+                || byte == 0x2B || byte == 0x2F
+            if index < alphabetEnd {
+                guard isAlphabet else { throw TSIParserError.invalidBase64 }
+            } else {
+                guard byte == 0x3D else { throw TSIParserError.invalidBase64 }
+            }
+        }
+
+        let (triples, multiplyOverflow) = (bytes.count / 4).multipliedReportingOverflow(by: 3)
+        guard !multiplyOverflow else { throw TSIParserError.integerOverflow }
+        let (decodedByteCount, subtractOverflow) = triples.subtractingReportingOverflow(paddingCount)
+        guard !subtractOverflow else { throw TSIParserError.invalidBase64 }
+        guard decodedByteCount <= limits.maximumDecodedControllerBytes else {
+            throw TSIParserError.decodedControllerByteLimitExceeded
+        }
+
+        guard let data = Data(base64Encoded: string),
+              data.count == decodedByteCount,
+              data.base64EncodedString() == string else {
             throw TSIParserError.invalidBase64
         }
         return data
@@ -106,8 +205,12 @@ public struct TSIParser: Sendable {
     /// - Returns: An array of parsed frames
     /// - Throws: `TSIParserError.unexpectedEndOfData` if the data is malformed
     public func parseFrames(from binaryData: Data) throws -> [TSIFrame] {
+        let budget = try TSIParseBudget(limits: limits, instrumentation: instrumentation)
+        try budget.enterContainer(atDepth: 0)
         var frames: [TSIFrame] = []
+        frames.reserveCapacity(min(binaryData.count / TSIFrame.headerSize, max(limits.maximumFramesPerContainer, 0)))
         var offset = 0
+        var containerFrameCount = 0
 
         while offset < binaryData.count {
             // Check if we have at least a header's worth of data remaining
@@ -116,15 +219,11 @@ public struct TSIParser: Sendable {
                 throw TSIParserError.unexpectedEndOfData
             }
 
-            // Extract the subdata starting at current offset
-            let remainingData = binaryData.subdata(in: offset..<binaryData.count)
-
-            // Parse the frame
-            let frame = try TSIFrame.parse(from: remainingData)
-            frames.append(frame)
-
-            // Move offset past this frame
-            offset += frame.totalSize
+            try budget.consumeFrame(containerCount: &containerFrameCount)
+            let parsed = try TSIFrame.parse(from: binaryData, at: offset, limits: limits)
+            frames.append(parsed.frame)
+            budget.recordParsedFrame(payloadBytes: parsed.frame.data.count)
+            offset = parsed.nextOffset
         }
 
         return frames
