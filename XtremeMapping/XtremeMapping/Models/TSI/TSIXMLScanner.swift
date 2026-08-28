@@ -212,6 +212,14 @@ enum TSIXMLScanner {
             nonstandardStructurePaths.append("/xml/content")
         }
 
+        func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data) {
+            guard let string = String(data: CDATABlock, encoding: .utf8) else {
+                return fail(.unsupportedXMLEncoding, parser: parser)
+            }
+            guard string.contains(where: { !$0.isWhitespace }) else { return }
+            nonstandardStructurePaths.append("/xml/content")
+        }
+
         func parser(_ parser: XMLParser, foundComment comment: String) {
             nonstandardStructurePaths.append("/xml/comment")
         }

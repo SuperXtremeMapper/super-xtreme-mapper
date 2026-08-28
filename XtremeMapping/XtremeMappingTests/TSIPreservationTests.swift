@@ -58,6 +58,35 @@ final class TSIPreservationTests: XCTestCase {
         XCTAssertEqual(TSIWriter().preservationReport(for: file).disposition, .lossyConvertible)
     }
 
+    func testCDATAContentIsRiskAndBlocksEditedOrdinarySave() throws {
+        let value = emptyControllerBinary().base64EncodedString()
+        let xml = Data("""
+        <?xml version="1.0" encoding="UTF-8"?>
+        <NIXML><TraktorSettings><Entry Name="DeviceIO.Config.Controller" Type="3" Value="\(value)"/><![CDATA[proprietary settings]]></TraktorSettings></NIXML>
+        """.utf8)
+        var file = try TSIParser().parseDocument(xml)
+
+        XCTAssertEqual(file.sourceEnvelope?.risks.map(\.code), [.nonstandardXMLStructure])
+        file.devices[0].comment = "edited"
+        XCTAssertThrowsError(try TSIWriter().write(file)) {
+            XCTAssertTrue($0 is TSIPreservationError)
+        }
+    }
+
+    func testChangedOrdinarySaveSafeImportedMappingWritesAndReparses() throws {
+        var file = try TSIParser().parseDocument(
+            completeXML(binary: mappedControllerBinary())
+        )
+        XCTAssertEqual(TSIWriter().preservationReport(for: file).disposition, .ordinarySaveSafe)
+
+        file.devices[0].comment = "edited safely"
+        let written = try TSIWriter().write(file)
+        let reparsed = try TSIParser().parseDocument(written)
+
+        XCTAssertEqual(reparsed.devices[0].comment, "edited safely")
+        XCTAssertEqual(reparsed.devices[0].mappings.count, 1)
+    }
+
     func testNoncanonicalDIOIAndDDIFAreTypedRisks() throws {
         let binary = emptyControllerBinary(dioi: 7, ddif: 9)
         let file = try TSIParser().parseDocument(completeXML(binary: binary))
@@ -74,6 +103,101 @@ final class TSIPreservationTests: XCTestCase {
 
         XCTAssertEqual(file.devices.count, 1)
         XCTAssertEqual(file.sourceEnvelope?.risks.map(\.code), [.duplicateSingletonFrame])
+    }
+
+    func testCorruptDuplicateTopLevelContainersThrow() {
+        let corruptDuplicates: [(String, Data)] = [
+            ("DIOM truncated", emptyControllerBinary() + rawFrame("DIOM", Data([0x00]))),
+            ("DEVS count mismatch", emptyControllerBinary(
+                extraDIOMFrames: rawFrame("DEVS", be32(1))
+            )),
+        ]
+
+        for (name, binary) in corruptDuplicates {
+            XCTAssertThrowsError(
+                try TSIParser().parseDocument(completeXML(binary: binary)), name
+            )
+        }
+    }
+
+    func testCorruptDuplicateDeviceContainersThrow() {
+        let corruptDocuments: [(String, Data)] = [
+            ("DDAT truncated", emptyControllerBinary(
+                extraDeviceFrames: rawFrame("DDAT", Data([0x00]))
+            )),
+            ("DDDC truncated", emptyControllerBinary(
+                extraDDATFrames: rawFrame("DDDC", Data([0x00]))
+            )),
+            ("DDCB truncated", emptyControllerBinary(
+                extraDDATFrames: rawFrame("DDCB", Data([0x00]))
+            )),
+            ("DDCI count mismatch", emptyControllerBinary(definitionFrames:
+                rawFrame("DDCI", be32(0)) + rawFrame("DDCI", be32(1)))),
+            ("DDCO count mismatch", emptyControllerBinary(definitionFrames:
+                rawFrame("DDCO", be32(0)) + rawFrame("DDCO", be32(1)))),
+            ("CMAS count mismatch", emptyControllerBinary(commandFrames:
+                rawFrame("CMAS", be32(0)) + rawFrame("CMAS", be32(1))
+                    + rawFrame("DCBM", be32(0)))),
+            ("DCBM count mismatch", emptyControllerBinary(commandFrames:
+                rawFrame("CMAS", be32(0)) + rawFrame("DCBM", be32(0))
+                    + rawFrame("DCBM", be32(0) + rawFrame(
+                        "DCBM", be32(7) + wide("Ch01.CC.007")
+                    )))),
+        ]
+
+        for (name, binary) in corruptDocuments {
+            XCTAssertThrowsError(
+                try TSIParser().parseDocument(completeXML(binary: binary)), name
+            )
+        }
+    }
+
+    func testTruncatedDuplicateModeledScalarsThrow() {
+        let corruptDocuments: [(String, Data)] = [
+            ("DIOI truncated", emptyControllerBinary(
+                extraDIOMFrames: rawFrame("DIOI", Data([0x00]))
+            )),
+            ("DDIF truncated", emptyControllerBinary(
+                extraDDATFrames: rawFrame("DDIF", Data([0x00]))
+            )),
+            ("DDIV truncated", emptyControllerBinary(
+                extraDDATFrames: rawFrame("DDIV", wide("3.11.0"))
+            )),
+            ("DDIC truncated", emptyControllerBinary(
+                extraDDATFrames: rawFrame("DDIC", be32(1))
+            )),
+            ("DDPT truncated", emptyControllerBinary(
+                extraDDATFrames: rawFrame("DDPT", wide("All Ports"))
+            )),
+        ]
+
+        for (name, binary) in corruptDocuments {
+            XCTAssertThrowsError(
+                try TSIParser().parseDocument(completeXML(binary: binary)), name
+            )
+        }
+    }
+
+    func testStructurallyValidDuplicateContainersRemainImportableAndLossyConvertible() throws {
+        let validSecondDevice = rawFrame(
+            "DEVI",
+            wide("Generic MIDI") + rawFrame("DDAT",
+                rawFrame("DDIF", be32(0))
+                    + rawFrame("DDIV", wide("3.11.0") + be32(2))
+                    + rawFrame("DDIC", wide(""))
+                    + rawFrame("DDPT", wide("All Ports") + wide("All Ports"))
+                    + rawFrame("DDDC", Data())
+                    + rawFrame("DDCB", rawFrame("CMAS", be32(0)) + rawFrame("DCBM", be32(0)))
+            )
+        )
+        let duplicateDEVS = rawFrame("DEVS", be32(1) + validSecondDevice)
+        let file = try TSIParser().parseDocument(completeXML(binary:
+            emptyControllerBinary(extraDIOMFrames: duplicateDEVS)
+        ))
+
+        XCTAssertEqual(file.devices.count, 1)
+        XCTAssertEqual(file.sourceEnvelope?.risks.map(\.code), [.duplicateSingletonFrame])
+        XCTAssertEqual(TSIWriter().preservationReport(for: file).disposition, .lossyConvertible)
     }
 
     func testUnusedAndDuplicateDCDTRowsAreTypedRisks() throws {
@@ -252,15 +376,25 @@ final class TSIPreservationTests: XCTestCase {
     private func emptyControllerBinary(
         dioi: UInt32 = 1,
         ddif: UInt32 = 0,
-        extraDIOMFrames: Data = Data()
+        extraDIOMFrames: Data = Data(),
+        extraDeviceFrames: Data = Data(),
+        extraDDATFrames: Data = Data(),
+        definitionFrames: Data = Data(),
+        commandFrames: Data = Data()
     ) -> Data {
+        let actualCommandFrames = commandFrames.isEmpty
+            ? rawFrame("CMAS", be32(0)) + rawFrame("DCBM", be32(0))
+            : commandFrames
         let ddat = rawFrame("DDIF", be32(ddif))
             + rawFrame("DDIV", wide("3.11.0") + be32(2))
             + rawFrame("DDIC", wide(""))
             + rawFrame("DDPT", wide("All Ports") + wide("All Ports"))
-            + rawFrame("DDDC", Data())
-            + rawFrame("DDCB", rawFrame("CMAS", be32(0)) + rawFrame("DCBM", be32(0)))
-        let devi = rawFrame("DEVI", wide("Generic MIDI") + rawFrame("DDAT", ddat))
+            + rawFrame("DDDC", definitionFrames)
+            + rawFrame("DDCB", actualCommandFrames)
+            + extraDDATFrames
+        let devi = rawFrame(
+            "DEVI", wide("Generic MIDI") + rawFrame("DDAT", ddat) + extraDeviceFrames
+        )
         let devs = rawFrame("DEVS", be32(1) + devi)
         return rawFrame("DIOM", rawFrame("DIOI", be32(dioi)) + extraDIOMFrames + devs)
     }

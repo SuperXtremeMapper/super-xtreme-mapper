@@ -32,6 +32,24 @@ enum TSISourceInventory {
         let context: Context
     }
 
+    private enum ValidationContext {
+        case diom
+        case devs
+        case devi
+        case ddat
+        case dddc
+        case ddcb
+        case definitions
+        case mappings
+        case bindings
+    }
+
+    private struct ValidationWorkItem {
+        let frames: [TSIFrame]
+        let depth: Int
+        let context: ValidationContext
+    }
+
     private struct DefinitionRecord {
         let name: String
         let direction: IODirection
@@ -104,6 +122,10 @@ enum TSISourceInventory {
                         continue
                     }
                     guard index == 0 else {
+                        try validateKnownContainer(
+                            frame.data, context: .diom, depth: work.depth + 1,
+                            budget: budget, limits: limits
+                        )
                         add(.duplicateSingletonFrame, path, detail: "DIOM", to: &risks)
                         continue
                     }
@@ -115,20 +137,27 @@ enum TSISourceInventory {
                 case .diom:
                     switch frame.identifier {
                     case "DIOI":
+                        guard frame.data.count == 4 else {
+                            throw TSIParserError.unexpectedEndOfData
+                        }
                         if index > 0 {
                             add(.duplicateSingletonFrame, path, detail: "DIOI", to: &risks)
                         }
-                        if frame.data.count != 4 || readUInt32(frame.data, 0) != 1 {
+                        if readUInt32(frame.data, 0) != 1 {
                             add(.noncanonicalDIOI, path, to: &risks)
                         }
                     case "DEVS":
                         guard index == 0 else {
+                            try validateKnownContainer(
+                                frame.data, context: .devs, depth: work.depth + 1,
+                                budget: budget, limits: limits
+                            )
                             add(.duplicateSingletonFrame, path, detail: "DEVS", to: &risks)
                             continue
                         }
                         stack.append(try countedWork(
                             frame.data, path: path, depth: work.depth + 1,
-                            context: .devs, budget: budget
+                            context: .devs, expectedIdentifier: "DEVI", budget: budget
                         ))
                     default:
                         add(.unknownFrame, path, detail: frame.identifier, to: &risks)
@@ -167,6 +196,10 @@ enum TSISourceInventory {
                         continue
                     }
                     guard index == 0 else {
+                        try validateKnownContainer(
+                            frame.data, context: .ddat, depth: work.depth + 1,
+                            budget: budget, limits: limits
+                        )
                         add(.duplicateSingletonFrame, path, detail: "DDAT", to: &risks)
                         continue
                     }
@@ -178,8 +211,11 @@ enum TSISourceInventory {
                 case .ddat(let device):
                     switch frame.identifier {
                     case "DDIF":
+                        guard frame.data.count == 4 else {
+                            throw TSIParserError.unexpectedEndOfData
+                        }
                         duplicateIfNeeded(index, id: "DDIF", path: path, risks: &risks)
-                        if frame.data.count != 4 || readUInt32(frame.data, 0) != 0 {
+                        if readUInt32(frame.data, 0) != 0 {
                             add(.noncanonicalDDIF, path, to: &risks)
                         }
                     case "DDIV":
@@ -196,6 +232,10 @@ enum TSISourceInventory {
                         )
                     case "DDDC":
                         guard index == 0 else {
+                            try validateKnownContainer(
+                                frame.data, context: .dddc, depth: work.depth + 1,
+                                budget: budget, limits: limits
+                            )
                             add(.duplicateSingletonFrame, path, detail: "DDDC", to: &risks)
                             continue
                         }
@@ -205,6 +245,10 @@ enum TSISourceInventory {
                         ))
                     case "DDCB":
                         guard index == 0 else {
+                            try validateKnownContainer(
+                                frame.data, context: .ddcb, depth: work.depth + 1,
+                                budget: budget, limits: limits
+                            )
                             add(.duplicateSingletonFrame, path, detail: "DDCB", to: &risks)
                             continue
                         }
@@ -226,33 +270,48 @@ enum TSISourceInventory {
                         continue
                     }
                     guard index == 0 else {
+                        try validateKnownContainer(
+                            frame.data, context: .definitions, depth: work.depth + 1,
+                            budget: budget, limits: limits
+                        )
                         add(.duplicateSingletonFrame, path, detail: frame.identifier, to: &risks)
                         continue
                     }
                     stack.append(try countedWork(
                         frame.data, path: path, depth: work.depth + 1,
-                        context: .definitions(device: device, direction: direction), budget: budget
+                        context: .definitions(device: device, direction: direction),
+                        expectedIdentifier: "DCDT", budget: budget
                     ))
 
                 case .ddcb(let device):
                     switch frame.identifier {
                     case "CMAS":
                         guard index == 0 else {
+                            try validateKnownContainer(
+                                frame.data, context: .mappings, depth: work.depth + 1,
+                                budget: budget, limits: limits
+                            )
                             add(.duplicateSingletonFrame, path, detail: "CMAS", to: &risks)
                             continue
                         }
                         stack.append(try countedWork(
                             frame.data, path: path, depth: work.depth + 1,
-                            context: .mappings(device: device), budget: budget
+                            context: .mappings(device: device),
+                            expectedIdentifier: "CMAI", budget: budget
                         ))
                     case "DCBM":
                         guard index == 0 else {
+                            try validateKnownContainer(
+                                frame.data, context: .bindings, depth: work.depth + 1,
+                                budget: budget, limits: limits
+                            )
                             add(.duplicateSingletonFrame, path, detail: "DCBM", to: &risks)
                             continue
                         }
                         stack.append(try countedWork(
                             frame.data, path: path, depth: work.depth + 1,
-                            context: .bindings(device: device), budget: budget
+                            context: .bindings(device: device),
+                            expectedIdentifier: "DCBM", budget: budget
                         ))
                     default:
                         add(.unknownFrame, path, detail: frame.identifier, to: &risks)
@@ -487,7 +546,10 @@ enum TSISourceInventory {
         let string = try readWideString(data, at: 0, limits: limits)
         if string.lossy { add(.lossyString, path, to: &risks) }
         let (expectedEnd, overflow) = string.end.addingReportingOverflow(4)
-        if overflow || expectedEnd != data.count {
+        guard !overflow, expectedEnd <= data.count else {
+            throw TSIParserError.unexpectedEndOfData
+        }
+        if expectedEnd != data.count {
             add(.unclassifiedSourceData, path, to: &risks)
         }
     }
@@ -524,6 +586,175 @@ enum TSISourceInventory {
         }
     }
 
+    /// Structurally validates a duplicate known container before the semantic
+    /// inventory discards it in favor of the first document-order singleton.
+    /// Unknown frames remain atomic, but every known descendant and count is
+    /// bounded and validated using the same cursor/budget as the main walk.
+    private static func validateKnownContainer(
+        _ data: Data,
+        context: ValidationContext,
+        depth: Int,
+        budget: TSIParseBudget,
+        limits: TSIParseLimits
+    ) throws {
+        var stack = [try validationWork(
+            data, context: context, depth: depth, budget: budget, limits: limits
+        )]
+
+        while let work = stack.popLast() {
+            for frame in work.frames {
+                switch work.context {
+                case .diom:
+                    switch frame.identifier {
+                    case "DIOI":
+                        guard frame.data.count == 4 else {
+                            throw TSIParserError.unexpectedEndOfData
+                        }
+                    case "DEVS":
+                        stack.append(try validationWork(
+                            frame.data, context: .devs, depth: work.depth + 1,
+                            budget: budget, limits: limits
+                        ))
+                    default:
+                        continue
+                    }
+
+                case .devs:
+                    guard frame.identifier == "DEVI" else { continue }
+                    stack.append(try validationWork(
+                        frame.data, context: .devi, depth: work.depth + 1,
+                        budget: budget, limits: limits
+                    ))
+
+                case .devi, .ddat, .dddc, .ddcb:
+                    switch frame.identifier {
+                    case "DDAT":
+                        stack.append(try validationWork(
+                            frame.data, context: .ddat, depth: work.depth + 1,
+                            budget: budget, limits: limits
+                        ))
+                    case "DDDC":
+                        stack.append(try validationWork(
+                            frame.data, context: .dddc, depth: work.depth + 1,
+                            budget: budget, limits: limits
+                        ))
+                    case "DDCB":
+                        stack.append(try validationWork(
+                            frame.data, context: .ddcb, depth: work.depth + 1,
+                            budget: budget, limits: limits
+                        ))
+                    case "DDCI", "DDCO":
+                        stack.append(try validationWork(
+                            frame.data, context: .definitions, depth: work.depth + 1,
+                            budget: budget, limits: limits
+                        ))
+                    case "CMAS":
+                        stack.append(try validationWork(
+                            frame.data, context: .mappings, depth: work.depth + 1,
+                            budget: budget, limits: limits
+                        ))
+                    case "DCBM":
+                        stack.append(try validationWork(
+                            frame.data, context: .bindings, depth: work.depth + 1,
+                            budget: budget, limits: limits
+                        ))
+                    case "DDIF":
+                        guard frame.data.count == 4 else {
+                            throw TSIParserError.unexpectedEndOfData
+                        }
+                    case "DDIV":
+                        let value = try readWideString(frame.data, at: 0, limits: limits)
+                        let (requiredEnd, overflow) = value.end.addingReportingOverflow(4)
+                        guard !overflow, requiredEnd <= frame.data.count else {
+                            throw TSIParserError.unexpectedEndOfData
+                        }
+                    case "DDIC":
+                        _ = try readWideString(frame.data, at: 0, limits: limits)
+                    case "DDPT":
+                        let input = try readWideString(frame.data, at: 0, limits: limits)
+                        _ = try readWideString(frame.data, at: input.end, limits: limits)
+                    default:
+                        continue
+                    }
+
+                case .definitions:
+                    guard frame.identifier == "DCDT" else {
+                        throw TSIParserError.unexpectedEndOfData
+                    }
+                    let name = try readWideString(frame.data, at: 0, limits: limits)
+                    let (expectedEnd, overflow) = name.end.addingReportingOverflow(20)
+                    guard !overflow, expectedEnd == frame.data.count else {
+                        throw TSIParserError.unexpectedEndOfData
+                    }
+
+                case .mappings:
+                    guard frame.identifier == "CMAI", frame.data.count >= 20 else {
+                        throw TSIParserError.unexpectedEndOfData
+                    }
+                    guard readUInt32(frame.data, 4) <= 1 else {
+                        throw TSIParserError.unexpectedEndOfData
+                    }
+                    try budget.enterContainer(atDepth: work.depth + 1)
+                    var childCount = 0
+                    try budget.consumeFrame(containerCount: &childCount)
+                    let parsed = try TSIFrameCursor(
+                        data: frame.data, limits: limits,
+                        instrumentation: budget.instrumentation
+                    ).parse(at: 12)
+                    guard parsed.frame.identifier == "CMAD",
+                          parsed.nextOffset == frame.data.count,
+                          parsed.frame.data.count >= 52 else {
+                        throw TSIParserError.unexpectedEndOfData
+                    }
+                    _ = try readWideString(parsed.frame.data, at: 48, limits: limits)
+
+                case .bindings:
+                    guard frame.identifier == "DCBM", frame.data.count >= 8 else {
+                        throw TSIParserError.unexpectedEndOfData
+                    }
+                    let name = try readWideString(frame.data, at: 4, limits: limits)
+                    guard name.end == frame.data.count else {
+                        throw TSIParserError.unexpectedEndOfData
+                    }
+                }
+            }
+        }
+    }
+
+    private static func validationWork(
+        _ data: Data,
+        context: ValidationContext,
+        depth: Int,
+        budget: TSIParseBudget,
+        limits: TSIParseLimits
+    ) throws -> ValidationWorkItem {
+        let frames: [TSIFrame]
+        switch context {
+        case .devs:
+            frames = try countedFrames(
+                data, expectedIdentifier: "DEVI", depth: depth, budget: budget
+            )
+        case .definitions:
+            frames = try countedFrames(
+                data, expectedIdentifier: "DCDT", depth: depth, budget: budget
+            )
+        case .mappings:
+            frames = try countedFrames(
+                data, expectedIdentifier: "CMAI", depth: depth, budget: budget
+            )
+        case .bindings:
+            frames = try countedFrames(
+                data, expectedIdentifier: "DCBM", depth: depth, budget: budget
+            )
+        case .devi:
+            let name = try readWideString(data, at: 0, limits: limits)
+            frames = try parseFrames(data, startingAt: name.end, depth: depth, budget: budget)
+        case .diom, .ddat, .dddc, .ddcb:
+            frames = try parseFrames(data, startingAt: 0, depth: depth, budget: budget)
+        }
+        return .init(frames: frames, depth: depth, context: context)
+    }
+
     private static func nestedWork(
         _ data: Data,
         path: String,
@@ -542,13 +773,29 @@ enum TSISourceInventory {
         path: String,
         depth: Int,
         context: Context,
+        expectedIdentifier: String,
         budget: TSIParseBudget
     ) throws -> WorkItem {
+        let frames = try countedFrames(
+            data, expectedIdentifier: expectedIdentifier, depth: depth, budget: budget
+        )
+        return .init(frames: frames, path: path, depth: depth, context: context)
+    }
+
+    private static func countedFrames(
+        _ data: Data,
+        expectedIdentifier: String,
+        depth: Int,
+        budget: TSIParseBudget
+    ) throws -> [TSIFrame] {
         guard data.count >= 4 else { throw TSIParserError.unexpectedEndOfData }
         let declared = Int(readUInt32(data, 0))
         try budget.validateDeclaredFrameCount(declared)
         let frames = try parseFrames(data, startingAt: 4, depth: depth, budget: budget)
-        return .init(frames: frames, path: path, depth: depth, context: context)
+        guard frames.lazy.filter({ $0.identifier == expectedIdentifier }).count == declared else {
+            throw TSIParserError.unexpectedEndOfData
+        }
+        return frames
     }
 
     private static func parseFrames(
