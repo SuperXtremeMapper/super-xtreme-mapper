@@ -424,30 +424,37 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         _ window: NSWindow?,
         _ completion: @escaping (SaveDecision) -> Void
     ) -> Void
+    typealias TerminationReplier = @MainActor (Bool) -> Void
 
     /// Identifier stamped onto the welcome window by its content view's
     /// window accessor (SwiftUI does not guarantee the scene id propagates).
     static let welcomeWindowIdentifier = NSUserInterfaceItemIdentifier("sxm-welcome")
 
     private var windowDelegates: [ObjectIdentifier: DocumentWindowDelegateProxy] = [:]
+    private var saveCommandResponders: [ObjectIdentifier: DocumentSaveCommandResponder] = [:]
     private var closeSentinelControllers: [ObjectIdentifier: NSWindowController] = [:]
     private var pendingTerminationDocuments: [NSDocument] = []
-    private var saveReceiptObserver: DocumentSaveReceiptObserver?
     private let saveCoordinator: DocumentSaveCoordinator
     private let savePromptPresenter: SavePromptPresenter?
+    private let terminationReply: TerminationReplier
 
     override init() {
         self.saveCoordinator = .shared
         self.savePromptPresenter = nil
+        self.terminationReply = { NSApp.reply(toApplicationShouldTerminate: $0) }
         super.init()
     }
 
     init(
         saveCoordinator: DocumentSaveCoordinator,
-        savePromptPresenter: SavePromptPresenter?
+        savePromptPresenter: SavePromptPresenter?,
+        terminationReply: @escaping TerminationReplier = {
+            NSApp.reply(toApplicationShouldTerminate: $0)
+        }
     ) {
         self.saveCoordinator = saveCoordinator
         self.savePromptPresenter = savePromptPresenter
+        self.terminationReply = terminationReply
         super.init()
     }
 
@@ -461,7 +468,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         // Disable autosaving (users should save manually)
         Self.disablePeriodicAutosave(on: .shared)
-        saveReceiptObserver = DocumentSaveReceiptObserver()
 
         // Observe window close notifications to reopen welcome when last document closes
         NotificationCenter.default.addObserver(
@@ -553,6 +559,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // synchronously here could deallocate the proxy before the original
         // delegate receives its close callback.
         let closingKey = ObjectIdentifier(closingWindow)
+        if let responder = saveCommandResponders.removeValue(forKey: closingKey),
+           closingWindow.nextResponder === responder {
+            closingWindow.nextResponder = responder.nextResponder
+        }
         DispatchQueue.main.async { [weak self] in
             self?.windowDelegates.removeValue(forKey: closingKey)
         }
@@ -615,6 +625,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         let identifier = ObjectIdentifier(window)
+        if saveCommandResponders[identifier] == nil {
+            let responder = DocumentSaveCommandResponder(
+                document: document,
+                appDelegate: self
+            )
+            responder.nextResponder = window.nextResponder
+            window.nextResponder = responder
+            saveCommandResponders[identifier] = responder
+        }
+
         if windowDelegates[identifier] == nil {
             windowDelegates[identifier] = DocumentWindowDelegateProxy(
                 originalDelegate: window.delegate,
@@ -682,7 +702,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func promptNextTerminationDocument() {
         guard !pendingTerminationDocuments.isEmpty else {
-            NSApp.reply(toApplicationShouldTerminate: true)
+            terminationReply(true)
             return
         }
 
@@ -697,7 +717,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     if didSave {
                         self.promptNextTerminationDocument()
                     } else {
-                        NSApp.reply(toApplicationShouldTerminate: false)
+                        self.terminationReply(false)
                     }
                 }
             case .discard:
@@ -708,7 +728,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.closeDocument(document)
                 self.promptNextTerminationDocument()
             case .cancel:
-                NSApp.reply(toApplicationShouldTerminate: false)
+                self.terminationReply(false)
             }
         }
     }
@@ -725,6 +745,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         )
     }
 
+    fileprivate func saveAllDocuments() {
+        for document in NSDocumentController.shared.documents where document.isDocumentEdited {
+            save(document: document, intent: .save) { _ in }
+        }
+    }
+
+    fileprivate func hasOtherVisibleWindow(
+        for document: NSDocument,
+        excluding window: NSWindow
+    ) -> Bool {
+        document.windowControllers.contains { controller in
+            guard let candidate = controller.window else { return false }
+            return candidate !== window && candidate.isVisible
+        }
+    }
+
+    fileprivate func closeWindow(_ window: NSWindow, document: NSDocument) {
+        if hasOtherVisibleWindow(for: document, excluding: window) {
+            window.windowController?.close()
+        } else {
+            closeDocument(document)
+        }
+    }
+
     fileprivate func closeDocument(_ document: NSDocument) {
         let identifier = ObjectIdentifier(document)
         if let sentinel = closeSentinelControllers.removeValue(forKey: identifier) {
@@ -735,6 +779,42 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 // MARK: - Document Window Delegate
+
+/// Intercepts AppKit's standard responder actions before they reach
+/// NSDocument's completion-blind action methods. Every user-visible save route
+/// therefore enters the same receipt-owning coordinator.
+@MainActor
+final class DocumentSaveCommandResponder: NSResponder {
+    private weak var document: NSDocument?
+    private weak var appDelegate: AppDelegate?
+
+    init(document: NSDocument, appDelegate: AppDelegate) {
+        self.document = document
+        self.appDelegate = appDelegate
+        super.init()
+    }
+
+    required init?(coder: NSCoder) {
+        nil
+    }
+
+    @objc(saveDocument:)
+    private func routeSave(_ sender: Any?) {
+        guard let document else { return }
+        appDelegate?.save(document: document, intent: .save) { _ in }
+    }
+
+    @objc(saveDocumentAs:)
+    private func routeSaveAs(_ sender: Any?) {
+        guard let document else { return }
+        appDelegate?.save(document: document, intent: .saveAs) { _ in }
+    }
+
+    @objc(saveAllDocuments:)
+    private func routeSaveAll(_ sender: Any?) {
+        appDelegate?.saveAllDocuments()
+    }
+}
 
 @MainActor
 final class DocumentWindowDelegateProxy: NSObject, NSWindowDelegate {
@@ -772,8 +852,12 @@ final class DocumentWindowDelegateProxy: NSObject, NSWindowDelegate {
         }
 
         guard let document = sender.windowController?.document as? NSDocument else { return true }
+        if appDelegate.hasOtherVisibleWindow(for: document, excluding: sender) {
+            appDelegate.closeWindow(sender, document: document)
+            return false
+        }
         if !document.isDocumentEdited {
-            appDelegate.closeDocument(document)
+            appDelegate.closeWindow(sender, document: document)
             return false
         }
 
@@ -783,14 +867,14 @@ final class DocumentWindowDelegateProxy: NSObject, NSWindowDelegate {
             case .save:
                 self.appDelegate.save(document: document, intent: .close) { didSave in
                     if didSave {
-                        self.appDelegate.closeDocument(document)
+                        self.appDelegate.closeWindow(sender, document: document)
                     }
                 }
             case .discard:
                 Task { @MainActor in
                     TraktorMappingDocument.markClean(nsDocument: document)
                     document.updateChangeCount(.changeCleared)
-                    self.appDelegate.closeDocument(document)
+                    self.appDelegate.closeWindow(sender, document: document)
                 }
             case .cancel:
                 break

@@ -272,59 +272,212 @@ final class DocumentTests: XCTestCase {
     }
 
     @MainActor
-    func testSaveNotificationFallbackCommitsNativeAndIsIdempotentWithCoordinatorOrdering() throws {
-        let center = NotificationCenter()
-        var observedErrors: [Error] = []
-        let observer = DocumentSaveReceiptObserver(center: center) {
-            observedErrors.append($0)
-        }
-        let nsDocument = ChangeCountRecordingDocument()
+    func testNativeResponderSaveCommitsThroughRealAppKitCompletion() throws {
+        let directory = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString, isDirectory: true)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: directory) }
+        let destination = directory.appendingPathComponent("native-save.tsi")
+        let nsDocument = RealAppKitWritableDocument()
+        nsDocument.fileURL = destination
+        nsDocument.fileType = UTType.tsi.identifier
+        let controller = NSWindowController(window: makeOffscreenWindow())
+        let window = try XCTUnwrap(controller.window)
+        nsDocument.addWindowController(controller)
         let document = TraktorMappingDocument(
             mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")])
         )
         document.backingDocument = nsDocument
-
-        let native = try document.prepareWriteSnapshot()
-        center.post(name: Notification.Name("NSDocumentDidSaveNotification"), object: nsDocument)
-        center.post(name: Notification.Name("NSDocumentDidSaveNotification"), object: nsDocument)
-        XCTAssertEqual(document.mappingFile.sourceEnvelope?.originalXML, native.plan.output)
-
-        let coordinator = DocumentSaveCoordinator { _, _, _ in }
-        document.mappingFile.devices[0].comment = "notification before callback"
+        nsDocument.dataProvider = {
+            try document.prepareWriteSnapshot().plan.output
+        }
+        document.mappingFile.devices[0].comment = "saved by responder action"
         document.noteChange()
-        var notificationFirstResult: Bool?
-        XCTAssertTrue(coordinator.save(document: nsDocument, intent: .save) {
-            notificationFirstResult = $0
-        })
-        let notificationFirst = try document.prepareWriteSnapshot()
-        center.post(name: Notification.Name("NSDocumentDidSaveNotification"), object: nsDocument)
+        window.orderFront(nil)
+        defer { window.orderOut(nil) }
+        let appDelegate = AppDelegate(
+            saveCoordinator: DocumentSaveCoordinator(),
+            savePromptPresenter: nil
+        )
+        appDelegate.attachDocumentDelegateIfNeeded(to: window)
+
+        XCTAssertTrue(
+            window.tryToPerform(#selector(NSDocument.save(_:)), with: nil),
+            "The inserted AppKit responder must own native saveDocument:"
+        )
+        waitUntil(timeout: 2) {
+            FileManager.default.fileExists(atPath: destination.path) && !document.isDirty
+        }
+
+        XCTAssertFalse(document.isDirty)
+        XCTAssertFalse(nsDocument.isDocumentEdited)
         XCTAssertEqual(
             document.mappingFile.sourceEnvelope?.originalXML,
-            notificationFirst.plan.output
+            try Data(contentsOf: destination)
         )
-        XCTAssertThrowsError(try document.prepareWriteSnapshot()) {
-            XCTAssertEqual($0 as? DocumentSaveLifecycleError, .writeAlreadyInFlight)
+    }
+
+    @MainActor
+    func testNativeResponderSaveAsAndSaveAllUseCoordinatorCallbacks() throws {
+        let nsDocument = AppKitSaveRecordingDocument()
+        let controller = NSWindowController(window: makeOffscreenWindow())
+        let window = try XCTUnwrap(controller.window)
+        nsDocument.addWindowController(controller)
+        NSDocumentController.shared.addDocument(nsDocument)
+        defer {
+            NSDocumentController.shared.removeDocument(nsDocument)
+            window.orderOut(nil)
         }
-        coordinator.completeSave(document: nsDocument, succeeded: true)
-        XCTAssertEqual(notificationFirstResult, true)
-
-        document.mappingFile.devices[0].comment = "callback before notification"
+        let document = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")])
+        )
+        document.backingDocument = nsDocument
         document.noteChange()
-        var callbackFirstResult: Bool?
-        XCTAssertTrue(coordinator.save(document: nsDocument, intent: .save) {
-            callbackFirstResult = $0
-        })
-        let callbackFirst = try document.prepareWriteSnapshot()
-        coordinator.completeSave(document: nsDocument, succeeded: true)
-        center.post(name: Notification.Name("NSDocumentDidSaveNotification"), object: nsDocument)
+        let appDelegate = AppDelegate(
+            saveCoordinator: DocumentSaveCoordinator(),
+            savePromptPresenter: nil
+        )
+        appDelegate.attachDocumentDelegateIfNeeded(to: window)
 
-        XCTAssertEqual(callbackFirstResult, true)
-        XCTAssertEqual(document.mappingFile.sourceEnvelope?.originalXML, callbackFirst.plan.output)
-        XCTAssertTrue(observedErrors.isEmpty)
-        let next = try document.prepareWriteSnapshot()
-        XCTAssertGreaterThan(next.generation, callbackFirst.generation)
+        XCTAssertTrue(window.tryToPerform(#selector(NSDocument.saveAs(_:)), with: nil))
+        XCTAssertEqual(nsDocument.routes, [.savePanel(.saveAsOperation)])
+        _ = try document.prepareWriteSnapshot()
+        nsDocument.finishSave(succeeded: false)
+
+        XCTAssertTrue(
+            window.tryToPerform(
+                #selector(NSDocumentController.saveAllDocuments(_:)),
+                with: nil
+            )
+        )
+        XCTAssertEqual(nsDocument.routes, [.savePanel(.saveAsOperation), .save])
+        _ = try document.prepareWriteSnapshot()
+        nsDocument.finishSave(succeeded: true)
+        XCTAssertFalse(document.isDirty)
+    }
+
+    @MainActor
+    func testCommitFailurePreventsDirtyCloseAndLeavesReceiptRetryable() throws {
+        let nsDocument = AppKitSaveRecordingDocument()
+        let controller = NSWindowController(window: makeOffscreenWindow())
+        let window = try XCTUnwrap(controller.window)
+        nsDocument.addWindowController(controller)
+        let document = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")])
+        )
+        document.backingDocument = nsDocument
+        document.noteChange()
+        window.orderFront(nil)
+        defer { window.orderOut(nil) }
+        let coordinator = DocumentSaveCoordinator(
+            commitWrite: { _ in throw CocoaError(.fileReadCorruptFile) },
+            presentError: { _ in }
+        )
+        let appDelegate = AppDelegate(
+            saveCoordinator: coordinator,
+            savePromptPresenter: { _, _, completion in completion(.save) }
+        )
+        appDelegate.attachDocumentDelegateIfNeeded(to: window)
+        let proxy = try XCTUnwrap(window.delegate as? DocumentWindowDelegateProxy)
+
+        XCTAssertFalse(proxy.windowShouldClose(window))
+        _ = try document.prepareWriteSnapshot()
+        nsDocument.finishSave(succeeded: true)
+
+        XCTAssertTrue(window.isVisible)
+        XCTAssertTrue(document.isDirty)
+        XCTAssertTrue(
+            nsDocument.isDocumentEdited,
+            "A failed preservation commit must restore AppKit's dirty state for the next close"
+        )
+        let retry = try document.prepareWriteSnapshot()
         document.discardPendingWrite()
-        withExtendedLifetime(observer) {}
+        XCTAssertGreaterThan(retry.generation, 1)
+    }
+
+    @MainActor
+    func testCommitFailureRepliesDoNotTerminate() throws {
+        let nsDocument = AppKitSaveRecordingDocument()
+        NSDocumentController.shared.addDocument(nsDocument)
+        defer { NSDocumentController.shared.removeDocument(nsDocument) }
+        let document = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")])
+        )
+        document.backingDocument = nsDocument
+        document.noteChange()
+        let coordinator = DocumentSaveCoordinator(
+            commitWrite: { _ in throw CocoaError(.fileReadCorruptFile) },
+            presentError: { _ in }
+        )
+        var replies: [Bool] = []
+        let appDelegate = AppDelegate(
+            saveCoordinator: coordinator,
+            savePromptPresenter: { _, _, completion in completion(.save) },
+            terminationReply: { replies.append($0) }
+        )
+
+        XCTAssertEqual(appDelegate.applicationShouldTerminate(NSApp), .terminateLater)
+        XCTAssertEqual(nsDocument.routes, [.save])
+        _ = try document.prepareWriteSnapshot()
+        nsDocument.finishSave(succeeded: true)
+
+        XCTAssertEqual(replies, [false])
+        XCTAssertTrue(document.isDirty)
+        XCTAssertTrue(nsDocument.isDocumentEdited)
+        let retry = try document.prepareWriteSnapshot()
+        document.discardPendingWrite()
+        XCTAssertGreaterThan(retry.generation, 1)
+    }
+
+    @MainActor
+    func testClosingOneOfTwoDocumentWindowsDoesNotCloseTheOther() throws {
+        let nsDocument = AppKitSaveRecordingDocument()
+        let firstController = NSWindowController(window: makeOffscreenWindow())
+        let secondController = NSWindowController(window: makeOffscreenWindow())
+        let firstWindow = try XCTUnwrap(firstController.window)
+        let secondWindow = try XCTUnwrap(secondController.window)
+        nsDocument.addWindowController(firstController)
+        nsDocument.addWindowController(secondController)
+        let document = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [Device(name: "Generic MIDI")])
+        )
+        document.backingDocument = nsDocument
+        document.noteChange()
+        firstWindow.orderFront(nil)
+        secondWindow.orderFront(nil)
+        defer {
+            firstWindow.orderOut(nil)
+            secondWindow.orderOut(nil)
+        }
+        var prompts: [(SaveDecision) -> Void] = []
+        let appDelegate = AppDelegate(
+            saveCoordinator: DocumentSaveCoordinator(),
+            savePromptPresenter: { _, _, completion in prompts.append(completion) }
+        )
+        appDelegate.attachDocumentDelegateIfNeeded(to: firstWindow)
+        appDelegate.attachDocumentDelegateIfNeeded(to: secondWindow)
+        let firstProxy = try XCTUnwrap(firstWindow.delegate as? DocumentWindowDelegateProxy)
+        let secondProxy = try XCTUnwrap(secondWindow.delegate as? DocumentWindowDelegateProxy)
+
+        XCTAssertFalse(firstProxy.windowShouldClose(firstWindow))
+        XCTAssertFalse(firstWindow.isVisible)
+        XCTAssertTrue(secondWindow.isVisible)
+        XCTAssertTrue(nsDocument.windowControllers.contains(secondController))
+        XCTAssertTrue(document.isDirty)
+        XCTAssertTrue(prompts.isEmpty, "A non-last window close must not prompt for the shared document")
+
+        XCTAssertFalse(secondProxy.windowShouldClose(secondWindow))
+        XCTAssertEqual(prompts.count, 1)
+        prompts.removeFirst()(.cancel)
+        XCTAssertTrue(secondWindow.isVisible)
+        XCTAssertTrue(document.isDirty)
+
+        XCTAssertFalse(secondProxy.windowShouldClose(secondWindow))
+        prompts.removeFirst()(.save)
+        _ = try document.prepareWriteSnapshot()
+        nsDocument.finishSave(succeeded: true)
+        XCTAssertFalse(secondWindow.isVisible)
+        XCTAssertFalse(document.isDirty)
     }
 
     @MainActor
@@ -1121,6 +1274,18 @@ private func makeOffscreenWindow() -> NSWindow {
     return window
 }
 
+@MainActor
+private func waitUntil(
+    timeout: TimeInterval,
+    condition: () -> Bool
+) {
+    let deadline = Date(timeIntervalSinceNow: timeout)
+    while !condition(), Date() < deadline {
+        RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.01))
+    }
+    XCTAssertTrue(condition(), "Condition was not satisfied before timeout")
+}
+
 /// Stub NSWindowDelegate recording which delegate methods were invoked.
 final class StubWindowDelegate: NSObject, NSWindowDelegate {
     private(set) var windowWillCloseCalled = false
@@ -1144,6 +1309,18 @@ final class ChangeCountRecordingDocument: NSDocument {
     override func updateChangeCount(_ change: NSDocument.ChangeType) {
         recordedChanges.append(change)
         // Deliberately no super call — keep the double inert.
+    }
+}
+
+@MainActor
+final class RealAppKitWritableDocument: NSDocument {
+    var dataProvider: (() throws -> Data)?
+
+    override func data(ofType typeName: String) throws -> Data {
+        guard let dataProvider else {
+            throw CocoaError(.fileWriteUnknown)
+        }
+        return try dataProvider()
     }
 }
 

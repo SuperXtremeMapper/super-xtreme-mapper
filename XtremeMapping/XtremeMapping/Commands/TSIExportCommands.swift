@@ -29,14 +29,26 @@ final class DocumentSaveCoordinator: NSObject {
         _ intent: Intent,
         _ coordinator: DocumentSaveCoordinator
     ) -> Void
+    typealias CommitWrite = @MainActor (TraktorMappingDocument) throws -> Void
+    typealias PresentError = @MainActor (Error) -> Void
 
     static let shared = DocumentSaveCoordinator()
 
     private let beginSave: BeginSave
+    private let commitWrite: CommitWrite
+    private let presentError: PresentError
     private var completions: [ObjectIdentifier: (Bool) -> Void] = [:]
 
-    init(beginSave: BeginSave? = nil) {
+    init(
+        beginSave: BeginSave? = nil,
+        commitWrite: CommitWrite? = nil,
+        presentError: PresentError? = nil
+    ) {
         self.beginSave = beginSave ?? Self.beginAppKitSave
+        self.commitWrite = commitWrite ?? { model in
+            _ = try model.commitPendingWriteIfPresent()
+        }
+        self.presentError = presentError ?? { NSApp.presentError($0) }
         super.init()
     }
 
@@ -74,11 +86,15 @@ final class DocumentSaveCoordinator: NSObject {
 
         if succeeded {
             do {
-                _ = try model.commitPendingWriteIfPresent()
+                try commitWrite(model)
                 completion(true)
             } catch {
                 model.discardPendingWrite()
-                NSApp.presentError(error)
+                // AppKit has already cleared its change count for a successful
+                // disk write. If preservation finalization fails, restore the
+                // edited state so a later close/termination must retry.
+                document.updateChangeCount(.changeDone)
+                presentError(error)
                 completion(false)
             }
         } else {
@@ -116,51 +132,6 @@ final class DocumentSaveCoordinator: NSObject {
                 didSave: selector,
                 contextInfo: nil
             )
-        }
-    }
-}
-
-/// Success-only compatibility path for native responder saves and Save All.
-/// The receipt commit is idempotent, so notification/callback order is safe.
-@MainActor
-final class DocumentSaveReceiptObserver: NSObject {
-    typealias ErrorHandler = @MainActor (Error) -> Void
-
-    private let center: NotificationCenter
-    private let errorHandler: ErrorHandler
-
-    init(
-        center: NotificationCenter = .default,
-        errorHandler: @escaping ErrorHandler = { NSApp.presentError($0) }
-    ) {
-        self.center = center
-        self.errorHandler = errorHandler
-        super.init()
-        center.addObserver(
-            self,
-            selector: #selector(documentDidSave(_:)),
-            name: Notification.Name("NSDocumentDidSaveNotification"),
-            object: nil
-        )
-    }
-
-    deinit {
-        center.removeObserver(self)
-    }
-
-    @objc private func documentDidSave(_ notification: Notification) {
-        guard let document = notification.object as? NSDocument else { return }
-        let operationKey = "NSDocumentSaveOperation"
-        if let operation = (notification.userInfo?[operationKey] as? NSNumber)?.intValue,
-           operation == NSDocument.SaveOperationType.autosaveElsewhereOperation.rawValue {
-            return
-        }
-        guard let model = TraktorMappingDocument.registeredDocument(for: document) else { return }
-        do {
-            _ = try model.commitPendingWriteIfPresent()
-        } catch {
-            model.discardPendingWrite()
-            errorHandler(error)
         }
     }
 }

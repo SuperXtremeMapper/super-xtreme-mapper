@@ -123,9 +123,9 @@ final class TraktorMappingDocument: ReferenceFileDocument {
             if pendingWrite?.origin == .coordinated {
                 throw DocumentSaveLifecycleError.writeAlreadyInFlight
             }
-            // NSDocument serializes writes. If an uncoordinated native write
-            // failed, it emits no success notification, so arrival of the next
-            // serialized snapshot is the only safe abandonment boundary.
+            // NSDocument serializes writes. For an uncoordinated write, arrival
+            // of the next serialized snapshot is the only safe boundary at
+            // which this model can treat the old receipt as abandoned.
             origin = .uncoordinated
         }
 
@@ -166,8 +166,7 @@ final class TraktorMappingDocument: ReferenceFileDocument {
         }
     }
 
-    /// Idempotent completion used by both the coordinator callback and the
-    /// native NSDocument success notification fallback.
+    /// Idempotent finalization used by the coordinator's AppKit completion.
     @discardableResult
     func commitPendingWriteIfPresent() throws -> Bool {
         guard let pendingReceipt = pendingWrite else { return false }
@@ -203,8 +202,8 @@ final class TraktorMappingDocument: ReferenceFileDocument {
     }
 
     /// Marks the AppKit operation before it can request a SwiftUI snapshot.
-    /// The separate prepared bit prevents a notification-first completion
-    /// from allowing a second receipt before the callback ends the operation.
+    /// The separate prepared bit keeps receipt creation serialized until the
+    /// AppKit completion ends the operation.
     func beginCoordinatedWrite() -> Bool {
         guard !coordinatedWriteInFlight else { return false }
         coordinatedWriteInFlight = true
