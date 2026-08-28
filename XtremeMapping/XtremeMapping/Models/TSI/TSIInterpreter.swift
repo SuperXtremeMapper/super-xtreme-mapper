@@ -205,6 +205,9 @@ struct TSIInterpreter {
             guard frame.identifier == FrameID.deviceIOMappings else {
                 continue // unknown-but-wellformed top-level frame — tolerated
             }
+            guard !foundDIOM else {
+                continue // inventory records the duplicate; first document-order root is semantic
+            }
             foundDIOM = true
             let diomFrames = try parseNestedFrames(
                 from: frame.data,
@@ -219,6 +222,9 @@ struct TSIInterpreter {
                 case FrameID.header:
                     continue // DIOI version header — no mapping content
                 case FrameID.devicesContainer:
+                    guard !foundDEVS else {
+                        continue // inventory records the duplicate; first container is semantic
+                    }
                     foundDEVS = true
                     // DEVS has 4-byte count prefix
                     guard nested.data.count >= 4 else {
@@ -485,19 +491,9 @@ struct TSIInterpreter {
             case FrameID.devicePorts:
                 if collected.devicePorts == nil { collected.devicePorts = located }
             case FrameID.inputDefinitions:
-                guard collected.inputDefinitions == nil else {
-                    throw TSIInterpreterError.duplicateMidiDefinitionsContainer(
-                        direction: .input
-                    )
-                }
-                collected.inputDefinitions = located
+                if collected.inputDefinitions == nil { collected.inputDefinitions = located }
             case FrameID.outputDefinitions:
-                guard collected.outputDefinitions == nil else {
-                    throw TSIInterpreterError.duplicateMidiDefinitionsContainer(
-                        direction: .output
-                    )
-                }
-                collected.outputDefinitions = located
+                if collected.outputDefinitions == nil { collected.outputDefinitions = located }
             case FrameID.mappingsList:
                 if collected.mappingsList == nil { collected.mappingsList = located }
             case FrameID.bindingList:
@@ -695,12 +691,10 @@ struct TSIInterpreter {
                   stringEnd == parsed.frame.data.count else {
                 throw TSIInterpreterError.malformedMidiBindingList
             }
-            // Duplicate BindingIds are corruption, not a merge: last-wins
-            // overwrite would silently rebind every CMAI referencing the id,
-            // and the next save would persist the wrong MIDI control.
-            guard lookup.updateValue(midiNote, forKey: bindingId) == nil else {
-                throw TSIInterpreterError.malformedMidiBindingList
-            }
+            // A structurally valid duplicate remains importable. Select the
+            // first document-order value deterministically; the document-boundary
+            // inventory records the duplicate and blocks an edited overwrite.
+            if lookup[bindingId] == nil { lookup[bindingId] = midiNote }
             offset = parsed.nextOffset
         }
 

@@ -1317,18 +1317,13 @@ final class TSIInterpreterTests: XCTestCase {
         }
     }
 
-    func testDuplicateDefinitionContainerForDirectionThrows() {
+    func testDuplicateDefinitionContainerForDirectionUsesFirstDocumentOrderContainer() throws {
         let emptyDefinitions = be32(0)
         let tsi = definitionFixtureTSI(
             definitionFrames: rawFrame("DDCI", emptyDefinitions)
                 + rawFrame("DDCI", emptyDefinitions)
         )
-        XCTAssertThrowsError(try interpretTSIData(tsi)) { error in
-            XCTAssertEqual(
-                error as? TSIInterpreterError,
-                .duplicateMidiDefinitionsContainer(direction: .input)
-            )
-        }
+        XCTAssertNoThrow(try interpretTSIData(tsi))
     }
 
     func testIdenticalDuplicateControlNameAndDirectionDefinitionIsTolerated() throws {
@@ -2347,10 +2342,10 @@ final class TSIInterpreterTests: XCTestCase {
         XCTAssertEqual(mappings.first?.midiChannel, 1)
     }
 
-    func testDuplicateDCBMBindingIdsThrow() throws {
-        // Two nested DCBM entries carrying the SAME BindingId — a last-wins
-        // overwrite would silently rebind every CMAI referencing the id and
-        // persist the wrong MIDI control on the next save.
+    func testDuplicateDCBMBindingIdsUseFirstDocumentOrderValue() throws {
+        // Structurally valid duplicates remain openable for exact no-op saves.
+        // The interpreter selects the first value; the source inventory blocks
+        // any edited ordinary overwrite that would collapse the duplicate.
         let entry1 = rawFrame("DCBM", be32(0) + tsiString("Ch01.CC.010"))
         let entry2 = rawFrame("DCBM", be32(0) + tsiString("Ch01.CC.020"))
         let cmai = cmaiPayload(bindingId: 0, cmadBytes: rawFrame("CMAD", validCMAD()))
@@ -2358,9 +2353,8 @@ final class TSIInterpreterTests: XCTestCase {
             + rawFrame("CMAS", be32(1) + rawFrame("CMAI", cmai))
             + rawFrame("DCBM", be32(2) + entry1 + entry2)
 
-        XCTAssertThrowsError(try interpretDEVI(deviPayload)) { error in
-            XCTAssertEqual(error as? TSIInterpreterError, .malformedMidiBindingList)
-        }
+        let result = try interpretDEVI(deviPayload)
+        XCTAssertEqual(result.devices.first?.mappings.first?.midiCC, 10)
     }
 
     // MARK: - Structural Audit Tests (Chunk 1, systematic pass)

@@ -185,6 +185,44 @@ public struct TSIParser: Sendable {
         return value
     }
 
+    /// Parses a complete TSI document and attaches its exact source envelope.
+    /// Compatibility frame/interpreter entry points remain available for
+    /// callers that deliberately operate below the document boundary.
+    func parseDocument(_ xmlData: Data) throws -> MappingFile {
+        let xml = try scanXML(xmlData)
+        guard let controllerValue = xml.controllerValues.first,
+              !controllerValue.isEmpty else {
+            throw TSIParserError.missingControllerEntry
+        }
+        let binary = try decodeBase64(controllerValue)
+        let frames = try parseFrames(from: binary)
+        var mappingFile = try TSIInterpreter.interpret(
+            frames: frames,
+            limits: limits,
+            instrumentation: instrumentation
+        )
+        let baseline = TSISemanticBaseline(
+            devices: mappingFile.devices,
+            version: mappingFile.version
+        )
+        let risks = try TSISourceInventory.risks(
+            sourceBinary: binary,
+            primaryFrames: frames,
+            mappingFile: mappingFile,
+            xml: xml,
+            limits: limits,
+            instrumentation: instrumentation
+        )
+        mappingFile.sourceEnvelope = TSIRawEnvelope(
+            originalXML: xmlData,
+            controllerValues: xml.controllerValues,
+            primaryFrames: frames,
+            baseline: baseline,
+            risks: risks
+        )
+        return mappingFile
+    }
+
     // MARK: - Base64 Decoding
 
     /// Decodes a Base64-encoded string to raw binary data.

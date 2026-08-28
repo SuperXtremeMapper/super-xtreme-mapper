@@ -13,6 +13,15 @@ public struct TSIXMLScanResult: Equatable, Sendable {
     /// Whether the wrapper contains a settings `Entry` for another name.
     public let hasNonControllerEntries: Bool
 
+    /// Stable paths for settings entries that canonical output omits.
+    let nonControllerEntryPaths: [String]
+
+    /// Stable paths for controller entries, in document order.
+    let controllerEntryPaths: [String]
+
+    /// XML structures/content outside the writer's minimal wrapper grammar.
+    let nonstandardStructurePaths: [String]
+
     /// Start elements observed, counted once per `didStartElement` callback.
     public let elementCount: Int
 }
@@ -49,6 +58,9 @@ enum TSIXMLScanner {
         return TSIXMLScanResult(
             controllerValues: delegate.controllerValues,
             hasNonControllerEntries: delegate.hasNonControllerEntries,
+            nonControllerEntryPaths: delegate.nonControllerEntryPaths,
+            controllerEntryPaths: delegate.controllerEntryPaths,
+            nonstandardStructurePaths: delegate.finalNonstandardStructurePaths,
             elementCount: delegate.elementCount
         )
     }
@@ -91,10 +103,24 @@ enum TSIXMLScanner {
         let limits: TSIParseLimits
         var controllerValues: [String] = []
         var hasNonControllerEntries = false
+        var nonControllerEntryPaths: [String] = []
+        var controllerEntryPaths: [String] = []
+        var nonstandardStructurePaths: [String] = []
         var elementCount = 0
         var depth = 0
         var controllerEntryCount = 0
         var failure: TSIParserError?
+        var elementStack: [String] = []
+        var settingsEntryIndex = 0
+        var rootCount = 0
+        var settingsCount = 0
+
+        var finalNonstandardStructurePaths: [String] {
+            var paths = nonstandardStructurePaths
+            if rootCount != 1 { paths.append("/xml/NIXML") }
+            if settingsCount != 1 { paths.append("/xml/NIXML/TraktorSettings") }
+            return Array(Set(paths)).sorted()
+        }
 
         init(limits: TSIParseLimits) {
             self.limits = limits
@@ -122,9 +148,32 @@ enum TSIXMLScanner {
             }
             depth = nextDepth
 
+            let parent = elementStack.last
+            elementStack.append(elementName)
+
+            if elementStack.count == 1 {
+                if elementName == "NIXML" { rootCount += 1 }
+                if elementName != "NIXML" || !attributeDict.isEmpty {
+                    nonstandardStructurePaths.append("/xml/\(elementName)")
+                }
+            } else if elementName == "TraktorSettings" {
+                if parent == "NIXML" { settingsCount += 1 }
+                if parent != "NIXML" || !attributeDict.isEmpty {
+                    nonstandardStructurePaths.append("/xml/NIXML/TraktorSettings")
+                }
+            } else if elementName != "Entry" {
+                nonstandardStructurePaths.append("/xml/\(elementStack.joined(separator: "/"))")
+            }
+
             guard elementName == "Entry" else { return }
+            let entryPath = "/xml/TraktorSettings/Entry[\(settingsEntryIndex)]"
+            settingsEntryIndex += 1
+            if parent != "TraktorSettings" {
+                nonstandardStructurePaths.append(entryPath)
+            }
             guard attributeDict["Name"] == controllerEntryName else {
                 hasNonControllerEntries = true
+                nonControllerEntryPaths.append(entryPath)
                 return
             }
 
@@ -134,7 +183,14 @@ enum TSIXMLScanner {
             }
             controllerEntryCount = nextControllerCount
 
-            guard let value = attributeDict["Value"] else { return }
+            controllerEntryPaths.append(entryPath)
+
+            let expectedKeys: Set<String> = ["Name", "Type", "Value"]
+            if Set(attributeDict.keys) != expectedKeys || attributeDict["Type"] != "3" {
+                nonstandardStructurePaths.append(entryPath)
+            }
+
+            let value = attributeDict["Value"] ?? ""
             guard value.utf8.count <= limits.maximumBase64AttributeCharacters else {
                 return fail(.base64CharacterLimitExceeded, parser: parser)
             }
@@ -148,6 +204,24 @@ enum TSIXMLScanner {
             qualifiedName qName: String?
         ) {
             if depth > 0 { depth -= 1 }
+            if !elementStack.isEmpty { elementStack.removeLast() }
+        }
+
+        func parser(_ parser: XMLParser, foundCharacters string: String) {
+            guard string.contains(where: { !$0.isWhitespace }) else { return }
+            nonstandardStructurePaths.append("/xml/content")
+        }
+
+        func parser(_ parser: XMLParser, foundComment comment: String) {
+            nonstandardStructurePaths.append("/xml/comment")
+        }
+
+        func parser(
+            _ parser: XMLParser,
+            foundProcessingInstructionWithTarget target: String,
+            data: String?
+        ) {
+            nonstandardStructurePaths.append("/xml/processing-instruction")
         }
 
         func parser(

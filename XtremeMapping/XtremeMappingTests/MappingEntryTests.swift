@@ -541,6 +541,29 @@ struct MappingEntryTests {
         #expect(file.allMappings.count == 3)
     }
 
+    @Test func mappingFileEnvelopeIsNotCodableAndDoesNotAffectSemanticEquality() throws {
+        let semantic = MappingFile(devices: [Device(name: "Generic MIDI")], version: 4)
+        let envelope = TSIRawEnvelope(
+            originalXML: Data("private source".utf8),
+            controllerValues: ["cHJpdmF0ZSBzb3VyY2U="],
+            primaryFrames: [],
+            baseline: TSISemanticBaseline(devices: semantic.devices, version: semantic.version),
+            risks: []
+        )
+        var imported = semantic
+        imported.sourceEnvelope = envelope
+
+        #expect(imported == semantic)
+
+        let encoded = try JSONEncoder().encode(imported)
+        let object = try #require(JSONSerialization.jsonObject(with: encoded) as? [String: Any])
+        #expect(Set(object.keys) == ["devices", "version"])
+
+        let decoded = try JSONDecoder().decode(MappingFile.self, from: encoded)
+        #expect(decoded == semantic)
+        #expect(decoded.sourceEnvelope == nil)
+    }
+
     // MARK: - MappingEntry Default Init Tests
 
     @Test func testMappingEntryDefaultInit() {

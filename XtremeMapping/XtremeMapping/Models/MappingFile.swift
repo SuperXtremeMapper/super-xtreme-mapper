@@ -19,6 +19,10 @@ struct MappingFile: Codable, Sendable, Equatable {
     /// The TSI format version number
     var version: Int
 
+    /// Exact import-only source state. It is intentionally excluded from
+    /// clipboard Codable payloads and semantic model equality.
+    var sourceEnvelope: TSIRawEnvelope?
+
     /// All mappings from all devices, flattened into a single array.
     ///
     /// Useful for displaying a combined view of all mappings or
@@ -35,8 +39,35 @@ struct MappingFile: Codable, Sendable, Equatable {
     /// Creates a new mapping file with the specified properties.
     ///
     /// Defaults to an empty file with version 0.
-    init(devices: [Device] = [], version: Int = 0) {
+    init(
+        devices: [Device] = [],
+        version: Int = 0,
+        sourceEnvelope: TSIRawEnvelope? = nil
+    ) {
         self.devices = devices
         self.version = version
+        self.sourceEnvelope = sourceEnvelope
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case devices
+        case version
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        devices = try container.decode([Device].self, forKey: .devices)
+        version = try container.decode(Int.self, forKey: .version)
+        sourceEnvelope = nil
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(devices, forKey: .devices)
+        try container.encode(version, forKey: .version)
+    }
+
+    static func == (lhs: MappingFile, rhs: MappingFile) -> Bool {
+        lhs.devices == rhs.devices && lhs.version == rhs.version
     }
 }

@@ -8,10 +8,21 @@
 import Foundation
 import os
 
-enum TSIWriterError: Error, Equatable {
+enum TSIWriterError: Error, Equatable, Sendable, LocalizedError {
     case invalidCommandID(Int)
     case conflictingEncoderModes(controlName: String, direction: IODirection)
     case conflictingMIDIControlDefinitions(controlName: String, direction: IODirection)
+
+    var errorDescription: String? {
+        switch self {
+        case .invalidCommandID(let id):
+            "Command ID \(id) cannot be represented as a TSI UInt32."
+        case .conflictingEncoderModes(let name, let direction):
+            "\(direction.rawValue) control \(name) has conflicting encoder modes."
+        case .conflictingMIDIControlDefinitions(let name, let direction):
+            "\(direction.rawValue) control \(name) has conflicting MIDI definitions."
+        }
+    }
 }
 
 /// Writer for TSI (Traktor Settings Interface) files.
@@ -30,6 +41,21 @@ public struct TSIWriter: Sendable {
     /// - Parameter mappingFile: The mapping file to serialize
     /// - Returns: The complete TSI file data
     func write(_ mappingFile: MappingFile) throws -> Data {
+        if let envelope = mappingFile.sourceEnvelope,
+           envelope.baseline.matches(mappingFile) {
+            return envelope.originalXML
+        }
+
+        let converted = try writeConverted(mappingFile)
+        if let risks = mappingFile.sourceEnvelope?.risks, !risks.isEmpty {
+            throw TSIPreservationError.unsafeOverwrite(risks: risks)
+        }
+        return converted
+    }
+
+    /// Deliberately canonicalizes the modeled projection. This bypasses exact
+    /// source passthrough and preservation refusal, but never writer validation.
+    func writeConverted(_ mappingFile: MappingFile) throws -> Data {
         // Build frame hierarchy: DIOM -> DEVS -> DEVI -> CMAS -> CMAI -> CMAD
         let diomData = try buildDIOM(from: mappingFile)
 
@@ -44,6 +70,26 @@ public struct TSIWriter: Sendable {
 
         // Create XML wrapper
         return createXML(withControllerData: base64String)
+    }
+
+    /// Side-effect-free safety decision. Converted-writer validation is the
+    /// first lattice gate, before source risks are considered.
+    func preservationReport(for mappingFile: MappingFile) -> TSIPreservationReport {
+        do {
+            _ = try writeConverted(mappingFile)
+        } catch {
+            return TSIPreservationReport(
+                risks: mappingFile.sourceEnvelope?.risks ?? [],
+                disposition: .unwritable,
+                validationError: TSIWriterValidationFailure(error)
+            )
+        }
+        let risks = mappingFile.sourceEnvelope?.risks ?? []
+        return TSIPreservationReport(
+            risks: risks,
+            disposition: risks.isEmpty ? .ordinarySaveSafe : .lossyConvertible,
+            validationError: nil
+        )
     }
 
     // MARK: - Frame Building
@@ -91,8 +137,12 @@ public struct TSIWriter: Sendable {
         "Kontrol S4",
     ]
 
-    private func tsiDeviceName(for device: Device) -> String {
+    func canonicalDeviceName(for device: Device) -> String {
         Self.recognizedDeviceNames.contains(device.name) ? device.name : "Generic MIDI"
+    }
+
+    static func canonicalPort(_ port: String) -> String {
+        port.isEmpty ? "All Ports" : port
     }
 
     /// Builds the DEVI (Device) frame content
@@ -100,7 +150,7 @@ public struct TSIWriter: Sendable {
         var data = Data()
 
         // Device name (UTF-16BE with 4-byte length prefix)
-        data.append(encodeUTF16BEString(tsiDeviceName(for: device)))
+        data.append(encodeUTF16BEString(canonicalDeviceName(for: device)))
 
         // DDAT (Device Data) containing DDCB (Command Bindings)
         let ddatContent = try buildDDAT(from: device)
@@ -150,8 +200,8 @@ public struct TSIWriter: Sendable {
 
         // DDPT (Device Ports) - in port + out port strings
         var ddptData = Data()
-        let inPort = device.inPort.isEmpty ? "All Ports" : device.inPort
-        let outPort = device.outPort.isEmpty ? "All Ports" : device.outPort
+        let inPort = Self.canonicalPort(device.inPort)
+        let outPort = Self.canonicalPort(device.outPort)
         ddptData.append(encodeUTF16BEString(inPort))
         ddptData.append(encodeUTF16BEString(outPort))
         data.append(encodeFrame(TSIFrame(identifier: "DDPT", size: UInt32(ddptData.count), data: ddptData)))
@@ -583,6 +633,12 @@ public struct TSIWriter: Sendable {
         data.append(Data(bytes: &useFactoryMap, count: 4))
 
         return data
+    }
+
+    /// Canonical payload used by the source inventory until Task 3 adds
+    /// imported scalar ownership to MappingEntry itself.
+    func canonicalCMADPayload(for mapping: MappingEntry) -> Data {
+        buildCMAD(from: mapping)
     }
 
     // MARK: - CMAD profile per command type
