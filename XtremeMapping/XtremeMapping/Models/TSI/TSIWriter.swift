@@ -664,7 +664,9 @@ public struct TSIWriter: Sendable {
         let baseline = imported.semanticAtImport
         let controllerChanged = mapping.controllerType != baseline.controllerType
         let commandChanged = mapping.commandID != baseline.commandID
-        let profileChanged = controllerChanged || commandChanged
+        let profileChanged = controllerChanged
+            || commandChanged
+            || Self.isLegacyMalformedModifierProfile(mapping, imported: imported)
 
         if mapping.interactionMode != baseline.interactionMode || controllerChanged {
             guard mapping.controllerType.validInteractionModes.contains(mapping.interactionMode) else {
@@ -825,6 +827,31 @@ public struct TSIWriter: Sendable {
         return data
     }
 
+    /// Repairs only the exact generic-button profile emitted for modifiers by
+    /// older versions of this app. Valid native modifier payloads already use
+    /// the indexed-selector profile and continue down the lossless path.
+    private static func isLegacyMalformedModifierProfile(
+        _ mapping: MappingEntry,
+        imported: ImportedCMAD
+    ) -> Bool {
+        guard (2548...2555).contains(mapping.commandID),
+              mapping.controllerType == .button,
+              imported.isCompleteStandardLayout else {
+            return false
+        }
+
+        return imported.hasValueUI == 0
+            && imported.valueUIType == 1
+            && imported.setToValueBits == mapping.setToValue.bitPattern
+            && imported.ledMinRangeType == 1
+            && imported.ledMinRangeData == 0
+            && imported.ledMaxRangeType == 1
+            && imported.ledMaxRangeData == 1
+            && imported.ledBlend == 0
+            && imported.unknownVUI == 1
+            && imported.resolutionBits == 1
+    }
+
     private func buildCanonicalCMAD(from mapping: MappingEntry) -> Data {
         var data = Data()
 
@@ -865,6 +892,7 @@ public struct TSIWriter: Sendable {
 
         // 4. Target/Assignment (4 bytes, signed).
         // Most commands use -1 Device, 0..3 Deck A..D, and 4..7 FX1..4.
+        // Generic FX commands instead use 0..3 for FX Units 1..4.
         // Remix-slot commands (239/249/250/251/259) overload the same field
         // as deckIndex * 4 + slotIndex. This is verified against local
         // Traktor 4.4 exports where Slot Volume spans targets 0...15.
@@ -873,6 +901,9 @@ public struct TSIWriter: Sendable {
         let targetValue: Int32 = {
             if isSlotCommand {
                 return mapping.assignment.remixSlotCommandTargetValue ?? 0
+            }
+            if TraktorCommands.usesFXUnitTargetEncoding(cmdIdForTarget) {
+                return mapping.assignment.fxUnitCommandTargetValue ?? 0
             }
             switch mapping.assignment {
             case .none: return 0
@@ -1059,6 +1090,8 @@ public struct TSIWriter: Sendable {
         let value: Int32
         if isRemixSlotCommand(mapping.commandID) {
             value = mapping.assignment.remixSlotCommandTargetValue ?? 0
+        } else if TraktorCommands.usesFXUnitTargetEncoding(mapping.commandID) {
+            value = mapping.assignment.fxUnitCommandTargetValue ?? 0
         } else {
             switch mapping.assignment {
             case .none, .global, .deckA: value = 0
@@ -1093,8 +1126,8 @@ public struct TSIWriter: Sendable {
     }
 
     static func setValueRaw(for mapping: MappingEntry, commandId: Int) -> UInt32 {
-        // Hotcue index is stored as a raw UInt32 selector, not a float.
-        if commandId == 2328 {
+        // Hotcue and modifier values are stored as raw UInt32 selectors, not floats.
+        if commandId == 2328 || (2548...2555).contains(commandId) {
             let index = max(0, min(7, Int(mapping.setToValue.rounded())))
             return UInt32(index)
         }
@@ -1120,7 +1153,8 @@ public struct TSIWriter: Sendable {
         let cmdId = mapping.commandID
 
         // Indexed-hotcue path (id 2328 = "Select/Set+Store Hotcue").
-        // SetValueTo carries the hotcue index 0..7 as raw uint32.
+        // SetValueTo carries the hotcue index 0...7 as raw UInt32. Native
+        // exports use 0xFFFFFFFF for the low range sentinel.
         if cmdId == 2328 {
             return CMADProfile(
                 hasValueUI: 1,
@@ -1128,6 +1162,23 @@ public struct TSIWriter: Sendable {
                 setValueRaw: setValueRaw(for: mapping, commandId: cmdId),
                 ledMinType: 1,
                 ledMinData: 0xFFFFFFFF,
+                ledMaxType: 1,
+                ledMaxData: 7,
+                ledBlend: 1,
+                unknownVUI: 1,
+                resolutionRaw: 1
+            )
+        }
+
+        // Modifier #1...#8 use the same indexed selector encoding, but their
+        // native low range is zero rather than the hotcue sentinel above.
+        if (2548...2555).contains(cmdId) {
+            return CMADProfile(
+                hasValueUI: 1,
+                valueUIType: 1,
+                setValueRaw: setValueRaw(for: mapping, commandId: cmdId),
+                ledMinType: 1,
+                ledMinData: 0,
                 ledMaxType: 1,
                 ledMaxData: 7,
                 ledBlend: 1,

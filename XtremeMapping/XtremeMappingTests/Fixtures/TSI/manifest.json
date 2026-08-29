@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "fixtures": [
     {
       "filename": "traktor-4.4.x-sanitized-complete.tsi",
@@ -286,6 +286,132 @@
       "expectedRiskCodes": [
         "proprietaryDeviceType",
         "nativeMIDIControl"
+      ]
+    },
+    {
+      "filename": "traktor-4.5.1-xone-k3-benchmark-01-continuous.tsi",
+      "sha256": "f398b85d4fcb7d0fa518f55e250fd19eb0cbd8c583cda3ad202fd2d0169e4505",
+      "provenance": "realExport",
+      "completeness": "completeDocument",
+      "evidencedVersion": "4.5.1",
+      "controller": "Allen & Heath Xone:K3 through Generic MIDI",
+      "source": "User-owned benchmark controller export created during the Traktor Pro 4.5.1 test session",
+      "license": "Fixture contribution under the repository MIT License; redistribution authorized by the repository owner",
+      "sanitization": [
+        "Renamed the source to a neutral repository fixture name; file bytes are otherwise unchanged",
+        "Audited every decoded UTF-16 string; values are limited to Generic MIDI metadata, the XONE:K3 port, benchmark instructions and MIDI control names"
+      ],
+      "expectedDisposition": "lossyConvertible",
+      "expectedRiskCount": 8219,
+      "expectedRiskRuns": [
+        {"code": "unusedMIDIDefinition", "count": 8216},
+        {"code": "unknownFrame", "count": 1},
+        {"code": "extraXMLEntry", "count": 2}
+      ]
+    },
+    {
+      "filename": "traktor-4.5.1-xone-k3-benchmark-02-fx.tsi",
+      "sha256": "8bfe7e3a398d9279c347875173fe8f908264fde9473a8645a407e8f593c173cc",
+      "provenance": "realExport",
+      "completeness": "completeDocument",
+      "evidencedVersion": "4.5.1",
+      "controller": "Allen & Heath Xone:K3 through Generic MIDI",
+      "source": "User-owned benchmark controller export created during the Traktor Pro 4.5.1 test session",
+      "license": "Fixture contribution under the repository MIT License; redistribution authorized by the repository owner",
+      "sanitization": [
+        "Renamed the source to a neutral repository fixture name; file bytes are otherwise unchanged",
+        "Audited every decoded UTF-16 string; values are limited to Generic MIDI metadata, the XONE:K3 port, benchmark instructions and MIDI control names"
+      ],
+      "expectedDisposition": "lossyConvertible",
+      "expectedRiskCount": 8219,
+      "expectedRiskRuns": [
+        {"code": "unusedMIDIDefinition", "count": 8216},
+        {"code": "unknownFrame", "count": 1},
+        {"code": "extraXMLEntry", "count": 2}
+      ]
+    },
+    {
+      "filename": "traktor-4.5.1-xone-k3-benchmark-03-sequencer.tsi",
+      "sha256": "0db63220aad45b559745378d9520650cd48f0d28c37efbd8d94fdf854774aaf4",
+      "provenance": "realExport",
+      "completeness": "completeDocument",
+      "evidencedVersion": "4.5.1",
+      "controller": "Allen & Heath Xone:K3 through Generic MIDI",
+      "source": "User-owned benchmark controller export created during the Traktor Pro 4.5.1 test session",
+      "license": "Fixture contribution under the repository MIT License; redistribution authorized by the repository owner",
+      "sanitization": [
+        "Renamed the source to a neutral repository fixture name; file bytes are otherwise unchanged",
+        "Audited every decoded UTF-16 string; values are limited to Generic MIDI metadata, the XONE:K3 port, benchmark instructions and MIDI control names"
+      ],
+      "expectedDisposition": "lossyConvertible",
+      "expectedRiskCount": 8220,
+      "expectedRiskRuns": [
+        {"code": "unusedMIDIDefinition", "count": 8217},
+        {"code": "unknownFrame", "count": 1},
+        {"code": "extraXMLEntry", "count": 2}
+      ]
+    },
+    {
+      "filename": "traktor-4.5.1-xone-k3-benchmark-04-remix.tsi",
+      "sha256": "eebaa05824cf5bd1a84b6ef0ed1269a49933bb8c9924aca9cbf2cd2a4ec42d9d",
+      "provenance": "realExport",
+      "completeness": "completeDocument",
+      "evidencedVersion": "4.5.1",
+      "controller": "Allen & Heath Xone:K3 through Generic MIDI",
+      "source": "User-owned benchmark controller export created during the Traktor Pro 4.5.1 test session",
+      "license": "Fixture contribution under the repository MIT License; redistribution authorized by the repository owner",
+      "sanitization": [
+        "Renamed the source to a neutral repository fixture name; file bytes are otherwise unchanged",
+        "Audited every decoded UTF-16 string; values are limited to Generic MIDI metadata, the XONE:K3 port, benchmark instructions and MIDI control names"
+      ],
+      "expectedDisposition": "lossyConvertible",
+      "expectedRiskCount": 8218,
+      "expectedRiskRuns": [
+        {"code": "unusedMIDIDefinition", "count": 8215},
+        {"code": "unknownFrame", "count": 1},
+        {"code": "extraXMLEntry", "count": 2}
+      ]
+    },
+    {
+      "filename": "traktor-4.5.1-xone-k3-benchmark-05-core-safe.tsi",
+      "sha256": "1cce1e13386ca8da9b3614da54f31eda4cccbb282be8d2b45638169646d8df38",
+      "provenance": "realExport",
+      "completeness": "completeDocument",
+      "evidencedVersion": "4.5.1",
+      "controller": "Allen & Heath Xone:K3 through Generic MIDI",
+      "source": "User-owned benchmark controller export created during the Traktor Pro 4.5.1 test session",
+      "license": "Fixture contribution under the repository MIT License; redistribution authorized by the repository owner",
+      "sanitization": [
+        "Renamed the source to a neutral repository fixture name; file bytes are otherwise unchanged",
+        "Audited every decoded UTF-16 string; values are limited to Generic MIDI metadata, the XONE:K3 port, benchmark instructions and MIDI control names"
+      ],
+      "expectedDisposition": "lossyConvertible",
+      "expectedRiskCount": 8224,
+      "expectedRiskRuns": [
+        {"code": "unusedMIDIDefinition", "count": 8221},
+        {"code": "unknownFrame", "count": 1},
+        {"code": "extraXMLEntry", "count": 2}
+      ]
+    },
+    {
+      "filename": "traktor-4.5.1-xone-k3-benchmark-06-outputs-comments-modifiers.tsi",
+      "sha256": "776cbd5cf4a6807419795120f1e919fa6d998ef3798577410ed5724bc97013bf",
+      "provenance": "realExport",
+      "completeness": "completeDocument",
+      "evidencedVersion": "4.5.1",
+      "controller": "Allen & Heath Xone:K3 through Generic MIDI",
+      "source": "User-owned benchmark controller export created during the Traktor Pro 4.5.1 test session",
+      "license": "Fixture contribution under the repository MIT License; redistribution authorized by the repository owner",
+      "sanitization": [
+        "Renamed the source to a neutral repository fixture name; file bytes are otherwise unchanged",
+        "Audited every decoded UTF-16 string; values are limited to Generic MIDI metadata, the XONE:K3 port, benchmark comments and MIDI control names"
+      ],
+      "expectedDisposition": "lossyConvertible",
+      "expectedRiskCount": 8223,
+      "expectedRiskRuns": [
+        {"code": "unusedMIDIDefinition", "count": 8220},
+        {"code": "unknownFrame", "count": 1},
+        {"code": "extraXMLEntry", "count": 2}
       ]
     }
   ]

@@ -212,6 +212,31 @@ enum TargetAssignment: Int, Codable, CaseIterable, Sendable {
         }
     }
 
+    /// Generic FX-unit commands encode units 1...4 as target values 0...3.
+    var fxUnitCommandTargetValue: Int32? {
+        switch self {
+        case .fxUnit1: return 0
+        case .fxUnit2: return 1
+        case .fxUnit3: return 2
+        case .fxUnit4: return 3
+        case .deviceTarget: return -1
+        default: return nil
+        }
+    }
+
+    /// Accepts both Traktor's native 0...3 encoding and the legacy 4...7
+    /// encoding emitted by older XtremeMapping builds.
+    static func fxUnitAssignment(forTargetValue target: Int) -> TargetAssignment {
+        switch target {
+        case 0, 4: return .fxUnit1
+        case 1, 5: return .fxUnit2
+        case 2, 6: return .fxUnit3
+        case 3, 7: return .fxUnit4
+        case -1: return .deviceTarget
+        default: return .global
+        }
+    }
+
     static func remixSlotAssignment(forDeck deck: TargetAssignment, slot: Int) -> TargetAssignment? {
         switch (deck, slot) {
         case (.deckA, 1): return .remixDeckASlot1

@@ -525,6 +525,80 @@ final class TSIInterpreterTests: XCTestCase {
         }
     }
 
+    func testNativeFXUnitCommandsDecodeTargetsZeroThroughThreeAsFXUnits() throws {
+        let expected: [TargetAssignment] = [.fxUnit1, .fxUnit2, .fxUnit3, .fxUnit4]
+
+        for (wireTarget, assignment) in expected.enumerated() {
+            let cmad = replacingUInt32(in: validCMAD(), at: 12, with: UInt32(wireTarget))
+            let file = try importedMappingFile(cmad: cmad, commandID: 365)
+
+            XCTAssertEqual(file.devices.first?.mappings.first?.assignment, assignment)
+        }
+    }
+
+    func testLegacyXtremeMappingFXTargetsFourThroughSevenRemainReadable() throws {
+        let expected: [TargetAssignment] = [.fxUnit1, .fxUnit2, .fxUnit3, .fxUnit4]
+
+        for (offset, assignment) in expected.enumerated() {
+            let cmad = replacingUInt32(in: validCMAD(), at: 12, with: UInt32(offset + 4))
+            let file = try importedMappingFile(cmad: cmad, commandID: 365)
+
+            XCTAssertEqual(file.devices.first?.mappings.first?.assignment, assignment)
+        }
+    }
+
+    func testDeckCommandKeepsDeckTargetEncodingWhenFXCommandsUseSameWireValues() throws {
+        let deckCMAD = replacingUInt32(in: validCMAD(), at: 12, with: 0)
+        let fxCMAD = replacingUInt32(in: validCMAD(), at: 12, with: 0)
+
+        let deck = try importedMappingFile(cmad: deckCMAD, commandID: 100)
+        let fx = try importedMappingFile(cmad: fxCMAD, commandID: 365)
+
+        XCTAssertEqual(deck.devices.first?.mappings.first?.assignment, .deckA)
+        XCTAssertEqual(fx.devices.first?.mappings.first?.assignment, .fxUnit1)
+    }
+
+    func testWriterUsesNativeFXUnitTargetEncodingForGenericFXCommands() throws {
+        let assignments: [TargetAssignment] = [.fxUnit1, .fxUnit2, .fxUnit3, .fxUnit4]
+        let mappings = assignments.map {
+            MappingEntry(
+                commandID: 365,
+                ioType: .input,
+                assignment: $0,
+                interactionMode: .direct,
+                midiChannel: 1,
+                midiCC: 10,
+                controllerType: .faderOrKnob
+            )
+        }
+
+        let tsi = try TSIWriter().write(
+            MappingFile(devices: [Device(name: "Generic MIDI", mappings: mappings)])
+        )
+
+        XCTAssertEqual(try scanCMAICommandTargets(in: tsi).map(\.target), [0, 1, 2, 3])
+    }
+
+    func testFXModeSelectorIDsUseNativeFXUnitTargetEncoding() throws {
+        let mappings = [335, 2301].map {
+            MappingEntry(
+                commandID: $0,
+                ioType: .input,
+                assignment: .fxUnit2,
+                interactionMode: .relative,
+                midiChannel: 1,
+                midiCC: 10,
+                controllerType: .encoder
+            )
+        }
+
+        let tsi = try TSIWriter().write(
+            MappingFile(devices: [Device(name: "Generic MIDI", mappings: mappings)])
+        )
+
+        XCTAssertEqual(try scanCMAICommandTargets(in: tsi).map(\.target), [1, 1])
+    }
+
     // MARK: - Modifier Condition Round-Trip Tests (Task 1.1)
 
     func testRoundTripPreservesModifier1Only() throws {
@@ -1877,6 +1951,98 @@ final class TSIInterpreterTests: XCTestCase {
 
         XCTAssertEqual(report.disposition, .unwritable)
         XCTAssertNotNil(report.validationError)
+    }
+
+    func testGeneratedModifierCommandsUseNativeIndexedCMADProfile() throws {
+        let cases: [(commandID: Int, value: Float, expectedSelector: UInt32)] = [
+            (2548, 0, 0),
+            (2555, 7, 7),
+        ]
+
+        for testCase in cases {
+            let mapping = MappingEntry(
+                commandID: testCase.commandID,
+                ioType: .input,
+                assignment: .global,
+                interactionMode: .hold,
+                midiChannel: 15,
+                midiNote: 20,
+                controllerType: .button,
+                setToValue: testCase.value
+            )
+            let tsi = try TSIWriter().write(
+                MappingFile(devices: [Device(name: "Generic MIDI", mappings: [mapping])])
+            )
+            let cmad = try firstCMADPayload(in: tsi)
+
+            XCTAssertEqual(readUInt32BE(cmad, at: 36), 1)
+            XCTAssertEqual(readUInt32BE(cmad, at: 40), 1)
+            XCTAssertEqual(readUInt32BE(cmad, at: 44), testCase.expectedSelector)
+
+            let ledOffset = 76 // 52-byte fixed header + empty comment + 24-byte conditions
+            XCTAssertEqual(readUInt32BE(cmad, at: ledOffset), 1)
+            XCTAssertEqual(readUInt32BE(cmad, at: ledOffset + 4), 0)
+            XCTAssertEqual(readUInt32BE(cmad, at: ledOffset + 8), 1)
+            XCTAssertEqual(readUInt32BE(cmad, at: ledOffset + 12), 7)
+            XCTAssertEqual(readUInt32BE(cmad, at: ledOffset + 28), 1)
+            XCTAssertEqual(readUInt32BE(cmad, at: ledOffset + 32), 1)
+            XCTAssertEqual(readUInt32BE(cmad, at: ledOffset + 36), 1)
+        }
+    }
+
+    func testModifierSelectorValuesRoundTripAsRawIntegers() throws {
+        let cases = [(2548, Float(1)), (2555, Float(7))]
+
+        for (commandID, value) in cases {
+            let mapping = MappingEntry(
+                commandID: commandID,
+                ioType: .input,
+                assignment: .global,
+                interactionMode: .direct,
+                midiChannel: 15,
+                midiNote: 20,
+                controllerType: .button,
+                setToValue: value
+            )
+
+            XCTAssertEqual(try roundTrip(mapping)?.setToValue, value)
+        }
+    }
+
+    func testImportedLegacyMalformedModifierProfileIsRepairedOnWrite() throws {
+        let mapping = MappingEntry(
+            commandID: 2555,
+            ioType: .input,
+            assignment: .global,
+            interactionMode: .hold,
+            midiChannel: 15,
+            midiNote: 20,
+            controllerType: .button,
+            setToValue: 7
+        )
+        let canonical = try firstCMADPayload(
+            in: TSIWriter().write(
+                MappingFile(devices: [Device(name: "Generic MIDI", mappings: [mapping])])
+            )
+        )
+        let legacyMalformed = replacingCoordinatedProfile(
+            in: canonical,
+            hasValueUI: 0,
+            valueUIType: 1,
+            setTo: Float32(7).bitPattern,
+            ledMinType: 1,
+            ledMinData: 0,
+            ledMaxType: 1,
+            ledMaxData: 1,
+            blend: 0,
+            unknownVUI: 1,
+            resolution: 1
+        )
+        let imported = try importedMappingFile(cmad: legacyMalformed, commandID: 2555)
+
+        let repaired = try firstCMADPayload(in: TSIWriter().write(imported))
+
+        XCTAssertEqual(repaired, canonical)
     }
 
     // MARK: - Corrupt-Frame Surfacing Tests (M10)

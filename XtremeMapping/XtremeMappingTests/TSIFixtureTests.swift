@@ -58,6 +58,11 @@ final class TSIFixtureTests: XCTestCase {
     }
 
     private struct Fixture: Decodable {
+        struct RiskRun: Decodable, Equatable {
+            let code: TSIPreservationRisk.Code
+            let count: Int
+        }
+
         let filename: String
         let sha256: String
         let provenance: FixtureProvenance
@@ -70,6 +75,7 @@ final class TSIFixtureTests: XCTestCase {
         let expectedDisposition: TSIPreservationDisposition
         let expectedRiskCount: Int
         let expectedRiskCodes: [TSIPreservationRisk.Code]
+        let expectedRiskRuns: [RiskRun]
 
         private enum CodingKeys: String, CodingKey, CaseIterable {
             case filename
@@ -84,6 +90,7 @@ final class TSIFixtureTests: XCTestCase {
             case expectedDisposition
             case expectedRiskCount
             case expectedRiskCodes
+            case expectedRiskRuns
         }
 
         init(from decoder: Decoder) throws {
@@ -111,10 +118,34 @@ final class TSIFixtureTests: XCTestCase {
                 forKey: .expectedDisposition
             )
             expectedRiskCount = try values.decode(Int.self, forKey: .expectedRiskCount)
-            expectedRiskCodes = try values.decode(
+            expectedRiskCodes = try values.decodeIfPresent(
                 [TSIPreservationRisk.Code].self,
                 forKey: .expectedRiskCodes
-            )
+            ) ?? []
+            expectedRiskRuns = try values.decodeIfPresent(
+                [RiskRun].self,
+                forKey: .expectedRiskRuns
+            ) ?? []
+            guard values.contains(.expectedRiskCodes) != values.contains(.expectedRiskRuns) else {
+                throw DecodingError.dataCorruptedError(
+                    forKey: .expectedRiskCodes,
+                    in: values,
+                    debugDescription: "Specify exactly one risk sequence representation"
+                )
+            }
+            guard expectedRiskRuns.allSatisfy({ $0.count > 0 }) else {
+                throw DecodingError.dataCorruptedError(
+                    forKey: .expectedRiskRuns,
+                    in: values,
+                    debugDescription: "Risk run counts must be positive"
+                )
+            }
+        }
+
+        var encodedRiskCount: Int {
+            expectedRiskCodes.isEmpty
+                ? expectedRiskRuns.reduce(0) { $0 + $1.count }
+                : expectedRiskCodes.count
         }
     }
 
@@ -136,11 +167,17 @@ final class TSIFixtureTests: XCTestCase {
     func testManifestMetadataAndHashesValidateBeforeFixturesAreUsed() throws {
         let manifest = try loadManifest()
 
-        XCTAssertEqual(manifest.schemaVersion, 1)
+        XCTAssertEqual(manifest.schemaVersion, 2)
         XCTAssertEqual(manifest.fixtures.map(\.filename), [
             "traktor-4.4.x-sanitized-complete.tsi",
             "generated-safe-minimal.tsi",
             "generated-unsafe-native.tsi",
+            "traktor-4.5.1-xone-k3-benchmark-01-continuous.tsi",
+            "traktor-4.5.1-xone-k3-benchmark-02-fx.tsi",
+            "traktor-4.5.1-xone-k3-benchmark-03-sequencer.tsi",
+            "traktor-4.5.1-xone-k3-benchmark-04-remix.tsi",
+            "traktor-4.5.1-xone-k3-benchmark-05-core-safe.tsi",
+            "traktor-4.5.1-xone-k3-benchmark-06-outputs-comments-modifiers.tsi",
         ])
         XCTAssertEqual(Set(manifest.fixtures.map(\.filename)).count, manifest.fixtures.count)
         let fixtureFiles = try FileManager.default.contentsOfDirectory(
@@ -162,7 +199,7 @@ final class TSIFixtureTests: XCTestCase {
             XCTAssertTrue(fixture.sha256.allSatisfy { $0.isHexDigit && !$0.isUppercase }, fixture.filename)
             XCTAssertEqual(
                 fixture.expectedRiskCount,
-                fixture.expectedRiskCodes.count,
+                fixture.encodedRiskCount,
                 fixture.filename
             )
             let data = try loadFixture(fixture)
@@ -200,6 +237,30 @@ final class TSIFixtureTests: XCTestCase {
         )
     }
 
+    func testManifestAcceptsRunLengthEncodedRiskSequences() throws {
+        let json = Data(#"""
+        {
+          "schemaVersion": 2,
+          "fixtures": [{
+            "filename": "fixture.tsi",
+            "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+            "provenance": "realExport",
+            "completeness": "completeDocument",
+            "evidencedVersion": "4.5.1",
+            "controller": "Generic MIDI",
+            "source": "test",
+            "license": "test",
+            "sanitization": ["test"],
+            "expectedDisposition": "lossyConvertible",
+            "expectedRiskCount": 3,
+            "expectedRiskRuns": [{"code": "unusedMIDIDefinition", "count": 3}]
+          }]
+        }
+        """#.utf8)
+
+        XCTAssertNoThrow(try decodeManifest(json))
+    }
+
     func testManifestRejectsUnknownRootAndFixtureKeys() throws {
         let manifestData = try Data(
             contentsOf: fixtureDirectory.appendingPathComponent("manifest.json")
@@ -207,8 +268,8 @@ final class TSIFixtureTests: XCTestCase {
         let manifestText = try XCTUnwrap(String(data: manifestData, encoding: .utf8))
         let unknownRoot = Data(
             manifestText.replacingOccurrences(
-                of: "\"schemaVersion\": 1,",
-                with: "\"schemaVersion\": 1, \"unexpectedRoot\": true,"
+                of: "\"schemaVersion\": 2,",
+                with: "\"schemaVersion\": 2, \"unexpectedRoot\": true,"
             ).utf8
         )
         XCTAssertThrowsError(try decodeManifest(unknownRoot)) { error in
@@ -236,7 +297,7 @@ final class TSIFixtureTests: XCTestCase {
         let completeFixtures = try loadManifest().fixtures.filter {
             $0.completeness == .completeDocument
         }
-        XCTAssertEqual(completeFixtures.count, 3)
+        XCTAssertEqual(completeFixtures.count, 9)
 
         for fixture in completeFixtures {
             let source = try loadFixture(fixture)
@@ -276,6 +337,84 @@ final class TSIFixtureTests: XCTestCase {
         XCTAssertEqual(snapshot.plan.disposition, .originalPassthrough)
         XCTAssertEqual(wrapper.regularFileContents, source)
         document.discardPendingWrite()
+    }
+
+    func testComplete451BenchmarkFixturesPreserveObservedCommandsAndAssignments() throws {
+        let expectedRows = [
+            "traktor-4.5.1-xone-k3-benchmark-01-continuous.tsi": 8,
+            "traktor-4.5.1-xone-k3-benchmark-02-fx.tsi": 8,
+            "traktor-4.5.1-xone-k3-benchmark-03-sequencer.tsi": 7,
+            "traktor-4.5.1-xone-k3-benchmark-04-remix.tsi": 9,
+            "traktor-4.5.1-xone-k3-benchmark-05-core-safe.tsi": 3,
+            "traktor-4.5.1-xone-k3-benchmark-06-outputs-comments-modifiers.tsi": 8,
+        ]
+
+        for (name, rowCount) in expectedRows {
+            let source = try loadFixture(try fixture(named: name))
+            let document = try TraktorMappingDocument(fileContents: source)
+            XCTAssertEqual(document.mappingFile.devices.first?.mappings.count, rowCount, name)
+            XCTAssertEqual(document.mappingFile.devices.first?.inPort, "XONE:K3 (XONE:K3)", name)
+        }
+
+        let fxSource = try loadFixture(
+            try fixture(named: "traktor-4.5.1-xone-k3-benchmark-02-fx.tsi")
+        )
+        let fxMappings = try TraktorMappingDocument(fileContents: fxSource)
+            .mappingFile.devices.first?.mappings ?? []
+        XCTAssertTrue(fxMappings.contains {
+            $0.commandID == 335
+                && $0.commandName == "FX Unit Mode Selector (Traktor 4.5.1)"
+                && $0.assignment == .fxUnit1
+        })
+        XCTAssertFalse(fxMappings.contains { $0.commandID == 375 })
+
+        let sequencerSource = try loadFixture(
+            try fixture(named: "traktor-4.5.1-xone-k3-benchmark-03-sequencer.tsi")
+        )
+        let sequencerMappings = try TraktorMappingDocument(fileContents: sequencerSource)
+            .mappingFile.devices.first?.mappings ?? []
+        XCTAssertFalse(sequencerMappings.contains { $0.commandID == 739 })
+
+        let safeCoreSource = try loadFixture(
+            try fixture(named: "traktor-4.5.1-xone-k3-benchmark-05-core-safe.tsi")
+        )
+        let safeCoreMappings = try TraktorMappingDocument(fileContents: safeCoreSource)
+            .mappingFile.devices.first?.mappings ?? []
+        XCTAssertEqual(safeCoreMappings.map(\.commandID), [202, 2350, 2328])
+        XCTAssertTrue(safeCoreMappings.allSatisfy {
+            guard !(2548...2555).contains($0.commandID),
+                  case nil = $0.modifier1Condition,
+                  case nil = $0.modifier2Condition else {
+                return false
+            }
+            return true
+        })
+
+        let outputSource = try loadFixture(
+            try fixture(named: "traktor-4.5.1-xone-k3-benchmark-06-outputs-comments-modifiers.tsi")
+        )
+        let outputDocument = try TraktorMappingDocument(fileContents: outputSource)
+        let outputMappings = outputDocument.mappingFile.devices.first?.mappings ?? []
+        XCTAssertTrue(outputDocument.mappingFile.tsiCompatibilityWarnings.isEmpty)
+        XCTAssertEqual(outputMappings.map(\.commandID), [100, 125, 202, 2350, 2548, 2548, 2548, 2548])
+        XCTAssertEqual(outputMappings.prefix(4).map(\.ioType), [.output, .output, .output, .output])
+        XCTAssertEqual(outputMappings.prefix(4).map(\.controllerType), [.led, .led, .led, .led])
+        XCTAssertEqual(outputMappings.prefix(4).map(\.mappedToDisplay), [
+            "Ch12 Note C2", "Ch12 Note C#2", "Ch12 Note D2", "Ch12 Note D#2",
+        ])
+        XCTAssertEqual(outputMappings.prefix(4).map(\.ledBlend), [true, false, false, true])
+        XCTAssertEqual(outputMappings.prefix(4).map(\.ledInvert), [false, true, false, true])
+        XCTAssertEqual(outputMappings.suffix(4).map(\.interactionMode), [
+            .hold, .increment, .decrement, .reset,
+        ])
+        XCTAssertEqual(outputMappings.suffix(4).map(\.setToValue), [1, 0, 0, 0])
+        XCTAssertEqual(outputMappings.map { $0.importedCMAD?.commentWasLossy }, [
+            false, false, false, false, false, false, false, false,
+        ])
+        XCTAssertTrue(outputMappings[0].comment.contains("lengthy macro documentation"))
+        XCTAssertEqual(outputMappings[1].comment, "D")
+        XCTAssertTrue(outputMappings[2].comment.contains("café — 日本語 — ✓"))
+        XCTAssertTrue(outputMappings[3].comment.contains("Emoji test 😀"))
     }
 
     func testGeneratedSafeFixtureRegeneratesAtDocumentLayer() throws {
@@ -381,12 +520,33 @@ final class TSIFixtureTests: XCTestCase {
     ) {
         XCTAssertEqual(risks.count, fixture.expectedRiskCount, fixture.filename, file: file, line: line)
         XCTAssertEqual(
-            risks.map(\.code),
-            fixture.expectedRiskCodes,
+            fixture.expectedRiskRuns.isEmpty ? [] : riskRuns(for: risks),
+            fixture.expectedRiskRuns,
             fixture.filename,
             file: file,
             line: line
         )
+        if fixture.expectedRiskRuns.isEmpty {
+            XCTAssertEqual(
+                risks.map(\.code),
+                fixture.expectedRiskCodes,
+                fixture.filename,
+                file: file,
+                line: line
+            )
+        }
+    }
+
+    private func riskRuns(for risks: [TSIPreservationRisk]) -> [Fixture.RiskRun] {
+        var result: [Fixture.RiskRun] = []
+        for code in risks.map(\.code) {
+            if let last = result.last, last.code == code {
+                result[result.count - 1] = .init(code: code, count: last.count + 1)
+            } else {
+                result.append(.init(code: code, count: 1))
+            }
+        }
+        return result
     }
 
     private var fixtureDirectory: URL {

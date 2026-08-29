@@ -32,6 +32,11 @@ final class TraktorCommandsTests: XCTestCase {
         XCTAssertEqual(TraktorCommands.name(for: 365), "FX Dry/Wet")
     }
 
+    func testTraktor451FXModeSelectorImportIDHasStableName() {
+        XCTAssertEqual(TraktorCommands.name(for: 335), "FX Unit Mode Selector (Traktor 4.5.1)")
+        XCTAssertTrue(TraktorCommands.isKnownCommand("FX Unit Mode Selector (Traktor 4.5.1)"))
+    }
+
     func testSamplePageSelectorCommand() {
         XCTAssertEqual(TraktorCommands.name(for: 733), "Sample Page Selector")
     }

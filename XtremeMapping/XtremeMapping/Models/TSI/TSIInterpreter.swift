@@ -1000,14 +1000,17 @@ struct TSIInterpreter {
             }
         }
 
-        // Map target assignment per TSI encoding. Remix-slot commands overload
-        // the 0...15 target range as deckIndex * 4 + slotIndex; other commands
-        // use the standard deck/FX mapping.
+        // Map target assignment per command-family encoding. Remix-slot
+        // commands overload 0...15 as deckIndex * 4 + slotIndex. Generic FX
+        // commands overload 0...3 as FX Units 1...4. Other commands use the
+        // historic deck/FX mapping.
         // Values outside -1...15 collapse to .global by prior design — the
         // same tolerance as the other CMAD enums above.
         let assignment: TargetAssignment
         if Self.isRemixSlotCommand(traktorControlId), (0...15).contains(cmadSettings.targetDeck) {
             assignment = TargetAssignment.remixSlotAssignment(forTargetValue: cmadSettings.targetDeck)
+        } else if TraktorCommands.usesFXUnitTargetEncoding(traktorControlId) {
+            assignment = TargetAssignment.fxUnitAssignment(forTargetValue: cmadSettings.targetDeck)
         } else {
             switch cmadSettings.targetDeck {
             case -1: assignment = .deviceTarget
@@ -1031,7 +1034,9 @@ struct TSIInterpreter {
             }
         }
 
-        let setToValue: Float = traktorControlId == 2328
+        let usesRawSelector = traktorControlId == 2328
+            || ((2548...2555).contains(traktorControlId) && cmadSettings.hasValueUI != 0)
+        let setToValue: Float = usesRawSelector
             ? Float(cmadSettings.setToValueRaw)
             : cmadSettings.setToValue
 
@@ -1120,6 +1125,7 @@ struct TSIInterpreter {
         var softTakeover: Bool = false
         var rotarySensitivity: Float = 1.0
         var rotaryAcceleration: Float = 0.0
+        var hasValueUI: UInt32 = 0
         var setToValueRaw: UInt32 = 0
         var setToValue: Float = 0.0
         var comment: String = ""
@@ -1188,10 +1194,12 @@ struct TSIInterpreter {
         // RotaryAcceleration at bytes 32-35 (float)
         result.rotaryAcceleration = readFloatBE(from: data, at: 32)
 
-        // SetValueTo at bytes 44-47 is overloaded: indexed hotcue (2328)
-        // stores a raw UInt32 selector, while fader-like commands store a
-        // float bit pattern. Preserve both interpretations; parseCMAI picks
-        // the command-specific one after it has the raw TraktorControlId.
+        result.hasValueUI = readUInt32BE(from: data, at: 36)
+
+        // SetValueTo at bytes 44-47 is overloaded: indexed hotcue and native
+        // modifier profiles store a raw UInt32 selector, while fader-like
+        // commands store a float bit pattern. Preserve both interpretations;
+        // parseCMAI picks the command-specific one after it has the raw ID.
         result.setToValueRaw = readUInt32BE(from: data, at: 44)
         result.setToValue = readFloatBE(from: data, at: 44)
 
