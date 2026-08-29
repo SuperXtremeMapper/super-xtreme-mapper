@@ -14,12 +14,12 @@
 
 ## Problem statement
 
-> **Post-plan correction (Codex RCA, 2026-06-13):** direct decoding of `/Users/noahraford/Documents/Native Instruments/Traktor 4.4.1/Traktor Settings.tsi` shows remix-slot commands do **not** use a flat `Assignment = 8..11` model. For command IDs 239/249/250/251/259, Traktor overloads the CMAD target as `deckIndex * 4 + slotIndex`: Deck A slots 1-4 = targets 0-3, Deck B = 4-7, Deck C = 8-11, Deck D = 12-15. The implementation must use explicit deck+slot assignments and keep parser/writer symmetric.
+> **Post-plan correction (Codex RCA, 2026-06-13):** direct decoding of a locally owned Traktor 4.4.1 settings export shows remix-slot commands do **not** use a flat `Assignment = 8..11` model. For command IDs 239/249/250/251/259, Traktor overloads the CMAD target as `deckIndex * 4 + slotIndex`: Deck A slots 1-4 = targets 0-3, Deck B = 4-7, Deck C = 8-11, Deck D = 12-15. The implementation must use explicit deck+slot assignments and keep parser/writer symmetric.
 
 
 Wizard-produced .tsi files appear in Traktor 4.4's controller-manager list when added from disk, but Traktor's mapping editor shows **zero** bindings under them. The wizard, voice mapping, and manual mapping all flow through the same writer (`TSIWriter`), so the bug almost certainly affects every emit path.
 
-Empirically verified by decoding the user's actual Traktor 4.4 settings export (`/Users/noahraford/Documents/Native Instruments/Traktor 4.4.1/Traktor Settings.tsi`, 2.4 MB, 7 device entries — 5 Generic MIDI + 2 native NI), the failure modes are:
+Empirically verified by decoding a locally owned Traktor 4.4 settings export (2.4 MB, 7 device entries — 5 Generic MIDI + 2 native NI), the failure modes are:
 
 ### Defect 1 — Many wizard command IDs no longer exist in Traktor 4.4
 

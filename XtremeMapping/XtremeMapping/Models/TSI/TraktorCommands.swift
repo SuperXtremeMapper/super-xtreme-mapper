@@ -11,6 +11,14 @@ import Foundation
 /// Based on CMDR TSI Editor: https://github.com/cmdr-editor/cmdr
 enum TraktorCommands {
 
+    /// Generic FX-unit commands overload CMAD target values 0...3 as
+    /// FX Units 1...4. This differs from deck-scoped commands, where the same
+    /// values mean Decks A...D. IDs are limited to commands observed with this
+    /// encoding in native Traktor exports and the compatibility corpus.
+    static func usesFXUnitTargetEncoding(_ commandID: Int) -> Bool {
+        commandID == 335 || commandID == 2301 || (362...372).contains(commandID)
+    }
+
     /// Names that are safe to use when creating a new input mapping.
     static var allNames: [String] {
         verifiedDescriptors(supporting: .input).map(\.name)
@@ -228,6 +236,7 @@ enum TraktorCommands {
             .union(Traktor441CommandEvidence.bothDirectionIDs)
             .union(Traktor441CommandEvidence.correctedOutputOnlyIDs)
             .union(Traktor441CommandEvidence.correctedBothDirectionIDs)
+            .union(Traktor441CommandEvidence.compatibilityCorpusBothDirectionIDs)
 
         return verifiedIDs
             .map(descriptor(for:))
@@ -453,6 +462,7 @@ enum TraktorCommands {
         325: "FX Routing Selector",
         326: "FX Store Preset",
         327: "FX Snapshot",
+        335: "FX Unit Mode Selector (Traktor 4.5.1)",
         338: "FX Unit 3 On",
         339: "FX Unit 4 On",
         348: "Deck Effect On",

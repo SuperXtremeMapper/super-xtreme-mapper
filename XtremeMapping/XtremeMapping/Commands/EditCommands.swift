@@ -215,12 +215,12 @@ struct EditCommands: Commands {
 
     private func pasteMappedTo() {
         guard !mutationsLocked,
-              let assignment = ClipboardManager.shared.mappedToClipboard?.midiAssignment else {
+              ClipboardManager.shared.hasMappedToData else {
             return
         }
 
         mutateSelectedFile(actionName: "Paste Mapped To") { selected, file in
-            MappingBatchEditor.apply(assignment, to: selected, in: &file)
+            ClipboardManager.shared.pasteMappedTo(to: selected, in: &file)
         }
     }
 

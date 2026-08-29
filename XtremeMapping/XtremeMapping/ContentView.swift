@@ -8,44 +8,6 @@
 import SwiftUI
 import Combine
 
-extension MappingTransferService {
-    /// Returns a destination only when the current selection belongs to one
-    /// device. Nil deliberately preserves Task 7's first-device fallback.
-    static func destinationDeviceID(
-        for selectedIDs: Set<MappingEntry.ID>,
-        in mappingFile: MappingFile
-    ) -> Device.ID? {
-        let owners = mappingFile.devices.filter { device in
-            device.mappings.contains { selectedIDs.contains($0.id) }
-        }
-        return owners.count == 1 ? owners[0].id : nil
-    }
-
-    /// Duplicates each selected source row at the end of its owning device.
-    /// Sources are captured before insertion so device and document order are
-    /// stable and freshly inserted IDs cannot become sources in the same pass.
-    @discardableResult
-    static func duplicateSelection(
-        _ selectedIDs: Set<MappingEntry.ID>,
-        in mappingFile: inout MappingFile
-    ) -> Set<MappingEntry.ID> {
-        let batches = mappingFile.devices.map { device in
-            (
-                device.id,
-                device.mappings.filter { selectedIDs.contains($0.id) }
-            )
-        }
-
-        var insertedIDs: Set<MappingEntry.ID> = []
-        for (deviceID, source) in batches where !source.isEmpty {
-            insertedIDs.formUnion(
-                insertCopies(source, into: &mappingFile, targetDeviceID: deviceID)
-            )
-        }
-        return insertedIDs
-    }
-}
-
 struct ContentView: View {
     @ObservedObject var document: TraktorMappingDocument
     let fileURL: URL?
@@ -58,6 +20,27 @@ struct ContentView: View {
     @State private var searchText: String = ""
     @State private var activeSheet: SheetType?
     @State private var showIntelMacAlert = false
+    @State private var mappingTransferError: MappingTransferError?
+    @State private var workflowDestinationError: MappingTransferError?
+
+    private var mappingPasteDisabledReason: String? {
+        if isLocked {
+            return "Unlock the mapping before pasting."
+        }
+        if MappingTransferService.isTrulyEmpty(document.mappingFile) {
+            return nil
+        }
+        guard !selectedMappings.isEmpty else {
+            return "Select a mapping in the destination device before pasting."
+        }
+        guard MappingTransferService.destinationDeviceID(
+            for: selectedMappings,
+            in: document.mappingFile
+        ) != nil else {
+            return "Select mappings from only one destination device before pasting."
+        }
+        return nil
+    }
 
     // Sheet types for single sheet modifier (avoids crash from multiple sheets)
     enum SheetType: Identifiable {
@@ -118,12 +101,7 @@ struct ContentView: View {
                 onSettings: { activeSheet = .settings },
                 voiceCoordinator: voiceCoordinator,
                 onVoiceToggle: toggleVoiceLearn,
-                onWizard: {
-                    WizardTrace.write(" V2ActionBar.onWizard: setting pendingDocument=\(ObjectIdentifier(document)) (doc has \(document.mappingFile.devices.count) devices, \(document.mappingFile.allMappings.count) mappings)")
-                    WizardCoordinator.pendingDocument = document
-                    NotificationCenter.default.post(name: .wizardDocumentChanged, object: document)
-                    openWindow(id: "wizard")
-                }
+                onWizard: launchWizard
             )
 
             if !document.mappingFile.tsiCompatibilityWarnings.isEmpty {
@@ -156,6 +134,7 @@ struct ContentView: View {
                         onCopy: copySelectedMappings,
                         onPaste: pasteSelectedMappings,
                         onPasteMappings: pasteMappings,
+                        pasteDisabledReason: mappingPasteDisabledReason,
                         onDuplicate: duplicateSelected,
                         onDelete: deleteSelectedMappings,
                         onAssignmentChange: { assignment in
@@ -250,6 +229,31 @@ struct ContentView: View {
         } message: {
             Text("Voice Learn requires an Apple Silicon Mac (M1 or later). Intel Macs are not currently supported.")
         }
+        .alert(
+            "Couldn't Transfer Mappings",
+            isPresented: Binding(
+                get: { mappingTransferError != nil },
+                set: { if !$0 { mappingTransferError = nil } }
+            )
+        ) {
+            Button("OK", role: .cancel) { mappingTransferError = nil }
+        } message: {
+            Text(mappingTransferError?.localizedDescription ?? "The transfer failed.")
+        }
+        .alert(
+            "Choose a Mapping Device",
+            isPresented: Binding(
+                get: { workflowDestinationError != nil },
+                set: { if !$0 { workflowDestinationError = nil } }
+            )
+        ) {
+            Button("OK", role: .cancel) { workflowDestinationError = nil }
+        } message: {
+            Text(
+                workflowDestinationError?.localizedDescription
+                    ?? "Select a mapping in the device you want to edit."
+            )
+        }
         // Voice Learn overlay
         .overlay {
             if voiceCoordinator.isActive {
@@ -324,101 +328,59 @@ struct ContentView: View {
 
     // MARK: - Voice Learn
 
-    @discardableResult
-    private func addVoiceMapping(midi: MIDIMessage, result: VoiceCommandResult) -> UUID? {
-        guard !isLocked,
-              let command = TraktorCommands.verifiedDescriptor(
-                named: result.command,
-                supporting: .input
-              ),
-              let midiAssignment = MIDIAssignment(learnMessage: midi) else { return nil }
-
-        // Parse assignment from result
-        let assignment = parseAssignment(result.assignment)
-
-        // Parse controller type and get its default interaction mode
-        let controllerType = parseControllerType(result.controllerType)
-        let interactionMode = controllerType.defaultInteractionMode
-
-        // Create the new mapping entry
-        let newMapping = MappingEntry(
-            commandID: command.id,
-            ioType: .input,
-            assignment: assignment,
-            interactionMode: interactionMode,
-            midiAssignment: midiAssignment,
-            controllerType: controllerType
+    private func resolvedWorkflowDestinationDeviceID() throws -> Device.ID? {
+        try MappingTransferService.workflowDestinationDeviceID(
+            for: selectedMappings,
+            in: document.mappingFile
         )
-
-        let insertedID = document.performUndoableMutation(
-            actionName: "Add Voice Mapping",
-            undoManager: undoManager
-        ) { file in
-            if file.devices.isEmpty {
-                file.devices.append(Device(name: "Generic MIDI", mappings: [newMapping]))
-            } else {
-                file.devices[0].mappings.append(newMapping)
-            }
-            return newMapping.id
-        }
-        guard let insertedID else { return nil }
-
-        selectedMappings = [insertedID]
-        return insertedID
     }
 
-    private func parseAssignment(_ assignmentString: String?) -> TargetAssignment {
-        guard let str = assignmentString?.lowercased() else { return .global }
-
-        if str.contains("deck a") { return .deckA }
-        if str.contains("deck b") { return .deckB }
-        if str.contains("deck c") { return .deckC }
-        if str.contains("deck d") { return .deckD }
-        if str.contains("fx") || str.contains("effect") {
-            if str.contains("1") { return .fxUnit1 }
-            if str.contains("2") { return .fxUnit2 }
-            if str.contains("3") { return .fxUnit3 }
-            if str.contains("4") { return .fxUnit4 }
-            return .fxUnit1
-        }
-        if str.contains("global") || str.contains("master") || str.contains("browser") {
-            return .global
+    private func launchWizard() {
+        guard !isLocked else { return }
+        let destinationDeviceID: Device.ID?
+        do {
+            destinationDeviceID = try resolvedWorkflowDestinationDeviceID()
+        } catch let error as MappingTransferError {
+            workflowDestinationError = error
+            return
+        } catch {
+            workflowDestinationError = .destinationRequired
+            return
         }
 
-        return .global
-    }
-
-    private func parseControllerType(_ controllerTypeString: String?) -> ControllerType {
-        guard let str = controllerTypeString?.lowercased() else { return .faderOrKnob }
-
-        if str.contains("button") || str.contains("pad") || str.contains("trigger") {
-            return .button
-        }
-        if str.contains("encoder") || str.contains("rotary") || str.contains("jog") {
-            return .encoder
-        }
-        if str.contains("fader") || str.contains("knob") || str.contains("slider") || str.contains("pot") {
-            return .faderOrKnob
-        }
-
-        // Default to fader/knob for continuous controls
-        return .faderOrKnob
+        WizardTrace.write(" V2ActionBar.onWizard: setting pendingDocument=\(ObjectIdentifier(document)) (doc has \(document.mappingFile.devices.count) devices, \(document.mappingFile.allMappings.count) mappings)")
+        WizardCoordinator.pendingDocument = document
+        WizardCoordinator.pendingDestinationDeviceID = destinationDeviceID
+        NotificationCenter.default.post(name: .wizardDocumentChanged, object: document)
+        openWindow(id: "wizard")
     }
 
     private func toggleVoiceLearn() {
         if voiceCoordinator.isActive {
             voiceCoordinator.deactivate()
         } else {
+            guard !isLocked else { return }
             // Check for Apple Silicon before activating
             guard isAppleSilicon else {
                 showIntelMacAlert = true
                 return
             }
-            voiceCoordinator.setDocument(document)
-            // Result-returning insertion seam: nil means the document refused
-            // the mapping (e.g. locked), and the coordinator won't record it.
-            voiceCoordinator.insertMapping = { midi, result in
-                addVoiceMapping(midi: midi, result: result)
+            let destinationDeviceID: Device.ID?
+            do {
+                destinationDeviceID = try resolvedWorkflowDestinationDeviceID()
+            } catch let error as MappingTransferError {
+                workflowDestinationError = error
+                return
+            } catch {
+                workflowDestinationError = .destinationRequired
+                return
+            }
+            guard voiceCoordinator.setDocument(
+                document,
+                destinationDeviceID: destinationDeviceID
+            ) else {
+                workflowDestinationError = .destinationUnavailable
+                return
             }
             voiceCoordinator.activate()
         }
@@ -539,16 +501,7 @@ struct ContentView: View {
             actionName: "Paste Mapped To",
             undoManager: undoManager
         ) { file in
-            for deviceIndex in file.devices.indices {
-                for mappingIndex in file.devices[deviceIndex].mappings.indices {
-                    let mappingID = file.devices[deviceIndex].mappings[mappingIndex].id
-                    if selectedMappings.contains(mappingID) {
-                        ClipboardManager.shared.pasteMappedTo(
-                            to: &file.devices[deviceIndex].mappings[mappingIndex]
-                        )
-                    }
-                }
-            }
+            ClipboardManager.shared.pasteMappedTo(to: selectedMappings, in: &file)
         }
     }
 
@@ -627,19 +580,21 @@ struct ContentView: View {
             for: selectedMappings,
             in: document.mappingFile
         )
-        let insertedIDs = document.performUndoableMutation(
-            actionName: actionName,
-            undoManager: undoManager
-        ) { file in
-            MappingTransferService.insertCopies(
+        do {
+            let transfer = try MappingTransferService.insertCopies(
                 mappings,
-                into: &file,
-                targetDeviceID: targetDeviceID
+                into: document,
+                targetDeviceID: targetDeviceID,
+                actionName: actionName,
+                undoManager: undoManager
             )
-        }
-
-        if let insertedIDs {
-            selectedMappings = insertedIDs
+            if let transfer {
+                selectedMappings = transfer.insertedIDs
+            }
+        } catch let error as MappingTransferError {
+            mappingTransferError = error
+        } catch {
+            mappingTransferError = .preflightFailed(error.localizedDescription)
         }
     }
 }

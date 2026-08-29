@@ -8,16 +8,49 @@
 import Foundation
 import os
 
-enum TSIWriterError: Error, Equatable {
+enum TSIWriterError: Error, Equatable, Sendable, LocalizedError {
     case invalidCommandID(Int)
+    case invalidDeviceName
+    case incompatibleImportedInteraction(
+        controllerType: ControllerType,
+        interactionMode: InteractionMode
+    )
+    case unreconcilableImportedCMAD(field: String)
     case conflictingEncoderModes(controlName: String, direction: IODirection)
     case conflictingMIDIControlDefinitions(controlName: String, direction: IODirection)
+
+    var errorDescription: String? {
+        switch self {
+        case .invalidCommandID(let id):
+            "Command ID \(id) cannot be represented as a TSI UInt32."
+        case .invalidDeviceName:
+            "A new TSI device must have a non-empty registry name."
+        case .incompatibleImportedInteraction(let controllerType, let interactionMode):
+            "Imported \(controllerType.displayName) mappings cannot use \(interactionMode.displayName) interaction."
+        case .unreconcilableImportedCMAD(let field):
+            "The imported CMAD does not contain the \(field) bytes required by this edit."
+        case .conflictingEncoderModes(let name, let direction):
+            "\(direction.rawValue) control \(name) has conflicting encoder modes."
+        case .conflictingMIDIControlDefinitions(let name, let direction):
+            "\(direction.rawValue) control \(name) has conflicting MIDI definitions."
+        }
+    }
 }
 
 /// Writer for TSI (Traktor Settings Interface) files.
 ///
 /// Converts in-memory TSI data structures back to the TSI file format.
 public struct TSIWriter: Sendable {
+
+    private enum OutputMode: Equatable {
+        case preservingImported
+        case converted
+    }
+
+    private struct WriteDecision {
+        let output: Data
+        let report: TSIPreservationReport
+    }
 
     private static let logger = Logger(subsystem: "com.sxm.app", category: "TSIWriter")
 
@@ -30,8 +63,64 @@ public struct TSIWriter: Sendable {
     /// - Parameter mappingFile: The mapping file to serialize
     /// - Returns: The complete TSI file data
     func write(_ mappingFile: MappingFile) throws -> Data {
+        try makeWritePlan(for: mappingFile).output
+    }
+
+    /// Deliberately canonicalizes the modeled projection. This bypasses exact
+    /// source passthrough and preservation refusal, but never writer validation.
+    func writeConverted(_ mappingFile: MappingFile) throws -> Data {
+        try writeRegenerated(mappingFile, mode: .converted)
+    }
+
+    /// Computes the complete document-boundary write once. Callers retain the
+    /// result until the corresponding save completion is known.
+    func makeWritePlan(for mappingFile: MappingFile) throws -> TSIWritePlan {
+        let baseline = TSISemanticBaseline(
+            devices: mappingFile.devices,
+            version: mappingFile.version
+        )
+
+        if let envelope = mappingFile.sourceEnvelope,
+           envelope.baseline.matches(mappingFile) {
+            let risks = preservationRisks(for: mappingFile)
+            return TSIWritePlan(
+                output: envelope.originalXML,
+                baseline: baseline,
+                report: report(for: risks),
+                disposition: .originalPassthrough
+            )
+        }
+
+        let decision = try ordinaryWriteDecision(for: mappingFile)
+        return TSIWritePlan(
+            output: decision.output,
+            baseline: baseline,
+            report: decision.report,
+            disposition: .regenerated
+        )
+    }
+
+    /// Performs converted validation and serialization in one pass for the
+    /// explicit export path, returning the report paired with those bytes.
+    func makeConvertedWritePlan(for mappingFile: MappingFile) throws -> TSIWritePlan {
+        let decision = try convertedWriteDecision(for: mappingFile)
+        return TSIWritePlan(
+            output: decision.output,
+            baseline: TSISemanticBaseline(
+                devices: mappingFile.devices,
+                version: mappingFile.version
+            ),
+            report: decision.report,
+            disposition: .regenerated
+        )
+    }
+
+    private func writeRegenerated(
+        _ mappingFile: MappingFile,
+        mode: OutputMode
+    ) throws -> Data {
         // Build frame hierarchy: DIOM -> DEVS -> DEVI -> CMAS -> CMAI -> CMAD
-        let diomData = try buildDIOM(from: mappingFile)
+        let diomData = try buildDIOM(from: mappingFile, mode: mode)
 
         // Create the root DIOM frame
         let diomFrame = TSIFrame(identifier: "DIOM", size: UInt32(diomData.count), data: diomData)
@@ -46,10 +135,109 @@ public struct TSIWriter: Sendable {
         return createXML(withControllerData: base64String)
     }
 
+    /// Side-effect-free safety decision. Converted-writer validation is the
+    /// first lattice gate, before source risks are considered.
+    func preservationReport(for mappingFile: MappingFile) -> TSIPreservationReport {
+        do {
+            return try convertedWriteDecision(for: mappingFile).report
+        } catch {
+            return TSIPreservationReport(
+                risks: mappingFile.sourceEnvelope?.risks ?? [],
+                disposition: .unwritable,
+                validationError: TSIWriterValidationFailure(error)
+            )
+        }
+    }
+
+    /// Produces the exact ordinary-save bytes and their report in one pure
+    /// decision. Risky projections are converted once only to validate the
+    /// first lattice gate, then refused before any preserving regeneration.
+    private func ordinaryWriteDecision(for mappingFile: MappingFile) throws -> WriteDecision {
+        let risks = preservationRisks(for: mappingFile)
+        guard risks.isEmpty else {
+            _ = try writeRegenerated(mappingFile, mode: .converted)
+            throw TSIPreservationError.unsafeOverwrite(risks: risks)
+        }
+        return WriteDecision(
+            output: try writeRegenerated(mappingFile, mode: .preservingImported),
+            report: report(for: risks)
+        )
+    }
+
+    /// Converted validation and the exact converted bytes are the same pass.
+    private func convertedWriteDecision(for mappingFile: MappingFile) throws -> WriteDecision {
+        let risks = preservationRisks(for: mappingFile)
+        return WriteDecision(
+            output: try writeRegenerated(mappingFile, mode: .converted),
+            report: report(for: risks)
+        )
+    }
+
+    private func report(for risks: [TSIPreservationRisk]) -> TSIPreservationReport {
+        TSIPreservationReport(
+            risks: risks,
+            disposition: risks.isEmpty ? .ordinarySaveSafe : .lossyConvertible,
+            validationError: nil
+        )
+    }
+
+    private func preservationRisks(for mappingFile: MappingFile) -> [TSIPreservationRisk] {
+        if let sourceRisks = mappingFile.sourceEnvelope?.risks {
+            return sourceRisks
+        }
+
+        var risks: [TSIPreservationRisk] = []
+        for (deviceIndex, device) in mappingFile.devices.enumerated() {
+            for (mappingIndex, mapping) in device.mappings.enumerated() {
+                guard let imported = mapping.importedCMAD else { continue }
+                let path = "/Device[\(deviceIndex)]/Mapping[\(mappingIndex)]/CMAD[0]"
+                if imported.payload.count < imported.expectedCompleteLength {
+                    risks.append(.init(
+                        code: .partialCMAD,
+                        path: path,
+                        detail: "\(imported.payload.count)/\(imported.expectedCompleteLength)"
+                    ))
+                    continue
+                }
+                if imported.payload.count > imported.expectedCompleteLength {
+                    risks.append(.init(
+                        code: .extendedCMAD,
+                        path: path,
+                        detail: "\(imported.payload.count)/\(imported.expectedCompleteLength)"
+                    ))
+                    continue
+                }
+                if imported.commentWasLossy {
+                    risks.append(.init(code: .lossyString, path: "\(path)/Comment"))
+                }
+                if imported.deviceType != 4 {
+                    risks.append(.init(code: .proprietaryDeviceType, path: path))
+                }
+                if ![0, 1, 2, 65_535].contains(imported.controllerType) {
+                    risks.append(.init(code: .coercedControllerType, path: path))
+                }
+                if !(0...8).contains(imported.interactionMode) {
+                    risks.append(.init(code: .coercedInteractionMode, path: path))
+                }
+                let target = Int32(bitPattern: imported.assignment)
+                if !(-1...15).contains(target) {
+                    risks.append(.init(code: .coercedTargetAssignment, path: path))
+                }
+            }
+        }
+        return risks.sorted {
+            if $0.path != $1.path { return $0.path < $1.path }
+            if $0.code.rawValue != $1.code.rawValue {
+                return $0.code.rawValue < $1.code.rawValue
+            }
+            return $0.detail < $1.detail
+        }
+    }
+
     // MARK: - Frame Building
 
     /// Builds the DIOM (Device IO Mappings) frame content
-    private func buildDIOM(from mappingFile: MappingFile) throws -> Data {
+    private func buildDIOM(from mappingFile: MappingFile, mode: OutputMode) throws -> Data {
         var data = Data()
 
         // DIOI header frame (version info - 4 bytes, must be 1 for Traktor compatibility)
@@ -57,14 +245,14 @@ public struct TSIWriter: Sendable {
         data.append(encodeFrame(TSIFrame(identifier: "DIOI", size: UInt32(dioiData.count), data: dioiData)))
 
         // DEVS (devices container) with count prefix
-        let devsContent = try buildDEVS(from: mappingFile.devices)
+        let devsContent = try buildDEVS(from: mappingFile.devices, mode: mode)
         data.append(encodeFrame(TSIFrame(identifier: "DEVS", size: UInt32(devsContent.count), data: devsContent)))
 
         return data
     }
 
     /// Builds the DEVS (Devices) frame content with count prefix
-    private func buildDEVS(from devices: [Device]) throws -> Data {
+    private func buildDEVS(from devices: [Device], mode: OutputMode) throws -> Data {
         var data = Data()
 
         // 4-byte device count (big-endian)
@@ -73,7 +261,7 @@ public struct TSIWriter: Sendable {
 
         // Each device as a DEVI frame
         for device in devices {
-            let deviContent = try buildDEVI(from: device)
+            let deviContent = try buildDEVI(from: device, mode: mode)
             data.append(encodeFrame(TSIFrame(identifier: "DEVI", size: UInt32(deviContent.count), data: deviContent)))
         }
 
@@ -91,26 +279,52 @@ public struct TSIWriter: Sendable {
         "Kontrol S4",
     ]
 
-    private func tsiDeviceName(for device: Device) -> String {
-        Self.recognizedDeviceNames.contains(device.name) ? device.name : "Generic MIDI"
+    func canonicalDeviceName(for device: Device) -> String {
+        if device.importedIdentity != nil {
+            return device.name
+        }
+        return Self.recognizedDeviceNames.contains(device.name) ? device.name : "Generic MIDI"
+    }
+
+    static func canonicalPort(_ port: String) -> String {
+        port.isEmpty ? "All Ports" : port
     }
 
     /// Builds the DEVI (Device) frame content
-    private func buildDEVI(from device: Device) throws -> Data {
+    private func buildDEVI(from device: Device, mode: OutputMode) throws -> Data {
         var data = Data()
 
+        let ddatContent = try buildDDAT(from: device, mode: mode)
+        let deviceName: String
+        switch mode {
+        case .preservingImported where device.importedIdentity != nil:
+            deviceName = device.name
+        case .preservingImported:
+            guard !device.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+                throw TSIWriterError.invalidDeviceName
+            }
+            deviceName = canonicalDeviceName(for: device)
+        case .converted:
+            if device.importedIdentity == nil,
+               device.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                throw TSIWriterError.invalidDeviceName
+            }
+            deviceName = Self.recognizedDeviceNames.contains(device.name)
+                ? device.name
+                : "Generic MIDI"
+        }
+
         // Device name (UTF-16BE with 4-byte length prefix)
-        data.append(encodeUTF16BEString(tsiDeviceName(for: device)))
+        data.append(encodeUTF16BEString(deviceName))
 
         // DDAT (Device Data) containing DDCB (Command Bindings)
-        let ddatContent = try buildDDAT(from: device)
         data.append(encodeFrame(TSIFrame(identifier: "DDAT", size: UInt32(ddatContent.count), data: ddatContent)))
 
         return data
     }
 
     /// Builds the DDAT (Device Data) frame content
-    private func buildDDAT(from device: Device) throws -> Data {
+    private func buildDDAT(from device: Device, mode: OutputMode) throws -> Data {
         var data = Data()
 
         // Filter placeholders while preserving every positive stored command ID.
@@ -150,8 +364,9 @@ public struct TSIWriter: Sendable {
 
         // DDPT (Device Ports) - in port + out port strings
         var ddptData = Data()
-        let inPort = device.inPort.isEmpty ? "All Ports" : device.inPort
-        let outPort = device.outPort.isEmpty ? "All Ports" : device.outPort
+        let preserveIdentity = mode == .preservingImported && device.importedIdentity != nil
+        let inPort = preserveIdentity ? device.inPort : Self.canonicalPort(device.inPort)
+        let outPort = preserveIdentity ? device.outPort : Self.canonicalPort(device.outPort)
         ddptData.append(encodeUTF16BEString(inPort))
         ddptData.append(encodeUTF16BEString(outPort))
         data.append(encodeFrame(TSIFrame(identifier: "DDPT", size: UInt32(ddptData.count), data: ddptData)))
@@ -166,7 +381,7 @@ public struct TSIWriter: Sendable {
         )))
 
         // DDCB (Command Bindings) containing CMAS
-        let ddcbContent = try buildDDCB(from: writableMappings)
+        let ddcbContent = try buildDDCB(from: writableMappings, mode: mode)
         data.append(encodeFrame(TSIFrame(identifier: "DDCB", size: UInt32(ddcbContent.count), data: ddcbContent)))
 
         return data
@@ -291,11 +506,11 @@ public struct TSIWriter: Sendable {
     }
 
     /// Builds the DDCB (Command Bindings) frame content
-    private func buildDDCB(from mappings: [MappingEntry]) throws -> Data {
+    private func buildDDCB(from mappings: [MappingEntry], mode: OutputMode) throws -> Data {
         var data = Data()
 
         // Build CMAS (Mappings List)
-        let cmasContent = try buildCMAS(from: mappings)
+        let cmasContent = try buildCMAS(from: mappings, mode: mode)
         data.append(encodeFrame(TSIFrame(identifier: "CMAS", size: UInt32(cmasContent.count), data: cmasContent)))
 
         // Build DCBM (MIDI Note Binding List) - links BindingId to MidiNote strings
@@ -336,7 +551,7 @@ public struct TSIWriter: Sendable {
     }
 
     /// Builds the CMAS (Mappings List) frame content
-    private func buildCMAS(from mappings: [MappingEntry]) throws -> Data {
+    private func buildCMAS(from mappings: [MappingEntry], mode: OutputMode) throws -> Data {
         var data = Data()
 
         // 4-byte mapping count prefix
@@ -348,7 +563,11 @@ public struct TSIWriter: Sendable {
 
         // Each mapping as a CMAI frame
         for mapping in mappings {
-            let cmaiContent = try buildCMAI(from: mapping, controlNameToId: controlNameToId)
+            let cmaiContent = try buildCMAI(
+                from: mapping,
+                controlNameToId: controlNameToId,
+                mode: mode
+            )
             data.append(encodeFrame(TSIFrame(identifier: "CMAI", size: UInt32(cmaiContent.count), data: cmaiContent)))
         }
 
@@ -380,7 +599,11 @@ public struct TSIWriter: Sendable {
     }
 
     /// Builds the CMAI (Mapping Item) frame content
-    private func buildCMAI(from mapping: MappingEntry, controlNameToId: [String: Int]) throws -> Data {
+    private func buildCMAI(
+        from mapping: MappingEntry,
+        controlNameToId: [String: Int],
+        mode: OutputMode
+    ) throws -> Data {
         var data = Data()
 
         // MidiNoteBindingId (4 bytes) — the unassigned sentinel when the
@@ -408,14 +631,228 @@ public struct TSIWriter: Sendable {
         data.append(Data(bytes: &traktorId, count: 4))
 
         // CMAD frame
-        let cmadContent = buildCMAD(from: mapping)
+        let cmadContent = try buildCMAD(from: mapping, mode: mode)
         data.append(encodeFrame(TSIFrame(identifier: "CMAD", size: UInt32(cmadContent.count), data: cmadContent)))
 
         return data
     }
 
     /// Builds the CMAD (Mapping Data) frame content
-    private func buildCMAD(from mapping: MappingEntry) -> Data {
+    private func buildCMAD(from mapping: MappingEntry, mode: OutputMode) throws -> Data {
+        if let imported = mapping.importedCMAD {
+            let baseline = imported.semanticAtImport
+            if mapping.interactionMode != baseline.interactionMode
+                || mapping.controllerType != baseline.controllerType {
+                guard mapping.controllerType.validInteractionModes.contains(mapping.interactionMode) else {
+                    throw TSIWriterError.incompatibleImportedInteraction(
+                        controllerType: mapping.controllerType,
+                        interactionMode: mapping.interactionMode
+                    )
+                }
+            }
+        }
+        guard mode == .preservingImported, let imported = mapping.importedCMAD else {
+            return buildCanonicalCMAD(from: mapping)
+        }
+        return try buildImportedCMAD(from: mapping, imported: imported)
+    }
+
+    private func buildImportedCMAD(
+        from mapping: MappingEntry,
+        imported: ImportedCMAD
+    ) throws -> Data {
+        let baseline = imported.semanticAtImport
+        let controllerChanged = mapping.controllerType != baseline.controllerType
+        let commandChanged = mapping.commandID != baseline.commandID
+        let profileChanged = controllerChanged
+            || commandChanged
+            || Self.isLegacyMalformedModifierProfile(mapping, imported: imported)
+
+        if mapping.interactionMode != baseline.interactionMode || controllerChanged {
+            guard mapping.controllerType.validInteractionModes.contains(mapping.interactionMode) else {
+                throw TSIWriterError.incompatibleImportedInteraction(
+                    controllerType: mapping.controllerType,
+                    interactionMode: mapping.interactionMode
+                )
+            }
+        }
+
+        var data: Data
+        if mapping.comment != baseline.comment {
+            data = Data(imported.payload.prefix(48))
+            data.append(encodeUTF16BEString(mapping.comment))
+            data.append(imported.optionalBytes)
+        } else {
+            data = imported.payload
+        }
+
+        if controllerChanged {
+            try replaceUInt32(
+                Self.controllerTypeRaw(mapping.controllerType),
+                in: &data,
+                at: 4,
+                field: "ControllerType"
+            )
+        }
+        if mapping.interactionMode != baseline.interactionMode {
+            try replaceUInt32(
+                Self.interactionModeRaw(mapping.interactionMode),
+                in: &data,
+                at: 8,
+                field: "InteractionMode"
+            )
+        }
+        if mapping.assignment != baseline.assignment || commandChanged {
+            try replaceUInt32(
+                Self.targetRaw(for: mapping),
+                in: &data,
+                at: 12,
+                field: "Assignment"
+            )
+        }
+        if mapping.autoRepeat != baseline.autoRepeat {
+            try replaceUInt32(mapping.autoRepeat ? 1 : 0, in: &data, at: 16, field: "AutoRepeat")
+        }
+        if mapping.invert != baseline.invert {
+            try replaceUInt32(mapping.invert ? 1 : 0, in: &data, at: 20, field: "Invert")
+        }
+        if mapping.softTakeover != baseline.softTakeover {
+            try replaceUInt32(mapping.softTakeover ? 1 : 0, in: &data, at: 24, field: "SoftTakeover")
+        }
+        if mapping.rotarySensitivity.bitPattern != baseline.rotarySensitivityBits {
+            try replaceUInt32(
+                mapping.rotarySensitivity.bitPattern,
+                in: &data,
+                at: 28,
+                field: "RotarySensitivity"
+            )
+        }
+        if mapping.rotaryAcceleration.bitPattern != baseline.rotaryAccelerationBits {
+            try replaceUInt32(
+                mapping.rotaryAcceleration.bitPattern,
+                in: &data,
+                at: 32,
+                field: "RotaryAcceleration"
+            )
+        }
+
+        let profile = Self.cmadProfile(for: mapping)
+        if profileChanged {
+            for (offset, value, field) in [
+                (36, profile.hasValueUI, "HasValueUI"),
+                (40, profile.valueUIType, "ValueUIType"),
+                (44, profile.setValueRaw, "SetValueTo"),
+            ] {
+                try replaceUInt32(value, in: &data, at: offset, field: field)
+            }
+        } else if mapping.setToValue.bitPattern != baseline.setToValueBits {
+            try replaceUInt32(
+                Self.setValueRaw(for: mapping, commandId: mapping.commandID),
+                in: &data,
+                at: 44,
+                field: "SetValueTo"
+            )
+        }
+
+        let conditionOffset = 52 + mapping.comment.utf16.count * 2
+        if mapping.modifier1Condition != baseline.modifier1Condition
+            || mapping.modifier2Condition != baseline.modifier2Condition {
+            let conditions: [UInt32] = [
+                UInt32(clamping: mapping.modifier1Condition?.modifier ?? 0),
+                0,
+                UInt32(clamping: mapping.modifier1Condition?.value ?? 0),
+                UInt32(clamping: mapping.modifier2Condition?.modifier ?? 0),
+                0,
+                UInt32(clamping: mapping.modifier2Condition?.value ?? 0),
+            ]
+            for (index, value) in conditions.enumerated() {
+                try replaceUInt32(
+                    value,
+                    in: &data,
+                    at: conditionOffset + index * 4,
+                    field: "Conditions"
+                )
+            }
+        }
+
+        let ledOffset = conditionOffset + 24
+        if profileChanged {
+            for (relativeOffset, value, field) in [
+                (0, profile.ledMinType, "LedMinType"),
+                (4, profile.ledMinData, "LedMinData"),
+                (8, profile.ledMaxType, "LedMaxType"),
+                (12, profile.ledMaxData, "LedMaxData"),
+                (28, profile.ledBlend, "LedBlend"),
+                (32, profile.unknownVUI, "UnknownVUI"),
+                (36, profile.resolutionRaw, "Resolution"),
+            ] {
+                try replaceUInt32(
+                    value,
+                    in: &data,
+                    at: ledOffset + relativeOffset,
+                    field: field
+                )
+            }
+        } else {
+            let ownedLEDValues: [(Bool, Int, UInt32, String)] = [
+                (mapping.ledMinRangeType != baseline.ledMinRangeType, 0,
+                 UInt32(clamping: mapping.ledMinRangeType), "LedMinType"),
+                (mapping.ledMinRangeData != baseline.ledMinRangeData, 4,
+                 UInt32(clamping: mapping.ledMinRangeData), "LedMinData"),
+                (mapping.ledMaxRangeType != baseline.ledMaxRangeType, 8,
+                 UInt32(clamping: mapping.ledMaxRangeType), "LedMaxType"),
+                (mapping.ledMaxRangeData != baseline.ledMaxRangeData, 12,
+                 UInt32(clamping: mapping.ledMaxRangeData), "LedMaxData"),
+                (mapping.ledMinMidi != baseline.ledMinMidi, 16,
+                 UInt32(clamping: mapping.ledMinMidi), "LedMinMidi"),
+                (mapping.ledMaxMidi != baseline.ledMaxMidi, 20,
+                 UInt32(clamping: mapping.ledMaxMidi), "LedMaxMidi"),
+                (mapping.ledInvert != baseline.ledInvert, 24,
+                 mapping.ledInvert ? 1 : 0, "LedInvert"),
+                (mapping.ledBlend != baseline.ledBlend, 28,
+                 mapping.ledBlend ? 1 : 0, "LedBlend"),
+                (mapping.resolution != baseline.resolution, 36,
+                 UInt32(clamping: mapping.resolution), "Resolution"),
+            ]
+            for (changed, relativeOffset, value, field) in ownedLEDValues where changed {
+                try replaceUInt32(
+                    value,
+                    in: &data,
+                    at: ledOffset + relativeOffset,
+                    field: field
+                )
+            }
+        }
+
+        return data
+    }
+
+    /// Repairs only the exact generic-button profile emitted for modifiers by
+    /// older versions of this app. Valid native modifier payloads already use
+    /// the indexed-selector profile and continue down the lossless path.
+    private static func isLegacyMalformedModifierProfile(
+        _ mapping: MappingEntry,
+        imported: ImportedCMAD
+    ) -> Bool {
+        guard (2548...2555).contains(mapping.commandID),
+              mapping.controllerType == .button,
+              imported.isCompleteStandardLayout else {
+            return false
+        }
+
+        return imported.hasValueUI == 0
+            && imported.valueUIType == 1
+            && imported.setToValueBits == mapping.setToValue.bitPattern
+            && imported.ledMinRangeType == 1
+            && imported.ledMinRangeData == 0
+            && imported.ledMaxRangeType == 1
+            && imported.ledMaxRangeData == 1
+            && imported.ledBlend == 0
+            && imported.unknownVUI == 1
+            && imported.resolutionBits == 1
+    }
+
+    private func buildCanonicalCMAD(from mapping: MappingEntry) -> Data {
         var data = Data()
 
         // 1. DeviceType (4 bytes) - 4=GenericMidi per CMDR enum
@@ -455,6 +892,7 @@ public struct TSIWriter: Sendable {
 
         // 4. Target/Assignment (4 bytes, signed).
         // Most commands use -1 Device, 0..3 Deck A..D, and 4..7 FX1..4.
+        // Generic FX commands instead use 0..3 for FX Units 1..4.
         // Remix-slot commands (239/249/250/251/259) overload the same field
         // as deckIndex * 4 + slotIndex. This is verified against local
         // Traktor 4.4 exports where Slot Volume spans targets 0...15.
@@ -463,6 +901,9 @@ public struct TSIWriter: Sendable {
         let targetValue: Int32 = {
             if isSlotCommand {
                 return mapping.assignment.remixSlotCommandTargetValue ?? 0
+            }
+            if TraktorCommands.usesFXUnitTargetEncoding(cmdIdForTarget) {
+                return mapping.assignment.fxUnitCommandTargetValue ?? 0
             }
             switch mapping.assignment {
             case .none: return 0
@@ -585,6 +1026,10 @@ public struct TSIWriter: Sendable {
         return data
     }
 
+    func preservingCMADPayload(for mapping: MappingEntry) throws -> Data {
+        try buildCMAD(from: mapping, mode: .preservingImported)
+    }
+
     // MARK: - CMAD profile per command type
     //
     // Traktor 4.4's CMAD scalar fields (HasValueUI, ValueUIType, SetValueTo,
@@ -618,13 +1063,71 @@ public struct TSIWriter: Sendable {
         [239, 249, 250, 251, 259].contains(commandId)
     }
 
+    private static func controllerTypeRaw(_ controllerType: ControllerType) -> UInt32 {
+        switch controllerType {
+        case .none, .button: 0
+        case .faderOrKnob: 1
+        case .encoder: 2
+        case .led: 65_535
+        }
+    }
+
+    private static func interactionModeRaw(_ interactionMode: InteractionMode) -> UInt32 {
+        switch interactionMode {
+        case .none, .trigger: 0
+        case .toggle: 1
+        case .hold: 2
+        case .direct: 3
+        case .relative: 4
+        case .increment: 5
+        case .decrement: 6
+        case .reset: 7
+        case .output: 8
+        }
+    }
+
+    static func targetRaw(for mapping: MappingEntry) -> UInt32 {
+        let value: Int32
+        if isRemixSlotCommand(mapping.commandID) {
+            value = mapping.assignment.remixSlotCommandTargetValue ?? 0
+        } else if TraktorCommands.usesFXUnitTargetEncoding(mapping.commandID) {
+            value = mapping.assignment.fxUnitCommandTargetValue ?? 0
+        } else {
+            switch mapping.assignment {
+            case .none, .global, .deckA: value = 0
+            case .deviceTarget: value = -1
+            case .deckB: value = 1
+            case .deckC: value = 2
+            case .deckD: value = 3
+            case .fxUnit1: value = 4
+            case .fxUnit2: value = 5
+            case .fxUnit3: value = 6
+            case .fxUnit4: value = 7
+            case .remixSlot1: value = 8
+            case .remixSlot2: value = 9
+            case .remixSlot3: value = 10
+            case .remixSlot4: value = 11
+            case .remixSlot5: value = 12
+            case .remixSlot6: value = 13
+            case .remixSlot7: value = 14
+            case .remixSlot8: value = 15
+            case .remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4,
+                 .remixDeckBSlot1, .remixDeckBSlot2, .remixDeckBSlot3, .remixDeckBSlot4,
+                 .remixDeckCSlot1, .remixDeckCSlot2, .remixDeckCSlot3, .remixDeckCSlot4,
+                 .remixDeckDSlot1, .remixDeckDSlot2, .remixDeckDSlot3, .remixDeckDSlot4:
+                value = mapping.assignment.deckTargetValueForNonSlotCommand ?? 0
+            }
+        }
+        return UInt32(bitPattern: value)
+    }
+
     private static func floatBits(_ value: Float32) -> UInt32 {
         value.bitPattern
     }
 
-    private static func setValueRaw(for mapping: MappingEntry, commandId: Int) -> UInt32 {
-        // Hotcue index is stored as a raw UInt32 selector, not a float.
-        if commandId == 2328 {
+    static func setValueRaw(for mapping: MappingEntry, commandId: Int) -> UInt32 {
+        // Hotcue and modifier values are stored as raw UInt32 selectors, not floats.
+        if commandId == 2328 || (2548...2555).contains(commandId) {
             let index = max(0, min(7, Int(mapping.setToValue.rounded())))
             return UInt32(index)
         }
@@ -650,7 +1153,8 @@ public struct TSIWriter: Sendable {
         let cmdId = mapping.commandID
 
         // Indexed-hotcue path (id 2328 = "Select/Set+Store Hotcue").
-        // SetValueTo carries the hotcue index 0..7 as raw uint32.
+        // SetValueTo carries the hotcue index 0...7 as raw UInt32. Native
+        // exports use 0xFFFFFFFF for the low range sentinel.
         if cmdId == 2328 {
             return CMADProfile(
                 hasValueUI: 1,
@@ -658,6 +1162,23 @@ public struct TSIWriter: Sendable {
                 setValueRaw: setValueRaw(for: mapping, commandId: cmdId),
                 ledMinType: 1,
                 ledMinData: 0xFFFFFFFF,
+                ledMaxType: 1,
+                ledMaxData: 7,
+                ledBlend: 1,
+                unknownVUI: 1,
+                resolutionRaw: 1
+            )
+        }
+
+        // Modifier #1...#8 use the same indexed selector encoding, but their
+        // native low range is zero rather than the hotcue sentinel above.
+        if (2548...2555).contains(cmdId) {
+            return CMADProfile(
+                hasValueUI: 1,
+                valueUIType: 1,
+                setValueRaw: setValueRaw(for: mapping, commandId: cmdId),
+                ledMinType: 1,
+                ledMinData: 0,
                 ledMaxType: 1,
                 ledMaxData: 7,
                 ledBlend: 1,
@@ -717,6 +1238,22 @@ public struct TSIWriter: Sendable {
     }
 
     // MARK: - Encoding Helpers
+
+    private func replaceUInt32(
+        _ value: UInt32,
+        in data: inout Data,
+        at offset: Int,
+        field: String
+    ) throws {
+        guard offset >= 0, offset <= data.count, data.count - offset >= 4 else {
+            throw TSIWriterError.unreconcilableImportedCMAD(field: field)
+        }
+        var bigEndian = value.bigEndian
+        data.replaceSubrange(
+            offset..<(offset + 4),
+            with: Data(bytes: &bigEndian, count: 4)
+        )
+    }
 
     /// Encodes a single frame to binary data
     private func encodeFrame(_ frame: TSIFrame) -> Data {

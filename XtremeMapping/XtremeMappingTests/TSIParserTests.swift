@@ -157,4 +157,294 @@ final class TSIParserTests: XCTestCase {
             XCTAssertEqual(error as? TSIParserError, TSIParserError.invalidBase64)
         }
     }
+
+    // MARK: - Bounded Streaming XML
+
+    func testRejectsUTF16AndUTF32BeforeXMLParsing() {
+        let xml = "<?xml version=\"1.0\" encoding=\"UTF-16\"?><NIXML/>"
+        for encoding in [String.Encoding.utf16, .utf16BigEndian, .utf16LittleEndian,
+                         .utf32, .utf32BigEndian, .utf32LittleEndian] {
+            let data = xml.data(using: encoding)!
+            XCTAssertThrowsError(try TSIParser.scanXML(data), "encoding \(encoding.rawValue)") {
+                XCTAssertEqual($0 as? TSIParserError, .unsupportedXMLEncoding)
+            }
+        }
+    }
+
+    func testAcceptsUTF8BOMAndCountsStartElementsExactlyOnce() throws {
+        var data = Data([0xEF, 0xBB, 0xBF])
+        data.append("<NIXML><!-- comment --><A>text</A><Entry Name=\"DeviceIO.Config.Controller\" Value=\"QQ==\"/></NIXML>".data(using: .utf8)!)
+
+        let result = try TSIParser.scanXML(data)
+
+        XCTAssertEqual(result.controllerValues, ["QQ=="])
+        XCTAssertEqual(result.elementCount, 3)
+        XCTAssertFalse(result.hasNonControllerEntries)
+    }
+
+    func testRejectsFalseXMLEncodingDeclarations() {
+        for declaredEncoding in ["UTF-16", "UTF-32", "ISO-8859-1", "US-ASCII"] {
+            let xml = "<?xml version='1.0' encoding='\(declaredEncoding)'?><NIXML/>"
+            XCTAssertThrowsError(try TSIParser.scanXML(xml.data(using: .utf8)!)) {
+                XCTAssertEqual($0 as? TSIParserError, .unsupportedXMLEncoding)
+            }
+        }
+    }
+
+    func testRejectsInvalidUTF8() {
+        XCTAssertThrowsError(try TSIParser.scanXML(Data([0x3C, 0xFF, 0x3E]))) {
+            XCTAssertEqual($0 as? TSIParserError, .unsupportedXMLEncoding)
+        }
+    }
+
+    func testRejectsDTDInternalEntityAmplificationAndExternalEntities() {
+        let documents = [
+            "<!DOCTYPE NIXML [<!ENTITY a '1234567890'>]><NIXML>&a;</NIXML>",
+            "<!DOCTYPE NIXML SYSTEM 'file:///etc/passwd'><NIXML/>",
+            "<!DOCTYPE NIXML [<!ENTITY xxe SYSTEM 'file:///etc/passwd'>]><NIXML>&xxe;</NIXML>",
+            "<!doctype NIXML [<!entity a 'x'>]><NIXML>&a;</NIXML>"
+        ]
+
+        for xml in documents {
+            XCTAssertThrowsError(try TSIParser.scanXML(xml.data(using: .utf8)!), xml) {
+                XCTAssertEqual($0 as? TSIParserError, .prohibitedXMLDeclaration)
+            }
+        }
+    }
+
+    func testXMLByteLimitAtMinusOneLimitAndPlusOne() throws {
+        let data = "<NIXML/>".data(using: .utf8)!
+        for maximum in [data.count - 1, data.count, data.count + 1] {
+            let limits = TSIParseLimits(maximumXMLBytes: maximum)
+            if maximum < data.count {
+                XCTAssertThrowsError(try TSIParser.scanXML(data, limits: limits)) {
+                    XCTAssertEqual($0 as? TSIParserError, .xmlByteLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try TSIParser.scanXML(data, limits: limits).elementCount, 1)
+            }
+        }
+    }
+
+    func testXMLElementLimitAtMinusOneLimitAndPlusOne() throws {
+        let data = "<NIXML><A/><Entry Name=\"DeviceIO.Config.Controller\" Value=\"QQ==\"/></NIXML>".data(using: .utf8)!
+        for maximum in [2, 3, 4] {
+            let limits = TSIParseLimits(maximumXMLElements: maximum)
+            if maximum == 2 {
+                XCTAssertThrowsError(try TSIParser.scanXML(data, limits: limits)) {
+                    XCTAssertEqual($0 as? TSIParserError, .xmlElementLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try TSIParser.scanXML(data, limits: limits).elementCount, 3)
+            }
+        }
+    }
+
+    func testXMLDepthLimitAtMinusOneLimitAndPlusOne() throws {
+        let data = "<A><B><C/></B></A>".data(using: .utf8)!
+        for maximum in [2, 3, 4] {
+            let limits = TSIParseLimits(maximumXMLNestingDepth: maximum)
+            if maximum == 2 {
+                XCTAssertThrowsError(try TSIParser.scanXML(data, limits: limits)) {
+                    XCTAssertEqual($0 as? TSIParserError, .xmlDepthLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try TSIParser.scanXML(data, limits: limits).elementCount, 3)
+            }
+        }
+    }
+
+    func testControllerEntryLimitAndNonControllerInventory() throws {
+        let data = "<NIXML><Entry Name=\"Other\" Value=\"x\"/><Entry Name=\"DeviceIO.Config.Controller\" Value=\"QQ==\"/><Entry Name=\"DeviceIO.Config.Controller\" Value=\"Qg==\"/></NIXML>".data(using: .utf8)!
+        for maximum in [1, 2, 3] {
+            let limits = TSIParseLimits(maximumControllerEntries: maximum)
+            if maximum == 1 {
+                XCTAssertThrowsError(try TSIParser.scanXML(data, limits: limits)) {
+                    XCTAssertEqual($0 as? TSIParserError, .controllerEntryLimitExceeded)
+                }
+            } else {
+                let result = try TSIParser.scanXML(data, limits: limits)
+                XCTAssertEqual(result.controllerValues, ["QQ==", "Qg=="])
+                XCTAssertTrue(result.hasNonControllerEntries)
+            }
+        }
+    }
+
+    func testBase64AttributeCharacterLimitAtMinusOneLimitAndPlusOne() throws {
+        let data = "<NIXML><Entry Name=\"DeviceIO.Config.Controller\" Value=\"SEVMTE8=\"/></NIXML>".data(using: .utf8)!
+        for maximum in [7, 8, 9] {
+            let limits = TSIParseLimits(maximumBase64AttributeCharacters: maximum)
+            if maximum == 7 {
+                XCTAssertThrowsError(try TSIParser.scanXML(data, limits: limits)) {
+                    XCTAssertEqual($0 as? TSIParserError, .base64CharacterLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try TSIParser.scanXML(data, limits: limits).controllerValues, ["SEVMTE8="])
+            }
+        }
+    }
+
+    // MARK: - Strict Base64 and Binary Cursor
+
+    func testStrictBase64RejectsWhitespaceAlphabetAndPaddingViolations() {
+        let invalidValues = [
+            "SEVM TE8=", "SEVM\nTE8=", "SEVM_TE8=", "SEVM-TE8=",
+            "=EVLTE8=", "SE=LTE8=", "SEVMTE8===", "SEVMTE8", "Zh==", "Zm9="
+        ]
+        for value in invalidValues {
+            XCTAssertThrowsError(try TSIParser().decodeBase64(value), value) {
+                XCTAssertEqual($0 as? TSIParserError, .invalidBase64)
+            }
+        }
+    }
+
+    func testStrictBase64AcceptsCanonicalAlphabetAndPadding() throws {
+        XCTAssertEqual(try TSIParser().decodeBase64(""), Data())
+        XCTAssertEqual(try TSIParser().decodeBase64("Zg=="), Data([0x66]))
+        XCTAssertEqual(try TSIParser().decodeBase64("Zm8="), Data([0x66, 0x6F]))
+        XCTAssertEqual(try TSIParser().decodeBase64("+/8A"), Data([0xFB, 0xFF, 0x00]))
+    }
+
+    func testDecodedControllerByteLimitAtMinusOneLimitAndPlusOne() throws {
+        for maximum in [4, 5, 6] {
+            let parser = TSIParser(limits: TSIParseLimits(maximumDecodedControllerBytes: maximum))
+            if maximum == 4 {
+                XCTAssertThrowsError(try parser.decodeBase64("SEVMTE8=")) {
+                    XCTAssertEqual($0 as? TSIParserError, .decodedControllerByteLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try parser.decodeBase64("SEVMTE8="), "HELLO".data(using: .utf8)!)
+            }
+        }
+    }
+
+    func testOffsetFrameCursorHandlesUnalignedStartAndReturnsNextOffset() throws {
+        let data = Data([0xFF]) + Data([0x54, 0x45, 0x53, 0x54, 0, 0, 0, 3, 1, 2, 3, 0xEE])
+
+        let parsed = try TSIFrame.parse(from: data, at: 1, limits: .default)
+
+        XCTAssertEqual(parsed.frame.identifier, "TEST")
+        XCTAssertEqual(parsed.frame.size, 3)
+        XCTAssertEqual(parsed.frame.data, Data([1, 2, 3]))
+        XCTAssertEqual(parsed.nextOffset, 12)
+    }
+
+    func testOffsetFrameCursorTreatsOffsetsAsRelativeToSlicedData() throws {
+        let firstFrame = Data("TEST".utf8) + Data([0, 0, 0, 3, 1, 2, 3])
+        let secondFrame = Data("NEXT".utf8) + Data([0, 0, 0, 0])
+        let backing = Data([0xAA]) + firstFrame + secondFrame + Data([0xEE])
+        let slicedData = backing[1..<(backing.count - 1)]
+        XCTAssertEqual(slicedData.startIndex, 1)
+
+        let parsed = try TSIFrame.parse(from: slicedData, at: 0, limits: .default)
+        XCTAssertEqual(parsed.frame.identifier, "TEST")
+        XCTAssertEqual(parsed.frame.data, Data([1, 2, 3]))
+        XCTAssertEqual(parsed.nextOffset, 11)
+
+        let frames = try TSIParser().parseFrames(from: slicedData)
+        XCTAssertEqual(frames.map(\.identifier), ["TEST", "NEXT"])
+    }
+
+    func testFramePayloadLimitAtMinusOneLimitAndPlusOne() throws {
+        let data = Data("TEST".utf8) + Data([0, 0, 0, 3, 1, 2, 3])
+        for maximum in [2, 3, 4] {
+            let limits = TSIParseLimits(maximumIndividualFramePayload: maximum)
+            if maximum == 2 {
+                XCTAssertThrowsError(try TSIFrame.parse(from: data, at: 0, limits: limits)) {
+                    XCTAssertEqual($0 as? TSIParserError, .framePayloadLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try TSIFrame.parse(from: data, at: 0, limits: limits).frame.data, Data([1, 2, 3]))
+            }
+        }
+    }
+
+    func testOffsetFrameCursorRejectsOverflowAndTruncation() {
+        XCTAssertThrowsError(try TSIFrame.parse(from: Data(), at: Int.max, limits: .default)) {
+            XCTAssertEqual($0 as? TSIParserError, .integerOverflow)
+        }
+        let truncated = Data("TEST".utf8) + Data([0xFF, 0xFF, 0xFF, 0xFF])
+        XCTAssertThrowsError(try TSIFrame.parse(from: truncated, at: 0, limits: .default)) {
+            XCTAssertEqual($0 as? TSIParserError, .framePayloadLimitExceeded)
+        }
+        let shortPayload = Data("TEST".utf8) + Data([0, 0, 0, 2, 0x01])
+        XCTAssertThrowsError(try TSIFrame.parse(from: shortPayload, at: 0, limits: .default)) {
+            XCTAssertEqual($0 as? TSIParserError, .unexpectedEndOfData)
+        }
+    }
+
+    func testPerContainerAndCumulativeFrameLimitsAtBoundaries() throws {
+        let frame = Data("TEST".utf8) + Data([0, 0, 0, 0])
+        let threeFrames = frame + frame + frame
+
+        for maximum in [2, 3, 4] {
+            let parser = TSIParser(limits: TSIParseLimits(maximumFramesPerContainer: maximum))
+            if maximum == 2 {
+                XCTAssertThrowsError(try parser.parseFrames(from: threeFrames)) {
+                    XCTAssertEqual($0 as? TSIParserError, .frameCountLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try parser.parseFrames(from: threeFrames).count, 3)
+            }
+        }
+
+        for maximum in [2, 3, 4] {
+            let parser = TSIParser(limits: TSIParseLimits(maximumCumulativeFrames: maximum))
+            if maximum == 2 {
+                XCTAssertThrowsError(try parser.parseFrames(from: threeFrames)) {
+                    XCTAssertEqual($0 as? TSIParserError, .cumulativeFrameLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try parser.parseFrames(from: threeFrames).count, 3)
+            }
+        }
+    }
+
+    func testInstrumentationMeasuresOnlyRetainedPayloadCopies() throws {
+        let firstFrame = Data("ONE!".utf8) + Data([0, 0, 0, 1, 0x11])
+        let secondFrame = Data("TWO!".utf8)
+            + Data([0, 0, 0, 3, 0x21, 0x22, 0x23])
+        let instrumentation = TSIParseInstrumentation()
+
+        let frames = try TSIParser(instrumentation: instrumentation)
+            .parseFrames(from: firstFrame + secondFrame)
+
+        XCTAssertEqual(frames.count, 2)
+        XCTAssertEqual(instrumentation.snapshot.retainedPayloadCopyCount, 2)
+        XCTAssertEqual(instrumentation.snapshot.retainedPayloadBytesCopied, 4)
+        XCTAssertEqual(instrumentation.snapshot.maximumRetainedPayloadCopyBytes, 3)
+    }
+
+    func testLinearFrameParsingCopiesOnlyRetainedPayloads() throws {
+        let frame = Data("TEST".utf8) + Data([0, 0, 0, 8]) + Data(repeating: 0xA5, count: 8)
+        let smallData = (0..<2_000).reduce(into: Data()) { data, _ in data.append(frame) }
+        let largeData = (0..<8_000).reduce(into: Data()) { data, _ in data.append(frame) }
+
+        _ = try TSIParser().parseFrames(from: smallData)
+        _ = try TSIParser().parseFrames(from: largeData)
+
+        let smallInstrumentation = TSIParseInstrumentation()
+        let smallStart = Date.timeIntervalSinceReferenceDate
+        XCTAssertEqual(try TSIParser(instrumentation: smallInstrumentation).parseFrames(from: smallData).count, 2_000)
+        let smallDuration = Date.timeIntervalSinceReferenceDate - smallStart
+
+        let largeInstrumentation = TSIParseInstrumentation()
+        let largeStart = Date.timeIntervalSinceReferenceDate
+        XCTAssertEqual(try TSIParser(instrumentation: largeInstrumentation).parseFrames(from: largeData).count, 8_000)
+        let largeDuration = Date.timeIntervalSinceReferenceDate - largeStart
+
+        XCTAssertEqual(smallInstrumentation.snapshot.parsedFrameCount, 2_000)
+        XCTAssertEqual(largeInstrumentation.snapshot.parsedFrameCount, 8_000)
+        XCTAssertEqual(smallInstrumentation.snapshot.frameHeaderBytesRead, 16_000)
+        XCTAssertEqual(largeInstrumentation.snapshot.frameHeaderBytesRead, 64_000)
+        XCTAssertEqual(smallInstrumentation.snapshot.retainedPayloadCopyCount, 2_000)
+        XCTAssertEqual(largeInstrumentation.snapshot.retainedPayloadCopyCount, 8_000)
+        XCTAssertEqual(smallInstrumentation.snapshot.retainedPayloadBytesCopied, 16_000)
+        XCTAssertEqual(largeInstrumentation.snapshot.retainedPayloadBytesCopied, 64_000)
+        XCTAssertEqual(smallInstrumentation.snapshot.maximumRetainedPayloadCopyBytes, 8)
+        XCTAssertEqual(largeInstrumentation.snapshot.maximumRetainedPayloadCopyBytes, 8)
+        XCTAssertEqual(smallInstrumentation.snapshot.cursorBytesAdvanced, smallData.count)
+        XCTAssertEqual(largeInstrumentation.snapshot.cursorBytesAdvanced, largeData.count)
+        XCTAssertLessThan(largeDuration / max(smallDuration, 0.000_001), 8.0)
+    }
 }

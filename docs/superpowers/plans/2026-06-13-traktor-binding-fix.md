@@ -14,7 +14,7 @@ Four chunks, executed in dependency order. Each chunk is its own Agency project 
 ---
 
 
-> **Post-plan correction (Codex RCA, 2026-06-13):** direct decoding of `/Users/noahraford/Documents/Native Instruments/Traktor 4.4.1/Traktor Settings.tsi` shows remix-slot commands do **not** use a flat `Assignment = 8..11` model. For command IDs 239/249/250/251/259, Traktor overloads the CMAD target as `deckIndex * 4 + slotIndex`: Deck A slots 1-4 = targets 0-3, Deck B = 4-7, Deck C = 8-11, Deck D = 12-15. The implementation must use explicit deck+slot assignments and keep parser/writer symmetric.
+> **Post-plan correction (Codex RCA, 2026-06-13):** direct decoding of a locally owned Traktor 4.4.1 settings export shows remix-slot commands do **not** use a flat `Assignment = 8..11` model. For command IDs 239/249/250/251/259, Traktor overloads the CMAD target as `deckIndex * 4 + slotIndex`: Deck A slots 1-4 = targets 0-3, Deck B = 4-7, Deck C = 8-11, Deck D = 12-15. The implementation must use explicit deck+slot assignments and keep parser/writer symmetric.
 
 ## Chunk A — Universal CMAD scalar repairs
 
@@ -44,7 +44,7 @@ Bring every emitted CMAD into byte-parity with Traktor on the five value-indepen
     - **"specific scenario expects 0"** (rare) → leave; the test asserts a specific overridden value.
   - **`MappingEntryTests.swift:35-58` specifically**: only lines **49, 51, 57** flip (these are the `ledMinRangeType==0`, `ledMaxRangeType==0`, `resolution==0` assertions — change all three to `==1`). Lines 50 (`ledMinRangeData==0`) and 52 (`ledMaxRangeData==1`) test the DATA fields, which don't change defaults — leave as-is.
   - Run the full test suite after; any new failure is a missed update.
-- [ ] **A5.** Build Release: `xcodebuild -project /Users/noahraford/Projects/XtremeMapping/XtremeMapping/SuperXtremeMapping.xcodeproj -scheme XtremeMapping -configuration Release -derivedDataPath /Users/noahraford/Projects/XtremeMapping/XtremeMapping/build build 2>&1 | tail -5`
+- [ ] **A5.** Build Release: `xcodebuild -project XtremeMapping/SuperXtremeMapping.xcodeproj -scheme XtremeMapping -configuration Release -derivedDataPath XtremeMapping/build build 2>&1 | tail -5`
 - [ ] **A6.** Verify via decode script. Run the app, do a quick wizard pass on any tab (Mixer is fastest), save to `/tmp/chunkA_test.tsi`, then run:
   ```python
   # Decode /tmp/chunkA_test.tsi; for each of the first 5 CMAI frames, confirm:
@@ -129,7 +129,7 @@ Replace fabricated 2900-2923 IDs with canonical Traktor command IDs + `target = 
   - Slot 2 Volume → commandId 251, Assignment 9
   - Slot 3 Mute On → commandId 259, Assignment 10
   - Slot 4 Filter On → commandId 250, Assignment 11
-- [ ] **B12.** Round-trip verify: open the broken v4 file (`/Users/noahraford/Documents/Native Instruments/Traktor 4.4.1/K3 - Deck A - Dubai - June 26_v4.tsi`) in the rebuilt app. Objective checks:
+- [ ] **B12.** Round-trip verify: open the locally owned broken v4 regression export in the rebuilt app. Objective checks:
   - No mapping has `commandName` matching `Command #29[0-2][0-9]`.
   - Every mapping that started as `"Slot N <Op>"` now has the canonical commandName (Volume / Mute On / Filter Adjust / Filter On / FX On).
   - Binding count = `original_binding_count - count(2916..2919 in original)` — i.e. the FX Send rows dropped, everything else preserved.

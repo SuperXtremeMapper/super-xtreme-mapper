@@ -112,8 +112,12 @@ struct MappingWizardWindowContent: View {
             .onAppear {
                 WizardTrace.write(" MappingWizardWindow.onAppear: pendingDocument=\(WizardCoordinator.pendingDocument.map { "\(ObjectIdentifier($0))" } ?? "nil")")
                 if let doc = WizardCoordinator.pendingDocument {
-                    coordinator.start(document: doc)
+                    coordinator.start(
+                        document: doc,
+                        destinationDeviceID: WizardCoordinator.pendingDestinationDeviceID
+                    )
                     WizardCoordinator.pendingDocument = nil
+                    WizardCoordinator.pendingDestinationDeviceID = nil
                     WizardTrace.write(" MappingWizardWindow.onAppear: coordinator.start called with doc=\(ObjectIdentifier(doc))")
                 } else {
                     coordinator.statusMessage = "Error: Please open a document first, then click Wizard."
@@ -122,7 +126,12 @@ struct MappingWizardWindowContent: View {
             .onReceive(NotificationCenter.default.publisher(for: .wizardDocumentChanged)) { notification in
                 WizardTrace.write(" MappingWizardWindow.onReceive(wizardDocumentChanged): notification object=\(notification.object.map { "\(type(of: $0))" } ?? "nil")")
                 if let doc = notification.object as? TraktorMappingDocument {
-                    coordinator.start(document: doc)
+                    coordinator.start(
+                        document: doc,
+                        destinationDeviceID: WizardCoordinator.pendingDestinationDeviceID
+                    )
+                    WizardCoordinator.pendingDocument = nil
+                    WizardCoordinator.pendingDestinationDeviceID = nil
                     WizardTrace.write(" MappingWizardWindow.onReceive: coordinator.start called with doc=\(ObjectIdentifier(doc))")
                 }
             }

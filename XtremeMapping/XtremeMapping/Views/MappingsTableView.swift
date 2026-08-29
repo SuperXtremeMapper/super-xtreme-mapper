@@ -32,6 +32,7 @@ struct MappingsTableView: View {
     var onCopy: (() -> Void)?
     var onPaste: (() -> Void)?
     var onPasteMappings: (([MappingEntry]) -> Void)?
+    var pasteDisabledReason: String?
     var onDuplicate: (() -> Void)?
     var onDelete: (() -> Void)?
     var onAssignmentChange: ((TargetAssignment) -> Void)?
@@ -228,7 +229,7 @@ struct MappingsTableView: View {
             return [MappingBatchCodec.itemProvider(for: selected)]
         }
         .onPasteCommand(of: [.mappingBatch]) { providers in
-            guard !isLocked else { return }
+            guard !isLocked, pasteDisabledReason == nil else { return }
             Task { @MainActor in
                 guard let pasted = try? await MappingBatchCodec.load(from: providers),
                       !pasted.isEmpty else { return }
@@ -237,6 +238,7 @@ struct MappingsTableView: View {
             }
         }
         .dropDestination(for: MappingEntry.self) { items, _ in
+            guard pasteDisabledReason == nil else { return false }
             // Handle drop from another window
             onDrop?(items)
             return !items.isEmpty
@@ -249,7 +251,8 @@ struct MappingsTableView: View {
 
             Button("Paste") { onPaste?() }
                 .keyboardShortcut("v", modifiers: .command)
-                .disabled(isLocked || !clipboard.hasMappingsData)
+                .disabled(isLocked || !clipboard.hasMappingsData || pasteDisabledReason != nil)
+                .help(pasteDisabledReason ?? "Paste mappings into the selected device.")
 
             if !selection.isEmpty && !isLocked {
                 Divider()

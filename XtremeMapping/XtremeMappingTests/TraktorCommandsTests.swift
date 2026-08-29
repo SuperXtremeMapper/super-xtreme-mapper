@@ -32,6 +32,11 @@ final class TraktorCommandsTests: XCTestCase {
         XCTAssertEqual(TraktorCommands.name(for: 365), "FX Dry/Wet")
     }
 
+    func testTraktor451FXModeSelectorImportIDHasStableName() {
+        XCTAssertEqual(TraktorCommands.name(for: 335), "FX Unit Mode Selector (Traktor 4.5.1)")
+        XCTAssertTrue(TraktorCommands.isKnownCommand("FX Unit Mode Selector (Traktor 4.5.1)"))
+    }
+
     func testSamplePageSelectorCommand() {
         XCTAssertEqual(TraktorCommands.name(for: 733), "Sample Page Selector")
     }
@@ -338,6 +343,16 @@ final class TraktorCommandsTests: XCTestCase {
         })
     }
 
+    func testCompatibilityCorpusDirectionsRemainCreatable() {
+        let bothDirectionIDs = [201, 323, 362, 363, 364, 740, 2253, 2302, 5129]
+
+        for commandID in bothDirectionIDs {
+            let descriptor = TraktorCommands.descriptor(for: commandID)
+            XCTAssertTrue(descriptor.supports(.input), "command \(commandID)")
+            XCTAssertTrue(descriptor.supports(.output), "command \(commandID)")
+        }
+    }
+
     func testAuditedEvidenceCountsStayConservative() {
         XCTAssertEqual(Traktor441CommandEvidence.inputOnlyIDs.count, 85)
         XCTAssertEqual(Traktor441CommandEvidence.outputOnlyIDs.count, 79)
@@ -347,6 +362,7 @@ final class TraktorCommandsTests: XCTestCase {
                 + Traktor441CommandEvidence.correctedBothDirectionIDs.count,
             9
         )
+        XCTAssertEqual(Traktor441CommandEvidence.compatibilityCorpusBothDirectionIDs.count, 9)
     }
 
     func testObservedMissingDescriptorsAreVerifiedInTheirAuditedDirections() {

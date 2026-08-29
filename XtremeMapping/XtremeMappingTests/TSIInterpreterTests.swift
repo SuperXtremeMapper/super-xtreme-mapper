@@ -525,6 +525,80 @@ final class TSIInterpreterTests: XCTestCase {
         }
     }
 
+    func testNativeFXUnitCommandsDecodeTargetsZeroThroughThreeAsFXUnits() throws {
+        let expected: [TargetAssignment] = [.fxUnit1, .fxUnit2, .fxUnit3, .fxUnit4]
+
+        for (wireTarget, assignment) in expected.enumerated() {
+            let cmad = replacingUInt32(in: validCMAD(), at: 12, with: UInt32(wireTarget))
+            let file = try importedMappingFile(cmad: cmad, commandID: 365)
+
+            XCTAssertEqual(file.devices.first?.mappings.first?.assignment, assignment)
+        }
+    }
+
+    func testLegacyXtremeMappingFXTargetsFourThroughSevenRemainReadable() throws {
+        let expected: [TargetAssignment] = [.fxUnit1, .fxUnit2, .fxUnit3, .fxUnit4]
+
+        for (offset, assignment) in expected.enumerated() {
+            let cmad = replacingUInt32(in: validCMAD(), at: 12, with: UInt32(offset + 4))
+            let file = try importedMappingFile(cmad: cmad, commandID: 365)
+
+            XCTAssertEqual(file.devices.first?.mappings.first?.assignment, assignment)
+        }
+    }
+
+    func testDeckCommandKeepsDeckTargetEncodingWhenFXCommandsUseSameWireValues() throws {
+        let deckCMAD = replacingUInt32(in: validCMAD(), at: 12, with: 0)
+        let fxCMAD = replacingUInt32(in: validCMAD(), at: 12, with: 0)
+
+        let deck = try importedMappingFile(cmad: deckCMAD, commandID: 100)
+        let fx = try importedMappingFile(cmad: fxCMAD, commandID: 365)
+
+        XCTAssertEqual(deck.devices.first?.mappings.first?.assignment, .deckA)
+        XCTAssertEqual(fx.devices.first?.mappings.first?.assignment, .fxUnit1)
+    }
+
+    func testWriterUsesNativeFXUnitTargetEncodingForGenericFXCommands() throws {
+        let assignments: [TargetAssignment] = [.fxUnit1, .fxUnit2, .fxUnit3, .fxUnit4]
+        let mappings = assignments.map {
+            MappingEntry(
+                commandID: 365,
+                ioType: .input,
+                assignment: $0,
+                interactionMode: .direct,
+                midiChannel: 1,
+                midiCC: 10,
+                controllerType: .faderOrKnob
+            )
+        }
+
+        let tsi = try TSIWriter().write(
+            MappingFile(devices: [Device(name: "Generic MIDI", mappings: mappings)])
+        )
+
+        XCTAssertEqual(try scanCMAICommandTargets(in: tsi).map(\.target), [0, 1, 2, 3])
+    }
+
+    func testFXModeSelectorIDsUseNativeFXUnitTargetEncoding() throws {
+        let mappings = [335, 2301].map {
+            MappingEntry(
+                commandID: $0,
+                ioType: .input,
+                assignment: .fxUnit2,
+                interactionMode: .relative,
+                midiChannel: 1,
+                midiCC: 10,
+                controllerType: .encoder
+            )
+        }
+
+        let tsi = try TSIWriter().write(
+            MappingFile(devices: [Device(name: "Generic MIDI", mappings: mappings)])
+        )
+
+        XCTAssertEqual(try scanCMAICommandTargets(in: tsi).map(\.target), [1, 1])
+    }
+
     // MARK: - Modifier Condition Round-Trip Tests (Task 1.1)
 
     func testRoundTripPreservesModifier1Only() throws {
@@ -1115,7 +1189,7 @@ final class TSIInterpreterTests: XCTestCase {
         }
     }
 
-    func testLiteralTraktor441DCDTPayloadsParseAndDriveInterpreterMetadata() throws {
+    func testCapturedReducedTraktor441DCDTPayloadsParseAndDriveInterpreterMetadata() throws {
         let cases: [(hex: String, name: String, rawMode: UInt32, expected: EncoderMode)] = [
             (
                 "0000000b0043006800300031002e00430043002e003000320032000000070000000042fe000000000000ffffffff",
@@ -1157,7 +1231,7 @@ final class TSIInterpreterTests: XCTestCase {
         }
     }
 
-    func testLiteralTraktor441NativeInputControlTypesOpenAndRoundTripMetadata() throws {
+    func testCapturedReducedTraktor441NativeInputControlTypesOpenAndRoundTripMetadata() throws {
         // Literal DCDT payloads captured from Traktor 4.4.1 exports and reduced
         // to one mapping each. The strings and scalar bytes are unmodified.
         let cases: [(hex: String, name: String, controlType: UInt32)] = [
@@ -1214,7 +1288,9 @@ final class TSIInterpreterTests: XCTestCase {
         }
     }
 
-    func testTraktor452OpaqueMidiNamesOpenWarnAndRoundTripVerbatim() throws {
+    func testGeneratedOpaqueMidiNamesWith452VersionLabelOpenWarnAndRoundTripVerbatim() throws {
+        // This is constructed compatibility coverage. The synthetic DDIV
+        // label is not evidence of a complete Traktor 4.5.2 export.
         let names = [
             "Ch02.PitchBend",
             "Ch05.CC.034+Ch05.CC.002",
@@ -1317,18 +1393,13 @@ final class TSIInterpreterTests: XCTestCase {
         }
     }
 
-    func testDuplicateDefinitionContainerForDirectionThrows() {
+    func testDuplicateDefinitionContainerForDirectionUsesFirstDocumentOrderContainer() throws {
         let emptyDefinitions = be32(0)
         let tsi = definitionFixtureTSI(
             definitionFrames: rawFrame("DDCI", emptyDefinitions)
                 + rawFrame("DDCI", emptyDefinitions)
         )
-        XCTAssertThrowsError(try interpretTSIData(tsi)) { error in
-            XCTAssertEqual(
-                error as? TSIInterpreterError,
-                .duplicateMidiDefinitionsContainer(direction: .input)
-            )
-        }
+        XCTAssertNoThrow(try interpretTSIData(tsi))
     }
 
     func testIdenticalDuplicateControlNameAndDirectionDefinitionIsTolerated() throws {
@@ -1557,6 +1628,423 @@ final class TSIInterpreterTests: XCTestCase {
                        "setToValue of 0.0 should survive round-trip")
     }
 
+    func testImportedNoncanonicalCMADPayloadRegeneratesByteForByte() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        let cmai = cmaiPayload(
+            bindingId: TSIBindingID.unassigned,
+            ioType: 0,
+            commandId: 100,
+            cmadBytes: rawFrame("CMAD", rawCMAD)
+        )
+        let imported = try interpretCMAS(be32(1) + rawFrame("CMAI", cmai))
+
+        let rewritten = try TSIWriter().write(imported)
+
+        XCTAssertEqual(try firstCMADPayload(in: rewritten), rawCMAD)
+    }
+
+    func testImportedNativeDeviceNameAndEmptyPortsRegenerateVerbatim() throws {
+        let name = "Kontrol S8 MK2 — Native"
+        let devicePayload = tsiString(name)
+            + rawFrame("DDPT", tsiString("") + tsiString(""))
+            + rawFrame("CMAS", be32(0))
+        let imported = try interpretDEVI(devicePayload)
+
+        let rewritten = try TSIWriter().write(imported)
+        let reimported = try XCTUnwrap(try interpretTSIData(rewritten).devices.first)
+
+        XCTAssertEqual(reimported.name, name)
+        XCTAssertEqual(reimported.inPort, "")
+        XCTAssertEqual(reimported.outPort, "")
+    }
+
+    func testImportedCMADSurvivesCodableAndCopyWithWireFingerprint() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        let imported = try importedMappingFile(cmad: rawCMAD)
+        let mapping = try XCTUnwrap(imported.devices.first?.mappings.first)
+        let state = try XCTUnwrap(mapping.importedCMAD)
+
+        XCTAssertEqual(state.payload, rawCMAD)
+        XCTAssertEqual(state.deviceType, 4)
+        XCTAssertEqual(state.hasValueUI, 9)
+        XCTAssertEqual(state.conditionOneTarget, 0xAABB_CCDD)
+        XCTAssertEqual(state.conditionTwoTarget, 0x0102_0304)
+        XCTAssertEqual(state.ledMinRangeData, 0x7FC0_1234)
+        XCTAssertEqual(state.unknownVUI, 0x1122_3344)
+        XCTAssertEqual(state.resolutionBits, 0x7FC0_ABCD)
+        XCTAssertEqual(state.useFactoryMap, 0xA5A5_A5A5)
+        XCTAssertEqual(state.semanticAtImport.rotarySensitivityBits, 0x8000_0000)
+        XCTAssertEqual(state.semanticAtImport.setToValueBits, 0x8000_0000)
+
+        let copied = mapping.copyWithNewID()
+        XCTAssertNotEqual(copied.id, mapping.id)
+        XCTAssertEqual(copied.importedCMAD, state)
+
+        let encoded = try JSONEncoder().encode(mapping)
+        let decoded = try JSONDecoder().decode(MappingEntry.self, from: encoded)
+        XCTAssertEqual(decoded.importedCMAD, state)
+
+        var legacyObject = try XCTUnwrap(
+            JSONSerialization.jsonObject(with: encoded) as? [String: Any]
+        )
+        legacyObject.removeValue(forKey: "importedCMAD")
+        let legacy = try JSONDecoder().decode(
+            MappingEntry.self,
+            from: JSONSerialization.data(withJSONObject: legacyObject)
+        )
+        XCTAssertNil(legacy.importedCMAD)
+    }
+
+    func testImportedCommentEditReplacesOnlyCommentBytes() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].comment = "edited"
+
+        let rewritten = try TSIWriter().write(imported)
+
+        XCTAssertEqual(
+            try firstCMADPayload(in: rewritten),
+            replacingComment(in: rawCMAD, with: "edited")
+        )
+    }
+
+    func testImportedAssignmentEditReplacesOnlyTargetScalar() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].assignment = .deckD
+
+        let rewritten = try TSIWriter().write(imported)
+
+        XCTAssertEqual(
+            try firstCMADPayload(in: rewritten),
+            replacingUInt32(in: rawCMAD, at: 12, with: 3)
+        )
+    }
+
+    func testImportedIOEditLeavesCMADPayloadUntouched() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].ioType = .output
+
+        let rewritten = try TSIWriter().write(imported)
+        let reimported = try XCTUnwrap(try interpretTSIData(rewritten).devices.first?.mappings.first)
+
+        XCTAssertEqual(try firstCMADPayload(in: rewritten), rawCMAD)
+        XCTAssertEqual(reimported.ioType, .output)
+    }
+
+    func testImportedModifierEditReplacesCompleteConditionBlockOnly() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].modifier1Condition = .init(modifier: 7, value: 6)
+        imported.devices[0].mappings[0].modifier2Condition = nil
+
+        let tail = cmadTailOffset(in: rawCMAD)
+        var expected = rawCMAD
+        let replacement = [UInt32(7), 0, 6, 0, 0, 0].reduce(into: Data()) {
+            $0.append(be32($1))
+        }
+        expected.replaceSubrange(tail..<(tail + 24), with: replacement)
+
+        XCTAssertEqual(
+            try firstCMADPayload(in: TSIWriter().write(imported)),
+            expected
+        )
+    }
+
+    func testImportedInputOptionEditsReplaceEachOwningScalarIndividually() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        let cases: [(String, (inout MappingEntry) -> Void, Int, UInt32)] = [
+            ("auto repeat", { $0.autoRepeat = false }, 16, 0),
+            ("invert", { $0.invert = false }, 20, 0),
+            ("soft takeover", { $0.softTakeover = false }, 24, 0),
+            ("rotary sensitivity", { $0.rotarySensitivity = 1.5 }, 28, Float32(1.5).bitPattern),
+            ("rotary acceleration", { $0.rotaryAcceleration = 0.75 }, 32, Float32(0.75).bitPattern),
+        ]
+
+        for (label, mutate, offset, value) in cases {
+            var imported = try importedMappingFile(cmad: rawCMAD)
+            mutate(&imported.devices[0].mappings[0])
+            XCTAssertEqual(
+                try firstCMADPayload(in: TSIWriter().write(imported)),
+                replacingUInt32(in: rawCMAD, at: offset, with: value),
+                label
+            )
+        }
+    }
+
+    func testImportedSetToEditReplacesOnlySetToBits() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].setToValue = 0.5
+
+        XCTAssertEqual(
+            try firstCMADPayload(in: TSIWriter().write(imported)),
+            replacingUInt32(in: rawCMAD, at: 44, with: 0x3F00_0000)
+        )
+    }
+
+    func testImportedMIDIEditLeavesCMADPayloadUntouched() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].midiAssignment = try .controlChange(
+            channel: 2,
+            number: 77
+        )
+
+        let rewritten = try TSIWriter().write(imported)
+        let reimported = try XCTUnwrap(try interpretTSIData(rewritten).devices.first?.mappings.first)
+
+        XCTAssertEqual(try firstCMADPayload(in: rewritten), rawCMAD)
+        XCTAssertEqual(reimported.midiChannel, 2)
+        XCTAssertEqual(reimported.midiCC, 77)
+    }
+
+    func testImportedLEDEditsReplaceEachOwningScalarIndividually() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        let led = cmadTailOffset(in: rawCMAD) + 24
+        let cases: [(String, (inout MappingEntry) -> Void, Int, UInt32)] = [
+            ("min type", { $0.ledMinRangeType = 7 }, led, 7),
+            ("min data", { $0.ledMinRangeData = 42 }, led + 4, 42),
+            ("max type", { $0.ledMaxRangeType = 8 }, led + 8, 8),
+            ("max data", { $0.ledMaxRangeData = 43 }, led + 12, 43),
+            ("min MIDI", { $0.ledMinMidi = 12 }, led + 16, 12),
+            ("max MIDI", { $0.ledMaxMidi = 118 }, led + 20, 118),
+            ("invert", { $0.ledInvert = false }, led + 24, 0),
+            ("blend", { $0.ledBlend = false }, led + 28, 0),
+            ("resolution", { $0.resolution = 3 }, led + 36, 3),
+        ]
+
+        for (label, mutate, offset, value) in cases {
+            var imported = try importedMappingFile(cmad: rawCMAD)
+            mutate(&imported.devices[0].mappings[0])
+            XCTAssertEqual(
+                try firstCMADPayload(in: TSIWriter().write(imported)),
+                replacingUInt32(in: rawCMAD, at: offset, with: value),
+                label
+            )
+        }
+    }
+
+    func testImportedControllerTypeEditReplacesCoordinatedProfileOnly() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].controllerType = .button
+
+        var expected = replacingUInt32(in: rawCMAD, at: 4, with: 0)
+        expected = replacingCoordinatedProfile(
+            in: expected,
+            hasValueUI: 0,
+            valueUIType: 1,
+            setTo: 0x8000_0000,
+            ledMinType: 1,
+            ledMinData: 0,
+            ledMaxType: 1,
+            ledMaxData: 1,
+            blend: 0,
+            unknownVUI: 1,
+            resolution: 1
+        )
+
+        XCTAssertEqual(
+            try firstCMADPayload(in: TSIWriter().write(imported)),
+            expected
+        )
+    }
+
+    func testImportedCommandIDEditReplacesCoordinatedProfileOnly() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].commandID = 125
+
+        let expected = replacingCoordinatedProfile(
+            in: rawCMAD,
+            hasValueUI: 0,
+            valueUIType: 2,
+            setTo: 0x8000_0000,
+            ledMinType: 2,
+            ledMinData: 0,
+            ledMaxType: 2,
+            ledMaxData: 0x3F80_0000,
+            blend: 1,
+            unknownVUI: 2,
+            resolution: 0x3D80_0000
+        )
+
+        XCTAssertEqual(
+            try firstCMADPayload(in: TSIWriter().write(imported)),
+            expected
+        )
+    }
+
+    func testImportedInteractionEditReplacesOnlyInteractionWhenValid() throws {
+        let rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        var imported = try importedMappingFile(cmad: rawCMAD)
+        imported.devices[0].mappings[0].interactionMode = .relative
+
+        XCTAssertEqual(
+            try firstCMADPayload(in: TSIWriter().write(imported)),
+            replacingUInt32(in: rawCMAD, at: 8, with: 4)
+        )
+    }
+
+    func testImportedInteractionEditToIncompatibleModeIsUnwritable() throws {
+        var imported = try importedMappingFile(
+            cmad: noncanonicalCMAD(comment: "wire fidelity")
+        )
+        imported.devices[0].mappings[0].interactionMode = .output
+
+        let report = TSIWriter().preservationReport(for: imported)
+
+        XCTAssertEqual(report.disposition, .unwritable)
+        XCTAssertNotNil(report.validationError)
+    }
+
+    func testImportedTruncatedTailRefusesBeforeTouchingMissingOwnedBytes() throws {
+        let fullCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        let truncatedCMAD = Data(fullCMAD.prefix(cmadTailOffset(in: fullCMAD)))
+        let cases: [(String, (inout MappingEntry) -> Void)] = [
+            ("modifier", { $0.modifier1Condition = .init(modifier: 1, value: 1) }),
+            ("LED", { $0.ledMaxMidi = 12 }),
+            ("controller profile", { $0.controllerType = .button }),
+            ("command profile", { $0.commandID = 125 }),
+        ]
+
+        for (label, mutate) in cases {
+            var imported = try importedMappingFile(cmad: truncatedCMAD)
+            mutate(&imported.devices[0].mappings[0])
+            let report = TSIWriter().preservationReport(for: imported)
+            XCTAssertEqual(report.disposition, .lossyConvertible, label)
+            XCTAssertTrue(report.risks.contains { $0.code == .partialCMAD }, label)
+            XCTAssertThrowsError(try TSIWriter().write(imported), label) { error in
+                XCTAssertEqual(
+                    error as? TSIPreservationError,
+                    .unsafeOverwrite(risks: report.risks),
+                    label
+                )
+            }
+        }
+    }
+
+    func testConvertedOutputDeliberatelyNormalizesImportedNativeWireValues() throws {
+        var rawCMAD = noncanonicalCMAD(comment: "wire fidelity")
+        rawCMAD = replacingUInt32(in: rawCMAD, at: 0, with: 3)
+        let cmai = cmaiPayload(commandId: 100, cmadBytes: rawFrame("CMAD", rawCMAD))
+        let payload = tsiString("Kontrol S8 MK2 — Native")
+            + rawFrame("DDPT", tsiString("") + tsiString(""))
+            + rawFrame("CMAS", be32(1) + rawFrame("CMAI", cmai))
+        let imported = try interpretDEVI(payload)
+
+        let converted = try TSIWriter().writeConverted(imported)
+        let convertedDevice = try XCTUnwrap(try interpretTSIData(converted).devices.first)
+
+        XCTAssertEqual(readUInt32BE(try firstCMADPayload(in: converted), at: 0), 4)
+        XCTAssertEqual(convertedDevice.name, "Generic MIDI")
+        XCTAssertEqual(convertedDevice.inPort, "All Ports")
+        XCTAssertEqual(convertedDevice.outPort, "All Ports")
+    }
+
+    func testNewEmptyDeviceNameIsUnwritable() {
+        let report = TSIWriter().preservationReport(
+            for: MappingFile(devices: [Device()])
+        )
+
+        XCTAssertEqual(report.disposition, .unwritable)
+        XCTAssertNotNil(report.validationError)
+    }
+
+    func testGeneratedModifierCommandsUseNativeIndexedCMADProfile() throws {
+        let cases: [(commandID: Int, value: Float, expectedSelector: UInt32)] = [
+            (2548, 0, 0),
+            (2555, 7, 7),
+        ]
+
+        for testCase in cases {
+            let mapping = MappingEntry(
+                commandID: testCase.commandID,
+                ioType: .input,
+                assignment: .global,
+                interactionMode: .hold,
+                midiChannel: 15,
+                midiNote: 20,
+                controllerType: .button,
+                setToValue: testCase.value
+            )
+            let tsi = try TSIWriter().write(
+                MappingFile(devices: [Device(name: "Generic MIDI", mappings: [mapping])])
+            )
+            let cmad = try firstCMADPayload(in: tsi)
+
+            XCTAssertEqual(readUInt32BE(cmad, at: 36), 1)
+            XCTAssertEqual(readUInt32BE(cmad, at: 40), 1)
+            XCTAssertEqual(readUInt32BE(cmad, at: 44), testCase.expectedSelector)
+
+            let ledOffset = 76 // 52-byte fixed header + empty comment + 24-byte conditions
+            XCTAssertEqual(readUInt32BE(cmad, at: ledOffset), 1)
+            XCTAssertEqual(readUInt32BE(cmad, at: ledOffset + 4), 0)
+            XCTAssertEqual(readUInt32BE(cmad, at: ledOffset + 8), 1)
+            XCTAssertEqual(readUInt32BE(cmad, at: ledOffset + 12), 7)
+            XCTAssertEqual(readUInt32BE(cmad, at: ledOffset + 28), 1)
+            XCTAssertEqual(readUInt32BE(cmad, at: ledOffset + 32), 1)
+            XCTAssertEqual(readUInt32BE(cmad, at: ledOffset + 36), 1)
+        }
+    }
+
+    func testModifierSelectorValuesRoundTripAsRawIntegers() throws {
+        let cases = [(2548, Float(1)), (2555, Float(7))]
+
+        for (commandID, value) in cases {
+            let mapping = MappingEntry(
+                commandID: commandID,
+                ioType: .input,
+                assignment: .global,
+                interactionMode: .direct,
+                midiChannel: 15,
+                midiNote: 20,
+                controllerType: .button,
+                setToValue: value
+            )
+
+            XCTAssertEqual(try roundTrip(mapping)?.setToValue, value)
+        }
+    }
+
+    func testImportedLegacyMalformedModifierProfileIsRepairedOnWrite() throws {
+        let mapping = MappingEntry(
+            commandID: 2555,
+            ioType: .input,
+            assignment: .global,
+            interactionMode: .hold,
+            midiChannel: 15,
+            midiNote: 20,
+            controllerType: .button,
+            setToValue: 7
+        )
+        let canonical = try firstCMADPayload(
+            in: TSIWriter().write(
+                MappingFile(devices: [Device(name: "Generic MIDI", mappings: [mapping])])
+            )
+        )
+        let legacyMalformed = replacingCoordinatedProfile(
+            in: canonical,
+            hasValueUI: 0,
+            valueUIType: 1,
+            setTo: Float32(7).bitPattern,
+            ledMinType: 1,
+            ledMinData: 0,
+            ledMaxType: 1,
+            ledMaxData: 1,
+            blend: 0,
+            unknownVUI: 1,
+            resolution: 1
+        )
+        let imported = try importedMappingFile(cmad: legacyMalformed, commandID: 2555)
+
+        let repaired = try firstCMADPayload(in: TSIWriter().write(imported))
+
+        XCTAssertEqual(repaired, canonical)
+    }
+
     // MARK: - Corrupt-Frame Surfacing Tests (M10)
 
     /// Writes a MappingFile through TSIWriter and returns the decoded binary frame data.
@@ -1565,6 +2053,14 @@ final class TSIInterpreterTests: XCTestCase {
         let tsiData = try writer.write(file)
         let base64 = try TSIParser.extractControllerData(from: tsiData)
         return try TSIParser().decodeBase64(base64)
+    }
+
+    private func firstCMADPayload(in tsi: Data) throws -> Data {
+        let base64 = try TSIParser.extractControllerData(from: tsi)
+        let binary = try TSIParser().decodeBase64(base64)
+        let cmadOffset = try XCTUnwrap(frameOffsets(of: "CMAD", in: binary).first)
+        let size = Int(readUInt32BE(binary, at: cmadOffset + 4))
+        return binary.subdata(in: (cmadOffset + 8)..<(cmadOffset + 8 + size))
     }
 
     /// Parses binary frame data and interprets it into a MappingFile.
@@ -2130,6 +2626,110 @@ final class TSIInterpreterTests: XCTestCase {
         return cmad
     }
 
+    /// Complete CMAD carrying intentionally non-profile wire values. The
+    /// literals are independent of the writer so this catches any canonical
+    /// rebuild of fields that the user did not edit.
+    private func noncanonicalCMAD(comment: String) -> Data {
+        let fixedScalars: [UInt32] = [
+            4,              // DeviceType: Generic MIDI
+            1,              // ControllerType: fader
+            3,              // InteractionMode: direct
+            2,              // Assignment: Deck C
+            2,              // AutoRepeat: true, noncanonical bool wire value
+            3,              // Invert: true, noncanonical bool wire value
+            4,              // SoftTakeover: true, noncanonical bool wire value
+            0x8000_0000,    // RotarySensitivity: negative zero
+            0x3E80_0000,    // RotaryAcceleration: 0.25
+            9,              // HasValueUI
+            7,              // ValueUIType
+            0x8000_0000,    // SetValueTo: negative zero
+        ]
+        let conditionScalars: [UInt32] = [
+            2, 0xAABB_CCDD, 3,
+            4, 0x0102_0304, 5,
+        ]
+        let ledScalars: [UInt32] = [
+            2, 0x7FC0_1234, // min type/data: NaN payload
+            2, 0x3F80_0000, // max type/data: 1.0
+            11, 119,
+            5, 6,
+            0x1122_3344,    // UnknownVUI
+            0x7FC0_ABCD,    // Resolution raw NaN payload
+            0xA5A5_A5A5,   // UseFactoryMap
+        ]
+
+        var result = fixedScalars.reduce(into: Data()) { $0.append(be32($1)) }
+        result.append(be32(UInt32(comment.utf16.count)))
+        result.append(utf16BE(comment))
+        for scalar in conditionScalars + ledScalars {
+            result.append(be32(scalar))
+        }
+        return result
+    }
+
+    private func importedMappingFile(
+        cmad: Data,
+        commandID: UInt32 = 100,
+        ioType: UInt32 = 0
+    ) throws -> MappingFile {
+        let cmai = cmaiPayload(
+            bindingId: TSIBindingID.unassigned,
+            ioType: ioType,
+            commandId: commandID,
+            cmadBytes: rawFrame("CMAD", cmad)
+        )
+        return try interpretCMAS(be32(1) + rawFrame("CMAI", cmai))
+    }
+
+    private func replacingUInt32(in data: Data, at offset: Int, with value: UInt32) -> Data {
+        var result = data
+        result.replaceSubrange(offset..<(offset + 4), with: be32(value))
+        return result
+    }
+
+    private func cmadTailOffset(in data: Data) -> Int {
+        52 + Int(readUInt32BE(data, at: 48)) * 2
+    }
+
+    private func replacingComment(in data: Data, with comment: String) -> Data {
+        let oldTail = cmadTailOffset(in: data)
+        return data.prefix(48)
+            + be32(UInt32(comment.utf16.count))
+            + utf16BE(comment)
+            + data.suffix(from: oldTail)
+    }
+
+    private func replacingCoordinatedProfile(
+        in data: Data,
+        hasValueUI: UInt32,
+        valueUIType: UInt32,
+        setTo: UInt32,
+        ledMinType: UInt32,
+        ledMinData: UInt32,
+        ledMaxType: UInt32,
+        ledMaxData: UInt32,
+        blend: UInt32,
+        unknownVUI: UInt32,
+        resolution: UInt32
+    ) -> Data {
+        var result = data
+        for (offset, value) in [
+            (36, hasValueUI), (40, valueUIType), (44, setTo),
+        ] {
+            result = replacingUInt32(in: result, at: offset, with: value)
+        }
+        let led = cmadTailOffset(in: result) + 24
+        for (offset, value) in [
+            (led, ledMinType), (led + 4, ledMinData),
+            (led + 8, ledMaxType), (led + 12, ledMaxData),
+            (led + 28, blend), (led + 32, unknownVUI),
+            (led + 36, resolution),
+        ] {
+            result = replacingUInt32(in: result, at: offset, with: value)
+        }
+        return result
+    }
+
     /// CMAI payload: 12-byte header (bindingId, ioType, commandId) + CMAD bytes.
     private func cmaiPayload(bindingId: UInt32 = TSIBindingID.unassigned,
                              ioType: UInt32 = 0,
@@ -2347,10 +2947,10 @@ final class TSIInterpreterTests: XCTestCase {
         XCTAssertEqual(mappings.first?.midiChannel, 1)
     }
 
-    func testDuplicateDCBMBindingIdsThrow() throws {
-        // Two nested DCBM entries carrying the SAME BindingId — a last-wins
-        // overwrite would silently rebind every CMAI referencing the id and
-        // persist the wrong MIDI control on the next save.
+    func testDuplicateDCBMBindingIdsUseFirstDocumentOrderValue() throws {
+        // Structurally valid duplicates remain openable for exact no-op saves.
+        // The interpreter selects the first value; the source inventory blocks
+        // any edited ordinary overwrite that would collapse the duplicate.
         let entry1 = rawFrame("DCBM", be32(0) + tsiString("Ch01.CC.010"))
         let entry2 = rawFrame("DCBM", be32(0) + tsiString("Ch01.CC.020"))
         let cmai = cmaiPayload(bindingId: 0, cmadBytes: rawFrame("CMAD", validCMAD()))
@@ -2358,9 +2958,8 @@ final class TSIInterpreterTests: XCTestCase {
             + rawFrame("CMAS", be32(1) + rawFrame("CMAI", cmai))
             + rawFrame("DCBM", be32(2) + entry1 + entry2)
 
-        XCTAssertThrowsError(try interpretDEVI(deviPayload)) { error in
-            XCTAssertEqual(error as? TSIInterpreterError, .malformedMidiBindingList)
-        }
+        let result = try interpretDEVI(deviPayload)
+        XCTAssertEqual(result.devices.first?.mappings.first?.midiCC, 10)
     }
 
     // MARK: - Structural Audit Tests (Chunk 1, systematic pass)
@@ -2540,6 +3139,132 @@ final class TSIInterpreterTests: XCTestCase {
         let deviPayload = tsiString("Test") + rawFrame("DDPT", tsiString("In Port"))
         XCTAssertThrowsError(try interpretDEVI(deviPayload)) { error in
             XCTAssertEqual(error as? TSIInterpreterError, .malformedDeviceMetadata(frame: "DDPT"))
+        }
+    }
+
+    // MARK: - Shared Binary Resource Budgets
+
+    func testUTF16StringByteLimitAtMinusOneLimitAndPlusOne() throws {
+        let deviPayload = tsiString("AB") + rawFrame("CMAS", be32(0))
+        let binary = rawFrame("DIOM", rawFrame("DEVS", be32(1) + rawFrame("DEVI", deviPayload)))
+        let frames = try TSIParser().parseFrames(from: binary)
+
+        for maximum in [3, 4, 5] {
+            let limits = TSIParseLimits(maximumUTF16StringBytes: maximum)
+            if maximum == 3 {
+                XCTAssertThrowsError(try TSIInterpreter.interpret(frames: frames, limits: limits)) {
+                    XCTAssertEqual($0 as? TSIParserError, .utf16StringByteLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try TSIInterpreter.interpret(frames: frames, limits: limits).devices.first?.name, "AB")
+            }
+        }
+    }
+
+    func testNestedDCBMStringsUseTheSameUTF16ByteBudget() throws {
+        let binding = rawFrame("DCBM", be32(0) + tsiString("AB"))
+        let deviPayload = tsiString("T")
+            + rawFrame("DCBM", be32(1) + binding)
+            + rawFrame("CMAS", be32(0))
+        let binary = rawFrame("DIOM", rawFrame("DEVS", be32(1) + rawFrame("DEVI", deviPayload)))
+        let frames = try TSIParser().parseFrames(from: binary)
+
+        XCTAssertThrowsError(try TSIInterpreter.interpret(
+            frames: frames,
+            limits: TSIParseLimits(maximumUTF16StringBytes: 3)
+        )) {
+            XCTAssertEqual($0 as? TSIParserError, .utf16StringByteLimitExceeded)
+        }
+    }
+
+    func testBinaryDepthLimitAtMinusOneLimitAndPlusOne() throws {
+        var child = rawFrame("CMAS", be32(0))
+        child = rawFrame("DDAT", rawFrame("DDAT", child))
+        let deviPayload = tsiString("T") + child
+        let binary = rawFrame("DIOM", rawFrame("DEVS", be32(1) + rawFrame("DEVI", deviPayload)))
+        let frames = try TSIParser().parseFrames(from: binary)
+
+        for maximum in [5, 6, 7] {
+            let limits = TSIParseLimits(maximumBinaryContainerDepth: maximum)
+            if maximum == 5 {
+                XCTAssertThrowsError(try TSIInterpreter.interpret(frames: frames, limits: limits)) {
+                    XCTAssertEqual($0 as? TSIParserError, .binaryDepthLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try TSIInterpreter.interpret(frames: frames, limits: limits).devices.count, 1)
+            }
+        }
+    }
+
+    func testCMASPerContainerFrameLimitAtMinusOneLimitAndPlusOne() throws {
+        let placeholder = rawFrame(
+            "CMAI",
+            cmaiPayload(commandId: 0, cmadBytes: rawFrame("CMAD", validCMAD()))
+        )
+        let cmas = rawFrame("CMAS", be32(3) + placeholder + placeholder + placeholder)
+        let binary = rawFrame(
+            "DIOM",
+            rawFrame("DEVS", be32(1) + rawFrame("DEVI", tsiString("T") + cmas))
+        )
+        let frames = try TSIParser().parseFrames(from: binary)
+
+        for maximum in [2, 3, 4] {
+            let limits = TSIParseLimits(maximumFramesPerContainer: maximum)
+            if maximum == 2 {
+                XCTAssertThrowsError(try TSIInterpreter.interpret(frames: frames, limits: limits)) {
+                    XCTAssertEqual($0 as? TSIParserError, .frameCountLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try TSIInterpreter.interpret(frames: frames, limits: limits).devices.first?.mappings.count, 0)
+            }
+        }
+    }
+
+    func testDCBMPerContainerFrameLimitAtMinusOneLimitAndPlusOne() throws {
+        let entries = (0..<3).reduce(into: Data()) { data, index in
+            data.append(rawFrame("DCBM", be32(UInt32(index)) + tsiString("Ch01.CC.00\(index)")))
+        }
+        let deviPayload = tsiString("T")
+            + rawFrame("DCBM", be32(3) + entries)
+            + rawFrame("CMAS", be32(0))
+        let binary = rawFrame("DIOM", rawFrame("DEVS", be32(1) + rawFrame("DEVI", deviPayload)))
+        let frames = try TSIParser().parseFrames(from: binary)
+
+        for maximum in [2, 3, 4] {
+            let limits = TSIParseLimits(maximumFramesPerContainer: maximum)
+            if maximum == 2 {
+                XCTAssertThrowsError(try TSIInterpreter.interpret(frames: frames, limits: limits)) {
+                    XCTAssertEqual($0 as? TSIParserError, .frameCountLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try TSIInterpreter.interpret(frames: frames, limits: limits).devices.count, 1)
+            }
+        }
+    }
+
+    func testCumulativeFrameBudgetIsSharedAcrossNestedContainers() throws {
+        let placeholder = rawFrame(
+            "CMAI",
+            cmaiPayload(commandId: 0, cmadBytes: rawFrame("CMAD", validCMAD()))
+        )
+        let binary = rawFrame(
+            "DIOM",
+            rawFrame("DEVS", be32(1) + rawFrame(
+                "DEVI",
+                tsiString("T") + rawFrame("CMAS", be32(3) + placeholder + placeholder + placeholder)
+            ))
+        )
+        let frames = try TSIParser().parseFrames(from: binary)
+
+        for maximum in [9, 10, 11] {
+            let limits = TSIParseLimits(maximumCumulativeFrames: maximum)
+            if maximum == 9 {
+                XCTAssertThrowsError(try TSIInterpreter.interpret(frames: frames, limits: limits)) {
+                    XCTAssertEqual($0 as? TSIParserError, .cumulativeFrameLimitExceeded)
+                }
+            } else {
+                XCTAssertEqual(try TSIInterpreter.interpret(frames: frames, limits: limits).devices.count, 1)
+            }
         }
     }
 

@@ -8,6 +8,7 @@
 //
 
 import XCTest
+import AppKit
 @testable import XtremeMapping
 
 @MainActor
@@ -61,8 +62,13 @@ final class WizardCoordinatorTests: XCTestCase {
 
     /// Attaches a document and restarts learning so save paths have a target.
     @discardableResult
-    private func attachDocument(_ document: TraktorMappingDocument = TraktorMappingDocument()) -> TraktorMappingDocument {
-        coordinator.start(document: document)
+    private func attachDocument(
+        _ document: TraktorMappingDocument = TraktorMappingDocument(),
+        destinationDeviceID: Device.ID? = nil
+    ) -> TraktorMappingDocument {
+        coordinator.start(document: document, destinationDeviceID: destinationDeviceID)
+        coordinator.setupConfig.controllerName = "Test Controller"
+        coordinator.setupConfig.inputPort = "Test In"
         coordinator.beginLearning()
         return document
     }
@@ -155,7 +161,7 @@ final class WizardCoordinatorTests: XCTestCase {
         XCTAssertEqual(entry.midiAssignment, try .note(channel: 16, number: 72))
     }
 
-    func testConflictIdentityUsesRawCommandIDWhenNamesMatch() {
+    func testConflictIdentityUsesRawCommandIDWhenNamesMatch() throws {
         let observedBeatPhase = MappingEntry(
             commandID: 513,
             assignment: .deckB,
@@ -169,29 +175,190 @@ final class WizardCoordinatorTests: XCTestCase {
         XCTAssertEqual(observedBeatPhase.commandName, historicBeatPhase.commandName)
 
         XCTAssertNotEqual(
-            WizardCoordinator.bindingKey(for: observedBeatPhase),
-            WizardCoordinator.bindingKey(for: historicBeatPhase)
+            try XCTUnwrap(SemanticBindingKey(entry: observedBeatPhase)),
+            try XCTUnwrap(SemanticBindingKey(entry: historicBeatPhase))
         )
     }
 
-    func testConflictIdentityPreservesAssignmentAndQuantizedSetValueSemantics() {
+    func testConflictIdentityUsesCanonicalTargetAndCommandAwareSetToWireValue() throws {
         let source = MappingEntry(commandID: 2328, assignment: .deckA, setToValue: 2.49)
         let sameQuantizedValue = MappingEntry(commandID: 2328, assignment: .deckA, setToValue: 2.40)
         let differentTarget = MappingEntry(commandID: 2328, assignment: .deckB, setToValue: 2.49)
         let differentValue = MappingEntry(commandID: 2328, assignment: .deckA, setToValue: 2.51)
+        let positiveZero = MappingEntry(commandID: 100, assignment: .deckA, setToValue: 0.0)
+        let negativeZero = MappingEntry(commandID: 100, assignment: .global, setToValue: -0.0)
 
         XCTAssertEqual(
-            WizardCoordinator.bindingKey(for: source),
-            WizardCoordinator.bindingKey(for: sameQuantizedValue)
+            try XCTUnwrap(SemanticBindingKey(entry: source)),
+            try XCTUnwrap(SemanticBindingKey(entry: sameQuantizedValue)),
+            "Hotcue set-to is an integer selector on the wire"
         )
         XCTAssertNotEqual(
-            WizardCoordinator.bindingKey(for: source),
-            WizardCoordinator.bindingKey(for: differentTarget)
+            try XCTUnwrap(SemanticBindingKey(entry: source)),
+            try XCTUnwrap(SemanticBindingKey(entry: differentTarget))
         )
         XCTAssertNotEqual(
-            WizardCoordinator.bindingKey(for: source),
-            WizardCoordinator.bindingKey(for: differentValue)
+            try XCTUnwrap(SemanticBindingKey(entry: source)),
+            try XCTUnwrap(SemanticBindingKey(entry: differentValue))
         )
+        XCTAssertNotEqual(
+            try XCTUnwrap(SemanticBindingKey(entry: positiveZero)),
+            try XCTUnwrap(SemanticBindingKey(entry: negativeZero)),
+            "Non-indexed commands retain exact Float32 wire bits even when their canonical targets match"
+        )
+    }
+
+    func testConflictIdentityIncludesDirectionAndBothCompleteModifierTuples() throws {
+        let base = MappingEntry(
+            commandID: 100,
+            ioType: .input,
+            assignment: .deckA,
+            modifier1Condition: ModifierCondition(modifier: 2, value: 3),
+            modifier2Condition: ModifierCondition(modifier: 4, value: 5)
+        )
+        var direction = base
+        direction.ioType = .output
+        var modifierNumber = base
+        modifierNumber.modifier1Condition = ModifierCondition(modifier: 3, value: 3)
+        var modifierValue = base
+        modifierValue.modifier2Condition = ModifierCondition(modifier: 4, value: 6)
+        var canonicalInactive = base
+        canonicalInactive.modifier1Condition = nil
+        var explicitInactive = canonicalInactive
+        explicitInactive.modifier1Condition = ModifierCondition(modifier: 0, value: 0)
+
+        let baseKey = try XCTUnwrap(SemanticBindingKey(entry: base))
+        XCTAssertNotEqual(baseKey, try XCTUnwrap(SemanticBindingKey(entry: direction)))
+        XCTAssertNotEqual(baseKey, try XCTUnwrap(SemanticBindingKey(entry: modifierNumber)))
+        XCTAssertNotEqual(baseKey, try XCTUnwrap(SemanticBindingKey(entry: modifierValue)))
+        XCTAssertEqual(
+            try XCTUnwrap(SemanticBindingKey(entry: canonicalInactive)),
+            try XCTUnwrap(SemanticBindingKey(entry: explicitInactive)),
+            "Only the fully canonical inactive condition normalizes to nil"
+        )
+    }
+
+    func testConflictIdentityRejectsUnsupportedImportedConditionTarget() throws {
+        var entry = MappingEntry(
+            commandID: 100,
+            modifier1Condition: ModifierCondition(modifier: 2, value: 3)
+        )
+        var payload = Data(repeating: 0, count: 120)
+        func store(_ value: UInt32, at offset: Int) {
+            var bigEndian = value.bigEndian
+            withUnsafeBytes(of: &bigEndian) { bytes in
+                payload.replaceSubrange(offset..<(offset + 4), with: bytes)
+            }
+        }
+        store(2, at: 52)
+        store(99, at: 56)
+        store(3, at: 60)
+        entry.importedCMAD = try XCTUnwrap(ImportedCMAD(payload: payload, semanticAtImport: entry))
+
+        XCTAssertNil(
+            SemanticBindingKey(entry: entry),
+            "A condition target the semantic model cannot represent must never be replaceable"
+        )
+    }
+
+    func testConditionOneNativeTargetRemainsNonreplaceableWhenConditionTwoChanges() throws {
+        var entry = MappingEntry(
+            commandID: 100,
+            modifier1Condition: ModifierCondition(modifier: 2, value: 3),
+            modifier2Condition: ModifierCondition(modifier: 4, value: 5)
+        )
+        var payload = Data(repeating: 0, count: 120)
+        func store(_ value: UInt32, at offset: Int) {
+            var bigEndian = value.bigEndian
+            withUnsafeBytes(of: &bigEndian) { bytes in
+                payload.replaceSubrange(offset..<(offset + 4), with: bytes)
+            }
+        }
+        store(2, at: 52)
+        store(99, at: 56)
+        store(3, at: 60)
+        entry.importedCMAD = try XCTUnwrap(ImportedCMAD(payload: payload, semanticAtImport: entry))
+        entry.modifier2Condition = ModifierCondition(modifier: 4, value: 6)
+
+        XCTAssertNil(SemanticBindingKey(entry: entry))
+    }
+
+    func testConditionTwoNativeTargetRemainsNonreplaceableWhenConditionOneChanges() throws {
+        var entry = MappingEntry(
+            commandID: 100,
+            modifier1Condition: ModifierCondition(modifier: 2, value: 3),
+            modifier2Condition: ModifierCondition(modifier: 4, value: 5)
+        )
+        var payload = Data(repeating: 0, count: 120)
+        func store(_ value: UInt32, at offset: Int) {
+            var bigEndian = value.bigEndian
+            withUnsafeBytes(of: &bigEndian) { bytes in
+                payload.replaceSubrange(offset..<(offset + 4), with: bytes)
+            }
+        }
+        store(4, at: 64)
+        store(88, at: 68)
+        store(5, at: 72)
+        entry.importedCMAD = try XCTUnwrap(ImportedCMAD(payload: payload, semanticAtImport: entry))
+        entry.modifier1Condition = ModifierCondition(modifier: 2, value: 4)
+
+        XCTAssertNil(SemanticBindingKey(entry: entry))
+    }
+
+    func testStartRejectsInvalidMultiDeviceDestination() {
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [
+            Device(name: "First"),
+            Device(name: "Second"),
+        ]))
+
+        XCTAssertFalse(coordinator.start(document: document, destinationDeviceID: nil))
+        XCTAssertFalse(coordinator.isListening)
+        XCTAssertTrue(coordinator.capturedMappings.isEmpty)
+        XCTAssertTrue(coordinator.statusMessage.localizedCaseInsensitiveContains("destination"))
+    }
+
+    func testStartRebindsCleanSessionAndOldCapturesCannotReachNewDocument() throws {
+        let firstDevice = Device(name: "First")
+        let firstDocument = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [firstDevice])
+        )
+        XCTAssertTrue(coordinator.start(document: firstDocument, destinationDeviceID: firstDevice.id))
+        coordinator.setupConfig.controllerName = "First Controller"
+        coordinator.setupConfig.inputPort = "First In"
+        coordinator.beginLearning()
+        coordinator.switchToTab(.decks)
+        coordinator.handleMIDIReceived(noteOn(60))
+        coordinator.showOverwriteAlert = true
+        coordinator.conflictingCommands = ["Old Conflict"]
+        XCTAssertFalse(coordinator.capturedMappings.isEmpty)
+        XCTAssertTrue(coordinator.isListening)
+
+        let secondDevice = Device(name: "Second")
+        let secondDocument = TraktorMappingDocument(
+            mappingFile: MappingFile(devices: [secondDevice])
+        )
+        XCTAssertTrue(coordinator.start(document: secondDocument, destinationDeviceID: secondDevice.id))
+
+        XCTAssertEqual(coordinator.phase, .setup)
+        XCTAssertFalse(coordinator.isListening)
+        XCTAssertTrue(coordinator.capturedMappings.isEmpty)
+        XCTAssertNil(coordinator.pendingMIDI)
+        XCTAssertNil(coordinator.shiftMIDI)
+        XCTAssertFalse(coordinator.isShiftHeld)
+        XCTAssertFalse(coordinator.showOverwriteAlert)
+        XCTAssertTrue(coordinator.conflictingCommands.isEmpty)
+        XCTAssertFalse(coordinator.shouldDismiss)
+
+        coordinator.setupConfig.controllerName = "Second Controller"
+        coordinator.setupConfig.inputPort = "Second In"
+        coordinator.beginLearning()
+        coordinator.switchToTab(.decks)
+        coordinator.handleMIDIReceived(noteOn(61))
+        coordinator.performSave(overwrite: false)
+
+        XCTAssertTrue(firstDocument.mappingFile.devices[0].mappings.isEmpty)
+        XCTAssertEqual(secondDocument.mappingFile.devices[0].mappings.count, 1)
+        XCTAssertEqual(secondDocument.mappingFile.devices[0].mappings[0].midiNote, 61)
     }
 
     func testNextSkipsTabsWhoseUnverifiedFunctionsWereRemoved() {
@@ -221,6 +388,45 @@ final class WizardCoordinatorTests: XCTestCase {
 
         XCTAssertEqual(coordinator.currentFunction?.displayName, "Hotcue 8")
         XCTAssertTrue(coordinator.isAtLastStep)
+    }
+
+    func testCancelledFinalStepConflictKeepsListeningAndCanRecapture() async throws {
+        let device = Device(name: "Generic MIDI")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [device]))
+        attachDocument(document, destinationDeviceID: device.id)
+        coordinator.setupConfig.numberOfChannels = 1
+        coordinator.autoAdvanceEnabled = false
+        coordinator.switchToTab(.cueLoop)
+        for _ in 1..<WizardTab.cueLoop.functions.count {
+            coordinator.next()
+        }
+        let function = try XCTUnwrap(coordinator.currentFunction)
+        let assignment = try XCTUnwrap(coordinator.currentAssignment)
+        document.mappingFile.devices[0].mappings = [
+            MappingEntry(
+                commandID: function.commandID,
+                assignment: assignment,
+                setToValue: function.setToValue ?? 0
+            )
+        ]
+
+        coordinator.handleMIDIReceived(noteOn(60))
+        coordinator.fireAutoAdvance()
+
+        XCTAssertTrue(coordinator.showOverwriteAlert)
+        XCTAssertEqual(coordinator.phase, .learning)
+        XCTAssertTrue(coordinator.isListening, "A pending conflict choice must keep MIDI learning active")
+
+        // SwiftUI dismisses the alert's binding before running a cancel action.
+        coordinator.showOverwriteAlert = false
+        MIDIInputManager.shared.onMIDIReceived?(noteOn(61))
+        await Task.yield()
+
+        let recaptured = coordinator.capturedMappings.first {
+            $0.function.id == function.id && $0.assignment == assignment
+        }
+        XCTAssertEqual(recaptured?.midiMessage.note, 61)
+        XCTAssertEqual(document.mappingFile.devices[0].mappings.count, 1)
     }
 
     // MARK: - Task 3.2: note-off never creates a capture
@@ -428,20 +634,20 @@ final class WizardCoordinatorTests: XCTestCase {
     }
 
     func testSaveToDocumentWithConflictCancelsPendingAutoAdvance() async throws {
-        let document = attachDocument()
+        let device = Device(name: "Generic MIDI")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [device]))
+        attachDocument(document, destinationDeviceID: device.id)
         coordinator.autoAdvanceEnabled = true
         coordinator.switchToTab(.decks)
         guard let function = coordinator.currentFunction else {
             return XCTFail("Expected a current function on the mixer tab")
         }
-        document.mappingFile.devices = [
-            Device(mappings: [
-                MappingEntry(
-                    commandID: function.commandID,
-                    assignment: try XCTUnwrap(coordinator.currentAssignment),
-                    setToValue: function.setToValue ?? 0
-                )
-            ])
+        document.mappingFile.devices[0].mappings = [
+            MappingEntry(
+                commandID: function.commandID,
+                assignment: try XCTUnwrap(coordinator.currentAssignment),
+                setToValue: function.setToValue ?? 0
+            )
         ]
 
         coordinator.handleMIDIReceived(noteOn(60))
@@ -519,22 +725,22 @@ final class WizardCoordinatorTests: XCTestCase {
     // MARK: - Task 3.3: conflict scope alignment (L10) + entry channel (L9)
 
     func testConflictInOtherDeviceDoesNotTriggerOverwriteAlert() throws {
-        let document = attachDocument()
+        let firstDevice = Device(name: "First")
+        let secondDevice = Device(name: "Second")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [firstDevice, secondDevice]))
+        attachDocument(document, destinationDeviceID: firstDevice.id)
         coordinator.switchToTab(.decks)
         guard let function = coordinator.currentFunction else {
             return XCTFail("Expected a current function on the mixer tab")
         }
         // Conflict lives in devices[1]; the wizard only writes to devices[0],
         // so it must not count.
-        document.mappingFile.devices = [
-            Device(),
-            Device(mappings: [
-                MappingEntry(
-                    commandID: function.commandID,
-                    assignment: try XCTUnwrap(coordinator.currentAssignment),
-                    setToValue: function.setToValue ?? 0
-                )
-            ])
+        document.mappingFile.devices[1].mappings = [
+            MappingEntry(
+                commandID: function.commandID,
+                assignment: try XCTUnwrap(coordinator.currentAssignment),
+                setToValue: function.setToValue ?? 0
+            )
         ]
 
         coordinator.handleMIDIReceived(noteOn(60))
@@ -550,19 +756,19 @@ final class WizardCoordinatorTests: XCTestCase {
     }
 
     func testConflictInFirstDeviceStillTriggersOverwriteAlert() throws {
-        let document = attachDocument()
+        let firstDevice = Device(name: "First")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [firstDevice]))
+        attachDocument(document, destinationDeviceID: firstDevice.id)
         coordinator.switchToTab(.decks)
         guard let function = coordinator.currentFunction else {
             return XCTFail("Expected a current function on the mixer tab")
         }
-        document.mappingFile.devices = [
-            Device(mappings: [
-                MappingEntry(
-                    commandID: function.commandID,
-                    assignment: try XCTUnwrap(coordinator.currentAssignment),
-                    setToValue: function.setToValue ?? 0
-                )
-            ])
+        document.mappingFile.devices[0].mappings = [
+            MappingEntry(
+                commandID: function.commandID,
+                assignment: try XCTUnwrap(coordinator.currentAssignment),
+                setToValue: function.setToValue ?? 0
+            )
         ]
 
         coordinator.handleMIDIReceived(noteOn(60))
@@ -586,6 +792,74 @@ final class WizardCoordinatorTests: XCTestCase {
         XCTAssertEqual(saved?.midiChannel, 5,
                        "The entry's channel comes from the captured MIDI message")
         XCTAssertEqual(saved?.midiNote, 60)
+    }
+
+    func testWizardSaveIsOneBackingDocumentUndoTransaction() throws {
+        let existing = MappingEntry(commandID: 100, assignment: .deckA)
+        let device = Device(name: "Generic MIDI", mappings: [existing])
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [device]))
+        let backing = NSDocument()
+        document.backingDocument = backing
+        let undoManager = try XCTUnwrap(backing.undoManager)
+        attachDocument(document, destinationDeviceID: device.id)
+        coordinator.switchToTab(.decks)
+        coordinator.handleMIDIReceived(noteOn(61))
+
+        coordinator.performSave(overwrite: false)
+
+        XCTAssertEqual(document.mappingFile.devices[0].mappings.count, 2)
+        XCTAssertTrue(undoManager.canUndo)
+        XCTAssertEqual(undoManager.undoActionName, "Save Wizard Mappings")
+        undoManager.undo()
+        XCTAssertEqual(document.mappingFile.devices[0].mappings, [existing])
+        XCTAssertFalse(undoManager.canUndo, "the entire wizard save must be one Undo action")
+    }
+
+    func testWizardFailedPreflightLeavesDocumentAndUndoUnchanged() throws {
+        let invalidDevice = Device(name: "")
+        let original = MappingFile(devices: [invalidDevice])
+        let document = TraktorMappingDocument(mappingFile: original)
+        let backing = NSDocument()
+        document.backingDocument = backing
+        let undoManager = try XCTUnwrap(backing.undoManager)
+        attachDocument(document, destinationDeviceID: invalidDevice.id)
+        coordinator.switchToTab(.decks)
+        coordinator.handleMIDIReceived(noteOn(61))
+
+        coordinator.performSave(overwrite: false)
+
+        XCTAssertEqual(document.mappingFile, original)
+        XCTAssertFalse(undoManager.canUndo)
+        XCTAssertEqual(coordinator.phase, .learning)
+        XCTAssertTrue(coordinator.statusMessage.localizedCaseInsensitiveContains("cannot"))
+    }
+
+    func testWizardOverwriteIsScopedToExplicitDestinationDevice() throws {
+        let first = Device(name: "First")
+        let target = Device(name: "Target")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [first, target]))
+        attachDocument(document, destinationDeviceID: target.id)
+        coordinator.switchToTab(.decks)
+        let function = try XCTUnwrap(coordinator.currentFunction)
+        let assignment = try XCTUnwrap(coordinator.currentAssignment)
+        let conflict = MappingEntry(
+            commandID: function.commandID,
+            assignment: assignment,
+            setToValue: function.setToValue ?? 0
+        )
+        document.mappingFile.devices[0].mappings = [conflict]
+        document.mappingFile.devices[1].mappings = [conflict.copyWithNewID()]
+        coordinator.handleMIDIReceived(noteOn(61))
+        XCTAssertTrue(coordinator.isListening)
+
+        coordinator.performSave(overwrite: true)
+
+        XCTAssertEqual(document.mappingFile.devices[0].mappings, [conflict])
+        XCTAssertEqual(document.mappingFile.devices[1].mappings.count, 1)
+        XCTAssertEqual(document.mappingFile.devices[1].mappings[0].midiNote, 61)
+        XCTAssertEqual(coordinator.phase, .complete)
+        XCTAssertFalse(coordinator.isListening)
+        XCTAssertNil(MIDIInputManager.shared.onMIDIReceived)
     }
 
     func testSetupChangeCallbackIsWiredToManager() {
