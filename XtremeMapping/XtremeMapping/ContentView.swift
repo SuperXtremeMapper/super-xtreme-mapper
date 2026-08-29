@@ -22,6 +22,8 @@ struct ContentView: View {
     @State private var showIntelMacAlert = false
     @State private var mappingTransferError: MappingTransferError?
     @State private var workflowDestinationError: MappingTransferError?
+    @State private var deckCloneError: String?
+    @State private var deckCloneStatus: String?
 
     private var mappingPasteDisabledReason: String? {
         if isLocked {
@@ -46,7 +48,18 @@ struct ContentView: View {
     enum SheetType: Identifiable {
         case about
         case settings
-        var id: Self { self }
+        case deckClone(MappingTransformPlan)
+
+        var id: String {
+            switch self {
+            case .about:
+                "about"
+            case .settings:
+                "settings"
+            case .deckClone:
+                "deck-clone"
+            }
+        }
     }
 
     /// Check if running on Apple Silicon
@@ -137,9 +150,17 @@ struct ContentView: View {
                         pasteDisabledReason: mappingPasteDisabledReason,
                         onDuplicate: duplicateSelected,
                         onDelete: deleteSelectedMappings,
+                        canCloneDeckA: DeckClonePresentation.isCloneEnabled(
+                            isLocked: isLocked,
+                            selectedMappingIDs: selectedMappings,
+                            in: document.mappingFile
+                        ),
+                        onCloneDeckA: requestDeckClone,
                         onAssignmentChange: { assignment in
-                            updateSelectedMappings { $0.assignment = assignment }
+                            changeSelectedDeck(to: assignment)
                         },
+                        onMIDIChannelChange: changeSelectedMIDIChannel,
+                        onCommentChange: changeSelectedComment,
                         onControllerTypeChange: { type in
                             updateSelectedMappings { mapping in
                                 mapping.controllerType = type
@@ -197,6 +218,11 @@ struct ContentView: View {
                     .font(AppThemeV2.Typography.caption)
                     .foregroundColor(AppThemeV2.Colors.amber)
                 Spacer()
+                if let deckCloneStatus {
+                    Text(deckCloneStatus)
+                        .font(AppThemeV2.Typography.caption)
+                        .foregroundColor(AppThemeV2.Colors.stone300)
+                }
                 if !selectedMappings.isEmpty {
                     Text("\(selectedMappings.count) selected")
                         .font(AppThemeV2.Typography.caption)
@@ -222,6 +248,11 @@ struct ContentView: View {
                 AboutSheet()
             case .settings:
                 APIKeySettingsView()
+            case .deckClone(let plan):
+                DeckCloneReviewSheet(plan: plan) { choices in
+                    activeSheet = nil
+                    executeDeckClone(plan, choices: choices)
+                }
             }
         }
         .alert("Apple Silicon Required", isPresented: $showIntelMacAlert) {
@@ -253,6 +284,17 @@ struct ContentView: View {
                 workflowDestinationError?.localizedDescription
                     ?? "Select a mapping in the device you want to edit."
             )
+        }
+        .alert(
+            "Couldn't Clone Mappings",
+            isPresented: Binding(
+                get: { deckCloneError != nil },
+                set: { if !$0 { deckCloneError = nil } }
+            )
+        ) {
+            Button("OK", role: .cancel) { deckCloneError = nil }
+        } message: {
+            Text(deckCloneError ?? "The clone failed.")
         }
         // Voice Learn overlay
         .overlay {
@@ -545,6 +587,106 @@ struct ContentView: View {
 
     private func pasteMappings(_ mappings: [MappingEntry]) {
         insertTransferredMappings(mappings, actionName: "Paste Mappings")
+    }
+
+    private func requestDeckClone(_ destinations: Set<DeckCloneDestination>) {
+        deckCloneStatus = nil
+        deckCloneError = nil
+
+        guard DeckClonePresentation.isCloneEnabled(
+            isLocked: isLocked,
+            selectedMappingIDs: selectedMappings,
+            in: document.mappingFile
+        ) else { return }
+
+        let plan = MappingTransformPlanner.plan(
+            MappingTransformRequest(
+                selectedMappingIDs: selectedMappings,
+                destinations: destinations
+            ),
+            in: document.mappingFile
+        )
+
+        guard plan.statusText != nil else { return }
+        if plan.reviewItems.isEmpty {
+            executeDeckClone(plan, choices: [:])
+        } else {
+            activeSheet = .deckClone(plan)
+        }
+    }
+
+    private func executeDeckClone(
+        _ plan: MappingTransformPlan,
+        choices: [MappingTransformReviewItem.ID: MappingTransformReviewChoice]
+    ) {
+        do {
+            let result = try MappingTransformExecutor.execute(
+                plan,
+                choices: choices,
+                in: document,
+                undoManager: undoManager
+            )
+            guard let status = DeckClonePresentation.statusText(for: result) else {
+                deckCloneStatus = nil
+                return
+            }
+            selectedMappings = result.createdIDs
+            deckCloneStatus = status
+        } catch {
+            deckCloneError = error.localizedDescription
+        }
+    }
+
+    private func changeSelectedDeck(to assignment: TargetAssignment) {
+        guard !isLocked, !selectedMappings.isEmpty else { return }
+
+        _ = document.performUndoableMutation(
+            actionName: "Change Deck",
+            undoManager: undoManager
+        ) { file in
+            for deviceIndex in file.devices.indices {
+                for mappingIndex in file.devices[deviceIndex].mappings.indices {
+                    let mappingID = file.devices[deviceIndex].mappings[mappingIndex].id
+                    if selectedMappings.contains(mappingID) {
+                        file.devices[deviceIndex].mappings[mappingIndex].assignment = assignment
+                    }
+                }
+            }
+        }
+    }
+
+    private func changeSelectedMIDIChannel(to channel: Int) {
+        guard !isLocked, !selectedMappings.isEmpty else { return }
+
+        do {
+            _ = try document.performUndoableMutation(
+                actionName: "Change MIDI Channel",
+                undoManager: undoManager
+            ) { file in
+                try MappingBatchEditor.applyChannel(
+                    channel,
+                    to: selectedMappings,
+                    in: &file
+                )
+            }
+        } catch {
+            assertionFailure("Invalid context-menu MIDI channel: \(channel)")
+        }
+    }
+
+    private func changeSelectedComment(to comment: String) {
+        guard !isLocked, !selectedMappings.isEmpty else { return }
+
+        _ = document.performUndoableMutation(
+            actionName: "Apply Mapping Comment",
+            undoManager: undoManager
+        ) { file in
+            MappingBatchEditor.applyComment(
+                comment,
+                to: selectedMappings,
+                in: &file
+            )
+        }
     }
 
     private func updateSelectedMappings(_ mutation: (inout MappingEntry) -> Void) {

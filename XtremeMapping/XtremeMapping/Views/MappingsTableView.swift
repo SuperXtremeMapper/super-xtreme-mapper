@@ -8,6 +8,77 @@
 import SwiftUI
 import AppKit
 
+enum DeckClonePresentation {
+    struct MenuOption: Identifiable, Equatable {
+        let title: String
+        let destinations: Set<DeckCloneDestination>
+
+        var id: String { title }
+    }
+
+    static let menuOptions = [
+        MenuOption(title: "Deck B", destinations: [.deckB]),
+        MenuOption(title: "Deck C", destinations: [.deckC]),
+        MenuOption(title: "Deck D", destinations: [.deckD]),
+        MenuOption(
+            title: "Decks B, C and D",
+            destinations: [.deckB, .deckC, .deckD]
+        ),
+    ]
+
+    static let midiChannels = Array(1...16)
+
+    static func isCloneEnabled(
+        isLocked: Bool,
+        selectedMappingIDs: Set<MappingEntry.ID>,
+        in mappingFile: MappingFile
+    ) -> Bool {
+        guard !isLocked, !selectedMappingIDs.isEmpty else { return false }
+
+        return mappingFile.devices.contains { device in
+            device.mappings.contains { mapping in
+                selectedMappingIDs.contains(mapping.id)
+                    && isDeckASource(mapping.assignment)
+            }
+        }
+    }
+
+    static func statusText(for result: MappingTransformExecutionResult) -> String? {
+        guard result.createdCount > 0
+                || result.duplicateSkipCount > 0
+                || result.ignoredCount > 0 else { return nil }
+        return result.statusText
+    }
+
+    static func reviewHeading(itemCount: Int) -> String {
+        "\(itemCount) \(itemCount == 1 ? "mapping needs" : "mappings need") review."
+    }
+
+    private static func isDeckASource(_ assignment: TargetAssignment) -> Bool {
+        switch assignment {
+        case .deckA,
+             .remixDeckASlot1, .remixDeckASlot2,
+             .remixDeckASlot3, .remixDeckASlot4:
+            true
+        default:
+            false
+        }
+    }
+}
+
+extension MappingTransformReviewChoice {
+    var deckCloneTitle: String {
+        switch self {
+        case .keepExisting:
+            "Keep Existing"
+        case .createAnother:
+            "Create Another"
+        case .replaceExisting:
+            "Replace Existing"
+        }
+    }
+}
+
 /// A table view displaying MIDI mappings with columns for all mapping properties.
 ///
 /// Supports multiple selection, drag and drop reordering, and displays command name,
@@ -35,7 +106,11 @@ struct MappingsTableView: View {
     var pasteDisabledReason: String?
     var onDuplicate: (() -> Void)?
     var onDelete: (() -> Void)?
+    var canCloneDeckA: Bool = false
+    var onCloneDeckA: ((Set<DeckCloneDestination>) -> Void)?
     var onAssignmentChange: ((TargetAssignment) -> Void)?
+    var onMIDIChannelChange: ((Int) -> Void)?
+    var onCommentChange: ((String) -> Void)?
     var onControllerTypeChange: ((ControllerType) -> Void)?
     var onInteractionChange: ((InteractionMode) -> Void)?
     var onEncoderModeChange: ((EncoderMode) -> Void)?
@@ -45,6 +120,10 @@ struct MappingsTableView: View {
 
     /// Track the last single-clicked item for shift-selection anchor
     @State private var selectionAnchor: MappingEntry.ID?
+
+    /// A native alert is the lightest-weight input for a batch comment.
+    @State private var isChangingComment = false
+    @State private var commentDraft = ""
 
     /// Current sort order for columns
     @State private var sortOrder = [KeyPathComparator(\MappingEntry.ioTypeSortKey)]
@@ -254,6 +333,17 @@ struct MappingsTableView: View {
                 .disabled(isLocked || !clipboard.hasMappingsData || pasteDisabledReason != nil)
                 .help(pasteDisabledReason ?? "Paste mappings into the selected device.")
 
+            Divider()
+
+            Menu("Clone Deck A to") {
+                ForEach(DeckClonePresentation.menuOptions) { option in
+                    Button(option.title) {
+                        onCloneDeckA?(option.destinations)
+                    }
+                }
+            }
+            .disabled(!canCloneDeckA)
+
             if !selection.isEmpty && !isLocked {
                 Divider()
 
@@ -265,79 +355,100 @@ struct MappingsTableView: View {
 
                 Divider()
 
-                // Assignment submenu
-                Menu("Assignment") {
-                    ForEach(TargetAssignment.allCases, id: \.self) { assignment in
-                        Button(assignment.displayName) {
-                            onAssignmentChange?(assignment)
+                Menu("Change") {
+                    Menu("Deck") {
+                        ForEach(TargetAssignment.allCases, id: \.self) { assignment in
+                            Button(assignment.displayName) {
+                                onAssignmentChange?(assignment)
+                            }
                         }
                     }
-                }
 
-                // Controller Type submenu
-                Menu("Type") {
-                    ForEach(ControllerType.allCases.filter { $0 != .led }, id: \.self) { type in
-                        Button(type.displayName) {
-                            onControllerTypeChange?(type)
+                    Menu("MIDI Channel") {
+                        ForEach(DeckClonePresentation.midiChannels, id: \.self) { channel in
+                            Button("\(channel)") {
+                                onMIDIChannelChange?(channel)
+                            }
                         }
                     }
-                }
 
-                // Interaction submenu - only shows valid modes for selected controller type(s)
-                Menu("Interaction") {
-                    ForEach(validInteractionModesForSelection, id: \.self) { mode in
-                        Button(mode.displayName) {
-                            onInteractionChange?(mode)
+                    Button("Comment…") {
+                        prepareCommentDraft()
+                    }
+
+                    Divider()
+
+                    Menu("Type") {
+                        ForEach(ControllerType.allCases.filter { $0 != .led }, id: \.self) { type in
+                            Button(type.displayName) {
+                                onControllerTypeChange?(type)
+                            }
                         }
                     }
-                }
 
-                // Encoder Mode submenu - only shown when encoder type is selected
-                if showEncoderModeMenu {
-                    Menu("Encoder Mode") {
-                        ForEach(EncoderMode.allCases, id: \.self) { mode in
+                    Menu("Interaction") {
+                        ForEach(validInteractionModesForSelection, id: \.self) { mode in
                             Button(mode.displayName) {
-                                onEncoderModeChange?(mode)
+                                onInteractionChange?(mode)
                             }
                         }
                     }
-                }
 
-                Divider()
-
-                // Modifier 1 submenu
-                Menu("Modifier 1") {
-                    Button("None") { onModifier1Change?(nil) }
-                    Divider()
-                    ForEach(1...8, id: \.self) { mod in
-                        Menu("M\(mod)") {
-                            ForEach(0...7, id: \.self) { value in
-                                Button("= \(value)") {
-                                    onModifier1Change?(ModifierCondition(modifier: mod, value: value))
+                    if showEncoderModeMenu {
+                        Menu("Encoder Mode") {
+                            ForEach(EncoderMode.allCases, id: \.self) { mode in
+                                Button(mode.displayName) {
+                                    onEncoderModeChange?(mode)
                                 }
                             }
                         }
                     }
-                }
 
-                // Modifier 2 submenu
-                Menu("Modifier 2") {
-                    Button("None") { onModifier2Change?(nil) }
                     Divider()
-                    ForEach(1...8, id: \.self) { mod in
-                        Menu("M\(mod)") {
-                            ForEach(0...7, id: \.self) { value in
-                                Button("= \(value)") {
-                                    onModifier2Change?(ModifierCondition(modifier: mod, value: value))
+
+                    Menu("Modifier 1") {
+                        Button("None") { onModifier1Change?(nil) }
+                        Divider()
+                        ForEach(1...8, id: \.self) { mod in
+                            Menu("M\(mod)") {
+                                ForEach(0...7, id: \.self) { value in
+                                    Button("= \(value)") {
+                                        onModifier1Change?(
+                                            ModifierCondition(modifier: mod, value: value)
+                                        )
+                                    }
                                 }
                             }
                         }
                     }
+
+                    Menu("Modifier 2") {
+                        Button("None") { onModifier2Change?(nil) }
+                        Divider()
+                        ForEach(1...8, id: \.self) { mod in
+                            Menu("M\(mod)") {
+                                ForEach(0...7, id: \.self) { value in
+                                    Button("= \(value)") {
+                                        onModifier2Change?(
+                                            ModifierCondition(modifier: mod, value: value)
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Divider()
+
+                    Button("Invert") { onInvertToggle?() }
                 }
-
-                Divider()
-
-                Button("Invert") { onInvertToggle?() }
+            }
+        }
+        .alert("Change Comment", isPresented: $isChangingComment) {
+            TextField("Comment", text: $commentDraft)
+            Button("Cancel", role: .cancel) { }
+            Button("Change") {
+                onCommentChange?(commentDraft)
             }
         }
         .onChange(of: selection) { oldSelection, newSelection in
@@ -354,6 +465,12 @@ struct MappingsTableView: View {
         case .unknown:
             return "UNKNOWN"
         }
+    }
+
+    private func prepareCommentDraft() {
+        let comments = Set(orderedSelectedMappings.map(\.comment))
+        commentDraft = comments.count == 1 ? comments.first ?? "" : ""
+        isChangingComment = true
     }
 
     /// Handles selection changes to support shift-click range selection
