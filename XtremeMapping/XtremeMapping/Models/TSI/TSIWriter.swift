@@ -759,10 +759,10 @@ public struct TSIWriter: Sendable {
             || mapping.modifier2Condition != baseline.modifier2Condition {
             let conditions: [UInt32] = [
                 UInt32(clamping: mapping.modifier1Condition?.modifier ?? 0),
-                0,
+                mapping.modifier1Condition?.target.rawValue ?? 0,
                 UInt32(clamping: mapping.modifier1Condition?.value ?? 0),
                 UInt32(clamping: mapping.modifier2Condition?.modifier ?? 0),
-                0,
+                mapping.modifier2Condition?.target.rawValue ?? 0,
                 UInt32(clamping: mapping.modifier2Condition?.value ?? 0),
             ]
             for (index, value) in conditions.enumerated() {
@@ -984,7 +984,7 @@ public struct TSIWriter: Sendable {
         // (clamping — modifier values also originate from persisted JSON)
         var cond1Id = UInt32(clamping: mapping.modifier1Condition?.modifier ?? 0).bigEndian
         data.append(Data(bytes: &cond1Id, count: 4))
-        var cond1Target = UInt32(0).bigEndian  // Target enum
+        var cond1Target = (mapping.modifier1Condition?.target.rawValue ?? 0).bigEndian
         data.append(Data(bytes: &cond1Target, count: 4))
         var cond1Value = UInt32(clamping: mapping.modifier1Condition?.value ?? 0).bigEndian
         data.append(Data(bytes: &cond1Value, count: 4))
@@ -992,7 +992,7 @@ public struct TSIWriter: Sendable {
         // 17-19. ConditionTwo: Id (4), Target (4), Value (4)
         var cond2Id = UInt32(clamping: mapping.modifier2Condition?.modifier ?? 0).bigEndian
         data.append(Data(bytes: &cond2Id, count: 4))
-        var cond2Target = UInt32(0).bigEndian
+        var cond2Target = (mapping.modifier2Condition?.target.rawValue ?? 0).bigEndian
         data.append(Data(bytes: &cond2Target, count: 4))
         var cond2Value = UInt32(clamping: mapping.modifier2Condition?.value ?? 0).bigEndian
         data.append(Data(bytes: &cond2Value, count: 4))

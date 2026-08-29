@@ -522,8 +522,22 @@ extension MappingEntry: Codable {
         if rawMidiControlName != nil {
             rawMidiBindingID = nil
         }
-        modifier1Condition = try container.decodeIfPresent(ModifierCondition.self, forKey: .modifier1Condition)
-        modifier2Condition = try container.decodeIfPresent(ModifierCondition.self, forKey: .modifier2Condition)
+        let modifier1TargetWasEncoded = try container.decodeIfPresent(
+            ModifierConditionTargetPresence.self,
+            forKey: .modifier1Condition
+        )?.target != nil
+        let modifier2TargetWasEncoded = try container.decodeIfPresent(
+            ModifierConditionTargetPresence.self,
+            forKey: .modifier2Condition
+        )?.target != nil
+        modifier1Condition = try container.decodeIfPresent(
+            ModifierCondition.self,
+            forKey: .modifier1Condition
+        )
+        modifier2Condition = try container.decodeIfPresent(
+            ModifierCondition.self,
+            forKey: .modifier2Condition
+        )
         comment = try container.decode(String.self, forKey: .comment)
         controllerType = try container.decode(ControllerType.self, forKey: .controllerType)
         invert = try container.decode(Bool.self, forKey: .invert)
@@ -569,6 +583,23 @@ extension MappingEntry: Codable {
         ledBlend = try container.decodeIfPresent(Bool.self, forKey: .ledBlend) ?? false
         resolution = try container.decodeIfPresent(Int.self, forKey: .resolution) ?? 1
         importedCMAD = try container.decodeIfPresent(ImportedCMAD.self, forKey: .importedCMAD)
+        if var importedCMAD {
+            if !modifier1TargetWasEncoded,
+               let rawTarget = importedCMAD.conditionOneTarget,
+               modifier1Condition != nil {
+                let target = ModifierConditionTarget(rawValue: rawTarget)
+                modifier1Condition?.target = target
+                importedCMAD.semanticAtImport.modifier1Condition?.target = target
+            }
+            if !modifier2TargetWasEncoded,
+               let rawTarget = importedCMAD.conditionTwoTarget,
+               modifier2Condition != nil {
+                let target = ModifierConditionTarget(rawValue: rawTarget)
+                modifier2Condition?.target = target
+                importedCMAD.semanticAtImport.modifier2Condition?.target = target
+            }
+            self.importedCMAD = importedCMAD
+        }
     }
 
     nonisolated func encode(to encoder: Encoder) throws {
@@ -635,6 +666,54 @@ extension MappingEntry: Codable {
         case ledMinMidi, ledMaxMidi, ledInvert, ledBlend
         case resolution, importedCMAD
     }
+
+    private struct ModifierConditionTargetPresence: Decodable {
+        let target: ModifierConditionTarget?
+    }
+}
+
+/// The native target associated with a modifier condition.
+///
+/// Traktor uses the same 0...3 deck numbering as ordinary deck assignments.
+/// Values outside that known range remain lossless but intentionally opaque.
+enum ModifierConditionTarget: Hashable, Sendable, Equatable {
+    case deckA
+    case deckB
+    case deckC
+    case deckD
+    case unknown(UInt32)
+
+    init(rawValue: UInt32) {
+        switch rawValue {
+        case 0: self = .deckA
+        case 1: self = .deckB
+        case 2: self = .deckC
+        case 3: self = .deckD
+        default: self = .unknown(rawValue)
+        }
+    }
+
+    var rawValue: UInt32 {
+        switch self {
+        case .deckA: 0
+        case .deckB: 1
+        case .deckC: 2
+        case .deckD: 3
+        case .unknown(let rawValue): rawValue
+        }
+    }
+}
+
+extension ModifierConditionTarget: Codable {
+    nonisolated init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.init(rawValue: try container.decode(UInt32.self))
+    }
+
+    nonisolated func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(rawValue)
+    }
 }
 
 /// A modifier condition that must be met for a mapping to be active.
@@ -647,6 +726,10 @@ struct ModifierCondition: Hashable, Sendable, Equatable {
 
     /// The required value (0-7)
     var value: Int
+
+    /// Native deck target for this condition. Older saved documents and new
+    /// app-created conditions default to Deck A, whose wire value is zero.
+    var target: ModifierConditionTarget = .deckA
 
     /// Display string for the condition (e.g., "M4 = 2")
     var displayString: String {
@@ -661,15 +744,20 @@ extension ModifierCondition: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         modifier = try container.decode(Int.self, forKey: .modifier)
         value = try container.decode(Int.self, forKey: .value)
+        target = try container.decodeIfPresent(
+            ModifierConditionTarget.self,
+            forKey: .target
+        ) ?? .deckA
     }
 
     nonisolated func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(modifier, forKey: .modifier)
         try container.encode(value, forKey: .value)
+        try container.encode(target, forKey: .target)
     }
 
     private enum CodingKeys: String, CodingKey {
-        case modifier, value
+        case modifier, value, target
     }
 }

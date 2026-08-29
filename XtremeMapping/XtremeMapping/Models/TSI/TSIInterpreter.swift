@@ -1042,10 +1042,18 @@ struct TSIInterpreter {
 
         // Build modifier conditions from parsed values
         let modifier1: ModifierCondition? = cmadSettings.modifierOneId > 0
-            ? ModifierCondition(modifier: cmadSettings.modifierOneId, value: cmadSettings.modifierOneValue)
+            ? ModifierCondition(
+                modifier: cmadSettings.modifierOneId,
+                value: cmadSettings.modifierOneValue,
+                target: ModifierConditionTarget(rawValue: cmadSettings.modifierOneTarget)
+            )
             : nil
         let modifier2: ModifierCondition? = cmadSettings.modifierTwoId > 0
-            ? ModifierCondition(modifier: cmadSettings.modifierTwoId, value: cmadSettings.modifierTwoValue)
+            ? ModifierCondition(
+                modifier: cmadSettings.modifierTwoId,
+                value: cmadSettings.modifierTwoValue,
+                target: ModifierConditionTarget(rawValue: cmadSettings.modifierTwoTarget)
+            )
             : nil
 
         var mapping = MappingEntry(
@@ -1130,8 +1138,10 @@ struct TSIInterpreter {
         var setToValue: Float = 0.0
         var comment: String = ""
         var modifierOneId: Int = 0
+        var modifierOneTarget: UInt32 = 0
         var modifierOneValue: Int = 0
         var modifierTwoId: Int = 0
+        var modifierTwoTarget: UInt32 = 0
         var modifierTwoValue: Int = 0
         // LED block defaults match the constants TSIWriter historically wrote
         var ledMinRangeType: Int = 0
@@ -1236,10 +1246,10 @@ struct TSIInterpreter {
         // OPTIONAL TAIL (see doc comment): absent in older/shorter CMADs.
         if conditionOffset + 24 <= data.count {
             result.modifierOneId = Int(readUInt32BE(from: data, at: conditionOffset))
-            // ConditionOneTarget at +4 is skipped (always 0 in our output)
+            result.modifierOneTarget = readUInt32BE(from: data, at: conditionOffset + 4)
             result.modifierOneValue = Int(readUInt32BE(from: data, at: conditionOffset + 8))
             result.modifierTwoId = Int(readUInt32BE(from: data, at: conditionOffset + 12))
-            // ConditionTwoTarget at +16 is skipped
+            result.modifierTwoTarget = readUInt32BE(from: data, at: conditionOffset + 16)
             result.modifierTwoValue = Int(readUInt32BE(from: data, at: conditionOffset + 20))
         }
 

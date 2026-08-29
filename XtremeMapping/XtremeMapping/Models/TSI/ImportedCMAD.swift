@@ -11,6 +11,8 @@ import Foundation
 /// explicit, while `semanticAtImport` records the model projection that was
 /// produced from those bytes. Float-like values are stored as bit patterns so
 /// negative zero and NaN payloads never collapse during change detection.
+/// Modifier fingerprints include their modeled native targets, including
+/// opaque raw values, so target-only edits are detected without inference.
 struct ImportedCMAD: Codable, Hashable, Sendable {
     struct SemanticFingerprint: Codable, Hashable, Sendable {
         let commandID: Int
@@ -20,8 +22,8 @@ struct ImportedCMAD: Codable, Hashable, Sendable {
         let midiAssignment: MIDIAssignment
         let rawMidiControlName: String?
         let rawMidiBindingID: UInt32?
-        let modifier1Condition: ModifierCondition?
-        let modifier2Condition: ModifierCondition?
+        var modifier1Condition: ModifierCondition?
+        var modifier2Condition: ModifierCondition?
         let comment: String
         let controllerType: ControllerType
         let invert: Bool
@@ -124,7 +126,7 @@ struct ImportedCMAD: Codable, Hashable, Sendable {
     /// Bytes after the complete 68-byte condition/LED tail, if present.
     let trailingBytes: Data
 
-    let semanticAtImport: SemanticFingerprint
+    var semanticAtImport: SemanticFingerprint
 
     var expectedCompleteLength: Int {
         120 + Int(commentLength) * 2

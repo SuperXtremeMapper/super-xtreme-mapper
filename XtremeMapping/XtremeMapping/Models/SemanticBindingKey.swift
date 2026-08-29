@@ -25,46 +25,43 @@ struct SemanticBindingKey: Hashable, Sendable {
     let conditionTwo: Condition?
 
     init?(entry: MappingEntry) {
-        let conditionTargets = Self.conditionTargets(for: entry)
-        guard conditionTargets.one == 0, conditionTargets.two == 0 else {
-            // The model cannot express nonzero native condition targets, so
-            // replacing such a row would erase part of its activation logic.
+        guard Self.importedConditionTargetsMatchFingerprint(entry) else {
+            // Hand-built or corrupted state that disagrees about whether a
+            // raw target was modeled is still unsafe to replace. Real parser
+            // output and migrated legacy Codable state satisfy this check.
             return nil
         }
-
         commandID = entry.commandID
         direction = entry.ioType
         canonicalTarget = TSIWriter.targetRaw(for: entry)
         setToWireValue = TSIWriter.setValueRaw(for: entry, commandId: entry.commandID)
-        conditionOne = Self.condition(
-            entry.modifier1Condition,
-            target: conditionTargets.one
-        )
-        conditionTwo = Self.condition(
-            entry.modifier2Condition,
-            target: conditionTargets.two
+        conditionOne = Self.condition(entry.modifier1Condition)
+        conditionTwo = Self.condition(entry.modifier2Condition)
+    }
+
+    private static func importedConditionTargetsMatchFingerprint(
+        _ entry: MappingEntry
+    ) -> Bool {
+        guard let imported = entry.importedCMAD else { return true }
+        return targetMatches(
+            wire: imported.conditionOneTarget,
+            modeled: imported.semanticAtImport.modifier1Condition
+        ) && targetMatches(
+            wire: imported.conditionTwoTarget,
+            modeled: imported.semanticAtImport.modifier2Condition
         )
     }
 
-    private static func conditionTargets(for entry: MappingEntry) -> (one: UInt32, two: UInt32) {
-        guard let imported = entry.importedCMAD else {
-            return (0, 0)
-        }
-        let baseline = imported.semanticAtImport
-        return (
-            entry.modifier1Condition == baseline.modifier1Condition
-                ? imported.conditionOneTarget ?? 0
-                : 0,
-            entry.modifier2Condition == baseline.modifier2Condition
-                ? imported.conditionTwoTarget ?? 0
-                : 0
-        )
+    private static func targetMatches(
+        wire: UInt32?,
+        modeled condition: ModifierCondition?
+    ) -> Bool {
+        guard let wire else { return true }
+        return wire == (condition?.target.rawValue ?? 0)
     }
 
-    private static func condition(
-        _ condition: ModifierCondition?,
-        target: UInt32
-    ) -> Condition? {
+    private static func condition(_ condition: ModifierCondition?) -> Condition? {
+        let target = condition?.target.rawValue ?? 0
         let modifier = UInt32(clamping: condition?.modifier ?? 0)
         let value = UInt32(clamping: condition?.value ?? 0)
         guard target != 0 || modifier != 0 || value != 0 else { return nil }
