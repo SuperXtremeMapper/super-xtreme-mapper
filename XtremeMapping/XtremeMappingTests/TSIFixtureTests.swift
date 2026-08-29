@@ -417,6 +417,34 @@ final class TSIFixtureTests: XCTestCase {
         XCTAssertTrue(outputMappings[3].comment.contains("Emoji test 😀"))
     }
 
+    func test451RemixFixtureEvidenceForStemsWizard() throws {
+        let source = try loadFixture(
+            try fixture(named: "traktor-4.5.1-xone-k3-benchmark-04-remix.tsi")
+        )
+        let mappings = try TraktorMappingDocument(fileContents: source)
+            .mappingFile.devices.first?.mappings ?? []
+
+        XCTAssertEqual(mappings.map(\.commandID), [251, 251, 259, 259, 249, 250, 239, 601, 664])
+
+        let stemControls = Array(mappings.prefix(7))
+        XCTAssertTrue(stemControls.allSatisfy { $0.ioType == .input })
+        XCTAssertEqual(stemControls.map(\.assignment), [
+            .remixDeckASlot1, .remixDeckASlot4,
+            .remixDeckASlot1, .remixDeckASlot4,
+            .remixDeckASlot1, .remixDeckASlot1, .remixDeckASlot1,
+        ])
+        XCTAssertEqual(stemControls.map(\.controllerType), [
+            .faderOrKnob, .faderOrKnob,
+            .button, .button,
+            .faderOrKnob, .button, .button,
+        ])
+        XCTAssertEqual(stemControls.map(\.interactionMode), [
+            .direct, .direct,
+            .toggle, .toggle,
+            .direct, .toggle, .toggle,
+        ])
+    }
+
     func testGeneratedSafeFixtureRegeneratesAtDocumentLayer() throws {
         let fixture = try fixture(named: "generated-safe-minimal.tsi")
         let source = try loadFixture(fixture)

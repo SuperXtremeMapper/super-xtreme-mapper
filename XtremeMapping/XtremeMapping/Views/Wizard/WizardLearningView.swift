@@ -90,13 +90,15 @@ struct WizardLearningView: View {
                     .foregroundColor(AppThemeV2.Colors.stone500)
             }
             if coordinator.currentAssignments.count > 1 {
-                HStack(spacing: AppThemeV2.Spacing.sm) {
-                    ForEach(coordinator.currentAssignments, id: \.self) { assignment in
-                        AssignmentIndicator(
-                            assignment: assignment,
-                            isCurrent: assignment == coordinator.currentAssignment,
-                            isCaptured: coordinator.isCaptured(function: function, assignment: assignment)
-                        )
+                ScrollView(.horizontal, showsIndicators: true) {
+                    HStack(spacing: AppThemeV2.Spacing.sm) {
+                        ForEach(coordinator.currentAssignments, id: \.self) { assignment in
+                            AssignmentIndicator(
+                                assignment: assignment,
+                                isCurrent: assignment == coordinator.currentAssignment,
+                                isCaptured: coordinator.isCaptured(function: function, assignment: assignment)
+                            )
+                        }
                     }
                 }
             }

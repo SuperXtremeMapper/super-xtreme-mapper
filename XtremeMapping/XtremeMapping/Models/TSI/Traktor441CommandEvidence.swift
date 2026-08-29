@@ -44,9 +44,19 @@ enum Traktor441CommandEvidence {
         201, 323, 362, 363, 364, 740, 2253, 2302, 5129,
     ]
 
+    /// Commands observed as inputs in the complete Traktor 4.5.1 Xone:K3
+    /// Remix benchmark export. Direction evidence is intentionally limited to
+    /// input; it does not claim output support that the fixture does not prove.
+    static let compatibilityCorpusInputOnlyIDs: Set<Int> = [
+        239, 249, 250, 251, 259,
+    ]
+
     static func supportedDirections(for commandID: Int) -> Set<IODirection> {
         if compatibilityCorpusBothDirectionIDs.contains(commandID) {
             return [.input, .output]
+        }
+        if compatibilityCorpusInputOnlyIDs.contains(commandID) {
+            return [.input]
         }
         if inputOnlyIDs.contains(commandID) {
             return [.input]

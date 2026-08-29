@@ -13,7 +13,7 @@ enum WizardTab: String, CaseIterable, Identifiable {
     case cueLoop = "Cue/Loop"
     case eqFilter = "EQ/Filter"
     case fx = "FX"
-    case sampleDecks = "Sample Decks"
+    case sampleDecks = "Stems / Remix Decks"
     case loopRecorder = "Loop Recorder"
     case browser = "Browser"
 
@@ -107,8 +107,16 @@ enum WizardTab: String, CaseIterable, Identifiable {
     // wizard would emit plain deck assignments instead of deck+slot assignments
     // and the canonical commandId would point at the wrong target.
     //
-    // "Slot FX Send" is intentionally absent — no Traktor 4.4 command exists.
-    private static let sampleDecksFunctions: [WizardFunction] = []
+    // FX Amount (Submix) remains intentionally absent: the real 4.5.1 fixture
+    // proves that it is an input command, but not that its target field uses
+    // the same full Deck A-D / Part 1-4 encoding as these canonical commands.
+    private static let sampleDecksFunctions: [WizardFunction] = [
+        WizardFunction(displayName: "Volume", commandID: 251, controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false),
+        WizardFunction(displayName: "Filter", commandID: 249, controllerType: .faderOrKnob, interactionMode: .direct, isBasic: true, perDeck: false),
+        WizardFunction(displayName: "Filter On", commandID: 250, controllerType: .button, interactionMode: .toggle, isBasic: true, perDeck: false),
+        WizardFunction(displayName: "FX On", commandID: 239, controllerType: .button, interactionMode: .toggle, isBasic: true, perDeck: false),
+        WizardFunction(displayName: "Mute", commandID: 259, controllerType: .button, interactionMode: .toggle, isBasic: true, perDeck: false),
+    ]
 
     // MARK: - Loop Recorder Functions
     private static let loopRecorderFunctions: [WizardFunction] = []

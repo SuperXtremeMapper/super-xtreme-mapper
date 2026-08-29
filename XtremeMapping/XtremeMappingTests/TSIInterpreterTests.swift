@@ -733,6 +733,8 @@ final class TSIInterpreterTests: XCTestCase {
         let cases: [(command: String, assignment: TargetAssignment)] = [
             ("Slot Volume", .remixDeckASlot1),
             ("Slot Volume", .remixDeckBSlot4),
+            ("Slot Filter Adjust", .remixDeckDSlot4),
+            ("Slot Filter On", .remixDeckBSlot2),
             ("Slot Mute On", .remixDeckCSlot3),
             ("Slot FX On", .remixDeckDSlot4)
         ]

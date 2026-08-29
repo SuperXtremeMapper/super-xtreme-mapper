@@ -139,6 +139,69 @@ final class WizardCoordinatorTests: XCTestCase {
         XCTAssertEqual(function.setToValue, 7)
     }
 
+    func testStemsWizardExposesFiveVerifiedPartControls() {
+        XCTAssertEqual(WizardTab.sampleDecks.rawValue, "Stems / Remix Decks")
+
+        let functions = WizardTab.sampleDecks.functions
+        XCTAssertEqual(functions.map(\.displayName), [
+            "Volume", "Filter", "Filter On", "FX On", "Mute",
+        ])
+        XCTAssertEqual(functions.map(\.commandID), [251, 249, 250, 239, 259])
+        XCTAssertEqual(functions.map(\.controllerType), [
+            .faderOrKnob, .faderOrKnob, .button, .button, .button,
+        ])
+        XCTAssertEqual(functions.map(\.interactionMode), [
+            .direct, .direct, .toggle, .toggle, .toggle,
+        ])
+        XCTAssertTrue(functions.allSatisfy { !$0.perDeck && $0.isBasic })
+        for function in functions {
+            let descriptor = TraktorCommands.descriptor(for: function.commandID)
+            XCTAssertEqual(descriptor.verification, .verifiedTraktor441, function.displayName)
+            XCTAssertEqual(descriptor.supportedDirections, [.input], function.displayName)
+        }
+    }
+
+    func testStemsWizardExpandsFourPartsAcrossSelectedDecks() {
+        coordinator.switchToTab(.sampleDecks)
+
+        coordinator.setupConfig.numberOfChannels = 1
+        XCTAssertEqual(coordinator.currentAssignments, [
+            .remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4,
+        ])
+
+        coordinator.setupConfig.numberOfChannels = 2
+        XCTAssertEqual(coordinator.currentAssignments, [
+            .remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4,
+            .remixDeckBSlot1, .remixDeckBSlot2, .remixDeckBSlot3, .remixDeckBSlot4,
+        ])
+
+        coordinator.setupConfig.numberOfChannels = 4
+        XCTAssertEqual(coordinator.currentAssignments, [
+            .remixDeckASlot1, .remixDeckASlot2, .remixDeckASlot3, .remixDeckASlot4,
+            .remixDeckBSlot1, .remixDeckBSlot2, .remixDeckBSlot3, .remixDeckBSlot4,
+            .remixDeckCSlot1, .remixDeckCSlot2, .remixDeckCSlot3, .remixDeckCSlot4,
+            .remixDeckDSlot1, .remixDeckDSlot2, .remixDeckDSlot3, .remixDeckDSlot4,
+        ])
+    }
+
+    func testStemsWizardCaptureGeneratesExactPartMapping() throws {
+        coordinator.setupConfig.numberOfChannels = 1
+        coordinator.switchToTab(.sampleDecks)
+
+        XCTAssertEqual(coordinator.currentFunction?.commandID, 251)
+        XCTAssertEqual(coordinator.currentAssignment, .remixDeckASlot1)
+
+        coordinator.handleMIDIReceived(cc(23, channel: 4, value: 96))
+
+        let captured = try XCTUnwrap(coordinator.capturedMappings.last)
+        let entry = captured.toMappingEntry()
+        XCTAssertEqual(entry.commandID, 251)
+        XCTAssertEqual(entry.assignment, .remixDeckASlot1)
+        XCTAssertEqual(entry.controllerType, .faderOrKnob)
+        XCTAssertEqual(entry.interactionMode, .direct)
+        XCTAssertEqual(entry.midiAssignment, try .controlChange(channel: 4, number: 23))
+    }
+
     func testCapturedRemixSlotRetainsExactTarget() throws {
         let function = WizardFunction(
             displayName: "Slot Trigger",
@@ -381,12 +444,13 @@ final class WizardCoordinatorTests: XCTestCase {
 
     func testLastVerifiedWizardFunctionIsReportedAsLastStep() {
         coordinator.setupConfig.numberOfChannels = 1
-        coordinator.switchToTab(.cueLoop)
-        for _ in 1..<WizardTab.cueLoop.functions.count {
+        coordinator.switchToTab(.sampleDecks)
+        while !coordinator.isAtLastStep {
             coordinator.next()
         }
 
-        XCTAssertEqual(coordinator.currentFunction?.displayName, "Hotcue 8")
+        XCTAssertEqual(coordinator.currentFunction?.displayName, "Mute")
+        XCTAssertEqual(coordinator.currentAssignment, .remixDeckASlot4)
         XCTAssertTrue(coordinator.isAtLastStep)
     }
 
@@ -396,8 +460,8 @@ final class WizardCoordinatorTests: XCTestCase {
         attachDocument(document, destinationDeviceID: device.id)
         coordinator.setupConfig.numberOfChannels = 1
         coordinator.autoAdvanceEnabled = false
-        coordinator.switchToTab(.cueLoop)
-        for _ in 1..<WizardTab.cueLoop.functions.count {
+        coordinator.switchToTab(.sampleDecks)
+        while !coordinator.isAtLastStep {
             coordinator.next()
         }
         let function = try XCTUnwrap(coordinator.currentFunction)
