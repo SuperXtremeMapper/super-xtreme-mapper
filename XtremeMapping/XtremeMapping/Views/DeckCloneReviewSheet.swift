@@ -5,6 +5,35 @@
 
 import SwiftUI
 
+struct DeckCloneReviewRowPresentation: Equatable {
+    let commandTitle: String
+    let destinationTitle: String
+    let existingSummary: String?
+    let cloneSummary: String?
+    let choiceAccessibilityLabel: String
+
+    init(item: MappingTransformReviewItem, rowNumber: Int) {
+        commandTitle = item.sourceMapping.commandName
+        destinationTitle = item.destination.deckCloneTitle
+        existingSummary = item.existingMapping.map(Self.mappingSummary)
+        cloneSummary = item.proposedMapping.map(Self.mappingSummary)
+
+        let existingMIDI = item.existingMapping?.mappedToDisplay ?? "unavailable"
+        let existingComment = Self.commentText(item.existingMapping?.comment ?? "")
+        choiceAccessibilityLabel = "Review item \(rowNumber): choose action for "
+            + "\(commandTitle), \(destinationTitle). "
+            + "Existing MIDI \(existingMIDI); comment \(existingComment)."
+    }
+
+    private static func mappingSummary(_ mapping: MappingEntry) -> String {
+        "MIDI: \(mapping.mappedToDisplay); Comment: \(commentText(mapping.comment))"
+    }
+
+    private static func commentText(_ comment: String) -> String {
+        comment.isEmpty ? "None" : comment
+    }
+}
+
 struct DeckCloneReviewState {
     let plan: MappingTransformPlan
     private(set) var choices: [
@@ -62,8 +91,11 @@ struct DeckCloneReviewSheet: View {
 
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 0) {
-                    ForEach(state.plan.reviewItems) { item in
-                        reviewRow(item)
+                    ForEach(
+                        Array(state.plan.reviewItems.enumerated()),
+                        id: \.element.id
+                    ) { offset, item in
+                        reviewRow(item, rowNumber: offset + 1)
                         if item.id != state.plan.reviewItems.last?.id {
                             Divider()
                         }
@@ -90,14 +122,29 @@ struct DeckCloneReviewSheet: View {
         .frame(width: 520)
     }
 
-    private func reviewRow(_ item: MappingTransformReviewItem) -> some View {
-        VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
+    private func reviewRow(
+        _ item: MappingTransformReviewItem,
+        rowNumber: Int
+    ) -> some View {
+        let presentation = DeckCloneReviewRowPresentation(
+            item: item,
+            rowNumber: rowNumber
+        )
+
+        return VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
             HStack(alignment: .firstTextBaseline) {
-                Text(item.sourceMapping.commandName)
+                Text(presentation.commandTitle)
                     .lineLimit(1)
                 Spacer()
-                Text(item.destination.deckCloneTitle)
+                Text(presentation.destinationTitle)
                     .foregroundStyle(.secondary)
+            }
+
+            if let existingSummary = presentation.existingSummary {
+                mappingSummaryRow(label: "Existing", summary: existingSummary)
+            }
+            if let cloneSummary = presentation.cloneSummary {
+                mappingSummaryRow(label: "Clone", summary: cloneSummary)
             }
 
             if state.options(for: item).isEmpty {
@@ -112,9 +159,22 @@ struct DeckCloneReviewSheet: View {
                 }
                 .pickerStyle(.radioGroup)
                 .labelsHidden()
+                .accessibilityLabel(presentation.choiceAccessibilityLabel)
             }
         }
         .padding(.vertical, AppThemeV2.Spacing.md)
+    }
+
+    private func mappingSummaryRow(label: String, summary: String) -> some View {
+        HStack(alignment: .firstTextBaseline) {
+            Text(label)
+                .font(.caption.weight(.medium))
+                .frame(width: 52, alignment: .leading)
+            Text(summary)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .lineLimit(2)
+        }
     }
 
     private func choiceBinding(

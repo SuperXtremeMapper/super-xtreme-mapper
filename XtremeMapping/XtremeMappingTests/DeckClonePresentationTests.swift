@@ -165,4 +165,79 @@ final class DeckClonePresentationTests: XCTestCase {
         XCTAssertEqual(state.options(for: item), [])
         XCTAssertFalse(state.canApply)
     }
+
+    func testConflictRowsDistinguishExistingMappingsAndShowProposedCloneDetails() throws {
+        let plan = makeTwoConflictPlan()
+        XCTAssertEqual(plan.reviewItems.count, 2)
+
+        let rows = plan.reviewItems.enumerated().map { offset, item in
+            DeckCloneReviewRowPresentation(item: item, rowNumber: offset + 1)
+        }
+
+        XCTAssertEqual(
+            rows.map(\.existingSummary),
+            [
+                "MIDI: Ch02 CC 011; Comment: Left target",
+                "MIDI: Ch03 Note C4; Comment: Right target",
+            ]
+        )
+        XCTAssertNotEqual(rows[0].existingSummary, rows[1].existingSummary)
+        XCTAssertEqual(
+            rows.map(\.cloneSummary),
+            [
+                "MIDI: Ch01 CC 010; Comment: Deck B source",
+                "MIDI: Ch01 CC 010; Comment: Deck B source",
+            ]
+        )
+    }
+
+    func testEveryConflictChoiceControlHasUniqueMeaningfulAccessibilityLabel() throws {
+        let plan = makeTwoConflictPlan()
+
+        let labels = plan.reviewItems.enumerated().map { offset, item in
+            DeckCloneReviewRowPresentation(
+                item: item,
+                rowNumber: offset + 1
+            ).choiceAccessibilityLabel
+        }
+
+        XCTAssertEqual(labels, [
+            "Review item 1: choose action for Play/Pause, Deck B. Existing MIDI Ch02 CC 011; comment Left target.",
+            "Review item 2: choose action for Play/Pause, Deck B. Existing MIDI Ch03 Note C4; comment Right target.",
+        ])
+        XCTAssertEqual(Set(labels).count, 2)
+    }
+
+    private func makeTwoConflictPlan() -> MappingTransformPlan {
+        let source = MappingEntry(
+            commandID: 100,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 10,
+            comment: "Deck A source"
+        )
+        let leftTarget = MappingEntry(
+            commandID: 100,
+            assignment: .deckB,
+            midiChannel: 2,
+            midiCC: 11,
+            comment: "Left target"
+        )
+        let rightTarget = MappingEntry(
+            commandID: 100,
+            assignment: .deckB,
+            midiChannel: 3,
+            midiNote: 60,
+            comment: "Right target"
+        )
+        return MappingTransformPlanner.plan(
+            MappingTransformRequest(
+                selectedMappingIDs: [source.id],
+                destinations: [.deckB]
+            ),
+            in: MappingFile(devices: [
+                Device(mappings: [source, leftTarget, rightTarget]),
+            ])
+        )
+    }
 }
