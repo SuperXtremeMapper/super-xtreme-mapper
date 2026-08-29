@@ -45,7 +45,7 @@ struct MappingTransformRequest: Equatable, Sendable {
 
     let selectedMappingIDs: Set<MappingEntry.ID>
     let destinations: Set<DeckCloneDestination>
-    private let proposedMappingIDs: [Candidate: MappingEntry.ID]
+    private let preferredMappingIDs: [Candidate: MappingEntry.ID]
 
     init(
         selectedMappingIDs: Set<MappingEntry.ID>,
@@ -62,20 +62,16 @@ struct MappingTransformRequest: Equatable, Sendable {
                     .sorted { $0.uuidString < $1.uuidString }
                     .map { Candidate(sourceMappingID: $0, destination: destination) }
             }
-        proposedMappingIDs = Dictionary(
+        preferredMappingIDs = Dictionary(
             uniqueKeysWithValues: candidates.map { ($0, makeMappingID()) }
-        )
-        precondition(
-            Set(proposedMappingIDs.values).count == proposedMappingIDs.count,
-            "Mapping identity allocation must return unique IDs"
         )
     }
 
-    fileprivate func proposedMappingID(
+    fileprivate func preferredMappingID(
         for sourceMappingID: MappingEntry.ID,
         destination: DeckCloneDestination
     ) -> MappingEntry.ID {
-        proposedMappingIDs[
+        preferredMappingIDs[
             Candidate(sourceMappingID: sourceMappingID, destination: destination)
         ]!
     }
@@ -242,6 +238,7 @@ enum MappingTransformPlanner {
         var comparisonRows = Dictionary(
             uniqueKeysWithValues: mappingFile.devices.map { ($0.id, $0.mappings) }
         )
+        var occupiedMappingIDs = Set(mappingFile.allMappings.map(\.id))
         var inserts: [MappingTransformInsert] = []
         var duplicateSkips: [MappingTransformDuplicateSkip] = []
         var reviewItems: [MappingTransformReviewItem] = []
@@ -264,7 +261,7 @@ enum MappingTransformPlanner {
                 let clone = translatedCopy(
                     of: owned.mapping,
                     to: destination,
-                    id: request.proposedMappingID(
+                    id: request.preferredMappingID(
                         for: owned.mapping.id,
                         destination: destination
                     )
@@ -288,27 +285,41 @@ enum MappingTransformPlanner {
                     functionalIdentityMatches($0, clone)
                 }
                 if !conflicts.isEmpty {
+                    let proposedClone = clone.copy(
+                        withID: availableMappingID(
+                            preferred: clone.id,
+                            excluding: occupiedMappingIDs
+                        )
+                    )
+                    occupiedMappingIDs.insert(proposedClone.id)
                     reviewItems.append(contentsOf: conflicts.map { existing in
                         MappingTransformReviewItem(
                             sourceMappingID: owned.mapping.id,
                             deviceID: owned.deviceID,
                             destination: destination,
-                            proposedMapping: clone,
+                            proposedMapping: proposedClone,
                             reason: .functionalConflict(existingMappingID: existing.id)
                         )
                     })
                     continue
                 }
 
+                let insertClone = clone.copy(
+                    withID: availableMappingID(
+                        preferred: clone.id,
+                        excluding: occupiedMappingIDs
+                    )
+                )
+                occupiedMappingIDs.insert(insertClone.id)
                 inserts.append(
                     MappingTransformInsert(
                         sourceMappingID: owned.mapping.id,
                         deviceID: owned.deviceID,
                         destination: destination,
-                        mapping: clone
+                        mapping: insertClone
                     )
                 )
-                comparisonRows[owned.deviceID, default: []].append(clone)
+                comparisonRows[owned.deviceID, default: []].append(insertClone)
             }
         }
 
@@ -323,6 +334,45 @@ enum MappingTransformPlanner {
     private struct OwnedMapping {
         let deviceID: Device.ID
         let mapping: MappingEntry
+    }
+
+    /// Finds a free UUID in at most N+1 probes for N occupied UUIDs. Successive
+    /// 128-bit values are distinct across this finite range, so one must be free.
+    private static func availableMappingID(
+        preferred: MappingEntry.ID,
+        excluding occupied: Set<MappingEntry.ID>
+    ) -> MappingEntry.ID {
+        guard occupied.contains(preferred) else { return preferred }
+
+        for offset in 1...(occupied.count + 1) {
+            let candidate = incrementedUUID(preferred, by: UInt64(offset))
+            if !occupied.contains(candidate) {
+                return candidate
+            }
+        }
+        preconditionFailure("Finite UUID collision resolution exhausted unexpectedly")
+    }
+
+    private static func incrementedUUID(_ id: UUID, by amount: UInt64) -> UUID {
+        let value = id.uuid
+        var bytes = [
+            value.0, value.1, value.2, value.3,
+            value.4, value.5, value.6, value.7,
+            value.8, value.9, value.10, value.11,
+            value.12, value.13, value.14, value.15
+        ]
+        var carry = amount
+        for index in stride(from: bytes.count - 1, through: 0, by: -1) {
+            let sum = UInt16(bytes[index]) + UInt16(carry & 0xFF)
+            bytes[index] = UInt8(sum & 0xFF)
+            carry = (carry >> 8) + UInt64(sum >> 8)
+        }
+        return UUID(uuid: (
+            bytes[0], bytes[1], bytes[2], bytes[3],
+            bytes[4], bytes[5], bytes[6], bytes[7],
+            bytes[8], bytes[9], bytes[10], bytes[11],
+            bytes[12], bytes[13], bytes[14], bytes[15]
+        ))
     }
 
     private static func isEligible(_ assignment: TargetAssignment) -> Bool {

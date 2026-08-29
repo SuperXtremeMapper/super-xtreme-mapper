@@ -289,6 +289,49 @@ final class MappingTransformServiceTests: XCTestCase {
         XCTAssertTrue(Set(proposedIDs).isDisjoint(with: existingIDs))
     }
 
+    func testRepeatedPlanningDeterministicallyResolvesInjectedExistingIDCollision() {
+        let source = MappingEntry(
+            id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
+            commandID: 100,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 10
+        )
+        let existing = MappingEntry(
+            id: UUID(uuidString: "00000000-0000-0000-0000-000000000002")!,
+            commandID: 100,
+            assignment: .deckB,
+            midiChannel: 2,
+            midiCC: 11
+        )
+        let file = MappingFile(devices: [
+            Device(name: "Controller", mappings: [source, existing])
+        ])
+        let injectedIDs = [source.id, existing.id]
+        var allocationCallCount = 0
+        let request = MappingTransformRequest(
+            selectedMappingIDs: [source.id],
+            destinations: [.deckB, .deckC],
+            makeMappingID: {
+                defer { allocationCallCount += 1 }
+                let id = injectedIDs[allocationCallCount]
+                return id
+            }
+        )
+
+        let firstPlan = MappingTransformPlanner.plan(request, in: file)
+        let secondPlan = MappingTransformPlanner.plan(request, in: file)
+        let proposedIDs = Set(
+            firstPlan.inserts.map(\.mapping.id)
+                + firstPlan.reviewItems.compactMap(\.proposedMapping?.id)
+        )
+
+        XCTAssertEqual(firstPlan, secondPlan)
+        XCTAssertEqual(allocationCallCount, 2)
+        XCTAssertEqual(proposedIDs.count, 2)
+        XCTAssertTrue(proposedIDs.isDisjoint(with: Set(file.allMappings.map(\.id))))
+    }
+
     func testEmptyAndStaleOnlyRequestsHaveNoStatusMessage() {
         let source = MappingEntry(commandID: 100, assignment: .deckA)
         let file = MappingFile(devices: [Device(name: "Controller", mappings: [source])])
