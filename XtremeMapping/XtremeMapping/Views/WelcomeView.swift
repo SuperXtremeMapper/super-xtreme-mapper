@@ -45,7 +45,7 @@ struct WelcomeView: View {
                 }
 
                 // Version badge
-                Text("BETA v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0")")
+                Text("v\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0")")
                     .font(AppThemeV2.Typography.micro)
                     .tracking(1)
                     .fontWeight(.bold)
@@ -100,8 +100,8 @@ struct WelcomeView: View {
             .padding(.top, 28)
             .padding(.bottom, 28)
 
-            // Footer with beta warning
-            Text("Warning: This is a private beta for testing purposes only. Be sure to make a copy of any .tsi file you want to edit... just in case it gets totally fucked.")
+            // Footer reminder
+            Text("Keep a backup of important .tsi files before editing.")
                 .font(AppThemeV2.Typography.caption)
                 .foregroundColor(AppThemeV2.Colors.amber.opacity(0.8))
                 .multilineTextAlignment(.center)

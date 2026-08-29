@@ -214,7 +214,7 @@ struct ContentView: View {
                 Circle()
                     .fill(AppThemeV2.Colors.amber)
                     .frame(width: 6, height: 6)
-                Text("BETA: Always backup your mappings before making changes")
+                Text("REMINDER: Back up important mappings before making changes")
                     .font(AppThemeV2.Typography.caption)
                     .foregroundColor(AppThemeV2.Colors.amber)
                 Spacer()

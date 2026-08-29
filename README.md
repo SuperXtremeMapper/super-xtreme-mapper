@@ -7,9 +7,9 @@ A native macOS TSI editor for Traktor Pro. Create, edit, and manage your MIDI co
 **Website:** [superxtrememapper.github.io/super-xtreme-mapper](https://superxtrememapper.github.io/super-xtreme-mapper)
 
 ![macOS](https://img.shields.io/badge/macOS-14.0+-blue)
-![Apple Silicon](https://img.shields.io/badge/Apple%20Silicon-native-green)
+![Universal](https://img.shields.io/badge/macOS-universal-green)
 ![License](https://img.shields.io/badge/license-MIT-orange)
-![Status](https://img.shields.io/badge/status-beta-yellow)
+![Version](https://img.shields.io/badge/version-1.0.0-brightgreen)
 
 ## Features
 
@@ -21,6 +21,8 @@ A native macOS TSI editor for Traktor Pro. Create, edit, and manage your MIDI co
 
 - **Drag & Drop** - Copy mappings between files with simple drag and drop. Open multiple TSI files side by side.
 
+- **Deck Clone** - Select Deck A or Remix Deck A mappings, right-click, and clone them to Deck B, C, or D. SXM updates deck assignments, native targets, modifier conditions, and deck references in comments automatically.
+
 - **All Traktor Commands** - Access to the complete Traktor command library with 500+ commands. Browse by category or search.
 
 - **Native macOS** - Built with SwiftUI for Apple Silicon. Fast, memory efficient, with full dark mode and keyboard shortcut support.
@@ -29,7 +31,7 @@ A native macOS TSI editor for Traktor Pro. Create, edit, and manage your MIDI co
 
 ### Download
 
-Download the latest `.dmg` from the [Releases](https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases) page.
+Download [SuperXtremeMapper_1.0.0.dmg](https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases/latest/download/SuperXtremeMapper_1.0.0.dmg).
 
 ### Requirements
 
@@ -38,7 +40,7 @@ Download the latest `.dmg` from the [Releases](https://github.com/SuperXtremeMap
 
 ### Gatekeeper Notice
 
-Since SXM is not signed with an Apple Developer certificate, macOS will initially block the app. To install:
+SXM is Apple-development-signed but is not notarized with a Developer ID certificate, so macOS may initially block it. To install:
 
 1. Download and open the `.dmg` file
 2. Drag Super Xtreme Mapper to your Applications folder
@@ -130,7 +132,7 @@ Traktor is a registered trademark of Native Instruments GmbH. This project is **
 
 ---
 
-**Important:** This is beta software. Always backup your TSI files before editing them. We are not responsible for any data loss or corrupted mappings.
+**Important:** Always back up your TSI files before editing them. We are not responsible for data loss or corrupted mappings.
 
 ## Contact
 
