@@ -27,6 +27,7 @@ enum DeckClonePresentation {
     ]
 
     static let midiChannels = Array(1...16)
+    static let deckAssignments: [TargetAssignment] = [.deckA, .deckB, .deckC, .deckD]
 
     static func isCloneEnabled(
         isLocked: Bool,
@@ -357,7 +358,7 @@ struct MappingsTableView: View {
 
                 Menu("Change") {
                     Menu("Deck") {
-                        ForEach(TargetAssignment.allCases, id: \.self) { assignment in
+                        ForEach(DeckClonePresentation.deckAssignments, id: \.self) { assignment in
                             Button(assignment.displayName) {
                                 onAssignmentChange?(assignment)
                             }

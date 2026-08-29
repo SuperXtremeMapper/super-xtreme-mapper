@@ -17,7 +17,7 @@ final class MappingTransformExecutorTests: XCTestCase {
 
         let result = try MappingTransformExecutor.execute(
             plan,
-            choices: [review.id: .keepExisting],
+            decisions: [review.id: .keepExisting],
             in: document,
             undoManager: undoManager
         )
@@ -42,7 +42,7 @@ final class MappingTransformExecutorTests: XCTestCase {
 
         let result = try MappingTransformExecutor.execute(
             plan,
-            choices: [review.id: .createAnother],
+            decisions: [review.id: .createAnother],
             in: document,
             undoManager: undoManager
         )
@@ -82,19 +82,17 @@ final class MappingTransformExecutorTests: XCTestCase {
         let otherDevice = Device(name: "Other Device", mappings: [sameValueOtherDevice])
         let file = MappingFile(devices: [sourceDevice, otherDevice])
         let plan = makePlan(for: source.id, in: file)
-        let review = try XCTUnwrap(plan.reviewItems.first(where: {
-            $0.reason == .functionalConflict(existingMappingID: referenced.id)
+        let review = try XCTUnwrap(plan.reviewItems.first(where: { item in
+            item.conflicts.contains(where: { $0.mapping.id == referenced.id })
         }))
         let proposed = try XCTUnwrap(review.proposedMapping)
         let document = TraktorMappingDocument(mappingFile: file)
 
         let result = try MappingTransformExecutor.execute(
             plan,
-            choices: Dictionary(
-                uniqueKeysWithValues: plan.reviewItems.map { item in
-                    (item.id, item.id == review.id ? .replaceExisting : .keepExisting)
-                }
-            ),
+            decisions: [
+                review.id: .replaceExisting(existingMappingID: referenced.id)
+            ],
             in: document,
             undoManager: UndoManager()
         )
@@ -130,7 +128,7 @@ final class MappingTransformExecutorTests: XCTestCase {
 
         let result = try MappingTransformExecutor.execute(
             plan,
-            choices: [:],
+            decisions: [:],
             in: document,
             undoManager: UndoManager()
         )
@@ -177,7 +175,7 @@ final class MappingTransformExecutorTests: XCTestCase {
 
         let result = try MappingTransformExecutor.execute(
             plan,
-            choices: [:],
+            decisions: [:],
             in: document,
             undoManager: undoManager
         )
@@ -219,14 +217,14 @@ final class MappingTransformExecutorTests: XCTestCase {
         let replacement = try XCTUnwrap(review.proposedMapping)
         let document = TraktorMappingDocument(mappingFile: original)
 
-        XCTAssertEqual(
-            review.reason,
-            .functionalConflict(existingMappingID: earlierInsert.id)
-        )
+        XCTAssertEqual(review.reason, .functionalConflict)
+        XCTAssertEqual(review.conflicts.map(\.mapping.id), [earlierInsert.id])
 
         let result = try MappingTransformExecutor.execute(
             plan,
-            choices: [review.id: .replaceExisting],
+            decisions: [
+                review.id: .replaceExisting(existingMappingID: earlierInsert.id)
+            ],
             in: document,
             undoManager: UndoManager()
         )
@@ -276,13 +274,18 @@ final class MappingTransformExecutorTests: XCTestCase {
         XCTAssertEqual(plan.reviewItems.count, 2)
         XCTAssertEqual(
             plan.reviewItems.map(\.reason),
-            Array(repeating: .functionalConflict(existingMappingID: existing.id), count: 2)
+            Array(repeating: .functionalConflict, count: 2)
         )
+        XCTAssertTrue(plan.reviewItems.allSatisfy {
+            $0.conflicts.map(\.mapping.id) == [existing.id]
+        })
 
         let result = try MappingTransformExecutor.execute(
             plan,
-            choices: Dictionary(
-                uniqueKeysWithValues: plan.reviewItems.map { ($0.id, .replaceExisting) }
+            decisions: Dictionary(
+                uniqueKeysWithValues: plan.reviewItems.map {
+                    ($0.id, .replaceExisting(existingMappingID: existing.id))
+                }
             ),
             in: document,
             undoManager: undoManager
@@ -292,6 +295,158 @@ final class MappingTransformExecutorTests: XCTestCase {
         XCTAssertEqual(result.createdIDs, Set(proposals.map(\.id)))
         XCTAssertEqual(result.createdIDs.count, 2)
         XCTAssertEqual(undoManager.undoActionName, "Clone Deck A Mappings")
+    }
+
+    @MainActor
+    func testOneProposalDecisionCanReplaceOneExplicitTargetAmongMultipleConflicts() throws {
+        let source = MappingEntry(
+            commandID: 100,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 10,
+            comment: "Deck A source"
+        )
+        let firstExisting = MappingEntry(
+            commandID: 100,
+            assignment: .deckB,
+            midiChannel: 2,
+            midiCC: 11,
+            comment: "Deck B first"
+        )
+        let secondExisting = MappingEntry(
+            commandID: 100,
+            assignment: .deckB,
+            midiChannel: 3,
+            midiCC: 12,
+            comment: "Deck B second"
+        )
+        let original = MappingFile(devices: [
+            Device(
+                name: "Controller",
+                mappings: [source, firstExisting, secondExisting]
+            )
+        ])
+        let plan = makePlan(for: source.id, in: original)
+        let review = try XCTUnwrap(plan.reviewItems.first)
+        let proposed = try XCTUnwrap(review.proposedMapping)
+        let document = TraktorMappingDocument(mappingFile: original)
+
+        XCTAssertEqual(plan.reviewItems.count, 1)
+
+        let result = try MappingTransformExecutor.execute(
+            plan,
+            decisions: [
+                review.id: .replaceExisting(existingMappingID: secondExisting.id)
+            ],
+            in: document,
+            undoManager: UndoManager()
+        )
+
+        XCTAssertEqual(
+            document.mappingFile.devices[0].mappings,
+            [source, firstExisting, proposed]
+        )
+        XCTAssertEqual(result.createdIDs, [proposed.id])
+    }
+
+    @MainActor
+    func testMixedSafeAndReviewedClonesKeepPlannerOrderAcrossDestinationsAndDevices() throws {
+        let firstSource = MappingEntry(
+            commandID: 100,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 10,
+            comment: "Deck A first"
+        )
+        let secondSource = MappingEntry(
+            commandID: 101,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 11,
+            comment: "Deck A second"
+        )
+        let thirdSource = MappingEntry(
+            commandID: 102,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 12,
+            comment: "Deck A third"
+        )
+        let firstConflict = MappingEntry(
+            commandID: 100,
+            assignment: .deckB,
+            midiChannel: 2,
+            midiCC: 20,
+            comment: "Deck B existing"
+        )
+        let thirdConflict = MappingEntry(
+            commandID: 102,
+            assignment: .deckC,
+            midiChannel: 2,
+            midiCC: 22,
+            comment: "Deck C existing"
+        )
+        let firstDevice = Device(
+            name: "First",
+            mappings: [firstSource, secondSource, firstConflict]
+        )
+        let secondDevice = Device(
+            name: "Second",
+            mappings: [thirdSource, thirdConflict]
+        )
+        let original = MappingFile(devices: [firstDevice, secondDevice])
+        let plan = MappingTransformPlanner.plan(
+            MappingTransformRequest(
+                selectedMappingIDs: [firstSource.id, secondSource.id, thirdSource.id],
+                destinations: [.deckB, .deckC, .deckD]
+            ),
+            in: original
+        )
+        let decisions: [MappingTransformReviewItem.ID: MappingTransformReviewDecision] = Dictionary(
+            uniqueKeysWithValues: plan.reviewItems.map { ($0.id, .createAnother) }
+        )
+        let document = TraktorMappingDocument(mappingFile: original)
+
+        _ = try MappingTransformExecutor.execute(
+            plan,
+            decisions: decisions,
+            in: document,
+            undoManager: UndoManager()
+        )
+
+        func plannedID(
+            sourceID: MappingEntry.ID,
+            destination: DeckCloneDestination
+        ) throws -> MappingEntry.ID {
+            if let insert = plan.inserts.first(where: {
+                $0.sourceMappingID == sourceID && $0.destination == destination
+            }) {
+                return insert.mapping.id
+            }
+            return try XCTUnwrap(plan.reviewItems.first(where: {
+                $0.sourceMappingID == sourceID && $0.destination == destination
+            })?.proposedMapping?.id)
+        }
+
+        XCTAssertEqual(
+            document.mappingFile.devices[0].mappings.map(\.id),
+            firstDevice.mappings.map(\.id) + [
+                try plannedID(sourceID: firstSource.id, destination: .deckB),
+                try plannedID(sourceID: secondSource.id, destination: .deckB),
+                try plannedID(sourceID: firstSource.id, destination: .deckC),
+                try plannedID(sourceID: secondSource.id, destination: .deckC),
+                try plannedID(sourceID: firstSource.id, destination: .deckD),
+                try plannedID(sourceID: secondSource.id, destination: .deckD),
+            ]
+        )
+        XCTAssertEqual(
+            document.mappingFile.devices[1].mappings.map(\.id),
+            secondDevice.mappings.map(\.id) + [
+                try plannedID(sourceID: thirdSource.id, destination: .deckB),
+                try plannedID(sourceID: thirdSource.id, destination: .deckC),
+                try plannedID(sourceID: thirdSource.id, destination: .deckD),
+            ]
+        )
     }
 
     @MainActor
@@ -313,7 +468,7 @@ final class MappingTransformExecutorTests: XCTestCase {
 
         _ = try MappingTransformExecutor.execute(
             plan,
-            choices: [:],
+            decisions: [:],
             in: document,
             undoManager: undoManager
         )
@@ -348,7 +503,7 @@ final class MappingTransformExecutorTests: XCTestCase {
         XCTAssertThrowsError(
             try MappingTransformExecutor.execute(
                 plan,
-                choices: [:],
+                decisions: [:],
                 in: document,
                 undoManager: undoManager
             )
@@ -377,7 +532,7 @@ final class MappingTransformExecutorTests: XCTestCase {
         XCTAssertThrowsError(
             try MappingTransformExecutor.execute(
                 plan,
-                choices: [:],
+                decisions: [:],
                 in: document,
                 undoManager: undoManager
             )
@@ -413,7 +568,7 @@ final class MappingTransformExecutorTests: XCTestCase {
         XCTAssertThrowsError(
             try MappingTransformExecutor.execute(
                 plan,
-                choices: [:],
+                decisions: [:],
                 in: document,
                 undoManager: undoManager
             )
@@ -439,7 +594,9 @@ final class MappingTransformExecutorTests: XCTestCase {
         XCTAssertThrowsError(
             try MappingTransformExecutor.execute(
                 plan,
-                choices: [review.id: .replaceExisting],
+                decisions: [
+                    review.id: .replaceExisting(existingMappingID: fixture.existing.id)
+                ],
                 in: document,
                 undoManager: undoManager
             )
@@ -449,6 +606,128 @@ final class MappingTransformExecutorTests: XCTestCase {
 
         XCTAssertEqual(document.mappingFile, staleFile)
         XCTAssertFalse(undoManager.canUndo)
+    }
+
+    @MainActor
+    func testNewExactDuplicateWhileReviewIsOpenMakesPlanStaleWithoutMutation() throws {
+        let safeSource = MappingEntry(
+            commandID: 100,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 10,
+            comment: "Deck A source"
+        )
+        let reviewSource = MappingEntry(
+            commandID: 101,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 11
+        )
+        let existingConflict = MappingEntry(
+            commandID: 101,
+            assignment: .deckB,
+            midiChannel: 2,
+            midiCC: 12
+        )
+        let plannedFile = MappingFile(devices: [
+            Device(
+                name: "Controller",
+                mappings: [safeSource, reviewSource, existingConflict]
+            )
+        ])
+        let plan = MappingTransformPlanner.plan(
+            MappingTransformRequest(
+                selectedMappingIDs: [safeSource.id, reviewSource.id],
+                destinations: [.deckB]
+            ),
+            in: plannedFile
+        )
+        let review = try XCTUnwrap(plan.reviewItems.first)
+        let proposed = try XCTUnwrap(plan.inserts.first(where: {
+            $0.sourceMappingID == safeSource.id
+        })?.mapping)
+        var staleFile = plannedFile
+        staleFile.devices[0].mappings.append(proposed.copyWithNewID())
+        let document = TraktorMappingDocument(mappingFile: staleFile)
+        let undoManager = UndoManager()
+
+        XCTAssertThrowsError(
+            try MappingTransformExecutor.execute(
+                plan,
+                decisions: [review.id: .keepExisting],
+                in: document,
+                undoManager: undoManager
+            )
+        ) { error in
+            XCTAssertEqual(error as? MappingTransformExecutionError, .stalePlan)
+        }
+
+        XCTAssertEqual(document.mappingFile, staleFile)
+        XCTAssertFalse(document.isDirty)
+        XCTAssertFalse(undoManager.canUndo)
+        XCTAssertFalse(undoManager.canRedo)
+    }
+
+    @MainActor
+    func testNewFunctionalConflictWhileReviewIsOpenMakesPlanStaleWithoutMutation() throws {
+        let safeSource = MappingEntry(
+            commandID: 100,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 10,
+            comment: "Deck A source"
+        )
+        let reviewSource = MappingEntry(
+            commandID: 101,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 11
+        )
+        let existingConflict = MappingEntry(
+            commandID: 101,
+            assignment: .deckB,
+            midiChannel: 2,
+            midiCC: 12
+        )
+        let plannedFile = MappingFile(devices: [
+            Device(
+                name: "Controller",
+                mappings: [safeSource, reviewSource, existingConflict]
+            )
+        ])
+        let plan = MappingTransformPlanner.plan(
+            MappingTransformRequest(
+                selectedMappingIDs: [safeSource.id, reviewSource.id],
+                destinations: [.deckB]
+            ),
+            in: plannedFile
+        )
+        let review = try XCTUnwrap(plan.reviewItems.first)
+        var newConflict = try XCTUnwrap(plan.inserts.first(where: {
+            $0.sourceMappingID == safeSource.id
+        })?.mapping).copyWithNewID()
+        newConflict.midiCC = 11
+        newConflict.comment = "Deck B added during review"
+        var staleFile = plannedFile
+        staleFile.devices[0].mappings.append(newConflict)
+        let document = TraktorMappingDocument(mappingFile: staleFile)
+        let undoManager = UndoManager()
+
+        XCTAssertThrowsError(
+            try MappingTransformExecutor.execute(
+                plan,
+                decisions: [review.id: .keepExisting],
+                in: document,
+                undoManager: undoManager
+            )
+        ) { error in
+            XCTAssertEqual(error as? MappingTransformExecutionError, .stalePlan)
+        }
+
+        XCTAssertEqual(document.mappingFile, staleFile)
+        XCTAssertFalse(document.isDirty)
+        XCTAssertFalse(undoManager.canUndo)
+        XCTAssertFalse(undoManager.canRedo)
     }
 
     @MainActor
@@ -471,7 +750,7 @@ final class MappingTransformExecutorTests: XCTestCase {
         XCTAssertThrowsError(
             try MappingTransformExecutor.execute(
                 plan,
-                choices: [blocked.id: .createAnother],
+                decisions: [blocked.id: .createAnother],
                 in: document,
                 undoManager: undoManager
             )

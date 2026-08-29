@@ -249,9 +249,9 @@ struct ContentView: View {
             case .settings:
                 APIKeySettingsView()
             case .deckClone(let plan):
-                DeckCloneReviewSheet(plan: plan) { choices in
+                DeckCloneReviewSheet(plan: plan) { decisions in
                     activeSheet = nil
-                    executeDeckClone(plan, choices: choices)
+                    executeDeckClone(plan, decisions: decisions)
                 }
             }
         }
@@ -609,7 +609,7 @@ struct ContentView: View {
 
         guard plan.statusText != nil else { return }
         if plan.reviewItems.isEmpty {
-            executeDeckClone(plan, choices: [:])
+            executeDeckClone(plan, decisions: [:])
         } else {
             activeSheet = .deckClone(plan)
         }
@@ -617,12 +617,12 @@ struct ContentView: View {
 
     private func executeDeckClone(
         _ plan: MappingTransformPlan,
-        choices: [MappingTransformReviewItem.ID: MappingTransformReviewChoice]
+        decisions: [MappingTransformReviewItem.ID: MappingTransformReviewDecision]
     ) {
         do {
             let result = try MappingTransformExecutor.execute(
                 plan,
-                choices: choices,
+                decisions: decisions,
                 in: document,
                 undoManager: undoManager
             )

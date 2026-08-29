@@ -81,6 +81,13 @@ final class DeckClonePresentationTests: XCTestCase {
         XCTAssertEqual(DeckClonePresentation.midiChannels, Array(1...16))
     }
 
+    func testChangeDeckMenuOffersOnlyActualDeckAssignments() {
+        XCTAssertEqual(
+            DeckClonePresentation.deckAssignments,
+            [.deckA, .deckB, .deckC, .deckD]
+        )
+    }
+
     func testStatusUsesExecutorSentenceAndSuppressesTrueNoOp() {
         let createdIDs = Set([UUID(), UUID()])
         let result = MappingTransformExecutionResult(
@@ -138,7 +145,7 @@ final class DeckClonePresentationTests: XCTestCase {
         state.setChoice(.createAnother, for: item)
 
         XCTAssertTrue(state.canApply)
-        XCTAssertEqual(state.choices, [item.id: .createAnother])
+        XCTAssertEqual(state.decisions, [item.id: .createAnother])
         XCTAssertEqual(state.plan.reviewItems.first?.proposedMapping?.id, plannedID)
     }
 
@@ -166,33 +173,86 @@ final class DeckClonePresentationTests: XCTestCase {
         XCTAssertFalse(state.canApply)
     }
 
-    func testConflictRowsDistinguishExistingMappingsAndShowProposedCloneDetails() throws {
+    func testOneProposalRowShowsEveryExistingConflictAndProposedCloneDetails() throws {
         let plan = makeTwoConflictPlan()
-        XCTAssertEqual(plan.reviewItems.count, 2)
+        XCTAssertEqual(plan.reviewItems.count, 1)
 
         let rows = plan.reviewItems.enumerated().map { offset, item in
             DeckCloneReviewRowPresentation(item: item, rowNumber: offset + 1)
         }
 
         XCTAssertEqual(
-            rows.map(\.existingSummary),
+            rows[0].existingSummaries,
             [
                 "MIDI: Ch02 CC 011; Comment: Left target",
                 "MIDI: Ch03 Note C4; Comment: Right target",
             ]
         )
-        XCTAssertNotEqual(rows[0].existingSummary, rows[1].existingSummary)
         XCTAssertEqual(
-            rows.map(\.cloneSummary),
-            [
-                "MIDI: Ch01 CC 010; Comment: Deck B source",
-                "MIDI: Ch01 CC 010; Comment: Deck B source",
-            ]
+            rows[0].cloneSummary,
+            "MIDI: Ch01 CC 010; Comment: Deck B source"
         )
     }
 
-    func testEveryConflictChoiceControlHasUniqueMeaningfulAccessibilityLabel() throws {
+    func testProposalStateKeepsOneChoiceAcrossMultipleConflictsAndRequiresReplacementTarget() throws {
         let plan = makeTwoConflictPlan()
+        let item = try XCTUnwrap(plan.reviewItems.first)
+        let target = try XCTUnwrap(item.conflicts.last?.mapping.id)
+        var state = DeckCloneReviewState(plan: plan)
+
+        state.setChoice(.replaceExisting, for: item)
+        XCTAssertFalse(state.canApply)
+        XCTAssertTrue(state.decisions.isEmpty)
+
+        state.setReplacementTarget(target, for: item)
+
+        XCTAssertTrue(state.canApply)
+        XCTAssertEqual(
+            state.decisions,
+            [item.id: .replaceExisting(existingMappingID: target)]
+        )
+
+        state.setChoice(.keepExisting, for: item)
+        state.setChoice(.createAnother, for: item)
+
+        XCTAssertEqual(state.decisions, [item.id: .createAnother])
+    }
+
+    func testDuplicateDeviceNamesAreDisambiguatedInRowsAndAccessibilityLabels() throws {
+        let firstSource = MappingEntry(
+            commandID: 100,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 10
+        )
+        let firstExisting = MappingEntry(
+            commandID: 100,
+            assignment: .deckB,
+            midiChannel: 2,
+            midiCC: 11
+        )
+        let secondSource = MappingEntry(
+            commandID: 101,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 12
+        )
+        let secondExisting = MappingEntry(
+            commandID: 101,
+            assignment: .deckB,
+            midiChannel: 2,
+            midiCC: 13
+        )
+        let plan = MappingTransformPlanner.plan(
+            MappingTransformRequest(
+                selectedMappingIDs: [firstSource.id, secondSource.id],
+                destinations: [.deckB]
+            ),
+            in: MappingFile(devices: [
+                Device(name: "Controller", mappings: [firstSource, firstExisting]),
+                Device(name: "Controller", mappings: [secondSource, secondExisting]),
+            ])
+        )
 
         let labels = plan.reviewItems.enumerated().map { offset, item in
             DeckCloneReviewRowPresentation(
@@ -201,9 +261,15 @@ final class DeckClonePresentationTests: XCTestCase {
             ).choiceAccessibilityLabel
         }
 
+        XCTAssertEqual(
+            plan.reviewItems.enumerated().map { offset, item in
+                DeckCloneReviewRowPresentation(item: item, rowNumber: offset + 1).deviceTitle
+            },
+            ["Controller (1)", "Controller (2)"]
+        )
         XCTAssertEqual(labels, [
-            "Review item 1: choose action for Play/Pause, Deck B. Existing MIDI Ch02 CC 011; comment Left target.",
-            "Review item 2: choose action for Play/Pause, Deck B. Existing MIDI Ch03 Note C4; comment Right target.",
+            "Review item 1: choose action for Play/Pause, Deck B, source device Controller (1).",
+            "Review item 2: choose action for Play, Deck B, source device Controller (2).",
         ])
         XCTAssertEqual(Set(labels).count, 2)
     }
@@ -236,7 +302,7 @@ final class DeckClonePresentationTests: XCTestCase {
                 destinations: [.deckB]
             ),
             in: MappingFile(devices: [
-                Device(mappings: [source, leftTarget, rightTarget]),
+                Device(name: "Controller", mappings: [source, leftTarget, rightTarget]),
             ])
         )
     }

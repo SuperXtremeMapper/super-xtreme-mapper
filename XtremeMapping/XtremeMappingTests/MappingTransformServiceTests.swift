@@ -463,14 +463,54 @@ final class MappingTransformServiceTests: XCTestCase {
 
         XCTAssertTrue(plan.inserts.isEmpty)
         XCTAssertEqual(plan.reviewItems.count, 1)
-        XCTAssertEqual(
-            plan.reviewItems[0].reason,
-            .functionalConflict(existingMappingID: existing.id)
-        )
+        XCTAssertEqual(plan.reviewItems[0].reason, .functionalConflict)
+        XCTAssertEqual(plan.reviewItems[0].conflicts.map(\.mapping.id), [existing.id])
         XCTAssertEqual(plan.reviewItems[0].proposedMapping?.midiCC, 10)
         XCTAssertEqual(plan.reviewItems[0].availableChoices, [
             .keepExisting, .createAnother, .replaceExisting
         ])
+        XCTAssertEqual(plan.statusText, "1 mapping needs review.")
+    }
+
+    func testOneProposalWithMultipleFunctionalConflictsProducesOneReviewItem() {
+        let source = MappingEntry(
+            commandID: 100,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 10,
+            comment: "Deck A source"
+        )
+        let firstExisting = MappingEntry(
+            commandID: 100,
+            assignment: .deckB,
+            midiChannel: 2,
+            midiCC: 11,
+            comment: "Deck B first"
+        )
+        let secondExisting = MappingEntry(
+            commandID: 100,
+            assignment: .deckB,
+            midiChannel: 3,
+            midiNote: 60,
+            comment: "Deck B second"
+        )
+        let file = MappingFile(devices: [
+            Device(name: "Controller", mappings: [source, firstExisting, secondExisting])
+        ])
+
+        let plan = MappingTransformPlanner.plan(
+            MappingTransformRequest(
+                selectedMappingIDs: [source.id],
+                destinations: [.deckB]
+            ),
+            in: file
+        )
+
+        XCTAssertEqual(plan.reviewItems.count, 1)
+        XCTAssertEqual(
+            plan.reviewItems[0].conflicts.map(\.mapping.id),
+            [firstExisting.id, secondExisting.id]
+        )
         XCTAssertEqual(plan.statusText, "1 mapping needs review.")
     }
 
