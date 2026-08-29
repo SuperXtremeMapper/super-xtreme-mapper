@@ -44,20 +44,23 @@ struct SemanticBindingKey: Hashable, Sendable {
     ) -> Bool {
         guard let imported = entry.importedCMAD else { return true }
         return targetMatches(
-            wire: imported.conditionOneTarget,
+            wireID: imported.conditionOneID,
+            wireTarget: imported.conditionOneTarget,
             modeled: imported.semanticAtImport.modifier1Condition
         ) && targetMatches(
-            wire: imported.conditionTwoTarget,
+            wireID: imported.conditionTwoID,
+            wireTarget: imported.conditionTwoTarget,
             modeled: imported.semanticAtImport.modifier2Condition
         )
     }
 
     private static func targetMatches(
-        wire: UInt32?,
+        wireID: UInt32?,
+        wireTarget: UInt32?,
         modeled condition: ModifierCondition?
     ) -> Bool {
-        guard let wire else { return true }
-        return wire == (condition?.target.rawValue ?? 0)
+        guard wireID != 0, let wireTarget else { return true }
+        return wireTarget == (condition?.target.rawValue ?? 0)
     }
 
     private static func condition(_ condition: ModifierCondition?) -> Condition? {

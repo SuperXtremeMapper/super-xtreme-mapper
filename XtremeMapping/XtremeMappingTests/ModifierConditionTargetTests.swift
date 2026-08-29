@@ -90,6 +90,44 @@ final class ModifierConditionTargetTests: XCTestCase {
         XCTAssertEqual(readUInt32(rewritten, at: 56), unknownRaw)
     }
 
+    func testEditingActiveConditionPreservesUnchangedInactiveConditionWireTuple() throws {
+        let original = makeCMAD(
+            conditionOne: (modifier: 0, target: 0xDEAD_BEEF, value: 0x1234_5678),
+            conditionTwo: (modifier: 4, target: 1, value: 5),
+            optionalTailSeed: 0x20,
+            trailingBytes: Data([0xAA, 0x55])
+        )
+        var mapping = try XCTUnwrap(
+            try interpretCMAD(original).devices.first?.mappings.first
+        )
+        XCTAssertNil(mapping.modifier1Condition)
+        mapping.modifier2Condition?.value = 7
+
+        let rewritten = try TSIWriter().preservingCMADPayload(for: mapping)
+        var expected = original
+        replaceUInt32(7, in: &expected, at: 72)
+
+        XCTAssertEqual(rewritten, expected)
+    }
+
+    func testSemanticBindingKeyIgnoresInactiveConditionRawTarget() throws {
+        let mapping = try XCTUnwrap(
+            try interpretCMAD(
+                makeCMAD(
+                    conditionOne: (modifier: 0, target: 0xCAFE_BABE, value: 0x1122_3344),
+                    conditionTwo: (modifier: 4, target: 1, value: 5)
+                )
+            ).devices.first?.mappings.first
+        )
+
+        let key = try XCTUnwrap(SemanticBindingKey(entry: mapping))
+
+        XCTAssertNil(key.conditionOne)
+        XCTAssertEqual(key.conditionTwo?.target, 1)
+        XCTAssertEqual(key.conditionTwo?.modifier, 4)
+        XCTAssertEqual(key.conditionTwo?.value, 5)
+    }
+
     func testLegacyCodableModifierDefaultsToDeckATarget() throws {
         let legacy = Data(#"{"modifier":2,"value":3}"#.utf8)
 
@@ -143,6 +181,32 @@ final class ModifierConditionTargetTests: XCTestCase {
             readUInt32(try TSIWriter().preservingCMADPayload(for: decoded), at: 56),
             unknownRaw
         )
+    }
+
+    func testLegacyCodableDoesNotPromoteStaleInactiveTargetIntoAddedCondition() throws {
+        var mapping = try XCTUnwrap(
+            try interpretCMAD(
+                makeCMAD(conditionOne: (modifier: 0, target: 0xFEED_FACE, value: 0))
+            ).devices.first?.mappings.first
+        )
+        XCTAssertNil(mapping.importedCMAD?.semanticAtImport.modifier1Condition)
+        mapping.modifier1Condition = ModifierCondition(modifier: 2, value: 3)
+        var legacyObject = try XCTUnwrap(
+            JSONSerialization.jsonObject(with: JSONEncoder().encode(mapping)) as? [String: Any]
+        )
+        var currentCondition = try XCTUnwrap(
+            legacyObject["modifier1Condition"] as? [String: Any]
+        )
+        currentCondition.removeValue(forKey: "target")
+        legacyObject["modifier1Condition"] = currentCondition
+
+        let decoded = try JSONDecoder().decode(
+            MappingEntry.self,
+            from: JSONSerialization.data(withJSONObject: legacyObject)
+        )
+
+        XCTAssertEqual(decoded.modifier1Condition?.target, .deckA)
+        XCTAssertNil(decoded.importedCMAD?.semanticAtImport.modifier1Condition)
     }
 
     func testSemanticBindingKeyUsesModeledKnownAndUnknownTargets() throws {

@@ -755,21 +755,25 @@ public struct TSIWriter: Sendable {
         }
 
         let conditionOffset = 52 + mapping.comment.utf16.count * 2
-        if mapping.modifier1Condition != baseline.modifier1Condition
-            || mapping.modifier2Condition != baseline.modifier2Condition {
-            let conditions: [UInt32] = [
-                UInt32(clamping: mapping.modifier1Condition?.modifier ?? 0),
-                mapping.modifier1Condition?.target.rawValue ?? 0,
-                UInt32(clamping: mapping.modifier1Condition?.value ?? 0),
-                UInt32(clamping: mapping.modifier2Condition?.modifier ?? 0),
-                mapping.modifier2Condition?.target.rawValue ?? 0,
-                UInt32(clamping: mapping.modifier2Condition?.value ?? 0),
+        let conditionSlots: [(
+            current: ModifierCondition?,
+            baseline: ModifierCondition?,
+            relativeOffset: Int
+        )] = [
+            (mapping.modifier1Condition, baseline.modifier1Condition, 0),
+            (mapping.modifier2Condition, baseline.modifier2Condition, 12),
+        ]
+        for slot in conditionSlots where slot.current != slot.baseline {
+            let values: [UInt32] = [
+                UInt32(clamping: slot.current?.modifier ?? 0),
+                slot.current?.target.rawValue ?? 0,
+                UInt32(clamping: slot.current?.value ?? 0),
             ]
-            for (index, value) in conditions.enumerated() {
+            for (index, value) in values.enumerated() {
                 try replaceUInt32(
                     value,
                     in: &data,
-                    at: conditionOffset + index * 4,
+                    at: conditionOffset + slot.relativeOffset + index * 4,
                     field: "Conditions"
                 )
             }

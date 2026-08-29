@@ -586,6 +586,7 @@ extension MappingEntry: Codable {
         if var importedCMAD {
             if !modifier1TargetWasEncoded,
                let rawTarget = importedCMAD.conditionOneTarget,
+               importedCMAD.semanticAtImport.modifier1Condition != nil,
                modifier1Condition != nil {
                 let target = ModifierConditionTarget(rawValue: rawTarget)
                 modifier1Condition?.target = target
@@ -593,6 +594,7 @@ extension MappingEntry: Codable {
             }
             if !modifier2TargetWasEncoded,
                let rawTarget = importedCMAD.conditionTwoTarget,
+               importedCMAD.semanticAtImport.modifier2Condition != nil,
                modifier2Condition != nil {
                 let target = ModifierConditionTarget(rawValue: rawTarget)
                 modifier2Condition?.target = target
