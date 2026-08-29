@@ -80,6 +80,7 @@ struct MappingTransformRequest: Equatable, Sendable {
 /// One safe insertion proposed by the planner.
 struct MappingTransformInsert: Equatable, Sendable {
     let sourceMappingID: MappingEntry.ID
+    let sourceMapping: MappingEntry
     let deviceID: Device.ID
     let destination: DeckCloneDestination
     let mapping: MappingEntry
@@ -88,9 +89,16 @@ struct MappingTransformInsert: Equatable, Sendable {
 /// One clone omitted because an equivalent mapping already exists.
 struct MappingTransformDuplicateSkip: Equatable, Sendable {
     let sourceMappingID: MappingEntry.ID
+    let sourceMapping: MappingEntry
     let deviceID: Device.ID
     let destination: DeckCloneDestination
     let existingMappingID: MappingEntry.ID
+    let existingMapping: MappingEntry
+}
+
+fileprivate struct MappingTransformIgnoredReference: Equatable, Sendable {
+    let deviceID: Device.ID
+    let mapping: MappingEntry
 }
 
 enum MappingTransformReviewChoice: Equatable, CaseIterable, Sendable {
@@ -115,10 +123,12 @@ struct MappingTransformReviewItem: Identifiable, Equatable, Sendable {
 
     let id: ID
     let sourceMappingID: MappingEntry.ID
+    let sourceMapping: MappingEntry
     let deviceID: Device.ID
     let destination: DeckCloneDestination
     let proposedMapping: MappingEntry?
     let reason: MappingTransformReviewReason
+    let existingMapping: MappingEntry?
 
     var availableChoices: [MappingTransformReviewChoice] {
         switch reason {
@@ -131,10 +141,12 @@ struct MappingTransformReviewItem: Identifiable, Equatable, Sendable {
 
     init(
         sourceMappingID: MappingEntry.ID,
+        sourceMapping: MappingEntry,
         deviceID: Device.ID,
         destination: DeckCloneDestination,
         proposedMapping: MappingEntry?,
-        reason: MappingTransformReviewReason
+        reason: MappingTransformReviewReason,
+        existingMapping: MappingEntry? = nil
     ) {
         id = ID(
             sourceMappingID: sourceMappingID,
@@ -143,10 +155,12 @@ struct MappingTransformReviewItem: Identifiable, Equatable, Sendable {
             reason: reason
         )
         self.sourceMappingID = sourceMappingID
+        self.sourceMapping = sourceMapping
         self.deviceID = deviceID
         self.destination = destination
         self.proposedMapping = proposedMapping
         self.reason = reason
+        self.existingMapping = existingMapping
     }
 }
 
@@ -158,17 +172,20 @@ struct MappingTransformPlan: Equatable, Sendable {
     let reviewItems: [MappingTransformReviewItem]
     let newSelectionIDs: Set<MappingEntry.ID>
     let statusText: String?
+    fileprivate let ignoredReferences: [MappingTransformIgnoredReference]
 
-    init(
+    fileprivate init(
         inserts: [MappingTransformInsert],
         duplicateSkips: [MappingTransformDuplicateSkip],
         ignoredMappingIDs: Set<MappingEntry.ID>,
-        reviewItems: [MappingTransformReviewItem]
+        reviewItems: [MappingTransformReviewItem],
+        ignoredReferences: [MappingTransformIgnoredReference]
     ) {
         self.inserts = inserts
         self.duplicateSkips = duplicateSkips
         self.ignoredMappingIDs = ignoredMappingIDs
         self.reviewItems = reviewItems
+        self.ignoredReferences = ignoredReferences
         newSelectionIDs = Set(inserts.map(\.mapping.id))
         statusText = Self.makeStatusText(
             created: inserts.count,
@@ -217,7 +234,8 @@ enum MappingTransformPlanner {
                 inserts: [],
                 duplicateSkips: [],
                 ignoredMappingIDs: [],
-                reviewItems: []
+                reviewItems: [],
+                ignoredReferences: []
             )
         }
 
@@ -228,11 +246,8 @@ enum MappingTransformPlanner {
                     : nil
             }
         }
-        let ignoredIDs = Set(
-            selectedRows.lazy
-                .filter { !isEligible($0.mapping.assignment) }
-                .map { $0.mapping.id }
-        )
+        let ignoredRows = selectedRows.filter { !isEligible($0.mapping.assignment) }
+        let ignoredIDs = Set(ignoredRows.map { $0.mapping.id })
         let eligibleRows = selectedRows.filter { isEligible($0.mapping.assignment) }
 
         var comparisonRows = Dictionary(
@@ -249,6 +264,7 @@ enum MappingTransformPlanner {
                     reviewItems.append(
                         MappingTransformReviewItem(
                             sourceMappingID: owned.mapping.id,
+                            sourceMapping: owned.mapping,
                             deviceID: owned.deviceID,
                             destination: destination,
                             proposedMapping: nil,
@@ -273,9 +289,11 @@ enum MappingTransformPlanner {
                     duplicateSkips.append(
                         MappingTransformDuplicateSkip(
                             sourceMappingID: owned.mapping.id,
+                            sourceMapping: owned.mapping,
                             deviceID: owned.deviceID,
                             destination: destination,
-                            existingMappingID: duplicate.id
+                            existingMappingID: duplicate.id,
+                            existingMapping: duplicate
                         )
                     )
                     continue
@@ -295,10 +313,12 @@ enum MappingTransformPlanner {
                     reviewItems.append(contentsOf: conflicts.map { existing in
                         MappingTransformReviewItem(
                             sourceMappingID: owned.mapping.id,
+                            sourceMapping: owned.mapping,
                             deviceID: owned.deviceID,
                             destination: destination,
                             proposedMapping: proposedClone,
-                            reason: .functionalConflict(existingMappingID: existing.id)
+                            reason: .functionalConflict(existingMappingID: existing.id),
+                            existingMapping: existing
                         )
                     })
                     continue
@@ -314,6 +334,7 @@ enum MappingTransformPlanner {
                 inserts.append(
                     MappingTransformInsert(
                         sourceMappingID: owned.mapping.id,
+                        sourceMapping: owned.mapping,
                         deviceID: owned.deviceID,
                         destination: destination,
                         mapping: insertClone
@@ -327,7 +348,10 @@ enum MappingTransformPlanner {
             inserts: inserts,
             duplicateSkips: duplicateSkips,
             ignoredMappingIDs: ignoredIDs,
-            reviewItems: reviewItems
+            reviewItems: reviewItems,
+            ignoredReferences: ignoredRows.map {
+                MappingTransformIgnoredReference(deviceID: $0.deviceID, mapping: $0.mapping)
+            }
         )
     }
 
@@ -544,5 +568,291 @@ enum MappingTransformPlanner {
             && lhs.ledInvert == rhs.ledInvert
             && lhs.ledBlend == rhs.ledBlend
             && lhs.resolution == rhs.resolution
+    }
+}
+
+struct MappingTransformExecutionResult: Equatable, Sendable {
+    let createdIDs: Set<MappingEntry.ID>
+    let createdCount: Int
+    let duplicateSkipCount: Int
+    let ignoredCount: Int
+    let statusText: String
+
+    init(
+        createdIDs: Set<MappingEntry.ID>,
+        duplicateSkipCount: Int,
+        ignoredCount: Int
+    ) {
+        self.createdIDs = createdIDs
+        createdCount = createdIDs.count
+        self.duplicateSkipCount = duplicateSkipCount
+        self.ignoredCount = ignoredCount
+
+        var sentences = [
+            "\(createdCount) \(createdCount == 1 ? "mapping" : "mappings") created."
+        ]
+        if duplicateSkipCount > 0 {
+            sentences.append(
+                "\(duplicateSkipCount) "
+                    + "\(duplicateSkipCount == 1 ? "duplicate" : "duplicates") skipped."
+            )
+        }
+        if ignoredCount > 0 {
+            sentences.append(
+                "\(ignoredCount) other "
+                    + "\(ignoredCount == 1 ? "mapping" : "mappings") ignored."
+            )
+        }
+        statusText = sentences.joined(separator: " ")
+    }
+}
+
+enum MappingTransformExecutionError: Error, Equatable, Sendable, LocalizedError {
+    case stalePlan
+    case incompleteReviewChoices
+    case blockedReviewItem
+    case invalidReviewChoice
+    case preflightFailed(String)
+
+    var errorDescription: String? {
+        switch self {
+        case .stalePlan:
+            "The mappings changed after review. Try cloning them again."
+        case .incompleteReviewChoices:
+            "Choose what to do with every mapping that needs review."
+        case .blockedReviewItem:
+            "A mapping has an unsupported condition target and cannot be cloned safely."
+        case .invalidReviewChoice:
+            "A review choice is no longer available. Try cloning the mappings again."
+        case .preflightFailed(let detail):
+            "The cloned mappings cannot be written as a valid TSI: \(detail)"
+        }
+    }
+}
+
+/// Applies only the identities and mappings already resolved by a plan. It
+/// validates every referenced snapshot and the complete candidate before one
+/// undoable document replacement; it never replans or allocates new IDs.
+enum MappingTransformExecutor {
+    @MainActor
+    static func execute(
+        _ plan: MappingTransformPlan,
+        choices: [MappingTransformReviewItem.ID: MappingTransformReviewChoice],
+        in document: TraktorMappingDocument,
+        undoManager: UndoManager?
+    ) throws -> MappingTransformExecutionResult {
+        try validateChoices(choices, for: plan)
+        try validateReferences(in: plan, against: document.mappingFile)
+
+        var candidate = document.mappingFile
+        var createdIDs: Set<MappingEntry.ID> = []
+
+        for insert in plan.inserts {
+            try append(insert.mapping, to: insert.deviceID, in: &candidate)
+            createdIDs.insert(insert.mapping.id)
+        }
+
+        for item in plan.reviewItems {
+            guard let choice = choices[item.id] else { continue }
+            switch choice {
+            case .keepExisting:
+                continue
+            case .createAnother:
+                try insertProposedMapping(from: item, into: &candidate, createdIDs: &createdIDs)
+            case .replaceExisting:
+                guard case .functionalConflict(let existingMappingID) = item.reason else {
+                    throw MappingTransformExecutionError.invalidReviewChoice
+                }
+                try remove(
+                    mappingID: existingMappingID,
+                    from: item.deviceID,
+                    in: &candidate
+                )
+                try insertProposedMapping(from: item, into: &candidate, createdIDs: &createdIDs)
+            }
+        }
+
+        do {
+            _ = try TSIWriter().writeConverted(candidate)
+        } catch {
+            let detail = (error as? LocalizedError)?.errorDescription
+                ?? String(describing: error)
+            throw MappingTransformExecutionError.preflightFailed(detail)
+        }
+
+        _ = document.performUndoableMutation(
+            actionName: "Clone Deck A Mappings",
+            undoManager: undoManager
+        ) { mappingFile in
+            mappingFile = candidate
+        }
+
+        return MappingTransformExecutionResult(
+            createdIDs: createdIDs,
+            duplicateSkipCount: plan.duplicateSkips.count,
+            ignoredCount: plan.ignoredMappingIDs.count
+        )
+    }
+
+    private static func validateChoices(
+        _ choices: [MappingTransformReviewItem.ID: MappingTransformReviewChoice],
+        for plan: MappingTransformPlan
+    ) throws {
+        let reviewIDs = Set(plan.reviewItems.map(\.id))
+        guard Set(choices.keys).isSubset(of: reviewIDs) else {
+            throw MappingTransformExecutionError.invalidReviewChoice
+        }
+
+        for item in plan.reviewItems {
+            guard !item.availableChoices.isEmpty else {
+                throw MappingTransformExecutionError.blockedReviewItem
+            }
+            guard let choice = choices[item.id] else {
+                throw MappingTransformExecutionError.incompleteReviewChoices
+            }
+            guard item.availableChoices.contains(choice) else {
+                throw MappingTransformExecutionError.invalidReviewChoice
+            }
+        }
+    }
+
+    private static func validateReferences(
+        in plan: MappingTransformPlan,
+        against mappingFile: MappingFile
+    ) throws {
+        var proposedByID: [MappingEntry.ID: MappingEntry] = [:]
+
+        for ignored in plan.ignoredReferences {
+            guard mapping(
+                id: ignored.mapping.id,
+                deviceID: ignored.deviceID,
+                in: mappingFile
+            ) == ignored.mapping else {
+                throw MappingTransformExecutionError.stalePlan
+            }
+        }
+
+        for insert in plan.inserts {
+            try validateSource(
+                insert.sourceMapping,
+                id: insert.sourceMappingID,
+                deviceID: insert.deviceID,
+                in: mappingFile
+            )
+            try validateProposed(insert.mapping, in: mappingFile, proposedByID: &proposedByID)
+        }
+
+        for duplicate in plan.duplicateSkips {
+            try validateSource(
+                duplicate.sourceMapping,
+                id: duplicate.sourceMappingID,
+                deviceID: duplicate.deviceID,
+                in: mappingFile
+            )
+            guard mapping(
+                id: duplicate.existingMappingID,
+                deviceID: duplicate.deviceID,
+                in: mappingFile
+            ) == duplicate.existingMapping else {
+                throw MappingTransformExecutionError.stalePlan
+            }
+        }
+
+        for item in plan.reviewItems {
+            try validateSource(
+                item.sourceMapping,
+                id: item.sourceMappingID,
+                deviceID: item.deviceID,
+                in: mappingFile
+            )
+            if case .functionalConflict(let existingMappingID) = item.reason {
+                guard let expected = item.existingMapping,
+                      mapping(
+                        id: existingMappingID,
+                        deviceID: item.deviceID,
+                        in: mappingFile
+                      ) == expected else {
+                    throw MappingTransformExecutionError.stalePlan
+                }
+            }
+            if let proposed = item.proposedMapping {
+                try validateProposed(proposed, in: mappingFile, proposedByID: &proposedByID)
+            }
+        }
+    }
+
+    private static func validateSource(
+        _ expected: MappingEntry,
+        id: MappingEntry.ID,
+        deviceID: Device.ID,
+        in mappingFile: MappingFile
+    ) throws {
+        guard expected.id == id,
+              mapping(id: id, deviceID: deviceID, in: mappingFile) == expected else {
+            throw MappingTransformExecutionError.stalePlan
+        }
+    }
+
+    private static func validateProposed(
+        _ proposed: MappingEntry,
+        in mappingFile: MappingFile,
+        proposedByID: inout [MappingEntry.ID: MappingEntry]
+    ) throws {
+        guard !mappingFile.allMappings.contains(where: { $0.id == proposed.id }) else {
+            throw MappingTransformExecutionError.stalePlan
+        }
+        if let previous = proposedByID[proposed.id], previous != proposed {
+            throw MappingTransformExecutionError.stalePlan
+        }
+        proposedByID[proposed.id] = proposed
+    }
+
+    private static func mapping(
+        id: MappingEntry.ID,
+        deviceID: Device.ID,
+        in mappingFile: MappingFile
+    ) -> MappingEntry? {
+        guard let device = mappingFile.devices.first(where: { $0.id == deviceID }) else {
+            return nil
+        }
+        let matches = device.mappings.filter { $0.id == id }
+        return matches.count == 1 ? matches[0] : nil
+    }
+
+    private static func append(
+        _ mapping: MappingEntry,
+        to deviceID: Device.ID,
+        in mappingFile: inout MappingFile
+    ) throws {
+        guard let deviceIndex = mappingFile.devices.firstIndex(where: { $0.id == deviceID }) else {
+            throw MappingTransformExecutionError.stalePlan
+        }
+        mappingFile.devices[deviceIndex].mappings.append(mapping)
+    }
+
+    private static func remove(
+        mappingID: MappingEntry.ID,
+        from deviceID: Device.ID,
+        in mappingFile: inout MappingFile
+    ) throws {
+        guard let deviceIndex = mappingFile.devices.firstIndex(where: { $0.id == deviceID }),
+              let mappingIndex = mappingFile.devices[deviceIndex].mappings.firstIndex(where: {
+                $0.id == mappingID
+              }) else {
+            throw MappingTransformExecutionError.stalePlan
+        }
+        mappingFile.devices[deviceIndex].mappings.remove(at: mappingIndex)
+    }
+
+    private static func insertProposedMapping(
+        from item: MappingTransformReviewItem,
+        into mappingFile: inout MappingFile,
+        createdIDs: inout Set<MappingEntry.ID>
+    ) throws {
+        guard let proposed = item.proposedMapping else {
+            throw MappingTransformExecutionError.blockedReviewItem
+        }
+        guard createdIDs.insert(proposed.id).inserted else { return }
+        try append(proposed, to: item.deviceID, in: &mappingFile)
     }
 }
