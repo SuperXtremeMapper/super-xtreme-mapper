@@ -147,6 +147,154 @@ final class MappingTransformExecutorTests: XCTestCase {
     }
 
     @MainActor
+    func testPlannedDuplicateReferenceExecutesAgainstEarlierInsert() throws {
+        let first = MappingEntry(
+            commandID: 100,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 10,
+            comment: "Deck A shared"
+        )
+        let second = first.copyWithNewID()
+        let original = MappingFile(devices: [
+            Device(name: "Controller", mappings: [first, second])
+        ])
+        let plan = MappingTransformPlanner.plan(
+            MappingTransformRequest(
+                selectedMappingIDs: [first.id, second.id],
+                destinations: [.deckB]
+            ),
+            in: original
+        )
+        let inserted = try XCTUnwrap(plan.inserts.first?.mapping)
+        let duplicate = try XCTUnwrap(plan.duplicateSkips.first)
+        let document = TraktorMappingDocument(mappingFile: original)
+        let undoManager = UndoManager()
+
+        XCTAssertEqual(plan.inserts.count, 1)
+        XCTAssertEqual(plan.duplicateSkips.count, 1)
+        XCTAssertEqual(duplicate.existingMappingID, inserted.id)
+
+        let result = try MappingTransformExecutor.execute(
+            plan,
+            choices: [:],
+            in: document,
+            undoManager: undoManager
+        )
+
+        XCTAssertEqual(document.mappingFile.devices[0].mappings, [first, second, inserted])
+        XCTAssertEqual(result.createdIDs, [inserted.id])
+        XCTAssertEqual(result.duplicateSkipCount, 1)
+        XCTAssertEqual(undoManager.undoActionName, "Clone Deck A Mappings")
+    }
+
+    @MainActor
+    func testReplacingPlannedConflictRemovesEarlierInsertFromCreatedSelection() throws {
+        let first = MappingEntry(
+            commandID: 100,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 10,
+            comment: "Deck A first"
+        )
+        let second = MappingEntry(
+            commandID: 100,
+            assignment: .deckA,
+            midiChannel: 2,
+            midiCC: 11,
+            comment: "Deck A second"
+        )
+        let original = MappingFile(devices: [
+            Device(name: "Controller", mappings: [first, second])
+        ])
+        let plan = MappingTransformPlanner.plan(
+            MappingTransformRequest(
+                selectedMappingIDs: [first.id, second.id],
+                destinations: [.deckB]
+            ),
+            in: original
+        )
+        let earlierInsert = try XCTUnwrap(plan.inserts.first?.mapping)
+        let review = try XCTUnwrap(plan.reviewItems.first)
+        let replacement = try XCTUnwrap(review.proposedMapping)
+        let document = TraktorMappingDocument(mappingFile: original)
+
+        XCTAssertEqual(
+            review.reason,
+            .functionalConflict(existingMappingID: earlierInsert.id)
+        )
+
+        let result = try MappingTransformExecutor.execute(
+            plan,
+            choices: [review.id: .replaceExisting],
+            in: document,
+            undoManager: UndoManager()
+        )
+
+        XCTAssertEqual(document.mappingFile.devices[0].mappings, [first, second, replacement])
+        XCTAssertEqual(result.createdIDs, [replacement.id])
+        XCTAssertFalse(result.createdIDs.contains(earlierInsert.id))
+    }
+
+    @MainActor
+    func testMultipleReplaceChoicesRemoveSharedLiveTargetOnceAndInsertEveryProposal() throws {
+        let first = MappingEntry(
+            commandID: 100,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 10,
+            comment: "Deck A first"
+        )
+        let second = MappingEntry(
+            commandID: 100,
+            assignment: .deckA,
+            midiChannel: 2,
+            midiCC: 11,
+            comment: "Deck A second"
+        )
+        let existing = MappingEntry(
+            commandID: 100,
+            assignment: .deckB,
+            midiChannel: 3,
+            midiCC: 12,
+            comment: "Deck B existing"
+        )
+        let original = MappingFile(devices: [
+            Device(name: "Controller", mappings: [first, second, existing])
+        ])
+        let plan = MappingTransformPlanner.plan(
+            MappingTransformRequest(
+                selectedMappingIDs: [first.id, second.id],
+                destinations: [.deckB]
+            ),
+            in: original
+        )
+        let proposals = try plan.reviewItems.map { try XCTUnwrap($0.proposedMapping) }
+        let document = TraktorMappingDocument(mappingFile: original)
+        let undoManager = UndoManager()
+
+        XCTAssertEqual(plan.reviewItems.count, 2)
+        XCTAssertEqual(
+            plan.reviewItems.map(\.reason),
+            Array(repeating: .functionalConflict(existingMappingID: existing.id), count: 2)
+        )
+
+        let result = try MappingTransformExecutor.execute(
+            plan,
+            choices: Dictionary(
+                uniqueKeysWithValues: plan.reviewItems.map { ($0.id, .replaceExisting) }
+            ),
+            in: document,
+            undoManager: undoManager
+        )
+
+        XCTAssertEqual(document.mappingFile.devices[0].mappings, [first, second] + proposals)
+        XCTAssertEqual(result.createdIDs, Set(proposals.map(\.id)))
+        XCTAssertEqual(result.createdIDs.count, 2)
+        XCTAssertEqual(undoManager.undoActionName, "Clone Deck A Mappings")
+    }
+
+    @MainActor
     func testExecutionIsOneUndoAndRedoThroughDocument() throws {
         let first = MappingEntry(commandID: 100, assignment: .deckA)
         let second = MappingEntry(commandID: 101, assignment: .deckA)
