@@ -38,15 +38,46 @@ enum DeckCloneDestination: Int, CaseIterable, Hashable, Sendable {
 
 /// Pure input to a mapping transformation.
 struct MappingTransformRequest: Equatable, Sendable {
+    private struct Candidate: Hashable, Sendable {
+        let sourceMappingID: MappingEntry.ID
+        let destination: DeckCloneDestination
+    }
+
     let selectedMappingIDs: Set<MappingEntry.ID>
     let destinations: Set<DeckCloneDestination>
+    private let proposedMappingIDs: [Candidate: MappingEntry.ID]
 
     init(
         selectedMappingIDs: Set<MappingEntry.ID>,
-        destinations: Set<DeckCloneDestination>
+        destinations: Set<DeckCloneDestination>,
+        makeMappingID: () -> MappingEntry.ID = UUID.init
     ) {
         self.selectedMappingIDs = selectedMappingIDs
         self.destinations = destinations
+
+        let candidates = destinations
+            .sorted { $0.rawValue < $1.rawValue }
+            .flatMap { destination in
+                selectedMappingIDs
+                    .sorted { $0.uuidString < $1.uuidString }
+                    .map { Candidate(sourceMappingID: $0, destination: destination) }
+            }
+        proposedMappingIDs = Dictionary(
+            uniqueKeysWithValues: candidates.map { ($0, makeMappingID()) }
+        )
+        precondition(
+            Set(proposedMappingIDs.values).count == proposedMappingIDs.count,
+            "Mapping identity allocation must return unique IDs"
+        )
+    }
+
+    fileprivate func proposedMappingID(
+        for sourceMappingID: MappingEntry.ID,
+        destination: DeckCloneDestination
+    ) -> MappingEntry.ID {
+        proposedMappingIDs[
+            Candidate(sourceMappingID: sourceMappingID, destination: destination)
+        ]!
     }
 }
 
@@ -72,14 +103,21 @@ enum MappingTransformReviewChoice: Equatable, CaseIterable, Sendable {
     case replaceExisting
 }
 
-enum MappingTransformReviewReason: Equatable, Sendable {
+enum MappingTransformReviewReason: Hashable, Sendable {
     case functionalConflict(existingMappingID: MappingEntry.ID)
     case unknownConditionTarget(rawValue: UInt32)
 }
 
 /// A planner result that requires an explicit decision or cannot be cloned safely.
 struct MappingTransformReviewItem: Identifiable, Equatable, Sendable {
-    let id: UUID
+    struct ID: Hashable, Sendable {
+        let sourceMappingID: MappingEntry.ID
+        let deviceID: Device.ID
+        let destination: DeckCloneDestination
+        let reason: MappingTransformReviewReason
+    }
+
+    let id: ID
     let sourceMappingID: MappingEntry.ID
     let deviceID: Device.ID
     let destination: DeckCloneDestination
@@ -96,14 +134,18 @@ struct MappingTransformReviewItem: Identifiable, Equatable, Sendable {
     }
 
     init(
-        id: UUID = UUID(),
         sourceMappingID: MappingEntry.ID,
         deviceID: Device.ID,
         destination: DeckCloneDestination,
         proposedMapping: MappingEntry?,
         reason: MappingTransformReviewReason
     ) {
-        self.id = id
+        id = ID(
+            sourceMappingID: sourceMappingID,
+            deviceID: deviceID,
+            destination: destination,
+            reason: reason
+        )
         self.sourceMappingID = sourceMappingID
         self.deviceID = deviceID
         self.destination = destination
@@ -119,7 +161,7 @@ struct MappingTransformPlan: Equatable, Sendable {
     let ignoredMappingIDs: Set<MappingEntry.ID>
     let reviewItems: [MappingTransformReviewItem]
     let newSelectionIDs: Set<MappingEntry.ID>
-    let statusText: String
+    let statusText: String?
 
     init(
         inserts: [MappingTransformInsert],
@@ -145,10 +187,12 @@ struct MappingTransformPlan: Equatable, Sendable {
         duplicates: Int,
         ignored: Int,
         reviews: Int
-    ) -> String {
+    ) -> String? {
         if reviews > 0 {
             return "\(reviews) \(reviews == 1 ? "mapping needs" : "mappings need") review."
         }
+
+        guard created > 0 || duplicates > 0 || ignored > 0 else { return nil }
 
         var sentences = ["\(created) \(created == 1 ? "mapping" : "mappings") created."]
         if duplicates > 0 {
@@ -217,7 +261,14 @@ enum MappingTransformPlanner {
                     continue
                 }
 
-                let clone = translatedCopy(of: owned.mapping, to: destination)
+                let clone = translatedCopy(
+                    of: owned.mapping,
+                    to: destination,
+                    id: request.proposedMappingID(
+                        for: owned.mapping.id,
+                        destination: destination
+                    )
+                )
                 let candidates = comparisonRows[owned.deviceID] ?? []
                 if let duplicate = candidates.first(where: {
                     exactSemanticDataMatches($0, clone)
@@ -287,9 +338,10 @@ enum MappingTransformPlanner {
 
     private static func translatedCopy(
         of source: MappingEntry,
-        to destination: DeckCloneDestination
+        to destination: DeckCloneDestination,
+        id: MappingEntry.ID
     ) -> MappingEntry {
-        var clone = source.copyWithNewID()
+        var clone = source.copy(withID: id)
         clone.assignment = translatedAssignment(source.assignment, to: destination)
         clone.modifier1Condition = translatedCondition(
             source.modifier1Condition,

@@ -253,6 +253,73 @@ final class MappingTransformServiceTests: XCTestCase {
         XCTAssertEqual(plan.newSelectionIDs, createdIDs)
     }
 
+    func testRepeatedPlanningWithSameRequestProducesEqualPlanAndFreshProposedIDs() {
+        let safeSource = MappingEntry(commandID: 100, assignment: .deckA)
+        let conflictingSource = MappingEntry(
+            commandID: 101,
+            assignment: .deckA,
+            midiChannel: 1,
+            midiCC: 10
+        )
+        let existingTarget = MappingEntry(
+            commandID: 101,
+            assignment: .deckB,
+            midiChannel: 2,
+            midiCC: 11
+        )
+        let file = MappingFile(devices: [
+            Device(
+                name: "Controller",
+                mappings: [safeSource, conflictingSource, existingTarget]
+            )
+        ])
+        let request = MappingTransformRequest(
+            selectedMappingIDs: [safeSource.id, conflictingSource.id],
+            destinations: [.deckB]
+        )
+
+        let firstPlan = MappingTransformPlanner.plan(request, in: file)
+        let secondPlan = MappingTransformPlanner.plan(request, in: file)
+        let proposedIDs = firstPlan.inserts.map(\.mapping.id)
+            + firstPlan.reviewItems.compactMap(\.proposedMapping?.id)
+        let existingIDs = Set(file.allMappings.map(\.id))
+
+        XCTAssertEqual(firstPlan, secondPlan)
+        XCTAssertEqual(Set(proposedIDs).count, 2)
+        XCTAssertTrue(Set(proposedIDs).isDisjoint(with: existingIDs))
+    }
+
+    func testEmptyAndStaleOnlyRequestsHaveNoStatusMessage() {
+        let source = MappingEntry(commandID: 100, assignment: .deckA)
+        let file = MappingFile(devices: [Device(name: "Controller", mappings: [source])])
+
+        let emptySelection = MappingTransformPlanner.plan(
+            MappingTransformRequest(
+                selectedMappingIDs: [],
+                destinations: [.deckB]
+            ),
+            in: file
+        )
+        let emptyDestinations = MappingTransformPlanner.plan(
+            MappingTransformRequest(
+                selectedMappingIDs: [source.id],
+                destinations: []
+            ),
+            in: file
+        )
+        let staleOnly = MappingTransformPlanner.plan(
+            MappingTransformRequest(
+                selectedMappingIDs: [UUID()],
+                destinations: [.deckB]
+            ),
+            in: file
+        )
+
+        XCTAssertNil(emptySelection.statusText)
+        XCTAssertNil(emptyDestinations.statusText)
+        XCTAssertNil(staleOnly.statusText)
+    }
+
     func testClonePreservesOpaqueImportedStateWhileChangingOnlyOwnedSemantics() throws {
         let original = MappingEntry(
             commandID: 100,

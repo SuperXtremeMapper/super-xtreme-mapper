@@ -345,7 +345,13 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
 
     /// Returns a value-identical mapping with a new identity for insertion.
     func copyWithNewID() -> MappingEntry {
+        copy(withID: UUID())
+    }
+
+    /// Returns a value-identical mapping using an identity allocated by the caller.
+    func copy(withID id: UUID) -> MappingEntry {
         MappingEntry(
+            id: id,
             commandID: commandID,
             ioType: ioType,
             assignment: assignment,
