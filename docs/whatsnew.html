@@ -51,12 +51,58 @@
     <section class="changelog-section">
         <div class="container">
 
-            <!-- Version 0.7 -->
+            <!-- Version 0.8 -->
             <article class="release-entry latest">
                 <div class="release-header">
                     <div class="release-version">
-                        <span class="version-number">v0.7 Beta</span>
+                        <span class="version-number">v0.8 Beta</span>
                         <span class="version-badge">Latest</span>
+                    </div>
+                    <time class="release-date" datetime="2026-08-29">August 29, 2026</time>
+                </div>
+                <div class="release-content">
+                    <h3 class="release-headline">Native TSI Preservation & Real-World Compatibility</h3>
+                    <p class="release-summary">Open, inspect, transfer, and save real Traktor mappings with stronger protection for native controller data, MIDI assignments, comments, and complex macros.</p>
+
+                    <div class="release-changes">
+                        <div class="change-category">
+                            <h4 class="category-title new">Native TSI Compatibility</h4>
+                            <ul class="change-list">
+                                <li><strong>Traktor 4.4.x &amp; 4.5.x Imports</strong> - Real controller exports now open even when they contain native control types or structures the editor does not yet model</li>
+                                <li><strong>Pitch Bend &amp; Paired CC</strong> - High-resolution and opaque MIDI assignments are preserved instead of rejecting the complete file</li>
+                                <li><strong>Safe Native Passthrough</strong> - Unchanged files save byte-for-byte, while unsafe edits require an explicit converted export</li>
+                                <li><strong>Command Evidence</strong> - FX targets, modifier commands, outputs, and controller assignments are validated against live Traktor 4.5.1 exports</li>
+                            </ul>
+                        </div>
+
+                        <div class="change-category">
+                            <h4 class="category-title fixed">Data Integrity &amp; Resilience</h4>
+                            <ul class="change-list">
+                                <li><strong>Bounded Parser</strong> - Malformed, oversized, deeply nested, or conflicting TSI structures fail safely without runaway memory or processing</li>
+                                <li><strong>Atomic Saves</strong> - Document, wizard, voice, and batch-transfer workflows commit as complete operations instead of leaving partial changes</li>
+                                <li><strong>Lossless Comments</strong> - Long notes, accented text, Japanese characters, symbols, and emoji survive native import and save</li>
+                                <li><strong>MIDI Output Resolution</strong> - Note and CC destinations for LED output commands are retained and verified</li>
+                            </ul>
+                        </div>
+
+                        <div class="change-category">
+                            <h4 class="category-title improved">Workflow Improvements</h4>
+                            <ul class="change-list">
+                                <li>Batch macro transfers now preflight every destination and preserve native command data</li>
+                                <li>Modifier Hold, Increment, Decrement, Reset, Blend, and Invert settings are covered by real-export regressions</li>
+                                <li>Wizard and Voice Learn sessions recover cleanly from cancelled saves, conflicts, and delayed input</li>
+                                <li>Release builds no longer embed obsolete app bundles inside the application resources</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Version 0.7 -->
+            <article class="release-entry">
+                <div class="release-header">
+                    <div class="release-version">
+                        <span class="version-number">v0.7 Beta</span>
                     </div>
                     <time class="release-date" datetime="2026-08-27">August 27, 2026</time>
                 </div>
