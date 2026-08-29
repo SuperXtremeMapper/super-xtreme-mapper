@@ -59,7 +59,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20260829">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo.png">
@@ -70,17 +70,25 @@
     <div class="circuit-overlay"></div>
 
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" aria-label="Primary navigation">
         <div class="nav-container">
-            <a href="#" class="nav-logo">
+            <a href="index.html" class="nav-logo" aria-label="Super Xtreme Mapper home">
                 <img src="assets/logo.png" alt="SXM" class="nav-logo-img">
                 <span class="nav-logo-text">SXM</span>
             </a>
-            <div class="nav-links">
-                <a href="#features">Features</a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation-home" aria-label="Open menu">
+                <span class="nav-toggle-icon" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+            <div class="nav-links" id="primary-navigation-home">
+                <a href="index.html" class="active" aria-current="page">Home</a>
+                <a href="index.html#features">Features</a>
                 <a href="whatsnew.html">What's New</a>
                 <a href="download.html">Download</a>
-                <a href="#community">Community</a>
+                <a href="index.html#community">Community</a>
             </div>
         </div>
     </nav>
@@ -118,6 +126,9 @@
                         View on GitHub
                     </a>
                 </div>
+                <a href="whatsnew.html" class="whats-new-link whats-new-link--hero">
+                    See what's new in v0.9 <span aria-hidden="true">→</span>
+                </a>
             </div>
         </div>
         <div class="hero-glow"></div>
@@ -771,7 +782,7 @@
         </div>
     </footer>
 
-    <script src="main.js"></script>
+    <script src="main.js?v=20260829"></script>
     <script>
         function triggerDownload(event) {
             event.preventDefault();

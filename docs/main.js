@@ -35,6 +35,57 @@
     // Navigation Scroll Effect
     // --------------------------------------------------------------------------
     const nav = document.querySelector('.nav');
+    const navToggle = nav?.querySelector('.nav-toggle');
+    const navLinks = nav?.querySelector('.nav-links');
+
+    const closeNavMenu = (returnFocus = false) => {
+        if (!nav || !navToggle) return;
+
+        nav.classList.remove('is-menu-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Open menu');
+
+        if (returnFocus) {
+            navToggle.focus();
+        }
+    };
+
+    if (nav && navToggle && navLinks) {
+        navToggle.addEventListener('click', () => {
+            const willOpen = navToggle.getAttribute('aria-expanded') !== 'true';
+            nav.classList.toggle('is-menu-open', willOpen);
+            navToggle.setAttribute('aria-expanded', String(willOpen));
+            navToggle.setAttribute('aria-label', willOpen ? 'Close menu' : 'Open menu');
+        });
+
+        navLinks.addEventListener('click', (event) => {
+            if (event.target.closest('a')) {
+                closeNavMenu();
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (nav.classList.contains('is-menu-open') && !nav.contains(event.target)) {
+                closeNavMenu();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && nav.classList.contains('is-menu-open')) {
+                closeNavMenu(true);
+            }
+        });
+
+        const desktopQuery = window.matchMedia('(min-width: 769px)');
+        const resetMenuAtDesktop = (event) => {
+            if (event.matches) {
+                closeNavMenu();
+            }
+        };
+
+        desktopQuery.addEventListener('change', resetMenuAtDesktop);
+    }
+
     let lastScrollY = window.scrollY;
     let ticking = false;
 

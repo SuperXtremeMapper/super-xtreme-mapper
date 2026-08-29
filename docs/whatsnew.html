@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=20260829">
     <link rel="stylesheet" href="whatsnew.css">
 
     <!-- Favicon -->
@@ -24,17 +24,25 @@
     <div class="circuit-overlay"></div>
 
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" aria-label="Primary navigation">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">
+            <a href="index.html" class="nav-logo" aria-label="Super Xtreme Mapper home">
                 <img src="assets/logo.png" alt="SXM" class="nav-logo-img">
                 <span class="nav-logo-text">SXM</span>
             </a>
-            <div class="nav-links">
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation-whats-new" aria-label="Open menu">
+                <span class="nav-toggle-icon" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+            <div class="nav-links" id="primary-navigation-whats-new">
+                <a href="index.html">Home</a>
                 <a href="index.html#features">Features</a>
-                <a href="whatsnew.html" class="active">What's New</a>
+                <a href="whatsnew.html" class="active" aria-current="page">What's New</a>
                 <a href="download.html">Download</a>
-                <a href="index.html#contact">Contact</a>
+                <a href="index.html#community">Community</a>
             </div>
         </div>
     </nav>
@@ -459,7 +467,7 @@
                     <a href="index.html#features">Features</a>
                     <a href="whatsnew.html">What's New</a>
                     <a href="download.html">Download</a>
-                    <a href="index.html#contact">Contact</a>
+                    <a href="index.html#community">Community</a>
                     <a href="https://github.com/SuperXtremeMapper/super-xtreme-mapper">GitHub</a>
                 </div>
             </div>
@@ -471,6 +479,6 @@
         </div>
     </footer>
 
-    <script src="main.js"></script>
+    <script src="main.js?v=20260829"></script>
 </body>
 </html>
