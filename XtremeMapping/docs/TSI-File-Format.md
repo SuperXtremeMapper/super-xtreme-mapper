@@ -205,7 +205,7 @@ The canonical complete form is the most complex frame with 30 fields. Short or e
 | 40 | 4 | uint32 | ValueUIType | 1=ComboBox, 2=Slider |
 | 44 | 4 | float | SetValueTo | Default 1.0 for sliders |
 | 48 | 4+N | wide string | Comment | |
-| ... | 4 | uint32 | ConditionOneId | Modifier M1-M8 (0=none) |
+| ... | 4 | uint32 | ConditionOneId | Condition command ID: M1–M8 = 2548–2555; 0=none |
 | ... | 4 | uint32 | ConditionOneTarget | 0 |
 | ... | 4 | uint32 | ConditionOneValue | 0-7 |
 | ... | 4 | uint32 | ConditionTwoId | |
@@ -272,6 +272,23 @@ The canonical complete form is the most complex frame with 30 fields. Short or e
 | 8-11 | Deck C, Slots 1-4 |
 | 12-15 | Deck D, Slots 1-4 |
 
+**Command value encodings:** `Select/Set+Store Hotcue` (2328), `Delete Hotcue`
+(2331), and modifiers (2548–2555) use raw integer selectors 0–7, not float bit
+patterns. Both hotcue commands use the indexed profile with low range sentinel
+`0xFFFFFFFF`, high range 7 and blend enabled. Slot FX On (239), Slot Mute On
+(259), FX Unit 1 On (321) and FX Buttons 1–3 (370–372) use integer OFF=0 / ON=1;
+Direct button mode exposes the value selector (`HasValueUI=1`).
+
+**Condition identities:** UI modifier numbers are translated to condition
+command IDs on export, and back on import. Other condition IDs remain opaque.
+Older SXM condition numbers 1–8 can be repaired during regeneration of complete
+Generic MIDI payloads with the old zero-target condition tuple. Exact no-op
+save still preserves the source document. If repair changes preserved source
+bytes, an edited ordinary save requires an explicit converted export; use that
+export path to regenerate an unchanged old file as well. Old float-valued Delete Hotcue and boolean
+profiles are recognized narrowly when regenerating; missing mappings or values
+already discarded by Traktor cannot be reconstructed from its re-export.
+
 **ValueUIType enum:**
 - 1 = ComboBox (for buttons)
 - 2 = Slider (for faders/encoders)
@@ -284,6 +301,14 @@ This frame is **critical** - it links BindingId values to actual MIDI note strin
 |--------|------|------|-------------|
 | 0 | 4 | uint32 | Binding count |
 | 4 | N | DCBM[] | Nested DCBM frames |
+
+Each assigned mapping row has a distinct `MidiNoteBindingId` within its device,
+even when multiple commands share the same MIDI message. Emit one DCBM entry
+per assigned row, repeating the control name under distinct IDs. Traktor can
+discard subsequent CMAI rows with a reused ID. DCDT control definitions remain
+separate and may be shared by rows using the same control and direction.
+Unassigned rows retain the unassigned sentinel; unresolved imported references
+are reserved so generated bindings cannot accidentally resolve them.
 
 Each nested DCBM binding:
 

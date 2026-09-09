@@ -19,6 +19,12 @@ enum TraktorCommands {
         commandID == 335 || commandID == 2301 || (362...372).contains(commandID)
     }
 
+    /// On/off enums evidenced by native exports and CMDR's OnOffInCommand.
+    /// Their SetValueTo is a raw integer, not an IEEE floating-point value.
+    static func usesBooleanValueEncoding(_ commandID: Int) -> Bool {
+        [239, 259, 321, 370, 371, 372].contains(commandID)
+    }
+
     /// Names that are safe to use when creating a new input mapping.
     static var allNames: [String] {
         verifiedDescriptors(supporting: .input).map(\.name)
@@ -237,6 +243,7 @@ enum TraktorCommands {
             .union(Traktor441CommandEvidence.correctedOutputOnlyIDs)
             .union(Traktor441CommandEvidence.correctedBothDirectionIDs)
             .union(Traktor441CommandEvidence.compatibilityCorpusBothDirectionIDs)
+            .union(Traktor441CommandEvidence.compatibilityCorpusInputOnlyIDs)
 
         return verifiedIDs
             .map(descriptor(for:))

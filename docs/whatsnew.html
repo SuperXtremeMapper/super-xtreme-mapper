@@ -59,12 +59,47 @@
     <section class="changelog-section">
         <div class="container">
 
-            <!-- Version 1.0 -->
+            <!-- Version 1.0.1 -->
             <article class="release-entry latest">
                 <div class="release-header">
                     <div class="release-version">
-                        <span class="version-number">v1.0.0</span>
+                        <span class="version-number">v1.0.1</span>
                         <span class="version-badge">Latest</span>
+                    </div>
+                    <time class="release-date" datetime="2026-09-09">September 9, 2026</time>
+                </div>
+                <div class="release-content">
+                    <h3 class="release-headline">TSI Import Compatibility Fixes</h3>
+                    <p class="release-summary">Fixes exported mappings being dropped when multiple commands share the same MIDI button.</p>
+                    <div class="release-changes">
+                        <div class="change-category">
+                            <h4 class="category-title improved">Mapping Fixes</h4>
+                            <ul class="change-list">
+                                <li>Each mapping now receives its own identifier, protecting multi-command pads, modifiers, and Remix Slot mappings</li>
+                                <li>Modifier conditions use the identifiers expected by Traktor</li>
+                                <li>Delete Hotcue selections and affected Slot/FX ON and OFF values are encoded correctly</li>
+                                <li>Unset hotcue values no longer cause a crash during export</li>
+                                <li>Additional FX commands verified in native Traktor exports are available in the command picker</li>
+                            </ul>
+                        </div>
+                        <div class="change-category">
+                            <h4 class="category-title improved">Updating Existing Mappings</h4>
+                            <ul class="change-list">
+                                <li>To repair an affected older SXM file, open the original full mapping and use <strong>Export Lossy Converted Copy</strong>, then check the copy in Traktor</li>
+                                <li>Mappings already removed by Traktor cannot be recovered from its reduced re-export</li>
+                                <li>If an older Slot FX OFF setting was saved as ON, select OFF again before exporting</li>
+                                <li>658 automated tests pass; a new live Traktor import/re-export has not yet been verified</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Version 1.0 -->
+            <article class="release-entry">
+                <div class="release-header">
+                    <div class="release-version">
+                        <span class="version-number">v1.0.0</span>
                     </div>
                     <time class="release-date" datetime="2026-08-29">August 29, 2026</time>
                 </div>

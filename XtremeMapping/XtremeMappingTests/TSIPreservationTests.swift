@@ -246,6 +246,18 @@ final class TSIPreservationTests: XCTestCase {
         ])
     }
 
+    func testDistinctBindingsForTheSameMIDINameAreSafeToEdit() throws {
+        let bindings = rawFrame("DCBM", be32(2)
+            + rawFrame("DCBM", be32(0) + wide("Ch01.CC.010"))
+            + rawFrame("DCBM", be32(1) + wide("Ch01.CC.010")))
+        let mappings = rawFrame("CMAS", be32(2)
+            + rawFrame("CMAI", cmai(bindingID: 0, commandID: 2548, cmad: completeCMAD()))
+            + rawFrame("CMAI", cmai(bindingID: 1, commandID: 2550, cmad: completeCMAD())))
+        let file = try TSIParser().parseDocument(completeXML(binary:
+            mappedControllerBinary(mappings: mappings, bindings: bindings)))
+        XCTAssertFalse(file.sourceEnvelope!.risks.contains { $0.code == .duplicateMIDIBinding })
+    }
+
     func testCommandZeroCMAIImportsAsTypedPlaceholderRisk() throws {
         let valid = rawFrame("CMAI", cmai(commandID: 100, cmad: completeCMAD()))
         let placeholder = rawFrame("CMAI", cmai(commandID: 0, cmad: completeCMAD()))

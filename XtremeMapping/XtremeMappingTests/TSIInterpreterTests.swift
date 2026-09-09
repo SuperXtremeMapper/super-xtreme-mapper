@@ -1743,7 +1743,7 @@ final class TSIInterpreterTests: XCTestCase {
 
         let tail = cmadTailOffset(in: rawCMAD)
         var expected = rawCMAD
-        let replacement = [UInt32(7), 0, 6, 0, 0, 0].reduce(into: Data()) {
+        let replacement = [UInt32(2554), 0, 6, 0, 0, 0].reduce(into: Data()) {
             $0.append(be32($1))
         }
         expected.replaceSubrange(tail..<(tail + 24), with: replacement)
@@ -2040,11 +2040,233 @@ final class TSIInterpreterTests: XCTestCase {
             unknownVUI: 1,
             resolution: 1
         )
-        let imported = try importedMappingFile(cmad: legacyMalformed, commandID: 2555)
+        var imported = try importedMappingFile(cmad: legacyMalformed, commandID: 2555)
 
         let repaired = try firstCMADPayload(in: TSIWriter().write(imported))
 
         XCTAssertEqual(repaired, canonical)
+        imported.devices[0].mappings[0].setToValue = 6
+        let edited = try firstCMADPayload(in: TSIWriter().write(imported))
+        XCTAssertEqual(readUInt32BE(edited, at: 36), 1)
+        XCTAssertEqual(readUInt32BE(edited, at: 44), 6)
+        XCTAssertEqual(readUInt32BE(edited, at: 88), 7)
+    }
+
+    func testLegacyDeleteHotcueProfileRepairsOnRegeneratedSave() throws {
+        // SXM 1.0 emitted a float selector and a generic button profile.
+        var raw = validCMAD()
+        for (offset, value) in [(4, UInt32(0)), (8, 3), (40, 1),
+                                (44, Float(7).bitPattern), (76, 1), (84, 1),
+                                (88, 1), (108, 1), (112, 1)] {
+            raw = replacingUInt32(in: raw, at: offset, with: value)
+        }
+        var file = try importedMappingFile(cmad: raw, commandID: 2331)
+        XCTAssertEqual(file.devices[0].mappings[0].setToValue, 7)
+        let cmad = try firstCMADPayload(in: TSIWriter().write(file))
+        XCTAssertEqual(readUInt32BE(cmad, at: 36), 1)
+        XCTAssertEqual(readUInt32BE(cmad, at: 44), 7)
+        XCTAssertEqual(readUInt32BE(cmad, at: 80), UInt32.max)
+        XCTAssertEqual(readUInt32BE(cmad, at: 88), 7)
+        file.devices[0].mappings[0].setToValue = 6
+        let edited = try firstCMADPayload(in: TSIWriter().write(file))
+        XCTAssertEqual(readUInt32BE(edited, at: 36), 1)
+        XCTAssertEqual(readUInt32BE(edited, at: 44), 6)
+        XCTAssertEqual(readUInt32BE(edited, at: 88), 7)
+    }
+
+    func testImportedBooleanEditsUseIntegerValuesAndDirectValueUI() throws {
+        var raw = validCMAD()
+        for (offset, value) in [(8, UInt32(1)), (40, 1), (44, 1),
+                                (76, 1), (84, 1), (88, 1), (108, 1), (112, 1)] {
+            raw = replacingUInt32(in: raw, at: offset, with: value)
+        }
+        for commandID in [UInt32(239), 259, 321, 371] {
+            var file = try importedMappingFile(cmad: raw, commandID: commandID)
+            file.devices[0].mappings[0].interactionMode = .direct
+            file.devices[0].mappings[0].setToValue = 0
+            let cmad = try firstCMADPayload(in: TSIWriter().write(file))
+            XCTAssertEqual(readUInt32BE(cmad, at: 36), 1)
+            XCTAssertEqual(readUInt32BE(cmad, at: 44), 0)
+        }
+    }
+
+    func testLegacyBooleanFloatAndMissingValueUIRepairOnRegeneratedSave() throws {
+        var raw = validCMAD()
+        for (offset, value) in [(8, UInt32(3)), (40, 1),
+                                (44, Float(1).bitPattern), (76, 1), (84, 1),
+                                (88, 1), (108, 1), (112, 1)] {
+            raw = replacingUInt32(in: raw, at: offset, with: value)
+        }
+        for commandID in [UInt32(239), 259, 321, 371] {
+            let file = try importedMappingFile(cmad: raw, commandID: commandID)
+            XCTAssertEqual(file.devices[0].mappings[0].setToValue, 1)
+            let cmad = try firstCMADPayload(in: TSIWriter().write(file))
+            XCTAssertEqual(readUInt32BE(cmad, at: 36), 1)
+            XCTAssertEqual(readUInt32BE(cmad, at: 44), 1)
+        }
+    }
+
+    func testExtremeSelectorValuesDoNotTrapDuringExport() throws {
+        for (commandID, value, expected) in [
+            (2331, Float.nan, UInt32.max), (2331, Float.infinity, UInt32.max),
+            (2331, Float.greatestFiniteMagnitude, UInt32(7)),
+            (2548, Float.nan, UInt32(0)), (2548, -Float.infinity, UInt32(0)),
+            (2548, Float.greatestFiniteMagnitude, UInt32(7))
+        ] {
+            let mapping = MappingEntry(commandID: commandID, controllerType: .button, setToValue: value)
+            let tsi = try TSIWriter().write(MappingFile(devices: [
+                Device(name: "Generic MIDI", mappings: [mapping])
+            ]))
+            XCTAssertEqual(readUInt32BE(try firstCMADPayload(in: tsi), at: 44), expected)
+        }
+    }
+
+    func testTraktorDeleteHotcueUnsetSentinelDoesNotBecomeNaN() throws {
+        for hasValueUI in [UInt32(0), 1] {
+            var raw = replacingUInt32(in: validCMAD(), at: 36, with: hasValueUI)
+            raw = replacingUInt32(in: raw, at: 44, with: UInt32.max)
+            var file = try importedMappingFile(cmad: raw, commandID: 2331)
+            let value = file.devices[0].mappings[0].setToValue
+            XCTAssertEqual(value, -1, "Unset hotcue must be modeled as a sentinel, not NaN")
+            // Avoid crashing the test host on the pre-fix Int(NaN) conversion.
+            guard value == -1 else { continue }
+            file.devices[0].mappings[0].comment = "edited"
+            for tsi in [try TSIWriter().write(file), try TSIWriter().writeConverted(file)] {
+                let cmad = try firstCMADPayload(in: tsi)
+                XCTAssertEqual(readUInt32BE(cmad, at: 44), UInt32.max)
+            }
+        }
+    }
+
+    func testLegacySXMConditionNumbersRepairOnRegeneratedSave() throws {
+        var raw = validCMAD()
+        raw = replacingUInt32(in: raw, at: 52, with: 1)
+        raw = replacingUInt32(in: raw, at: 64, with: 4)
+        raw = replacingUInt32(in: raw, at: 72, with: 7)
+        let file = try importedMappingFile(cmad: raw)
+        let cmad = try firstCMADPayload(in: TSIWriter().write(file))
+        XCTAssertEqual(readUInt32BE(cmad, at: 52), 2548)
+        XCTAssertEqual(readUInt32BE(cmad, at: 64), 2551)
+        XCTAssertEqual(readUInt32BE(cmad, at: 72), 7)
+    }
+
+    func testNonModifierConditionIdentitySurvivesValueEditsAndConversion() throws {
+        for wireID in [UInt32(100), 203, 424242] {
+            var raw = replacingUInt32(in: validCMAD(), at: 52, with: wireID)
+            raw = replacingUInt32(in: raw, at: 60, with: 1)
+            var file = try importedMappingFile(cmad: raw)
+            file.devices[0].mappings[0].modifier1Condition?.value = 0
+            for tsi in [try TSIWriter().write(file), try TSIWriter().writeConverted(file)] {
+                let cmad = try firstCMADPayload(in: tsi)
+                XCTAssertEqual(readUInt32BE(cmad, at: 52), wireID)
+                XCTAssertEqual(readUInt32BE(cmad, at: 60), 0)
+            }
+        }
+    }
+
+    // DJM-S7 regression: Traktor keeps only the first CMAI for a reused ID.
+    func testSharedMIDICommandsHaveDistinctMappingIDsAndBindings() throws {
+        var mappings = [2548, 2550, 239, 259, 321, 371].map {
+            MappingEntry(commandID: $0, ioType: .input, assignment: .deckA,
+                         interactionMode: .direct, midiChannel: 1, midiNote: 36,
+                         controllerType: .button, setToValue: 1)
+        }
+        var output = mappings[0].copyWithNewID()
+        output.ioType = .output
+        output.controllerType = .led
+        output.interactionMode = .output
+        mappings.append(output)
+        let binary = try binaryData(for: MappingFile(devices: [
+            Device(name: "Generic MIDI", mappings: mappings)
+        ]))
+        let ids = try frameOffsets(of: "CMAI", in: binary).map {
+            readUInt32BE(binary, at: $0 + 8)
+        }
+        XCTAssertEqual(Set(ids).count, 7, "Each command needs its own identity in Traktor")
+        let bindings = try frameOffsets(of: "DCBM", in: binary)
+        XCTAssertEqual(bindings.count, 8, "One outer list plus seven per-row bindings")
+        let bindingIDs = bindings.dropFirst().map { readUInt32BE(binary, at: $0 + 8) }
+        XCTAssertEqual(Set(bindingIDs), Set(ids))
+        let imported = try interpretBinary(binary)
+        XCTAssertEqual(imported.devices[0].mappings.map(\.midiNote), Array(repeating: 36, count: 7))
+    }
+
+    func testNativeModifierConditionIDsDecodeAndRegenerateAsModifiers() throws {
+        for (wireID, modifier) in [(UInt32(2548), 1), (2550, 3), (2555, 8)] {
+            var cmad = validCMAD()
+            cmad = replacingUInt32(in: cmad, at: 52, with: wireID)
+            cmad = replacingUInt32(in: cmad, at: 60, with: 7)
+            var file = try importedMappingFile(cmad: cmad)
+            XCTAssertEqual(file.devices[0].mappings[0].modifier1Condition?.modifier, modifier)
+            file.devices[0].mappings[0].modifier1Condition?.value = 6
+            let rewritten = try firstCMADPayload(in: TSIWriter().writeConverted(file))
+            XCTAssertEqual(readUInt32BE(rewritten, at: 52), wireID)
+            XCTAssertEqual(readUInt32BE(rewritten, at: 60), 6)
+        }
+    }
+
+    func testNewModifierConditionsWriteNativeIdentifiers() throws {
+        let mapping = MappingEntry(commandID: 2328, ioType: .input,
+            modifier1Condition: .init(modifier: 1, value: 2),
+            modifier2Condition: .init(modifier: 4, value: 7), controllerType: .button)
+        let cmad = try firstCMADPayload(in: TSIWriter().write(MappingFile(devices: [
+            Device(name: "Generic MIDI", mappings: [mapping])
+        ])))
+        XCTAssertEqual(readUInt32BE(cmad, at: 52), 2548)
+        XCTAssertEqual(readUInt32BE(cmad, at: 64), 2551)
+    }
+
+    func testDeleteHotcueUsesNativeIndexedProfileAndDecodesSelector() throws {
+        // Native Traktor 4.5.1 settings: the same indexed profile as command 2328.
+        for selector in UInt32(0)...7 {
+            let mapping = MappingEntry(commandID: 2331, ioType: .input,
+                assignment: .deckA, interactionMode: .direct, midiChannel: 1,
+                midiNote: 36, controllerType: .button, setToValue: Float(selector))
+            let tsi = try TSIWriter().write(MappingFile(devices: [
+                Device(name: "Generic MIDI", mappings: [mapping])
+            ]))
+            let cmad = try firstCMADPayload(in: tsi)
+            XCTAssertEqual(readUInt32BE(cmad, at: 36), 1)
+            XCTAssertEqual(readUInt32BE(cmad, at: 44), selector)
+            XCTAssertEqual(readUInt32BE(cmad, at: 80), UInt32.max)
+            XCTAssertEqual(readUInt32BE(cmad, at: 88), 7)
+            XCTAssertEqual(readUInt32BE(cmad, at: 104), 1)
+            // Construct native bytes independently to catch a shared reader/writer error.
+            let nativeScalars: [UInt32] = [
+                4, 0, 2, 0, 0, 0, 0, 0x40A00000, 0, 1, 1, selector, 0,
+                0, 0, 0, 0, 0, 0,
+                1, UInt32.max, 1, 7, 0, 127, 0, 1, 1, 1, 0
+            ]
+            let native = nativeScalars.reduce(into: Data()) { $0.append(be32($1)) }
+            let imported = try importedMappingFile(cmad: native, commandID: 2331)
+            XCTAssertEqual(imported.devices[0].mappings[0].setToValue, Float(selector))
+        }
+    }
+
+    func testBooleanCommandsKeepDirectOffAndOnDistinctOnWireAndImport() throws {
+        for commandID in [239, 259, 321, 370, 371, 372] {
+            for value in UInt32(0)...1 {
+                let mapping = MappingEntry(commandID: commandID, ioType: .input,
+                    assignment: .deckA, interactionMode: .direct, midiChannel: 1,
+                    midiNote: 36, controllerType: .button, setToValue: Float(value))
+                let tsi = try TSIWriter().write(MappingFile(devices: [
+                    Device(name: "Generic MIDI", mappings: [mapping])
+                ]))
+                let cmad = try firstCMADPayload(in: tsi)
+                XCTAssertEqual(readUInt32BE(cmad, at: 44), value, "command \(commandID)")
+                XCTAssertEqual(readUInt32BE(cmad, at: 36), 1)
+                // Native toggle profile from benchmark 02/04; values are
+                // integer enums. Direct's HasValueUI follows CMDR OnOffInCommand.
+                let nativeScalars: [UInt32] = [
+                    4, 0, 1, 0, 0, 0, 0, 0x40A00000, 0, 0, 1, value, 0,
+                    0, 0, 0, 0, 0, 0,
+                    1, 0, 1, 1, 0, 127, 0, 0, 1, 1, 0
+                ]
+                let native = nativeScalars.reduce(into: Data()) { $0.append(be32($1)) }
+                let imported = try importedMappingFile(cmad: native, commandID: UInt32(commandID))
+                XCTAssertEqual(imported.devices[0].mappings[0].setToValue, Float(value))
+            }
+        }
     }
 
     // MARK: - Corrupt-Frame Surfacing Tests (M10)

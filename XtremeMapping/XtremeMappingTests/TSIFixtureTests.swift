@@ -367,6 +367,10 @@ final class TSIFixtureTests: XCTestCase {
                 && $0.assignment == .fxUnit1
         })
         XCTAssertFalse(fxMappings.contains { $0.commandID == 375 })
+        for mapping in fxMappings {
+            XCTAssertNotNil(TraktorCommands.verifiedDescriptor(named: mapping.commandName, supporting: .input),
+                            "Native FX command \(mapping.commandID) must be available without a LEGACY badge")
+        }
 
         let sequencerSource = try loadFixture(
             try fixture(named: "traktor-4.5.1-xone-k3-benchmark-03-sequencer.tsi")

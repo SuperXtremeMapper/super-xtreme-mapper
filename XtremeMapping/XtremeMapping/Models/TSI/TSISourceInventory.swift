@@ -497,13 +497,11 @@ enum TSISourceInventory {
         risks: inout [TSIPreservationRisk]
     ) {
         var firstBindingByID: [UInt32: BindingRecord] = [:]
-        var firstBindingByName: [String: BindingRecord] = [:]
         for binding in device.bindings {
-            if firstBindingByID[binding.id] != nil || firstBindingByName[binding.name] != nil {
+            if firstBindingByID[binding.id] != nil {
                 add(.duplicateMIDIBinding, binding.path, to: &risks)
             }
             if firstBindingByID[binding.id] == nil { firstBindingByID[binding.id] = binding }
-            if firstBindingByName[binding.name] == nil { firstBindingByName[binding.name] = binding }
             if !isModeledMIDIName(binding.name) {
                 add(.nativeMIDIControl, binding.path, detail: binding.name, to: &risks)
             }

@@ -1035,22 +1035,29 @@ struct TSIInterpreter {
         }
 
         let usesRawSelector = traktorControlId == 2328
+            || (traktorControlId == 2331 && cmadSettings.hasValueUI != 0)
+            || (TraktorCommands.usesBooleanValueEncoding(traktorControlId) && cmadSettings.setToValueRaw <= 1)
             || ((2548...2555).contains(traktorControlId) && cmadSettings.hasValueUI != 0)
-        let setToValue: Float = usesRawSelector
-            ? Float(cmadSettings.setToValueRaw)
-            : cmadSettings.setToValue
+        let setToValue: Float
+        if (traktorControlId == 2328 || traktorControlId == 2331),
+           cmadSettings.setToValueRaw == UInt32.max {
+            // Traktor's unset selector is 0xFFFFFFFF, which is NaN as a float.
+            setToValue = -1
+        } else {
+            setToValue = usesRawSelector ? Float(cmadSettings.setToValueRaw) : cmadSettings.setToValue
+        }
 
         // Build modifier conditions from parsed values
         let modifier1: ModifierCondition? = cmadSettings.modifierOneId > 0
             ? ModifierCondition(
-                modifier: cmadSettings.modifierOneId,
+                modifier: ModifierCondition.modifierNumber(forWireID: cmadSettings.modifierOneId),
                 value: cmadSettings.modifierOneValue,
                 target: ModifierConditionTarget(rawValue: cmadSettings.modifierOneTarget)
             )
             : nil
         let modifier2: ModifierCondition? = cmadSettings.modifierTwoId > 0
             ? ModifierCondition(
-                modifier: cmadSettings.modifierTwoId,
+                modifier: ModifierCondition.modifierNumber(forWireID: cmadSettings.modifierTwoId),
                 value: cmadSettings.modifierTwoValue,
                 target: ModifierConditionTarget(rawValue: cmadSettings.modifierTwoTarget)
             )

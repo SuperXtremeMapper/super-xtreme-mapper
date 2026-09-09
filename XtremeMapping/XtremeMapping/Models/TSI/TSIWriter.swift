@@ -510,113 +510,78 @@ public struct TSIWriter: Sendable {
         var data = Data()
 
         // Build CMAS (Mappings List)
-        let cmasContent = try buildCMAS(from: mappings, mode: mode)
+        let bindingIDs = bindingIDs(for: mappings)
+        let cmasContent = try buildCMAS(from: mappings, bindingIDs: bindingIDs, mode: mode)
         data.append(encodeFrame(TSIFrame(identifier: "CMAS", size: UInt32(cmasContent.count), data: cmasContent)))
 
         // Build DCBM (MIDI Note Binding List) - links BindingId to MidiNote strings
-        let dcbmContent = buildDCBM(from: mappings)
+        let dcbmContent = buildDCBM(from: mappings, bindingIDs: bindingIDs)
         data.append(encodeFrame(TSIFrame(identifier: "DCBM", size: UInt32(dcbmContent.count), data: dcbmContent)))
 
         return data
     }
 
     /// Builds the DCBM (MIDI Note Binding List) frame content
-    private func buildDCBM(from mappings: [MappingEntry]) -> Data {
-        var data = Data()
-
-        // Build list of unique control names with their binding IDs
-        // (unassigned mappings have no control name and get no DCBM entry)
-        let controlNameToId = bindingIds(for: mappings)
-
-        // Count prefix
-        var count = UInt32(controlNameToId.count).bigEndian
-        data.append(Data(bytes: &count, count: 4))
-
-        // Each binding as a nested DCBM frame
-        for (controlName, id) in controlNameToId.sorted(by: { $0.value < $1.value }) {
-            var bindingData = Data()
-
-            // BindingId (4 bytes)
-            var bindingIdValue = UInt32(id).bigEndian
-            bindingData.append(Data(bytes: &bindingIdValue, count: 4))
-
-            // MidiNote (wide string)
-            bindingData.append(encodeUTF16BEString(controlName))
-
-            // Wrap in DCBM frame
-            data.append(encodeFrame(TSIFrame(identifier: "DCBM", size: UInt32(bindingData.count), data: bindingData)))
+    private func buildDCBM(from mappings: [MappingEntry], bindingIDs: [UInt32]) -> Data {
+        var entries = Data()
+        var count: UInt32 = 0
+        for (mapping, id) in zip(mappings, bindingIDs) {
+            guard let controlName = midiControlName(for: mapping) else { continue }
+            var payload = Data()
+            var wireID = id.bigEndian
+            payload.append(Data(bytes: &wireID, count: 4))
+            payload.append(encodeUTF16BEString(controlName))
+            entries.append(encodeFrame(TSIFrame(identifier: "DCBM", size: UInt32(payload.count), data: payload)))
+            count += 1
         }
-
+        var wireCount = count.bigEndian
+        var data = Data(bytes: &wireCount, count: 4)
+        data.append(entries)
         return data
     }
 
-    /// Builds the CMAS (Mappings List) frame content
-    private func buildCMAS(from mappings: [MappingEntry], mode: OutputMode) throws -> Data {
-        var data = Data()
-
-        // 4-byte mapping count prefix
+    /// Every CMAI has its own identity, even when several commands use one
+    /// MIDI control. DCBM must repeat that control name under each row's ID.
+    private func buildCMAS(from mappings: [MappingEntry], bindingIDs: [UInt32], mode: OutputMode) throws -> Data {
         var count = UInt32(mappings.count).bigEndian
-        data.append(Data(bytes: &count, count: 4))
-
-        // Build control name to binding ID lookup (must mirror buildDCBM)
-        let controlNameToId = bindingIds(for: mappings)
-
-        // Each mapping as a CMAI frame
-        for mapping in mappings {
-            let cmaiContent = try buildCMAI(
-                from: mapping,
-                controlNameToId: controlNameToId,
-                mode: mode
-            )
-            data.append(encodeFrame(TSIFrame(identifier: "CMAI", size: UInt32(cmaiContent.count), data: cmaiContent)))
+        var data = Data(bytes: &count, count: 4)
+        for (mapping, bindingID) in zip(mappings, bindingIDs) {
+            let content = try buildCMAI(from: mapping, bindingID: bindingID, mode: mode)
+            data.append(encodeFrame(TSIFrame(identifier: "CMAI", size: UInt32(content.count), data: content)))
         }
-
         return data
     }
 
-    /// Assigns sequential binding IDs to the unique MIDI control names in
-    /// mapping order. Shared by buildDCBM and buildCMAS so CMAI binding IDs
-    /// always agree with the DCBM list. Unassigned mappings are excluded —
-    /// they carry the `TSIBindingID.unassigned` sentinel instead.
-    private func bindingIds(for mappings: [MappingEntry]) -> [String: Int] {
-        var controlNameToId: [String: Int] = [:]
-        let reservedIds = Set(mappings.compactMap { mapping -> UInt32? in
-            guard mapping.rawMidiControlName == nil else { return nil }
+    /// Reserve unresolved imported references so a new binding cannot silently
+    /// attach an opaque/dangling row to an unrelated MIDI control.
+    private func bindingIDs(for mappings: [MappingEntry]) -> [UInt32] {
+        let reserved = Set(mappings.compactMap { mapping -> UInt32? in
+            guard midiControlName(for: mapping) == nil else { return nil }
             return mapping.rawMidiBindingID
         })
-        var bindingId = 0
-        for mapping in mappings {
-            guard let controlName = midiControlName(for: mapping) else { continue }
-            if controlNameToId[controlName] == nil {
-                while reservedIds.contains(UInt32(bindingId)) {
-                    bindingId += 1
-                }
-                controlNameToId[controlName] = bindingId
-                bindingId += 1
+        var next: UInt32 = 0
+        return mappings.map { mapping in
+            guard midiControlName(for: mapping) != nil else {
+                return mapping.rawMidiBindingID ?? TSIBindingID.unassigned
             }
+            while reserved.contains(next) { next += 1 }
+            let id = next
+            next += 1
+            return id
         }
-        return controlNameToId
     }
 
     /// Builds the CMAI (Mapping Item) frame content
     private func buildCMAI(
         from mapping: MappingEntry,
-        controlNameToId: [String: Int],
+        bindingID: UInt32,
         mode: OutputMode
     ) throws -> Data {
         var data = Data()
 
         // MidiNoteBindingId (4 bytes) — the unassigned sentinel when the
         // mapping has no MIDI control (no fabricated CC 0 binding).
-        let bindingIdValue: UInt32
-        if let controlName = midiControlName(for: mapping) {
-            bindingIdValue = UInt32(controlNameToId[controlName] ?? 0)
-        } else if let rawBindingID = mapping.rawMidiBindingID {
-            bindingIdValue = rawBindingID
-        } else {
-            bindingIdValue = TSIBindingID.unassigned
-        }
-        var bindingId = bindingIdValue.bigEndian
+        var bindingId = bindingID.bigEndian
         data.append(Data(bytes: &bindingId, count: 4))
 
         // Type: 0=Input, 1=Output (4 bytes)
@@ -667,6 +632,7 @@ public struct TSIWriter: Sendable {
         let profileChanged = controllerChanged
             || commandChanged
             || Self.isLegacyMalformedModifierProfile(mapping, imported: imported)
+            || Self.isLegacyMalformedBooleanProfile(mapping, imported: imported)
 
         if mapping.interactionMode != baseline.interactionMode || controllerChanged {
             guard mapping.controllerType.validInteractionModes.contains(mapping.interactionMode) else {
@@ -754,6 +720,12 @@ public struct TSIWriter: Sendable {
             )
         }
 
+        if !profileChanged,
+           TraktorCommands.usesBooleanValueEncoding(mapping.commandID),
+           mapping.interactionMode != baseline.interactionMode {
+            try replaceUInt32(profile.hasValueUI, in: &data, at: 36, field: "HasValueUI")
+        }
+
         let conditionOffset = 52 + mapping.comment.utf16.count * 2
         let conditionSlots: [(
             current: ModifierCondition?,
@@ -763,9 +735,17 @@ public struct TSIWriter: Sendable {
             (mapping.modifier1Condition, baseline.modifier1Condition, 0),
             (mapping.modifier2Condition, baseline.modifier2Condition, 12),
         ]
-        for slot in conditionSlots where slot.current != slot.baseline {
+        for slot in conditionSlots {
+            // SXM 1.0 wrote UI modifier numbers as condition IDs. These are
+            // not native condition identifiers. Repair the old Generic MIDI
+            // tuple when regenerating, while leaving opaque targets alone.
+            let originalID = slot.relativeOffset == 0 ? imported.conditionOneID : imported.conditionTwoID
+            let originalTarget = slot.relativeOffset == 0 ? imported.conditionOneTarget : imported.conditionTwoTarget
+            let legacyNumber = imported.deviceType == 4 && imported.isCompleteStandardLayout
+                && (1...8).contains(originalID ?? 0) && originalTarget == 0
+            guard slot.current != slot.baseline || legacyNumber else { continue }
             let values: [UInt32] = [
-                UInt32(clamping: slot.current?.modifier ?? 0),
+                slot.current?.wireID ?? 0,
                 slot.current?.target.rawValue ?? 0,
                 UInt32(clamping: slot.current?.value ?? 0),
             ]
@@ -831,14 +811,14 @@ public struct TSIWriter: Sendable {
         return data
     }
 
-    /// Repairs only the exact generic-button profile emitted for modifiers by
-    /// older versions of this app. Valid native modifier payloads already use
+    /// Repairs the exact generic-button profile emitted for modifiers and
+    /// Delete Hotcue by older versions of this app. Native payloads already use
     /// the indexed-selector profile and continue down the lossless path.
     private static func isLegacyMalformedModifierProfile(
         _ mapping: MappingEntry,
         imported: ImportedCMAD
     ) -> Bool {
-        guard (2548...2555).contains(mapping.commandID),
+        guard (mapping.commandID == 2331 || (2548...2555).contains(mapping.commandID)),
               mapping.controllerType == .button,
               imported.isCompleteStandardLayout else {
             return false
@@ -846,7 +826,7 @@ public struct TSIWriter: Sendable {
 
         return imported.hasValueUI == 0
             && imported.valueUIType == 1
-            && imported.setToValueBits == mapping.setToValue.bitPattern
+            && imported.setToValueBits == imported.semanticAtImport.setToValueBits
             && imported.ledMinRangeType == 1
             && imported.ledMinRangeData == 0
             && imported.ledMaxRangeType == 1
@@ -854,6 +834,26 @@ public struct TSIWriter: Sendable {
             && imported.ledBlend == 0
             && imported.unknownVUI == 1
             && imported.resolutionBits == 1
+    }
+
+    /// Earlier SXM exports used float bits for boolean values and omitted the
+    /// Direct value selector. Repair only that complete generic button profile.
+    private static func isLegacyMalformedBooleanProfile(
+        _ mapping: MappingEntry,
+        imported: ImportedCMAD
+    ) -> Bool {
+        guard TraktorCommands.usesBooleanValueEncoding(mapping.commandID),
+              imported.deviceType == 4,
+              mapping.controllerType == .button,
+              imported.isCompleteStandardLayout,
+              imported.valueUIType == 1,
+              [UInt32(0), 1, Float32(1).bitPattern].contains(imported.setToValueBits),
+              imported.ledMinRangeType == 1, imported.ledMinRangeData == 0,
+              imported.ledMaxRangeType == 1, imported.ledMaxRangeData == 1,
+              imported.ledBlend == 0, imported.unknownVUI == 1,
+              imported.resolutionBits == 1 else { return false }
+        return imported.setToValueBits == Float32(1).bitPattern
+            || (mapping.interactionMode == .direct && imported.hasValueUI == 0)
     }
 
     private func buildCanonicalCMAD(from mapping: MappingEntry) -> Data {
@@ -986,7 +986,7 @@ public struct TSIWriter: Sendable {
 
         // 14-16. ConditionOne: Id (4), Target (4), Value (4)
         // (clamping — modifier values also originate from persisted JSON)
-        var cond1Id = UInt32(clamping: mapping.modifier1Condition?.modifier ?? 0).bigEndian
+        var cond1Id = (mapping.modifier1Condition?.wireID ?? 0).bigEndian
         data.append(Data(bytes: &cond1Id, count: 4))
         var cond1Target = (mapping.modifier1Condition?.target.rawValue ?? 0).bigEndian
         data.append(Data(bytes: &cond1Target, count: 4))
@@ -994,7 +994,7 @@ public struct TSIWriter: Sendable {
         data.append(Data(bytes: &cond1Value, count: 4))
 
         // 17-19. ConditionTwo: Id (4), Target (4), Value (4)
-        var cond2Id = UInt32(clamping: mapping.modifier2Condition?.modifier ?? 0).bigEndian
+        var cond2Id = (mapping.modifier2Condition?.wireID ?? 0).bigEndian
         data.append(Data(bytes: &cond2Id, count: 4))
         var cond2Target = (mapping.modifier2Condition?.target.rawValue ?? 0).bigEndian
         data.append(Data(bytes: &cond2Target, count: 4))
@@ -1131,17 +1131,23 @@ public struct TSIWriter: Sendable {
 
     static func setValueRaw(for mapping: MappingEntry, commandId: Int) -> UInt32 {
         // Hotcue and modifier values are stored as raw UInt32 selectors, not floats.
-        if commandId == 2328 || (2548...2555).contains(commandId) {
-            let index = max(0, min(7, Int(mapping.setToValue.rounded())))
-            return UInt32(index)
+        if commandId == 2328 || commandId == 2331 || (2548...2555).contains(commandId) {
+            let isHotcue = commandId == 2328 || commandId == 2331
+            let value = mapping.setToValue
+            guard value.isFinite else { return isHotcue ? UInt32.max : 0 }
+            if isHotcue && value < 0 { return UInt32.max }
+            // Clamp in Float space before conversion: persisted extreme values
+            // must not trap Int.init, and modifiers have no unset sentinel.
+            return UInt32(max(0, min(7, value.rounded())))
         }
 
         // Values verified from local Traktor 4.x exports. For commands not in
         // this list, preserve the MappingEntry value instead of inventing a
         // universal default.
+        if TraktorCommands.usesBooleanValueEncoding(commandId) {
+            return mapping.setToValue >= 0.5 ? 1 : 0
+        }
         switch commandId {
-        case 239:
-            return 1
         case 102, 251, 6:
             return floatBits(1.0)
         case 117, 249, 320:
@@ -1156,10 +1162,10 @@ public struct TSIWriter: Sendable {
     private static func cmadProfile(for mapping: MappingEntry) -> CMADProfile {
         let cmdId = mapping.commandID
 
-        // Indexed-hotcue path (id 2328 = "Select/Set+Store Hotcue").
+        // Indexed hotcues: Select/Set+Store (2328) and Delete Hotcue (2331).
         // SetValueTo carries the hotcue index 0...7 as raw UInt32. Native
         // exports use 0xFFFFFFFF for the low range sentinel.
-        if cmdId == 2328 {
+        if cmdId == 2328 || cmdId == 2331 {
             return CMADProfile(
                 hasValueUI: 1,
                 valueUIType: 1,
@@ -1210,7 +1216,7 @@ public struct TSIWriter: Sendable {
         case .button:
             // Generic-button profile (Play/Pause, Sync, mute toggle, etc.)
             return CMADProfile(
-                hasValueUI: 0,
+                hasValueUI: TraktorCommands.usesBooleanValueEncoding(cmdId) && mapping.interactionMode == .direct ? 1 : 0,
                 valueUIType: 1,
                 setValueRaw: setValueRaw(for: mapping, commandId: cmdId),
                 ledMinType: 1,

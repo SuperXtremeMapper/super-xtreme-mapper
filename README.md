@@ -9,7 +9,7 @@ A native macOS TSI editor for Traktor Pro. Create, edit, and manage your MIDI co
 ![macOS](https://img.shields.io/badge/macOS-14.0+-blue)
 ![Universal](https://img.shields.io/badge/macOS-universal-green)
 ![License](https://img.shields.io/badge/license-MIT-orange)
-![Version](https://img.shields.io/badge/version-1.0.0-brightgreen)
+![Version](https://img.shields.io/badge/version-1.0.1-brightgreen)
 
 ## Features
 
@@ -31,7 +31,7 @@ A native macOS TSI editor for Traktor Pro. Create, edit, and manage your MIDI co
 
 ### Download
 
-Download [SuperXtremeMapper_1.0.0.dmg](https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases/latest/download/SuperXtremeMapper_1.0.0.dmg).
+Download [SuperXtremeMapper_1.0.1.dmg](https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases/download/v1.0.1/SuperXtremeMapper_1.0.1.dmg).
 
 ### Requirements
 

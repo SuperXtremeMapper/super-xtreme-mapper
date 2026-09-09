@@ -283,10 +283,10 @@ final class ModifierConditionTargetTests: XCTestCase {
         var data = Data(repeating: 0, count: 120)
         replaceUInt32(4, in: &data, at: 0)
         replaceUInt32(2, in: &data, at: 8)
-        replaceUInt32(conditionOne.modifier, in: &data, at: 52)
+        replaceUInt32(conditionOne.modifier == 0 ? 0 : 2547 + conditionOne.modifier, in: &data, at: 52)
         replaceUInt32(conditionOne.target, in: &data, at: 56)
         replaceUInt32(conditionOne.value, in: &data, at: 60)
-        replaceUInt32(conditionTwo.modifier, in: &data, at: 64)
+        replaceUInt32(conditionTwo.modifier == 0 ? 0 : 2547 + conditionTwo.modifier, in: &data, at: 64)
         replaceUInt32(conditionTwo.target, in: &data, at: 68)
         replaceUInt32(conditionTwo.value, in: &data, at: 72)
         if optionalTailSeed != 0 {

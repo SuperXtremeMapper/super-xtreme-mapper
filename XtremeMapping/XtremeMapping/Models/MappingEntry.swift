@@ -739,6 +739,16 @@ struct ModifierCondition: Hashable, Sendable, Equatable {
     /// app-created conditions default to Deck A, whose wire value is zero.
     var target: ModifierConditionTarget = .deckA
 
+    /// UI modifier numbers and TSI condition identifiers are different domains.
+    /// Non-modifier condition IDs remain opaque and round-trip unchanged.
+    var wireID: UInt32 {
+        UInt32(clamping: (1...8).contains(modifier) ? modifier + 2547 : modifier)
+    }
+
+    static func modifierNumber(forWireID id: Int) -> Int {
+        (2548...2555).contains(id) ? id - 2547 : id
+    }
+
     /// Display string for the condition (e.g., "M4 = 2")
     var displayString: String {
         "M\(modifier) = \(value)"
