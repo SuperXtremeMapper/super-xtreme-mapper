@@ -37,7 +37,7 @@ SXM visual smoke confirmed the single-output panel, signed and fractional endpoi
 
 ## Remaining manual verification
 
-Visual inspection of the locked editor remains unverified. Live S7 and second-controller colour/deletion/transition testing remains necessary; no hardware feedback or live MIDI transmission is claimed. No release, push, merge or installation has occurred.
+Follow-up inspection recovered the SXM window and established that a visual lock check is not available in the current product UI: `ContentView` initializes `isLocked` to false and passes its binding to the active toolbar, but that toolbar has no lock toggle. Commit `012e239` removed `V2LockButtonIcon` from this toolbar during an earlier redesign. The unused toolbar component still has a lock button, but is not the active UI. No lock control was restored as part of LED work. Automated lock guards pass; no visual locked-state result is claimed. Live S7 and second-controller colour/deletion/transition testing remains necessary; no hardware feedback or live MIDI transmission is claimed. No release, push, merge or installation has occurred.
 
 ## Agency
 
@@ -46,7 +46,7 @@ Project `01a089cf-cbb1-743e-b55e-0d37b78a5e98`.
 | Unit | Task ID | State |
 | --- | --- | --- |
 | Foundation/export | `01a089d0-1a5e-764a-a32a-a2aee1b4f9ec` | Evaluation submitted: complete, 95/100 |
-| Shared editor | `01a089d0-1a5e-7a52-85a6-acebc06851db` | Evaluation submitted: code delivered; single/mixed/invalid visual smoke passed; visual lock check blocked by UI timeout, 95/100, task_completed=false |
+| Shared editor | `01a089d0-1a5e-7a52-85a6-acebc06851db` | Evaluation submitted: code delivered; single/mixed/invalid visual smoke passed; follow-up established visual lock unavailable in current toolbar (removed in 012e239); automated lock guards pass, 95/100, task_completed=false |
 | Independent spec review | `01a089d0-1a5f-7431-ae3d-f5aea644cca1` | Evaluation submitted: complete, 95/100 |
 | Cue-state conditions | `01a089d7-134b-7ce9-8c5e-8ce948dc2aa7` | Evaluation submitted: complete, 95/100 |
 | Independent code review | `01a089db-9c8b-7766-a0a8-d721bb48cc02` | Evaluation submitted: approved after corrections, 95/100 |
