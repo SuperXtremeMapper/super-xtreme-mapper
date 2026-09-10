@@ -21,18 +21,23 @@ Branch: `codex/led-output-mapping`, base `f1917f6`.
 - Independent spec/plan review: compatible with native evidence gates. Independent code review: two findings resolved; reviewer closed with no outstanding findings.
 - Full automated unit suite: **680 passed, 0 failed, 0 skipped**, exit 0. Result: `/Users/noahraford/Library/Developer/Xcode/DerivedData/SuperXtremeMapping-bfavcvigcqvzcueadihepwxxehdw/Logs/Test/Test-XtremeMapping-2026.09.10_09-59-57-+0400.xcresult`.
 
+## Native and visual verification
+
+After the user authorized foreground use again, the native connection recovered. Traktor 4.5.1 displayed all four SXM-generated rows correctly: Cue 0–0 / MIDI 0–1, No Hotcue -1–-1 / MIDI 0–0, Loop 5–5 / MIDI 0–12, and Gain Adjust 0.25–0.75 / MIDI 10–100 with Blend and Invert on. Conditions, Deck A, channel 16 destinations and ports None were checked in the native UI.
+
+Device Edit → Export produced `/tmp/sxm-led-traktor-reexport.tsi`. Independent decoding compared it with the original generated artifact in the test app's sandbox. All four commands/directions, both condition triples, controller endpoint types/data, MIDI endpoints, Invert and Blend matched exactly. Binding numbers were not treated as stable identifiers; native destination assignments were checked visually.
+
+- Original generated artifact SHA-256: `4dc583afc854d83a9218468cb2aba57e7518183f6b18d08b98131a14c3074436`.
+- Native re-export SHA-256: `30ebad56d904f06bb68349f40093fbaf451297dfea25a49d37edc0f13c31afeb`.
+- The separate `/tmp/sxm-led-generated-smoke.tsi` copy was subsequently used for SXM UI edits and autosaved MIDI Max 99. It was not used as the original comparison baseline.
+
+Both temporary devices (`SXM LED native validation TEMP` and `SXM generated LED validation TEMP`) were removed, their absence verified in the device dropdown, the original K3_D_v5 selection restored, and Preferences closed. Existing user mappings were not edited.
+
+SXM visual smoke confirmed the single-output panel, signed and fractional endpoint displays, MIDI endpoints, Blend/Invert states and visible Hotcue State/Cue condition. Selecting all four outputs showed mixed MIDI/flags and disabled controller ranges for different domains. Applying MIDI Max 128 displayed the expected 0–127 validation error. A subsequent settings interaction and fresh accessibility read timed out, preventing the final visual lock check; automated lock and undo coverage passed in the full suite. No visual undo success is claimed: the keyboard undo during inspection affected the focused text draft.
+
 ## Remaining manual verification
 
-SXM-generated `/tmp/sxm-led-generated-smoke.tsi` imported successfully through Traktor's Device Add → Import. The native UI confirmed four OUT rows, Deck A, channel 16 assignments and both ports None. The Mac then locked and CUA automatic unlock failed. The user subsequently asked to keep working on another screen; focus-taking Traktor operations are paused.
-
-Two temporary devices remain in Traktor, both with In-Port and Out-Port **None**:
-
-- `SXM LED native validation TEMP` (native evidence capture)
-- `SXM generated LED validation TEMP` (SXM import smoke)
-
-When foreground UI use is available, inspect each generated row's ranges/flags/conditions, export that device only to `/tmp/sxm-led-traktor-reexport.tsi`, compare decoded values, and delete only these two temporary devices. Restore the original device selection when identifiable. The user's existing mappings have not been edited. Do not use global Import or overwrite any existing export.
-
-Also pending: visual SXM inspection of single/mixed/locked/invalid-draft views; live S7 and second-controller colour/deletion/transition testing. No hardware feedback or live MIDI transmission was claimed. No release, push, merge or installation has occurred.
+Visual inspection of the locked editor remains unverified. Live S7 and second-controller colour/deletion/transition testing remains necessary; no hardware feedback or live MIDI transmission is claimed. No release, push, merge or installation has occurred.
 
 ## Agency
 
@@ -41,7 +46,7 @@ Project `01a089cf-cbb1-743e-b55e-0d37b78a5e98`.
 | Unit | Task ID | State |
 | --- | --- | --- |
 | Foundation/export | `01a089d0-1a5e-764a-a32a-a2aee1b4f9ec` | Evaluation submitted: complete, 95/100 |
-| Shared editor | `01a089d0-1a5e-7a52-85a6-acebc06851db` | Evaluation submitted: code delivered, visual smoke pending, 90/100, task_completed=false |
+| Shared editor | `01a089d0-1a5e-7a52-85a6-acebc06851db` | Evaluation submitted: code delivered; single/mixed/invalid visual smoke passed; visual lock check blocked by UI timeout, 95/100, task_completed=false |
 | Independent spec review | `01a089d0-1a5f-7431-ae3d-f5aea644cca1` | Evaluation submitted: complete, 95/100 |
 | Cue-state conditions | `01a089d7-134b-7ce9-8c5e-8ce948dc2aa7` | Evaluation submitted: complete, 95/100 |
 | Independent code review | `01a089db-9c8b-7766-a0a8-d721bb48cc02` | Evaluation submitted: approved after corrections, 95/100 |
