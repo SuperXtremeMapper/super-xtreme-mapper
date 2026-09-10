@@ -15,7 +15,7 @@ For the reported S7 configuration:
 3. Set MIDI Min **0**, MIDI Max **1**; set Blend and Output Invert to the settings used in your working Traktor mapping.
 4. Apply LED, export, and inspect the result in Traktor.
 
-The S7 reporter observed blue with a cue and off after deletion. That hardware result has not been independently reproduced here. The MIDI value **1 is not a universal blue code**.
+The recipient tested the exported mapping on a DJM-S7 and confirmed **1 = blue**, **12 = cyan / light blue**, and LED off after cue deletion, with no flickering or stuck LEDs. Supplied photos support the two colour observations. The pad briefly turns white when pressed and returns to the mapped colour on release; the cause of that flash is unconfirmed. These results are specific to the tested S7 setup: **1 is not a universal blue code**.
 
 ## Different colours for cue types
 
