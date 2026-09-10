@@ -464,6 +464,23 @@
       "expectedDisposition": "ordinarySaveSafe",
       "expectedRiskCount": 0,
       "expectedRiskCodes": []
+    },
+    {
+      "filename": "traktor-4.5.1-software-conditions.tsi",
+      "sha256": "03e79a71a0e41d9804f3c53e143cfe586d2d04bfa46d3943b39a8882862dcd71",
+      "provenance": "realExport",
+      "completeness": "completeDocument",
+      "evidencedVersion": "4.5.1",
+      "controller": "Generic MIDI (ports None)",
+      "source": "Native Traktor Pro 4.5.1 build 21 condition menu capture for issue 1; Deck Play and Is In Active Loop, two complementary rows",
+      "license": "Fixture contribution under repository MIT License; created for this project in authorized validation session",
+      "sanitization": [
+        "Renamed only; native XML and controller bytes unchanged",
+        "Audited decoded text: native version, Generic MIDI definitions and temporary test comments; no customer mappings"
+      ],
+      "expectedDisposition": "ordinarySaveSafe",
+      "expectedRiskCount": 0,
+      "expectedRiskCodes": []
     }
   ]
 }

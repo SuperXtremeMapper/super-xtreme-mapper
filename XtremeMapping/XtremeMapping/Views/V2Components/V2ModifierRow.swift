@@ -22,14 +22,12 @@ struct V2ModifierRow: View {
                     }
                 }
                 Divider()
-                ForEach(1...8, id: \.self) { number in
-                    Menu("Hotcue \(number) State") {
+                ForEach(TraktorConditionMetadata.deckConditionIDs, id: \.self) { identifier in
+                    Menu(TraktorConditionMetadata.name(for: identifier)) {
                         ForEach(TraktorConditionMetadata.targets, id: \.self) { target in
                             Button(TraktorConditionMetadata.targetLabel(target)) {
-                                let value = condition.flatMap {
-                                    TraktorConditionMetadata.hotcueNumber(for: $0.modifier) != nil ? $0.value : nil
-                                } ?? 0
-                                applySelection(ModifierCondition(modifier: 2332 + number, value: value, target: target))
+                                applySelection(TraktorConditionMetadata.selectingDeckCondition(
+                                    identifier, target: target, previous: condition))
                             }
                         }
                     }
@@ -46,7 +44,7 @@ struct V2ModifierRow: View {
             .accessibilityLabel("Condition type")
 
             if let condition {
-                if TraktorConditionMetadata.hotcueNumber(for: condition.modifier) != nil {
+                if TraktorConditionMetadata.hasDeckTarget(for: condition.modifier) {
                     Text(TraktorConditionMetadata.targetLabel(condition.target))
                         .font(AppThemeV2.Typography.caption)
                         .foregroundColor(AppThemeV2.Colors.stone400)

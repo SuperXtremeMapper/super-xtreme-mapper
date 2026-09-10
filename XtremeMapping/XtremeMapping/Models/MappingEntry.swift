@@ -732,7 +732,7 @@ extension ModifierConditionTarget: Codable {
 /// Traktor supports 8 modifiers (M1-M8), each with values 0-7.
 /// A mapping can require specific modifier values to be active.
 struct ModifierCondition: Hashable, Sendable, Equatable {
-    /// M1–M8 UI numbers, a known Hotcue State ID, or an opaque native ID.
+    /// M1–M8 UI numbers, a known software-state ID, or an opaque native ID.
     var modifier: Int
 
     /// Required raw value; empty Hotcue is UInt32.max, kept as an Int.
@@ -755,8 +755,8 @@ struct ModifierCondition: Hashable, Sendable, Equatable {
     /// Display string for the condition (e.g., "M4 = 2")
     var displayString: String {
         let name = TraktorConditionMetadata.name(for: modifier)
-        let targetSuffix = TraktorConditionMetadata.hotcueNumber(for: modifier) == nil
-            ? "" : " · \(TraktorConditionMetadata.targetLabel(target))"
+        let targetSuffix = TraktorConditionMetadata.hasDeckTarget(for: modifier)
+            ? " · \(TraktorConditionMetadata.targetLabel(target))" : ""
         return "\(name)\(targetSuffix) = \(TraktorConditionMetadata.valueLabel(for: self))"
     }
 }

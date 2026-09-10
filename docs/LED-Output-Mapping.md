@@ -35,12 +35,18 @@ Duplicate the OUT row for each state you want to represent. Set its matching Hot
 
 Colour codes, alternative Note/CC addresses and off/brightness behaviour depend on hardware. Consult the controller's MIDI documentation and test transitions, cue deletion, track changes and modifier layers in Traktor. Numeric mapping remains available without a device colour profile.
 
+## Playback and loop conditions
+
+Both IN and OUT rows can use **Deck Play** (the Play/Pause state) and **Is In Active Loop** in either condition slot. Choose the condition, its deck or Device Target, then its value: **Off/On** for Deck Play, or **0/1** for Is In Active Loop (0 = off, 1 = on). These match Traktor's choices and work with any controller's supported MIDI mappings. For example, Deck Play → Deck A → On makes a row depend on Deck A playing.
+
+Changing a condition's target retains its value. Switching to either of these condition types starts at 0 (Off). Imported conditions that SXM does not recognise keep their original identifier, target and value.
+
 ## Multiple selections and compatibility
 
 Mixed fields show **Mixed**. Apply changes only fields you actually edit; it preserves the other values on every selected mapping. Batch Controller Range editing requires a matching known value domain and encoding. MIDI endpoints and flags can be edited across other compatible OUT selections. Select only OUT rows to edit LED settings.
 
 Known Boolean, Hotcue, Modifier and supported continuous command families have range hints and creation defaults. Other imported outputs retain their numeric encoding without guessed command limits. Unknown encodings have read-only Controller Range fields; independently supported MIDI/flag fields remain editable. Incomplete native LED records stay read-only to avoid inventing missing data. Opening a mapping does not normalize its settings.
 
-Copy/paste, duplication and deck cloning retain LED settings. Cloning Deck A to another deck updates Deck A cue-state conditions while preserving Device Target conditions.
+Copy/paste, duplication and deck cloning retain LED settings. Cloning Deck A to another deck updates Deck A conditions while preserving Device Target conditions.
 
 This editor handles feedback exposed through SXM's supported Traktor MIDI mappings. It does not add arbitrary HID, NHL, SysEx, automatic RGB conversion, live LED previews or a controller palette library.
