@@ -163,6 +163,7 @@ struct ContentView: View {
                         onCommentChange: changeSelectedComment,
                         onControllerTypeChange: { type in
                             updateSelectedMappings { mapping in
+                                guard mapping.ioType == .input else { return }
                                 mapping.controllerType = type
                                 // Reset interaction mode to default for new type if current mode is invalid
                                 if !type.validInteractionModes.contains(mapping.interactionMode) {
@@ -171,10 +172,10 @@ struct ContentView: View {
                             }
                         },
                         onInteractionChange: { mode in
-                            updateSelectedMappings { $0.interactionMode = mode }
+                            updateSelectedMappings { if $0.ioType == .input { $0.interactionMode = mode } }
                         },
                         onEncoderModeChange: { mode in
-                            updateSelectedMappings { $0.setEncoderMode(mode) }
+                            updateSelectedMappings { if $0.ioType == .input { $0.setEncoderMode(mode) } }
                         },
                         onModifier1Change: { condition in
                             updateSelectedMappings { $0.modifier1Condition = condition }
@@ -183,7 +184,7 @@ struct ContentView: View {
                             updateSelectedMappings { $0.modifier2Condition = condition }
                         },
                         onInvertToggle: {
-                            updateSelectedMappings { $0.invert.toggle() }
+                            updateSelectedMappings { if $0.ioType == .output { $0.ledInvert.toggle() } else { $0.invert.toggle() } }
                         }
                     )
                 }
@@ -454,10 +455,7 @@ struct ContentView: View {
     private func addOutputMapping(command: TraktorCommandDescriptor) {
         guard !isLocked else { return }
 
-        let newMapping = MappingEntry(
-            commandID: command.id,
-            ioType: .output
-        )
+        let newMapping = MappingEntry.output(commandID: command.id)
         addMappings([newMapping], actionName: "Add Output Mapping")
     }
 
@@ -469,10 +467,7 @@ struct ContentView: View {
             ioType: .input
         )
 
-        let outputEntry = MappingEntry(
-            commandID: command.id,
-            ioType: .output
-        )
+        let outputEntry = MappingEntry.output(commandID: command.id)
         addMappings([inputEntry, outputEntry], actionName: "Add Input/Output Pair")
     }
 

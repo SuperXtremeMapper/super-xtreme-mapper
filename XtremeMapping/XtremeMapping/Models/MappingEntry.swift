@@ -689,6 +689,7 @@ enum ModifierConditionTarget: Hashable, Sendable, Equatable {
     case deckB
     case deckC
     case deckD
+    case deviceTarget
     case unknown(UInt32)
 
     init(rawValue: UInt32) {
@@ -697,6 +698,7 @@ enum ModifierConditionTarget: Hashable, Sendable, Equatable {
         case 1: self = .deckB
         case 2: self = .deckC
         case 3: self = .deckD
+        case UInt32.max: self = .deviceTarget
         default: self = .unknown(rawValue)
         }
     }
@@ -707,6 +709,7 @@ enum ModifierConditionTarget: Hashable, Sendable, Equatable {
         case .deckB: 1
         case .deckC: 2
         case .deckD: 3
+        case .deviceTarget: UInt32.max
         case .unknown(let rawValue): rawValue
         }
     }
@@ -729,10 +732,10 @@ extension ModifierConditionTarget: Codable {
 /// Traktor supports 8 modifiers (M1-M8), each with values 0-7.
 /// A mapping can require specific modifier values to be active.
 struct ModifierCondition: Hashable, Sendable, Equatable {
-    /// The modifier number (1-8 for M1-M8)
+    /// M1–M8 UI numbers, a known Hotcue State ID, or an opaque native ID.
     var modifier: Int
 
-    /// The required value (0-7)
+    /// Required raw value; empty Hotcue is UInt32.max, kept as an Int.
     var value: Int
 
     /// Native deck target for this condition. Older saved documents and new
@@ -751,7 +754,10 @@ struct ModifierCondition: Hashable, Sendable, Equatable {
 
     /// Display string for the condition (e.g., "M4 = 2")
     var displayString: String {
-        "M\(modifier) = \(value)"
+        let name = TraktorConditionMetadata.name(for: modifier)
+        let targetSuffix = TraktorConditionMetadata.hotcueNumber(for: modifier) == nil
+            ? "" : " · \(TraktorConditionMetadata.targetLabel(target))"
+        return "\(name)\(targetSuffix) = \(TraktorConditionMetadata.valueLabel(for: self))"
     }
 }
 

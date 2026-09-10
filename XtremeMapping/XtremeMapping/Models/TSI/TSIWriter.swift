@@ -760,7 +760,7 @@ public struct TSIWriter: Sendable {
         }
 
         let ledOffset = conditionOffset + 24
-        if profileChanged {
+        if profileChanged && mapping.ioType != .output {
             for (relativeOffset, value, field) in [
                 (0, profile.ledMinType, "LedMinType"),
                 (4, profile.ledMinData, "LedMinData"),
@@ -805,6 +805,18 @@ public struct TSIWriter: Sendable {
                     at: ledOffset + relativeOffset,
                     field: field
                 )
+            }
+        }
+
+        // A coordinated input profile owns controller ranges, but MIDI
+        // endpoints and LED inversion are independent even in the same edit.
+        if profileChanged && mapping.ioType != .output {
+            for (changed, offset, value, field) in [
+                (mapping.ledMinMidi != baseline.ledMinMidi, 16, UInt32(clamping: mapping.ledMinMidi), "LedMinMidi"),
+                (mapping.ledMaxMidi != baseline.ledMaxMidi, 20, UInt32(clamping: mapping.ledMaxMidi), "LedMaxMidi"),
+                (mapping.ledInvert != baseline.ledInvert, 24, mapping.ledInvert ? UInt32(1) : UInt32(0), "LedInvert"),
+            ] where changed {
+                try replaceUInt32(value, in: &data, at: ledOffset + offset, field: field)
             }
         }
 
@@ -1161,6 +1173,25 @@ public struct TSIWriter: Sendable {
 
     private static func cmadProfile(for mapping: MappingEntry) -> CMADProfile {
         let cmdId = mapping.commandID
+
+        // Output settings are explicit user data, not an input controller
+        // profile. In particular Modifier outputs must not reset their range
+        // to 0...7 or force Blend on during save/converted export.
+        if mapping.ioType == .output {
+            let continuous = mapping.ledMinRangeType == 2 && mapping.ledMaxRangeType == 2
+            return CMADProfile(
+                hasValueUI: 0,
+                valueUIType: continuous ? 2 : 1,
+                setValueRaw: mapping.importedCMAD?.setToValueBits ?? 0,
+                ledMinType: UInt32(clamping: mapping.ledMinRangeType),
+                ledMinData: UInt32(clamping: mapping.ledMinRangeData),
+                ledMaxType: UInt32(clamping: mapping.ledMaxRangeType),
+                ledMaxData: UInt32(clamping: mapping.ledMaxRangeData),
+                ledBlend: mapping.ledBlend ? 1 : 0,
+                unknownVUI: mapping.importedCMAD?.unknownVUI ?? (continuous ? 2 : 1),
+                resolutionRaw: UInt32(clamping: mapping.resolution)
+            )
+        }
 
         // Indexed hotcues: Select/Set+Store (2328) and Delete Hotcue (2331).
         // SetValueTo carries the hotcue index 0...7 as raw UInt32. Native

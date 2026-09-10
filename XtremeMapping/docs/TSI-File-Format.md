@@ -211,10 +211,10 @@ The canonical complete form is the most complex frame with 30 fields. Short or e
 | ... | 4 | uint32 | ConditionTwoId | |
 | ... | 4 | uint32 | ConditionTwoTarget | |
 | ... | 4 | uint32 | ConditionTwoValue | |
-| ... | 4 | uint32 | LedMinControllerRangeType | 0 |
-| ... | 4 | uint32 | LedMinControllerRange | 0 |
-| ... | 4 | uint32 | LedMaxControllerRangeType | 0 |
-| ... | 4 | uint32 | LedMaxControllerRange | 1 (integer, not float) |
+| ... | 4 | uint32 | LedMinControllerRangeType | 1 = signed Int32, 2 = Float32 bits; preserve unknown types |
+| ... | 4 | uint32 | LedMinControllerRange | Raw word; e.g. -1 is 0xffffffff for Hotcue Type |
+| ... | 4 | uint32 | LedMaxControllerRangeType | 1 = signed Int32, 2 = Float32 bits; preserve unknown types |
+| ... | 4 | uint32 | LedMaxControllerRange | Raw word, interpreted using its endpoint type |
 | ... | 4 | uint32 | LedMinMidiRange | 0 |
 | ... | 4 | uint32 | LedMaxMidiRange | 127 |
 | ... | 4 | uint32 | LedInvert | 0 or 1 |

@@ -128,6 +128,30 @@ struct SettingsPanelV2: View {
         return document.mappingFile.allMappings.first { $0.id == id }
     }
 
+    private var selectedEntries: [MappingEntry] {
+        document.mappingFile.allMappings.filter { selectedMappings.contains($0.id) }
+    }
+
+    private var allOutputs: Bool {
+        !selectedEntries.isEmpty && selectedEntries.allSatisfy { $0.ioType == .output }
+    }
+
+    private var allInputs: Bool {
+        !selectedEntries.isEmpty && selectedEntries.allSatisfy { $0.ioType == .input }
+    }
+
+    private var outputDestinationContext: some View {
+        VStack(alignment: .leading, spacing: AppThemeV2.Spacing.xs) {
+            ForEach(document.mappingFile.devices.filter { device in
+                device.mappings.contains { selectedMappings.contains($0.id) }
+            }) { device in
+                Text("\(device.name): OUT port \(device.outPort.isEmpty ? "Not set" : device.outPort)")
+                    .font(AppThemeV2.Typography.caption)
+                    .foregroundColor(AppThemeV2.Colors.stone400)
+            }
+        }
+    }
+
     private var isMultipleSelection: Bool {
         selectedMappings.count > 1
     }
@@ -316,9 +340,18 @@ struct SettingsPanelV2: View {
 
             V2Divider()
 
-            sectionLabel("TYPE")
-            controllerTypePicker
-            interactionModePicker
+            if allOutputs {
+                outputDestinationContext
+                LEDOutputSettingsView(document: document, selectedIDs: selectedMappings, isLocked: isLocked)
+            } else if allInputs {
+                sectionLabel("TYPE")
+                controllerTypePicker
+                interactionModePicker
+            } else {
+                Text("Select only OUT mappings for LED settings, or only IN mappings for input controls.")
+                    .font(AppThemeV2.Typography.caption)
+                    .foregroundColor(AppThemeV2.Colors.stone400)
+            }
 
             V2Divider()
 
@@ -327,7 +360,7 @@ struct SettingsPanelV2: View {
 
             V2Divider()
 
-            invertToggle
+            if allInputs { invertToggle }
         }
     }
 
@@ -395,17 +428,24 @@ struct SettingsPanelV2: View {
         V2Divider()
 
         sectionLabel("MIDI")
-        midiChannelControl
+        if entry.ioType == .output {
+            outputDestinationContext
+            batchMIDIAssignmentControls
+        } else {
+            midiChannelControl
+        }
         assignmentPicker
 
         V2Divider()
 
-        sectionLabel("CONTROLLER")
-        controllerTypePicker
-        interactionModePicker
-
-        // Type-specific options
-        typeSpecificOptions(for: entry)
+        if entry.ioType == .output {
+            LEDOutputSettingsView(document: document, selectedIDs: selectedMappings, isLocked: isLocked)
+        } else {
+            sectionLabel("CONTROLLER")
+            controllerTypePicker
+            interactionModePicker
+            typeSpecificOptions(for: entry)
+        }
 
         V2Divider()
 
@@ -414,7 +454,7 @@ struct SettingsPanelV2: View {
 
         V2Divider()
 
-        invertToggle
+        if entry.ioType == .input { invertToggle }
     }
 
     // MARK: - Device Comment
@@ -586,20 +626,22 @@ struct SettingsPanelV2: View {
             HStack(spacing: AppThemeV2.Spacing.xs) {
                 Spacer()
 
-                V2SmallButton(
-                    label: "Learn",
-                    action: toggleLearnMode,
-                    isActive: isLearning
-                )
-                .disabled(isLocked || isLearnOwnedElsewhere)
-                .accessibilityLabel(
-                    isLearning
-                        ? "Stop MIDI Learn for selected mappings"
-                        : "Learn one MIDI assignment for selected mappings"
-                )
+                if isMultipleSelection {
+                    V2SmallButton(
+                        label: "Learn",
+                        action: toggleLearnMode,
+                        isActive: isLearning
+                    )
+                    .disabled(isLocked || isLearnOwnedElsewhere)
+                    .accessibilityLabel(
+                        isLearning
+                            ? "Stop MIDI Learn for selected mappings"
+                            : "Learn one MIDI assignment for selected mappings"
+                    )
+                }
 
                 V2SmallButton(
-                    label: "Apply to \(selectedMappings.count)",
+                    label: isMultipleSelection ? "Apply to \(selectedMappings.count)" : "Apply MIDI",
                     action: applyBatchAssignmentDraft
                 )
                 .disabled(isLocked)
@@ -620,6 +662,7 @@ struct SettingsPanelV2: View {
             .disabled(isLocked)
             .onChange(of: controllerType) { _, newValue in
                 let update: (inout MappingEntry) -> Void = { mapping in
+                    guard mapping.ioType == .input else { return }
                     mapping.controllerType = newValue
                     if !newValue.validInteractionModes.contains(mapping.interactionMode) {
                         mapping.interactionMode = newValue.defaultInteractionMode
@@ -645,9 +688,9 @@ struct SettingsPanelV2: View {
             .disabled(isLocked)
             .onChange(of: interactionMode) { _, newValue in
                 if isMultipleSelection {
-                    updateSelectedEntries { $0.interactionMode = newValue }
+                    updateSelectedEntries { if $0.ioType == .input { $0.interactionMode = newValue } }
                 } else {
-                    updateEntry { $0.interactionMode = newValue }
+                    updateEntry { if $0.ioType == .input { $0.interactionMode = newValue } }
                 }
             }
         }
@@ -678,9 +721,9 @@ struct SettingsPanelV2: View {
                 .disabled(isLocked)
                 .onChange(of: invert) { _, newValue in
                     if isMultipleSelection {
-                        updateSelectedEntries { $0.invert = newValue }
+                        updateSelectedEntries { if $0.ioType == .input { $0.invert = newValue } }
                     } else {
-                        updateEntry { $0.invert = newValue }
+                        updateEntry { if $0.ioType == .input { $0.invert = newValue } }
                     }
                 }
         }
@@ -865,14 +908,18 @@ struct SettingsPanelV2: View {
             entry.midiAssignment = learnedAssignment
 
             // Auto-assign controller type and interaction mode
-            entry.controllerType = detectedType
-            entry.interactionMode = detectedInteraction
+            Self.applyLearnedControllerType(detectedType, to: &entry)
         }
 
         // Update local state to reflect changes
         midiChannelDraft.apply(.selectionLoad(message.channel))
-        controllerType = detectedType
-        interactionMode = detectedInteraction
+        controllerType = selectedEntry?.controllerType ?? detectedType
+        interactionMode = selectedEntry?.interactionMode ?? detectedInteraction
+    }
+
+    static func applyLearnedControllerType(_ detectedType: ControllerType, to entry: inout MappingEntry) {
+        entry.controllerType = entry.ioType == .output ? .led : detectedType
+        entry.interactionMode = entry.ioType == .output ? .output : detectedType.defaultInteractionMode
     }
 
     /// Detects the controller type based on MIDI message and value history
@@ -953,6 +1000,9 @@ struct SettingsPanelV2: View {
         rotaryAcceleration = entry.rotaryAcceleration
         encoderModeDraft.apply(.selectionLoad(entry.encoderMode))
         midiChannelDraft.apply(.selectionLoad(entry.midiChannel))
+        batchAssignmentKind = entry.midiAssignment.kind
+        batchChannel = entry.midiAssignment.channel
+        batchNumber = entry.midiAssignment.number ?? 0
     }
 
     private func batchAssignmentKindLabel(_ kind: MIDIAssignment.Kind) -> String {
@@ -967,9 +1017,9 @@ struct SettingsPanelV2: View {
     }
 
     private func resetBatchAssignmentDraft() {
-        batchAssignmentKind = .unassigned
-        batchChannel = 1
-        batchNumber = 0
+        batchAssignmentKind = selectedEntry?.midiAssignment.kind ?? .unassigned
+        batchChannel = selectedEntry?.midiAssignment.channel ?? 1
+        batchNumber = selectedEntry?.midiAssignment.number ?? 0
     }
 
     private func saveSingleMappingComment() {
@@ -1079,7 +1129,7 @@ struct SettingsPanelV2: View {
         _ assignment: MIDIAssignment,
         actionName: String
     ) {
-        guard !isLocked, isMultipleSelection else { return }
+        guard !isLocked, !selectedMappings.isEmpty else { return }
 
         _ = document.performUndoableMutation(
             actionName: actionName,
@@ -1200,128 +1250,6 @@ struct V2SmallButton: View {
 }
 
 /// V2 styled modifier row with two dropdowns: modifier number and value
-struct V2ModifierRow: View {
-    @Binding var condition: ModifierCondition?
-    let isLocked: Bool
-    let onChanged: (ModifierCondition?) -> Void
-
-    @State private var selectedModifier: Int = 0
-    @State private var selectedValue: Int = 0
-
-    var body: some View {
-        HStack(spacing: AppThemeV2.Spacing.sm) {
-            // Modifier picker (None, M1-M8)
-            Menu {
-                Button("-") {
-                    selectedModifier = 0
-                    updateCondition()
-                }
-                ForEach(1...8, id: \.self) { num in
-                    Button("M\(num)") {
-                        selectedModifier = num
-                        updateCondition()
-                    }
-                }
-            } label: {
-                HStack(spacing: AppThemeV2.Spacing.xs) {
-                    Text(selectedModifier == 0 ? "-" : "M\(selectedModifier)")
-                        .font(AppThemeV2.Typography.body)
-                        .foregroundColor(AppThemeV2.Colors.stone200)
-                        .frame(minWidth: 30)
-
-                    Image(systemName: "chevron.down")
-                        .font(.system(size: 8, weight: .bold))
-                        .foregroundColor(AppThemeV2.Colors.stone500)
-                }
-                .padding(.horizontal, AppThemeV2.Spacing.sm)
-                .padding(.vertical, AppThemeV2.Spacing.xs)
-                .background(
-                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                        .fill(AppThemeV2.Colors.stone700)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                        .stroke(AppThemeV2.Colors.stone600, lineWidth: 1)
-                )
-            }
-            .menuStyle(.borderlessButton)
-            .menuIndicator(.hidden)
-            .disabled(isLocked)
-
-            // Value picker (0-7) - only shown if modifier is selected
-            if selectedModifier > 0 {
-                Text("=")
-                    .font(AppThemeV2.Typography.caption)
-                    .foregroundColor(AppThemeV2.Colors.stone500)
-
-                Menu {
-                    ForEach(0...7, id: \.self) { val in
-                        Button("\(val)") {
-                            selectedValue = val
-                            updateCondition()
-                        }
-                    }
-                } label: {
-                    HStack(spacing: AppThemeV2.Spacing.xs) {
-                        Text("\(selectedValue)")
-                            .font(AppThemeV2.Typography.body)
-                            .foregroundColor(AppThemeV2.Colors.stone200)
-                            .frame(minWidth: 20)
-
-                        Image(systemName: "chevron.down")
-                            .font(.system(size: 8, weight: .bold))
-                            .foregroundColor(AppThemeV2.Colors.stone500)
-                    }
-                    .padding(.horizontal, AppThemeV2.Spacing.sm)
-                    .padding(.vertical, AppThemeV2.Spacing.xs)
-                    .background(
-                        RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                            .fill(AppThemeV2.Colors.stone700)
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                            .stroke(AppThemeV2.Colors.stone600, lineWidth: 1)
-                    )
-                }
-                .menuStyle(.borderlessButton)
-                .menuIndicator(.hidden)
-                .disabled(isLocked)
-            }
-
-            Spacer()
-        }
-        .onAppear {
-            loadFromCondition()
-        }
-        .onChange(of: condition) { _, _ in
-            loadFromCondition()
-        }
-    }
-
-    private func loadFromCondition() {
-        if let cond = condition {
-            selectedModifier = cond.modifier
-            selectedValue = cond.value
-        } else {
-            selectedModifier = 0
-            selectedValue = 0
-        }
-    }
-
-    private func updateCondition() {
-        let newCondition: ModifierCondition?
-        if selectedModifier == 0 {
-            newCondition = nil
-        } else {
-            newCondition = ModifierCondition(modifier: selectedModifier, value: selectedValue)
-        }
-
-        if condition != newCondition {
-            condition = newCondition
-            onChanged(newCondition)
-        }
-    }
-}
 
 struct V2SliderRow: View {
     let label: String

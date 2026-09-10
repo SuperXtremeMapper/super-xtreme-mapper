@@ -17,6 +17,19 @@ Tests load the manifest and fixtures from the checked-out source tree, reject un
 | `traktor-4.5.1-xone-k3-benchmark-04-remix.tsi` | Real export | Yes | Traktor Pro 4.5.1 benchmark session | Opens 9 remix mappings with slot targets; unchanged document write is byte-identical |
 | `traktor-4.5.1-xone-k3-benchmark-05-core-safe.tsi` | Real export | Yes | Traktor Pro 4.5.1 benchmark session | Opens Loop Active, Flux Mode and Hotcue 1 with learned K3 notes, no modifier commands or conditions; unchanged document write is byte-identical |
 | `traktor-4.5.1-xone-k3-benchmark-06-outputs-comments-modifiers.tsi` | Real export | Yes | Traktor Pro 4.5.1 benchmark session | Opens four MIDI-assigned LED outputs and four Modifier 1 modes; preserves ASCII, Unicode and emoji comments plus every Blend/Invert combination; unchanged document write is byte-identical |
+| `traktor-4.5.1-led-ranges-hotcue-conditions.tsi` | Real export | Yes | Traktor Pro 4.5.1 build 21, native UI session 2026-09-10 | Six OUT rows prove Hotcue State condition IDs, states and targets plus a fractional Gain output; unchanged document write is byte-identical |
+
+## LED ranges and Hotcue State conditions
+
+The LED fixture was exported directly from a temporary Generic MIDI device created in Traktor Pro 4.5.1 build 21. Both ports were None. It contains only the six validation rows and their explanatory comments; existing user mappings were not included. The committed XML and binary payload are unchanged from that native export. The filename alone was changed.
+
+Explicit menu choices establish Hotcue 1 State ID 2333 on Deck A (target 0), Hotcue 2 State ID 2334 on Deck B (target 1), and Hotcue 8 State ID 2340 on Deck D (target 3) and Device Target (0xffffffff). All eight Hotcue State menus were visible. The six named states Cue/Fade-In/Fade-Out/Load/Grid/Loop encode as 0 through 5. The “-” / No Hotcue state encodes as 0xffffffff. These condition IDs were confirmed from native export, not inferred solely from output command names.
+
+Gain Adjust output 117 accepted Controller Range 0.25–0.75 and exported endpoint type 2 with Float32 words 0x3e800000 and 0x3f400000; Blend was enabled. Attempting -0.5 left/reverted its minimum to 0. Native output controller type is 65535 and interaction wire value is 8.
+
+Earlier installed NI Maschine templates additionally establish signed type-1 Hotcue ranges (minimum 0xffffffff, maximum 5) and type-2 FX output ranges. Those installed templates were inspected read-only and are not redistributed here.
+
+This evidence proves native settings representation. It does not establish S7 colour codes, hardware LED transitions or every possible Traktor command domain. Live hardware validation must remain separate from file round-trip tests.
 
 ## Sanitized Traktor 4.4.1 export
 

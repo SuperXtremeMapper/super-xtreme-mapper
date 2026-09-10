@@ -413,6 +413,23 @@
         {"code": "unknownFrame", "count": 1},
         {"code": "extraXMLEntry", "count": 2}
       ]
+    },
+    {
+      "filename": "traktor-4.5.1-led-ranges-hotcue-conditions.tsi",
+      "sha256": "7e5eb90ae704de3da26f8f88ca1690f98735e90aa548472c3088cf1aa95e6b9d",
+      "provenance": "realExport",
+      "completeness": "completeDocument",
+      "evidencedVersion": "4.5.1",
+      "controller": "Generic MIDI (ports None)",
+      "source": "Traktor Pro 4.5.1 build 21 native UI export, 2026-09-10 LED validation session; six explicitly configured rows",
+      "license": "Fixture contribution under repository MIT License; created for this project in the repository owner's authorized validation session",
+      "sanitization": [
+        "Renamed only; original XML and controller payload are byte-identical to native export",
+        "Created temporary device with no input/output ports; no personal mappings included"
+      ],
+      "expectedDisposition": "ordinarySaveSafe",
+      "expectedRiskCount": 0,
+      "expectedRiskCodes": []
     }
   ]
 }

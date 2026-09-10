@@ -17,6 +17,8 @@ A native macOS TSI editor for Traktor Pro. Create, edit, and manage your MIDI co
 
 - **Full MIDI Control** - Edit channels, CC numbers, notes, and all MIDI parameters. Full support for buttons, faders, encoders, and LEDs.
 
+- **LED Output Editing** - Configure Controller Range, MIDI Range, Blend and Output Invert for individual OUT mappings or compatible selections. Signed cue states and fractional ranges display as numbers, with explicit Apply and undo. Use Hotcue State conditions to build controller-specific cue-colour rules. See the [LED mapping guide](docs/LED-Output-Mapping.md).
+
 - **Modifier Logic** - Full support for Traktor's 8-modifier system. Set conditions for when mappings activate and define modifier changes.
 
 - **Drag & Drop** - Copy mappings between files with simple drag and drop. Open multiple TSI files side by side.

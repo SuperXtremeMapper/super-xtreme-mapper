@@ -232,7 +232,7 @@ struct MappingsTableView: View {
                 .width(min: 120, ideal: 220)
 
                 TableColumn("Type", value: \.controllerTypeSortKey) { entry in
-                    Text(entry.controllerType.displayName)
+                    Text(entry.ioType == .output ? "LED" : entry.controllerType.displayName)
                         .font(.system(size: 12))
                         .foregroundColor(AppThemeV2.Colors.stone300)
                         .lineLimit(1)
@@ -242,7 +242,7 @@ struct MappingsTableView: View {
                 .width(min: 60, ideal: 75)
 
                 TableColumn("Interaction", value: \.interactionSortKey) { entry in
-                    Text(entry.interactionMode.displayName)
+                    Text(entry.ioType == .output ? "Output" : entry.interactionMode.displayName)
                         .font(.system(size: 12))
                         .foregroundColor(AppThemeV2.Colors.stone300)
                         .lineLimit(1)
@@ -379,30 +379,33 @@ struct MappingsTableView: View {
 
                     Divider()
 
-                    Menu("Type") {
-                        ForEach(ControllerType.allCases.filter { $0 != .led }, id: \.self) { type in
-                            Button(type.displayName) {
-                                onControllerTypeChange?(type)
-                            }
-                        }
-                    }
-
-                    Menu("Interaction") {
-                        ForEach(validInteractionModesForSelection, id: \.self) { mode in
-                            Button(mode.displayName) {
-                                onInteractionChange?(mode)
-                            }
-                        }
-                    }
-
-                    if showEncoderModeMenu {
-                        Menu("Encoder Mode") {
-                            ForEach(EncoderMode.allCases, id: \.self) { mode in
-                                Button(mode.displayName) {
-                                    onEncoderModeChange?(mode)
+                    if mappings.filter({ selection.contains($0.id) }).allSatisfy({ $0.ioType == .input }) {
+                        Menu("Type") {
+                            ForEach(ControllerType.allCases.filter { $0 != .led }, id: \.self) { type in
+                                Button(type.displayName) {
+                                    onControllerTypeChange?(type)
                                 }
                             }
                         }
+
+                        Menu("Interaction") {
+                            ForEach(validInteractionModesForSelection, id: \.self) { mode in
+                                Button(mode.displayName) {
+                                    onInteractionChange?(mode)
+                                }
+                            }
+                        }
+
+                        if showEncoderModeMenu {
+                            Menu("Encoder Mode") {
+                                ForEach(EncoderMode.allCases, id: \.self) { mode in
+                                    Button(mode.displayName) {
+                                        onEncoderModeChange?(mode)
+                                    }
+                                }
+                            }
+                        }
+
                     }
 
                     Divider()
