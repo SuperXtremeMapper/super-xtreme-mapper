@@ -1,5 +1,7 @@
 # Issue 9 evidence and resolution
 
+> Historical implementation record. Later on September 10, the owner authorized the 1.1 release and closing issue #9 with a note describing the verified fixes and inviting follow-up for the missing original mapping. The keep-open decision below records the earlier implementation phase. See the [1.1 changelog](../../CHANGELOG.md).
+
 Source: https://github.com/SuperXtremeMapper/super-xtreme-mapper/issues/9
 Base: `edb166e`; branch: `codex/led-output-mapping`.
 

@@ -1,5 +1,7 @@
 # Issue 1: software-state conditions
 
+> Historical implementation record. Later on September 10, the owner authorized the 1.1 release and closing issue #1 with a note describing the verified fixes and inviting follow-up for unidentified conditions. The no-release statements below record the earlier implementation phase. See the [1.1 changelog](../../CHANGELOG.md).
+
 Status: implementation, native Traktor round trip, SXM visual check and cleanup passed. No release or public issue update. The unidentified truncated condition in the issue remains outside the verified scope.
 
 ## Scope and evidence

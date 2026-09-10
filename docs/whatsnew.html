@@ -59,12 +59,46 @@
     <section class="changelog-section">
         <div class="container">
 
-            <!-- Version 1.0.1 -->
+            <!-- Version 1.1 -->
             <article class="release-entry latest">
                 <div class="release-header">
                     <div class="release-version">
-                        <span class="version-number">v1.0.1</span>
+                        <span class="version-number">v1.1</span>
                         <span class="version-badge">Latest</span>
+                    </div>
+                    <time class="release-date" datetime="2026-09-10">September 10, 2026</time>
+                </div>
+                <div class="release-content">
+                    <h3 class="release-headline">Your LEDs, Your Colours</h3>
+                    <p class="release-summary">More control over your LEDs, and more of Traktor's mapping settings at your fingertips. Thank you to everyone who sent reports and tested mappings on their controllers.</p>
+                    <div class="release-changes">
+                        <div class="change-category">
+                            <h4 class="category-title improved">LEDs and Mapping Conditions</h4>
+                            <ul class="change-list">
+                                <li>Edit Controller Range, MIDI Range, Blend and Output Invert for one OUT row or a compatible selection, with undo</li>
+                                <li>Use Hotcue State conditions to give cues, loops and empty pads their own LED rules. A DJM-S7 user confirmed blue and cyan colours, LEDs off after cue deletion, and no flickering or stuck LEDs. Colour values depend on your controller</li>
+                                <li><a href="https://github.com/SuperXtremeMapper/super-xtreme-mapper/issues/1">#1: Special conditions</a> — choose Deck Play or Is In Active Loop, with Deck A–D or Device Target, alongside modifiers and Hotcue State conditions</li>
+                                <li><a href="https://github.com/SuperXtremeMapper/super-xtreme-mapper/issues/9">#9: Unknown OUT commands</a> — modifier outputs use the correct global target, and Generate Stems is recognised for both IN and OUT mappings</li>
+                                <li>Keep condition values, deck targets and LED settings through the tested save, export and cloning workflows. Unrecognised settings retain their original data</li>
+                            </ul>
+                        </div>
+                        <div class="change-category">
+                            <h4 class="category-title improved">Checked with Traktor</h4>
+                            <ul class="change-list">
+                                <li>692 automated tests passed, with native Traktor 4.5.1 import/export comparisons and visual editing and undo checks in SXM</li>
+                                <li>The fixes cover the entries identified in #1 and #9. We did not have the complete original mapping or every unknown identifier. If anything still looks unknown, please open a follow-up with the exact identifier or a small example TSI</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p><a href="download.html">Download version 1.1</a> · macOS 14 or later · Apple Silicon and Intel. Apple Development signed; not notarized. The download page includes installation help.</p>
+                </div>
+            </article>
+
+            <!-- Version 1.0.1 -->
+            <article class="release-entry">
+                <div class="release-header">
+                    <div class="release-version">
+                        <span class="version-number">v1.0.1</span>
                     </div>
                     <time class="release-date" datetime="2026-09-09">September 9, 2026</time>
                 </div>

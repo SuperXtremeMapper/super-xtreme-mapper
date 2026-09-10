@@ -1,5 +1,7 @@
 # LED output implementation record
 
+> Historical implementation record. Later on September 10, the owner authorized packaging and publishing these changes in version 1.1. The no-release statements below record the earlier implementation phase. See the [1.1 changelog](../../CHANGELOG.md).
+
 Approved plan: `docs/superpowers/plans/2026-09-10-led-output-mapping.md`.
 Branch: `codex/led-output-mapping`, base `f1917f6`.
 
@@ -19,7 +21,7 @@ Branch: `codex/led-output-mapping`, base `f1917f6`.
 - Conditions: native Hotcue State identifiers, all values, deck and Device Target editing, clear unknown labels, backward Codable and deck-clone preservation. An existing stale-state equality guard was removed so explicit None clears a mixed selection; regression observed failing before fix.
 - Native capture: `traktor-4.5.1-led-ranges-hotcue-conditions.tsi` is a new exact native Traktor 4.5.1 build 21 export, with provenance/hash and no-op preservation tests. It proves all six named state values plus empty, representative condition IDs/targets, and fractional Gain Adjust endpoints.
 - Independent spec/plan review: compatible with native evidence gates. Independent code review: two findings resolved; reviewer closed with no outstanding findings.
-- Full automated unit suite: **680 passed, 0 failed, 0 skipped**, exit 0. Result: `/Users/noahraford/Library/Developer/Xcode/DerivedData/SuperXtremeMapping-bfavcvigcqvzcueadihepwxxehdw/Logs/Test/Test-XtremeMapping-2026.09.10_09-59-57-+0400.xcresult`.
+- Full automated unit suite: **680 passed, 0 failed, 0 skipped**, exit 0. Result: `Test-XtremeMapping-2026.09.10_09-59-57-+0400.xcresult`.
 
 ## Native and visual verification
 
@@ -45,7 +47,7 @@ The recipient tested the supplied `SXM-LED-Output-Test.tsi` on a DJM-S7 and repo
 - No flickering or stuck LEDs.
 - Pressing the pad briefly produces white; releasing it immediately restores the correct mapped colour.
 
-The supplied `MIDI01.heic` and `MIDI12.heic` photos (local originals in `/Users/noahraford/Downloads/`) were inspected and show blue and cyan/light-blue pads respectively. Still photos support the colour observations; deletion, stability and press/release behaviour are tester-reported. The tester suspects the white press flash is normal S7 behaviour; its cause has not been established and no corrective mapping change was made. These two colour codes apply to the tested S7 setup, not all controllers. Tester Traktor version, firmware and final pad MIDI address were not supplied in this report.
+The supplied `MIDI01.heic` and `MIDI12.heic` photos were inspected and show blue and cyan/light-blue pads respectively. Still photos support the colour observations; deletion, stability and press/release behaviour are tester-reported. The tester suspects the white press flash is normal S7 behaviour; its cause has not been established and no corrective mapping change was made. These two colour codes apply to the tested S7 setup, not all controllers. Tester Traktor version, firmware and final pad MIDI address were not supplied in this report.
 
 This closes the S7 hardware check for the supplied cue/empty/loop test mapping. It does not verify all cue types, track changes, modifier layers, other controllers or continuous-feedback hardware behaviour.
 
