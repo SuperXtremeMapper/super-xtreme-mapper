@@ -37,12 +37,23 @@ enum TraktorOutputMetadata {
 }
 
 extension MappingEntry {
+    static func input(commandID: Int) -> MappingEntry {
+        if commandID == 3482 {
+            return MappingEntry(commandID: commandID, ioType: .input, assignment: .global,
+                                interactionMode: .trigger, controllerType: .button)
+        }
+        return MappingEntry(commandID: commandID, ioType: .input)
+    }
+
     /// Creation policy only. Imported mappings never pass through this factory.
     /// Hotcue uses the observed native -1...5 domain; users can narrow it to
     /// 0...5 for any populated cue or equal endpoints for an individual state.
     static func output(commandID: Int) -> MappingEntry {
         var entry = MappingEntry(commandID: commandID, ioType: .output,
                                  interactionMode: .output, controllerType: .led)
+        if TraktorCommands.usesGlobalTargetZero(commandID, direction: .output) {
+            entry.assignment = .global
+        }
         if let domain = TraktorOutputMetadata.domain(for: commandID) {
             entry.ledMinRangeType = domain.rangeType
             entry.ledMaxRangeType = domain.rangeType

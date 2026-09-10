@@ -430,6 +430,40 @@
       "expectedDisposition": "ordinarySaveSafe",
       "expectedRiskCount": 0,
       "expectedRiskCodes": []
+    },
+    {
+      "filename": "traktor-4.5.1-modifier-outputs.tsi",
+      "sha256": "1e9a1efb95238e128b807e0548a53f212475cd671599c788e99f1975032866dc",
+      "provenance": "realExport",
+      "completeness": "completeDocument",
+      "evidencedVersion": "4.5.1",
+      "controller": "Generic MIDI (ports None)",
+      "source": "Native Traktor Pro 4.5.1 Add Out menu capture of all eight modifiers for issue 9",
+      "license": "Fixture contribution under repository MIT License; created for this project in authorized validation session",
+      "sanitization": [
+        "Renamed only; native bytes unchanged",
+        "Temporary no-port device; eight test rows and native Generic MIDI definitions; no customer mapping included"
+      ],
+      "expectedDisposition": "ordinarySaveSafe",
+      "expectedRiskCount": 0,
+      "expectedRiskCodes": []
+    },
+    {
+      "filename": "traktor-4.5.1-generate-stems.tsi",
+      "sha256": "a63b9c1d006775bd05b3c2792730a25cf9b9046675f3ee4515402028acb3b859",
+      "provenance": "realExport",
+      "completeness": "completeDocument",
+      "evidencedVersion": "4.5.1",
+      "controller": "Generic MIDI (ports None)",
+      "source": "Native Traktor Pro 4.5.1 issue 9 session; Generate Stems input/output probes and native Add In/Add Out menu-created rows",
+      "license": "Fixture contribution under repository MIT License; created for this project in authorized validation session",
+      "sanitization": [
+        "Renamed only; native bytes unchanged",
+        "Isolated test device, no customer mappings; ports set to None before export"
+      ],
+      "expectedDisposition": "ordinarySaveSafe",
+      "expectedRiskCount": 0,
+      "expectedRiskCodes": []
     }
   ]
 }

@@ -131,6 +131,92 @@ final class LEDOutputSettingsTests: XCTestCase {
         }
     }
 
+    func testAllEightModifierOutputsPreserveIssue9Settings() throws {
+        let outputs = try (2548...2555).map { id in
+            var output = MappingEntry.output(commandID: id)
+            XCTAssertEqual(output.assignment, .global)
+            output.comment = "SXM issue9 Modifier \(id - 2547) output"
+            output.midiAssignment = try .controlChange(channel: 16, number: id - 2548 + 40)
+            return try LEDOutputSettings.Patch(controllerMinimum: "7", controllerMaximum: "7", midiMinimum: "0", midiMaximum: "127", blend: false, invert: false).applying(to: output)
+        }
+        let file = MappingFile(devices: [Device(name: "Generic MIDI", comment: "SXM issue9 generated modifiers TEMP", inPort: "None", outPort: "None", mappings: outputs)])
+        let data = try TSIWriter().write(file)
+        for export in [data, try TSIWriter().writeConverted(file)] {
+            let decoded = try reimport(export).allMappings
+            XCTAssertEqual(decoded.count, 8)
+            for (index, output) in decoded.enumerated() {
+                XCTAssertEqual(output.commandName, "Modifier #\(index + 1)")
+                XCTAssertEqual(output.assignment, .global)
+                XCTAssertEqual(output.ioType, .output)
+                XCTAssertEqual(output.controllerType, .led)
+                XCTAssertEqual(output.interactionMode, .output)
+                XCTAssertEqual(output.ledMinRangeData, 7)
+                XCTAssertEqual(output.ledMaxRangeData, 7)
+                XCTAssertEqual(output.ledMinMidi, 0)
+                XCTAssertEqual(output.ledMaxMidi, 127)
+                XCTAssertFalse(output.ledBlend)
+                XCTAssertFalse(output.ledInvert)
+                XCTAssertEqual(output.midiAssignment, outputs[index].midiAssignment)
+            }
+        }
+        if ProcessInfo.processInfo.environment["SXM_ISSUE9_GENERATE_VALIDATION"] == "1" {
+            try data.write(to: FileManager.default.temporaryDirectory.appendingPathComponent("sxm-issue9-modifiers-generated.tsi"), options: .atomic)
+        }
+    }
+
+    func testIssue9Command3482PreservesIdentityDuringExport() throws {
+        var input = MappingEntry(commandID: 3482, ioType: .input, interactionMode: .direct, controllerType: .button)
+        input.assignment = .deckA
+        input.comment = "SXM issue9 command 3482 input probe"
+        input.midiAssignment = try .controlChange(channel: 16, number: 60)
+        var output = MappingEntry.output(commandID: 3482)
+        output.assignment = .deckA
+        output.comment = "SXM issue9 command 3482 output probe"
+        output.midiAssignment = try .controlChange(channel: 16, number: 61)
+        let data = try TSIWriter().write(MappingFile(devices: [Device(name: "Generic MIDI", comment: "SXM issue9 identity probe TEMP", inPort: "None", outPort: "None", mappings: [input, output])]))
+        let decoded = try reimport(data).allMappings
+        XCTAssertEqual(decoded.map(\.commandID), [3482, 3482])
+        XCTAssertEqual(decoded.map(\.ioType), [.input, .output])
+        if ProcessInfo.processInfo.environment["SXM_ISSUE9_GENERATE_VALIDATION"] == "1" {
+            try data.write(to: FileManager.default.temporaryDirectory.appendingPathComponent("sxm-issue9-3482-probe.tsi"), options: .atomic)
+        }
+    }
+
+    func testGenerateStemsCreationUsesNativeDefaults() {
+        let input = MappingEntry.input(commandID: 3482)
+        XCTAssertEqual(input.assignment, .global)
+        XCTAssertEqual(input.controllerType, .button)
+        XCTAssertEqual(input.interactionMode, .trigger)
+        let output = MappingEntry.output(commandID: 3482)
+        XCTAssertEqual(output.assignment, .global)
+        XCTAssertEqual(output.controllerType, .led)
+        XCTAssertEqual(output.interactionMode, .output)
+        XCTAssertEqual(output.ledMinRangeData, 0)
+        XCTAssertEqual(output.ledMaxRangeData, 1)
+        XCTAssertFalse(output.ledBlend)
+        XCTAssertFalse(output.ledInvert)
+    }
+
+    func testGlobalTargetCorrectionPreservesOtherTargetsAndUnknownIDs() throws {
+        for id in [2549, 2554, 3482, 4242] {
+            var output = MappingEntry.output(commandID: id)
+            output.assignment = .deckB
+            let source = try TSIWriter().write(MappingFile(devices: [Device(name: "Generic MIDI", mappings: [output])]))
+            var imported = try reimport(source)
+            XCTAssertEqual(imported.allMappings[0].assignment, .deckB)
+            imported.devices[0].mappings[0].comment = "Unrelated edit"
+            imported.devices[0].mappings[0].ledMaxMidi = 126
+            let saved = try reimport(TSIWriter().write(imported)).allMappings[0]
+            XCTAssertEqual(saved.assignment, .deckB)
+            XCTAssertEqual(saved.commandID, id)
+            XCTAssertEqual(saved.ledMaxMidi, 126)
+        }
+        let deck = MappingEntry(commandID: 100, assignment: .deckA)
+        let modifierInput = MappingEntry(commandID: 2549, assignment: .deckA)
+        let decoded = try reimport(TSIWriter().write(MappingFile(devices: [Device(name: "Generic MIDI", mappings: [deck, modifierInput])]))).allMappings
+        XCTAssertEqual(decoded.map(\.assignment), [.deckA, .deckA])
+    }
+
     private func reimport(_ data: Data) throws -> MappingFile {
         let parser = TSIParser()
         let binary = try parser.decodeBase64(TSIParser.extractControllerData(from: data))

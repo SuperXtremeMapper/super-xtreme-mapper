@@ -18,6 +18,21 @@ Tests load the manifest and fixtures from the checked-out source tree, reject un
 | `traktor-4.5.1-xone-k3-benchmark-05-core-safe.tsi` | Real export | Yes | Traktor Pro 4.5.1 benchmark session | Opens Loop Active, Flux Mode and Hotcue 1 with learned K3 notes, no modifier commands or conditions; unchanged document write is byte-identical |
 | `traktor-4.5.1-xone-k3-benchmark-06-outputs-comments-modifiers.tsi` | Real export | Yes | Traktor Pro 4.5.1 benchmark session | Opens four MIDI-assigned LED outputs and four Modifier 1 modes; preserves ASCII, Unicode and emoji comments plus every Blend/Invert combination; unchanged document write is byte-identical |
 | `traktor-4.5.1-led-ranges-hotcue-conditions.tsi` | Real export | Yes | Traktor Pro 4.5.1 build 21, native UI session 2026-09-10 | Six OUT rows prove Hotcue State condition IDs, states and targets plus a fractional Gain output; unchanged document write is byte-identical |
+| `traktor-4.5.1-modifier-outputs.tsi` | Real export | Yes | Traktor Pro 4.5.1 native session | Eight native modifier outputs; Global target, ranges and flags; exact no-op preservation |
+| `traktor-4.5.1-generate-stems.tsi` | Real export | Yes | Traktor Pro 4.5.1 native session; retained device DDIV 3.11.0 | Generate Stems identity and both native menu directions; Global targets; exact no-op preservation |
+
+## Issue 9: modifier outputs and Generate Stems
+
+Two additional exact native exports were captured in the authorized Traktor Pro 4.5.1 session:
+
+- `traktor-4.5.1-modifier-outputs.tsi`: eight rows created using Add Out → Modifier #1 through #8. IDs 2548–2555, direction OUT, Global target word 0, LED/Output, integer controller endpoints 7–7, MIDI endpoints 0–127, Blend/Invert off. The original native defaults were 0–7 with Blend on; the fixture records the explicitly configured issue example.
+- `traktor-4.5.1-generate-stems.tsi`: two imported diagnostic rows carrying ID 3482, followed by two rows created through native Add In/Add Out → Browser → List → Generate Stems. The native menu-created input is Button/Trigger/Global; the output is LED/Output/Global, integer controller range 0–1, MIDI range 0–127 and both flags off. Both native menus and the exported ID establish identity and creation directions. This imported device retains its probe's DDIV `3.11.0`; that is not the evidence version. The observing application was Traktor 4.5.1.
+
+Only the filenames changed. XML entries are limited to controller data, Flavour and Version. The isolated devices contain only validation rows and native Generic MIDI definitions. A printable UTF-16 audit found only MIDI control names, Generic MIDI metadata, version strings, None and SXM test labels/comments; no customer commercial mapping is included. All temporary devices were removed and the original device selection restored.
+
+A separately generated eight-modifier mapping was imported into Traktor and exported again. Command IDs, directions, target words, comments, conditions and every LED field matched exactly; channel-16 CC40–47 assignments were also inspected natively. The ephemeral re-export SHA-256 is `64ddd8f2107f230f1fc027fb196c816159bbff941aaf7e10df32e5afe5c86e3f`.
+
+This evidence resolves the identifiable examples and verifies all eight modifier outputs. The original issue's commercial TSI was unavailable, so it cannot establish the identity of every unseen unknown row or meter command.
 
 ## LED ranges and Hotcue State conditions
 

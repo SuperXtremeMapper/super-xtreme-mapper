@@ -179,6 +179,8 @@ final class TSIFixtureTests: XCTestCase {
             "traktor-4.5.1-xone-k3-benchmark-05-core-safe.tsi",
             "traktor-4.5.1-xone-k3-benchmark-06-outputs-comments-modifiers.tsi",
             "traktor-4.5.1-led-ranges-hotcue-conditions.tsi",
+            "traktor-4.5.1-modifier-outputs.tsi",
+            "traktor-4.5.1-generate-stems.tsi",
         ])
         XCTAssertEqual(Set(manifest.fixtures.map(\.filename)).count, manifest.fixtures.count)
         let fixtureFiles = try FileManager.default.contentsOfDirectory(
@@ -298,7 +300,7 @@ final class TSIFixtureTests: XCTestCase {
         let completeFixtures = try loadManifest().fixtures.filter {
             $0.completeness == .completeDocument
         }
-        XCTAssertEqual(completeFixtures.count, 10)
+        XCTAssertEqual(completeFixtures.count, 12)
 
         for fixture in completeFixtures {
             let source = try loadFixture(fixture)
@@ -420,6 +422,47 @@ final class TSIFixtureTests: XCTestCase {
         XCTAssertEqual(outputMappings[1].comment, "D")
         XCTAssertTrue(outputMappings[2].comment.contains("café — 日本語 — ✓"))
         XCTAssertTrue(outputMappings[3].comment.contains("Emoji test 😀"))
+    }
+
+    func test451NativeModifierOutputsMatchIssue9Configuration() throws {
+        let source = try loadFixture(try fixture(named: "traktor-4.5.1-modifier-outputs.tsi"))
+        let document = try TraktorMappingDocument(fileContents: source)
+        let outputs = document.mappingFile.allMappings
+        XCTAssertEqual(outputs.map(\.commandID), Array(2548...2555))
+        for (index, output) in outputs.enumerated() {
+            XCTAssertEqual(output.commandName, "Modifier #\(index + 1)")
+            XCTAssertEqual(output.assignment, .global)
+            XCTAssertEqual(output.ioType, .output)
+            XCTAssertEqual(output.controllerType, .led)
+            XCTAssertEqual(output.interactionMode, .output)
+            XCTAssertEqual(output.ledMinRangeType, 1)
+            XCTAssertEqual(output.ledMaxRangeType, 1)
+            XCTAssertEqual(output.ledMinRangeData, 7)
+            XCTAssertEqual(output.ledMaxRangeData, 7)
+            XCTAssertEqual(output.ledMinMidi, 0)
+            XCTAssertEqual(output.ledMaxMidi, 127)
+            XCTAssertFalse(output.ledBlend)
+            XCTAssertFalse(output.ledInvert)
+        }
+    }
+
+    func test451GenerateStemsNativeIdentityAndGlobalTargets() throws {
+        let source = try loadFixture(try fixture(named: "traktor-4.5.1-generate-stems.tsi"))
+        let original = try TraktorMappingDocument(fileContents: source).mappingFile
+        for data in [source, try TSIWriter().write(original), try TSIWriter().writeConverted(original)] {
+            let rows = try TraktorMappingDocument(fileContents: data).mappingFile.allMappings
+            XCTAssertEqual(rows.count, 4)
+            XCTAssertTrue(rows.allSatisfy { $0.commandID == 3482 && $0.commandName == "Generate Stems" && $0.assignment == .global })
+            XCTAssertEqual(rows.map(\.ioType), [.input, .output, .input, .output])
+            XCTAssertEqual(rows[2].controllerType, .button)
+            XCTAssertEqual(rows[2].interactionMode, .trigger)
+            XCTAssertEqual(rows[3].controllerType, .led)
+            XCTAssertEqual(rows[3].interactionMode, .output)
+            XCTAssertEqual(rows[3].ledMinRangeData, 0)
+            XCTAssertEqual(rows[3].ledMaxRangeData, 1)
+            XCTAssertFalse(rows[3].ledBlend)
+            XCTAssertFalse(rows[3].ledInvert)
+        }
     }
 
     func test451RemixFixtureEvidenceForStemsWizard() throws {

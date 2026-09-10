@@ -1007,7 +1007,10 @@ struct TSIInterpreter {
         // Values outside -1...15 collapse to .global by prior design — the
         // same tolerance as the other CMAD enums above.
         let assignment: TargetAssignment
-        if Self.isRemixSlotCommand(traktorControlId), (0...15).contains(cmadSettings.targetDeck) {
+        if cmadSettings.targetDeck == 0,
+           TraktorCommands.usesGlobalTargetZero(traktorControlId, direction: ioType) {
+            assignment = .global
+        } else if Self.isRemixSlotCommand(traktorControlId), (0...15).contains(cmadSettings.targetDeck) {
             assignment = TargetAssignment.remixSlotAssignment(forTargetValue: cmadSettings.targetDeck)
         } else if TraktorCommands.usesFXUnitTargetEncoding(traktorControlId) {
             assignment = TargetAssignment.fxUnitAssignment(forTargetValue: cmadSettings.targetDeck)

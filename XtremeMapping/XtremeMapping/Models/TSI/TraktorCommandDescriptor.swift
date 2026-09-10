@@ -9,8 +9,13 @@ import Foundation
 struct TraktorCommandDescriptor: Identifiable, Hashable, Sendable {
     enum Verification: String, Codable, Hashable, Sendable {
         case verifiedTraktor441
+        case verifiedTraktor451
         case legacy
         case unknown
+
+        var isVerified: Bool {
+            self == .verifiedTraktor441 || self == .verifiedTraktor451
+        }
     }
 
     let id: Int

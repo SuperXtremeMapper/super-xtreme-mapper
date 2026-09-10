@@ -462,7 +462,7 @@ struct MappingsTableView: View {
 
     private func commandStatusLabel(for entry: MappingEntry) -> String? {
         switch entry.commandDescriptor.verification {
-        case .verifiedTraktor441:
+        case .verifiedTraktor441, .verifiedTraktor451:
             return nil
         case .legacy:
             return "LEGACY"

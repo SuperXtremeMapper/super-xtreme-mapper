@@ -440,13 +440,13 @@ final class TSIInterpreterTests: XCTestCase {
         let output = CommandHierarchy.flatten(outputMenu.commandCategories)
         let paired = CommandHierarchy.flatten(pairMenu.commandCategories)
         XCTAssertTrue(input.allSatisfy {
-            $0.verification == .verifiedTraktor441 && $0.supports(.input)
+            $0.verification.isVerified && $0.supports(.input)
         })
         XCTAssertTrue(output.allSatisfy {
-            $0.verification == .verifiedTraktor441 && $0.supports(.output)
+            $0.verification.isVerified && $0.supports(.output)
         })
         XCTAssertTrue(paired.allSatisfy {
-            $0.verification == .verifiedTraktor441 && $0.supports(.all)
+            $0.verification.isVerified && $0.supports(.all)
         })
         XCTAssertFalse(input.contains { $0.id == 247 })
         XCTAssertFalse(output.contains { $0.id == 232 })

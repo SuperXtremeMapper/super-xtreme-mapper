@@ -11,6 +11,12 @@ import Foundation
 /// Based on CMDR TSI Editor: https://github.com/cmdr-editor/cmdr
 enum TraktorCommands {
 
+    /// Native 4.5.1 evidence: these commands display Global with target word 0.
+    /// Modifier evidence here is deliberately limited to the captured outputs.
+    static func usesGlobalTargetZero(_ commandID: Int, direction: IODirection) -> Bool {
+        commandID == 3482 || (direction == .output && (2548...2555).contains(commandID))
+    }
+
     /// Generic FX-unit commands overload CMAD target values 0...3 as
     /// FX Units 1...4. This differs from deck-scoped commands, where the same
     /// values mean Decks A...D. IDs are limited to commands observed with this
@@ -198,6 +204,12 @@ enum TraktorCommands {
     }
 
     static func descriptor(for commandID: Int) -> TraktorCommandDescriptor {
+        // Captured through both native Browser > List > Generate Stems menus.
+        // Do not mislabel this newer evidence as part of the 4.4.1 audit.
+        if commandID == 3482 {
+            return TraktorCommandDescriptor(id: commandID, name: "Generate Stems",
+                verification: .verifiedTraktor451, supportedDirections: [.input, .output])
+        }
         let directions = Traktor441CommandEvidence.supportedDirections(for: commandID)
         let knownName = catalogName(for: commandID)
 
@@ -244,6 +256,7 @@ enum TraktorCommands {
             .union(Traktor441CommandEvidence.correctedBothDirectionIDs)
             .union(Traktor441CommandEvidence.compatibilityCorpusBothDirectionIDs)
             .union(Traktor441CommandEvidence.compatibilityCorpusInputOnlyIDs)
+            .union([3482])
 
         return verifiedIDs
             .map(descriptor(for:))
@@ -861,6 +874,7 @@ enum TraktorCommands {
         3477: "Browser Tree Analysis Lock",
         3478: "Browser Tree Analysis Unlock",
         3480: "Add/Remove from Preparation List",
+        3482: "Generate Stems",
 
         // ===========================================
         // VIEW & LAYOUT

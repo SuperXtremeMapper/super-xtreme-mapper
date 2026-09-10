@@ -445,10 +445,7 @@ struct ContentView: View {
     private func addInputMapping(command: TraktorCommandDescriptor) {
         guard !isLocked else { return }
 
-        let newMapping = MappingEntry(
-            commandID: command.id,
-            ioType: .input
-        )
+        let newMapping = MappingEntry.input(commandID: command.id)
         addMappings([newMapping], actionName: "Add Input Mapping")
     }
 
@@ -462,10 +459,7 @@ struct ContentView: View {
     private func addInOutPair(command: TraktorCommandDescriptor) {
         guard !isLocked else { return }
 
-        let inputEntry = MappingEntry(
-            commandID: command.id,
-            ioType: .input
-        )
+        let inputEntry = MappingEntry.input(commandID: command.id)
 
         let outputEntry = MappingEntry.output(commandID: command.id)
         addMappings([inputEntry, outputEntry], actionName: "Add Input/Output Pair")

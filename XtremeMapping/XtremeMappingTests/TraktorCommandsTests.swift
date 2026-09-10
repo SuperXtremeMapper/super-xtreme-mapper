@@ -290,6 +290,18 @@ final class TraktorCommandsTests: XCTestCase {
 
     // MARK: - Audited Traktor 4.4.1 Catalog
 
+    func testIssue9Command3482HasNativeGenerateStemsIdentity() {
+        XCTAssertEqual(TraktorCommands.name(for: 3482), "Generate Stems")
+        XCTAssertEqual(TraktorCommands.id(for: "Generate Stems"), 3482)
+        XCTAssertTrue(TraktorCommands.isKnownCommand("Generate Stems"))
+        let descriptor = TraktorCommands.descriptor(for: 3482)
+        XCTAssertEqual(descriptor.verification.rawValue, "verifiedTraktor451")
+        for direction in [IODirection.input, .output, .all] {
+            XCTAssertTrue(descriptor.supports(direction))
+            XCTAssertTrue(CommandHierarchy.flatten(CommandHierarchy.verifiedCategories(for: direction)).contains { $0.id == 3482 })
+        }
+    }
+
     func testUnknownPositiveIDGetsStableUnknownDescriptor() {
         let descriptor = TraktorCommands.descriptor(for: 4242)
         XCTAssertEqual(descriptor.id, 4242)
@@ -332,7 +344,7 @@ final class TraktorCommandsTests: XCTestCase {
     func testCreationHierarchyContainsOnlyDirectionVerifiedCommands() {
         let commands = CommandHierarchy.flatten(CommandHierarchy.verifiedCategories(for: .input))
         XCTAssertFalse(commands.isEmpty)
-        XCTAssertTrue(commands.allSatisfy { $0.verification == .verifiedTraktor441 })
+        XCTAssertTrue(commands.allSatisfy { $0.verification != .unknown && $0.verification != .legacy })
         XCTAssertTrue(commands.allSatisfy { $0.supportedDirections.contains(.input) })
         XCTAssertFalse(commands.contains { $0.id == 2688 })
         XCTAssertFalse(commands.contains { $0.id == 728 })

@@ -58,7 +58,7 @@ enum CommandHierarchy {
             verifiedCategory($0, for: direction)
         }
         let commands = category.commands?.filter {
-            $0.verification == .verifiedTraktor441 && $0.descriptor.supports(direction)
+            $0.verification.isVerified && $0.descriptor.supports(direction)
         }
 
         let retainedSubcategories = subcategories?.isEmpty == false ? subcategories : nil
@@ -657,6 +657,7 @@ enum CommandHierarchy {
         // Browser
         CommandCategory2(name: "Browser", subcategories: [
             CommandCategory2(name: "List", commands: [
+                CommandItem(id: 3482),
                 CommandItem(id: 3200),
                 CommandItem(id: 3201),
                 CommandItem(id: 3202),
