@@ -277,6 +277,8 @@ struct MappingTransformPlan: Equatable, Sendable {
 
 /// Plans Deck A clones without mutating the supplied mapping file.
 enum MappingTransformPlanner {
+    static let exclusionExplanation = "Deck cloning includes Deck A and its Remix Deck slots. Global, Device Target, other decks and FX Unit assignments are excluded. Use Clone FX Unit Mappings to choose FX source and destination units explicitly."
+
     static func plan(
         _ request: MappingTransformRequest,
         in mappingFile: MappingFile

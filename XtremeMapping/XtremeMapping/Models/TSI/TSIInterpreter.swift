@@ -1042,7 +1042,9 @@ struct TSIInterpreter {
             || (TraktorCommands.usesBooleanValueEncoding(traktorControlId) && cmadSettings.setToValueRaw <= 1)
             || ((2548...2555).contains(traktorControlId) && cmadSettings.hasValueUI != 0)
         let setToValue: Float
-        if (traktorControlId == 2328 || traktorControlId == 2331),
+        if traktorControlId == TraktorLoopValueMetadata.commandID {
+            setToValue = TraktorLoopValueMetadata.decode(cmadSettings.setToValueRaw)
+        } else if (traktorControlId == 2328 || traktorControlId == 2331),
            cmadSettings.setToValueRaw == UInt32.max {
             // Traktor's unset selector is 0xFFFFFFFF, which is NaN as a float.
             setToValue = -1

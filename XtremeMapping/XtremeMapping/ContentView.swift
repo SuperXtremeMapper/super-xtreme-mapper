@@ -24,6 +24,30 @@ struct ContentView: View {
     @State private var workflowDestinationError: MappingTransferError?
     @State private var deckCloneError: String?
     @State private var deckCloneStatus: String?
+    @State private var isManualOrder = true
+
+    private var canReorder: Bool {
+        !isLocked && isManualOrder && categoryFilter == .all && ioFilter == .all
+            && searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+    private var sharedMIDIIDs: Set<UUID> {
+        MappingTableOperations.sharedMIDIIDs(in: document.mappingFile, selectedIDs: selectedMappings)
+    }
+
+    private func moveMappings(_ ids: Set<UUID>, before target: UUID?) -> Bool {
+        guard canReorder else { return false }
+        return document.performUndoableMutation(actionName: "Move Mappings", undoManager: undoManager) { file in
+            MappingTableOperations.moveAtBoundary(ids, before: target, in: &file)
+        } ?? false
+    }
+
+    private func moveMappingsStep(down: Bool) {
+        guard canReorder else { return }
+        document.performUndoableMutation(actionName: "Move Mappings", undoManager: undoManager) { file in
+            MappingTableOperations.step(selectedMappings, down: down, in: &file)
+        }
+    }
 
     private var mappingPasteDisabledReason: String? {
         if isLocked {
@@ -49,6 +73,9 @@ struct ContentView: View {
         case about
         case settings
         case deckClone(MappingTransformPlan)
+        case replaceComments(Set<UUID>)
+        case changeCommand(Set<UUID>)
+        case cloneFX(Set<UUID>)
 
         var id: String {
             switch self {
@@ -58,6 +85,9 @@ struct ContentView: View {
                 "settings"
             case .deckClone:
                 "deck-clone"
+            case .replaceComments: "replace-comments"
+            case .changeCommand: "change-command"
+            case .cloneFX: "clone-fx"
             }
         }
     }
@@ -129,6 +159,27 @@ struct ContentView: View {
                     HStack {
                         V2SectionHeader(title: "MAPPINGS")
                         Spacer()
+                        if !sharedMIDIIDs.isEmpty {
+                            Label("\(sharedMIDIIDs.count) share MIDI", systemImage: "link")
+                                .font(.system(size: 11))
+                                .foregroundStyle(AppThemeV2.Colors.danger)
+                                .help("Red rows share a MIDI assignment with the selection. Shared controls may be intentional.")
+                        }
+                        Toggle("Manual Order", isOn: $isManualOrder)
+                            .toggleStyle(.checkbox)
+                            .font(.system(size: 11))
+                            .help("Use saved row order. Clear filters to drag rows or move them with Option-Command-Up/Down.")
+                        Menu {
+                            Button("Replace in Comments…") { activeSheet = .replaceComments(selectedMappings) }
+                            Button("Change Command…") { activeSheet = .changeCommand(selectedMappings) }
+                            Button("Clone FX Unit…") { activeSheet = .cloneFX(selectedMappings) }
+                            Divider()
+                            Button("Move Up") { moveMappingsStep(down: false) }.disabled(!canReorder)
+                            Button("Move Down") { moveMappingsStep(down: true) }.disabled(!canReorder)
+                        } label: { Text("Edit Selection") }
+                        .menuStyle(.borderlessButton)
+                        .fixedSize()
+                        .disabled(isLocked || selectedMappings.isEmpty)
                     }
                     .padding(.horizontal, AppThemeV2.Spacing.lg)
                     .padding(.vertical, AppThemeV2.Spacing.sm)
@@ -185,7 +236,15 @@ struct ContentView: View {
                         },
                         onInvertToggle: {
                             updateSelectedMappings { if $0.ioType == .output { $0.ledInvert.toggle() } else { $0.invert.toggle() } }
-                        }
+                        },
+                        sharedMIDIIDs: sharedMIDIIDs,
+                        isManualOrder: $isManualOrder,
+                        canReorder: canReorder,
+                        onMove: { ids, target in moveMappings(ids, before: target) },
+                        onMoveStep: { moveMappingsStep(down: $0) },
+                        onReplaceComments: { activeSheet = .replaceComments(selectedMappings) },
+                        onChangeCommand: { activeSheet = .changeCommand(selectedMappings) },
+                        onCloneFX: { activeSheet = .cloneFX(selectedMappings) }
                     )
                 }
                 .frame(minWidth: 500)
@@ -249,6 +308,15 @@ struct ContentView: View {
                 AboutSheet()
             case .settings:
                 APIKeySettingsView()
+            case .replaceComments(let ids):
+                BulkMappingEditSheet(document: document, selectedIDs: ids, isLocked: isLocked, undoManager: undoManager, mode: .comments)
+            case .changeCommand(let ids):
+                BulkMappingEditSheet(document: document, selectedIDs: ids, isLocked: isLocked, undoManager: undoManager, mode: .command)
+            case .cloneFX(let ids):
+                FXCloneSheet(document: document, selectedMappingIDs: ids, isLocked: isLocked) { result in
+                    selectedMappings = result.createdIDs
+                    deckCloneStatus = result.statusText
+                }
             case .deckClone(let plan):
                 DeckCloneReviewSheet(plan: plan) { decisions in
                     activeSheet = nil

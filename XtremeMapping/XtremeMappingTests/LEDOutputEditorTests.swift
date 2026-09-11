@@ -14,6 +14,26 @@ final class LEDOutputEditorTests: XCTestCase {
         XCTAssertEqual(input.interactionMode, ControllerType.encoder.defaultInteractionMode)
     }
 
+    func testLearnPreservesEveryValidInputInteraction() {
+        for type in [ControllerType.button, .faderOrKnob, .encoder] {
+            for mode in type.validInteractionModes {
+                var entry = MappingEntry(commandID: 2196, ioType: .input)
+                entry.controllerType = .button
+                entry.interactionMode = mode
+                SettingsPanelV2.applyLearnedControllerType(type, to: &entry)
+                XCTAssertEqual(entry.controllerType, type)
+                XCTAssertEqual(entry.interactionMode, mode)
+            }
+        }
+    }
+
+    func testLearnResetsIncompatibleInputInteraction() {
+        var entry = MappingEntry(commandID: 2196, ioType: .input)
+        entry.interactionMode = .relative
+        SettingsPanelV2.applyLearnedControllerType(.button, to: &entry)
+        XCTAssertEqual(entry.interactionMode, .hold)
+    }
+
     func testMixedDraftOnlyAppliesExplicitFields() throws {
         var first = MappingEntry.output(commandID: 1)
         var second = MappingEntry.output(commandID: 1)

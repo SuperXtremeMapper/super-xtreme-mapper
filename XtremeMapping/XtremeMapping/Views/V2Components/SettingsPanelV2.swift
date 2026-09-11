@@ -736,17 +736,33 @@ struct SettingsPanelV2: View {
         switch controllerType {
         case .button:
             V2FormRow(label: "Set to Value") {
-                V2TextField(
-                    placeholder: "0.000",
-                    text: Binding(
-                        get: { String(format: "%.3f", setToValue) },
-                        set: { setToValue = Float($0) ?? 0 }
+                if entry.commandID == TraktorLoopValueMetadata.commandID {
+                    Picker("Loop size", selection: Binding(
+                        get: { setToValue },
+                        set: { value in
+                            setToValue = value
+                            updateEntry { $0.setToValue = value }
+                        }
+                    )) {
+                        ForEach(TraktorLoopValueMetadata.choices(including: setToValue)) { choice in
+                            Text(choice.label).tag(choice.value)
+                        }
+                    }
+                    .labelsHidden()
+                    .disabled(isLocked)
+                } else {
+                    V2TextField(
+                        placeholder: "0.000",
+                        text: Binding(
+                            get: { String(format: "%.3f", setToValue) },
+                            set: { setToValue = Float($0) ?? 0 }
+                        )
                     )
-                )
-                .frame(width: 70)
-                .disabled(isLocked)
-                .onChange(of: setToValue) { _, newValue in
-                    updateEntry { $0.setToValue = newValue }
+                    .frame(width: 70)
+                    .disabled(isLocked)
+                    .onChange(of: setToValue) { _, newValue in
+                        updateEntry { $0.setToValue = newValue }
+                    }
                 }
             }
 
@@ -919,7 +935,11 @@ struct SettingsPanelV2: View {
 
     static func applyLearnedControllerType(_ detectedType: ControllerType, to entry: inout MappingEntry) {
         entry.controllerType = entry.ioType == .output ? .led : detectedType
-        entry.interactionMode = entry.ioType == .output ? .output : detectedType.defaultInteractionMode
+        if entry.ioType == .output {
+            entry.interactionMode = .output
+        } else if !detectedType.validInteractionModes.contains(entry.interactionMode) {
+            entry.interactionMode = detectedType.defaultInteractionMode
+        }
     }
 
     /// Detects the controller type based on MIDI message and value history

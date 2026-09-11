@@ -118,6 +118,14 @@ struct MappingsTableView: View {
     var onModifier1Change: ((ModifierCondition?) -> Void)?
     var onModifier2Change: ((ModifierCondition?) -> Void)?
     var onInvertToggle: (() -> Void)?
+    var sharedMIDIIDs: Set<UUID> = []
+    @Binding var isManualOrder: Bool
+    var canReorder: Bool = false
+    var onMove: ((Set<UUID>, UUID?) -> Bool)?
+    var onMoveStep: ((Bool) -> Void)?
+    var onReplaceComments: (() -> Void)?
+    var onChangeCommand: (() -> Void)?
+    var onCloneFX: (() -> Void)?
 
     /// Track the last single-clicked item for shift-selection anchor
     @State private var selectionAnchor: MappingEntry.ID?
@@ -127,11 +135,11 @@ struct MappingsTableView: View {
     @State private var commentDraft = ""
 
     /// Current sort order for columns
-    @State private var sortOrder = [KeyPathComparator(\MappingEntry.ioTypeSortKey)]
+    @State private var sortOrder: [KeyPathComparator<MappingEntry>] = []
 
     /// Sorted mappings based on current sort order
     private var sortedMappings: [MappingEntry] {
-        mappings.sorted(using: sortOrder)
+        isManualOrder ? mappings : mappings.sorted(using: sortOrder)
     }
 
     /// Copy order follows document order, not the table's temporary sort.
@@ -201,6 +209,12 @@ struct MappingsTableView: View {
                             .lineLimit(1)
                             .layoutPriority(1)
 
+                        if sharedMIDIIDs.contains(entry.id) {
+                            Image(systemName: "link")
+                                .foregroundStyle(AppThemeV2.Colors.danger)
+                                .help("Shares this MIDI assignment with another mapping in this device and direction.")
+                                .accessibilityLabel("Shared MIDI assignment")
+                        }
                         if let status = commandStatusLabel(for: entry) {
                             Text(status)
                                 .font(.system(size: 8, weight: .semibold))
@@ -277,7 +291,7 @@ struct MappingsTableView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .contentShape(Rectangle())
                 }
-                .width(min: 90, ideal: 220)
+                .width(min: 50, ideal: 50)
 
                 TableColumn("Mod 2", value: \.modifier2SortKey) { entry in
                     Group {
@@ -295,14 +309,18 @@ struct MappingsTableView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .contentShape(Rectangle())
                 }
-                .width(min: 90, ideal: 220)
+                .width(min: 50, ideal: 50)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .tableStyle(.inset(alternatesRowBackgrounds: false))
         .scrollContentBackground(.hidden)
         .background(AppThemeV2.Colors.stone800)
-        .introspectTableView { _ in
-            // Introspection triggers amber selection proxy installation
+        .introspectTableView { table in
+            let rows = sortedMappings.map(\.id)
+            AmberSelectionDelegateProxy.configure(
+                table, highlightedRows: IndexSet(rows.indices.filter { sharedMIDIIDs.contains(rows[$0]) })
+            )
+            MappingOrderDataSource.configure(table, rowIDs: rows, canReorder: canReorder && isManualOrder && !isLocked, onMove: onMove)
         }
         .onCopyCommand {
             let selected = orderedSelectedMappings
@@ -346,6 +364,22 @@ struct MappingsTableView: View {
                 }
             }
             .disabled(!canCloneDeckA)
+            .help(MappingTransformPlanner.exclusionExplanation)
+
+            Button("Clone FX Unit…") { onCloneFX?() }
+                .disabled(selection.isEmpty || isLocked)
+
+            Button("Replace in Comments…") { onReplaceComments?() }
+                .disabled(selection.isEmpty || isLocked)
+            Button("Change Command…") { onChangeCommand?() }
+                .disabled(selection.isEmpty || isLocked)
+            Divider()
+            Button("Move Up") { onMoveStep?(false) }
+                .keyboardShortcut(.upArrow, modifiers: [.command, .option])
+                .disabled(!canReorder || !isManualOrder || isLocked || selection.isEmpty)
+            Button("Move Down") { onMoveStep?(true) }
+                .keyboardShortcut(.downArrow, modifiers: [.command, .option])
+                .disabled(!canReorder || !isManualOrder || isLocked || selection.isEmpty)
 
             if !selection.isEmpty && !isLocked {
                 Divider()
@@ -457,6 +491,13 @@ struct MappingsTableView: View {
                 onCommentChange?(commentDraft)
             }
         }
+        .onChange(of: sortOrder) { _, newValue in
+            if !newValue.isEmpty { isManualOrder = false }
+        }
+        .onChange(of: isManualOrder) { _, manual in
+            if manual { sortOrder = [] }
+            else if sortOrder.isEmpty { sortOrder = [KeyPathComparator(\MappingEntry.ioTypeSortKey)] }
+        }
         .onChange(of: selection) { oldSelection, newSelection in
             handleSelectionChange(oldSelection: oldSelection, newSelection: newSelection)
         }
@@ -567,7 +608,8 @@ struct MappingsTableView: View {
     return MappingsTableView(
         mappings: sampleMappings,
         selection: .constant([]),
-        isLocked: false
+        isLocked: false,
+        isManualOrder: .constant(true)
     )
     .frame(width: 800, height: 300)
     .preferredColorScheme(.dark)
@@ -591,15 +633,15 @@ private struct TableViewFinder: NSViewRepresentable {
         DispatchQueue.main.async {
             if let tableView = findTableView(in: view) {
                 customize(tableView)
-                // Install custom delegate that forwards to original
-                AmberSelectionDelegateProxy.install(on: tableView)
             }
         }
         return view
     }
 
     func updateNSView(_ nsView: NSView, context: Context) {
-        // No updates needed - delegate proxy handles everything
+        DispatchQueue.main.async {
+            if let tableView = findTableView(in: nsView) { customize(tableView) }
+        }
     }
 
     private func findTableView(in view: NSView) -> NSTableView? {
@@ -620,6 +662,7 @@ private struct TableViewFinder: NSViewRepresentable {
     }
 
     private func findTableViewInHierarchy(_ view: NSView) -> NSTableView? {
+        if let table = view as? NSTableView { return table }
         if let scrollView = view as? NSScrollView,
            let tableView = scrollView.documentView as? NSTableView {
             return tableView
@@ -634,22 +677,40 @@ private struct TableViewFinder: NSViewRepresentable {
 }
 
 /// Proxy delegate that forwards all calls to original delegate while providing custom row views
-private class AmberSelectionDelegateProxy: NSObject, NSTableViewDelegate {
+private class AmberSelectionDelegateProxy: NSObject, NSTableViewDelegate, NSOutlineViewDelegate {
+    private static var associationKey: UInt8 = 0
     private weak var originalDelegate: NSTableViewDelegate?
+    private var highlightedRows = IndexSet()
+
+    static func configure(_ table: NSTableView, highlightedRows: IndexSet) {
+        install(on: table)
+        guard let proxy = objc_getAssociatedObject(table, &associationKey) as? AmberSelectionDelegateProxy else { return }
+        proxy.highlightedRows = highlightedRows
+        table.enumerateAvailableRowViews { view, index in
+            guard let view = view as? AmberTableRowView else { return }
+            view.isSharedMIDI = highlightedRows.contains(index)
+            view.needsDisplay = true
+        }
+    }
     /// Weak membership: dead tables vanish on their own, and a recycled
     /// address re-installs cleanly (a grow-forever Set of ObjectIdentifiers
     /// would skip it).
     private static let installedTables = NSHashTable<NSTableView>.weakObjects()
 
     static func install(on tableView: NSTableView) {
-        guard !installedTables.contains(tableView) else { return }
-
+        if let existing = objc_getAssociatedObject(tableView, &associationKey) as? AmberSelectionDelegateProxy {
+            if tableView.delegate !== existing {
+                existing.originalDelegate = tableView.delegate
+                tableView.delegate = existing
+            }
+            return
+        }
         let proxy = AmberSelectionDelegateProxy()
         proxy.originalDelegate = tableView.delegate
         tableView.delegate = proxy
 
         // Store strong reference to prevent deallocation
-        objc_setAssociatedObject(tableView, "amberProxy", proxy, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        objc_setAssociatedObject(tableView, &associationKey, proxy, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         installedTables.add(tableView)
 
         // Force reload after delegate swap to ensure data displays correctly
@@ -660,7 +721,15 @@ private class AmberSelectionDelegateProxy: NSObject, NSTableViewDelegate {
     // MARK: - Row View (our customization)
 
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-        return AmberTableRowView()
+        let view = AmberTableRowView()
+        view.isSharedMIDI = highlightedRows.contains(row)
+        return view
+    }
+
+    func outlineView(_ outlineView: NSOutlineView, rowViewForItem item: Any) -> NSTableRowView? {
+        let view = AmberTableRowView()
+        view.isSharedMIDI = highlightedRows.contains(outlineView.row(forItem: item))
+        return view
     }
 
     // MARK: - Forward all other delegate methods
@@ -682,17 +751,27 @@ private class AmberSelectionDelegateProxy: NSObject, NSTableViewDelegate {
 
 /// Custom row view with amber selection highlight
 private class AmberTableRowView: NSTableRowView {
+    var isSharedMIDI = false
+
+    override func drawBackground(in dirtyRect: NSRect) {
+        super.drawBackground(in: dirtyRect)
+        if isSharedMIDI {
+            NSColor.systemRed.withAlphaComponent(0.22).setFill()
+            NSBezierPath(rect: bounds).fill()
+        }
+    }
+
     override func drawSelection(in dirtyRect: NSRect) {
         if selectionHighlightStyle != .none {
             // Golden yellow selection color - more visible
-            let goldColor = NSColor(red: 245/255, green: 158/255, blue: 11/255, alpha: 0.35)
+            let goldColor = isSharedMIDI ? NSColor.systemRed.withAlphaComponent(0.35) : NSColor(red: 245/255, green: 158/255, blue: 11/255, alpha: 0.35)
             goldColor.setFill()
             let selectionRect = bounds.insetBy(dx: 2, dy: 1)
             let path = NSBezierPath(roundedRect: selectionRect, xRadius: 4, yRadius: 4)
             path.fill()
 
             // Golden border - more prominent
-            let borderColor = NSColor(red: 245/255, green: 158/255, blue: 11/255, alpha: 0.7)
+            let borderColor = isSharedMIDI ? NSColor.systemRed.withAlphaComponent(0.9) : NSColor(red: 245/255, green: 158/255, blue: 11/255, alpha: 0.7)
             borderColor.setStroke()
             path.lineWidth = 1
             path.stroke()

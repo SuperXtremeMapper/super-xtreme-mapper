@@ -172,7 +172,7 @@ final class TraktorMappingDocument: ReferenceFileDocument {
         guard let pendingReceipt = pendingWrite else { return false }
         let receipt = pendingReceipt.snapshot
 
-        if receipt.plan.disposition == .regenerated {
+        if receipt.plan.disposition != .originalPassthrough {
             let reparsed = try TSIParser().parseDocument(receipt.plan.output)
             guard let parsedEnvelope = reparsed.sourceEnvelope else {
                 throw CocoaError(.fileReadCorruptFile)

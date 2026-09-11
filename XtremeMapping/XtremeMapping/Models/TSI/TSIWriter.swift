@@ -91,6 +91,19 @@ public struct TSIWriter: Sendable {
             )
         }
 
+        if let output = try TSISourcePatcher().patch(mappingFile) {
+            return TSIWritePlan(
+                output: output,
+                baseline: baseline,
+                report: TSIPreservationReport(
+                    risks: preservationRisks(for: mappingFile),
+                    disposition: .ordinarySaveSafe,
+                    validationError: nil
+                ),
+                disposition: .sourcePatched
+            )
+        }
+
         let decision = try ordinaryWriteDecision(for: mappingFile)
         return TSIWritePlan(
             output: decision.output,
@@ -135,10 +148,17 @@ public struct TSIWriter: Sendable {
         return createXML(withControllerData: base64String)
     }
 
-    /// Side-effect-free safety decision. Converted-writer validation is the
-    /// first lattice gate, before source risks are considered.
+    /// Side-effect-free safety decision. Exact source edits are checked first;
+    /// other edits retain converted-writer validation and source-risk gating.
     func preservationReport(for mappingFile: MappingFile) -> TSIPreservationReport {
         do {
+            if try TSISourcePatcher().patch(mappingFile) != nil {
+                return TSIPreservationReport(
+                    risks: preservationRisks(for: mappingFile),
+                    disposition: .ordinarySaveSafe,
+                    validationError: nil
+                )
+            }
             return try convertedWriteDecision(for: mappingFile).report
         } catch {
             return TSIPreservationReport(
@@ -629,8 +649,16 @@ public struct TSIWriter: Sendable {
         let baseline = imported.semanticAtImport
         let controllerChanged = mapping.controllerType != baseline.controllerType
         let commandChanged = mapping.commandID != baseline.commandID
+        // The eight Hotcue Type outputs share the same wire profile and
+        // target encoding. Preserve opaque imported fields when moving
+        // between them, just as for an unchanged command.
+        let compatibleHotcueChange = mapping.ioType == .output
+            && baseline.ioType == .output
+            && (2333...2340).contains(mapping.commandID)
+            && (2333...2340).contains(baseline.commandID)
+        let commandProfileChanged = commandChanged && !compatibleHotcueChange
         let profileChanged = controllerChanged
-            || commandChanged
+            || commandProfileChanged
             || Self.isLegacyMalformedModifierProfile(mapping, imported: imported)
             || Self.isLegacyMalformedBooleanProfile(mapping, imported: imported)
 
@@ -668,7 +696,7 @@ public struct TSIWriter: Sendable {
                 field: "InteractionMode"
             )
         }
-        if mapping.assignment != baseline.assignment || commandChanged {
+        if mapping.assignment != baseline.assignment || commandProfileChanged {
             try replaceUInt32(
                 Self.targetRaw(for: mapping),
                 in: &data,
@@ -721,7 +749,8 @@ public struct TSIWriter: Sendable {
         }
 
         if !profileChanged,
-           TraktorCommands.usesBooleanValueEncoding(mapping.commandID),
+           (TraktorCommands.usesBooleanValueEncoding(mapping.commandID)
+                || mapping.commandID == TraktorLoopValueMetadata.commandID),
            mapping.interactionMode != baseline.interactionMode {
             try replaceUInt32(profile.hasValueUI, in: &data, at: 36, field: "HasValueUI")
         }
@@ -1142,6 +1171,9 @@ public struct TSIWriter: Sendable {
     }
 
     static func setValueRaw(for mapping: MappingEntry, commandId: Int) -> UInt32 {
+        if commandId == TraktorLoopValueMetadata.commandID {
+            return TraktorLoopValueMetadata.encode(mapping)
+        }
         // Hotcue and modifier values are stored as raw UInt32 selectors, not floats.
         if commandId == 2328 || commandId == 2331 || (2548...2555).contains(commandId) {
             let isHotcue = commandId == 2328 || commandId == 2331
@@ -1228,7 +1260,12 @@ public struct TSIWriter: Sendable {
             )
         }
 
-        switch mapping.controllerType {
+        // An unset controller is emitted as Button on the wire. Boolean
+        // commands must therefore use the same Direct value profile, or our
+        // next import mistakes our own export for a malformed legacy profile.
+        let profileController: ControllerType = mapping.controllerType == .none
+            && TraktorCommands.usesBooleanValueEncoding(cmdId) ? .button : mapping.controllerType
+        switch profileController {
         case .faderOrKnob, .encoder:
             // Fader/knob profile (e.g. Slot Volume id 251, EQ, gain).
             // SetValueTo, LedMaxData, Resolution are FLOAT bit-patterns.
@@ -1247,7 +1284,8 @@ public struct TSIWriter: Sendable {
         case .button:
             // Generic-button profile (Play/Pause, Sync, mute toggle, etc.)
             return CMADProfile(
-                hasValueUI: TraktorCommands.usesBooleanValueEncoding(cmdId) && mapping.interactionMode == .direct ? 1 : 0,
+                hasValueUI: (TraktorCommands.usesBooleanValueEncoding(cmdId) && mapping.interactionMode == .direct)
+                    || (cmdId == TraktorLoopValueMetadata.commandID && [.direct, .hold].contains(mapping.interactionMode)) ? 1 : 0,
                 valueUIType: 1,
                 setValueRaw: setValueRaw(for: mapping, commandId: cmdId),
                 ledMinType: 1,
