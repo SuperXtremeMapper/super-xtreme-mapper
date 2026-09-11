@@ -115,9 +115,10 @@ nonisolated struct TSIPreservationReport: Codable, Equatable, Sendable {
     let validationError: TSIWriterValidationFailure?
 }
 
-/// Whether a document write keeps exact imported bytes or emits a modeled TSI.
+/// Whether a write passes through, patches the retained source, or regenerates a modeled TSI.
 nonisolated enum TSIWriteDisposition: String, Codable, Equatable, Sendable {
     case originalPassthrough
+    case sourcePatched
     case regenerated
 }
 

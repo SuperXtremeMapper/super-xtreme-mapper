@@ -27,3 +27,9 @@ Select FX mappings and choose **Edit Selection → Clone FX Unit…**. Choose th
 ## Loop values and MIDI Learn
 
 Loop Size Selector now has labelled choices from 1/32 to 32 and writes Traktor's integer selectors. Unfamiliar imported selectors remain visible and retain their original bytes until edited. MIDI Learn keeps an existing interaction mode when it is valid for the detected controller type; output mappings retain LED/Output behavior.
+
+## Saving native Traktor exports
+
+For supported native exports, changing comments or rearranging existing rows now preserves the original file structure, including unused MIDI definitions and extra Traktor metadata. Save and Save As can use this path without a converted export. Adding/removing rows or changing commands, MIDI assignments, device information, or other settings still uses the existing preservation checks and may require a converted copy.
+
+In the macOS Save As sheet, review **Keep changes in original document** if you want the source export to remain unchanged.

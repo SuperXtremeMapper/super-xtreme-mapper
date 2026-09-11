@@ -7,6 +7,114 @@ import XCTest
 @testable import XtremeMapping
 
 final class TSIPreservationTests: XCTestCase {
+    func testSourceCommentAndReorderPreserveOpaqueBytesAndBindings() throws {
+        let first = rawFrame("CMAI", cmai(commandID: 100, cmad: completeCMAD()))
+        let second = rawFrame("CMAI", cmai(commandID: 125, cmad: completeCMAD()))
+        let opaque = rawFrame("DVST", Data("opaque CMAS bytes".utf8))
+        let definitions = rawFrame("DDCI", be32(2)
+            + rawFrame("DCDT", dcdt(name: "Ch01.CC.010"))
+            + rawFrame("DCDT", dcdt(name: "Ch01.CC.011")))
+        let binary = mappedControllerBinary(
+            definitions: definitions,
+            mappings: rawFrame("CMAS", be32(2) + first + second), extraDDATFrames: opaque, ddif: 9)
+        let xml = Data(String(decoding: completeXML(binary: binary), as: UTF8.self)
+            .replacingOccurrences(of: "</TraktorSettings>", with: "<Entry Name=\"Other\" Value=\"kept\"/></TraktorSettings>").utf8)
+        var file = try TSIParser().parseDocument(xml)
+        file.devices[0].mappings[0].comment = "Longer 🎛 comment"
+        file.devices[0].mappings.reverse()
+        let saved = try TSIWriter().write(file)
+        let reparsed = try TSIParser().parseDocument(saved)
+        XCTAssertEqual(reparsed.devices[0].mappings.map(\.commandID), [125, 100])
+        XCTAssertEqual(reparsed.devices[0].mappings.map(\.comment), ["", "Longer 🎛 comment"])
+        let output = try TSIParser().decodeBase64(XCTUnwrap(reparsed.sourceEnvelope?.controllerValues.first))
+        XCTAssertNotNil(output.range(of: opaque))
+        XCTAssertNotNil(output.range(of: second))
+        let expectedCMAD = Data(completeCMAD().prefix(48)) + wide("Longer 🎛 comment") + Data(completeCMAD().dropFirst(52))
+        let expectedBinary = mappedControllerBinary(
+            definitions: definitions,
+            mappings: rawFrame("CMAS", be32(2) + second + rawFrame("CMAI", cmai(commandID: 100, cmad: expectedCMAD))),
+            extraDDATFrames: opaque, ddif: 9)
+        XCTAssertEqual(output, expectedBinary, "Only comment bytes, row order, and containing frame lengths may change")
+        XCTAssertEqual(saved, Data(String(decoding: xml, as: UTF8.self).replacingOccurrences(of: binary.base64EncodedString(), with: expectedBinary.base64EncodedString()).utf8))
+        XCTAssertEqual(Set(reparsed.sourceEnvelope!.risks.map(\.code)), [.unknownFrame, .unusedMIDIDefinition, .noncanonicalDDIF, .extraXMLEntry])
+        XCTAssertEqual(TSIWriter().preservationReport(for: file).disposition, .ordinarySaveSafe)
+        XCTAssertTrue(String(decoding: saved, as: UTF8.self).contains("<Entry Name=\"Other\" Value=\"kept\"/>"))
+    }
+
+    @MainActor
+    func testSourcePatchSecondSaveUsesLatestCommentAndOrder() throws {
+        let rows = rawFrame("CMAI", cmai(commandID: 100, cmad: completeCMAD()))
+            + rawFrame("CMAI", cmai(commandID: 125, cmad: completeCMAD()))
+        let xml = completeXML(binary: mappedControllerBinary(
+            mappings: rawFrame("CMAS", be32(2) + rows), extraDDATFrames: rawFrame("DVST", Data([1, 2]))))
+        let document = try TraktorMappingDocument(fileContents: xml)
+        let imported = document.mappingFile
+        document.mappingFile.devices[0].mappings[0].comment = "first"
+        document.mappingFile.devices[0].mappings.reverse()
+        _ = try document.prepareWriteSnapshot()
+        try document.commitPendingWrite()
+        document.mappingFile.devices[0].mappings[1].comment = "second 🎛"
+        document.mappingFile.devices[0].mappings.reverse()
+        let second = try document.prepareWriteSnapshot()
+        try document.commitPendingWrite()
+        XCTAssertEqual(try TSIParser().parseDocument(second.plan.output).devices[0].mappings[0].comment, "second 🎛")
+        XCTAssertEqual(try document.prepareWriteSnapshot().plan.output, second.plan.output)
+        document.discardPendingWrite()
+        document.mappingFile.devices = imported.devices
+        let undone = try document.prepareWriteSnapshot()
+        XCTAssertEqual(undone.plan.output, xml, "Undo restores exact source bytes after multiple commits")
+        document.discardPendingWrite()
+    }
+
+    func testSourcePatchRefusesChangesOutsideCommentsAndOrder() throws {
+        let xml = completeXML(binary: mappedControllerBinary(extraDDATFrames: rawFrame("DVST", Data([1]))))
+        let source = try TSIParser().parseDocument(xml)
+        let edits: [(inout MappingFile) -> Void] = [
+            { $0.devices[0].mappings[0].commandID = 125 },
+            { $0.devices[0].mappings[0].midiCC = 20 },
+            { $0.devices[0].mappings[0].invert.toggle() },
+            { $0.devices[0].comment = "device edit" },
+            { $0.devices[0].mappings.append($0.devices[0].mappings[0]) },
+            { $0.devices[0].mappings.removeAll() },
+            { $0.version += 1 },
+        ]
+        for edit in edits {
+            var file = source
+            edit(&file)
+            XCTAssertThrowsError(try TSIWriter().write(file))
+        }
+    }
+
+    func testSourcePatchRefusesDuplicateContainersAndCompactTopology() throws {
+        let duplicate = mappedControllerBinary(extraDDATFrames: rawFrame("DDCB", rawFrame("CMAS", be32(0))))
+        for binary in [duplicate, compactControllerBinary()] {
+            var file = try TSIParser().parseDocument(completeXML(binary: binary))
+            file.devices[0].mappings[0].comment = "changed"
+            XCTAssertNil(try TSISourcePatcher().patch(file))
+        }
+    }
+
+    func testSourcePatchXMLAttributeMatchingIsUnambiguous() throws {
+        let binary = mappedControllerBinary(extraDDATFrames: rawFrame("DVST", Data([1])))
+        let b64 = binary.base64EncodedString()
+        let wrappers = [
+            "<NIXML><TraktorSettings><Entry Value='\(b64)' Type='3' Name='DeviceIO.Config.Controller'/></TraktorSettings></NIXML>",
+            "<NIXML><TraktorSettings><Entry Name=\"DeviceIO.Config.Controller\" Type=\"3\" Value=\"\(b64)\"/><Entry Name=\"Else\" Value=\"\(b64)\"/></TraktorSettings></NIXML>",
+        ]
+        for xml in wrappers {
+            var file = try TSIParser().parseDocument(Data(xml.utf8))
+            file.devices[0].mappings[0].comment = "changed"
+            let saved = try TSIWriter().write(file)
+            XCTAssertEqual(try TSIParser().parseDocument(saved).devices[0].mappings[0].comment, "changed")
+            if xml.contains("Else") {
+                XCTAssertTrue(String(decoding: saved, as: UTF8.self).contains("<Entry Name=\"Else\" Value=\"\(b64)\"/>"))
+            }
+        }
+        var duplicate = try TSIParser().parseDocument(Data("<NIXML><TraktorSettings><Entry Name=\"DeviceIO.Config.Controller\" Type=\"3\" Value=\"\(b64)\"/><Entry Name=\"DeviceIO.Config.Controller\" Type=\"3\" Value=\"\(b64)\"/></TraktorSettings></NIXML>".utf8))
+        duplicate.devices[0].mappings[0].comment = "changed"
+        XCTAssertThrowsError(try TSIWriter().write(duplicate))
+    }
+
     func testLiteralMinimalDocumentIsOrdinarySaveSafeAndUnchangedWriteIsExact() throws {
         let xml = completeXML(binary: emptyControllerBinary())
 
@@ -680,7 +788,8 @@ final class TSIPreservationTests: XCTestCase {
         definitions: Data = Data(),
         mappings: Data = Data(),
         bindings: Data = Data(),
-        extraDDATFrames: Data = Data()
+        extraDDATFrames: Data = Data(),
+        ddif: UInt32 = 0
     ) -> Data {
         let actualCMAD = cmad.isEmpty ? completeCMAD() : cmad
         let actualDefinitions = definitions.isEmpty
@@ -692,7 +801,7 @@ final class TSIPreservationTests: XCTestCase {
         let actualBindings = bindings.isEmpty
             ? rawFrame("DCBM", be32(1) + rawFrame("DCBM", be32(0) + wide("Ch01.CC.010")))
             : bindings
-        let ddat = rawFrame("DDIF", be32(0))
+        let ddat = rawFrame("DDIF", be32(ddif))
             + rawFrame("DDIV", wide("3.11.0") + be32(2))
             + rawFrame("DDIC", wide(""))
             + rawFrame("DDPT", wide("All Ports") + wide("All Ports"))

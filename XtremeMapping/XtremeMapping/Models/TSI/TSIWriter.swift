@@ -91,6 +91,19 @@ public struct TSIWriter: Sendable {
             )
         }
 
+        if let output = try TSISourcePatcher().patch(mappingFile) {
+            return TSIWritePlan(
+                output: output,
+                baseline: baseline,
+                report: TSIPreservationReport(
+                    risks: preservationRisks(for: mappingFile),
+                    disposition: .ordinarySaveSafe,
+                    validationError: nil
+                ),
+                disposition: .sourcePatched
+            )
+        }
+
         let decision = try ordinaryWriteDecision(for: mappingFile)
         return TSIWritePlan(
             output: decision.output,
@@ -135,10 +148,17 @@ public struct TSIWriter: Sendable {
         return createXML(withControllerData: base64String)
     }
 
-    /// Side-effect-free safety decision. Converted-writer validation is the
-    /// first lattice gate, before source risks are considered.
+    /// Side-effect-free safety decision. Exact source edits are checked first;
+    /// other edits retain converted-writer validation and source-risk gating.
     func preservationReport(for mappingFile: MappingFile) -> TSIPreservationReport {
         do {
+            if try TSISourcePatcher().patch(mappingFile) != nil {
+                return TSIPreservationReport(
+                    risks: preservationRisks(for: mappingFile),
+                    disposition: .ordinarySaveSafe,
+                    validationError: nil
+                )
+            }
             return try convertedWriteDecision(for: mappingFile).report
         } catch {
             return TSIPreservationReport(
