@@ -1,6 +1,6 @@
 # What's new
 
-## Unreleased — editor feedback preview
+## 1.1.3 — September 12, 2026
 
 - Replace text across selected comments with a before/after preview and Undo.
 - Change selected Hotcue Type output commands while preserving MIDI, conditions, LED settings and imported details.
@@ -9,7 +9,9 @@
 - Clone FX mappings between explicitly chosen units; explain deck-clone exclusions.
 - Keep valid interaction modes during MIDI Learn and use labelled, correctly encoded Loop Size Selector values.
 - Keep imported loop value controls consistent when switching interaction modes, and fix ordinary-save compatibility for newly generated FX buttons.
+- Preserve native Traktor metadata when saving comment edits and reordered existing rows. Other edits retain the existing preservation checks.
 
+Verified with 732 automated tests and real Traktor 4.5.1 imports.
 
 ## 1.1.2 — September 11, 2026
 

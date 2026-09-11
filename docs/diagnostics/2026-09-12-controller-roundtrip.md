@@ -19,8 +19,8 @@ Changes to commands, MIDI assignments, settings, device metadata, insertion/dele
 - New synthetic regressions check exact expected binary/XML, opaque fake CMAS bytes, original MIDI bindings, unused definitions, DDIF, XML attribute variation, unsupported edits/topologies, repeat saves, and undo to exact original bytes.
 - A temporary private native-fixture test retained all 82 rows and the same preservation risks. An independent byte audit confirmed that only the intended comment, row swap, ancestor lengths and Controller Value changed. No private fixture or fixture-specific test was committed.
 - Clean preview build succeeded with signing disabled, then a separately identified ad-hoc preview was produced. Temporary diagnostic instrumentation was removed.
-- GUI: opened the controller export, edited the first row comment to `SXM GUI CONTROLLER VALIDATION`, saved `K3-controller-GUI-edited.tsi` through normal Save As, and imported it through Traktor Controller Manager → Add → Import from disk. Traktor displayed that comment on Modifier #1 and its original Button/Hold, Ch15 Note C1 assignment.
-- Imported `/tmp/K3-controller-sourcepatched.tsi` separately; Traktor displayed Play/Pause before Modifier #1, confirming saved order. GUI keyboard row movement was not confirmed in this session; this reorder was generated through the tested writer path.
+- GUI: opened the controller export, edited the first row comment to `SXM GUI CONTROLLER VALIDATION`, saved a separate validation copy through normal Save As, and imported it through Traktor Controller Manager → Add → Import from disk. Traktor displayed that comment on Modifier #1 and its original Button/Hold, Ch15 Note C1 assignment.
+- Imported the separately generated reordered validation copy; Traktor displayed Play/Pause before Modifier #1, confirming saved order. GUI keyboard row movement was not confirmed in this session; this reorder was generated through the tested writer path.
 - Native Save As also saved the synthetic 504-row document to a separate file.
 
 ## Dialog investigation
@@ -33,4 +33,4 @@ The native Save As sheet exposes **Keep changes in original document**. During v
 
 ## Cleanup
 
-Traktor, the preview, and the temporary panel probe were closed. Traktor's settings were restored byte-for-byte from this session's pre-test backup; SHA-256: `31e6ddb2479e02d3813f4682560875f1866e18078dffd7f108471040eb454484`. Temporary copies remain under ignored `build/validation-0912` and `/tmp` for local evidence. The installed application was not replaced. No release was published.
+Traktor, the preview, and the temporary panel probe were closed. Traktor's settings were restored byte-for-byte from this session's pre-test backup (SHA-256 equality verified locally). Temporary copies remain under ignored `build/validation-0912` and `/tmp` for local evidence. The installed application was not replaced. No release was published.

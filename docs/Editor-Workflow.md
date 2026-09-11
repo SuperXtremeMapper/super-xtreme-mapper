@@ -1,6 +1,6 @@
 # Editing large mappings
 
-These features are available in the editor-feedback preview.
+These features are available in Super Xtreme Mapper 1.1.3.
 
 ## Replace text in comments
 
