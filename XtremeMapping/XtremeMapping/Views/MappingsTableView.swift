@@ -265,6 +265,7 @@ struct MappingsTableView: View {
                     Group {
                         if let mod = entry.modifier1Condition {
                             Text(mod.displayString)
+                                .help(mod.displayString)
                                 .font(.system(size: 11, design: .monospaced))
                                 .foregroundColor(AppThemeV2.Colors.stone300)
                         } else {
@@ -276,12 +277,13 @@ struct MappingsTableView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .contentShape(Rectangle())
                 }
-                .width(50)
+                .width(min: 90, ideal: 220)
 
                 TableColumn("Mod 2", value: \.modifier2SortKey) { entry in
                     Group {
                         if let mod = entry.modifier2Condition {
                             Text(mod.displayString)
+                                .help(mod.displayString)
                                 .font(.system(size: 11, design: .monospaced))
                                 .foregroundColor(AppThemeV2.Colors.stone300)
                         } else {
@@ -293,7 +295,7 @@ struct MappingsTableView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .contentShape(Rectangle())
                 }
-                .width(50)
+                .width(min: 90, ideal: 220)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .tableStyle(.inset(alternatesRowBackgrounds: false))

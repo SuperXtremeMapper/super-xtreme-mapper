@@ -22,10 +22,10 @@ struct V2ModifierRow: View {
                     }
                 }
                 Divider()
-                ForEach(TraktorConditionMetadata.deckConditionIDs, id: \.self) { identifier in
+                ForEach(TraktorConditionMetadata.targetedConditionIDs, id: \.self) { identifier in
                     Menu(TraktorConditionMetadata.name(for: identifier)) {
-                        ForEach(TraktorConditionMetadata.targets, id: \.self) { target in
-                            Button(TraktorConditionMetadata.targetLabel(target)) {
+                        ForEach(TraktorConditionMetadata.targets(for: identifier), id: \.self) { target in
+                            Button(TraktorConditionMetadata.targetLabel(target, for: identifier)) {
                                 applySelection(TraktorConditionMetadata.selectingDeckCondition(
                                     identifier, target: target, previous: condition))
                             }
@@ -44,8 +44,8 @@ struct V2ModifierRow: View {
             .accessibilityLabel("Condition type")
 
             if let condition {
-                if TraktorConditionMetadata.hasDeckTarget(for: condition.modifier) {
-                    Text(TraktorConditionMetadata.targetLabel(condition.target))
+                if TraktorConditionMetadata.hasTarget(for: condition.modifier) {
+                    Text(TraktorConditionMetadata.targetLabel(condition.target, for: condition.modifier))
                         .font(AppThemeV2.Typography.caption)
                         .foregroundColor(AppThemeV2.Colors.stone400)
                 }

@@ -16,15 +16,21 @@ enum TraktorConditionMetadata {
     }
 
     static let deckConditionIDs = [100, 203] + Array(2333...2340)
+    static let targetedConditionIDs = [100, 203, 247] + Array(2333...2340)
 
     static func hasDeckTarget(for identifier: Int) -> Bool {
         deckConditionIDs.contains(identifier)
+    }
+
+    static func hasTarget(for identifier: Int) -> Bool {
+        targetedConditionIDs.contains(identifier)
     }
 
     static func name(for identifier: Int) -> String {
         if (1...8).contains(identifier) { return "M\(identifier)" }
         if identifier == 100 { return "Deck Play" }
         if identifier == 203 { return "Is In Active Loop" }
+        if identifier == 247 { return "Slot State" }
         if let number = hotcueNumber(for: identifier) { return "Hotcue \(number) State" }
         return "Condition \(identifier)"
     }
@@ -36,6 +42,11 @@ enum TraktorConditionMetadata {
         }
         if identifier == 203 {
             return (0...1).map { Value(rawValue: $0, label: String($0)) }
+        }
+        if identifier == 247 {
+            return ["Empty", "Loaded", "Playing"].enumerated().map {
+                Value(rawValue: $0.offset, label: $0.element)
+            }
         }
         if hotcueNumber(for: identifier) != nil {
             return [Value(rawValue: Int(UInt32.max), label: "No Hotcue")]
@@ -51,6 +62,23 @@ enum TraktorConditionMetadata {
     }
 
     static let targets: [ModifierConditionTarget] = [.deckA, .deckB, .deckC, .deckD, .deviceTarget]
+
+    /// Raw target values have condition-specific meanings. Slot State uses
+    /// sixteen deck/slot pairs and has no Device Target option (Traktor 4.5.1).
+    static func targets(for identifier: Int) -> [ModifierConditionTarget] {
+        if identifier == 247 { return (UInt32(0)..<16).map(ModifierConditionTarget.init(rawValue:)) }
+        return hasDeckTarget(for: identifier) ? targets : []
+    }
+
+    static func targetLabel(_ target: ModifierConditionTarget, for identifier: Int) -> String {
+        if identifier == 247 {
+            let raw = target.rawValue
+            guard raw < 16 else { return "Target \(raw)" }
+            let deck = ["A", "B", "C", "D"][Int(raw / 4)]
+            return "Remix Deck \(deck) · Slot \(raw % 4 + 1)"
+        }
+        return targetLabel(target)
+    }
 
     static func targetLabel(_ target: ModifierConditionTarget) -> String {
         switch target {

@@ -616,7 +616,12 @@ enum MappingTransformPlanner {
         to destination: DeckCloneDestination
     ) -> ModifierCondition? {
         guard var condition else { return nil }
-        if condition.target == .deckA {
+        if condition.modifier == 247 {
+            let slot = condition.target.rawValue
+            if slot < 4 {
+                condition.target = ModifierConditionTarget(rawValue: destination.conditionTarget.rawValue * 4 + slot)
+            }
+        } else if condition.target == .deckA {
             condition.target = destination.conditionTarget
         }
         return condition
@@ -624,7 +629,10 @@ enum MappingTransformPlanner {
 
     private static func unknownConditionTarget(in mapping: MappingEntry) -> UInt32? {
         for condition in [mapping.modifier1Condition, mapping.modifier2Condition] {
-            if case .unknown(let rawValue) = condition?.target {
+            guard let condition else { continue }
+            if condition.modifier == 247 {
+                if condition.target.rawValue >= 16 { return condition.target.rawValue }
+            } else if case .unknown(let rawValue) = condition.target {
                 return rawValue
             }
         }

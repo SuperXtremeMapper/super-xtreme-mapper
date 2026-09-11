@@ -481,6 +481,23 @@
       "expectedDisposition": "ordinarySaveSafe",
       "expectedRiskCount": 0,
       "expectedRiskCodes": []
+    },
+    {
+      "filename": "traktor-4.5.1-slot-state-conditions.tsi",
+      "sha256": "c6048d0dc7a29e9af7688241833e04497093e91d43a009d6fd04af0b56b119ec",
+      "provenance": "realExport",
+      "completeness": "completeDocument",
+      "evidencedVersion": "4.5.1",
+      "controller": "Generic MIDI (ports None)",
+      "source": "Native Traktor Pro 4.5.1 build 21 Slot State menu capture; A1/A4, C1/C4 and D1/D4 with all three states, 2026-09-11",
+      "license": "Fixture contribution under repository MIT License; created for this project in the repository owner's authorized validation session",
+      "sanitization": [
+        "Renamed only; native XML and controller bytes unchanged",
+        "Audited decoded text: Generic MIDI definitions, native version and temporary test comments; no customer mappings"
+      ],
+      "expectedDisposition": "ordinarySaveSafe",
+      "expectedRiskCount": 0,
+      "expectedRiskCodes": []
     }
   ]
 }

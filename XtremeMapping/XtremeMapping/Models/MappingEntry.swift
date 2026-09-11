@@ -755,8 +755,8 @@ struct ModifierCondition: Hashable, Sendable, Equatable {
     /// Display string for the condition (e.g., "M4 = 2")
     var displayString: String {
         let name = TraktorConditionMetadata.name(for: modifier)
-        let targetSuffix = TraktorConditionMetadata.hasDeckTarget(for: modifier)
-            ? " · \(TraktorConditionMetadata.targetLabel(target))" : ""
+        let targetSuffix = TraktorConditionMetadata.hasTarget(for: modifier)
+            ? " · \(TraktorConditionMetadata.targetLabel(target, for: modifier))" : ""
         return "\(name)\(targetSuffix) = \(TraktorConditionMetadata.valueLabel(for: self))"
     }
 }

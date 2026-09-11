@@ -182,6 +182,7 @@ final class TSIFixtureTests: XCTestCase {
             "traktor-4.5.1-modifier-outputs.tsi",
             "traktor-4.5.1-generate-stems.tsi",
             "traktor-4.5.1-software-conditions.tsi",
+            "traktor-4.5.1-slot-state-conditions.tsi",
         ])
         XCTAssertEqual(Set(manifest.fixtures.map(\.filename)).count, manifest.fixtures.count)
         let fixtureFiles = try FileManager.default.contentsOfDirectory(
@@ -301,7 +302,7 @@ final class TSIFixtureTests: XCTestCase {
         let completeFixtures = try loadManifest().fixtures.filter {
             $0.completeness == .completeDocument
         }
-        XCTAssertEqual(completeFixtures.count, 13)
+        XCTAssertEqual(completeFixtures.count, 14)
 
         for fixture in completeFixtures {
             let source = try loadFixture(fixture)
