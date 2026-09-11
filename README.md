@@ -31,6 +31,8 @@ A native macOS TSI editor for Traktor Pro. Create, edit, and manage your MIDI co
 
 See the [changelog](CHANGELOG.md) for what changed in 1.1.2.
 
+For the upcoming editor improvements, see the [large-mapping editing guide](docs/Editor-Workflow.md).
+
 ## Installation
 
 ### Download
