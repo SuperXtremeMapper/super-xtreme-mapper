@@ -1,5 +1,14 @@
 # What's new
 
+## 1.1.2 — September 11, 2026
+
+A small compatibility update for more detailed Traktor mappings. Thank you to [@skymakai](https://github.com/skymakai) for reporting [issue #9](https://github.com/SuperXtremeMapper/super-xtreme-mapper/issues/9) and privately sharing a mapping that helped us track this down.
+
+- Imported MIDI Button, Knob and Fader commands now have readable names and the correct Global assignment.
+- Track End Warning, Flux Reverse Playback On and Load Selected (loading alternative) are now recognised by name.
+- Remix Deck cell states and Deck Flavor conditions have readable names, values and deck choices. Find cell conditions in the new Remix Cell State submenu.
+- Original MIDI references remain preserved. If a mapping refers to a MIDI assignment missing from its file, SXM keeps showing a compatibility warning rather than guessing a replacement.
+
 ## 1.1.1 — September 11, 2026
 
 A small update to make your mappings easier to read and edit. Thanks for the helpful feedback!

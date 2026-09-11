@@ -11,10 +11,12 @@ import Foundation
 /// Based on CMDR TSI Editor: https://github.com/cmdr-editor/cmdr
 enum TraktorCommands {
 
-    /// Native 4.5.1 evidence: these commands display Global with target word 0.
-    /// Modifier evidence here is deliberately limited to the captured outputs.
+    /// Native 4.5.1 evidence establishes Generate Stems and modifier outputs.
+    /// CMDR identifies all internal MIDI controls as Global; imported records
+    /// use target word zero. This does not enable new-command creation.
     static func usesGlobalTargetZero(_ commandID: Int, direction: IODirection) -> Bool {
-        commandID == 3482 || (direction == .output && (2548...2555).contains(commandID))
+        commandID == 3482 || (850...873).contains(commandID)
+            || (direction == .output && (2548...2555).contains(commandID))
     }
 
     /// Generic FX-unit commands overload CMAD target values 0...3 as
@@ -111,6 +113,15 @@ enum TraktorCommands {
         // Search the precomputed reverse map
         if let id = nameToLowestId[name] {
             return id
+        }
+
+        if name == "Track End Warning" { return 520 }
+        if name == "Flux Reverse Playback On" { return 874 }
+        for (family, base) in [("Button", 849), ("Knob", 857), ("Fader", 865)] {
+            let prefix = "MIDI \(family) "
+            if name.hasPrefix(prefix), let number = Int(name.dropFirst(prefix.count)), (1...8).contains(number) {
+                return base + number
+            }
         }
 
         // Handle dynamic ranges
@@ -280,6 +291,14 @@ enum TraktorCommands {
 
     /// Returns a catalog/dynamic name, or nil when an ID has never been known.
     private static func catalogName(for commandId: Int) -> String? {
+        // Imported command identities from CMDR KnownCommands. Naming does
+        // not promote an unverified command into the creation menus.
+        if commandId == 520 { return "Track End Warning" }
+        if commandId == 874 { return "Flux Reverse Playback On" }
+        if (850...873).contains(commandId) {
+            let family = ["Button", "Knob", "Fader"][(commandId - 850) / 8]
+            return "MIDI \(family) \((commandId - 850) % 8 + 1)"
+        }
         // Check static lookup first
         if let name = commandLookup[commandId] {
             return name
@@ -786,6 +805,9 @@ enum TraktorCommands {
         3048: "Send Monitor State",
         3072: "Save Traktor Settings",
         3076: "Load Selected (Timecode)",
+        // Identified through a synthetic import and re-export in Traktor 4.5.1.
+        // Recognition only; native creation defaults have not been audited.
+        3079: "Load Selected (loading alternative)",
         3077: "Check Consistency",
         3084: "Load Last Recording",
         3137: "Load Selected (Preview)",

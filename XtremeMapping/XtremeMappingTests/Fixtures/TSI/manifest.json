@@ -304,9 +304,18 @@
       "expectedDisposition": "lossyConvertible",
       "expectedRiskCount": 8219,
       "expectedRiskRuns": [
-        {"code": "unusedMIDIDefinition", "count": 8216},
-        {"code": "unknownFrame", "count": 1},
-        {"code": "extraXMLEntry", "count": 2}
+        {
+          "code": "unusedMIDIDefinition",
+          "count": 8216
+        },
+        {
+          "code": "unknownFrame",
+          "count": 1
+        },
+        {
+          "code": "extraXMLEntry",
+          "count": 2
+        }
       ]
     },
     {
@@ -325,9 +334,18 @@
       "expectedDisposition": "lossyConvertible",
       "expectedRiskCount": 8219,
       "expectedRiskRuns": [
-        {"code": "unusedMIDIDefinition", "count": 8216},
-        {"code": "unknownFrame", "count": 1},
-        {"code": "extraXMLEntry", "count": 2}
+        {
+          "code": "unusedMIDIDefinition",
+          "count": 8216
+        },
+        {
+          "code": "unknownFrame",
+          "count": 1
+        },
+        {
+          "code": "extraXMLEntry",
+          "count": 2
+        }
       ]
     },
     {
@@ -346,9 +364,18 @@
       "expectedDisposition": "lossyConvertible",
       "expectedRiskCount": 8220,
       "expectedRiskRuns": [
-        {"code": "unusedMIDIDefinition", "count": 8217},
-        {"code": "unknownFrame", "count": 1},
-        {"code": "extraXMLEntry", "count": 2}
+        {
+          "code": "unusedMIDIDefinition",
+          "count": 8217
+        },
+        {
+          "code": "unknownFrame",
+          "count": 1
+        },
+        {
+          "code": "extraXMLEntry",
+          "count": 2
+        }
       ]
     },
     {
@@ -367,9 +394,18 @@
       "expectedDisposition": "lossyConvertible",
       "expectedRiskCount": 8218,
       "expectedRiskRuns": [
-        {"code": "unusedMIDIDefinition", "count": 8215},
-        {"code": "unknownFrame", "count": 1},
-        {"code": "extraXMLEntry", "count": 2}
+        {
+          "code": "unusedMIDIDefinition",
+          "count": 8215
+        },
+        {
+          "code": "unknownFrame",
+          "count": 1
+        },
+        {
+          "code": "extraXMLEntry",
+          "count": 2
+        }
       ]
     },
     {
@@ -388,9 +424,18 @@
       "expectedDisposition": "lossyConvertible",
       "expectedRiskCount": 8224,
       "expectedRiskRuns": [
-        {"code": "unusedMIDIDefinition", "count": 8221},
-        {"code": "unknownFrame", "count": 1},
-        {"code": "extraXMLEntry", "count": 2}
+        {
+          "code": "unusedMIDIDefinition",
+          "count": 8221
+        },
+        {
+          "code": "unknownFrame",
+          "count": 1
+        },
+        {
+          "code": "extraXMLEntry",
+          "count": 2
+        }
       ]
     },
     {
@@ -409,9 +454,18 @@
       "expectedDisposition": "lossyConvertible",
       "expectedRiskCount": 8223,
       "expectedRiskRuns": [
-        {"code": "unusedMIDIDefinition", "count": 8220},
-        {"code": "unknownFrame", "count": 1},
-        {"code": "extraXMLEntry", "count": 2}
+        {
+          "code": "unusedMIDIDefinition",
+          "count": 8220
+        },
+        {
+          "code": "unknownFrame",
+          "count": 1
+        },
+        {
+          "code": "extraXMLEntry",
+          "count": 2
+        }
       ]
     },
     {
@@ -498,6 +552,32 @@
       "expectedDisposition": "ordinarySaveSafe",
       "expectedRiskCount": 0,
       "expectedRiskCodes": []
+    },
+    {
+      "filename": "traktor-4.5.1-load-selected-alternative.tsi",
+      "sha256": "95769810c86cb156ef41a50f99400f3c59f21aa9c71adbabb8bf899405e81257",
+      "provenance": "realExport",
+      "completeness": "completeDocument",
+      "evidencedVersion": "4.5.1",
+      "controller": "Generic MIDI",
+      "source": "Synthetic command 3079 imported into native Traktor Pro 4.5.1 and exported from Controller Manager; identity displayed as Load Selected (loading alternative), 2026-09-11",
+      "license": "Fixture contribution under repository MIT License; created for this project in the repository owner's authorized validation session",
+      "sanitization": [
+        "Retained only DeviceIO.Config.Controller; omitted unrelated application settings",
+        "Audited decoded controller strings: native MIDI definitions and synthetic probe comment only; no customer mapping data"
+      ],
+      "expectedDisposition": "lossyConvertible",
+      "expectedRiskCount": 8224,
+      "expectedRiskRuns": [
+        {
+          "code": "unusedMIDIDefinition",
+          "count": 8223
+        },
+        {
+          "code": "unknownFrame",
+          "count": 1
+        }
+      ]
     }
   ]
 }

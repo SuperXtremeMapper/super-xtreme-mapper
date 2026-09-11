@@ -22,12 +22,16 @@ struct V2ModifierRow: View {
                     }
                 }
                 Divider()
-                ForEach(TraktorConditionMetadata.targetedConditionIDs, id: \.self) { identifier in
-                    Menu(TraktorConditionMetadata.name(for: identifier)) {
-                        ForEach(TraktorConditionMetadata.targets(for: identifier), id: \.self) { target in
-                            Button(TraktorConditionMetadata.targetLabel(target, for: identifier)) {
-                                applySelection(TraktorConditionMetadata.selectingDeckCondition(
-                                    identifier, target: target, previous: condition))
+                ForEach(TraktorConditionMetadata.targetedConditionIDs.filter {
+                    !TraktorConditionMetadata.isRemixCellState($0)
+                }, id: \.self) { identifier in
+                    conditionMenu(identifier)
+                }
+                Menu("Remix Cell State") {
+                    ForEach(1...4, id: \.self) { slot in
+                        Menu("Slot \(slot)") {
+                            ForEach(1...16, id: \.self) { cell in
+                                conditionMenu(664 + (slot - 1) * 16 + cell)
                             }
                         }
                     }
@@ -80,6 +84,17 @@ struct V2ModifierRow: View {
         .padding(AppThemeV2.Spacing.sm)
         .background(RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm).fill(AppThemeV2.Colors.stone700))
         .disabled(isLocked)
+    }
+
+    private func conditionMenu(_ identifier: Int) -> some View {
+        Menu(TraktorConditionMetadata.name(for: identifier)) {
+            ForEach(TraktorConditionMetadata.targets(for: identifier), id: \.self) { target in
+                Button(TraktorConditionMetadata.targetLabel(target, for: identifier)) {
+                    applySelection(TraktorConditionMetadata.selectingDeckCondition(
+                        identifier, target: target, previous: condition))
+                }
+            }
+        }
     }
 
     func applySelection(_ value: ModifierCondition?) {

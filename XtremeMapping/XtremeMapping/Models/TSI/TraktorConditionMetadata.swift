@@ -15,8 +15,14 @@ enum TraktorConditionMetadata {
         (2333...2340).contains(identifier) ? identifier - 2332 : nil
     }
 
-    static let deckConditionIDs = [100, 203] + Array(2333...2340)
-    static let targetedConditionIDs = [100, 203, 247] + Array(2333...2340)
+    static func isRemixCellState(_ identifier: Int) -> Bool {
+        (665...728).contains(identifier)
+    }
+
+    // CMDR KnownConditions and its SlotCellState/DeckFlavor enums define
+    // these families. Cell identity is in the ID; its target is the deck.
+    static let deckConditionIDs = [100, 203, 2302] + Array(2333...2340) + Array(665...728)
+    static let targetedConditionIDs = [100, 203, 247, 2302] + Array(2333...2340) + Array(665...728)
 
     static func hasDeckTarget(for identifier: Int) -> Bool {
         deckConditionIDs.contains(identifier)
@@ -31,6 +37,8 @@ enum TraktorConditionMetadata {
         if identifier == 100 { return "Deck Play" }
         if identifier == 203 { return "Is In Active Loop" }
         if identifier == 247 { return "Slot State" }
+        if identifier == 2302 { return "Deck Flavor" }
+        if isRemixCellState(identifier) { return TraktorCommands.name(for: identifier) }
         if let number = hotcueNumber(for: identifier) { return "Hotcue \(number) State" }
         return "Condition \(identifier)"
     }
@@ -45,6 +53,16 @@ enum TraktorConditionMetadata {
         }
         if identifier == 247 {
             return ["Empty", "Loaded", "Playing"].enumerated().map {
+                Value(rawValue: $0.offset, label: $0.element)
+            }
+        }
+        if isRemixCellState(identifier) {
+            return ["Empty", "Loaded", "Playing", "Waiting"].enumerated().map {
+                Value(rawValue: $0.offset, label: $0.element)
+            }
+        }
+        if identifier == 2302 {
+            return ["Track Deck", "Remix Deck", "Stem Deck", "Live Input"].enumerated().map {
                 Value(rawValue: $0.offset, label: $0.element)
             }
         }
@@ -77,6 +95,9 @@ enum TraktorConditionMetadata {
             let deck = ["A", "B", "C", "D"][Int(raw / 4)]
             return "Remix Deck \(deck) · Slot \(raw % 4 + 1)"
         }
+        if isRemixCellState(identifier), target.rawValue < 4 {
+            return "Remix Deck \(["A", "B", "C", "D"][Int(target.rawValue)])"
+        }
         return targetLabel(target)
     }
 
@@ -104,6 +125,7 @@ enum TraktorConditionMetadata {
     static func selectingDeckCondition(_ identifier: Int, target: ModifierConditionTarget,
                                        previous: ModifierCondition?) -> ModifierCondition {
         let sameKind = previous?.modifier == identifier
+            || (previous.map { isRemixCellState($0.modifier) } == true && isRemixCellState(identifier))
             || (previous.map { hotcueNumber(for: $0.modifier) != nil } == true
                 && hotcueNumber(for: identifier) != nil)
         return ModifierCondition(modifier: identifier, value: sameKind ? previous?.value ?? 0 : 0, target: target)
