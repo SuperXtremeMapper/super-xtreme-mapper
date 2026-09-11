@@ -28,148 +28,153 @@ struct AboutSheet: View {
                 .fill(AppThemeV2.Colors.stone700)
                 .frame(height: 1)
 
-            // App info section
-            HStack(spacing: AppThemeV2.Spacing.md) {
-                Image("Logo")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 48, height: 48)
+            ScrollView {
+                VStack(alignment: .leading, spacing: AppThemeV2.Spacing.lg) {
+                    // App info section
+                    HStack(spacing: AppThemeV2.Spacing.md) {
+                        Image("Logo")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 48, height: 48)
 
-                VStack(alignment: .leading, spacing: AppThemeV2.Spacing.xxs) {
-                    Text("Super Xtreme Mapper")
-                        .font(AppThemeV2.Typography.body)
-                        .fontWeight(.semibold)
-                        .foregroundColor(AppThemeV2.Colors.stone200)
+                        VStack(alignment: .leading, spacing: AppThemeV2.Spacing.xxs) {
+                            Text("Super Xtreme Mapper")
+                                .font(AppThemeV2.Typography.body)
+                                .fontWeight(.semibold)
+                                .foregroundColor(AppThemeV2.Colors.stone200)
 
-                    Text("A revived TSI Editor for Traktor")
-                        .font(AppThemeV2.Typography.caption)
-                        .foregroundColor(AppThemeV2.Colors.stone500)
+                            Text("A revived TSI Editor for Traktor")
+                                .font(AppThemeV2.Typography.caption)
+                                .foregroundColor(AppThemeV2.Colors.stone500)
 
-                    Text("Version \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0")")
-                        .font(AppThemeV2.Typography.micro)
-                        .foregroundColor(AppThemeV2.Colors.amber)
-                }
-            }
-
-            Rectangle()
-                .fill(AppThemeV2.Colors.stone700)
-                .frame(height: 1)
-
-            // Acknowledgements section
-            VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
-                Text("ACKNOWLEDGEMENTS")
-                    .font(AppThemeV2.Typography.micro)
-                    .tracking(0.5)
-                    .foregroundColor(AppThemeV2.Colors.stone400)
-
-                VStack(alignment: .leading, spacing: AppThemeV2.Spacing.xs) {
-                    creditRow(title: "Xtreme Mapping (inspiration)", name: "Vincenzo Pietropaolo", link: "https://www.xtrememapping.com/")
-                    creditRow(title: "TSI Research", name: "IvanZ", link: "https://github.com/ivanz")
-                    creditRow(title: "CMDR Editor", name: "cmdr-editor", link: "https://cmdr-editor.github.io/cmdr/")
-                }
-            }
-
-            Rectangle()
-                .fill(AppThemeV2.Colors.stone700)
-                .frame(height: 1)
-
-            // Feedback section
-            VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
-                Text("FEEDBACK")
-                    .font(AppThemeV2.Typography.micro)
-                    .tracking(0.5)
-                    .foregroundColor(AppThemeV2.Colors.stone400)
-
-                Button(action: sendFeedback) {
-                    HStack(spacing: AppThemeV2.Spacing.xs) {
-                        Image(systemName: "envelope")
-                            .font(.system(size: 10))
-                        Text("BUG REPORT / FEEDBACK")
-                            .font(AppThemeV2.Typography.micro)
-                            .tracking(0.5)
-                    }
-                    .foregroundColor(AppThemeV2.Colors.stone200)
-                    .padding(.horizontal, AppThemeV2.Spacing.md)
-                    .padding(.vertical, AppThemeV2.Spacing.sm)
-                    .background(
-                        RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                            .fill(AppThemeV2.Colors.stone700)
-                    )
-                }
-                .buttonStyle(.plain)
-
-                Text("sxtrememapper@proton.me")
-                    .font(AppThemeV2.Typography.caption)
-                    .foregroundColor(AppThemeV2.Colors.stone500)
-            }
-
-            Rectangle()
-                .fill(AppThemeV2.Colors.stone700)
-                .frame(height: 1)
-
-            // Support section
-            VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
-                Text("SUPPORT SXM")
-                    .font(AppThemeV2.Typography.micro)
-                    .tracking(0.5)
-                    .foregroundColor(AppThemeV2.Colors.stone400)
-
-                Text("Super Xtreme Mapper is free and open source. If you find it useful, consider supporting development!")
-                    .font(AppThemeV2.Typography.caption)
-                    .foregroundColor(AppThemeV2.Colors.stone500)
-                    .fixedSize(horizontal: false, vertical: true)
-
-                HStack(spacing: AppThemeV2.Spacing.sm) {
-                    SponsorButton(openURL: openURL)
-                    CoffeeButton(openURL: openURL)
-                }
-            }
-
-            Rectangle()
-                .fill(AppThemeV2.Colors.stone700)
-                .frame(height: 1)
-
-            // Check for Updates section
-            VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
-                Text("SOFTWARE UPDATE")
-                    .font(AppThemeV2.Typography.micro)
-                    .tracking(0.5)
-                    .foregroundColor(AppThemeV2.Colors.stone400)
-
-                Button {
-                    checkForUpdates()
-                } label: {
-                    HStack(spacing: AppThemeV2.Spacing.xs) {
-                        if isCheckingUpdate {
-                            ProgressView()
-                                .scaleEffect(0.7)
-                        } else {
-                            Image(systemName: "arrow.down.circle")
-                                .font(.system(size: 10))
+                            Text("Version \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.0")")
+                                .font(AppThemeV2.Typography.micro)
+                                .foregroundColor(AppThemeV2.Colors.amber)
                         }
-                        Text("CHECK FOR UPDATES")
+                    }
+
+                    Rectangle()
+                        .fill(AppThemeV2.Colors.stone700)
+                        .frame(height: 1)
+
+                    // Acknowledgements section
+                    VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
+                        Text("ACKNOWLEDGEMENTS")
                             .font(AppThemeV2.Typography.micro)
                             .tracking(0.5)
-                    }
-                    .foregroundColor(AppThemeV2.Colors.stone200)
-                    .padding(.horizontal, AppThemeV2.Spacing.md)
-                    .padding(.vertical, AppThemeV2.Spacing.sm)
-                    .background(
-                        RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                            .fill(AppThemeV2.Colors.stone700)
-                    )
-                }
-                .buttonStyle(.plain)
-                .disabled(isCheckingUpdate)
-            }
+                            .foregroundColor(AppThemeV2.Colors.stone400)
 
-            Spacer()
+                        VStack(alignment: .leading, spacing: AppThemeV2.Spacing.xs) {
+                            creditRow(title: "Xtreme Mapping (inspiration)", name: "Vincenzo Pietropaolo", link: "https://www.xtrememapping.com/")
+                            creditRow(title: "TSI Research", name: "IvanZ", link: "https://github.com/ivanz")
+                            creditRow(title: "CMDR Editor", name: "cmdr-editor", link: "https://cmdr-editor.github.io/cmdr/")
+                        }
+                    }
+
+                    Rectangle()
+                        .fill(AppThemeV2.Colors.stone700)
+                        .frame(height: 1)
+
+                    // Feedback section
+                    VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
+                        Text("FEEDBACK")
+                            .font(AppThemeV2.Typography.micro)
+                            .tracking(0.5)
+                            .foregroundColor(AppThemeV2.Colors.stone400)
+
+                        Button(action: sendFeedback) {
+                            HStack(spacing: AppThemeV2.Spacing.xs) {
+                                Image(systemName: "envelope")
+                                    .font(.system(size: 10))
+                                Text("BUG REPORT / FEEDBACK")
+                                    .font(AppThemeV2.Typography.micro)
+                                    .tracking(0.5)
+                            }
+                            .foregroundColor(AppThemeV2.Colors.stone200)
+                            .padding(.horizontal, AppThemeV2.Spacing.md)
+                            .padding(.vertical, AppThemeV2.Spacing.sm)
+                            .background(
+                                RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                                    .fill(AppThemeV2.Colors.stone700)
+                            )
+                        }
+                        .buttonStyle(.plain)
+
+                        Text("sxtrememapper@proton.me")
+                            .font(AppThemeV2.Typography.caption)
+                            .foregroundColor(AppThemeV2.Colors.stone500)
+                    }
+
+                    Rectangle()
+                        .fill(AppThemeV2.Colors.stone700)
+                        .frame(height: 1)
+
+                    // Support section
+                    VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
+                        Text("SUPPORT SXM")
+                            .font(AppThemeV2.Typography.micro)
+                            .tracking(0.5)
+                            .foregroundColor(AppThemeV2.Colors.stone400)
+
+                        Text("Super Xtreme Mapper is free and open source. If you find it useful, consider supporting development!")
+                            .font(AppThemeV2.Typography.caption)
+                            .foregroundColor(AppThemeV2.Colors.stone500)
+                            .fixedSize(horizontal: false, vertical: true)
+
+                        HStack(spacing: AppThemeV2.Spacing.sm) {
+                            SponsorButton(openURL: openURL)
+                            CoffeeButton(openURL: openURL)
+                        }
+                    }
+
+                    Rectangle()
+                        .fill(AppThemeV2.Colors.stone700)
+                        .frame(height: 1)
+
+                    // Check for Updates section
+                    VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
+                        Text("SOFTWARE UPDATE")
+                            .font(AppThemeV2.Typography.micro)
+                            .tracking(0.5)
+                            .foregroundColor(AppThemeV2.Colors.stone400)
+
+                        Button {
+                            checkForUpdates()
+                        } label: {
+                            HStack(spacing: AppThemeV2.Spacing.xs) {
+                                if isCheckingUpdate {
+                                    ProgressView()
+                                        .scaleEffect(0.7)
+                                } else {
+                                    Image(systemName: "arrow.down.circle")
+                                        .font(.system(size: 10))
+                                }
+                                Text("CHECK FOR UPDATES")
+                                    .font(AppThemeV2.Typography.micro)
+                                    .tracking(0.5)
+                            }
+                            .foregroundColor(AppThemeV2.Colors.stone200)
+                            .padding(.horizontal, AppThemeV2.Spacing.md)
+                            .padding(.vertical, AppThemeV2.Spacing.sm)
+                            .background(
+                                RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                                    .fill(AppThemeV2.Colors.stone700)
+                            )
+                        }
+                        .buttonStyle(.plain)
+                        .disabled(isCheckingUpdate)
+                    }
+
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
 
             // Bottom row: Trademark and Done button
             HStack {
                 Text("Traktor is a registered trademark of Native Instruments GmbH.")
                     .font(AppThemeV2.Typography.micro)
                     .foregroundColor(AppThemeV2.Colors.stone600)
+                    .fixedSize(horizontal: false, vertical: true)
 
                 Spacer()
 
@@ -193,7 +198,7 @@ struct AboutSheet: View {
             }
         }
         .padding(AppThemeV2.Spacing.xl)
-        .frame(width: 400, height: 560)
+        .frame(width: 460, height: 560)
         .background(AppThemeV2.Colors.stone800)
         .preferredColorScheme(.dark)
         .sheet(isPresented: $showUpdateSheet) {

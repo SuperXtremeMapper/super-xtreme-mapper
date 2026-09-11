@@ -1,5 +1,7 @@
 # Slot State conditions and readable modifier columns
 
+> Historical implementation record. The owner subsequently authorized including these changes in version 1.1.1. The local-only statements below describe the earlier implementation phase. See the [changelog](../../CHANGELOG.md).
+
 Status: implementation, automated/native Traktor checks, column resizing/editor visual checks and independent code review passed. Tooltip appearance remains unverified because the available UI tool has no hover action. Local branch `codex/slot-state-columns`, base `0dfac3d`. No release or remote changes are part of this task.
 
 ## Approved scope

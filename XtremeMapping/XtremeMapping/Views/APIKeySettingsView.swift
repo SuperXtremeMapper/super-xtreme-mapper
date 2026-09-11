@@ -87,6 +87,10 @@ struct APIKeySettingsView: View {
                     .tracking(1)
                     .foregroundColor(AppThemeV2.Colors.amber)
 
+                Text("Super Xtreme Mapper · Version \(UpdateService.shared.currentVersion)")
+                    .font(AppThemeV2.Typography.caption)
+                    .foregroundColor(AppThemeV2.Colors.stone400)
+
                 Text("Configure your Anthropic API key for Voice Learn")
                     .font(AppThemeV2.Typography.body)
                     .foregroundColor(AppThemeV2.Colors.stone400)
@@ -96,183 +100,186 @@ struct APIKeySettingsView: View {
                 .fill(AppThemeV2.Colors.stone700)
                 .frame(height: 1)
 
-            // API Key Input Section
-            VStack(alignment: .leading, spacing: AppThemeV2.Spacing.md) {
-                // Label
-                Text("ANTHROPIC API KEY")
-                    .font(AppThemeV2.Typography.micro)
-                    .tracking(0.5)
-                    .foregroundColor(AppThemeV2.Colors.stone400)
-
-                // Secure text field
-                HStack(spacing: AppThemeV2.Spacing.sm) {
-                    SecureField("sk-ant-...", text: $apiKeyInput)
-                        .textFieldStyle(.plain)
-                        .font(AppThemeV2.Typography.mono)
-                        .foregroundColor(AppThemeV2.Colors.stone200)
-                        .padding(AppThemeV2.Spacing.sm)
-                        .background(
-                            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                                .fill(AppThemeV2.Colors.stone800)
-                        )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                                .stroke(validationState.color.opacity(0.5), lineWidth: 1)
-                        )
-                        .onChange(of: apiKeyInput) { _, newValue in
-                            updateValidationState(for: newValue)
-                        }
-                }
-
-                // Validation feedback
-                HStack(spacing: AppThemeV2.Spacing.xs) {
-                    Image(systemName: validationState.icon)
-                        .font(.system(size: 10))
-                    Text(validationState.message)
-                        .font(AppThemeV2.Typography.caption)
-                }
-                .foregroundColor(validationState.color)
-
-                // Action buttons
-                HStack(spacing: AppThemeV2.Spacing.sm) {
-                    // Save button
-                    Button(action: saveAPIKey) {
-                        HStack(spacing: AppThemeV2.Spacing.xs) {
-                            Image(systemName: "checkmark")
-                                .font(.system(size: 10, weight: .bold))
-                            Text("SAVE")
-                                .font(AppThemeV2.Typography.micro)
-                                .tracking(0.5)
-                        }
-                        .foregroundColor(AppThemeV2.Colors.stone950)
-                        .padding(.horizontal, AppThemeV2.Spacing.md)
-                        .padding(.vertical, AppThemeV2.Spacing.sm)
-                        .background(
-                            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                                .fill(validationState == .valid ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone600)
-                        )
-                    }
-                    .buttonStyle(.plain)
-                    .disabled(validationState != .valid)
-
-                    // Clear button
-                    Button(action: { showingClearConfirmation = true }) {
-                        HStack(spacing: AppThemeV2.Spacing.xs) {
-                            Image(systemName: "trash")
-                                .font(.system(size: 10, weight: .medium))
-                            Text("CLEAR")
-                                .font(AppThemeV2.Typography.micro)
-                                .tracking(0.5)
-                        }
-                        .foregroundColor(apiKeyManager.hasAPIKey ? AppThemeV2.Colors.danger : AppThemeV2.Colors.stone600)
-                        .padding(.horizontal, AppThemeV2.Spacing.md)
-                        .padding(.vertical, AppThemeV2.Spacing.sm)
-                        .background(
-                            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                                .fill(AppThemeV2.Colors.stone800)
-                        )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                                .stroke(apiKeyManager.hasAPIKey ? AppThemeV2.Colors.danger.opacity(0.3) : AppThemeV2.Colors.stone700, lineWidth: 1)
-                        )
-                    }
-                    .buttonStyle(.plain)
-                    .disabled(!apiKeyManager.hasAPIKey)
-
-                    Spacer()
-                }
-            }
-
-            Rectangle()
-                .fill(AppThemeV2.Colors.stone700)
-                .frame(height: 1)
-
-            // Help section
-            VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
-                Text("GET YOUR API KEY")
-                    .font(AppThemeV2.Typography.micro)
-                    .tracking(0.5)
-                    .foregroundColor(AppThemeV2.Colors.stone400)
-
-                Button(action: openAnthropicConsole) {
-                    HStack(spacing: AppThemeV2.Spacing.xs) {
-                        Image(systemName: "arrow.up.right.square")
-                            .font(.system(size: 11))
-                        Text("console.anthropic.com")
-                            .font(AppThemeV2.Typography.body)
-                            .underline()
-                    }
-                    .foregroundColor(AppThemeV2.Colors.amber)
-                }
-                .buttonStyle(.plain)
-
-                Text("Sign up or log in to get your API key. Voice Learn uses Claude Haiku for fast, low-cost command interpretation (~$0.003/request).")
-                    .font(AppThemeV2.Typography.caption)
-                    .foregroundColor(AppThemeV2.Colors.stone500)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-
-            Rectangle()
-                .fill(AppThemeV2.Colors.stone700)
-                .frame(height: 1)
-
-            // Support section
-            VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
-                Text("SUPPORT SXM")
-                    .font(AppThemeV2.Typography.micro)
-                    .tracking(0.5)
-                    .foregroundColor(AppThemeV2.Colors.stone400)
-
-                Text("Super Xtreme Mapper is free and open source. If you find it useful, consider supporting development!")
-                    .font(AppThemeV2.Typography.caption)
-                    .foregroundColor(AppThemeV2.Colors.stone500)
-                    .fixedSize(horizontal: false, vertical: true)
-
-                HStack(spacing: AppThemeV2.Spacing.sm) {
-                    SponsorButton(openURL: openURL)
-                    CoffeeButton(openURL: openURL)
-                }
-            }
-
-            Rectangle()
-                .fill(AppThemeV2.Colors.stone700)
-                .frame(height: 1)
-
-            // Check for Updates section
-            VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
-                Text("SOFTWARE UPDATE")
-                    .font(AppThemeV2.Typography.micro)
-                    .tracking(0.5)
-                    .foregroundColor(AppThemeV2.Colors.stone400)
-
-                Button {
-                    checkForUpdates()
-                } label: {
-                    HStack(spacing: AppThemeV2.Spacing.xs) {
-                        if isCheckingUpdate {
-                            ProgressView()
-                                .scaleEffect(0.7)
-                        } else {
-                            Image(systemName: "arrow.down.circle")
-                                .font(.system(size: 10))
-                        }
-                        Text("CHECK FOR UPDATES")
+            ScrollView {
+                VStack(alignment: .leading, spacing: AppThemeV2.Spacing.lg) {
+                    // API Key Input Section
+                    VStack(alignment: .leading, spacing: AppThemeV2.Spacing.md) {
+                        // Label
+                        Text("ANTHROPIC API KEY")
                             .font(AppThemeV2.Typography.micro)
                             .tracking(0.5)
-                    }
-                    .foregroundColor(AppThemeV2.Colors.stone200)
-                    .padding(.horizontal, AppThemeV2.Spacing.md)
-                    .padding(.vertical, AppThemeV2.Spacing.sm)
-                    .background(
-                        RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                            .fill(AppThemeV2.Colors.stone700)
-                    )
-                }
-                .buttonStyle(.plain)
-                .disabled(isCheckingUpdate)
-            }
+                            .foregroundColor(AppThemeV2.Colors.stone400)
 
-            Spacer()
+                        // Secure text field
+                        HStack(spacing: AppThemeV2.Spacing.sm) {
+                            SecureField("sk-ant-...", text: $apiKeyInput)
+                                .textFieldStyle(.plain)
+                                .font(AppThemeV2.Typography.mono)
+                                .foregroundColor(AppThemeV2.Colors.stone200)
+                                .padding(AppThemeV2.Spacing.sm)
+                                .background(
+                                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                                        .fill(AppThemeV2.Colors.stone800)
+                                )
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                                        .stroke(validationState.color.opacity(0.5), lineWidth: 1)
+                                )
+                                .onChange(of: apiKeyInput) { _, newValue in
+                                    updateValidationState(for: newValue)
+                                }
+                        }
+
+                        // Validation feedback
+                        HStack(spacing: AppThemeV2.Spacing.xs) {
+                            Image(systemName: validationState.icon)
+                                .font(.system(size: 10))
+                            Text(validationState.message)
+                                .font(AppThemeV2.Typography.caption)
+                        }
+                        .foregroundColor(validationState.color)
+
+                        // Action buttons
+                        HStack(spacing: AppThemeV2.Spacing.sm) {
+                            // Save button
+                            Button(action: saveAPIKey) {
+                                HStack(spacing: AppThemeV2.Spacing.xs) {
+                                    Image(systemName: "checkmark")
+                                        .font(.system(size: 10, weight: .bold))
+                                    Text("SAVE")
+                                        .font(AppThemeV2.Typography.micro)
+                                        .tracking(0.5)
+                                }
+                                .foregroundColor(AppThemeV2.Colors.stone950)
+                                .padding(.horizontal, AppThemeV2.Spacing.md)
+                                .padding(.vertical, AppThemeV2.Spacing.sm)
+                                .background(
+                                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                                        .fill(validationState == .valid ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone600)
+                                )
+                            }
+                            .buttonStyle(.plain)
+                            .disabled(validationState != .valid)
+
+                            // Clear button
+                            Button(action: { showingClearConfirmation = true }) {
+                                HStack(spacing: AppThemeV2.Spacing.xs) {
+                                    Image(systemName: "trash")
+                                        .font(.system(size: 10, weight: .medium))
+                                    Text("CLEAR")
+                                        .font(AppThemeV2.Typography.micro)
+                                        .tracking(0.5)
+                                }
+                                .foregroundColor(apiKeyManager.hasAPIKey ? AppThemeV2.Colors.danger : AppThemeV2.Colors.stone600)
+                                .padding(.horizontal, AppThemeV2.Spacing.md)
+                                .padding(.vertical, AppThemeV2.Spacing.sm)
+                                .background(
+                                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                                        .fill(AppThemeV2.Colors.stone800)
+                                )
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                                        .stroke(apiKeyManager.hasAPIKey ? AppThemeV2.Colors.danger.opacity(0.3) : AppThemeV2.Colors.stone700, lineWidth: 1)
+                                )
+                            }
+                            .buttonStyle(.plain)
+                            .disabled(!apiKeyManager.hasAPIKey)
+
+                            Spacer()
+                        }
+                    }
+
+                    Rectangle()
+                        .fill(AppThemeV2.Colors.stone700)
+                        .frame(height: 1)
+
+                    // Help section
+                    VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
+                        Text("GET YOUR API KEY")
+                            .font(AppThemeV2.Typography.micro)
+                            .tracking(0.5)
+                            .foregroundColor(AppThemeV2.Colors.stone400)
+
+                        Button(action: openAnthropicConsole) {
+                            HStack(spacing: AppThemeV2.Spacing.xs) {
+                                Image(systemName: "arrow.up.right.square")
+                                    .font(.system(size: 11))
+                                Text("console.anthropic.com")
+                                    .font(AppThemeV2.Typography.body)
+                                    .underline()
+                            }
+                            .foregroundColor(AppThemeV2.Colors.amber)
+                        }
+                        .buttonStyle(.plain)
+
+                        Text("Sign up or log in to get your API key. Voice Learn uses Claude Haiku for fast, low-cost command interpretation (~$0.003/request).")
+                            .font(AppThemeV2.Typography.caption)
+                            .foregroundColor(AppThemeV2.Colors.stone500)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+
+                    Rectangle()
+                        .fill(AppThemeV2.Colors.stone700)
+                        .frame(height: 1)
+
+                    // Support section
+                    VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
+                        Text("SUPPORT SXM")
+                            .font(AppThemeV2.Typography.micro)
+                            .tracking(0.5)
+                            .foregroundColor(AppThemeV2.Colors.stone400)
+
+                        Text("Super Xtreme Mapper is free and open source. If you find it useful, consider supporting development!")
+                            .font(AppThemeV2.Typography.caption)
+                            .foregroundColor(AppThemeV2.Colors.stone500)
+                            .fixedSize(horizontal: false, vertical: true)
+
+                        HStack(spacing: AppThemeV2.Spacing.sm) {
+                            SponsorButton(openURL: openURL)
+                            CoffeeButton(openURL: openURL)
+                        }
+                    }
+
+                    Rectangle()
+                        .fill(AppThemeV2.Colors.stone700)
+                        .frame(height: 1)
+
+                    // Check for Updates section
+                    VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
+                        Text("SOFTWARE UPDATE")
+                            .font(AppThemeV2.Typography.micro)
+                            .tracking(0.5)
+                            .foregroundColor(AppThemeV2.Colors.stone400)
+
+                        Button {
+                            checkForUpdates()
+                        } label: {
+                            HStack(spacing: AppThemeV2.Spacing.xs) {
+                                if isCheckingUpdate {
+                                    ProgressView()
+                                        .scaleEffect(0.7)
+                                } else {
+                                    Image(systemName: "arrow.down.circle")
+                                        .font(.system(size: 10))
+                                }
+                                Text("CHECK FOR UPDATES")
+                                    .font(AppThemeV2.Typography.micro)
+                                    .tracking(0.5)
+                            }
+                            .foregroundColor(AppThemeV2.Colors.stone200)
+                            .padding(.horizontal, AppThemeV2.Spacing.md)
+                            .padding(.vertical, AppThemeV2.Spacing.sm)
+                            .background(
+                                RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                                    .fill(AppThemeV2.Colors.stone700)
+                            )
+                        }
+                        .buttonStyle(.plain)
+                        .disabled(isCheckingUpdate)
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
 
             // Bottom row: Status and Done button
             HStack {

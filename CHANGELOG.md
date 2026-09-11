@@ -1,5 +1,14 @@
 # What's new
 
+## 1.1.1 — September 11, 2026
+
+A small update to make your mappings easier to read and edit. Thanks for the helpful feedback!
+
+- Resize both Mod 1 and Mod 2 columns to see longer conditions.
+- See and edit Slot State conditions for every Remix Deck slot, using Empty, Loaded and Playing. Deck cloning keeps the correct slot.
+- The About window now fits properly, with scrolling content and an easy-to-reach Done button.
+- Version details are up to date in the welcome screen, About and Settings.
+
 ## 1.1 — September 10, 2026
 
 More control over your LEDs, and more of Traktor's mapping settings at your fingertips. Thank you to everyone who sent reports and tested mappings on their controllers.

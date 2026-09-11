@@ -9,7 +9,7 @@ A native macOS TSI editor for Traktor Pro. Create, edit, and manage your MIDI co
 ![macOS](https://img.shields.io/badge/macOS-14.0+-blue)
 ![Universal](https://img.shields.io/badge/macOS-universal-green)
 ![License](https://img.shields.io/badge/license-MIT-orange)
-![Version](https://img.shields.io/badge/version-1.1-brightgreen)
+![Version](https://img.shields.io/badge/version-1.1.1-brightgreen)
 
 ## Features
 
@@ -19,7 +19,7 @@ A native macOS TSI editor for Traktor Pro. Create, edit, and manage your MIDI co
 
 - **LED Output Editing** - Configure Controller Range, MIDI Range, Blend and Output Invert for individual OUT mappings or compatible selections. Signed cue states and fractional ranges display as numbers, with explicit Apply and undo. Use Hotcue State conditions to build controller-specific cue-colour rules. See the [LED mapping guide](docs/LED-Output-Mapping.md).
 
-- **Modifier Logic** - Use Traktor's eight modifiers, Hotcue State conditions, Deck Play and Is In Active Loop to choose when mappings activate.
+- **Modifier Logic** - Use Traktor's eight modifiers, Hotcue State conditions, Deck Play, Is In Active Loop and Remix Deck Slot State to choose when mappings activate.
 
 - **Drag & Drop** - Copy mappings between files with simple drag and drop. Open multiple TSI files side by side.
 
@@ -29,13 +29,13 @@ A native macOS TSI editor for Traktor Pro. Create, edit, and manage your MIDI co
 
 - **Native macOS** - Built with SwiftUI for Apple Silicon. Fast, memory efficient, with full dark mode and keyboard shortcut support.
 
-See the [changelog](CHANGELOG.md) for what changed in 1.1.
+See the [changelog](CHANGELOG.md) for what changed in 1.1.1.
 
 ## Installation
 
 ### Download
 
-Download [SuperXtremeMapper_1.1.dmg](https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases/download/v1.1/SuperXtremeMapper_1.1.dmg).
+Download [SuperXtremeMapper_1.1.1.dmg](https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases/download/v1.1.1/SuperXtremeMapper_1.1.1.dmg).
 
 ### Requirements
 
