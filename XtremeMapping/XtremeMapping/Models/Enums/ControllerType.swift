@@ -11,7 +11,7 @@ import Foundation
 ///
 /// TSI files categorize controller inputs by their physical type,
 /// which affects how interaction modes and values are interpreted.
-enum ControllerType: Int, Codable, CaseIterable, Sendable {
+nonisolated enum ControllerType: Int, Codable, CaseIterable, Sendable {
     /// Not yet assigned
     case none = -1
 

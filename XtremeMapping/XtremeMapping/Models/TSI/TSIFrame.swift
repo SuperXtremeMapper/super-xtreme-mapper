@@ -13,7 +13,7 @@ import Foundation
 /// - 4 bytes: Frame identifier (ASCII string, e.g., "DEVI", "CMAS", "CMAI")
 /// - 4 bytes: Frame size (big-endian UInt32)
 /// - N bytes: Frame data (where N = size)
-public struct TSIFrame: Equatable, Sendable {
+nonisolated public struct TSIFrame: Equatable, Sendable {
     /// The 4-character ASCII identifier for this frame (e.g., "DEVI", "CMAS", "CMAI")
     public let identifier: String
 
@@ -81,7 +81,7 @@ public struct TSIFrame: Equatable, Sendable {
 /// Every retained payload copy passes through this type so optional
 /// instrumentation observes the bytes actually copied rather than inferring
 /// them from a parsed frame's declaration.
-struct TSIFrameCursor {
+nonisolated struct TSIFrameCursor {
     private let data: Data
     private let limits: TSIParseLimits
     private let instrumentation: TSIParseInstrumentation?

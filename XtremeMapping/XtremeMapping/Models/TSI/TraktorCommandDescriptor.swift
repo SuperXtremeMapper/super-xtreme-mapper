@@ -6,7 +6,7 @@
 import Foundation
 
 /// A catalog entry together with the evidence available for creating it.
-struct TraktorCommandDescriptor: Identifiable, Hashable, Sendable {
+nonisolated struct TraktorCommandDescriptor: Identifiable, Hashable, Sendable {
     enum Verification: String, Codable, Hashable, Sendable {
         case verifiedTraktor441
         case verifiedTraktor451

@@ -11,7 +11,7 @@ import Foundation
 ///
 /// Commands are organized by functional area to make it easier
 /// to find and assign mappings.
-enum CommandCategory: String, Codable, CaseIterable, Sendable {
+nonisolated enum CommandCategory: String, Codable, CaseIterable, Sendable {
     /// Show all commands
     case all = "All"
 
@@ -41,7 +41,7 @@ enum CommandCategory: String, Codable, CaseIterable, Sendable {
 }
 
 /// Filter for input/output direction in mapping lists.
-enum IODirection: String, Codable, CaseIterable, Sendable {
+nonisolated enum IODirection: String, Codable, CaseIterable, Sendable {
     /// Show all mappings (input and output)
     case all = "All"
 

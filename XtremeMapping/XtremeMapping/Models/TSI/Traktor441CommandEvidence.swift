@@ -9,7 +9,7 @@ import Foundation
 ///
 /// A direction records a locally observed creation capability. It does not
 /// assert that the command is impossible to use in an unobserved direction.
-enum Traktor441CommandEvidence {
+nonisolated enum Traktor441CommandEvidence {
     static let inputOnlyIDs: Set<Int> = Set(
         [60, 64, 232, 246, 255, 256, 258, 266, 267, 268, 326, 349, 362, 363,
          364, 740, 2249, 2253, 2331, 3048, 5129]

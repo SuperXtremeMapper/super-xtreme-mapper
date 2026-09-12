@@ -9,7 +9,7 @@ import Foundation
 
 /// Lookup table for Traktor command IDs to human-readable names.
 /// Based on CMDR TSI Editor: https://github.com/cmdr-editor/cmdr
-enum TraktorCommands {
+nonisolated enum TraktorCommands {
 
     /// Native 4.5.1 evidence establishes Generate Stems and modifier outputs.
     /// CMDR identifies all internal MIDI controls as Global; imported records

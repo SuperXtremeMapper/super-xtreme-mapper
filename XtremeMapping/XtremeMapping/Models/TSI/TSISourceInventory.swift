@@ -11,7 +11,7 @@ import Foundation
 /// frame payloads are retained in the envelope but never guessed to be another
 /// container. Structural validation remains the interpreter's responsibility;
 /// this pass classifies every accepted source structure for write safety.
-enum TSISourceInventory {
+nonisolated enum TSISourceInventory {
     private enum Context {
         case top
         case diom

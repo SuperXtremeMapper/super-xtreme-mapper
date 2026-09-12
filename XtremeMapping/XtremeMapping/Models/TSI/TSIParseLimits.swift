@@ -6,7 +6,7 @@
 import Foundation
 
 /// Resource limits applied to untrusted TSI XML and binary controller data.
-public struct TSIParseLimits: Equatable, Sendable {
+nonisolated public struct TSIParseLimits: Equatable, Sendable {
     public var maximumXMLBytes: Int
     public var maximumBase64AttributeCharacters: Int
     public var maximumDecodedControllerBytes: Int
@@ -49,7 +49,7 @@ public struct TSIParseLimits: Equatable, Sendable {
 }
 
 /// Exact parser work counters used by the scaling regression.
-public final class TSIParseInstrumentation: @unchecked Sendable {
+nonisolated public final class TSIParseInstrumentation: @unchecked Sendable {
     public struct Snapshot: Equatable, Sendable {
         public let parsedFrameCount: Int
         public let frameHeaderBytesRead: Int
@@ -103,7 +103,7 @@ public final class TSIParseInstrumentation: @unchecked Sendable {
 }
 
 /// Mutable document-wide frame budget shared by every nested container walk.
-final class TSIParseBudget {
+nonisolated final class TSIParseBudget {
     let limits: TSIParseLimits
     let instrumentation: TSIParseInstrumentation?
     private(set) var cumulativeFrameCount: Int

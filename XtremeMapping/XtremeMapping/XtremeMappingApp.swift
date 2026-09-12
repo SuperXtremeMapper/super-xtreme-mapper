@@ -112,6 +112,7 @@ struct XtremeMappingApp: App {
         // Document windows for TSI files
         DocumentGroup(newDocument: { TraktorMappingDocument() }) { file in
             ContentView(document: file.document, fileURL: file.fileURL)
+                .focusedSceneValue(\.jsonExportAvailable, true)
                 .focusedValue(
                     \.tsiLossyExportAvailable,
                     !file.document.lossyExportRisks.isEmpty
@@ -143,6 +144,7 @@ struct XtremeMappingApp: App {
         .defaultSize(width: 1200, height: 700)
         .commands {
             EditCommands()
+            JSONImportExportCommands()
 
             // Availability comes from focused document state. Consulting
             // NSDocumentController here re-enters SwiftUI while it constructs

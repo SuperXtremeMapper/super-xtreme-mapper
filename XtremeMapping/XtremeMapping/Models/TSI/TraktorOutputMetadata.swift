@@ -3,7 +3,7 @@ import Foundation
 /// Command value domains, independent of the receiving controller's colours.
 /// Hotcue and continuous representations are evidenced by NI's bundled
 /// Maschine templates; Boolean outputs by the native Traktor 4.5.1 fixture.
-enum TraktorOutputMetadata {
+nonisolated enum TraktorOutputMetadata {
     enum Domain: Equatable, Sendable {
         case boolean, hotcue, modifier, continuous
 

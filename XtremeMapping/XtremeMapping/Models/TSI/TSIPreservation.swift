@@ -6,7 +6,7 @@
 import Foundation
 
 /// A semantic import snapshot that cannot recursively retain another source envelope.
-struct TSISemanticBaseline: Equatable, Sendable {
+nonisolated struct TSISemanticBaseline: Equatable, Sendable {
     let devices: [Device]
     let version: Int
 
@@ -21,7 +21,7 @@ struct TSISemanticBaseline: Equatable, Sendable {
 }
 
 /// Exact document-boundary source state retained for loss-aware writes.
-struct TSIRawEnvelope: Equatable, Sendable {
+nonisolated struct TSIRawEnvelope: Equatable, Sendable {
     let originalXML: Data
     let controllerValues: [String]
     let primaryFrames: [TSIFrame]

@@ -10,7 +10,7 @@ import os
 
 /// CMAI MidiNoteBindingId values with special meaning, shared by
 /// TSIWriter and TSIInterpreter.
-enum TSIBindingID {
+nonisolated enum TSIBindingID {
     /// "No MIDI assignment" sentinel — mirrors the −1 convention DCDT
     /// already uses for an unassigned ControlId (TSI-File-Format.md).
     /// A mapping carrying this ID gets no DCDT or DCBM entry.
@@ -22,7 +22,7 @@ enum TSIBindingID {
 /// Surfacing these instead of returning partial results prevents a corrupt
 /// file from silently opening as an empty/partial document that a later save
 /// would then overwrite.
-enum TSIInterpreterError: Error, Equatable, LocalizedError {
+nonisolated enum TSIInterpreterError: Error, Equatable, LocalizedError {
     /// The DEVS container is too small to hold its 4-byte device count.
     case malformedDevicesContainer
     /// The DEVS count prefix disagrees with the number of parsed DEVI frames.
@@ -142,7 +142,7 @@ enum TSIInterpreterError: Error, Equatable, LocalizedError {
 ///                 └── DCBM (MIDI note binding list, 4-byte count prefix)
 ///                     └── DCBM × N (binding id → MIDI note string)
 /// ```
-struct TSIInterpreter {
+nonisolated struct TSIInterpreter {
 
     private static let logger = Logger(subsystem: "com.sxm.app", category: "TSIInterpreter")
 

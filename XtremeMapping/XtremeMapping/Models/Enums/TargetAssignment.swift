@@ -11,7 +11,7 @@ import Foundation
 ///
 /// Mappings can be assigned to specific decks, FX units, or global functions.
 /// Device Target (-1) uses the device's default assignment.
-enum TargetAssignment: Int, Codable, CaseIterable, Sendable {
+nonisolated enum TargetAssignment: Int, Codable, CaseIterable, Sendable {
     /// Not yet assigned
     case none = -2
 

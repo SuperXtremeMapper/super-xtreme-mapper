@@ -1,7 +1,7 @@
 import Foundation
 
 /// CMDR LoopSize enum for Loop Size Selector (2196). See diagnostics evidence.
-enum TraktorLoopValueMetadata {
+nonisolated enum TraktorLoopValueMetadata {
     struct Choice: Identifiable, Equatable {
         let value: Float
         let label: String

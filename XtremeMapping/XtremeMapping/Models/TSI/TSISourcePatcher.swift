@@ -3,7 +3,7 @@ import Foundation
 /// A deliberately narrow edit path: existing row comments and row order only.
 /// Unknown bytes are copied, never interpreted or regenerated. Unsupported
 /// source layouts fall back to the writer's existing preservation refusal.
-struct TSISourcePatcher {
+nonisolated struct TSISourcePatcher {
     private enum Unsupported: Error { case source }
     private let parser = TSIParser()
     private let writer = TSIWriter()

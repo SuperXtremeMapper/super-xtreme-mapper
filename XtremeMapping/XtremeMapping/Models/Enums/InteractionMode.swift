@@ -13,7 +13,7 @@ import Foundation
 /// - For buttons: toggle, hold, or trigger behaviors
 /// - For faders/knobs: direct mapping or relative adjustment
 /// - For outputs: how values are sent to controller LEDs
-enum InteractionMode: Int, Codable, CaseIterable, Sendable {
+nonisolated enum InteractionMode: Int, Codable, CaseIterable, Sendable {
     /// Not yet assigned
     case none = -1
 

@@ -10,7 +10,7 @@ import Foundation
 /// Marks device identity that originated at the TSI wire boundary. Imported
 /// names and ports are valid wire values even when they are proprietary or
 /// empty, so ordinary regeneration must not apply new-device defaults to them.
-struct ImportedDeviceIdentity: Codable, Sendable, Equatable {
+nonisolated struct ImportedDeviceIdentity: Codable, Sendable, Equatable {
     let name: String
     let inPort: String
     let outPort: String
@@ -20,7 +20,7 @@ struct ImportedDeviceIdentity: Codable, Sendable, Equatable {
 ///
 /// A device groups related mappings together and specifies the MIDI ports
 /// used for communication with the physical controller.
-struct Device: Identifiable, Codable, Sendable, Equatable {
+nonisolated struct Device: Identifiable, Codable, Sendable, Equatable {
     /// Unique identifier for this device
     let id: UUID
 

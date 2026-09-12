@@ -12,7 +12,7 @@ import os
 ///
 /// A mapping entry connects a MIDI control (note or CC) to a Traktor command,
 /// with optional modifier conditions and assignment targets.
-struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
+nonisolated struct MappingEntry: Codable, Identifiable, Hashable, Sendable, Equatable {
 
     nonisolated fileprivate static let logger = Logger(subsystem: "com.sxm.app", category: "MappingEntry")
 
@@ -468,7 +468,7 @@ struct MappingEntry: Identifiable, Hashable, Sendable, Equatable {
 
 // MARK: - Nonisolated Codable Conformance
 
-extension MappingEntry: Codable {
+extension MappingEntry {
     nonisolated init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(UUID.self, forKey: .id)
@@ -684,7 +684,7 @@ extension MappingEntry: Codable {
 ///
 /// Traktor uses the same 0...3 deck numbering as ordinary deck assignments.
 /// Values outside that known range remain lossless but intentionally opaque.
-enum ModifierConditionTarget: Hashable, Sendable, Equatable {
+nonisolated enum ModifierConditionTarget: Codable, Hashable, Sendable, Equatable {
     case deckA
     case deckB
     case deckC
@@ -715,7 +715,7 @@ enum ModifierConditionTarget: Hashable, Sendable, Equatable {
     }
 }
 
-extension ModifierConditionTarget: Codable {
+extension ModifierConditionTarget {
     nonisolated init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         self.init(rawValue: try container.decode(UInt32.self))
@@ -731,7 +731,7 @@ extension ModifierConditionTarget: Codable {
 ///
 /// Traktor supports 8 modifiers (M1-M8), each with values 0-7.
 /// A mapping can require specific modifier values to be active.
-struct ModifierCondition: Hashable, Sendable, Equatable {
+nonisolated struct ModifierCondition: Codable, Hashable, Sendable, Equatable {
     /// M1–M8 UI numbers, a known software-state ID, or an opaque native ID.
     var modifier: Int
 
@@ -763,7 +763,7 @@ struct ModifierCondition: Hashable, Sendable, Equatable {
 
 // MARK: - Nonisolated Codable Conformance for ModifierCondition
 
-extension ModifierCondition: Codable {
+extension ModifierCondition {
     nonisolated init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         modifier = try container.decode(Int.self, forKey: .modifier)

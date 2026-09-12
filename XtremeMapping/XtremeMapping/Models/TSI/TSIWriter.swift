@@ -8,7 +8,7 @@
 import Foundation
 import os
 
-enum TSIWriterError: Error, Equatable, Sendable, LocalizedError {
+nonisolated enum TSIWriterError: Error, Equatable, Sendable, LocalizedError {
     case invalidCommandID(Int)
     case invalidDeviceName
     case incompatibleImportedInteraction(
@@ -40,7 +40,7 @@ enum TSIWriterError: Error, Equatable, Sendable, LocalizedError {
 /// Writer for TSI (Traktor Settings Interface) files.
 ///
 /// Converts in-memory TSI data structures back to the TSI file format.
-public struct TSIWriter: Sendable {
+nonisolated public struct TSIWriter: Sendable {
 
     private enum OutputMode: Equatable {
         case preservingImported

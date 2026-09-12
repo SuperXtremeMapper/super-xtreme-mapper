@@ -8,7 +8,7 @@
 import Foundation
 
 /// Errors that can occur during TSI file parsing
-public enum TSIParserError: Error, Equatable, Sendable, LocalizedError {
+nonisolated public enum TSIParserError: Error, Equatable, Sendable, LocalizedError {
     /// The binary data ended unexpectedly while parsing
     case unexpectedEndOfData
 
@@ -109,7 +109,7 @@ public enum TSIParserError: Error, Equatable, Sendable, LocalizedError {
 ///
 /// TSI files are XML documents containing Base64-encoded binary data.
 /// The binary data uses an ID3v2-like frame format for storing controller mappings.
-public struct TSIParser: Sendable {
+nonisolated public struct TSIParser: Sendable {
     public let limits: TSIParseLimits
     public let instrumentation: TSIParseInstrumentation?
 

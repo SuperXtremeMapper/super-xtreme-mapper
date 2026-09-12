@@ -38,7 +38,7 @@ struct CommandItem: Identifiable {
 /// Hierarchical organization of Traktor commands for menu display.
 enum CommandHierarchy {
 
-    static func flatten(_ categories: [CommandCategory2]) -> [TraktorCommandDescriptor] {
+    nonisolated static func flatten(_ categories: [CommandCategory2]) -> [TraktorCommandDescriptor] {
         categories.flatMap { category in
             let nested = category.subcategories.map(flatten) ?? []
             let direct = category.commands?.map(\.descriptor) ?? []

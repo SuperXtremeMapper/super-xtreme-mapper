@@ -1,0 +1,49 @@
+{
+  "devices" : [
+    {
+      "comment" : "",
+      "id" : "ADFF2062-172C-42E1-A79A-C3BADF17BAB3",
+      "inPort" : "",
+      "mappingFileRevision" : 2,
+      "mappings" : [
+        {
+          "assignment" : "deckA",
+          "autoRepeat" : false,
+          "commandID" : 100,
+          "commandName" : "Play/Pause",
+          "comment" : "",
+          "controllerType" : "button",
+          "encoderMode" : "mode7Fh01h",
+          "id" : "3CFBB18E-EB42-4535-9AB6-A7629EE46428",
+          "interactionMode" : "hold",
+          "invert" : false,
+          "ioType" : "input",
+          "ledBlend" : false,
+          "ledInvert" : false,
+          "ledMaxMidi" : 127,
+          "ledMaxRangeData" : 1,
+          "ledMaxRangeType" : 1,
+          "ledMinMidi" : 0,
+          "ledMinRangeData" : 0,
+          "ledMinRangeType" : 1,
+          "midi" : {
+            "channel" : 1,
+            "kind" : "controlChange",
+            "number" : 12
+          },
+          "resolution" : 1,
+          "rotaryAcceleration" : 0,
+          "rotarySensitivity" : 5,
+          "setToValue" : 0,
+          "softTakeover" : false
+        }
+      ],
+      "name" : "New",
+      "outPort" : "",
+      "tsiVersion" : "3.11.0"
+    }
+  ],
+  "format" : "sxm-mapping",
+  "schemaVersion" : 1,
+  "tsiVersion" : 0
+}

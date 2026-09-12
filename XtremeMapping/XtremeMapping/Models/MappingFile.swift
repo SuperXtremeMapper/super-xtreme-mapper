@@ -12,7 +12,7 @@ import Foundation
 /// A mapping file contains one or more devices, each with their own
 /// collection of MIDI mappings. The version number indicates the
 /// TSI format version.
-struct MappingFile: Codable, Sendable, Equatable {
+nonisolated struct MappingFile: Codable, Sendable, Equatable {
     /// The devices defined in this mapping file
     var devices: [Device]
 
@@ -22,6 +22,9 @@ struct MappingFile: Codable, Sendable, Equatable {
     /// Exact import-only source state. It is intentionally excluded from
     /// clipboard Codable payloads and semantic model equality.
     var sourceEnvelope: TSIRawEnvelope?
+
+    /// JSON-only profile annotations. TSI and clipboard serialization remain independent.
+    var interchangeMetadata: SXMJSONMetadata? = nil
 
     /// All mappings from all devices, flattened into a single array.
     ///

@@ -6,7 +6,7 @@
 import Foundation
 
 /// Bounded information retained from the TSI XML wrapper.
-public struct TSIXMLScanResult: Equatable, Sendable {
+nonisolated public struct TSIXMLScanResult: Equatable, Sendable {
     /// Controller `Value` attributes retained in document order.
     public let controllerValues: [String]
 
@@ -26,7 +26,7 @@ public struct TSIXMLScanResult: Equatable, Sendable {
     public let elementCount: Int
 }
 
-enum TSIXMLScanner {
+nonisolated enum TSIXMLScanner {
     private static let controllerEntryName = "DeviceIO.Config.Controller"
 
     static func scan(_ data: Data, limits: TSIParseLimits) throws -> TSIXMLScanResult {

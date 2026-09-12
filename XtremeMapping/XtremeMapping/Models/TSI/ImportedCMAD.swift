@@ -13,7 +13,7 @@ import Foundation
 /// negative zero and NaN payloads never collapse during change detection.
 /// Modifier fingerprints include their modeled native targets, including
 /// opaque raw values, so target-only edits are detected without inference.
-struct ImportedCMAD: Codable, Hashable, Sendable {
+nonisolated struct ImportedCMAD: Codable, Hashable, Sendable {
     struct SemanticFingerprint: Codable, Hashable, Sendable {
         let commandID: Int
         let ioType: IODirection

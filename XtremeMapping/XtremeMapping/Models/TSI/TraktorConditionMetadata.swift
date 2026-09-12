@@ -4,7 +4,7 @@ import Foundation
 /// identifier/value fields retain their native representation for compatibility.
 /// Deck Play, Is In Active Loop and Hotcue states were captured in Traktor
 /// 4.5.1 build 21; see the native condition fixtures and issue 1 diagnostic.
-enum TraktorConditionMetadata {
+nonisolated enum TraktorConditionMetadata {
     struct Value: Identifiable, Equatable {
         let rawValue: Int
         let label: String

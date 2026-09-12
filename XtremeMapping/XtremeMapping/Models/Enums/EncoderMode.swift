@@ -11,7 +11,7 @@ import Foundation
 ///
 /// Different encoder hardware uses different protocols to communicate
 /// relative movement. This setting must match the physical encoder's output.
-enum EncoderMode: Int, Codable, CaseIterable, Sendable {
+nonisolated enum EncoderMode: Int, Codable, CaseIterable, Sendable {
     /// 7Fh/01h mode: 127 for decrement, 1 for increment
     /// Most common mode for DJ controllers
     case mode7Fh01h = 0
