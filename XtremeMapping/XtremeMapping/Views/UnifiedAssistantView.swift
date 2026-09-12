@@ -97,7 +97,7 @@ struct UnifiedAssistantView: View {
     private var header: some View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
-                V2SectionHeader(title: " ASSISTANT")
+                V2SectionHeader(title: "ASSISTANT")
                 Text(document.backingDocument?.displayName ?? document.fileURL?.lastPathComponent ?? "Untitled mapping")
                     .font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone400)
                     .lineLimit(1).truncationMode(.middle)
@@ -118,18 +118,18 @@ struct UnifiedAssistantView: View {
     private var connectionSettings: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Text("AI CONNECTION").font(AppThemeV2.Typography.sectionHeader)
+                AssistantSectionLabel("AI CONNECTION")
                 Spacer()
                 Button("Done") { showConnection = false }
             }
             Text("Send shares your request, recent conversation, relevant mappings and captured MIDI with Anthropic. API charges may apply. Original TSI preservation data and full manuals are excluded.")
                 .foregroundStyle(AppThemeV2.Colors.stone400).fixedSize(horizontal: false, vertical: true)
             HStack(spacing: 12) {
-                Toggle("Enable AI for this session", isOn: $consent).toggleStyle(.checkbox)
+                V2Toggle(isOn: $consent, label: "Enable AI for this session")
                 Spacer(minLength: 0)
-                Picker("Model", selection: $modelID) {
-                    ForEach(MappingAssistantModel.allCases, id: \.rawValue) { Text($0.label).tag($0.rawValue) }
-                }.frame(width: 195)
+                V2Dropdown(options: MappingAssistantModel.allCases.map(\.rawValue), selection: $modelID,
+                           labelFor: { MappingAssistantModel(rawValue: $0)?.label ?? $0 })
+                    .frame(width: 195)
                 Button("API key…") { sheet = .keys }.disabled(credentials.isLoading)
             }
             if credentials.isLoading {
@@ -138,7 +138,7 @@ struct UnifiedAssistantView: View {
                 Label("Add your Anthropic API key to enable Send.", systemImage: "key")
                     .foregroundStyle(AppThemeV2.Colors.warning)
             }
-        }.padding(16).background(AppThemeV2.Colors.stone800.opacity(0.45))
+        }.padding(16).background(AppThemeV2.Colors.stone800)
     }
 
     private var conversationArea: some View {
@@ -171,7 +171,7 @@ struct UnifiedAssistantView: View {
     private var emptyConversation: some View {
         VStack(alignment: .leading, spacing: 16) {
             VStack(alignment: .leading, spacing: 6) {
-                Text("Your mapping, explained.").font(.system(size: 16, weight: .semibold))
+                Text("Your mapping, explained.").font(AppThemeV2.Typography.display)
                 Text("Ask a question or describe an edit. Every proposed change is reviewed before it is applied.")
                     .foregroundStyle(AppThemeV2.Colors.stone400).fixedSize(horizontal: false, vertical: true)
             }
@@ -188,7 +188,8 @@ struct UnifiedAssistantView: View {
     private func promptButton(_ text: String, icon: String, usesSelection: Bool = false) -> some View {
         Button { question = text; includeSelection = usesSelection; composerFocused = true } label: {
             Label(text, systemImage: icon).frame(maxWidth: .infinity, alignment: .leading)
-        }.frame(maxWidth: 370).disabled(usesSelection && selectedIDs.isEmpty)
+        }.buttonStyle(AssistantButtonStyle(uppercase: false))
+            .frame(maxWidth: 370).disabled(usesSelection && selectedIDs.isEmpty)
     }
 
     private func messageView(_ message: AssistantConversationMessage) -> some View {
@@ -215,7 +216,7 @@ struct UnifiedAssistantView: View {
                 answerClaims("Facts", answer.facts, revision: message.revision)
                 answerClaims("Interpretations", answer.interpretations, revision: message.revision)
                 if !answer.unknowns.isEmpty {
-                    Text("Limitations").font(AppThemeV2.Typography.sectionHeader)
+                    AssistantSectionLabel("Limitations")
                     ForEach(Array(answer.unknowns.enumerated()), id: \.offset) { _, value in
                         Text(verbatim: value).foregroundStyle(AppThemeV2.Colors.stone400)
                     }
@@ -232,8 +233,7 @@ struct UnifiedAssistantView: View {
         VStack(alignment: .leading, spacing: 10) {
             if isBuilding { ProgressView("Reading mapping…").controlSize(.small) }
             if let error = errorMessage ?? conversation.errorMessage ?? input.errorMessage {
-                Label { Text(verbatim: error) } icon: { Image(systemName: "exclamationmark.triangle") }
-                    .foregroundStyle(AppThemeV2.Colors.danger).fixedSize(horizontal: false, vertical: true)
+                AssistantNoticeBanner(kind: .danger, text: error)
             }
             DisclosureGroup(isExpanded: $showMIDI) {
                 captureControls.padding(.top, 8)
@@ -256,12 +256,12 @@ struct UnifiedAssistantView: View {
                 if expanded { showConnection = false } else { input.stopMIDI() }
             }
             if !selectedIDs.isEmpty {
-                Toggle("Use \(selectedIDs.count) selected mappings", isOn: $includeSelection).toggleStyle(.checkbox)
+                V2Toggle(isOn: $includeSelection, label: "Use \(selectedIDs.count) selected mappings")
             }
             TextField("Ask a question or describe a change…", text: $question, axis: .vertical)
                 .textFieldStyle(.plain).lineLimit(2...5).focused($composerFocused)
-                .padding(10).background(AppThemeV2.Colors.stone950, in: RoundedRectangle(cornerRadius: 6))
-                .overlay(RoundedRectangle(cornerRadius: 6).stroke(composerFocused ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone600, lineWidth: 1))
+                .padding(10).background(AppThemeV2.Colors.stone950, in: RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm))
+                .overlay(RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm).stroke(composerFocused ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone600, lineWidth: 1))
                 .accessibilityLabel("Message to Assistant")
             HStack(spacing: 10) {
                 Toggle(isOn: Binding(get: { input.voiceEnabled }, set: { input.setVoiceEnabled($0) })) {
@@ -281,13 +281,13 @@ struct UnifiedAssistantView: View {
                     .fixedSize(horizontal: false, vertical: true)
                 Spacer(minLength: 4)
                 if !consent || !credentials.hasKey {
-                    Button("Set up AI to chat") { showConnection = true }.buttonStyle(.link).fixedSize()
+                    Button("Set up AI to chat") { showConnection = true }.buttonStyle(AssistantLinkButtonStyle()).fixedSize()
                 }
             }.font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone400)
             if question.count > 4_000 || question.utf8.count > 16 * 1024 {
                 Text("Keep requests within 4000 characters and 16 KiB of text.").foregroundStyle(AppThemeV2.Colors.danger)
             }
-        }.padding(16).background(AppThemeV2.Colors.stone800.opacity(0.5))
+        }.padding(16).background(AppThemeV2.Colors.stone800)
     }
 
     private var captureControls: some View {
@@ -309,10 +309,13 @@ struct UnifiedAssistantView: View {
                 Button(input.isLearning ? "Cancel MIDI capture" : "Learn a control") {
                     if input.isLearning { input.stopMIDI() } else { input.learnControl() }
                 }.disabled(conversation.isWorking || destinationID == nil || isLocked)
-                Picker("Destination", selection: $destinationID) {
-                    Text("Choose device…").tag(Optional<UUID>.none)
-                    ForEach(document.mappingFile.devices) { Text($0.name).tag(Optional($0.id)) }
-                }.frame(maxWidth: 310)
+                V2Dropdown(options: [Optional<UUID>.none] + document.mappingFile.devices.map { Optional($0.id) },
+                           selection: $destinationID,
+                           labelFor: { id in
+                               guard let id else { return "Choose device…" }
+                               return document.mappingFile.devices.first(where: { $0.id == id })?.name ?? "Device"
+                           })
+                    .frame(maxWidth: 310)
                 if let midi = input.capturedMIDI {
                     Text((try? midi.model().displayName) ?? "Captured MIDI").monospaced()
                     Button("Clear") { input.clearCapture() }
@@ -324,12 +327,12 @@ struct UnifiedAssistantView: View {
 
     private func answerClaims(_ heading: String, _ claims: [MappingAssistantAnswer.Claim], revision: String) -> some View {
         VStack(alignment: .leading, spacing: 5) {
-            if !claims.isEmpty { Text(heading).font(AppThemeV2.Typography.sectionHeader) }
+            if !claims.isEmpty { AssistantSectionLabel(heading) }
             ForEach(Array(claims.enumerated()), id: \.offset) { _, claim in
                 Text(verbatim: claim.text)
                 if !claim.rowIDs.isEmpty {
                     Button("Show \(claim.rowIDs.count) source rows") { show(Set(claim.rowIDs)) }
-                        .buttonStyle(.link).disabled(revision != document.explanationRevision)
+                        .buttonStyle(AssistantLinkButtonStyle()).disabled(revision != document.explanationRevision)
                 }
             }
         }
@@ -337,21 +340,21 @@ struct UnifiedAssistantView: View {
 
     private func localResults(_ context: ExplanationContext) -> some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("Source rows · \(context.rows.count) of \(context.totalRows)").font(AppThemeV2.Typography.display)
+            AssistantSectionLabel("Source rows · \(context.rows.count) of \(context.totalRows)")
             ForEach(Array(context.limitations.enumerated()), id: \.offset) { _, value in
                 Text(verbatim: value).font(.caption).foregroundStyle(AppThemeV2.Colors.stone400)
             }
             if context.rows.isEmpty { Text("No matching rows. Try a command, MIDI address, device name or modifier number.") }
             ForEach(context.rows) { row in
-                Button("\(row.deviceName) · row \(row.position) · \(row.command) · \(row.midi)") { show([row.id]) }.buttonStyle(.link)
+                Button("\(row.deviceName) · row \(row.position) · \(row.command) · \(row.midi)") { show([row.id]) }.buttonStyle(AssistantLinkButtonStyle())
             }
         }
     }
 
     private func review(_ plan: AssistantEditPlan) -> some View {
         VStack(alignment: .leading, spacing: 10) {
-            Divider()
-            Text("Review proposed changes").font(AppThemeV2.Typography.display)
+            V2Divider()
+            AssistantSectionLabel("Review proposed changes")
             Text("\(plan.changes.count) affected rows · not applied").foregroundStyle(AppThemeV2.Colors.stone400)
             ForEach(plan.changes) { change in
                 VStack(alignment: .leading, spacing: 4) {
@@ -363,7 +366,7 @@ struct UnifiedAssistantView: View {
                 }
             }
             ForEach(Array(plan.warnings.enumerated()), id: \.offset) { _, warning in
-                Text(verbatim: warning).foregroundStyle(AppThemeV2.Colors.warning)
+                AssistantNoticeBanner(kind: .warning, text: warning)
             }
             HStack {
                 Button("Apply changes") {
@@ -373,7 +376,9 @@ struct UnifiedAssistantView: View {
                 Button("Discard proposal") { conversation.discardProposal() }
                 Text("One Undo step").font(.caption).foregroundStyle(AppThemeV2.Colors.stone400)
             }
-        }.padding(12).background(AppThemeV2.Colors.stone800, in: RoundedRectangle(cornerRadius: 8))
+        }.padding(12)
+            .background(AppThemeV2.Colors.stone800, in: RoundedRectangle(cornerRadius: AppThemeV2.Radius.lg))
+            .overlay(RoundedRectangle(cornerRadius: AppThemeV2.Radius.lg).stroke(AppThemeV2.Colors.stone700, lineWidth: 1))
     }
     private func show(_ ids: Set<UUID>) {
         let valid = ids.intersection(Set(document.mappingFile.allMappings.map(\.id)))
