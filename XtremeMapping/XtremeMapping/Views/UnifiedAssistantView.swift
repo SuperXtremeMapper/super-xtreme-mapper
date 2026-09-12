@@ -204,7 +204,7 @@ struct UnifiedAssistantView: View {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Assistant").font(AppThemeV2.Typography.micro).tracking(0.5)
                     .foregroundStyle(AppThemeV2.Colors.stone500)
-                Text("I can explain your mapping or change it for you. Ask a question, or describe an edit — you'll see each change and approve it before anything is applied.")
+                Text("Use this window to chat with your TSI file and controller. Ask questions about how it works, tell it what you want to change, or interact in any way with your Traktor commands and it (should) update automatically! Give it a shot — ask what a button or knob does, or which button or knob does something you want to try.")
                     .lineSpacing(3)
             }
             .padding(12)
@@ -274,8 +274,13 @@ struct UnifiedAssistantView: View {
             if let error = errorMessage ?? conversation.errorMessage ?? input.errorMessage {
                 AssistantNoticeBanner(kind: .danger, text: error)
             }
-            // Message box with the mic and send as circular icons inside it.
+            // Message box with the mic and send as circular icons on the right.
             HStack(alignment: .bottom, spacing: 8) {
+                TextField("Ask a question or describe a change…", text: $question, axis: .vertical)
+                    .textFieldStyle(.plain).lineLimit(1...5).focused($composerFocused)
+                    .frame(minHeight: 28)
+                    .accessibilityLabel("Message to Assistant")
+
                 composerCircleButton(
                     systemName: input.voiceEnabled ? "mic.fill" : "mic",
                     active: input.voiceEnabled,
@@ -284,11 +289,6 @@ struct UnifiedAssistantView: View {
                 )
                 .help("Dictate your message. Tap again to stop.")
                 .accessibilityLabel(input.voiceEnabled ? "Stop voice dictation" : "Start voice dictation")
-
-                TextField("Ask a question or describe a change…", text: $question, axis: .vertical)
-                    .textFieldStyle(.plain).lineLimit(1...5).focused($composerFocused)
-                    .frame(minHeight: 28)
-                    .accessibilityLabel("Message to Assistant")
 
                 composerCircleButton(
                     systemName: "arrow.up",
@@ -303,6 +303,12 @@ struct UnifiedAssistantView: View {
             .padding(8)
             .background(AppThemeV2.Colors.stone950, in: RoundedRectangle(cornerRadius: AppThemeV2.Radius.lg))
             .overlay(RoundedRectangle(cornerRadius: AppThemeV2.Radius.lg).stroke(composerFocused ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone600, lineWidth: 1))
+
+            if !consent || !credentials.hasKey {
+                Text("Set up AI (gear, top-right) to send messages.")
+                    .font(AppThemeV2.Typography.caption)
+                    .foregroundStyle(AppThemeV2.Colors.stone500)
+            }
 
             if question.count > 4_000 || question.utf8.count > 16 * 1024 {
                 Text("Keep requests within 4000 characters and 16 KiB of text.")
