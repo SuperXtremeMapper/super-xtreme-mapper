@@ -1,0 +1,25 @@
+{
+  "manufacturer": "Allen & Heath",
+  "model": "xone-k2",
+  "hardwareVerificationRequired": false,
+  "hardwareTested": false,
+  "retrievedOn": "2026-09-12",
+  "verification": "manufacturer-documented",
+  "sources": [
+    {
+      "file": "sources/XoneK2_UG_AP8509_3.pdf",
+      "url": "https://www.allen-heath.com/content/uploads/2023/06/XoneK2_UG_AP8509_3.pdf",
+      "documentRevision": "AP8509 issue 3",
+      "pageCount": 30,
+      "visuallyReviewedPages": [
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "sha256": "de0621425801bdb47eea6deee8efa1bfd883244fe9dcc6b53c7be532975daf74"
+    }
+  ]
+}

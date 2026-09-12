@@ -1,0 +1,60 @@
+{
+  "manufacturer": "Allen & Heath",
+  "model": "Xone:K3",
+  "hardwareVerificationRequired": false,
+  "hardwareTested": false,
+  "verification": "manufacturer-documented",
+  "retrievedOn": "2026-09-12",
+  "profileScope": "factory map plus separately identified custom-map settings",
+  "sources": [
+    {
+      "file": "sources/midi-send-01.png",
+      "url": "https://support.allen-heath.com/hc/article_attachments/39744783045009",
+      "kind": "original-manufacturer-diagram",
+      "visuallyReviewed": true,
+      "sha256": "e2452be93d0e051c9284b93e301a0dc367f86b392970d8b1dd330012e2d23452"
+    },
+    {
+      "file": "sources/midi-send-02.png",
+      "url": "https://support.allen-heath.com/hc/article_attachments/39744774054673",
+      "kind": "original-manufacturer-diagram",
+      "visuallyReviewed": true,
+      "sha256": "18a57feef6066c629497f2893957dcc144dd3f5086509c966d13a4cb4cff8c23"
+    },
+    {
+      "file": "sources/midi-send-03.png",
+      "url": "https://support.allen-heath.com/hc/article_attachments/39744783047313",
+      "kind": "original-manufacturer-diagram",
+      "visuallyReviewed": true,
+      "sha256": "1773b61c516ffaaf04c10cb3861df8e665b39f2640247beebdea41e07042879b"
+    },
+    {
+      "file": "sources/midi-return-02.png",
+      "url": "https://support.allen-heath.com/hc/article_attachments/39744783050257",
+      "kind": "original-manufacturer-diagram",
+      "visuallyReviewed": true,
+      "sha256": "6be4be59d476a7aa6ad8537b9ff5706691e0d7b6b2e58b9a6d0ccf4055fd59a9"
+    },
+    {
+      "file": "sources/midi-return-01.png",
+      "url": "https://support.allen-heath.com/hc/article_attachments/39744774056977",
+      "kind": "original-manufacturer-diagram",
+      "visuallyReviewed": true,
+      "sha256": "5a7c35b314e88926e75ab68da14dc4f6df1c6d3ed399b04fb0228bc15f37bd03"
+    },
+    {
+      "file": "sources/Xone-K3-User-Guide.txt",
+      "url": "https://support.allen-heath.com/hc/en-gb/articles/39744774067985-Xone-K3-User-Guide",
+      "kind": "retrieved-web-text",
+      "sourceUpdatedOn": "2026-06-23",
+      "sha256": "ec9bac9ca3c9da8764b5aef5c0f31649e3a5e57e66dc817f340b0b7966f3b905"
+    },
+    {
+      "file": "sources/Xone-Controller-Editor-Help.txt",
+      "url": "https://support.allen-heath.com/hc/en-gb/articles/39744832920081-Xone-Controller-Editor-Help",
+      "kind": "retrieved-web-text",
+      "sourceUpdatedOn": null,
+      "sha256": "4d76f6a1d82c0db795af99b1d62f8c7675d3b538aec0ce3aeb22d645d4307fa1"
+    }
+  ]
+}

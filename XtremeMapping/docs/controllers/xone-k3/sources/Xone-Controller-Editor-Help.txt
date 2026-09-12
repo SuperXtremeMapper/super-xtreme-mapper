@@ -1,0 +1,550 @@
+Retrieved text snapshot, not an original PDF or HTML file.
+Source: https://support.allen-heath.com/hc/en-gb/articles/39744832920081-Xone-Controller-Editor-Help
+Retrieved: 2026-09-12
+See separately archived MIDI diagram PNGs.
+
+Skip to main content
+[Button: ] Submit a request
+English (United Kingdom)
+
+Sign in
+# HELP CENTRE
+## Search
+
+[Input][Input: Search]
+
+Submit a Request
+Contents
+
+Table of Contents
+
+Articles in this section
+  * MIDI CONVERSION TABLE   * Xone Controller Editor Help   * Can’t record on Mac from Xone USB   * Xone & PD series master level settings   * Xone. What fader knobs to order for spares   * Xone. Custom MIDI Map Overlays   * Xone. Phono Shorting Plugs   * Xone. Mixers picking up induction loop signals   * Xone - Replacement Ground Terminal Screw/Nut   * Xone. X:Link Blanking Plugs # Xone Controller Editor Help
+
+Print to PDF
+
+  * 06 January 2026 14:32
+  * Updated
+
+# INTRODUCTION
+
+Welcome to the Xone Controller Editor application, the software editor for your Xone:K3 MIDI controller. This article will guide you through installing the application and configuring the Xone:K3's controls and settings.
+
+Image
+
+
+* * *
+
+# INSTALLATION
+## macOS:
+  1. Download the .dmg file for the application.
+  2. Locate the .dmg file: The file is usually found in your Downloads folder.
+  3. Double-click the .dmg file to mount and open the installer.
+  4. A new window will appear displaying the application's icon, alongside a shortcut to your Applications folder or on your desktop. Drag the application's icon from this window into the Applications folder.
+  5. Wait for the Copy Process: The system will copy the application to your Applications folder.
+  6. Once the copy is complete, close the window and then click the eject button next to the mounted disk image's name in the Finder sidebar to unmount it, or right-click on the desktop installer icon and select ‘EJECT…’
+  7. The application is now installed and ready to use.
+## PC:
+  1. Download the latest Windows version of the editor.
+  2. Double-click on the Xone Controller Editor Installer application to begin.
+  3. Accept the License agreement and click Next.
+  4. A series of messages will be displayed…
+  5. Tick the ‘Create a desktop shortcut’ checkbox to provide quick access to launch the Editor from your computer’s main display.
+  6. Click Install to proceed with the installation.
+  7. Tick the ‘Launch Xone Controller Editor’ checkbox to open the application immediately after installing.
+  8. Click Finish to complete the installation.
+  9. The application is now installed and ready to use.
+
+
+* * *
+# MENU BAR
+
+Image
+The menu bar at the top of the application window gives you access to the following functions.
+  * File
+Click to select the Exit option to close the Editor. You can also use the "X" tab on the far right of the menu bar.
+  * Window
+Click to select Minimise to hide the Editor window and move it to your taskbar. You can also use the “-“ tab on the far right of the menu bar to minimize.
+  * Help
+Click to access this help file or the About panel, which shows the Editor version and the Editor’s bundled Xone:K3 firmware version.
+Resizing the Editor
+You can resize the Editor window by clicking the small square on the far right of the menu bar and dragging its borders.
+
+
+
+* * *
+# UNIT STATUS
+
+The UNIT STATUS panel, located at the top left of the main screen, provides real-time information about a connected Xone:K3.
+  * OFFLINE
+This indicates that no Xone:K3 is currently connected to the Editor.
+  * SYNCING
+This is displayed when a Xone:K3 is connected via USB-C and is powering on. It may also appear briefly after changes to control assignments, while saving UNIT MAPS, or after a factory reset as the device reconnects.
+  * SYNCED
+This is displayed when a Xone:K3 has successfully connected to the Editor and is ready for use.
+ⓘ Custom maps can be created when the Editor is OFFLINE and can be saved to the LOCAL MAPS library, LOCAL MAPS can be loaded onto your Xone:K3 once connected and the Editor is ONLINE.
+
+The connection status is also shown in the title bar of the application, along with the device's unique name (if assigned) and the name of the current in-memory map.
+
+
+
+* * *
+# THE SETUP PANEL
+
+Clicking the SETUP tab opens a separate window with various hardware configuration options for your Xone:K3.
+
+Image   * MIDI
+The Xone Controller Editor automatically connects to the first Xone:K3 it detects. For this reason, we recommend you physically connect only one Xone:K3 when editing.
+  * CONNECTED
+Displayed for both Input and Output Port fields when a Xone:K3 is successfully connected and synced.
+  * NOT CONNECTED
+displayed if a Xone:K3 is not detected or has not connected successfully.
+  * If you have multiple Xone:K3s connected, or if the automatic detection fails, you may need to select the MIDI ports manually. Ensure you select a matching pair of ports.
+ⓘ Attempting to set MIDI ports which are not for the K3 can cause the Editor to close unexpectedly.
+
+* * *
+
+ⓘ MIDI IN PORT OUT PORT registry corruption (Windows PC)
+
+If you experience issues with the MIDI ports on a PC, you may need to resolve a registry conflict.
+
+  1. Open Device Manager.
+  2. Go to View > Show hidden devices.
+  3. Disconnect the Xone:K3.
+  4. In Device Manager, uninstall all instances of the Xone:K3.
+  5. Reboot your system.
+  6. Reconnect the Xone:K3.
+  7. Re-open the Editor.
+
+* * *
+  * UNIT
+This panel displays a prompt to connect a Xone:K3 if one is not detected. When a Xone:K3 is connected via USB to the Editor host, UNIT shows the UNIT NAME and BACKLIGHT options.
+  * UNIT NAME
+This is a unique, user-definable name for your Xone:K3. The name can be up to twelve standard ASCII characters long. To change the name, click the RENAME tab and enter your desired name. The UNIT NAME helps you easily distinguish between multiple Xone:K3s in your audio software.
+  * BACKLIGHT
+This option globally controls the "off" state of the controller's illuminated switches and top-row encoder LEDs.
+    * ON
+This is the default setting. It illuminates all button and top-row encoder LEDs in an off-white colour when they are not active.
+    * OFF
+This turns off all LED backlight illumination.
+    * FOLLOW LAYER
+This setting illuminates the backlight with the colour assigned to the active layer (by default), or individual LED when selected from the COLOUR PALETTE. Refer to the LED COLOUR palette section for more details on this feature.
+ⓘ Defaults Layer backlight colours are: Layer 1 - RED, Layer 2 - ORANGE, Layer 3 - GREEN.
+  * FIRMWARE
+This panel provides details about the device's firmware.
+    * UNIT VERSION
+Displays the firmware version currently installed on the connected Xone:K3.
+    * UNIT ID
+Displays the unique hardware ID for the connected device.
+ⓘ This is different from the UNIT NAME.
+  * SYNCED / SYNCING
+Indicates the connection status, as described in the UNIT STATUS section of the main screen.
+  * FACTORY RESET
+Clicking the RESET tab restores the unit to its original factory default state. This action deletes all custom UNIT MAPS stored on the device and resets any changes to the GLOBAL MIDI channel or Latching Layer mode. A confirmation prompt will appear before the reset.
+
+
+  * UPDATE FROM
+This section allows you to update your device's firmware directly from the Editor.
+    * Device firmware matches bundled version
+This message confirms your device's firmware matches the firmware bundled with the editor.
+    * UPDATE FROM APP
+Update the device's firmware using firmware bundled within the Editor.
+    * UPDATE FROM FILE
+Manually select a file to update the unit with.
+
+ⓘ The latest firmware is always bundled with the Editor.
+
+
+
+* * *
+# MAIN SCREEN
+
+Image
+The Editor main screen is your central hub for configuring your Xone:K3. It is divided into several key sections: the UNIT STATUS, SETUP, MAP LIBRARY, Virtual Xone:K3 panel and the ASSIGN table.
+
+
+
+* * *
+## GLOBAL MIDI PANEL
+
+The GLOBAL MIDI channel for your Xone:K3 is shown in the UNIT STATUS panel. By default, this is set to channel 15. You can change this to any channel from 1 to 16. To change the channel, click on the GLOBAL MIDI field, drag the bar left or right to the desired value, and then click off the field to save the change.
+
+ⓘ The GLOBAL MIDI channel can be overridden for individual controls by assigning them a specific MIDI channel (1-16) within a custom map.
+
+
+
+* * *
+## MAP LIBRARY PANEL
+
+Image
+This panel is where you manage your saved hardware control configurations, called MAPS.
+## LOCAL MAPS:
+
+These maps are stored on your computer.
+  * STORE NEW
+Creates a new map from your current settings. Click this tab, enter a name (up to 16 characters), and click OK.
+  * LOAD
+Loads a selected LOCAL MAP into the Editor's Virtual Xone:K3 panel and the map name is displayed after 'Last Loaded: ...'. When the Editor is ONLINE the Last Loaded map replaces the Xone:K3 device ‘in-memory’ map (see below).
+  * SAVE
+Overwrites the currently selected LOCAL MAP with your current settings. A confirmation prompt will appear.
+  * IMPORT
+Imports a map from an external directory on your computer.
+  * EXPORT
+Saves the currently loaded map to an external directory.
+  * DELETE
+Deletes the selected map from your LOCAL MAPS library.
+## UNIT MAPS:
+
+These maps are saved directly to your Xone:K3. They determine the behaviour of your device's controls and LEDs.
+
+This panel is only active when the Editor is SYNCED and ONLINE.
+
+There are four map ‘slots’ available on the device:
+  * SLOT 1 (Factory Map)
+This is a read-only map with the default factory settings.
+ⓘ The default map matches Xone:K1 and Xone:K2 control mappings and behaviour.
+  * SLOTS 2-4
+These are writeable slots for saving your custom UNIT MAPS.
+  * LOAD
+Loads the selected UNIT MAP into the Editor.
+  * SAVE
+Saves the current Editor map to the selected UNIT MAP slot (2-4).
+
+
+
+* * *
+## THE ACTIVE ‘IN-MEMORY’ MAP INDICATOR >
+
+Image
+The play icon displayed in the LOCAL or UNIT MAPS panel indicates the current ‘in-memory’ map. This is the map that was last loaded to the Virtual Xone:K3 device panel and is actively being used and edited. The map’s name is also displayed as the Last Loaded.
+
+When the Editor is ONLINE the ‘in-memory’ map is also temporarily loaded into the Xone:K3's memory (see below).
+
+
+
+* * *
+# THE VIRTUAL XONE:K3 PANEL
+
+Image
+This panel shows a virtual representation of your Xone:K3, and shows the current in-memory map name and the state (ONLINE or OFFLINE). When you first connect your Xone:K3, the Factory Map is loaded automatically. A highlight will appear around the selected control on the virtual device.
+  * OFFLINE STATE
+Displayed when no Xone:K3 is connected.
+  * ONLINE STATE
+Displayed when a Xone:K3 is successfully connected. The panel shows the name of the currently loaded map, whether it is a LOCAL MAP or a UNIT MAP.
+## CHANGES INDICATOR FLAG *
+
+Image
+The * flag appears next to the map name in the Virtual Xone:K3 panel (see below) to indicate you have made changes to the current in-memory’ map since it was last saved.
+ⓘ Changes to a map stay active within the unit's memory even if the Xone:K3 is disconnected. You can disconnect and reconnect the device with your unsaved changes intact, until a different map is loaded. This ensures that your current changes are not lost in the event of an accidental disconnection or power off and allows you to configure a custom map over multiple sessions without having to save your changes immediately.
+ⓘ If you attempt to load a different LOCAL MAP using the editor, a prompt will be displayed to remind you if changes have been made that are not saved.
+
+ⓘ A prompt is also displayed to remind you if changes have been made that are not saved when a new UNIT MAP is loaded using the editor.
+
+ⓘ If a new UNIT MAP is loaded using the device's POWER ON SETUP options, any unsaved changes will be lost.
+
+
+
+* * *
+# THE MAPPING SYSTEM
+
+The MAPPING SYSTEM consists of the ASSIGN table and LAYERS panel, located on the right side of the main screen.
+## MIDI CONTROL ELEMENTS
+
+This section describes the physical controls on your Xone:K3.
+
+  * #### Encoder TURN / PUSH
+
+Image
+TURN refers to the rotary function of the six encoders (four on the top, two on the bottom).
+
+PUSH refers to the button function of the rotary encoders and their corresponding LEDs, activated by pressing down on the encoder.
+
+  * #### Potentiometer
+
+Image
+Refers to the twelve rotary knobs in the top section of the device.
+
+  * #### Switch
+
+Image Refers to the switch function of the buttons below each of the twelve potentiometers, the 16-button matrix below the faders and the LAYER and SHIFT buttons.
+
+  * #### Fader
+
+Image
+Refers to the four linear faders.
+
+
+
+* * *
+# ASSIGNING CUSTOMISED CONTROL MESSAGES
+
+To edit a control, select one of the LAYER tabs and simply click on the control element’s virtual representation in the Virtual Xone:K3 panel. The ASSIGN table will then show the settings you can change.
+
+
+
+## THE ASSIGN TABLE
+
+Image
+This table displays the settings for the selected control element, allowing you to reconfigure its MIDI commands. The available options in this table will change depending on the control type you select.
+
+
+
+* * *
+## LAYERS
+
+Image
+Your Xone:K3 offers up to three layers of control assignments. Every control element can be configured separately on each layer, allowing a single physical control to have up to three distinct functions.
+  * Click on the LAYER number (1, 2, or 3) to view and edit the settings for that specific layer.
+  * If Latching Layers are turned off on the hardware, LED colours assigned on Layers 2 and 3 can be used to provide three distinct colours of visual feedback for a single control. Refer to the Xone:K3 hardware User Guide for details.
+
+
+
+* * *
+## CONTROL TYPES
+
+Image
+  * None
+Deactivates MIDI for the selected control. This means the control will not send or receive any MIDI commands.
+  * Note
+Sends MIDI Note On/Off commands.
+  * Control Change
+Sends a MIDI Control Change (CC) message to adjust a continuous parameter.
+
+* * *
+  * MIDI CHANNEL
+Determines the MIDI channel (1-16) the selected control uses. You can also set it to Global, which means it will follow the GLOBAL MIDI channel set in the SETUP panel, or by using the POWER ON SETUP option on the Xone:K3 (Refer to the Xone:K3 hardware User Guide for details).
+  * CC NUMBER
+Sets the specific CC number (0-127) for a control change message.
+  * NOTE
+Specifies a MIDI note value, displayed as a chromatic scale note (C-1 to G9).
+
+
+
+* * *
+## CONTROL MODES
+
+Image
+These options customise how a control element interacts with your software.
+  * Relative
+Encoder/TURN control elements send incremental values (+1 or -1) to increase or decrease a parameter's position relative to its current state.
+  * Absolute
+Sends a specific value from a defined range (e.g., 0-127). The STEP value determines the increment of the value change.
+  * Accelerate
+Encoder/TURN control elements send a value based on how quickly you turn the encoder. Turning it faster results in larger value changes.
+  * Gate (hold)
+Switch control elements send a command when pressed and a different command when released. This is like a piano key: the note is on while the key is held down and turns off when it is released.
+  * Toggle
+The switch control element alternates between two commands (ON/OFF) each time the button is pressed.
+  * Trigger
+Switch control elements send a single command when pressed, depending on the ACTION ON setting.
+## RANGE FROM, RANGE TO, and STEP
+
+Image
+  * RANGE FROM/TO
+These values define the minimum and maximum values (0-127) for a control element's output. The range for potentiometers and faders is set with FROM and TO.
+  * STEP
+Defines the incremental change value when a control is used in Absolute mode.
+## ON PRESS and ON RELEASE
+
+Image
+  * ON PRESS
+Defines the MIDI value sent when a switch is pressed down. Default is 127.
+  * ON RELEASE
+Defines the MIDI value sent when a switch is released. Default is 0.
+  * ACTION ON
+Determines whether switch Toggle and Trigger changes/messages are sent when the switch is pressed or when it is released.
+## LED MODE
+
+Image
+  * REMOTE
+The LED's state (ON/OFF) is controlled by MIDI commands from your host software. The LED will always reflect the parameter's state in the software.
+  * LINKED
+The LED's state is controlled within the unit by the physical action of the switch.
+
+
+
+* * *
+# THE LED COLOUR PALETTE
+
+
+
+Image
+The colour palette allows you to choose from 16 different colours for the top-row Encoder/PUSH and all other push-button switch LEDs. These colours provide visual feedback for the control element's ON state.
+
+To change the LED colour, click the "V" icon to display the colour palette. Then, click the colour you want the LED to display when its associated control element is active.
+If the Editor is ONLINE to a Xone:K3, you can press the corresponding hardware control to see the selected colour in real-time.
+
+Your Xone:K3’s Latching Layers feature allows you to assign a different colour to a single LED for each of the three available layers. Latching Layers are configured on the hardware using the POWER ON SETUP options. Refer to the Xone:K3 Hardware User Guide for more details on this feature.
+  * If Latching Layer modes 2 to 5 are enabled, the displayed LED colour corresponds to the active layer (1, 2, or 3).
+  * If Latching Layers are OFF and LED MODE is set to REMOTE, a software host can control up to three different colours for each LED by sending different MIDI commands to the Xone:K3 that correspond to the Control Type, MIDI CHANNEL, CC NUMBER, or NOTE values assigned on Layers 1, 2, and 3.
+ⓘ When the global UNIT BACKLIGHT option is set to FOLLOW LAYER in the Editor's SETUP panel, the colour selected from the LED COLOUR palette will override the default backlight setting. This illuminates the switch's LED backlight with the same colour used to denote the control element's ON state.
+
+You can select black from the colour palette to indicate when the CONTROL TYPE for an LED’s associated control is set to None, or to denote an OFF state for the switch.
+
+
+
+* * *
+# CONTROL OPTIONS
+
+Click on any of the virtual Xone:K3’s controls to highlight the MIDI Control Element. The ASSIGN table will then display the various settings currently associated with the selected control. The options are as follows:
+
+## Encoder/TURN
+
+Image
+Click on any of the virtual Xone:K3’s encoders and then click the TURN tab to display the settings for the rotary action.
+
+### CONTROL TYPES
+
+  * #### None
+
+  * #### Control Change:
+
+    * MIDI CHANNEL
+    * CC NUMBER
+### Encoder/TURN MODES
+
+  * #### Relative:
+
+    * RANGE FROM: Value 0 to 127. Default value is 127.
+    * RANGE TO: Value 0 to 127. Default value is 0.
+  * #### Absolute:
+
+    * RANGE FROM: Value 0 to 127. Default value is 0.
+    * RANGE TO: Value 0 to 127. Default value is 127.
+    * STEP: Value -127 to -1 and 1 to 127. Default value is 1.
+  * #### Accelerate:
+
+    * RANGE FROM: Value 0 to 127. Default value is 0.
+    * RANGE TO: Value 0 to 127. Default value is 127.
+## Encoder/PUSH
+
+Image
+Click on any of the virtual Xone:K3’s encoders and then click the PUSH tab. The ASSIGN table will display the settings for the switch action and LED (for top-row encoders only).
+
+### CONTROL TYPES
+
+  * #### None:
+
+  * #### Control Change:
+
+    * MIDI CHANNEL:
+    * CC NUMBER:
+  * #### Note:
+
+    * MIDI CHANNEL:
+    * NOTE: Value C-1 to G9. SWITCH MODES
+### Encoder/PUSH MODES
+
+  * #### Gate (hold):
+
+    * ON PRESS: Value 0 to 127. Default value is 127.
+    * ON RELEASE: Value 0 to 127. Default value is 0.
+    * LED MODE: REMOTE / LINKED. Default is REMOTE.
+    * LED COLOUR: Defaults are: Layer 1 - RED, Layer 2 - ORANGE, Layer 3 - GREEN.
+  * #### Toggle:
+    * ON PRESS: Value 0 to 127. Default value is 127.
+    * ON RELEASE: Value 0 to 127. Default value is 0.
+    * LED MODE: REMOTE / LINKED. Default is REMOTE.
+    * LED COLOUR: Defaults are: Layer 1 - RED, Layer 2 - ORANGE, Layer 3 - GREEN.
+  * #### Trigger:
+
+    * ON PRESS: Value 0 to 127. Default value is 127.
+    * ACTION ON: PRESS / RELEASE. Default is PRESS.
+    * LED MODE: REMOTE / LINKED. Default is REMOTE.
+    * LED COLOUR: Defaults are: Layer 1 - RED, Layer 2 - ORANGE, Layer 3 - GREEN.
+ⓘ LED options are only available for the four top-row encoders.
+## POTENTIOMETER
+
+Image
+Click on any of the virtual Xone:K3 potentiometers to highlight the control element. The ASSIGN table will display the settings for its rotation.
+
+### CONTROL TYPES
+
+  * #### None:
+
+  * #### Control Change:
+
+    * MIDI CHANNEL:
+    * CC NUMBER:
+    * FROM: Value 0 to 127. Default value is 0.
+    * TO: Value 0 to 127. Default value is 127.
+## SWITCH
+
+Image
+Click on any of the virtual Xone:K3 buttons to highlight the control element. The ASSIGN table will display the settings for its switch action and LED.
+
+### CONTROL TYPES
+
+  * #### None:
+
+  * #### Note:
+
+    * MIDI CHANNEL:
+    * NOTE: Value C-1 to G9.
+### SWITCH MODES
+
+  * #### Gate (hold):
+
+    * ON PRESS: Value 0 to 127. Default value is 127.
+    * ON RELEASE: Value 0 to 127. Default value is 0.
+    * LED MODE: REMOTE / LINKED. Default is REMOTE.
+    * LED COLOUR: . Defaults are: Layer 1 - RED, Layer 2 - ORANGE, Layer 3 - GREEN.
+  * #### Toggle:
+    * ON PRESS: Value 0 to 127. Default value is 127.
+    * ON RELEASE: Value 0 to 127. Default value is 0.
+    * LED MODE: REMOTE / LINKED. Default is REMOTE.
+    * LED COLOUR: . Defaults are: Layer 1 - RED, Layer 2 - ORANGE, Layer 3 - GREEN.
+  * #### Trigger:
+    * ON PRESS: Value 0 to 127. Default value is 127.
+    * ACTION ON: PRESS / RELEASE. Default is PRESS.
+    * LED MODE: REMOTE / LINKED. Default is REMOTE.
+    * LED COLOUR: . Defaults are: Layer 1 - RED, Layer 2 - ORANGE, Layer 3 - GREEN.
+  * #### Control Change:
+
+    * MIDI CHANNEL:
+    * CC NUMBER:
+## FADER
+
+Image
+Click on any of the virtual Xone:K3 faders to highlight the control element. The ASSIGN table will display the settings for its linear movement.
+
+### CONTROL TYPES
+
+  * #### None:
+
+  * #### Control Change:
+
+    * MIDI CHANNEL:
+    * CC NUMBER:
+    * FROM: Value 0 to 127. Default value is 0.
+    * TO: Value 0 to 127. Default value is 127.
+
+
+
+* * *
+# THE LIVE DATA PANEL
+
+Image
+This panel displays real-time MIDI data sent from the selected control on the virtual Xone:K3. It is a useful tool for verifying that your control assignments are working as expected.
+
+
+
+* * *
+
+
+
+Was this article helpful?
+
+[Button: Yes] [Button: No]
+
+1 out of 1 found this helpful
+
+Have more questions? Submit a request
+Return to top ### Products
+
+  * dLive   * Avantis   * SQ   * Qu   * CQ   * AHM   * Xone   * ZED   * ME   * IP Controllers   * CC-7/10   * GR   * MixWizard4   * XB ### Company
+
+  * About Allen & Heath   * Allen & Heath Worldwide   * Contact Allen & Heath   * Working At Allen & Heath   * Legal   * Privacy Statement   * Terms and Conditions of Use
+### Connect
+
+Allen & Heath Forums
