@@ -73,6 +73,7 @@ struct ContentView: View {
     enum SheetType: Identifiable {
         case about
         case settings
+        case explanation
         case controllerProfile(UUID)
         case deckClone(MappingTransformPlan)
         case replaceComments(Set<UUID>)
@@ -85,6 +86,7 @@ struct ContentView: View {
                 "about"
             case .settings:
                 "settings"
+            case .explanation: "mapping-explanation"
             case .controllerProfile(let id): "controller-profile-\(id)"
             case .deckClone:
                 "deck-clone"
@@ -161,6 +163,9 @@ struct ContentView: View {
                     // Section header (matches XXSETTINGS height)
                     HStack {
                         V2SectionHeader(title: "MAPPINGS")
+                        Button("Explain…") { activeSheet = .explanation }
+                            .font(.system(size: 11))
+                            .help("Explain mappings and export a complete reference guide.")
                         Menu("Controller…") {
                             ForEach(document.mappingFile.devices) { device in
                                 Button(device.name.isEmpty ? "Unnamed device" : device.name) {
@@ -332,6 +337,14 @@ struct ContentView: View {
                 AboutSheet()
             case .settings:
                 APIKeySettingsView()
+            case .explanation:
+                MappingExplanationSheet(document: document, selectedIDs: selectedMappings) { ids in
+                    categoryFilter = .all
+                    ioFilter = .all
+                    searchText = ""
+                    profileMatchIDs = ids
+                    selectedMappings = ids
+                }
             case .controllerProfile(let deviceID):
                 ControllerProfileSheet(document: document, deviceID: deviceID, isLocked: isLocked, undoManager: undoManager) { ids in
                     categoryFilter = .all

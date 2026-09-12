@@ -50,7 +50,17 @@ final class TraktorMappingDocument: ReferenceFileDocument {
         let origin: WriteReceiptOrigin
     }
 
-    @Published var mappingFile: MappingFile
+    @Published var mappingFile: MappingFile {
+        didSet {
+            if mappingFile != oldValue || mappingFile.interchangeMetadata != oldValue.interchangeMetadata {
+                explanationGeneration &+= 1
+            }
+        }
+    }
+    private let explanationIdentity = UUID()
+    @Published private(set) var explanationGeneration: UInt64 = 0
+    /// Session-scoped references expire after every content edit, including Undo.
+    var explanationRevision: String { "\(explanationIdentity.uuidString):\(explanationGeneration)" }
     @Published private(set) var fileURL: URL?
     @Published private(set) var isDirty = false
 
