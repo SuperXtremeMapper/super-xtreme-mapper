@@ -1,3 +1,5 @@
+> The main interface is now [Assistant](Unified-Assistant.md). Open **Assistant → Reference guide / Export…** for the local guide; questions and reviewed edits share the main conversation. The notes below describe the explanation foundation.
+
 # Mapping explanation and reference guides
 
 Open **Explain…** above the mapping table. This is a read-only workspace: exploring facts, asking questions and exporting documentation do not change your TSI, mark it saved, or create an Undo step.

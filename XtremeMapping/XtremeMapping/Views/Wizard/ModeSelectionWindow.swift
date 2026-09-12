@@ -21,10 +21,10 @@ struct ModeSelectionWindow: View {
             // Options
             VStack(spacing: AppThemeV2.Spacing.md) {
                 ModeOptionButton(
-                    title: "Voice Command",
-                    subtitle: "Speak commands to create mappings",
+                    title: "Assistant",
+                    subtitle: "Ask questions or describe changes by text or voice",
                     icon: "mic.fill",
-                    caveat: "Requires Anthropic API key and Apple Silicon Mac",
+                    caveat: "AI chat requires an Anthropic API key; local guides work without one",
                     action: selectVoiceMode
                 )
 
@@ -85,7 +85,7 @@ struct ModeSelectionWindow: View {
             NSDocumentController.shared.newDocument(nil)
             // Give ContentView time to mount before posting notification
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                NotificationCenter.default.post(name: .activateVoiceMode, object: nil)
+                NotificationCenter.default.post(name: .activateVoiceMode, object: NSDocumentController.shared.currentDocument)
             }
         }
     }

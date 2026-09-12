@@ -19,7 +19,7 @@ struct ContentView: View {
     @State private var isLocked: Bool = false
     @State private var searchText: String = ""
     @State private var activeSheet: SheetType?
-    @State private var showIntelMacAlert = false
+    @StateObject private var assistantWindow = AssistantWindowController()
     @State private var mappingTransferError: MappingTransferError?
     @State private var workflowDestinationError: MappingTransferError?
     @State private var deckCloneError: String?
@@ -73,7 +73,6 @@ struct ContentView: View {
     enum SheetType: Identifiable {
         case about
         case settings
-        case explanation
         case controllerProfile(UUID)
         case deckClone(MappingTransformPlan)
         case replaceComments(Set<UUID>)
@@ -86,7 +85,6 @@ struct ContentView: View {
                 "about"
             case .settings:
                 "settings"
-            case .explanation: "mapping-explanation"
             case .controllerProfile(let id): "controller-profile-\(id)"
             case .deckClone:
                 "deck-clone"
@@ -96,24 +94,6 @@ struct ContentView: View {
             }
         }
     }
-
-    /// Check if running on Apple Silicon
-    private var isAppleSilicon: Bool {
-        #if arch(arm64)
-        return true
-        #else
-        return false
-        #endif
-    }
-
-    // Voice Learn coordinator
-    @StateObject private var voiceCoordinator = VoiceMappingCoordinator(
-        midiManager: MIDIInputManager.shared,
-        voiceManager: VoiceInputManager(),
-        claudeService: ClaudeAPIService(apiKeyProvider: {
-            APIKeyManager.shared.activeKey
-        })
-    )
 
     var filteredMappings: [MappingEntry] {
         document.mappingFile.devices.flatMap { device in
@@ -147,8 +127,7 @@ struct ContentView: View {
                 onAddInOut: addInOutPair,
                 onAbout: { activeSheet = .about },
                 onSettings: { activeSheet = .settings },
-                voiceCoordinator: voiceCoordinator,
-                onVoiceToggle: toggleVoiceLearn,
+                onAssistant: launchAssistant,
                 onWizard: launchWizard
             )
 
@@ -163,9 +142,9 @@ struct ContentView: View {
                     // Section header (matches XXSETTINGS height)
                     HStack {
                         V2SectionHeader(title: "MAPPINGS")
-                        Button("Explain…") { activeSheet = .explanation }
+                        Button("Assistant…") { launchAssistant() }
                             .font(.system(size: 11))
-                            .help("Explain mappings and export a complete reference guide.")
+                            .help("Ask questions, review changes and export mapping guides.")
                         Menu("Controller…") {
                             ForEach(document.mappingFile.devices) { device in
                                 Button(device.name.isEmpty ? "Unnamed device" : device.name) {
@@ -337,14 +316,6 @@ struct ContentView: View {
                 AboutSheet()
             case .settings:
                 APIKeySettingsView()
-            case .explanation:
-                MappingExplanationSheet(document: document, selectedIDs: selectedMappings) { ids in
-                    categoryFilter = .all
-                    ioFilter = .all
-                    searchText = ""
-                    profileMatchIDs = ids
-                    selectedMappings = ids
-                }
             case .controllerProfile(let deviceID):
                 ControllerProfileSheet(document: document, deviceID: deviceID, isLocked: isLocked, undoManager: undoManager) { ids in
                     categoryFilter = .all
@@ -368,11 +339,6 @@ struct ContentView: View {
                     executeDeckClone(plan, decisions: decisions)
                 }
             }
-        }
-        .alert("Apple Silicon Required", isPresented: $showIntelMacAlert) {
-            Button("OK", role: .cancel) { }
-        } message: {
-            Text("Voice Learn requires an Apple Silicon Mac (M1 or later). Intel Macs are not currently supported.")
         }
         .alert(
             "Couldn't Transfer Mappings",
@@ -410,33 +376,12 @@ struct ContentView: View {
         } message: {
             Text(deckCloneError ?? "The clone failed.")
         }
-        // Voice Learn overlay
-        .overlay {
-            if voiceCoordinator.isActive {
-                ZStack {
-                    // Semi-transparent background
-                    Color.black.opacity(0.5)
-                        .ignoresSafeArea()
-                        .onTapGesture {
-                            // Optional: dismiss on background tap
-                        }
-
-                    VoiceLearnOverlay(coordinator: voiceCoordinator)
-                }
-            }
-        }
-        // Keyboard shortcuts for disambiguation selection (1-5)
-        .onKeyPress("1") { handleDisambiguationKey(0) }
-        .onKeyPress("2") { handleDisambiguationKey(1) }
-        .onKeyPress("3") { handleDisambiguationKey(2) }
-        .onKeyPress("4") { handleDisambiguationKey(3) }
-        .onKeyPress("5") { handleDisambiguationKey(4) }
+        .onDisappear { assistantWindow.close() }
         // Handle mode activation from welcome screen
-        .onReceive(NotificationCenter.default.publisher(for: .activateVoiceMode)) { _ in
-            // Delay to ensure document is ready
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                toggleVoiceLearn()
-            }
+        .onReceive(NotificationCenter.default.publisher(for: .activateVoiceMode)) { notification in
+            guard let target = notification.object as? NSDocument,
+                  target === document.backingDocument else { return }
+            launchAssistant()
         }
         .onReceive(NotificationCenter.default.publisher(for: .activateWizardMode)) { _ in
             // Delay to ensure document is ready
@@ -482,7 +427,7 @@ struct ContentView: View {
         .accessibilityValue(warnings.map(\.message).joined(separator: " "))
     }
 
-    // MARK: - Voice Learn
+    // MARK: - Assistant and Wizard
 
     private func resolvedWorkflowDestinationDeviceID() throws -> Device.ID? {
         try MappingTransferService.workflowDestinationDeviceID(
@@ -511,46 +456,18 @@ struct ContentView: View {
         openWindow(id: "wizard")
     }
 
-    private func toggleVoiceLearn() {
-        if voiceCoordinator.isActive {
-            voiceCoordinator.deactivate()
-        } else {
-            guard !isLocked else { return }
-            // Check for Apple Silicon before activating
-            guard isAppleSilicon else {
-                showIntelMacAlert = true
-                return
-            }
-            let destinationDeviceID: Device.ID?
-            do {
-                destinationDeviceID = try resolvedWorkflowDestinationDeviceID()
-            } catch let error as MappingTransferError {
-                workflowDestinationError = error
-                return
-            } catch {
-                workflowDestinationError = .destinationRequired
-                return
-            }
-            guard voiceCoordinator.setDocument(
-                document,
-                destinationDeviceID: destinationDeviceID
-            ) else {
-                workflowDestinationError = .destinationUnavailable
-                return
-            }
-            voiceCoordinator.activate()
-        }
-    }
-
-    private func handleDisambiguationKey(_ index: Int) -> KeyPress.Result {
-        guard voiceCoordinator.isActive,
-              let options = voiceCoordinator.disambiguationOptions,
-              index < options.count else {
-            return .ignored
-        }
-
-        voiceCoordinator.selectOption(index)
-        return .handled
+    private func launchAssistant() {
+        let session = UnifiedAssistantSession()
+        assistantWindow.present(title: "Assistant — \(document.backingDocument?.displayName ?? document.fileURL?.lastPathComponent ?? "Untitled mapping")", content: {
+            AnyView(UnifiedAssistantView(document: document, selectedIDs: $selectedMappings,
+                isLocked: $isLocked, session: session) { ids in
+                categoryFilter = .all
+                ioFilter = .all
+                searchText = ""
+                profileMatchIDs = ids
+                selectedMappings = ids
+            })
+        }, onClose: { session.close() }, undoManager: { document.backingDocument?.undoManager ?? undoManager })
     }
 
     // MARK: - Actions
@@ -856,8 +773,7 @@ struct V2ActionBarFull: View {
     var onAddInOut: (TraktorCommandDescriptor) -> Void
     var onAbout: () -> Void
     var onSettings: () -> Void
-    var voiceCoordinator: VoiceMappingCoordinator?
-    var onVoiceToggle: (() -> Void)?
+    var onAssistant: (() -> Void)?
     var onWizard: (() -> Void)?
 
     var body: some View {
@@ -873,18 +789,17 @@ struct V2ActionBarFull: View {
                     .frame(width: 1, height: 20)
                     .padding(.horizontal, AppThemeV2.Spacing.xs)
 
-                // Voice and Wizard buttons with consistent spacing
+                // Assistant and Wizard entry points
                 HStack(spacing: AppThemeV2.Spacing.xs) {
-                    // Voice Learn button
-                    if let coordinator = voiceCoordinator, let toggle = onVoiceToggle {
+                    // Unified Assistant
+                    if let assistantAction = onAssistant {
                         V2ToolbarButton(
-                            icon: "mic.fill",
-                            label: "Voice",
-                            action: toggle,
-                            isActive: coordinator.isActive,
+                            icon: "bubble.left.and.bubble.right",
+                            label: "Assistant",
+                            action: assistantAction,
                             minWidth: 70
                         )
-                        .help("Voice Learn - Speak commands to create mappings")
+                        .help("Assistant — ask questions or describe mapping changes by text or voice")
                     }
 
                     // Wizard button

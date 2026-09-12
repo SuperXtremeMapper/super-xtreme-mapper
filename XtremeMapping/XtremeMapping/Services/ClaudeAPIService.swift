@@ -73,9 +73,8 @@ final class ClaudeAPIService: Sendable {
     /// Claude API endpoint
     private static let apiEndpoint = "https://api.anthropic.com/v1/messages"
 
-    /// Model to use - Haiku for speed and cost efficiency.
-    /// Current Haiku model; revisit when Anthropic announces a successor.
-    private static let model = "claude-haiku-4-5"
+    /// Share the default interpretation model with the unified Assistant.
+    private static let model = MappingAssistantModel.sonnet.rawValue
 
     /// API version header
     private static let apiVersion = "2023-06-01"

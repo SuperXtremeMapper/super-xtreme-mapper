@@ -6,6 +6,7 @@ import UniformTypeIdentifiers
 struct MappingExplanationSheet: View {
     @ObservedObject var document: TraktorMappingDocument
     let selectedIDs: Set<UUID>
+    let guideOnly: Bool
     let onShowMappings: (Set<UUID>) -> Void
     @Environment(\.dismiss) private var dismiss
     @StateObject private var credentials: MappingAssistantCredentials
@@ -23,9 +24,10 @@ struct MappingExplanationSheet: View {
     @State private var exportMessage: String?
     @State private var isBuilding = true
 
-    init(document: TraktorMappingDocument, selectedIDs: Set<UUID>, onShowMappings: @escaping (Set<UUID>) -> Void) {
+    init(document: TraktorMappingDocument, selectedIDs: Set<UUID>, guideOnly: Bool = false, onShowMappings: @escaping (Set<UUID>) -> Void) {
         self.document = document
         self.selectedIDs = selectedIDs
+        self.guideOnly = guideOnly
         self.onShowMappings = onShowMappings
         let credentials = MappingAssistantCredentials()
         let keySnapshot = credentials.store
@@ -44,17 +46,19 @@ struct MappingExplanationSheet: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(alignment: .firstTextBaseline) {
-                Text("Mapping Explanation").font(.title2.weight(.semibold))
+                Text(guideOnly ? "Reference Guide" : "Mapping Explanation").font(.title2.weight(.semibold))
                 Spacer()
                 if let snapshot { Text("\(snapshot.devices.count) devices · \(snapshot.rows.count) mappings").foregroundStyle(AppThemeV2.Colors.stone400) }
             }
             Text("Explore your mappings, trace answers to rows, and create a reference guide.")
                 .foregroundStyle(AppThemeV2.Colors.stone400)
             HStack {
-                Picker("View", selection: $tab) {
-                    Text("Reference guide").tag(0)
-                    Text("Questions").tag(1)
-                }.pickerStyle(.segmented).frame(width: 310)
+                if !guideOnly {
+                    Picker("View", selection: $tab) {
+                        Text("Reference guide").tag(0)
+                        Text("Questions").tag(1)
+                    }.pickerStyle(.segmented).frame(width: 310)
+                }
                 Spacer()
                 exportMenu("Export guide…", content: guide).disabled(!current || guide == nil)
             }
@@ -247,7 +251,7 @@ struct MappingExplanationSheet: View {
         assistant.invalidate(revision: revision)
         snapshot = nil; guide = nil; context = nil; errorMessage = nil; isBuilding = true
         let file = document.mappingFile
-        let title = document.fileURL?.lastPathComponent ?? "Untitled mapping"
+        let title = document.backingDocument?.displayName ?? document.fileURL?.lastPathComponent ?? "Untitled mapping"
         let worker = Task.detached(priority: .userInitiated) {
             try Task.checkCancellation()
             let facts = try MappingExplanationSnapshot.build(file: file, title: title, revision: revision)

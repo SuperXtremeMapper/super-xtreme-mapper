@@ -81,7 +81,7 @@ final class ClaudeAPIServiceTests: XCTestCase {
 
         let bodyData = try XCTUnwrap(request.httpBody)
         let body = try XCTUnwrap(JSONSerialization.jsonObject(with: bodyData) as? [String: Any])
-        XCTAssertEqual(body["model"] as? String, "claude-haiku-4-5",
-                       "Model must be the current (non-retired) Haiku alias")
+        XCTAssertEqual(body["model"] as? String, MappingAssistantModel.sonnet.rawValue,
+                       "Model must be the shared Assistant Sonnet default")
     }
 }

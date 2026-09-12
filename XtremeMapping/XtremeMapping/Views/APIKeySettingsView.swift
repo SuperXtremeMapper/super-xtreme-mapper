@@ -91,7 +91,7 @@ struct APIKeySettingsView: View {
                     .font(AppThemeV2.Typography.caption)
                     .foregroundColor(AppThemeV2.Colors.stone400)
 
-                Text("Configure your Anthropic API key for Voice Learn")
+                Text("Configure your Anthropic API key for Assistant")
                     .font(AppThemeV2.Typography.body)
                     .foregroundColor(AppThemeV2.Colors.stone400)
             }
@@ -212,7 +212,7 @@ struct APIKeySettingsView: View {
                         }
                         .buttonStyle(.plain)
 
-                        Text("Sign up or log in to get your API key. Voice Learn uses Claude Haiku for fast, low-cost command interpretation (~$0.003/request).")
+                        Text("Sign up or log in to get your API key. Assistant uses Sonnet by default for questions and reviewed mapping changes. API usage is billed by Anthropic.")
                             .font(AppThemeV2.Typography.caption)
                             .foregroundColor(AppThemeV2.Colors.stone500)
                             .fixedSize(horizontal: false, vertical: true)
@@ -333,7 +333,7 @@ struct APIKeySettingsView: View {
                 clearAPIKey()
             }
         } message: {
-            Text("This will remove your API key from the Keychain. Voice Learn will not work until you enter a new key.")
+            Text("This will remove your API key from the Keychain. AI requests will be unavailable until you enter a new key. Local lookup and guide exports remain available.")
         }
         .sheet(isPresented: $showUpdateSheet) {
             if let release = latestRelease {
