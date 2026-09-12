@@ -235,8 +235,7 @@ struct SettingsPanelV2: View {
                         singleSelectionView(entry: entry)
                     }
 
-                    V2Divider()
-                    deviceCommentSection
+                    // Device Comment hidden for now.
                 }
                 .padding(.horizontal, AppThemeV2.Spacing.md)
                 .padding(.top, AppThemeV2.Spacing.sm)  // Less top padding to align with table headers
