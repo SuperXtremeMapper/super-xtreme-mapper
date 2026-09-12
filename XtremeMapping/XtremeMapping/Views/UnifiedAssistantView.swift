@@ -108,14 +108,18 @@ struct UnifiedAssistantView: View {
             }
             Spacer(minLength: 12)
             if isLocked { Image(systemName: "lock.fill").help("Mapping locked. Unlock it in the editor to apply changes.").accessibilityLabel("Mapping locked") }
-            Button { sheet = .guide } label: { Label("Guide & export", systemImage: "book.closed") }
-                .disabled(!current).help("Open the complete local reference guide and export Markdown, text or PDF.")
-            Button { showConnection.toggle() } label: {
-                Label(consent && credentials.hasKey ? model.label : "AI setup", systemImage: "slider.horizontal.3")
-            }
+            V2ToolbarButton(icon: "book.closed", label: "Guide", action: { sheet = .guide })
+                .disabled(!current)
+                .help("Open the complete local reference guide and export Markdown, text or PDF.")
+            V2ToolbarButton(
+                icon: "slider.horizontal.3",
+                label: consent && credentials.hasKey ? model.label : "AI setup",
+                action: { showConnection.toggle() },
+                isActive: showConnection
+            )
             .help("AI connection, model and privacy settings")
             .accessibilityValue(showConnection ? "Expanded" : "Collapsed")
-        }.padding(.horizontal, 16).padding(.vertical, 12)
+        }.padding(.horizontal, 16).frame(height: AppThemeV2.Components.sectionHeaderHeight + 12)
             .background(AppThemeV2.Colors.stone800)
     }
 
@@ -145,55 +149,86 @@ struct UnifiedAssistantView: View {
         }.padding(16).background(AppThemeV2.Colors.stone800)
     }
 
+    private var isConversationEmpty: Bool {
+        conversation.messages.isEmpty
+            && conversation.localContext == nil
+            && conversation.pendingPlan == nil
+            && !conversation.isWorking
+    }
+
     private var conversationArea: some View {
-        ScrollViewReader { proxy in
-            ScrollView {
-                LazyVStack(alignment: .leading, spacing: 20) {
-                    if conversation.messages.isEmpty { emptyConversation }
-                    ForEach(conversation.messages) { message in
-                        messageView(message).id(message.id)
+        Group {
+            if isConversationEmpty {
+                emptyConversation
+            } else {
+                ScrollViewReader { proxy in
+                    ScrollView {
+                        LazyVStack(alignment: .leading, spacing: 20) {
+                            ForEach(conversation.messages) { message in
+                                messageView(message).id(message.id)
+                            }
+                            if let context = conversation.localContext, context.revision == document.explanationRevision {
+                                localResults(context)
+                            }
+                            if let plan = conversation.pendingPlan, current { review(plan) }
+                            if conversation.isWorking {
+                                HStack(spacing: 8) {
+                                    ProgressView().controlSize(.small)
+                                    Text("Working on your request…").foregroundStyle(AppThemeV2.Colors.stone400)
+                                    Button("Cancel") { conversation.cancel() }
+                                }
+                            }
+                            Color.clear.frame(height: 1).id("bottom")
+                        }.frame(maxWidth: .infinity, alignment: .leading).padding(20).textSelection(.enabled)
                     }
-                    if let context = conversation.localContext, context.revision == document.explanationRevision {
-                        localResults(context)
-                    }
-                    if let plan = conversation.pendingPlan, current { review(plan) }
-                    if conversation.isWorking {
-                        HStack(spacing: 8) {
-                            ProgressView().controlSize(.small)
-                            Text("Working on your request…").foregroundStyle(AppThemeV2.Colors.stone400)
-                            Button("Cancel") { conversation.cancel() }
-                        }
-                    }
-                    Color.clear.frame(height: 1).id("bottom")
-                }.frame(maxWidth: .infinity, alignment: .leading).padding(20).textSelection(.enabled)
+                    .onChange(of: conversation.messages.count) { _, _ in proxy.scrollTo("bottom", anchor: .bottom) }
+                    .onChange(of: conversation.isWorking) { _, _ in proxy.scrollTo("bottom", anchor: .bottom) }
+                }
             }
-            .onChange(of: conversation.messages.count) { _, _ in proxy.scrollTo("bottom", anchor: .bottom) }
-            .onChange(of: conversation.isWorking) { _, _ in proxy.scrollTo("bottom", anchor: .bottom) }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private var emptyConversation: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            VStack(alignment: .leading, spacing: 6) {
+        VStack(spacing: 20) {
+            VStack(spacing: 8) {
                 Text("Your mapping, explained.").font(AppThemeV2.Typography.display)
                 Text("Ask a question or describe an edit. Every proposed change is reviewed before it is applied.")
-                    .foregroundStyle(AppThemeV2.Colors.stone400).fixedSize(horizontal: false, vertical: true)
+                    .foregroundStyle(AppThemeV2.Colors.stone400)
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             VStack(alignment: .leading, spacing: 8) {
+                Text("TRY").font(AppThemeV2.Typography.micro).tracking(0.5)
+                    .foregroundStyle(AppThemeV2.Colors.amber)
                 promptButton("Explain modifier 1", icon: "questionmark.bubble")
                 promptButton("Which controls change the volume?", icon: "slider.horizontal.3")
                 promptButton("Change the selected mappings to Deck B", icon: "pencil", usesSelection: true)
             }
             Text("No controller needed. The reference guide and exports work without AI.")
-                .font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone400)
-        }.padding(.vertical, 12)
+                .font(AppThemeV2.Typography.caption)
+                .foregroundStyle(AppThemeV2.Colors.stone400)
+                .multilineTextAlignment(.center)
+        }
+        .frame(maxWidth: 380)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .padding(24)
     }
 
+    /// A quiet suggestion chip in the app's palette (no heavy border).
     private func promptButton(_ text: String, icon: String, usesSelection: Bool = false) -> some View {
         Button { question = text; includeSelection = usesSelection; composerFocused = true } label: {
-            Label(text, systemImage: icon).frame(maxWidth: .infinity, alignment: .leading)
-        }.buttonStyle(AssistantButtonStyle(uppercase: false))
-            .frame(maxWidth: 370).disabled(usesSelection && selectedIDs.isEmpty)
+            Label(text, systemImage: icon)
+                .font(AppThemeV2.Typography.body)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 10).padding(.vertical, 7)
+                .background(AppThemeV2.Colors.stone800, in: RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm))
+                .overlay(RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                    .stroke(AppThemeV2.Colors.stone700, lineWidth: 1))
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .frame(maxWidth: 360)
+        .disabled(usesSelection && selectedIDs.isEmpty)
     }
 
     private func messageView(_ message: AssistantConversationMessage) -> some View {
@@ -239,27 +274,31 @@ struct UnifiedAssistantView: View {
             if let error = errorMessage ?? conversation.errorMessage ?? input.errorMessage {
                 AssistantNoticeBanner(kind: .danger, text: error)
             }
-            DisclosureGroup(isExpanded: $showMIDI) {
-                captureControls.padding(.top, 8)
-            } label: {
-                HStack {
-                    Label("Identify a control", systemImage: "pianokeys").font(AppThemeV2.Typography.sectionHeader)
-                    if let midi = input.capturedMIDI {
-                        Text((try? midi.model().displayName) ?? "Captured").font(AppThemeV2.Typography.mono)
-                            .foregroundStyle(AppThemeV2.Colors.amber)
-                        if let device = document.mappingFile.devices.first(where: { $0.id == destinationID }) {
-                            Text(device.name).lineLimit(1).foregroundStyle(AppThemeV2.Colors.stone400)
+            // Context: what the request is scoped to, plus optional MIDI capture.
+            VStack(alignment: .leading, spacing: 6) {
+                AssistantSectionLabel("Context")
+                scopeSummary
+                DisclosureGroup(isExpanded: $showMIDI) {
+                    captureControls.padding(.top, 8)
+                } label: {
+                    HStack {
+                        Label("Identify a control", systemImage: "pianokeys").font(AppThemeV2.Typography.sectionHeader)
+                        if let midi = input.capturedMIDI {
+                            Text((try? midi.model().displayName) ?? "Captured").font(AppThemeV2.Typography.mono)
+                                .foregroundStyle(AppThemeV2.Colors.amber)
+                            if let device = document.mappingFile.devices.first(where: { $0.id == destinationID }) {
+                                Text(device.name).lineLimit(1).foregroundStyle(AppThemeV2.Colors.stone400)
+                            }
+                        } else {
+                            Text(input.isLearning ? "Listening…" : "Optional")
+                                .foregroundStyle(input.isLearning ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone400)
                         }
-                    } else {
-                        Text(input.isLearning ? "Listening…" : "Optional")
-                            .foregroundStyle(input.isLearning ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone400)
                     }
                 }
+                .onChange(of: showMIDI) { _, expanded in
+                    if expanded { showConnection = false } else { input.stopMIDI() }
+                }
             }
-            .onChange(of: showMIDI) { _, expanded in
-                if expanded { showConnection = false } else { input.stopMIDI() }
-            }
-            scopeSummary
             TextField("Ask a question or describe a change…", text: $question, axis: .vertical)
                 .textFieldStyle(.plain).lineLimit(2...5).focused($composerFocused)
                 .padding(10).background(AppThemeV2.Colors.stone950, in: RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm))
@@ -284,9 +323,6 @@ struct UnifiedAssistantView: View {
                 Text(input.voiceEnabled ? "Apple Speech may send audio to Apple. Dictation stays here until you send." : "Voice uses Apple Speech. Replies are text only.")
                     .fixedSize(horizontal: false, vertical: true)
                 Spacer(minLength: 4)
-                if !consent || !credentials.hasKey {
-                    Button("Set up AI to chat") { showConnection = true }.buttonStyle(AssistantLinkButtonStyle()).fixedSize()
-                }
             }.font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone400)
             if question.count > 4_000 || question.utf8.count > 16 * 1024 {
                 Text("Keep requests within 4000 characters and 16 KiB of text.").foregroundStyle(AppThemeV2.Colors.danger)
@@ -299,10 +335,6 @@ struct UnifiedAssistantView: View {
     /// never forced into mutually exclusive modes.
     private var scopeSummary: some View {
         HStack(spacing: 8) {
-            Text("Scope")
-                .font(AppThemeV2.Typography.sectionHeader)
-                .foregroundStyle(AppThemeV2.Colors.stone400)
-
             if includeSelection, !selectedIDs.isEmpty {
                 scopeChip("Selected rows · \(selectedIDs.count)", systemImage: "checklist") {
                     includeSelection = false
