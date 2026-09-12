@@ -124,29 +124,58 @@ struct UnifiedAssistantView: View {
     }
 
     private var connectionSettings: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 12) {
             HStack {
-                AssistantSectionLabel("AI CONNECTION")
+                AssistantSectionLabel("AI Connection")
                 Spacer()
                 Button("Done") { showConnection = false }
             }
-            Text("Send shares your request, recent conversation, relevant mappings and captured MIDI with Anthropic. API charges may apply. Original TSI preservation data and full manuals are excluded.")
-                .foregroundStyle(AppThemeV2.Colors.stone400).fixedSize(horizontal: false, vertical: true)
-            HStack(spacing: 12) {
-                V2Toggle(isOn: $consent, label: "Enable AI for this session")
-                Spacer(minLength: 0)
+
+            // Step 1 — turn AI on for this session.
+            V2Toggle(isOn: $consent, label: "Enable AI for this session")
+
+            // Step 2 — choose the model.
+            settingsRow("Model") {
                 V2Dropdown(options: MappingAssistantModel.allCases.map(\.rawValue), selection: $modelID,
                            labelFor: { MappingAssistantModel(rawValue: $0)?.label ?? $0 })
-                    .frame(width: 195)
-                Button("API key…") { sheet = .keys }.disabled(credentials.isLoading)
+                    .frame(width: 200)
+                Spacer(minLength: 0)
             }
-            if credentials.isLoading {
-                ProgressView("Waiting for Keychain access… You can close this session at any time.").controlSize(.small)
-            } else if consent && !credentials.hasKey {
-                Label("Add your Anthropic API key to enable Send.", systemImage: "key")
-                    .foregroundStyle(AppThemeV2.Colors.warning)
+
+            // Step 3 — add your API key, with clear status.
+            settingsRow("API key") {
+                Button("Set API key…") { sheet = .keys }.disabled(credentials.isLoading)
+                if credentials.isLoading {
+                    ProgressView().controlSize(.small)
+                } else if credentials.hasKey {
+                    Label("Saved", systemImage: "checkmark.seal.fill")
+                        .font(AppThemeV2.Typography.caption)
+                        .foregroundStyle(AppThemeV2.Colors.success)
+                } else if consent {
+                    Label("Needed to Send", systemImage: "key")
+                        .font(AppThemeV2.Typography.caption)
+                        .foregroundStyle(AppThemeV2.Colors.warning)
+                }
+                Spacer(minLength: 0)
             }
+
+            V2Divider()
+
+            Text("Privacy: Send shares your request, recent conversation, relevant mappings and any captured MIDI with Anthropic, and may incur API charges. Your original TSI data and the full manuals are never sent.")
+                .font(AppThemeV2.Typography.caption)
+                .foregroundStyle(AppThemeV2.Colors.stone500)
+                .fixedSize(horizontal: false, vertical: true)
         }.padding(16).background(AppThemeV2.Colors.stone800)
+    }
+
+    private func settingsRow<Content: View>(_ label: String, @ViewBuilder content: () -> Content) -> some View {
+        HStack(spacing: 8) {
+            Text(label)
+                .font(AppThemeV2.Typography.caption)
+                .foregroundStyle(AppThemeV2.Colors.stone400)
+                .frame(width: 64, alignment: .leading)
+            content()
+        }
     }
 
     private var isConversationEmpty: Bool {
@@ -274,25 +303,32 @@ struct UnifiedAssistantView: View {
             if let error = errorMessage ?? conversation.errorMessage ?? input.errorMessage {
                 AssistantNoticeBanner(kind: .danger, text: error)
             }
-            // Context: what the request is scoped to, plus optional MIDI capture.
-            VStack(alignment: .leading, spacing: 6) {
-                AssistantSectionLabel("Context")
+            // What the request is scoped to, plus an optional MIDI capture.
+            VStack(alignment: .leading, spacing: 8) {
+                AssistantSectionLabel("Asking about")
                 scopeSummary
                 DisclosureGroup(isExpanded: $showMIDI) {
                     captureControls.padding(.top, 8)
                 } label: {
-                    HStack {
-                        Label("Identify a control", systemImage: "pianokeys").font(AppThemeV2.Typography.sectionHeader)
-                        if let midi = input.capturedMIDI {
-                            Text((try? midi.model().displayName) ?? "Captured").font(AppThemeV2.Typography.mono)
-                                .foregroundStyle(AppThemeV2.Colors.amber)
-                            if let device = document.mappingFile.devices.first(where: { $0.id == destinationID }) {
-                                Text(device.name).lineLimit(1).foregroundStyle(AppThemeV2.Colors.stone400)
+                    VStack(alignment: .leading, spacing: 2) {
+                        HStack {
+                            Label("Point to a control", systemImage: "pianokeys")
+                                .font(AppThemeV2.Typography.sectionHeader)
+                            Spacer(minLength: 8)
+                            if let midi = input.capturedMIDI {
+                                Text((try? midi.model().displayName) ?? "Captured")
+                                    .font(AppThemeV2.Typography.mono)
+                                    .foregroundStyle(AppThemeV2.Colors.amber)
+                            } else {
+                                Text(input.isLearning ? "Listening…" : "Optional")
+                                    .font(AppThemeV2.Typography.caption)
+                                    .foregroundStyle(input.isLearning ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone500)
                             }
-                        } else {
-                            Text(input.isLearning ? "Listening…" : "Optional")
-                                .foregroundStyle(input.isLearning ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone400)
                         }
+                        Text("Move a knob or button on your controller and I'll capture which one it is, so you can ask about it by feel.")
+                            .font(AppThemeV2.Typography.caption)
+                            .foregroundStyle(AppThemeV2.Colors.stone500)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
                 .onChange(of: showMIDI) { _, expanded in
