@@ -24,7 +24,7 @@ nonisolated enum SXMJSONCodec {
                 mappings: d.mappings.map { SXMJSONMapping($0, saved: savedRows[$0.id], source: sourceRows[$0.id]) })
         }
         let version = file.version == file.sourceEnvelope?.baseline.version ? (source?.version ?? file.version) : file.version
-        let document = SXMJSONDocument(format: "sxm-mapping", schemaVersion: 1, tsiVersion: version,
+        let document = SXMJSONDocument(format: "sxm-mapping", schemaVersion: file.interchangeMetadata?.deviceProfiles == nil ? 1 : 2, tsiVersion: version,
             devices: devices, preservation: preservation, metadata: file.interchangeMetadata)
         // Verify projection can reconstruct all import-only state; never silently omit it.
         let restored = try mappingFile(from: document, reconstructedSource: source)
@@ -63,8 +63,14 @@ nonisolated enum SXMJSONCodec {
     }
 
     static func mappingFile(from document: SXMJSONDocument, reconstructedSource: MappingFile? = nil) throws -> MappingFile {
-        guard document.format == "sxm-mapping", document.schemaVersion == 1 else {
-            throw SXMJSONIssue(code: "schema.version", path: "$.schemaVersion", message: "Expected sxm-mapping schema version 1.")
+        guard document.format == "sxm-mapping", [1, 2].contains(document.schemaVersion) else {
+            throw SXMJSONIssue(code: "schema.version", path: "$.schemaVersion", message: "Expected sxm-mapping schema version 1 or 2.")
+        }
+        if document.schemaVersion == 1, document.metadata?.deviceProfiles != nil {
+            throw SXMJSONIssue(code: "schema.unknownKey", path: "$.metadata.deviceProfiles", message: "Device configuration requires schema version 2.")
+        }
+        if let issue = ControllerProfileMetadataValidation.validate(document).first(where: { $0.severity == .error }) {
+            throw SXMJSONIssue(code: issue.code, path: issue.path, message: issue.message)
         }
         let source = try reconstructedSource ?? document.preservation?.reconstruct()
         let sourceDevices = Dictionary(uniqueKeysWithValues: (source?.devices ?? []).map { ($0.id, $0) })
@@ -131,7 +137,7 @@ nonisolated enum SXMJSONCodec {
     static func validateStructure(_ data: Data) throws {
         try SXMJSONScanner.validate(data, maximumBytes: maximumBytes)
         let object = try JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed])
-        try check(object, shape: "document", path: "$")
+        try check(object, shape: "document", path: "$", version: (object as? [String: Any])?["schemaVersion"] as? Int ?? 1)
     }
 
     private static let keys: [String: Set<String>] = [
@@ -141,16 +147,20 @@ nonisolated enum SXMJSONCodec {
         "midi": ["kind", "channel", "number"], "condition": ["modifier", "value", "target", "rawTarget"],
         "float": ["sourceBits"], "preservation": ["originalXML", "devices"], "sourceDevice": ["id", "mappingIDs"],
         "metadata": ["profileReferences", "physicalControls", "localOverrides"],
+        "metadataV2": ["profileReferences", "physicalControls", "localOverrides", "deviceProfiles"],
+        "deviceProfile": ["deviceID", "configuration"],
+        "configuration": ["profileID", "version", "globalChannel", "layerMode", "unitMap", "feedbackMode", "overrides"],
+        "controlOverride": ["controlID", "layerMode", "unitMap", "layer", "direction", "midi", "provenance"],
         "profile": ["profileID", "version"], "control": ["mappingID", "profileID", "controlID"], "override": ["mappingID", "midi"]
     ]
 
-    private static func check(_ value: Any, shape: String, path: String) throws {
+    private static func check(_ value: Any, shape: String, path: String, version: Int) throws {
         guard let object = value as? [String: Any] else {
             throw SXMJSONIssue(code: "schema.type", path: path, message: "Expected an object.")
         }
         for key in object.keys.sorted() where keys[shape]?.contains(key) != true {
             throw SXMJSONIssue(code: "schema.unknownKey", path: path + "." + key,
-                message: "Unknown field '\(key)'. Check its spelling against the v1 schema.")
+                message: "Unknown field '\(key)'. Check its spelling against the selected schema.")
         }
         for key in object.keys.sorted() {
             let child = object[key]!
@@ -162,11 +172,12 @@ nonisolated enum SXMJSONCodec {
             switch key {
             case "midi": childShape = "midi"
             case "modifier1Condition", "modifier2Condition": childShape = "condition"
-            case "preservation", "metadata": childShape = key
+            case "preservation", "configuration": childShape = key
+            case "metadata": childShape = version == 2 ? "metadataV2" : "metadata"
             case "setToValue", "rotarySensitivity", "rotaryAcceleration": childShape = child is [String: Any] ? "float" : nil
             default: childShape = nil
             }
-            if let childShape, !(child is NSNull) { try check(child, shape: childShape, path: cp) }
+            if let childShape, !(child is NSNull) { try check(child, shape: childShape, path: cp, version: version) }
             if let array = child as? [Any] {
                 let element: String?
                 switch key {
@@ -175,11 +186,15 @@ nonisolated enum SXMJSONCodec {
                 case "profileReferences": element = "profile"
                 case "physicalControls": element = "control"
                 case "localOverrides": element = "override"
+                case "deviceProfiles": element = "deviceProfile"
+                case "overrides": element = "controlOverride"
                 default: element = nil
                 }
                 if key == "devices", array.count > 256 { throw SXMJSONIssue(code: "json.resourceLimit", path: cp, message: "At most 256 devices are allowed.") }
+                if key == "deviceProfiles", array.count > 256 { throw SXMJSONIssue(code: "json.resourceLimit", path: cp, message: "At most 256 device profiles are allowed.") }
+                if ["profileReferences", "physicalControls", "localOverrides", "overrides"].contains(key), array.count > 100_000 { throw SXMJSONIssue(code: "json.resourceLimit", path: cp, message: "At most 100,000 metadata records are allowed per array.") }
                 if let element {
-                    for (i, item) in array.enumerated() { try check(item, shape: element, path: cp + "[\(i)]") }
+                    for (i, item) in array.enumerated() { try check(item, shape: element, path: cp + "[\(i)]", version: version) }
                 }
             }
         }

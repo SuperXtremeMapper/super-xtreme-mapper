@@ -262,11 +262,14 @@ final class TraktorMappingDocument: ReferenceFileDocument {
         var after = before
         let result = try mutation(&after)
 
-        guard after != before else { return nil }
+        guard after != before || after.interchangeMetadata != before.interchangeMetadata else { return nil }
 
+        // Command menus may lack SwiftUI's environment manager. Keep those
+        // mutations on this document's native undo stack and change count.
+        let transactionUndoManager = undoManager ?? backingDocument?.undoManager
         mappingFile = after
-        noteChange(registeredWith: undoManager)
-        registerUndoSnapshot(before, actionName: actionName, undoManager: undoManager)
+        noteChange(registeredWith: transactionUndoManager)
+        registerUndoSnapshot(before, actionName: actionName, undoManager: transactionUndoManager)
         return result
     }
 
@@ -277,7 +280,7 @@ final class TraktorMappingDocument: ReferenceFileDocument {
         undoManager: UndoManager
     ) {
         let inverse = mappingFile
-        guard inverse != snapshot else { return }
+        guard inverse != snapshot || inverse.interchangeMetadata != snapshot.interchangeMetadata else { return }
 
         mappingFile = snapshot
         noteChange(registeredWith: undoManager)

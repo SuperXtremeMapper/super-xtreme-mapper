@@ -1,8 +1,8 @@
-# SXM JSON format, version 1
+# SXM JSON format, versions 1 and 2
 
-SXM JSON (`.sxm.json`) is an editable interchange format independent of the runtime and clipboard Codable formats. Its discriminator is `"format": "sxm-mapping"` and integer `"schemaVersion": 1`. Root `tsiVersion` is the runtime MappingFile version, not the schema version. Device `tsiVersion` is a separate Traktor version string.
+SXM JSON (`.sxm.json`) is an editable interchange format independent of the runtime and clipboard Codable formats. Its discriminator is `"format": "sxm-mapping"` and integer `schemaVersion` (1 or 2). Root `tsiVersion` is the runtime MappingFile version, not the schema version. Device `tsiVersion` is a separate Traktor version string.
 
-The schema is [sxm-mapping-v1.schema.json](../XtremeMapping/Resources/Schemas/sxm-mapping-v1.schema.json). It describes structure and numeric representations; the import validator and ordinary TSI writer also check semantic compatibility. Passing JSON Schema alone does not prove that a file can produce a valid, lossless TSI. Import review reports per-field writer normalization warnings when ordinary TSI output changes an editable projected value; inspect these differences before accepting the candidate.
+Schemas are [version 1](../XtremeMapping/Resources/Schemas/sxm-mapping-v1.schema.json) and [version 2](../XtremeMapping/Resources/Schemas/sxm-mapping-v2.schema.json). It describes structure and numeric representations; the import validator and ordinary TSI writer also check semantic compatibility. Passing JSON Schema alone does not prove that a file can produce a valid, lossless TSI. Import review reports per-field writer normalization warnings when ordinary TSI output changes an editable projected value; inspect these differences before accepting the candidate.
 
 ## Structure and limits
 
@@ -95,3 +95,24 @@ Optional root `metadata` requires all three arrays when present:
 - `localOverrides`: objects with required `mappingID` and `midi`.
 
 These are descriptive references and local hardware facts, not alternative authoritative Traktor assignments. Unknown profiles do not block otherwise valid generic MIDI imports. Metadata MIDI overrides do not silently rewrite the row's `midi`. No arbitrary extension keys are accepted and no API key is required.
+
+## Version 2 device configuration
+
+Version 2 retains version 1 mapping and preservation semantics and adds optional `metadata.deviceProfiles`. Each entry has `deviceID` (mapping-device UUID) and `configuration`:
+
+| Field | Meaning |
+| --- | --- |
+| `profileID`, `version` | Exact immutable profile pin |
+| `globalChannel` | Declared human MIDI channel 1–16 |
+| `layerMode` | `off`, `switch-matrix`, `pot-switches`, `all-switches` or `all-controls`, subject to model support |
+| `unitMap` | `factory`; K3 also supports unresolved `custom-1`, `custom-2`, `custom-3` (hardware maps 2–4) |
+| `feedbackMode` | `unknown`, `remote` or `linked`; K3 feedback lookup requires remote |
+| `overrides` | Array of explicit context-scoped control addresses |
+
+All configuration fields are required. Each override requires `controlID`, `layerMode`, `unitMap`, `layer` (`base`, `amber`, `green`), `direction` (`send`, `receive`), `midi` (the ordinary assigned MIDI object) and `provenance` (`user-supplied`, `midi-learn`). Only one override is allowed for each control/map/mode/layer/direction context. This metadata never rewrites a mapping row.
+
+Unknown exact pins, dangling references and unsupported mode/map strings are retained with warnings. Invalid channels, MIDI addresses or duplicate configuration/override identities are errors. Maximums are 256 device profiles and 100,000 entries per metadata/override array, additionally subject to encoded size/depth limits.
+
+Export uses version 2 when `deviceProfiles` is non-nil, including an empty array, and version 1 otherwise. Version 1 rejects `deviceProfiles` even when null; old v1-only applications cannot import v2. Exporting a v2 document with no device configuration may yield v1 because it needs no v2 fields. Unknown fields remain rejected in both versions.
+
+Legacy `localOverrides` are retained annotations with insufficient map/layer context for configured lookup; they do not automatically become v2 overrides. See [the controller workflow](Controller-Profiles.md) and [a two-device example](examples/controller-profiles.sxm.json).

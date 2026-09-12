@@ -4,8 +4,8 @@ nonisolated enum JSONImportService {
     static func review(_ data: Data) -> JSONImportCandidate {
         do {
             let document = try SXMJSONCodec.document(from: data)
-            guard document.format == "sxm-mapping", document.schemaVersion == 1 else {
-                throw SXMJSONIssue(code: "schema.version", path: "$.schemaVersion", message: "Expected sxm-mapping schema version 1. Export with a compatible SXM version.")
+            guard document.format == "sxm-mapping", [1, 2].contains(document.schemaVersion) else {
+                throw SXMJSONIssue(code: "schema.version", path: "$.schemaVersion", message: "Expected sxm-mapping schema version 1 or 2. Export with a compatible SXM version.")
             }
             let source = try document.preservation?.reconstruct()
             var diagnostics = MappingValidationService.validate(document, source: source)

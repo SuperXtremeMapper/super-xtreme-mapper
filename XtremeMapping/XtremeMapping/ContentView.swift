@@ -25,9 +25,10 @@ struct ContentView: View {
     @State private var deckCloneError: String?
     @State private var deckCloneStatus: String?
     @State private var isManualOrder = true
+    @State private var profileMatchIDs: Set<UUID>?
 
     private var canReorder: Bool {
-        !isLocked && isManualOrder && categoryFilter == .all && ioFilter == .all
+        !isLocked && profileMatchIDs == nil && isManualOrder && categoryFilter == .all && ioFilter == .all
             && searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 
@@ -72,6 +73,7 @@ struct ContentView: View {
     enum SheetType: Identifiable {
         case about
         case settings
+        case controllerProfile(UUID)
         case deckClone(MappingTransformPlan)
         case replaceComments(Set<UUID>)
         case changeCommand(Set<UUID>)
@@ -83,6 +85,7 @@ struct ContentView: View {
                 "about"
             case .settings:
                 "settings"
+            case .controllerProfile(let id): "controller-profile-\(id)"
             case .deckClone:
                 "deck-clone"
             case .replaceComments: "replace-comments"
@@ -123,7 +126,7 @@ struct ContentView: View {
                     in: device,
                     query: searchText
                 )
-                return categoryMatch && ioMatch && searchMatch
+                return categoryMatch && ioMatch && searchMatch && (profileMatchIDs?.contains(entry.id) ?? true)
             }
         }
     }
@@ -158,6 +161,21 @@ struct ContentView: View {
                     // Section header (matches XXSETTINGS height)
                     HStack {
                         V2SectionHeader(title: "MAPPINGS")
+                        Menu("Controller…") {
+                            ForEach(document.mappingFile.devices) { device in
+                                Button(device.name.isEmpty ? "Unnamed device" : device.name) {
+                                    activeSheet = .controllerProfile(device.id)
+                                }
+                            }
+                        }
+                        .menuStyle(.borderlessButton)
+                        .fixedSize()
+                        .disabled(document.mappingFile.devices.isEmpty)
+                        .help("Choose a mapping device to configure its controller profile and find physical controls.")
+                        if profileMatchIDs != nil {
+                            Button("Show All Mappings") { profileMatchIDs = nil }
+                                .font(.system(size: 11))
+                        }
                         Spacer()
                         if !sharedMIDIIDs.isEmpty {
                             Label("\(sharedMIDIIDs.count) share MIDI", systemImage: "link")
@@ -299,6 +317,12 @@ struct ContentView: View {
         .frame(minWidth: 1000, minHeight: 500)
         .background(AppThemeV2.Colors.stone950)
         .preferredColorScheme(.dark)
+        .onChange(of: selectedMappings) { _, selection in
+            // Insert/duplicate/clone operations must reveal the rows they select.
+            if let profileMatchIDs, !selection.isSubset(of: profileMatchIDs) {
+                self.profileMatchIDs = nil
+            }
+        }
         .onDeleteCommand {
             deleteSelectedMappings()
         }
@@ -308,6 +332,14 @@ struct ContentView: View {
                 AboutSheet()
             case .settings:
                 APIKeySettingsView()
+            case .controllerProfile(let deviceID):
+                ControllerProfileSheet(document: document, deviceID: deviceID, isLocked: isLocked, undoManager: undoManager) { ids in
+                    categoryFilter = .all
+                    ioFilter = .all
+                    searchText = ""
+                    profileMatchIDs = ids
+                    selectedMappings = ids
+                }
             case .replaceComments(let ids):
                 BulkMappingEditSheet(document: document, selectedIDs: ids, isLocked: isLocked, undoManager: undoManager, mode: .comments)
             case .changeCommand(let ids):

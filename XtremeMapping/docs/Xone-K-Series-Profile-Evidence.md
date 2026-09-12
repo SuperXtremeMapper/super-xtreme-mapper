@@ -1,6 +1,6 @@
 # Xone:K1, K2 and K3 profile evidence
 
-Official-source basis collected on 12 September 2026. As with Euphonia, manufacturer documentation is sufficient for the initial profile; physical testing is optional. The source packages below now back the [implemented profile foundation](Controller-Profiles.md); configured lookup and the application interface follow next.
+Official-source basis collected on 12 September 2026. As with Euphonia, manufacturer documentation is sufficient for the initial profile; physical testing is optional. The source packages below now back the [implemented profile foundation](Controller-Profiles.md); configured lookup and the application interface are also implemented.
 
 ## Source packages
 

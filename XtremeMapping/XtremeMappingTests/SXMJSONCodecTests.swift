@@ -48,7 +48,7 @@ final class SXMJSONCodecTests: XCTestCase {
 
     func testUnsupportedVersionMissingFieldAndUnknownKeyAreRejected() throws {
         var object = try XCTUnwrap(JSONSerialization.jsonObject(with: SXMJSONCodec.encode(MappingFile())) as? [String: Any])
-        object["schemaVersion"] = 2
+        object["schemaVersion"] = 3
         XCTAssertThrowsError(try SXMJSONCodec.decode(JSONSerialization.data(withJSONObject: object)))
         object["schemaVersion"] = 1
         object["devicez"] = []

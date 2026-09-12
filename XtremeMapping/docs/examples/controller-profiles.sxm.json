@@ -1,0 +1,167 @@
+{
+  "devices": [
+    {
+      "comment": "",
+      "id": "ADFF2062-172C-42E1-A79A-C3BADF17BAB3",
+      "inPort": "None",
+      "mappingFileRevision": 2,
+      "mappings": [
+        {
+          "assignment": "deckA",
+          "autoRepeat": false,
+          "commandID": 100,
+          "commandName": "Play/Pause",
+          "comment": "Green fader \u2014 deck A",
+          "controllerType": "button",
+          "encoderMode": "mode7Fh01h",
+          "id": "3CFBB18E-EB42-4535-9AB6-A7629EE46428",
+          "interactionMode": "hold",
+          "invert": false,
+          "ioType": "input",
+          "ledBlend": false,
+          "ledInvert": false,
+          "ledMaxMidi": 127,
+          "ledMaxRangeData": 1,
+          "ledMaxRangeType": 1,
+          "ledMinMidi": 0,
+          "ledMinRangeData": 0,
+          "ledMinRangeType": 1,
+          "midi": {
+            "channel": 15,
+            "kind": "controlChange",
+            "number": 60
+          },
+          "resolution": 1,
+          "rotaryAcceleration": 0,
+          "rotarySensitivity": 5,
+          "setToValue": 0,
+          "softTakeover": false
+        },
+        {
+          "assignment": "deckA",
+          "autoRepeat": false,
+          "commandID": 100,
+          "commandName": "Play/Pause",
+          "comment": "Green fader \u2014 modifier 1",
+          "controllerType": "button",
+          "encoderMode": "mode7Fh01h",
+          "id": "d939dca1-672d-4e10-898b-69590860973e",
+          "interactionMode": "hold",
+          "invert": false,
+          "ioType": "input",
+          "ledBlend": false,
+          "ledInvert": false,
+          "ledMaxMidi": 127,
+          "ledMaxRangeData": 1,
+          "ledMaxRangeType": 1,
+          "ledMinMidi": 0,
+          "ledMinRangeData": 0,
+          "ledMinRangeType": 1,
+          "midi": {
+            "channel": 15,
+            "kind": "controlChange",
+            "number": 60
+          },
+          "resolution": 1,
+          "rotaryAcceleration": 0,
+          "rotarySensitivity": 5,
+          "setToValue": 0,
+          "softTakeover": false,
+          "modifier1Condition": {
+            "modifier": 1,
+            "value": 1,
+            "target": "deviceTarget"
+          }
+        }
+      ],
+      "name": "K2 demonstration",
+      "outPort": "None",
+      "tsiVersion": "3.11.0"
+    },
+    {
+      "comment": "",
+      "id": "75060166-d528-4de5-95f5-eff22b09b0f1",
+      "inPort": "None",
+      "mappingFileRevision": 2,
+      "mappings": [
+        {
+          "assignment": "deckA",
+          "autoRepeat": false,
+          "commandID": 100,
+          "commandName": "Play/Pause",
+          "comment": "Factory fader \u2014 channel 7",
+          "controllerType": "button",
+          "encoderMode": "mode7Fh01h",
+          "id": "d7e7b945-083b-48e3-b4f8-3592116a7f70",
+          "interactionMode": "hold",
+          "invert": false,
+          "ioType": "input",
+          "ledBlend": false,
+          "ledInvert": false,
+          "ledMaxMidi": 127,
+          "ledMaxRangeData": 1,
+          "ledMaxRangeType": 1,
+          "ledMinMidi": 0,
+          "ledMinRangeData": 0,
+          "ledMinRangeType": 1,
+          "midi": {
+            "channel": 7,
+            "kind": "controlChange",
+            "number": 16
+          },
+          "resolution": 1,
+          "rotaryAcceleration": 0,
+          "rotarySensitivity": 5,
+          "setToValue": 0,
+          "softTakeover": false
+        }
+      ],
+      "name": "K3 demonstration",
+      "outPort": "None",
+      "tsiVersion": "3.11.0"
+    }
+  ],
+  "format": "sxm-mapping",
+  "schemaVersion": 2,
+  "tsiVersion": 0,
+  "metadata": {
+    "profileReferences": [
+      {
+        "profileID": "allen-heath.xone-k2",
+        "version": "1.0.0"
+      },
+      {
+        "profileID": "allen-heath.xone-k3",
+        "version": "1.0.0"
+      }
+    ],
+    "physicalControls": [],
+    "localOverrides": [],
+    "deviceProfiles": [
+      {
+        "deviceID": "ADFF2062-172C-42E1-A79A-C3BADF17BAB3",
+        "configuration": {
+          "profileID": "allen-heath.xone-k2",
+          "version": "1.0.0",
+          "globalChannel": 15,
+          "layerMode": "all-controls",
+          "unitMap": "factory",
+          "feedbackMode": "unknown",
+          "overrides": []
+        }
+      },
+      {
+        "deviceID": "75060166-d528-4de5-95f5-eff22b09b0f1",
+        "configuration": {
+          "profileID": "allen-heath.xone-k3",
+          "version": "1.0.0",
+          "globalChannel": 7,
+          "layerMode": "off",
+          "unitMap": "factory",
+          "feedbackMode": "unknown",
+          "overrides": []
+        }
+      }
+    ]
+  }
+}

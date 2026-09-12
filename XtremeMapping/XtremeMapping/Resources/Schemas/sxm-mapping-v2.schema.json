@@ -1,0 +1,769 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SXM Mapping JSON version 2",
+  "description": "Editable mapping projection with optional original TSI preservation and controller metadata.",
+  "$comment": "Runtime additionally enforces 128 MiB encoded input, depth 64, 100000 mappings across all devices, 1 MiB UTF-8 per text field, global identity uniqueness, source correspondence, command semantics and ordinary TSI writer compatibility. Integer model fields retain full Int64 structural range for inherited source state; runtime constrains new/edited command IDs, conditions and LED values with unchanged-source exceptions.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "sxm-mapping"
+    },
+    "schemaVersion": {
+      "const": 2,
+      "type": "integer"
+    },
+    "tsiVersion": {
+      "type": "integer",
+      "minimum": -9223372036854775808,
+      "maximum": 9223372036854775807
+    },
+    "devices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/device"
+      },
+      "maxItems": 256
+    },
+    "preservation": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/preservation"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "metadata": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/metadata"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "format",
+    "schemaVersion",
+    "tsiVersion",
+    "devices"
+  ],
+  "$defs": {
+    "text": {
+      "type": "string",
+      "maxLength": 1048576,
+      "$comment": "Runtime additionally caps UTF-8 bytes at 1 MiB; maxLength counts Unicode code points."
+    },
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "float": {
+      "oneOf": [
+        {
+          "type": "number",
+          "minimum": -3.4028235e+38,
+          "maximum": 3.4028235e+38
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "sourceBits": {
+              "type": "integer",
+              "anyOf": [
+                {
+                  "const": 2147483648
+                },
+                {
+                  "minimum": 2139095040,
+                  "maximum": 2147483647
+                },
+                {
+                  "minimum": 4286578688,
+                  "maximum": 4294967295
+                }
+              ]
+            }
+          },
+          "required": [
+            "sourceBits"
+          ]
+        }
+      ],
+      "$comment": "sourceBits encodes negative zero or nonfinite Float32 bits. Nonfinite bits must match a verified original source row at runtime."
+    },
+    "direction": {
+      "type": "string",
+      "enum": [
+        "all",
+        "input",
+        "output"
+      ],
+      "$comment": "all is reserved for unchanged inherited source state; new or edited row directions are input or output."
+    },
+    "assignment": {
+      "type": "string",
+      "enum": [
+        "none",
+        "deviceTarget",
+        "global",
+        "deckA",
+        "deckB",
+        "deckC",
+        "deckD",
+        "fxUnit1",
+        "fxUnit2",
+        "fxUnit3",
+        "fxUnit4",
+        "remixSlot1",
+        "remixSlot2",
+        "remixSlot3",
+        "remixSlot4",
+        "remixSlot5",
+        "remixSlot6",
+        "remixSlot7",
+        "remixSlot8",
+        "remixDeckASlot1",
+        "remixDeckASlot2",
+        "remixDeckASlot3",
+        "remixDeckASlot4",
+        "remixDeckBSlot1",
+        "remixDeckBSlot2",
+        "remixDeckBSlot3",
+        "remixDeckBSlot4",
+        "remixDeckCSlot1",
+        "remixDeckCSlot2",
+        "remixDeckCSlot3",
+        "remixDeckCSlot4",
+        "remixDeckDSlot1",
+        "remixDeckDSlot2",
+        "remixDeckDSlot3",
+        "remixDeckDSlot4"
+      ]
+    },
+    "interaction": {
+      "type": "string",
+      "enum": [
+        "none",
+        "toggle",
+        "hold",
+        "direct",
+        "relative",
+        "increment",
+        "decrement",
+        "reset",
+        "output",
+        "trigger"
+      ]
+    },
+    "controller": {
+      "type": "string",
+      "enum": [
+        "none",
+        "button",
+        "faderOrKnob",
+        "encoder",
+        "led"
+      ]
+    },
+    "encoder": {
+      "type": "string",
+      "enum": [
+        "mode7Fh01h",
+        "mode3Fh41h"
+      ]
+    },
+    "midi": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "unassigned",
+            "note",
+            "controlChange"
+          ]
+        },
+        "channel": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16
+        },
+        "number": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 127
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "channel"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "unassigned"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "number": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "required": [
+              "number"
+            ],
+            "properties": {
+              "number": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 127
+              }
+            }
+          }
+        }
+      ]
+    },
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "modifier": {
+          "type": "integer",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "value": {
+          "type": "integer",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "target": {
+          "type": "string",
+          "enum": [
+            "deckA",
+            "deckB",
+            "deckC",
+            "deckD",
+            "deviceTarget",
+            "raw"
+          ]
+        },
+        "rawTarget": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4294967295
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "modifier",
+        "value",
+        "target"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "target": {
+                "const": "raw"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "rawTarget"
+            ],
+            "properties": {
+              "rawTarget": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4294967295
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "rawTarget": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/uuid"
+        },
+        "commandID": {
+          "type": "integer",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "commandName": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/text"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ioType": {
+          "$ref": "#/$defs/direction"
+        },
+        "assignment": {
+          "$ref": "#/$defs/assignment"
+        },
+        "interactionMode": {
+          "$ref": "#/$defs/interaction"
+        },
+        "midi": {
+          "$ref": "#/$defs/midi"
+        },
+        "modifier1Condition": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/condition"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "modifier2Condition": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/condition"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "comment": {
+          "$ref": "#/$defs/text"
+        },
+        "controllerType": {
+          "$ref": "#/$defs/controller"
+        },
+        "invert": {
+          "type": "boolean"
+        },
+        "softTakeover": {
+          "type": "boolean"
+        },
+        "setToValue": {
+          "$ref": "#/$defs/float"
+        },
+        "rotarySensitivity": {
+          "$ref": "#/$defs/float"
+        },
+        "rotaryAcceleration": {
+          "$ref": "#/$defs/float"
+        },
+        "encoderMode": {
+          "$ref": "#/$defs/encoder"
+        },
+        "autoRepeat": {
+          "type": "boolean"
+        },
+        "ledMinRangeType": {
+          "type": "integer",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "ledMinRangeData": {
+          "type": "integer",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "ledMaxRangeType": {
+          "type": "integer",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "ledMaxRangeData": {
+          "type": "integer",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "ledMinMidi": {
+          "type": "integer",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "ledMaxMidi": {
+          "type": "integer",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "ledInvert": {
+          "type": "boolean"
+        },
+        "ledBlend": {
+          "type": "boolean"
+        },
+        "resolution": {
+          "type": "integer",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        }
+      },
+      "required": [
+        "id",
+        "commandID",
+        "ioType",
+        "assignment",
+        "interactionMode",
+        "midi",
+        "comment",
+        "controllerType",
+        "invert",
+        "softTakeover",
+        "setToValue",
+        "rotarySensitivity",
+        "rotaryAcceleration",
+        "encoderMode",
+        "autoRepeat",
+        "ledMinRangeType",
+        "ledMinRangeData",
+        "ledMaxRangeType",
+        "ledMaxRangeData",
+        "ledMinMidi",
+        "ledMaxMidi",
+        "ledInvert",
+        "ledBlend",
+        "resolution"
+      ]
+    },
+    "device": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/uuid"
+        },
+        "name": {
+          "$ref": "#/$defs/text"
+        },
+        "comment": {
+          "$ref": "#/$defs/text"
+        },
+        "inPort": {
+          "$ref": "#/$defs/text"
+        },
+        "outPort": {
+          "$ref": "#/$defs/text"
+        },
+        "tsiVersion": {
+          "$ref": "#/$defs/text"
+        },
+        "mappingFileRevision": {
+          "type": "integer",
+          "minimum": -9223372036854775808,
+          "maximum": 9223372036854775807
+        },
+        "mappings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/mapping"
+          },
+          "maxItems": 100000
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "comment",
+        "inPort",
+        "outPort",
+        "tsiVersion",
+        "mappingFileRevision",
+        "mappings"
+      ]
+    },
+    "sourceDevice": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/uuid"
+        },
+        "mappingIDs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/uuid"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "mappingIDs"
+      ]
+    },
+    "preservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "originalXML": {
+          "type": "string",
+          "contentEncoding": "base64",
+          "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$",
+          "$comment": "Runtime requires canonical base64 and reparses decoded TSI under TSIParseLimits."
+        },
+        "devices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sourceDevice"
+          },
+          "maxItems": 256
+        }
+      },
+      "required": [
+        "originalXML",
+        "devices"
+      ]
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "profileID": {
+          "$ref": "#/$defs/text"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/text"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "profileID"
+      ]
+    },
+    "control": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mappingID": {
+          "$ref": "#/$defs/uuid"
+        },
+        "profileID": {
+          "$ref": "#/$defs/text"
+        },
+        "controlID": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "required": [
+        "mappingID",
+        "profileID",
+        "controlID"
+      ]
+    },
+    "override": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mappingID": {
+          "$ref": "#/$defs/uuid"
+        },
+        "midi": {
+          "$ref": "#/$defs/midi"
+        }
+      },
+      "required": [
+        "mappingID",
+        "midi"
+      ]
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "profileReferences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/profile"
+          },
+          "maxItems": 100000
+        },
+        "physicalControls": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/control"
+          },
+          "maxItems": 100000
+        },
+        "localOverrides": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/override"
+          },
+          "maxItems": 100000
+        },
+        "deviceProfiles": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/deviceProfile"
+              },
+              "maxItems": 256
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "profileReferences",
+        "physicalControls",
+        "localOverrides"
+      ]
+    },
+    "controlOverride": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "controlID": {
+          "$ref": "#/$defs/text"
+        },
+        "layerMode": {
+          "$ref": "#/$defs/text"
+        },
+        "unitMap": {
+          "$ref": "#/$defs/text"
+        },
+        "layer": {
+          "enum": [
+            "base",
+            "amber",
+            "green"
+          ]
+        },
+        "direction": {
+          "enum": [
+            "send",
+            "receive"
+          ]
+        },
+        "midi": {
+          "$ref": "#/$defs/midi"
+        },
+        "provenance": {
+          "enum": [
+            "user-supplied",
+            "midi-learn"
+          ]
+        }
+      },
+      "required": [
+        "controlID",
+        "layerMode",
+        "unitMap",
+        "layer",
+        "direction",
+        "midi",
+        "provenance"
+      ]
+    },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "profileID": {
+          "$ref": "#/$defs/text"
+        },
+        "version": {
+          "$ref": "#/$defs/text"
+        },
+        "globalChannel": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16
+        },
+        "layerMode": {
+          "$ref": "#/$defs/text"
+        },
+        "unitMap": {
+          "$ref": "#/$defs/text"
+        },
+        "feedbackMode": {
+          "$ref": "#/$defs/text"
+        },
+        "overrides": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/controlOverride"
+          },
+          "maxItems": 100000
+        }
+      },
+      "required": [
+        "profileID",
+        "version",
+        "globalChannel",
+        "layerMode",
+        "unitMap",
+        "feedbackMode",
+        "overrides"
+      ]
+    },
+    "deviceProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "deviceID": {
+          "$ref": "#/$defs/uuid"
+        },
+        "configuration": {
+          "$ref": "#/$defs/configuration"
+        }
+      },
+      "required": [
+        "deviceID",
+        "configuration"
+      ]
+    }
+  }
+}

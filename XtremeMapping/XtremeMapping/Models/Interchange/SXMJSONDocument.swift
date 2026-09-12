@@ -1,6 +1,6 @@
 import Foundation
 
-/// Public v1 DTOs. Deliberately independent of clipboard/runtime Codable.
+/// Public versioned DTOs. Deliberately independent of clipboard/runtime Codable.
 nonisolated struct SXMJSONDocument: Codable, Sendable {
     var format: String
     var schemaVersion: Int
@@ -24,9 +24,14 @@ nonisolated struct SXMJSONMetadata: Codable, Equatable, Sendable {
         var mappingID: UUID
         var midi: SXMJSONMIDI
     }
+    struct DeviceProfile: Codable, Equatable, Sendable {
+        var deviceID: UUID
+        var configuration: ControllerConfiguration
+    }
     var profileReferences: [Profile]
     var physicalControls: [Control]
     var localOverrides: [Override]
+    var deviceProfiles: [DeviceProfile]? = nil
 }
 
 nonisolated struct SXMJSONDevice: Codable, Sendable {

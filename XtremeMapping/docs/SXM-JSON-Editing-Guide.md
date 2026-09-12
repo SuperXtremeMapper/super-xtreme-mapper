@@ -75,3 +75,11 @@ Associate the [v1 JSON Schema](../XtremeMapping/Resources/Schemas/sxm-mapping-v1
 Optional `metadata` carries `profileReferences`, `physicalControls`, and `localOverrides`; supply all three arrays even if some are empty. Profile references may have explicit version pins. Physical controls associate a mapping UUID with a profile/control ID. Local overrides record MIDI hardware facts and do not override a row's command or assignment. An unknown profile reference does not invalidate an otherwise valid generic MIDI mapping.
 
 No API key, controller-profile download, or AI repair is required for this workflow.
+
+## Controller configuration (version 2)
+
+Choose the [v2 schema](../XtremeMapping/Resources/Schemas/sxm-mapping-v2.schema.json) when the export includes `metadata.deviceProfiles`; retain `schemaVersion: 2`. Each device profile pins an exact model/version and records declared channel, layer mode, unit map and feedback mode. A v1-only reader rejects this version; v1 exports remain available for documents without device configuration.
+
+Edit these settings to describe the hardware, not to retarget Traktor commands. Device profiles and their scoped overrides do not change the mapping rows' `midi` values. Unknown profiles and future mode strings stay intact with warnings. Duplicate device configurations, duplicate override contexts and invalid MIDI channels or addresses block import.
+
+Legacy `localOverrides` remain preserved descriptive annotations. They do not participate in configured control lookup, because they lack its context. Reconfirm an address in **Controller…** to create a scoped override. **Export JSON** is needed to retain profile annotations; TSI alone cannot store them.

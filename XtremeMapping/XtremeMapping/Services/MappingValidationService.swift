@@ -126,19 +126,7 @@ nonisolated enum MappingValidationService {
                 }
             }
         }
-        if let metadata = document.metadata {
-            for (i, profile) in metadata.profileReferences.enumerated() {
-                emit("profile.unresolved", "$.metadata.profileReferences[\(i)]", "Profile '\(profile.profileID)' is retained as metadata; local profile resolution is not available.", .information)
-            }
-            let rowIDs = Set(document.devices.flatMap(\.mappings).map(\.id))
-            for (i, control) in metadata.physicalControls.enumerated() where !rowIDs.contains(control.mappingID) {
-                emit("metadata.reference", "$.metadata.physicalControls[\(i)].mappingID", "Physical control references a missing mapping.")
-            }
-            for (i, override) in metadata.localOverrides.enumerated() {
-                if !rowIDs.contains(override.mappingID) { emit("metadata.reference", "$.metadata.localOverrides[\(i)].mappingID", "Local override references a missing mapping.") }
-                if (try? override.midi.model()) == nil { emit("metadata.midi", "$.metadata.localOverrides[\(i)].midi", "Local override requires a valid MIDI assignment.") }
-            }
-        }
+        issues += ControllerProfileMetadataValidation.validate(document)
         return issues
     }
 }
