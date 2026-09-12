@@ -41,9 +41,13 @@ struct UnifiedAssistantView: View {
     enum AssistantSheet: String, Identifiable { case guide, keys; var id: String { rawValue } }
 
     init(document: TraktorMappingDocument, selectedIDs: Binding<Set<UUID>>, isLocked: Binding<Bool>,
-         session: UnifiedAssistantSession, onShowMappings: @escaping (Set<UUID>) -> Void) {
+         session: UnifiedAssistantSession, attachSelection: Bool = false,
+         onShowMappings: @escaping (Set<UUID>) -> Void) {
         self.document = document; _selectedIDs = selectedIDs; _isLocked = isLocked
         self.onShowMappings = onShowMappings
+        // Opening from selected rows attaches them; a plain toolbar open does
+        // not, so its scope reads as the whole mapping.
+        _includeSelection = State(initialValue: attachSelection)
         conversation = session.conversation; input = session.input; credentials = session.credentials
     }
     private var current: Bool { snapshot?.revision == document.explanationRevision }
@@ -239,7 +243,7 @@ struct UnifiedAssistantView: View {
                 captureControls.padding(.top, 8)
             } label: {
                 HStack {
-                    Label("MIDI control", systemImage: "pianokeys").font(AppThemeV2.Typography.sectionHeader)
+                    Label("Identify a control", systemImage: "pianokeys").font(AppThemeV2.Typography.sectionHeader)
                     if let midi = input.capturedMIDI {
                         Text((try? midi.model().displayName) ?? "Captured").font(AppThemeV2.Typography.mono)
                             .foregroundStyle(AppThemeV2.Colors.amber)
@@ -255,9 +259,7 @@ struct UnifiedAssistantView: View {
             .onChange(of: showMIDI) { _, expanded in
                 if expanded { showConnection = false } else { input.stopMIDI() }
             }
-            if !selectedIDs.isEmpty {
-                V2Toggle(isOn: $includeSelection, label: "Use \(selectedIDs.count) selected mappings")
-            }
+            scopeSummary
             TextField("Ask a question or describe a change…", text: $question, axis: .vertical)
                 .textFieldStyle(.plain).lineLimit(2...5).focused($composerFocused)
                 .padding(10).background(AppThemeV2.Colors.stone950, in: RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm))
@@ -269,8 +271,10 @@ struct UnifiedAssistantView: View {
                 }.toggleStyle(.switch).controlSize(.small).fixedSize()
                     .help("Dictate into the message. Review it, then Send. Replies are text only.")
                 Spacer(minLength: 0)
-                Text("\(question.count)/4000").font(AppThemeV2.Typography.caption)
-                    .foregroundStyle(question.count > 4_000 ? AppThemeV2.Colors.danger : AppThemeV2.Colors.stone400)
+                if question.count > 3_000 {
+                    Text("\(question.count)/4000").font(AppThemeV2.Typography.caption)
+                        .foregroundStyle(question.count > 4_000 ? AppThemeV2.Colors.danger : AppThemeV2.Colors.stone400)
+                }
                 Button { send() } label: { Label("Send", systemImage: "arrow.up") }
                     .buttonStyle(AssistantButtonStyle(primary: true))
                     .keyboardShortcut(.return, modifiers: .command).disabled(!canSend)
@@ -290,6 +294,54 @@ struct UnifiedAssistantView: View {
         }.padding(16).background(AppThemeV2.Colors.stone800)
     }
 
+    /// A plain summary of what this request will be scoped to, with removable
+    /// attachments. Selection and captured MIDI supplement each other; they are
+    /// never forced into mutually exclusive modes.
+    private var scopeSummary: some View {
+        HStack(spacing: 8) {
+            Text("Scope")
+                .font(AppThemeV2.Typography.sectionHeader)
+                .foregroundStyle(AppThemeV2.Colors.stone400)
+
+            if includeSelection, !selectedIDs.isEmpty {
+                scopeChip("Selected rows · \(selectedIDs.count)", systemImage: "checklist") {
+                    includeSelection = false
+                }
+            } else {
+                Text("Entire mapping")
+                    .font(AppThemeV2.Typography.caption)
+                    .foregroundStyle(AppThemeV2.Colors.stone400)
+                if !selectedIDs.isEmpty {
+                    Button { includeSelection = true } label: {
+                        Label("Attach \(selectedIDs.count) selected", systemImage: "plus")
+                    }.buttonStyle(AssistantLinkButtonStyle()).fixedSize()
+                }
+            }
+
+            if let midi = input.capturedMIDI {
+                scopeChip("Captured control · \((try? midi.model().displayName) ?? "MIDI")",
+                          systemImage: "pianokeys") {
+                    input.clearCapture()
+                }
+            }
+            Spacer(minLength: 0)
+        }
+    }
+
+    private func scopeChip(_ text: String, systemImage: String, remove: @escaping () -> Void) -> some View {
+        HStack(spacing: 4) {
+            Image(systemName: systemImage).font(.system(size: 9, weight: .semibold))
+            Text(text).font(AppThemeV2.Typography.caption).lineLimit(1)
+            Button(action: remove) {
+                Image(systemName: "xmark").font(.system(size: 8, weight: .bold))
+            }.buttonStyle(.plain).help("Remove from this request")
+        }
+        .foregroundStyle(AppThemeV2.Colors.amber)
+        .padding(.horizontal, 8).padding(.vertical, 3)
+        .background(Capsule().fill(AppThemeV2.Colors.amberSubtle))
+        .overlay(Capsule().stroke(AppThemeV2.Colors.amber.opacity(0.3), lineWidth: 1))
+    }
+
     private var captureControls: some View {
         VStack(alignment: .leading, spacing: 8) {
             if document.mappingFile.devices.isEmpty {
@@ -306,9 +358,10 @@ struct UnifiedAssistantView: View {
                 }
             }
             HStack {
-                Button(input.isLearning ? "Cancel MIDI capture" : "Learn a control") {
+                Button(input.isLearning ? "Cancel" : "Identify a control") {
                     if input.isLearning { input.stopMIDI() } else { input.learnControl() }
                 }.disabled(conversation.isWorking || destinationID == nil || isLocked)
+                .help("Capture a MIDI control as context for your request. This does not change any mapping.")
                 V2Dropdown(options: [Optional<UUID>.none] + document.mappingFile.devices.map { Optional($0.id) },
                            selection: $destinationID,
                            labelFor: { id in
@@ -354,15 +407,38 @@ struct UnifiedAssistantView: View {
     private func review(_ plan: AssistantEditPlan) -> some View {
         VStack(alignment: .leading, spacing: 10) {
             V2Divider()
-            AssistantSectionLabel("Review proposed changes")
-            Text("\(plan.changes.count) affected rows · not applied").foregroundStyle(AppThemeV2.Colors.stone400)
+            HStack {
+                AssistantSectionLabel("Review proposed changes")
+                Spacer()
+                Button("Show these mappings") { show(Set(plan.changes.map(\.rowID))) }
+                    .buttonStyle(AssistantLinkButtonStyle()).fixedSize()
+                    .disabled(plan.changes.isEmpty)
+            }
+            Text("\(plan.changes.count) affected \(plan.changes.count == 1 ? "row" : "rows") · Pending · not yet applied")
+                .foregroundStyle(AppThemeV2.Colors.stone400)
             ForEach(plan.changes) { change in
+                let entry = document.mappingFile.allMappings.first { $0.id == change.rowID }
+                let deviceName = document.mappingFile.devices.first(where: { $0.id == change.deviceID })?.name ?? "Device"
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(document.mappingFile.devices.first(where: { $0.id == change.deviceID })?.name ?? "Device").font(AppThemeV2.Typography.sectionHeader)
-                    DisclosureGroup("Row details") {
+                    HStack(spacing: 8) {
+                        Text(entry?.commandName ?? "Mapping")
+                            .font(AppThemeV2.Typography.sectionHeader)
+                            .foregroundStyle(AppThemeV2.Colors.stone200)
+                        if let entry {
+                            Text("\(deviceName) · \(entry.assignment.displayName)")
+                                .font(AppThemeV2.Typography.caption)
+                                .foregroundStyle(AppThemeV2.Colors.stone400)
+                        } else {
+                            Text(deviceName)
+                                .font(AppThemeV2.Typography.caption)
+                                .foregroundStyle(AppThemeV2.Colors.stone400)
+                        }
+                    }
+                    // Before/after summaries lead; raw identifiers are tucked away.
+                    ForEach(Array(change.summaries.enumerated()), id: \.offset) { _, value in Text(verbatim: value) }
+                    DisclosureGroup("Technical details") {
                         Text(change.rowID.uuidString).font(AppThemeV2.Typography.mono).textSelection(.enabled)
                     }
-                    ForEach(Array(change.summaries.enumerated()), id: \.offset) { _, value in Text(verbatim: value) }
                 }
             }
             ForEach(Array(plan.warnings.enumerated()), id: \.offset) { _, warning in
@@ -374,7 +450,7 @@ struct UnifiedAssistantView: View {
                     catch { errorMessage = error.localizedDescription }
                 }.buttonStyle(AssistantButtonStyle(primary: true)).disabled(isLocked || conversation.isWorking || plan.isEmpty)
                 Button("Discard proposal") { conversation.discardProposal() }
-                Text("One Undo step").font(.caption).foregroundStyle(AppThemeV2.Colors.stone400)
+                Text("Apply once, then Undo in the editor to revert.").font(.caption).foregroundStyle(AppThemeV2.Colors.stone400)
             }
         }.padding(12)
             .background(AppThemeV2.Colors.stone800, in: RoundedRectangle(cornerRadius: AppThemeV2.Radius.lg))

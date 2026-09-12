@@ -113,7 +113,7 @@ struct ContentView: View {
         }
     }
 
-    var body: some View {
+    private var rootStack: some View {
         VStack(spacing: 0) {
             // V2 Action bar
             V2ActionBarFull(
@@ -127,7 +127,7 @@ struct ContentView: View {
                 onAddInOut: addInOutPair,
                 onAbout: { activeSheet = .about },
                 onSettings: { activeSheet = .settings },
-                onAssistant: launchAssistant,
+                onAssistant: { launchAssistant() },
                 onWizard: launchWizard
             )
 
@@ -136,140 +136,7 @@ struct ContentView: View {
             }
 
             // Main content
-            HSplitView {
-                // Left: Mappings Table
-                VStack(alignment: .leading, spacing: 0) {
-                    // Section header (matches XXSETTINGS height)
-                    HStack {
-                        V2SectionHeader(title: "MAPPINGS")
-                        Button("Assistant…") { launchAssistant() }
-                            .font(.system(size: 11))
-                            .help("Ask questions, review changes and export mapping guides.")
-                        Menu("Controller…") {
-                            ForEach(document.mappingFile.devices) { device in
-                                Button(device.name.isEmpty ? "Unnamed device" : device.name) {
-                                    activeSheet = .controllerProfile(device.id)
-                                }
-                            }
-                        }
-                        .menuStyle(.borderlessButton)
-                        .fixedSize()
-                        .disabled(document.mappingFile.devices.isEmpty)
-                        .help("Choose a mapping device to configure its controller profile and find physical controls.")
-                        if profileMatchIDs != nil {
-                            Button("Show All Mappings") { profileMatchIDs = nil }
-                                .font(.system(size: 11))
-                        }
-                        Spacer()
-                        if !sharedMIDIIDs.isEmpty {
-                            Label("\(sharedMIDIIDs.count) share MIDI", systemImage: "link")
-                                .font(.system(size: 11))
-                                .foregroundStyle(AppThemeV2.Colors.danger)
-                                .help("Red rows share a MIDI assignment with the selection. Shared controls may be intentional.")
-                        }
-                        Toggle("Manual Order", isOn: $isManualOrder)
-                            .toggleStyle(.checkbox)
-                            .font(.system(size: 11))
-                            .help("Use saved row order. Clear filters to drag rows or move them with Option-Command-Up/Down.")
-                        Menu {
-                            Button("Replace in Comments…") { activeSheet = .replaceComments(selectedMappings) }
-                            Button("Change Command…") { activeSheet = .changeCommand(selectedMappings) }
-                            Button("Clone FX Unit…") { activeSheet = .cloneFX(selectedMappings) }
-                            Divider()
-                            Button("Move Up") { moveMappingsStep(down: false) }.disabled(!canReorder)
-                            Button("Move Down") { moveMappingsStep(down: true) }.disabled(!canReorder)
-                        } label: { Text("Edit Selection") }
-                        .menuStyle(.borderlessButton)
-                        .fixedSize()
-                        .disabled(isLocked || selectedMappings.isEmpty)
-                    }
-                    .padding(.horizontal, AppThemeV2.Spacing.lg)
-                    .padding(.vertical, AppThemeV2.Spacing.sm)
-                    .background(AppThemeV2.Colors.stone800)
-
-                    V2Divider()
-
-                    // Mappings table
-                    MappingsTableView(
-                        mappings: filteredMappings,
-                        selection: $selectedMappings,
-                        isLocked: isLocked,
-                        onDrop: { droppedMappings in
-                            handleDroppedMappings(droppedMappings)
-                        },
-                        onCopy: copySelectedMappings,
-                        onPaste: pasteSelectedMappings,
-                        onPasteMappings: pasteMappings,
-                        pasteDisabledReason: mappingPasteDisabledReason,
-                        onDuplicate: duplicateSelected,
-                        onDelete: deleteSelectedMappings,
-                        canCloneDeckA: DeckClonePresentation.isCloneEnabled(
-                            isLocked: isLocked,
-                            selectedMappingIDs: selectedMappings,
-                            in: document.mappingFile
-                        ),
-                        onCloneDeckA: requestDeckClone,
-                        onAssignmentChange: { assignment in
-                            changeSelectedDeck(to: assignment)
-                        },
-                        onMIDIChannelChange: changeSelectedMIDIChannel,
-                        onCommentChange: changeSelectedComment,
-                        onControllerTypeChange: { type in
-                            updateSelectedMappings { mapping in
-                                guard mapping.ioType == .input else { return }
-                                mapping.controllerType = type
-                                // Reset interaction mode to default for new type if current mode is invalid
-                                if !type.validInteractionModes.contains(mapping.interactionMode) {
-                                    mapping.interactionMode = type.defaultInteractionMode
-                                }
-                            }
-                        },
-                        onInteractionChange: { mode in
-                            updateSelectedMappings { if $0.ioType == .input { $0.interactionMode = mode } }
-                        },
-                        onEncoderModeChange: { mode in
-                            updateSelectedMappings { if $0.ioType == .input { $0.setEncoderMode(mode) } }
-                        },
-                        onModifier1Change: { condition in
-                            updateSelectedMappings { $0.modifier1Condition = condition }
-                        },
-                        onModifier2Change: { condition in
-                            updateSelectedMappings { $0.modifier2Condition = condition }
-                        },
-                        onInvertToggle: {
-                            updateSelectedMappings { if $0.ioType == .output { $0.ledInvert.toggle() } else { $0.invert.toggle() } }
-                        },
-                        sharedMIDIIDs: sharedMIDIIDs,
-                        isManualOrder: $isManualOrder,
-                        canReorder: canReorder,
-                        onMove: { ids, target in moveMappings(ids, before: target) },
-                        onMoveStep: { moveMappingsStep(down: $0) },
-                        onReplaceComments: { activeSheet = .replaceComments(selectedMappings) },
-                        onChangeCommand: { activeSheet = .changeCommand(selectedMappings) },
-                        onCloneFX: { activeSheet = .cloneFX(selectedMappings) }
-                    )
-                }
-                .frame(minWidth: 500)
-                .background(AppThemeV2.Colors.stone800)
-
-                // Divider
-                Rectangle()
-                    .fill(AppThemeV2.Colors.stone700)
-                    .frame(width: 1)
-
-                // Right: Settings Panel
-                SettingsPanelV2(
-                    document: document,
-                    selectedMappings: selectedMappings,
-                    isLocked: isLocked,
-                    onDuplicate: duplicateSelected,
-                    onCopyMappedTo: copyMappedTo,
-                    onPasteMappedTo: pasteMappedTo,
-                    onCopyModifiers: copyModifiers,
-                    onPasteModifiers: pasteModifiers
-                )
-                .frame(minWidth: 260, maxWidth: 300)
-            }
+            editorSplit
 
             // V2 Status bar
             HStack(spacing: AppThemeV2.Spacing.sm) {
@@ -295,6 +162,10 @@ struct ContentView: View {
             .padding(.vertical, AppThemeV2.Spacing.sm)
             .background(AppThemeV2.Colors.stone800)
         }
+    }
+
+    var body: some View {
+        rootStack
         .focusedSceneValue(\.mappingDocument, document)
         .focusedSceneValue(\.selectedMappingIDs, $selectedMappings)
         .focusedSceneValue(\.mappingIsLocked, isLocked)
@@ -427,6 +298,166 @@ struct ContentView: View {
         .accessibilityValue(warnings.map(\.message).joined(separator: " "))
     }
 
+    // MARK: - Editor split
+
+    /// The table + inspector split. Extracted from `body` so the main view's
+    /// expression stays within the Swift type-checker's complexity budget.
+    private var editorSplit: some View {
+        HSplitView {
+            // Left: Mappings Table
+            VStack(alignment: .leading, spacing: 0) {
+                mappingsHeader
+                V2Divider()
+                MappingsTableView(
+                    mappings: filteredMappings,
+                    selection: $selectedMappings,
+                    isLocked: isLocked,
+                    onDrop: { droppedMappings in
+                        handleDroppedMappings(droppedMappings)
+                    },
+                    onCopy: copySelectedMappings,
+                    onPaste: pasteSelectedMappings,
+                    onPasteMappings: pasteMappings,
+                    pasteDisabledReason: mappingPasteDisabledReason,
+                    onDuplicate: duplicateSelected,
+                    onDelete: deleteSelectedMappings,
+                    canCloneDeckA: DeckClonePresentation.isCloneEnabled(
+                        isLocked: isLocked,
+                        selectedMappingIDs: selectedMappings,
+                        in: document.mappingFile
+                    ),
+                    onCloneDeckA: requestDeckClone,
+                    onAssignmentChange: { assignment in
+                        changeSelectedDeck(to: assignment)
+                    },
+                    onMIDIChannelChange: changeSelectedMIDIChannel,
+                    onCommentChange: changeSelectedComment,
+                    onControllerTypeChange: { type in
+                        updateSelectedMappings { mapping in
+                            guard mapping.ioType == .input else { return }
+                            mapping.controllerType = type
+                            // Reset interaction mode to default for new type if current mode is invalid
+                            if !type.validInteractionModes.contains(mapping.interactionMode) {
+                                mapping.interactionMode = type.defaultInteractionMode
+                            }
+                        }
+                    },
+                    onInteractionChange: { mode in
+                        updateSelectedMappings { if $0.ioType == .input { $0.interactionMode = mode } }
+                    },
+                    onEncoderModeChange: { mode in
+                        updateSelectedMappings { if $0.ioType == .input { $0.setEncoderMode(mode) } }
+                    },
+                    onModifier1Change: { condition in
+                        updateSelectedMappings { $0.modifier1Condition = condition }
+                    },
+                    onModifier2Change: { condition in
+                        updateSelectedMappings { $0.modifier2Condition = condition }
+                    },
+                    onInvertToggle: {
+                        updateSelectedMappings { if $0.ioType == .output { $0.ledInvert.toggle() } else { $0.invert.toggle() } }
+                    },
+                    sharedMIDIIDs: sharedMIDIIDs,
+                    isManualOrder: $isManualOrder,
+                    canReorder: canReorder,
+                    onMove: { ids, target in moveMappings(ids, before: target) },
+                    onMoveStep: { moveMappingsStep(down: $0) },
+                    onReplaceComments: { activeSheet = .replaceComments(selectedMappings) },
+                    onChangeCommand: { activeSheet = .changeCommand(selectedMappings) },
+                    onCloneFX: { activeSheet = .cloneFX(selectedMappings) },
+                    onAskAboutSelection: { launchAssistant(attachSelection: true) }
+                )
+            }
+            .frame(minWidth: 500)
+            .background(AppThemeV2.Colors.stone800)
+
+            // Divider
+            Rectangle()
+                .fill(AppThemeV2.Colors.stone700)
+                .frame(width: 1)
+
+            // Right: Settings Panel
+            SettingsPanelV2(
+                document: document,
+                selectedMappings: selectedMappings,
+                isLocked: isLocked,
+                onDuplicate: duplicateSelected,
+                onCopyMappedTo: copyMappedTo,
+                onPasteMappedTo: pasteMappedTo,
+                onCopyModifiers: copyModifiers,
+                onPasteModifiers: pasteModifiers
+            )
+            .frame(minWidth: 260, maxWidth: 300)
+        }
+    }
+
+    // MARK: - Mappings header
+
+    /// The mappings pane header: title, controller setup, and the ordering /
+    /// selection actions grouped at the right. Split into sub-views so the
+    /// type-checker does not choke on one large expression.
+    private var mappingsHeader: some View {
+        HStack(spacing: AppThemeV2.Spacing.sm) {
+            V2SectionHeader(title: "MAPPINGS")
+            mappingsHeaderControllerButton
+            if profileMatchIDs != nil {
+                Button("Show all mappings") { profileMatchIDs = nil }
+                    .buttonStyle(.plain)
+                    .font(AppThemeV2.Typography.caption)
+                    .foregroundColor(AppThemeV2.Colors.amber)
+            }
+            Spacer()
+            mappingsHeaderOrderingControls
+        }
+        .padding(.horizontal, AppThemeV2.Spacing.lg)
+        .padding(.vertical, AppThemeV2.Spacing.sm)
+        .background(AppThemeV2.Colors.stone800)
+    }
+
+    private var mappingsHeaderControllerButton: some View {
+        V2MenuButton(
+            title: "Controller",
+            systemImage: "pianokeys",
+            isEnabled: !document.mappingFile.devices.isEmpty
+        ) {
+            ForEach(document.mappingFile.devices) { device in
+                Button(device.name.isEmpty ? "Unnamed device" : device.name) {
+                    activeSheet = .controllerProfile(device.id)
+                }
+            }
+        }
+        .help("Associate a physical controller with a mapping device and browse its controls.")
+    }
+
+    @ViewBuilder
+    private var mappingsHeaderOrderingControls: some View {
+        if !sharedMIDIIDs.isEmpty {
+            Label("\(sharedMIDIIDs.count) share MIDI", systemImage: "link")
+                .font(AppThemeV2.Typography.caption)
+                .foregroundStyle(AppThemeV2.Colors.danger)
+                .help("Red rows share a MIDI assignment with the selection. Shared controls may be intentional.")
+        }
+        if !selectedMappings.isEmpty {
+            Text("\(selectedMappings.count) selected")
+                .font(AppThemeV2.Typography.caption)
+                .foregroundColor(AppThemeV2.Colors.stone400)
+        }
+        V2Toggle(isOn: $isManualOrder, label: "Manual order")
+            .help("Preserve your row sequence and enable drag reordering.")
+        V2MenuButton(
+            title: "Edit selected",
+            isEnabled: !isLocked && !selectedMappings.isEmpty
+        ) {
+            Button("Replace in Comments…") { activeSheet = .replaceComments(selectedMappings) }
+            Button("Change Command…") { activeSheet = .changeCommand(selectedMappings) }
+            Button("Clone FX Unit…") { activeSheet = .cloneFX(selectedMappings) }
+            Divider()
+            Button("Move Up") { moveMappingsStep(down: false) }.disabled(!canReorder)
+            Button("Move Down") { moveMappingsStep(down: true) }.disabled(!canReorder)
+        }
+        .help("Batch actions for the selected rows.")
+    }
+
     // MARK: - Assistant and Wizard
 
     private func resolvedWorkflowDestinationDeviceID() throws -> Device.ID? {
@@ -456,11 +487,11 @@ struct ContentView: View {
         openWindow(id: "wizard")
     }
 
-    private func launchAssistant() {
+    private func launchAssistant(attachSelection: Bool = false) {
         let session = UnifiedAssistantSession()
         assistantWindow.present(title: "Assistant — \(document.backingDocument?.displayName ?? document.fileURL?.lastPathComponent ?? "Untitled mapping")", content: {
             AnyView(UnifiedAssistantView(document: document, selectedIDs: $selectedMappings,
-                isLocked: $isLocked, session: session) { ids in
+                isLocked: $isLocked, session: session, attachSelection: attachSelection) { ids in
                 categoryFilter = .all
                 ioFilter = .all
                 searchText = ""
@@ -810,7 +841,7 @@ struct V2ActionBarFull: View {
                             action: wizardAction,
                             minWidth: 70
                         )
-                        .help("Mapping Wizard - Guided setup for your controller")
+                        .help("Wizard — create mappings step by step with guided setup for your controller.")
                     }
                 }
             }

@@ -126,6 +126,7 @@ struct MappingsTableView: View {
     var onReplaceComments: (() -> Void)?
     var onChangeCommand: (() -> Void)?
     var onCloneFX: (() -> Void)?
+    var onAskAboutSelection: (() -> Void)?
 
     /// Track the last single-clicked item for shift-selection anchor
     @State private var selectionAnchor: MappingEntry.ID?
@@ -345,6 +346,9 @@ struct MappingsTableView: View {
         }
         .contextMenu {
             if !selection.isEmpty {
+                Button("Ask about selected mappings") { onAskAboutSelection?() }
+                    .help("Open the Assistant with these rows attached to your request.")
+                Divider()
                 Button("Copy") { onCopy?() }
                     .keyboardShortcut("c", modifiers: .command)
             }

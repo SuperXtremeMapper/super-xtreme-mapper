@@ -347,6 +347,8 @@ struct SettingsPanelV2: View {
                 sectionLabel("TYPE")
                 controllerTypePicker
                 interactionModePicker
+                // Invert belongs with the interaction settings, not conditions.
+                invertToggle
             } else {
                 Text("Select only OUT mappings for LED settings, or only IN mappings for input controls.")
                     .font(AppThemeV2.Typography.caption)
@@ -355,12 +357,8 @@ struct SettingsPanelV2: View {
 
             V2Divider()
 
-            sectionLabel("MODIFIERS")
+            sectionLabel("MODIFIER CONDITIONS")
             modifierControls
-
-            V2Divider()
-
-            if allInputs { invertToggle }
         }
     }
 
@@ -445,16 +443,14 @@ struct SettingsPanelV2: View {
             controllerTypePicker
             interactionModePicker
             typeSpecificOptions(for: entry)
+            // Invert belongs with the interaction settings, not the conditions.
+            invertToggle
         }
 
         V2Divider()
 
-        sectionLabel("MODIFIERS")
+        sectionLabel("MODIFIER CONDITIONS")
         modifierControls
-
-        V2Divider()
-
-        if entry.ioType == .input { invertToggle }
     }
 
     // MARK: - Device Comment
@@ -697,22 +693,69 @@ struct SettingsPanelV2: View {
     }
 
     private var modifierControls: some View {
-        VStack(spacing: AppThemeV2.Spacing.sm) {
-            V2ModifierRow(condition: $modifier1, isLocked: isLocked) { newCondition in
-                if isMultipleSelection {
-                    updateSelectedEntries { $0.modifier1Condition = newCondition }
-                } else {
-                    updateEntry { $0.modifier1Condition = newCondition }
-                }
+        VStack(alignment: .leading, spacing: AppThemeV2.Spacing.xs) {
+            Text("Run this mapping only when these conditions match.")
+                .font(AppThemeV2.Typography.caption)
+                .foregroundColor(AppThemeV2.Colors.stone500)
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+            // Column headers align with the two-column rows below.
+            HStack(spacing: AppThemeV2.Spacing.sm) {
+                Text("Condition")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text("Value")
+                    .frame(width: 84, alignment: .leading)
             }
-            V2ModifierRow(condition: $modifier2, isLocked: isLocked) { newCondition in
-                if isMultipleSelection {
-                    updateSelectedEntries { $0.modifier2Condition = newCondition }
-                } else {
-                    updateEntry { $0.modifier2Condition = newCondition }
-                }
+            .font(AppThemeV2.Typography.caption)
+            .foregroundColor(AppThemeV2.Colors.stone500)
+
+            modifierRow(keyPath: \.modifier1Condition, binding: $modifier1)
+
+            // The two conditions combine with AND.
+            Text("AND")
+                .font(AppThemeV2.Typography.micro)
+                .tracking(1)
+                .foregroundColor(AppThemeV2.Colors.stone500)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .accessibilityHidden(true)
+
+            modifierRow(keyPath: \.modifier2Condition, binding: $modifier2)
+        }
+    }
+
+    /// Renders one condition row. For a single selection it edits the loaded
+    /// value directly; for a mixed multi-selection it reports differing values
+    /// as "Multiple values" and applies an explicit choice across the selection
+    /// without mutating anything on display.
+    @ViewBuilder
+    private func modifierRow(
+        keyPath: WritableKeyPath<MappingEntry, ModifierCondition?>,
+        binding: Binding<ModifierCondition?>
+    ) -> some View {
+        if isMultipleSelection {
+            let common = commonModifier(keyPath)
+            V2ModifierRow(
+                condition: .constant(common.value),
+                isLocked: isLocked,
+                isMixed: common.mixed
+            ) { newCondition in
+                updateSelectedEntries { $0[keyPath: keyPath] = newCondition }
+            }
+        } else {
+            V2ModifierRow(condition: binding, isLocked: isLocked) { newCondition in
+                updateEntry { $0[keyPath: keyPath] = newCondition }
             }
         }
+    }
+
+    /// The shared value across the selection, plus whether the rows differ.
+    private func commonModifier(
+        _ keyPath: KeyPath<MappingEntry, ModifierCondition?>
+    ) -> (value: ModifierCondition?, mixed: Bool) {
+        let values = selectedEntries.map { $0[keyPath: keyPath] }
+        guard let first = values.first else { return (nil, false) }
+        let mixed = values.dropFirst().contains { $0 != first }
+        return (mixed ? nil : first, mixed)
     }
 
     private var invertToggle: some View {

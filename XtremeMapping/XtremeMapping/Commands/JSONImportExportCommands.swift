@@ -279,15 +279,15 @@ struct JSONImportExportCommands: Commands {
                 }
             }
             .keyboardShortcut("i", modifiers: [.command, .option])
-            Button("Export JSON…") {
+            Button("Export SXM Data (JSON)…") {
                 // Resolve at invocation, so another document becoming active cannot reuse stale state.
                 guard let backing = NSDocumentController.shared.currentDocument,
                       let document = TraktorMappingDocument.registeredDocument(for: backing) else { return }
                 let panel = NSSavePanel()
                 panel.allowedContentTypes = [.json]
                 panel.nameFieldStringValue = (document.fileURL?.deletingPathExtension().lastPathComponent ?? "Mapping") + ".sxm.json"
-                panel.title = "Export JSON"
-                panel.message = "Choose a new file. The current TSI and its unsaved edits remain open."
+                panel.title = "Export SXM Data (JSON)"
+                panel.message = "Save your full SXM work — including controller profiles and address overrides that a Traktor TSI cannot retain. Save (TSI) writes the Traktor mapping; the current TSI and its unsaved edits stay open."
                 guard panel.runModal() == .OK, let url = panel.url else { return }
                 do { try document.exportJSON(to: url) }
                 catch { NSApp.presentError(error) }

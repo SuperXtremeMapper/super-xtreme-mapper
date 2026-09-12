@@ -251,6 +251,70 @@ struct V2ModifierButton: View {
     }
 }
 
+// MARK: - Menu Button (standardized dropdown-button)
+
+/// A menu presented with the standard closed-dropdown chrome: left-aligned
+/// title, optional leading glyph, trailing chevron, shared background/border/
+/// radius/height. Use for header and action menus so they read as the same
+/// control family as `V2Dropdown` rather than bare `Menu`s.
+struct V2MenuButton<MenuContent: View>: View {
+    let title: String
+    var systemImage: String? = nil
+    var isEnabled: Bool = true
+    var trailingBadge: String? = nil
+    @ViewBuilder var menu: () -> MenuContent
+
+    var body: some View {
+        Menu {
+            menu()
+        } label: {
+            HStack(spacing: AppThemeV2.Spacing.xs) {
+                if let systemImage {
+                    Image(systemName: systemImage)
+                        .font(.system(size: 10, weight: .semibold))
+                }
+                Text(title)
+                    .font(AppThemeV2.Typography.body)
+                    .lineLimit(1)
+
+                if let trailingBadge {
+                    Text(trailingBadge)
+                        .font(AppThemeV2.Typography.micro)
+                        .foregroundColor(AppThemeV2.Colors.amber)
+                        .padding(.horizontal, 5)
+                        .padding(.vertical, 1)
+                        .background(
+                            Capsule().fill(AppThemeV2.Colors.amberSubtle)
+                        )
+                }
+
+                Image(systemName: "chevron.down")
+                    .font(.system(size: 8, weight: .bold))
+                    .foregroundColor(
+                        isEnabled ? AppThemeV2.Colors.stone500 : AppThemeV2.Colors.stone600
+                    )
+            }
+            .foregroundColor(
+                isEnabled ? AppThemeV2.Colors.stone200 : AppThemeV2.Colors.stone600
+            )
+            .padding(.horizontal, AppThemeV2.Spacing.sm)
+            .padding(.vertical, AppThemeV2.Spacing.xs)
+            .background(
+                RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                    .fill(AppThemeV2.Colors.stone700)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
+                    .stroke(AppThemeV2.Colors.stone600, lineWidth: 1)
+            )
+            .contentShape(Rectangle())
+        }
+        .menuStyle(.borderlessButton)
+        .menuIndicator(.hidden)
+        .disabled(!isEnabled)
+    }
+}
+
 // MARK: - Divider
 
 /// Custom divider with subtle styling
