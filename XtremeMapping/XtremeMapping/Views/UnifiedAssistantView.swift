@@ -117,58 +117,51 @@ struct UnifiedAssistantView: View {
     }
 
     private var connectionSettings: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
             HStack {
                 AssistantSectionLabel("AI Connection")
                 Spacer()
-                Button("Done") { showConnection = false }
+                V2SmallButton(label: "Done") { showConnection = false }
             }
 
-            // Step 1 — turn AI on for this session.
-            V2Toggle(isOn: $consent, label: "Enable AI for this session")
-
-            // Step 2 — choose the model.
-            settingsRow("Model") {
-                V2Dropdown(options: MappingAssistantModel.allCases.map(\.rawValue), selection: $modelID,
-                           labelFor: { MappingAssistantModel(rawValue: $0)?.label ?? $0 })
-                    .frame(width: 200)
-                Spacer(minLength: 0)
+            V2FormRow(label: "Enable AI") {
+                V2Toggle(isOn: $consent)
             }
 
-            // Step 3 — add your API key, with clear status.
-            settingsRow("API key") {
-                Button("Set API key…") { sheet = .keys }.disabled(credentials.isLoading)
-                if credentials.isLoading {
-                    ProgressView().controlSize(.small)
-                } else if credentials.hasKey {
-                    Label("Saved", systemImage: "checkmark.seal.fill")
-                        .font(AppThemeV2.Typography.caption)
-                        .foregroundStyle(AppThemeV2.Colors.success)
-                } else if consent {
-                    Label("Needed to Send", systemImage: "key")
-                        .font(AppThemeV2.Typography.caption)
-                        .foregroundStyle(AppThemeV2.Colors.warning)
+            V2FormRow(label: "Model") {
+                V2Dropdown(
+                    options: MappingAssistantModel.allCases.map(\.rawValue),
+                    selection: $modelID,
+                    labelFor: { MappingAssistantModel(rawValue: $0)?.label ?? $0 }
+                )
+            }
+
+            V2FormRow(label: "API key") {
+                HStack(spacing: AppThemeV2.Spacing.sm) {
+                    if credentials.isLoading {
+                        ProgressView().controlSize(.small)
+                    } else if credentials.hasKey {
+                        Label("Saved", systemImage: "checkmark.seal.fill")
+                            .font(AppThemeV2.Typography.caption)
+                            .foregroundStyle(AppThemeV2.Colors.success)
+                    } else if consent {
+                        Label("Needed", systemImage: "key")
+                            .font(AppThemeV2.Typography.caption)
+                            .foregroundStyle(AppThemeV2.Colors.warning)
+                    }
+                    V2SmallButton(label: credentials.hasKey ? "Change…" : "Set key…") { sheet = .keys }
+                        .disabled(credentials.isLoading)
                 }
-                Spacer(minLength: 0)
             }
 
-            V2Divider()
-
-            Text("Privacy: Send shares your request, recent conversation, relevant mappings and any captured MIDI with Anthropic, and may incur API charges. Your original TSI data and the full manuals are never sent.")
+            Text("On for this session only. Send shares your request, recent conversation, relevant mappings and any captured MIDI with Anthropic, and may incur API charges. Your original TSI data and the full manuals are never sent.")
                 .font(AppThemeV2.Typography.caption)
                 .foregroundStyle(AppThemeV2.Colors.stone500)
                 .fixedSize(horizontal: false, vertical: true)
-        }.padding(16).background(AppThemeV2.Colors.stone800)
-    }
-
-    private func settingsRow<Content: View>(_ label: String, @ViewBuilder content: () -> Content) -> some View {
-        HStack(spacing: 8) {
-            Text(label)
-                .font(AppThemeV2.Typography.caption)
-                .foregroundStyle(AppThemeV2.Colors.stone400)
-                .frame(width: 64, alignment: .leading)
-            content()
+                .padding(.top, AppThemeV2.Spacing.xs)
         }
+        .padding(16)
+        .background(AppThemeV2.Colors.stone800)
     }
 
     private var conversationArea: some View {
@@ -176,6 +169,7 @@ struct UnifiedAssistantView: View {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 20) {
                     greetingBubble
+                    if !consent || !credentials.hasKey { setupBubble }
                     ForEach(conversation.messages) { message in
                         messageView(message).id(message.id)
                     }
@@ -200,12 +194,20 @@ struct UnifiedAssistantView: View {
 
     /// The Assistant's opening message — always the first bubble in the thread.
     private var greetingBubble: some View {
+        assistantBubble("Use this window to chat with your TSI file and controller. Ask questions about how it works, tell it what you want to change, or interact in any way with your Traktor commands and it (should) update automatically! Give it a shot — ask what a button or knob does, or which button or knob does something you want to try.")
+    }
+
+    /// Shown until AI is configured, in place of a hint below the composer.
+    private var setupBubble: some View {
+        assistantBubble("Click the Setup gear icon on the top right to add your API key to use this feature.")
+    }
+
+    private func assistantBubble(_ text: String) -> some View {
         HStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Assistant").font(AppThemeV2.Typography.micro).tracking(0.5)
                     .foregroundStyle(AppThemeV2.Colors.stone500)
-                Text("Use this window to chat with your TSI file and controller. Ask questions about how it works, tell it what you want to change, or interact in any way with your Traktor commands and it (should) update automatically! Give it a shot — ask what a button or knob does, or which button or knob does something you want to try.")
-                    .lineSpacing(3)
+                Text(verbatim: text).lineSpacing(3)
             }
             .padding(12)
             .frame(maxWidth: 460, alignment: .leading)
@@ -303,12 +305,6 @@ struct UnifiedAssistantView: View {
             .padding(8)
             .background(AppThemeV2.Colors.stone950, in: RoundedRectangle(cornerRadius: AppThemeV2.Radius.lg))
             .overlay(RoundedRectangle(cornerRadius: AppThemeV2.Radius.lg).stroke(composerFocused ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone600, lineWidth: 1))
-
-            if !consent || !credentials.hasKey {
-                Text("Set up AI (gear, top-right) to send messages.")
-                    .font(AppThemeV2.Typography.caption)
-                    .foregroundStyle(AppThemeV2.Colors.stone500)
-            }
 
             if question.count > 4_000 || question.utf8.count > 16 * 1024 {
                 Text("Keep requests within 4000 characters and 16 KiB of text.")
