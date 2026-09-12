@@ -486,7 +486,8 @@ struct MappingsTableView: View {
         case .verifiedTraktor441, .verifiedTraktor451:
             return nil
         case .legacy:
-            return "LEGACY"
+            // Legacy commands are recognized and work; no need to flag them.
+            return nil
         case .unknown:
             return "UNKNOWN"
         }

@@ -11,13 +11,13 @@ final class AssistantWindowController: NSObject, ObservableObject, NSWindowDeleg
 
     func present(title: String, content: () -> AnyView, onClose: @escaping () -> Void, undoManager: @escaping () -> UndoManager? = { nil }) {
         if let window { window.makeKeyAndOrderFront(nil); return }
-        let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 850, height: 740),
+        let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 640, height: 640),
             styleMask: [.titled, .closable, .miniaturizable, .resizable], backing: .buffered, defer: false)
         window.title = title
         window.appearance = NSAppearance(named: .darkAqua)
         window.backgroundColor = NSColor(AppThemeV2.Colors.stone900)
         window.isReleasedWhenClosed = false
-        window.contentMinSize = NSSize(width: 720, height: 560)
+        window.contentMinSize = NSSize(width: 520, height: 480)
         let host = NSHostingView(rootView: content())
         // The window owns its geometry. SwiftUI's ideal content size must not
         // resize it when the conversation or optional setup panels change.

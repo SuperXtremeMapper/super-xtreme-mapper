@@ -118,7 +118,7 @@ enum AppThemeV2 {
 
         // Shared height for the "XXMAPPINGS" / "XXSETTINGS" pane headers so both
         // panes line up.
-        static let sectionHeaderHeight: CGFloat = 40
+        static let sectionHeaderHeight: CGFloat = 32
     }
 }
 

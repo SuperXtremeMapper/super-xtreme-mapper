@@ -123,6 +123,7 @@ struct ContentView: View {
                 categoryFilter: $categoryFilter,
                 ioFilter: $ioFilter,
                 searchText: $searchText,
+                isManualOrder: $isManualOrder,
                 onAddInput: addInputMapping,
                 onAddOutput: addOutputMapping,
                 onAddInOut: addInOutPair,
@@ -141,12 +142,19 @@ struct ContentView: View {
 
             // V2 Status bar
             HStack(spacing: AppThemeV2.Spacing.sm) {
-                Circle()
-                    .fill(AppThemeV2.Colors.amber)
-                    .frame(width: 6, height: 6)
-                Text("REMINDER: Back up important mappings before making changes")
-                    .font(AppThemeV2.Typography.caption)
-                    .foregroundColor(AppThemeV2.Colors.amber)
+                if !sharedMIDIIDs.isEmpty {
+                    Label("\(sharedMIDIIDs.count) share MIDI", systemImage: "link")
+                        .font(AppThemeV2.Typography.caption)
+                        .foregroundStyle(AppThemeV2.Colors.danger)
+                        .help("Rows sharing a MIDI assignment with the selection. Shared controls may be intentional.")
+                } else {
+                    Circle()
+                        .fill(AppThemeV2.Colors.amber)
+                        .frame(width: 6, height: 6)
+                    Text("REMINDER: Back up important mappings before making changes")
+                        .font(AppThemeV2.Typography.caption)
+                        .foregroundColor(AppThemeV2.Colors.amber)
+                }
                 Spacer()
                 if let deckCloneStatus {
                     Text(deckCloneStatus)
@@ -413,7 +421,6 @@ struct ContentView: View {
     private var mappingsHeader: some View {
         HStack(spacing: AppThemeV2.Spacing.sm) {
             V2SectionHeader(title: "MAPPINGS")
-            mappingsHeaderControllerButton
             if profileMatchIDs != nil {
                 Button("Show all mappings") { profileMatchIDs = nil }
                     .buttonStyle(.plain)
@@ -421,43 +428,10 @@ struct ContentView: View {
                     .foregroundColor(AppThemeV2.Colors.amber)
             }
             Spacer()
-            mappingsHeaderOrderingControls
         }
         .padding(.horizontal, AppThemeV2.Spacing.lg)
         .frame(height: AppThemeV2.Components.sectionHeaderHeight)
         .background(AppThemeV2.Colors.stone800)
-    }
-
-    private var mappingsHeaderControllerButton: some View {
-        V2MenuButton(
-            title: "Controller",
-            systemImage: "pianokeys",
-            isEnabled: !document.mappingFile.devices.isEmpty
-        ) {
-            ForEach(document.mappingFile.devices) { device in
-                Button(device.name.isEmpty ? "Unnamed device" : device.name) {
-                    activeSheet = .controllerProfile(device.id)
-                }
-            }
-        }
-        .help("Associate a physical controller with a mapping device and browse its controls.")
-    }
-
-    @ViewBuilder
-    private var mappingsHeaderOrderingControls: some View {
-        if !sharedMIDIIDs.isEmpty {
-            Label("\(sharedMIDIIDs.count) share MIDI", systemImage: "link")
-                .font(AppThemeV2.Typography.caption)
-                .foregroundStyle(AppThemeV2.Colors.danger)
-                .help("Red rows share a MIDI assignment with the selection. Shared controls may be intentional.")
-        }
-        if !selectedMappings.isEmpty {
-            Text("\(selectedMappings.count) selected")
-                .font(AppThemeV2.Typography.caption)
-                .foregroundColor(AppThemeV2.Colors.stone400)
-        }
-        V2Toggle(isOn: $isManualOrder, label: "Manual order")
-            .help("Preserve your row sequence and enable drag reordering.")
     }
 
     // MARK: - Assistant and Wizard
@@ -801,6 +775,7 @@ struct V2ActionBarFull: View {
     @Binding var categoryFilter: CommandCategory
     @Binding var ioFilter: IODirection
     @Binding var searchText: String
+    @Binding var isManualOrder: Bool
     var onAddInput: (TraktorCommandDescriptor) -> Void
     var onAddOutput: (TraktorCommandDescriptor) -> Void
     var onAddInOut: (TraktorCommandDescriptor) -> Void
@@ -853,7 +828,7 @@ struct V2ActionBarFull: View {
             // Filters, search, and app icons as one right-side group with
             // consistent spacing.
             HStack(spacing: AppThemeV2.Spacing.sm) {
-                V2FilterMenu(categoryFilter: $categoryFilter, ioFilter: $ioFilter)
+                V2FilterMenu(categoryFilter: $categoryFilter, ioFilter: $ioFilter, isManualOrder: $isManualOrder)
                 V2SearchField(text: $searchText, placeholder: "Search...")
                     .frame(width: 140)
                 V2ToolbarIconButton(icon: "info.circle", action: onAbout)
@@ -1340,6 +1315,7 @@ struct V2CircularFilterMenu<T: Hashable & CaseIterable & RawRepresentable>: View
 struct V2FilterMenu: View {
     @Binding var categoryFilter: CommandCategory
     @Binding var ioFilter: IODirection
+    @Binding var isManualOrder: Bool
 
     @State private var isHovered = false
 
@@ -1379,6 +1355,20 @@ struct V2FilterMenu: View {
                                 Text(option.rawValue.capitalized)
                                 if ioFilter == option { Spacer(); Image(systemName: "checkmark") }
                             }
+                        }
+                    }
+                }
+                Section("Order") {
+                    Button { isManualOrder = true } label: {
+                        HStack {
+                            Text("Manual")
+                            if isManualOrder { Spacer(); Image(systemName: "checkmark") }
+                        }
+                    }
+                    Button { isManualOrder = false } label: {
+                        HStack {
+                            Text("Auto")
+                            if !isManualOrder { Spacer(); Image(systemName: "checkmark") }
                         }
                     }
                 }
