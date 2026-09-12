@@ -1,0 +1,35 @@
+{
+  "manufacturer": "AlphaTheta",
+  "model": "euphonia",
+  "hardwareVerificationRequired": false,
+  "hardwareTested": false,
+  "sources": [
+    {
+      "file": "sources/euphonia_DRI1891A_manual.pdf",
+      "url": "https://downloads.support.alphatheta.com/manuals/euphonia_DRI1891A_manual.pdf",
+      "documentRevision": "DRI1891A",
+      "retrievedOn": "2026-09-12",
+      "pageCount": 66,
+      "visuallyReviewedPages": [
+        27,
+        45
+      ],
+      "sha256": "fd6f233b2747bb3f23254d454513098102a07b8df8caf6d167293cae957c9ba5",
+      "verification": "manufacturer-documented"
+    },
+    {
+      "file": "sources/euphonia_MIDI_Message_List_E10.pdf",
+      "url": "https://downloads.support.alphatheta.com/software_info/dj-mixers/euphonia/euphonia_MIDI_Message_List_E10.pdf",
+      "documentRevision": "E10",
+      "retrievedOn": "2026-09-12",
+      "pageCount": 4,
+      "visuallyReviewedPages": [
+        2,
+        3,
+        4
+      ],
+      "sha256": "45631b77a6806762fe4b5a3231037672ba707f55177a7717f5ac2b04bd88840b",
+      "verification": "manufacturer-documented"
+    }
+  ]
+}
