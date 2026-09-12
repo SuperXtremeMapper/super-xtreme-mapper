@@ -34,18 +34,36 @@ final class APIKeyManager: ObservableObject {
     // MARK: - Singleton
 
     /// Shared instance for app-wide access
-    static let shared = APIKeyManager()
+    private static var sharedInstance: APIKeyManager?
+    static var shared: APIKeyManager {
+        if let sharedInstance { return sharedInstance }
+        let manager = APIKeyManager(loadedKey: loadStoredAPIKey())
+        sharedInstance = manager
+        return manager
+    }
+
+    /// Settings can wait for authorization without constructing the singleton on
+    /// the main thread. Cancelled presentations do not cache a late result.
+    static func prepareShared() async -> APIKeyManager? {
+        if let sharedInstance { return sharedInstance }
+        let key = await Task.detached { loadStoredAPIKey() }.value
+        guard !Task.isCancelled else { return nil }
+        if let sharedInstance { return sharedInstance }
+        let manager = APIKeyManager(loadedKey: key)
+        sharedInstance = manager
+        return manager
+    }
 
     // MARK: - Keychain Configuration
 
     /// Service identifier for Keychain storage
-    private static let serviceName = "com.xtrememapping.apikey"
+    nonisolated private static let serviceName = "com.xtrememapping.apikey"
 
     /// Account name for the API key entry
-    private static let accountName = "anthropic"
+    nonisolated private static let accountName = "anthropic"
 
     /// Logger for Keychain status reporting
-    private static let logger = Logger(subsystem: "com.sxm.app", category: "APIKeyManager")
+    nonisolated private static let logger = Logger(subsystem: "com.sxm.app", category: "APIKeyManager")
 
     // MARK: - Key Storage
 
@@ -93,11 +111,9 @@ final class APIKeyManager: ObservableObject {
 
     // MARK: - Initialization
 
-    private init() {
-        // Load any existing key from Keychain on initialization
-        let key = loadAPIKey()
-        snapshot.write(key)
-        userAPIKey = key
+    private init(loadedKey: String?) {
+        snapshot.write(loadedKey)
+        userAPIKey = loadedKey
     }
 
     // MARK: - Public API
@@ -137,7 +153,11 @@ final class APIKeyManager: ObservableObject {
     /// Loads the API key from the Keychain.
     ///
     /// - Returns: The stored API key, or nil if not found
-    func loadAPIKey() -> String? {
+    func loadAPIKey() -> String? { Self.loadStoredAPIKey() }
+
+    /// Does not initialize the observable singleton or hop to the main actor.
+    /// Call from a worker when Keychain might need user authorization.
+    nonisolated static func loadStoredAPIKey() -> String? {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: Self.serviceName,

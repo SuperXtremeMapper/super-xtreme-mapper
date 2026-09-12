@@ -140,6 +140,55 @@ nonisolated enum SXMJSONCodec {
         try check(object, shape: "document", path: "$", version: (object as? [String: Any])?["schemaVersion"] as? Int ?? 1)
     }
 
+    /// A disclosure gate, stricter about container shapes than import diagnostics.
+    /// Uses the interchange key allowlists so unknown nested objects cannot carry
+    /// opaque source text into an AI request. Wrong scalar types/values stay
+    /// eligible for correction; unexpected objects/arrays must be fixed locally.
+    /// The root preservation value is excluded: the repair input protects and
+    /// redacts its complete original byte range without interpreting its contents.
+    static func validateRepairVisibility(_ root: [String: Any]) throws {
+        try checkRepairVisibility(root, shape: "document", depth: 0)
+    }
+
+    private static func checkRepairVisibility(_ value: Any, shape: String, depth: Int) throws {
+        guard depth <= 64, let object = value as? [String: Any],
+              let allowed = keys[shape], Set(object.keys).isSubset(of: allowed) else {
+            throw JSONRepairError.unsafeInput
+        }
+        for (key, child) in object {
+            if shape == "document", key == "preservation" { continue }
+            if child is NSNull { continue }
+            let objectShape: String?
+            let arrayShape: String?
+            switch (shape, key) {
+            case ("document", "metadata"): objectShape = "metadataV2"; arrayShape = nil
+            case ("document", "devices"): objectShape = nil; arrayShape = "device"
+            case ("device", "mappings"): objectShape = nil; arrayShape = "mapping"
+            case ("mapping", "midi"), ("controlOverride", "midi"), ("override", "midi"):
+                objectShape = "midi"; arrayShape = nil
+            case ("mapping", "modifier1Condition"), ("mapping", "modifier2Condition"):
+                objectShape = "condition"; arrayShape = nil
+            case ("mapping", "setToValue"), ("mapping", "rotarySensitivity"), ("mapping", "rotaryAcceleration"):
+                objectShape = child is [String: Any] ? "float" : nil; arrayShape = nil
+            case ("metadataV2", "profileReferences"): objectShape = nil; arrayShape = "profile"
+            case ("metadataV2", "physicalControls"): objectShape = nil; arrayShape = "control"
+            case ("metadataV2", "localOverrides"): objectShape = nil; arrayShape = "override"
+            case ("metadataV2", "deviceProfiles"): objectShape = nil; arrayShape = "deviceProfile"
+            case ("deviceProfile", "configuration"): objectShape = "configuration"; arrayShape = nil
+            case ("configuration", "overrides"): objectShape = nil; arrayShape = "controlOverride"
+            default: objectShape = nil; arrayShape = nil
+            }
+            if let objectShape {
+                try checkRepairVisibility(child, shape: objectShape, depth: depth + 1)
+            } else if let arrayShape {
+                guard let array = child as? [Any] else { throw JSONRepairError.unsafeInput }
+                for item in array { try checkRepairVisibility(item, shape: arrayShape, depth: depth + 1) }
+            } else {
+                guard !(child is [String: Any]), !(child is [Any]) else { throw JSONRepairError.unsafeInput }
+            }
+        }
+    }
+
     private static let keys: [String: Set<String>] = [
         "document": ["format", "schemaVersion", "tsiVersion", "devices", "preservation", "metadata"],
         "device": ["id", "name", "comment", "inPort", "outPort", "tsiVersion", "mappingFileRevision", "mappings"],

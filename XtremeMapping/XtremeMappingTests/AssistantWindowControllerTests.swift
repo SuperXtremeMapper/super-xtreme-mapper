@@ -17,6 +17,24 @@ import SwiftUI
         XCTAssertTrue(view.selectedIDs.isEmpty)
     }
 
+    func testHostedContentDoesNotOverrideWindowSize() {
+        let owner = AssistantWindowController()
+        owner.present(title: "Assistant", content: {
+            AnyView(Text("Long conversation").frame(idealWidth: 1000, idealHeight: 1600))
+        }, onClose: {})
+        owner.window?.contentView?.layoutSubtreeIfNeeded()
+        RunLoop.main.run(until: Date().addingTimeInterval(0.1))
+        XCTAssertEqual(owner.window?.contentLayoutRect.width, 850)
+        XCTAssertEqual(owner.window?.contentLayoutRect.height, 740)
+        XCTAssertEqual(owner.window?.contentMinSize, NSSize(width: 720, height: 560))
+        owner.window?.setContentSize(NSSize(width: 720, height: 560))
+        owner.window?.contentView?.layoutSubtreeIfNeeded()
+        RunLoop.main.run(until: Date().addingTimeInterval(0.1))
+        XCTAssertEqual(owner.window?.contentLayoutRect.size, NSSize(width: 720, height: 560))
+        XCTAssertEqual(owner.window?.contentView?.subviews.first?.frame.size, NSSize(width: 720, height: 560))
+        owner.close()
+    }
+
     func testWindowUsesDocumentUndoManager() {
         let owner = AssistantWindowController()
         let manager = UndoManager()
@@ -33,6 +51,7 @@ import SwiftUI
         owner.present(title: "Assistant — Mapping A", content: { AnyView(Text("Other")) }, onClose: { cleanups += 100 })
         XCTAssertTrue(owner.window === first)
         XCTAssertEqual(owner.window?.title, "Assistant — Mapping A")
+        XCTAssertEqual(owner.window?.appearance?.name, .darkAqua)
         XCTAssertTrue(owner.window?.styleMask.contains(.resizable) == true)
         owner.close()
         XCTAssertEqual(cleanups, 1)

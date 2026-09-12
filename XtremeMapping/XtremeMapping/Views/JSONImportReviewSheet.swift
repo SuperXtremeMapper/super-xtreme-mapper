@@ -4,11 +4,12 @@ struct JSONImportReviewSheet: View {
     @ObservedObject var coordinator: JSONImportCoordinator
     let fileName: String
     @State private var severityFilter = "All"
+    @State private var repairConsent = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
-                Text("Review JSON Import").font(.title2.weight(.semibold))
+                Text("Review JSON Import").font(.system(size: 14, weight: .semibold))
                 Text(fileName).font(.callout).foregroundStyle(.secondary).lineLimit(2)
             }
             if coordinator.isWorking {
@@ -21,21 +22,94 @@ struct JSONImportReviewSheet: View {
             } else if let candidate = coordinator.candidate {
                 review(candidate)
             }
+            repairControls
             Divider()
             HStack {
                 Text("Opens a new untitled TSI document.")
                     .font(.caption).foregroundStyle(.secondary)
                 Spacer()
                 Button("Cancel", action: coordinator.cancel).keyboardShortcut(.cancelAction)
+                    .buttonStyle(AssistantButtonStyle())
                 Button(coordinator.candidate?.canWriteTSI == false && coordinator.candidate?.canOpen == true ? "Open for Inspection" : "Import", action: coordinator.accept)
                     .keyboardShortcut(.defaultAction)
-                    .disabled(coordinator.isWorking || coordinator.candidate?.canOpen != true || coordinator.candidate?.diagnostics.contains(where: { $0.severity == .error }) == true)
+                    .buttonStyle(AssistantButtonStyle(primary: true))
+                    .disabled(coordinator.isWorking || coordinator.isRepairing || coordinator.candidate?.canOpen != true || coordinator.candidate?.diagnostics.contains(where: { $0.severity == .error }) == true)
             }
         }
-        .padding(24)
-        .frame(minWidth: 520, minHeight: 360)
+        .padding(16)
+        .background(AppThemeV2.Colors.stone900)
+        .frame(minWidth: 520, minHeight: 440)
         .tint(AppThemeV2.Colors.amber)
         .preferredColorScheme(.dark)
+    }
+
+    @ViewBuilder
+    private var repairControls: some View {
+        if let plan = coordinator.repairPlan {
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    Label(coordinator.isRepairAccepted ? "Repair accepted for import" : "Review proposed repair", systemImage: coordinator.isRepairAccepted ? "checkmark.circle" : "doc.text.magnifyingglass")
+                        .font(.system(size: 12, weight: .semibold))
+                    Spacer()
+                    Text("\(plan.patches.count) edits").font(.caption).foregroundStyle(.secondary)
+                }
+                Text("Exact changes computed locally. Mapping and TSI preservation checks passed. The original file is unchanged.")
+                    .font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 12) {
+                        ForEach(Array(plan.patches.enumerated()), id: \.offset) { index, patch in
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Edit \(index + 1) · Before").font(.caption.weight(.semibold)).foregroundStyle(.secondary)
+                                Text(patch.before).font(.system(size: 11, design: .monospaced))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Text("After").font(.caption.weight(.semibold)).foregroundStyle(AppThemeV2.Colors.amber)
+                                Text(patch.after.isEmpty ? "(Removed)" : patch.after).font(.system(size: 11, design: .monospaced))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }.textSelection(.enabled)
+                            Divider()
+                        }
+                    }
+                }.frame(minHeight: 90, maxHeight: 180)
+                HStack {
+                    Button("Discard Repair", action: coordinator.discardRepair).buttonStyle(AssistantButtonStyle())
+                    Spacer()
+                    if !coordinator.isRepairAccepted {
+                        Button("Accept Repair", action: coordinator.acceptRepair).buttonStyle(AssistantButtonStyle(primary: true))
+                    } else {
+                        Text("Choose Import to open the repaired copy.").font(.caption).foregroundStyle(.secondary)
+                    }
+                }
+            }
+            .padding(12).background(AppThemeV2.Colors.stone800, in: RoundedRectangle(cornerRadius: 6))
+        } else if coordinator.isRepairing {
+            HStack {
+                ProgressView().controlSize(.small)
+                Text(coordinator.repairStatus).font(.callout)
+                Spacer()
+                Button("Stop Repair", action: coordinator.cancelRepair).buttonStyle(AssistantButtonStyle())
+            }
+        } else if coordinator.candidate?.canOpen == false {
+            VStack(alignment: .leading, spacing: 8) {
+                if let unavailable = coordinator.repairUnavailableReason {
+                    Text(unavailable).font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                } else if coordinator.canRequestRepair {
+                    DisclosureGroup("Optional AI repair") {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Sends mapping JSON, including names and comments, to Anthropic using the stored API key and Claude Sonnet. Retained TSI source stays on this Mac. Charges may apply. Every proposed change is reviewed here before import.")
+                                .font(.caption).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+                            Toggle("I agree to send this mapping JSON for repair", isOn: $repairConsent)
+                                .font(.caption)
+                            Button("Send JSON for AI Repair") { coordinator.requestRepair(consent: repairConsent) }
+                                .buttonStyle(AssistantButtonStyle(primary: true)).disabled(!repairConsent)
+                        }.padding(.top, 6)
+                    }.font(.system(size: 12, weight: .medium))
+                }
+                if let error = coordinator.repairError {
+                    Text(error).font(.caption).foregroundStyle(AppThemeV2.Colors.warning)
+                        .fixedSize(horizontal: false, vertical: true).textSelection(.enabled)
+                }
+            }
+        }
     }
 
     @ViewBuilder

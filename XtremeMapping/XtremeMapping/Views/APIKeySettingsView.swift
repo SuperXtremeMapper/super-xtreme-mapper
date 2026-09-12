@@ -13,10 +13,33 @@ import SwiftUI
 /// feedback and save/clear functionality. The key is stored securely in
 /// the macOS Keychain via APIKeyManager.
 struct APIKeySettingsView: View {
+    @State private var manager: APIKeyManager?
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        Group {
+            if let manager {
+                LoadedAPIKeySettingsView(apiKeyManager: manager)
+            } else {
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("API key settings").font(AppThemeV2.Typography.display)
+                    ProgressView("Waiting for Keychain access…").controlSize(.small)
+                    Text("Resolve the macOS prompt to access your stored key. You can cancel this window at any time.")
+                        .foregroundStyle(AppThemeV2.Colors.stone400)
+                    Button("Cancel") { dismiss() }.keyboardShortcut(.cancelAction)
+                }.padding(24).frame(width: 450)
+                    .background(AppThemeV2.Colors.stone900).preferredColorScheme(.dark)
+            }
+        }
+        .task { manager = await APIKeyManager.prepareShared() }
+    }
+}
+
+private struct LoadedAPIKeySettingsView: View {
 
     // MARK: - State
 
-    @StateObject private var apiKeyManager = APIKeyManager.shared
+    @ObservedObject var apiKeyManager: APIKeyManager
     @State private var apiKeyInput: String = ""
     @State private var showingSaveConfirmation = false
     @State private var showingClearConfirmation = false

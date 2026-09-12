@@ -14,9 +14,21 @@ final class AssistantWindowController: NSObject, ObservableObject, NSWindowDeleg
         let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 850, height: 740),
             styleMask: [.titled, .closable, .miniaturizable, .resizable], backing: .buffered, defer: false)
         window.title = title
+        window.appearance = NSAppearance(named: .darkAqua)
+        window.backgroundColor = NSColor(AppThemeV2.Colors.stone900)
         window.isReleasedWhenClosed = false
         window.contentMinSize = NSSize(width: 720, height: 560)
-        window.contentView = NSHostingView(rootView: content())
+        let host = NSHostingView(rootView: content())
+        // The window owns its geometry. SwiftUI's ideal content size must not
+        // resize it when the conversation or optional setup panels change.
+        host.sizingOptions = []
+        host.frame = NSRect(origin: .zero, size: window.contentLayoutRect.size)
+        host.autoresizingMask = [.width, .height]
+        // A plain AppKit container prevents SwiftUI's window integration from
+        // resetting the window's min size and fitting it to the hosted content.
+        let container = NSView(frame: host.frame)
+        container.addSubview(host)
+        window.contentView = container
         window.delegate = self
         window.level = .floating
         window.center()

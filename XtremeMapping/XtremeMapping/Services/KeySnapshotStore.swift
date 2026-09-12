@@ -14,7 +14,7 @@ import Foundation
 ///
 /// `write(_:)` makes the new value immediately visible to subsequent
 /// `read()` calls on any thread — callers never race a main-queue hop.
-final class KeySnapshotStore: @unchecked Sendable {
+nonisolated final class KeySnapshotStore: @unchecked Sendable {
 
     private let lock = NSLock()
     private var value: String?
