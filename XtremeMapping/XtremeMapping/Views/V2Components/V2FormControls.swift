@@ -104,15 +104,10 @@ struct V2Dropdown<T: Hashable>: View {
 
     var body: some View {
         Menu {
+            // Plain list — the selected value is shown in the closed control,
+            // so no per-item checkmark (and no reserved checkmark gutter).
             ForEach(options, id: \.self) { option in
-                Button(action: { selection = option }) {
-                    HStack {
-                        Text(labelFor(option))
-                        if selection == option {
-                            Image(systemName: "checkmark")
-                        }
-                    }
-                }
+                Button(labelFor(option)) { selection = option }
             }
         } label: {
             HStack(spacing: AppThemeV2.Spacing.xs) {

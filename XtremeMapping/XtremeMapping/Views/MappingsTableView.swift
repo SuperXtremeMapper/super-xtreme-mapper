@@ -345,39 +345,96 @@ struct MappingsTableView: View {
             return !items.isEmpty
         }
         .contextMenu {
-            if !selection.isEmpty {
-                Button("Ask about selected mappings") { onAskAboutSelection?() }
-                    .help("Open the Assistant with these rows attached to your request.")
+            // 1. Change (top)
+            Menu("Change") {
+                Menu("Deck") {
+                    ForEach(DeckClonePresentation.deckAssignments, id: \.self) { assignment in
+                        Button(assignment.displayName) { onAssignmentChange?(assignment) }
+                    }
+                }
+                Menu("MIDI Channel") {
+                    ForEach(DeckClonePresentation.midiChannels, id: \.self) { channel in
+                        Button("\(channel)") { onMIDIChannelChange?(channel) }
+                    }
+                }
+                Button("Comment…") { prepareCommentDraft() }
                 Divider()
-                Button("Copy") { onCopy?() }
-                    .keyboardShortcut("c", modifiers: .command)
+                if mappings.filter({ selection.contains($0.id) }).allSatisfy({ $0.ioType == .input }) {
+                    Menu("Type") {
+                        ForEach(ControllerType.allCases.filter { $0 != .led }, id: \.self) { type in
+                            Button(type.displayName) { onControllerTypeChange?(type) }
+                        }
+                    }
+                    Menu("Interaction") {
+                        ForEach(validInteractionModesForSelection, id: \.self) { mode in
+                            Button(mode.displayName) { onInteractionChange?(mode) }
+                        }
+                    }
+                    if showEncoderModeMenu {
+                        Menu("Encoder Mode") {
+                            ForEach(EncoderMode.allCases, id: \.self) { mode in
+                                Button(mode.displayName) { onEncoderModeChange?(mode) }
+                            }
+                        }
+                    }
+                }
+                Divider()
+                Menu("Modifier 1") {
+                    Button("None") { onModifier1Change?(nil) }
+                    Divider()
+                    ForEach(1...8, id: \.self) { mod in
+                        Menu("M\(mod)") {
+                            ForEach(0...7, id: \.self) { value in
+                                Button("= \(value)") {
+                                    onModifier1Change?(ModifierCondition(modifier: mod, value: value))
+                                }
+                            }
+                        }
+                    }
+                }
+                Menu("Modifier 2") {
+                    Button("None") { onModifier2Change?(nil) }
+                    Divider()
+                    ForEach(1...8, id: \.self) { mod in
+                        Menu("M\(mod)") {
+                            ForEach(0...7, id: \.self) { value in
+                                Button("= \(value)") {
+                                    onModifier2Change?(ModifierCondition(modifier: mod, value: value))
+                                }
+                            }
+                        }
+                    }
+                }
+                Divider()
+                Button("Invert") { onInvertToggle?() }
             }
+            .disabled(selection.isEmpty || isLocked)
 
+            Button("Change Command…") { onChangeCommand?() }
+                .disabled(selection.isEmpty || isLocked)
+            Button("Replace in Comments…") { onReplaceComments?() }
+                .disabled(selection.isEmpty || isLocked)
+
+            Divider()
+
+            // 2. Copy / Paste / Duplicate / Delete
+            Button("Copy") { onCopy?() }
+                .keyboardShortcut("c", modifiers: .command)
+                .disabled(selection.isEmpty)
             Button("Paste") { onPaste?() }
                 .keyboardShortcut("v", modifiers: .command)
                 .disabled(isLocked || !clipboard.hasMappingsData || pasteDisabledReason != nil)
                 .help(pasteDisabledReason ?? "Paste mappings into the selected device.")
+            Button("Duplicate") { onDuplicate?() }
+                .keyboardShortcut("d", modifiers: .command)
+                .disabled(selection.isEmpty || isLocked)
+            Button("Delete") { onDelete?() }
+                .keyboardShortcut(.delete, modifiers: [])
+                .disabled(selection.isEmpty || isLocked)
 
             Divider()
 
-            Menu("Clone Deck A to") {
-                ForEach(DeckClonePresentation.menuOptions) { option in
-                    Button(option.title) {
-                        onCloneDeckA?(option.destinations)
-                    }
-                }
-            }
-            .disabled(!canCloneDeckA)
-            .help(MappingTransformPlanner.exclusionExplanation)
-
-            Button("Clone FX Unit…") { onCloneFX?() }
-                .disabled(selection.isEmpty || isLocked)
-
-            Button("Replace in Comments…") { onReplaceComments?() }
-                .disabled(selection.isEmpty || isLocked)
-            Button("Change Command…") { onChangeCommand?() }
-                .disabled(selection.isEmpty || isLocked)
-            Divider()
+            // 3. Move
             Button("Move Up") { onMoveStep?(false) }
                 .keyboardShortcut(.upArrow, modifiers: [.command, .option])
                 .disabled(!canReorder || !isManualOrder || isLocked || selection.isEmpty)
@@ -385,108 +442,25 @@ struct MappingsTableView: View {
                 .keyboardShortcut(.downArrow, modifiers: [.command, .option])
                 .disabled(!canReorder || !isManualOrder || isLocked || selection.isEmpty)
 
-            if !selection.isEmpty && !isLocked {
-                Divider()
+            Divider()
 
-                Button("Duplicate") { onDuplicate?() }
-                    .keyboardShortcut("d", modifiers: .command)
-
-                Button("Delete") { onDelete?() }
-                    .keyboardShortcut(.delete, modifiers: [])
-
-                Divider()
-
-                Menu("Change") {
-                    Menu("Deck") {
-                        ForEach(DeckClonePresentation.deckAssignments, id: \.self) { assignment in
-                            Button(assignment.displayName) {
-                                onAssignmentChange?(assignment)
-                            }
-                        }
-                    }
-
-                    Menu("MIDI Channel") {
-                        ForEach(DeckClonePresentation.midiChannels, id: \.self) { channel in
-                            Button("\(channel)") {
-                                onMIDIChannelChange?(channel)
-                            }
-                        }
-                    }
-
-                    Button("Comment…") {
-                        prepareCommentDraft()
-                    }
-
-                    Divider()
-
-                    if mappings.filter({ selection.contains($0.id) }).allSatisfy({ $0.ioType == .input }) {
-                        Menu("Type") {
-                            ForEach(ControllerType.allCases.filter { $0 != .led }, id: \.self) { type in
-                                Button(type.displayName) {
-                                    onControllerTypeChange?(type)
-                                }
-                            }
-                        }
-
-                        Menu("Interaction") {
-                            ForEach(validInteractionModesForSelection, id: \.self) { mode in
-                                Button(mode.displayName) {
-                                    onInteractionChange?(mode)
-                                }
-                            }
-                        }
-
-                        if showEncoderModeMenu {
-                            Menu("Encoder Mode") {
-                                ForEach(EncoderMode.allCases, id: \.self) { mode in
-                                    Button(mode.displayName) {
-                                        onEncoderModeChange?(mode)
-                                    }
-                                }
-                            }
-                        }
-
-                    }
-
-                    Divider()
-
-                    Menu("Modifier 1") {
-                        Button("None") { onModifier1Change?(nil) }
-                        Divider()
-                        ForEach(1...8, id: \.self) { mod in
-                            Menu("M\(mod)") {
-                                ForEach(0...7, id: \.self) { value in
-                                    Button("= \(value)") {
-                                        onModifier1Change?(
-                                            ModifierCondition(modifier: mod, value: value)
-                                        )
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    Menu("Modifier 2") {
-                        Button("None") { onModifier2Change?(nil) }
-                        Divider()
-                        ForEach(1...8, id: \.self) { mod in
-                            Menu("M\(mod)") {
-                                ForEach(0...7, id: \.self) { value in
-                                    Button("= \(value)") {
-                                        onModifier2Change?(
-                                            ModifierCondition(modifier: mod, value: value)
-                                        )
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    Divider()
-
-                    Button("Invert") { onInvertToggle?() }
+            // 4. Clone
+            Menu("Clone Deck A to") {
+                ForEach(DeckClonePresentation.menuOptions) { option in
+                    Button(option.title) { onCloneDeckA?(option.destinations) }
                 }
             }
+            .disabled(!canCloneDeckA)
+            .help(MappingTransformPlanner.exclusionExplanation)
+            Button("Clone FX Unit…") { onCloneFX?() }
+                .disabled(selection.isEmpty || isLocked)
+
+            Divider()
+
+            // 5. Ask (bottom)
+            Button("Ask about selected mappings") { onAskAboutSelection?() }
+                .disabled(selection.isEmpty)
+                .help("Open the Assistant with these rows attached to your request.")
         }
         .alert("Change Comment", isPresented: $isChangingComment) {
             TextField("Comment", text: $commentDraft)

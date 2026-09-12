@@ -84,12 +84,8 @@ struct WizardSetupView: View {
     private var formSection: some View {
         VStack(alignment: .leading, spacing: AppThemeV2.Spacing.md) {
             formRow(label: "Controller Name") {
-                TextField("Controller Name", text: $coordinator.setupConfig.controllerName)
-                    .textFieldStyle(.plain)
-                    .font(AppThemeV2.Typography.body)
-                    .foregroundColor(AppThemeV2.Colors.stone200)
-                    .padding(AppThemeV2.Spacing.sm)
-                    .background(RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm).fill(AppThemeV2.Colors.stone800))
+                V2TextField(placeholder: "Controller name", text: $coordinator.setupConfig.controllerName)
+                    .frame(maxWidth: 320)
             }
             formRow(label: "Number of Channels") {
                 HStack(spacing: AppThemeV2.Spacing.sm) {
@@ -100,39 +96,40 @@ struct WizardSetupView: View {
                 }
             }
             formRow(label: "Device Target") {
-                Picker("", selection: $coordinator.setupConfig.deviceTarget) {
-                    Text("Focus").tag(TargetAssignment.deviceTarget)
-                    Text("Deck A").tag(TargetAssignment.deckA)
-                    Text("Deck B").tag(TargetAssignment.deckB)
-                    Text("Deck C").tag(TargetAssignment.deckC)
-                    Text("Deck D").tag(TargetAssignment.deckD)
-                }
-                .pickerStyle(.menu)
-                .labelsHidden()
+                V2Dropdown(
+                    options: [.deviceTarget, .deckA, .deckB, .deckC, .deckD],
+                    selection: $coordinator.setupConfig.deviceTarget,
+                    labelFor: deviceTargetLabel
+                )
             }
             formRow(label: "MIDI Input Port") {
-                Picker("", selection: $coordinator.setupConfig.inputPort) {
-                    Text("Select...").tag("")
-                    ForEach(availableInputPorts, id: \.self) { port in
-                        Text(port).tag(port)
-                    }
-                }
-                .pickerStyle(.menu)
-                .labelsHidden()
+                V2Dropdown(
+                    options: [""] + availableInputPorts,
+                    selection: $coordinator.setupConfig.inputPort,
+                    labelFor: { $0.isEmpty ? "Select…" : $0 }
+                )
             }
             formRow(label: "MIDI Output Port") {
-                Picker("", selection: $coordinator.setupConfig.outputPort) {
-                    Text("No Output").tag("")
-                    ForEach(availableOutputPorts, id: \.self) { port in
-                        Text(port).tag(port)
-                    }
-                }
-                .pickerStyle(.menu)
-                .labelsHidden()
+                V2Dropdown(
+                    options: [""] + availableOutputPorts,
+                    selection: $coordinator.setupConfig.outputPort,
+                    labelFor: { $0.isEmpty ? "No Output" : $0 }
+                )
             }
         }
         .padding(AppThemeV2.Spacing.md)
         .background(RoundedRectangle(cornerRadius: AppThemeV2.Radius.md).fill(AppThemeV2.Colors.stone800))
+    }
+
+    private func deviceTargetLabel(_ target: TargetAssignment) -> String {
+        switch target {
+        case .deviceTarget: return "Focus"
+        case .deckA: return "Deck A"
+        case .deckB: return "Deck B"
+        case .deckC: return "Deck C"
+        case .deckD: return "Deck D"
+        default: return target.displayName
+        }
     }
 
     private func formRow<Content: View>(label: String, @ViewBuilder content: () -> Content) -> some View {
@@ -140,7 +137,7 @@ struct WizardSetupView: View {
             Text(label.uppercased())
                 .font(AppThemeV2.Typography.micro)
                 .tracking(0.5)
-                .foregroundColor(AppThemeV2.Colors.stone500)
+                .foregroundColor(AppThemeV2.Colors.amber)
             content()
         }
     }

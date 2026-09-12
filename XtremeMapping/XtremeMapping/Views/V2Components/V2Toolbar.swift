@@ -32,8 +32,7 @@ struct V2ToolbarButton: View {
             }
             .foregroundColor(foregroundColor)
             .padding(.horizontal, AppThemeV2.Spacing.sm)
-            .padding(.vertical, AppThemeV2.Spacing.xs + 2)
-            .frame(minWidth: minWidth)
+            .frame(minWidth: minWidth, minHeight: 24, maxHeight: 24)
             .background(
                 RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
                     .fill(backgroundColor)

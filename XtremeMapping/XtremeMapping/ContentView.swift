@@ -25,6 +25,7 @@ struct ContentView: View {
     @State private var deckCloneError: String?
     @State private var deckCloneStatus: String?
     @State private var isManualOrder = true
+    @State private var compatibilityBannerDismissed = false
     @State private var profileMatchIDs: Set<UUID>?
 
     private var canReorder: Bool {
@@ -131,7 +132,7 @@ struct ContentView: View {
                 onWizard: launchWizard
             )
 
-            if !document.mappingFile.tsiCompatibilityWarnings.isEmpty {
+            if !compatibilityBannerDismissed && !document.mappingFile.tsiCompatibilityWarnings.isEmpty {
                 compatibilityWarningBanner
             }
 
@@ -180,6 +181,10 @@ struct ContentView: View {
         }
         .onDeleteCommand {
             deleteSelectedMappings()
+        }
+        .onChange(of: document.mappingFile.tsiCompatibilityWarnings.count) { _, _ in
+            // Re-show the notice if the set of preserved assignments changes.
+            compatibilityBannerDismissed = false
         }
         .sheet(item: $activeSheet) { sheet in
             switch sheet {
@@ -289,6 +294,15 @@ struct ContentView: View {
             .font(AppThemeV2.Typography.caption)
             .foregroundColor(AppThemeV2.Colors.stone300)
             Spacer()
+            Button { compatibilityBannerDismissed = true } label: {
+                Image(systemName: "xmark")
+                    .font(.system(size: 10, weight: .bold))
+                    .foregroundColor(AppThemeV2.Colors.stone400)
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .help("Dismiss this notice")
+            .accessibilityLabel("Dismiss compatibility notice")
         }
         .padding(.horizontal, AppThemeV2.Spacing.lg)
         .padding(.vertical, AppThemeV2.Spacing.sm)
@@ -410,7 +424,7 @@ struct ContentView: View {
             mappingsHeaderOrderingControls
         }
         .padding(.horizontal, AppThemeV2.Spacing.lg)
-        .padding(.vertical, AppThemeV2.Spacing.sm)
+        .frame(height: AppThemeV2.Components.sectionHeaderHeight)
         .background(AppThemeV2.Colors.stone800)
     }
 
@@ -444,18 +458,6 @@ struct ContentView: View {
         }
         V2Toggle(isOn: $isManualOrder, label: "Manual order")
             .help("Preserve your row sequence and enable drag reordering.")
-        V2MenuButton(
-            title: "Edit selected",
-            isEnabled: !isLocked && !selectedMappings.isEmpty
-        ) {
-            Button("Replace in Comments…") { activeSheet = .replaceComments(selectedMappings) }
-            Button("Change Command…") { activeSheet = .changeCommand(selectedMappings) }
-            Button("Clone FX Unit…") { activeSheet = .cloneFX(selectedMappings) }
-            Divider()
-            Button("Move Up") { moveMappingsStep(down: false) }.disabled(!canReorder)
-            Button("Move Down") { moveMappingsStep(down: true) }.disabled(!canReorder)
-        }
-        .help("Batch actions for the selected rows.")
     }
 
     // MARK: - Assistant and Wizard
@@ -848,29 +850,12 @@ struct V2ActionBarFull: View {
 
             Spacer()
 
-            // Center-right - Filters and Search
+            // Filters, search, and app icons as one right-side group with
+            // consistent spacing.
             HStack(spacing: AppThemeV2.Spacing.sm) {
-                // Category filter
-                V2CircularFilterMenu(
-                    icon: "square.grid.2x2",
-                    selection: $categoryFilter,
-                    options: CommandCategory.allCases
-                )
-
-                // I/O filter
-                V2CircularFilterMenu(
-                    icon: "arrow.up.arrow.down",
-                    selection: $ioFilter,
-                    options: IODirection.allCases
-                )
-
-                // Search
+                V2FilterMenu(categoryFilter: $categoryFilter, ioFilter: $ioFilter)
                 V2SearchField(text: $searchText, placeholder: "Search...")
                     .frame(width: 140)
-            }
-
-            // Right side - About and Settings
-            HStack(spacing: AppThemeV2.Spacing.sm) {
                 V2ToolbarIconButton(icon: "info.circle", action: onAbout)
                 V2ToolbarIconButton(icon: "gearshape", action: onSettings)
             }
@@ -1049,7 +1034,7 @@ struct V2AddCommandMenuButton: View {
         }
         .foregroundColor(foregroundColor)
         .padding(.horizontal, AppThemeV2.Spacing.sm)
-        .padding(.vertical, AppThemeV2.Spacing.xs + 2)
+        .frame(height: 24)
         .background(
             RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
                 .fill(backgroundColor)
@@ -1344,6 +1329,80 @@ struct V2CircularFilterMenu<T: Hashable & CaseIterable & RawRepresentable>: View
         if isFiltered { return AppThemeV2.Colors.amber.opacity(0.5) }
         if isHovered { return AppThemeV2.Colors.amber.opacity(0.5) }
         return AppThemeV2.Colors.stone700
+    }
+}
+
+// MARK: - V2 Combined Filter Menu
+
+/// A single circular filter button (funnel icon) that combines the category and
+/// I/O direction filters into one menu, in the same style as the other circular
+/// toolbar buttons.
+struct V2FilterMenu: View {
+    @Binding var categoryFilter: CommandCategory
+    @Binding var ioFilter: IODirection
+
+    @State private var isHovered = false
+
+    private var isFiltered: Bool {
+        categoryFilter.rawValue.lowercased() != "all"
+            || ioFilter.rawValue.lowercased() != "all"
+    }
+
+    var body: some View {
+        ZStack {
+            Image(systemName: "line.3.horizontal.decrease")
+                .font(.system(size: 11, weight: .medium))
+                .foregroundColor(foregroundColor)
+                .frame(width: 28, height: 28)
+                .background(Circle().fill(backgroundColor))
+                .overlay(Circle().stroke(borderColor, lineWidth: 1))
+                .shadow(
+                    color: isHovered ? AppThemeV2.Colors.amberGlow : .clear,
+                    radius: isHovered ? 6 : 0
+                )
+
+            Menu {
+                Section("Category") {
+                    ForEach(CommandCategory.allCases, id: \.self) { option in
+                        Button { categoryFilter = option } label: {
+                            HStack {
+                                Text(option.rawValue.capitalized)
+                                if categoryFilter == option { Spacer(); Image(systemName: "checkmark") }
+                            }
+                        }
+                    }
+                }
+                Section("Direction") {
+                    ForEach(IODirection.allCases, id: \.self) { option in
+                        Button { ioFilter = option } label: {
+                            HStack {
+                                Text(option.rawValue.capitalized)
+                                if ioFilter == option { Spacer(); Image(systemName: "checkmark") }
+                            }
+                        }
+                    }
+                }
+            } label: {
+                Color.clear.frame(width: 24, height: 24).contentShape(Circle())
+            }
+            .menuStyle(.borderlessButton)
+            .menuIndicator(.hidden)
+        }
+        .frame(width: 28, height: 28)
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.15)) { isHovered = hovering }
+        }
+        .help("Filter mappings by category and direction")
+    }
+
+    private var foregroundColor: Color {
+        (isFiltered || isHovered) ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone500
+    }
+    private var backgroundColor: Color {
+        (isFiltered || isHovered) ? AppThemeV2.Colors.amberSubtle : AppThemeV2.Colors.stone800
+    }
+    private var borderColor: Color {
+        (isFiltered || isHovered) ? AppThemeV2.Colors.amber.opacity(0.5) : AppThemeV2.Colors.stone700
     }
 }
 

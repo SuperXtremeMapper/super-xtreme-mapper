@@ -115,6 +115,10 @@ enum AppThemeV2 {
         // Settings Panel
         static let settingsPanelWidth: CGFloat = 280
         static let formRowHeight: CGFloat = 32
+
+        // Shared height for the "XXMAPPINGS" / "XXSETTINGS" pane headers so both
+        // panes line up.
+        static let sectionHeaderHeight: CGFloat = 40
     }
 }
 

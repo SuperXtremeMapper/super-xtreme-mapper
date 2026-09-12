@@ -219,7 +219,7 @@ struct SettingsPanelV2: View {
                 .menuStyle(.borderlessButton)
             }
             .padding(.horizontal, AppThemeV2.Spacing.lg)
-            .padding(.vertical, AppThemeV2.Spacing.sm)
+            .frame(height: AppThemeV2.Components.sectionHeaderHeight)
             .background(AppThemeV2.Colors.stone800)
 
             V2Divider()
@@ -699,12 +699,12 @@ struct SettingsPanelV2: View {
                 .foregroundColor(AppThemeV2.Colors.stone500)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-            // Column headers align with the two-column rows below.
+            // Column headers: Condition on the left, Value on the right, to
+            // match the dropdown row layout below.
             HStack(spacing: AppThemeV2.Spacing.sm) {
                 Text("Condition")
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                Spacer()
                 Text("Value")
-                    .frame(width: 84, alignment: .leading)
             }
             .font(AppThemeV2.Typography.caption)
             .foregroundColor(AppThemeV2.Colors.stone500)

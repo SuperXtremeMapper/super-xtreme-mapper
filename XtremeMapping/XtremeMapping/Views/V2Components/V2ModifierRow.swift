@@ -13,9 +13,6 @@ struct V2ModifierRow: View {
     var isMixed: Bool = false
     let onChanged: (ModifierCondition?) -> Void
 
-    /// Fixed value-column width so both stacked rows line up.
-    private let valueColumnWidth: CGFloat = 84
-
     private var conditionTitle: String {
         if isMixed { return "Multiple values" }
         return condition.map { TraktorConditionMetadata.name(for: $0.modifier) } ?? "None"
@@ -24,7 +21,7 @@ struct V2ModifierRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: AppThemeV2.Spacing.xxs) {
             HStack(spacing: AppThemeV2.Spacing.sm) {
-                // Condition column — fills the remaining width.
+                // Condition on the left at the standard inset.
                 Menu {
                     conditionMenuItems
                 } label: {
@@ -36,12 +33,12 @@ struct V2ModifierRow: View {
                 }
                 .menuStyle(.borderlessButton)
                 .menuIndicator(.hidden)
-                .frame(maxWidth: .infinity)
+                .fixedSize()
                 .accessibilityLabel("Condition type")
 
-                // Value column — fixed width so both rows align.
+                // Value pushed to the right so both rows' value boxes align.
+                Spacer(minLength: AppThemeV2.Spacing.sm)
                 valueColumn
-                    .frame(width: valueColumnWidth)
             }
 
             // Supporting context for targeted or preserved conditions, shown
@@ -91,6 +88,7 @@ struct V2ModifierRow: View {
                 }
                 .menuStyle(.borderlessButton)
                 .menuIndicator(.hidden)
+                .fixedSize()
                 .accessibilityLabel("Condition value")
             }
         } else {
@@ -152,14 +150,12 @@ struct V2ModifierRow: View {
                 .foregroundColor(dimmed ? AppThemeV2.Colors.stone500 : AppThemeV2.Colors.stone200)
                 .lineLimit(1)
                 .truncationMode(.tail)
-            Spacer(minLength: AppThemeV2.Spacing.xs)
             Image(systemName: "chevron.down")
                 .font(.system(size: 8, weight: .bold))
                 .foregroundColor(interactive ? AppThemeV2.Colors.stone500 : AppThemeV2.Colors.stone600)
         }
         .padding(.horizontal, AppThemeV2.Spacing.sm)
         .padding(.vertical, AppThemeV2.Spacing.xs)
-        .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
                 .fill(AppThemeV2.Colors.stone700)
