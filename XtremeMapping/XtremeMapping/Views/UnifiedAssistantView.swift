@@ -108,17 +108,10 @@ struct UnifiedAssistantView: View {
             }
             Spacer(minLength: 12)
             if isLocked { Image(systemName: "lock.fill").help("Mapping locked. Unlock it in the editor to apply changes.").accessibilityLabel("Mapping locked") }
-            V2ToolbarButton(icon: "book.closed", label: "Guide", action: { sheet = .guide })
-                .disabled(!current)
-                .help("Open the complete local reference guide and export Markdown, text or PDF.")
-            V2ToolbarButton(
-                icon: "slider.horizontal.3",
-                label: consent && credentials.hasKey ? model.label : "AI setup",
-                action: { showConnection.toggle() },
-                isActive: showConnection
-            )
-            .help("AI connection, model and privacy settings")
-            .accessibilityValue(showConnection ? "Expanded" : "Collapsed")
+            V2ToolbarIconButton(icon: "gearshape", action: { showConnection.toggle() })
+                .help("AI setup — connection, model and privacy")
+                .accessibilityLabel("AI setup")
+                .accessibilityValue(showConnection ? "Expanded" : "Collapsed")
         }.padding(.horizontal, 16).frame(height: AppThemeV2.Components.sectionHeaderHeight + 12)
             .background(AppThemeV2.Colors.stone800)
     }
@@ -178,86 +171,49 @@ struct UnifiedAssistantView: View {
         }
     }
 
-    private var isConversationEmpty: Bool {
-        conversation.messages.isEmpty
-            && conversation.localContext == nil
-            && conversation.pendingPlan == nil
-            && !conversation.isWorking
-    }
-
     private var conversationArea: some View {
-        Group {
-            if isConversationEmpty {
-                emptyConversation
-            } else {
-                ScrollViewReader { proxy in
-                    ScrollView {
-                        LazyVStack(alignment: .leading, spacing: 20) {
-                            ForEach(conversation.messages) { message in
-                                messageView(message).id(message.id)
-                            }
-                            if let context = conversation.localContext, context.revision == document.explanationRevision {
-                                localResults(context)
-                            }
-                            if let plan = conversation.pendingPlan, current { review(plan) }
-                            if conversation.isWorking {
-                                HStack(spacing: 8) {
-                                    ProgressView().controlSize(.small)
-                                    Text("Working on your request…").foregroundStyle(AppThemeV2.Colors.stone400)
-                                    Button("Cancel") { conversation.cancel() }
-                                }
-                            }
-                            Color.clear.frame(height: 1).id("bottom")
-                        }.frame(maxWidth: .infinity, alignment: .leading).padding(20).textSelection(.enabled)
+        ScrollViewReader { proxy in
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 20) {
+                    greetingBubble
+                    ForEach(conversation.messages) { message in
+                        messageView(message).id(message.id)
                     }
-                    .onChange(of: conversation.messages.count) { _, _ in proxy.scrollTo("bottom", anchor: .bottom) }
-                    .onChange(of: conversation.isWorking) { _, _ in proxy.scrollTo("bottom", anchor: .bottom) }
-                }
+                    if let context = conversation.localContext, context.revision == document.explanationRevision {
+                        localResults(context)
+                    }
+                    if let plan = conversation.pendingPlan, current { review(plan) }
+                    if conversation.isWorking {
+                        HStack(spacing: 8) {
+                            ProgressView().controlSize(.small)
+                            Text("Working on your request…").foregroundStyle(AppThemeV2.Colors.stone400)
+                            Button("Cancel") { conversation.cancel() }
+                        }
+                    }
+                    Color.clear.frame(height: 1).id("bottom")
+                }.frame(maxWidth: .infinity, alignment: .leading).padding(20).textSelection(.enabled)
             }
+            .onChange(of: conversation.messages.count) { _, _ in proxy.scrollTo("bottom", anchor: .bottom) }
+            .onChange(of: conversation.isWorking) { _, _ in proxy.scrollTo("bottom", anchor: .bottom) }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
-    private var emptyConversation: some View {
-        VStack(spacing: 20) {
-            VStack(spacing: 8) {
-                Text("Your mapping, explained.").font(AppThemeV2.Typography.display)
-                Text("Ask a question or describe an edit. Every proposed change is reviewed before it is applied.")
-                    .foregroundStyle(AppThemeV2.Colors.stone400)
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
+    /// The Assistant's opening message — always the first bubble in the thread.
+    private var greetingBubble: some View {
+        HStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("TRY").font(AppThemeV2.Typography.micro).tracking(0.5)
-                    .foregroundStyle(AppThemeV2.Colors.amber)
-                promptButton("Explain modifier 1", icon: "questionmark.bubble")
-                promptButton("Which controls change the volume?", icon: "slider.horizontal.3")
-                promptButton("Change the selected mappings to Deck B", icon: "pencil", usesSelection: true)
+                Text("Assistant").font(AppThemeV2.Typography.micro).tracking(0.5)
+                    .foregroundStyle(AppThemeV2.Colors.stone500)
+                Text("I can explain your mapping or change it for you. Ask a question, or describe an edit — you'll see each change and approve it before anything is applied.")
+                    .lineSpacing(3)
             }
-            Text("No controller needed. The reference guide and exports work without AI.")
-                .font(AppThemeV2.Typography.caption)
-                .foregroundStyle(AppThemeV2.Colors.stone400)
-                .multilineTextAlignment(.center)
+            .padding(12)
+            .frame(maxWidth: 460, alignment: .leading)
+            .background(AppThemeV2.Colors.stone800, in: RoundedRectangle(cornerRadius: AppThemeV2.Radius.lg))
+            .overlay(RoundedRectangle(cornerRadius: AppThemeV2.Radius.lg).stroke(AppThemeV2.Colors.stone700, lineWidth: 1))
+            Spacer(minLength: 48)
         }
-        .frame(maxWidth: 380)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        .padding(24)
-    }
-
-    /// A quiet suggestion chip in the app's palette (no heavy border).
-    private func promptButton(_ text: String, icon: String, usesSelection: Bool = false) -> some View {
-        Button { question = text; includeSelection = usesSelection; composerFocused = true } label: {
-            Label(text, systemImage: icon)
-                .font(AppThemeV2.Typography.body)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 10).padding(.vertical, 7)
-                .background(AppThemeV2.Colors.stone800, in: RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm))
-                .overlay(RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                    .stroke(AppThemeV2.Colors.stone700, lineWidth: 1))
-                .contentShape(Rectangle())
-        }
-        .buttonStyle(.plain)
-        .frame(maxWidth: 360)
-        .disabled(usesSelection && selectedIDs.isEmpty)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private func messageView(_ message: AssistantConversationMessage) -> some View {
@@ -318,35 +274,58 @@ struct UnifiedAssistantView: View {
             if let error = errorMessage ?? conversation.errorMessage ?? input.errorMessage {
                 AssistantNoticeBanner(kind: .danger, text: error)
             }
-            TextField("Ask a question or describe a change…", text: $question, axis: .vertical)
-                .textFieldStyle(.plain).lineLimit(2...5).focused($composerFocused)
-                .padding(10).background(AppThemeV2.Colors.stone950, in: RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm))
-                .overlay(RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm).stroke(composerFocused ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone600, lineWidth: 1))
-                .accessibilityLabel("Message to Assistant")
-            HStack(spacing: 10) {
-                Toggle(isOn: Binding(get: { input.voiceEnabled }, set: { input.setVoiceEnabled($0) })) {
-                    Label(input.isStartingVoice ? "Starting…" : input.voiceEnabled ? "Listening" : "Voice", systemImage: input.voiceEnabled ? "mic.fill" : "mic")
-                }.toggleStyle(.switch).controlSize(.small).fixedSize()
-                    .help("Dictate into the message. Review it, then Send. Replies are text only.")
-                Spacer(minLength: 0)
-                if question.count > 3_000 {
-                    Text("\(question.count)/4000").font(AppThemeV2.Typography.caption)
-                        .foregroundStyle(question.count > 4_000 ? AppThemeV2.Colors.danger : AppThemeV2.Colors.stone400)
-                }
-                Button { send() } label: { Label("Send", systemImage: "arrow.up") }
-                    .buttonStyle(AssistantButtonStyle(primary: true))
-                    .keyboardShortcut(.return, modifiers: .command).disabled(!canSend)
-                    .help("Send to \(model.label) (Command-Return)")
+            // Message box with the mic and send as circular icons inside it.
+            HStack(alignment: .bottom, spacing: 8) {
+                composerCircleButton(
+                    systemName: input.voiceEnabled ? "mic.fill" : "mic",
+                    active: input.voiceEnabled,
+                    disabled: false,
+                    action: { input.setVoiceEnabled(!input.voiceEnabled) }
+                )
+                .help("Dictate your message. Tap again to stop.")
+                .accessibilityLabel(input.voiceEnabled ? "Stop voice dictation" : "Start voice dictation")
+
+                TextField("Ask a question or describe a change…", text: $question, axis: .vertical)
+                    .textFieldStyle(.plain).lineLimit(1...5).focused($composerFocused)
+                    .frame(minHeight: 28)
+                    .accessibilityLabel("Message to Assistant")
+
+                composerCircleButton(
+                    systemName: "arrow.up",
+                    active: canSend,
+                    disabled: !canSend,
+                    action: { send() }
+                )
+                .keyboardShortcut(.return, modifiers: .command)
+                .help("Send to \(model.label) (Command-Return)")
+                .accessibilityLabel("Send")
             }
-            HStack(alignment: .top, spacing: 8) {
-                Text(input.voiceEnabled ? "Apple Speech may send audio to Apple. Dictation stays here until you send." : "Voice uses Apple Speech. Replies are text only.")
-                    .fixedSize(horizontal: false, vertical: true)
-                Spacer(minLength: 4)
-            }.font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone400)
+            .padding(8)
+            .background(AppThemeV2.Colors.stone950, in: RoundedRectangle(cornerRadius: AppThemeV2.Radius.lg))
+            .overlay(RoundedRectangle(cornerRadius: AppThemeV2.Radius.lg).stroke(composerFocused ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone600, lineWidth: 1))
+
             if question.count > 4_000 || question.utf8.count > 16 * 1024 {
-                Text("Keep requests within 4000 characters and 16 KiB of text.").foregroundStyle(AppThemeV2.Colors.danger)
+                Text("Keep requests within 4000 characters and 16 KiB of text.")
+                    .font(AppThemeV2.Typography.caption)
+                    .foregroundStyle(AppThemeV2.Colors.danger)
             }
         }.padding(16).background(AppThemeV2.Colors.stone800)
+    }
+
+    /// A 28pt circular icon button in the app's palette, for the composer's
+    /// mic and send actions.
+    private func composerCircleButton(systemName: String, active: Bool, disabled: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Image(systemName: systemName)
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundStyle(active ? AppThemeV2.Colors.stone950 : (disabled ? AppThemeV2.Colors.stone500 : AppThemeV2.Colors.stone300))
+                .frame(width: 28, height: 28)
+                .background(Circle().fill(active ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone700))
+                .overlay(Circle().stroke(active ? AppThemeV2.Colors.amberLight : AppThemeV2.Colors.stone600, lineWidth: 1))
+                .contentShape(Circle())
+        }
+        .buttonStyle(.plain)
+        .disabled(disabled)
     }
 
     /// A plain summary of what this request will be scoped to, with removable
