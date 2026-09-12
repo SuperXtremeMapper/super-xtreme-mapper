@@ -261,40 +261,55 @@ struct UnifiedAssistantView: View {
     }
 
     private func messageView(_ message: AssistantConversationMessage) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                Label(message.role == "user" ? "YOU" : message.role == "system" ? "SESSION" : "ASSISTANT",
-                      systemImage: message.role == "user" ? "person.crop.circle" : "text.bubble")
-                    .font(AppThemeV2.Typography.sectionHeader).foregroundStyle(AppThemeV2.Colors.stone400)
-                if message.revision != document.explanationRevision {
-                    Text("Earlier version").font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.warning)
+        // Your messages sit on the right; the Assistant's replies on the left.
+        let isUser = message.role == "user"
+        let fill = isUser ? AppThemeV2.Colors.amberSubtle : AppThemeV2.Colors.stone800
+        let stroke = isUser ? AppThemeV2.Colors.amber.opacity(0.35) : AppThemeV2.Colors.stone700
+
+        return HStack(spacing: 0) {
+            if isUser { Spacer(minLength: 48) }
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    Text(isUser ? "You" : message.role == "system" ? "Session" : "Assistant")
+                        .font(AppThemeV2.Typography.micro).tracking(0.5)
+                        .foregroundStyle(AppThemeV2.Colors.stone500)
+                    if message.revision != document.explanationRevision {
+                        Text("· earlier version").font(AppThemeV2.Typography.caption)
+                            .foregroundStyle(AppThemeV2.Colors.warning)
+                    }
+                    Spacer()
+                    if let answer = message.answer {
+                        Menu {
+                            Button("Markdown…") { exportReply(answer, revision: message.revision, format: "md") }
+                            Button("Plain text…") { exportReply(answer, revision: message.revision, format: "txt") }
+                            Button("PDF…") { exportReply(answer, revision: message.revision, format: "pdf") }
+                        } label: { Image(systemName: "square.and.arrow.up").font(.system(size: 11)) }
+                        .menuStyle(.borderlessButton).menuIndicator(.hidden).fixedSize()
+                        .disabled(message.revision != document.explanationRevision)
+                        .help("Export this reply")
+                    }
                 }
-                Spacer()
+                if message.answer == nil, !message.text.isEmpty {
+                    Text(verbatim: message.text).lineSpacing(3)
+                }
                 if let answer = message.answer {
-                    Menu {
-                        Button("Markdown…") { exportReply(answer, revision: message.revision, format: "md") }
-                        Button("Plain text…") { exportReply(answer, revision: message.revision, format: "txt") }
-                        Button("PDF…") { exportReply(answer, revision: message.revision, format: "pdf") }
-                    } label: { Label("Export reply", systemImage: "square.and.arrow.up") }
-                    .fixedSize().disabled(message.revision != document.explanationRevision)
-                }
-            }
-            if message.answer == nil, !message.text.isEmpty { Text(verbatim: message.text).lineSpacing(3) }
-            if let answer = message.answer {
-                answerClaims("Facts", answer.facts, revision: message.revision)
-                answerClaims("Interpretations", answer.interpretations, revision: message.revision)
-                if !answer.unknowns.isEmpty {
-                    AssistantSectionLabel("Limitations")
-                    ForEach(Array(answer.unknowns.enumerated()), id: \.offset) { _, value in
-                        Text(verbatim: value).foregroundStyle(AppThemeV2.Colors.stone400)
+                    answerClaims("Facts", answer.facts, revision: message.revision)
+                    answerClaims("Interpretations", answer.interpretations, revision: message.revision)
+                    if !answer.unknowns.isEmpty {
+                        AssistantSectionLabel("Limitations")
+                        ForEach(Array(answer.unknowns.enumerated()), id: \.offset) { _, value in
+                            Text(verbatim: value).foregroundStyle(AppThemeV2.Colors.stone400)
+                        }
                     }
                 }
             }
+            .padding(12)
+            .frame(maxWidth: 460, alignment: .leading)
+            .background(fill, in: RoundedRectangle(cornerRadius: AppThemeV2.Radius.lg))
+            .overlay(RoundedRectangle(cornerRadius: AppThemeV2.Radius.lg).stroke(stroke, lineWidth: 1))
+            if !isUser { Spacer(minLength: 48) }
         }
-        .padding(message.role == "user" ? 12 : 0)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(message.role == "user" ? AppThemeV2.Colors.stone800 : .clear,
-                    in: RoundedRectangle(cornerRadius: AppThemeV2.Radius.md))
+        .frame(maxWidth: .infinity, alignment: isUser ? .trailing : .leading)
     }
 
     private var composer: some View {
@@ -302,38 +317,6 @@ struct UnifiedAssistantView: View {
             if isBuilding { ProgressView("Reading mapping…").controlSize(.small) }
             if let error = errorMessage ?? conversation.errorMessage ?? input.errorMessage {
                 AssistantNoticeBanner(kind: .danger, text: error)
-            }
-            // What the request is scoped to, plus an optional MIDI capture.
-            VStack(alignment: .leading, spacing: 8) {
-                AssistantSectionLabel("Asking about")
-                scopeSummary
-                DisclosureGroup(isExpanded: $showMIDI) {
-                    captureControls.padding(.top, 8)
-                } label: {
-                    VStack(alignment: .leading, spacing: 2) {
-                        HStack {
-                            Label("Point to a control", systemImage: "pianokeys")
-                                .font(AppThemeV2.Typography.sectionHeader)
-                            Spacer(minLength: 8)
-                            if let midi = input.capturedMIDI {
-                                Text((try? midi.model().displayName) ?? "Captured")
-                                    .font(AppThemeV2.Typography.mono)
-                                    .foregroundStyle(AppThemeV2.Colors.amber)
-                            } else {
-                                Text(input.isLearning ? "Listening…" : "Optional")
-                                    .font(AppThemeV2.Typography.caption)
-                                    .foregroundStyle(input.isLearning ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone500)
-                            }
-                        }
-                        Text("Move a knob or button on your controller and I'll capture which one it is, so you can ask about it by feel.")
-                            .font(AppThemeV2.Typography.caption)
-                            .foregroundStyle(AppThemeV2.Colors.stone500)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                }
-                .onChange(of: showMIDI) { _, expanded in
-                    if expanded { showConnection = false } else { input.stopMIDI() }
-                }
             }
             TextField("Ask a question or describe a change…", text: $question, axis: .vertical)
                 .textFieldStyle(.plain).lineLimit(2...5).focused($composerFocused)
