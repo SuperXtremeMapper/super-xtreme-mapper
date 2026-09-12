@@ -409,7 +409,7 @@ struct ContentView: View {
                 onCopyModifiers: copyModifiers,
                 onPasteModifiers: pasteModifiers
             )
-            .frame(minWidth: 260, maxWidth: 300)
+            .frame(width: 260)
         }
     }
 

@@ -160,12 +160,14 @@ struct XtremeMappingApp: App {
                 }
                 .keyboardShortcut("s", modifiers: [.command, .shift])
 
-                Divider()
-
-                Button("Export Lossy Converted Copy…") {
-                    TSIExportCommandActions.exportCurrentDocument()
+                // Only shown when the file actually has native data that would
+                // need lossy conversion — otherwise it just clutters the menu.
+                if tsiLossyExportAvailable == true {
+                    Divider()
+                    Button("Export Lossy Converted Copy…") {
+                        TSIExportCommandActions.exportCurrentDocument()
+                    }
                 }
-                .disabled(tsiLossyExportAvailable != true)
             }
 
             // Help menu with feedback and about
