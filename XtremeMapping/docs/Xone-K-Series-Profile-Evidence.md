@@ -1,6 +1,6 @@
 # Xone:K1, K2 and K3 profile evidence
 
-Official-source basis collected on 12 September 2026. As with Euphonia, manufacturer documentation is sufficient for the initial profile; physical testing is optional. These are reference packages, not implemented profiles.
+Official-source basis collected on 12 September 2026. As with Euphonia, manufacturer documentation is sufficient for the initial profile; physical testing is optional. The source packages below now back the [implemented profile foundation](Controller-Profiles.md); configured lookup and the application interface follow next.
 
 ## Source packages
 
@@ -40,3 +40,11 @@ Custom maps can override individual MIDI channels and change control assignments
 - Preserve unknown controls or custom configurations as unresolved rather than substituting factory assumptions.
 
 No application code or controller settings were changed while collecting these references.
+
+## Implementation review additions
+
+The K2 send diagram on p.14 misprints A#2 alongside Bb5 and Bb8 for pot switch row 2, column 3. Its return diagram on p.17 and conversion table support numeric notes 82 and 118. The K3 diagram supplies the corrected sharp labels.
+
+K3 Specifications lists Note On/Off range 127/1, whereas Editor Help gives default press/release values of 127/0. The initial profiles therefore record momentary Note On/Off without asserting a universal release velocity. LED return diagrams establish addresses and colors, but not universal on/off velocity thresholds.
+
+Hardware map 1 is the K3 factory map; the three custom maps occupy hardware slots 2–4. The profiles explicitly distinguish these from factory bindings.

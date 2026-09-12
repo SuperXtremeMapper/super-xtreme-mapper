@@ -1,0 +1,834 @@
+{
+  "schemaVersion": 1,
+  "id": "allen-heath.xone-k1",
+  "version": "1.0.0",
+  "manufacturer": "Allen & Heath",
+  "model": "Xone:K1",
+  "defaultChannel": 15,
+  "sources": [
+    {"id": "XoneK1_UG_AP9694_2", "url": "https://www.allen-heath.com/content/uploads/2023/07/XoneK1_UG_AP9694_2.pdf", "revision": "AP9694 issue 2", "sha256": "9f8a46ba9f88c850b6a7873d594d85c1f0a5b838d64ca3e86770530e13d3434c"}
+  ],
+  "evidence": [
+    {"id": "e1", "sourceID": "XoneK1_UG_AP9694_2", "locator": "XoneK1_UG_AP9694_2.pdf p.12 MIDI channel", "verification": "manufacturer-documented"},
+    {"id": "e2", "sourceID": "XoneK1_UG_AP9694_2", "locator": "XoneK1_UG_AP9694_2.pdf pp.8-9 controls", "verification": "manufacturer-documented"},
+    {"id": "e3", "sourceID": "XoneK1_UG_AP9694_2", "locator": "XoneK1_UG_AP9694_2.pdf pp.13-14 MIDI send/return", "verification": "manufacturer-documented"},
+    {"id": "e4", "sourceID": "XoneK1_UG_AP9694_2", "locator": "XoneK1_UG_AP9694_2.pdf p.13", "verification": "manufacturer-documented"},
+    {"id": "e5", "sourceID": "XoneK1_UG_AP9694_2", "locator": "XoneK1_UG_AP9694_2.pdf p.8", "verification": "manufacturer-documented"},
+    {"id": "e6", "sourceID": "XoneK1_UG_AP9694_2", "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix", "verification": "manufacturer-documented"},
+    {"id": "e7", "sourceID": "XoneK1_UG_AP9694_2", "locator": "XoneK1_UG_AP9694_2.pdf p.14", "verification": "manufacturer-documented"},
+    {"id": "e8", "sourceID": "XoneK1_UG_AP9694_2", "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper and lower conversion tables", "verification": "manufacturer-documented"}
+  ],
+  "modes": [
+    {"id": "off", "name": "Off", "layeredGroups": [], "softPickup": false, "evidence": ["e3"]}
+  ],
+  "unitMaps": [
+    {"id": "factory", "usesFactoryBindings": true, "evidence": ["e1", "e2"]}
+  ],
+  "controls": [
+    {
+      "id": "encoder.top.1.turn",
+      "physicalID": "encoder.top.1",
+      "name": "Encoder top 1 turn",
+      "aliases": ["top-encoder-1-turn"],
+      "group": "top-encoder-turn",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 0, "encoding": "relativeTwosComplement", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5"], "notes": []}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "encoder.top.1.push",
+      "physicalID": "encoder.top.1",
+      "name": "Encoder top 1 push",
+      "aliases": ["top-encoder-1-push"],
+      "group": "top-encoder-push",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 52, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5", "e6"], "notes": ["Manufacturer note label: E3. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 52, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 88, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 124, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "encoder.top.2.turn",
+      "physicalID": "encoder.top.2",
+      "name": "Encoder top 2 turn",
+      "aliases": ["top-encoder-2-turn"],
+      "group": "top-encoder-turn",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 1, "encoding": "relativeTwosComplement", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5"], "notes": []}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "encoder.top.2.push",
+      "physicalID": "encoder.top.2",
+      "name": "Encoder top 2 push",
+      "aliases": ["top-encoder-2-push"],
+      "group": "top-encoder-push",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 53, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5", "e6"], "notes": ["Manufacturer note label: F3. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 53, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 89, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 125, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "encoder.top.3.turn",
+      "physicalID": "encoder.top.3",
+      "name": "Encoder top 3 turn",
+      "aliases": ["top-encoder-3-turn"],
+      "group": "top-encoder-turn",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 2, "encoding": "relativeTwosComplement", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5"], "notes": []}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "encoder.top.3.push",
+      "physicalID": "encoder.top.3",
+      "name": "Encoder top 3 push",
+      "aliases": ["top-encoder-3-push"],
+      "group": "top-encoder-push",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 54, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5", "e6"], "notes": ["Manufacturer note label: F#3. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 54, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 90, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 126, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "encoder.top.4.turn",
+      "physicalID": "encoder.top.4",
+      "name": "Encoder top 4 turn",
+      "aliases": ["top-encoder-4-turn"],
+      "group": "top-encoder-turn",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 3, "encoding": "relativeTwosComplement", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5"], "notes": []}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "encoder.top.4.push",
+      "physicalID": "encoder.top.4",
+      "name": "Encoder top 4 push",
+      "aliases": ["top-encoder-4-push"],
+      "group": "top-encoder-push",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 55, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5", "e6"], "notes": ["Manufacturer note label: G3. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 55, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 91, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 127, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.1.1",
+      "physicalID": "pot.1.1",
+      "name": "Pot 1 1",
+      "aliases": ["pot-r1-c1"],
+      "group": "pot",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 4, "encoding": "absolute7Bit", "valueMin": 0, "valueMax": 127, "evidence": ["e4", "e5"], "notes": []}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.switch.1.1",
+      "physicalID": "pot.switch.1.1",
+      "name": "Pot switch 1 1",
+      "aliases": ["pot-switch-r1-c1"],
+      "group": "pot-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 48, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5", "e6"], "notes": ["Manufacturer note label: C3. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 48, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 84, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 120, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.1.2",
+      "physicalID": "pot.1.2",
+      "name": "Pot 1 2",
+      "aliases": ["pot-r1-c2"],
+      "group": "pot",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 5, "encoding": "absolute7Bit", "valueMin": 0, "valueMax": 127, "evidence": ["e4", "e5"], "notes": []}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.switch.1.2",
+      "physicalID": "pot.switch.1.2",
+      "name": "Pot switch 1 2",
+      "aliases": ["pot-switch-r1-c2"],
+      "group": "pot-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 49, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5", "e6"], "notes": ["Manufacturer note label: C#3. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 49, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 85, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 121, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.1.3",
+      "physicalID": "pot.1.3",
+      "name": "Pot 1 3",
+      "aliases": ["pot-r1-c3"],
+      "group": "pot",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 6, "encoding": "absolute7Bit", "valueMin": 0, "valueMax": 127, "evidence": ["e4", "e5"], "notes": []}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.switch.1.3",
+      "physicalID": "pot.switch.1.3",
+      "name": "Pot switch 1 3",
+      "aliases": ["pot-switch-r1-c3"],
+      "group": "pot-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 50, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5", "e6"], "notes": ["Manufacturer note label: D3. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 50, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 86, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 122, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.1.4",
+      "physicalID": "pot.1.4",
+      "name": "Pot 1 4",
+      "aliases": ["pot-r1-c4"],
+      "group": "pot",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 7, "encoding": "absolute7Bit", "valueMin": 0, "valueMax": 127, "evidence": ["e4", "e5"], "notes": []}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.switch.1.4",
+      "physicalID": "pot.switch.1.4",
+      "name": "Pot switch 1 4",
+      "aliases": ["pot-switch-r1-c4"],
+      "group": "pot-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 51, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5", "e6"], "notes": ["Manufacturer note label: D#3. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 51, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 87, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 123, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.2.1",
+      "physicalID": "pot.2.1",
+      "name": "Pot 2 1",
+      "aliases": ["pot-r2-c1"],
+      "group": "pot",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 8, "encoding": "absolute7Bit", "valueMin": 0, "valueMax": 127, "evidence": ["e4", "e5"], "notes": []}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.switch.2.1",
+      "physicalID": "pot.switch.2.1",
+      "name": "Pot switch 2 1",
+      "aliases": ["pot-switch-r2-c1"],
+      "group": "pot-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 44, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5", "e6"], "notes": ["Manufacturer note label: G#2. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 44, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 80, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 116, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.2.2",
+      "physicalID": "pot.2.2",
+      "name": "Pot 2 2",
+      "aliases": ["pot-r2-c2"],
+      "group": "pot",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 9, "encoding": "absolute7Bit", "valueMin": 0, "valueMax": 127, "evidence": ["e4", "e5"], "notes": []}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.switch.2.2",
+      "physicalID": "pot.switch.2.2",
+      "name": "Pot switch 2 2",
+      "aliases": ["pot-switch-r2-c2"],
+      "group": "pot-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 45, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5", "e6"], "notes": ["Manufacturer note label: A2. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 45, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 81, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 117, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.2.3",
+      "physicalID": "pot.2.3",
+      "name": "Pot 2 3",
+      "aliases": ["pot-r2-c3"],
+      "group": "pot",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 10, "encoding": "absolute7Bit", "valueMin": 0, "valueMax": 127, "evidence": ["e4", "e5"], "notes": []}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.switch.2.3",
+      "physicalID": "pot.switch.2.3",
+      "name": "Pot switch 2 3",
+      "aliases": ["pot-switch-r2-c3"],
+      "group": "pot-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 46, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5", "e6"], "notes": ["Manufacturer note label: A#2. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 46, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 82, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 118, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.2.4",
+      "physicalID": "pot.2.4",
+      "name": "Pot 2 4",
+      "aliases": ["pot-r2-c4"],
+      "group": "pot",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 11, "encoding": "absolute7Bit", "valueMin": 0, "valueMax": 127, "evidence": ["e4", "e5"], "notes": []}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.switch.2.4",
+      "physicalID": "pot.switch.2.4",
+      "name": "Pot switch 2 4",
+      "aliases": ["pot-switch-r2-c4"],
+      "group": "pot-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 47, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5", "e6"], "notes": ["Manufacturer note label: B2. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 47, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 83, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 119, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.3.1",
+      "physicalID": "pot.3.1",
+      "name": "Pot 3 1",
+      "aliases": ["pot-r3-c1"],
+      "group": "pot",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 12, "encoding": "absolute7Bit", "valueMin": 0, "valueMax": 127, "evidence": ["e4", "e5"], "notes": []}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.switch.3.1",
+      "physicalID": "pot.switch.3.1",
+      "name": "Pot switch 3 1",
+      "aliases": ["pot-switch-r3-c1"],
+      "group": "pot-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 40, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5", "e6"], "notes": ["Manufacturer note label: E2. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 40, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 76, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 112, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.3.2",
+      "physicalID": "pot.3.2",
+      "name": "Pot 3 2",
+      "aliases": ["pot-r3-c2"],
+      "group": "pot",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 13, "encoding": "absolute7Bit", "valueMin": 0, "valueMax": 127, "evidence": ["e4", "e5"], "notes": []}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.switch.3.2",
+      "physicalID": "pot.switch.3.2",
+      "name": "Pot switch 3 2",
+      "aliases": ["pot-switch-r3-c2"],
+      "group": "pot-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 41, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5", "e6"], "notes": ["Manufacturer note label: F2. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 41, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 77, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 113, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.3.3",
+      "physicalID": "pot.3.3",
+      "name": "Pot 3 3",
+      "aliases": ["pot-r3-c3"],
+      "group": "pot",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 14, "encoding": "absolute7Bit", "valueMin": 0, "valueMax": 127, "evidence": ["e4", "e5"], "notes": []}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.switch.3.3",
+      "physicalID": "pot.switch.3.3",
+      "name": "Pot switch 3 3",
+      "aliases": ["pot-switch-r3-c3"],
+      "group": "pot-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 42, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5", "e6"], "notes": ["Manufacturer note label: F#2. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 42, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 78, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 114, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.3.4",
+      "physicalID": "pot.3.4",
+      "name": "Pot 3 4",
+      "aliases": ["pot-r3-c4"],
+      "group": "pot",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 15, "encoding": "absolute7Bit", "valueMin": 0, "valueMax": 127, "evidence": ["e4", "e5"], "notes": []}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "pot.switch.3.4",
+      "physicalID": "pot.switch.3.4",
+      "name": "Pot switch 3 4",
+      "aliases": ["pot-switch-r3-c4"],
+      "group": "pot-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 43, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e4", "e5", "e6"], "notes": ["Manufacturer note label: G2. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 43, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 79, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 115, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e4", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e4", "e5", "e6"]
+    },
+    {
+      "id": "fader.1",
+      "physicalID": "fader.1",
+      "name": "Fader 1",
+      "aliases": ["fader-1"],
+      "group": "fader",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 16, "encoding": "absolute7Bit", "valueMin": 0, "valueMax": 127, "evidence": ["e7", "e5"], "notes": []}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "fader.2",
+      "physicalID": "fader.2",
+      "name": "Fader 2",
+      "aliases": ["fader-2"],
+      "group": "fader",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 17, "encoding": "absolute7Bit", "valueMin": 0, "valueMax": 127, "evidence": ["e7", "e5"], "notes": []}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "fader.3",
+      "physicalID": "fader.3",
+      "name": "Fader 3",
+      "aliases": ["fader-3"],
+      "group": "fader",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 18, "encoding": "absolute7Bit", "valueMin": 0, "valueMax": 127, "evidence": ["e7", "e5"], "notes": []}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "fader.4",
+      "physicalID": "fader.4",
+      "name": "Fader 4",
+      "aliases": ["fader-4"],
+      "group": "fader",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 19, "encoding": "absolute7Bit", "valueMin": 0, "valueMax": 127, "evidence": ["e7", "e5"], "notes": []}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "matrix.1.1",
+      "physicalID": "matrix.1.1",
+      "name": "A",
+      "aliases": ["matrix-r1-c1"],
+      "group": "matrix-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 36, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: C2. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 36, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 72, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 108, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "matrix.1.2",
+      "physicalID": "matrix.1.2",
+      "name": "B",
+      "aliases": ["matrix-r1-c2"],
+      "group": "matrix-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 37, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: C#2. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 37, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 73, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 109, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "matrix.1.3",
+      "physicalID": "matrix.1.3",
+      "name": "C",
+      "aliases": ["matrix-r1-c3"],
+      "group": "matrix-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 38, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: D2. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 38, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 74, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 110, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "matrix.1.4",
+      "physicalID": "matrix.1.4",
+      "name": "D",
+      "aliases": ["matrix-r1-c4"],
+      "group": "matrix-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 39, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: D#2. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 39, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 75, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 111, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "matrix.2.1",
+      "physicalID": "matrix.2.1",
+      "name": "E",
+      "aliases": ["matrix-r2-c1"],
+      "group": "matrix-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 32, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: G#1. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 32, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 68, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 104, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "matrix.2.2",
+      "physicalID": "matrix.2.2",
+      "name": "F",
+      "aliases": ["matrix-r2-c2"],
+      "group": "matrix-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 33, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: A1. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 33, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 69, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 105, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "matrix.2.3",
+      "physicalID": "matrix.2.3",
+      "name": "G",
+      "aliases": ["matrix-r2-c3"],
+      "group": "matrix-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 34, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: A#1. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 34, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 70, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 106, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "matrix.2.4",
+      "physicalID": "matrix.2.4",
+      "name": "H",
+      "aliases": ["matrix-r2-c4"],
+      "group": "matrix-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 35, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: B1. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 35, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 71, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 107, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "matrix.3.1",
+      "physicalID": "matrix.3.1",
+      "name": "I",
+      "aliases": ["matrix-r3-c1"],
+      "group": "matrix-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 28, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: E1. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 28, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 64, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 100, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "matrix.3.2",
+      "physicalID": "matrix.3.2",
+      "name": "J",
+      "aliases": ["matrix-r3-c2"],
+      "group": "matrix-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 29, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: F1. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 29, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 65, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 101, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "matrix.3.3",
+      "physicalID": "matrix.3.3",
+      "name": "K",
+      "aliases": ["matrix-r3-c3"],
+      "group": "matrix-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 30, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: F#1. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 30, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 66, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 102, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "matrix.3.4",
+      "physicalID": "matrix.3.4",
+      "name": "L",
+      "aliases": ["matrix-r3-c4"],
+      "group": "matrix-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 31, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: G1. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 31, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 67, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 103, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "matrix.4.1",
+      "physicalID": "matrix.4.1",
+      "name": "M",
+      "aliases": ["matrix-r4-c1"],
+      "group": "matrix-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 24, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: C1. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 24, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 60, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 96, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "matrix.4.2",
+      "physicalID": "matrix.4.2",
+      "name": "N",
+      "aliases": ["matrix-r4-c2"],
+      "group": "matrix-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 25, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: C#1. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 25, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 61, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 97, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "matrix.4.3",
+      "physicalID": "matrix.4.3",
+      "name": "O",
+      "aliases": ["matrix-r4-c3"],
+      "group": "matrix-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 26, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: D1. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 26, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 62, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 98, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "matrix.4.4",
+      "physicalID": "matrix.4.4",
+      "name": "P",
+      "aliases": ["matrix-r4-c4"],
+      "group": "matrix-switch",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 27, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: D#1. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 27, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 63, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 99, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "button.bottom.left",
+      "physicalID": "button.bottom.left",
+      "name": "SHIFT",
+      "aliases": ["bottom-left-button"],
+      "group": "layer-button",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 12, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: C0. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 12, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 16, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 20, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "encoder.bottom.1.turn",
+      "physicalID": "encoder.bottom.1",
+      "name": "Encoder bottom 1 turn",
+      "aliases": ["bottom-encoder-1-turn"],
+      "group": "bottom-encoder-turn",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 20, "encoding": "relativeTwosComplement", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5"], "notes": ["No LED return addresses documented for bottom encoders; send-only."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "encoder.bottom.1.push",
+      "physicalID": "encoder.bottom.1",
+      "name": "Encoder bottom 1 push",
+      "aliases": ["bottom-encoder-1-push"],
+      "group": "bottom-encoder-push",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 13, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: C#0. Numeric MIDI note is authoritative.", "No LED return addresses documented for bottom encoders; send-only.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "encoder.bottom.2.turn",
+      "physicalID": "encoder.bottom.2",
+      "name": "Encoder bottom 2 turn",
+      "aliases": ["bottom-encoder-2-turn"],
+      "group": "bottom-encoder-turn",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "controlChange", "number": 21, "encoding": "relativeTwosComplement", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5"], "notes": ["No LED return addresses documented for bottom encoders; send-only."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "encoder.bottom.2.push",
+      "physicalID": "encoder.bottom.2",
+      "name": "Encoder bottom 2 push",
+      "aliases": ["bottom-encoder-2-push"],
+      "group": "bottom-encoder-push",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 14, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: D0. Numeric MIDI note is authoritative.", "No LED return addresses documented for bottom encoders; send-only.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    },
+    {
+      "id": "button.bottom.right",
+      "physicalID": "button.bottom.right",
+      "name": "EXIT SETUP",
+      "aliases": ["bottom-right-button"],
+      "group": "shift-button",
+      "reservedInModes": [],
+      "bindings": [
+        {"direction": "send", "layer": "base", "kind": "note", "number": 15, "encoding": "noteGate", "valueMin": null, "valueMax": null, "evidence": ["e7", "e5", "e6"], "notes": ["Manufacturer note label: D#0. Numeric MIDI note is authoritative.", "Momentary Note On/Note Off; universal velocity values are not established by this evidence."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 15, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "red", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 19, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "amber", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]},
+        {"direction": "receive", "layer": "base", "kind": "note", "number": 23, "encoding": "noteGate", "valueMin": null, "valueMax": null, "color": "green", "evidence": ["e7", "e6"], "notes": ["LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram."]}
+      ],
+      "evidence": ["e7", "e5", "e6"]
+    }
+  ],
+  "limitations": [
+    {"message": "Addresses use the configured global MIDI channel (documented default 15). Physical position and Traktor deck assignment are independent.", "evidence": ["e1", "e2"]},
+    {"message": "LED diagrams document note addresses and colors, but not universal on/off velocity thresholds.", "evidence": ["e4"]},
+    {"message": "MIDI note labels vary by application; numeric note IDs use the manufacturer conversion table.", "evidence": ["e6"]},
+    {"message": "The small lower conversion table on p.15 misprints decimal 13–15 hex values. The upper matrix and hexadecimal arithmetic establish 0D, 0E and 0F. K2 embedded latching layers are not documented for K1.", "evidence": ["e8", "e3"]}
+  ],
+  "configurationEvidence": ["e1", "e2"]
+}
