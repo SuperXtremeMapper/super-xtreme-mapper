@@ -61,3 +61,6 @@ The current settings file was copied to `/tmp/sxm-json-demonstration/traktor-set
 The MIDI port menus listed only All Ports and Traktor virtual ports, with no physical controller. Import/display checks passed; physical control response, audio behavior, and Euphonia address confirmation remain untested.
 
 The full unit suite was rerun on the integration branch: **778 passed, zero failures** (`/tmp/sxm-json-traktor-validation-tests.log`). The native fixture test now emits the unchanged round-trip file used for the application check.
+
+
+The local merge into `main` was followed by another full suite run: **778 passed, zero failures** (`/tmp/sxm-json-merged-tests.log`). Traktor's re-export retains the exact UTF-16 edited comment, including the supplementary Unicode character. The decoded payload has 59 changed bytes, all within the final DCBM assignment table; every byte preceding that table remains identical.
