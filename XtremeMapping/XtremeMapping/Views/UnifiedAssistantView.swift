@@ -180,7 +180,7 @@ struct UnifiedAssistantView: View {
                 promptButton("Which controls change the volume?", icon: "slider.horizontal.3")
                 promptButton("Change the selected mappings to Deck B", icon: "pencil", usesSelection: true)
             }
-            Text("No controller needed. Local lookup and guide exports work without AI.")
+            Text("No controller needed. The reference guide and exports work without AI.")
                 .font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone400)
         }.padding(.vertical, 12)
     }
@@ -271,9 +271,6 @@ struct UnifiedAssistantView: View {
                 Spacer(minLength: 0)
                 Text("\(question.count)/4000").font(AppThemeV2.Typography.caption)
                     .foregroundStyle(question.count > 4_000 ? AppThemeV2.Colors.danger : AppThemeV2.Colors.stone400)
-                Button { findLocally() } label: { Label("Find locally", systemImage: "magnifyingglass") }
-                    .disabled(!current || !validQuestion || conversation.isWorking)
-                    .help("Search mapping facts without an AI request.")
                 Button { send() } label: { Label("Send", systemImage: "arrow.up") }
                     .buttonStyle(AssistantButtonStyle(primary: true))
                     .keyboardShortcut(.return, modifiers: .command).disabled(!canSend)
@@ -381,10 +378,6 @@ struct UnifiedAssistantView: View {
     private func show(_ ids: Set<UUID>) {
         let valid = ids.intersection(Set(document.mappingFile.allMappings.map(\.id)))
         if !valid.isEmpty { onShowMappings(valid) }
-    }
-    private func findLocally() {
-        guard current, let snapshot else { return }
-        conversation.findLocally(question: question, snapshot: snapshot, selectedIDs: includeSelection ? selectedIDs : [])
     }
     private func send() {
         guard canSend, let snapshot else { return }

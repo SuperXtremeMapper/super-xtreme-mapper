@@ -4,7 +4,7 @@ Open **Assistant** from the editor toolbar. Its floating window belongs to the m
 
 ## Questions and local guides
 
-No controller is required. Ask about the loaded TSI, modifier conditions, assignments or physical controls identified by its pinned profile. **Find locally** finds source rows without an API request. **Guide & export** opens the complete local guide with Markdown, text and PDF exports. Unknown native details remain explicitly identified.
+No controller is required. Ask about the loaded TSI, modifier conditions, assignments or physical controls identified by its pinned profile. Type a question or describe a change in the message box, then choose **Send**. The Assistant automatically finds relevant mapping facts to include with the AI request. **Set up AI to chat** appears when AI setup is required. **Guide & export** opens the complete local guide with Markdown, text and PDF exports. Unknown native details remain explicitly identified.
 
 To chat, open **AI setup**, enable AI for the session and use your stored Anthropic API key. Sonnet is the default; model selection is shared with the explanation feature. The legacy voice interpreter also defaults to Sonnet. Opening Assistant does not read credentials or send mapping data.
 
