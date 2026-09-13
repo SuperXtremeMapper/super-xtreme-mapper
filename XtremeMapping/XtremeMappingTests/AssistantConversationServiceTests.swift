@@ -28,7 +28,11 @@ final class AssistantConversationServiceTests: XCTestCase {
         XCTAssertThrowsError(try service.decodeResponse(envelope(valid, stop: "refusal"), request: request))
         let invalid = "{\"answer\":{\"facts\":[{\"text\":\"x\",\"rowIDs\":[\"\(UUID())\"]}],\"interpretations\":[],\"unknowns\":[]},\"operations\":[]}"
         XCTAssertThrowsError(try service.decodeResponse(envelope(invalid), request: request))
-        XCTAssertThrowsError(try service.decodeResponse(envelope(valid.replacingOccurrences(of: "\"operations\":[]", with: "\"operations\":[],\"execute\":true")), request: request))
+        // The API now injects extra keys (e.g. "caller") into tool inputs. The
+        // decoder tolerates unknown keys — they are inert, the app only ever
+        // reads answer/operations — so an extra key must NOT reject the reply.
+        let withInjectedKey = valid.replacingOccurrences(of: "\"operations\":[]", with: "\"operations\":[],\"caller\":\"assistant\"")
+        XCTAssertEqual(try service.decodeResponse(envelope(withInjectedKey), request: request).answer.unknowns, ["Which deck?"])
     }
 
     func testRequestHasAuthoritativeCatalogueAndBoundedHistory() throws {
