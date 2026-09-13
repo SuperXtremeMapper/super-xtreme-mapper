@@ -246,14 +246,13 @@ struct UnifiedAssistantView: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 if let answer = message.answer {
-                    answerClaims("What I found", answer.facts, revision: message.revision)
-                    answerClaims("What it means", answer.interpretations, revision: message.revision)
-                    if !answer.unknowns.isEmpty {
-                        AssistantSectionLabel("What I'm not sure about")
-                        ForEach(Array(answer.unknowns.enumerated()), id: \.offset) { _, value in
-                            Text(verbatim: value).foregroundStyle(AppThemeV2.Colors.stone400)
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
+                    // One flowing answer — no section headers.
+                    answerText(answer.facts + answer.interpretations, revision: message.revision)
+                    ForEach(Array(answer.unknowns.enumerated()), id: \.offset) { _, value in
+                        Text(verbatim: value)
+                            .foregroundStyle(AppThemeV2.Colors.stone400)
+                            .lineSpacing(3)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
             }
@@ -407,11 +406,11 @@ struct UnifiedAssistantView: View {
         }
     }
 
-    private func answerClaims(_ heading: String, _ claims: [MappingAssistantAnswer.Claim], revision: String) -> some View {
-        VStack(alignment: .leading, spacing: 5) {
-            if !claims.isEmpty { AssistantSectionLabel(heading) }
+    private func answerText(_ claims: [MappingAssistantAnswer.Claim], revision: String) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
             ForEach(Array(claims.enumerated()), id: \.offset) { _, claim in
                 Text(verbatim: claim.text)
+                    .lineSpacing(3)
                     .fixedSize(horizontal: false, vertical: true)
                 if !claim.rowIDs.isEmpty {
                     Button("Show these \(claim.rowIDs.count) rows") { show(Set(claim.rowIDs)) }
