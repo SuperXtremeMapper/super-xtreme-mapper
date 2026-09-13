@@ -38,6 +38,9 @@ struct UnifiedAssistantView: View {
     @State private var errorMessage: String?
     @State private var sheet: AssistantSheet?
     @FocusState private var composerFocused: Bool
+    /// Drives the mic's listening pulse. Toggled on/off with voiceEnabled so the
+    /// scale/opacity animation only runs while dictating.
+    @State private var micPulse = false
     enum AssistantSheet: String, Identifiable { case guide, keys; var id: String { rawValue } }
 
     init(document: TraktorMappingDocument, selectedIDs: Binding<Set<UUID>>, isLocked: Binding<Bool>,
@@ -94,7 +97,17 @@ struct UnifiedAssistantView: View {
         // Voice is the single owner of the capture lifecycle: whenever the mic
         // turns off — by tap or by a failed speech start — stop the MIDI
         // listener too. A captured address stays attached (stopMIDI keeps it).
-        .onChange(of: input.voiceEnabled) { _, on in if !on { input.stopMIDI() } }
+        .onChange(of: input.voiceEnabled) { _, on in
+            if !on { input.stopMIDI() }
+            // Start/stop the repeating listening pulse alongside voice. Setting
+            // the flag inside a repeating animation makes the mic ring breathe;
+            // clearing it (no animation) snaps back to rest.
+            if on {
+                withAnimation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true)) { micPulse = true }
+            } else {
+                micPulse = false
+            }
+        }
         .onDisappear { input.stopAll(); conversation.cancel(); credentials.clear() }
         .sheet(item: $sheet, onDismiss: { credentialRefresh = UUID() }) { item in
             switch item {
@@ -291,6 +304,12 @@ struct UnifiedAssistantView: View {
                     captureDestination
                 }
             }
+            // While dictating, show that speech is being heard. The live interim
+            // words preview what will land in the box; the reminder makes the two
+            // steps legible — the mic fills the box, Send sends it.
+            if input.voiceEnabled {
+                listeningHint
+            }
             // Message box with the mic and send as circular icons on the right.
             HStack(alignment: .bottom, spacing: 8) {
                 TextField("Ask a question or describe a change…", text: $question)
@@ -299,14 +318,7 @@ struct UnifiedAssistantView: View {
                     .onSubmit { send() }
                     .accessibilityLabel("Message to Assistant")
 
-                composerCircleButton(
-                    systemName: input.voiceEnabled ? "mic.fill" : "mic",
-                    active: input.voiceEnabled,
-                    disabled: !input.voiceEnabled && !canDictate,
-                    action: { toggleMic() }
-                )
-                .help("Speak your message. Move a control while talking to say \u{201C}make this…\u{201D} and it attaches the control. Tap again to stop.")
-                .accessibilityLabel(input.voiceEnabled ? "Stop voice" : "Start voice")
+                micButton
 
                 composerCircleButton(
                     systemName: "arrow.up",
@@ -328,6 +340,57 @@ struct UnifiedAssistantView: View {
                     .foregroundStyle(AppThemeV2.Colors.danger)
             }
         }.padding(16).background(AppThemeV2.Colors.stone800)
+    }
+
+    /// A small "Listening…" banner shown while the mic is on. The interim words
+    /// heard so far preview exactly what will land in the message box, so "what
+    /// gets sent" is visible before it is sent.
+    private var listeningHint: some View {
+        HStack(alignment: .top, spacing: AppThemeV2.Spacing.sm) {
+            Image(systemName: "waveform")
+                .font(.system(size: 11, weight: .semibold))
+                .foregroundStyle(AppThemeV2.Colors.amber)
+                .opacity(micPulse ? 1 : 0.45)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Listening — tap send when you're done")
+                    .font(AppThemeV2.Typography.caption)
+                    .foregroundStyle(AppThemeV2.Colors.amber)
+                if !input.partialTranscript.isEmpty {
+                    Text(verbatim: input.partialTranscript)
+                        .font(AppThemeV2.Typography.caption)
+                        .foregroundStyle(AppThemeV2.Colors.stone400)
+                        .lineLimit(2)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            Spacer(minLength: 0)
+        }
+        .padding(.horizontal, AppThemeV2.Spacing.md)
+        .padding(.vertical, AppThemeV2.Spacing.sm)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(AppThemeV2.Colors.amberSubtle, in: RoundedRectangle(cornerRadius: AppThemeV2.Radius.md))
+        .overlay(RoundedRectangle(cornerRadius: AppThemeV2.Radius.md).stroke(AppThemeV2.Colors.amber.opacity(0.3), lineWidth: 1))
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Listening. \(input.partialTranscript)")
+    }
+
+    /// The composer mic. It reuses the circular button styling, adds a pulsing
+    /// ring while voice is enabled so the user sees speech is being captured.
+    private var micButton: some View {
+        composerCircleButton(
+            systemName: input.voiceEnabled ? "mic.fill" : "mic",
+            active: input.voiceEnabled,
+            disabled: !input.voiceEnabled && !canDictate,
+            action: { toggleMic() }
+        )
+        .overlay(
+            Circle()
+                .stroke(AppThemeV2.Colors.amberLight, lineWidth: 2)
+                .scaleEffect(micPulse ? 1.35 : 1.0)
+                .opacity(input.voiceEnabled ? (micPulse ? 0 : 0.7) : 0)
+        )
+        .help("Speak your message. Move a control while talking to say \u{201C}make this…\u{201D} and it attaches the control. Tap again to stop.")
+        .accessibilityLabel(input.voiceEnabled ? "Stop voice" : "Start voice")
     }
 
     /// A 28pt circular icon button in the app's palette, for the composer's

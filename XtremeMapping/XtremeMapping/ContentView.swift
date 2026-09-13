@@ -184,6 +184,7 @@ struct ContentView: View {
                 onAbout: { activeSheet = .about },
                 onSettings: { activeSheet = .settings },
                 onAssistant: { launchAssistant() },
+                onController: { if let target = identifyTargetDeviceID { activeSheet = .controllerProfile(target) } },
                 onWizard: launchWizard
             )
 
@@ -485,25 +486,29 @@ struct ContentView: View {
     private var identifyBanner: some View {
         let count = devicesNeedingProfile.count
         let color = AppThemeV2.Colors.warning
-        return HStack(alignment: .center, spacing: AppThemeV2.Spacing.sm) {
-            Image(systemName: "exclamationmark.triangle.fill").foregroundStyle(color)
+        return HStack(spacing: AppThemeV2.Spacing.sm) {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .font(.system(size: 11)).foregroundStyle(color)
             Text(count == 1
-                 ? "SXM doesn't know which controller this is. Identify it to see each mapping's physical control."
-                 : "\(count) devices have no controller identified. Identify them to see each mapping's physical control.")
+                 ? "SXM doesn't know which controller this is — identify it to see each mapping's physical control."
+                 : "\(count) devices have no controller — identify them to see each mapping's physical control.")
                 .font(AppThemeV2.Typography.body)
                 .foregroundStyle(AppThemeV2.Colors.stone200)
-                .fixedSize(horizontal: false, vertical: true)
+                .lineLimit(1).truncationMode(.tail)
             Spacer(minLength: AppThemeV2.Spacing.sm)
-            Button("Identify controller") {
-                if let first = devicesNeedingProfile.first { activeSheet = .controllerProfile(first.id) }
+            // Same button height (24) and spacing (xs) as the toolbar row above.
+            HStack(spacing: AppThemeV2.Spacing.xs) {
+                V2ToolbarButton(label: "Select Controller",
+                                action: { if let first = devicesNeedingProfile.first { activeSheet = .controllerProfile(first.id) } })
+                V2ToolbarButton(icon: "xmark", label: nil,
+                                action: { withAnimation(.easeInOut(duration: 0.2)) { identifyBannerDismissed = true } })
+                    .help("Dismiss")
             }
-            .buttonStyle(AssistantButtonStyle(primary: true))
-            Button("Not now") { identifyBannerDismissed = true }
-                .buttonStyle(AssistantButtonStyle())
         }
         .padding(.horizontal, AppThemeV2.Spacing.lg)
-        .padding(.vertical, AppThemeV2.Spacing.sm)
+        .frame(height: AppThemeV2.Components.sectionHeaderHeight)
         .background(color.opacity(0.12))
+        .transition(.move(edge: .top).combined(with: .opacity))
     }
 
     // MARK: - Mappings header
@@ -521,12 +526,6 @@ struct ContentView: View {
                     .foregroundColor(AppThemeV2.Colors.amber)
             }
             Spacer()
-            // Persistent re-open entry so dismissing the banner is not a dead end.
-            if let target = identifyTargetDeviceID {
-                V2ToolbarButton(icon: "pianokeys", label: "Controller",
-                                action: { activeSheet = .controllerProfile(target) })
-                    .help("Identify the controller for this file")
-            }
         }
         .padding(.horizontal, AppThemeV2.Spacing.lg)
         .frame(height: AppThemeV2.Components.sectionHeaderHeight)
@@ -887,6 +886,7 @@ struct V2ActionBarFull: View {
     var onAbout: () -> Void
     var onSettings: () -> Void
     var onAssistant: (() -> Void)?
+    var onController: (() -> Void)?
     var onWizard: (() -> Void)?
 
     var body: some View {
@@ -906,6 +906,16 @@ struct V2ActionBarFull: View {
                 // removed — mapping creation by moving controls now lives in the
                 // Assistant's Voice Learn (mic in the composer).
                 HStack(spacing: AppThemeV2.Spacing.xs) {
+                    // Controller — sits just to the LEFT of the Assistant button.
+                    if let controllerAction = onController {
+                        V2ToolbarButton(
+                            icon: "pianokeys",
+                            label: "Controller",
+                            action: controllerAction,
+                            minWidth: 70
+                        )
+                        .help("Identify the controller for this mapping")
+                    }
                     // Unified Assistant
                     if let assistantAction = onAssistant {
                         V2ToolbarButton(

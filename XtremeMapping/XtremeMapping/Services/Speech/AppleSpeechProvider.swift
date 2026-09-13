@@ -93,6 +93,16 @@ final class AppleSpeechProvider: NSObject, ObservableObject, SpeechRecognitionPr
             throw SpeechRecognitionError.notAuthorized
         }
 
+        // Request microphone (audio-input) authorization. Speech-recognition
+        // authorization is separate from microphone authorization: without the
+        // mic grant, the sandboxed audio engine still starts and the tap still
+        // fires, but it delivers silent buffers, so the recognizer never hears
+        // speech and no transcript is ever produced. Ask for it explicitly.
+        let micAuthorized = await requestMicrophoneAccess()
+        guard micAuthorized else {
+            throw SpeechRecognitionError.microphoneAccessDenied
+        }
+
         // Start recognition
         try startRecognition()
     }
@@ -115,6 +125,25 @@ final class AppleSpeechProvider: NSObject, ObservableObject, SpeechRecognitionPr
     }
 
     // MARK: - Private Methods
+
+    /// Requests microphone access, returning true if already/newly authorized.
+    /// A prior grant returns immediately; a denial or restriction returns false
+    /// so the caller can surface a clear "check permissions" message rather than
+    /// silently recording nothing.
+    private func requestMicrophoneAccess() async -> Bool {
+        switch AVCaptureDevice.authorizationStatus(for: .audio) {
+        case .authorized:
+            return true
+        case .notDetermined:
+            return await withCheckedContinuation { continuation in
+                AVCaptureDevice.requestAccess(for: .audio) { granted in
+                    continuation.resume(returning: granted)
+                }
+            }
+        default:
+            return false
+        }
+    }
 
     private func startRecognition() throws {
         // Cancel any previous task

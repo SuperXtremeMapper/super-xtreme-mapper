@@ -279,18 +279,6 @@ struct MappingsTableView: View {
                 }
                 .width(min: 90, ideal: 110)
 
-                TableColumn("Physical") { entry in
-                    Text(physicalNames[entry.id] ?? "")
-                        .font(AppThemeV2.Typography.body)
-                        .foregroundColor(AppThemeV2.Colors.stone300)
-                        .lineLimit(1)
-                        .truncationMode(.tail)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .contentShape(Rectangle())
-                        .help(physicalNames[entry.id] ?? "")
-                }
-                .width(min: 90, ideal: 140)
-
                 TableColumn("Mod 1", value: \.modifier1SortKey) { entry in
                     Group {
                         if let mod = entry.modifier1Condition {
@@ -326,6 +314,21 @@ struct MappingsTableView: View {
                     .contentShape(Rectangle())
                 }
                 .width(min: 50, ideal: 50)
+
+                // Additive — the physical control name from the associated
+                // profile, placed last (after the modifiers). NEVER replaces the
+                // Command column; blank when no profile resolves this row.
+                TableColumn("Physical") { entry in
+                    Text(physicalNames[entry.id] ?? "")
+                        .font(AppThemeV2.Typography.body)
+                        .foregroundColor(AppThemeV2.Colors.stone300)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                        .help(physicalNames[entry.id] ?? "")
+                }
+                .width(min: 90, ideal: 140)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .tableStyle(.inset(alternatesRowBackgrounds: false))

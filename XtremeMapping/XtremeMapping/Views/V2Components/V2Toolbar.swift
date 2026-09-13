@@ -9,11 +9,13 @@ import SwiftUI
 
 /// Custom toolbar button with icon and optional glow
 struct V2ToolbarButton: View {
-    let icon: String
+    var icon: String? = nil
     let label: String?
     let action: () -> Void
     var isActive: Bool = false
     var isDestructive: Bool = false
+    /// Filled-amber call-to-action variant (e.g. Confirm).
+    var isPrimary: Bool = false
     var minWidth: CGFloat? = nil
 
     @State private var isHovered = false
@@ -21,8 +23,10 @@ struct V2ToolbarButton: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: AppThemeV2.Spacing.xs) {
-                Image(systemName: icon)
-                    .font(.system(size: 12, weight: .medium))
+                if let icon {
+                    Image(systemName: icon)
+                        .font(.system(size: 12, weight: .medium))
+                }
 
                 if let label = label {
                     Text(label.uppercased())
@@ -53,6 +57,7 @@ struct V2ToolbarButton: View {
     }
 
     private var foregroundColor: Color {
+        if isPrimary { return AppThemeV2.Colors.stone950 }
         if isDestructive { return AppThemeV2.Colors.danger }
         if isActive { return AppThemeV2.Colors.amber }
         if isHovered { return AppThemeV2.Colors.amber }
@@ -60,12 +65,14 @@ struct V2ToolbarButton: View {
     }
 
     private var backgroundColor: Color {
+        if isPrimary { return isHovered ? AppThemeV2.Colors.amberLight : AppThemeV2.Colors.amber }
         if isActive { return AppThemeV2.Colors.amberSubtle }
         if isHovered { return AppThemeV2.Colors.amberSubtle }
         return AppThemeV2.Colors.stone700
     }
 
     private var borderColor: Color {
+        if isPrimary { return AppThemeV2.Colors.amber }
         if isDestructive { return AppThemeV2.Colors.danger.opacity(0.5) }
         if isActive { return AppThemeV2.Colors.amber.opacity(0.5) }
         if isHovered { return AppThemeV2.Colors.amber.opacity(0.5) }

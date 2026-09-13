@@ -109,9 +109,9 @@ struct ControllerProfileSheet: View {
             if mode == .identify { identifyStep } else { advancedContent }
         }
         .font(AppThemeV2.Typography.body)
-        .padding(24)
-        .frame(width: 880)
-        .background(AppThemeV2.Colors.stone900)
+        .padding(AppThemeV2.Spacing.lg)
+        .frame(width: 760)
+        .background(AppThemeV2.Colors.stone800)
         .foregroundStyle(AppThemeV2.Colors.stone200)
         .tint(AppThemeV2.Colors.amber)
         .onChange(of: contextKey) { _, _ in resetCapture() }
@@ -135,10 +135,10 @@ struct ControllerProfileSheet: View {
     /// The clean "which controller is this?" front. V2 components only — no
     /// native Picker/TextField.
     private var identifyStep: some View {
-        VStack(alignment: .leading, spacing: 14) {
+        VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
             identifyHeader
             V2Divider()
-            V2TextField(placeholder: "Search brand or model…", text: $query)
+            V2SearchField(text: $query, placeholder: "Search brand or model…")
             identifyResults
             V2Divider()
             confirmStrip
@@ -154,9 +154,11 @@ struct ControllerProfileSheet: View {
     }
 
     private var identifyHeader: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: AppThemeV2.Spacing.xs) {
             HStack(alignment: .firstTextBaseline) {
-                Text("Which controller is this?").font(.title2.weight(.semibold))
+                Text("WHICH CONTROLLER IS THIS?")
+                    .font(AppThemeV2.Typography.sectionHeader).tracking(0.5)
+                    .foregroundStyle(AppThemeV2.Colors.stone100)
                 Spacer()
                 if document.mappingFile.devices.count > 1 {
                     V2Dropdown(options: document.mappingFile.devices.map(\.id),
@@ -164,22 +166,25 @@ struct ControllerProfileSheet: View {
                                labelFor: { id in document.mappingFile.devices.first { $0.id == id }?.name ?? "Device" })
                         .frame(maxWidth: 240)
                 } else {
-                    Text(device?.name ?? "Device no longer available").foregroundStyle(AppThemeV2.Colors.stone400)
+                    Text(device?.name ?? "Device no longer available")
+                        .font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone400)
                 }
             }
             Text("Name your hardware so SXM can show each mapping's physical control. This never changes your mapping.")
+                .font(AppThemeV2.Typography.caption)
                 .foregroundStyle(AppThemeV2.Colors.stone400)
         }
     }
 
     private var identifyResults: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: AppThemeV2.Spacing.md) {
                 ForEach(filteredIdentifyGroups, id: \.manufacturer) { group in
-                    VStack(alignment: .leading, spacing: 4) {
+                    VStack(alignment: .leading, spacing: 2) {
                         AssistantSectionLabel(group.manufacturer)
                         ForEach(group.profiles, id: \.id) { p in
-                            identifyRow(p)
+                            IdentifyControllerRow(profile: p, selected: draft?.profileID == p.id,
+                                                  disabled: isLocked, action: { chooseProfile(p.id) })
                         }
                     }
                 }
@@ -189,49 +194,17 @@ struct ControllerProfileSheet: View {
                         .font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone500)
                         .padding(.vertical, 8)
                 }
-            }.frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .padding(AppThemeV2.Spacing.sm)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
         .frame(height: 300)
+        .background(AppThemeV2.Colors.stone800)
+        .clipShape(RoundedRectangle(cornerRadius: AppThemeV2.Radius.lg))
+        .overlay(RoundedRectangle(cornerRadius: AppThemeV2.Radius.lg)
+            .stroke(AppThemeV2.Colors.stone700, lineWidth: 1))
     }
 
-    private func identifyRow(_ p: ControllerProfile) -> some View {
-        let selected = draft?.profileID == p.id
-        return Button { if !isLocked { chooseProfile(p.id) } } label: {
-            HStack(spacing: AppThemeV2.Spacing.sm) {
-                Image(systemName: selected ? "largecircle.fill.circle" : "circle")
-                    .foregroundStyle(selected ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone600)
-                    .font(.system(size: 12))
-                Text(p.model).font(AppThemeV2.Typography.body)
-                    .foregroundStyle(AppThemeV2.Colors.stone200)
-                Spacer(minLength: 8)
-                coverageChip(for: p)
-            }
-            .padding(.horizontal, AppThemeV2.Spacing.sm)
-            .padding(.vertical, AppThemeV2.Spacing.xs + 2)
-            .background(RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                .fill(selected ? AppThemeV2.Colors.amberSubtle : Color.clear))
-            .overlay(RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                .stroke(selected ? AppThemeV2.Colors.amber.opacity(0.4) : Color.clear, lineWidth: 1))
-            .contentShape(Rectangle())
-        }
-        .buttonStyle(.plain)
-        .disabled(isLocked)
-    }
-
-    private func coverageChip(for p: ControllerProfile) -> some View {
-        let label: String
-        let color: Color
-        switch p.coverageState {
-        case .partial: label = "PARTIAL"; color = AppThemeV2.Colors.warning
-        case .documentationOnly: label = "DOCS ONLY"; color = AppThemeV2.Colors.stone500
-        case nil: label = "FULL MIDI"; color = AppThemeV2.Colors.success
-        }
-        return Text(label)
-            .font(AppThemeV2.Typography.micro).tracking(0.4)
-            .foregroundStyle(color)
-            .padding(.horizontal, 6).padding(.vertical, 2)
-            .background(Capsule().fill(color.opacity(0.12)))
-    }
 
     private var confirmStrip: some View {
         HStack(spacing: AppThemeV2.Spacing.md) {
@@ -258,16 +231,16 @@ struct ControllerProfileSheet: View {
         }
     }
 
+    private var confirmDisabled: Bool { draft == nil || !changed || isLocked || stale || library == nil }
+
     private var identifyFooter: some View {
         HStack(spacing: AppThemeV2.Spacing.sm) {
-            Button("Advanced…") { mode = .advanced }
-                .buttonStyle(AssistantButtonStyle())
+            V2ToolbarButton(label: "Advanced…", action: { mode = .advanced })
             Spacer()
-            Button("Skip — keep generic") { stopLearning(); dismiss() }
-                .buttonStyle(AssistantButtonStyle())
-            Button("Confirm controller") { apply(showMappings: false) }
-                .buttonStyle(AssistantButtonStyle(primary: true))
-                .disabled(draft == nil || !changed || isLocked || stale || library == nil)
+            V2ToolbarButton(label: "Skip — keep generic", action: { stopLearning(); dismiss() })
+            V2ToolbarButton(label: "Confirm controller", action: { apply(showMappings: false) }, isPrimary: true)
+                .disabled(confirmDisabled)
+                .opacity(confirmDisabled ? 0.45 : 1)
         }
     }
 
@@ -597,7 +570,15 @@ struct ControllerProfileSheet: View {
         if id.isEmpty { draft = nil; return }
         guard let p = library?.profiles.first(where: { $0.id == id }) else { return }
         guard draft?.profileID != p.id || draft?.version != p.version else { return }
-        draft = ControllerConfiguration(profileID: p.id, version: p.version, globalChannel: p.defaultChannel,
+        // Default the channel to the one THIS mapping's rows actually use so the
+        // physical names resolve; fall back to the profile's documented default
+        // when there are no addressable rows to learn from.
+        let channels = (device?.mappings ?? []).compactMap {
+            $0.midiAssignment.kind == .unassigned ? nil : $0.midiAssignment.channel
+        }
+        let detectedChannel = channels.isEmpty ? p.defaultChannel
+            : Dictionary(grouping: channels, by: { $0 }).max { $0.value.count < $1.value.count }!.key
+        draft = ControllerConfiguration(profileID: p.id, version: p.version, globalChannel: detectedChannel,
                                         layerMode: p.modes.first?.id ?? "off", unitMap: p.unitMaps.first?.id ?? "factory")
         // Many profiles are fully port-scoped; resolve() drops port-scoped bindings when
         // portID is nil. Default to the first documented port so the confirmed
@@ -677,5 +658,61 @@ struct ControllerProfileSheet: View {
             stopLearning()
             dismiss()
         } catch { errorMessage = error.localizedDescription }
+    }
+}
+
+/// A selectable model row using the app's selection idiom — amber fill + left
+/// accent bar + amber text + checkmark when chosen, a stone hover otherwise.
+/// Never a native radio control.
+private struct IdentifyControllerRow: View {
+    let profile: ControllerProfile
+    let selected: Bool
+    let disabled: Bool
+    let action: () -> Void
+    @State private var hovered = false
+
+    var body: some View {
+        Button(action: { if !disabled { action() } }) {
+            HStack(spacing: AppThemeV2.Spacing.sm) {
+                Text(profile.model).font(AppThemeV2.Typography.body)
+                    .foregroundStyle(selected ? AppThemeV2.Colors.amberLight : AppThemeV2.Colors.stone200)
+                Spacer(minLength: 8)
+                coverageChip
+                Image(systemName: "checkmark")
+                    .font(.system(size: 10, weight: .bold))
+                    .foregroundStyle(AppThemeV2.Colors.amber)
+                    .opacity(selected ? 1 : 0)
+                    .frame(width: 12)
+            }
+            .padding(.horizontal, AppThemeV2.Spacing.sm)
+            .frame(height: 26)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(selected ? AppThemeV2.Colors.amberSubtle
+                        : (hovered ? AppThemeV2.Colors.stone700 : Color.clear))
+            .overlay(alignment: .leading) {
+                Rectangle().fill(AppThemeV2.Colors.amber)
+                    .frame(width: 2.5).opacity(selected ? 1 : 0)
+            }
+            .clipShape(RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm))
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .disabled(disabled)
+        .onHover { hovering in withAnimation(.easeInOut(duration: 0.12)) { hovered = hovering } }
+    }
+
+    private var coveragePair: (label: String, color: Color) {
+        switch profile.coverageState {
+        case .partial: return ("PARTIAL", AppThemeV2.Colors.warning)
+        case .documentationOnly: return ("DOCS ONLY", AppThemeV2.Colors.stone500)
+        case nil: return ("FULL MIDI", AppThemeV2.Colors.success)
+        }
+    }
+
+    private var coverageChip: some View {
+        Text(coveragePair.label).font(AppThemeV2.Typography.micro).tracking(0.4)
+            .foregroundStyle(coveragePair.color)
+            .padding(.horizontal, 6).padding(.vertical, 2)
+            .background(Capsule().fill(coveragePair.color.opacity(0.12)))
     }
 }

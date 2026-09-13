@@ -31,6 +31,11 @@ final class AssistantInputCoordinator: ObservableObject {
     @Published private(set) var isLearning = false
     @Published private(set) var capturedMIDI: SXMJSONMIDI?
     @Published private(set) var errorMessage: String?
+    /// Live interim transcript while dictating — the words heard so far, before
+    /// silence finalizes them. Empty when nothing is being heard right now. The
+    /// composer uses this to pulse the mic and preview what is being captured.
+    @Published private(set) var partialTranscript = ""
+    /// Final, committed chunks land here (appended to the message box).
     var onTranscript: ((String) -> Void)?
     private let speech: SpeechRecognitionProvider
     private let midi: any AssistantMIDIListening
@@ -54,7 +59,9 @@ final class AssistantInputCoordinator: ObservableObject {
         let previous = voiceTask
         previous?.cancel()
         speech.onTranscriptReady = nil
+        speech.onPartialResult = nil
         speech.stopListening()
+        partialTranscript = ""
         guard enabled else { isStartingVoice = false; return previous }
         isStartingVoice = true
         // Serialize starts: a cancelled permission request may finish late.
@@ -63,8 +70,16 @@ final class AssistantInputCoordinator: ObservableObject {
             guard let self, generation == self.voiceGeneration, !Task.isCancelled else { return }
             self.speech.onTranscriptReady = { [weak self] text in
                 guard let self, self.voiceEnabled, self.voiceGeneration == generation else { return }
+                self.partialTranscript = ""
                 let value = text.trimmingCharacters(in: .whitespacesAndNewlines)
                 if !value.isEmpty { self.onTranscript?(value) }
+            }
+            // Interim words heard so far — surfaced live so the user sees speech
+            // is being captured. They are not sent; the finalized chunk above is
+            // what appends to the message box.
+            self.speech.onPartialResult = { [weak self] text in
+                guard let self, self.voiceEnabled, self.voiceGeneration == generation else { return }
+                self.partialTranscript = text.trimmingCharacters(in: .whitespacesAndNewlines)
             }
             do {
                 try await self.speech.startListening()
@@ -108,6 +123,7 @@ final class AssistantInputCoordinator: ObservableObject {
     func stopAll() {
         setVoiceEnabled(false)
         clearCapture()
+        partialTranscript = ""
         onTranscript = nil
     }
 }
