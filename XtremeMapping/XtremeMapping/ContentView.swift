@@ -1127,8 +1127,11 @@ struct V2DisabledToolbarButton: View {
 /// Simple icon-only toolbar button with hover effects
 struct V2ToolbarIconButton: View {
     let icon: String
+    var isActive: Bool = false
     let action: () -> Void
     @State private var isHovered = false
+
+    private var highlighted: Bool { isActive || isHovered }
 
     var body: some View {
         Button {
@@ -1136,15 +1139,15 @@ struct V2ToolbarIconButton: View {
         } label: {
             Image(systemName: icon)
                 .font(.system(size: 12, weight: .medium))
-                .foregroundColor(isHovered ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone400)
+                .foregroundColor(highlighted ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone400)
                 .frame(width: 28, height: 28)
                 .background(
                     RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                        .fill(isHovered ? AppThemeV2.Colors.amberSubtle : AppThemeV2.Colors.stone700)
+                        .fill(highlighted ? AppThemeV2.Colors.amberSubtle : AppThemeV2.Colors.stone700)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
-                        .stroke(isHovered ? AppThemeV2.Colors.amber.opacity(0.5) : AppThemeV2.Colors.stone600, lineWidth: 1)
+                        .stroke(highlighted ? AppThemeV2.Colors.amber.opacity(0.5) : AppThemeV2.Colors.stone600, lineWidth: 1)
                 )
         }
         .buttonStyle(.plain)

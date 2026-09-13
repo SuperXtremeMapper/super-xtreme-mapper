@@ -108,7 +108,7 @@ struct UnifiedAssistantView: View {
             }
             Spacer(minLength: 12)
             if isLocked { Image(systemName: "lock.fill").help("Mapping locked. Unlock it in the editor to apply changes.").accessibilityLabel("Mapping locked") }
-            V2ToolbarIconButton(icon: "gearshape", action: { showConnection.toggle() })
+            V2ToolbarIconButton(icon: "gearshape", isActive: showConnection, action: { showConnection.toggle() })
                 .help("AI setup — connection, model and privacy")
                 .accessibilityLabel("AI setup")
                 .accessibilityValue(showConnection ? "Expanded" : "Collapsed")
@@ -118,11 +118,7 @@ struct UnifiedAssistantView: View {
 
     private var connectionSettings: some View {
         VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
-            HStack {
-                AssistantSectionLabel("AI Connection")
-                Spacer()
-                V2SmallButton(label: "Done") { showConnection = false }
-            }
+            AssistantSectionLabel("AI Connection")
 
             V2FormRow(label: "Enable AI") {
                 V2Toggle(isOn: $consent)
@@ -173,10 +169,12 @@ struct UnifiedAssistantView: View {
                     ForEach(conversation.messages) { message in
                         messageView(message).id(message.id)
                     }
-                    if let context = conversation.localContext, context.revision == document.explanationRevision {
+                    if !conversation.isWorking,
+                       let context = conversation.localContext,
+                       context.revision == document.explanationRevision {
                         localResults(context)
                     }
-                    if let plan = conversation.pendingPlan, current { review(plan) }
+                    if !conversation.isWorking, let plan = conversation.pendingPlan, current { review(plan) }
                     if conversation.isWorking {
                         HStack(spacing: 8) {
                             ProgressView().controlSize(.small)
