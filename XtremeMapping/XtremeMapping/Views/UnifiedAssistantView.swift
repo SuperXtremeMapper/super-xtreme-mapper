@@ -54,6 +54,9 @@ struct UnifiedAssistantView: View {
     private var model: MappingAssistantModel { MappingAssistantModel(rawValue: modelID) ?? .sonnet }
     private var validQuestion: Bool { !question.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && question.count <= 4_000 && question.utf8.count <= 16 * 1024 }
     private var canSend: Bool { current && validQuestion && consent && credentials.hasKey && !credentials.isLoading && !conversation.isWorking && !isBuilding }
+    /// The mic can start whenever AI is configured; it only dictates + captures
+    /// context, so it never depends on device choice or an unlocked document.
+    private var canDictate: Bool { consent && credentials.hasKey && !credentials.isLoading }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -88,7 +91,10 @@ struct UnifiedAssistantView: View {
         .task(id: "\(consent)-\(credentialRefresh)") { if consent { await credentials.refreshAsync() } }
         .onChange(of: showConnection) { _, expanded in if expanded { showMIDI = false } }
         .onChange(of: modelID) { _, _ in conversation.cancel() }
-        .onChange(of: destinationID) { _, _ in input.clearCapture() }
+        // Voice is the single owner of the capture lifecycle: whenever the mic
+        // turns off — by tap or by a failed speech start — stop the MIDI
+        // listener too. A captured address stays attached (stopMIDI keeps it).
+        .onChange(of: input.voiceEnabled) { _, on in if !on { input.stopMIDI() } }
         .onDisappear { input.stopAll(); conversation.cancel(); credentials.clear() }
         .sheet(item: $sheet, onDismiss: { credentialRefresh = UUID() }) { item in
             switch item {
@@ -246,11 +252,12 @@ struct UnifiedAssistantView: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 if let answer = message.answer {
-                    // One flowing answer — no section headers.
+                    // One flowing answer — no section headers, and the unknowns /
+                    // follow-up questions read in the same weight as the rest so
+                    // they don't look like a muted duplicate of the reply.
                     answerText(answer.facts + answer.interpretations, revision: message.revision)
                     ForEach(Array(answer.unknowns.enumerated()), id: \.offset) { _, value in
                         Text(verbatim: value)
-                            .foregroundStyle(AppThemeV2.Colors.stone400)
                             .lineSpacing(3)
                             .fixedSize(horizontal: false, vertical: true)
                     }
@@ -271,6 +278,19 @@ struct UnifiedAssistantView: View {
             if let error = errorMessage ?? conversation.errorMessage ?? input.errorMessage {
                 AssistantNoticeBanner(kind: .danger, text: error)
             }
+            // The mic is plain voice input — ask anything. Only once you actually
+            // move a control does it attach here, with a destination, so "make
+            // this fader volume A" has something to bind. Asking a question shows
+            // nothing extra.
+            if let midi = input.capturedMIDI {
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack(spacing: 8) {
+                        scopeChip("This control · \((try? midi.model().displayName) ?? "MIDI")", systemImage: "pianokeys") { input.clearCapture() }
+                        Spacer(minLength: 0)
+                    }
+                    captureDestination
+                }
+            }
             // Message box with the mic and send as circular icons on the right.
             HStack(alignment: .bottom, spacing: 8) {
                 TextField("Ask a question or describe a change…", text: $question)
@@ -282,11 +302,11 @@ struct UnifiedAssistantView: View {
                 composerCircleButton(
                     systemName: input.voiceEnabled ? "mic.fill" : "mic",
                     active: input.voiceEnabled,
-                    disabled: false,
-                    action: { input.setVoiceEnabled(!input.voiceEnabled) }
+                    disabled: !input.voiceEnabled && !canDictate,
+                    action: { toggleMic() }
                 )
-                .help("Dictate your message. Tap again to stop.")
-                .accessibilityLabel(input.voiceEnabled ? "Stop voice dictation" : "Start voice dictation")
+                .help("Speak your message. Move a control while talking to say \u{201C}make this…\u{201D} and it attaches the control. Tap again to stop.")
+                .accessibilityLabel(input.voiceEnabled ? "Stop voice" : "Start voice")
 
                 composerCircleButton(
                     systemName: "arrow.up",
@@ -324,6 +344,37 @@ struct UnifiedAssistantView: View {
         }
         .buttonStyle(.plain)
         .disabled(disabled)
+    }
+
+    /// Where a newly created mapping will be added. An empty document offers to
+    /// make the device; several devices get a one-time picker so the model need
+    /// not stop to ask; a single device is implicit (set on appear).
+    @ViewBuilder private var captureDestination: some View {
+        if document.mappingFile.devices.isEmpty {
+            HStack(spacing: 8) {
+                Text("New mappings need a device.")
+                    .font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone400)
+                Button("Create MIDI device") {
+                    guard !isLocked, MappingTransferService.isTrulyEmpty(document.mappingFile) else { return }
+                    let device = Device(name: "Generic MIDI")
+                    document.performUndoableMutation(actionName: "Create MIDI Device", undoManager: nil) { $0.devices.append(device) }
+                    destinationID = device.id
+                }.buttonStyle(AssistantLinkButtonStyle()).fixedSize().disabled(isLocked)
+                Spacer(minLength: 0)
+            }
+        } else if document.mappingFile.devices.count > 1 {
+            HStack(spacing: 8) {
+                Text("Add to").font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone400)
+                V2Dropdown(options: [Optional<UUID>.none] + document.mappingFile.devices.map { Optional($0.id) },
+                           selection: $destinationID,
+                           labelFor: { id in
+                               guard let id else { return "Choose device…" }
+                               return document.mappingFile.devices.first(where: { $0.id == id })?.name ?? "Device"
+                           })
+                    .frame(maxWidth: 260)
+                Spacer(minLength: 0)
+            }
+        }
     }
 
     /// A plain summary of what this request will be scoped to, with removable
@@ -478,6 +529,20 @@ struct UnifiedAssistantView: View {
         let valid = ids.intersection(Set(document.mappingFile.allMappings.map(\.id)))
         if !valid.isEmpty { onShowMappings(valid) }
     }
+    /// Toggle the mic. It dictates into the message box and, at the same time,
+    /// listens for a moved control so a request like "make this fader volume A"
+    /// arrives with the captured address attached. The chat model decides
+    /// whether to answer or propose a mapping change — no separate mode.
+    private func toggleMic() {
+        let turningOn = !input.voiceEnabled
+        input.setVoiceEnabled(turningOn)
+        // Arm capture only when turning on; the .onChange(voiceEnabled) handler
+        // is the single owner of stopping capture, so an async speech-start
+        // failure (which flips voiceEnabled back to false) can't strand an
+        // armed MIDI listener behind an inactive-looking mic.
+        if turningOn { input.learnControl() }
+    }
+
     private func send() {
         guard canSend, let snapshot else { return }
         guard credentials.hasKey else { return }

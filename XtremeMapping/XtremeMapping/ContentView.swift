@@ -797,7 +797,9 @@ struct V2ActionBarFull: View {
                     .frame(width: 1, height: 20)
                     .padding(.horizontal, AppThemeV2.Spacing.xs)
 
-                // Assistant and Wizard entry points
+                // Assistant entry point. The standalone Wizard button was
+                // removed — mapping creation by moving controls now lives in the
+                // Assistant's Voice Learn (mic in the composer).
                 HStack(spacing: AppThemeV2.Spacing.xs) {
                     // Unified Assistant
                     if let assistantAction = onAssistant {
@@ -808,17 +810,6 @@ struct V2ActionBarFull: View {
                             minWidth: 70
                         )
                         .help("Assistant — ask questions or describe mapping changes by text or voice")
-                    }
-
-                    // Wizard button
-                    if let wizardAction = onWizard {
-                        V2ToolbarButton(
-                            icon: "wand.and.stars",
-                            label: "Wizard",
-                            action: wizardAction,
-                            minWidth: 70
-                        )
-                        .help("Wizard — create mappings step by step with guided setup for your controller.")
                     }
                 }
             }
