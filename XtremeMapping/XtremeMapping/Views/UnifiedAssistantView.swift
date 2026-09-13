@@ -27,7 +27,7 @@ struct UnifiedAssistantView: View {
     @ObservedObject private var credentials: MappingAssistantCredentials
     @AppStorage("mappingAssistantModel") private var modelID = MappingAssistantModel.sonnet.rawValue
     @State private var question = ""
-    @State private var consent = false
+    @AppStorage("mappingAssistantConsent") private var consent = false
     @State private var showConnection = false
     @State private var credentialRefresh = UUID()
     @State private var showMIDI = false
@@ -154,7 +154,7 @@ struct UnifiedAssistantView: View {
                 }
             }
 
-            Text("On for this session only. Send shares your request, recent conversation, relevant mappings and any captured MIDI with Anthropic, and may incur API charges. Your original TSI data and the full manuals are never sent.")
+            Text("Send shares your request, recent conversation, relevant mappings and any captured MIDI with Anthropic, and may incur API charges. Your original TSI data and the full manuals are never sent.")
                 .font(AppThemeV2.Typography.caption)
                 .foregroundStyle(AppThemeV2.Colors.stone500)
                 .fixedSize(horizontal: false, vertical: true)
@@ -427,12 +427,18 @@ struct UnifiedAssistantView: View {
     private func localResults(_ context: ExplanationContext) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             AssistantSectionLabel("Source rows · \(context.rows.count) of \(context.totalRows)")
-            ForEach(Array(context.limitations.enumerated()), id: \.offset) { _, value in
-                Text(verbatim: value).font(.caption).foregroundStyle(AppThemeV2.Colors.stone400)
+            if context.rows.isEmpty {
+                Text("No matching rows. Try a command, MIDI address, device name or modifier number.")
+                    .font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone400)
             }
-            if context.rows.isEmpty { Text("No matching rows. Try a command, MIDI address, device name or modifier number.") }
-            ForEach(context.rows) { row in
-                Button("\(row.deviceName) · row \(row.position) · \(row.command) · \(row.midi)") { show([row.id]) }.buttonStyle(AssistantLinkButtonStyle())
+            // Only the matched rows — internal preservation notices are omitted.
+            ForEach(context.rows.prefix(12)) { row in
+                Button("\(row.deviceName) · row \(row.position) · \(row.command) · \(row.midi)") { show([row.id]) }
+                    .buttonStyle(AssistantLinkButtonStyle())
+            }
+            if context.rows.count > 12 {
+                Text("+ \(context.rows.count - 12) more matching rows")
+                    .font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone500)
             }
         }
     }
