@@ -201,6 +201,7 @@ struct UnifiedAssistantView: View {
                 Text("SXM").font(AppThemeV2.Typography.micro).tracking(0.5)
                     .foregroundStyle(AppThemeV2.Colors.stone500)
                 Text(verbatim: text).lineSpacing(3)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             .padding(12)
             .frame(maxWidth: 460, alignment: .leading)
@@ -242,6 +243,7 @@ struct UnifiedAssistantView: View {
                 }
                 if message.answer == nil, !message.text.isEmpty {
                     Text(verbatim: message.text).lineSpacing(3)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 if let answer = message.answer {
                     answerClaims("What I found", answer.facts, revision: message.revision)
@@ -250,6 +252,7 @@ struct UnifiedAssistantView: View {
                         AssistantSectionLabel("What I'm not sure about")
                         ForEach(Array(answer.unknowns.enumerated()), id: \.offset) { _, value in
                             Text(verbatim: value).foregroundStyle(AppThemeV2.Colors.stone400)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                     }
                 }
@@ -409,6 +412,7 @@ struct UnifiedAssistantView: View {
             if !claims.isEmpty { AssistantSectionLabel(heading) }
             ForEach(Array(claims.enumerated()), id: \.offset) { _, claim in
                 Text(verbatim: claim.text)
+                    .fixedSize(horizontal: false, vertical: true)
                 if !claim.rowIDs.isEmpty {
                     Button("Show these \(claim.rowIDs.count) rows") { show(Set(claim.rowIDs)) }
                         .buttonStyle(AssistantLinkButtonStyle()).disabled(revision != document.explanationRevision)
@@ -448,7 +452,9 @@ struct UnifiedAssistantView: View {
                         }
                     }
                     // Before/after summaries lead; raw identifiers are tucked away.
-                    ForEach(Array(change.summaries.enumerated()), id: \.offset) { _, value in Text(verbatim: value) }
+                    ForEach(Array(change.summaries.enumerated()), id: \.offset) { _, value in
+                        Text(verbatim: value).fixedSize(horizontal: false, vertical: true)
+                    }
                     DisclosureGroup("Details") {
                         Text(change.rowID.uuidString).font(AppThemeV2.Typography.mono).textSelection(.enabled)
                     }

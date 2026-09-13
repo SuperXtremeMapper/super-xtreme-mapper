@@ -985,25 +985,28 @@ struct V2AddCommandMenuButton: View {
     @State private var isHovered = false
 
     var body: some View {
-        // The whole visible button is the menu's label, so a click anywhere on
-        // it opens the dropdown (no tiny transparent hit area).
-        Menu {
-            ForEach(commandCategories) { category in
-                categoryMenu(category)
+        // Keep the original styled button + rollover, and overlay a transparent
+        // menu that fills the whole button so a click anywhere opens the dropdown.
+        visualButton
+            .overlay {
+                Menu {
+                    ForEach(commandCategories) { category in
+                        categoryMenu(category)
+                    }
+                } label: {
+                    Color.clear.contentShape(Rectangle())
+                }
+                .menuStyle(.borderlessButton)
+                .menuIndicator(.hidden)
+                .disabled(isDisabled)
             }
-        } label: {
-            visualButton
-        }
-        .menuStyle(.borderlessButton)
-        .menuIndicator(.hidden)
-        .fixedSize()
-        .disabled(isDisabled)
-        .onHover { hovering in
-            withAnimation(.easeInOut(duration: 0.15)) {
-                isHovered = hovering
+            .fixedSize()
+            .onHover { hovering in
+                withAnimation(.easeInOut(duration: 0.15)) {
+                    isHovered = hovering
+                }
             }
-        }
-        .help(tooltip)
+            .help(tooltip)
     }
 
     private var visualButton: some View {
