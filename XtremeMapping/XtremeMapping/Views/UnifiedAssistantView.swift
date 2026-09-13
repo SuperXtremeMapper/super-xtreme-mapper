@@ -278,9 +278,10 @@ struct UnifiedAssistantView: View {
             }
             // Message box with the mic and send as circular icons on the right.
             HStack(alignment: .bottom, spacing: 8) {
-                TextField("Ask a question or describe a change…", text: $question, axis: .vertical)
-                    .textFieldStyle(.plain).lineLimit(1...5).focused($composerFocused)
+                TextField("Ask a question or describe a change…", text: $question)
+                    .textFieldStyle(.plain).focused($composerFocused)
                     .frame(minHeight: 28)
+                    .onSubmit { send() }
                     .accessibilityLabel("Message to Assistant")
 
                 composerCircleButton(
