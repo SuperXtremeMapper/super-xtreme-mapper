@@ -198,7 +198,7 @@ struct UnifiedAssistantView: View {
     private func assistantBubble(_ text: String) -> some View {
         HStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Assistant").font(AppThemeV2.Typography.micro).tracking(0.5)
+                Text("SXM").font(AppThemeV2.Typography.micro).tracking(0.5)
                     .foregroundStyle(AppThemeV2.Colors.stone500)
                 Text(verbatim: text).lineSpacing(3)
             }
@@ -221,7 +221,7 @@ struct UnifiedAssistantView: View {
             if isUser { Spacer(minLength: 48) }
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    Text(isUser ? "You" : message.role == "system" ? "Session" : "Assistant")
+                    Text(isUser ? "You" : message.role == "system" ? "Session" : "SXM")
                         .font(AppThemeV2.Typography.micro).tracking(0.5)
                         .foregroundStyle(AppThemeV2.Colors.stone500)
                     if message.revision != document.explanationRevision {

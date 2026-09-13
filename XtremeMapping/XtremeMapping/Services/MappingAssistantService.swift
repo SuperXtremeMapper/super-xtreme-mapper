@@ -152,8 +152,7 @@ nonisolated final class MappingAssistantService: MappingAnswering, Sendable {
         })?.input else {
             throw ServiceError.invalidResponse
         }
-        try validate(returned, allowedRowIDs: allowedRowIDs)
-        return returned
+        return try sanitized(returned, allowedRowIDs: allowedRowIDs)
     }
 
     private func makeRequest(
@@ -199,17 +198,28 @@ nonisolated final class MappingAssistantService: MappingAnswering, Sendable {
         return request
     }
 
-    private func validate(_ answer: MappingAssistantAnswer, allowedRowIDs: Set<UUID>) throws {
+    /// Validates the answer and, rather than rejecting it, demotes any
+    /// uncited "fact" into an interpretation so the reply is still shown.
+    private func sanitized(_ answer: MappingAssistantAnswer, allowedRowIDs: Set<UUID>) throws -> MappingAssistantAnswer {
         let claims = answer.facts + answer.interpretations
         guard claims.allSatisfy({ !$0.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }),
               answer.unknowns.allSatisfy({ !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }) else {
             throw ServiceError.invalidResponse
         }
-        guard answer.facts.allSatisfy({ !$0.rowIDs.isEmpty }) else { throw ServiceError.uncitedFact }
         guard claims.flatMap(\.rowIDs).allSatisfy(allowedRowIDs.contains) else {
             throw ServiceError.invalidCitation
         }
-        guard !claims.isEmpty || !answer.unknowns.isEmpty else { throw ServiceError.emptyAnswer }
+        let citedFacts = answer.facts.filter { !$0.rowIDs.isEmpty }
+        let uncitedFacts = answer.facts.filter { $0.rowIDs.isEmpty }
+        let cleaned = MappingAssistantAnswer(
+            facts: citedFacts,
+            interpretations: answer.interpretations + uncitedFacts,
+            unknowns: answer.unknowns
+        )
+        guard !cleaned.facts.isEmpty || !cleaned.interpretations.isEmpty || !cleaned.unknowns.isEmpty else {
+            throw ServiceError.emptyAnswer
+        }
+        return cleaned
     }
 
     private static let claimArraySchema: [String: Any] = [

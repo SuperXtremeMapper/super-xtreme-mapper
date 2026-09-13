@@ -108,7 +108,8 @@ nonisolated final class AssistantConversationService: AssistantConversing, Senda
     static func validate(_ response: AssistantConversationResponse, request: AssistantConversationRequest) throws {
         let claims = response.answer.facts + response.answer.interpretations
         guard claims.allSatisfy({ !$0.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }), response.answer.unknowns.allSatisfy({ !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }), !claims.isEmpty || !response.answer.unknowns.isEmpty else { throw ServiceError.emptyAnswer }
-        guard response.answer.facts.allSatisfy({ !$0.rowIDs.isEmpty }) else { throw ServiceError.uncitedFact }
+        // Uncited facts are allowed through (shown as-is) rather than rejecting
+        // the whole reply.
         let ids = Set(request.context.rows.map(\.id))
         guard claims.flatMap(\.rowIDs).allSatisfy(ids.contains) else { throw ServiceError.invalidCitation }
         guard response.operations.count <= 100 else { throw ServiceError.invalidResponse }
