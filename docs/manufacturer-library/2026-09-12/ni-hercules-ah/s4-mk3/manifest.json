@@ -1,0 +1,47 @@
+{
+  "manufacturer": "Native Instruments",
+  "model": "Traktor Kontrol S4 MK3",
+  "retrieved_on": "2026-09-12",
+  "grade": "protocol-gap",
+  "scope": "Source extraction readiness only; not a verified SXM profile",
+  "hardware_tested": false,
+  "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+  "notes": "Owner manual describes native Traktor operation, not a MIDI address chart. NI employee MichaelK_NI explicitly confirms S4 MK3 never supported MIDI. Native overmapping is not proof of MIDI mode.",
+  "coverage": {
+    "addresses": "not available for standard MIDI",
+    "channels": "not applicable",
+    "layers": "native deck/pad behavior only",
+    "encoders": "native behavior only",
+    "led_feedback": "native display/lighting only"
+  },
+  "inspected_locators": [
+    "manual.pdf: concepts and hardware reference; full-text MIDI search finds software MIDI clock, not device messages",
+    "ni-staff-midi-explanation.html: Accepted answers > MichaelK_NI"
+  ],
+  "sources": [
+    {
+      "url": "https://docs.native-instruments.com/pdf-guides/traktor/TRAKTOR_KONTROL_S4_MK3_Manual_English_0719.pdf",
+      "file": "s4-mk3/manual.pdf",
+      "status_code": 200,
+      "final_url": "https://docs.native-instruments.com/pdf-guides/traktor/TRAKTOR_KONTROL_S4_MK3_Manual_English_0719.pdf",
+      "bytes": 5285492,
+      "sha256": "f73dca45cd1e5535e79be9301de05149b6825669815c7c6b9a41c672c900e372",
+      "text_file": "s4-mk3/manual.txt",
+      "text_sha256": "cfe960ceca14ef4cb10a832e70c918eb53767cd48eeade417b4e3a035f07714c"
+    },
+    {
+      "url": "https://community.native-instruments.com/discussion/9022/why-does-the-s4mk3-still-not-have-midi-mode",
+      "file": "s4-mk3/ni-staff-midi-explanation.html",
+      "status_code": 200,
+      "final_url": "https://community.native-instruments.com/discussion/9022/why-does-the-s4mk3-still-not-have-midi-mode",
+      "bytes": 677262,
+      "sha256": "32e79f8bc41157767a5e74b0e086c34ca907df7a3220faa1c63289b176c9bd1c",
+      "text_file": "s4-mk3/ni-staff-midi-explanation.txt",
+      "text_sha256": "6833ca53edbd9e53f1327ebaa05911692911ef1ec1317238ac9a9731334f70f4"
+    }
+  ],
+  "shared_references": [
+    "shared/ni-current-downloads.html",
+    "shared/ni-midi-mode.html"
+  ]
+}

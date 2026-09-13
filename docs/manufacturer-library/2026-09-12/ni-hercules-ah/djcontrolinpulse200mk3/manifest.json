@@ -1,0 +1,45 @@
+{
+  "manufacturer": "Hercules",
+  "model": "DJControl Inpulse 200 MK3",
+  "retrieved_on": "2026-09-12",
+  "grade": "partial",
+  "scope": "Source extraction readiness only; not a verified SXM profile",
+  "hardware_tested": false,
+  "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+  "notes": "Official user manual/control descriptions archived; no complete manufacturer wire-address/LED chart found in the retrieved support resources. Software action mappings do not prove Note/CC values. Added as a current-generation supplement discovered on current official support; retained MK2 as explicitly requested legacy model.",
+  "coverage": {
+    "addresses": "not established by retrieved protocol documentation",
+    "channels": "not established by retrieved protocol documentation",
+    "layers": "Native/software pad modes described in inspected English manual sections; numeric mode addresses not established",
+    "encoders": "not established by retrieved protocol documentation",
+    "led_feedback": "not established by retrieved protocol documentation"
+  },
+  "inspected_locators": [
+    "support.html: official model support and manuals",
+    "manual.pdf: English control descriptions; MIDI keyword inspection",
+    "manual.pdf: PDF pages [8, 15, 19, 38, 49]; separately indexed in inspection.txt (English printed page = PDF page - 1, except Starlight)"
+  ],
+  "sources": [
+    {
+      "url": "https://support.hercules.com/en/product/djcontrolinpulse200mk3-en/",
+      "file": "djcontrolinpulse200mk3/support.html",
+      "status_code": 200,
+      "final_url": "https://support.hercules.com/en/product/djcontrolinpulse200mk3-en/",
+      "bytes": 98181,
+      "sha256": "45bbb9152fde732e8f0e51f1478288207207b98af6b7ba60ff49cbb507460d63",
+      "text_file": "djcontrolinpulse200mk3/support.txt",
+      "text_sha256": "286c1f54faec2ae7fea80ec960ede86b0b75d0038ed4174bec055674781d4cc0"
+    },
+    {
+      "url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse_200_MK3/DJControl_Inpulse_200_MK3_User_Manual_-_21_Languages.pdf",
+      "file": "djcontrolinpulse200mk3/manual.pdf",
+      "status_code": 200,
+      "final_url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse_200_MK3/DJControl_Inpulse_200_MK3_User_Manual_-_21_Languages.pdf",
+      "bytes": 10714359,
+      "sha256": "9a45c2ec9a9598f364caa63be1d1d3a8349dc8adf6617fd5f9c2279f4446958c",
+      "text_file": "djcontrolinpulse200mk3/manual.txt",
+      "text_sha256": "0289f9dc184f91880b598cf04a733d6be42be69d0f57901d0acbb586740c122f"
+    }
+  ],
+  "shared_references": []
+}

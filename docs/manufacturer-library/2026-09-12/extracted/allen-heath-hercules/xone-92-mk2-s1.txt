@@ -1,0 +1,194 @@
+=== PDF page 23 ===
+MIDI Control of External Devices
+
+MIDI is short for Musical Instrument Digital Interface conceived in the 1980’s so that keyboards and other
+electronic instruments could have a common interface allowing them to communicate with each another.
+Applications now include sound and lighting consoles, computer sequencing, show control and performance
+effects control. The XONE:92 was unique in being the first DJ mixer to include MIDI functionality.
+The XONE:92 Mk2 retains the original MIDI functionality, equipped with a MIDI out socket, allowing the DJ to
+control other external MIDI devices from featured front panel controls.
+The XONE:92 Mk2 can be used to remotely control effects units, sequencers, drum machines etc via MIDI providing
+the unit you wish to control is compatible with the MIDI controller codes generated. Most computer sequencing
+programs allows you to map different controller codes to virtually any function within the software, so providing
+the greatest flexibility of control. Please refer to the user guide of the device or program you wish to use to check
+for compatibility. The mixer’s default MIDI channel used is 16, this can be changed internally to 15 (Refer to the
+Installer Link Options on p.36 for details).
+
+Basic Setup
+
+Connect MIDI OUT from the XONE:92 to the MIDI IN of the device you wish to control.
+Use a standard 5-pin MIDI lead. Set the peripheral device MIDI channel number to 16. Refer to the device user
+guide for further details. If you want to use the mixer as a master clock, for instance with a drum machine or
+sequencer, you need to set the device to receive External MIDI clocks. Once again, please to refer to the relevant
+user guide for details.
+
+The XONE:92 as a Master Tempo Controller
+
+Using the XONE:92 Mk2 to sync an external sequencer or drum machine to a pre-recorded source takes practice,
+but once learned can be achieved quite quickly, and is a great way to add your own loops, patterns and so on to
+your favourite tracks.
+
+Once you have got the device to respond to the XONE:92 master MIDI clock and stop/start button, use the
+following method:
+Set the Tempo control [1] to its centre (detented) position, with the Stop/Start button [2] OFF.
+Tap in the tempo of the track you want to sync to, using the FILTER 2 LFO Tap Tempo button [3].
+Accuracy here is very important, try to tap in the beat as precisely as possible; you will find that you get more adept
+the more you practice. Once you have a near approximation of the tempo, hit the Start button to set off the
+sequencer on the first beat of a bar.
+
+Depending on how accurately you have tapped in the beat the sequence should play in sync for a short while, but
+will probably drift. If the tempo is too fast, turn the TEMPO ADJ control anti-clockwise to slow down the MIDI
+clock, if it is too slow, turn it clockwise to speed it up. After each adjustment restart the sequencer until the clock
+speed has been set to match the beat and maintain synchronisation. The TEMPO ADJ control has finer effect on
+clock speed in and around its centre position, and greater effect as it is rotated towards either end. For this reason
+the more accurate tap tempo you start with the easier it will be to fine tune to stay in sync.
+
+Remember to always return the TEMPO ADJ control to the centre position before tapping in a new BPM.
+
+
+
+
+     ALLEN&HEATH                                               23                       XONE:92 Mk2 User Guide
+
+=== PDF page 24 ===
+ MIDI Control Codes
+
+         XONE:92 Mk2 control                Controller Code Generated           Controller Name
+             FILTER 1 FREQ                            CC12                       Effect Control 1
+             FILTER 2 FREQ                            CC13                       Effect control 2
+         Crossfader movement                          CC92                       Tremolo Level
+    Data Controller (internal option)                 CC94                        Celeste Level
+            Tap Temp LFO 2                         MIDI Clocks
+                 Start/Stop                   MIDI Start/Stop-rewind
+
+                  1      TEMPO ADJ control.
+                  The default application for this control is to allow adjustment of the MIDI clock speed set
+                  by the FILTER 2 TAP TEMPO button 3 . With the control in its mid position the clock
+                  speed is unaffected. Rotate anti-clockwise to reduce, or clockwise to increase the clock
+                  speed. This allows external sequencers or drum machines to be accurately aligned to the
+                  BPM of pre recorded tracks.
+                  An internal jumper can be reassigned to change the function of this control to a dedicated
+                  DATA send, and will output Control Change CC94.
+                  Refer to the Installer Link Options on p.36 for details.
+                  2      START / STOP button.
+                  Sends MIDI start/stop data to an external sequencer or MIDI device. The Lights yellow
+                  when pressed.
+                  Push once to transmit MIDI start data, push again to transmit MIDI clock stop + rewind
+                  data:
+                  ON (1st press), STOP/REWIND (2nd press).
+                  3      TAP TEMPO button.
+                  The tempo of the MIDI clock is set by tapping it in using the button.
+                  The BPM is determined by the last two button presses.
+                  4      FREQ VCF sweep control.
+                  Both controls independently output MIDI data 0 to 127:
+                  FILTER 1 FREQ:        Control Change CC12
+                  FILTER 2 FREQ:        Control Change CC13
+                  5    CROSSFADER:
+                  Move the crossfader to output MIDI data 0 (farthest left) to 127 (farthest right):
+
+
+
+                                                       XFADER:            Control Change CC92
+
+
+
+             .    6      MIDI OUT socket (chassis, rear panel).
+             .    5 pin DIN socket. Outputs all XONE:92 Mk2 MIDI data to an external MIDI compatible
+                     device.
+
+
+ALLEN&HEATH                                               24                     XONE:92 Mk2 User Guide
+
+=== PDF page 25 ===
+MIDI Implementation Chart
+
+         O = Available    X = Not used
+
+           Function              Transmitted        Received          Remarks
+         Basis Channel
+                                                                 Internal DIP switch
+            Default                  16                X
+                                                                       setting
+            Option                   15                X
+             Mode
+            Default                      X             X
+           Messages                      X             X
+            Altered                      X             X
+
+         Note Number                     X             X
+           Velocity
+           Note ON                       X             X
+           Note OFF                      X             X
+          Aftertouch
+             Keys                        X             X
+            Channel                      X             X
+          Pitch Bend                     X             X
+        Control Change
+              12                     O                 X
+              13                     O                 X
+              92                     O                 X
+              94                     O                 X       Internal jumper option
+
+        Program Change                   X             X
+       System Exclusive                  X             X
+       System Common
+         Song Position                   X             X
+          Song Select                    X             X
+         Tune Request                    X             X
+
+       System Real Time
+            Clock                    O                 X
+          Commands                   O                 X
+         Aux Messages
+          Local On/Off                   X             X
+          All Notes Off                  X             X
+         Active Sensing                  X             X
+         System Reset                    X             X
+
+
+
+
+    ALLEN&HEATH                                25              XONE:92 Mk2 User Guide
+
+=== PDF page 35 ===
+Installer Link Options continued ...
+
+VCF 1 AND 2 Filter PCBA
+There are several configuration options on the filter PCB. These are maximum resonance limit, VCF filter disable,
+and change default MIDI setup (Filter 2 Only). To disable the functions plug the jumpers on to one leg of the
+connector. This retains them for future use if needed.
+Filter Disable
+To prevent the filter from being switched on, locate and remove the DISABLE FILTER jumper sleeve (illustrated in
+detail A). The maximum VCF resonance can also be limited by removing the corresponding RESONANCE jumper
+sleeves.
+
+MIDI ON / OFF
+A four way dip switch selects which controls on the XONE:92 output MIDI data (detail B).
+The default setting is all ON. Each switch can be set off to prevent the associated control from sending MIDI
+messages.
+MIDI Channel
+The MIDI output channel is set to 16 as a factory default. This can be changed to 15 by changing over the
+“CHANNEL” dip switch.
+MIDI TEMPO ADJUST / DATA
+The TEMPO controller default configuration provides a means of fine tuning the MIDI clock speed. This control can
+be reconfigured as a dedicated DATA send control (CC94) by moving the VR4 jumper sleeve (detail B) from the T
+(Tempo) position to the D (Data) position.
+Note: MIDI clock will still be transmitted via the LFO 2 TAP tempo button when the jumper is in the D position.
+
+
+
+
+                                                                                             B
+
+                           A
+
+
+     ALLEN&HEATH                                              35                      XONE:92 Mk2 User Guide
+
+=== PDF page 36 ===
+              Page left intentionally blank.
+
+
+
+
+ALLEN&HEATH                      36            XONE:92 Mk2 User Guide

@@ -69,10 +69,10 @@ nonisolated enum ControllerProfileWorkflow {
         guard midi.kind != .unassigned else { throw Failure.unassignedOverride }
         let override = ControllerControlOverride(controlID: controlID,
             layerMode: configuration.layerMode, unitMap: configuration.unitMap,
-            layer: layer, direction: direction, midi: SXMJSONMIDI(midi), provenance: provenance)
+            layer: layer, direction: direction, midi: SXMJSONMIDI(midi), portID: configuration.portID, provenance: provenance)
         func matches(_ item: ControllerControlOverride) -> Bool {
             item.controlID == controlID && item.layerMode == override.layerMode &&
-            item.unitMap == override.unitMap && item.layer == layer && item.direction == direction
+            item.unitMap == override.unitMap && item.layer == layer && item.direction == direction && item.portID == override.portID
         }
         if let index = configuration.overrides.firstIndex(where: matches) {
             configuration.overrides[index] = override

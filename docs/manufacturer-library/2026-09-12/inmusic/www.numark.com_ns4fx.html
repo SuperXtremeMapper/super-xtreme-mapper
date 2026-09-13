@@ -1,0 +1,1002 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="https://www.w3.org/1999/xhtml"  xml:lang="en" lang="en">
+
+<head>  
+  
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TJVDSJC');</script>
+<!-- End Google Tag Manager -->
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="https://www.numark.com/css/master.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald:400,300,700">
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="https://www.numark.com/css/ui-darkness/jquery-ui-1.9.2.custom.css">
+<script type="text/javascript" src="https://www.numark.com/js/jquery-ui-1.9.2.custom.min.js"></script>
+
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+
+$(function() {
+	var products = [];
+
+	$( "#search #keywords" ).autocomplete({
+		minLength: 0,
+		source: products,
+		focus: function( event, ui ) {
+			$( "#search" ).val( ui.item.label );
+			// console.log('focus');
+			return false;
+		},
+		select: function( event, ui ) {
+			// $( "#select" ).val( ui.item.label );
+
+			// When selected we redirect to the product
+			window.location.href = '/product/' + ui.item.href;
+			// console.log(event);
+			return false;
+		},
+		open: function(){
+			$(this).autocomplete('widget').css('z-index', 100);
+			return false;
+		},
+
+	    })
+	    .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+	      return $( "<li>" )
+	        .append( "<a href='/product/" + item.href + "' class='" + item.href + "'>" + item.label + "</a>" + "<p>" + item.desc + "</p>" )
+	        .appendTo( ul );
+	    };
+
+});
+	
+</script>
+
+
+
+
+
+
+
+
+
+<!--<script type="text/javascript"src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXtlNshLPJCm2CipUuT-qco9LjVCg66lU&sensor=false"></script>//-->
+
+
+
+
+
+
+
+
+
+
+
+	
+		<title>NS4FX | Numark</title>
+	
+
+
+
+
+
+	
+		<meta name="description" content="NS4FX Professional 4 - Deck DJ Controller | Numark">
+	
+
+
+
+
+	
+<link rel="apple-touch-icon" sizes="57x57" href="https://www.numark.com/images/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="https://www.numark.com/images/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://www.numark.com/images/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://www.numark.com/images/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://www.numark.com/images/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://www.numark.com/images/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://www.numark.com/images/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://www.numark.com/images/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://www.numark.com/images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="https://www.numark.com/images/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.numark.com/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="https://www.numark.com/images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.numark.com/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="https://www.numark.com/images/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="https://www.numark.com/images/favicon/ms-icon-144x144.png">
+<meta name="robots" content="index,follow">
+<meta name="keywords" content="Numark">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" type="text/css" href="https://www.numark.com/styles/master2018v1.css"/>
+
+
+
+
+
+
+  
+
+<script>
+function trackOutboundLink(link, category, action, label) { 
+ 
+try { 
+_gaq.push(['_trackEvent', category , action, label]); 
+} catch(err){}
+ 
+setTimeout(function() {
+document.location.href = link.href;
+}, 100);
+}
+</script>
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/product/info_css.css" />
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/product/right_css_v1_1.css" />
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/product/carousel_mod_css.css">
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/js/lity-1.6.6/dist/lity.css" rel="stylesheet">
+  
+  
+  
+  <script type="text/javascript" src="https://www.numark.com/product/carousel.js"></script>
+  <script type="text/javascript" src="https://www.numark.com/js/lity-1.6.6/dist/lity.js"></script>
+  <script type="text/javascript" src="https://www.numark.com/product/tabs.js"></script>
+
+  
+  <script type="text/javascript" src="https://www.numark.com/site/jquery.lightbox-0.5.pack.js"></script>
+  <script type="text/javascript" src="https://www.numark.com/site/jquery.lightbox-0.5.js"></script>
+  <script type="text/javascript"> $(function() {$('a[rel*=lightbox]').lightBox();}); </script>
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/site/jquery.lightbox-0.5_css.css" media="screen" />  
+</head>
+
+<body>
+
+
+
+
+    <script>
+        let includes = 0;
+        function includeHTML() {
+            var z, i, elmnt, file, xhttp;
+            /*loop through a collection of all HTML elements:*/
+            z = document.getElementsByTagName("*");
+            for (i = 0; i < z.length; i++) {
+                elmnt = z[i];
+                /*search for elements with a certain atrribute:*/
+                file = elmnt.getAttribute("data-imb-include");
+                if (file) {
+                    /*make an HTTP request using the attribute value as the file name:*/
+                    xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4) {
+                            if (this.status == 200) { elmnt.innerHTML = this.responseText; }
+                            if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
+                            /*remove the attribute, and call this function once more:*/
+                            elmnt.removeAttribute("data-imb-include");
+                            /* exec any initializer scripts */
+                            //execIncludeScripts( elmnt );
+                            includeHTML();
+                        }
+                    }
+                    xhttp.open("GET", file, true);
+                    xhttp.send();
+                    /*exit the function:*/
+                    return;
+                }
+            }
+        };
+
+    </script>
+
+
+
+
+  <div id="wrapper">
+    <div id="container"> 
+      <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJVDSJC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!--
+<form method="post" id="search_form" action="/search">
+-->
+
+
+
+
+
+
+
+
+
+
+<!-- nav bar include goes here -->
+<header id="main-header" data-imb-include="/__includes/nav-block-container.html"></header>
+
+
+
+
+
+
+
+
+
+            <div id="page">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                <div id="showcase">
+          
+          
+          
+          
+          
+          
+          
+          <div id="carousel">
+            
+            
+            
+            <div id="big_image">
+              <a href=""><img src="" /></a>
+            </div>
+            <script type="text/javascript">
+
+              var params = { allowScriptAccess: "always", wmode: "opaque", showinfo: "0" };
+              var atts = { id: "playa_playa" };
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+
+            </script>
+
+
+            
+
+            <div id="youtube_player"><div id="swf_zone">You need Flash Player 8 or above!</div></div>
+            
+            
+            
+            
+            <div id="controls">
+              <div id="back">
+                <a href=""></a>
+                <div></div>
+              </div>
+              
+              
+              
+
+              <div id="thumbs" class="5">
+                
+                                <div class="image" id="0">
+                  <a name="https://www.numark.com/images/product_large/NS4FX-Side-Top-Web.jpg" href="https://www.numark.com/images/sized/images/product_large/NS4FX-Side-Top-Web-624x390.jpg"><img src="https://www.numark.com/images/sized/images/product_large/NS4FX-Side-Top-Web-120x75.jpg" /></a>
+                </div>
+                                
+                                <div class="image" id="1">
+                  <a name="https://www.numark.com/images/product_large/NS4FX-Angle-Front-Web.jpg" href="https://www.numark.com/images/sized/images/product_large/NS4FX-Angle-Front-Web-624x390.jpg"><img src="https://www.numark.com/images/sized/images/product_large/NS4FX-Angle-Front-Web-120x75.jpg" /></a>
+                </div>
+                                
+                                <div class="image" id="2">
+                  <a name="https://www.numark.com/images/product_large/NS4FX-Angle-Left-Web.jpg" href="https://www.numark.com/images/sized/images/product_large/NS4FX-Angle-Left-Web-624x390.jpg"><img src="https://www.numark.com/images/sized/images/product_large/NS4FX-Angle-Left-Web-120x75.jpg" /></a>
+                </div>
+                                
+                                <div class="image" id="3">
+                  <a name="https://www.numark.com/images/product_large/NS4FX-Angle-Right-Web.jpg" href="https://www.numark.com/images/sized/images/product_large/NS4FX-Angle-Right-Web-624x390.jpg"><img src="https://www.numark.com/images/sized/images/product_large/NS4FX-Angle-Right-Web-120x75.jpg" /></a>
+                </div>
+                                
+                                <div class="image" id="4">
+                  <a name="https://www.numark.com/images/product_large/NS4FX-Side-Back-Web.jpg" href="https://www.numark.com/images/sized/images/product_large/NS4FX-Side-Back-Web-624x390.jpg"><img src="https://www.numark.com/images/sized/images/product_large/NS4FX-Side-Back-Web-120x75.jpg" /></a>
+                </div>
+                                
+                                <div class="image" id="5">
+                  <a name="https://www.numark.com/images/product_large/NS4FX-Side-Front-Web.jpg" href="https://www.numark.com/images/sized/images/product_large/NS4FX-Side-Front-Web-624x390.jpg"><img src="https://www.numark.com/images/sized/images/product_large/NS4FX-Side-Front-Web-120x75.jpg" /></a>
+                </div>
+                                
+                                <div class="image" id="6">
+                  <a name="https://www.numark.com/images/product_large/NS4FX-Side-Left-Web.jpg" href="https://www.numark.com/images/sized/images/product_large/NS4FX-Side-Left-Web-624x390.jpg"><img src="https://www.numark.com/images/sized/images/product_large/NS4FX-Side-Left-Web-120x75.jpg" /></a>
+                </div>
+                                
+                                <div class="image" id="7">
+                  <a name="https://www.numark.com/images/product_large/NS4FX-Side-Right-Web.jpg" href="https://www.numark.com/images/sized/images/product_large/NS4FX-Side-Right-Web-624x390.jpg"><img src="https://www.numark.com/images/sized/images/product_large/NS4FX-Side-Right-Web-120x75.jpg" /></a>
+                </div>
+                                
+              </div>
+              
+              
+              <div id="next">
+                <a href=""></a>
+                <div></div>
+              </div>
+            </div>
+          </div>
+          
+          
+          
+          
+          
+          <div id="info">
+            <div id="subcategories">
+              <div class="subcategory" id="0_tab">
+                <a href="#overview">OVERVIEW</a>
+              </div>
+                            <div class="subcategory" id="1_tab">
+                <a href="#features">FEATURES</a>
+              </div>
+                                          <div class="subcategory" id="2_tab">
+                <a href="#specs">SPECS</a>
+              </div>
+                                                        
+            </div>
+            
+            
+            
+            
+            
+            
+            <div id="output">
+              <div id="overview">
+                                <h1 class="h1">
+	Numark NS4FX<br />
+	Professional 4-Deck DJ Controller</h1>
+<p>
+	With full audio control over 4 DJ software decks, toggle FX, and professional inputs and outputs, the NS4FX is a feature-packed 4-channel DJ controller that unleashes the full creative mixing potential of event, club, and livestreaming DJs!</p>
+<p>
+	<img alt="Numark NS4FX 4-channel DJ Controller" src="https://cdn.inmusicbrands.com/Numark/HvpTSaaN77qS/pdp/NS4FX-Slider-06a.jpg" style="width: 663px; height: 272px;" /></p>
+<h1 class="h1">
+	Mix Like an Artist</h1>
+<p>
+	With full audio control over 4 independent channels, DJs can mix tracks, samples, loops, and more from up to 4 DJ software decks at once. The 4 channels of the NS4FX each feature dedicated premium-quality volume faders, 3-band EQ with full kill, and large high pass/low pass Filter knobs. Crossfader assignment switches on the front panel allow each channel to be assigned to side A or side B of the crossfader, or can be set to bypass the crossfader altogether. This ultimate flexibility is perfect for crafting artistic mixes on a livestream, creating exciting build-ups in the club, or preparing multiple songs in advance at events.</p>
+<p>
+	<img alt="4-channel DJ controller with XLR and RCA outputs" src="https://cdn.inmusicbrands.com/Numark/HvpTSaaN77qS/pdp/NS4FX-Slider-01.jpg" style="width: 663px; height: 272px;" /></p>
+<h1 class="h1">
+	Sound Like a Pro with Premium Inputs and Outputs</h1>
+<p>
+	The NS4FX boasts an impressive array of connectivity options, making it the perfect solution for mobile and event DJs as well as club jocks and livestreaming mixmasters. The balanced XLR main outputs deliver high-quality 24-bit audio, ensuring that event guests are always treated to an incredible, immersive dancefloor experience. The additional RCA booth output with dedicated control is perfect for sending audio to a personal monitor speaker or to an additional zone or area of larger sound systems.</p>
+<p>
+	For events or gigs that call for more than one microphone for MCing or formal events, the NS4FX features 2 independent &frac14;&rdquo; microphone inputs with dedicated volume and tone controls. The Mic 1 input can be easily switch to an Auxiliary option to allow audio from a smartphone or external media device to be played through the RCA inputs on the back of the controller. Livestreamers will appreciate that the microphone audio is combined with the main music mix when output over USB, making it easy to stream online with a smart phone or computer without the need for an additional sound card or audio device.</p>
+<p>
+	<img alt="NS4FX microphone inputs and crossfader assignment switches" src="https://cdn.inmusicbrands.com/Numark/HvpTSaaN77qS/pdp/NS4FX-Slider-02b.jpg" style="width: 663px; height: 276px;" /></p>
+<h1 class="h1">
+	High-Quality, Performance-Focused Decks</h1>
+<p>
+	The NS4FX is packed with all the pro DJ features needed for exceptional performances. The high-quality, touch-sensitive jog wheels are expertly calibrated for precision mixing and scratching. The center of the wheels features a vibrant LED display that shows track position, bpm, pitch range, and time. The &ldquo;Layer&rdquo; button on each deck allows each side to toggle control quickly between multiple decks, making it easy to layer and mix up to 4 tracks at the same time. The long pitch sliders on each deck with selectable range offer ultra-precise control over tempo when mixing, and the Pitch Bend buttons allow for fine adjustments for perfectly aligned mixes. The 16 Performance Pads offer limitless mixing possibilities with selectable pad modes including Cue, Auto Loop, Fader Cuts, and Sampler (additional pad modes can be unlocked by upgrading to Serato DJ Pro).</p>
+<p>
+	<img alt="4-channel DJ controller effects and filter knobs" src="https://cdn.inmusicbrands.com/Numark/HvpTSaaN77qS/pdp/NS4FX-Slider-04a.jpg" style="width: 663px; height: 272px;" /></p>
+<h1 class="h1">
+	Professional DJ Looping and Effects Control</h1>
+<p>
+	A dedicated loop section with multipliers on each deck grants quick access and control over seamless loops to extend mixes or craft custom transitions. To add additional flavor and creativity, the interactive FX section features 6 quick-launch software effects that are triggered by using the sturdy and fun paddle toggle switches. The FX area also provides full hardware control over the wet/dry mix and beat division to help DJs craft artistic and expressive performances.</p>
+<p>
+	<img alt="Serato DJ Pro 4-channel view with Numark NS4FXo" src="https://cdn.inmusicbrands.com/Numark/HvpTSaaN77qS/pdp/NS4FX-Slider-08a.jpg" style="width: 663px; height: 272px;" /></p>
+<h1 class="h1">
+	Serato DJ Pro Upgrade Ready</h1>
+<p>
+	The NS4FX ships with Serato DJ Lite software allowing DJs to start mixing with up to 4 channels right away. Since the NS4FX is fully mapped and ready for Serato DJ Pro, DJs can upgrade to a full-featured 4-channel mixing experience whenever they&rsquo;d like! The NS4FX is also compatible with other leading DJ software programs like Virtual DJ and algorridim djay Pro AI.</p>
+
+              </div>
+              <div id="features">
+                                <h2>FEATURES</h2>
+                <ul>
+                
+                  <li>4 channel DJ controller with dedicated volume faders</li>
+                
+                  <li>Large Filter knob on each channel</li>
+                
+                  <li>6&#34; capacitive-touch jog wheels with multicolor display</li>
+                
+                  <li>Layer buttons on each hardware deck to control up to 4 software decks</li>
+                
+                  <li>FX section with 6 selection buttons, parameter controls and 2 toggle switches</li>
+                
+                  <li>Dedicated loop sections with multiplier controls</li>
+                
+                  <li>Crossfader assignment switches on each channel</li>
+                
+                  <li>8 performance pads on each deck with pad mode selection buttons</li>
+                
+                  <li>Long pitch faders with pitch bend buttons </li>
+                
+                  <li>Dedicated Sync, Cue/Stop, and Play/Pause buttons</li>
+                
+                  <li>3-band EQ on each deck</li>
+                
+                  <li>High-quality 24-bit audio </li>
+                
+                  <li>Balanced XLR Main output</li>
+                
+                  <li>RCA Booth output</li>
+                
+                  <li>Front Â¼&#34; microphone input with volume and tone controls</li>
+                
+                  <li>Additional rear Â¼&#34; microphone input with controls (switchable to Aux with RCA inputs)</li>
+                
+                  <li>Â¼&#34; and1/8&#34; headphone output jacks</li>
+                
+                  <li>Serato DJ Pro upgrade ready</li>
+                
+                </ul>
+                                              </div>
+              <div id="specs">
+                <ul>
+                
+                  <li><p style='margin:0in;font-size:16px;font-family:"Calibri",sans-serif;'><strong>Audio</strong></p>
+<ul style="list-style-type: disc;">
+    <li>Outputs<ol class="decimal_type" style="list-style-type: circle;">
+            <li>2 XLR balanced outputs</li>
+            <li>1 RCA stereo output</li>
+            <li>1 1/4&#34; (6.35 mm) TRS headphone output</li>
+            <li>1 1/8&#34; (3.5 mm) TRS headphone output</li>
+        </ol>
+    </li>
+    <li>Inputs<ol class="decimal_type" style="list-style-type: circle;">
+            <li>1 RCA stereo input</li>
+            <li>2 1/4&#34; (6.35 mm) TS microphone inputs</li>
+        </ol>
+    </li>
+    <li>Quality<ol style="list-style-type: circle;">
+            <li>44.1 kHz, 24-bit</li>
+        </ol>
+    </li>
+</ul>
+<p style='margin:0in;font-size:16px;font-family:"Calibri",sans-serif;'><strong>Power</strong></p>
+<div style='margin:0in;font-size:16px;font-family:"Calibri",sans-serif;'>
+    <ol style="margin-bottom:0in;list-style-type: circle;">
+        <li style='margin:0in;font-size:16px;font-family:"Calibri",sans-serif;'>Via power adapter, DC 12 V, 2.0 A</li>
+    </ol>
+</div>
+<p style='margin:0in;font-size:16px;font-family:"Calibri",sans-serif;'>&nbsp;</p>
+<p style='margin:0in;font-size:16px;font-family:"Calibri",sans-serif;'><strong>Dimensions</strong></p>
+<ol class="decimal_type" style="list-style-type: circle;">
+    <li>Width x Depth x Height: &nbsp;23.5&#34; x 10.8&#34; x 2.4&#34; / 59.7 x 27.4 x 6.1 cm</li>
+    <li>Weight: 6.6 lbs.3.0 kg</li>
+</ol></li>
+                
+                </ul>
+              </div>
+              <div id="faq">
+                <ul>
+                
+                </ul>
+              </div>
+              <div id="requirements">
+                <h1>MINIMUM SYSTEM REQUIREMENTS</h1>
+                <ul>
+                
+                </ul>
+              </div>
+              <div id="videos">
+                <h1>VIDEOS</h1>
+                <ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        
+               
+
+        <div id="right">
+          
+          
+          
+          
+          
+          <div id="summary">
+            <div id="name">
+              NS4FX            </div>
+            <div class="title">
+              Professional 4 - Deck DJ Controller
+            </div>
+            <div style="clear:both"></div>
+          </div>
+          
+          
+          
+          
+                   
+         
+          
+          
+          
+
+          <div id="buy">
+            <div class="status"></div>
+
+          <!--  
+          
+          
+          
+
+          
+
+          
+          
+          
+
+          
+
+         -->
+    
+          
+          
+          
+      
+      
+
+        
+     <div class="title">
+              <a href="/dealers/us"class="button">
+                <h2 style="color:#111">Buy Now (Worldwide)</h2>
+                <div style="clear:both"></div>
+              </a>
+            </div>
+
+      <div class="title">
+              <a href="https://www.guitarcenter.com/Numark/NS4FX-4-Channel-DJ-Controller-1500000359369.gc" target="_blank" class="button">
+                <h2 style="color:#111">Buy Now (United States)</h2>
+                <div style="clear:both"></div>
+              </a>
+            </div>
+
+              </div>
+
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <style type="text/css">
+            a.promo_link {
+              display: block;
+              margin-bottom: 20px;
+              margin-left: 12px;
+            }
+          </style>
+          
+          
+          
+          
+          
+          
+
+          <div class="dotted"></div>
+          
+
+          
+          
+          
+          
+
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            
+          <div class="dotted"></div>
+          <div class="cluster">
+            <div class="title">DOCUMENTS</div>
+            
+            
+                        <div class="link">
+              <a href="https://www.numark.com/images/product_downloads/NS4_FX_-_User_Guide_-_v1.3.pdf" onClick="trackOutboundLink(this, 'Product Documents - NS4FX', 'click', 'User Guide'); return false;">User Guide</a>
+            </div>
+                                    
+          </div>
+                    
+          
+          
+          
+          
+
+                    <div class="dotted"></div>
+          <div class="cluster">
+            <div class="title">DOWNLOADS</div>
+            
+     
+            
+                                    <div class="link">
+              <a href="https://serato.com/dj/lite/downloads" onClick="trackOutboundLink(this, 'Product Downloads - NS4FX', 'click', 'Serato DJ Lite'); return false;">Serato DJ Lite</a>
+            </div>
+                        
+                                    <div class="link">
+              <a href="https://www.numark.com/my-account/login" onClick="trackOutboundLink(this, 'Product Downloads - NS4FX', 'click', 'Register your NS4FX for additional offers'); return false;">Register your NS4FX for additional offers</a>
+            </div>
+                        
+          </div>
+                    
+          
+          
+          
+          
+          
+    
+                
+          
+          
+          
+          
+
+          
+          
+          
+          
+
+          <style type="text/css">
+            .qmark {
+              float: left;
+              font-size: 16px;
+              background-color: #555;
+              margin: 4px;
+              margin-top: 0px;
+              padding-left: 4px;
+              padding-right: 4px;
+              border-color: #555;
+              border-width: 2px;
+              border-radius: 2px;
+              font-weight: none;
+              color: #2EDBFD;
+              margin-right: 8px;
+            }
+            
+            .support_links .link {
+              clear: both;
+            }
+          </style>
+
+          <div class="dotted"></div>
+          <div class="cluster support_links">
+            <div class="title">PRODUCT SUPPORT</div>
+              
+
+            <div class="link"><div class="qmark">?</div><a href="https://support.numark.com/" target="_blank">Have questions? Need Help?</a></div>
+
+                      </div>
+
+      <style type="text/css">
+            img.adspace{
+              margin:8px 0px 8px 16px;
+            }
+      </style>
+<!--
+      <div class="dotted"></div>
+
+      <div class="cluster">
+        <div class="title">OFFICIAL MERCHANDISE</div>
+        <a href="http://www.ptxstore.com/numark/" target="_blank"><img class="adspace" src="https://www.numark.com/images/site/Numark_Tile.png" border="0" /></a>
+      </div>
+-->      
+      
+        </div>
+        
+        
+        <div id="drop_shadow_footer"></div>
+<div id="footer">
+
+
+	<div id="link_box">
+		
+		<div class="link">
+			<div class="arrows">
+				&gt;&gt;
+			</div><a href="https://profile.inmusicbrands.com/customer/account/login/">REGISTER YOUR GEAR</a>
+		</div>
+
+
+		<!--<div class="link">
+			<div class="arrows">
+				&gt;&gt;
+			</div><a href="https://www.numark.com/news/cat/rebates">REBATES</a>
+		</div>-->
+
+
+		<div style="clear:both"></div>
+	</div>
+	<div>
+		<ul id="sitemap">
+			<li>
+				<a href="https://www.numark.com/categories">PRODUCTS</a>
+				<ul>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/controllers">Controllers</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/mixers">Mixers</a>
+					</li>
+					
+					
+					<li>
+						<a href="https://www.numark.com/product_category/portable">Portable</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/speakers">Speakers</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/headphones">Headphones</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/microphones">Microphones</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/turntables">Turntables</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/accessories">Accessories</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/cartridges">Cartridges</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/legacy">Legacy</a>
+					</li>
+					
+				</ul>
+			</li>
+
+
+
+			<li>
+				<a href="https://support.numark.com/" target="_blank">SUPPORT</a>
+				<ul>
+					<li>
+						<a href="https://support.numark.com/" target="_blank">Knowledge Base</a>
+					</li>
+					<li>
+						<a href="https://support.numark.com/" target="_blank">Contact Support</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/my-account/login" target="_blank">Product Registration</a>
+					</li>
+
+          <li>
+						<a href="https://www.numark.com/repairs">Repairs</a>
+					</li>
+					
+
+				</ul>
+			</li>
+			<li>
+				<a href="https://www.numark.com/news">NEWS</a>
+				<ul>
+					<li>
+						<a href="https://www.numark.com/news/cat/press_releases">News/Press Releases</a>
+					</li>
+					
+					
+
+				</ul>
+			</li>
+
+
+
+
+			<li>
+				<a href="https://www.numark.com/artists">ARTISTS</a>
+				<ul>
+					<li>
+						<a href="https://www.numark.com/artists">Numark Artists</a>
+					</li>
+					<!-- <li>
+						<a href="https://www.numark.com/artists/signup">Artist Application</a>
+					</li> -->
+				</ul>
+			</li>
+
+
+
+
+			<li>
+				<a href="https://www.numark.com/video">VIDEO</a>
+			</li>
+
+
+
+			<li>
+				COMPANY
+				<ul>
+					<li>
+						<a href="https://www.numark.com/company/about">About Us</a>
+					</li>
+					<li>
+						<a href="https://support.numark.com/" target="_blank">Contact Us</a>
+					</li>
+					<li>
+						<a href="https://www.inmusicbrands.com/careers/" target="_blank">Careers</a>
+					</li>
+					
+				</ul>
+			</li>
+
+
+
+
+
+
+			<li>
+				DEALERS/DISTRIBUTORS
+				<ul>
+					<li>
+						<a href="https://www.numark.com/distributors">Distributors</a>
+					</li>
+					<li>
+						<a href="https://www.numark.com/dealers">Find a Dealer</a>
+					</li>
+
+				</ul>
+			</li>
+
+
+
+
+
+			
+		</ul>
+	</div>
+
+
+
+
+
+	<div class="hline"></div>
+
+	<div id="privacy">
+		<a href="https://www.numark.com/company/privacy_policy">Privacy Policy</a> | <a href="https://www.numark.com/company/terms-of-use">Terms of Use</a>
+	</div>
+
+
+	<div id="legal">
+		2026 inMusic, LLC. All Rights Reserved
+	</div>
+
+
+	<div id="locale">
+		
+		<!-- <a href="http://www.numark.jp"  target="_blank">
+			<div id="flag"><img src="https://www.numark.com/images/site/jp.png"></div>
+			<div id="abbrev">JP</div>
+		</a> -->
+		<!-- <a href="http://www.numark-la.com" target="_blank">
+			<div id="flag"><img src="https://www.numark.com/images/site/pe.png"></div>
+			<div id="abbrev">LA</div>
+		</a> -->
+	</div>
+</div>
+
+
+        
+      </div> 
+      
+    </div> 
+    
+    <div style="clear:both"></div>
+    
+  </div> 
+
+
+
+
+<script>
+    includeHTML();
+</script>
+
+
+
+
+<script src="//static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">try{clicky.init(101146868);}catch(e){}</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101146868ns.gif" /></p></noscript>
+
+
+
+<script src="https://www.numark.com/js-search.js"></script>
+<link rel="stylesheet" href="https://www.numark.com/js-search.css">
+
+
+</body>
+</html>

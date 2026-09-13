@@ -1,0 +1,2715 @@
+User Guide               English ( 3 – 12 )
+
+
+Guía del usuario      Español ( 13 – 22 )
+
+
+Guide d’utilisation   Français ( 23 – 32 )
+
+
+Guida per l’uso        Italiano ( 33 – 42 )
+
+
+Benutzerhandbuch      Deutsch ( 43 – 52 )
+
+
+Appendix                    English ( 54 )
+2
+User Guide (English)
+Introduction
+
+Thank you for purchasing the LC6000 PRIME. At Denon DJ, we know how serious music is to you. That’s why we
+design our equipment with only one thing in mind—to make your performance the best it can be. We’re honored
+and excited to play a part in your musical & creative DJ journey!
+
+Features:
+     •   Layer controller for PRIME Series Media Players*
+     •   8.5" jog wheel with tension adjust
+     •   HD color wheel display
+     •   Professional Media Player control set and layout
+     •   Multi-function performance pads
+     •   100mm pitch fader
+     •   USB powered**
+     •   Officially compatible with Virtual DJ Pro, Algoriddim djay Pro 2, and Serato DJ
+* visit denondj.com for a list of the latest compatible media players
+** additional power supply (included) may be required for some computers
+
+
+
+Box Contents
+
+LC6000 PRIME                                                   User Guide
+USB Cable                                                      Safety & Warranty Manual
+Power Adapter
+
+
+
+Support
+
+For the latest information about this product (documentation, technical specifications, system requirements,
+compatibility information, etc.) and product registration, visit denondj.com.
+For additional product support, visit denondj.com/support.
+
+
+Product Registration
+Your product may include exclusive software and/or promotions which can only be accessed by registering your
+new product on the Denon DJ website.
+
+To check eligibility and access the available content, please register your product by following the instructions
+below:
+1.   Visit denondj.com.
+2.   Click Sign In to access your existing account or to create a new account.
+3.   Once signed in, click My Registered Products.
+4.   Enter the product serial number into the box and click Register Product.
+5.   Upon successful registration, any applicable software downloads, exclusive content, and promotional offers
+     will be shown in your account.
+
+
+
+
+                                                                                                               3
+Setup
+Important: Occasionally, we may update LC6000 PRIME’s firmware to add exciting new features and
+improvements. Visit denondj.com to check for available firmware updates, especially after you update your
+software (firmware updates may address new software features).
+1.   Make sure all of your devices are powered off or all of their volume levels are at their minimum positions.
+2.   Connect LC6000 PRIME’s USB port to an available port on your computer or a compatible Denon DJ media
+     player.
+3.   Connect any output devices (headphones, power amplifiers, loudspeakers, etc.) to the outputs of your mixer.
+4.   Connect all of your devices to power sources.
+     •   When starting a session, power on (1) LC6000 PRIME and other accessories or input sources, (2) your
+         mixer, and then (3) output devices.
+     •    When ending a session, power off (1) output devices, (2) your mixer, and then (3) LC6000 PRIME and
+          other accessories or input sources.
+5.   If you are using LC6000 PRIME with supported third-party software such as Virtual DJ, Algoriddim djay, or Serato
+     DJ, select the deck that LC6000 PRIME will control. See Operation > Deck Selection for more information.
+
+
+
+Connection Diagrams
+Items shown but not listed under Introduction > Box Contents are sold separately.
+
+
+Example 1
+
+This example shows an LC6000 PRIME controlling the second layer of an SC6000 PRIME or SC5000 PRIME
+media player connected to an X1850 PRIME mixer.
+
+
+             SC6000 PRIME                          X1850 PRIME
+                                                     (rear panel)
+                (rear panel)
+                                                                                          LC6000 PRIME
+                                                                                             (rear panel)
+
+
+
+
+4
+Example 2
+
+This example shows two LC6000 PRIME units controlling Decks 3 and 4 of a PRIME 4 standalone DJ system. See
+Operation > PRIME 4 Control for more information.
+
+
+
+
+                                                                                 PRIME 4
+                                                                               (rear panel)
+
+
+       LC6000 PRIME
+          (rear panel)
+
+
+
+
+Example 3
+
+This example shows a LC6000 PRIME unit connected to a computer for software control.
+
+
+                    LC6000 PRIME
+                         (rear panel)                                                         Computer
+
+
+
+
+                                                                                                         5
+Features
+Top Panel
+
+Media Selection & Browsing
+1.   Needle Drop Strip: The length of this strip represents                                                         2       3
+     the length of the entire track. Place your finger on a
+     point along this sensor to jump to that point in the track.
+                                                                                                 1
+2.   Back: While in Browse View on the connected media                                                            7 4
+     player, press this button to move to the previous                    27
+     window. While in Performance View on the connected
+     media player, press this button to enter Browse View.
+                                                                                                 5                   8
+3.   Forward: While in Browse View on the connected
+     media player, press this button to move to the next
+                                                                          26                                        15       16
+     window. While in Performance View on the connected              19                          6                          14
+     media player, press this button to enter Browse View.
+4.   Select/Zoom: While in Browse View on the connected
+     media player, turn this knob to scroll through a list, and    11
+     press the knob to select an item or load a track to the
+     layer in focus. Double-press the knob to load a track         28
+     from an active deck to the layer controlled by LC6000                                                        18
+     PRIME (“instant doubles”). If there is more than one
+     active deck available, use the overlay that appears on the
+                                                                     10           17 21 22 23 24 25                      12
+     touchscreen to select the deck you would like to double.
+     While in Performance View on the connected media                 9                          20
+     player, turn this knob to zoom in and out of a track’s                                                              13
+     waveform. Press and hold the knob to adjust the beat
+     grid (see your media player's User Guide for more
+     details on adjusting the beat grid).
+
+
+Playback & Transport Controls
+5.   Platter: This capacitive, touch-sensitive platter controls the audio playhead when the wheel is touched and moved.
+     When the Vinyl button is on, move the platter to “scratch” the track as you would with a vinyl record. When the
+     Vinyl button is off (or if you are touching only the side of the platter), move the platter to temporarily adjust the
+     track’s speed.
+6.   Platter Display: This display shows information relevant to the performance, including the current playhead position
+     and auto loop size, as well as album artwork. See Platter Display Overview for more information.
+7.   Wheel Adjust: Turn this knob to set how resistant the platter is to adjustments. This knob applies a brake to the
+     platter to prevent unintentional drifting due to environmental vibrations from bass frequencies, surface instability, etc.
+8.   Vinyl: Press this button to activate/deactivate a “vinyl mode” for the platter. When activated, you can use the platter
+     to “scratch” the track as you would with a vinyl record.
+9.   Play/Pause (/): This button pauses or resumes playback.
+     Press and hold Shift and then press this button to “stutter-play” the track from the initial cue point.
+10. Cue: During playback, press this button to return the track to the initial cue point and stop playback. (To move the initial
+    cue point, make sure the track is paused, move the platter to place the audio playhead at the desired location, and then
+    press this button.) If the deck is paused, press and hold this button to temporarily play the track from the initial cue point.
+    Release the button to return the track to the initial cue point and pause it. To continue playback without returning to the
+    initial cue point, press and hold this button and then press and hold the Play button, and then release both buttons.
+     During playback, press and hold Shift and press this button to set the initial cue point at the current playhead position.
+11. Track Skip: Press either of these buttons to skip to the previous or next track.
+     Press the Previous Track button in the middle of a paused track to return to the beginning of the track.
+     Press and hold Shift and then press one of these buttons to search backward or forward through the track.
+
+
+
+
+6
+Sync & Pitch Controls
+12. Pitch Fader: Move this fader to adjust the speed (pitch) of the track. You can adjust its total range by pressing and
+    holding Shift and pressing one of the Pitch Bend buttons.
+    Important: If Sync is activated, moving the pitch fader on the “primary” LC6000 PRIME or compatible Denon DJ
+    media player unit will change the speed of all synced units, while moving the pitch fader on other units will do nothing.
+13. Pitch Bend –/+: Press and hold one of these buttons to momentarily reduce or increase (respectively) the speed of
+    the track.
+    Press and hold Shift and then press one of these buttons to set the range of the pitch fader.
+14. Key Lock/Reset: Press this button to activate or deactivate Key Lock. When Key Lock is activated, the track’s key
+    will remain the same even if you adjust its speed.
+    Press and hold Shift and press this button to reset the track to its original key regardless of the position of the pitch
+    fader or edits made via key change menu on the connected Denon DJ media player.
+15. Sync/Sync Off: Press this button to activate Sync.
+    To sync two or more LC6000 PRIME or compatible Denon DJ media player units, press Sync on the unit that you
+    want to control the BPM, which becomes the “primary.” After Sync is activated on that unit, press Sync on any
+    additional units. The tempo of each unit will immediately synchronize to match the tempo of the primary unit.
+    Press and hold Shift and press this button to deactivate Sync.
+16. Master: Press this button to set this LC6000 PRIME unit as the one that controls the primary tempo. All connected
+    LC6000 PRIME units or compatible Denon DJ media players with Sync activated will use this tempo. If you stop the
+    “primary” LC6000 PRIME, the next-longest-playing LC6000 PRIME or compatible Denon DJ media player in the
+    setup will automatically become the new “primary” (unless you change it manually).
+
+Performance Controls
+17. Shift: Press and hold this button to access secondary functions of other controls.
+18. Slip: Press this button to enable or disable Slip Mode. In Slip Mode, you can jump to cue points, use the platter, or
+    pause the track while the track’s timeline continues (the lower half of the waveform in the display will continue
+    moving forward). In other words, when you stop whatever action you are performing, the track will resume normal
+    playback from where it would have been if you had never done anything (i.e., as if the track had been playing
+    forward the whole time).
+    Press and hold Shift and press this button to enter deck select mode for use with supported software. See
+    Operation > Deck Selection for more information.
+19. Censor/Reverse: Press this button to activate or deactivate the Censor feature: the playback of the track will be
+    reversed, but when you release the button, normal playback will resume from where it would have been if you had
+    never engaged the Censor feature (i.e., as if the track had been playing forward the whole time).
+    Press and hold Shift and then press this button to reverse the playback of the track normally. Press this button again
+    to return playback to the normal forward direction.
+20. Performance Pads: These pads have different functions depending on the current pad mode. See Operation >
+    Performing > Pad Modes for more information.
+    These pads are also used for deck selection when LC6000 is connected to supported software. See Operation >
+    Deck Selection for more information.
+21. Hot Cue: Press this button to enter Hot Cue Mode.
+22. Loop: Press this button once to enter Manual Loop Mode, and press it again to enter Auto Loop Mode.
+23. Roll: Press this button to enter Roll Mode.
+24. Slicer: Press this button once to enter Slicer Mode, and press it again to enter Slicer Loop Mode.
+25. Parameter /: Use these buttons for various functions in each Pad Mode. See Operation > Performing > Pad
+    Modes for more information.
+26. Loop In/Loop Out: Press either of these buttons to create a Loop In or Loop Out point at the current location. Their
+    placement will be affected by the Quantize and Smart Loops settings.
+27. Auto Loop/Loop Move: Turn this knob to set the size of an automatic loop. The value will be shown in the
+    touchscreen and platter display.
+    Press this knob to activate or deactivate an automatic loop at the current location of the track.
+    Tip: You can assign auto loops to pads in Manual Loop Mode. See Operation > Performing > Pad Modes for more
+    information.
+    Press and hold Shift and turn this knob to shift the active loop to the left or right.
+28. Beat Jump: Press either of these buttons to skip backward or forward through the track.
+    Press and hold Shift and then press one of these buttons to increase or decrease the beat jump size.
+
+
+
+                                                                                                                           7
+Platter Display Overview
+Normally, the platter display shows the following information:
+     •   the current position of the playhead.
+     •   the album artwork of the current track.
+
+The platter display temporarily shows the following information:
+     •   the current size of an auto loop after you turn the Auto Loop knob.
+     •   the position of the secondary playhead when Slip is active.
+
+
+
+
+Rear Panel
+1.   Power Button: Press this button to power LC6000
+     PRIME on or off.
+2.   Power Input: Use the optional power adapter
+     (included) to connect this input to a power outlet.                              3 2 1
+3.   USB Port: Use a standard USB cable (included) to
+     connect this USB port to an available USB port on
+     a compatible Denon DJ media player or to your
+     computer. This connection powers LC6000 PRIME
+     and sends and receives MIDI messages to and
+     from the media player or computer.
+     Note: While most media players and computers
+     can power LC6000 PRIME using the USB port,
+     some may not supply enough power and will
+     require the power adapter to be used.
+
+
+
+
+Operation
+Note: These instructions are primarily for use with compatible media players. Some controls or functions listed
+may not work with all supported software. For more details on software mappings, visit denondj.com or your
+software's website.
+
+
+Performing
+
+Loading & Removing Tracks
+
+While viewing any track list:
+     To load a track to the layer, press the Select/Zoom knob.
+     To perform instant doubles (load the same track to both layers on the deck), double-press the
+       Select/Zoom knob while the track is highlighted.
+     To add a track to the Prepare list, press and hold Shift and press the Select/Zoom knob.
+
+
+
+
+8
+Playback & Cueing
+
+To play or pause a track, press Play/Pause (/).
+To scratch a track, press Vinyl so it is lit brightly and then move the platter.
+To set the initial cue point, press and hold Shift and press Cue at the desired location during playback.
+To return to the initial cue point and stop, press Cue. The button will flash while the unit is paused at the cue point.
+To return to the initial cue point and keep playing, press and hold Shift and then press Play/Pause (/).
+To reverse playback, press and hold Shift and press Censor/Reverse. The button will flash while playback is
+   reversed.
+To return to normal playback, press Censor/Reverse.
+To censor playback, press and hold Censor.
+To return to normal playback, release Censor. Normal playback will resume from where it would have been if
+   you had never engaged the Censor feature (i.e., as if the track had been playing forward the whole time).
+To skip to the previous or next track, press one of the Track Skip / buttons.
+To return to the beginning of a track, press Track Skip  in the middle of a paused track.
+To scan quickly through the track, press and hold Shift and then press one of the Track Skip buttons.
+To enable or disable Slip Mode, press Slip. In Slip Mode, you can jump to cue points, use the platters, or pause the
+   track while the track’s timeline continues (the lower half of the waveform in the touchscreen will continue moving
+   forward). When you stop whatever action you are performing, the track will resume normal playback from where it
+   would have been if you had never done anything (i.e., as if the track had been playing forward the whole time).
+To jump to a specific location in the track, place your finger along the length of the Needle Drop strip, which
+   represents the length of the track.
+   Note: Make sure that Needle Lock is disabled on your connected Denon DJ media player in order to use the
+   Needle Drop strip.
+To zoom in and out of the waveform, turn the Select/Zoom knob while in Performance View on your connected
+   Denon DJ media player.
+
+
+Looping & Beat-Jumping
+
+To create and activate an auto loop, press the Auto Loop knob.
+To set the auto loop length, turn the Auto Loop knob to select the number of beats: 1/32, 1/16, 1/8, 1/4, 1/2, 1,
+   2, 4, 8, 16, 32, or 64.
+To create and activate a manual loop, press Loop In to set the start point, and then press Loop Out to set the
+   end point. The loop will be activated immediately, and the loop will be indicated as a shaded area in the
+   waveform and track overview.
+To deactivate a loop, press the Auto Loop knob.
+To move the loop, press and hold Shift and turn the Auto Loop knob while the loop is activated.
+To double or halve the length of a loop, turn the Auto Loop knob while the loop is activated.
+To manually edit the beginning or end of a loop, press Loop In or Loop Out respectively, then move the platter
+   left or right to shorten or extend the loop region. Commit the edit by pressing Loop In or Loop Out again.
+To beat-jump through a track, press one of the Beat Jump buttons. Each press will skip through the track by the
+   set length. You can adjust the beat jump length by pressing and holding Shift and pressing either button.
+
+
+
+
+                                                                                                                      9
+Syncing & Pitch Adjustment
+
+To activate sync, press Sync on the unit that you want to control the BPM, which becomes the “primary.” After
+   Sync is activated on that unit, press Sync on any additional units. The tempo of each unit will immediately
+   synchronize to match the tempo of the primary unit.
+     The Sync state icon in the display of your connected Denon DJ media player will indicate the current status:
+     •    Sync Off: Sync is deactivated.
+     •    Tempo Sync: Only the tempo is synced (the BPM will match that of the primary unit).
+     •    Beat Sync: The tempo will be synced, and the track will be automatically beat-matched with the track on
+          the primary unit.
+To deactivate sync on an LC6000 PRIME unit, press and hold Shift and press Sync.
+To set a different LC6000 PRIME unit as the primary unit, press Master. All connected LC6000 PRIME units or
+   compatible Denon DJ media players with Sync activated will use the tempo of this unit.
+To adjust the track’s pitch, move the pitch fader. You can do this only when the deck is not synced.
+     Important: If Sync is activated, moving the pitch fader on the “primary” LC6000 PRIME unit will change the
+     speed of all synced units, while moving the pitch fader on other units will do nothing.
+To adjust the track’s pitch momentarily, press and hold one of the Pitch Bend –/+ buttons.
+To adjust the range of the pitch fader, press and hold Shift and press one of the Pitch Bend –/+ buttons to
+   select +4%, 8%, 10%, 20%, 50%, or 100%.
+To reset the track’s pitch to 0%, press and hold Shift and press Key Lock/Pitch Reset. The track’s pitch will
+   return to its original pitch (0%) regardless of the position of the pitch fader.
+
+
+
+
+Pad Modes
+
+The 8 pads have different functions in each pad mode. The Parameter / buttons will make adjustments
+specific to each pad mode.
+     To enter each pad mode, press the corresponding button: Hot Cue, Loop, Roll, or Slicer.
+
+
+
+Hot Cue Mode
+
+                                               Hot      Hot      Hot       Hot      Hot      Hot      Hot      Hot
+                                              Cue 1    Cue 2    Cue 3     Cue 4    Cue 5    Cue 6    Cue 7    Cue 8
+
+In Hot Cue Mode, you can use each pad to jump to an assigned hot cue point.
+Tip: You can use the Engine DJ software to set, name, and assign colors to your hot cue points. The names and
+colors will appear in the display of connected Denon DJ media players for reference.
+To assign a hot cue to a pad, press a dimly lit pad at the desired location in the track. The pad will light up when
+   a hot cue point is assigned.
+To jump to a hot cue point, press the corresponding pad.
+To clear a hot cue from a pad, press Shift and the desired pad. The pad will turn off when there is no hot cue point
+   assigned to it.
+
+
+
+
+10
+Loop Modes
+
+                                                    Loop       Loop         Loop       Loop        Loop      Loop      Loop     Loop
+                                                      1          2            3          4           5         6         7        8
+
+In Manual Loop Mode, you can use each pad to activate an assigned loop. Pressing Loop for the first time will
+always enter Manual Loop Mode.
+Tip: You can use the Engine DJ software to set and name your loops. The names will appear in the display of
+connected Denon DJ media players for reference.
+    To assign a loop to a pad and enable it, press a dimly lit pad to create a Loop In point at the current
+       location, and then press it again to create the Loop Out point at another location. You can also assign an
+       auto loop to a pad by pressing a dimly lit pad while in the auto loop. The loop will activate immediately, and
+       the pad will light up.
+    To enable a loop, press the corresponding pad. Once a loop has been created, you can retrigger it by
+       pressing the corresponding pad again, depending on the Saved Loop Behavior setting.
+    To enable an active loop, press and hold the Parameter  button and press a pad with a saved loop. Active
+       loops will begin looping automatically as soon as they are reached, and are shown with a striped pattern in the
+       track waveform. You can also set these in the Engine DJ software.
+    To delete a loop, press Shift and the desired pad.
+In Auto Loop Mode, you can use each pad to create and activate an auto loop. Pressing Loop while in Manual
+Loop Mode will enter Auto Loop Mode.
+    To activate an auto loop, press a pad. The display will show the length of the auto loop for each pad.
+    To deactivate an auto loop, press the pad again.
+
+
+
+Roll Mode
+
+                            (T denotes a triplet-   1/8-Beat   1/4T-Beat              1/2T-Beat
+                                                                           1/4-Beat               1/2-Beat   1T-Beat   1-Beat   2-Beat
+                            based time division)      Roll        Roll       Roll        Roll       Roll       Roll     Roll     Roll
+
+In Roll Mode, you can press and hold each pad to trigger a “loop roll” of a certain length while the track’s timeline
+continues (the lower half of the waveform in the display will continue moving forward). When you release the pad, the
+track will resume normal playback from where it would have been if you had never done anything (i.e., as if the track
+had been playing forward the whole time).
+   To trigger a roll, press the corresponding pad. Pads with triplet-based loop rolls are lit purple.
+
+
+
+Slicer Mode
+
+                                                    Slice       Slice       Slice      Slice       Slice      Slice    Slice    Slice
+                                                      1           2           3          4           5          6        7        8
+
+In Slicer Mode (first press), the 8 pads represent 8 sequential beats—“slices”—in the beatgrid. The currently
+playing slice is represented by the currently lit pad; the light will “move through the pads” as it progresses through
+the 8-slice phrase. You can press a pad to play that slice. When you release the pad, the track will resume normal
+playback from where it would have been if you had never pressed it (i.e., as if the track had been playing forward
+the whole time).
+In Slicer Loop Mode (second press), you automatically activate an 8-beat loop. The currently playing slice is
+represented by the currently lit pad; the light will “move through the pads” as it progresses through the eight-slice
+phrase, which will loop (this is the difference between this mode and Slicer Mode). You can press a pad to play
+that slice. When you release the pad, the track will resume normal playback from where it would have been in the
+loop if you had never pressed it (i.e., as if the track had been playing forward the whole time).
+   To play a slice, press the corresponding pad.
+
+
+
+
+                                                                                                                                        11
+Deck Selection
+After opening supported third-party software, LC6000 PRIME will automatically enter deck selection mode. This
+allows you to select which deck, from 1–4, the unit will control depending on the features of the software you are
+using.
+     To enter deck selection mode manually at any other time, press and hold Shift and press Slip.
+
+
+
+
+                        Deck    Deck     Deck     Deck
+                         1       2        3        4
+
+
+When deck selection mode is entered, performance pads 1–4 (as shown, above) will begin flashing based on the
+available decks and can be used to select the deck the unit will control.
+Press the corresponding pad to select the deck that LC6000 PRIME should control. Once a deck is selected,
+LC6000 PRIME will enter performance mode.
+When the unit is already assigned to a deck, all other available decks will be dimly lit in deck selection mode.
+When a pad is completely off in deck selection mode, the corresponding deck is not available for selection, either
+because the software does not support that number of decks or another unit is already using that deck.
+To unassign a unit from a deck, press and hold Shift and press Slip to enter deck selection mode. Then, press
+and hold the pad for the corresponding deck for 3 seconds. The deck assignment will be cleared, and you can
+make a new deck selection using the same process above.
+
+
+
+PRIME 4 Control
+LC6000 PRIME can also be used to control the secondary decks of a PRIME 4 standalone DJ unit. Use a standard
+USB cable to connect LC6000 PRIME’s USB Port to the Rear Panel USB Port 3 and/or 4 on PRIME 4. A unit
+connected to Port 3 will control Deck 3, and a unit connected to Port 4 will control Deck 4, and any tracks loaded
+to Decks 3 or 4 on PRIME 4 will be moved to Decks 1 or 2.
+Once connected, the Deck buttons on PRIME 4 will be disabled, and the Select/Zoom knob on LC6000 PRIME
+can be used to browse and load tracks directly to the selected deck.
+If you have an LC6000 PRIME unit connected to Port 4 and enable the Playlist Deck feature on PRIME 4, this unit
+will be used to control the playlist, and certain features will be disabled.
+
+
+
+
+12
+Guía del usuario (Español)
+Introducción
+
+Gracias por comprar el LC6000 PRIME. En Denon DJ, sabemos que usted se toma la música en serio. Por eso es que
+diseñamos nuestros equipos con una sola cosa en mente—hacer que pueda tocar su mejor interpretación.
+
+
+Características:
+
+     •   Controlador de capa para reproductores multimedia de la serie PRIME *
+     •   Rueda de avance de 21,6 cm (8,5 pulg.) con ajuste de tensión
+
+     •   Pantalla HD a color de rueda
+
+     •   Conjunto de control y diseño de reproductor multimedia profesional
+     •   Pads multifunción para actuaciones
+
+     •   Fader de tono de 100 mm
+
+     •   Alimentado por USB**
+     •   Oficialmente compatible con Virtual DJ Pro, Algoriddim djay Pro 2, y Serato DJ
+* visite denondj.com para obtener una lista de los últimos reproductores de medios compatibles
+** Es posible que se requiera una fuente de alimentación adicional (no incluida) para algunas computadoras
+
+
+
+Contenido de la caja
+
+LC6000 PRIME                                                      Guía del usuario
+Cable USB                                                         Manual sobre la seguridad y garantía
+Adaptador de corriente
+
+
+
+Soporte
+
+Para obtener la información más reciente acerca de este producto (documentación, especificaciones técnicas, requisitos
+de sistema, información de compatibilidad, etc.) y registrarlo, visite denondj.com.
+Para obtener soporte adicional del producto, visite denondj.com/support.
+
+
+
+Registro del producto
+Su producto puede incluir software y/o promociones exclusivas a las que sólo se puede acceder registrando su
+producto nuevo en el sitio web de Denon DJ.
+
+Para verificar su elegibilidad y acceso al contenido disponible, sírvase registrar su producto siguiendo las instrucciones a
+continuación:
+1.   Visite denondj.com.
+2.   Haga clic en Sign In (Iniciar sesión) para acceder a su cuenta existente o cree una nueva.
+3.   Una vez que haya iniciado sesión, haga clic en My Registered Products (Mis productos registrados).
+4.   Introduzca el número de serie del producto en el recuadro y haga clic en Register Product (Registrar producto).
+5.   Una vez registrado exitosamente, todas descargas de software, contenido exclusivo y ofertas promocionales
+     aplicables se mostrarán en su cuenta.
+
+
+
+
+                                                                                                                         13
+Instalación
+Importante: Ocasionalmente, es posible que actualicemos el firmware del LC6000 PRIME para añadir excitantes
+mejoras y características. Visite denondj.com para encontrar las actualizaciones de firmware disponibles, especialmente
+luego de actualizar su software (las actualizaciones de firmware pueden contemplar las nuevas características del
+software).
+
+1.   Asegúrese de que todos sus dispositivos estén apagados o que todos sus niveles de volumen estén en sus
+     posiciones mínimas.
+2.   Conecte el puerto USB del LC6000 PRIME a un puerto disponible en su ordenador o un reproductor de medios
+     Denon DJ compatible.
+3.   Conecte cualquier dispositivo de salida (auriculares, amplificadores de potencia, altavoces, etc.) a las salidas de su
+     mezclador.
+4.   Conecte todos sus dispositivos a sus fuentes de corriente.
+     •   Al iniciar una sesión, encienda (1) el LC6000 PRIME y los demás accesorios o fuentes de entrada, (2) su
+         mezclador y luego (3) los dispositivos de salida.
+     •   Al finalizar una sesión, apague (1) los dispositivos de salida, (2) su mezclador y luego (3) el LC6000 PRIME y las
+         demás fuentes de entrada.
+5.   Si está utilizando el LC6000 PRIME con software de terceros compatible como por ejemplo Virtual DJ, Algoriddim
+     djay o Serato DJ, seleccione la bandeja que controlará el LC6000 PRIME. Consulte Funcionamiento > Selección
+     de bandeja para obtener más información.
+
+
+
+Diagramas de conexión
+Los elementos que se muestran pero que no se enumeran en Introducción > Contenido de la caja se venden por
+separado.
+
+
+
+Ejemplo 1
+
+Este ejemplo muestra un LC6000 PRIME controlando la segunda capa de un SC6000 PRIME o reproductor de
+medios SC5000 PRIME conectado a un mezclador X1850 PRIME.
+
+
+              SC6000 PRIME                      Mezclador X1800 Prime
+               (panel trasero)                        (panel trasero)
+
+                                                                                               LC6000 PRIME
+                                                                                                (panel trasero)
+
+
+
+
+                                            Suministro
+                                            eléctrico
+
+
+
+
+14
+Ejemplo 2
+
+Este ejemplo muestra a dos unidades LC6000 PRIME controlando a las bandejas 3 y 4 de un sistema de DJ
+autónoma PRIME 4. Consulte Funcionamiento > Control del PRIME 4 para más información.
+
+
+
+
+                                                                               PRIME 4
+                                                                             (panel trasero)
+
+
+       LC6000 PRIME
+        (panel trasero)
+
+
+
+
+Ejemplo 3
+
+Este ejemplo muestra una unidad LC6000 PRIME conectada a un ordenador para control mediante software.
+
+
+                                                                                           Ordenador
+                     LC6000 PRIME
+                          (panel trasero)
+
+
+
+
+                                                                                                        15
+Características
+Panel superior
+
+Selección y exploración de medios
+                                                                                                              2       3
+1.   "Dejar caer la púa": La longitud de esta tira representa
+     la longitud de la totalidad de la pista. Coloque su dedo
+                                                                                            1
+     en un punto de este sensor para saltar a ese punto en
+                                                                                                            7 4
+     la pista.                                                     27
+2.   Back: Estando en la vista de exploración en el                                         5                  8
+     reproductor multimedia conectado, pulse este botón
+     para pasar a la ventana anterior. Estando en la vista de
+     actuación en el reproductor multimedia conectado,             26                                      15        16
+     pulse el botón para entrar en la vista de exploración.
+3.   Forward: Estando en la vista de exploración en el
+                                                               19                           6                       14
+     reproductor multimedia conectado, pulse este botón
+     para pasar a la ventana siguiente. Estando en la vista
+     de actuación en el reproductor multimedia conectado,
+                                                              11
+     pulse el botón para entrar en la vista de exploración.
+                                                              28
+4.   Select/Zoom: Estando en la vista de exploración en el                                                18
+     reproductor multimedia conectado, gire esta perilla
+     para recorrer una lista y pulse dicha perilla para        10          17 21 22 23 24 25 12
+     seleccionar un elemento o cargar una pista a la capa en
+     foco. Pulse la perilla dos veces para cargar una vista       9                      20
+     desde una bandeja activa a la capa controlada por el
+     LC6000 PRIME (“dobles instantáneos”). Si hay más de
+                                                                                                                13
+     una bandeja activa disponible, utilice la superposición
+     que aparece en la pantalla táctil para seleccionar la
+     bandeja que desea duplicar.
+     Estando en la vista de actuación en el reproductor multimedia conectado, gire esta perilla para agrandar o achicar la
+     forma de onda de una pista. Mantenga pulsada la perilla para ajustar la cuadrícula de beats (consulte la Guía del
+     usuario de su reproductor multimedia para obtener más información).
+
+
+Controles de reproducción y transporte
+5.  Plato: Este plato capacitivo sensible al tacto controla el cabezal de reproducción cuando se toca y se mueve la
+    rueda. Cuando el botón Vinyl esté encendido, mueva el plato para "rayar" la pista como si se tratara de un disco de
+    vinilo. Cuando el botón Vinyl esté apagado (o si está tocando solo el costado del plato), mueva el plato para ajustar
+    temporalmente la velocidad de la pista.
+6. Pantalla del plato: Esta pantalla muestra información relevante para su actuación, incluyendo la posición actual del
+    cabezal de reproducción y el tamaño del bucle automático actual, así como la imagen de la portada del álbum.
+    Consulte Vista general de la pantalla del plato para obtener más información.
+7. Wheel Adjust: Gire esta perilla para ajustar la resistencia del plato a los movimientos. Esta perilla aplica un freno al
+    plato para evitar deslizamientos accidentales debido a vibraciones ambientales provenientes de frecuencias graves,
+    inestabilidad de la superficie, etc.
+8. Vinyl: Pulse este botón para activar/desactivar el "modo vinilo" para el plato. Una vez activado, puede utilizar el
+    plato para "rayar" la pista como si se tratara de un disco de vinilo.
+9. Play/Pause (/): Con este botón se pone en pausa o reanuda la reproducción.
+    Mantenga pulsado Shift y pulse este botón para que la pista “tartamudee” desde el punto de cue inicial.
+10. Cue: Durante la reproducción, pulse este botón para regresar la pista al punto de cue inicial y detener la reproducción.
+    Para mover el punto de cue inicial, asegúrese de que la pista esté en pausa, mueva el plato para posicionar el cabezal
+    de reproducción en la posición deseada y luego pulse este botón. Si la bandeja está en pausa, mantenga pulsado este
+    botón para reproducir momentáneamente la pista desde el punto de cue inicial. Suelte el botón para regresar la pista al
+    punto de cue inicial y ponerla en pausa. Para continuar la reproducción sin volver al punto de cue inicial, mantenga
+    pulsado este botón y luego mantenga pulsado el botón Play y luego suelte ambos botones.
+    Durante la reproducción, mantenga pulsado Shift y pulse este botón para establecer el punto de cue inicial.
+11. Track Skip: Pulse uno de estos botones para saltar a la pista anterior o siguiente.
+    Pulse Previous Track (pista anterior) en la mitad de una pista que se encuentra en pausa para regresar al comienzo
+    de la misma.
+    Mantenga pulsado Shift y luego pulse uno de estos botones para desplazarse hacia delante o hacia atrás
+    (respectivamente) por la pista.
+
+16
+Controles de sincronización y tono
+12. Fader de tono: Mueva este fader para ajustar la velocidad (tono) de la pista. Puede ajustar su rango total
+    manteniendo pulsado Shift y pulsando uno de los botones Pitch Bend.
+    Importante: Si se activa la sincronización, al mover el fader de tono en la unidad de LC6000 PRIME “primaria” o
+    reproductor multimedia Denon DJ compatible se modificarán las velocidades de todas las unidades sincronizadas,
+    mientras que mover el fader de tono en las otras unidades no hará nada.
+13. Pitch Bend –/+: Mantenga pulsado uno de estos botones para reducir o aumentar (respectivamente) la velocidad de
+    la pista momentáneamente.
+    Mantenga pulsado Shift y pulse uno de estos botones para ajustar el rango del fader de tono.
+14. Bloqueo de nota/Reestablecer tono: Pulse este botón para activar o desactivar el bloqueo de nota. Una vez
+    activado el bloqueo de nota, el tono de la pista permanecerá igual por más que modifique su velocidad en el
+    reproductor multimedia conectado.
+    Mantenga pulsado Shift y pulse este botón para restablecer la pista a su nota original independientemente de la
+    posición del fader de pitch (tono) o las ediciones realizadas mediante el menú de cambio de nota en el reproductor
+    multimedia conectado.
+15. Sync/Sync Off: Pulse este botón para activar la sincronización.
+    Para sincronizar dos o más unidades LC6000 PRIME o reproductors multimedia Denon DJ compatible, pulse Sync
+    en la unidad que desea que controle los BPM, la cual se convierte en la unidad “primaria”. Una vez que se activa la
+    sincronización en esa unidad, pulse Sync en las unidades adicionales. El tiempo de cada unidad se sincronizará
+    inmediatamente para coincidir con el tempo de la unidad primaria.
+    Mantenga pulsado Shift (Función secundaria) y pulse este botón para desactivar la sincronización.
+16. Master: Pulse este botón para configurar esta unidad LC6000 PRIME como la que controla el tempo maestro.
+    Todas las unidades LC6000 PRIME o reproductors multimedia Denon DJ compatible conectadas con la
+    sincronización activada usarán este tempo. Si detiene a la unidad LC6000 PRIME “primaria”, la siguiente unidad
+    LC6000 PRIME o reproductor multimedia Denon DJ compatible de reproducción más larga en la configuración se
+    transformará automáticamente en la nueva unidad “primaria” (a menos que la modifique manualmente).
+
+Controles de actuación
+17. Shift: Mantenga pulsado este botón para acceder a las funciones secundarias de otros controles.
+18. Slip: Pulse este botón para activar o desactivar el modo de resbalamiento. En el modo de resbalamiento, puede
+    saltar hacia puntos de cue, usar el plato o poner la pista en pausa, mientras la línea de tiempo de la pista continua
+    (la mitad inferior de la forma de onda en la pantalla seguirá moviéndose hacia delante). En otras palabras, cuando
+    detenga la acción que esté realizando, se reanudará la reproducción normal de la pista desde donde habría estado
+    si nunca hubiera hecho nada (es decir, como si la pista hubiera estado reproduciéndose en avance todo el tiempo).
+    Mantenga pulsado Shift y pulse este botón para entrar al modo de selección de bandeja para usarlo con el software
+    compatible. Consulte Funcionamiento > Selección de bandeja para obtener más información.
+19. Censor/Reverse: Pulse este botón para activar o desactivar la característica Censor: la reproducción de la pista se
+    invertirá, pero cuando suelte el botón, se seguirá reproduciendo normalmente desde donde estaría si nunca hubiera
+    activado la característica Censor (es decir, como si la pista hubiera estado reproduciéndose hacia adelante todo ese
+    tiempo).
+    Mantenga pulsado Shift y pulse este botón para invertir la reproducción de la pista normalmente. Pulse este botón
+    nuevamente para regresar la reproducción a la dirección normal hacia adelante.
+20. Pads para actuaciones en vivo: Estos pads tienen distintas funciones en cada bandeja en función del modo de
+    pad activo. Consulte Funcionamiento > Actuaciones > Modos de pad para obtener más información.
+    Estos pads también se usan para la selección de la bandeja cuando el LC6000 PRIME se encuentra conectado con
+    un software compatible. Consulte Funcionamiento > Selección de bandeja para obtener más información.
+21. Hot Cue: Pulse este botón para entrar al modo de cue rápido.
+22. Loop: Pulse este botón una vez para entrar al modo de bucle manual. Púlselo una vez más para entrar al modo de
+    bucle automático.
+23. Roll: Pulse este botón para entrar al modo de redoble.
+24. Slicer: Pulse este botón una vez para entrar al modo cortador y púlselo nuevamente para entrar al modo de bucle
+    cortador.
+25. Parámetro /: Utilice estos botones para las diversas funciones en cada modo de pad. Consulte
+    Funcionamiento > Actuaciones > Modos de pad para obtener más información.
+26. Loop In/Loop Out: Pulse cualquiera de estos botones para crear un punto de entrada o de salida de bucle en la
+    posición actual. Su posicionamiento se verá afectado por los ajustes de Quantize y Smart Loops.
+
+
+                                                                                                                      17
+27. Auto Loop/Loop Move: Gire esta perilla para ajustar el tamaño de un bucle automático. El valor aparecerá en la
+    pantalla táctil y en la pantalla del plato.
+     Pulse esta perilla para activar o desactivar un bucle automático en la posición actual de la pista.
+     Consejo: Puede asignar bucles automáticos a pads estando en el modo de bucle manual. Consulte
+     Funcionamiento > Actuaciones > Modos de pad para obtener más información.
+     Mantenga pulsado Shift y gire esta perilla para desplazar el bucle activo a la izquierda o a la derecha.
+28. Beat Jump: Pulse uno de estos botones para saltar hacia delante o hacia atrás en la pista. Use la perilla Auto Loop
+    para determinar el tamaño del salto de beats.
+     Mantenga pulsado Shift y luego pulse uno de estos botones para aumentar o disminuir el tamaño del salto de beats.
+
+
+
+Vista general de la pantalla del plato
+Normalmente, la pantalla del plato muestra la siguiente información:
+     •   la posición actual de la cabeza de reproducción.
+     •   la imagen de la portada del álbum de la pista actual.
+
+La pantalla del plato muestra la siguiente información de forma temporal:
+     •   el tamaño actual de un bucle automático una vez que gira la perilla Auto Loop.
+     •   la posición del cabezal de reproducción secundario cuando Slip está activado.
+
+
+
+Panel trasero
+1.   Botón de encendido: Pulse este botón para encender
+     o apagar el LC6000 PRIME.
+2.   Entrada de corriente: Utilice el adaptador de corriente
+     con traba incluido para conectar esta entrada a una                                         3 2 1
+     toma de corriente.
+3.   Puerto USB: Utilice un cable USB estándar (incluido)
+     para conectar este puerto USB a un puerto USB
+     disponible en un reproductor Denon DJ compatible o
+     en su ordenador. Esta conexión alimenta al LC6000
+     PRIME, y envía y recibe mensajes MIDI desde y hacia el
+     reproductor de medios o el ordenador.
+     Nota: Si bien la mayoría de los reproductores de
+     medios y ordenadores pueden suministrar corriente al
+     LC6000 PRIME a través del puerto USB, algunos
+     podrían no suministrar la suficiente corriente, en cuyo
+     caso deberá usarse un adaptador de corriente.
+
+
+
+
+18
+Funcionamiento
+Nota: Estas instrucciones se utilizan principalmente para utilizar los reproductores de medios compatibles. Algunos de
+los controles o funciones enumerados podrían no funcionar con todo el software soportado. Para obtener más detalles
+sobre los mapeos de software, visite denondj.com o el sitio web de su software.
+
+
+
+Actuaciones
+Carga y descarga de pistas
+Mientras visualiza cualquier lista de pistas:
+    Para cargar una pista en la capa, pulse la perilla Select/Zoom.
+     Para efectuar dobles instantáneos (cargar la misma pista en ambas capas de la bandeja), pulse dos veces la
+      perilla Select/Zoom mientras la pista se encuentra resaltada.
+    Para agregar una pista a la lista de pistas preparadas, mantenga pulsado Shift y pulse la perilla Select/Zoom.
+
+
+
+Reproducción y cues
+Para reproducir o hacer pausa en una pista, pulse Play/Pause (/).
+Para rayar una pista, pulse Vinyl de manera que quede encendido y luego mueva el plato.
+Para establecer el punto de cue inicial, pulse Shift+Cue en la ubicación deseada durante la reproducción.
+Para regresar al punto de cue inicial y detenerse, pulse Cue. El botón parpadeará mientras la unidad se encuentre en
+ pausa en el punto de cue.
+Para regresar al punto de cue inicial y seguir tocando, pulse Shift+Play/Pause (/).
+Para invertir la reproducción, pulse Shift+Censor/Reverse. El botón parpadeará durante la reproducción invertida.
+Para regresar a la reproducción normal, pulse Censor/Reverse.
+Para censurar la reproducción, mantenga pulsado Censor.
+Para regresar a la reproducción normal, pulse Censor. La reproducción normal se reanudará desde la posición en
+ donde estaría si nunca se hubiera activado la función Censor (es decir, si la pista se hubiera estado reproduciendo
+ hacia adelante todo el tiempo).
+Para saltar a la pista siguiente o anterior, pulse uno de los botones Track Skip /.
+Para regresar al comienzo de una pista, pulse Track Skip  en la mitad de una pista que se encuentra en pausa.
+Para recorrer la pista rápidamente, mantenga pulsado Shift y luego pulse uno de los botones Track Skip.
+Para activar o desactivar el modo de resbalamiento, pulse Slip. En el modo de resbalamiento, puede saltar hacia puntos
+ de cue, disparar bucles con regreso, usar el plato o poner la pista en pausa, mientras la línea de tiempo de la pista
+ continua (la mitad inferior de la forma de onda en la pantalla táctil seguirá moviéndose hacia delante). Cuando detenga la
+ acción, se reanuda la reproducción normal de la pista desde donde habría estado si nunca hubiera hecho nada (es decir,
+ como si la pista hubiera estado reproduciéndose hacia adelante todo el tiempo).
+Para saltar a un instante específico de la pista, apoye su dedo a lo largo de la tira de "dejar caer la púa", la cual
+  representa la longitud total de la pista.
+  Nota: Asegúrese de que el bloqueo de la púa esté desactivado en su reproductor de medios Denon DJ para poder
+  utilizar la tira de "dejar caer la púa".
+Para agrandar o achicar la forma de onda, gire la perilla Select/Zoom estando en modo de actuación en su
+  reproductor de medios Denon DJ conectado.
+
+
+
+
+                                                                                                                        19
+Bucles y salteo de beat
+
+Para crear y activar un bucle automático, pulse la perilla Auto Loop.
+Para establecer la longitud del bucle automático, gire la perilla Auto Loop para seleccionar la cantidad de beats:
+ 1/32, 1/16, 1/8, 1/4, 1/2, 1, 2, 4, 8, 16, 32 o 64.
+Para crear y activar un bucle manual, pulse Loop In para establecer el punto inicial y luego pulse Loop Out para
+ establecer el punto final. El bucle se activará inmediatamente y su posición se indicará como un área sombreada en la
+ vista general de la forma de onda y la pista.
+Para desactivar un bucle, pulse la perilla Auto Loop.
+Para desplazar el bucle, mantenga pulsado Shift y gire la perilla Auto Loop mientras el bucle está activado.
+Para duplicar o dividir a la mitad la longitud de un bucle, gire la perilla Auto Loop mientras el bucle está activado.
+Para editar el comienzo o el fin de un bucle de forma manual, pulse Loop In o Loop Out respectivamente y luego
+ mueva el plato a la izquierda o a la derecha para acortar o extender la región del bucle. Confirme la edición pulsando
+ Loop In o Loop Out una vez más.
+Para saltar los beats a través de una pista, pulse uno de los botones Beat Jump. Cada vez que presione, se saltará la
+ pista por la duración establecida. Puede ajustar la duración del salto de beats presionando y manteniendo presionada la
+ Shift y presionando estos botones.
+
+
+
+Sincronización y ajuste de tono
+
+Para activar la sincronización, pulse Sync en la unidad que desea que controle los BPM, la cual se convierte en la
+ unidad “primaria”. Una vez que se activa la sincronización en esa unidad, pulse Sync en las unidades adicionales. El
+ tiempo de cada unidad se sincronizará inmediatamente para coincidir con el tempo de la unidad primaria.
+ El icono de estado de sincronización en la pantalla de el reproductor multimedia Denon DJ conectado indicará el estado
+ actual:
+     •   Sync Off: Sincronización apagada.
+     •   Tempo Sync: Solo el tempo está sincronizado (el BPM igualará el de la unidad primaria).
+     •   Beat Sync: Se sincronizará el tempo y el beat de la pista se igualará automáticamente con el de la pista de la
+         unidad primaria.
+Para desactivar la sincronización en una unidad LC6000 PRIME, pulse Shift+Sync.
+Para establecer otra unidad LC6000 PRIME como la primaria, pulse Master. Todas las unidades LC6000 PRIME
+ conectadas con la sincronización activada usarán el tempo de esta unidad.
+Para ajustar el tono de la pista, mueva el fader de tono. Sólo podrá hacer esto cuando la bandeja no esté
+ sincronizada.
+  Importante: Si se activa la sincronización, al mover el fader de tono en la unidad de LC6000 PRIME “primaria” o
+  reproductor multimedia Denon DJ compatible se modificarán las velocidades de todas las unidades sincronizadas,
+  mientras que mover el fader de tono en las otras unidades no hará nada.
+Para ajustar el tono de la pista momentáneamente, mantenga pulsado uno de los botones Pitch Bend –/+.
+Para ajustar el rango del fader de tono, mantenga pulsado Shift y pulse uno de los botones Pitch Bend –/+ para
+ seleccionar +4%, 8%, 10%, 20%, 50%, o 100%.
+Para restablecer el tono de la pista en 0%, pulse Shift+Key Lock/Pitch Reset. El tono de la pista regresará a su tono
+ original (0%) independientemente de la posición del fader de tono.
+Para ajustar la nota musical de la pista, toque la nota en la pantalla táctil para abrir el menú de cambio de nota.
+
+
+
+
+20
+Modos de pad
+Los 8 padres tienen diferentes funciones en cada modo de pad. Los botones Parameter (parámetro) / harán ajustes
+específicos a cada modo de pad.
+    Para entrar a cada modo de pad, pulse el botón correspondiente: Hot Cue, Loop, Roll o Slicer.
+
+
+Modo de cue rápido
+
+                                                        Cue          Cue          Cue          Cue          Cue          Cue          Cue          Cue
+                                                      rápido 1     rápido 2     rápido 3     rápido 4     rápido 5     rápido 6     rápido 7     rápido 8
+
+
+En el modo de cue rápido, puede usar cada pad para saltar al punto de cue rápido asignado.
+Consejo: Puede usar el software Engine DJ para establecer, nombrar y asignar colores a sus puntos de cue rápidos. Los
+nombres y colores aparecerán en la pantalla como referencia.
+    Para asignar un cue rápido a un pad, pulse un pad con iluminación tenue en la posición de la pista deseada.
+    Para saltar a un punto de cue rápido, pulse el pad correspondiente.
+    Para quitar un punto de cue rápido de un pad, pulse Shift y luego el pad deseado. El pad se apagará cuando no
+     haya ningún punto de cue rápido asignado a él.
+
+
+Modos de bucle
+
+                                                      Bucle        Bucle        Bucle        Bucle         Bucle        Bucle       Bucle        Bucle
+                                                        1            2            3            4             5            6           7            8
+
+En el modo de bucle manual, puede usar cada pad para activar un bucle asignado. Al pulsar Loop por primera vez se
+ingresará siempre al modo de bucle manual.
+Consejo: Puede usar el software Engine DJ para establecer y nombrar sus bucles. Los nombres aparecerán en la
+pantalla de reproductor multimedia Denon DJ como referencia.
+    Para asignar un bucle a un pad y activarlo, pulse un pad con iluminación tenue para crear un punto de entrada de
+     bucle en la ubicación actual y luego púlselo nuevamente para crear un punto de salida de bucle en otra posición.
+     También puede asignar un bucle automático a un pad pulsando un pad con iluminación tenue estando dentro del
+     bucle automático. El bucle se activará inmediatamente y el pad se iluminará.
+    Para activar un bucle, pulse el pad correspondiente. Una vez creado un bucle, puede volver a ejecutarlo pulsando
+      nuevamente el pad correspondiente, en función del ajuste de Saved Loop Behavior.
+    Para habilitar un bucle activo, mantenga pulsado el botón Parámetro• y presione un pad con un bucle guardado.
+     Los bucles activos comenzarán a reproducirse automáticamente tan pronto como se alcancen y se muestran con un
+     patrón de rayas en la forma de onda de la pista. También puede configurarlos en el software Engine DJ.
+    Para eliminar un bucle, pulse Shift y el pad deseado.
+En el modo de bucle automático, puede usar cada pad para crear y activar un bucle automático. Al pulsar Loop estando
+en modo de bucle manual se ingresará al modo de bucle automático.
+    Para activar un bucle automático, pulse un pad. La pantalla mostrará la longitud del bucle automático de cada pad.
+    Para desactivar un bucle automático, pulse el pad nuevamente.
+
+
+Modo de redoble
+
+                       (La T indica una división de   Redoble de   Redoble de   Redoble de   Redoble de   Redoble de   Redoble de   Redoble de   Redoble de
+                        tiempo basada en tresillos)    1/8 beats   1/4T beats    1/4 beats   1/2T beats    1/2 beats    1T beat       1 beat      2 beats
+
+
+
+En el modo de redoble, puede mantener pulsado cada padre para disparar “redoble con regreso” de una duración
+determinada mientras la línea de tiempo de la pista continua (la mitad inferior de la forma de onda en la pantalla seguirá
+moviéndose hacia delante). Cuando suelte el pad, se reanudará la reproducción normal de la pista desde donde habría
+estado si no hubiera hecho nada (es decir, como si la pista hubiera estado reproduciéndose hacia adelante todo el
+tiempo).
+    Para disparar un redoble, pulse el pad correspondiente. Los pads con bucles con retorno en base de tresillo se
+     iluminan de color violeta.
+
+                                                                                                                                                        21
+Modo cortador
+
+                                               Corte     Corte     Corte    Corte     Corte     Corte    Corte     Corte
+                                                 1         2         3        4         5         6        7         8
+
+En el modo cortador (la primera vez que se pulsa), los 8 partes representan 8 beats secuenciales—”cortes”—en la grilla
+de beats. El corte actualmente en reproducción se representa mediante el pad actualmente iluminado; la luz “recorre los
+pads” a medida que progresa a lo largo de la frase de ocho cortes. Puede pulsar un pad para reproducir ese corte.
+Cuando suelte el pad, se reanuda la reproducción normal de la pista desde donde habría estado si nunca lo hubiera
+presionado (es decir, como si la pista hubiera estado reproduciéndose en avance todo el tiempo).
+En el modo de bucle cortador (la segunda vez que se pulsa), se activa automáticamente un bucle de 8 beats. El pad
+actualmente iluminado representa el corte que se está reproduciendo en ese momento; la luz "recorre los pads" a
+medida que avanza a lo largo de cada una de las frases de ocho cortes, la cual se repetirá (esta es la diferencia entre
+este modo y el modo cortador). Puede pulsar un pad para reproducir ese corte. Cuando suelta el pad, se reanuda la
+reproducción normal de la pista desde donde habría estado dentro del bucle si nunca lo hubiera presionado (es decir,
+como si la pista hubiera estado reproduciéndose en avance todo el tiempo).
+     Para reproducir un corte, pulse el pad correspondiente.
+
+
+Selección de bandeja
+Tras abrir el software de terceros compatible, el LC6000 PRIME entrará automáticamente en modo de selección de
+bandeja. Esto le permitirá seleccionar qué bandeja, de la 1 a la 4, controlará la unidad en función de las características
+del software que esté utilizando.
+     Para entrar manualmente al modo de selección de bandeja en cualquier momento, mantenga pulsado Shift y
+     pulse Slip.
+
+
+
+
+                        Deck      Deck      Deck       Deck
+                         1         2         3          4
+
+
+
+Al ingresar al modo de selección de bandeja, los pads de actuación 1 a 4 (como se muestra más arriba), comenzarán a
+parpadear en base a las bandejas disponibles y se podrán utilizar para seleccionar la bandeja que controlará la unidad.
+Pulse el pad correspondiente para seleccionar la bandeja que debería controlar el LC6000 PRIME. Una vez seleccionada
+la bandeja, el LC6000 PRIME entrará al modo de actuación.
+Una vez que la unidad ya esté asignada a una bandeja, todas las demás bandejas disponibles estarán tenuemente
+iluminadas en el modo de selección de bandeja. Cuando un pad esté completamente apagado en el modo de selección
+de bandeja indica que su bandeja correspondiente no está disponible para ser seleccionada, ya sea debido a que el
+software no soporta esa cantidad de bandejas o a que ya hay otra unidad utilizándola.
+Para desasignar una unidad de una bandeja, mantenga pulsado Shift y pulse Slip para entrar al modo de selección de
+bandeja. Luego mantenga pulsado el pad de la bandeja correspondiente durante 3 segundos. La bandeja quedará
+desasignada y podrá realizar una nueva selección utilizando el mismo proceso descrito anteriormente.
+
+
+Control del PRIME 4
+El LC6000 PRIME también se puede utilizar para controlar las bandejas secundarias de una unidad de DJ autónoma
+PRIME 4. Utilice un cable USB estándar para conectar el puerto USB del LC6000 PRIME al puerto USB del panel
+trasero 3 y/o 4 en el PRIME 4. Una unidad conectada en el puerto 3 controla la bandeja 3 y una unidad conectada en el
+puerto 4 controla la bandeja 4, y cualquier pista cargada en las bandejas 3 ó 4 en el PRIME 4 se transferirán a las
+bandejas 1 ó 2.
+Una vez conectado, los botones Deck del PRIME 4 se deshabilitarán y la perilla Select/Zoom del LC6000 PRIME se
+podrá usar para explorar y cargar las pistas directamente en la bandeja seleccionada.
+Si tiene una unidad LC6000 PRIME conectada al puerto 4 y habilita la característica de bandeja de lista de reproducción
+del PRIME 4, esta unidad se utilizará para controlar la lista de reproducción y determinadas características se
+deshabilitarán.
+
+
+
+22
+Guide d’utilisation (Français)
+Présentation
+
+Merci d’avoir fait l’acquisition du LC6000 PRIME. Chez Denon DJ, nous savons à quel point la musique est importante
+pour vous. C’est pourquoi nous concevons nos produits avec une seule chose en tête — faire de votre performance la
+meilleure qui soit.
+
+
+Caractéristiques :
+
+     •   Contrôleur de couche pour les lecteurs multimédias de la série PRIME
+     •   Molette à tension réglable de 21,6 cm
+     •   Écran couleur HD de molette
+     •   Commandes et disposition du lecteur multimédia professionnel
+     •   Pads multifonctions de performance
+     •   Curseur de hauteur tonale de 100 mm
+     •   Alimenté par USB*
+     •   Officiellement compatible avec Virtual DJ Pro, Algoriddim djay Pro 2 et Serato DJ
+* visitez denondj.com pour une liste à jour des lecteurs multimédias compatibles
+** une alimentation supplémentaire peut être requise pour certains ordinateurs
+
+
+
+Contenu de la boîte
+
+LC6000 PRIME                                               Guide d’utilisation
+Câble USB                                                  Consignes de sécurité et informations concernant la garantie
+Adaptateur d’alimentation
+
+
+
+Assistance
+
+Pour les toutes dernières informations concernant la documentation, les spécifications techniques, la configuration
+requise, la compatibilité et l’enregistrement du produit, veuillez visiter denondj.com.
+Pour de l’assistance supplémentaire, veuillez visiter denondj.com/support.
+
+
+
+Enregistrement du produit
+L’achat du produit peut inclure de logiciels exclusifs et/ou des promotions accessibles uniquement par l’enregistrement
+de votre produit sur le site Web de Denon DJ.
+
+Pour vérifier votre admissibilité et accéder au contenu disponible, veuillez enregistrer votre produit en suivant les
+instructions ci-dessous :
+1.   Visitez denondj.com.
+2.   Cliquez sur Sign In pour accéder à votre compte existant ou pour créer un nouveau compte.
+3.   Une fois connecté, cliquez sur My Registered Products.
+4.   Entrez le numéro de série du produit dans la case et cliquez sur Register Product.
+5.   Une fois l'enregistrement réussi, tous les téléchargements de logiciels, contenus exclusifs et offres promotionnelles
+     applicables figureront sur votre compte.
+
+
+
+
+                                                                                                                       23
+Installation
+Important : À l’occasion, il se peut que nous procédions à des mises à jour du progiciel du LC6000 PRIME afin d’ajouter
+des fonctionnalités et d’améliorer sa performance. Veuillez visiter denondj.com afin de vérifier s’il y a des mises à jour du
+progiciel disponibles, surtout si vous mettez à jour votre logiciel (les mises à jour du progiciel peuvent permettent
+l’utilisation des nouvelles fonctionnalités logicielles).
+
+1.   Veillez à ce que tous les appareils soient hors tension et que tous les niveaux soient au réglage au minimum.
+2.   Branchez le port USB du LC6000 PRIME à un port disponible sur votre ordinateur ou sur un lecteur multimédia
+     Denon DJ compatible.
+3.   Branchez tous les appareils de sortie (casque d’écoute, amplificateurs de puissance, enceintes, etc.) aux sorties de la
+     console de mixage.
+4.   Branchez tous les appareils à une alimentation secteur.
+     •   Lors de la mise en marche, commencez par allumer (1) le LC6000 PRIME et les autres accessoires ou sources
+         d’entrée, (2) la console de mixage, puis (3) les appareils de sortie.
+     •    Lors de la mise hors tension, commencez par fermer (1) les appareils de sortie, (2) la console de mixage, puis (3)
+          le LC6000 PRIME et les autres sources d’entrée.
+5.   Si vous utilisez le LC6000 PRIME avec un logiciel tiers pris en charge tel que Virtual DJ, Algoriddim djay ou Serato
+     DJ, sélectionnez le module qui sera contrôlé par le LC6000 PRIME. Veuillez consulter la section
+     Fonctionnement > Sélection des modules afin d’en savoir plus.
+
+
+Schémas de connexion
+Les articles qui ne figurent pas dans la section Présentation > Contenu de la boîte sont vendus séparément.
+
+
+
+Exemple 1 :
+
+Dans cet exemple, un LC6000 PRIME contrôle le deuxième niveau d'un lecteur multimédia SC6000 PRIME ou SC5000
+PRIME branché à une console de mixage X1850 PRIME.
+
+
+
+              SC6000 PRIME                             X1850 PRIME
+               (panneau arrière)                      (panneau arrière)
+
+                                                                                                 LC6000 PRIME
+                                                                                                  (panneau arrière)
+
+
+
+
+                                             Alimentation
+                                             secteur
+
+
+
+
+24
+Exemple 2 :
+
+Cet exemple montre deux unités LC6000 PRIME commandant les modules 3 et 4 d'un système autonome
+PRIME 4. Veuillez consulter la section Fonctionnement > Commander le PRIME 4 afin d'en savoir plus.
+
+
+
+
+                                                                                PRIME 4
+                                                                             (panneau arrière)
+
+
+       LC6000 PRIME
+       (panneau arrière)
+
+
+
+
+Exemple 3 :
+
+Dans cet exemple, un LC6000 PRIME est branché à un ordinateur pour commander un logiciel.
+
+                                                                                             Ordinateur
+                     LC6000 PRIME
+                     (panneau arrière)
+
+
+
+
+                                                                                                          25
+Caractéristiques
+Panneau supérieur
+
+Sélection du média et navigation
+                                                                                                                2      3
+1.   Bande du curseur de lecture : La longueur de la bande
+     représente la durée de la piste. Placer le doigt à
+                                                                                              1
+     n’importe quel endroit sur la bande pour passer à cet
+     endroit dans la piste.                                                                                   7 4
+                                                                     27
+2.   Back : En mode d’affichage Browse View sur le lecteur
+     multimédia connecté, cette touche permet de revenir à                                    5                  8
+     la fenêtre précédente. En mode d’affichage Performance
+     View sur le lecteur multimédia connecté, cette touche           26                                      15       16
+     permet d’accéder au mode d’affichage Browse View.
+3.   Forward : En mode d’affichage Browse View sur le             19                          6                      14
+     lecteur multimédia connecté, cette touche permet de
+     passer à la fenêtre suivante. En mode d’affichage
+     Performance View sur le lecteur multimédia connecté, 11
+     cette touche permet d’accéder au mode d’affichage
+     Browse View.                                                28
+4.   Select/Zoom : En mode d’affichage Browse View sur le                                                   18
+                                                                             17 21 22 23 24 25 12
+     lecteur multimédia connecté, ce bouton permet de             10
+     parcourir une liste, de sélectionner un item ou de charger
+     une piste sur le niveau sélectionné. Appuyez deux fois
+     sur le bouton pour charger une piste d'un module actif        9                       20
+     sur la couche commandée par le LC6000 PRIME                                                                  13
+     (« doubles instantanés »). S'il y a plus d'un module actif
+     disponible, utilisez le menu qui apparaît à l'écran tactile
+     pour sélectionner le module que vous souhaitez doubler.
+     En mode d’affichage Performance View sur le lecteur multimédia connecté, tourner ce bouton permet d’effectuer un
+     zoom avant et arrière sur la forme d’onde de la piste. Maintenir le bouton enfoncé permet d’ajuster la grille des
+     battements. Consultez le guide de l'utilisateur de votre lecteur multimédia afin d’en savoir plus sur le réglage de la
+     grille des battements.
+
+Commandes de lecture
+5.  Plateau : Cette molette capacitive tactile permet de commander le curseur de lecture lorsque la molette est touchée
+    et déplacée. Lorsque la touche Vinyl est activée, utilisez le plateau pour saisir et déplacer l’audio et créer un effet de
+    « scratch » sur la piste, comme avec un disque vinyle. Lorsque la touche Vinyl est désactivée (ou si vous touchez
+    seulement le côté du plateau), déplacez le plateau pour modifier temporairement la vitesse de la piste.
+6. Écran du plateau : L’écran affiche des informations pertinentes aux opérations, y compris la position du curseur de
+    lecture, la durée de la boucle automatique et des illustrations de l'album. Veuillez consulter la section Présentation
+    de l’écran du plateau afin d’en savoir plus.
+7. Wheel Adjust : Ce bouton permet de définir la résistance du plateau. Ce bouton applique un frein au plateau afin de
+    l’empêcher de dériver involontairement en raison de vibrations dues aux basses fréquences, aux surfaces instables, etc.
+8. Vinyl : Cette touche permet d’activer ou de désactiver le mode vinyle du plateau. Lorsqu’activée, vous pouvez
+    utiliser le plateau pour saisir et déplacer l’audio et créer un effet de « scratch » sur la piste, comme avec un vinyle.
+9. Lancer/interrompre la lecture (/) : Cette touche permet d’interrompre ou de relancer la lecture.
+    Maintenir la touche Shift enfoncée puis appuyer sur cette touche permet d’ajouter un effet de « bégaiement » à
+    partir du point de repère initial.
+10. Cue : Durant la lecture, appuyer sur cette touche permet de retourner au point de repère initial et de faire un arrête
+    de lecture. Pour déplacer le point de repère original, vérifiez que la lecture de la piste est interrompue, déplacez
+    ensuite le plateau afin de positionner le curseur de lecture à l'endroit désiré puis appuyez sur cette touche. Lorsque
+    la lecture du module est interrompue, maintenir cette touche enfoncée permet de reprendre temporairement la
+    lecture de la piste à partir du point de repère initial. Relâcher la touche permet de retourner sur le point de repère
+    initial et d’interrompre la lecture. Pour reprendre la lecture sans revenir au point de repère initial, maintenez cette
+    touche enfoncée, appuyez et maintenez ensuite la touche de lecture enfoncée, puis relâchez les deux touches.
+    Durant la lecture, maintenir la touche Shift enfoncée et appuyer sur cette touche permet de retourner au point de
+    repère initial.
+11. Track Skip : Ces touches permettent de revenir à la piste précédente ou de passer à la piste suivante.
+    Lorsque la lecture d’une piste est interrompue, appuyer sur la touche piste précédente (touches Track Skip)
+    permet de revenir au début de la piste.
+    Maintenir la touche Shift enfoncée puis enfoncer une de ces touches permet d’effectuer une recherche avant ou
+    arrière sur la piste en cours.
+26
+Commande de synchronisation et de la hauteur tonale
+12. Curseur de hauteur tonale : Ce curseur permet de régler la vitesse (tonalité) de la piste. Maintenir la touche Shift
+    enfoncée puis appuyer sur une des touches Pitch Bend permet de modifier la plage du curseur de hauteur tonale.
+    Important : Lorsque la synchronisation est activée, déplacer le curseur de hauteur tonale sur le LC6000 PRIME ou
+    lecteur multimédia Denon DJ compatible « primaire » permet de modifier la vitesse de tous les appareils
+    synchronisés, alors que déplacer le curseur de hauteur tonale sur les autres LC6000 PRIME ne change rien.
+13. Pitch Bend –/+ : Maintenir une de ces touches enfoncée permet de diminuer ou d’augmenter (respectivement)
+    temporairement la vitesse de la piste.
+    Maintenir la touche Shift enfoncée, puis appuyer sur une de ces touches permet de régler la plage du curseur de
+    hauteur tonale.
+14. Verrouillage tonal/réinitialisation tonale : Cette touche permet d’activer ou de désactiver le verrouillage tonal.
+    Lorsque le verrouillage tonal est activé, la tonalité de la piste restera la même, même si vous réglez sa vitesse sur le
+    lecteur multimédia connecté.
+    Maintenir la touche Shift enfoncée et appuyer sur cette touche permet de réinitialiser la tonalité de la piste,
+    indépendamment de la position du curseur de hauteur tonale ou des modifications effectuer via le menu de
+    modification de la hauteur tonale.
+15. Sync/Sync Off : Cette touche permet d’activer la fonction de synchronisation.
+    Pour synchroniser deux LC6000 PRIME ou lecteurs multimédia Denon DJ compatible ou plus, appuyez sur la touche
+    Sync sur l’unité que vous souhaitez qui commande le BPM, qui deviendra l’unité « primaire ». Une fois que la
+    fonction de synchronisation est activée sur cette unité, appuyez sur la touche Sync des autres unités. Le tempo de
+    chaque unité sera immédiatement synchronisé au tempo de l’unité primaire.
+    Maintenir la touche Shift enfoncée et appuyer sur cette touche permet de désactiver la synchronisation.
+16. Master : Appuyez sur cette touche afin de définir cette unité LC6000 PRIME comme étant celle qui commande le
+    tempo principal. Toutes les unités LC6000 PRIME ou lecteurs multimédia Denon DJ compatible connectées dont la
+    fonction de synchronisation a été activée utiliseront ce tempo. Si vous arrêtez le LC6000 PRIME « primaire », le
+    second LC6000 PRIME ou lecteurs multimédia Denon DJ compatible ayant jouer le plus longtemps dans la
+    configuration deviendra automatiquement le nouveau « primaire » (à moins que vous le modifiez manuellement).
+
+Commandes de prestation
+17. Shift : Maintenir cette touche enfoncée permet d’accéder aux fonctions secondaires des autres commandes.
+18. Slip : Cette touche permet d’activer et de désactiver le mode Slip. En mode Slip, vous pouvez sauter à des points de
+    repère, utiliser le plateau, ou interrompre la piste alors que la chronologie de la piste se poursuit (la moitié inférieure de
+    la forme d’onde sur l’écran continuera d’aller de l’avant). En d’autres mots, lorsque vous cessez l’action en cours, la
+    piste reprend la lecture normale à partir de l’emplacement où elle serait si vous n’aviez pas touché à l’une des
+    commandes (c.-à-d., comme si la lecture avait suivi son cours).
+    Maintenir la touche Shift enfoncée et appuyer sur cette touche permet d’accéder au mode de sélection des modules
+    afin d’en sélectionner un qui sera utilisé avec le logiciel pris en charge. Veuillez consulter la section
+    Fonctionnement > Sélection des modules afin d’en savoir plus.
+19. Censor/Reverse : Cette touche permet d’activer ou de désactiver la fonction Censor : la lecture de la piste sera
+    inversée, mais lorsque la touche est relâchée, la lecture normale de la piste est relancée à partir de l’emplacement
+    où elle serait si vous n’aviez pas activé la fonction Censor (c.-à-d., comme si la lecture n’avait jamais été
+    interrompue).
+    Maintenir la touche Shift enfoncée et appuyer sur cette touche permet de reprendre la lecture normale de la piste.
+    Appuyer de nouveau permet de revenir au mode de lecture normal.
+20. Pads : Ces pads ont différentes fonctions selon le mode pad et le module sélectionné. Veuillez consulter la section
+    Fonctionnement > En prestation > Modes de fonctionnement des pads pour plus d’information.
+    Ces pads permettent également de sélectionner le module lorsque le LC6000 PRIME est branché à un logiciel pris
+    en charge. Veuillez consulter la section Fonctionnement > Sélection des modules afin d’en savoir plus.
+21. Hot Cue : Cette touche permet d’accéder au mode Hot Cue.
+22. Loop : Cette touche permet d’accéder au mode Manual Loop. Appuyer de nouveau sur la touche permet d’accéder au
+    mode Auto Loop.
+23. Roll : Cette touche permet d’accéder au mode Roll.
+24. Slicer : Appuyer une fois sur cette touche permet d’accéder au mode Slicer et appuyer une deuxième fois permet
+    d’accéder au mode Slicer Loop.
+25. Parameter / : Utilisez ces touches pour les différentes fonctions de chaque mode de fonctionnement des pads.
+    Veuillez consulter la section Fonctionnement > En prestation > Modes de fonctionnement des pads pour plus
+    d’information.
+
+
+
+                                                                                                                               27
+26. Loop In/Loop Out : Ces touches permettent de programmer un point d’entrée ou de sortie de boucle à
+    l’emplacement actuel. Leur emplacement sera affecté par les réglages des fonctions Quantize et Smart Loops.
+27. Auto Loop/Loop Move : Ce bouton permet de régler la durée des boucles automatiques. La valeur sera affichée sur
+    l’écran tactile et sur celui du plateau.
+    Appuyer sur cette touche permet d’activer et de désactiver une boucle automatique à partir de la position actuelle
+    dans la piste.
+     Astuce : Vous pouvez assigner des boucles automatiques aux pads en mode Manual Loop. Veuillez consulter la
+     section Fonctionnement > En prestation > Modes de fonctionnement des pads pour plus d’information.
+     Maintenir la touche Shift enfoncée et tourner ce bouton permet de déplacer la boucle active vers la gauche ou la
+     droite.
+28. Beat Jump : Ces touches permettent d’effectuer un saut de piste avant ou un saut de piste arrière sur la piste en
+    cours.
+     Maintenez la touche Shift enfoncée et appuyez sur ces touches pour déterminer la distance du saut.
+
+
+
+Présentation de l’écran du plateau
+Généralement, l’écran du plateau affiche les informations suivantes :
+     •   la position actuelle du curseur de lecture.
+     •   la pochette de la piste en cours.
+
+L’écran du plateau affiche les informations suivantes temporairement :
+     •   la durée des boucles automatiques après que vous ayez tourné le bouton Auto
+         Loop.
+     •   la position du curseur de lecture secondaire lorsque le mode Slip est activé.
+
+
+Panneau arrière
+1.   Touche d’alimentation : Cette touche permet de
+     mettre le LC6000 PRIME sous et hors tension.
+2.   Entrée     d’alimentation :      Utilisez   l'adaptateur
+     d’alimentation verrouillable fourni pour brancher cette
+     entrée à une prise secteur.
+                                                                                            3 2 1
+3.   Port USB : Utilisez le câble USB fourni pour relier ce
+     port au port USB d’un lecteur multimédia Denon DJ
+     compatible ou d’un ordinateur. Cette connexion
+     permet d’alimenter le LC6000 PRIME et de
+     transmettre et recevoir des données MIDI depuis et
+     vers un lecteur multimédia ou un ordinateur.
+     Remarque : Alors que la plupart des lecteurs
+     multimédias et des ordinateurs peuvent alimenter le
+     LC6000 PRIME à l’aide du port USB, certains peuvent
+     ne pas fournir suffisamment de puissance et
+     l’utilisation de l’adaptateur d’alimentation sera alors
+     nécessaire.
+
+
+
+
+28
+Fonctionnement
+Remarque : Ces instructions sont principalement destinées à être utilisées avec des lecteurs multimédias compatibles.
+Certaines commandes ou fonctions répertoriées peuvent ne pas fonctionner avec tous les logiciels pris en charge. Pour
+en savoir plus sur les mappages de logiciels, visitez denondj.com ou le site Web de votre logiciel.
+
+
+En prestation
+
+Chargement et suppression de pistes
+
+Lors de l’affichage d’une liste de piste :
+    Pour charger une piste sur le niveau, appuyez sur le bouton Select/Zoom.
+     Pour charger la même piste sur les deux niveaux du module (« doubles instantanés »), appuyez deux fois sur le
+      bouton Select/Zoom alors que la piste est sélectionnée.
+    Pour ajouter une piste à la liste des pistes en attente, maintenez la touche Shift enfoncée et appuyez sur le
+       bouton Select/Zoom.
+
+
+Lecture et programmation des points de repère
+
+Pour lancer ou interrompre la lecture d’une piste, appuyez sur la touche Lancer/interrompre la lecture (/).
+Pour ajouter un effet de « scratch » sur la piste, appuyez sur la touche Vinyl afin qu’elle s’allume, puis déplacez le
+ plateau.
+Pour créer le point de repère initial, appuyez sur Shift+Cue à l’emplacement désiré pendant la lecture.
+Pour retourner au point de repère initial et arrêter, appuyez sur la touche Cue. La touche clignote lorsque la piste est
+ pausée au point de repérage.
+Pour retourner au point de repère initial et continuer la lecture, appuyez sur Shift+Lancer/interrompre la lecture (/).
+Pour inverser la lecture, appuyez sur Shift+Censor/Reverse. La touche clignote durant la lecture inversée.
+Pour revernir à la lecture normale, appuyez sur la touche Censor/Reverse.
+Pour censurer la lecture, maintenez la touche Censor enfoncée.
+Pour revernir à la lecture normale, relâchez la touche Censor. La lecture normale de la piste est relancée à partir de
+ l’emplacement où elle serait si vous n’aviez pas activé la fonction Censor (c.-à-d., comme si la lecture n’avait jamais
+ été interrompue).
+Pour passer à la piste précédente ou suivante, appuyez sur une des touches Track Skip (/).
+Pour revenir au début de la piste, appuyez sur la touche Track Skip () lorsque la piste est interrompue.
+Pour parcourir rapidement la piste, maintenez la touche Shift enfoncée et appuyez sur une des touches Track Skip.
+Pour activer et désactiver le mode Slip, appuyez sur la touche Slip. En mode Slip, vous pouvez sauter à des points de
+ repère, utiliser les plateaux, ou interrompre la piste alors que la chronologie de la piste se poursuit (la moitié inférieure
+ de la forme d’onde sur l’écran continuera d’aller de l’avant). En d’autres mots, lorsque vous cessez l’action en cours, la
+ piste reprend la lecture normale à partir de l’emplacement où elle serait si vous n’aviez pas touché à l’une des
+ commandes (c.-à-d., comme si la lecture avait suivi son cours).
+Pour passer directement à un endroit spécifique sur la piste, placez votre doigt à cet endroit sur la bande du curseur
+de lecture, qui représente la durée de la piste.
+Remarque : Assurez-vous que la fonction de verrouillage du curseur de lecture est désactivée sur le lecteur multimédia
+Denon DJ connecté afin de pouvoir utiliser la bande du curseur de lecture.
+Pour effectuer un zoom avant et arrière sur la forme d'onde, tournez le bouton Select/Zoom en mode Performance
+View sur votre lecteur multimédia Denon DJ connecté.
+
+
+
+
+                                                                                                                           29
+Bouclage et parcourir rapidement une piste
+
+Pour créer et activer une boucle automatique, appuyez sur le bouton Auto Loop.
+Pour définir la durée des boucles automatiques, tournez le bouton Auto Loop afin de sélectionner le nombre de
+ temps : 1/32, 1/16, 1/8, 1/4, 1/2, 1, 2, 4, 8, 16, 32 et 64.
+Pour créer et activer une boucle manuelle, appuyez sur la touche Loop In pour définir le point d’entrée de boucle et
+ puis appuyez sur la touche Loop Out pour définir le point de sortie de boucle. La boucle sera activée immédiatement
+ et sera indiquée par une zone grisée dans la forme d’onde et dans l’aperçu de la piste.
+Pour désactiver une boucle, appuyez sur le bouton Auto Loop.
+Pour déplacer la boucle, maintenez la touche Shift enfoncée et tournez le bouton Auto Loop lorsque la boucle est
+ activée.
+Pour réduire de moitié ou doubler la durée d’une boucle, tourner le bouton Auto Loop lorsque la boucle est activée.
+Pour modifier manuellement le début ou la fin d'une boucle, appuyez sur la touche Loop In ou Loop Out, puis
+ déplacez le plateau vers la gauche ou la droite pour raccourcir ou étendre la plage de la boucle. Appuyez de nouveau
+ sur la touche Loop In ou Loop Out afin de confirmer le nouveau point de début ou de fin de boucle.
+Pour parcourir rapidement la piste, appuyez sur une des touches Beat Jump. Chaque fois que vous réappuyez sur la
+ touche, la piste saute la distance définie. Vous pouvez régler la distance du saut de battement en maintenant enfoncée
+ la touche Shift et en appuyant sur l'un ou l'autre des boutons.
+
+
+Réglage de la synchronisation et de la hauteur tonale
+
+Pour activer la synchroniser, appuyez sur la touche Sync sur l’unité que vous souhaitez qui commande le BPM, qui
+ deviendra l’unité « primaire ». Une fois que la fonction de synchronisation est activée sur cette unité, appuyez sur la
+ touche Sync des autres LC6000 PRIME. Le tempo de chaque unité sera immédiatement synchronisé au tempo de
+ l’unité primaire.
+ L'icône d'état de la synchronisation au bas de l'écran de votre lecteur multimédia Denon DJ connecté affiche l’état
+ actuel :
+     •   Sync Off : La synchronisation est désactivée.
+     •   Tempo Sync : Seulement le tempo est synchronisé (le BPM correspondra à celui de l’unité primaire).
+     •   Beat Sync : Le tempo sera synchronisé et la piste sera automatiquement synchronisée à celle de la piste sur
+         l’unité primaire.
+Pour désactiver la synchronisation sur un des LC6000 PRIME, appuyez sur Shift+Sync.
+Pour définir un autre LC6000 PRIME comme primaire, appuyez sur la touche Master. Toutes les unités LC6000
+ PRIME ou lecteurs multimédia Denon DJ compatible connectées dont la fonction de synchronisation a été activée
+ utiliseront ce tempo.
+Pour ajuster la hauteur tonale de la piste, déplacez le curseur de haute tonale. Vous pouvez uniquement faire cet
+ ajustement lorsque le module n’est pas synchronisé.
+    Important : Lorsque la synchronisation est activée, déplacer le curseur de hauteur tonale sur le LC6000 PRIME ou
+    lecteur multimédia Denon DJ compatible « primaire » permet de modifier la vitesse de tous les appareils
+    synchronisés, alors que déplacer le curseur de hauteur tonale sur les autres LC6000 PRIME ne change rien.
+Pour ajuster la hauteur tonale de la piste de façon temporaire, maintenez une des touches Pitch Bend –/+ enfoncée.
+Pour modifier la plage du curseur de haute tonale, maintenez la touche Shift enfoncée tout en appuyant sur une des
+ touches Pitch Bend –/+ afin de sélectionner +4%, 8%, 10%, 20%, 50% et 100%.
+Pour rétablir la hauteur tonale de la piste à 0%, appuyez sur Shift+Verrouillage tonal/réinitialisation tonale. La hauteur
+ tonale originale de la piste sera rétablie (0%), indépendamment de la position du curseur de hauteur tonale.
+Afin de modifier la hauteur tonale de la piste, tapez sur l’icône de la note de musique sur l’écran tactile afin d’afficher
+ le menu de modification de la hauteur tonale.
+
+
+
+
+30
+Modes de fonctionnement des pads
+Les 8 pads ont différentes fonctions selon le mode Pad. Les touches Parameter / permettent d’apporter des
+modifications à chaque mode de pad.
+    Pour accéder à chaque mode de pad, appuyez sur la touche correspondante : Hot Cue, Loop, Roll ou Slicer.
+
+
+Mode Hot Cue
+
+                                                      Hot        Hot         Hot         Hot        Hot        Hot       Hot      Hot
+                                                     Cue 1      Cue 2       Cue 3       Cue 4      Cue 5      Cue 6     Cue 7    Cue 8
+
+Le mode Hot Cue vous permet d’utiliser chaque pad pour sauter à un point de repère rapide programmé.
+Astuce : Vous pouvez utiliser le logiciel fourni Engine DJ afin de programmer, nommer et affecter des couleurs aux
+points de repère rapides. Les noms et les couleurs s’afficheront sur l’écran du lecteur multimédia Denon DJ connecté.
+    Pour assigner un point de repère rapide à un pad, appuyez sur un des pads qui est allumé à faible intensité lorsque
+     vous aurez atteint l’endroit désiré sur la piste. Le pad s’allume lorsqu’un point de repère rapide lui est affecté.
+    Pour sauter à un point de repère rapide, appuyez sur le pad correspondant.
+    Pour supprimer un point de repère rapide, maintenez la touche Shift enfoncée puis appuyez sur le pad
+     correspondant. Le pad s’éteint lorsqu’aucun point de repère rapide ne lui est affecté.
+
+
+Modes de bouclage
+
+                                                     Boucle     Boucle      Boucle     Boucle      Boucle     Boucle    Boucle   Boucle
+                                                       1          2           3          4           5          6         7        8
+
+Le mode Manual Loop vous permet d’utiliser chaque pad pour programmer et activer une boucle. Appuyer une première
+fois sur la touche Loop permet d’accéder au mode Manual Loop.
+Astuce : Vous pouvez utiliser le logiciel fourni Engine DJ afin de programmer et nommer les boucles. Les noms s’afficheront
+sur l’écran du lecteur multimédia Denon DJ connecté.
+    Pour assigner une boucle à un pad et l’activer, appuyez sur un pad qui est allumé à faible intensité pour
+     programmer un point d’entrée de boucle à l’emplacement actuel, puis appuyez de nouveau afin de créer un point
+     de sortie de boucle à un autre emplacement. Vous pouvez également programmer une boucle automatique en
+     appuyant sur un pad qui est allumé à faible intensité en mode Auto Loop. La boucle sera activée immédiatement et
+     le pad s’allumera.
+    Pour activer une boucle, appuyez sur le pad correspondant. Une fois qu'une boucle a été créée, vous pouvez la
+     déclencher en appuyant de nouveau sur le pad correspondant, selon le réglage du paramètre Saved Loop Behavior.
+     Pour activer une boucle active, maintenez enfoncée la touche Parameter  et appuyez sur un pad avec une boucle
+       enregistrée. Les boucles actives commenceront à boucler automatiquement dès qu'elles seront atteintes et sont
+       affichées avec un motif rayé dans la forme d'onde de la piste. Vous pouvez également les définir dans le logiciel
+       Engine DJ.
+Le mode Auto Loop vous permet d’utiliser chaque pad pour programmer et activer une boucle automatique. Appuyer sur
+la touche Loop en mode Manual Loop permet d’accéder au mode Auto Loop.
+    Pour activer une boucle automatique, appuyez sur un des pads. La durée de la boucle automatique pour chaque
+     pad sera affichée.
+    Pour désactiver une boucle, appuyez de nouveau sur le pad.
+
+
+Mode Roll
+
+                          (le T indique une division 1/8-Beat   1/4T-Beat   1/4-Beat   1/2T-Beat   1/2-Beat   1T-Beat   1-Beat   2-Beat
+                       temporelle axée sur le triolet) Roll        Roll       Roll        Roll       Roll       Roll     Roll     Roll
+
+
+En mode Roll, vous pouvez maintenir chaque pad enfoncé afin de déclencher un roulement de boucle d’une durée
+définie alors que la chronologie de la piste se poursuit (la moitié inférieure de la forme d’onde sur l’écran continuera
+d’aller de l’avant). Lorsque le pad est relâché, la lecture normale de la piste est relancée à partir de l’emplacement où elle
+serait si vous ne l’aviez pas enfoncé (+c.-à-d., comme si la lecture n’avait jamais été interrompue).
+    Pour activer un roulement de boucle, appuyez sur le pad correspondant. Les pads assignés à des roulements de
+     boucles ayant une division temporelle axée sur le triolet sont violets.
+
+
+                                                                                                                                      31
+Mode Slicer
+
+                                              Tranche     Tranche   Tranche   Tranche   Tranche   Tranche   Tranche   Tranche
+                                                 1           2         3         4         5         6         7         8
+
+
+En mode Slicer (première pression), les huit pads représentent huit temps séquentiels ou « tranches » dans le Beatgrid.
+La tranche en cours de lecture est représentée par le pad qui est allumé ; la lumière parcourra les pads au fur et à
+mesure que les huit tranches de la phase sont jouées. Vous pouvez appuyer sur un pad pour faire jouer la tranche
+correspondante. Lorsque le pad est relâché, la lecture normale de la piste est relancée à partir de l’emplacement où elle
+serait si vous ne l’aviez pas enfoncé (c.-à-d., comme si la lecture n’avait jamais été interrompue).
+En mode Slicer Loop Mode (seconde pression), vous activez automatiquement une boucle de 8 temps. La tranche en
+cours de lecture est représentée par le pad qui est allumé ; la lumière « parcourra les pads » au fur et à mesure que les
+huit tranches de la phase sont jouées, puis recommenceront à jouer en boucle. Vous pouvez appuyer sur un pad pour
+faire jouer la tranche correspondante. Lorsque le pad est relâché, la lecture normale de la piste est relancée à partir de
+l’emplacement où elle serait si vous ne l’aviez pas enfoncé (c.-à-d., comme si la lecture n’avait jamais été interrompue).
+     Pour activer une tranche, appuyez sur le pad correspondant.
+
+
+
+Sélection des modules
+Après l’ouverture d’un logiciel tiers pris en charge, LC6000 PRIME entre automatiquement en mode de sélection des
+modules. Cela vous permet de sélectionner lequel des modules 1 à 4 l’appareil contrôlera en fonction des fonctionnalités
+du logiciel que vous utilisez.
+     Pour accéder au mode de sélection des modules manuellement à tout autre moment, maintenez la touche Shift
+     enfoncée et appuyez sur la touche Slip.
+
+
+
+
+                        Deck      Deck      Deck        Deck
+                         1         2         3           4
+
+
+Lorsque le mode de sélection des modules est activé, les pads 1 à 4 (comme illustré ci-dessus) se mettent à clignoter en
+fonction des modules disponibles et peuvent être utilisés pour sélectionner le module que l’appareil contrôlera.
+Appuyez sur le pad correspondant pour sélectionner le module qui sera contrôlé par le LC6000 PRIME. Une fois qu’un
+module est sélectionné, le LC6000 PRIME entre en mode performance.
+Lorsque l’appareil est déjà assigné à un module, tous les autres modules disponibles en mode de sélection sont de faible
+intensité. Lorsqu’un pad est complètement éteint en mode sélection des modules, cela signifie qu'il n’est pas disponible,
+soit parce que le logiciel ne prend pas en charge ce nombre de modules soit qu'il est déjà utilisé par un autre appareil.
+Pour supprimer l'assignation d'un module, maintenez la touche Shift enfoncée et appuyez sur la touche Slip pour
+accéder au mode de sélection des modules. Maintenez ensuite le pad du module correspondant enfoncé pendant 3
+secondes. L’assignation du module sera supprimée et vous pourrez sélectionner un nouveau module en utilisant le
+même processus ci-dessus.
+
+
+Commander le PRIME 4
+Le LC6000 PRIME peut également être utilisé pour commander les modules secondaires d'une unité autonome
+PRIME 4. Utilisez un câble USB standard pour relier le port USB du LC6000 PRIME au port USB 3 et/ou 4 du panneau
+arrière du PRIME 4. L’unité reliée au port 3 peut commander le module 3, l’unité reliée au port 4 peut commander le
+module 4, et toutes les pistes chargées sur les modules 3 ou 4 du PRIME 4 seront transférées vers les modules 1 ou 2.
+Une fois relié, les touches des modules du PRIME 4 seront désactivées et le bouton Select/Zoom du LC6000 PRIME
+peut alors être utilisé pour parcourir et charger des pistes directement sur le module sélectionné.
+Si vous avez un LC6000 PRIME relié au port 4 et que vous activez la fonction de liste d’écoute du module sur le
+PRIME 4, il servira à commander la liste de lecture, mais certaines fonctions seront désactivées.
+
+
+
+
+32
+Guida per l’uso (Italiano)
+Introduzione
+
+Grazie per aver acquistato l’LC6000 PRIME. Noi di Denon DJ sappiamo che per te la musica è una cosa seria. Ecco
+perché progettiamo i nostri dispositivi con un unico obiettivo in mente: rendere le tue prestazioni le migliori possibili.
+
+
+Caratteristiche:
+
+     •   Controller da strato per lettori multimediali della serie PRIME *
+
+     •   Rotella jog wheel da 21,6 cm (8,5”) con regolazione della tensione
+     •   Display HD a colori da rotella
+     •   Controlli e layout del lettore multimediale professionale
+
+     •   Pad prestazioni multifunzione
+     •   Fader del pitch da 100 mm
+
+     •   Alimentazione USB **
+
+     •   Ufficialmente compatibile con Virtual DJ Pro, Algoriddim djay Pro 2 e Serato DJ
+* recarsi su denondj.com per un elenco dei più recenti media player compatibili
+** per alcuni computer potrebbe essere necessario un alimentatore aggiuntivo
+
+
+
+Contenuti della confezione
+
+LC6000 PRIME                                                         Guida per l’uso
+Cavo USB                                                             Istruzioni di sicurezza e garanzia
+Adattatore di alimentazione
+
+
+
+Assistenza
+
+Per le ultime informazioni in merito a questo prodotto (documentazione, specifiche tecniche, requisiti di sistema, informazioni
+sulla compatibilità, ecc.) e per effettuarne la registrazione, recarsi alla pagina denondj.com.
+Per ulteriore assistenza sul prodotto, recarsi alla pagina denondj.com/support.
+
+
+Registrazione del prodotto
+Il prodotto può includere software esclusivo e/o promozioni cui è unicamente possibile accedere registrando il nuovo
+prodotto sul sito Web di Denon DJ.
+
+Per verificare la propria idoneità e avere accesso ai contenuti disponibili, registrare il prodotto seguendo le istruzioni
+fornite:
+1.   Recarsi su denondj.com.
+2.   Fare clic su Sign In per accedere al proprio account esistente o per crearne uno nuovo.
+3.   Una volta effettuato il login, fare clic su My Registered Products (I miei prodotti registrati).
+4.   Inserire il numero di serie del prodotto nella casella e fare clic su Register Product (Registra prodotto).
+5.   In seguito alla registrazione, qualsiasi software scaricabile, contenuti esclusivi e offerte promozionali compariranno nel
+     proprio account.
+
+
+
+
+                                                                                                                            33
+Configurazione
+Importante: di tanto in tanto potremmo aggiornare il firmware del LC6000 PRIME per aggiungere nuove emozionanti
+funzioni e per apportare miglioramenti. Recarsi alla pagina denondj.com per verificare l'eventuale presenza di
+aggiornamenti del firmware disponibili, soprattutto dopo l'eventuale aggiornamento del software (gli aggiornamenti del
+firmware possono essere rivolti a nuove funzioni del software).
+
+1.   Assicurarsi che tutti i dispositivi siano spenti (off) o che i loro livelli di volume siano tutti al minimo.
+2.   Collegare la porta USB dell’LC6000 PRIME ad una porta disponibile del proprio computer o ad un media player
+     Denon DJ compatibile.
+3.   Collegare i dispositivi di uscita (cuffie, amplificatori, altoparlanti, ecc.) alle uscite del mixer.
+4.   Collegare tutti i dispositivi a fonti di alimentazione.
+     •   Al momento di avviare una sessione, accendere (1) LC6000 PRIME e altri accessori o fonti d’ingresso, (2) il
+         mixer, e infine (3) dispositivi di uscita.
+     •   Al momento di concludere una sessione, spegnere (1) dispositivi di uscita, (2) il mixer, e infine (3) LC6000 PRIME
+         e altri accessori o fonti d’ingresso.
+5.   Se si utilizza l’LC6000 PRIME con software supportato di terzi quali Virtual DJ, Algoriddim djay o Serato DJ,
+     selezionare il deck che LC6000 PRIME controllerà. Per maggiori informazioni, si veda Operazione > Scelta deck.
+
+
+
+Schema dei collegamenti
+Elementi non elencati sotto Introduzione > Contenuti della confezione sono venduti separatamente.
+
+
+
+Esempio 1
+
+Questo esempio mostra un LC6000 PRIME che controlla il secondo strato di un media player SC6000 PRIME o SC5000
+PRIME collegato a un mixer X1850 PRIME.
+
+
+
+
+              LC6000 PRIME                               Mixer Denon DJ
+             (pannello posteriore)                      (pannello posteriore)
+
+                                                                                                       LC6000 PRIME
+                                                                                                      (pannello posteriore)
+
+
+
+
+                                                  Presa di
+                                               alimentazione
+
+
+
+
+34
+Esempio 2
+
+Questo esempio mostra due unità LC6000 PRIME che controllano i deck 3 e 4 di un sistema DJ indipendente
+PRIME 4. Per ulteriori informazioni, si veda Operazione > Controllo PRIME 4.
+
+
+
+
+                                                                                       PRIME 4
+                                                                                  (pannello posteriore)
+
+
+       LC6000 PRIME
+      (pannello posteriore)
+
+
+
+
+Esempio 3
+
+Questo esempio mostra un dispositivo LC6000 PRIME connesso a un computer per il controllo software.
+
+                                                                                                      Computer
+                      LC6000 PRIME
+                     (pannello posteriore)
+
+
+
+
+                                                                                                                 35
+Caratteristiche
+Pannello superiore
+
+Scelta dei supporti e navigazione
+                                                                                                                2      3
+1.   Fascetta di abbassamento della puntina: la                                               1
+     lunghezza di questa fascia rappresenta la lunghezza
+     dell’intera traccia. Puntare il dito in un punto lungo                                                   7 4
+     questo sensore per saltare a quel punto della traccia.            27
+2.   Back (indietro): premere questo tasto per tornare alla                                   5                  8
+     finestra precedente. In Performance View, premere
+     questo tasto per entrare in modalità di visualizzazione
+     Browse View.                                                      26                                      15        16
+3.   Forward (avanti): premere questo tasto per passare alla      19                          6                         14
+     finestra successiva. In Performance View, premere
+     questo tasto per entrare in modalità di visualizzazione
+     Browse View.                                               11
+4.   Select/Zoom        (scegli/carica): In      modalità     di
+     visualizzazione Browse, girare questa manopola per 28
+     scorrere lungo un elenco e premere la manopola stessa                                             18
+     per selezionare un elemento o per caricare una traccia
+     sullo strato in evidenza. Premere due volte la manopola
+                                                                   10           17 21 22 23 24 25 12
+     per caricare una traccia da un deck attivo al livello
+     controllato da LC6000 PRIME ("instant doubles"). Se è         9                   20
+     disponibile più di un deck attivo, utilizzare l'overlay che                                             13
+     appare sul touchscreen per selezionare il deck che si
+     desidera raddoppiare.
+     In modalità di visualizzazione Performance, girare questa manopola per zoomare sull’onda di una traccia e uscire
+     dallo zoom. Tenere premuta la manopola per regolare la griglia dei beat (consultare la Guida per l'uso del lettore
+     multimediale per maggiori dettagli sulla regolazione della griglia dei beat).
+
+
+Comandi di riproduzione e trasporto
+
+5.   Piatto: questo piatto capacitivo e sensibile al tatto controlla la testina audio quando la rotella viene toccata e
+     spostata Quando il tasto Vinyl è acceso, muovere il piatto per effettuare lo “scratch” della traccia come si farebbe
+     con un disco in vinile. Quando il tasto Vinyl è spento (o se si tocca solo il lato del piatto), muovere il piatto per
+     regolare temporaneamente la velocità della traccia.
+6.   Display del piatto: questo display mostra informazioni sulle prestazioni, inclusa la posizione corrente della testina, le
+     dimensioni dell’auto loop e la grafica dell’album. Per maggiori informazioni, si veda Panoramica Display del Piatto.
+7.   Wheel Adjust (regolazione rotella): girare questa manopola per vedere quanto il piatto è resistente alle regolazioni.
+     Questa manopola applica un freno al piatto per impedire deviazioni involontarie dovute a vibrazioni ambientali
+     derivanti dalle frequenze dei bassi, all’instabilità della superficie, ecc.
+8.   Stop Time (tempo di arresto): controlla la velocità alla quale la traccia rallenta fino ad arrestarsi completamente
+     (“tempo di frenata”) quando la si mette in pausa premendo Play/Pause (/).
+9.   Vinyl (Vinile): premere questo tasto per attivare/disattivare una “modalità vinile” per il piatto. Quando è attivato, è
+     possibile utilizzare il piatto per effettuare lo “scratch” della traccia come si farebbe con un disco in vinile.
+10. Play/Pause (/): questo tasto interrompe momentaneamente o fa riprendere la riproduzione.
+     Tenere premuto Shift e premere questo tasto per riprodurre la traccia con un effetto “stutter” dal punto cue iniziale.
+11. Cue: Durante la riproduzione, premere questo tasto per far tornare la traccia al suo punto cue iniziale e interrompere
+    la riproduzione. Per spostare il punto cue iniziale, assicurarsi che la traccia sia in pausa, muovere il piatto per
+    collocare la testina audio nel punto desiderato, quindi premere questo tasto. Se il deck è in pausa, tenere premuto
+    questo tasto per riprodurre temporaneamente la traccia dal punto cue iniziale. Lasciare la pressione, per far tornare
+    la traccia al punto cue iniziale e interromperne temporaneamente la riproduzione. Per continuare la riproduzione
+    senza tornare al punto cue iniziale, tenere premuto questo tasto, quindi premere e tenere premuto il tasto Play e
+    rilasciare entrambi i tasti.
+     Durante la riproduzione, tenere premuto Shift e premere questo tasto per impostare il punto cue iniziale.
+12. Track Skip (salta traccia): premere uno di questi tasti per passare alla traccia precedente o successiva.
+     Premere il tasto Previous Track durante la pausa di una traccia per tornare all’inizio della traccia stessa.
+     Tenere premuto Shift, quindi premere uno di questi tasti per riavvolgere o avanzare lungo la traccia.
+
+
+36
+Comandi Sync & Pitch
+13. Fader del pitch: muovere questo fader per regolare la velocità (pitch) della traccia. Si può regolare il suo intervallo
+    complessivo tenendo premuto Shift e premendo uno dei tasti Pitch Bend.
+    Importante: se Sync è attivato, spostando il fader del pitch dell’unità LC6000 PRIME “primaria” cambierà la velocità
+    di tutte le unità sincronizzate, mentre spostando il fader del pitch delle altre unità non succederà nulla.
+14. Pitch Bend –/+: tenere premuto uno di questi tasti per ridurre o aumentare (rispettivamente) momentaneamente la
+    velocità della traccia.
+    Tenere premuto Shift, quindi premere uno di questi tasti per impostare l’intervallo del fader del pitch.
+15. Key Lock/Pitch Reset: premere questo tasto per attivare o disattivare Key Lock. Quando Key Lock è attivo, il tasto
+    traccia rimarrà lo stesso anche se se ne regola la velocità.
+    Tenere premuto Shift e premere questo tasto per riportare la traccia alla sua tonalità originale, indipendentemente
+    dalla posizione del fader del pitch o delle modifiche effettuate tramite il menu di modifica tonalità.
+16. Sync/Sync Off: premere questo tasto per attivare la sincronizzazione.
+    Per sincronizzare due o più unità LC6000 PRIME, premere Sync sull’unità che si desidera che controlli il BPM, che
+    diventa “primaria”. Dopo aver attivato la sincronizzazione su quella unità, premere Sync sulle ulteriori unità. Il tempo
+    di ciascuna unità si sincronizzerà immediatamente per abbinarsi al tempo dell’unità primaria.
+    Tenere premuto Shift e premere questo tasto per disattivare la funzione Sync.
+17. Master: premere questo tasto per impostare questa unità LC6000 PRIME come quella che controlla il tempo
+    primario. Tutte le unità LC6000 PRIME collegate con funzione Sync attivata utilizzeranno questo tempo. Se si ferma
+    il “primaria” LC6000 PRIME, l’LC6000 PRIME a suonare più a lungo nell’impianto diventerà automaticamente il
+    nuovo “primaria” (a meno che l’impostazione non venga modificata manualmente).
+
+
+Comandi prestazioni
+18. Shift: tenere premuto questo pulsante per accedere alle funzioni secondarie di altri comandi.
+19. Slip: premere questo tasto per abilitare o disabilitare la modalità slip. In modalità Slip si può passare a punti cue,
+    utilizzare il piatto o mettere in pausa la traccia mentre la timeline della traccia va avanti (la parte inferiore dell’onda a
+    display continuerà ad avanzare). In altre parole, quando si interrompe qualsiasi azione, verrà ripresa la normale
+    riproduzione della traccia dal punto in cui si sarebbe trovata se non fosse mai stato fatto nulla (ossia, come se la
+    traccia avesse continuato a suonare).
+    Tenere premuto Shift e premere questo tasto per entrare in modalità di scelta deck per l’uso con il software
+    supportato. Per maggiori informazioni, si veda Operazione > Scelta deck.
+20. Censor/Reverse: premere questo tasto per attivare o disattivare la funzione Censor: la riproduzione della traccia
+    sarà invertita, ma quando si lascia il tasto, la riproduzione normale riprenderà da dove sarebbe stata se non fosse
+    mai stata attivata la funzione Censor (vale a dire come se la traccia fosse stata riprodotta in avanti per tutto il tempo).
+    Tenere premuto Shift e premere questo tasto per invertire la riproduzione della traccia normalmente. Premere
+    nuovamente questo tasto per far tornare la riproduzione nella normale direzione in avanti.
+21. Pad performance: questi pad hanno funzioni diverse su ciascun deck a seconda della modalità pad corrente. Si
+    veda Operazione > Esibizioni > Modalità pad per maggiori informazioni.
+    Questi pad sono inoltre utilizzati per la scelta del deck quando l’LC6000 PRIME è connesso al software supportato.
+    Per maggiori informazioni, si veda Operazione > Scelta deck.
+22. Hot Cue: premere questo tasto per entrare in modalità Hot Cue.
+23. Loop: premere questo tasto una volta per entrare in modalità Loop Manuale. Premerlo ancora una volta per entrare
+    in modalità Loop Automatico.
+24. Roll: premere questo tasto per entrare in modalità Roll.
+25. Slicer: Premere questo tasto una volta per entrare in modalità Slicer e premerlo nuovamente per entrare in modalità
+    Slicer Loop.
+26. Parametro /: servirsi di questi tasti per varie funzioni in ciascuna modalità pad. Si veda Operazione > Esibizioni
+    > Modalità pad per maggiori informazioni.
+27. Loop In/Loop Out: premere uno di questi tasti per creare un punto di Loop In o di Loop Out nella posizione
+    corrente. La loro collocazione sarà influenzata dalle impostazioni di Quantize e Smart Loops.
+28. Auto Loop/Loop Move: girare questa manopola per impostare le dimensioni di un loop automatico. Il valore verrà
+    illustrato sul touchscreen e sul display del piatto.
+    Premere questa manopola per attivare o disattivare un loop automatico nella posizione corrente della traccia.
+    Suggerimento: in modalità di loop manuale si possono assegnare loop automatici ai pad. Si veda Operazione >
+    Esibizioni > Modalità pad per maggiori informazioni.
+    Tenere premuto Shift e girare questa manopola per spostare il loop attivo a sinistra o a destra.
+29. Beat Jump: premere uno di questi tasti per saltare indietro o avanti lungo la traccia.
+    Tenere premuto Shift, quindi premere uno di questi tasti per aumentare o diminuire la misura del salto di beat.
+
+
+                                                                                                                              37
+Panoramica display del piatto
+Normalmente, il display del piatto mostra le seguenti informazioni:
+     •   la posizione corrente della testina di riproduzione.
+     •   la grafica dell’album della traccia corrente.
+
+Il display del piatto mostra temporaneamente le seguenti informazioni:
+     •   le dimensioni correnti di un loop automatico dopo aver girato la manopola
+         Auto Loop.
+     •   la posizione della testina di riproduzione quando Slip è attivo.
+
+
+
+Pannello posteriore
+1.   Tasto di alimentazione: premere questo tasto per
+     accendere e spegnere l’LC6000 PRIME.
+2.   Ingresso di alimentazione: servirsi del adattatore di
+     alimentazione bloccante in dotazione per collegare                                     3 2 1
+     questo ingresso ad una presa di alimentazione.
+3.   Porta USB: servirsi di un cavo USB standard (in
+     dotazione) per collegare questa porta USB a una porta
+     USB disponibile di un media player Denon DJ
+     compatibile o al proprio computer. Questa connessione
+     alimenta l’LC6000 PRIME e invia e riceve messaggi
+     MIDI dal e al media player o computer.
+     Nota bene: mentre la maggior parte dei media player e
+     dei computer possono alimentare l’LC6000 PRIME
+     utilizzando la porta USB, alcuni possono non fornire
+     potenza sufficiente e richiederanno l’uso di un
+     adattatore.
+
+
+
+Operazione
+Nota bene: queste istruzioni sono principalmente per l’uso con media player compatibili. Alcuni comandi o funzioni
+elencati potrebbero non funzionare con tutti i software supportati. Per maggiori dettagli sulla mappatura del software,
+visitare la pagina denondj.com o il sito web del software.
+
+
+Esibizione
+
+Caricare e rimuovere tracce
+Durante la visualizzazione di qualsiasi elenco di tracce:
+     Per caricare una traccia sullo strato, premere la manopola Select/Zoom.
+     Per effettuare “instant doubles” (ossia caricare la stessa traccia su entrambi i layer del deck), premere due
+      volte la manopola Select/Zoom mentre la traccia è evidenziata.
+     Per aggiungere una traccia alla Prepare list, tenere premuto Shift e premere la manopola Select/Zoom.
+
+
+
+
+38
+Riproduzione e cueing
+Per riprodurre o interrompere momentaneamente la riproduzione di una traccia, premere Play/Pause (/).
+Per effettuare lo scratch di una traccia, premere Vinyl in modo che sia acceso, quindi muovere il piatto.
+Per impostare il punto cue iniziale, premere Shift+Cue nel punto desiderato durante la riproduzione.
+Per tornare al punto cue iniziale e fermarsi, premere Cue. Il tasto lampeggia mentre l’apparecchio è in pausa al punto
+ cue.
+Per tornare al punto cue iniziale e continuare la riproduzione, premere Shift+Play/Pause (/).
+Per invertire la riproduzione, premere Shift+Censor/Reverse. Quando la riproduzione è invertita, il tasto lampeggia.
+Per tornare alla riproduzione normale, premere Censor/Reverse.
+Per censurare la riproduzione, tenere premuto Censor.
+Per tornare alla riproduzione normale, lasciare il tasto Censor. La riproduzione normale riprende dal punto in cui si
+ sarebbe trovata se la funzione Censor non fosse mai stata attivata (ossia, come se la traccia avesse continuato a
+ suonare).
+Per saltare alla traccia precedente o successiva, premere uno dei tasti Track Skip /.
+Per tornare all’inizio di una traccia, premere Track Skip  durante la pausa della traccia.
+Per scorrere rapidamente lungo la traccia, tenere premuto Shift e quindi premere uno dei tasti Track Skip.
+Per attivare o disattivare la modalità Slip, premere Slip. In modalità Slip si può passare a punti cue, utilizzare i piatti o
+ mettere in pausa la traccia mentre la timeline della traccia va avanti (la parte inferiore dell’onda a touchscreen
+ continuerà ad avanzare). Quando si interrompe qualsiasi azione, verrà ripresa la normale riproduzione della traccia dal
+ punto in cui si sarebbe trovata se non fosse mai stato fatto nulla (ossia, come se la traccia avesse continuato a
+ suonare).
+Per saltare a un punto specifico della traccia, collocare il dito lungo la fascetta di abbassamento della puntina, che
+  rappresenta la lunghezza della traccia.
+Nota bene: Assicurarsi che il fermo puntina (Needle Lock) sia disabilitato sul media player Denon DJ connesso per poter
+utilizzare la fascetta di abbassamento della puntina.
+Per zoomare sull’onda e uscire dallo zoom, girare la manopola Select/Zoom quando ci si trova in Performance View
+  sul proprio media player Denon DJ connesso.
+
+
+
+Loop e salto del beat
+Per creare e attivare un auto loop, premere la manopola Auto Loop.
+Per impostare la lunghezza dell’auto loop, girare la manopola Auto Loop per selezionare il numero di beat: 1/32, 1/16,
+ 1/8, 1/4, 1/2, 1, 2, 4, 8, 16, 32 o 64.
+Per creare e attivare un loop manuale, premere Loop In per impostare il punto di inizio, quindi premere Loop Out per
+ impostare quello finale. Il loop verrà attivato immediatamente e sarà indicato come un’area ombreggiata nell’onda e
+ nella panoramica della traccia.
+Per disattivare un loop, premere la manopola Auto Loop.
+Per spostare il loop, tenere premuto Shift e girare la manopola Auto Loop mentre il loop iè attivo.
+Per raddoppiare o dimezzare la lunghezza di un loop, girare la manopola Auto Loop quando il loop è attivo.
+Per modificare manualmente l’inizio o la fine di un loop, premere rispettivamente Loop In o Loop Out, quindi
+ muovere il piatto a destra o a sinistra per abbreviare o estendere la regione di loop. Fissare la modifica premendo
+ nuovamente Loop In o Loop Out.
+Per saltare il beat in una traccia, premere uno dei tasti Beat Jump. A ciascuna pressione, la traccia salterà della
+ lunghezza impostata. Puoi regolare la lunghezza del salto di beat tenendo premuto Shift e premendo uno dei pulsanti.
+
+
+
+
+                                                                                                                          39
+Sincronizzazione e regolazione del pitch
+Per attivare sync, premere Sync sull’unità che si desidera che controlli il BPM, che diventa “primaria”. Dopo aver
+ attivato la sincronizzazione su quella unità, premere Sync sulle ulteriori unità. Il tempo di ciascuna unità si sincronizzerà
+ immediatamente per abbinarsi al tempo dell’unità primaria.
+ L’icona di stato Sync a display indicherà lo stato corrente.
+     •   Sync Off: la sincronizzazione è disattivata.
+     •   Tempo Sync: solo il tempo è sincronizzato (il BPM corrisponderà a quello dell’unità primaria).
+     •   Beat Sync: il tempo sarà sincronizzato e il beat della traccia sarà automaticamente abbinato a quello della
+         traccia presente sull’unità primaria.
+Per disattivare la sincronizzazione su un’unità LC6000 PRIME, premere Shift+Sync.
+Per impostare un’unità LC6000 PRIME diversa come primaria, premere Master. Tutte le unità LC6000 PRIME
+ collegate con funzione Sync attivata utilizzeranno il tempo di questa unità.
+Per regolare il pitch della traccia, spostare il fader del pitch. Questo può essere fatto solo quando il deck non è
+ sincronizzato.
+ Importante: se Sync è attivato, spostando il fader del pitch dell’unità LC6000 PRIME “primaria” cambierà la velocità di
+ tutte le unità sincronizzate, mentre spostando il fader del pitch delle altre unità non succederà nulla.
+Per regolare momentaneamente il pitch della traccia, tenere premuto uno dei tasti Pitch Bend –/+.
+Per regolare l’intervallo del fader del pitch, tenere premuto Shift e premere uno dei tasti Pitch Bend –/+ per
+ selezionare +4%, 8%, 10%, 20%, 50% o 100%.
+Per riportare il pitch della traccia allo 0%, premere Shift+Key Lock/Pitch Reset. Il pitch della traccia tornerà al valore
+ originale (0%) indipendentemente dalla posizione del fader del pitch.
+Per regolare il tasto della traccia, toccare il tasto sullo schermo tattile per aprire il menu Key Change.
+
+
+
+
+Modalità Pad
+Gli 8 pad hanno diverse funzioni in ogni modalità. I tasti Parametro / creano regolazioni specifiche per ciascuna
+modalità pad.
+     Per entrare in ciascuna modalità pad, premere il tasto corrispondente: Hot Cue, Loop, Roll o Slicer.
+
+
+
+Modalità Hot Cue
+
+                                                  Hot       Hot      Hot        Hot       Hot       Hot       Hot      Hot
+                                                 Cue 1     Cue 2    Cue 3      Cue 4     Cue 5     Cue 6     Cue 7    Cue 8
+
+In modalità Hot Cue, è possibile utilizzare ciascun pad per saltare a un punto hot cue assegnato.
+Suggerimento: si può utilizzare il software Engine DJ per impostare il nome e assegnare colori ai punti hot cue. I nomi e i
+colori compariranno a display per riferimento.
+     Per assegnare un hot cue a un pad, premere un pad scarsamente illuminato nel punto della traccia desiderato. Il
+      pad si accende quando un punto hot cue viene assegnato.
+     Per saltare a un punto hot cue, premere il pad corrispondente.
+     Per cancellare un punto hot cue da un pad, premere Shift e il pad desiderato. Il pad si spegne quando non ci
+      sono punti hot cue assegnati.
+
+
+
+
+40
+Modalità Loop
+
+                                                     Fascetta   Fascetta    Fascetta   Fascetta    Fascetta   Fascetta   Fascetta   Fascetta
+                                                        1          2           3          4           5          6          7          8
+
+
+In modalità Manual Loop è possibile utilizzare ciascun pad per attivare un loop assegnato. Premendo Loop per la prima
+volta si entra sempre in modalità di Loop manuale.
+Suggerimento: si può utilizzare il software Engine DJ per impostare e nominare i loop. I nomi compariranno a display per
+riferimento.
+    Per assegnare un loop a un pad e attivarlo, premere un pad scarsamente illuminato per creare un punto di Loop In
+     nel punto corrente e premerlo nuovamente per creare il punto di Loop Out in un altro punto. È anche possibile
+     assegnare un auto loop a un pad premendo un pad scarsamente illuminato quando ci si trova in auto loop. Il loop si
+     attiva immediatamente e il pad si accende.
+    Per attivare un loop, premere il pad corrispondente. Una volta creato un loop, è possibile riattivarlo premendo
+     nuovamente il pad corrispondente, a seconda dell’impostazione del comando Saved Loop Behavior.
+    Per abilitare un loop attivo, tieni premuto il tasto Parametro  e premi un pad con un loop salvato. I loop attivi
+     inizieranno a scorrere automaticamente non appena vengono raggiunti e vengono visualizzati con un motivo a
+     strisce nella forma d'onda della traccia. Puoi anche impostarli nel software Engine DJ.
+    Per cancellare un loop, premere Shift e il pad desiderato.
+In modalità Auto Loop è possibile utilizzare ciascun pad per attivare un loop automatico. Premendo Loop quando ci si
+trova in modalità Manual Loop si entra in modalità Auto Loop.
+    Per attivare un auto loop, premere un pad. A display compare la lunghezza dell’auto loop per ciascun pad.
+    Per disattivare un auto loop, premere nuovamente il pad.
+
+
+
+Modalità Roll
+
+                    (“T” denota una suddivisione
+                                                     1/8-Beat   1/4T-Beat   1/4-Beat   1/2T-Beat   1/2-Beat   1T-Beat    1-Beat     2-Beat
+                     di tempo basata su triplette)     Roll        Roll       Roll        Roll       Roll       Roll      Roll       Roll
+
+
+In modalità Roll si può premere ciascun pad per attivare un “giro di loop” di una determinata lunghezza mentre la timeline
+della traccia va avanti (la parte inferiore dell’onda a display continuerà ad avanzare). Quando si rilascia il pad verrà ripresa
+la normale riproduzione della traccia dal punto in cui si sarebbe trovata se non fosse mai stato fatto niente (ossia, come
+se la traccia avesse continuato a suonare).
+    Per attivare un roll, premere il pad corrispondente. Pad con loop roll basati su terzine sono illuminati di viola.
+
+
+
+
+Modalità Slicer
+
+                                                     Slice       Slice       Slice      Slice       Slice      Slice      Slice     Slice
+                                                       1           2           3          4           5          6          7         8
+
+In modalità Slicer (prima pressione), gli 8 pad rappresentano 8 beat sequenziali, “slice”, nella griglia del beat. Lo slice che
+viene riprodotto è rappresentato dal pad acceso; la luce si “sposta tra i pad” man mano che avanza attraverso ciascuna
+frase di 8 slice. Si può premere un pad per riprodurre quello slice. Quando si rilascia il pad verrà ripresa la normale
+riproduzione della traccia dal punto in cui si sarebbe trovata se non fosse mai stata premuta (ossia, come se la traccia
+avesse continuato a suonare).
+In modalità Slicer Loop (seconda pressione), si attiva automaticamente un loop da 8 beat. Lo slice che viene riprodotto è
+rappresentato dal pad acceso; la luce si "sposta tra i pad" man mano che avanza attraverso ciascuna frase di otto Slice,
+che andrà in loop (questa è la differenza tra questa modalità e la modalità Slicer). Per riprodurre tale slice si può premere
+un pad. Quando si rilascia il pad verrà ripresa la normale riproduzione della traccia dal punto in cui si sarebbe trovata nel
+loop se non fosse mai stata premuta (ossia, come se la traccia avesse continuato a suonare).
+    Per riprodurre uno slice, premere il pad corrispondente.
+
+
+
+
+                                                                                                                                          41
+Scelta del deck
+Dopo aver aperto il software di terzi supportato, l’LC6000 PRIME entrerà automaticamente in modalità di scelta del deck.
+Ciò consente di selezionare quale deck, da 1–4, l’apparecchio controllerà, a seconda delle funzioni del software che si
+sta utilizzando.
+     Per entrare manualmente in modalità di scelta del deck in qualsiasi altro momento, tenere premuto Shift e
+     premere Slip.
+
+
+
+
+                         Deck      Deck      Deck      Deck
+                          1         2         3         4
+
+
+Quando si entra in modalità di scelta deck, i pad performance 1–4 (come illustrato in alto) inizieranno a lampeggiare a
+seconda dei deck disponibili e possono essere utilizzati per selezionare il deck che sarà controllato dal dispositivo.
+Premere il pad corrispondente per selezionare il deck che LC6000 PRIME deve controllare. Una volta selezionato un
+deck, l’LC6000 PRIME entrerà in modalità performance.
+Quando il dispositivo è già assegnato a un deck, tutti gli altri deck disponibili saranno illuminati in maniera smorzata in
+modalità di scelta del deck. Quando un pad è completamente spento in modalità di scelta del deck, il deck
+corrispondente non è disponibile per la scelta, o perché il software non supporta quel numero di deck, o perché un altro
+dispositivo sta già utilizzando quel deck.
+Per annullare l’assegnazione di un dispositivo da un deck, tenere premuto Shift e premere Slip per entrare in
+modalità di scelta del deck. Quindi, tenere premuto il pad del deck corrispondente per 3 secondi. L’assegnazione del
+deck sarà cancellata e sarà possibile effettuare una nuova scelta di deck servendosi del procedimento illustrato in
+precedenza.
+
+
+
+
+Controllo PRIME 4
+LC6000 PRIME può essere utilizzato anche per controllare i deck secondari di un'unità DJ indipendente PRIME 4.
+Utilizzare un cavo USB standard per collegare la porta USB di LC6000 PRIME alla porta USB 3 e/o 4 del pannello
+posteriore su PRIME 4. Un'unità collegata alla porta 3 controllerà il deck 3, un'unità collegata alla porta 4 controllerà il
+deck 4 e qualsiasi traccia caricata nei deck 3 o 4 su PRIME 4 sarà spostata nei deck 1 o 2.
+Dopo la connessione, i tasti del deck su PRIME 4 saranno disabilitati e la manopola Select/Zoom (scegli/carica) su
+LC6000 PRIME può essere utilizzata per esplorare e caricare i brani direttamente nel deck selezionato.
+Se si dispone di un'unità LC6000 PRIME collegata alla porta 4 e si abilita la funzione Playlist Deck su PRIME 4, questa
+unità sarà utilizzata per controllare la playlist e alcune funzioni saranno disabilitate.
+
+
+
+
+42
+Benutzerhandbuch (Deutsch)
+Einführung
+
+Vielen Dank für den Kauf des LC6000 PRIME. Wir von Denon DJ wissen, wie wichtig Ihnen die Musik ist. Darum
+entwerfen wir unsere Geräte stets nur mit einem einzigen Ziel vor Augen: Ihre Performance so gut wie möglich zu
+unterstützen.
+
+
+Features:
+
+     •     Layer Controller für Media Player der PRIME-Serie*
+
+     •     21,6 cm-Jog Wheel mit Spannungsanpassung
+     •     HD-Farbradanzeige
+     •     Professionelle Media Player-Steuerelemente und -Layout
+
+     •     Multifunktionale Performance-Pads
+     •     100 mm-Pitch Fader
+
+     •     USB-Stromversorgung**
+
+     •     Offiziell kompatibel mit Virtual DJ Pro, Algoriddim djay Pro 2 und Serato DJ
+* Unter denondj.com finden Sie eine Liste der neuesten kompatiblen Mediaplayer
+** Für einige Computer ist möglicherweise eine zusätzliche Stromversorgung erforderlich
+
+
+
+Lieferumfang
+
+LC6000 PRIME                                                       Benutzerhandbuch
+USB-Kabel                                                          Sicherheits- und Garantiehandbuch
+Netzteil
+
+
+
+Kundendienst
+
+Für die neuesten Informationen zu diesem Produkt (Dokumentation, technische Daten, Systemanforderungen,
+Informationen zur Kompatibilität etc.) und zur Produktregistrierung besuchen Sie bitte: denondj.com.
+Für zusätzlichen Produkt-Support besuchen Sie denondj.com/support.
+
+
+
+Produktregistrierung
+Ihr Produkt enthält möglicherweise exklusive Software und/oder Werbeaktionen, auf die Sie nur zugreifen können, wenn
+Sie Ihr neues Produkt auf der Denon DJ-Website registrieren.
+
+Um die Berechtigung zu prüfen und auf die verfügbaren Inhalte zuzugreifen, registrieren Sie Ihr Produkt bitte anhand der
+folgenden Anweisungen:
+1.   Besuchen Sie denondj.com.
+2.   Klicken Sie auf Sign In (Anmelden), um auf Ihr vorhandenes Konto zuzugreifen oder ein neues Konto zu erstellen.
+3.   Klicken Sie nach der Anmeldung auf My Registered Products (Meine registrierten Produkte).
+4.   Geben Sie die Produktseriennummer in das Feld ein und klicken Sie auf Register Product (Produkt registrieren).
+5.   Nach erfolgreicher Registrierung werden alle zutreffenden Software-Downloads, exklusiven Inhalte und
+     Werbeangebote in Ihrem Konto angezeigt.
+
+
+                                                                                                                       43
+Setup
+Wichtig: Möglicherweise werden wir die Firmware für LC6000 PRIME gelegentlich aktualisieren, um nützliche neue
+Funktionen und Verbesserungen hinzuzufügen. Besuchen Sie insbesondere nach einer Aktualisierung Ihrer Software
+denondj.com, um zu sehen, ob Firmwareupdates verfügbar sind, (Firmwareupdates können neue Softwarefunktionen
+betreffen).
+
+1.   Stellen Sie sicher, dass alle Geräte ausgeschaltet sind, bzw. dass alle Lautstärken auf Minimum eingestellt sind.
+1.   Verbinden Sie den USB-Anschluss des LC6000 PRIME mit einem verfügbaren Anschluss Ihres Computers oder
+     einem kompatiblen Denon DJ Mediaplayer.
+2.   Schließen Sie alle Ausgabegeräte (Kopfhörer, Verstärker, Lautsprecher usw.) an die Ausgänge Ihres Mischpults an.
+3.   Schließen Sie alle Geräte an Stromquellen an.
+     •   Schalten Sie zu Beginn einer Session zuerst (1) LC6000 PRIME und anderes Zubehör oder Eingangsquellen 2
+         ein, Ihren Mixer und zuletzt Ihre (3) Ausgabegeräte ein.
+     •   Schalten Sie am Ende einer Session zuerst (1) Ausgabegeräte, 2 Ihren Mixer und dann (3) LC6000 PRIME und
+         anderes Zubehör oder Eingangsquellen ein.
+4.   Wenn Sie LC6000 PRIME mit unterstützter Software von Drittanbietern wie Virtual DJ, Algoriddim djay oder Serato
+     DJ verwenden, wählen Sie das Deck aus, das LC6000 PRIME steuern soll. Weitere Informationen finden Sie unter
+     Betrieb > Deckauswahl.
+
+
+Anschlusspläne
+Artikel, die unter Einführung > Lieferumfang aufgeführt sind, sind separat erhältlich.
+
+
+
+Beispiel 1
+
+Dieses Beispiel zeigt einen LC6000 PRIME, der die zweite Layer eines SC6000 PRIME- oder SC5000 PRIME-
+Mediaplayers steuert, der an einen X1850 PRIME-Mixer angeschlossen ist.
+
+
+
+                 SC6000 PRIME
+                     (Rückseite)
+
+                                                                                             LC6000 PRIME
+                                                                                                (Rückseite)
+
+
+
+
+                                                    Denon DJ-Mixer
+                                                        (Rückseite)
+
+
+
+
+                                   Steckdose
+
+
+
+
+44
+Beispiel 2
+
+Dieses Beispiel zeigt zwei LC6000 PRIME-Einheiten, die die Decks 3 und 4 eines PRIME 4 Standalone-DJ-Systeme
+steuern. Weitere Informationen finden Sie unter Betrieb > PRIME 4 Steuerung.
+
+
+
+
+                                                                                       PRIME 4
+                                                                                     (rear panel)
+
+
+        LC6000 PRIME
+          (rear panel)
+
+
+
+
+Beispiel 3
+
+Dieses Beispiel zeigt eine LC6000 PRIME-Einheit, die zur Softwaresteuerung an einen Computer angeschlossen ist.
+
+                                                                                                    Computer
+                         LC6000 PRIME
+                          (Vorderseite)
+
+
+
+
+                                                                                                                  45
+Funktionen
+Oberseite
+
+Medienauswahl & Browsing
+                                                                                                              2       3
+1.   Needle Drop Strip: Die Länge des Strips repräsentiert                                  1
+     die Länge des gesamten Tracks. Legen Sie Ihren Finger
+     auf einen Punkt dieser Sensorfläche, um zu dieser Stelle                                               7 4
+     im Track zu springen.                                       27
+2.   Back (Zurück): Drücken Sie diese Taste während Sie                                     5                  8
+     sich auf dem angeschlossenen Media Player in der
+     Ansicht "Durchsuchen" befinden, um zum vorherigen
+     Fenster zu springen. Während Sie sich in der                26                                  15       16
+     Performance-Ansicht befinden, drücken Sie diese
+     Taste, um in die Browse-Ansicht zu wechseln.              19                           6                14
+3.   Forward (Vorwärts): Drücken Sie diese Taste während
+     Sie sich auf dem angeschlossenen Media Player in der
+     Durchsuchen-Ansicht befinden, um zum nächsten
+                                                              11
+     Fenster zu springen. Während Sie sich in der
+     Performance-Ansicht befinden, drücken Sie diese
+                                                              28
+     Taste, um in die Browse-Ansicht zu wechseln.                                                   18
+4.   Select Load (Auswählen/Laden): Drehen Sie in der          10       17 21 22 23 24 25 12
+     Durchsuchen-Ansicht diesen Regler, um durch eine
+     Liste zu scrollen und drücken Sie den Regler, um ein
+     Element auszuwählen oder einen Track in die
+                                                                  9                 20
+     fokussierte Ebene zu laden. Drücken Sie den Regler
+                                                                                                          13
+     zweimal, um einen Track von einem aktiven Deck in den
+     von LC6000 PRIME gesteuerten Layer zu laden
+     („Instant Doubles“). Wenn mehr als ein aktives Deck
+     verfügbar ist, verwenden Sie das auf dem Touchscreen
+     angezeigte Overlay, um das Deck auszuwählen, das Sie
+     verdoppeln möchten.
+     Drehen Sie in der Performance-Ansicht diesen Regler, um die Wellenform eines Tracks zu vergrößern oder zu
+     verkleinern. Halten Sie den Regler gedrückt, um das Beat-Grid anzupassen (Weitere Informationen finden Sie im
+     Benutzerhandbuch Ihres Media Players).
+
+Wiedergabe- und Transport-Bedienelemente
+5.  Layer: Drücken Sie diese Taste, um den Layer-Focus von LC6000 PRIME zu wechseln.
+6.  Plattenteller: Dieser kapazitive, berührungsempfindliche Plattenteller steuert den Abspielkopf, wenn der Plattenteller
+    berührt und bewegt wird. Wenn die Vinyl–Taste eingeschaltet ist, könnenSie den Plattenteller bewegen, um das
+    „Scratchen“ einer Vinyl-Platte zu simulieren. Wenn die Vinyl–Taste ausgeschaltet ist (oder wenn Sie nur die Seite des
+    Plattentellers berühren), können Sie den Plattenteller bewegen, um die Geschwindigkeit des Tracks anzupassen.
+7. Platter Display (Plattenteller-Display): In dieser Anzeige werden für die Performance relevante Informationen
+    angezeigt, einschließlich der aktuellen Position des Abspielkopfes, der Auto-Loop-Größe und des Albumcovers.
+    Siehe Plattenteller-Display-Übersicht für weitere Informationen.
+8. Stop Time (Stoppzeit): Legt fest, wie schnell der Track vollständig gestoppt wird („Bremszeit“), wenn er mit
+    Wiedergabe/Pause (/) pausiert wird.
+9. Vinyl: Mit dieser Taste aktivieren/deaktivieren Sie einen „Vinyl-Modus“ für den Plattenteller. Wenn dieser aktiviert ist,
+    können Sie den Plattenteller bewegen, um das „Scratchen“ einer Vinyl-Platte zu simulieren.
+10. Play/Pause (Wiedergabe/Pause) (/): Mit dieser Taste kann die Wiedergabe pausiert oder fortgesetzt werden.
+    Halten Sie Umschalten gedrückt, und drücken Sie anschließend diese Taste, um den Track ab dem ursprünglichen
+    Cue-Punkt mit einem „Stottereffekt“ zu versehen.
+11. Cue: Drücken Sie während der Wiedergabe auf diese Taste, um den Track zum ursprünglichen Cue-Punkt
+    zurückzusetzen und die Wiedergabe zu stoppen. Um den ursprünglichen Cue-Punkt zu bewegen, stellen Sie sicher,
+    dass der Track pausiert ist, bewegen den Plattenteller, um den Audioabspielkopf an der gewünschten Stelle zu
+    platzieren und drücken dann auf diese Taste. Wenn das Deck pausiert ist, können Sie diese Taste gedrückt halten,
+    um den Track temporär ab dem ursprünglichen Cue-Punkt wiederzugeben. Das Loslassen der Cue-Taste bringt den
+    Track zum ursprünglichen Cue-Punkt zurück und pausiert ihn. Um die Wiedergabe fortzusetzen ohne zum
+    ursprünglichen Cue-Punkt zurückzuspringen, halten Sie diese Taste und dann die Wiedergabe-Taste gedrückt und
+    lassen dann beide Tasten los.
+    Halten Sie Shift während der Wiedergabe gedrückt und drücken Sie dann diese Taste, um den ursprünglichen Cue-
+    Punkt festzulegen.
+46
+12. Track Skip (Track überspringen): Drücken Sie kurz eine dieser Tasten, um zum vorherigen oder nächsten Track zu
+    springen.
+    Drücken Sie die Taste Previous Track in der Mitte eines pausierten Tracks, um zum Anfang des Tracks
+    zurückzukehren.
+    Halten Sie Shift (Umschalten) gedrückt und drücken Sie eine dieser Tasten, um rückwärts oder vorwärts durch den Track
+    zu navigieren.
+
+
+Sync- & Pitch-Anpassungen
+
+13. Pitch Fader: Bewegen Sie diesen Fader, um die Geschwindigkeit (Pitch) des Tracks einzustellen. Sie können den
+    gesamten Bereich durch Drücken und Halten von Shift (Umschalten) und Drücken einer der Pitch Bend-Tasten
+    anpassen.
+    Wichtig: Wenn Sync aktiviert ist, ändert das Bewegen des Pitch Faders an der „Primäre"- LC6000 PRIME- oder
+    einer kompatiblen Denon DJ Media Player-Einheit die Geschwindigkeit aller synchronisierten Einheiten, während das
+    Verstellen des Pitch Faders an anderen Einheiten nichts bewirkt.
+14. Pitch Bend –/+: Halten Sie eine dieser Tasten gedrückt, um das Tempo des Tracks vorübergehend (entweder) zu
+    verringern oder zu erhöhen.
+    Halten Sie Shift (Umschalten) gedrückt und drücken Sie anschließend eine dieser Tasten, um den Bereich des Pitch-
+    Faders einzustellen.
+15. Key Lock/Pitch Zurücksetzen: Drücken Sie diese Taste zum Aktivieren/Deaktivieren von Key Lock. Wenn Key Lock
+    aktiviert ist, bleibt die Tonart des Tracks gleich, auch wenn Sie das Tempo anpassen.
+    Halten Sie Shift gedrückt und drücken Sie diese Taste, um den Track auf die ursprüngliche Tonart zurückzusetzen,
+    unabhängig von der Position des Pitch-Faders oder den Änderungen, die Sie über das Tonartänderungsmenü eines
+    kompatiblen Denon DJ Media Players vorgenommen haben.
+16. Sync/Sync Off: Drücken Sie diese Taste, um Sync zu aktivieren.
+    Um zwei oder mehr LC6000 PRIME-Einheiten zu synchronisieren, drücken Sie Sync auf dem Gerät, mit dem Sie die
+    BPM steuern möchten, welches dann zum "Primäre" wird. Wenn Sync auf diesem Gerät aktiviert ist, drücken Sie
+    Sync auf allen weiteren Einheiten. Das Tempo jeder Einheit wird sofort synchronisiert, um dem Tempo der primären
+    Einheit zu entsprechen.
+    Halten Sie Shift (Umschalten) gedrückt und drücken Sie diese Taste, um Sync zu deaktivieren.
+17. Master: Drücken Sie diese Taste, um diese LC6000 PRIME-Einheit als diejenige einzustellen, die das Primäretempo
+    vorgibt. Alle angeschlossenen LC6000 PRIME- oder einer kompatiblen Denon DJ Media Player-Einheiten mit
+    aktiviertem Sync werden diesem Tempo folgen. Wenn Sie die „Primäre"- LC6000 PRIME- oder einer kompatiblen
+    Denon DJ Media Player-Einheit stoppen, wird die nun am längsten abspielende SC6000-Einheit im Setup
+    automatisch der neue „Primäre" (sofern Sie es nicht manuell ändern.)
+
+
+Leistungsregler
+
+18. Shift (Umschalten): Halten Sie diese Taste gedrückt, um auf sekundäre Funktionen anderer Bedienelemente
+    zuzugreifen.
+19. Slip: Drücken Sie diese Taste, um den Slip-Modus zu aktivieren/deaktivieren. Im Slip-Modus können Sie zu Cue-
+    Punkten springen, den Plattenteller verwenden oder den Track pausieren, während die Track-Timeline fortgesetzt
+    wird (die untere Hälfte der Wellenform im Display bewegt sich weiterhin). Mit anderen Worten: Wenn Sie eine gerade
+    durchgeführte Aktion stoppen, nimmt der Track die normale Wiedergabe an jenem Punkt auf, an dem sich der Track
+    befunden hätte, wenn Sie keine Aktionen durchgeführt hätten (praktisch als ob der Track einfach normal
+    weitergespielt worden wäre).
+    Halten Sie die Umschalttaste gedrückt und drücken Sie diese Taste, um den Deckauswahlmodus für die
+    Verwendung mit unterstützter Software aufzurufen. Weitere Informationen finden Sie unter Betrieb > Deckauswahl.
+20. Censor/Reverse (Censor/Umkehren): Halten Sie diese Taste gedrückt, um die Censor-Funktion zu
+    aktivieren/deaktivieren: Der Track wird rückwärts abgespielt, wenn Sie die Taste jedoch loslassen, wird der Track die
+    normale Wiedergabe an jenem Punkt wieder aufnehmen, an dem sich der Track befinden würde, wenn Sie die
+    Censor-Funktion nie aktiviert hätten (so als ob der Track einfach normal weitergelaufen wäre).
+    Halten Sie Shift (Umschalten) gedrückt und drücken Sie diese Taste, um die Wiedergabe des Tracks normal
+    umzukehren. Drücken Sie diese Taste erneut, um zur Wiedergabe in die normale Richtung zurückzukehren.
+21. Performance-Pads: Je nach aktuellem Pad-Modus besitzen diese Pads auf jedem Deck unterschiedliche
+    Funktionen. Siehe Betrieb > Performance > Pad-Modi für weitere Informationen.
+    Diese Pads werden auch für die Deckauswahl verwendet, wenn LC6000 PRIME an unterstützte Software
+    angeschlossen ist. Weitere Informationen finden Sie unter Betrieb > Deckauswahl.
+22. Hot Cue: Drücken Sie diese Taste, um den Hot Cue-Modus aufzurufen.
+
+
+                                                                                                                      47
+23. Loop: Drücken Sie diese Taste einmal, um in den manuellen Loop-Modus zu gelangen. Drücken Sie diese Taste
+    noch einmal, um in den automatischen Loop-Modus zu gelangen.
+24. Roll: Drücken Sie diese Taste, um in den Roll-Modus zu gelangen.
+25. Slicer: Drücken Sie diese Taste einmal, um in den Slicer-Modus zu gelangen. Drücken Sie sie erneut, um in den Slicer-
+    Loop-Modus zu gelangen.
+26. Parameter /: Diese Tasten haben in jedem Pad-Modus unterschiedliche Funktionen. Siehe Betrieb >
+    Performance > Pad-Modi für weitere Informationen.
+27. Loop In/Loop Out: Drücken Sie eine dieser Tasten, um an der aktuellen Position einen Loop In- oder Loop Out-
+    Punkt zu erzeugen. Ihre Position wird durch die Einstellungen Quantize (Quantisieren) und Smart Loops
+    beeinträchtigt.
+28. Auto Loop/Loop Move (Auto Loop/Loop verschieben): Drehen Sie diesen Regler, um die Größe eines
+    automatischen Loops einzustellen. Der Wert wird im Touchscreen und Plattenteller-Display angezeigt.
+     Drücken Sie diesen Regler, um an der aktuellen Stelle im Track einen automatischen Loop zu aktivieren/deaktivieren.
+     Tipp: Sie können Pads im manuellen Loop-Modus Auto-Loops zuweisen. Siehe Betrieb > Performance > Pad-
+     Modi für weitere Informationen.
+     Halten Sie Umschalten gedrückt und drehen Sie diesen Regler, um den aktiven Loop nach links oder rechts zu
+     verschieben.
+29. Beat Jump: Drücken Sie eine dieser Tasten, um rückwärts oder vorwärts durch den Track zu springen.
+     Halten Sie Shift (Umschalten) gedrückt und drücken Sie eine dieser Tasten, um die Größe des Beat-Jump zu
+     erhöhen oder zu verringern.
+
+
+
+Plattenteller-Display-Übersicht
+Das Plattenteller-Display zeigt normalerweise folgende Informationen an:
+     •   die aktuelle Position des Abspielkopfes.
+     •   die Albumgrafik des aktuellen Tracks.
+
+Das Plattenteller-Display zeigt vorübergehend folgende Informationen an:
+     •   die aktuelle Größe eines automatischen Loops nachdem Sie den Auto-
+         Loop-Regler betätigt haben.
+     •   die Position des sekundären Abspielkopfes, wenn Slip aktiv ist.
+
+
+
+Rückseite
+1.   Netzschalter: Drücken Sie diese Taste, um LC6000
+     PRIME ein- oder auszuschalten.
+2.   Netzeingang: Verwenden Sie das mitgelieferte,
+     verriegelbare Netzteil, um diesen Eingang mit einer                                     3 2 1
+     Steckdose zu verbinden.
+3.   USB-Anschluss: Verwenden Sie ein Standard-USB-
+     Kabel (im Lieferumfang enthalten), um diesen USB-
+     Anschluss an einen verfügbaren USB-Anschluss eines
+     kompatiblen Denon DJ Mediaplayers oder an Ihren
+     Computer anzuschließen. Diese Verbindung versorgt
+     LC6000 PRIME mit Strom und sendet und empfängt
+     MIDI-Nachrichten    zum/vom     Mediaplayer   oder
+     Computer.
+     Hinweis: Während die meisten Mediaplayer und
+     Computer LC6000 PRIME über den USB-Anschluss
+     mit Strom versorgen können, liefern einige
+     möglicherweise nicht genügend Strom und erfordern
+     die Verwendung des Netzteils.
+
+
+
+
+48
+Betrieb
+Hinweis: Diese Anweisungen gelten hauptsächlich für die Verwendung mit kompatiblen Mediaplayern. Einige der
+aufgeführten Steuerelemente oder Funktionen funktionieren möglicherweise nicht mit allen unterstützten Programmen.
+Weitere Informationen zu Softwarezuordnungen finden Sie auf denondj.com oder auf der Website Ihrer Software.
+
+
+Performance
+
+Laden und Entfernen von Tracks
+Beim Anzeigen von Track-Listen:
+  Um einen Track in die Layer zu laden, drücken Sie den Select/Zoom-Regler.
+  Um Instant Doubles auszuführen (denselben Track auf beide Deck-Ebenen laden), drücken Sie den zweimal den
+   Select/Zoom -Regler, während der Track markiert ist.
+  Um einen Track zur Vorbereitungsliste hinzuzufügen, halten Sie Shift gedrückt und drücken dann den
+   Select/Zoom-Regler.
+
+
+
+Wiedergabe und Cueing
+Um einen Track wiederzugeben bzw. anzuhalten, drücken Sie die Taste Play/Pause (Wiedergabe/Pause) (/).
+Um einen Track zu „scratchen“, drücken Sie Vinyl, sodass es hell aufleuchtet, und dann bewegen Sie den Plattenteller.
+Um den ursprünglichen Cue-Punkt zu erstellen, drücken Sie während der Wiedergabe an der gewünschten Stelle
+ Shift+Cue.
+Um an den ursprünglichen Cue-Punkt zurückzukehren und zu stoppen, drücken Sie Cue. Die Taste blinkt, während
+ das Gerät am Cue-Punkt pausiert.
+Um an den ursprünglichen Cue-Punkt zurückzukehren und weiterhin abzuspielen, drücken Sie Shift+Play/Pause
+ (/).
+Für die umgekehrte Wiedergabe drücken Sie Shift+Censor/Reverse. Die Taste blinkt, während die Wiedergabe
+ umgekehrt wird.
+Um zur normalen Wiedergabe zurückzukehren, drücken Sie Censor/Reverse.
+Um die Censor-Funktion für die Wiedergabe zu verwenden, drücken und halten Sie Censor.
+Um zur normalen Wiedergabe zurückzukehren, lassen Sie Censor los. Die normale Wiedergabe wird dort fortgesetzt,
+ wo sie gewesen wäre, wenn Sie die Censor-Funktion nie verwendet hätten (d. h., als ob der Track die ganze Zeit
+ abgespielt worden wäre).
+Um zum vorherigen oder nächsten Track zu springen, drücken Sie eine der Tasten Track Skip (Track überspringen)
+ /.
+Um zum Anfang eines Tracks zurückzukehren, drücken Sie Track Skip (Track überspringen) in der Mitte eines
+ pausierten Tracks.
+Um einen Track schnell zu durchsuchen, halten Sie Shift gedrückt, und drücken Sie eine der Tasten Track Skip
+ (Track überspringen) /.
+Um den Slip-Modus zu aktivieren oder deaktivieren, drücken Sie Slip. Im Slip-Modus können Sie zu Cue-Punkten
+ springen, die Plattenteller verwenden oder den Track pausieren, während die Track-Timeline fortgesetzt wird (die untere
+ Hälfte der Wellenform im Touchscreen bewegt sich weiterhin). Wenn Sie eine gerade durchgeführte Aktion stoppen,
+ nimmt der Track die normale Wiedergabe an jenem Punkt auf, an dem sich der Track befunden hätte, wenn Sie keine
+ Aktionen durchgeführt hätten (d. h. als ob der Track einfach normal weitergespielt worden wäre).
+Um zu einer bestimmten Stelle im Track zu springen, platzieren Sie Ihren Finger entlang des Needle Drop-Strips, der
+ die Länge des Tracks darstellt.
+  Hinweis: Stellen Sie sicher, dass Needle Lock auf Ihrem angeschlossenen Denon DJ Media Player deaktiviert ist, um
+  den Needle Drop-Strip verwenden zu können.
+Drehen Sie zum Vergrößern und Verkleinern der Wellenform den Select/Zoom-Regler in der Performance-Ansicht
+  Ihres angeschlossenen Denon DJ Mediaplayers.
+
+
+
+
+                                                                                                                        49
+Looping & Beat-Jumping
+
+Drücken Sie den Auto-Loop-Regler, um ein Auto-Loop zu erstellen und zu aktivieren.
+Drehen Sie den Auto-Loop-Regler, um die Anzahl der Beats auszuwählen und um die Auto-Loop-Länge einzustellen:
+ 1/32, 1/16, 1/8, 1/4, 1/2, 1, 2, 4, 8, 16, 32, oder 64.
+Um eine manuelle Schleife zu erstellen oder zu aktivieren, drücken Sie die Taste Loop In, um den Startpunkt
+ festzulegen, und drücken Sie dann Loop Out, um den Endpunkt festzulegen. Der Loop wird sofort aktiviert und als
+ schattierter Bereich in der Wellenform und der Track-Übersicht angezeigt.
+Drücken Sie den Auto-Loop-Regler, um ein Auto-Loop zu deaktivieren.
+Zum Verschieben des Loops halten Sie Shift (Umschalten) gedrückt und drehen Sie den Auto-Loop-Regler, während
+ der Loop aktiviert ist.
+Um die Länge des Loops zu verdoppeln oder zu halbieren, drehen Sie den Auto-Loop-Regler, während der Loop
+ aktiviert ist.
+Um den Anfang oder das Ende eines Loops manuell zu bearbeiten, drücken Sie auf Loop In oder Loop Out und
+ bewegen Sie den Plattenteller nach links oder rechts, um den Loop-Bereich zu verkürzen oder zu erweitern. Bestätigen
+ Sie die Bearbeitung durch erneutes Drücken von Loop In oder Loop Out.
+Um einen Beat-Jump in einem Track durchzuführen, drücken Sie eine der Beat-Jump-Tasten. Bei jedem Drücken der
+ Taste wird der Titel um die eingestellte Länge übersprungen. Sie können die Größe des Beat-Jump anpassen, indem
+ Sie die Shift gedrückt halten und eine der beiden Tasten drücken.
+
+Sync- & Pitch-Anpassungen
+
+Um Sync zu aktivieren, drücken Sie Sync auf dem Gerät, mit dem Sie die BPM steuern möchten, welches dann zum
+ "Primäre" wird. Wenn Sync auf diesem Gerät aktiviert ist, drücken Sie Sync auf allen weiteren Einheiten. Das Tempo
+ jeder Einheit wird sofort synchronisiert, um dem Tempo der primären Einheit zu entsprechen.
+ Das Sync-Status-Symbol im Display zeigt den aktuellen Status an:
+     •   Sync Aus: Synchronisierung ist deaktiviert.
+     •   Tempo Sync: Nur das Tempo wird synchronisiert (BPM wird die primäre Einheit angepasst).
+     •   Beat Sync: Das Tempo wird synchronisiert, und der Track wird automatisch dem Beat des Tracks der primären
+         Einheit angepasst.
+Um Sync an einer LC6000 PRIME-Einheit zu deaktivieren, drücken Sie Shift+Sync.
+Um eine andere LC6000 PRIME-Einheit als Primäre festzulegen, drücken Sie Primäre. Alle angeschlossenen LC6000
+ PRIME-Einheiten mit aktiviertem Sync werden dem Tempo dieser Einheit folgen.
+Zum Anpassen der Tonhöhe des Tracks verschieben Sie den Pitch Fader. Sie können dies nur durchführen, wenn das
+ Deck nicht synchronisiert ist.
+  Wichtig: Wenn Sync aktiviert ist, ändert das Bewegen des Pitch Faders an der „Primäre"- LC6000 PRIME- oder einer
+  kompatiblen Denon DJ Media Player-Einheit die Geschwindigkeit aller synchronisierten Einheiten, während das
+  Verstellen des Pitch Faders an anderen Einheiten nichts bewirkt.
+Um den Pitch des Tracks vorübergehend anzupassen, halten Sie die Pitch Bend -/+-Tasten gedrückt.
+Um den Bereich des Pitch Faders anzupassen, halten Sie Shift (Umschalten) gedrückt und drücken Sie eine der Pitch
+ Bend -/+-Tasten, um +4 %, 8 %, 10 %, 20 %, 50 % oder 100 % auszuwählen.
+Um den Pitch des Tracks wieder auf 0 % zu stellen, drücken Sie Shift+Key Lock/Pitch Reset. Der Pitch des Tracks
+ kehrt, unabhängig von der Position des Pitch Faders, zum ursprünglichen Pitch (0 %) zurück.
+Um die Tonart des Tracks anzupassen, tippen Sie auf die Taste auf dem Touchscreen, um das
+ Tonartänderungsmenü zu öffnen.
+
+
+
+
+50
+Pad-Modi
+Die 8 Pads haben in jedem Pad-Modus unterschiedliche Funktionen. Die Parameter /-Tasten nehmen für jeden Pad-
+Modus spezifische Einstellungen vor.
+    Um in die Pad-Modi zu gelangen, drücken Sie die entsprechende Taste: Hot Cue, Loop, Roll oder Slicer.
+
+
+Hot-Cue-Modus
+
+                                                     Hot        Hot          Hot         Hot          Hot         Hot         Hot       Hot
+                                                    Cue 1      Cue 2        Cue 3       Cue 4        Cue 5       Cue 6       Cue 7     Cue 8
+
+Im Hot Cue-Modus können Sie jedes Pad verwenden, um zu einem zugewiesenen Hot-Cue-Punkt zu springen.
+Tipp: Sie können die Engine DJ-Software verwenden, um für Ihre Hot-Cue-Punkte Farben einzustellen, zu benennen und
+zuzuweisen. Die Namen und Farben erscheinen in der Anzeige als Referenz.
+  Um einem Pad einen Hot Cue zuzuweisen, drücken Sie ein schwach beleuchtetes Pad an der gewünschten Stelle
+   im Track. Das Pad leuchtet auf, wenn ein Hot-Cue-Punkt zugeordnet ist.
+  Um zu einem Hot-Cue-Punkt zu springen, drücken Sie das entsprechende Pad.
+  Um einen Hot-Cue-Punkt von einem Pad zu löschen, drücken Sie Shift (Umschalten) und das gewünschte Pad.
+   Das Pad wird ausgeschaltet, wenn ihm kein Hot-Cue-Punkt zugeordnet ist.
+
+
+Loop-Modi
+
+                                                    Loop        Loop         Loop        Loop         Loop        Loop       Loop      Loop
+                                                      1           2            3           4            5           6          7         8
+
+Im manuellen Loop-Modus können Sie jedes Pad verwenden, um einen zugewiesenen Loop zu aktivieren. Wenn Sie
+Loop zum ersten Mal drücken, gelangen Sie immer in den manuellen Loop-Modus.
+Tipp: Sie können die Engine DJ-Software zum Einstellen und Benennen Ihrer Loops verwenden. Die Namen erscheinen
+in der Anzeige als Referenz.
+ Um einem Pad einen Loop zuzuweisen und es zu aktivieren, drücken Sie auf ein schwach beleuchtetes Pad, um an
+  der aktuellen Position einen Loop-In-Punkt zu erstellen, und dann drücken Sie erneut, um an einer anderen Stelle einen
+  Loop-Out-Punkt zu erstellen. Sie können einem Pad auch einen Auto-Loop zuweisen, indem Sie ein schwach
+  beleuchtetes Pad im Auto-Loop-Modus drücken. Der Loop wird sofort aktiviert, und das Pad leuchtet auf.
+ Um einen Loop zu aktivieren, drücken Sie das entsprechende Pad. Sobald ein Loop erstellt wurde, können Sie ihn
+  erneut triggern, indem Sie das entsprechende Pad erneut drücken, abhängig von der Einstellung unter Saved Loop
+  Behavior.
+ Um einen Aktive Loop zu aktivieren, halten Sie die Parameter -Taste gedrückt und drücken Sie ein Pad mit einer
+  gespeicherten Loop. Aktive Loops beginnen automatisch mit dem Loopen, sobald sie erreicht sind, und werden mit
+  einem Streifenmuster in der Track-Wellenform angezeigt. Sie können diese auch in der Engine DJ-Software einstellen.
+ Um einen Loop zu löschen, drücken Sie Shift (Umschalten) und das gewünschte Pad.
+Im Auto-Loop-Modus können Sie jedes Pad verwenden, um einen Auto-Loop zu erstellen und zu aktivieren. Das Drücken
+von Loop im manuellen Loop-Modus aktiviert den Auto-Loop-Modus.
+  Drücken Sie ein Pad, um einen Auto-Loop zu aktivieren. Das Display zeigt die Länge des Auto-Loops für jedes Pad
+   an.
+  Drücken Sie das Pad erneut, um einen Auto-Loop zu deaktivieren.
+
+
+Roll-Modus
+                        (T bezeichnet ein Triolen-
+                          basiertes Zeitmultiplex) 1/8-Beat-   1/4T-Beat-   1/4-Beat-   1/2T-Beat-   1/2-Beat-   1 T-Beat-   1-Beat-   2-Beat-
+                                                      Roll        Roll         Roll        Roll         Roll        Roll       Roll      Roll
+
+
+Im Roll-Modus können Sie jedes Pad gedrückt halten, um einen „Loop-Roll“ mit einer bestimmten Länge zu aktivieren,
+während die Track-Timeline fortgesetzt wird (die untere Hälfte der Wellenform im Display bewegt sich weiterhin). Wenn
+Sie das Pad loslassen, nimmt der Track die normale Wiedergabe an jenem Punkt auf, an dem sich der Track befunden
+hätte, wenn Sie nichts getan hätten (d. h. als ob der Track einfach normal weitergespielt worden wäre).
+  Um eine Roll zu aktivieren, drücken Sie das entsprechende Pad. Pads mit triolen-basierten Loop-Rolls leuchten
+   violett.
+
+                                                                                                                                            51
+Slicer-Modus
+
+                                              Slice      Slice   Slice     Slice    Slice     Slice    Slice    Slice
+                                                1          2       3         4        5         6        7        8
+
+Im Slicer-Modus (erstes Drücken) stehen die acht Pads für acht aufeinanderfolgende Beats - „Slices“ - im Beatgrid. Das
+aktuelle Slice wird durch das aktuell aufleuchtende Pad dargestellt. Das Licht „bewegt sich durch die Pads“, während es
+sich durch den 8-Slice-Satz bewegt. Sie können ein Pad drücken, um das Slice abzuspielen. Wenn Sie das Pad
+loslassen, nimmt der Track die normale Wiedergabe an jenem Punkt auf, an dem sich der Track befunden hätte, wenn
+Sie es nie gedrückt hätten (praktisch als ob der Track einfach normal weitergespielt worden wäre).
+Im Slicer-Loop-Modus (zweites Drücken) aktivieren Sie automatisch einen 8-Takt-Loop. Die aktuell wiedergegebene Slice
+wird durch das aktuell beleuchtete Pad dargestellt. Das Licht wandert „durch die Pads“, während es die 8-Slice-Phrase
+durchläuft, die sich im Loop wiederholt (dies ist der Unterschied zwischen diesem Modus und dem Slicer-Modus). Sie
+können ein Pad drücken, um diese Slice abzuspielen. Wenn Sie das Pad loslassen, wird der Track zur normalen
+Wiedergabe zu jenem Punkt zurückkehren, an dem sich der Track befinden würde, wenn Sie das Pad nie gedrückt hätten
+(so als ob der Track einfach normal weitergelaufen wäre).
+     Um ein Slice abzuspielen, drücken Sie das entsprechende Pad.
+
+
+
+Deckauswahl
+Nach dem Öffnen der unterstützten Software von Drittanbietern wechselt LC6000 PRIME automatisch in den
+Deckauswahlmodus. Auf diese Weise können Sie auswählen, welches Deck von 1 bis 4 abhängig von den Funktionen
+der von Ihnen verwendeten Software gesteuert werden soll.
+     Um den Deckauswahlmodus zu einem anderen Zeitpunkt manuell aufzurufen, halten Sie Shift gedrückt und
+     drücken Sie Slip.
+
+
+
+
+                        Deck     Deck      Deck       Deck
+                         1        2         3          4
+
+
+Wenn der Deckauswahlmodus aufgerufen wird, beginnen die Performance-Pads 1–4 (wie oben gezeigt) basierend auf
+den verfügbaren Decks zu blinken und können dazu verwendet werden, das Deck, das das Gerät steuert, auszuwählen.
+Drücken Sie das entsprechende Pad, um das Deck auszuwählen, das LC6000 PRIME steuern soll. Sobald ein Deck
+ausgewählt ist, wechselt LC6000 PRIME in den Performance-Modus.
+Wenn die Einheit bereits einem Deck zugeordnet ist, leuchten alle anderen verfügbaren Decks im Deckauswahlmodus
+schwach. Wenn ein Pad im Deckauswahlmodus vollständig ausgeschaltet ist, steht das entsprechende Deck nicht zur
+Auswahl, da die Software diese Anzahl von Decks nicht unterstützt oder eine andere Einheit dieses Deck bereits
+verwendet.
+Um die Zuordnung einer Einheit zu einem Deck aufzuheben, halten Sie Shift gedrückt und drücken Sie Slip, um den
+Deckauswahlmodus aufzurufen. Halten Sie dann das Pad für das entsprechende Deck 3 Sekunden lang gedrückt. Die
+Deckzuweisung wird gelöscht und Sie können mit demselben Verfahren wie oben eine neue Deckauswahl treffen.
+
+
+
+PRIME 4 Steuerung
+LC6000 PRIME kann auch verwendet werden, um die sekundären Decks einer PRIME 4 Standalone-DJ-Einheit zu
+steuern. Verwenden Sie ein Standard-USB-Kabel, um den USB-Port des LC6000 PRIME mit dem USB-Port 3 und/oder
+4 auf der Rückseite des PRIME 4 zu verbinden. Ein an Port 3 angeschlossenes Gerät steuert Deck 3, ein an Port 4
+angeschlossenes Gerät Deck 4. Alle Tracks, die auf Decks 3 oder 4 des PRIME 4 geladenen sind, werden auf Decks 1
+oder 2 verschoben.
+Sobald die Verbindung hergestellt ist, werden die Deck-Tasten von PRIME 4 deaktiviert und der Auswahl/Zoom-Regler
+des LC6000 PRIME kann verwendet werden, um Tracks zu durchsuchen und direkt in das ausgewählte Deck zu laden.
+Wenn Sie eine LC6000 PRIME-Einheit an Port 4 angeschlossen haben und die Playlist-Deck-Funktion auf PRIME 4
+aktivieren, wird diese Einheit zur Steuerung der Playlist verwendet und bestimmte Funktionen werden deaktiviert.
+
+
+
+
+52
+53
+Appendix (English)
+Technical Specifications
+
+ Platters                      8.5” / 216 mm (diameter)
+                               Metal construction with display & capacitive touch
+
+ Platter Display               3.5” / 89 mm (diameter)
+                               Full-color LED-backlit display
+
+ Connections                  (1) USB Type-B port (for computer/media player connection)
+                              (1) DC power adapter input
+
+ Power Adapter                12.0 V, 2.0 A
+
+ Dimensions                   14.2” x 12.6” x 4.7”
+ (width x depth x height)
+                              359.5 x 319.5 x 119.5 mm
+
+ Weight                       6.24 lbs
+                              2.83 kg
+
+Specifications are subject to change without notice.
+
+
+
+Trademarks & Licenses
+Denon is a trademark of D&M Holdings Inc., registered in the U.S. and other countries. Denon DJ products
+are produced by inMusic Brands, Inc., Cumberland, RI 02864, USA.
+All other product names, company names, trademarks, or trade names are those of their respective owners.
+This product uses software and technology under license. Please visit denondj.com/product-legal for a
+complete list.
+
+
+
+
+54
+55
+Manual Version 1.4
+

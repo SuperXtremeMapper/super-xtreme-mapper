@@ -1,0 +1,883 @@
+===== PDF PAGE 1 =====
+CDJ-3000X
+MIDI Message List
+1
+3
+12
+10
+2
+24
+25
+4
+13
+14
+26
+27
+6
+5
+11
+23
+22
+21
+32
+33
+30
+31
+29
+9
+8
+15
+16
+34
+19
+20
+18
+7
+17
+35
+
+
+===== PDF PAGE 2 =====
+28
+36
+37
+39
+40
+38
+
+
+===== PDF PAGE 3 =====
+As a reference for MIDI assign, MIDI messages sent from buttons and knobs of this unit are listed in decimal numbers.
+0x9* :Note
+0xB* :Control Change（CC）
+NOTE is a term used for MIDI to express that a key of a keyboard or a piano is pressed or your finger is released from it.
+CC is an abbreviation of "Control Change". Control Change is a kind of MIDI message used to communicate many kinds
+of control information such as sound quality and volume level.
+n is MIDI channel (1 - 16) set in UTILITY Midi Channel.
+Status
+Data 2
+(HEX)
+(DEC)
+(HEX)
+(HEX)
+PLAYER
+Rotate
+CC
+Bn
+16
+10
+hh
+A linear value corresponding to the speed, from stop to 4X: 64 when
+stopped, 65(0.06X) - 127(4X) in the forward direction, 63(0.06X) -
+0(4X) in the reverse direction.
+Touch
+NOTE
+9n
+23
+17
+hh
+OFF=0(0x00), ON=127(0x7F)
+Rotate
+CC
+Bn
+48
+30
+hh
+A linear value corresponding to the speed from 0.5X to 4X: 64 when
+stopped, 65(0.5X) to 127(4X) in the forward direction, 63(0.5X) to
+0(4X) in the reverse direction.
+Slide
+CC
+Bn
+29
+1D
+hh
+0 - 127, 0 on the -  side, 127 on the + side.
+Press
+NOTE
+9n
+9
+9
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+11
+B
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+10
+A
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+72
+48
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+22
+16
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+21
+15
+hh
+OFF=0(0x00), ON=127(0x7F)
+Rotate
+( Hardware Control )
+Press
+NOTE
+9n
+12
+C
+hh
+OFF=0(0x00), ON=127(0x7F)
+Rotate
+CC
+Bn
+30
+1E
+hh
+0 - 127, 0(min.) on the left side, 127(max.) on the right side.
+Press
+NOTE
+9n
+2
+2
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+3
+3
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+4
+4
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+5
+5
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+24
+18
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+25
+19
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+54
+36
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+55
+37
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+44
+2C
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+45
+2D
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+35
+23
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+36
+24
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+37
+25
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+14
+E
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+15
+F
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+16
+10
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+13
+D
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+0
+0
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+1
+1
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+6
+6
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+7
+7
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+CC
+Bn
+28
+1C
+hh
+OFF=0(0x00), 1 to 127 position data from left to right side.
+BROWSER
+Rotate
+CC
+Bn
+79
+4F
+hh
+Count value difference from previous operation
+Turn clockwise: 1~30 (0x01~0x1E)
+Turn counterclockwise: 127~98 (0x7F~0x62)
+When over ±30, set at ±30
+Press
+NOTE
+9n
+17
+11
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+18
+12
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+19
+13
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+20
+14
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+( Hardware Control )
+Group
+Fig.
+User Interface
+MIDI-IN
+Detail of Data2
+UI name
+Operation
+3
+TEMPO
+4
+TEMPO RESET
+5
+MASTER TEMPO
+NOTE /
+CC
+Data1
+1
+Jog dial
+(Platter)
+2
+Jog Dial
+(Wheel side)
+9
+MASTER
+10
+JOG ADJUST
+11
+JOG MODE
+6
+TEMPO RANGE
+7
+KEY SYNC
+8
+SYNC
+15
+SLIP REVERSE
+16
+REVERSE
+17
+BEAT JUMP FWD
+BEAT JUMP REV
+12
+VINYL SPEED ADJUST Vo
+13
+SEARCH FWD
+SEARCH REV
+14
+TRACK SEARCH FWD
+TRACK SEARCH REV
+20
+RELOOP/EXIT
+21
+CUE/LOOP CALL NEXT
+CUE/LOOP CALL PREV
+22
+CUE/LOOP DELETE
+18
+4 BEAT
+8 BEAT
+19
+LOOP IN
+LOOP OUT
+26
+QUANTIZE
+27
+SLIP
+28
+NEEDLE POSITION (Overall
+waveform)
+23
+CUE/LOOP MEMORY
+24
+PLAY/PAUSE
+25
+CUE
+29
+ROTARY SELECTOR
+30
+BACK
+31
+TAG TRACK/REMOVE
+32
+TRACK FILTER
+33
+SHORT CUT
+
+
+===== PDF PAGE 4 =====
+Status
+Data 2
+Group
+Fig.
+User Interface
+MIDI-IN
+Detail of Data2
+UI name
+Operation
+NOTE /
+CC
+Data1
+Press
+NOTE
+9n
+26
+1A
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+27
+1B
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+28
+1C
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+29
+1D
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+30
+1E
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+31
+1F
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+32
+20
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+33
+21
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+34
+22
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+40
+28
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+41
+29
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+42
+2A
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+43
+2B
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+44
+2C
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+45
+2D
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+46
+2E
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+47
+2F
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+49
+31
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+42
+2A
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+76
+4C
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+50
+32
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+77
+4D
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+51
+33
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+78
+4E
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+52
+34
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+38
+26
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+39
+27
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+40
+28
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+41
+29
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+42
+2A
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+43
+2B
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+48
+30
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+49
+31
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+56
+38
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+57
+39
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+58
+3A
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+59
+3B
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+60
+3C
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+61
+3D
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+62
+3E
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+63
+3F
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+64
+40
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+65
+41
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+66
+42
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+67
+43
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+68
+44
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+69
+45
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+70
+46
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+71
+47
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+73
+49
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+74
+4A
+hh
+OFF=0(0x00), ON=127(0x7F)
+Press
+NOTE
+9n
+75
+4B
+hh
+OFF=0(0x00), ON=127(0x7F)
+Copyright © 2025 AlphaTheta Corporation. All rights reserved.
+PERFOR-
+MANCE
+(Hardware)
+34
+HOT CUE CALL/DELETE
+35
+HOT CUE A
+HOT CUE B
+HOT CUE C
+HOT CUE D
+HOT CUE E
+HOT CUE F
+HOT CUE G
+HOT CUE H
+PERFOR-
+MANCE
+(GUI)
+BEAT LOOP
+36
+BEAT LOOP 1/4
+BEAT LOOP 1/2
+BEAT LOOP 1
+BEAT LOOP 2
+BEAT LOOP 4
+BEAT LOOP 8
+SLIP LOOP
+27 + 36
+SLIP LOOP 1/16
+SLIP LOOP 1/8
+BEAT LOOP 16
+BEAT LOOP 32
+BEAT LOOP 3/4
+BEAT LOOP 1
+BEAT LOOP 3/2
+BEAT LOOP 3
+SLIP LOOP 1/4
+SLIP LOOP 1/2
+SLIP LOOP 1
+SLIP LOOP 2
+SLIP LOOP 1/3
+SLIP LOOP 3/4
+BEAT LOOP 5
+BEAT LOOP 6
+BEAT LOOP 7
+BEAT LOOP 9
+BEAT JUMP  REV（4）
+BEAT JUMP  FWD（8）
+BEAT JUMP  REV（8）
+BEAT JUMP  FWD（16）
+BEAT JUMP  REV（16）
+BEAT JUMP  FWD（32）
+BEAT JUMP
+37
+BEAT JUMP  FWD（1/2）
+BEAT JUMP  REV（1/2）
+BEAT JUMP  FWD（1）
+BEAT JUMP  REV（1）
+BEAT JUMP  FWD（2）
+BEAT JUMP  REV（2）
+BEAT JUMP  FWD（4）
+39
+KEY SHIFT -1
+40
+KEY RESET
+BEAT JUMP  REV（32）
+BEAT JUMP  FWD（64）
+BEAT JUMP  REV（64）
+KEY SHIFT
+38
+KEY SHIFT +1

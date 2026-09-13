@@ -1,0 +1,610 @@
+{
+  "retrieved_on": "2026-09-12",
+  "models": [
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DDJ-FLX10",
+      "landing_url": "https://support.alphatheta.com/en-US/articles/16716272919193",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/DDJ_FLX10_DRI1822D_manual.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/manuals/DDJ_FLX10_DRI1822D_manual.pdf",
+          "file": "ddj-flx10/owner-manual.pdf",
+          "text_file": "ddj-flx10/owner-manual.txt",
+          "sha256": "2afd951bdd8d2ce932f35cf52f6f3c8eccefe470f1a3551ac3fd90f1f780df65",
+          "bytes": 8095373,
+          "pages": 183,
+          "status": "downloaded",
+          "text_sha256": "d6e795b38c4531b126d678d2e6781f9ce5d8aa75fb3966ef1b95160f946321a5"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://www.pioneerdj.com/-/media/pioneerdj/software-info/controller/ddj-flx10/ddj-flx10_midi_message_list_e1.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 403,
+          "resolved_url": "https://support.alphatheta.com/",
+          "status": "failed",
+          "error": "403 Client Error: Forbidden for url: https://support.alphatheta.com/"
+        },
+        {
+          "url": "https://downloads.support.alphatheta.com/software_info/dj-controllers/DDJ-FLX10/DDJ-FLX10_MIDI_Message_List_E1.pdf",
+          "kind": "midi-implementation",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/software_info/dj-controllers/DDJ-FLX10/DDJ-FLX10_MIDI_Message_List_E1.pdf",
+          "retrieved_on": "2026-09-12",
+          "status": "downloaded",
+          "file": "ddj-flx10/midi-implementation.pdf",
+          "text_file": "ddj-flx10/midi-implementation.txt",
+          "sha256": "c6fbe89c909bdabed911d315a35fc6c00c5af45ec4dd66ef20f49e86e90ac26c",
+          "bytes": 1902978,
+          "pages": 7,
+          "text_sha256": "ad726ddd7b0cc9273db08fbe0c3bc2c655bb76adf99c544be29aa4268ca5168f"
+        }
+      ],
+      "status": "ready-for-extraction",
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "findings": "MIDI chart pp.1\u20137: numbered physical diagram; channel allocation; browse/transport/mixer/FX/pad and host feedback tables. Owner manual p179: other DJ software.",
+      "gaps": "Extract well-defined Note/CC controls and supported feedback first. Paired MSB/LSB pots/faders, pad/Shift channel groups, rich color feedback and jog/display behavior need richer schema or explicit exclusions.",
+      "hardware_tested": false,
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      }
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DDJ-FLX4",
+      "landing_url": "https://support.alphatheta.com/en-US/articles/12267724407961",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/DDJ_FLX4_DRI1804A_manual.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/manuals/DDJ_FLX4_DRI1804A_manual.pdf",
+          "file": "ddj-flx4/owner-manual.pdf",
+          "text_file": "ddj-flx4/owner-manual.txt",
+          "sha256": "51153e85418bd21d1a53444458774efd6821a53d8c13aa30090acfa2d3af7feb",
+          "bytes": 8708753,
+          "pages": 165,
+          "status": "downloaded",
+          "text_sha256": "138e365e9d70da9e855544fb488d7c39cab6dcf2ebeb7fe7ab6da712bfddbb09"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/software_info/dj-controllers/DDJ-FLX4/DDJ-FLX4_MIDI_message_List_E1.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/software_info/dj-controllers/DDJ-FLX4/DDJ-FLX4_MIDI_message_List_E1.pdf",
+          "file": "ddj-flx4/midi-implementation.pdf",
+          "text_file": "ddj-flx4/midi-implementation.txt",
+          "sha256": "e03ac376ebaa2d461c1a2c832c3c182e3579c893a1531944ebac1b5ce620388f",
+          "bytes": 461206,
+          "pages": 5,
+          "status": "downloaded",
+          "text_sha256": "ec0ec56e2dd809ff2f0111623ccb78d936c69562e966e01601d23efc46230957"
+        }
+      ],
+      "status": "ready-for-extraction",
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "findings": "MIDI chart pp.1\u20135: deck, mixer, browse, FX, performance-pad send/receive and settings. Owner manual p161: other DJ software.",
+      "gaps": "Preserve 0x40-centered jog encoding, paired tempo CCs, Shift/pad modes. Chart p5 says BEAT SYNC transmits on release and FX ON/OFF lights/blinks with special receive semantics; do not assume every button uses identical press/LED rules. Vinyl mode is host-controlled.",
+      "hardware_tested": false,
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      }
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DDJ-REV7",
+      "landing_url": "https://support.alphatheta.com/en-US/articles/4414650995737",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/DDJ_REV7_DRI1713D_manual.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/manuals/DDJ_REV7_DRI1713D_manual.pdf",
+          "file": "ddj-rev7/owner-manual.pdf",
+          "text_file": "ddj-rev7/owner-manual.txt",
+          "sha256": "7a8289f0cbb70d00ef4d4eef42388ba97f1c2b0588e310221f98f68b9e669198",
+          "bytes": 7800884,
+          "pages": 118,
+          "status": "downloaded",
+          "text_sha256": "14799aa50e9369bc82b2ad4bd0dd5e865ce1fa32bd6ef1370628cafa907c0c9a"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://www.pioneerdj.com/-/media/pioneerdj/software-info/controller/ddj-rev7/ddj-rev7_midi_message_list_e1.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 403,
+          "resolved_url": "https://support.alphatheta.com/",
+          "status": "failed",
+          "error": "403 Client Error: Forbidden for url: https://support.alphatheta.com/"
+        },
+        {
+          "url": "https://downloads.support.alphatheta.com/software_info/dj-controllers/DDJ-REV7/DDJ-REV7_MIDI_message_List_E2.pdf",
+          "kind": "midi-implementation",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/software_info/dj-controllers/DDJ-REV7/DDJ-REV7_MIDI_message_List_E2.pdf",
+          "retrieved_on": "2026-09-12",
+          "status": "downloaded",
+          "file": "ddj-rev7/midi-implementation.pdf",
+          "text_file": "ddj-rev7/midi-implementation.txt",
+          "sha256": "a2d33045fc28017d48ba8e9409e0586d0f753ce426e7f955c0c56460b7dbf905",
+          "bytes": 309817,
+          "pages": 7,
+          "text_sha256": "8e2d3859b51c0d0e753607c026ddd77f7860b88682f2547fccdc6a52ffce1748"
+        }
+      ],
+      "status": "ready-for-extraction",
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "findings": "Current MIDI list E2 pp.1\u20137, not search-indexed older E1: channels, controls, FX modes, pad feedback. Owner pp101/105: AUTO/GENERAL MIDI mode and other DJ software.",
+      "gaps": "Use E2 revision. Motorized platter and display integration is not established by a scalar control profile. Preserve hardware-only entries, FX-dependent controls, paired CCs and RGB feedback.",
+      "hardware_tested": false,
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      }
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DDJ-REV5",
+      "landing_url": "https://support.alphatheta.com/en-US/articles/21326568940057",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/DDJ_REV5_DRI1872B_manual.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/manuals/DDJ_REV5_DRI1872B_manual.pdf",
+          "file": "ddj-rev5/owner-manual.pdf",
+          "text_file": "ddj-rev5/owner-manual.txt",
+          "sha256": "f7068d560a6b56fba4714dbb415ae80c2205a1f5e0d728f981adc4356b4be7a5",
+          "bytes": 11164859,
+          "pages": 144,
+          "status": "downloaded",
+          "text_sha256": "a88f647bc695da8c8b46752199597ae46a7afc62af70b5be76e5f51268eb709a"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/software_info/dj-controllers/DDJ-REV5/DDJ-REV5_MIDI_message_List_E1.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/software_info/dj-controllers/DDJ-REV5/DDJ-REV5_MIDI_message_List_E1.pdf",
+          "file": "ddj-rev5/midi-implementation.pdf",
+          "text_file": "ddj-rev5/midi-implementation.txt",
+          "sha256": "577af3726e3e97fcaee25dc104a4e4ef42d418f6808f46bfb3eb284a17b67791",
+          "bytes": 694751,
+          "pages": 9,
+          "status": "downloaded",
+          "text_sha256": "dcae80504aa1c06c20e1a369119868c5cb8f4ba04ba23d144f511b35c87b1d8c"
+        }
+      ],
+      "status": "ready-for-extraction",
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "findings": "MIDI chart pp.1\u20139: browse/transport/mixer/FX/pad maps with Shift, deck groups, send/receive values. Owner p131: MIDI MODE.",
+      "gaps": "Paired high-resolution CCs and multiple performance-pad channels/modes exceed current simple profiles. Start with explicitly scoped transport/buttons and ordinary CCs; preserve color-number feedback limits.",
+      "hardware_tested": false,
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      }
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "DDJ-GRV6",
+      "landing_url": "https://support.alphatheta.com/en-US/articles/37071169629849",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/DDJ_GRV6_DRI1927A_manual.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/manuals/DDJ_GRV6_DRI1927A_manual.pdf",
+          "file": "ddj-grv6/owner-manual.pdf",
+          "text_file": "ddj-grv6/owner-manual.txt",
+          "sha256": "419ab2fa500164b9387cd6f77e75f415210e18e6c34c7607b16f83208ca46213",
+          "bytes": 6137389,
+          "pages": 174,
+          "status": "downloaded",
+          "text_sha256": "77806fd6c36b48266291bc426344c8929402649dcc78ecc183f57624f45cfa3a"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/software_info/dj-controllers/DDJ-GRV6/DDJ-GRV6_MIDI_Message_List_E1.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/software_info/dj-controllers/DDJ-GRV6/DDJ-GRV6_MIDI_Message_List_E1.pdf",
+          "file": "ddj-grv6/midi-implementation.pdf",
+          "text_file": "ddj-grv6/midi-implementation.txt",
+          "sha256": "211c4221a8a0cc0c4615ed397b73c0b89242a43c1c4ca4ba0f00e57b708ddb3e",
+          "bytes": 5525408,
+          "pages": 4,
+          "status": "downloaded",
+          "text_sha256": "ad715759815a68d8cbb0c4fb4220da0ef3849cee4ba5089eb9a2cf536f4226ab"
+        }
+      ],
+      "status": "ready-for-extraction",
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "findings": "MIDI chart pp.1\u20134: diagram, channel allocation, transport, mixer, Groove Circuit/FX and pad tables.",
+      "gaps": "Strong documentation; arbitrary deck/Shift/mode routing, paired CCs and colored feedback need adaptation. Browse relative values are explicitly documented. Do not interpret hardware-specific function labels as Traktor assignments.",
+      "hardware_tested": false,
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      }
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "XDJ-AZ",
+      "landing_url": "https://support.alphatheta.com/en-US/articles/37072366390681",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/all-in-one-dj-systems/XDJ-AZ/XDJ-AZ_DRI1936C_manual_EN.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/manuals/all-in-one-dj-systems/XDJ-AZ/XDJ-AZ_DRI1936C_manual_EN.pdf",
+          "file": "xdj-az/owner-manual.pdf",
+          "text_file": "xdj-az/owner-manual.txt",
+          "sha256": "09af14979adfc2197799c8071fd97e4307ef3c1149b8826724b161d8ac60d011",
+          "bytes": 14060550,
+          "pages": 159,
+          "status": "downloaded",
+          "text_sha256": "763b57467f67bf9cd7025f6683d92c6bd0b663795ee76bfbb8a67c0bf2ec15d9"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/software_info/all-in-one-dj-systems/XDJ-AZ/XDJ-AZ_MIDI_Message_List_E1.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/software_info/all-in-one-dj-systems/XDJ-AZ/XDJ-AZ_MIDI_Message_List_E1.pdf",
+          "file": "xdj-az/midi-implementation.pdf",
+          "text_file": "xdj-az/midi-implementation.txt",
+          "sha256": "2a56db4cc52c5bbf2371c33cbb0188a15ed28daf841f712cac343f4025f54216",
+          "bytes": 524159,
+          "pages": 4,
+          "status": "downloaded",
+          "text_sha256": "bd2d05e2812eb68a5ed7d5ad1385ef15700642dcedbf4cf117ea2a42bddc1235"
+        }
+      ],
+      "status": "ready-for-extraction",
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "findings": "MIDI chart pp.1\u20134: channel matrix and send/receive; hardware-only entries; p4 jog LED/display-related values.",
+      "gaps": "Standalone controls are not all MIDI controls. Preserve hardware-only exclusions, mode routing and paired CCs; p4 angle-related pairs are not independent 7-bit knobs.",
+      "hardware_tested": false,
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      }
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "OMNIS-DUO",
+      "landing_url": "https://support.alphatheta.com/en-US/articles/26559298056217",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/all-in-one-dj-systems/OMNIS-DUO/OMNIS_DUO_DRI1882B_manual.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/manuals/all-in-one-dj-systems/OMNIS-DUO/OMNIS_DUO_DRI1882B_manual.pdf",
+          "file": "omnis-duo/owner-manual.pdf",
+          "text_file": "omnis-duo/owner-manual.txt",
+          "sha256": "6a9c068c209dd8547283e9f570c8cb2620e0539456a58ad4a181d238af91c631",
+          "bytes": 7605696,
+          "pages": 134,
+          "status": "downloaded",
+          "text_sha256": "d621a7b71a1e8383ee677dc6d19fe3ae58473368d4313db78d4baf33ef7963fe"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/software_info/all-in-one-dj-systems/OMNIS-DUO/OMNIS-DUO_MIDI_Message_List_E1.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/software_info/all-in-one-dj-systems/OMNIS-DUO/OMNIS-DUO_MIDI_Message_List_E1.pdf",
+          "file": "omnis-duo/midi-implementation.pdf",
+          "text_file": "omnis-duo/midi-implementation.txt",
+          "sha256": "eb4c914d644be58fd3fd91555c1b5a5db027e8c70e534f9a6233ef375cd4b06a",
+          "bytes": 1114167,
+          "pages": 3,
+          "status": "downloaded",
+          "text_sha256": "30e8a77f7f692c1207d9c2b30d8a3bdd9d6e27647b04c7ea7acdd8157c357bfb"
+        }
+      ],
+      "status": "ready-for-extraction",
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "findings": "MIDI chart p1 diagram; pp2\u20133 channels, deck/mixer/browse and receive meter/indicator tables.",
+      "gaps": "Suitable documented subset; paired tempo CCs, relative/speed jog behavior and per-deck channels need faithful encoding. Standalone operation does not imply every function can be remotely driven.",
+      "hardware_tested": false,
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      }
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "XDJ-RX3",
+      "landing_url": "https://support.alphatheta.com/en-US/articles/4409181796121",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/XDJ_RX3_DRI1702C_manual.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/manuals/XDJ_RX3_DRI1702C_manual.pdf",
+          "file": "xdj-rx3/owner-manual.pdf",
+          "text_file": "xdj-rx3/owner-manual.txt",
+          "sha256": "590b00660f1f1b79b7f5573ec2096f0976c23fb8b140620badddcfa9d42d2d5c",
+          "bytes": 5076332,
+          "pages": 127,
+          "status": "downloaded",
+          "text_sha256": "72536657d19f9619854a76597c0b32e3b44bece209a2d6179d5e27035f443d38"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://www.pioneerdj.com/-/media/pioneerdj/software-info/system/xdj-rx3/xdj-rx3_midi_message_list_j1.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 403,
+          "resolved_url": "https://support.alphatheta.com/",
+          "status": "failed",
+          "error": "403 Client Error: Forbidden for url: https://support.alphatheta.com/"
+        },
+        {
+          "url": "https://downloads.support.alphatheta.com/software_info/all-in-one-dj-systems/XDJ-RX3/XDJ-RX3_MIDI_Message_List_E1.pdf",
+          "kind": "midi-implementation",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/software_info/all-in-one-dj-systems/XDJ-RX3/XDJ-RX3_MIDI_Message_List_E1.pdf",
+          "retrieved_on": "2026-09-12",
+          "status": "downloaded",
+          "file": "xdj-rx3/midi-implementation.pdf",
+          "text_file": "xdj-rx3/midi-implementation.txt",
+          "sha256": "bd9c747ec65c3910d139d33cbbf08033a9ffd57b548978bf5dd51f2c2cdf9c36",
+          "bytes": 499019,
+          "pages": 5,
+          "text_sha256": "daf38a533d0d39f932d26e819faf513b1e4c2e567addf32320db52d5b360c0b6"
+        }
+      ],
+      "status": "ready-for-extraction",
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "findings": "English MIDI chart pp.1\u20135: panel diagram, deck/mixer/pad/browse and LED/display tables.",
+      "gaps": "Recovered English chart from current official support instead of the old Japanese search result. Exclude hardware-only entries; preserve pad layers/color numbers and jog/display semantics separately.",
+      "hardware_tested": false,
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      }
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DJM-A9",
+      "landing_url": "https://support.alphatheta.com/en-US/articles/15916598774553",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/DJM_A9_DRI1785B_manual.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/manuals/DJM_A9_DRI1785B_manual.pdf",
+          "file": "djm-a9/owner-manual.pdf",
+          "text_file": "djm-a9/owner-manual.txt",
+          "sha256": "ce7eb4e27b1ecf7494ad39952f67cc0cdc31ff2752d0268c58ec7695c15f0ca2",
+          "bytes": 6879579,
+          "pages": 108,
+          "status": "downloaded",
+          "text_sha256": "3cd12ce17018f44316caa208d5c915be732be2eebb8ca4b0da3e0e5e1f38a178"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/midi-mapping/dj-mixers/DJM-A9/DJM-A9_MIDI_Message_List_E_10.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/midi-mapping/dj-mixers/DJM-A9/DJM-A9_MIDI_Message_List_E_10.pdf",
+          "file": "djm-a9/midi-implementation.pdf",
+          "text_file": "djm-a9/midi-implementation.txt",
+          "sha256": "4bca4d93965d669e8a22bd58a9582ce2fdd23fc3cc29a576203f8e2df819c76f",
+          "bytes": 356967,
+          "pages": 6,
+          "status": "downloaded",
+          "text_sha256": "b59f145755e095cf70e50660004c3be6f40a190d7c53fb19c61dda6da74e056a"
+        }
+      ],
+      "status": "ready-for-extraction",
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "findings": "MIDI chart p1 diagram; pp2\u20136 transmit control matrix. Owner p57 USB/MIDI; p80 MIDI channel and transmission method settings.",
+      "gaps": "Good transmit-only profile candidate for ordinary mixer controls. The acquired chart does not define general host LED receive control. TIME uses an MSB/LSB pair and Timing Clock F8 is a system message, not a Note/CC. Owner p58: timing clock and START/STOP continue even with MIDI ON/OFF off; this is a documented transmit subset, not proof the hardware cannot receive MIDI.",
+      "hardware_tested": false,
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "no complete receive protocol in acquired chart"
+      }
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DJM-S11",
+      "landing_url": "https://support.alphatheta.com/en-US/articles/4404665542425",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/DJM_S11_DRI1653B_manual.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/manuals/DJM_S11_DRI1653B_manual.pdf",
+          "file": "djm-s11/owner-manual.pdf",
+          "text_file": "djm-s11/owner-manual.txt",
+          "sha256": "ac49dfc6061b1048c83a263883b84ffe1de461b6c3669e59614edf7271ab3ff0",
+          "bytes": 9216396,
+          "pages": 126,
+          "status": "downloaded",
+          "text_sha256": "14d6bfe2b8242311e12489cd089262497c0292c1e8a52b315eca771620b6b1d3"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://www.pioneerdj.com/-/media/pioneerdj/downloads/midi-mapping/djm-s11/djm-s11_midi_message_v100_e.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 403,
+          "resolved_url": "https://support.alphatheta.com/",
+          "status": "failed",
+          "error": "403 Client Error: Forbidden for url: https://support.alphatheta.com/"
+        },
+        {
+          "url": "https://downloads.support.alphatheta.com/midi-mapping/dj-mixers/DJM-S11/DJM-S11_MIDI_Message_v100_E.pdf",
+          "kind": "midi-implementation",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/midi-mapping/dj-mixers/DJM-S11/DJM-S11_MIDI_Message_v100_E.pdf",
+          "retrieved_on": "2026-09-12",
+          "status": "downloaded",
+          "file": "djm-s11/midi-implementation.pdf",
+          "text_file": "djm-s11/midi-implementation.txt",
+          "sha256": "e0b2b8eefd96b71756119639e3e3a8871aff7a7e319c7de141d2ba6ca63ab8f6",
+          "bytes": 1665402,
+          "pages": 9,
+          "text_sha256": "3992aac69e5a723a0499afd806c33087f819b58844efe9207002a76624bfddc4"
+        }
+      ],
+      "status": "ready-for-extraction",
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "findings": "MIDI chart p1 diagram; pp2\u20139 channel allocation, mixer, FX, pad/mode and receive tables. Manufacturer MIDI support page requires appropriate other-software utility setting.",
+      "gaps": "Mode-dependent pad/FX controls and paired high-resolution CCs need scoped extraction; do not claim full touchscreen/Serato/native feature emulation.",
+      "hardware_tested": false,
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      }
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "CDJ-3000X",
+      "landing_url": "https://support.alphatheta.com/en-US/articles/49578856455577",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/dj-players/CDJ-3000X/CDJ-3000X_DRI1956C_EN_manual.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/manuals/dj-players/CDJ-3000X/CDJ-3000X_DRI1956C_EN_manual.pdf",
+          "file": "cdj-3000x/owner-manual.pdf",
+          "text_file": "cdj-3000x/owner-manual.txt",
+          "sha256": "6728ef07bfa329f8c4041b24643f86c5abed7ff074339a1a3a4c6719a46c2e95",
+          "bytes": 9756926,
+          "pages": 122,
+          "status": "downloaded",
+          "text_sha256": "a5559353a1feecbc35fa20c98185e571843cea980baed4901a09c43ac0cfbac0"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/software_info/dj-players/CDJ-3000X/CDJ3000X_MIDI_Message_List_En.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/software_info/dj-players/CDJ-3000X/CDJ3000X_MIDI_Message_List_En.pdf",
+          "file": "cdj-3000x/midi-implementation.pdf",
+          "text_file": "cdj-3000x/midi-implementation.txt",
+          "sha256": "e42a4b576d24543bbf80c0798b75b27490925510a28beb7beead7e48aac1a429",
+          "bytes": 661782,
+          "pages": 4,
+          "status": "downloaded",
+          "text_sha256": "f26f00a0189d4a9a284a3cf4ab99f907f20178cbd16414e9b0dc59b94fc668ec"
+        }
+      ],
+      "status": "ready-for-extraction",
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "findings": "MIDI chart pp1\u20132 diagrams; pp3\u20134 transmit Note/CC controls and hardware-only exclusions. Owner p98 MIDI/HID DJ-software operation; p105 MIDI channel setting.",
+      "gaps": "Useful transport/input subset. Chart does not supply a complete host screen/LED receive protocol. Jog values encode signed speed around64, distinct from ordinary relative encoder increments. MIDI and HID operation must remain separate. Owner p99: enter SOURCE > SOFTWARE CONTROL; loading a track from another device exits control mode.",
+      "hardware_tested": false,
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "no complete receive protocol in acquired chart"
+      }
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "SLAB",
+      "landing_url": "https://support.alphatheta.com/en-US/articles/52906226059545",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/music-production/SLAB/SLAB_DRI1975A_EN_manual.pdf",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "resolved_url": "https://downloads.support.alphatheta.com/manuals/music-production/SLAB/SLAB_DRI1975A_EN_manual.pdf",
+          "file": "slab/owner-manual.pdf",
+          "text_file": "slab/owner-manual.txt",
+          "sha256": "3a834f233a55f4413de9c02107d5c4c8db010ecf4d14ec4b6609fbe30b144c9d",
+          "bytes": 1775419,
+          "pages": 43,
+          "status": "downloaded",
+          "text_sha256": "f344f11e7e1587e78354dec2f0cf11b020ccbe8614186272742b38618fb9d0f1"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/midi-mapping/music-production/SLAB/SLAB_MIDI_Message_List_en.pdf",
+          "file": "slab/midi-implementation.pdf",
+          "text_file": "slab/midi-implementation.txt",
+          "sha256": "aaba912538403e712fb73554a4e30fff8b467e115e91f9455718711fd1b29a0c",
+          "pages": 4,
+          "bytes": 127466,
+          "status": "downloaded",
+          "retrieved_on": "2026-09-12",
+          "http_status": 200,
+          "text_sha256": "8dfba665433b20a6caf8d3053f7818e2180e8fd0e8c1fba09510eff6c4393f33"
+        }
+      ],
+      "status": "partial",
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "findings": "MIDI chart pp1\u20134: control/pad/touch-strip mappings, page modes, aftertouch and colored receive. PDF p1 E1 encoder-mode row visually reviewed.",
+      "gaps": "Unresolved source conflict: E1 decimal MIDI channel1 but status96 (channel7). Dial/encoder turn values are CW01/CCW41, not two\u2019s-complement. Paired touch strip, poly aftertouch, arbitrary pages and RGB feedback need adaptation; quarantine contradictory row. Both unshifted note16 and shifted note17 show the E1 contradiction. Conservatively partial because this mode-control ambiguity remains, though other isolated rows are extractable.",
+      "hardware_tested": false,
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      }
+    }
+  ],
+  "schema_observed": "Note/CC; absolute7Bit/relativeTwosComplement/noteGate; base/amber/green layers; red/amber/green colors; global channel plus contextual overrides. High-resolution pairs, arbitrary banks, independent per-binding channels, RGB palettes, non-twos-complement encoders and SysEx need adaptation or exclusion.",
+  "retrieval_notes": [
+    "Direct HTTP support pages returned403; native browser exposed current download links. Older viewer links ending / returned404; corresponding official .pdf paths were downloaded and checked as actual PDF bytes.",
+    "Old pioneerdj.com MIDI PDF paths returned403; migrated downloads.support.alphatheta.com links succeeded. Retained failed attempts in sources.",
+    "DDJ-REV7 current linked MIDI reference is E2. SLAB p1 channel/status conflict visually checked against PDF. No firmware/drivers installed."
+  ]
+}

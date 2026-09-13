@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Native Instruments",
+  "model": "Traktor Kontrol F1",
+  "status": "partial-extraction",
+  "coverage_state": "documentation-only",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "local_file": "ni-hercules-ah/f1/manual.pdf",
+      "url": "https://docs.native-instruments.com/pdf-guides/traktor/traktor_kontrol_f1_manual_english.pdf",
+      "sha256": "802243ad2c55d6a22fb451514bca0b096698730d520cc949f0db93cf7a55f2db",
+      "id": "s1"
+    },
+    {
+      "local_file": "ni-hercules-ah/f1/controller-editor.pdf",
+      "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/manuals/Controller_Editor_Manual_English_2017_11.pdf",
+      "sha256": "b388d0e709305a683b5d4a0f10989e3ccd11008b253139c4de5dfb262070e5b7",
+      "id": "s2"
+    }
+  ],
+  "scope": "Documentation-only extraction of F1 ordinary MIDI mode and configurable Controller Editor assignments. No pinned template with concrete per-control numeric addresses/channels is archived. Proprietary NHL User Map and native Remix Deck behavior are excluded from MIDI bindings.",
+  "bindings": [],
+  "setup_notes": [
+    "In Traktor Preferences > Traktor Kontrol F1, select MIDI Mode instead of User Map; then press SHIFT + BROWSE (MIDI) to enter ordinary MIDI mode. Press the same combination again to return to Performance mode.",
+    "Use Controller Editor to select the desired template; templates cannot be switched from the F1 hardware. Capture/export the selected template before creating a concrete map.",
+    "SHIFT changes Controller Editor pages; its Gate or Toggle behavior is configured in the Pages pane. The F1 SHIFT button is lit in MIDI mode."
+  ],
+  "missing_information": [
+    "Pinned/exported Controller Editor template with per-page input/output addresses and channels.",
+    "Template-specific encoder turn/push message types, values and direction encoding.",
+    "Selected RGB pad single/dual/HSB modes and display message assignments; no fixed LED address map is established."
+  ],
+  "issues": [
+    {
+      "id": "setup-provenance",
+      "severity": "scope",
+      "description": "Ordinary MIDI mode requires the MIDI Mode preference; User Map uses NHL. Controller Editor template and page selection determine the assignment context.",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "PDF pages 119–121, section 4.12; page 128, section 5.1.4"
+        },
+        {
+          "source_id": "s2",
+          "locator": "PDF pages 162–164; sections 14.1–14.2"
+        }
+      ],
+      "excluded_bindings": []
+    },
+    {
+      "id": "template-required",
+      "severity": "scope",
+      "description": "F1 controls except SHIFT are freely assignable subject to control type. Editor capability descriptions do not establish a single fixed per-control numeric map.",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF pages 162–168; sections 14.1–14.3"
+        }
+      ],
+      "excluded_bindings": [
+        "All template-dependent input assignments and LED/display receive assignments"
+      ]
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "s1",
+      "file": "ni-hercules-ah/raw/traktor-kontrol-f1-s1.txt",
+      "extraction_method": "pdftotext -layout; complete PDF retained as page-addressed text; no OCR or inferred labels"
+    },
+    {
+      "source_id": "s2",
+      "file": "ni-hercules-ah/raw/traktor-kontrol-f1-s2.txt",
+      "extraction_method": "pdftotext -layout; complete PDF retained as page-addressed text; no OCR or inferred labels"
+    }
+  ]
+}

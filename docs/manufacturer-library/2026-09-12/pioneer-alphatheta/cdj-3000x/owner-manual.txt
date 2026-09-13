@@ -1,0 +1,3627 @@
+===== PDF PAGE 1 =====
+Instruction Manual
+Multi player
+CDJ-3000X
+alphatheta.com/support/
+rekordbox.com
+For FAQ and other support information for this product, visit the websites above.
+Cover
+
+
+===== PDF PAGE 2 =====
+2
+Contents
+Before you start ................................................................................... 6
+How to read this manual .........................................................................6
+What’s in the box.....................................................................................6
+User guides .............................................................................................7
+Product overview................................................................................. 8
+PRO DJ LINK ..........................................................................................8
+rekordbox for Mac/Windows....................................................................8
+rekordbox for iOS/Android.....................................................................10
+System requirements ............................................................................11
+Part names ......................................................................................... 13
+Top panel ..............................................................................................13
+Front panel............................................................................................17
+Rear panel.............................................................................................18
+Touchscreen .........................................................................................19
+Jog display ............................................................................................27
+Basic operations on the touchscreen ....................................................28
+Connections (basic styles) ............................................................... 29
+Internet connection................................................................................29
+PRO DJ LINK ........................................................................................32
+PC/Mac setup ..................................................................................... 37
+Installation of the dedicated audio driver software ................................37
+rekordbox CloudDirectPlay .............................................................. 39
+Setting up rekordbox CloudDirectPlay ..................................................40
+Authentication device for rekordbox CloudDirectPlay ...........................44
+Checking the internet connection..........................................................46
+Logging in to rekordbox CloudDirectPlay..............................................46
+
+
+===== PDF PAGE 3 =====
+3
+Logging out of rekordbox CloudDirectPlay............................................49
+Playing audio files via rekordbox CloudDirectPlay................................50
+Using the unit with streaming services (Beatport, TIDAL).....................50
+StreamingDirectPlay.......................................................................... 51
+Logging in to Beatport Streaming..........................................................51
+Logging in to TIDAL ..............................................................................52
+Playing audio files via streaming services (Beatport, TIDAL) ...............53
+Connecting a storage device............................................................ 54
+USB device ...........................................................................................54
+Track selection................................................................................... 55
+Selecting a source.................................................................................55
+Selecting a track....................................................................................55
+Searching for a track .............................................................................56
+Monitoring sound before loading a track (Touch Preview)....................60
+Using History.........................................................................................61
+Using the Tag List .................................................................................62
+Displaying the playlist screen................................................................66
+Playback ............................................................................................. 69
+Play/pause ............................................................................................69
+Playing a track from the touched point on the overall waveform...........69
+Reverse playback..................................................................................70
+Basic operations during playback .........................................................70
+Adjusting the playback speed (tempo control) ......................................71
+Adjusting the playback speed without changing the pitch (Master Tempo)...71
+Monitoring a different part of a track during playback (Touch Cue) ......72
+Using the jog wheel........................................................................... 73
+Setting the jog wheel mode...................................................................73
+Jog wheel operations ............................................................................73
+Adjusting the “weight” of the jog wheel .................................................74
+
+
+===== PDF PAGE 4 =====
+4
+Adjusting the playback starting and stopping speeds (for Vinyl mode) ...74
+Cueing................................................................................................. 76
+Setting a cue point ................................................................................76
+Jumping to a cue point ..........................................................................76
+Checking a cue point (Cue Point Sampler) ...........................................77
+Saving a cue point.................................................................................77
+Calling up a saved cue point .................................................................77
+Deleting a saved cue point....................................................................78
+Setting Auto Cue ...................................................................................78
+Looping............................................................................................... 79
+Setting a loop ........................................................................................79
+Fine-adjusting loop points .....................................................................81
+Adjusting the length of a loop................................................................81
+Using Active Loop .................................................................................82
+Canceling loop playback .......................................................................82
+Emergency Loop ...................................................................................82
+Saving a loop ........................................................................................83
+Calling up a saved loop.........................................................................83
+Deleting a saved loop............................................................................83
+Hot Cue/Gate Cue .............................................................................. 84
+Setting a Hot Cue..................................................................................84
+Starting playback from a Hot Cue point ................................................85
+Starting Gate playback from a Hot Cue point........................................85
+Deleting a Hot Cue................................................................................86
+Calling up Hot Cues ..............................................................................86
+Using a Hot Cue Bank list .....................................................................87
+Quantize.............................................................................................. 88
+Using Quantize......................................................................................88
+Beat Jump/Loop Move ...................................................................... 89
+
+
+===== PDF PAGE 5 =====
+5
+Using Beat Jump/Loop Move ................................................................89
+Slip ...................................................................................................... 91
+Turning Slip mode on ............................................................................92
+Beat Sync ........................................................................................... 93
+Using Beat Sync....................................................................................93
+Changing the sync master ....................................................................94
+Using Instant Doubles ...........................................................................94
+Beatgrid .............................................................................................. 95
+Adjusting the beatgrid ...........................................................................95
+Key Sync............................................................................................. 96
+Using Key Sync.....................................................................................96
+Key Shift ............................................................................................. 97
+Using Key Shift......................................................................................97
+Using DJ software ............................................................................. 98
+Controlling DJ software .........................................................................99
+Settings............................................................................................. 100
+Changing the settings .........................................................................100
+Utility settings ......................................................................................101
+Wireless LAN (Wi-Fi®) connection ......................................................108
+Changing the settings on the Shortcut screen ....................................110
+Setting items on the Shortcut screen ..................................................111
+Saving My Settings to a storage device ..............................................113
+Calling up My Settings saved on a storage device .............................114
+Specifications .................................................................................. 116
+Additional information .................................................................... 118
+Troubleshooting ..................................................................................118
+LCD display.........................................................................................120
+Trademarks and registered trademarks ..............................................121
+Cautions on copyrights........................................................................122
+
+
+===== PDF PAGE 6 =====
+6
+Before you start
+How to read this manual
+• Thank you for choosing this AlphaTheta product.
+Be sure to read this manual, the Quick Start Guide and the Precautions for Use which are 
+also included with this product. These documents include important information that you 
+should understand before using the unit.
+• In this manual the names of buttons, knobs and terminals that appear on the product, and 
+the names of buttons, menus etc. in the software on your PC/Mac or mobile device, are 
+indicated within square brackets ([ ]). (e.g. [File], [CUE] button)
+• Please note that the software screens and their specifications, as well as the external 
+appearance and specifications of the hardware, are subject to change without notice.
+• Please note that depending on the operating system version, web browser settings, etc. 
+operation may differ from the ways described in this manual.
+• Please note that the language on the screens of the software described in this manual may 
+differ from the language on your screen.
+What’s in the box
+• Multi player × 1
+• Power cord × 1
+• Warranty (for some regions)* × 1
+• Digital audio cable × 1
+• Analog audio cable × 1
+• LAN cable × 1
+• Quick Start Guide × 1
+• Precautions for Use × 1
+* Only products in Europe.
+Products in North America and Japan include warranty information in the Precautions for 
+Use.
+
+
+===== PDF PAGE 7 =====
+7
+Before you start
+User guides
+ rekordbox Introduction, Instruction Manual
+Refer to the rekordbox Introduction to find out how to set up rekordbox for Mac/Windows, and 
+see the Instruction Manual to find out how to use rekordbox for Mac/Windows.
+Visit the URL below to find these user guides.
+rekordbox.com/manual
+
+
+===== PDF PAGE 8 =====
+8
+Product overview
+PRO DJ LINK
+You can use PRO DJ LINK functions by connecting the unit via a LAN cable to a PRO DJ 
+LINK compatible DJ mixer and a PC/Mac running rekordbox.
+PRO DJ LINK supports USB Export, which utilizes a storage device, as well as rekordbox 
+LINK Export, which utilizes a PC/Mac or mobile device running rekordbox.
+O Connection: PRO DJ LINK (page 32)
+rekordbox for Mac/Windows
+rekordbox for Mac/Windows is a complete DJ application that you can use to manage your 
+music and perform.
+• You can use audio files managed in Export mode (the music management function of 
+rekordbox for Mac/Windows) with this unit.
+• This unit is a Hardware Unlock device. If you connect a PC/Mac running rekordbox for 
+Mac/Windows to the unit, you can use Performance mode (DJ functions of rekordbox for 
+Mac/Windows) for free.
+• For information on functions supported by Hardware Unlock, visit the URL below.
+rekordbox.com
+• The rekordbox for Mac/Windows isn’t included with the unit. Download the software from 
+the URL below.
+rekordbox.com
+• For information on the latest system requirements, compatibility, and supported operating 
+systems, visit the URL below.
+rekordbox.com/system
+• Operation isn’t guaranteed on all PC/Mac models, even if the system requirements are 
+met.
+• Depending on power-saving settings and other conditions of your PC/Mac, the CPU and 
+hard disk may not provide sufficient processing capabilities. For laptops in particular, make 
+sure the PC/Mac is in the best condition to provide constant high-level performance when 
+using rekordbox for Mac/Windows (for example by keeping the AC power connected).
+
+
+===== PDF PAGE 9 =====
+9
+Product overview
+OneLibrary
+This unit only supports OneLibrary.
+When using any library other than OneLibrary on the USB device, make sure to first convert it 
+to OneLibrary by following the procedure below to use it on this unit.
+1
+Launch the latest version of rekordbox for Mac/Windows.
+2
+Connect the USB device to your PC/Mac.
+3
+Follow the on-screen instructions to perform the conversion.
+• For more information, refer to the OneLibrary user guide from the FAQ below.
+rekordbox.com/support/faq/onelibrary-7/
+
+
+===== PDF PAGE 10 =====
+10
+Product overview
+rekordbox for iOS/Android
+If you connect mobile devices running rekordbox for iOS/Android to the unit, you can play 
+audio files managed in rekordbox for iOS/Android via the unit.
+• For information on connecting mobile devices running rekordbox for iOS/Android with the 
+unit, refer to the FAQ at the URL below.
+iOS:
+rekordbox.com/en/support/faq/connecting-to-dj-units/#faq-q100037
+Android:
+rekordbox.com/en/support/faq/connecting-to-dj-units-android/#faq-q110039
+• The DJ performance functions supported by ver. 4.0.0 or later can’t be used with this unit. 
+Select [Connect to CDJ/XDJ/DJM] on the screen below and use the unit via PRO DJ 
+LINK.
+
+
+===== PDF PAGE 11 =====
+11
+Product overview
+System requirements
+Supported audio sources
+This unit supports the following sources.
+– USB device
+– Mobile device
+O rekordbox for iOS/Android (page 10)
+– PC/Mac
+O PC/Mac setup (page 37)
+ USB devices
+Use USB devices that support the following specifications.
+• The unit can play audio files saved on USB mass storage class devices.
+• It may take some time for the unit to read a device when it contains many folders and files.
+• Some USB devices may not work properly with this unit.
+• The unit doesn’t support the following.
+– Optical disc devices such as external DVD/CD drives
+– USB hubs
+• We accept no responsibility for loss of data from USB devices, or other direct or indirect 
+problems resulting from connections to this unit.
+• If excessive current passes through the USB port on the unit, the USB indicator on the unit 
+blinks, and the unit stops the power supply to the USB device and stops communication. To 
+restore the unit to a normal condition, disconnect the USB device from the unit. Do not use 
+the USB device with the unit again.
+Folder hierarchy
+Up to 8 levels (Files in the lower levels can’t be played with 
+the unit.)
+Maximum number of folders 
+Unlimited (Up to 10 000 folders in a folder can be 
+displayed.)
+Maximum number of files
+Unlimited (Up to 10 000 files in a folder can be displayed.)
+File format
+FAT16, FAT32, exFAT, HFS+ (NTFS isn’t supported.)
+
+
+===== PDF PAGE 12 =====
+12
+Product overview
+If you still can’t restore the unit to a normal condition (i.e. if the unit doesn’t communicate 
+with a connected USB device), turn the unit off and on.
+• Do not use an extension cable when connecting a USB device to the unit or 
+communication may be interrupted.
+Supported file formats
+The unit supports audio files in the following formats.
+• Some files can’t be played with the unit even if they are in a supported format.
+Type
+Extension Format
+Bit depth
+Bit rate
+Sampling 
+frequency
+MP3
+.mp3
+MPEG-1 
+AUDIO 
+LAYER-3
+16bit
+32 to 320 kbps
+44.1 kHz,
+48 kHz
+AAC
+.m4a,
+.aac,
+.mp4
+MPEG-4 
+AAC LC
+16 to 320 kbps
+MPEG-2 
+AAC LC
+WAV
+.wav
+WAV
+16bit, 24bit
+—
+44.1 kHz,
+48 kHz,
+88.2 kHz,
+96 kHz
+AIFF
+.aif,
+.aiff
+AIFF
+Apple 
+Lossless
+.m4a
+ALAC
+FLAC
+.flac,
+.fla
+FLAC
+
+
+===== PDF PAGE 13 =====
+13
+Part names
+Top panel
+1.
+ button
+O Play/pause (page 69)
+2.
+CUE button
+O Setting a cue point (page 76)
+3.
+SEARCH 
+, 
+ buttons
+O Basic operations during playback (page 70)
+13
+16
+15
+14
+15
+12
+11
+10
+9
+8
+7
+1
+2
+3
+4
+5
+6
+16
+18 19
+20
+21
+22
+23
+24
+17
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+
+
+===== PDF PAGE 14 =====
+14
+Part names
+4.
+TRACK SEARCH 
+, 
+ buttons
+O Basic operations during playback (page 70)
+5.
+SLIP REV, FWD, REV lever
+Lights up during reverse playback or Slip Reverse.
+O Reverse playback (page 70)
+O Slip (page 91)
+6.
+BEAT JUMP 
+, 
+ buttons
+O Beat Jump/Loop Move (page 89)
+7.
+4 BEAT LOOP (1/2X) button
+O Using the 4 BEAT LOOP (1/2X) button (page 79)
+O Halving the length of a loop (page 81)
+8.
+8 BEAT LOOP (2X) button
+O Using the 8 BEAT LOOP (2X) button (page 80)
+O Doubling a loop in length (page 81)
+9.
+LOOP IN/CUE (IN ADJUST) button
+O During playback (page 76)
+O Manual setting (page 79)
+O Fine-adjusting loop points (page 81)
+10. LOOP OUT (OUT ADJUST) button
+O Manual setting (page 79)
+O Fine-adjusting loop points (page 81)
+11. LOOP RELOOP/EXIT button
+O Canceling loop playback (page 82)
+O Starting playback from a Hot Cue point (page 85)
+12. HOT CUE (CALL/DELETE, A to H) buttons
+O Hot Cue/Gate Cue (page 84)
+O Slip (page 91)
+13. SLIP button
+O Turning Slip mode on (page 92)
+14. QUANTIZE button
+O Using Quantize (page 88)
+15. USB1, USB2 STOP buttons
+O Disconnecting a USB device (page 54)
+16. USB1, USB2 ports
+
+
+===== PDF PAGE 15 =====
+15
+Part names
+17. USB1, USB2 indicators
+Blinks while communicating with a USB device.
+18. Touchscreen
+O Touchscreen (page 19)
+19. SOURCE button
+Displays the [SOURCE] screen.
+20. BROWSE button
+Displays the BROWSE screen.
+21. TAG LIST button
+Displays the [TAG LIST] screen.
+22. PLAYLIST button
+Displays the Playlist screen.
+23. SEARCH button
+Displays the Search screen.
+24. MENU button
+O Changing the settings (page 100)
+25. BACK button
+O Returning to the next level up (page 28)
+26. TAG TRACK/REMOVE button
+O Registering a track to the Tag List (page 63)
+27. Rotary selector
+O Using the rotary selector (page 28)
+28. TRACK FILTER/EDIT button
+O Using Track Filter (page 58)
+29. SHORTCUT button
+Displays the [SHORTCUT] screen.
+30. VINYL SPEED ADJUST knob
+O Adjusting the playback starting and stopping speeds (for Vinyl mode) (page 74)
+31. CUE/LOOP CALL 
+, 
+ buttons
+O Calling up a saved cue point (page 77)
+O Calling up a saved loop (page 83)
+32. DELETE button
+O Deleting a saved cue point (page 78)
+
+
+===== PDF PAGE 16 =====
+16
+Part names
+O Deleting a saved loop (page 83)
+33. MEMORY button
+O Saving a cue point (page 77)
+O Saving a loop (page 83)
+34. JOG MODE button
+O Setting the jog wheel mode (page 73)
+35. VINYL/CDJ indicator
+Lights up to indicate the selected mode (Vinyl or CDJ).
+O Setting the jog wheel mode (page 73)
+36. JOG FEEL knob
+O Adjusting the “weight” of the jog wheel (page 74)
+37. MASTER button
+O Using Beat Sync (page 93)
+38. KEY SYNC button
+O Using Key Sync (page 96)
+39. BEAT SYNC/INST.DOUBLES button
+O Using Beat Sync (page 93)
+O Using Instant Doubles (page 94)
+40. TEMPO ±6/±10/±16/WIDE button
+O Adjusting the playback speed (tempo control) (page 71)
+41. MASTER TEMPO button
+O Adjusting the playback speed without changing the pitch (Master Tempo) (page 71)
+42. TEMPO slider
+O Adjusting the playback speed (tempo control) (page 71)
+43. TEMPO RESET indicator
+Lights up when Tempo Reset is turned on.
+44. TEMPO RESET button
+O Adjusting the playback speed (tempo control) (page 71)
+45. Jog wheel, jog ring illumination
+O Jog wheel operations (page 73)
+46. Jog display
+O Jog display (page 27)
+
+
+===== PDF PAGE 17 =====
+17
+Part names
+Front panel
+1.
+NFC login touch area
+O NFC login (page 48)
+2.
+NFC login indicator
+1
+2
+
+
+===== PDF PAGE 18 =====
+18
+Part names
+Rear panel
+1.
+AUDIO OUT L/R terminals
+Connect the supplied analog audio cable.
+2.
+DIGITAL OUT terminal
+Connect the supplied digital audio cable.
+3.
+ button
+Turns the unit on and off.
+4.
+AC IN
+Connect to a power outlet with the supplied power cord.
+5.
+LINK port
+Connect the supplied LAN cable.
+6.
+Kensington security slot
+Connect a cable lock.
+7.
+USB port
+Connect a PC/Mac with a USB cable.
+3
+4
+5
+6
+1
+7
+2
+
+
+===== PDF PAGE 19 =====
+19
+Part names
+Touchscreen
+SOURCE screen
+Press the [SOURCE] button to display the source selection screen.
+1.
+Device icon
+Displays the connected device.
+•
+If [Background Color] is set for the device, the icon’s background is displayed in the 
+chosen color.
+2.
+Device name/status
+Displays the device name and status.
+3.
+ (Info)
+Displays or hides the information for the highlighted device.
+4.
+ (Device settings)
+Select the [Local Library], [Cloud Library], or [Streaming] tab to set the following.
+[Local Library]
+— [Waveform Divisions]: Selects time scale or phrase data to display under the 
+playing address on the overall waveform.
+— [Image On-Jog Display]: Sets an image to display on the artwork display on the 
+jog wheel.
+1
+2
+5
+3
+6
+7
+8
+4
+
+
+===== PDF PAGE 20 =====
+20
+Part names
+— [Background Color]: Sets the background color saved on the selected storage 
+device. This setting is also applied to colors for a part of the touchscreen.
+— [MY SETTINGS LOAD]: Calls up the Utility settings and some other settings 
+saved on the selected storage device.
+O Calling up My Settings saved on a storage device (page 114)
+[Cloud Library]
+—  [Waveform Divisions]: Selects time scale or phrase data to display under the 
+playing address on the overall waveform.
+—  [Image On-Jog Display]: Sets an image to display on the artwork display on the 
+jog wheel.
+—  [Background Color]: Sets the background color saved on the selected storage 
+device. This setting is also applied to colors for a part of the touchscreen.
+—  [Display username on-screen]: Sets whether or not to display the nickname 
+registered in your cloud storage on the touchscreen of the unit.
+—  [Log Out Time]: Sets the amount of time until you’re automatically logged out of 
+the cloud if you haven’t used rekordbox CloudDirectPlay or streaming services 
+(Beatport, TIDAL) during that time. This is only displayed when you log in to the 
+cloud using [Cloud Log In].
+— [MY SETTINGS LOAD]: Calls up the Utility settings and some other settings 
+saved in your cloud storage.
+O Calling up My Settings saved on a storage device (page 114)
+[Streaming]
+—  [TIDAL]: Sets the file format for audio files to register in your cloud storage when 
+using TIDAL. If the file format is already registered in the cloud database, the 
+setting in the database will take priority.
+5.
+Connection status icons
+—
+ (Internet connection icon): Displays the status of the internet connection.
+—
+ (Wi-Fi connection icon): Displays the status of the Wi-Fi connection.
+6.
+MY SETTINGS LOAD
+Calls up the Utility settings and some other settings saved on the selected storage 
+device.
+O Calling up My Settings saved on a storage device (page 114)
+7.
+Library display
+Displays the library.
+— [Local Library]: Browses the rekordbox library on the selected storage device.
+— [Cloud]: Browses the rekordbox library in your cloud storage after you’ve logged in 
+to it.
+
+
+===== PDF PAGE 21 =====
+21
+Part names
+O Logging in to rekordbox CloudDirectPlay (page 46)
+— [Beatport]: Browses Beatport Streaming after you’ve logged in to it.
+O Logging in to Beatport Streaming (page 51)
+— [TIDAL]: Browses TIDAL after you’ve logged in to it.
+O Logging in to TIDAL (page 52)
+8.
+Playback status display
+Displays the playback status of the loaded track.
+O Playback screen (waveform screen) (page 23)
+Browse screen
+Press the [BROWSE], [TAG LIST], or [PLAYLIST] button to display the browse screen (track 
+list).
+You can browse a storage device, rekordbox CloudDirectPlay, the rekordbox library on a 
+connected PC/Mac or mobile device, and streaming services (Beatport, TIDAL).
+• If you browse a storage device that doesn’t contain a rekordbox library on the BROWSE 
+screen, the folder and track lists are displayed in a hierarchical structure.
+When you press the [BROWSE] button
+1.
+Category
+Displays the categories.
+•
+Go to [Preferences] in rekordbox to choose the categories you want to display (you 
+can’t set the categories for streaming services (Beatport, TIDAL) with rekordbox).
+6
+1
+2
+3
+10
+5
+4
+7
+8
+9
+
+
+===== PDF PAGE 22 =====
+22
+Part names
+2.
+Device icon
+Displays the icon of a device selected on the [SOURCE] screen.
+3.
+ (Back)
+Displays the next level up.
+4.
+Next level up display
+Displays the folder in the next level up, device name, or nickname.
+5.
+Track list
+Displays the track list of the selected hierarchical level or playlist.
+•
+Touch the title row to sort the list.
+•
+Touch 
+ on the title row to display the sub-column selection screen and select a 
+sub-column to be displayed. To set sub-columns you want to display in the selection 
+list, go to [Preferences] in rekordbox (you can’t set a sub-column to be displayed for 
+streaming services (Beatport, TIDAL) with rekordbox).
+6.
+PREVIEW
+Displays or hides the [Preview] column.
+7.
+Font size setting
+Sets the font size.
+8.
+ (Info)
+Displays or hides the information for the highlighted track.
+9.
+Connection status icons
+—
+ (Internet connection icon): Displays the status of the internet connection.
+—
+ (Wi-Fi connection icon): Displays the status of the Wi-Fi connection.
+10. Playback status display
+Displays the playback status of the loaded track.
+O Playback screen (waveform screen) (page 23)
+
+
+===== PDF PAGE 23 =====
+23
+Part names
+Playback screen (waveform screen)
+1.
+Number of beats for a loop
+Displays the number of beats set for a loop.
+2.
+Enlarged waveform
+Displays the enlarged waveform, cue points, loop points, and Hot Cue points, etc. that 
+have been analyzed by rekordbox or this unit.
+•
+You can change the waveform color in [Waveform Color] on the [SHORTCUT] 
+screen.
+O Waveform Color (page 112)
+•
+Touch the overall waveform during playback to display the enlarged waveform for the 
+touched point.
+3.
+Beat countdown
+Displays the number of bars and beats from the playback point to the closest saved cue 
+point.
+6
+5
+4
+7
+8
+3
+2
+1
+13
+29
+16
+18
+19
+21
+22
+23
+24
+25
+27
+30
+26
+28
+15
+14
+12
+11
+9
+10
+17
+20
+
+
+===== PDF PAGE 24 =====
+24
+Part names
+•
+Touch the overall waveform during playback to display the number of bars and beats 
+from the playback point to the touched point.
+4.
+Device icon (Storage of the loaded track)
+•
+Touch 
+ (Eject) to unload the loaded track. You can’t unload the track playing when 
+[Eject/Load Lock] is set to [Lock] in the Utility settings. Set it to [Unlock] or press the 
+[
+] button to pause, then touch 
+.
+O Eject/Load Lock*1 (page 101)
+5.
+Track information
+Displays the information of the loaded track.
+Touch the track information to display or hide the information such as track name.
+6.
+BEAT LOOP
+O Using BEAT LOOP on the waveform screen (page 80)
+O Slip (page 91)
+7.
+KEY SHIFT
+O Using Key Shift (page 97)
+8.
+BEAT JUMP
+O Using Beat Jump/Loop Move (page 89)
+9.
+ (Info)
+Displays the detailed information of the loaded track.
+10. Update Available
+Displays [Update Available] when the unit is connected to the internet if an updated 
+firmware version is available.
+11. Connection status icons
+—
+ (Internet connection icon): Displays the status of the internet connection.
+—
+ (Wi-Fi connection icon): Displays the status of the Wi-Fi connection.
+12. Waveform/phase meter
+Displays the bar and beat deviations from the sync master.
+•
+Touch to switch between the waveform and phase meter displays. You can also 
+switch the displays in [Waveform/Phase Meter] on the [SHORTCUT] screen.
+O Waveform/Phase Meter (page 111)
+13. Zoom/Grid Adjust mode indicator
+Press and hold the rotary selector to switch between Zoom and Grid Adjust modes.
+•
+Turn the rotary selector to control the following.
+–  In Zoom mode: Zooms in and out of the waveform.
+–  In Grid Adjust mode: Adjusts the beatgrid.
+
+
+===== PDF PAGE 25 =====
+25
+Part names
+14. Number of beats for Beat Jump
+Displays the number of beats set for the [BEAT JUMP 
+, 
+] buttons.
+•
+Set the number of beats in [Beat Jump Beat Value] in the Utility settings or on the 
+[SHORTCUT] screen.
+O Beat Jump Beat Value*1 (page 101)
+O Beat Jump Beat Value (page 111)
+15. Number of beats for Quantize
+Displays the number of beats set for Quantize when Quantize is turned on.
+•
+Set the number of beats in [Quantize Beat Value] in the Utility settings or on the 
+[SHORTCUT] screen.
+O Quantize Beat Value*1 (page 101)
+O Quantize Beat Value (page 111)
+16. Player number
+Displays the player number set for the unit.
+•
+Set the player number in [Player No.] in the Utility settings.
+O Player No. (page 105)
+17.
+(File cache)
+Displayed when the file cache has completed for the loaded track.
+18. Track number
+19. GATE CUE button
+Turns on and off Gate Cue.
+20. SMART CUE
+Displayed when Smart Cue is turned on.
+21. AUTO CUE
+Displayed when Auto Cue is turned on.
+22. Time display (minutes, seconds, msec)
+Displays remaining time or elapsed time.
+23. CONTINUE/SINGLE
+Displays the playback mode for the loaded track.
+•
+Set the playback mode in [Play Mode] in the Utility settings.
+O Play Mode*1 (page 103)
+24. Playback speed
+Displays the playback speed set by the TEMPO slider.
+
+
+===== PDF PAGE 26 =====
+26
+Part names
+25. Playback speed adjustment range
+Displays the adjustable range from the original playback speed.
+26. BPM
+Displays the BPM (Beats Per Minute, i.e. tempo) of the track being played.
+•
+The measured value may differ from that measured by our DJ mixers due to 
+differences in the measurement methods. This isn’t a malfunction.
+27. MASTER/SYNC
+— MASTER: Displayed when the unit is set as the sync master.
+— SYNC: Displayed when Beat Sync is turned on.
+28. MT
+Displayed when Master Tempo is turned on.
+29. Key
+Displays the key of the track.
+•
+The key is displayed in green when it’s a good match with the key (related key) of a 
+track loaded on the sync master.
+30. Overall waveform
+Displays the overall waveform, cue points, loop points, and Hot Cue points, etc. that have 
+been analyzed by rekordbox or this unit.
+O Playing a track from the touched point on the overall waveform (page 69)
+O Monitoring a different part of a track during playback (Touch Cue) (page 72)
+•
+You can change the waveform color in [Waveform Color] on the [SHORTCUT] 
+screen.
+O Waveform Color (page 112)
+
+
+===== PDF PAGE 27 =====
+27
+Part names
+Jog display
+1.
+SLIP indicator
+Lights up when Slip mode is turned on.
+2.
+Artwork
+Displays the artwork of the loaded track.
+•
+You can set the artwork to display for each track in [Image On-Jog Display] on the 
+[SHORTCUT] screen, or in [Image On-Jog Display] of [Local Library] or [Cloud 
+Library] that is displayed by tapping 
+ on the [SOURCE] screen.
+O Image On-Jog Display (page 112)
+O SOURCE screen (page 19)
+3.
+SYNC indicator
+Lights up when Beat Sync is turned on.
+4.
+Playback point indicator
+Indicates the playback point (turns during playback and stops when the track is paused).
+5.
+VINYL indicator
+Lights up when Vinyl mode is turned on.
+6.
+Cue/loop/Hot Cue point indicator
+Indicates the cue, loop, or Hot Cue point.
+7.
+MASTER indicator
+Lights up when the unit is set as the sync master.
+1
+3
+5
+6
+2
+7
+4
+
+
+===== PDF PAGE 28 =====
+28
+Part names
+Basic operations on the touchscreen
+Use the rotary selector or touch the screen to operate it.
+ Using the rotary selector
+The following functions are available.
+ Touch operations
+The following functions are available.
+ Returning to the next level up
+1
+Press the [BACK] button on the top panel.
+The next level up (previous screen) is displayed.
+•
+Press and hold the [BACK] button to highlight the top level in the hierarchy.
+Operation
+Description
+Rotate
+Moves the cursor and highlights an item.
+Press
+Selects the highlighted item.
+Operation
+Description
+Touch
+Other than 
+waveform
+Selects the highlighted item.
+• Touch an item (e.g. a folder) in a hierarchy to display 
+the next level down.
+• Touch a track to display the track menu.
+Waveform
+Touch the overall waveform on the browse screen to 
+monitor the sound from the touched point.
+Flick
+Scrolls up or down in the hierarchy.
+
+
+===== PDF PAGE 29 =====
+29
+Connections (basic styles)
+Turn the unit off and disconnect the power cord before connecting other units.
+Connect the power cord after all the connections are complete.
+• Use the supplied power cord.
+• Read the instruction manuals for the devices you are going to connect with the unit.
+• Use the following products for the connections.
+– Supplied LAN cable (or an STP cable (CAT5e shielded))
+– Switching hub of 1Gbps or more
+– Wireless LAN (Wi-Fi) router (access point) that conforms to IEEE802.11n or 
+IEEE802.11ac
+• Operation isn’ t guaranteed on all products, even if the requirements are met.
+Internet connection
+To use rekordbox CloudDirectPlay or streaming services (Beatport, TIDAL) on the unit, 
+connect the unit to a router via wireless LAN (Wi-Fi) or wired LAN.
+ Notes on internet connection
+• You can’t connect the network interface of the unit directly to the communication lines of 
+telecommunications carriers (mobile communications companies, fixed-line 
+telecommunications companies, internet service providers, etc.). To connect the unit to the 
+internet, connect via a router or similar device (for security reasons, don’t connect the unit 
+directly to the internet. Instead, set the unit within a network protected by a router or 
+firewall).
+
+
+===== PDF PAGE 30 =====
+30
+Connections (basic styles)
+ Wireless LAN (Wi-Fi) connection
+• Connect to the internet via wireless LAN (Wi-Fi) on the unit.
+• To use PRO DJ LINK, connect the unit and a DJ mixer with a LAN cable via a switching 
+hub.
+Connection diagram:
+Switching hub
+DJ mixer
+Multi player
+Multi player
+Wireless LAN (Wi-Fi) router 
+(access point)
+Internet
+
+
+===== PDF PAGE 31 =====
+31
+Connections (basic styles)
+ Wired LAN connection
+• Connect a router and switching hub with a LAN cable.
+Connection diagram:
+• Check if the router and switching hub work before connecting to the internet, then connect 
+a LAN cable to multi players.
+• If multiple PRO DJ LINK networks are used in a large venue, set a router for each PRO DJ 
+LINK network to separate the areas.
+Switching hub
+DJ mixer
+Multi player
+Multi player
+Router
+Internet
+
+
+===== PDF PAGE 32 =====
+32
+Connections (basic styles)
+PRO DJ LINK
+• You can connect multiple multi players to a DJ mixer using a LAN cable.
+• To connect multiple multi players to a DJ mixer with only one LAN port, use a switching 
+hub.
+• You can connect up to 6 multi players to a DJ mixer using a switching hub (up to 4 when 
+including multi players released before 2020) if the DJ mixer has enough terminals.
+• Set the player number on the unit to match the channel number on the DJ mixer that the 
+audio cable is connected to. The player number is displayed in the bottom left corner of the 
+screen. You can change the player number in [Player No.] in the Utility settings.
+O Player No. (page 105)
+• To connect with a DJ mixer that has enough LAN ports for all the multi players you want to 
+set up, do not use a switching hub. Instead, directly connect the cables to the ports.
+• Do not disconnect a LAN cable while sharing audio files between units in the Pro DJ LINK 
+network.
+• Disconnect storage devices before disconnecting LAN cables.
+• Install rekordbox for Mac/Windows USB connection (Link Export) driver software before 
+connecting a PC/Mac to the unit via USB.
+O Installation of the dedicated audio driver software (page 37)
+Player 1
+Audio cable
+CH 1
+
+
+===== PDF PAGE 33 =====
+33
+Connections (basic styles)
+USB Export
+You can transfer audio files and management data of rekordbox for use on this unit using a 
+USB device (flash memory or hard disk). You can play playlists or tracks with cues, loops, and 
+Hot Cues previously set in rekordbox.
+• This unit only supports OneLibrary.
+O OneLibrary (page 9)
+Connection diagram (when connecting 4 multi players):
+L
+R
+rekordbox
+PC/Mac
+USB device with rekordbox data 
+saved
+Switching hub
+LAN cable
+Audio cable
+Power cord
+To power outlet
+DJ mixer
+Multi players
+Rear panel
+
+
+===== PDF PAGE 34 =====
+34
+Connections (basic styles)
+rekordbox Link Export
+You can directly select and play tracks in rekordbox with this unit when the unit is connected 
+via a LAN cable (CAT5e), a USB cable, or wireless LAN (Wi-Fi) router to a PC/Mac or mobile 
+device running rekordbox. You can play playlists or tracks with cues, loops, and Hot Cues 
+previously set in rekordbox.
+• Install the rekordbox for Windows USB connection (Link Export) driver software before 
+connecting the unit to a PC with a USB cable.
+O Installation of the dedicated audio driver software (page 37)
+• For information on the connection with rekordbox for iOS/Android, refer to the FAQ at the 
+URL below.
+iOS:
+rekordbox.com/en/support/faq/connecting-to-dj-units/#faq-q100037
+Android:
+rekordbox.com/en/support/faq/connecting-to-dj-units-android/#faq-q110039
+ Wired LAN connection
+You can connect up to 2 computers (PC/Mac).
+Connection diagram (when connecting 4 multi players):
+L
+R
+rekordbox
+rekordbox
+PC/Mac
+PC/Mac
+Rear panel
+Switching hub
+Power cord
+To power outlet
+DJ mixer
+Multi players
+LAN cable
+Audio cable
+
+
+===== PDF PAGE 35 =====
+35
+Connections (basic styles)
+ USB connection
+You can connect up to 2 computers (PC/Mac).
+Connection diagram (when connecting 4 multi players):
+• Insert or pull a USB cable straight into/out of the USB port. Be careful not to apply force in 
+a vertical or horizontal direction.
+L
+R
+rekordbox
+rekordbox
+LAN cable
+Audio cable
+PC/Mac
+PC/Mac
+USB cable
+USB cable
+Switching hub
+DJ mixer
+Multi players
+Rear panel
+Power cord
+To power outlet
+
+
+===== PDF PAGE 36 =====
+36
+Connections (basic styles)
+ Wireless LAN (Wi-Fi) router connection
+You can connect up to 4 computers (PC/Mac).
+Connection diagram (when connecting 4 multi players):
+L
+R
+rekordbox
+rekordbox
+LAN cable
+Audio cable
+PC/Mac
+PC/Mac
+Rear panel
+Power cord
+To power outlet
+Wireless LAN (Wi-Fi) router 
+(access point)
+DJ mixer
+Multi players
+
+
+===== PDF PAGE 37 =====
+37
+PC/Mac setup
+To input your PC/Mac’s audio to the unit, install the following software on your computer. If 
+you use a Mac, you don’t have to install the dedicated audio driver software and rekordbox for 
+Windows USB connection (Link Export) driver software.
+– Dedicated audio driver software: Driver software used for inputting the PC audio to the unit 
+when using the unit with DJ software
+– rekordbox for Windows USB connection (Link Export) driver software: Driver software 
+used for connecting rekordbox for Windows to the unit via USB (Link Export)
+For information on the installation, visit the URL below.
+alphatheta.com/support/
+• For information on the latest system requirements, compatibility, and supported operating 
+systems, visit the URL below.
+alphatheta.com/support/
+• Operation isn’t guaranteed on all PC/Mac models, even if the system requirements are 
+met.
+• If a PC without the audio driver software installed is connected to the unit, errors may occur 
+on the PC.
+• Malfunctions may occur due to incompatibility with other software installed on a PC/Mac.
+Installation of the dedicated audio driver software
+ Notes on installation
+• Turn the unit off and disconnect the USB cable connected to the unit and the PC before 
+installation.
+• Close all applications running on the PC before installation.
+• You’ll need admin rights to install the audio driver software to your PC.
+• Read the License Agreement terms carefully before installation.
+• If you quit the installation halfway through, perform the installation procedure from the 
+beginning again.
+• After the installation is complete, connect the PC to the unit.
+• Operation isn’t guaranteed on all PC models.
+
+
+===== PDF PAGE 38 =====
+38
+PC/Mac setup
+Downloading the dedicated audio driver software
+Download the dedicated driver software from the URL below.
+alphatheta.com/support/
+Installing the dedicated audio driver software
+1
+Double-click the downloaded installation file.
+2
+Read the License Agreement terms carefully.
+If you agree to the terms, mark the [Agree] check box and 
+click [OK].
+•
+If you don’t agree to the License Agreement terms, click [Cancel] to cancel the 
+installation.
+3
+Follow the on-screen instructions to complete the installation.
+
+
+===== PDF PAGE 39 =====
+39
+rekordbox CloudDirectPlay
+With rekordbox CloudDirectPlay, you can load and play audio files you’ve previously 
+uploaded to your cloud storage onto the unit. You can also access audio files from a 
+streaming service (TIDAL) without entering a password on this unit.
+• Use Cloud Library Sync to upload audio files to your cloud storage. You can then play the 
+uploaded files via your PC/Mac, mobile device, or this unit.
+• For information on Cloud Library Sync, see the Cloud Library Sync Operation Guide.
+rekordbox.com/manual
+For information on how to manage audio files uploaded to your cloud storage, refer to the 
+website at the URL below.
+rekordbox.com
+ rekordbox version
+Install the latest version of rekordbox to use rekordbox CloudDirectPlay with this unit.
+ Subscription
+You can use rekordbox CloudDirectPlay with all rekordbox subscription plans, including the 
+Free plan.
+• For information on rekordbox plans, see the plan page at the URL below.
+rekordbox.com
+ Cloud storage service
+rekordbox CloudDirectPlay uses the cloud storage service used by Cloud Library Sync.
+• Cloud Library Sync and rekordbox CloudDirectPlay support Dropbox and Google Drive.
+• For more information, see the Cloud Library Sync Operation Guide.
+rekordbox.com/manual
+ Transmission speed
+The time it takes to sync your library and load audio files via rekordbox CloudDirectPlay 
+depends on the speed of your internet connection. We recommend a line speed of 20Mbps or 
+faster for using rekordbox CloudDirectPlay.
+
+
+===== PDF PAGE 40 =====
+40
+rekordbox CloudDirectPlay
+ Personal use
+With rekordbox CloudDirectPlay, you can use your rekordbox library on multiple PCs/Mac 
+computers, mobile devices, and this unit, but you can’t share your library with other users.
+Setting up rekordbox CloudDirectPlay
+Before using rekordbox CloudDirectPlay, perform the following procedure on rekordbox for 
+Mac/Windows or rekordbox for iOS/Android.
+ For rekordbox for Mac/Windows
+1
+Click 
+ at the top right of the screen of rekordbox for Mac/
+Windows.
+The [Preferences] window opens.
+2
+Click the [Library Sync] tab in the [CLOUD] category.
+
+
+===== PDF PAGE 41 =====
+41
+rekordbox CloudDirectPlay
+3
+Check if [Sync library to another device] is turned on in 
+[Cloud Library Sync].
+4
+Click the [DJ equipment linkage] tab in the [CLOUD] category.
+5
+Turn on [Use rekordbox CloudDirectPlay] in [Cloud Analysis /  
+rekordbox CloudDirectPlay].
+The conversion of the library starts on the cloud server.
+After the conversion completes, [
+Auth] (authentication button) is displayed on the 
+right of the device name in the tree view.
+•
+Depending on the number of audio files in the library, it may take some time to 
+convert the library.
+•
+If the library conversion fails, [Use rekordbox CloudDirectPlay] is automatically 
+turned off. If the conversion error happens repeatedly, contact us for support via the 
+URL below.
+rekordbox.com
+•
+If you turn off [Use rekordbox CloudDirectPlay], the authentication for all devices 
+used with the same account is canceled.
+
+
+===== PDF PAGE 42 =====
+42
+rekordbox CloudDirectPlay
+•
+If you turn off [Use rekordbox CloudDirectPlay] and turn it on, the library is 
+converted again.
+ For rekordbox for iOS/Android
+1
+Tap 
+ at the top right of the screen of rekordbox for iOS/
+Android.
+The login screen appears.
+2
+Enter your login email address and password.
+3
+Tap 
+ at the top right of the screen.
+The [Account Information] screen appears.
+4
+Tap [Activate] and [Cloud Library Sync] to turn them on.
+
+
+===== PDF PAGE 43 =====
+43
+rekordbox CloudDirectPlay
+5
+Log in to Dropbox or Google Drive.
+6
+On the [Account Information] screen, tap [rekordbox 
+CloudDirectPlay] to turn it on.
+
+
+===== PDF PAGE 44 =====
+44
+rekordbox CloudDirectPlay
+Authentication device for rekordbox 
+CloudDirectPlay
+Connect a USB device used for rekordbox CloudDirectPlay authentication to your PC/Mac 
+and perform the authentication procedure below.
+Authenticating the USB device
+1
+Connect the USB device to your PC/Mac.
+2
+Click [
+ Auth] (authentication button) on the right of the 
+device name in the tree view.
+After the authentication completes, [
+ Auth] (authentication button) changes to 
+ 
+(authenticated icon).
+Deauthenticating the USB device
+1
+Click 
+ (authenticated icon) on the right of the device name in 
+the tree view.
+The USB device is deauthenticated.
+•
+If the USB device has been authenticated with a rekordbox account other than the 
+one you’re currently using, perform the procedure with the other account.
+•
+If the USB device has been authenticated with another user’s account:
+– Connect the USB device to the PC/Mac of the user who performed the 
+authentication for the device, then deauthenticate it.
+– Access the website from the PC/Mac of the person who performed the 
+authentication for the device, then deauthenticate it.
+O Deauthenticating the USB device from the website (page 45)
+
+
+===== PDF PAGE 45 =====
+45
+rekordbox CloudDirectPlay
+Deauthenticating the USB device from the website
+You can deauthenticate the USB device from the website, for example, if you lose the device.
+1
+Click 
+ at the top right of the screen of rekordbox for Mac/
+Windows.
+2
+Click the [DJ equipment linkage] tab in the [CLOUD] category.
+3
+Click [If you’ve lost an authenticated device].
+The website is displayed in the browser.
+4
+Follow the instructions on the website to deauthenticate the 
+device.
+•
+You can’t deauthenticate devices authenticated with other accounts. You’ll always 
+need to perform the procedure with the account which authenticated the device.
+
+
+===== PDF PAGE 46 =====
+46
+rekordbox CloudDirectPlay
+Checking the internet connection
+When rekordbox CloudDirectPlay is available, the internet connection icon is displayed on the 
+[SOURCE] screen of the unit.
+O SOURCE screen (page 19)
+• You can’t use rekordbox CloudDirectPlay when 
+ (gray) is displayed. If this is the case, 
+check the internet connection.
+• To connect to the internet, connect the unit to a router using a LAN cable or the built-in 
+wireless LAN (Wi-Fi).
+O Wireless LAN (Wi-Fi) router connection (page 36)
+Logging in to rekordbox CloudDirectPlay
+When using an authentication USB device
+1
+Connect the authentication USB device for rekordbox 
+CloudDirectPlay to the unit.
+You are automatically logged in and can use rekordbox CloudDirectPlay.
+
+
+===== PDF PAGE 47 =====
+47
+rekordbox CloudDirectPlay
+When not using an authentication USB device
+ QR code login
+1
+Press the [SOURCE] button.
+The [SOURCE] screen appears.
+2
+Select [Cloud Log In] and touch [LOG IN].
+3
+Scan the QR code with the camera on your mobile device.
+4
+Follow the on-screen instructions of your mobile device to log 
+in.
+You can now use rekordbox CloudDirectPlay.
+•
+You can also log in by selecting a player from [Cloud Log In] on the [SOURCE] 
+screen.
+
+
+===== PDF PAGE 48 =====
+48
+rekordbox CloudDirectPlay
+ NFC login
+1
+When the NFC login indicator on the front of the unit is lit, 
+hold your NFC-compatible mobile device over the NFC login 
+touch area to read the NFC tag.
+You’re automatically logged in to the cloud after the NFC tag is read.
+•
+You can’t log in to the cloud when the NFC login indicator on the front of the unit is off.
+•
+When the NFC login indicator on the front of the unit is off or when you select a player 
+to log in to, touch [Cloud Log In] on the [SOURCE] screen, select the player you 
+want to log in to and touch [LOG IN], then read the NFC tag on your NFC-compatible 
+mobile device.
+•
+To log in with NFC, install the latest version of rekordbox for iOS/Android.
+•
+If you’re using rekordbox for iOS, touch the notification on your mobile device to log in 
+after reading the NFC tag.
+
+
+===== PDF PAGE 49 =====
+49
+rekordbox CloudDirectPlay
+Logging out of rekordbox CloudDirectPlay
+When using an authentication USB device
+1
+Remove the authentication USB device from the unit.
+You are logged out of rekordbox CloudDirectPlay and streaming services (Beatport, 
+TIDAL).
+O Disconnecting a USB device (page 54)
+When not using an authentication USB device
+1
+Press the [SOURCE] button.
+The [SOURCE] screen appears.
+2
+Touch [LOG OUT] for rekordbox CloudDirectPlay you are 
+logged in to.
+You are logged out of rekordbox CloudDirectPlay and streaming services (Beatport, 
+TIDAL).
+
+
+===== PDF PAGE 50 =====
+50
+rekordbox CloudDirectPlay
+Playing audio files via rekordbox CloudDirectPlay
+When rekordbox CloudDirectPlay is selected on the [SOURCE] screen, audio files uploaded 
+to your cloud storage can be played from the browse screen of the unit.
+• The time it takes to load audio files depends on the speed of your internet connection. You 
+can view the loading progress in the overall waveform on the waveform screen.
+• The following playback functions are only available for loaded audio files.
+– Memory Cue/Loop
+– Hot Cue/Loop point
+• Audio files are loaded one by one from the track list. The following functions aren’t 
+available.
+– Track Search
+– [Continue] in Play mode
+• The following functions aren’t available for rekordbox CloudDirectPlay.
+– Hot Cue Bank list
+– Intelligent playlist
+• While using rekordbox CloudDirectPlay, any track information changed by other rekordbox 
+CloudDirectPlay or Cloud Library Sync devices used with the same account isn’t reflected 
+until you log out of rekordbox CloudDirectPlay and log in again.
+Using the unit with streaming services (Beatport, 
+TIDAL)
+If you create playlists with tracks from streaming services (Beatport, TIDAL) using rekordbox 
+and upload them to your cloud storage, you can load and play them on this unit.
+Log in to rekordbox CloudDirectPlay and streaming services (Beatport, TIDAL) to use the 
+tracks.
+
+
+===== PDF PAGE 51 =====
+51
+StreamingDirectPlay
+You can load and play tracks from streaming services (Beatport, TIDAL) via the browse 
+screen of the unit.
+Logging in to Beatport Streaming
+1
+Log in to rekordbox CloudDirectPlay.
+O Logging in to rekordbox CloudDirectPlay (page 46)
+2
+Press the [SOURCE] button.
+The [SOURCE] screen appears.
+3
+Touch [LOG IN] for [Beatport] on the library display.
+
+
+===== PDF PAGE 52 =====
+52
+StreamingDirectPlay
+4
+Log in to Beatport Streaming with your account details 
+(username and password).
+After you’ve logged in, you can use audio files from Beatport Streaming from the browse 
+screen of the unit.
+Logging in to TIDAL
+1
+Log in to rekordbox CloudDirectPlay.
+You’re logged in to rekordbox CloudDirectPlay and TIDAL, and you can play audio files 
+from TIDAL from the browse screen of the unit.
+O Logging in to rekordbox CloudDirectPlay (page 46)
+
+
+===== PDF PAGE 53 =====
+53
+StreamingDirectPlay
+Playing audio files via streaming services 
+(Beatport, TIDAL)
+When [Beatport] or [TIDAL] is selected on the [SOURCE] screen, you can play audio files 
+from streaming services (Beatport, TIDAL) from the browse screen of the unit.
+• The time it takes to load audio files depends on the speed of your internet connection. You 
+can view the loading progress in the overall waveform on the waveform screen.
+• The following playback functions are only available for loaded audio files.
+– Memory Cue/Loop
+– Hot Cue/Loop point
+• Audio files are loaded one by one from the track list. The following functions aren’t 
+available.
+– Track Search
+– [Continue] in Play mode
+
+
+===== PDF PAGE 54 =====
+54
+Connecting a storage device
+USB device
+• Do not disconnect a USB device from the unit or turn the unit off when the USB indicator is 
+blinking, otherwise the unit’s management data may be deleted or the USB device may 
+become unreadable.
+• Be careful not to press or pull the USB port cover with excessive force, or it may be 
+damaged.
+Connecting a USB device
+1
+Open the USB port cover.
+2
+Insert a USB device at a straight angle until it stops.
+Disconnecting a USB device
+1
+Press the [USB STOP] button until the USB indicator stops 
+blinking.
+2
+Pull the USB device out at a straight angle.
+•
+If the tracks loaded to the player from the removed USB device have been cached, 
+the track aren’t unloaded and playback continues with the restriction.
+3
+Close the USB port cover.
+
+
+===== PDF PAGE 55 =====
+55
+Track selection
+Selecting a source
+1
+Press the [SOURCE] button.
+Devices connected to the unit are displayed on the [SOURCE] screen.
+2
+Select a device.
+Selecting a track
+Selecting a track on the browse screen
+1
+Open the browse screen.
+A track list is displayed.
+O Browse screen (page 21)
+2
+Select a track.
+• You can’t load another track while a track is playing when [Eject/Load Lock] is set to 
+[Lock] in the Utility settings. Set it to [Unlock], or press the [
+] button to pause playback, 
+then load another track.
+O Eject/Load Lock*1 (page 101)
+
+
+===== PDF PAGE 56 =====
+56
+Track selection
+Selecting a recently played track (LOAD PREVIOUS 
+TRACK)
+1
+Press the [MENU] button on the waveform screen.
+The list of recently played tracks is displayed.
+2
+Select a track.
+• Press the [MENU] or [BACK] button to close the list.
+Searching for a track
+Using the Search feature
+This feature is only available when browsing the rekordbox library.
+1
+Press the [SEARCH] button.
+The Search screen appears.
+2
+Enter a keyword using the keyboard.
+
+
+===== PDF PAGE 57 =====
+57
+Track selection
+Tracks including the keyword are displayed in the list.
+•
+You can specify multiple keywords by separating them with a space.
+•
+You can press and hold a search word (a track name, etc.) to copy it, and touch 
+[paste] on the keyboard to paste it into the text input area.
+•
+When using Beatport Streaming, you can specify the search target by pressing the 
+[MENU] button.
+Using the Jump feature
+The unit supports 2 jump modes.
+ Alphabet Jump
+1
+Press and hold the rotary selector when the alphabetical 
+order list is displayed.
+Alphabet Jump mode turns on, and the first character of the highlighted track or category 
+is displayed on the screen.
+•
+A to Z, 0 to 9, and some symbols are displayed in Alphabet Jump mode.
+2
+Turn the rotary selector to scroll the screen.
+The cursor jumps to the track or category whose first character is the same as the 
+displayed character.
+•
+The cursor doesn’t jump when there are no tracks or categories whose first character 
+is the same as the displayed character.
+ Page Jump
+1
+Press and hold the rotary selector when a list other than the 
+alphabetical order list is displayed.
+Page Jump mode turns on.
+2
+Turn the rotary selector to scroll the screen.
+The cursor jumps to the first track in the list on each page.
+
+
+===== PDF PAGE 58 =====
+58
+Track selection
+Using Track Filter
+You can narrow down tracks by BPM, key, or the tag information, etc added by rekordbox. 
+This feature is only available when browsing the rekordbox library.
+ Narrowing down tracks
+1
+Press the [TRACK FILTER/EDIT] button.
+Tracks are narrowed down by the currently set conditions.
+ Specifying the conditions on the Track Filter editing screen
+1
+Press and hold the [TRACK FILTER/EDIT] button.
+The Track Filter editing screen appears.
+2
+Specify the filter conditions.
+•
+You can choose BPM, key, rating, color, or the tag information added by rekordbox as 
+filter conditions.
+•
+Touch to add a check mark to enable the filter conditions.
+•
+Touch [MASTER PLAYER] to read the BPM and key of the track playing on the 
+player set as the sync master.
+•
+You can set the track filter conditions in rekordbox.
+•
+The filter conditions are saved independently for each storage device.
+Searching by key of the track playing
+The key icons of tracks which are good matches with the key (related key) of the track loaded 
+to the sync master are displayed in green.
+• This function isn’t available when no player is set as the sync master.
+
+
+===== PDF PAGE 59 =====
+59
+Track selection
+Searching with Information Jump
+You can search for tracks of the same genre or BPM as the track whose details are displayed 
+on the touchscreen.
+1
+Touch 
+ on the waveform screen.
+O Playback screen (waveform screen) (page 23)
+The [INFO] screen appears.
+1.
+Player number: Touch to switch the players and display the information of the track 
+loaded on the relevant player.
+2.
+Detailed information of the track
+3.
+EDIT RATING: Touch to change your rating of the track.
+4.
+: Touch to return to the waveform screen.
+2
+Select an item from the detailed information of the track.
+Tracks included in the selected category are displayed on the browse screen.
+•
+You may not be able to select items if any of the following conditions apply.
+– There are no categories.
+– Only icons are displayed in the detailed information of the track.
+1
+4
+2
+3
+
+
+===== PDF PAGE 60 =====
+60
+Track selection
+Monitoring sound before loading a track (Touch 
+Preview)
+You can monitor the sound of a track before loading the track.
+1
+Connect the unit and a Touch Preview compatible DJ mixer 
+via PRO DJ LINK.
+2
+Connect headphones to the DJ mixer.
+3
+Press the [LINK CUE] button on the DJ mixer.
+4
+Touch the waveform displayed in the track list.
+Monitor the sound from the touched point with your headphones.
+•
+You can monitor the sound of a track while touching the waveform even when 
+outputting the sound of a track that’s playing on the unit.
+•
+You can’t monitor the sound of tracks which can’t be loaded to the player.
+O Browse screen (page 21)
+
+
+===== PDF PAGE 61 =====
+61
+Track selection
+Using History
+Tracks played for approximately 1 minute are recorded in the History (playback list).
+• A new History is automatically created on a storage device when it’s connected to the unit.
+• You can change a name of a history in [History Name] of the Utility settings.
+O History Name (page 106)
+• If you play a track more than once in succession, it may not be recorded in History.
+• The information such as name of tracks recorded in History is displayed in green (indicates 
+that the track has been played).
+• You can create a playlist from the History using rekordbox. For details, refer to the 
+rekordbox for Mac/Windows Instruction Manual.
+O User guides (page 7)
+Viewing History
+1
+Press the [BROWSE] button.
+The BROWSE screen appears.
+2
+Select [HISTORY] in the category.
+The History list is displayed.
+Deleting History
+1
+Select a History you want to delete in the History list and 
+press the [MENU] button.
+The deletion menu appears.
+2
+Select [DELETE] or [ALL DELETE].
+—
+[DELETE]: Deletes the selected History.
+—
+[ALL DELETE]: Deletes all History lists.
+
+
+===== PDF PAGE 62 =====
+62
+Track selection
+•
+If you create a playlist from the History using rekordbox, the HISTORY is deleted from 
+the storage device.
+Using the Tag List
+You can tag a track you want to play next or tracks you think will work well in your 
+performance.
+• Up to 100 tracks can be registered to the Tag List.
+• A track can’t be registered to a Tag List more than once.
+Tag list screen
+1.
+Device icon
+Displays the icon of a device selected on the [SOURCE] screen.
+O SOURCE screen (page 19).
+2.
+Tag list
+Displays the Preview waveform, artwork, serial number, and track list in the taglist.
+•
+Touch the waveform in the [Preview] column to monitor the sound before loading a 
+track.
+O Monitoring sound before loading a track (Touch Preview) (page 60)
+•
+Touch the title row to sort the list.
+1
+6
+4
+2
+7
+3
+5
+
+
+===== PDF PAGE 63 =====
+63
+Track selection
+•
+Touch 
+ on the title row to display the sub-column selection screen and select a 
+sub-column to be displayed. To set sub-columns you want to display in the selection 
+list, go to [Preferences] in rekordbox (you can’t set a sub-column to be displayed for 
+streaming services (Beatport, TIDAL) with rekordbox).
+3.
+GLOBAL
+Switches the tag functions.
+— When [GLOBAL] is on: Tracks are registered to Tag Lists on a storage device, 
+rekordbox CloudDirectPlay, and streaming services (Beatport, TIDAL) at the same 
+time.
+— When [GLOBAL] is off: Tracks are registered to a Tag List on either a storage 
+device, rekordbox CloudDirectPlay, or a streaming service (Beatport, TIDAL).
+4.
+PREVIEW
+Displays or hides the [Preview] column. 
+5.
+Font size setting
+Sets the font size.
+6.
+ (Info)
+Displays or hides the information for the highlighted track.
+7.
+Connection status icons
+—
+ (Internet connection icon): Displays the status of the internet connection.
+—
+ (Wi-Fi connection icon): Displays the status of the Wi-Fi connection.
+Registering a track to the Tag List
+1
+Highlight a track.
+•
+You can add tracks included in a folder or playlist to the Tag List instantly by selecting 
+a folder or playlist.
+2
+Press the [TAG TRACK/REMOVE] button.
+A check mark is displayed for the tracks registered to the Tag List.
+•
+You can also register tracks loaded on the player to the Tag List by pressing the [TAG 
+TRACK/REMOVE] button on the [INFO] screen or waveform screen.
+
+
+===== PDF PAGE 64 =====
+64
+Track selection
+Deleting a track from the Tag List
+ Deleting an individual track on the Tag List screen
+1
+Highlight a track.
+2
+Press and hold the [TAG TRACK/REMOVE] button.
+The track is deleted from the Tag List.
+ Deleting an individual track on the Browse, Playlist or Search 
+screen
+1
+Highlight a track.
+2
+Press the [TAG TRACK/REMOVE] button.
+The track is deleted from the Tag List.
+ Deleting all tracks at once
+1
+Press the [TAG LIST] button.
+The [TAG LIST] screen appears.
+2
+Press the [MENU] button.
+[MENU] is displayed.
+3
+Select [REMOVE ALL TRACKS].
+All tracks in the Tag List are deleted.
+• If you delete a track from the Tag List while playing, the track continues to play until the 
+end. The next track won’t play.
+
+
+===== PDF PAGE 65 =====
+65
+Track selection
+Converting the Tag List to a playlist
+A playlist converted from the Tag List is displayed in the [PLAYLIST] category.
+• You can’t convert the Tag List to a playlist if the rekordbox library isn’t saved on the storage 
+device or in rekordbox CloudDirectPlay.
+• If a mixture of tracks – some managed and some not managed by rekordbox – are 
+registered in the Tag List, only the tracks managed by rekordbox are converted to a playlist.
+• When [GLOBAL] is on, the Tag List can’t be converted to a playlist.
+1
+Press the [TAG LIST] button.
+The [TAG LIST] screen appears.
+2
+Press the [MENU] button.
+[MENU] is displayed.
+3
+Select [CREATE PLAYLIST].
+The Tag List is converted to a playlist with the name [TAG LIST XXX].
+
+
+===== PDF PAGE 66 =====
+66
+Track selection
+Displaying the playlist screen
+Playlist screen
+Press the [PLAYLIST] button to display the Playlist screen. You can also display the Playlist 
+screen from the browse screen.
+O Browse screen (page 21)
+1.
+Playlist Bank
+Displays the playlist when a playlist is registered to a Playlist Bank. With Playlist Banks, 
+you can find a playlist without browsing the folder hierarchy.
+O Registering a playlist to a Playlist Bank (page 68)
+2.
+Category
+Displays the [PLAYLIST] category.
+3.
+Device icon
+Displays the icon of a device selected on the [SOURCE] screen.
+O SOURCE screen (page 19)
+4.
+ (Back)
+Displays the next level up.
+5.
+Next level up display
+Displays the folder in the next level up, device name, or nickname.
+6
+1
+7
+9
+11
+10
+5
+3
+4
+8
+2
+
+
+===== PDF PAGE 67 =====
+67
+Track selection
+6.
+EDIT
+Sorts or deletes tracks added to a playlist with the rotary selector or touch operations on 
+the screen.
+7.
+PREVIEW
+Displays or hides the [Preview] column. 
+8.
+Font size setting
+Sets the font size.
+9.
+ (Info)
+Displays or hides the information for the highlighted track.
+10. Connection status icons
+—
+ (Internet connection icon): Displays the status of the internet connection.
+—
+ (Wi-Fi connection icon): Displays the status of the Wi-Fi connection.
+11. Track list
+Displays the Preview waveform, artwork, serial number, and the track list in the playlist.
+•
+Touch the waveform in the [Preview] column to monitor the sound before loading a 
+track.
+O Monitoring sound before loading a track (Touch Preview) (page 60)
+•
+Touch the title row to sort the list.
+•
+Touch 
+ on the title row to display the sub-column selection screen and select a 
+sub-column to be displayed. To set sub-columns you want to display in the selection 
+list, go to [Preferences] in rekordbox (you can’t set a sub-column to be displayed for 
+streaming services (Beatport, TIDAL) with rekordbox).
+ Changing the status of a track in a playlist to PLAYED or 
+UNPLAYED
+• You can also change the status of a track in other lists than a playlist in the same way. 
+1
+Press the [MENU] button when a track in a playlist is selected.
+[MENU] is displayed.
+2
+Select [PLAYED] or [UNPLAYED].
+—
+[PLAYED]: Sets unplayed tracks to “played”. Tracks set to “played” are displayed 
+in green and registered to the History. You can’t select [PLAYED] when a played 
+track is selected.
+
+
+===== PDF PAGE 68 =====
+68
+Track selection
+—
+[UNPLAYED]: Sets played tracks to “unplayed”. Tracks set to “unplayed” are 
+displayed in white and deleted from the History. You can’t select [UNPLAYED] 
+when an unplayed track is selected.
+ Deleting a playlist
+1
+Press the [MENU] button on the [PLAYLIST] screen.
+[MENU] is displayed.
+2
+Select [DELETE] or [ALL DELETE].
+—
+[DELETE]: Deletes the selected playlist.
+—
+[ALL DELETE]: Deletes all playlists.
+Registering a playlist to a Playlist Bank
+1
+Highlight a playlist on the [PLAYLIST] screen.
+2
+Select a Playlist Bank whose icon is displayed in gray.
+The playlist is registered to the Playlist Bank and the icon turns white.
+•
+Select a Playlist Bank with a white icon to display tracks in the registered playlist.
+Deregistering a playlist from a Playlist Bank
+1
+Select 
+ in the Playlist Bank.
+Deregistration mode turns on and × is displayed alongside Playlist Bank icons.
+2
+Select the Playlist Bank to deregister the playlist from.
+The playlist is deregistered and deregistration mode turns off.
+
+
+===== PDF PAGE 69 =====
+69
+Playback
+Play/pause
+1
+Press the [
+] button.
+— During pause: Starts playing the loaded track.
+— During playback: Pauses the track.
+•
+Playback of the next track doesn’t automatically start when [Play Mode] is set to 
+[Single] in the Utility settings.
+O Play Mode*1 (page 103)
+•
+Pausing playback in Vinyl mode mutes the sound, and in CDJ mode it will output the 
+sound intermittently.
+O Setting the jog wheel mode (page 73)
+Playing a track from the touched point on the 
+overall waveform
+1
+Touch the overall waveform during pause or while pressing 
+the top of the jog wheel in Vinyl mode.
+The loaded track plays from the touched point.
+•
+You can quickly move the playback point by sliding your finger to the point you want 
+on the overall waveform.
+
+
+===== PDF PAGE 70 =====
+70
+Playback
+Reverse playback
+ Slip Reverse
+1
+Flip the [SLIP REV, FWD, REV] lever to the [SLIP REV] side.
+The button lights up and the loaded track plays in reverse while normal playback 
+continues in the background.
+•
+When the lever is released, playback starts from the exact point the track would have 
+reached by then.
+ Reverse
+1
+Flip the [SLIP REV, FWD, REV] lever to the [REV] side.
+The loaded track plays in reverse.
+•
+Acceleration and deceleration of playback according to jog wheel rotation are also 
+reversed.
+Basic operations during playback
+Function
+Description
+Fast-forward/fast-reverse
+Press the [SEARCH 
+] or [SEARCH 
+] button to fast-
+forward or fast-reverse.
+Track Search
+Press the [TRACK SEARCH 
+] button to jump to the 
+beginning of the next track.
+Press the [TRACK SEARCH 
+] button to jump to the 
+beginning of the track that’s playing. Press the button twice 
+in succession to jump to the beginning of the previous track.
+Frame Search
+Press the [SEARCH 
+] or [SEARCH 
+] button during 
+pause to move the pause position.
+
+
+===== PDF PAGE 71 =====
+71
+Playback
+Adjusting the playback speed (tempo control)
+1
+Move the TEMPO slider.
+— To the [+] side: Increases the playback speed.
+— To the [-] side: Decreases the playback speed.
+• The variable range of the TEMPO slider changes in the order of ±6 (0.02%) A ±10 
+(0.05%) A ±16 (0.05%) A WIDE (0.5%) each time you press the [TEMPO ±6/±10/±16/
+WIDE] button*.
+The adjustable range of [WIDE] is ±100%. The track stops when it’s set to -100%.
+* The value in parentheses indicates the adjustment unit.
+• Press the [TEMPO RESET] button to play a track at its original speed regardless of the 
+TEMPO slider’s setting (the [TEMPO RESET] indicator lights up).
+Adjusting the playback speed without changing 
+the pitch (Master Tempo)
+If you turn Master Tempo on, you can change the playback speed of a track using the 
+TEMPO slider without changing the pitch.
+1
+Press the [MASTER TEMPO] button to turn Master Tempo on.
+The button lights up when Master Tempo is turned on.
+• Press the [MASTER TEMPO] button again to turn Master Tempo off.
+
+
+===== PDF PAGE 72 =====
+72
+Playback
+Monitoring a different part of a track during 
+playback (Touch Cue)
+If you touch the overall waveform while a track is playing, you can monitor the sound from the 
+touched point with a DJ mixer without affecting the output sound.
+1
+Connect the unit and a Touch Cue compatible DJ mixer via 
+PRO DJ LINK.
+2
+Connect headphones to the DJ mixer.
+3
+Press the [LINK CUE] button on the DJ mixer.
+4
+Touch the overall waveform on the waveform screen.
+You can monitor the sound from the touched position with your headphones.
+•
+The waveform of the touched point is zoomed in on and displayed as an enlarged 
+waveform.
+•
+You can monitor the sound of a track while touching the waveform even when 
+outputting the sound of a track that’s playing on the unit.
+
+
+===== PDF PAGE 73 =====
+73
+Using the jog wheel
+Setting the jog wheel mode
+1
+Press the [JOG MODE] button.
+Each press switches between the following modes.
+— Vinyl mode: Stops playback with a press on the top of the jog wheel and 
+scratches a track by turning the jog wheel while pressing the top.
+— CDJ mode: Doesn’t stop playback or scratch a track with the operations of the jog 
+wheel.
+Jog wheel operations
+You can use the following features in combination with the jog wheel.
+Function
+Description
+Pitch Bend
+Turn the outer section of the jog wheel clockwise during 
+playback to increase the playback speed, and 
+counterclockwise to decrease it. Stop turning it to resume the 
+normal playback speed.
+• In CDJ mode, you can perform the same operations by 
+turning the jog wheel while pressing the top.
+Scratch
+Turn the jog wheel while pressing the top during playback in 
+Vinyl mode to scratch a track.
+Release the jog wheel to resume normal playback.
+Frame Search
+Turn the jog wheel during pause to move the pause position.
+Super Fast Search
+Turn the jog wheel while pressing the [SEARCH 
+] or 
+[SEARCH 
+] to fast-forward or fast-reverse with extra 
+speed.
+
+
+===== PDF PAGE 74 =====
+74
+Using the jog wheel
+Adjusting the “weight” of the jog wheel
+1
+Turn the [JOG FEEL] knob.
+— Turn clockwise: Increases the weight.
+— Turn counterclockwise: Decreases the weight.
+Adjusting the playback starting and stopping 
+speeds (for Vinyl mode)
+You can adjust the following speeds.
+– The speed at which playback slows down and stops after the top of the jog wheel is 
+pressed or the [
+] button is pressed
+– The speed at which normal playback resumes after the top of the jog wheel is released
+1
+Press and hold the [MENU] button.
+The [UTILITY] screen appears.
+2
+Select an adjustment setting in [Vinyl Speed Adjust] of [DJ 
+Settings].
+—
+[Touch&Release]: Adjusts the speed at which playback slows down and stops, 
+and normal playback resumes.
+—
+[Touch]: Adjusts the speed at which playback slows down and stops.
+—
+[Release]: Adjusts the speed at which normal playback resumes.
+Super Fast Track Search
+Turn the jog wheel while pressing the [TRACK SEARCH 
+] or [TRACK SEARCH 
+] button to cycle through 
+tracks with extra speed according to the rotation direction.
+Function
+Description
+
+
+===== PDF PAGE 75 =====
+75
+Using the jog wheel
+3
+Turn the [VINYL SPEED ADJUST] knob to adjust the speed.
+— Turn clockwise: Decreases the speed.
+— Turn counterclockwise: Increases the speed.
+
+
+===== PDF PAGE 76 =====
+76
+Cueing
+You can quickly call up a cue point you have set previously.
+Setting a cue point
+ During pause
+1
+Press the [CUE] button.
+A cue point is set.
+•
+Press the [SEARCH 
+] or [SEARCH 
+] button or turn the jog wheel during pause 
+to fine-adjust the pause position.
+ During playback
+1
+Press the [LOOP IN/CUE (IN ADJUST)] button.
+A cue point is set.
+• If you set a new cue point, the previously set cue point is cleared.
+• When [On] is set for [Overwrite Current Cue with Hot Cue (Smart Cue)] in the Utility 
+settings, if you set a Hot Cue or start playback from a Hot Cue, the point is set as a cue 
+point.
+O Overwrite Current Cue with Hot Cue (Smart Cue)*1 (page 102)
+Jumping to a cue point
+1
+Press the [CUE] button during playback.
+The track jumps to the cue point and cue standby mode turns on.
+
+
+===== PDF PAGE 77 =====
+77
+Cueing
+Checking a cue point (Cue Point Sampler)
+1
+Jump to a cue point.
+O Jumping to a cue point (page 76)
+2
+Press and hold the [CUE] button.
+Playback continues while pressing the [CUE] button.
+• Press the [
+] button to continue playback even if you release the [CUE] button.
+Saving a cue point
+1
+Set a cue point.
+O Setting a cue point (page 76)
+2
+Press the [MEMORY] button.
+Calling up a saved cue point
+1
+Load a track you have previously saved a cue point for.
+2
+Press the [CUE/LOOP CALL ] or [CUE/LOOP CALL ] 
+button.
+
+
+===== PDF PAGE 78 =====
+78
+Cueing
+Deleting a saved cue point
+1
+Call up a saved cue point.
+O Calling up a saved cue point (page 77)
+2
+Press the [DELETE] button.
+Setting Auto Cue
+When loading a track or performing Track Search, a cue point can be automatically set to the 
+position immediately before the first sound in the track (skipping any silence at the 
+beginning).
+1
+Press the [SHORTCUT] button.
+The [SHORTCUT] screen appears.
+O Changing the settings on the Shortcut screen (page 110)
+2
+Touch [ON] for [Auto Cue].
+[AUTO CUE] is displayed on the waveform screen when Auto Cue is turned on.
+• The Auto Cue setting is retained even if you turn the unit off.
+• You can set the sound pressure level that you want to be recognized as silence in [Auto 
+Cue Level] in the Utility settings.
+O Auto Cue Level*1 (page 102)
+
+
+===== PDF PAGE 79 =====
+79
+Looping
+You can choose a section of a track to play repeatedly.
+Setting a loop
+Manual setting
+1
+While the track is playing, press the [LOOP IN/CUE (IN 
+ADJUST)] button at the point where you want to start the loop 
+(loop-in point).
+2
+Press the [LOOP OUT (OUT ADJUST)] button at the point 
+where you want the loop to end (loop-out point).
+The chosen section plays in a loop.
+Automatic setting
+ Using 4 Beat Loop
+1
+Press and hold the [LOOP IN/CUE (IN ADJUST)] button during 
+playback.
+The track plays a 4-Beat Loop according to the BPM from the point where you pressed 
+the button.
+ Using the 4 BEAT LOOP (1/2X) button
+1
+Press the [4 BEAT LOOP (1/2X)] button during playback.
+The track plays a 4-Beat Loop from the point where you pressed the button.
+
+
+===== PDF PAGE 80 =====
+80
+Looping
+ Using the 8 BEAT LOOP (2X) button
+1
+Press the [8 BEAT LOOP (2X)] button.
+The track plays a 8-Beat Loop from the point where you pressed the button.
+ Using BEAT LOOP on the waveform screen
+You can choose the number of beats for loop playback.
+1
+Touch [BEAT LOOP] on the waveform screen.
+The number of beats selection screen appears.
+2
+Touch the number of beats you prefer.
+Loop playback starts according to the selected number of beats.
+
+
+===== PDF PAGE 81 =====
+81
+Looping
+Fine-adjusting loop points
+1
+Press the [LOOP IN/CUE (IN ADJUST)] or [LOOP OUT (OUT 
+ADJUST)] button during loop playback.
+The unit switches to loop adjusting mode.
+—
+[LOOP IN/CUE (IN ADJUST)]: Adjusts the loop-in point.
+—
+[LOOP OUT (OUT ADJUST)]: Adjusts the loop-out point.
+2
+Press the [SEARCH 
+] or [SEARCH 
+] button, or turn the 
+jog wheel to fine-adjust the loop point.
+• Press the [LOOP IN/CUE (IN ADJUST)] or [LOOP OUT (OUT ADJUST)] button again, or 
+leave the unit without operating the controls for more than 10 seconds to cancel loop 
+adjusting mode.
+Adjusting the length of a loop
+Halving the length of a loop
+1
+Press the [4 BEAT LOOP (1/2X)] or [CUE/LOOP CALL ] 
+button during loop playback.
+The loop length is halved.
+Doubling a loop in length
+1
+Press the [8 BEAT LOOP (2X)] or [CUE/LOOP CALL ] button 
+during loop playback.
+The loop length is doubled.
+
+
+===== PDF PAGE 82 =====
+82
+Looping
+Using Active Loop
+Set a saved loop as an Active Loop using rekordbox beforehand.
+1
+Load a track that has an Active Loop set.
+After the playback point passes the set point, loop playback automatically starts.
+Canceling loop playback
+1
+Press the [LOOP RELOOP/EXIT] button during loop playback.
+Loop playback is canceled.
+• Press the [LOOP RELOOP/EXIT] button again to start loop playback from the loop-in 
+point.
+Emergency Loop
+The unit automatically plays a Beat Loop if it can’t start playing the next track when the end of 
+the current track is reached. This prevents situations where your performance is interrupted 
+by silence.
+• You can’t DJ during Emergency Loop playback.
+• Load a track to cancel the Emergency Loop.
+• When the file has been cached, Emergency Loop isn’t applied and playback continues with 
+the restriction.
+
+
+===== PDF PAGE 83 =====
+83
+Looping
+Saving a loop
+1
+Set loop points.
+O Setting a loop (page 79)
+2
+Press the [MEMORY] button.
+Calling up a saved loop
+1
+Load a track you have previously saved a loop for.
+2
+Press the [CUE/LOOP CALL ] or [CUE/LOOP CALL ] 
+button.
+Deleting a saved loop
+1
+Call up a saved loop.
+O Calling up a saved loop (page 83)
+2
+Press the [DELETE] button.
+• If you delete a loop set as an Active Loop, the Active Loop is also deleted.
+O Using Active Loop (page 82)
+
+
+===== PDF PAGE 84 =====
+84
+Hot Cue/Gate Cue
+You can quickly call up a Hot Cue point by pressing the [HOT CUE] (A to H) buttons and start 
+playback from that point in the track.
+Setting a Hot Cue
+1
+Press one of the [HOT CUE] (A to H) buttons at the point 
+where you want to set a Hot Cue.
+A Hot Cue is set to the button.
+•
+If you do this during loop playback, a loop is set instead.
+• You can set up to 8 Hot Cues per track.
+• When [On] is set for [Overwrite Current Cue with Hot Cue (Smart Cue)] in the Utility 
+settings, the point is set as a cue point.
+O Overwrite Current Cue with Hot Cue (Smart Cue)*1 (page 102)
+• The [HOT CUE] (A to H) buttons light up as follows according to the set function. You can 
+change the colors using rekordbox.
+• You can’t set a Hot Cue to any [HOT CUE] (A to H) buttons that have a one set already. To 
+set a new Hot Cue, delete a one from a button first.
+O Deleting a Hot Cue (page 86)
+Set function
+[Hot Cue Color] setting in the Utility settings
+[Off]
+[On]
+Cue point
+Green
+Fixed button color
+Loop
+Orange
+Orange
+No setting
+No light
+No light
+
+
+===== PDF PAGE 85 =====
+85
+Hot Cue/Gate Cue
+Starting playback from a Hot Cue point
+1
+Press one of the [HOT CUE] (A to H) buttons that have a Hot 
+Cue set.
+Playback starts from the Hot Cue point.
+• Press the [LOOP RELOOP/EXIT] button to cancel loop playback if a loop was set to the 
+button you pressed.
+• When [On] is set for [Overwrite Current Cue with Hot Cue (Smart Cue)] in the Utility 
+settings, the point is set as a cue point.
+O Overwrite Current Cue with Hot Cue (Smart Cue)*1 (page 102)
+Starting Gate playback from a Hot Cue point
+1
+Press and hold the [MENU] button, or press the [SHORTCUT] 
+button.
+The [UTILITY] or [SHORTCUT] screen appears.
+2
+Set [Gate Cue] to [On].
+•
+You can turn on Gate Cue with [GATE CUE] on the playback screen.
+3
+Press and hold the [HOT CUE] (A to H) button that has a Hot 
+Cue set during pause.
+Playback starts from the Hot Cue point and continues until you release the [HOT CUE] (A 
+to H) button.
+•
+If you do this when a loop is set, loop playback starts.
+•
+Press the [
+] button during Gate playback to continue playback even if you release 
+the [HOT CUE] (A to H) button.
+
+
+===== PDF PAGE 86 =====
+86
+Hot Cue/Gate Cue
+Deleting a Hot Cue
+1
+Press one of the [HOT CUE] (A to H) buttons while pressing 
+the [CALL/DELETE] button.
+The Hot Cue set to the button is deleted.
+Calling up Hot Cues
+Automatic call-up
+You can automatically call up Hot Cues saved on a storage device when a track is loaded.
+1
+Press and hold the [MENU] button, or press the [SHORTCUT] 
+button.
+The [UTILITY] or [SHORTCUT] screen appears.
+2
+Set [Hot Cue Auto Load] to [On].
+—
+[On]: Automatically calls up Hot Cues from all tracks when loading them. [AUTO 
+CUE] lights up in red on the screen.
+—
+[OFF]: Hot Cues aren’t automatically called up when loading a track.
+Manual call-up
+You can call up a Hot Cue manually when [Hot Cue Auto Load] is set to [Off] in the Utility 
+settings or on the [SHORTCUT] screen.
+1
+Press the [CALL/DELETE] buttons.
+The [HOT CUE] (A to H) buttons that have a Hot Cue set will blink.
+2
+Press one of the [HOT CUE] (A to H) buttons.
+
+
+===== PDF PAGE 87 =====
+87
+Hot Cue/Gate Cue
+The set Hot Cue is called up.
+• The Hot Cue call-up mode turns off in the following conditions.
+– All Hot Cues are called up.
+– The [CALL/DELETE] button is pressed.
+– The loaded track is replaced by another one.
+Using a Hot Cue Bank list
+You can set Hot Cues to the [HOT CUE] (A to H) buttons on the unit using a Hot Cue Bank list 
+set with rekordbox for Mac/Windows.
+• Hot Cue Bank list can’t be edited via the unit. You will need to use rekordbox for editing. 
+For details, see the rekordbox Instruction Manual.
+O User guides (page 7)
+1
+Press the [BROWSE] button.
+The BROWSE screen appears.
+2
+Select [HOT CUE] in the category.
+The Hot Cue Bank list is displayed.
+3
+Select a Hot Cue Bank list.
+Hot Cues registered in the selected Hot Cue Bank list are displayed.
+4
+Touch a track in the Hot Cue Bank list, or select a track then 
+press the rotary selector.
+Hot Cues registered in the Hot Cue Bank list are set.
+
+
+===== PDF PAGE 88 =====
+88
+Quantize
+Cue points, loop-in points, loop-out points, and Hot Cue points are automatically set to the 
+closest beat position even if your timing is off the beat when you set them.
+You can use Hot Cues, loop, reverse playback, and Slip without breaking the rhythm of the 
+track you are playing.
+• You can’t use the Quantize feature with tracks that haven’t been analyzed by rekordbox.
+• You can set the number of beats for Quantize in [Quantize Beat Value] in the Utility 
+settings or on the [SHORTCUT] screen.
+O Quantize Beat Value*1 (page 101)
+O Quantize Beat Value (page 111)
+Using Quantize
+1
+Press the [QUANTIZE] button.
+Quantize turns on, then [QUANTIZE] and the number of beats for Quantize are 
+displayed.
+• Press the [QUANTIZE] button again to turn Quantize off.
+
+
+===== PDF PAGE 89 =====
+89
+Beat Jump/Loop Move
+You can move a playback point by the specified number of beats from the point where the 
+button is pressed.
+Using Beat Jump/Loop Move
+ Using the BEAT JUMP ,  buttons
+The playback point jumps by the number of beats set in [Beat Jump Beat Value] in the Utility 
+settings or on the [SHORTCUT] screen.
+O Beat Jump Beat Value*1 (page 101)
+O Beat Jump Beat Value (page 111)
+• Press the [BEAT JUMP 
+] or [BEAT JUMP 
+] button while pressing the [CALL/DELETE] 
+button to change the number of beats.
+1
+Press the [BEAT JUMP ] or [BEAT JUMP ] button during 
+playback.
+The playback point jumps forward or backward by the set number of beats from the point 
+where you press the button.
+•
+If you do this during loop playback, the loop moves.
+
+
+===== PDF PAGE 90 =====
+90
+Beat Jump/Loop Move
+ Using BEAT JUMP on the waveform screen
+1
+Touch [BEAT JUMP] on the waveform screen.
+The number of beats selection screen appears.
+2
+Touch your preferred number of beats.
+The playback point jumps by the relevant number of beats from the point where you 
+press the button.
+•
+If you do this during loop playback, the loop moves.
+
+
+===== PDF PAGE 91 =====
+91
+Slip
+If you turn Slip mode on, normal playback continues in the background (but you can’t hear it) 
+when you perform the following operations. 
+When you end the operation, Slip is canceled and normal playback starts from the exact point 
+the track would have reached by then. This means the original rhythm remains constant and 
+your performance stays perfectly in time.
+Function
+Description
+Slip Pause
+If you press the [
+] button during playback in Vinyl mode, 
+playback continues in the background during the pause.
+O Setting the jog wheel mode (page 73)
+Slip Scratch
+If you scratch a track using the jog wheel while in Vinyl 
+mode, normal playback continues in the background while 
+you are scratching.
+O Setting the jog wheel mode (page 73)
+Slip Loop
+If you start loop playback, normal playback continues in the 
+background while the loop is playing.
+O Setting a loop (page 79)
+Slip Beat Loop
+If you touch [BEAT LOOP] on the waveform screen and 
+touch a number of beats during playback, a loop is played 
+with the relevant number of beats until you release the 
+number of beats. Normal playback continues in the 
+background during loop playback.
+O Using BEAT LOOP on the waveform screen (page 80)
+Slip Reverse
+If you flip the [SLIP REV, FWD, REV] lever to the [REV] side 
+during playback, playback is reversed. Normal playback 
+continues in the background during reverse playback. 
+You can use Slip Reverse by flipping the [SLIP REV, FWD, 
+REV] lever to the [SLIP REV] side even when Slip mode isn’t 
+turned on.
+
+
+===== PDF PAGE 92 =====
+92
+Slip
+Turning Slip mode on
+1
+Press the [SLIP] button.
+Slip mode turns on and the [SLIP] button lights up.
+•
+The [SLIP] button blinks while Slip is in use.
+• The current playback point in Slip mode is indicated by a yellow line on the overall and 
+enlarged waveforms on the waveform screen. The background playback point is indicated 
+by a white line on the overall waveform on the waveform screen.
+• Press the [SLIP] button again or load a track to turn off Slip mode.
+Slip Hot Cue/Loop
+If you press the [HOT CUE] (A to H) buttons during playback, 
+the playback point jumps to the Hot Cue/Loop point and 
+playback continues until you release the button. Normal 
+playback continues in the background during Hot Cue/Loop 
+playback.
+Function
+Description
+
+
+===== PDF PAGE 93 =====
+93
+Beat Sync
+If you turn on Beat Sync, the tempo (BPM) and beat position of the track on the unit 
+automatically synchronize with the loaded track on the sync master in the PRO DJ LINK 
+network.
+• Beat Sync can’t be used with tracks that haven’t been analyzed by rekordbox.
+• You can set rekordbox for Mac/Windows as the sync master. For details, see the rekordbox 
+Instruction Manual.
+O User guides (page 7)
+Using Beat Sync
+1
+Press the [MASTER] button on the multi player you want to 
+set as the sync master.
+2
+Play a track analyzed by rekordbox or this unit on the player 
+you want to sync with the sync master.
+3
+Press the [BEAT SYNC/INST.DOUBLES] button on the player 
+you want to sync with the sync master.
+Beat Sync turns on.
+• When Beat Sync is in use on multi players other than the sync master, the tempo can’t be 
+controlled with the TEMPO slider on those players.
+• Press the [BEAT SYNC (INST.DOUBLES)] button again to turn Beat Sync off. If the 
+position of the TEMPO slider doesn’t match the playback tempo (BPM), the Beat Sync 
+tempo is maintained. To restore normal use of the TEMPO slider, move the slider until the 
+BPM matches the playback tempo. After this, you’ll be able to use the TEMPO slider to 
+adjust the tempo.
+• If you perform Pitch Bend on a multi player other than the sync master, Beat Sync turns off 
+and only the BPM synchronizes.
+
+
+===== PDF PAGE 94 =====
+94
+Beat Sync
+Changing the sync master
+You can change the sync master in the following ways.
+– Change the track on the sync master or pause playback.
+– Press the [MASTER] button on the sync master.
+– Press the [MASTER] button on another multi player to set it as the sync master.
+Using Instant Doubles
+You can duplicate a track loaded on a sync master so it plays on another multi player from 
+exactly the same point.
+1
+Press and hold the [BEAT SYNC/INST.DOUBLES] button on a 
+multi player where you want the duplicate track to start 
+playing.
+
+
+===== PDF PAGE 95 =====
+95
+Beatgrid
+You can adjust the beatgrid.
+• You can’t adjust the beatgrid for tracks that haven’t been analyzed by rekordbox.
+Adjusting the beatgrid
+1
+Press and hold the rotary selector on the waveform screen.
+Grid Adjust mode turns on.
+2
+Turn the rotary selector to adjust the beatgrid.
+•
+You can also adjust the beatgrid using the following buttons on the screen.
+– [SNAP GRID(CUE)]: Moves the first beat position to a cue point.
+– [SHIFT GRID]: Applies the settings (Pitch Bend, etc.) adjusted during 
+synchronization.
+– [<1/2], [1/2>]: Moves the beatgrid by 1/2 beat.
+– [×2], [×1/2]: Doubles or halves the number of beats.
+– [Enlarge], [Reduce]: Moves the beatgrid by 1 msec based on the first grid.
+• Touch [RESET] to reset to the original beatgrid.
+• Press and hold the rotary selector again to return to Zoom mode.
+
+
+===== PDF PAGE 96 =====
+96
+Key Sync
+You can adjust the key of a track playing on the unit to match with the key of a track loaded on 
+the sync master.
+• You can’t adjust the key for tracks that haven’t been analyzed by rekordbox.
+Using Key Sync
+1
+Press the [KEY SYNC] button when a track is loaded.
+The key is adjusted to the key with the least change among the following.
+— Same key
+— Dominant key
+— Subdominant key
+— Relative key
+— Relative key of dominant key
+— Relative key of subdominant key
+• Press the [KEY SYNC] or [MASTER TEMPO] button to reset to the original key.
+
+
+===== PDF PAGE 97 =====
+97
+Key Shift
+You can shift the key of a track.
+Using Key Shift
+1
+Touch [KEY SHIFT] on the waveform screen.
+The Key Shift screen appears.
+2
+Touch [−] or [+] to adjust the key.
+Each touch shifts the key up or down by a semitone.
+•
+Touch [RESET] to revert to the original key.
+
+
+===== PDF PAGE 98 =====
+98
+Using DJ software
+If you connect a PC/Mac with MIDI/HID software installed, to the unit via a USB cable, you 
+can control the DJ software via the unit.
+• To play tracks stored on a PC with the unit, install the dedicated audio driver software.
+O Installation of the dedicated audio driver software (page 37)
+• For details on the unit’s MIDI messages, visit the URL below.
+alphatheta.com/support/
+• Install DJ software and configure the audio and MIDI/HID settings on a PC/Mac 
+beforehand.
+• To use MIDI software, set the MIDI channel in [MIDI Channel] in the Utility settings. The 
+setting isn’t needed when using rekordbox.
+O MIDI Channel (page 105)
+L
+R
+USB cable
+Audio cable
+PC/Mac
+DJ 
+software
+Power cord
+To power outlet
+DJ mixer
+Multi player
+Rear panel
+
+
+===== PDF PAGE 99 =====
+99
+Using DJ software
+Controlling DJ software
+1
+Connect a PC/Mac to the unit.
+2
+Press the [SOURCE] button.
+The [SOURCE] screen appears.
+3
+Select [SOFTWARE CONTROL].
+Software control mode turns on.
+4
+Launch the DJ software.
+The unit starts communication with the DJ software.
+• Some buttons on the unit can’t be used for controlling a DJ application.
+• Control mode turns off when a track is loaded to the unit from a device other than the 
+currently communicating device that’s running the DJ software.
+
+
+===== PDF PAGE 100 =====
+100
+Settings
+You can change the settings of the unit from the Utility settings or on the [SHORTCUT] 
+screen.
+If you save My Settings (function settings of the unit) to a storage device, you can load them 
+to the unit immediately when you arrive in the booth or take over from another DJ, etc.
+Changing the settings
+1
+Press and hold the [MENU] button.
+The [UTILITY] screen appears.
+1.
+Category
+2.
+Setting items and current setting values
+3.
+Setting values
+2
+Select a category.
+O Utility settings (page 101)
+3
+Select a setting item.
+1
+2
+3
+
+
+===== PDF PAGE 101 =====
+101
+Settings
+4
+Select a setting value.
+• Press the [MENU] button to close the [UTILITY] screen.
+Utility settings
+ DJ Settings category
+Setting item
+Description
+Eject/Load Lock*1
+Eject Lock: Determines whether or not you can unload a 
+loaded track during playback.
+Load Lock: Determines whether or not you can load another 
+track during playback.
+• Setting values: Unlock*2, Lock
+• [Eject Lock]:
+[Unlock]: You can unload a loaded track during playback.
+[Lock]: You can’t unload a loaded track during playback.
+• [Load Lock]:
+[Unlock]: You can load another track during playback.
+[Lock]: You can’t load another track during playback.
+Quantize Beat Value*1
+Sets the number of beats for Quantize.
+• Setting values: 1/8 Beat, 1/4 Beat, 1/2 Beat, 1 Beat*2
+Beat Jump Beat Value*1
+Sets the number of beats for the [BEAT JUMP 
+, 
+] 
+buttons.
+• Setting values: 1/2 Beat, 1 Beat, 2 Beat, 4 Beat, 8 Beat, 
+16 Beat*2, 32 Beat, 64 Beat
+Hot Cue Auto Load*1
+Determines whether or not Hot Cues/Loops are 
+automatically called up when you load a track.
+O Automatic call-up (page 86)
+• Setting values: Off, On*2
+
+
+===== PDF PAGE 102 =====
+102
+Settings
+Hot Cue Color*1
+Turns on and off the lighting color setting for the [HOT CUE] 
+(A to H) buttons.
+O Setting a Hot Cue (page 84)
+• Setting values: Off*2, On
+Gate Cue*1
+Determines whether or not gate playback is enabled when 
+operating hot cues/loops.
+• Setting values: Off*2, On
+Overwrite Current Cue with 
+Hot Cue (Smart Cue)*1
+Determines whether or not a cue point is automatically set 
+when a Hot Cue/Loop is set or playback starts from a Hot 
+Cue/Loop.
+O Setting a cue point (page 76)
+O Starting playback from a Hot Cue point (page 85)
+• Setting values: Off*2, On
+Auto Cue Level*1
+Sets the sound pressure level that Auto Cue recognizes as 
+silence.
+• Setting values: Memory Cue*2, Hot Cue, -78dB, -72dB, 
+-66dB, -60dB, -54dB, -48dB, -42dB, -36dB
+• [Memory Cue]: Sets the saved cue/loop point closest to 
+the beginning of a track to an Auto Cue point.
+• [Hot Cue]: Sets the saved Hot Cue/Loop point closest to 
+the beginning of a track to an Auto Cue point.
+Vinyl Speed Adjust*1
+Sets the adjustment method for the playback starting and 
+stopping speeds in Vinyl mode.
+O Adjusting the playback starting and stopping speeds (for 
+Vinyl mode) (page 74)
+• Setting values: Touch&Release, Touch*2, Release
+Setting item
+Description
+
+
+===== PDF PAGE 103 =====
+103
+Settings
+*1The settings are copied when you execute [Duplication] in PRO DJ LINK category.
+*2Factory setting
+ Display (LCD) category
+*1The settings are copied when you execute [Duplication] in PRO DJ LINK category.
+Play Mode*1
+Sets playback mode.
+• Setting values: Continue, Single*2
+• [Continue]: Automatically loads the next track when 
+playback reaches the end of a track.
+• [Single]: Stops playback when playback reaches the end 
+of a track. The next track isn’t automatically loaded.
+Setting item
+Description
+LCD Brightness*1
+Sets the brightness of the main display.
+• Setting values: 1, 2, 3*2, 4, 5
+Jog LCD Brightness*1
+Sets the brightness of the jog display.
+• Setting values: 1, 2, 3*2, 4, 5
+Appearance*1
+Sets the display to dark mode or light mode.
+• Setting values: Dark*2, Light
+Language*1
+Sets the display language.
+Screen Saver
+Sets the screen saver.
+• Setting values: Off, On*2
+• When set to [On], the screen saver starts if:
+–
+You don’t use the unit for more than 5 minutes when 
+a track isn’t loaded.
+–
+You don’t use the unit for more than 100 minutes 
+during pause, during cue standby, or after playback 
+reaches the end of a track.
+• Use the unit to cancel the screen saver.
+Setting item
+Description
+
+
+===== PDF PAGE 104 =====
+104
+Settings
+*2Factory setting
+ Display (Indicator) category
+*1The settings are copied when you execute [Duplication] in PRO DJ LINK category.
+*2Factory setting
+Setting item
+Description
+Slip Flashing*1
+Determines whether or not the indicators blink for buttons 
+that can be used for Slip when you press the [SLIP] button.
+• Setting values: Off, On*2
+On-Air Display*1
+Determines whether or not the on-air information is 
+displayed.
+• Setting values: Off, On*2
+Jog Ring Brightness*1
+Sets the brightness of the jog ring illumination.
+• Setting values: Off, 1, 2*2
+Jog Ring Indicator*1
+Determines whether the jog wheel ring blinks when the 
+remaining time is running out on the track you are playing.
+• Setting values: Off, On*2
+Rotary Selector 
+Brightness*1
+Sets the brightness of the rotary selector LED.
+• Setting values: Off, 1, 2*2
+
+
+===== PDF PAGE 105 =====
+105
+Settings
+ PRO DJ LINK category
+*2Factory setting
+ Network category
+Setting item
+Description
+Player No.
+Sets the player number of the unit.
+• Setting values: Auto*2, 1, 2, 3, 4, 5, 6
+• The setting can’t be changed when a storage device is 
+connected to the unit.
+Duplication
+Copies the Utility and some other settings on the unit to multi 
+players connected in the PRO DJ LINK network.
+• Setting values: ALL*2, PLAYER 1 to 6
+• This setting can’ be used for a multi player that is currently 
+playing a track.
+• The Utility settings marked with *1 in the Utility settings 
+tables are copied.
+O Utility settings (page 101)
+• The following settings are also copied:
+TIME MODE (time display mode), AUTO CUE, JOG 
+MODE, TEMPO RANGE, MASTER TEMPO, QUANTIZE, 
+BEAT SYNC, PHASE METER
+MIDI Channel
+Sets the MIDI channel.
+• Setting values: 1*2 to 16
+Setting items
+Description
+Wi-Fi Setting
+Sets up the connection via a wireless LAN (Wi-Fi) router 
+(access point).
+O Connecting the unit to a wireless network (page 108)
+• Setting values: Off*2, On
+
+
+===== PDF PAGE 106 =====
+106
+Settings
+*2Factory setting
+ System category
+Wi-Fi Setting Duplication
+Copies the access point connection settings of the wireless 
+LAN (Wi-Fi) router to other multi players connected via PRO 
+DJ LINK.
+• Setting values: ALL*2, PLAYER 1 to 6
+• Not available if the [Wi-Fi Setting] is set to [Off].
+Wi-Fi Address
+Displays MAC address for the wireless LAN (Wi-Fi) 
+connection.
+Ethernet Info
+Displays IP address and MAC address for the wired LAN 
+connection.
+Setting item
+Description
+Power Management
+Sets the Power Management function.
+O Power Management (page 107)
+• Setting values: Never, 20min*2
+Output Att.
+Sets the attenuation level for the sound output from the unit.
+• Setting values: -12dB, -9dB, -6dB, -3dB, 0dB*2
+• This setting is invalid when DJ software is in use.
+History Name
+Sets the name of the History list saved on a storage device.
+• The name can contain up to 32 characters (alphanumeric 
+and symbol).
+• If you change the name, the number succeeding the name 
+of the History list resets to 001 (the number is 
+automatically added in order when a History list is 
+created).
+Demo Mode*1
+Sets whether or not to turn on LED of all buttons.
+• Setting values: Off*2, On
+Setting items
+Description
+
+
+===== PDF PAGE 107 =====
+107
+Settings
+*1The settings are copied when you execute [Duplication] in PRO DJ LINK category.
+*2Factory setting
+ Info category
+Power Management
+When [Power Management] is set to [20min], the unit automatically enters Off mode after 20 
+minutes without being used in the following ways.
+– The unit isn’t connected in the PRO DJ LINK network.
+– No storage device is connected to the unit.
+– No PC/Mac is connected to the unit via the USB port on the rear of the unit.
+Use the unit to exit standby mode.
+• The factory setting is [20min].
+• The [QUANTIZE] button lights up when the unit is in Off mode.
+• Set [Power Management] to [Never] if you don’t need to use the Power Management 
+function.
+• Power consumption will increase if [Power Management] is set to [Never].
+Restore Defaults
+Restores the settings to the factory settings.
+• Setting values: Cancel*2, Ok
+Setting item
+Description
+Serial No.
+Displays the serial number.
+License
+Displays the license information of the unit.
+Version No.
+Displays the version of the software on the unit.
+• An update available notice is displayed if updated 
+firmware is available when the unit is connected to the 
+internet.
+Setting item
+Description
+
+
+===== PDF PAGE 108 =====
+108
+Settings
+Wireless LAN (Wi-Fi®) connection
+Connecting the unit to a wireless network
+1
+Press and hold the [MENU] button.
+The [UTILITY] screen appears.
+2
+Select [Wi-Fi Setting] in the Network category.
+The [Wi-Fi Setting] screen appears.
+3
+Touch [Wi-Fi] to turn it on.
+The unit searches the network and available SSID are listed.
+1.
+ (Wi-Fi connection icon)
+2.
+Wi-Fi On/Off
+3.
+SSID list
+4
+Touch the network (SSID) you want to use.
+The password input screen appears.
+2
+3
+1
+
+
+===== PDF PAGE 109 =====
+109
+Settings
+5
+Enter a password and touch [CONNECT].
+If the connection succeeds, [Connected] is displayed in the network name (SSID) field 
+and it’s displayed at the top of the list.
+•
+You don’t need to do this if you’re using an access point that’s connected with the unit 
+previously.
+•
+Touch the network (SSID) you’re using to view its information on the network 
+information screen. If you turn on [Auto-Connect] on the network information screen, 
+the unit automatically connects to the access point the next time you use it.
+•
+To delete the networks (SSID) saved to the unit, touch [SAVED NETWORKS] at the 
+bottom of the list. Select the networks (SSID) to delete in the list and touch [FORGET 
+THIS NETWORK] on the network information screen.
+
+
+===== PDF PAGE 110 =====
+110
+Settings
+Changing the settings on the Shortcut screen
+1
+Press the [SHORTCUT] button.
+The [SHORTCUT] screen appears.
+1.
+Player settings
+2.
+Device information
+3.
+My Settings
+4.
+Device settings
+2
+Select a setting value.
+O Setting items on the Shortcut screen (page 111)
+• Press the [SHORTCUT] button again to close the [SHORTCUT] screen.
+1
+2
+4
+3
+
+
+===== PDF PAGE 111 =====
+111
+Settings
+Setting items on the Shortcut screen
+Setting items
+Descriptions
+Player settings
+Waveform/Phase 
+Meter
+Selects the content (phase meter or enlarged waveform) to 
+be displayed on the playback (waveform) screen.
+• Setting values: PHASE METER, WAVEFORM*1
+Time Mode
+Sets the time display ([TIME] (elapsed time) or [REMAIN] 
+(remaining time)).
+• Setting values: REMAIN*1, TIME
+Auto Cue
+Turns Auto Cue on and off.
+• Setting values: OFF, ON*1
+Hot Cue Auto Load
+Same as the Utility settings.
+O Utility settings (page 101)
+Smart Cue
+Gate Cue
+Quantize Beat Value
+Vinyl Speed Adjust
+Beat Jump Beat 
+Value
+Appearance
+LCD Brightness
+Jog LCD Brightness
+Device information
+Displays the type and name of the device the track was 
+loaded from.
+
+
+===== PDF PAGE 112 =====
+112
+Settings
+*1Factory setting
+Device settings
+Waveform Color
+Sets the waveform color.
+• Setting values: BLUE, RGB, 3 BAND
+Waveform Current 
+Position
+Sets where to display the current playback point on the 
+enlarged waveform.
+• Setting values: CENTER, LEFT
+Waveform Divisions
+Selects time scale or phrase data to display under the 
+playing address of the overall waveform.
+• Setting values: TIME SCALE, PHRASE
+• [TIME SCALE]: Displays scale marks at 30-second intervals.
+• [PHRASE]: Displays the phrase data analyzed by 
+rekordbox.
+• If phrase data isn’t saved, time scale is displayed.
+Image On-Jog 
+Display
+Sets an image to display on the artwork display on the jog 
+wheel.
+• Setting values: ARTWORK, CUSTOM IMAGE
+• [ARTWORK]: Displays the artwork of the loaded track.
+• [CUSTOM IMAGE]: Displays a JPEG saved in your cloud 
+storage or the root directory of the storage device that the 
+loaded track is saved on. Images larger than 800 x 800 
+pixels can’t be displayed on this unit.
+My Settings
+LOAD
+Calls up My Settings saved on a storage device.
+O Calling up My Settings saved on a storage device 
+(page 114)
+SAVE
+Saves the current My Settings to a storage device.
+O Saving My Settings to a storage device (page 113)
+Setting items
+Descriptions
+
+
+===== PDF PAGE 113 =====
+113
+Settings
+Saving My Settings to a storage device
+You can save the Utility settings and some other settings on a storage device.
+• The Utility settings marked with *1 in the Utility settings tables are saved.
+O Utility settings (page 101)
+• The following settings are also saved:
+TIME MODE (time display mode), AUTO CUE, JOG MODE, TEMPO RANGE, MASTER 
+TEMPO, QUANTIZE, BEAT SYNC, PHASE METER
+• You can save the settings to rekordbox, rekordbox CloudDirectPlay, or a storage device 
+connected to a multi player in the PRO DJ LINK network.
+• You can specify the unit settings using rekordbox and save them on a storage device, then 
+apply the settings to other multi players.
+1
+Connect a storage device to the unit.
+O Connecting a storage device (page 54)
+2
+Press the [SOURCE] button.
+The [SOURCE] screen appears.
+3
+Select a device and load a track.
+4
+Press the [SHORTCUT] button.
+The [SHORTCUT] screen appears.
+5
+Touch [SAVE] in [My Settings].
+The My Settings are saved on the storage device.
+• Press the [SHORTCUT] button again to close the [SHORTCUT] screen.
+
+
+===== PDF PAGE 114 =====
+114
+Settings
+Calling up My Settings saved on a storage device
+You can call up My Settings from a storage device.
+• You can call up My Settings from rekordbox, rekordbox CloudDirectPlay, or a storage 
+device connected to a multi player in the PRO DJ LINK network.
+Calling up My Settings from the SHORTCUT screen
+1
+Connect a storage device to the unit.
+O Connecting a storage device (page 54)
+2
+Press the [SOURCE] button.
+The [SOURCE] screen appears.
+3
+Select a device and load a track.
+4
+Press the [SHORTCUT] button.
+The [SHORTCUT] screen appears.
+5
+Touch [LOAD] in [My Settings].
+My Settings are called up.
+•
+You can’t call up My Settings when a track is playing. Pause playback before calling 
+up the settings.
+• Press the [SHORTCUT] button again to close the [SHORTCUT] screen.
+
+
+===== PDF PAGE 115 =====
+115
+Settings
+Calling up My Settings from the SOURCE screen
+1
+Connect a storage device to the unit.
+O Connecting a storage device (page 54)
+2
+Press the [SOURCE] button.
+The [SOURCE] screen appears.
+3
+Select a device.
+4
+Touch [MY SETTINGS LOAD].
+My Settings are called up.
+•
+You can’t call up My Settings when a track is playing. Pause playback before calling 
+up the settings.
+•
+You can call up My Settings from the Device Settings screen displayed by touching 
+.
+O SOURCE screen (page 19)
+
+
+===== PDF PAGE 116 =====
+116
+Specifications
+General
+Power requirements
+AC 110 V – 240 V, 50 Hz/60 Hz
+Power consumption
+45 W
+Power consumption (off)
+0.3 W
+Main unit weight
+6.0 kg/13.2 lbs.
+Max. external dimensions
+(W × D × H) 344.6 × 490.4 × 130.1 mm/13.6″ × 19.3″ 
+× 5.1″
+Tolerable operating temperature
++5 °C – +35 °C (+41 °F – +95 °F)
+Tolerable operating humidity
+5 % – 85 % (no condensation)
+Analog audio output (AUDIO OUT L/R)
+Output terminals
+RCA terminal
+Output Level
+2.0 Vrms (1 kHz)
+Frequency response
+4 Hz – 40 kHz
+S/N ratio
+115 dB
+Total harmonic distortion
+0.0018 %
+Digital audio output (DIGITAL OUT)
+Output terminals
+RCA terminal
+Output type
+Coaxial digital (S/PDIF)
+Output level
+0.5 Vp-p (75 Ω)
+Output format
+96 kHz, 24bit
+
+
+===== PDF PAGE 117 =====
+117
+Specifications
+We don’t guarantee that this unit will connect and operate with all wireless LAN routers and 
+NFC-compatible devices.
+The specifications and design of this product are subject to change without notice.
+USB downstream section (USB)
+USB Type-A
+Power supply
+5 V/1 A or less
+USB Type-C
+Power supply
+5 V/1.5 A or less
+USB upstream section (USB)
+Port
+USB Type-C
+LAN (PRO DJ LINK)
+Rating
+1000BASE-T
+Main display
+Screen size
+10.1″
+Wireless LAN section
+Supported standards
+IEEE 802.11 a/b/g/n/ac
+Frequency band used
+2.4 GHz/5 GHz
+NFC section
+Supported standards
+ISO/IEC 15693 (Tag)
+
+
+===== PDF PAGE 118 =====
+118
+Additional information
+Troubleshooting
+If you think something is wrong with the unit, check the information below and refer to the 
+[FAQ] for the CDJ-3000X at the URL below.
+alphatheta.com/support/
+• Inspect devices connected with the unit.
+• The unit may restore proper operation after you turn it off and on.
+If the problems continue, read the Precautions for Use and consult an authorized service 
+company or your dealer. 
+Error display
+ E-8302 (Error type: CANNOT PLAY TRACK)
+• The unit can’t read audio files from the storage device. The audio files may be corrupted.
+Check if the files can be played with another player that supports files in the formats 
+supported by this unit.
+ E-8304/E-8305 (Error type: UNSUPPORTED FILE FORMAT)
+• The loaded audio file is in a format that isn’t supported by this unit. Play an audio file in a 
+format that’s supported by this unit.
+O Supported file formats (page 12)
+Wireless LAN (Wi-Fi®)
+ The unit can’t connect to an access point.
+• Check if the network (SSID), password, and encryption method are set correctly. Match the 
+settings on this unit with the network settings.
+ The access point can’t be found.
+• If the unit and the wireless LAN (Wi-Fi) router (access point) are placed far apart, bring 
+them closer together.
+
+
+===== PDF PAGE 119 =====
+119
+Additional information
+• If there is an obstacle between this unit and the wireless LAN (Wi-Fi) router (access point), 
+remove it.
+rekordbox CloudDirectPlay
+ Tracks aren’t displayed or can’t be loaded.
+• Tracks aren’t displayed on the browse screen if rekordbox for Mac/Windows or rekordbox 
+for iOS/Android hasn’t been synchronized with the library in your cloud storage. Wait until 
+the synchronization completes.
+• Check if tracks are uploaded to Dropbox/Google Drive.
+Only tracks uploaded to Dropbox/Google Drive are displayed on the browse screen. You 
+can’t load tracks that haven’t been uploaded to Dropbox/Google Drive. Upload tracks to 
+Dropbox/Google Drive using rekordbox for Mac/Windows or rekordbox for iOS/Android 
+beforehand.
+• You can’t load tracks to the unit when Dropbox/Google Drive is under maintenance or 
+failure occurs in Dropbox/Google Drive. Load them after the maintenance completes or 
+after the issue is fixed.
+ Not enough space on the USB device.
+• When using rekordbox CloudDirectPlay, tracks loaded from Dropbox/Google Drive are 
+temporarily saved on the connected USB device. At least 1GB of free space is 
+recommended for stable operation.
+Streaming services (Beatport, TIDAL)
+ Can’t use streaming services (Beatport, TIDAL).
+• Check the internet connection.
+ Tracks aren’t displayed on the track list
+• Make sure you have an applicable subscription to use streaming services (Beatport, 
+TIDAL).
+
+
+===== PDF PAGE 120 =====
+120
+Additional information
+LCD display
+• Small black or shining points may appear on the LCD display. This is a phenomenon 
+inherent to LCD displays and not a malfunction.
+• When using the unit in cold places, the LCD display may be dark for a while after the power 
+is turned on. Normal brightness will restore after a while.
+• When the LCD display is exposed to direct sunlight, the light will reflect off it, making it 
+difficult to see. Block the direct sunlight to improve visibility of the display.
+Cleaning
+• Wipe with a dry soft cloth.
+• Do not use organic solvents, acids or alkalis for cleaning.
+Touchscreen
+• Operate the touchscreen with your fingertip. Do not press it with excessive force.
+• Do not operate the touchscreen with hard and sharp-pointed objects such as a ballpoint 
+pen, mechanical pencil, or sharp fingernail.
+
+
+===== PDF PAGE 121 =====
+121
+Additional information
+Trademarks and registered trademarks
+• rekordbox™ is a trademark or registered trademark of AlphaTheta Corporation.
+• PRO DJ LINK™ is a trademark or registered trademark of AlphaTheta Corporation.
+• Mac, macOS and Finder are trademarks of Apple Inc., registered in the U.S. and other 
+countries and regions.
+• Windows is a trademark or registered trademark of Microsoft Corporation in the U.S. and 
+other countries.
+• ASIO is a trademark or registered trademark of Steinberg Media Technologies GmbH.
+• iOS is a trademark containing Cisco trademark signs in the U.S. and other countries.
+• Android and Google Drive are trademarks of Google LLC.
+• Dropbox is a trademark or registered trademark of Dropbox, Inc.
+• Beatport, Beatport Streaming and its logo are trademarks or registered trademarks of 
+Beatport, LLC. 
+• TIDAL is a trademark of TIDAL MUSIC AS.
+• Wi-Fi is a registered trademark of Wi-Fi Alliance®.
+Other product, technology and company names, etc. mentioned herein are trademarks or 
+registered trademarks of their respective owners.
+About using MP3 files
+This product has been licensed for nonprofit use. This product has not been licensed for 
+commercial purposes (for profit-making use), such as broadcasting (terrestrial, satellite, 
+cable or other types of broadcasting), streaming on the Internet, Intranet (a corporate 
+network) or other types of networks or distributing of electronic information (online digital 
+music distribution service). You need to acquire the corresponding licenses for such 
+uses. For details, see http://www.mp3licensing.com.
+
+
+===== PDF PAGE 122 =====
+122
+Additional information
+Cautions on copyrights
+rekordbox restricts playback and duplication of copyright-protected music contents.
+• When coded data, etc., for protecting the copyright is embedded in the music contents, it 
+may not be possible to operate the program normally.
+• When rekordbox detects that coded data, etc., for protecting the copyright is embedded in 
+the music contents, processing (playback, reading, etc.) may stop. 
+Recordings you have made are for your personal enjoyment and according to copyright laws 
+may not be used without the consent of the copyright holder.
+• Music recorded from CDs, etc., is protected by the copyright laws of individual countries 
+and by international treaties. It is the full responsibility of the person who has recorded the 
+music to ensure that it is used legally.
+• When handling music downloaded from the Internet, etc., it is the full responsibility of the 
+person who has downloaded the music to ensure that it is used in accordance with the 
+contract concluded with the download site.
+The specifications and design of this product are subject to change without notice.
+© 2025 AlphaTheta Corporation. All rights reserved.
+<DRI1956-C>

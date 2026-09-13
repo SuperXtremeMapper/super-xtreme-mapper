@@ -1,0 +1,44 @@
+{
+  "manufacturer": "Allen & Heath",
+  "model": "Xone:PX5",
+  "retrieved_on": "2026-09-12",
+  "grade": "partial",
+  "scope": "Source extraction readiness only; not a verified SXM profile",
+  "hardware_tested": false,
+  "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+  "notes": "Extensive MIDI controls documented, but note names use C-2 in mapping while conversion table maps zero to C-1. Do not silently normalize conflicting octaves. CC portion is extractable; resolve Note numbers and return-value details first.",
+  "coverage": {
+    "addresses": "CC0..11 explicit; note-name mapping documented but octave convention conflicts with conversion table",
+    "channels": "default16, configurable via FX SELECT CONFIG CHANNEL, retained across power cycles",
+    "layers": "switch INT/DUAL/EXT position notes; no latching layers documented",
+    "encoders": "FX rotary CC assignments shown; increment/absolute detail needs validation",
+    "led_feedback": "send/receive capability stated, but per-control output semantics need confirmation"
+  },
+  "inspected_locators": [
+    "manual.pdf: pp29-34 MIDI CONTROL and MIDI CHANNEL CHANGE; p30 visually inspected",
+    "midi.html: Channel FX MODE Select Switches versus Octave/Note Numbers conversion table; CC conversion table also has hex errors at13-15"
+  ],
+  "sources": [
+    {
+      "url": "https://www.allen-heath.com/content/uploads/2023/06/AP10733_2_XONE_PX5_USER_GUIDE.pdf",
+      "file": "xone-px5/manual.pdf",
+      "status_code": 200,
+      "final_url": "https://www.allen-heath.com/content/uploads/2023/06/AP10733_2_XONE_PX5_USER_GUIDE.pdf",
+      "bytes": 14499258,
+      "sha256": "da639e510100c9f894e95b407fac7b6dbeaf4049e907be71f43b8d3a548aded8",
+      "text_file": "xone-px5/manual.txt",
+      "text_sha256": "42e36e147a96fdee68b2fbfbd883a14676d75d2198b1ec09dae38fcc4971abc0"
+    },
+    {
+      "url": "https://support.allen-heath.com/hc/en-gb/articles/43523536283409-Xone-PX5-MIDI-Control",
+      "file": "xone-px5/midi.html",
+      "status_code": 200,
+      "final_url": "https://support.allen-heath.com/hc/en-gb/articles/43523536283409-Xone-PX5-MIDI-Control",
+      "bytes": 60596,
+      "sha256": "f4e61e22f41adba819199effb75c40637058a2b24d5b4a33883f4d5887a99cd4",
+      "text_file": "xone-px5/midi.txt",
+      "text_sha256": "231c0baeaf34122bdcafcf92015fbacc059d5be60caedfc6f2901c016298a560"
+    }
+  ],
+  "shared_references": []
+}

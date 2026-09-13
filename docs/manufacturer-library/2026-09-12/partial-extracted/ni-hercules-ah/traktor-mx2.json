@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Native Instruments",
+  "model": "Traktor MX2",
+  "status": "partial-extraction",
+  "coverage_state": "documentation-only",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "local_file": "ni-hercules-ah/mx2/manual.pdf",
+      "url": "https://docs.native-instruments.com/pdf-guides/traktor/Traktor_MX2_user_guide-en.pdf",
+      "sha256": "35eee84270087866f52245ad0e82b3c3f46e06fb02be59f0373db32e3bee8056",
+      "id": "s1"
+    },
+    {
+      "local_file": "ni-hercules-ah/shared/ni-midi-mode.html",
+      "url": "https://support.native-instruments.com/support/solutions/articles/69000880031-native-instruments-switching-your-controller-to-midi-mode",
+      "sha256": "82e0c13da905d67b7ac0c46934ed3381bb616373a953b4641209670553665f19",
+      "id": "s2"
+    }
+  ],
+  "scope": "Documentation-only extraction of the archived owner manual and support material. No model-specific numeric MIDI addresses, channels, value encodings or LED receive assignments are established; native/software control descriptions are not wire-message evidence.",
+  "bindings": [],
+  "setup_notes": [
+    "Hold left SHIFT + right SHIFT to switch between Native and MIDI mode."
+  ],
+  "missing_information": [
+    "Manufacturer control-to-message table with numeric MIDI addresses and channels.",
+    "Mode/shift/deck-layer address differences in MIDI mode.",
+    "Encoder/jog-wheel value encoding and button press/release bytes.",
+    "LED/display/meter receive protocol and values; native display behavior does not establish MIDI feedback."
+  ],
+  "issues": [
+    {
+      "id": "setup-provenance",
+      "severity": "scope",
+      "description": "Model-specific mode entry is documented in the archived official shared support article; generic Controller Editor examples must not be treated as this model’s wire map.",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "Switching to MIDI Mode Manually; Traktor MX2 row"
+        }
+      ],
+      "excluded_bindings": []
+    },
+    {
+      "id": "no-wire-address-chart",
+      "severity": "scope",
+      "description": "The owner manual describes native control functions without a complete numeric MIDI address/channel/encoding table. MIDI-mode availability does not establish those wire values.",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "PDF pages 9–21; overview and Customizing your MX2 (printed pages 7–19)"
+        }
+      ],
+      "excluded_bindings": [
+        "All per-control MIDI inputs and outputs; no numeric wire map established"
+      ]
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "s1",
+      "file": "ni-hercules-ah/raw/traktor-mx2-s1.txt",
+      "extraction_method": "pdftotext -layout; complete PDF retained as page-addressed text; no OCR or inferred labels"
+    },
+    {
+      "source_id": "s2",
+      "file": "ni-hercules-ah/raw/traktor-mx2-s2.txt",
+      "extraction_method": "Complete archived HTML-to-text extraction copied; unpaginated document marker; original HTML remains authoritative"
+    }
+  ]
+}

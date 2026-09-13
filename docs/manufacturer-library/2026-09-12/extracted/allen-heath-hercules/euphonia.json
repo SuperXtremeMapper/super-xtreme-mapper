@@ -1,0 +1,1882 @@
+{
+  "schema_version": 1,
+  "manufacturer": "AlphaTheta",
+  "model": "Euphonia",
+  "status": "documented-extraction",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "id": "s1",
+      "local_file": "../../../XtremeMapping/docs/controllers/euphonia/sources/euphonia_DRI1891A_manual.pdf",
+      "url": "https://downloads.support.alphatheta.com/manuals/euphonia_DRI1891A_manual.pdf",
+      "sha256": "fd6f233b2747bb3f23254d454513098102a07b8df8caf6d167293cae957c9ba5"
+    },
+    {
+      "id": "s2",
+      "local_file": "../../../XtremeMapping/docs/controllers/euphonia/sources/euphonia_MIDI_Message_List_E10.pdf",
+      "url": "https://downloads.support.alphatheta.com/software_info/dj-mixers/euphonia/euphonia_MIDI_Message_List_E10.pdf",
+      "sha256": "45631b77a6806762fe4b5a3231037672ba707f55177a7717f5ac2b04bd88840b"
+    }
+  ],
+  "scope": "Entire MIDI message list normalized: transmit-to-computer controls, discrete selectors and timing clock. Chart status bytes 90/B0 identify channel 1; no receive map is asserted.",
+  "bindings": [
+    {
+      "id": "b0001",
+      "control": "MIC selector",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 79,
+      "encoding": "discrete CC state",
+      "values": {
+        "OFF": 0,
+        "ON": 64,
+        "TALKOVER": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / MIC selector"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0002",
+      "control": "MIC EQ HI",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 30,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / MIC EQ HI"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0003",
+      "control": "MIC EQ LOW",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 31,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / MIC EQ LOW"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0004",
+      "control": "CH1 TRIM",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 1,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH1 TRIM"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0005",
+      "control": "CH1 HI",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 2,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH1 HI"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0006",
+      "control": "CH1 MID",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 3,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH1 MID"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0007",
+      "control": "CH1 LOW",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 4,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH1 LOW"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0008",
+      "control": "CH1 SEND",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 5,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH1 SEND"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0009",
+      "control": "CH1 CH ROTARY VOLUME",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 17,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH1 CH ROTARY VOLUME"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0010",
+      "control": "CH1 CUE",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 10,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH1 CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0011",
+      "control": "CH1 INPUT SELECTOR",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 53,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position PC; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH1 INPUT SELECTOR"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0012",
+      "control": "CH1 INPUT SELECTOR",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 50,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position DIGITAL; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH1 INPUT SELECTOR"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0013",
+      "control": "CH1 INPUT SELECTOR",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 51,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position LINE; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH1 INPUT SELECTOR"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0014",
+      "control": "CH1 INPUT SELECTOR",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 52,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position PHONO; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH1 INPUT SELECTOR"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0015",
+      "control": "CH2 TRIM",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 6,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH2 TRIM"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0016",
+      "control": "CH2 HI",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 7,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH2 HI"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0017",
+      "control": "CH2 MID",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 8,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH2 MID"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0018",
+      "control": "CH2 LOW",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 9,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH2 LOW"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0019",
+      "control": "CH2 SEND",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 10,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH2 SEND"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0020",
+      "control": "CH2 CH ROTARY VOLUME",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 18,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH2 CH ROTARY VOLUME"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0021",
+      "control": "CH2 CUE",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 11,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH2 CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0022",
+      "control": "CH2 INPUT SELECTOR",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 57,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position PC; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH2 INPUT SELECTOR"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0023",
+      "control": "CH2 INPUT SELECTOR",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 54,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position DIGITAL; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH2 INPUT SELECTOR"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0024",
+      "control": "CH2 INPUT SELECTOR",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 55,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position LINE; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH2 INPUT SELECTOR"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0025",
+      "control": "CH2 INPUT SELECTOR",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 56,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position PHONO; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH2 INPUT SELECTOR"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0026",
+      "control": "CH3 TRIM",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 12,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH3 TRIM"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0027",
+      "control": "CH3 HI",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 14,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH3 HI"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0028",
+      "control": "CH3 MID",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 15,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH3 MID"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0029",
+      "control": "CH3 LOW",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 21,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH3 LOW"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0030",
+      "control": "CH3 SEND",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 22,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH3 SEND"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0031",
+      "control": "CH3 CH ROTARY VOLUME",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 19,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH3 CH ROTARY VOLUME"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0032",
+      "control": "CH3 CUE",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 12,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH3 CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0033",
+      "control": "CH3 INPUT SELECTOR",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 61,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position PC; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH3 INPUT SELECTOR"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0034",
+      "control": "CH3 INPUT SELECTOR",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 58,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position DIGITAL; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH3 INPUT SELECTOR"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0035",
+      "control": "CH3 INPUT SELECTOR",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 59,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position LINE; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH3 INPUT SELECTOR"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0036",
+      "control": "CH3 INPUT SELECTOR",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 60,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position PHONO; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 2 / CH3 INPUT SELECTOR"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0037",
+      "control": "CH4 TRIM",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 80,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / CH4 TRIM"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0038",
+      "control": "CH4 HI",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 81,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / CH4 HI"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0039",
+      "control": "CH4 MID",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 92,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / CH4 MID"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0040",
+      "control": "CH4 LOW",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 82,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / CH4 LOW"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0041",
+      "control": "CH4 SEND",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 83,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / CH4 SEND"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0042",
+      "control": "CH4 CH ROTARY VOLUME",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 20,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / CH4 CH ROTARY VOLUME"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0043",
+      "control": "CH4 CUE",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 13,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / CH4 CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0044",
+      "control": "CH4 INPUT SELECTOR",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 65,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position PC; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / CH4 INPUT SELECTOR"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0045",
+      "control": "CH4 INPUT SELECTOR",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 62,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position DIGITAL; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / CH4 INPUT SELECTOR"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0046",
+      "control": "CH4 INPUT SELECTOR",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 63,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position LINE; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / CH4 INPUT SELECTOR"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0047",
+      "control": "CH4 INPUT SELECTOR",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 64,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position PHONO; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / CH4 INPUT SELECTOR"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0048",
+      "control": "VIEW",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 88,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / VIEW"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0049",
+      "control": "MASTER INSERT",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 96,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / MASTER INSERT"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0050",
+      "control": "MASTER LEVEL",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 24,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / MASTER LEVEL"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0051",
+      "control": "BOOTH EQ LOW",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 110,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / BOOTH EQ LOW"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0052",
+      "control": "BOOTH EQ HI",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 109,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / BOOTH EQ HI"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0053",
+      "control": "BOOTH LEVEL",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 25,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / BOOTH LEVEL"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0054",
+      "control": "HEADPHONES MONO/SPLIT",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 33,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / HEADPHONES MONO/SPLIT"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0055",
+      "control": "HEADPHONES MIXING",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 27,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / HEADPHONES MIXING"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0056",
+      "control": "HEADPHONES LEVEL",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 26,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / HEADPHONES LEVEL"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0057",
+      "control": "LOW SEND",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 80,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / LOW SEND"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0058",
+      "control": "LOW VOLUME",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 103,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / LOW VOLUME"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0059",
+      "control": "MID SEND",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 81,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / MID SEND"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0060",
+      "control": "MID VOLUME",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 104,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / MID VOLUME"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0061",
+      "control": "HI SEND",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 82,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / HI SEND"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0062",
+      "control": "HI VOLUME",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 105,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / HI VOLUME"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0063",
+      "control": "BRIGHTNESS",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 89,
+      "encoding": "discrete CC state",
+      "values": {
+        "1": 0,
+        "2": 32,
+        "3": 64,
+        "4": 96,
+        "5": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / BRIGHTNESS"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0064",
+      "control": "BOOST LEVEL",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 83,
+      "encoding": "note state",
+      "values": {
+        "0dB": 0,
+        "+6dB": 64,
+        "+12dB": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3 / BOOST LEVEL"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0065",
+      "control": "EFFECT SELECT",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 42,
+      "encoding": "discrete CC state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position HPF; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 4 / EFFECT SELECT"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0066",
+      "control": "EFFECT SELECT",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 55,
+      "encoding": "discrete CC state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position DELAY; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 4 / EFFECT SELECT"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0067",
+      "control": "EFFECT SELECT",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 51,
+      "encoding": "discrete CC state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position TAPE ECHO; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 4 / EFFECT SELECT"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0068",
+      "control": "EFFECT SELECT",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 43,
+      "encoding": "discrete CC state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position ECHO VERB; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 4 / EFFECT SELECT"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0069",
+      "control": "EFFECT SELECT",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 62,
+      "encoding": "discrete CC state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position REVERB; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 4 / EFFECT SELECT"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0070",
+      "control": "EFFECT SELECT",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 54,
+      "encoding": "discrete CC state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position SHIMMER; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 4 / EFFECT SELECT"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0071",
+      "control": "EFFECT SELECT",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 50,
+      "encoding": "discrete CC state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "position EXT; previous selection OFF, new selection ON",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 4 / EFFECT SELECT"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0072",
+      "control": "TAP",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 78,
+      "encoding": "discrete CC state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 4 / TAP"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0073",
+      "control": "TIME",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 106,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 4 / TIME"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0074",
+      "control": "PARAMETER",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 107,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 4 / PARAMETER"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0075",
+      "control": "RETURN LEVEL",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 108,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "documented chart mode",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 4 / RETURN LEVEL"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel 1 is established by chart status 90/B0; no configurable MIDI channel setting was identified in the archived owner manual. This does not assert a separate user-selectable default."
+      ]
+    },
+    {
+      "id": "b0076",
+      "control": "Timing Clock",
+      "direction": "device-to-host",
+      "message_type": "realtime",
+      "channel": null,
+      "number": null,
+      "encoding": "MIDI Timing Clock",
+      "values": {
+        "status_hex": "F8"
+      },
+      "mode": "always sent",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 4 / Timing Clock"
+        },
+        {
+          "source_id": "s1",
+          "locator": "PDF page 45 / USB/MIDI: MIDI timing clock is always sent"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel-independent system MIDI message."
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "issue-1",
+      "severity": "scope",
+      "description": "Source only specifies MIDI-IN (to computer). No host-to-device control map or LED-return behavior is established.",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF pages 2\u20134 / MIDI-IN (to computer)"
+        }
+      ],
+      "excluded_bindings": []
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "s2",
+      "file": "allen-heath-hercules/euphonia-s2.txt",
+      "extraction_method": "pdftotext -layout; original PDF page markers"
+    },
+    {
+      "source_id": "s1",
+      "file": "allen-heath-hercules/euphonia-s1.txt",
+      "extraction_method": "pdftotext -layout; original PDF page markers"
+    }
+  ]
+}

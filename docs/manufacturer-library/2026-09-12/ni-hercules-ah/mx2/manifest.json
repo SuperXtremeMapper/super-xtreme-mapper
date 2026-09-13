@@ -1,0 +1,38 @@
+{
+  "manufacturer": "Native Instruments",
+  "model": "Traktor MX2",
+  "retrieved_on": "2026-09-12",
+  "grade": "partial",
+  "scope": "Source extraction readiness only; not a verified SXM profile",
+  "hardware_tested": false,
+  "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+  "notes": "Included because current official product page and downloads identify MX2. MIDI-mode support table says left SHIFT + right SHIFT; manual focuses on native Traktor behavior and has no numeric MIDI chart.",
+  "coverage": {
+    "addresses": "not established by retrieved protocol documentation",
+    "channels": "not established by retrieved protocol documentation",
+    "layers": "not established by retrieved protocol documentation",
+    "encoders": "not established by retrieved protocol documentation",
+    "led_feedback": "not established by retrieved protocol documentation"
+  },
+  "inspected_locators": [
+    "shared/ni-mx2-current.html: product description and Learn Traktor MX2",
+    "shared/ni-midi-mode.html: Traktor MX2 row",
+    "manual.pdf: printed page 17 Customizing your MX2; full-text MIDI search"
+  ],
+  "sources": [
+    {
+      "url": "https://docs.native-instruments.com/pdf-guides/traktor/Traktor_MX2_user_guide-en.pdf",
+      "file": "mx2/manual.pdf",
+      "status_code": 200,
+      "final_url": "https://docs.native-instruments.com/pdf-guides/traktor/Traktor_MX2_user_guide-en.pdf",
+      "bytes": 6540970,
+      "sha256": "35eee84270087866f52245ad0e82b3c3f46e06fb02be59f0373db32e3bee8056",
+      "text_file": "mx2/manual.txt",
+      "text_sha256": "c957471dc3be70a2081881eb7b2220f826b0dc3c235651a330af78d8b97fb11e"
+    }
+  ],
+  "shared_references": [
+    "shared/ni-current-downloads.html",
+    "shared/ni-midi-mode.html"
+  ]
+}

@@ -1,0 +1,3014 @@
+{
+  "schema_version": 1,
+  "retrieved_on": "2026-09-12",
+  "scope": "Official documentation audit and source archive; editorial representative models, not sales rank; source-ready is not implemented-ready.",
+  "counts": {
+    "models": 68,
+    "manufacturers": 15,
+    "model_source_references": 123,
+    "unique_verified_source_files": 115,
+    "unique_pdf_files": 92,
+    "new_pdf_files": 88,
+    "existing_pdf_files": 4,
+    "source_bytes": 561876983,
+    "grades": {
+      "ready-for-extraction": 26,
+      "partial": 21,
+      "protocol-gap": 21
+    },
+    "existing_sxm_profiles": 3
+  },
+  "models": [
+    {
+      "manufacturer": "Akai Professional",
+      "model": "APC mini mk2",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Current compact controller with manufacturer protocol.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.akaipro.com/downloads-and-support/downloads/",
+      "findings": "Protocol maps clip pads 0x00–0x3F, track buttons 0x64–0x6B, scenes 0x70–0x77 and Shift 0x7A. Absolute faders CC 0x30–0x38 channel 0 port 0. LED Note-On channel specifies brightness/pulse/blink, velocity specifies palette. Owner guide v1.7 documents Ableton Port 2 input setup and editable Note Mode scale/octave/layout.",
+      "gaps": "Ready to extract scalar subset only. Official user guide v1.7 recovered after earlier candidate path failures.; Session port 0 differs from Drum mode channel 09 and Note mode port 1/channel 00. Do not merge port/channel addresses.; RGB behavior channel is not necessarily input channel. Full custom RGB and initialization use SysEx. Source has literal typos (00x4F) and initialization response length ambiguity.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "Communication Protocol v1.0",
+          "pdf_pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "section": "LED messages, behavior, color palette"
+        },
+        {
+          "document": "Communication Protocol v1.0",
+          "pdf_pages": [
+            9,
+            10,
+            13,
+            14
+          ],
+          "section": "SysEx RGB / initialization"
+        },
+        {
+          "document": "Communication Protocol v1.0",
+          "pdf_pages": [
+            15,
+            16
+          ],
+          "section": "Control Mapping"
+        },
+        {
+          "document": "User Guide v1.7",
+          "pdf_pages": [
+            4,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "section": "Setup / Drum Mode / Note Mode configuration"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "midi-protocol",
+          "url": "https://cdn.inmusicbrands.com/akai/attachments/APC%20mini%20mk2%20-%20Communication%20Protocol%20-%20v1.0.pdf",
+          "local_file": "inmusic/apc-mini-mk2/APC_mini_mk2_-_Communication_Protocol_-_v1.0.pdf",
+          "sha256": "38881e0411831a9e67a2896b9dad8d8938b57bda278a6290aa717be4b046d6a7",
+          "bytes": 876384,
+          "pages": 16,
+          "existing_archive": false,
+          "extracted_text": "inmusic/apc-mini-mk2/APC_mini_mk2_-_Communication_Protocol_-_v1.0.txt"
+        },
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/akai/apc-mini-mkii/APC%20mini%20mk2%20-%20User%20Guide%20-%20v1.7.pdf",
+          "local_file": "inmusic/apc-mini-mk2/APC_mini_mk2_User_Guide_v1.7.pdf",
+          "sha256": "41b62c908556828e68373fc3dc070bb23e7158c9322203540be71d8164125395",
+          "bytes": 4208796,
+          "pages": 76,
+          "existing_archive": false,
+          "extracted_text": "inmusic/apc-mini-mk2/APC_mini_mk2_User_Guide_v1.7.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Akai Professional",
+      "model": "APC40 mkII",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Legacy pad/fader controller with manufacturer protocol.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.akaipro.com/downloads-and-support/downloads/",
+      "findings": "Protocol provides input Note IDs, absolute CCs, relative controls, LED/ring receive tables. Channel fields are zero-based; track faders use CC 0x07 on channels 0–7. Cue Level CC 0x2F and Tempo CC 0x0D have relative encoding +1..63 / -64..-1 as 64..127.",
+      "gaps": "Mode 0 starts by default; track-selection changes banks without sending selection MIDI, and some buttons toggle. Modes 1/2 require SysEx introduction and have different host LED ownership.; Channel normalization must preserve zero-based source indexing. Ring style feedback and initialization exceed a simple per-control scalar mapping.; Source contains duplicated/misaligned labels and Cue Level in both absolute and relative tables; reconcile before import.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "Communications Protocol v1.2",
+          "pdf_pages": [
+            10,
+            11,
+            12
+          ],
+          "section": "Generic / Ableton / Alternate modes"
+        },
+        {
+          "document": "Communications Protocol v1.2",
+          "pdf_pages": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "section": "LED receive, palettes and rings"
+        },
+        {
+          "document": "Communications Protocol v1.2",
+          "pdf_pages": [
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "section": "Inbound Note / absolute and relative CC"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "midi-protocol",
+          "url": "https://cdn.inmusicbrands.com/akai/attachments/apc40II/APC40Mk2_Communications_Protocol_v1.2.pdf",
+          "local_file": "inmusic/apc40-mkii/APC40Mk2_Communications_Protocol_v1.2.pdf",
+          "sha256": "3af85d0b338a68581360633f38db9267119a34d3e9f7ffaf68be24658ce932b1",
+          "bytes": 794268,
+          "pages": 38,
+          "existing_archive": false,
+          "extracted_text": "inmusic/apc40-mkii/APC40Mk2_Communications_Protocol_v1.2.txt"
+        },
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/akai/attachments/apc40II/APC40%20mkII%20-%20User%20Guide%20-%20v1.0.pdf",
+          "local_file": "inmusic/apc40-mkii/APC40_mkII_User_Guide_v1.0.pdf",
+          "sha256": "231beae35e607ff9034a5dec19b5df352293500525f836791ad6eb81dc9c2d8a",
+          "bytes": 3895214,
+          "pages": 28,
+          "existing_archive": false,
+          "extracted_text": "inmusic/apc40-mkii/APC40_mkII_User_Guide_v1.0.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Akai Professional",
+      "model": "APC64",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Current controller with custom-preset editor documented in manual.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.akaipro.com/downloads-and-support/downloads/",
+      "findings": "Custom pad notes/channels and fader CCs are user editable. Chord mode channel 1 and drum mode channel 16 in Ableton; global drum notes configurable.",
+      "gaps": "No complete fixed MIDI map or host LED receive protocol acquired. Custom preset must be captured alongside profile.; Faders support Single (1 CC) or Double (2 CC); manual does not establish double-message numeric interpretation. Pads can send poly aftertouch, outside scalar Note/CC.; Editor color settings document local on/off behavior, not proof of host LED receive messages.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "user-manual v1.0",
+          "pdf_pages": [
+            29,
+            47,
+            50,
+            52,
+            57,
+            58
+          ],
+          "section": "Drum/Chord, Global Menu, Custom Mode / Project Editor"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/akai/APC64/APC64%20-%20User%20Guide%20-%20v1.0.pdf",
+          "local_file": "inmusic/apc64/APC64_-_User_Guide_-_v1.0.pdf",
+          "sha256": "bba9242fdddb90cf0f159e7acf96102d6b50eadf1131fa0f97e88c96d475c1c7",
+          "bytes": 9122889,
+          "pages": 66,
+          "existing_archive": false,
+          "extracted_text": "inmusic/apc64/APC64_-_User_Guide_-_v1.0.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Akai Professional",
+      "model": "MPD218",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Established pad/knob controller with downloadable manual.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.akaipro.com/downloads-and-support/downloads/",
+      "findings": "Pads/knobs have three banks and 16 programs. Knobs send continuous-controller data. NR Config and Prog Select suppress normal pad MIDI while held.",
+      "gaps": "No preset documentation or editor guide acquired; factory note/CC/channel assignments unresolved.; Pressure-sensitive pads and MIDI clock repeat cannot be reduced to Note/CC-only semantics. No LED receive protocol established.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "user-manual v1.0",
+          "pdf_pages": [
+            3,
+            4,
+            5
+          ],
+          "section": "Features / Preset Documentation reference"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/akai/attachments/MPD218/MPD218-UserGuide-v1.0.pdf",
+          "local_file": "inmusic/mpd218/MPD218-UserGuide-v1.0.pdf",
+          "sha256": "72bf5f3ae6d3f2266b07875ba175f7b5da3d1653f6f5dc00c6b7d568d3be608b",
+          "bytes": 1319724,
+          "pages": 20,
+          "existing_archive": false,
+          "extracted_text": "inmusic/mpd218/MPD218-UserGuide-v1.0.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Allen & Heath",
+      "model": "Xone:92 Mk2",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+      "source_manifest": "ni-hercules-ah/xone-92-mk2/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://www.allen-heath.com/content/uploads/2024/10/Xone92-Mk2-User-Guide.pdf",
+      "findings": "Small, explicit transmit-only implementation: filters CC12/13, crossfader CC92, optional internally configured data CC94. Clock/start-stop exceed current simple Note/CC scope.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "CC12,13,92 and optional94; no notes",
+        "channels": "default16; internal option15",
+        "layers": "none; CC94 depends on internal jumper",
+        "encoders": "no relative encoder messages documented",
+        "led_feedback": "not supported: implementation Received column is X throughout"
+      },
+      "evidence_locators": [
+        "manual.pdf: pp23-25 MIDI Control, MIDI Control Codes, MIDI Implementation Chart; p35 installer links; p25 rendered inspection"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://www.allen-heath.com/content/uploads/2024/10/Xone92-Mk2-User-Guide.pdf",
+          "local_file": "ni-hercules-ah/xone-92-mk2/manual.pdf",
+          "sha256": "7da6044d74104d1d7a3812638d0a0fe63f36e5e9e44f03afe128f5f4b0cbbc9f",
+          "bytes": 10672810,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/xone-92-mk2/manual.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Allen & Heath",
+      "model": "Xone:96",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+      "source_manifest": "ni-hercules-ah/xone-96/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://support.allen-heath.com/hc/en-gb/articles/43053562464017-Xone-96-User-Guide",
+      "findings": "PDF endpoints returned 403, but official full HTML user guide and MIDI implementation tables downloaded successfully. Explicit numeric send/receive matrix supports extraction.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "CH faders CC00..03, crossfader CC05; CUE notes hex00..07; selector matrix hex13..33",
+        "channels": "default human channel16; startup setup supports1..16",
+        "layers": "no controller latching layers; source-selector switch positions separately enumerated",
+        "encoders": "rotary switches are discrete note positions; no relative rotary encoding needed for listed controls",
+        "led_feedback": "matrix separates OUT/IN; CUE/filter/on-off receive notes, source/faders do not; NOTE OFF00 / ON7F"
+      },
+      "evidence_locators": [
+        "midi.html: MIDI Control matrix, CH IP SOURCE MIDI VALUES, MIDI Channel Setup, MIDI Implementation Tables",
+        "manual.html: MIDI Control; CUE states can be controlled remotely via USB"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://support.allen-heath.com/hc/en-gb/articles/43053562464017-Xone-96-User-Guide",
+          "local_file": "ni-hercules-ah/xone-96/manual.html",
+          "sha256": "003e455b2721aaf827026dbd244db3150e9de0716eaa8cbbf28eb04800c19829",
+          "bytes": 95693,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/xone-96/manual.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://support.allen-heath.com/hc/en-gb/articles/43084536824849-Xone-96-MIDI-Implementation",
+          "local_file": "ni-hercules-ah/xone-96/midi.html",
+          "sha256": "8f46a0d11cda57a45621afbf165ec6890210f805308bd777dca60ce35132d251",
+          "bytes": 109251,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/xone-96/midi.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Allen & Heath",
+      "model": "XONE:K1",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": true,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative; not sales ranking",
+      "source_manifest": "ni-hercules-ah/xone-k1/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://www.allen-heath.com/content/uploads/2023/07/XoneK1_UG_AP9694_2.pdf",
+      "findings": "Original official PDF already archived; separate extracted text added here for indexing.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "existing MIDI send and return diagrams",
+        "channels": "default15; configurable",
+        "layers": "K1 fixed map; K2/K3 optional three latching layers; distinguish exact model",
+        "encoders": "two’s complement relative CC; K3 configurable",
+        "led_feedback": "dedicated return diagrams; K1/K2 tri-color, K3 factory return plus editor-custom RGB"
+      },
+      "evidence_locators": [
+        "existing manual.pdf: pp8,12-15 MIDI controls/channel/implementation Send and Return"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://www.allen-heath.com/content/uploads/2023/07/XoneK1_UG_AP9694_2.pdf",
+          "local_file": "../../../XtremeMapping/docs/controllers/xone-k1/sources/XoneK1_UG_AP9694_2.pdf",
+          "sha256": "9f8a46ba9f88c850b6a7873d594d85c1f0a5b838d64ca3e86770530e13d3434c",
+          "bytes": 2761454,
+          "pages": 16,
+          "existing_archive": true
+        }
+      ]
+    },
+    {
+      "manufacturer": "Allen & Heath",
+      "model": "XONE:K2",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": true,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative; not sales ranking",
+      "source_manifest": "ni-hercules-ah/xone-k2/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://www.allen-heath.com/content/uploads/2023/06/XoneK2_UG_AP8509_3.pdf",
+      "findings": "Original official PDF already archived; separate extracted text added here for indexing.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "existing MIDI send and return diagrams",
+        "channels": "default15; configurable",
+        "layers": "K1 fixed map; K2/K3 optional three latching layers; distinguish exact model",
+        "encoders": "two’s complement relative CC; K3 configurable",
+        "led_feedback": "dedicated return diagrams; K1/K2 tri-color, K3 factory return plus editor-custom RGB"
+      },
+      "evidence_locators": [
+        "existing manual.pdf: pp9,11-19 MIDI controls/channel/implementation Send and Return"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://www.allen-heath.com/content/uploads/2023/06/XoneK2_UG_AP8509_3.pdf",
+          "local_file": "../../../XtremeMapping/docs/controllers/xone-k2/sources/XoneK2_UG_AP8509_3.pdf",
+          "sha256": "de0621425801bdb47eea6deee8efa1bfd883244fe9dcc6b53c7be532975daf74",
+          "bytes": 5252338,
+          "pages": 30,
+          "existing_archive": true
+        }
+      ]
+    },
+    {
+      "manufacturer": "Allen & Heath",
+      "model": "XONE:K3",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": true,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative; not sales ranking",
+      "source_manifest": "ni-hercules-ah/xone-k3/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://support.allen-heath.com/hc/article_attachments/39744783045009",
+      "findings": "Factory Map(1) matches K2; per-control custom map and global channel choices require separate profile assumptions.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "existing MIDI send and return diagrams",
+        "channels": "default15; configurable",
+        "layers": "K1 fixed map; K2/K3 optional three latching layers; distinguish exact model",
+        "encoders": "two’s complement relative CC; K3 configurable",
+        "led_feedback": "dedicated return diagrams; K1/K2 tri-color, K3 factory return plus editor-custom RGB"
+      },
+      "evidence_locators": [
+        "existing User Guide: MIDI Controls, Global MIDI Channel, Latching Layer Options, MIDI Map, MIDI IMPLEMENTATION DEFAULT Send/Return",
+        "Existing original MIDI PNG diagrams retained; no duplicate copies.",
+        "Existing midi-send-01.png visually inspected: top encoders CC0..3 /22..25 /44..47 and red/amber/green layer note groups"
+      ],
+      "sources": [
+        {
+          "kind": "original-manufacturer-diagram",
+          "url": "https://support.allen-heath.com/hc/article_attachments/39744783045009",
+          "local_file": "../../../XtremeMapping/docs/controllers/xone-k3/sources/midi-send-01.png",
+          "sha256": "e2452be93d0e051c9284b93e301a0dc367f86b392970d8b1dd330012e2d23452",
+          "bytes": 150507,
+          "pages": null,
+          "existing_archive": true
+        },
+        {
+          "kind": "original-manufacturer-diagram",
+          "url": "https://support.allen-heath.com/hc/article_attachments/39744774054673",
+          "local_file": "../../../XtremeMapping/docs/controllers/xone-k3/sources/midi-send-02.png",
+          "sha256": "18a57feef6066c629497f2893957dcc144dd3f5086509c966d13a4cb4cff8c23",
+          "bytes": 120146,
+          "pages": null,
+          "existing_archive": true
+        },
+        {
+          "kind": "original-manufacturer-diagram",
+          "url": "https://support.allen-heath.com/hc/article_attachments/39744783047313",
+          "local_file": "../../../XtremeMapping/docs/controllers/xone-k3/sources/midi-send-03.png",
+          "sha256": "1773b61c516ffaaf04c10cb3861df8e665b39f2640247beebdea41e07042879b",
+          "bytes": 74410,
+          "pages": null,
+          "existing_archive": true
+        },
+        {
+          "kind": "original-manufacturer-diagram",
+          "url": "https://support.allen-heath.com/hc/article_attachments/39744783050257",
+          "local_file": "../../../XtremeMapping/docs/controllers/xone-k3/sources/midi-return-02.png",
+          "sha256": "6be4be59d476a7aa6ad8537b9ff5706691e0d7b6b2e58b9a6d0ccf4055fd59a9",
+          "bytes": 64541,
+          "pages": null,
+          "existing_archive": true
+        },
+        {
+          "kind": "original-manufacturer-diagram",
+          "url": "https://support.allen-heath.com/hc/article_attachments/39744774056977",
+          "local_file": "../../../XtremeMapping/docs/controllers/xone-k3/sources/midi-return-01.png",
+          "sha256": "5a7c35b314e88926e75ab68da14dc4f6df1c6d3ed399b04fb0228bc15f37bd03",
+          "bytes": 112005,
+          "pages": null,
+          "existing_archive": true
+        },
+        {
+          "kind": "retrieved-web-text",
+          "url": "https://support.allen-heath.com/hc/en-gb/articles/39744774067985-Xone-K3-User-Guide",
+          "local_file": "../../../XtremeMapping/docs/controllers/xone-k3/sources/Xone-K3-User-Guide.txt",
+          "sha256": "ec9bac9ca3c9da8764b5aef5c0f31649e3a5e57e66dc817f340b0b7966f3b905",
+          "bytes": 21571,
+          "pages": null,
+          "existing_archive": true
+        },
+        {
+          "kind": "retrieved-web-text",
+          "url": "https://support.allen-heath.com/hc/en-gb/articles/39744832920081-Xone-Controller-Editor-Help",
+          "local_file": "../../../XtremeMapping/docs/controllers/xone-k3/sources/Xone-Controller-Editor-Help.txt",
+          "sha256": "4d76f6a1d82c0db795af99b1d62f8c7675d3b538aec0ce3aeb22d645d4307fa1",
+          "bytes": 23040,
+          "pages": null,
+          "existing_archive": true
+        }
+      ]
+    },
+    {
+      "manufacturer": "Allen & Heath",
+      "model": "Xone:PX5",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+      "source_manifest": "ni-hercules-ah/xone-px5/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://www.allen-heath.com/content/uploads/2023/06/AP10733_2_XONE_PX5_USER_GUIDE.pdf",
+      "findings": "Extensive MIDI controls documented, but note names use C-2 in mapping while conversion table maps zero to C-1. Do not silently normalize conflicting octaves. CC portion is extractable; resolve Note numbers and return-value details first.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "CC0..11 explicit; note-name mapping documented but octave convention conflicts with conversion table",
+        "channels": "default16, configurable via FX SELECT CONFIG CHANNEL, retained across power cycles",
+        "layers": "switch INT/DUAL/EXT position notes; no latching layers documented",
+        "encoders": "FX rotary CC assignments shown; increment/absolute detail needs validation",
+        "led_feedback": "send/receive capability stated, but per-control output semantics need confirmation"
+      },
+      "evidence_locators": [
+        "manual.pdf: pp29-34 MIDI CONTROL and MIDI CHANNEL CHANGE; p30 visually inspected",
+        "midi.html: Channel FX MODE Select Switches versus Octave/Note Numbers conversion table; CC conversion table also has hex errors at13-15"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://www.allen-heath.com/content/uploads/2023/06/AP10733_2_XONE_PX5_USER_GUIDE.pdf",
+          "local_file": "ni-hercules-ah/xone-px5/manual.pdf",
+          "sha256": "da639e510100c9f894e95b407fac7b6dbeaf4049e907be71f43b8d3a548aded8",
+          "bytes": 14499258,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/xone-px5/manual.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://support.allen-heath.com/hc/en-gb/articles/43523536283409-Xone-PX5-MIDI-Control",
+          "local_file": "ni-hercules-ah/xone-px5/midi.html",
+          "sha256": "f4e61e22f41adba819199effb75c40637058a2b24d5b4a33883f4d5887a99cd4",
+          "bytes": 60596,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/xone-px5/midi.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "CDJ-3000X",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "source_manifest": "pioneer-alphatheta/manifest.json",
+      "group_report": "pioneer-alphatheta/group-report.md",
+      "official_landing_url": "https://support.alphatheta.com/en-US/articles/49578856455577",
+      "findings": "MIDI chart pp1–2 diagrams; pp3–4 transmit Note/CC controls and hardware-only exclusions. Owner p98 MIDI/HID DJ-software operation; p105 MIDI channel setting.",
+      "gaps": "Useful transport/input subset. Chart does not supply a complete host screen/LED receive protocol. Jog values encode signed speed around64, distinct from ordinary relative encoder increments. MIDI and HID operation must remain separate. Owner p99: enter SOURCE > SOFTWARE CONTROL; loading a track from another device exits control mode.",
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "no complete receive protocol in acquired chart"
+      },
+      "evidence_locators": "MIDI chart pp1–2 diagrams; pp3–4 transmit Note/CC controls and hardware-only exclusions. Owner p98 MIDI/HID DJ-software operation; p105 MIDI channel setting.",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/dj-players/CDJ-3000X/CDJ-3000X_DRI1956C_EN_manual.pdf",
+          "local_file": "pioneer-alphatheta/cdj-3000x/owner-manual.pdf",
+          "sha256": "6728ef07bfa329f8c4041b24643f86c5abed7ff074339a1a3a4c6719a46c2e95",
+          "bytes": 9756926,
+          "pages": 122,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/cdj-3000x/owner-manual.txt"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/software_info/dj-players/CDJ-3000X/CDJ3000X_MIDI_Message_List_En.pdf",
+          "local_file": "pioneer-alphatheta/cdj-3000x/midi-implementation.pdf",
+          "sha256": "e42a4b576d24543bbf80c0798b75b27490925510a28beb7beead7e48aac1a429",
+          "bytes": 661782,
+          "pages": 4,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/cdj-3000x/midi-implementation.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "DDJ-GRV6",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "source_manifest": "pioneer-alphatheta/manifest.json",
+      "group_report": "pioneer-alphatheta/group-report.md",
+      "official_landing_url": "https://support.alphatheta.com/en-US/articles/37071169629849",
+      "findings": "MIDI chart pp.1–4: diagram, channel allocation, transport, mixer, Groove Circuit/FX and pad tables.",
+      "gaps": "Strong documentation; arbitrary deck/Shift/mode routing, paired CCs and colored feedback need adaptation. Browse relative values are explicitly documented. Do not interpret hardware-specific function labels as Traktor assignments.",
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      },
+      "evidence_locators": "MIDI chart pp.1–4: diagram, channel allocation, transport, mixer, Groove Circuit/FX and pad tables.",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/DDJ_GRV6_DRI1927A_manual.pdf",
+          "local_file": "pioneer-alphatheta/ddj-grv6/owner-manual.pdf",
+          "sha256": "419ab2fa500164b9387cd6f77e75f415210e18e6c34c7607b16f83208ca46213",
+          "bytes": 6137389,
+          "pages": 174,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/ddj-grv6/owner-manual.txt"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/software_info/dj-controllers/DDJ-GRV6/DDJ-GRV6_MIDI_Message_List_E1.pdf",
+          "local_file": "pioneer-alphatheta/ddj-grv6/midi-implementation.pdf",
+          "sha256": "211c4221a8a0cc0c4615ed397b73c0b89242a43c1c4ca4ba0f00e57b708ddb3e",
+          "bytes": 5525408,
+          "pages": 4,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/ddj-grv6/midi-implementation.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "Euphonia",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative; not sales ranking",
+      "source_manifest": "../../../XtremeMapping/docs/controllers/euphonia/source-manifest.json",
+      "group_report": "pioneer-alphatheta/group-report.md",
+      "official_landing_url": "https://downloads.support.alphatheta.com/manuals/euphonia_DRI1891A_manual.pdf",
+      "findings": "Existing manufacturer owner manual and MIDI message list archived in previous work. Profile implementation deferred by user priority.",
+      "gaps": "Re-audit exact transmit/receive scope and extract per-control evidence before implementing; this pass reuses archive, not new hardware verification.",
+      "coverage": {},
+      "evidence_locators": "Existing manufacturer owner manual and MIDI message list archived in previous work. Profile implementation deferred by user priority.",
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://downloads.support.alphatheta.com/manuals/euphonia_DRI1891A_manual.pdf",
+          "local_file": "../../../XtremeMapping/docs/controllers/euphonia/sources/euphonia_DRI1891A_manual.pdf",
+          "sha256": "fd6f233b2747bb3f23254d454513098102a07b8df8caf6d167293cae957c9ba5",
+          "bytes": 4775287,
+          "pages": 66,
+          "existing_archive": true
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://downloads.support.alphatheta.com/software_info/dj-mixers/euphonia/euphonia_MIDI_Message_List_E10.pdf",
+          "local_file": "../../../XtremeMapping/docs/controllers/euphonia/sources/euphonia_MIDI_Message_List_E10.pdf",
+          "sha256": "45631b77a6806762fe4b5a3231037672ba707f55177a7717f5ac2b04bd88840b",
+          "bytes": 214173,
+          "pages": 4,
+          "existing_archive": true
+        }
+      ]
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "OMNIS-DUO",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "source_manifest": "pioneer-alphatheta/manifest.json",
+      "group_report": "pioneer-alphatheta/group-report.md",
+      "official_landing_url": "https://support.alphatheta.com/en-US/articles/26559298056217",
+      "findings": "MIDI chart p1 diagram; pp2–3 channels, deck/mixer/browse and receive meter/indicator tables.",
+      "gaps": "Suitable documented subset; paired tempo CCs, relative/speed jog behavior and per-deck channels need faithful encoding. Standalone operation does not imply every function can be remotely driven.",
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      },
+      "evidence_locators": "MIDI chart p1 diagram; pp2–3 channels, deck/mixer/browse and receive meter/indicator tables.",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/all-in-one-dj-systems/OMNIS-DUO/OMNIS_DUO_DRI1882B_manual.pdf",
+          "local_file": "pioneer-alphatheta/omnis-duo/owner-manual.pdf",
+          "sha256": "6a9c068c209dd8547283e9f570c8cb2620e0539456a58ad4a181d238af91c631",
+          "bytes": 7605696,
+          "pages": 134,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/omnis-duo/owner-manual.txt"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/software_info/all-in-one-dj-systems/OMNIS-DUO/OMNIS-DUO_MIDI_Message_List_E1.pdf",
+          "local_file": "pioneer-alphatheta/omnis-duo/midi-implementation.pdf",
+          "sha256": "eb4c914d644be58fd3fd91555c1b5a5db027e8c70e534f9a6233ef375cd4b06a",
+          "bytes": 1114167,
+          "pages": 3,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/omnis-duo/midi-implementation.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "SLAB",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "source_manifest": "pioneer-alphatheta/manifest.json",
+      "group_report": "pioneer-alphatheta/group-report.md",
+      "official_landing_url": "https://support.alphatheta.com/en-US/articles/52906226059545",
+      "findings": "MIDI chart pp1–4: control/pad/touch-strip mappings, page modes, aftertouch and colored receive. PDF p1 E1 encoder-mode row visually reviewed.",
+      "gaps": "Unresolved source conflict: E1 decimal MIDI channel1 but status96 (channel7). Dial/encoder turn values are CW01/CCW41, not two’s-complement. Paired touch strip, poly aftertouch, arbitrary pages and RGB feedback need adaptation; quarantine contradictory row. Both unshifted note16 and shifted note17 show the E1 contradiction. Conservatively partial because this mode-control ambiguity remains, though other isolated rows are extractable.",
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      },
+      "evidence_locators": "MIDI chart pp1–4: control/pad/touch-strip mappings, page modes, aftertouch and colored receive. PDF p1 E1 encoder-mode row visually reviewed.",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/music-production/SLAB/SLAB_DRI1975A_EN_manual.pdf",
+          "local_file": "pioneer-alphatheta/slab/owner-manual.pdf",
+          "sha256": "3a834f233a55f4413de9c02107d5c4c8db010ecf4d14ec4b6609fbe30b144c9d",
+          "bytes": 1775419,
+          "pages": 43,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/slab/owner-manual.txt"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/midi-mapping/music-production/SLAB/SLAB_MIDI_Message_List_en.pdf",
+          "local_file": "pioneer-alphatheta/slab/midi-implementation.pdf",
+          "sha256": "aaba912538403e712fb73554a4e30fff8b467e115e91f9455718711fd1b29a0c",
+          "bytes": 127466,
+          "pages": 4,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/slab/midi-implementation.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "XDJ-AZ",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "source_manifest": "pioneer-alphatheta/manifest.json",
+      "group_report": "pioneer-alphatheta/group-report.md",
+      "official_landing_url": "https://support.alphatheta.com/en-US/articles/37072366390681",
+      "findings": "MIDI chart pp.1–4: channel matrix and send/receive; hardware-only entries; p4 jog LED/display-related values.",
+      "gaps": "Standalone controls are not all MIDI controls. Preserve hardware-only exclusions, mode routing and paired CCs; p4 angle-related pairs are not independent 7-bit knobs.",
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      },
+      "evidence_locators": "MIDI chart pp.1–4: channel matrix and send/receive; hardware-only entries; p4 jog LED/display-related values.",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/all-in-one-dj-systems/XDJ-AZ/XDJ-AZ_DRI1936C_manual_EN.pdf",
+          "local_file": "pioneer-alphatheta/xdj-az/owner-manual.pdf",
+          "sha256": "09af14979adfc2197799c8071fd97e4307ef3c1149b8826724b161d8ac60d011",
+          "bytes": 14060550,
+          "pages": 159,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/xdj-az/owner-manual.txt"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/software_info/all-in-one-dj-systems/XDJ-AZ/XDJ-AZ_MIDI_Message_List_E1.pdf",
+          "local_file": "pioneer-alphatheta/xdj-az/midi-implementation.pdf",
+          "sha256": "2a56db4cc52c5bbf2371c33cbb0188a15ed28daf841f712cac343f4025f54216",
+          "bytes": 524159,
+          "pages": 4,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/xdj-az/midi-implementation.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Denon DJ",
+      "model": "LC6000 PRIME",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Added because manufacturer publishes explicit MIDI specification.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.denondj.com/downloads.html",
+      "findings": "Channel 1 Note inputs include Play 0x01, Cue 0x02, pads 0x20–0x27. Relative CC Auto Loop Size 0x03 and Select 0x06. LED note receive map includes dim/full states and pad palette.",
+      "gaps": "Ready only to extract well-defined scalar subset; no claim of implemented readiness.; Jog uses double precision CC 0x37/0x36; pitch 0x08/0x28; do not collapse paired values into independent scalar controls.; Needle Drop double-precision table repeats CC 0x40 for both bytes: unresolved source ambiguity.; Wheel display explicitly requires SysEx; not available via manual MIDI mapping (p6).; Color table p7–9 decimal column is offset from hexadecimal (e.g. 1 vs 0x00 OFF); requires source/hardware resolution before palette import.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "MIDI Specification v1.0",
+          "pdf_pages": [
+            2,
+            3
+          ],
+          "section": "Inbound Send Messages"
+        },
+        {
+          "document": "MIDI Specification v1.0",
+          "pdf_pages": [
+            4
+          ],
+          "section": "Double Precision Control"
+        },
+        {
+          "document": "MIDI Specification v1.0",
+          "pdf_pages": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "section": "Outbound Receive Messages / Color Table"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/engine/LC6000%20PRIME%20-%20User%20Guide%20-%20v1.4.pdf",
+          "local_file": "inmusic/lc6000/LC6000_PRIME_-_User_Guide_-_v1.4.pdf",
+          "sha256": "796e58771cf1bd6d2e1eb0499bcaa5e41bf714bdfcea7282fe17378bc3912a94",
+          "bytes": 8502782,
+          "pages": 56,
+          "existing_archive": false,
+          "extracted_text": "inmusic/lc6000/LC6000_PRIME_-_User_Guide_-_v1.4.txt"
+        },
+        {
+          "kind": "midi-protocol",
+          "url": "https://cdn.inmusicbrands.com/denondj/lc6000/LC6000-PRIME-MIDI-Specification-v1.0.pdf",
+          "local_file": "inmusic/lc6000/LC6000-PRIME-MIDI-Specification-v1.0.pdf",
+          "sha256": "9fde4d92bc3fa604236678d9d72833dbf669383e7427f33d490c05f872962112",
+          "bytes": 176200,
+          "pages": 9,
+          "existing_archive": false,
+          "extracted_text": "inmusic/lc6000/LC6000-PRIME-MIDI-Specification-v1.0.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Denon DJ",
+      "model": "PRIME 4+",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Manufacturer shared Engine DJ v5.0.0 guide explicitly covers this model.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.denondj.com/downloads.html",
+      "findings": "Computer Mode sends/receives MIDI; standalone features and control descriptions are operational documentation, not an address map.",
+      "gaps": "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.; Separate standalone Engine behavior from computer MIDI mode. No supported HID or proprietary protocol address mapping established.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "shared Engine all-in-one user guide v5.0.0",
+          "pdf_pages": [
+            61
+          ],
+          "section": "Control Center > Parameters > Computer Mode"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/Software/ENDJ5/PRIME%204%2C%20PRIME%204%2B%2C%20PRIME%202%2C%20PRIME%20GO%2C%20PRIME%20GO%2B%2C%20SC%20LIVE%204%2C%20SC%20LIVE%202%20-%20User%20Guide%20-%20v5.0.0.pdf",
+          "local_file": "inmusic/denon-shared/PRIME_4_PRIME_4_PRIME_2_PRIME_GO_PRIME_GO_SC_LIVE_4_SC_LIVE_2_-_User_Guide_-_v5.0.0.pdf",
+          "sha256": "aab8d29d22cd4e286a85009ee47d93fc67485793f35226bc19288592553bd74f",
+          "bytes": 19312626,
+          "pages": 109,
+          "existing_archive": false,
+          "extracted_text": "inmusic/denon-shared/PRIME_4_PRIME_4_PRIME_2_PRIME_GO_PRIME_GO_SC_LIVE_4_SC_LIVE_2_-_User_Guide_-_v5.0.0.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Denon DJ",
+      "model": "PRIME GO+",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Manufacturer shared Engine DJ v5.0.0 guide explicitly covers this model.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.denondj.com/downloads.html",
+      "findings": "Computer Mode sends/receives MIDI; standalone features and control descriptions are operational documentation, not an address map.",
+      "gaps": "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.; Separate standalone Engine behavior from computer MIDI mode. No supported HID or proprietary protocol address mapping established.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "shared Engine all-in-one user guide v5.0.0",
+          "pdf_pages": [
+            63
+          ],
+          "section": "Control Center > Parameters > Computer Mode"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/Software/ENDJ5/PRIME%204%2C%20PRIME%204%2B%2C%20PRIME%202%2C%20PRIME%20GO%2C%20PRIME%20GO%2B%2C%20SC%20LIVE%204%2C%20SC%20LIVE%202%20-%20User%20Guide%20-%20v5.0.0.pdf",
+          "local_file": "inmusic/denon-shared/PRIME_4_PRIME_4_PRIME_2_PRIME_GO_PRIME_GO_SC_LIVE_4_SC_LIVE_2_-_User_Guide_-_v5.0.0.pdf",
+          "sha256": "aab8d29d22cd4e286a85009ee47d93fc67485793f35226bc19288592553bd74f",
+          "bytes": 19312626,
+          "pages": 109,
+          "existing_archive": false,
+          "extracted_text": "inmusic/denon-shared/PRIME_4_PRIME_4_PRIME_2_PRIME_GO_PRIME_GO_SC_LIVE_4_SC_LIVE_2_-_User_Guide_-_v5.0.0.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Denon DJ",
+      "model": "SC LIVE 4",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Manufacturer shared Engine DJ v5.0.0 guide explicitly covers this model.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.denondj.com/downloads.html",
+      "findings": "Computer Mode sends/receives MIDI; standalone features and control descriptions are operational documentation, not an address map.",
+      "gaps": "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.; Separate standalone Engine behavior from computer MIDI mode. No supported HID or proprietary protocol address mapping established.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "shared Engine all-in-one user guide v5.0.0",
+          "pdf_pages": [
+            64
+          ],
+          "section": "Control Center > Parameters > Computer Mode"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/Software/ENDJ5/PRIME%204%2C%20PRIME%204%2B%2C%20PRIME%202%2C%20PRIME%20GO%2C%20PRIME%20GO%2B%2C%20SC%20LIVE%204%2C%20SC%20LIVE%202%20-%20User%20Guide%20-%20v5.0.0.pdf",
+          "local_file": "inmusic/denon-shared/PRIME_4_PRIME_4_PRIME_2_PRIME_GO_PRIME_GO_SC_LIVE_4_SC_LIVE_2_-_User_Guide_-_v5.0.0.pdf",
+          "sha256": "aab8d29d22cd4e286a85009ee47d93fc67485793f35226bc19288592553bd74f",
+          "bytes": 19312626,
+          "pages": 109,
+          "existing_archive": false,
+          "extracted_text": "inmusic/denon-shared/PRIME_4_PRIME_4_PRIME_2_PRIME_GO_PRIME_GO_SC_LIVE_4_SC_LIVE_2_-_User_Guide_-_v5.0.0.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Denon DJ",
+      "model": "SC6000 PRIME",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Manufacturer shared player guide v5.0.0.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.denondj.com/downloads.html",
+      "findings": "USB computer connection and Computer Mode send/receive MIDI; no control address implementation chart found.",
+      "gaps": "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.; Jog precision and display feedback cannot be inferred from documented USB MIDI transport.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "shared player guide v5.0.0",
+          "pdf_pages": [
+            14,
+            48
+          ],
+          "section": "Rear Panel / Control Center > Parameters"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/Software/ENDJ5/SC6000%20PRIME%2C%20SC6000M%20PRIME%2C%20SC5000%20PRIME%2C%20SC5000M%20PRIME%20-%20User%20Guide%20-%20v5.0.0.pdf",
+          "local_file": "inmusic/denon-shared/SC6000_PRIME_SC6000M_PRIME_SC5000_PRIME_SC5000M_PRIME_-_User_Guide_-_v5.0.0.pdf",
+          "sha256": "a6ca3afa093288e1c8e69ba47fd7ae4ce7ac0a734cc8d268ec6123a826eded49",
+          "bytes": 10823097,
+          "pages": 66,
+          "existing_archive": false,
+          "extracted_text": "inmusic/denon-shared/SC6000_PRIME_SC6000M_PRIME_SC5000_PRIME_SC5000M_PRIME_-_User_Guide_-_v5.0.0.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Denon DJ",
+      "model": "X1850 PRIME",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "DJ mixer reference coverage.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.denondj.com/downloads.html",
+      "findings": "Utility MIDI menu separately enables Clock Send and Active Send per USB/DIN destination. Start/Stop button sends MIDI transport.",
+      "gaps": "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.; Clock and transport are system messages, outside scalar Note/CC profile mapping.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "user-manual v1.4",
+          "pdf_pages": [
+            9,
+            10,
+            16
+          ],
+          "section": "MIDI Start/Stop; MIDI Output; Utility > MIDI"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/denondj/X1850Prime/X1850 PRIME - User Guide - v1.4.pdf",
+          "local_file": "inmusic/x1850/X1850_PRIME_-_User_Guide_-_v1.4.pdf",
+          "sha256": "ed7b8dc224f5cf6f011f2431fb723cd8282f10dae0e3952a467826be22d1398e",
+          "bytes": 10853553,
+          "pages": 76,
+          "existing_archive": false,
+          "extracted_text": "inmusic/x1850/X1850_PRIME_-_User_Guide_-_v1.4.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "DJ TechTools",
+      "model": "Midi Fighter 3D",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative controller; not a sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://djtechtools.com/midi-fighter-setup/",
+      "findings": "User/MIDI guide pp.2-8,12; bank tables pp.14-17; motion chart p.18 visually inspected, animation p.19.",
+      "gaps": "Source p.18 Edge Tilt table visibly contradicts p.7 CC0-7 prose (table contains note names and40/39/38/43). Channel nomenclature must be verified; quarantine conflicting motion rows rather than guess.",
+      "coverage": {
+        "input_channel_and_address": "Arcade note and optional CC maps with bank tables; configurable base channel and side switches.",
+        "layers": "Four banks, Ableton momentary-CC versus Traktor motion behavior; bank mode configuration.",
+        "relative_encoder": "No rotary encoder. Motion relative mode uses direction-specific channels and proportional orientation CC; do not model as ordinary 63/65 encoder.",
+        "led_output": "Note velocity colour mapping and animation channel documented."
+      },
+      "evidence_locators": "User/MIDI guide pp.2-8,12; bank tables pp.14-17; motion chart p.18 visually inspected, animation p.19.",
+      "sources": [
+        {
+          "kind": "owner-and-midi-guide",
+          "url": "https://drive.google.com/uc?export=download&id=0B-QvIds_FsH3OHhuZlpzVkM2QjQ",
+          "local_file": "performance/midi-fighter-3d/owner-and-midi-guide.pdf",
+          "sha256": "d00fddeb1fde6f272dc7db681ab7ba5201c604a51049087979495b90d41b067c",
+          "bytes": 651732,
+          "pages": 19,
+          "existing_archive": false,
+          "extracted_text": "performance/midi-fighter-3d/owner-and-midi-guide.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "DJ TechTools",
+      "model": "Midi Fighter Twister",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative controller; not a sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://djtechtools.com/midi-fighter-setup/",
+      "findings": "User/MIDI guide pp.2-8,14-16; default bank tables pp.17-24 and animation/color appendices.",
+      "gaps": "Mixed channel numbering conventions across source sections require normalization by section and hardware verification; some earlier text still refers to four banks. Ready subset: default encoder/switch address tables with explicit zero-based convention.",
+      "coverage": {
+        "input_channel_and_address": "Encoder/switch CC maps supplied. Appendix encoder channel0 and switch channel1 explicitly zero-based; system channel4 footnotes use 1-16 numbering.",
+        "layers": "Up to eight virtual banks documented; configurable encoder push, side buttons, bank CC and shifted encoder layer.",
+        "relative_encoder": "Enc 3FH/41H sends65 clockwise and63 anticlockwise (p.16).",
+        "led_output": "Ring value feedback on same address; RGB colour and animation on additional channels, palettes documented."
+      },
+      "evidence_locators": "User/MIDI guide pp.2-8,14-16; default bank tables pp.17-24 and animation/color appendices.",
+      "sources": [
+        {
+          "kind": "owner-and-midi-guide",
+          "url": "https://drive.google.com/uc?export=download&id=0B-QvIds_FsH3Z0ZLT041VnZfOTA",
+          "local_file": "performance/midi-fighter-twister/owner-and-midi-guide.pdf",
+          "sha256": "31adf11c210fbc76d75b780e42d6823e2715184ffb3ed05050c0230b00dcbc63",
+          "bytes": 1377745,
+          "pages": 29,
+          "existing_archive": false,
+          "extracted_text": "performance/midi-fighter-twister/owner-and-midi-guide.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Faderfox",
+      "model": "EC4",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative DJ/performance MIDI controller; not sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://www.faderfox.de/ec4.html",
+      "findings": "Owner/MIDI manual pp.6-7 feedback and special commands; pp.11-13 command/channel/address modes; p.15 factory table visually inspected.",
+      "gaps": "Original p.15 factory table extends beyond right page edge (visually verified), so do not silently repair clipped values. Special fixed SysEx description not linked by discovered current page. Ready subset: readable factory group ranges; full map requires resolving clipped table and special controls.",
+      "coverage": {
+        "input_channel_and_address": "Factory setups1-14 use channel equal to setup number; encoder absolute CC and push Notes. Groups1/9 through8/16 have ascending16-address ranges; p.15 rightmost112-127 range is clipped in original PDF.",
+        "layers": "16 setups and16 groups; setups15/16 specialized Ableton mappings; configurable controls and presets.",
+        "relative_encoder": "CCr1 values1/127 and CCr2 values63/65 documented p.11; direction/acceleration must be checked before mapping to app encoding.",
+        "led_output": "Incoming feedback updates encoder/display values; special setup/group/display/Shift SysEx commands referenced, but no byte-level description retrieved."
+      },
+      "evidence_locators": "Owner/MIDI manual pp.6-7 feedback and special commands; pp.11-13 command/channel/address modes; p.15 factory table visually inspected.",
+      "sources": [
+        {
+          "kind": "owner-and-midi-guide",
+          "url": "https://www.faderfox.de/PDF/EC4%20Manual%20V03.PDF",
+          "local_file": "performance/faderfox-ec4/owner-and-midi-guide.pdf",
+          "sha256": "bb17348b9c28923449c5e00a7fe03235df9ccac1c2d412c6afb0008fa287bece",
+          "bytes": 859224,
+          "pages": 16,
+          "existing_archive": false,
+          "extracted_text": "performance/faderfox-ec4/owner-and-midi-guide.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Faderfox",
+      "model": "UC4",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative DJ/performance MIDI controller; not sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://www.faderfox.de/uc4.html",
+      "findings": "Owner/MIDI manual pp.6,8-10 control modes, feedback and command configuration; p.13 factory tables visually inspected.",
+      "gaps": "Source-ready for explicit generic factory setup subset. More than3 groups, special setups and configurable per-control channels require schema choices. CCr2 is binary-offset rather than twos-complement; highres CC/pitchbend/pressure are unsupported by current app.",
+      "coverage": {
+        "input_channel_and_address": "Factory setups1-16 use channel equal to setup; p.13 enumerates encoders, push buttons, green buttons and faders for8 groups. Group1: encoder CC8-15; push Note0-7; green Note64-71; faders CC32-39; fader9 CC112.",
+        "layers": "8 groups,18 setups; special Ableton17/18 tables are grey-highlighted and distinct from generic setups1-16.",
+        "relative_encoder": "CCr1 values1/127; CCr2 values63/65 (p.9). Absolute7-bit default; configurable acceleration and fader snap/jump.",
+        "led_output": "External feedback uses same commands as corresponding buttons in external display mode; value feedback and display documented."
+      },
+      "evidence_locators": "Owner/MIDI manual pp.6,8-10 control modes, feedback and command configuration; p.13 factory tables visually inspected.",
+      "sources": [
+        {
+          "kind": "owner-and-midi-guide",
+          "url": "https://www.faderfox.de/PDF/UC4%20Manual%20V03.PDF",
+          "local_file": "performance/faderfox-uc4/owner-and-midi-guide.pdf",
+          "sha256": "9aa356c4db172e436e635961c9afbb3285ac59124880afc3ea5aab7e7c6467d4",
+          "bytes": 772349,
+          "pages": 16,
+          "existing_archive": false,
+          "extracted_text": "performance/faderfox-uc4/owner-and-midi-guide.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Hercules",
+      "model": "DJControl Inpulse 200 MK2",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+      "source_manifest": "ni-hercules-ah/djcontrolinpulse200mk2/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://support.hercules.com/en/product/djcontrolinpulse200mk2-en/",
+      "findings": "Official user manual/control descriptions archived; no complete manufacturer wire-address/LED chart found in the retrieved support resources. Software action mappings do not prove Note/CC values.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "not established by retrieved protocol documentation",
+        "channels": "not established by retrieved protocol documentation",
+        "layers": "Native/software pad modes described in inspected English manual sections; numeric mode addresses not established",
+        "encoders": "not established by retrieved protocol documentation",
+        "led_feedback": "not established by retrieved protocol documentation"
+      },
+      "evidence_locators": [
+        "support.html: official model support and manuals",
+        "manual.pdf: English control descriptions; MIDI keyword inspection",
+        "djuced-midi.html: Controls > Mixer Controls, Decks Controls, Pads Modes (software action mapping, not wire addresses)",
+        "manual.pdf: PDF pages [8, 14, 18, 35, 45]; separately indexed in inspection.txt (English printed page = PDF page - 1, except Starlight)"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://support.hercules.com/en/product/djcontrolinpulse200mk2-en/",
+          "local_file": "ni-hercules-ah/djcontrolinpulse200mk2/support.html",
+          "sha256": "c8e943a55762d277a0b50dd273723491c3230fcdf3b203b20faf4cbe18894af8",
+          "bytes": 101465,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulse200mk2/support.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse_200_MK2/DJControl_Inpulse_200_MK2_User_Manual_-_21L.pdf",
+          "local_file": "ni-hercules-ah/djcontrolinpulse200mk2/manual.pdf",
+          "sha256": "b864d412bd07ce724253ed0e8a6fd2d12b9d8beb9b41e26f4f175740cd3643a1",
+          "bytes": 10479445,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulse200mk2/manual.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-200-mk2-2023-mapping-and-manual/",
+          "local_file": "ni-hercules-ah/djcontrolinpulse200mk2/djuced-midi.html",
+          "sha256": "4a4dda059387389786d6615f8054fc26abc2e18abd876d434b66093bb99c3189",
+          "bytes": 430913,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulse200mk2/djuced-midi.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-200-mk2-2023-manuel-et-controles-midi/",
+          "local_file": "ni-hercules-ah/djcontrolinpulse200mk2/djuced-midi.html",
+          "sha256": "4a4dda059387389786d6615f8054fc26abc2e18abd876d434b66093bb99c3189",
+          "bytes": 430913,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulse200mk2/djuced-midi.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Hercules",
+      "model": "DJControl Inpulse 200 MK3",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+      "source_manifest": "ni-hercules-ah/djcontrolinpulse200mk3/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://support.hercules.com/en/product/djcontrolinpulse200mk3-en/",
+      "findings": "Official user manual/control descriptions archived; no complete manufacturer wire-address/LED chart found in the retrieved support resources. Software action mappings do not prove Note/CC values. Added as a current-generation supplement discovered on current official support; retained MK2 as explicitly requested legacy model.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "not established by retrieved protocol documentation",
+        "channels": "not established by retrieved protocol documentation",
+        "layers": "Native/software pad modes described in inspected English manual sections; numeric mode addresses not established",
+        "encoders": "not established by retrieved protocol documentation",
+        "led_feedback": "not established by retrieved protocol documentation"
+      },
+      "evidence_locators": [
+        "support.html: official model support and manuals",
+        "manual.pdf: English control descriptions; MIDI keyword inspection",
+        "manual.pdf: PDF pages [8, 15, 19, 38, 49]; separately indexed in inspection.txt (English printed page = PDF page - 1, except Starlight)"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://support.hercules.com/en/product/djcontrolinpulse200mk3-en/",
+          "local_file": "ni-hercules-ah/djcontrolinpulse200mk3/support.html",
+          "sha256": "45bbb9152fde732e8f0e51f1478288207207b98af6b7ba60ff49cbb507460d63",
+          "bytes": 98181,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulse200mk3/support.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse_200_MK3/DJControl_Inpulse_200_MK3_User_Manual_-_21_Languages.pdf",
+          "local_file": "ni-hercules-ah/djcontrolinpulse200mk3/manual.pdf",
+          "sha256": "9a45c2ec9a9598f364caa63be1d1d3a8349dc8adf6617fd5f9c2279f4446958c",
+          "bytes": 10714359,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulse200mk3/manual.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Hercules",
+      "model": "DJControl Inpulse 300 MK2",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+      "source_manifest": "ni-hercules-ah/djcontrolinpulse300mk2/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://support.hercules.com/en/product/djcontrolinpulse300mk2-en/",
+      "findings": "Official user manual/control descriptions archived; no complete manufacturer wire-address/LED chart found in the retrieved support resources. Software action mappings do not prove Note/CC values.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "not established by retrieved protocol documentation",
+        "channels": "not established by retrieved protocol documentation",
+        "layers": "Native/software pad modes described in inspected English manual sections; numeric mode addresses not established",
+        "encoders": "not established by retrieved protocol documentation",
+        "led_feedback": "not established by retrieved protocol documentation"
+      },
+      "evidence_locators": [
+        "support.html: official model support and manuals",
+        "manual.pdf: English control descriptions; MIDI keyword inspection",
+        "djuced-midi.html: Controls > Mixer Controls, Decks Controls, Pads Modes (software action mapping, not wire addresses)",
+        "manual.pdf: PDF pages [8, 15, 21, 38, 39, 56]; separately indexed in inspection.txt (English printed page = PDF page - 1, except Starlight)"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://support.hercules.com/en/product/djcontrolinpulse300mk2-en/",
+          "local_file": "ni-hercules-ah/djcontrolinpulse300mk2/support.html",
+          "sha256": "a4fd76fa3cd7bde4ff5063a037edb1afb6b023a75c751b74da914e647514798e",
+          "bytes": 102578,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulse300mk2/support.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse_300_MK2/HERCULES_DJC_INPULSE_300MK2_-_USER_MANUAL_21_LANGUAGES.pdf",
+          "local_file": "ni-hercules-ah/djcontrolinpulse300mk2/manual.pdf",
+          "sha256": "bd9b76e6b8d6704296de7762d51b767b05ec327a3fffee488361105cf88e1bcf",
+          "bytes": 12484163,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulse300mk2/manual.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-300-mk2-2023-mapping-and-manual/",
+          "local_file": "ni-hercules-ah/djcontrolinpulse300mk2/djuced-midi.html",
+          "sha256": "fa45922ab1a3441f4104d34cec44ac7ed01f969e94ec257ca1411a69c96a808e",
+          "bytes": 443690,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulse300mk2/djuced-midi.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-300-mk2-2023-manuel-et-controles-midi/",
+          "local_file": "ni-hercules-ah/djcontrolinpulse300mk2/djuced-midi.html",
+          "sha256": "fa45922ab1a3441f4104d34cec44ac7ed01f969e94ec257ca1411a69c96a808e",
+          "bytes": 443690,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulse300mk2/djuced-midi.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Hercules",
+      "model": "DJControl Inpulse 500",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+      "source_manifest": "ni-hercules-ah/djcontrolinpulse500/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://support.hercules.com/en/product/djcontrolinpulse500-en/",
+      "findings": "Detailed official 14-page MIDI chart has Note/CC bytes, Shift and pad modes, relative encoders, paired MSB/LSB tempo and LED colors. Ready means extraction may begin; source anomalies require a review queue.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "numeric decimal and hex input/output tables throughout pp1-14",
+        "channels": "chart uses zero-based channel nibble: Deck1 91/B1 = human channel2, shifted 94/B4 = human channel5; do not use printed 1 as human channel1",
+        "layers": "Shift changes deck/mixer channel; pads use mode-dependent note ranges, pp2-4 and 12-14",
+        "encoders": "p1 Autoloop CC0E relative 7F..40 CCW / 01..3F CW; p2 jog and 14-bit tempo CC08+CC28",
+        "led_feedback": "p4/p14 RGB palette and pp7-8 meters/individual LEDs"
+      },
+      "evidence_locators": [
+        "midi.pdf: pp1-14; p1 D1-1 Play 91 07 00/7F; p2 tempo/jog; p14 palette visually inspected",
+        "Source anomalies: p2 Centre backlight blank address; jog touch B1 08 overlaps tempo coarse CC08; resolve against hardware/manufacturer before final profile",
+        "midi.pdf: PDF page2 visually checked; blank Centre LED address and B1 08 jog-touch/tempo overlap confirmed in original rendering (inspection/anomalies.png)"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://support.hercules.com/en/product/djcontrolinpulse500-en/",
+          "local_file": "ni-hercules-ah/djcontrolinpulse500/support.html",
+          "sha256": "431c6345b2601117e744f0db1490dc95a4f1d6f5eb4a842c14f017f95a74b7b4",
+          "bytes": 153093,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulse500/support.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse500/DJControlInpulse500_MIDI_Commands.pdf",
+          "local_file": "ni-hercules-ah/djcontrolinpulse500/midi.pdf",
+          "sha256": "b1274a096816e795f0d35183527fc69a170d6d21a4f0e9151a1dae7810e3aee7",
+          "bytes": 1082100,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulse500/midi.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse500/DJControl_Inpulse_500_User_Manual.pdf",
+          "local_file": "ni-hercules-ah/djcontrolinpulse500/manual.pdf",
+          "sha256": "786f6445191606af6d11c0ddbbf4e00df515cdeb514dfadcecc8787cb4fcb26d",
+          "bytes": 20153227,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulse500/manual.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-500/",
+          "local_file": "ni-hercules-ah/djcontrolinpulse500/djuced-midi.html",
+          "sha256": "058a933bd1d377ab845431eb9a7c3b4e73a4231e8d06dc2239d7bfbe604a8472",
+          "bytes": 446407,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulse500/djuced-midi.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-500-manuel-et-controles-midi/",
+          "local_file": "ni-hercules-ah/djcontrolinpulse500/djuced-midi.html",
+          "sha256": "058a933bd1d377ab845431eb9a7c3b4e73a4231e8d06dc2239d7bfbe604a8472",
+          "bytes": 446407,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulse500/djuced-midi.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Hercules",
+      "model": "DJControl Inpulse T7 / T7 Premium",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+      "source_manifest": "ni-hercules-ah/djcontrolinpulset7/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://support.hercules.com/en/product/djcontrolinpulset7-en/",
+      "findings": "Official user manual/control descriptions archived; no complete manufacturer wire-address/LED chart found in the retrieved support resources. Software action mappings do not prove Note/CC values.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "not established by retrieved protocol documentation",
+        "channels": "not established by retrieved protocol documentation",
+        "layers": "Native/software pad modes described in inspected English manual sections; numeric mode addresses not established",
+        "encoders": "not established by retrieved protocol documentation",
+        "led_feedback": "not established by retrieved protocol documentation"
+      },
+      "evidence_locators": [
+        "support.html: official model support and manuals",
+        "manual.pdf: English control descriptions; MIDI keyword inspection",
+        "djuced-midi.html: Controls > Mixer Controls, Decks Controls, Pads Modes (software action mapping, not wire addresses)",
+        "manual.pdf: PDF page84 / English printed83 MIDI controls test (test procedure, not address table)",
+        "manual.pdf: PDF pages [14, 28, 55, 56, 79, 84]; separately indexed in inspection.txt (English printed page = PDF page - 1, except Starlight)"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://support.hercules.com/en/product/djcontrolinpulset7-en/",
+          "local_file": "ni-hercules-ah/djcontrolinpulset7/support.html",
+          "sha256": "8c4373fd2873fc529b2458b5862fcede0adb67e47aa8b515b18b56aa56862f14",
+          "bytes": 108652,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulset7/support.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse_T7/DJC_INPULSE_T7_&_PREMIUM_USER_MANUAL_EN_FR_DE_DU_IT_ES_PT_RU_CS_TU_PL_SV_FI_SL_HU_AR_HE_AR_JP_ZH_KO.pdf",
+          "local_file": "ni-hercules-ah/djcontrolinpulset7/manual.pdf",
+          "sha256": "6c45001093e3836aee3415f91067ee115bd309fc12531d663f05c5017c27e38e",
+          "bytes": 28964456,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulset7/manual.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-t7-mapping-and-manual/",
+          "local_file": "ni-hercules-ah/djcontrolinpulset7/djuced-midi.html",
+          "sha256": "4fb886791ecc15f341fd93eafec98fcfcf3605b9a881174c22fcaaac198b845f",
+          "bytes": 456739,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulset7/djuced-midi.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-t7-manuel-et-controles-midi/",
+          "local_file": "ni-hercules-ah/djcontrolinpulset7/djuced-midi.html",
+          "sha256": "4fb886791ecc15f341fd93eafec98fcfcf3605b9a881174c22fcaaac198b845f",
+          "bytes": 456739,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolinpulset7/djuced-midi.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Hercules",
+      "model": "DJControl Starlight",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+      "source_manifest": "ni-hercules-ah/djcontrolstarlight/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://support.hercules.com/en/product/djcontrolstarlight-en/",
+      "findings": "Official user manual/control descriptions archived; no complete manufacturer wire-address/LED chart found in the retrieved support resources. Software action mappings do not prove Note/CC values.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "not established by retrieved protocol documentation",
+        "channels": "not established by retrieved protocol documentation",
+        "layers": "Native/software pad modes described in inspected English manual sections; numeric mode addresses not established",
+        "encoders": "not established by retrieved protocol documentation",
+        "led_feedback": "not established by retrieved protocol documentation"
+      },
+      "evidence_locators": [
+        "support.html: official model support and manuals",
+        "manual.pdf: English control descriptions; MIDI keyword inspection",
+        "manual.pdf: PDF pages [2, 3, 4, 5, 6]; separately indexed in inspection.txt (English printed page = PDF page - 1, except Starlight)"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://support.hercules.com/en/product/djcontrolstarlight-en/",
+          "local_file": "ni-hercules-ah/djcontrolstarlight/support.html",
+          "sha256": "2b3122e6f14d4a740c734d07e4696fec48ccbc4544cbce6e24788fad98657a48",
+          "bytes": 150790,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolstarlight/support.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://ts.hercules.com/download/sound/manuals/DJC_Starlight/How_To_Use_Hercules_DJControl_Starlight_-_En_Fr_De_Nl_It_Es_Pr_Ru_Cz_Tr_Pl_Zh_Ko_Ar.pdf",
+          "local_file": "ni-hercules-ah/djcontrolstarlight/manual.pdf",
+          "sha256": "5f88cd21b8602c5b6c19d92cdfc4bc75eb60bd3ca722340f525c226584704394",
+          "bytes": 1820148,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/djcontrolstarlight/manual.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Korg",
+      "model": "nanoKONTROL2",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative DJ/performance MIDI controller; not sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://www.korg.com/us/support/download/product/0/159/",
+      "findings": "Parameter guide pp.4-9 CC mode and external LEDs; full MIDI Implementation revision1.00 sections1-4, especially339-byte scene parameter layout and Native KORG LED commands; one-page capability chart and owner manual inspected.",
+      "gaps": "Protocol is detailed but full default control-number map still requires editor scene export or hardware capture. DAW modes can output pitchbend and use different protocols; do not treat capability chart as complete map.",
+      "coverage": {
+        "input_channel_and_address": "Full message types and configurable channel/address fields documented: global channel0-15 and group channel0-16 (16=global) in scene dump; buttons Note/CC, knobs/sliders CC. Factory per-control address values are not enumerated in inspected sources.",
+        "layers": "CC mode versus Cubase/DP/Live/ProTools/SONAR modes;8 channel strips; per-group/transport MIDI channel settings. Do not confuse strip groups with bank layers.",
+        "relative_encoder": "Physical knobs/sliders use absolute CC range values; no rotary relative encoder.",
+        "led_output": "External LED mode matches assigned Note/CC and on/off values (parameter guide p.9). Native KORG LED SysEx and scene/request/dump protocol explicitly documented in TXT."
+      },
+      "evidence_locators": "Parameter guide pp.4-9 CC mode and external LEDs; full MIDI Implementation revision1.00 sections1-4, especially339-byte scene parameter layout and Native KORG LED commands; one-page capability chart and owner manual inspected.",
+      "sources": [
+        {
+          "kind": "midi-implementation",
+          "url": "https://cdn.korg.com/us/support/download/files/aeb2862daf0cb7db826d8c62f51ec28d.txt?response-content-disposition=attachment%3Bfilename%2A%3DUTF-8%27%27nanoKONTROL2_MIDIimp.txt&response-content-type=application%2Foctet-stream%3B",
+          "local_file": "performance/korg-nanokontrol2/midi-implementation.txt",
+          "sha256": "87d1d5cbd25bdfce29b77a4b7ce1ebb1e53683a5cd22ab41913df8fb1a54d250",
+          "bytes": 37700,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "performance/korg-nanokontrol2/midi-implementation.txt"
+        },
+        {
+          "kind": "midi-chart",
+          "url": "https://cdn.korg.com/us/support/download/files/902f10b95c3bac3b52113b0d8799a9e7.pdf?response-content-disposition=inline%3Bfilename%2A%3DUTF-8%27%27nanoKONTROL2_MIDI_Chart_E1.pdf&response-content-type=application%2Fpdf%3B",
+          "local_file": "performance/korg-nanokontrol2/midi-chart.pdf",
+          "sha256": "a631f078eddcd89c362bf471c81d2bf726d659802a82af1b2e02d5c1003861d3",
+          "bytes": 89983,
+          "pages": 1,
+          "existing_archive": false,
+          "extracted_text": "performance/korg-nanokontrol2/midi-chart.txt"
+        },
+        {
+          "kind": "owner-guide",
+          "url": "https://cdn.korg.com/us/support/download/files/b61f4da2e9b32e7825edc729e7d71a0d.pdf?response-content-disposition=inline%3Bfilename%2A%3DUTF-8%27%27nanoKONTROL2_OM_EFGSCJ2.pdf&response-content-type=application%2Fpdf%3B",
+          "local_file": "performance/korg-nanokontrol2/owner-guide.pdf",
+          "sha256": "f639b322d998de28f797ac943889188f71afecbc8a8189ccfa7205bb294cb09d",
+          "bytes": 1442115,
+          "pages": 8,
+          "existing_archive": false,
+          "extracted_text": "performance/korg-nanokontrol2/owner-guide.txt"
+        },
+        {
+          "kind": "parameter-guide",
+          "url": "https://cdn.korg.com/us/support/download/files/c8d0cd6808e12d3672845cadcdbbfe9b.pdf?response-content-disposition=inline%3Bfilename%2A%3DUTF-8%27%27nanoKONTROL2_PG_E1.pdf&response-content-type=application%2Fpdf%3B",
+          "local_file": "performance/korg-nanokontrol2/parameter-guide.pdf",
+          "sha256": "6d08b0475e7629170748ee13e5b1a54b456cc4c2044db9b03bd74b3bd87d289d",
+          "bytes": 245199,
+          "pages": 14,
+          "existing_archive": false,
+          "extracted_text": "performance/korg-nanokontrol2/parameter-guide.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Native Instruments",
+      "model": "Traktor Kontrol F1",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+      "source_manifest": "ni-hercules-ah/f1/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://docs.native-instruments.com/pdf-guides/traktor/traktor_kontrol_f1_manual_english.pdf",
+      "findings": "MIDI mode and configurable Controller Editor behavior documented. Ordinary MIDI requires the MIDI Mode preference; default User Map uses proprietary NHL. Need a pinned/exported Controller Editor template before assigning concrete addresses.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "template-dependent; no single fixed factory address table established",
+        "channels": "template-dependent",
+        "layers": "Controller Editor pages; User Map is NHL, not MIDI",
+        "encoders": "freely assignable encoder turn and push; message modes in editor reference",
+        "led_feedback": "RGB pads single/dual/HSB modes and 7-segment Note velocity/CC display described"
+      },
+      "evidence_locators": [
+        "manual.pdf: pp119-121 section 4.12; p128 MIDI Mode preference",
+        "controller-editor.pdf: pp162-168 section 14 Using Your Traktor Kontrol F1; pp166-168 LED/display details"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://docs.native-instruments.com/pdf-guides/traktor/traktor_kontrol_f1_manual_english.pdf",
+          "local_file": "ni-hercules-ah/f1/manual.pdf",
+          "sha256": "802243ad2c55d6a22fb451514bca0b096698730d520cc949f0db93cf7a55f2db",
+          "bytes": 3377124,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/f1/manual.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/manuals/Controller_Editor_Manual_English_2017_11.pdf",
+          "local_file": "ni-hercules-ah/f1/controller-editor.pdf",
+          "sha256": "b388d0e709305a683b5d4a0f10989e3ccd11008b253139c4de5dfb262070e5b7",
+          "bytes": 5785112,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/f1/controller-editor.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Native Instruments",
+      "model": "Traktor Kontrol S2 MK3",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+      "source_manifest": "ni-hercules-ah/s2-mk3/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://docs.native-instruments.com/pdf-guides/traktor/TRAKTOR_KONTROL_S2_MK3_Manual_English_1218.pdf",
+      "findings": "Official support confirms fixed firmware MIDI mode: hold left FLX while connecting, disconnect to exit. Manual lacks control-address chart; do not apply S2 MK2 addresses.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "not established by retrieved protocol documentation",
+        "channels": "not established by retrieved protocol documentation",
+        "layers": "not established by retrieved protocol documentation",
+        "encoders": "not established by retrieved protocol documentation",
+        "led_feedback": "not established by retrieved protocol documentation"
+      },
+      "evidence_locators": [
+        "shared/ni-midi-mode.html: controller model table, S2 MK3 row and *** footnote",
+        "manual.pdf: hardware and operation sections; full-text MIDI search"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://docs.native-instruments.com/pdf-guides/traktor/TRAKTOR_KONTROL_S2_MK3_Manual_English_1218.pdf",
+          "local_file": "ni-hercules-ah/s2-mk3/manual.pdf",
+          "sha256": "8f47e15247b55563a42568c10f4cba91a527a73b47ad76b9b8e1bd983f5597c1",
+          "bytes": 2241025,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/s2-mk3/manual.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://support.native-instruments.com/support/solutions/articles/69000880031-native-instruments-switching-your-controller-to-midi-mode",
+          "local_file": "ni-hercules-ah/shared/ni-midi-mode.html",
+          "sha256": "82e0c13da905d67b7ac0c46934ed3381bb616373a953b4641209670553665f19",
+          "bytes": 88463,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/shared/ni-midi-mode.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Native Instruments",
+      "model": "Traktor Kontrol S3",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+      "source_manifest": "ni-hercules-ah/s3/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://docs.native-instruments.com/pdf-guides/traktor/TRAKTOR_KONTROL_S3_MK1_Manual_English_0120.pdf",
+      "findings": "Official support confirms fixed firmware MIDI mode: hold left FLX while connecting, disconnect to exit. Manual lacks control-address chart. NI staff distinguishes fixed firmware messages from Controller Editor configuration.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "not established by retrieved protocol documentation",
+        "channels": "not established by retrieved protocol documentation",
+        "layers": "not established by retrieved protocol documentation",
+        "encoders": "not established by retrieved protocol documentation",
+        "led_feedback": "not established by retrieved protocol documentation"
+      },
+      "evidence_locators": [
+        "shared/ni-midi-mode.html: controller model table, S3 row and *** footnote",
+        "manual.pdf: hardware and operation sections; full-text MIDI search",
+        "s4-mk3/ni-staff-midi-explanation.html: MichaelK_NI accepted answer"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://docs.native-instruments.com/pdf-guides/traktor/TRAKTOR_KONTROL_S3_MK1_Manual_English_0120.pdf",
+          "local_file": "ni-hercules-ah/s3/manual.pdf",
+          "sha256": "ddc9919116c1d89b13510069a9f228dc929fe851df9e19fc7fdb2622c3d6bfc2",
+          "bytes": 6649559,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/s3/manual.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://support.native-instruments.com/support/solutions/articles/69000880031-native-instruments-switching-your-controller-to-midi-mode",
+          "local_file": "ni-hercules-ah/shared/ni-midi-mode.html",
+          "sha256": "82e0c13da905d67b7ac0c46934ed3381bb616373a953b4641209670553665f19",
+          "bytes": 88463,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/shared/ni-midi-mode.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Native Instruments",
+      "model": "Traktor Kontrol S4 MK3",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+      "source_manifest": "ni-hercules-ah/s4-mk3/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://docs.native-instruments.com/pdf-guides/traktor/TRAKTOR_KONTROL_S4_MK3_Manual_English_0719.pdf",
+      "findings": "Owner manual describes native Traktor operation, not a MIDI address chart. NI employee MichaelK_NI explicitly confirms S4 MK3 never supported MIDI. Native overmapping is not proof of MIDI mode.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "not available for standard MIDI",
+        "channels": "not applicable",
+        "layers": "native deck/pad behavior only",
+        "encoders": "native behavior only",
+        "led_feedback": "native display/lighting only"
+      },
+      "evidence_locators": [
+        "manual.pdf: concepts and hardware reference; full-text MIDI search finds software MIDI clock, not device messages",
+        "ni-staff-midi-explanation.html: Accepted answers > MichaelK_NI"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://docs.native-instruments.com/pdf-guides/traktor/TRAKTOR_KONTROL_S4_MK3_Manual_English_0719.pdf",
+          "local_file": "ni-hercules-ah/s4-mk3/manual.pdf",
+          "sha256": "f73dca45cd1e5535e79be9301de05149b6825669815c7c6b9a41c672c900e372",
+          "bytes": 5285492,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/s4-mk3/manual.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://community.native-instruments.com/discussion/9022/why-does-the-s4mk3-still-not-have-midi-mode",
+          "local_file": "ni-hercules-ah/s4-mk3/ni-staff-midi-explanation.html",
+          "sha256": "32e79f8bc41157767a5e74b0e086c34ca907df7a3220faa1c63289b176c9bd1c",
+          "bytes": 677262,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/s4-mk3/ni-staff-midi-explanation.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Native Instruments",
+      "model": "Traktor MX2",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+      "source_manifest": "ni-hercules-ah/mx2/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://docs.native-instruments.com/pdf-guides/traktor/Traktor_MX2_user_guide-en.pdf",
+      "findings": "Included because current official product page and downloads identify MX2. MIDI-mode support table says left SHIFT + right SHIFT; manual focuses on native Traktor behavior and has no numeric MIDI chart.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "not established by retrieved protocol documentation",
+        "channels": "not established by retrieved protocol documentation",
+        "layers": "not established by retrieved protocol documentation",
+        "encoders": "not established by retrieved protocol documentation",
+        "led_feedback": "not established by retrieved protocol documentation"
+      },
+      "evidence_locators": [
+        "shared/ni-mx2-current.html: product description and Learn Traktor MX2",
+        "shared/ni-midi-mode.html: Traktor MX2 row",
+        "manual.pdf: printed page 17 Customizing your MX2; full-text MIDI search"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://docs.native-instruments.com/pdf-guides/traktor/Traktor_MX2_user_guide-en.pdf",
+          "local_file": "ni-hercules-ah/mx2/manual.pdf",
+          "sha256": "35eee84270087866f52245ad0e82b3c3f46e06fb02be59f0373db32e3bee8056",
+          "bytes": 6540970,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/mx2/manual.txt"
+        },
+        {
+          "kind": "manufacturer-source",
+          "url": "https://support.native-instruments.com/support/solutions/articles/69000880031-native-instruments-switching-your-controller-to-midi-mode",
+          "local_file": "ni-hercules-ah/shared/ni-midi-mode.html",
+          "sha256": "82e0c13da905d67b7ac0c46934ed3381bb616373a953b4641209670553665f19",
+          "bytes": 88463,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/shared/ni-midi-mode.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Native Instruments",
+      "model": "Traktor X1 MK3",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+      "source_manifest": "ni-hercules-ah/x1-mk3/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://docs.native-instruments.com/pdf-guides/traktor/Traktor_X1_MK3_Manual_English_0923.pdf",
+      "findings": "MIDI mode explicitly documented via SHIFT + Mode Select. No numeric address/channel/encoder/LED protocol table found in downloaded manual.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "not established by retrieved protocol documentation",
+        "channels": "not established by retrieved protocol documentation",
+        "layers": "not established by retrieved protocol documentation",
+        "encoders": "not established by retrieved protocol documentation",
+        "led_feedback": "not established by retrieved protocol documentation"
+      },
+      "evidence_locators": [
+        "manual.pdf: PDF page 9, printed page 7, section 5 Effect Control > Mode Select Button"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://docs.native-instruments.com/pdf-guides/traktor/Traktor_X1_MK3_Manual_English_0923.pdf",
+          "local_file": "ni-hercules-ah/x1-mk3/manual.pdf",
+          "sha256": "cfd18346e78dee9cef23df0b43e91ae3815200a573b5e207ccb22859d7ee8b71",
+          "bytes": 7888393,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/x1-mk3/manual.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Native Instruments",
+      "model": "Traktor Z1 MK2",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+      "source_manifest": "ni-hercules-ah/z1-mk2/manifest.json",
+      "group_report": "ni-hercules-ah/group-report.md",
+      "official_landing_url": "https://docs.native-instruments.com/pdf-guides/traktor/Traktor_Z1_Manual_EN_30102024.pdf",
+      "findings": "Manual confirms MIDI mode via --- + menu buttons. Native four-deck switching does not establish MIDI layer addresses. No complete wire protocol table found.",
+      "gaps": "",
+      "coverage": {
+        "addresses": "not established by retrieved protocol documentation",
+        "channels": "not established by retrieved protocol documentation",
+        "layers": "not established by retrieved protocol documentation",
+        "encoders": "not established by retrieved protocol documentation",
+        "led_feedback": "not established by retrieved protocol documentation"
+      },
+      "evidence_locators": [
+        "manual.pdf: PDF page 8, printed page 6, Using the Traktor Z1 MK2 as a MIDI Controller"
+      ],
+      "sources": [
+        {
+          "kind": "manufacturer-source",
+          "url": "https://docs.native-instruments.com/pdf-guides/traktor/Traktor_Z1_Manual_EN_30102024.pdf",
+          "local_file": "ni-hercules-ah/z1-mk2/manual.pdf",
+          "sha256": "1e01dc5492fb928df8dde38c0749eb42b7e348f4b0badee42f054018daeee761",
+          "bytes": 1645715,
+          "pages": null,
+          "existing_archive": false,
+          "extracted_text": "ni-hercules-ah/z1-mk2/manual.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Novation",
+      "model": "Launch Control XL 3",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative controller; not a sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://downloads.novationmusic.com/novation/launch-control-xl-3/launch-control-xl-3",
+      "findings": "Programmer reference pp.5-17; p.9 address graphic visually checked; pp.9-10 input/relative modes, pp.11-15 feedback, pp.16-17 feature controls.",
+      "gaps": "SXM cannot capture full screen/SysEx protocol. Source p.10 has overlapping Custom mode wording (8 vs9); p.17 global channel hexadecimal upper-bound typo conflicts with decimal. Preserve raw evidence and resolve those fields before implementation.",
+      "coverage": {
+        "input_channel_and_address": "DAW CC surface: encoders/faders channel16, buttons channel1, Shift channel7. Surface CC addresses in graphic; relative rows CC77-84,85-92,93-100.",
+        "layers": "Standalone Custom modes 1-16, DAW Mixer, DAW Control; DAW mode requires enable message to DAW USB interface.",
+        "relative_encoder": "Relative pivot64, clockwise65 / anticlockwise63; enable per row with channel7 CC69/72/73 and value127. Relative mode changes CC addresses.",
+        "led_output": "CC palette feedback, SysEx surface RGB and screen bitmap/text."
+      },
+      "evidence_locators": "Programmer reference pp.5-17; p.9 address graphic visually checked; pp.9-10 input/relative modes, pp.11-15 feedback, pp.16-17 feature controls.",
+      "sources": [
+        {
+          "kind": "owner-guide",
+          "url": "https://fael-downloads-prod.focusrite.com/customer/prod/downloads/launch_control_xl_3-pdf-en.pdf",
+          "local_file": "performance/launch-control-xl-3/owner-guide.pdf",
+          "sha256": "44336116819ce3379b53474b7a342b7bf0e29c6a91036b3b49fe43470f5c361d",
+          "bytes": 25918329,
+          "pages": 91,
+          "existing_archive": false,
+          "extracted_text": "performance/launch-control-xl-3/owner-guide.txt"
+        },
+        {
+          "kind": "programmer-reference",
+          "url": "https://fael-downloads-prod.focusrite.com/customer/prod/downloads/launch_control_xl_3_programmer_s_reference_guide-pdf_en.pdf",
+          "local_file": "performance/launch-control-xl-3/programmer-reference-1.pdf",
+          "sha256": "4ac520cae51280b6c21fee35cb6b30ef4f50d80d5e1161d921ffe3c36c2736ad",
+          "bytes": 4255884,
+          "pages": 17,
+          "existing_archive": false,
+          "extracted_text": "performance/launch-control-xl-3/programmer-reference-1.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Novation",
+      "model": "Launch Control XL MK1/MK2",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative controller; not a sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://downloads.novationmusic.com/novation/launch/launch-control-xl-mk1mk2",
+      "findings": "Programmer reference pp.3-9; getting started guide supplied.",
+      "gaps": "Excellent feedback specification but missing full factory input map; obtain template definitions or hardware capture before ready status.",
+      "coverage": {
+        "input_channel_and_address": "Device input Note/CC depends on active editable/factory template; guide does not enumerate full default pot/fader/button input addresses.",
+        "layers": "16 templates: user0-7, factory8-15; SysEx template change documented.",
+        "relative_encoder": "Physical pots and faders; do not assume encoder relative modes. HUI emulation described on official download page.",
+        "led_output": "Detailed bi-colour LED velocity encoding, Note/CC matching, SysEx targeting and double buffering."
+      },
+      "evidence_locators": "Programmer reference pp.3-9; getting started guide supplied.",
+      "sources": [
+        {
+          "kind": "programmer-reference",
+          "url": "https://fael-downloads-prod.focusrite.com/customer/prod/downloads/launch_control_xl_programmer_s_reference_guide.pdf",
+          "local_file": "performance/launch-control-xl-legacy/programmer-reference.pdf",
+          "sha256": "076985fa9a0859a2ecce0c35d1e843fc5815bd67062c0019de9a8cdca07f7c06",
+          "bytes": 601548,
+          "pages": 9,
+          "existing_archive": false,
+          "extracted_text": "performance/launch-control-xl-legacy/programmer-reference.txt"
+        },
+        {
+          "kind": "supplemental-owner-guide",
+          "url": "https://fael-downloads-prod.focusrite.com/customer/prod/s3fs-public/downloads/Launch%20Control%20XL%20GSG%20v2.pdf",
+          "local_file": "performance/launch-control-xl-legacy/supplemental-owner-guide.pdf",
+          "sha256": "5ec473be4cefae0f694171a02daef686c134791d6eb7eb2a2e71d6a36e48cb1f",
+          "bytes": 1638072,
+          "pages": 7,
+          "existing_archive": false,
+          "extracted_text": "performance/launch-control-xl-legacy/supplemental-owner-guide.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Novation",
+      "model": "Launchpad Mini MK3",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative controller; not a sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://downloads.novationmusic.com/novation/launchpad-mk3/launchpad-mini-mk3-0",
+      "findings": "Programmer reference pp.6-15; owner guide pp.19-23; default and Programmer layout diagrams.",
+      "gaps": "Extract a mode-specific input map. SysEx and RGB feedback require richer representation.",
+      "coverage": {
+        "input_channel_and_address": "Programmer Note/CC address diagram and MIDI convention documented, distinct from configurable Custom grids.",
+        "layers": "Programmer, Session and Custom modes.",
+        "relative_encoder": "Not applicable: no rotary encoders.",
+        "led_output": "Palette feedback and lighting SysEx documented."
+      },
+      "evidence_locators": "Programmer reference pp.6-15; owner guide pp.19-23; default and Programmer layout diagrams.",
+      "sources": [
+        {
+          "kind": "owner-guide",
+          "url": "https://fael-downloads-prod.focusrite.com/customer/prod/downloads/launchpad_mini_user_guide_v2-pdf-en.pdf",
+          "local_file": "performance/launchpad-mini-mk3/owner-guide.pdf",
+          "sha256": "5cdaabeec03e9722e7a1cbb43b0d4d4439fcccac47d91364be6f53fe0055a563",
+          "bytes": 3139930,
+          "pages": 24,
+          "existing_archive": false,
+          "extracted_text": "performance/launchpad-mini-mk3/owner-guide.txt"
+        },
+        {
+          "kind": "programmer-reference",
+          "url": "https://fael-downloads-prod.focusrite.com/customer/prod/s3fs-public/downloads/Launchpad%20Mini%20-%20Programmers%20Reference%20Manual.pdf",
+          "local_file": "performance/launchpad-mini-mk3/programmer-reference-1.pdf",
+          "sha256": "5db2df60c500e71a55c24ec730c5d45956d3a115db965a1d8fae3af890054cae",
+          "bytes": 1034238,
+          "pages": 23,
+          "existing_archive": false,
+          "extracted_text": "performance/launchpad-mini-mk3/programmer-reference-1.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Novation",
+      "model": "Launchpad Pro MK3",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative controller; not a sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://downloads.novationmusic.com/novation/launchpad-mk3/launchpad-pro-mk3-0",
+      "findings": "Programmer reference pp.6-13; programmer layout p.8; DAW mode pp.14-18; owner guide Custom modes pp.29-32 and Appendix pp.59-62.",
+      "gaps": "Extract the fixed Programmer mode separately; custom templates require captured configuration. RGB, SysEx and aftertouch must not be forced into SXM Note/CC fields.",
+      "coverage": {
+        "input_channel_and_address": "Programmer mode uses fixed pad/button Note numbers; channel and message conventions given; USB MIDI/DAW/DIN interfaces distinguished.",
+        "layers": "Programmer, Custom, Note/Chord, DAW; custom maps are configurable.",
+        "relative_encoder": "Not applicable: no rotary encoders.",
+        "led_output": "Note/CC palette feedback plus RGB/bulk lighting SysEx and animation."
+      },
+      "evidence_locators": "Programmer reference pp.6-13; programmer layout p.8; DAW mode pp.14-18; owner guide Custom modes pp.29-32 and Appendix pp.59-62.",
+      "sources": [
+        {
+          "kind": "owner-guide",
+          "url": "https://fael-downloads-prod.focusrite.com/customer/prod/s3fs-public/downloads/Launchpad%20Pro%20User%20Guide.pdf",
+          "local_file": "performance/launchpad-pro-mk3/owner-guide.pdf",
+          "sha256": "0c7e6ac108fe53ba62fa9e08515d0aeea12b5901b518d3689f9aa33967998c38",
+          "bytes": 21123352,
+          "pages": 66,
+          "existing_archive": false,
+          "extracted_text": "performance/launchpad-pro-mk3/owner-guide.txt"
+        },
+        {
+          "kind": "programmer-reference",
+          "url": "https://fael-downloads-prod.focusrite.com/customer/prod/s3fs-public/downloads/LPP3_prog_ref_guide_200415.pdf",
+          "local_file": "performance/launchpad-pro-mk3/programmer-reference-1.pdf",
+          "sha256": "54654f0603bf62e8d378961c3d759ba0ac022cbb7049e7a271af6c3b6ce97004",
+          "bytes": 1277832,
+          "pages": 21,
+          "existing_archive": false,
+          "extracted_text": "performance/launchpad-pro-mk3/programmer-reference-1.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Novation",
+      "model": "Launchpad X",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative controller; not a sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://downloads.novationmusic.com/novation/launchpad-mk3/launchpad-x",
+      "findings": "Programmer reference pp.6-15, particularly graphic map p.10 (visually inspected); owner guide default maps pp.37-39.",
+      "gaps": "Retain MIDI versus DAW port and mode. Custom mode changes invalidate default assumptions; RGB SysEx and pressure exceed a plain Note/CC map.",
+      "coverage": {
+        "input_channel_and_address": "Fixed Programmer map: 8x8 notes 11-18 through 81-88; top CC91-99 (99 is logo), side CC19/29/.../89. Message/channel conventions in protocol guide.",
+        "layers": "Programmer, DAW, Note and configurable Custom modes.",
+        "relative_encoder": "Not applicable: no rotary encoders.",
+        "led_output": "Palette Note/CC lighting; RGB and other lighting commands in SysEx."
+      },
+      "evidence_locators": "Programmer reference pp.6-15, particularly graphic map p.10 (visually inspected); owner guide default maps pp.37-39.",
+      "sources": [
+        {
+          "kind": "programmer-reference",
+          "url": "https://fael-downloads-prod.focusrite.com/customer/prod/s3fs-public/downloads/Launchpad%20X%20-%20Programmers%20Reference%20Manual.pdf",
+          "local_file": "performance/launchpad-x/programmer-reference.pdf",
+          "sha256": "eca1842544e184e200a2134053acac8b1acb77df0247f23ef488fd9c2897db7a",
+          "bytes": 1078951,
+          "pages": 29,
+          "existing_archive": false,
+          "extracted_text": "performance/launchpad-x/programmer-reference.txt"
+        },
+        {
+          "kind": "owner-guide",
+          "url": "https://fael-downloads-prod.focusrite.com/customer/prod/downloads/launchpad_x_user_guide_v2_en.pdf",
+          "local_file": "performance/launchpad-x/owner-guide-1.pdf",
+          "sha256": "426ac5869ea685bc4dca641562350a3e264acbd52266a524776371fbe30ef254",
+          "bytes": 4474920,
+          "pages": 39,
+          "existing_archive": false,
+          "extracted_text": "performance/launchpad-x/owner-guide-1.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Numark",
+      "model": "Mixtrack Platinum FX",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Representative controllers requested for current/legacy coverage; not a sales ranking.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.numark.com/product/mixtrack-platinum-fx",
+      "findings": "USB MIDI documented; capacitive jog and display operation described without receive protocol.",
+      "gaps": "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.; Deck/layer changes, jog resolution, displays, encoders and LED feedback need independent protocol documentation or hardware capture.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "user-manual",
+          "pdf_pages": [
+            5
+          ],
+          "section": "Rear Panel USB / Top Panel Input Selector"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtplfx/MixTrackPlatinumFX-UserGuide-v1.2.pdf",
+          "local_file": "inmusic/mixtrack-platinum-fx/MixTrackPlatinumFX-UserGuide-v1.2.pdf",
+          "sha256": "6eac973b498733d77b7707a97d93e632aa1b4fc3bb83ee1caf4922eea229e4d3",
+          "bytes": 6125409,
+          "pages": 32,
+          "existing_archive": false,
+          "extracted_text": "inmusic/mixtrack-platinum-fx/MixTrackPlatinumFX-UserGuide-v1.2.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Numark",
+      "model": "Mixtrack Pro FX",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Representative controllers requested for current/legacy coverage; not a sales ranking.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.numark.com/product/mixtrack-pro-fx",
+      "findings": "USB MIDI documented; pad modes described without address implementation.",
+      "gaps": "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.; Deck/layer changes, jog resolution, displays, encoders and LED feedback need independent protocol documentation or hardware capture.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "user-manual",
+          "pdf_pages": [
+            5
+          ],
+          "section": "Rear Panel USB / Top Panel Input Selector"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtprfx/MixTrackProFX-UserGuide-v1.2.pdf",
+          "local_file": "inmusic/mixtrack-pro-fx/MixTrackProFX-UserGuide-v1.2.pdf",
+          "sha256": "b6577e1207a20f0887dd5ef4235a0690a641482af83fddc4ecd138738f0118a3",
+          "bytes": 5907060,
+          "pages": 28,
+          "existing_archive": false,
+          "extracted_text": "inmusic/mixtrack-pro-fx/MixTrackProFX-UserGuide-v1.2.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Numark",
+      "model": "NS4FX",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Representative controllers requested for current/legacy coverage; not a sales ranking.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.numark.com/product/ns4fx",
+      "findings": "USB sends MIDI data to software. Pad modes and deck Layer functions described, with no address implementation.",
+      "gaps": "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.; Deck/layer changes, jog resolution, displays, encoders and LED feedback need independent protocol documentation or hardware capture.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "user-manual",
+          "pdf_pages": [
+            7
+          ],
+          "section": "Rear Panel USB / Top Panel Input Selector"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://www.numark.com/images/product_downloads/NS4_FX_-_User_Guide_-_v1.3.pdf",
+          "local_file": "inmusic/ns4fx/NS4_FX_-_User_Guide_-_v1.3.pdf",
+          "sha256": "336b7977dcfc26971b9c798449c81a37993d891e4a2b48e23ee8175cac2dc04d",
+          "bytes": 5309220,
+          "pages": 44,
+          "existing_archive": false,
+          "extracted_text": "inmusic/ns4fx/NS4_FX_-_User_Guide_-_v1.3.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Numark",
+      "model": "NS6II",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Representative controllers requested for current/legacy coverage; not a sales ranking.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.numark.com/product/ns6ii",
+      "findings": "Channel controls send MIDI only when Input Selector is PC; legacy user guide and quickstart both acquired.",
+      "gaps": "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.; Deck/layer changes, jog resolution, displays, encoders and LED feedback need independent protocol documentation or hardware capture.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "user-manual",
+          "pdf_pages": [
+            7
+          ],
+          "section": "Rear Panel USB / Top Panel Input Selector"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://www.numark.com/images/product_downloads/NS6II_-_Quickstart_Guide_-_v1.1.pdf",
+          "local_file": "inmusic/ns6ii/NS6II_-_Quickstart_Guide_-_v1.1.pdf",
+          "sha256": "771bbcc372d9ba57d2da303aa4bce59a1ecd19ee44cc20c4f3829c6e640791d1",
+          "bytes": 10327088,
+          "pages": 52,
+          "existing_archive": false,
+          "extracted_text": "inmusic/ns6ii/NS6II_-_Quickstart_Guide_-_v1.1.txt"
+        },
+        {
+          "kind": "user-manual",
+          "url": "https://www.numark.com/images/product_downloads/NS6II-UserGuide-v1.1.pdf",
+          "local_file": "inmusic/ns6ii/NS6II-UserGuide-v1.1.pdf",
+          "sha256": "3a6bc85fcccf4b55ff1092d4b373b1352d8ecff926e0e0bec3010f62f2f3990d",
+          "bytes": 11016570,
+          "pages": 76,
+          "existing_archive": false,
+          "extracted_text": "inmusic/ns6ii/NS6II-UserGuide-v1.1.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DDJ-FLX10",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "source_manifest": "pioneer-alphatheta/manifest.json",
+      "group_report": "pioneer-alphatheta/group-report.md",
+      "official_landing_url": "https://support.alphatheta.com/en-US/articles/16716272919193",
+      "findings": "MIDI chart pp.1–7: numbered physical diagram; channel allocation; browse/transport/mixer/FX/pad and host feedback tables. Owner manual p179: other DJ software.",
+      "gaps": "Extract well-defined Note/CC controls and supported feedback first. Paired MSB/LSB pots/faders, pad/Shift channel groups, rich color feedback and jog/display behavior need richer schema or explicit exclusions.",
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      },
+      "evidence_locators": "MIDI chart pp.1–7: numbered physical diagram; channel allocation; browse/transport/mixer/FX/pad and host feedback tables. Owner manual p179: other DJ software.",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/DDJ_FLX10_DRI1822D_manual.pdf",
+          "local_file": "pioneer-alphatheta/ddj-flx10/owner-manual.pdf",
+          "sha256": "2afd951bdd8d2ce932f35cf52f6f3c8eccefe470f1a3551ac3fd90f1f780df65",
+          "bytes": 8095373,
+          "pages": 183,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/ddj-flx10/owner-manual.txt"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/software_info/dj-controllers/DDJ-FLX10/DDJ-FLX10_MIDI_Message_List_E1.pdf",
+          "local_file": "pioneer-alphatheta/ddj-flx10/midi-implementation.pdf",
+          "sha256": "c6fbe89c909bdabed911d315a35fc6c00c5af45ec4dd66ef20f49e86e90ac26c",
+          "bytes": 1902978,
+          "pages": 7,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/ddj-flx10/midi-implementation.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DDJ-FLX4",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "source_manifest": "pioneer-alphatheta/manifest.json",
+      "group_report": "pioneer-alphatheta/group-report.md",
+      "official_landing_url": "https://support.alphatheta.com/en-US/articles/12267724407961",
+      "findings": "MIDI chart pp.1–5: deck, mixer, browse, FX, performance-pad send/receive and settings. Owner manual p161: other DJ software.",
+      "gaps": "Preserve 0x40-centered jog encoding, paired tempo CCs, Shift/pad modes. Chart p5 says BEAT SYNC transmits on release and FX ON/OFF lights/blinks with special receive semantics; do not assume every button uses identical press/LED rules. Vinyl mode is host-controlled.",
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      },
+      "evidence_locators": "MIDI chart pp.1–5: deck, mixer, browse, FX, performance-pad send/receive and settings. Owner manual p161: other DJ software.",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/DDJ_FLX4_DRI1804A_manual.pdf",
+          "local_file": "pioneer-alphatheta/ddj-flx4/owner-manual.pdf",
+          "sha256": "51153e85418bd21d1a53444458774efd6821a53d8c13aa30090acfa2d3af7feb",
+          "bytes": 8708753,
+          "pages": 165,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/ddj-flx4/owner-manual.txt"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/software_info/dj-controllers/DDJ-FLX4/DDJ-FLX4_MIDI_message_List_E1.pdf",
+          "local_file": "pioneer-alphatheta/ddj-flx4/midi-implementation.pdf",
+          "sha256": "e03ac376ebaa2d461c1a2c832c3c182e3579c893a1531944ebac1b5ce620388f",
+          "bytes": 461206,
+          "pages": 5,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/ddj-flx4/midi-implementation.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DDJ-REV5",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "source_manifest": "pioneer-alphatheta/manifest.json",
+      "group_report": "pioneer-alphatheta/group-report.md",
+      "official_landing_url": "https://support.alphatheta.com/en-US/articles/21326568940057",
+      "findings": "MIDI chart pp.1–9: browse/transport/mixer/FX/pad maps with Shift, deck groups, send/receive values. Owner p131: MIDI MODE.",
+      "gaps": "Paired high-resolution CCs and multiple performance-pad channels/modes exceed current simple profiles. Start with explicitly scoped transport/buttons and ordinary CCs; preserve color-number feedback limits.",
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      },
+      "evidence_locators": "MIDI chart pp.1–9: browse/transport/mixer/FX/pad maps with Shift, deck groups, send/receive values. Owner p131: MIDI MODE.",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/DDJ_REV5_DRI1872B_manual.pdf",
+          "local_file": "pioneer-alphatheta/ddj-rev5/owner-manual.pdf",
+          "sha256": "f7068d560a6b56fba4714dbb415ae80c2205a1f5e0d728f981adc4356b4be7a5",
+          "bytes": 11164859,
+          "pages": 144,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/ddj-rev5/owner-manual.txt"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/software_info/dj-controllers/DDJ-REV5/DDJ-REV5_MIDI_message_List_E1.pdf",
+          "local_file": "pioneer-alphatheta/ddj-rev5/midi-implementation.pdf",
+          "sha256": "577af3726e3e97fcaee25dc104a4e4ef42d418f6808f46bfb3eb284a17b67791",
+          "bytes": 694751,
+          "pages": 9,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/ddj-rev5/midi-implementation.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DDJ-REV7",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "source_manifest": "pioneer-alphatheta/manifest.json",
+      "group_report": "pioneer-alphatheta/group-report.md",
+      "official_landing_url": "https://support.alphatheta.com/en-US/articles/4414650995737",
+      "findings": "Current MIDI list E2 pp.1–7, not search-indexed older E1: channels, controls, FX modes, pad feedback. Owner pp101/105: AUTO/GENERAL MIDI mode and other DJ software.",
+      "gaps": "Use E2 revision. Motorized platter and display integration is not established by a scalar control profile. Preserve hardware-only entries, FX-dependent controls, paired CCs and RGB feedback.",
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      },
+      "evidence_locators": "Current MIDI list E2 pp.1–7, not search-indexed older E1: channels, controls, FX modes, pad feedback. Owner pp101/105: AUTO/GENERAL MIDI mode and other DJ software.",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/DDJ_REV7_DRI1713D_manual.pdf",
+          "local_file": "pioneer-alphatheta/ddj-rev7/owner-manual.pdf",
+          "sha256": "7a8289f0cbb70d00ef4d4eef42388ba97f1c2b0588e310221f98f68b9e669198",
+          "bytes": 7800884,
+          "pages": 118,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/ddj-rev7/owner-manual.txt"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/software_info/dj-controllers/DDJ-REV7/DDJ-REV7_MIDI_message_List_E2.pdf",
+          "local_file": "pioneer-alphatheta/ddj-rev7/midi-implementation.pdf",
+          "sha256": "a2d33045fc28017d48ba8e9409e0586d0f753ce426e7f955c0c56460b7dbf905",
+          "bytes": 309817,
+          "pages": 7,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/ddj-rev7/midi-implementation.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DJM-A9",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "source_manifest": "pioneer-alphatheta/manifest.json",
+      "group_report": "pioneer-alphatheta/group-report.md",
+      "official_landing_url": "https://support.alphatheta.com/en-US/articles/15916598774553",
+      "findings": "MIDI chart p1 diagram; pp2–6 transmit control matrix. Owner p57 USB/MIDI; p80 MIDI channel and transmission method settings.",
+      "gaps": "Good transmit-only profile candidate for ordinary mixer controls. The acquired chart does not define general host LED receive control. TIME uses an MSB/LSB pair and Timing Clock F8 is a system message, not a Note/CC. Owner p58: timing clock and START/STOP continue even with MIDI ON/OFF off; this is a documented transmit subset, not proof the hardware cannot receive MIDI.",
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "no complete receive protocol in acquired chart"
+      },
+      "evidence_locators": "MIDI chart p1 diagram; pp2–6 transmit control matrix. Owner p57 USB/MIDI; p80 MIDI channel and transmission method settings.",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/DJM_A9_DRI1785B_manual.pdf",
+          "local_file": "pioneer-alphatheta/djm-a9/owner-manual.pdf",
+          "sha256": "ce7eb4e27b1ecf7494ad39952f67cc0cdc31ff2752d0268c58ec7695c15f0ca2",
+          "bytes": 6879579,
+          "pages": 108,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/djm-a9/owner-manual.txt"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/midi-mapping/dj-mixers/DJM-A9/DJM-A9_MIDI_Message_List_E_10.pdf",
+          "local_file": "pioneer-alphatheta/djm-a9/midi-implementation.pdf",
+          "sha256": "4bca4d93965d669e8a22bd58a9582ce2fdd23fc3cc29a576203f8e2df819c76f",
+          "bytes": 356967,
+          "pages": 6,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/djm-a9/midi-implementation.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DJM-S11",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "source_manifest": "pioneer-alphatheta/manifest.json",
+      "group_report": "pioneer-alphatheta/group-report.md",
+      "official_landing_url": "https://support.alphatheta.com/en-US/articles/4404665542425",
+      "findings": "MIDI chart p1 diagram; pp2–9 channel allocation, mixer, FX, pad/mode and receive tables. Manufacturer MIDI support page requires appropriate other-software utility setting.",
+      "gaps": "Mode-dependent pad/FX controls and paired high-resolution CCs need scoped extraction; do not claim full touchscreen/Serato/native feature emulation.",
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      },
+      "evidence_locators": "MIDI chart p1 diagram; pp2–9 channel allocation, mixer, FX, pad/mode and receive tables. Manufacturer MIDI support page requires appropriate other-software utility setting.",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/DJM_S11_DRI1653B_manual.pdf",
+          "local_file": "pioneer-alphatheta/djm-s11/owner-manual.pdf",
+          "sha256": "ac49dfc6061b1048c83a263883b84ffe1de461b6c3669e59614edf7271ab3ff0",
+          "bytes": 9216396,
+          "pages": 126,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/djm-s11/owner-manual.txt"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/midi-mapping/dj-mixers/DJM-S11/DJM-S11_MIDI_Message_v100_E.pdf",
+          "local_file": "pioneer-alphatheta/djm-s11/midi-implementation.pdf",
+          "sha256": "e0b2b8eefd96b71756119639e3e3a8871aff7a7e319c7de141d2ba6ca63ab8f6",
+          "bytes": 1665402,
+          "pages": 9,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/djm-s11/midi-implementation.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "XDJ-RX3",
+      "source_grade": "ready-for-extraction",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative by use case; no sales ranking",
+      "source_manifest": "pioneer-alphatheta/manifest.json",
+      "group_report": "pioneer-alphatheta/group-report.md",
+      "official_landing_url": "https://support.alphatheta.com/en-US/articles/4409181796121",
+      "findings": "English MIDI chart pp.1–5: panel diagram, deck/mixer/pad/browse and LED/display tables.",
+      "gaps": "Recovered English chart from current official support instead of the old Japanese search result. Exclude hardware-only entries; preserve pad layers/color numbers and jog/display semantics separately.",
+      "coverage": {
+        "input_addresses": "explicit Note/CC tables",
+        "channels": "documented; preserve source conventions and any conflicts",
+        "layers": "explicit modes where applicable; not inferred from color",
+        "encoders": "numeric behavior in chart where applicable; not universally supported by SXM",
+        "led_feedback": "documented receive entries; only those entries may be claimed"
+      },
+      "evidence_locators": "English MIDI chart pp.1–5: panel diagram, deck/mixer/pad/browse and LED/display tables.",
+      "sources": [
+        {
+          "kind": "owner-manual",
+          "url": "https://downloads.support.alphatheta.com/manuals/XDJ_RX3_DRI1702C_manual.pdf",
+          "local_file": "pioneer-alphatheta/xdj-rx3/owner-manual.pdf",
+          "sha256": "590b00660f1f1b79b7f5573ec2096f0976c23fb8b140620badddcfa9d42d2d5c",
+          "bytes": 5076332,
+          "pages": 127,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/xdj-rx3/owner-manual.txt"
+        },
+        {
+          "kind": "midi-implementation",
+          "url": "https://downloads.support.alphatheta.com/software_info/all-in-one-dj-systems/XDJ-RX3/XDJ-RX3_MIDI_Message_List_E1.pdf",
+          "local_file": "pioneer-alphatheta/xdj-rx3/midi-implementation.pdf",
+          "sha256": "bd9c747ec65c3910d139d33cbbf08033a9ffd57b548978bf5dd51f2c2cdf9c36",
+          "bytes": 499019,
+          "pages": 5,
+          "existing_archive": false,
+          "extracted_text": "pioneer-alphatheta/xdj-rx3/midi-implementation.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Rane",
+      "model": "FOUR",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Current/legacy controller and mixer reference coverage; no sales ranking.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.rane.com/downloads/",
+      "findings": "Deck source selects USB A/B MIDI destination; deck controls send MIDI only with source USB A or B. Custom pad mode is software MIDI-mappable.",
+      "gaps": "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.; FOUR jogs are non-motorized. Jog data, screen feedback and hardware effects require separate protocol evidence; the owner guide does not establish scalar Note/CC mappings.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "user-manual",
+          "pdf_pages": [
+            10,
+            12,
+            15
+          ],
+          "section": "Features / USB / Custom Pad Sets"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/rane/four/FOUR%20-%20User%20Guide%20-%20v1.2.pdf",
+          "local_file": "inmusic/four/FOUR_-_User_Guide_-_v1.2.pdf",
+          "sha256": "bf80bf957e3897aa46e57a46db094623dc07a9a2b94e47ec02e1c6fd6ab433bf",
+          "bytes": 14597305,
+          "pages": 39,
+          "existing_archive": false,
+          "extracted_text": "inmusic/four/FOUR_-_User_Guide_-_v1.2.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Rane",
+      "model": "ONE",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Current/legacy controller and mixer reference coverage; no sales ranking.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.rane.com/downloads/?legacy=true",
+      "findings": "Deck controls send MIDI only when deck source selector is USB A/B.",
+      "gaps": "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.; Motorized platter data requires separate protocol evidence; the owner guide does not establish scalar Note/CC mappings.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "user-manual",
+          "pdf_pages": [
+            5,
+            9
+          ],
+          "section": "Features / USB / Custom Pad Sets"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/rane/one/RANE-ONE-User-Guide-v1_5.pdf",
+          "local_file": "inmusic/one/RANE-ONE-User-Guide-v1_5.pdf",
+          "sha256": "3211b156eb826c07da8e89380de9296fc734ea76c5e43db577d2a9964c45a622",
+          "bytes": 9895172,
+          "pages": 56,
+          "existing_archive": false,
+          "extracted_text": "inmusic/one/RANE-ONE-User-Guide-v1_5.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Rane",
+      "model": "PERFORMER",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Current/legacy controller and mixer reference coverage; no sales ranking.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.rane.com/downloads/",
+      "findings": "Deck-source USB mode enables MIDI to chosen computer; guide describes on-device parameter encoder and displays without wire addresses.",
+      "gaps": "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.; Motorized platter data, screen feedback and hardware effects require separate protocol evidence; the owner guide does not establish scalar Note/CC mappings.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "user-manual",
+          "pdf_pages": [
+            19,
+            23
+          ],
+          "section": "Features / USB / Custom Pad Sets"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/rane/performer/PERFORMER%20-%20User%20Guide%20-%20v1.3.pdf",
+          "local_file": "inmusic/performer/PERFORMER_-_User_Guide_-_v1.3.pdf",
+          "sha256": "d99683788040467a1b07883591f2db5670cc03a098386e9d7a280c9dc0fc6c06",
+          "bytes": 30753704,
+          "pages": 50,
+          "existing_archive": false,
+          "extracted_text": "inmusic/performer/PERFORMER_-_User_Guide_-_v1.3.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Rane",
+      "model": "SEVENTY-TWO MKII",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Current/legacy controller and mixer reference coverage; no sales ranking.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.rane.com/downloads/?legacy=true",
+      "findings": "Up to three custom pad sets via Serato hardware remapping; guide gives user operation, not protocol identifiers.",
+      "gaps": "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.; Touchscreen feedback, hardware effects and DVS audio behavior require separate protocol evidence; the owner guide does not establish scalar Note/CC mappings.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "user-manual",
+          "pdf_pages": [
+            5,
+            7,
+            20
+          ],
+          "section": "Features / USB / Custom Pad Sets"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/rane/seventy-twoMKII/Seventy-Two_MKII-UserGuide-v1.4.pdf",
+          "local_file": "inmusic/seventy-two-mkii/Seventy-Two_MKII-UserGuide-v1.4.pdf",
+          "sha256": "83f6edbb759424e7d742abe5db0bf51b17674b40044d1097768b40e21c8ef4d4",
+          "bytes": 9614548,
+          "pages": 104,
+          "existing_archive": false,
+          "extracted_text": "inmusic/seventy-two-mkii/Seventy-Two_MKII-UserGuide-v1.4.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Rane",
+      "model": "TWELVE MKII",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Requested motorized legacy controller coverage.",
+      "source_manifest": "inmusic/manifest.json",
+      "group_report": "inmusic/group-report.md",
+      "official_landing_url": "https://www.rane.com/downloads/?product=Twelve%20MKII",
+      "findings": "Owner guide recovered from official CDN. USB mode and DVS audio mode are distinct; manufacturer recommends RCA for DVS platter control alongside USB for Browse, Load/Instant Doubles and Hot Cues. Touch Strip switches Needle Drop/Hot Cue modes, and Deck Select chooses software deck.",
+      "gaps": "No control address/channel or LED receive implementation chart appears in the owner guide.; DVS platter timecode is audio, outside scalar MIDI profiles. USB motorized-platter precision and screen protocol are not specified; do not infer scalar maps from behavior.",
+      "coverage": {},
+      "evidence_locators": [
+        {
+          "document": "User Guide v1.1",
+          "pdf_pages": [
+            4,
+            7,
+            8
+          ],
+          "section": "Connect and Start DJing / Features / Deck Select"
+        }
+      ],
+      "sources": [
+        {
+          "kind": "user-manual",
+          "url": "https://cdn.inmusicbrands.com/rane/twelveMKII/Twelve_MKII-UserGuide-v1.1.pdf",
+          "local_file": "inmusic/twelve-mkii/Twelve_MKII-UserGuide-v1.1.pdf",
+          "sha256": "6ad794ab8fcc99d6ce5d7b3399a9ac4eb90b1989c11aaeac7f1a4390d7af438e",
+          "bytes": 7249327,
+          "pages": 36,
+          "existing_archive": false,
+          "extracted_text": "inmusic/twelve-mkii/Twelve_MKII-UserGuide-v1.1.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Reloop",
+      "model": "Buddy",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative controller; not a sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://www.reloop.com/reloop-buddy",
+      "findings": "English pp.2-6",
+      "gaps": "Owner manual and general MIDI capability do not provide a full map. Request manufacturer control protocol or capture hardware messages; do not infer addresses from control numbers or MIDI clock output.",
+      "coverage": {
+        "input_channel_and_address": "No complete input channel/address chart found in downloaded official manuals/support page.",
+        "layers": "Owner manual describes shift and software performance/pad modes, but no mode-specific numeric MIDI mapping.",
+        "relative_encoder": "No numeric turn-direction encoding found.",
+        "led_output": "Indicators and software feedback behavior described; no complete LED address/value protocol found."
+      },
+      "evidence_locators": "English pp.2-6",
+      "sources": [
+        {
+          "kind": "owner-guide",
+          "url": "https://www.reloop.com/media/custom/upload/Reloop-243599_Reloop_IM.pdf",
+          "local_file": "performance/buddy/owner-guide.pdf",
+          "sha256": "14ba58afe39aea8c42668e8783ed81ce224a86486ae02a96463b89f439ab3345",
+          "bytes": 4373015,
+          "pages": 28,
+          "existing_archive": false,
+          "extracted_text": "performance/buddy/owner-guide.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Reloop",
+      "model": "Mixon 8 Pro",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative controller; not a sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://www.reloop.com/reloop-mixon-8-pro",
+      "findings": "English pp.4-12",
+      "gaps": "Owner manual and general MIDI capability do not provide a full map. Request manufacturer control protocol or capture hardware messages; do not infer addresses from control numbers or MIDI clock output.",
+      "coverage": {
+        "input_channel_and_address": "No complete input channel/address chart found in downloaded official manuals/support page.",
+        "layers": "Owner manual describes shift and software performance/pad modes, but no mode-specific numeric MIDI mapping.",
+        "relative_encoder": "No numeric turn-direction encoding found.",
+        "led_output": "Indicators and software feedback behavior described; no complete LED address/value protocol found."
+      },
+      "evidence_locators": "English pp.4-12",
+      "sources": [
+        {
+          "kind": "owner-guide",
+          "url": "https://www.reloop.com/media/catalog/product/pdf/2/4/4/244789_Reloop_IM.pdf",
+          "local_file": "performance/mixon-8-pro/owner-guide.pdf",
+          "sha256": "4f50f7735f0ef91b24aedfb9f2f5b29142a641690097eba08a224322165aa231",
+          "bytes": 1202659,
+          "pages": 44,
+          "existing_archive": false,
+          "extracted_text": "performance/mixon-8-pro/owner-guide.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Reloop",
+      "model": "Neon",
+      "source_grade": "partial",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative controller; not a sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://www.reloop.com/reloop-neon",
+      "findings": "MIDI chart pp.1-9 (p.1 visually inspected); owner quick-start English pp.5-8.",
+      "gaps": "Unspecified encoder pp values and RGB/LED value semantics need verification; chart has suspected copy errors (e.g. repeated Deck C/D SYNC addresses). Aftertouch messages are outside Note/CC schema.",
+      "coverage": {
+        "input_channel_and_address": "Explicit hexadecimal status/address tables for pad, encoder push/turn, bank/deck/shift and LEDs. Example Sample layer1 pads97 00-07 pp.",
+        "layers": "Sampler/Slicer/Hot Cue/Hot Loop each with two layers, shift, banks/decks; hardware versus MIDI bank/LED state distinctions documented.",
+        "relative_encoder": "CC encoder addresses supplied, but pp value placeholder does not establish numeric relative direction encoding.",
+        "led_output": "LED addresses and MIDI IN=MIDI OUT notes; hardware/MIDI feedback distinctions supplied."
+      },
+      "evidence_locators": "MIDI chart pp.1-9 (p.1 visually inspected); owner quick-start English pp.5-8.",
+      "sources": [
+        {
+          "kind": "owner-guide",
+          "url": "https://www.reloop.com/media/custom/upload/Reloop-232520_Reloop_IM.pdf",
+          "local_file": "performance/neon/owner-guide.pdf",
+          "sha256": "95aeb6d508b13d051fd1df236621fe42b7f279e00069d4cf8ddcea3e73910699",
+          "bytes": 3213153,
+          "pages": 16,
+          "existing_archive": false,
+          "extracted_text": "performance/neon/owner-guide.txt"
+        },
+        {
+          "kind": "midi-chart",
+          "url": "https://www.reloop.com/media/custom/upload/Reloop-NEON_MIDI-Map.pdf",
+          "local_file": "performance/neon/midi-chart-1.pdf",
+          "sha256": "41226da60587823b7eb1ee094180d1391a07006c688423f9196a9b2e61ed4059",
+          "bytes": 1675040,
+          "pages": 9,
+          "existing_archive": false,
+          "extracted_text": "performance/neon/midi-chart-1.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Reloop",
+      "model": "Ready",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative controller; not a sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://www.reloop.com/reloop-ready",
+      "findings": "English pp.2-7",
+      "gaps": "Owner manual and general MIDI capability do not provide a full map. Request manufacturer control protocol or capture hardware messages; do not infer addresses from control numbers or MIDI clock output.",
+      "coverage": {
+        "input_channel_and_address": "No complete input channel/address chart found in downloaded official manuals/support page.",
+        "layers": "Owner manual describes shift and software performance/pad modes, but no mode-specific numeric MIDI mapping.",
+        "relative_encoder": "No numeric turn-direction encoding found.",
+        "led_output": "Indicators and software feedback behavior described; no complete LED address/value protocol found."
+      },
+      "evidence_locators": "English pp.2-7",
+      "sources": [
+        {
+          "kind": "owner-guide",
+          "url": "https://www.reloop.com/media/catalog/product/pdf/2/4/3/243598_Reloop_IM.pdf",
+          "local_file": "performance/ready/owner-guide.pdf",
+          "sha256": "05dbc8a9d84c12121dfbdb07eae7554fe5c30983bf68311b50722c78309b75f4",
+          "bytes": 5496613,
+          "pages": 28,
+          "existing_archive": false,
+          "extracted_text": "performance/ready/owner-guide.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Roland",
+      "model": "DJ-202",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative controller; not a sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://www.roland.com/global/support/by_product/dj-202/owners_manuals/",
+      "findings": "Owner pp.4-7; supplemental Operating the DJ-202 guide supplied",
+      "gaps": "Owner manual and general MIDI capability do not provide a full map. Request manufacturer control protocol or capture hardware messages; do not infer addresses from control numbers or MIDI clock output.",
+      "coverage": {
+        "input_channel_and_address": "No complete input channel/address chart found in downloaded official manuals/support page.",
+        "layers": "Control, pad/shift and sequencer operation described; no complete controller MIDI addresses.",
+        "relative_encoder": "No numeric turn-direction encoding found.",
+        "led_output": "Indicators and software feedback behavior described; no complete LED address/value protocol found."
+      },
+      "evidence_locators": "Owner pp.4-7; supplemental Operating the DJ-202 guide supplied",
+      "sources": [
+        {
+          "kind": "owner-guide",
+          "url": "https://static.roland.com/assets/media/pdf/DJ-202_Startup_Guide_eng03_W.pdf",
+          "local_file": "performance/dj-202/owner-guide.pdf",
+          "sha256": "309dbaeff7728460f047e3a82f650ed1ff1efb76f8e27d62920a643148754e3b",
+          "bytes": 2999176,
+          "pages": 12,
+          "existing_archive": false,
+          "extracted_text": "performance/dj-202/owner-guide.txt"
+        },
+        {
+          "kind": "supplemental-owner-guide",
+          "url": "https://static.roland.com/assets/media/pdf/DJ-202_eng03_W.pdf",
+          "local_file": "performance/dj-202/supplemental-owner-guide.pdf",
+          "sha256": "ce59bec433483118bc31185dcf542dc7ad5b1cba76f295557320621a53a6f1f1",
+          "bytes": 3217825,
+          "pages": 17,
+          "existing_archive": false,
+          "extracted_text": "performance/dj-202/supplemental-owner-guide.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Roland",
+      "model": "DJ-505",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative controller; not a sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://www.roland.com/global/support/by_product/dj-505/owners_manuals/",
+      "findings": "Owner pp.5-9,21-23 (other-software section p.21)",
+      "gaps": "Owner manual and general MIDI capability do not provide a full map. Request manufacturer control protocol or capture hardware messages; do not infer addresses from control numbers or MIDI clock output.",
+      "coverage": {
+        "input_channel_and_address": "No complete input channel/address chart found in downloaded official manuals/support page.",
+        "layers": "Control, pad/shift and sequencer operation described; no complete controller MIDI addresses.",
+        "relative_encoder": "No numeric turn-direction encoding found.",
+        "led_output": "Indicators and software feedback behavior described; no complete LED address/value protocol found."
+      },
+      "evidence_locators": "Owner pp.5-9,21-23 (other-software section p.21)",
+      "sources": [
+        {
+          "kind": "owner-guide",
+          "url": "https://static.roland.com/assets/media/pdf/DJ-505_eng02_W.pdf",
+          "local_file": "performance/dj-505/owner-guide.pdf",
+          "sha256": "a27b683817f4382bc96df41df77e8f27a8a412f05f5274c371b28c89b018fc6d",
+          "bytes": 4903297,
+          "pages": 32,
+          "existing_archive": false,
+          "extracted_text": "performance/dj-505/owner-guide.txt"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Roland",
+      "model": "DJ-808",
+      "source_grade": "protocol-gap",
+      "existing_sxm_profile": false,
+      "hardware_tested": false,
+      "selection_basis": "Editorial representative controller; not a sales ranking",
+      "source_manifest": "performance/manifest.json",
+      "group_report": "performance/group-report.md",
+      "official_landing_url": "https://www.roland.com/global/support/by_product/dj-808/owners_manuals/",
+      "findings": "Owner pp.5-10,21-22 (other-software section p.21)",
+      "gaps": "Owner manual and general MIDI capability do not provide a full map. Request manufacturer control protocol or capture hardware messages; do not infer addresses from control numbers or MIDI clock output.",
+      "coverage": {
+        "input_channel_and_address": "No complete input channel/address chart found in downloaded official manuals/support page.",
+        "layers": "Control, pad/shift and sequencer operation described; no complete controller MIDI addresses.",
+        "relative_encoder": "No numeric turn-direction encoding found.",
+        "led_output": "Indicators and software feedback behavior described; no complete LED address/value protocol found."
+      },
+      "evidence_locators": "Owner pp.5-10,21-22 (other-software section p.21)",
+      "sources": [
+        {
+          "kind": "owner-guide",
+          "url": "https://static.roland.com/assets/media/pdf/DJ-808_eng03_W.pdf",
+          "local_file": "performance/dj-808/owner-guide.pdf",
+          "sha256": "796590acf6f3df4046776fbb4b9a354959b3853c2e5f9342983db845b8b910c7",
+          "bytes": 6598287,
+          "pages": 32,
+          "existing_archive": false,
+          "extracted_text": "performance/dj-808/owner-guide.txt"
+        }
+      ]
+    }
+  ],
+  "supplemental_source_note": "Stage 2 registers the already archived official NI MIDI-mode article against S2 MK3, S3 and MX2. Initial collection counts are preserved separately; current source counts include these links.",
+  "initial_collection_counts": {
+    "models": 68,
+    "manufacturers": 15,
+    "model_source_references": 120,
+    "unique_verified_source_files": 114,
+    "unique_pdf_files": 92,
+    "new_pdf_files": 88,
+    "existing_pdf_files": 4,
+    "source_bytes": 561788520,
+    "grades": {
+      "ready-for-extraction": 26,
+      "partial": 21,
+      "protocol-gap": 21
+    },
+    "existing_sxm_profiles": 3
+  }
+}

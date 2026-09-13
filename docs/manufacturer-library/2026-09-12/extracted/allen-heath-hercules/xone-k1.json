@@ -1,0 +1,5012 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Allen & Heath",
+  "model": "XONE:K1",
+  "status": "documented-extraction",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "id": "s1",
+      "local_file": "../../../XtremeMapping/docs/controllers/xone-k1/sources/XoneK1_UG_AP9694_2.pdf",
+      "url": "https://www.allen-heath.com/content/uploads/2023/07/XoneK1_UG_AP9694_2.pdf",
+      "sha256": "9f8a46ba9f88c850b6a7873d594d85c1f0a5b838d64ca3e86770530e13d3434c"
+    }
+  ],
+  "scope": "Existing reviewed factory profile facts transcribed with original manufacturer provenance, distinct sends/returns and layers. Mode configuration and reservations retained. This extraction makes no additional hardware or integration claim; custom maps and unspecified velocities remain unresolved.",
+  "bindings": [
+    {
+      "id": "b0001",
+      "control": "Encoder top 1 turn",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 0,
+      "encoding": "relativeTwosComplement",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-turn",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0002",
+      "control": "Encoder top 1 push",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 52,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: E3. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0003",
+      "control": "Encoder top 1 push",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 52,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0004",
+      "control": "Encoder top 1 push",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 88,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0005",
+      "control": "Encoder top 1 push",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 124,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0006",
+      "control": "Encoder top 2 turn",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 1,
+      "encoding": "relativeTwosComplement",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-turn",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0007",
+      "control": "Encoder top 2 push",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 53,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: F3. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0008",
+      "control": "Encoder top 2 push",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 53,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0009",
+      "control": "Encoder top 2 push",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 89,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0010",
+      "control": "Encoder top 2 push",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 125,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0011",
+      "control": "Encoder top 3 turn",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 2,
+      "encoding": "relativeTwosComplement",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-turn",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0012",
+      "control": "Encoder top 3 push",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 54,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: F#3. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0013",
+      "control": "Encoder top 3 push",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 54,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0014",
+      "control": "Encoder top 3 push",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 90,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0015",
+      "control": "Encoder top 3 push",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 126,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0016",
+      "control": "Encoder top 4 turn",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 3,
+      "encoding": "relativeTwosComplement",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-turn",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0017",
+      "control": "Encoder top 4 push",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 55,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: G3. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0018",
+      "control": "Encoder top 4 push",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 55,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0019",
+      "control": "Encoder top 4 push",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 91,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0020",
+      "control": "Encoder top 4 push",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 127,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: top-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0021",
+      "control": "Pot 1 1",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 4,
+      "encoding": "absolute7Bit",
+      "values": {
+        "valueMin": 0,
+        "valueMax": 127
+      },
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: pot",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0022",
+      "control": "Pot switch 1 1",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 48,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: C3. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0023",
+      "control": "Pot switch 1 1",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 48,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0024",
+      "control": "Pot switch 1 1",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 84,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0025",
+      "control": "Pot switch 1 1",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 120,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0026",
+      "control": "Pot 1 2",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 5,
+      "encoding": "absolute7Bit",
+      "values": {
+        "valueMin": 0,
+        "valueMax": 127
+      },
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: pot",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0027",
+      "control": "Pot switch 1 2",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 49,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: C#3. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0028",
+      "control": "Pot switch 1 2",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 49,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0029",
+      "control": "Pot switch 1 2",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 85,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0030",
+      "control": "Pot switch 1 2",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 121,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0031",
+      "control": "Pot 1 3",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 6,
+      "encoding": "absolute7Bit",
+      "values": {
+        "valueMin": 0,
+        "valueMax": 127
+      },
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: pot",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0032",
+      "control": "Pot switch 1 3",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 50,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: D3. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0033",
+      "control": "Pot switch 1 3",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 50,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0034",
+      "control": "Pot switch 1 3",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 86,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0035",
+      "control": "Pot switch 1 3",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 122,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0036",
+      "control": "Pot 1 4",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 7,
+      "encoding": "absolute7Bit",
+      "values": {
+        "valueMin": 0,
+        "valueMax": 127
+      },
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: pot",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0037",
+      "control": "Pot switch 1 4",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 51,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: D#3. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0038",
+      "control": "Pot switch 1 4",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 51,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0039",
+      "control": "Pot switch 1 4",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 87,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0040",
+      "control": "Pot switch 1 4",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 123,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0041",
+      "control": "Pot 2 1",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 8,
+      "encoding": "absolute7Bit",
+      "values": {
+        "valueMin": 0,
+        "valueMax": 127
+      },
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: pot",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0042",
+      "control": "Pot switch 2 1",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 44,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: G#2. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0043",
+      "control": "Pot switch 2 1",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 44,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0044",
+      "control": "Pot switch 2 1",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 80,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0045",
+      "control": "Pot switch 2 1",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 116,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0046",
+      "control": "Pot 2 2",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 9,
+      "encoding": "absolute7Bit",
+      "values": {
+        "valueMin": 0,
+        "valueMax": 127
+      },
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: pot",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0047",
+      "control": "Pot switch 2 2",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 45,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: A2. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0048",
+      "control": "Pot switch 2 2",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 45,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0049",
+      "control": "Pot switch 2 2",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 81,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0050",
+      "control": "Pot switch 2 2",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 117,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0051",
+      "control": "Pot 2 3",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 10,
+      "encoding": "absolute7Bit",
+      "values": {
+        "valueMin": 0,
+        "valueMax": 127
+      },
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: pot",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0052",
+      "control": "Pot switch 2 3",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 46,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: A#2. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0053",
+      "control": "Pot switch 2 3",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 46,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0054",
+      "control": "Pot switch 2 3",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 82,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0055",
+      "control": "Pot switch 2 3",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 118,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0056",
+      "control": "Pot 2 4",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 11,
+      "encoding": "absolute7Bit",
+      "values": {
+        "valueMin": 0,
+        "valueMax": 127
+      },
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: pot",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0057",
+      "control": "Pot switch 2 4",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 47,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: B2. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0058",
+      "control": "Pot switch 2 4",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 47,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0059",
+      "control": "Pot switch 2 4",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 83,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0060",
+      "control": "Pot switch 2 4",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 119,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0061",
+      "control": "Pot 3 1",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 12,
+      "encoding": "absolute7Bit",
+      "values": {
+        "valueMin": 0,
+        "valueMax": 127
+      },
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: pot",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0062",
+      "control": "Pot switch 3 1",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 40,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: E2. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0063",
+      "control": "Pot switch 3 1",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 40,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0064",
+      "control": "Pot switch 3 1",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 76,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0065",
+      "control": "Pot switch 3 1",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 112,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0066",
+      "control": "Pot 3 2",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 13,
+      "encoding": "absolute7Bit",
+      "values": {
+        "valueMin": 0,
+        "valueMax": 127
+      },
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: pot",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0067",
+      "control": "Pot switch 3 2",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 41,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: F2. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0068",
+      "control": "Pot switch 3 2",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 41,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0069",
+      "control": "Pot switch 3 2",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 77,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0070",
+      "control": "Pot switch 3 2",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 113,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0071",
+      "control": "Pot 3 3",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 14,
+      "encoding": "absolute7Bit",
+      "values": {
+        "valueMin": 0,
+        "valueMax": 127
+      },
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: pot",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0072",
+      "control": "Pot switch 3 3",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 42,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: F#2. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0073",
+      "control": "Pot switch 3 3",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 42,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0074",
+      "control": "Pot switch 3 3",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 78,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0075",
+      "control": "Pot switch 3 3",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 114,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0076",
+      "control": "Pot 3 4",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 15,
+      "encoding": "absolute7Bit",
+      "values": {
+        "valueMin": 0,
+        "valueMax": 127
+      },
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: pot",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0077",
+      "control": "Pot switch 3 4",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 43,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: G2. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0078",
+      "control": "Pot switch 3 4",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 43,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0079",
+      "control": "Pot switch 3 4",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 79,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0080",
+      "control": "Pot switch 3 4",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 115,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: pot-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0081",
+      "control": "Fader 1",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 16,
+      "encoding": "absolute7Bit",
+      "values": {
+        "valueMin": 0,
+        "valueMax": 127
+      },
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: fader",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0082",
+      "control": "Fader 2",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 17,
+      "encoding": "absolute7Bit",
+      "values": {
+        "valueMin": 0,
+        "valueMax": 127
+      },
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: fader",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0083",
+      "control": "Fader 3",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 18,
+      "encoding": "absolute7Bit",
+      "values": {
+        "valueMin": 0,
+        "valueMax": 127
+      },
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: fader",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0084",
+      "control": "Fader 4",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 19,
+      "encoding": "absolute7Bit",
+      "values": {
+        "valueMin": 0,
+        "valueMax": 127
+      },
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Configured global channel; documented default 15.",
+        "Control group: fader",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0085",
+      "control": "A",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 36,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: C2. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0086",
+      "control": "A",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 36,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0087",
+      "control": "A",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 72,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0088",
+      "control": "A",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 108,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0089",
+      "control": "B",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 37,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: C#2. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0090",
+      "control": "B",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 37,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0091",
+      "control": "B",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 73,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0092",
+      "control": "B",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 109,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0093",
+      "control": "C",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 38,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: D2. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0094",
+      "control": "C",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 38,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0095",
+      "control": "C",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 74,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0096",
+      "control": "C",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 110,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0097",
+      "control": "D",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 39,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: D#2. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0098",
+      "control": "D",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 39,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0099",
+      "control": "D",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 75,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0100",
+      "control": "D",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 111,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0101",
+      "control": "E",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 32,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: G#1. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0102",
+      "control": "E",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 32,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0103",
+      "control": "E",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 68,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0104",
+      "control": "E",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 104,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0105",
+      "control": "F",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 33,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: A1. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0106",
+      "control": "F",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 33,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0107",
+      "control": "F",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 69,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0108",
+      "control": "F",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 105,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0109",
+      "control": "G",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 34,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: A#1. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0110",
+      "control": "G",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 34,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0111",
+      "control": "G",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 70,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0112",
+      "control": "G",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 106,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0113",
+      "control": "H",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 35,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: B1. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0114",
+      "control": "H",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 35,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0115",
+      "control": "H",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 71,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0116",
+      "control": "H",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 107,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0117",
+      "control": "I",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 28,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: E1. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0118",
+      "control": "I",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 28,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0119",
+      "control": "I",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 64,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0120",
+      "control": "I",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 100,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0121",
+      "control": "J",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 29,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: F1. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0122",
+      "control": "J",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 29,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0123",
+      "control": "J",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 65,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0124",
+      "control": "J",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 101,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0125",
+      "control": "K",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 30,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: F#1. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0126",
+      "control": "K",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 30,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0127",
+      "control": "K",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 66,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0128",
+      "control": "K",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 102,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0129",
+      "control": "L",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 31,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: G1. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0130",
+      "control": "L",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 31,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0131",
+      "control": "L",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 67,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0132",
+      "control": "L",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 103,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0133",
+      "control": "M",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 24,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: C1. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0134",
+      "control": "M",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 24,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0135",
+      "control": "M",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 60,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0136",
+      "control": "M",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 96,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0137",
+      "control": "N",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 25,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: C#1. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0138",
+      "control": "N",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 25,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0139",
+      "control": "N",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 61,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0140",
+      "control": "N",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 97,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0141",
+      "control": "O",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 26,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: D1. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0142",
+      "control": "O",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 26,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0143",
+      "control": "O",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 62,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0144",
+      "control": "O",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 98,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0145",
+      "control": "P",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 27,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: D#1. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0146",
+      "control": "P",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 27,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0147",
+      "control": "P",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 63,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0148",
+      "control": "P",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 99,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: matrix-switch",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0149",
+      "control": "SHIFT",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 12,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: C0. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: layer-button",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0150",
+      "control": "SHIFT",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 12,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: layer-button",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0151",
+      "control": "SHIFT",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 16,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: layer-button",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0152",
+      "control": "SHIFT",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 20,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: layer-button",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0153",
+      "control": "Encoder bottom 1 turn",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 20,
+      "encoding": "relativeTwosComplement",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "No LED return addresses documented for bottom encoders; send-only.",
+        "Configured global channel; documented default 15.",
+        "Control group: bottom-encoder-turn",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0154",
+      "control": "Encoder bottom 1 push",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 13,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: C#0. Numeric MIDI note is authoritative.",
+        "No LED return addresses documented for bottom encoders; send-only.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: bottom-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0155",
+      "control": "Encoder bottom 2 turn",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 21,
+      "encoding": "relativeTwosComplement",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "No LED return addresses documented for bottom encoders; send-only.",
+        "Configured global channel; documented default 15.",
+        "Control group: bottom-encoder-turn",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0156",
+      "control": "Encoder bottom 2 push",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 14,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: D0. Numeric MIDI note is authoritative.",
+        "No LED return addresses documented for bottom encoders; send-only.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: bottom-encoder-push",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0157",
+      "control": "EXIT SETUP",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 15,
+      "number": 15,
+      "encoding": "noteGate",
+      "values": {},
+      "mode": "factory map; send layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.8"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "Manufacturer note label: D#0. Numeric MIDI note is authoritative.",
+        "Momentary Note On/Note Off; universal velocity values are not established by this evidence.",
+        "Configured global channel; documented default 15.",
+        "Control group: shift-button",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0158",
+      "control": "EXIT SETUP",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 15,
+      "encoding": "noteGate",
+      "values": {
+        "color": "red"
+      },
+      "mode": "factory map; LED color red; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: shift-button",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0159",
+      "control": "EXIT SETUP",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 19,
+      "encoding": "noteGate",
+      "values": {
+        "color": "amber"
+      },
+      "mode": "factory map; LED color amber; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: shift-button",
+        "Reserved in modes: []"
+      ]
+    },
+    {
+      "id": "b0160",
+      "control": "EXIT SETUP",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 15,
+      "number": 23,
+      "encoding": "noteGate",
+      "values": {
+        "color": "green"
+      },
+      "mode": "factory map; LED color green; return layer base; mode metadata attached",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.14"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "app_support": "existing-profile",
+      "notes": [
+        "LED color address, not an input-layer identifier. On/off velocity thresholds are not specified by the diagram.",
+        "Configured global channel; documented default 15.",
+        "Control group: shift-button",
+        "Reserved in modes: []"
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "issue-1",
+      "severity": "scope",
+      "description": "Addresses use the configured global MIDI channel (documented default 15). Physical position and Traktor deck assignment are independent.",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.12 MIDI channel"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf pp.8-9 controls"
+        }
+      ],
+      "excluded_bindings": []
+    },
+    {
+      "id": "issue-2",
+      "severity": "scope",
+      "description": "LED diagrams document note addresses and colors, but not universal on/off velocity thresholds.",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.13"
+        }
+      ],
+      "excluded_bindings": []
+    },
+    {
+      "id": "issue-3",
+      "severity": "scope",
+      "description": "MIDI note labels vary by application; numeric note IDs use the manufacturer conversion table.",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper matrix"
+        }
+      ],
+      "excluded_bindings": []
+    },
+    {
+      "id": "issue-4",
+      "severity": "conflict",
+      "description": "The small lower conversion table on p.15 misprints decimal 13\u201315 hex values. The upper matrix and hexadecimal arithmetic establish 0D, 0E and 0F. K2 embedded latching layers are not documented for K1.",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.15 upper and lower conversion tables"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf pp.13-14 MIDI send/return"
+        }
+      ],
+      "excluded_bindings": []
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "s1",
+      "file": "allen-heath-hercules/xone-k1-s1.txt",
+      "extraction_method": "pdftotext -layout; original PDF page markers"
+    }
+  ],
+  "mode_configuration": [
+    {
+      "id": "off",
+      "name": "Off",
+      "layeredGroups": [],
+      "softPickup": false,
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf pp.13-14 MIDI send/return"
+        }
+      ]
+    }
+  ],
+  "unit_maps": [
+    {
+      "id": "factory",
+      "usesFactoryBindings": true,
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf p.12 MIDI channel"
+        },
+        {
+          "source_id": "s1",
+          "locator": "XoneK1_UG_AP9694_2.pdf pp.8-9 controls"
+        }
+      ]
+    }
+  ],
+  "existing_profile": {
+    "id": "allen-heath.xone-k1",
+    "version": "1.0.0",
+    "local_file": "../../../XtremeMapping/XtremeMapping/Resources/ControllerProfiles/xone-k1-1.0.0.json"
+  }
+}

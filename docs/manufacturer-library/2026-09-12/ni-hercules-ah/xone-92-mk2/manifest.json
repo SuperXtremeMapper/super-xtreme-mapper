@@ -1,0 +1,33 @@
+{
+  "manufacturer": "Allen & Heath",
+  "model": "Xone:92 Mk2",
+  "retrieved_on": "2026-09-12",
+  "grade": "ready-for-extraction",
+  "scope": "Source extraction readiness only; not a verified SXM profile",
+  "hardware_tested": false,
+  "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+  "notes": "Small, explicit transmit-only implementation: filters CC12/13, crossfader CC92, optional internally configured data CC94. Clock/start-stop exceed current simple Note/CC scope.",
+  "coverage": {
+    "addresses": "CC12,13,92 and optional94; no notes",
+    "channels": "default16; internal option15",
+    "layers": "none; CC94 depends on internal jumper",
+    "encoders": "no relative encoder messages documented",
+    "led_feedback": "not supported: implementation Received column is X throughout"
+  },
+  "inspected_locators": [
+    "manual.pdf: pp23-25 MIDI Control, MIDI Control Codes, MIDI Implementation Chart; p35 installer links; p25 rendered inspection"
+  ],
+  "sources": [
+    {
+      "url": "https://www.allen-heath.com/content/uploads/2024/10/Xone92-Mk2-User-Guide.pdf",
+      "file": "xone-92-mk2/manual.pdf",
+      "status_code": 200,
+      "final_url": "https://www.allen-heath.com/content/uploads/2024/10/Xone92-Mk2-User-Guide.pdf",
+      "bytes": 10672810,
+      "sha256": "7da6044d74104d1d7a3812638d0a0fe63f36e5e9e44f03afe128f5f4b0cbbc9f",
+      "text_file": "xone-92-mk2/manual.txt",
+      "text_sha256": "4c1bafba41a9fdd34e7e5d6b9e66cae1e654ec58f7c3d8b319ececdb28011730"
+    }
+  ],
+  "shared_references": []
+}

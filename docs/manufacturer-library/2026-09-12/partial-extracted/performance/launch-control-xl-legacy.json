@@ -1,0 +1,4887 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Novation",
+  "model": "Launch Control XL MK1/MK2",
+  "status": "partial-extraction",
+  "coverage_state": "partial",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "id": "programmer-reference",
+      "local_file": "performance/launch-control-xl-legacy/programmer-reference.pdf",
+      "url": "https://fael-downloads-prod.focusrite.com/customer/prod/downloads/launch_control_xl_programmer_s_reference_guide.pdf",
+      "sha256": "076985fa9a0859a2ecce0c35d1e843fc5815bd67062c0019de9a8cdca07f7c06"
+    },
+    {
+      "id": "supplemental-owner-guide",
+      "local_file": "performance/launch-control-xl-legacy/supplemental-owner-guide.pdf",
+      "url": "https://fael-downloads-prod.focusrite.com/customer/prod/s3fs-public/downloads/Launch%20Control%20XL%20GSG%20v2.pdf",
+      "sha256": "5ec473be4cefae0f694171a02daef686c134791d6eb7eb2a2e71d6a36e48cb1f"
+    }
+  ],
+  "scope": "All 48 LED indices and 24 toggle-button indices with explicit template parameters, all 16 template reset/buffer/test controls, and bidirectional template-change SysEx. Full factory input address map absent.",
+  "bindings": [
+    {
+      "id": "b00001",
+      "control": "Top knob 1 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 0,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00002",
+      "control": "Top knob 2 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 1,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00003",
+      "control": "Top knob 3 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 2,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00004",
+      "control": "Top knob 4 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 3,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00005",
+      "control": "Top knob 5 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 4,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00006",
+      "control": "Top knob 6 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 5,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00007",
+      "control": "Top knob 7 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 6,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00008",
+      "control": "Top knob 8 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 7,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00009",
+      "control": "Middle knob 1 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 8,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00010",
+      "control": "Middle knob 2 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 9,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00011",
+      "control": "Middle knob 3 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 10,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00012",
+      "control": "Middle knob 4 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 11,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00013",
+      "control": "Middle knob 5 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 12,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00014",
+      "control": "Middle knob 6 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 13,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00015",
+      "control": "Middle knob 7 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 14,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00016",
+      "control": "Middle knob 8 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 15,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00017",
+      "control": "Bottom knob 1 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 16,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00018",
+      "control": "Bottom knob 2 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 17,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00019",
+      "control": "Bottom knob 3 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 18,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00020",
+      "control": "Bottom knob 4 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 19,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00021",
+      "control": "Bottom knob 5 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 20,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00022",
+      "control": "Bottom knob 6 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 21,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00023",
+      "control": "Bottom knob 7 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 22,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00024",
+      "control": "Bottom knob 8 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 23,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00025",
+      "control": "Top channel button 1 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 24,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00026",
+      "control": "Top channel button 2 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 25,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00027",
+      "control": "Top channel button 3 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 26,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00028",
+      "control": "Top channel button 4 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 27,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00029",
+      "control": "Top channel button 5 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 28,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00030",
+      "control": "Top channel button 6 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 29,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00031",
+      "control": "Top channel button 7 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 30,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00032",
+      "control": "Top channel button 8 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 31,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00033",
+      "control": "Bottom channel button 1 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 32,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00034",
+      "control": "Bottom channel button 2 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 33,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00035",
+      "control": "Bottom channel button 3 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 34,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00036",
+      "control": "Bottom channel button 4 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 35,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00037",
+      "control": "Bottom channel button 5 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 36,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00038",
+      "control": "Bottom channel button 6 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 37,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00039",
+      "control": "Bottom channel button 7 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 38,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00040",
+      "control": "Bottom channel button 8 LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 39,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00041",
+      "control": "Device LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 40,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00042",
+      "control": "Mute LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 41,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00043",
+      "control": "Solo LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 42,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00044",
+      "control": "Record Arm LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 43,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00045",
+      "control": "Up LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 44,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00046",
+      "control": "Down LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 45,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00047",
+      "control": "Left LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 46,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00048",
+      "control": "Right LED",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 78 Template Index Value F7",
+        "index": 47,
+        "template_min": 0,
+        "template_max": 15,
+        "value_formula": "16*Green + Red + Flags",
+        "green": [
+          0,
+          3
+        ],
+        "red": [
+          0,
+          3
+        ],
+        "flags": {
+          "normal": 12,
+          "flash": 8,
+          "double_buffer": 0
+        },
+        "normal_colours": {
+          "off": 12,
+          "red_low": 13,
+          "red_full": 15,
+          "amber_low": 29,
+          "amber_full": 63,
+          "yellow_full": 62,
+          "green_low": 28,
+          "green_full": 60
+        },
+        "flashing_colours": {
+          "red": 11,
+          "amber": 59,
+          "yellow": 58,
+          "green": 56
+        }
+      },
+      "mode": "Any template, including background",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.4–5 value encoding; p.7 Set LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx index is stored in values.index, not a note/CC number. Template byte selects user 0–7 or factory 8–15. Multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00049",
+      "control": "Top channel button 1 toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 0,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00050",
+      "control": "Top channel button 2 toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 1,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00051",
+      "control": "Top channel button 3 toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 2,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00052",
+      "control": "Top channel button 4 toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 3,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00053",
+      "control": "Top channel button 5 toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 4,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00054",
+      "control": "Top channel button 6 toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 5,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00055",
+      "control": "Top channel button 7 toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 6,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00056",
+      "control": "Top channel button 8 toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 7,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00057",
+      "control": "Bottom channel button 1 toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 8,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00058",
+      "control": "Bottom channel button 2 toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 9,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00059",
+      "control": "Bottom channel button 3 toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 10,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00060",
+      "control": "Bottom channel button 4 toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 11,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00061",
+      "control": "Bottom channel button 5 toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 12,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00062",
+      "control": "Bottom channel button 6 toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 13,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00063",
+      "control": "Bottom channel button 7 toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 14,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00064",
+      "control": "Bottom channel button 8 toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 15,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00065",
+      "control": "Device toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 16,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00066",
+      "control": "Mute toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 17,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00067",
+      "control": "Solo toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 18,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00068",
+      "control": "Record Arm toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 19,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00069",
+      "control": "Up toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 20,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00070",
+      "control": "Down toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 21,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00071",
+      "control": "Left toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 22,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00072",
+      "control": "Right toggle state",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 7B Template Index Value F7",
+        "index": 23,
+        "template_min": 0,
+        "template_max": 15,
+        "off": 0,
+        "on": 127
+      },
+      "mode": "Buttons configured Toggle; any template",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.7 Toggle button states"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel in SysEx. Non-toggle buttons ignore this command; multiple index/value pairs supported."
+      ]
+    },
+    {
+      "id": "b00073",
+      "control": "Reset LEDs/buffers",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "value": 0
+      },
+      "mode": "Template 0 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.5 Reset"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00074",
+      "control": "Double buffering",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "formula": "32 + 4*Update + Display + 16*Copy + 8*Flash",
+        "Update": [
+          0,
+          1
+        ],
+        "Display": [
+          0,
+          1
+        ],
+        "Copy": [
+          0,
+          1
+        ],
+        "Flash": [
+          0,
+          1
+        ]
+      },
+      "mode": "Template 0 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Control double-buffering"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00075",
+      "control": "LED test",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "low": 125,
+        "medium": 126,
+        "full": 127
+      },
+      "mode": "Template 0 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Turn on all LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00076",
+      "control": "Reset LEDs/buffers",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 2,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "value": 0
+      },
+      "mode": "Template 1 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.5 Reset"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00077",
+      "control": "Double buffering",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 2,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "formula": "32 + 4*Update + Display + 16*Copy + 8*Flash",
+        "Update": [
+          0,
+          1
+        ],
+        "Display": [
+          0,
+          1
+        ],
+        "Copy": [
+          0,
+          1
+        ],
+        "Flash": [
+          0,
+          1
+        ]
+      },
+      "mode": "Template 1 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Control double-buffering"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00078",
+      "control": "LED test",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 2,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "low": 125,
+        "medium": 126,
+        "full": 127
+      },
+      "mode": "Template 1 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Turn on all LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00079",
+      "control": "Reset LEDs/buffers",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 3,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "value": 0
+      },
+      "mode": "Template 2 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.5 Reset"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00080",
+      "control": "Double buffering",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 3,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "formula": "32 + 4*Update + Display + 16*Copy + 8*Flash",
+        "Update": [
+          0,
+          1
+        ],
+        "Display": [
+          0,
+          1
+        ],
+        "Copy": [
+          0,
+          1
+        ],
+        "Flash": [
+          0,
+          1
+        ]
+      },
+      "mode": "Template 2 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Control double-buffering"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00081",
+      "control": "LED test",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 3,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "low": 125,
+        "medium": 126,
+        "full": 127
+      },
+      "mode": "Template 2 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Turn on all LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00082",
+      "control": "Reset LEDs/buffers",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 4,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "value": 0
+      },
+      "mode": "Template 3 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.5 Reset"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00083",
+      "control": "Double buffering",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 4,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "formula": "32 + 4*Update + Display + 16*Copy + 8*Flash",
+        "Update": [
+          0,
+          1
+        ],
+        "Display": [
+          0,
+          1
+        ],
+        "Copy": [
+          0,
+          1
+        ],
+        "Flash": [
+          0,
+          1
+        ]
+      },
+      "mode": "Template 3 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Control double-buffering"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00084",
+      "control": "LED test",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 4,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "low": 125,
+        "medium": 126,
+        "full": 127
+      },
+      "mode": "Template 3 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Turn on all LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00085",
+      "control": "Reset LEDs/buffers",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 5,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "value": 0
+      },
+      "mode": "Template 4 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.5 Reset"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00086",
+      "control": "Double buffering",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 5,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "formula": "32 + 4*Update + Display + 16*Copy + 8*Flash",
+        "Update": [
+          0,
+          1
+        ],
+        "Display": [
+          0,
+          1
+        ],
+        "Copy": [
+          0,
+          1
+        ],
+        "Flash": [
+          0,
+          1
+        ]
+      },
+      "mode": "Template 4 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Control double-buffering"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00087",
+      "control": "LED test",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 5,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "low": 125,
+        "medium": 126,
+        "full": 127
+      },
+      "mode": "Template 4 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Turn on all LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00088",
+      "control": "Reset LEDs/buffers",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 6,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "value": 0
+      },
+      "mode": "Template 5 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.5 Reset"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00089",
+      "control": "Double buffering",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 6,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "formula": "32 + 4*Update + Display + 16*Copy + 8*Flash",
+        "Update": [
+          0,
+          1
+        ],
+        "Display": [
+          0,
+          1
+        ],
+        "Copy": [
+          0,
+          1
+        ],
+        "Flash": [
+          0,
+          1
+        ]
+      },
+      "mode": "Template 5 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Control double-buffering"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00090",
+      "control": "LED test",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 6,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "low": 125,
+        "medium": 126,
+        "full": 127
+      },
+      "mode": "Template 5 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Turn on all LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00091",
+      "control": "Reset LEDs/buffers",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "value": 0
+      },
+      "mode": "Template 6 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.5 Reset"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00092",
+      "control": "Double buffering",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "formula": "32 + 4*Update + Display + 16*Copy + 8*Flash",
+        "Update": [
+          0,
+          1
+        ],
+        "Display": [
+          0,
+          1
+        ],
+        "Copy": [
+          0,
+          1
+        ],
+        "Flash": [
+          0,
+          1
+        ]
+      },
+      "mode": "Template 6 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Control double-buffering"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00093",
+      "control": "LED test",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "low": 125,
+        "medium": 126,
+        "full": 127
+      },
+      "mode": "Template 6 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Turn on all LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00094",
+      "control": "Reset LEDs/buffers",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 8,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "value": 0
+      },
+      "mode": "Template 7 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.5 Reset"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00095",
+      "control": "Double buffering",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 8,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "formula": "32 + 4*Update + Display + 16*Copy + 8*Flash",
+        "Update": [
+          0,
+          1
+        ],
+        "Display": [
+          0,
+          1
+        ],
+        "Copy": [
+          0,
+          1
+        ],
+        "Flash": [
+          0,
+          1
+        ]
+      },
+      "mode": "Template 7 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Control double-buffering"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00096",
+      "control": "LED test",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 8,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "low": 125,
+        "medium": 126,
+        "full": 127
+      },
+      "mode": "Template 7 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Turn on all LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00097",
+      "control": "Reset LEDs/buffers",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 9,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "value": 0
+      },
+      "mode": "Template 8 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.5 Reset"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00098",
+      "control": "Double buffering",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 9,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "formula": "32 + 4*Update + Display + 16*Copy + 8*Flash",
+        "Update": [
+          0,
+          1
+        ],
+        "Display": [
+          0,
+          1
+        ],
+        "Copy": [
+          0,
+          1
+        ],
+        "Flash": [
+          0,
+          1
+        ]
+      },
+      "mode": "Template 8 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Control double-buffering"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00099",
+      "control": "LED test",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 9,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "low": 125,
+        "medium": 126,
+        "full": 127
+      },
+      "mode": "Template 8 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Turn on all LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00100",
+      "control": "Reset LEDs/buffers",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 10,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "value": 0
+      },
+      "mode": "Template 9 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.5 Reset"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00101",
+      "control": "Double buffering",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 10,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "formula": "32 + 4*Update + Display + 16*Copy + 8*Flash",
+        "Update": [
+          0,
+          1
+        ],
+        "Display": [
+          0,
+          1
+        ],
+        "Copy": [
+          0,
+          1
+        ],
+        "Flash": [
+          0,
+          1
+        ]
+      },
+      "mode": "Template 9 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Control double-buffering"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00102",
+      "control": "LED test",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 10,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "low": 125,
+        "medium": 126,
+        "full": 127
+      },
+      "mode": "Template 9 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Turn on all LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00103",
+      "control": "Reset LEDs/buffers",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 11,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "value": 0
+      },
+      "mode": "Template 10 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.5 Reset"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00104",
+      "control": "Double buffering",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 11,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "formula": "32 + 4*Update + Display + 16*Copy + 8*Flash",
+        "Update": [
+          0,
+          1
+        ],
+        "Display": [
+          0,
+          1
+        ],
+        "Copy": [
+          0,
+          1
+        ],
+        "Flash": [
+          0,
+          1
+        ]
+      },
+      "mode": "Template 10 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Control double-buffering"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00105",
+      "control": "LED test",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 11,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "low": 125,
+        "medium": 126,
+        "full": 127
+      },
+      "mode": "Template 10 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Turn on all LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00106",
+      "control": "Reset LEDs/buffers",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 12,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "value": 0
+      },
+      "mode": "Template 11 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.5 Reset"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00107",
+      "control": "Double buffering",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 12,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "formula": "32 + 4*Update + Display + 16*Copy + 8*Flash",
+        "Update": [
+          0,
+          1
+        ],
+        "Display": [
+          0,
+          1
+        ],
+        "Copy": [
+          0,
+          1
+        ],
+        "Flash": [
+          0,
+          1
+        ]
+      },
+      "mode": "Template 11 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Control double-buffering"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00108",
+      "control": "LED test",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 12,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "low": 125,
+        "medium": 126,
+        "full": 127
+      },
+      "mode": "Template 11 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Turn on all LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00109",
+      "control": "Reset LEDs/buffers",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 13,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "value": 0
+      },
+      "mode": "Template 12 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.5 Reset"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00110",
+      "control": "Double buffering",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 13,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "formula": "32 + 4*Update + Display + 16*Copy + 8*Flash",
+        "Update": [
+          0,
+          1
+        ],
+        "Display": [
+          0,
+          1
+        ],
+        "Copy": [
+          0,
+          1
+        ],
+        "Flash": [
+          0,
+          1
+        ]
+      },
+      "mode": "Template 12 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Control double-buffering"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00111",
+      "control": "LED test",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 13,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "low": 125,
+        "medium": 126,
+        "full": 127
+      },
+      "mode": "Template 12 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Turn on all LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00112",
+      "control": "Reset LEDs/buffers",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 14,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "value": 0
+      },
+      "mode": "Template 13 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.5 Reset"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00113",
+      "control": "Double buffering",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 14,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "formula": "32 + 4*Update + Display + 16*Copy + 8*Flash",
+        "Update": [
+          0,
+          1
+        ],
+        "Display": [
+          0,
+          1
+        ],
+        "Copy": [
+          0,
+          1
+        ],
+        "Flash": [
+          0,
+          1
+        ]
+      },
+      "mode": "Template 13 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Control double-buffering"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00114",
+      "control": "LED test",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 14,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "low": 125,
+        "medium": 126,
+        "full": 127
+      },
+      "mode": "Template 13 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Turn on all LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00115",
+      "control": "Reset LEDs/buffers",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "value": 0
+      },
+      "mode": "Template 14 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.5 Reset"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00116",
+      "control": "Double buffering",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "formula": "32 + 4*Update + Display + 16*Copy + 8*Flash",
+        "Update": [
+          0,
+          1
+        ],
+        "Display": [
+          0,
+          1
+        ],
+        "Copy": [
+          0,
+          1
+        ],
+        "Flash": [
+          0,
+          1
+        ]
+      },
+      "mode": "Template 14 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Control double-buffering"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00117",
+      "control": "LED test",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "low": 125,
+        "medium": 126,
+        "full": 127
+      },
+      "mode": "Template 14 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Turn on all LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00118",
+      "control": "Reset LEDs/buffers",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "value": 0
+      },
+      "mode": "Template 15 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.5 Reset"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00119",
+      "control": "Double buffering",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "formula": "32 + 4*Update + Display + 16*Copy + 8*Flash",
+        "Update": [
+          0,
+          1
+        ],
+        "Display": [
+          0,
+          1
+        ],
+        "Copy": [
+          0,
+          1
+        ],
+        "Flash": [
+          0,
+          1
+        ]
+      },
+      "mode": "Template 15 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Control double-buffering"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00120",
+      "control": "LED test",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "low": 125,
+        "medium": 126,
+        "full": 127
+      },
+      "mode": "Template 15 (channel selects template)",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.6 Turn on all LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Zero-indexed template n maps to human channel n+1, independent of input channels."
+      ]
+    },
+    {
+      "id": "b00121",
+      "control": "Current template",
+      "direction": "device-to-host",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 77 Template F7",
+        "template_min": 0,
+        "template_max": 15
+      },
+      "mode": "Template selection/notification",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.8 Change current template / Template changed"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx has no channel; user templates 0–7, factory 8–15."
+      ]
+    },
+    {
+      "id": "b00122",
+      "control": "Current template",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 00 20 29 02 11 77 Template F7",
+        "template_min": 0,
+        "template_max": 15
+      },
+      "mode": "Template selection/notification",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF p.8 Change current template / Template changed"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "SysEx has no channel; user templates 0–7, factory 8–15."
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "i001",
+      "severity": "scope",
+      "description": "Template setup and feedback matching requirements.",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.3,5,8"
+        }
+      ],
+      "excluded_bindings": []
+    },
+    {
+      "id": "i002",
+      "severity": "scope",
+      "description": "Input notes/CCs/channels depend on templates; the reference does not supply the full factory input map. The p.8 dial LED note diagram is graphical and does not establish full per-template input maps.",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.3,8"
+        }
+      ],
+      "excluded_bindings": [
+        "Factory input bindings; legacy template-dependent note feedback"
+      ]
+    },
+    {
+      "id": "i003",
+      "severity": "conflict",
+      "description": "Appendix external-flashing off example repeats hex 20h but gives decimal 33; normative p.6 bit formula retained and inconsistent example excluded.",
+      "evidence": [
+        {
+          "source_id": "programmer-reference",
+          "locator": "PDF pp.6,9"
+        }
+      ],
+      "excluded_bindings": [
+        "Appendix external-flash-off hex example"
+      ]
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "programmer-reference",
+      "file": "performance/raw/launch-control-xl-legacy-programmer-reference.txt",
+      "extraction_method": "Complete archived page-marked PDF text; original PDF authoritative"
+    },
+    {
+      "source_id": "supplemental-owner-guide",
+      "file": "performance/raw/launch-control-xl-legacy-supplemental-owner-guide.txt",
+      "extraction_method": "Complete archived page-marked PDF text; original PDF authoritative"
+    }
+  ],
+  "setup_notes": [
+    "Use Launch Control XL Editor for user-template assignments. SysEx feedback can target any template; legacy note feedback requires matching the currently selected template channel and note/CC."
+  ],
+  "missing_information": [
+    "Excellent feedback specification but missing full factory input map; obtain template definitions or hardware capture before ready status."
+  ]
+}

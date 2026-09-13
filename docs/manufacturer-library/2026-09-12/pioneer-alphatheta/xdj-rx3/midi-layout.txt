@@ -1,0 +1,622 @@
+                                                                                            XDJ-RX3
+                                                                                            MIDI Message List
+
+
+
+
+                                                                                                                                     4-2          4-3
+                                                                                       4-6
+
+                                                                                                                                                         4-1
+
+                                                                                       4-6                                                                     6-2     6-4   6-5
+
+                                                                                      2-3                      2-16                                                          6-6
+                                                                                                                                4-4                4-5
+                                                                                              1-24
+       1-14   1-15            1-17          1-18         1-19
+                                                                                                                                           1-22
+                                                                                                                                                                 6-1   6-3
+                                                                                            1-23        3-14
+                                                                               3-13                                     3-13
+1-12                   1-16                                     1-8-1
+                                                                                                                               3-15
+                                                                                     3-4                        3-4
+1-11                                                              3-17                                 3-5
+               1-25                                  1-7                                                                        2-1
+                                                                                                        3-6
+                                                                                     3-18
+ 1-9                                 7-1                 1-6
+                                                                                                       3-7
+                                                                                                                                2-2
+                                                    1-5
+               1-1                                                            2-11
+1-10
+                                                                   2-10              2-12                                       2-3
+                                                     1-4                                               3-16
+
+                                                     1-3                                               2-8
+                                      7-2
+                                                                2-13          2-14                                             2-4
+1-13
+                                                     1-2
+                                                                                       2-15            3-11
+                                                                  2-9                                                          2-5
+                        5-2      5-3         5-4                                                3-10             3-10
+                 5-1
+1-21
+                                                                 3-12                  3-8                                     2-6
+                 5-5      5-6         5-7          5-8
+                                                                                                       3-3
+1-20                                                                                   3-2                     3-2             2-7
+                                                                        3-9
+                                                                                       3-1
+                 5-9     5-10        5-11      5-12
+
+
+
+
+                                                                                                          1
+【MIDI channel assignment】
+ MIDI channel is defined as shown below.
+ 0x9*: Note
+ 0xB*: Control Change (CC)
+                                                                                 MIDI
+                             Channel Category                                             Channel No.(hex)
+                                                                                channel
+Browser                                                                            1            n=0                                    As a reference for MIDI assign, MIDI messages sent from buttons and knobs of this unit are listed in decimal numbers.
+DECK 1                                                                             1            n=0
+DECK 2                                                                             2            n=1
+DECK 3                                                                             3            n=2                                    NOTE is a term used for MIDI to express that a key of a keyboard or a piano is pressed or your finger is released from it.
+DECK 4                                                                             4            n=3                                    CC is an abbreviation of "Control Change". Control Change is a kind of MIDI message used to communicate many kinds
+Mixer/EFFECT                                                                       5            n=4                                    of control information such as sound quality and volume level.
+                                                               DECK1               6            n=5
+                                                               DECK2               7            n=6
+PERFORMANCE PADS
+                                                               DECK3               8            n=7
+                                                               DECK4               9            n=8
+OTHERS & JOG DISPLAY                                                              12            n=B
+
+
+
+
+                                                                                                                            MIDI assignment                         MIDI-IN                                MIDI-OUT
+                                                               User Interface
+                                                                                                                               reference                       (to computer)                             (from computer)
+      Group           Fig.                                                                                                                                                                                                                                                     Details (Data2)
+                                                                                                                             MIDI                Status              Data1           Data 2     Status       Data 1        Data 2
+                                                                                                              +SHIFT/                  NOTE /
+                                                  UI name                       Trigger        Mode                         Channel
+                                                                                                             Long-Press                 CC
+                                                                                                                             (Dec)                (hex)      (Dec)           (hex)   (hex)      (hex)        (hex)         (hex)
+1, DECK                                                                                                                     1/2/3/4      CC        Bn          34             22      hh                                            Count value difference from previous operation
+                                                                                 rotate                                                                                                                                             When turned clockwise: Increases from (0x41)
+                                                  Jog dial                                                      +SHIFT      1/2/3/4      CC        Bn          41             29      hh                                            When turned counterclockwise: Decreases from (0x3F)
+                                                  (Platter)
+                                                                                                                            1/2/3/4     NOTE       9n          32             20      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                     1[L,R]                                                      touch
+                                                                                                                +SHIFT      1/2/3/4     NOTE       9n          72             48      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+
+                                                                                                                            1/2/3/4      CC        Bn          33             21      hh                                            Count value difference from previous operation
+                                                  Jog dial
+                                                                                 rotate                                                                                                                                             When turned clockwise: Increases from (0x41)
+                                                (Wheel side)
+                                                                                                                +SHIFT      1/2/3/4      CC        Bn          38             26      hh                                            When turned counterclockwise: Decreases from (0x3F)
+
+                                                                                                                                         CC        Bn          0               0     MSB
+                     2[L,R]                       TEMPO                          slide                                      1/2/3/4                                                                                                 0~16383" - " side : 0 "+" side : 16383
+                                                                                                                                         CC        Bn          32             20      LSB
+                     3[L,R]                 MASTER TEMPO                         press                                      1/2/3/4     NOTE       9n          17             11      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                     4[L,R]                 TEMPO RANGE                          press                                      1/2/3/4     NOTE       9n          16             10      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                                                                                                                            1/2/3/4     NOTE       9n          31             1F      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                     5[L,R]                        SYNC                          press
+                                                                                                               Long-Press   1/2/3/4     NOTE       9n          71             47      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                     6[L,R]                       MASTER                         press                                      1/2/3/4     NOTE       9n          30             1E      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                     7[L,R]                      JOG MODE                        press                                      1/2/3/4     NOTE       9n          18             12      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                    8-1[L,R]    VINYL SPEED ADJUST (hardware button)             press                                      1/2/3/4     NOTE       9n          42             2A      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+
+                                     VINYL SPEED ADJUST Volume                                                                                                                                                                      When Vinyl SPEED ADJUST is ON, Volume position data is sent in accordance with Volume
+                    8-2[L,R]                                                     press                                      1/2/3/4      CC        Bn          30             1E      hh                                            position change. When Vinyl SPEED ADJUST is OFF, no data is sent. Thera are five levels of
+                                            (SHORT CUT)
+                                                                                                                                                                                                                                    data: 0x00, 0x12, 0x3F, 0x6D, 0x7F.
+                                         TRACK SEARCH FWD                        press                                      1/2/3/4     NOTE       9n          4               4      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                     9[L,R]
+                                         TRACK SEARCH REV                        press                                      1/2/3/4     NOTE       9n          5               5      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                                                SEARCH FWD                       press                                      1/2/3/4     NOTE       9n          2               2      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                    10[L,R]
+                                                SEARCH REV                       press                                      1/2/3/4     NOTE       9n          3               3      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                    11[L,R]                      REVERSE                         press                                      1/2/3/4     NOTE       9n          33             21      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                    12[L,R]                        SLIP                          press                                      1/2/3/4     NOTE       9n          44             2C      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                    13[L,R]                        SHIFT                         press
+                                                                                                                            1/2/3/4     NOTE       9n          6               6      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                    14[L,R]                       LOOP IN                        press
+                                                                                                               Long-Press   1/2/3/4     NOTE       9n          69             45      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                    15[L,R]                      LOOP OUT                        press                                      1/2/3/4     NOTE       9n          7               7      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                    16[L,R]                     RELOOP/EXIT                      press                                      1/2/3/4     NOTE       9n          8               8      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                                        CUE/LOOP CALL NEXT                       press                                      1/2/3/4     NOTE       9n          11             B       hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                    17[L,R]
+                                        CUE/LOOP CALL PREV                       press                                      1/2/3/4     NOTE       9n          12             C       hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                    18[L,R]               CUE/LOOP DELETE                        press                                      1/2/3/4     NOTE       9n          13             D       hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                    19[L,R]               CUE/LOOP MEMORY                        press                                      1/2/3/4     NOTE       9n          10             A       hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                    20[L,R]                     PLAY/PAUSE                       press                                      1/2/3/4     NOTE       9n          0               0      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                    21[L,R]                        CUE                           press                                      1/2/3/4     NOTE       9n          1               1      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                    22[L,R]              LOAD (hardware button)                  press                                      1/2/3/4     NOTE       9n          81             51      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+
+                                           NEEDLE POSITION                                                                  1/2/3/4      CC        Bn          28             1C      hh                                            OFF=0 (0x00)1 -> 127, Left -> Right position data
+                    23[L,R]                                                      press
+                                      (GUI/Overall waveform display)                                                        1/2/3/4     NOTE       9n          54             36      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                                                                                                                            1/2/3/4     NOTE       9n          14             E       hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                    24[L,R]          TIME MODE（GUI/Time display)                 press
+                                                                                                               Long-Press   1/2/3/4     NOTE       9n          15             F       hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                    25[L,R]                      QUANTIZE                        press                                      1/2/3/4     NOTE       9n          9               9      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+2, EFFECT                                        BEAT LEFT                       press                                        5          CC        B4          76             4C      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                       1
+                                                BEAT RIGHT                       press                                        5          CC        B4          77             4D      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                                                                                                                              5          CC        B4          78             4E      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                       2                            TAP                          press
+                                                                                                                +SHIFT        5          CC        B4         126             7E      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+
+                               EFFECT SELECT                                     rotate                                       5          CC        B4          42             2A      hh                                            OFF=0(0x00), ON=127(0x7F)
+                                                                 DELAY
+                               BEAT FX BANK(GUI)                                 press                                        5          CC        B4          42             2A      hh                                            OFF=0(0x00), ON=127(0x7F)
+
+                               EFFECT SELECT                                     rotate                                       5          CC        B4          55             37      hh                                            OFF=0(0x00), ON=127(0x7F)
+                                                                  ECHO
+                               BEAT FX BANK(GUI)                                 press                                        5          CC        B4          55             37      hh                                            OFF=0(0x00), ON=127(0x7F)
+                               EFFECT SELECT                                     rotate                                       5          CC        B4          51             33      hh                                            OFF=0(0x00), ON=127(0x7F)
+                                                               PING PONG
+                               BEAT FX BANK(GUI)                                 press                                        5          CC        B4          51             33      hh                                            OFF=0(0x00), ON=127(0x7F)
+
+                               EFFECT SELECT                                     rotate                                       5          CC        B4          43             2B      hh                                            OFF=0(0x00), ON=127(0x7F)
+                                                                 SPIRAL
+                               BEAT FX BANK(GUI)                                 press                                        5          CC        B4          43             2B      hh                                            OFF=0(0x00), ON=127(0x7F)
+                               EFFECT SELECT                                     rotate                                       5          CC        B4          54             36      hh                                            OFF=0(0x00), ON=127(0x7F)
+                                                                 REVERB
+                               BEAT FX BANK(GUI)                                 press                                        5          CC        B4          54             36      hh                                            OFF=0(0x00), ON=127(0x7F)
+
+                               EFFECT SELECT                                     rotate                                       5          CC        B4          53             35      hh                                            OFF=0(0x00), ON=127(0x7F)
+                                                                 TRANS
+                               BEAT FX BANK(GUI)                                 press                                        5          CC        B4          53             35      hh                                            OFF=0(0x00), ON=127(0x7F)
+
+                               EFFECT SELECT                                     rotate                                       5          CC        B4          59             3B      hh                                            OFF=0(0x00), ON=127(0x7F)
+                                                                 FILTER
+                       3       BEAT FX BANK(GUI)                                 press                                        5          CC        B4          59             3B      hh                                            OFF=0(0x00), ON=127(0x7F)
+                               EFFECT SELECT                                     rotate                                       5          CC        B4          50             32      hh                                            OFF=0(0x00), ON=127(0x7F)
+                                                                FLANGER
+                               BEAT FX BANK(GUI)                                 press                                        5          CC        B4          50             32      hh                                            OFF=0(0x00), ON=127(0x7F)
+
+                               EFFECT SELECT                                     rotate                                       5          CC        B4          57             39      hh                                            OFF=0(0x00), ON=127(0x7F)
+                                                                 PHASER
+                               BEAT FX BANK(GUI)                                 press                                        5          CC        B4          57             39      hh                                            OFF=0(0x00), ON=127(0x7F)
+                               EFFECT SELECT                                     rotate                                       5          CC        B4          63             3F      hh                                            OFF=0(0x00), ON=127(0x7F)
+                                                                 PITCH
+                               BEAT FX BANK(GUI)                                 press                                        5          CC        B4          63             3F      hh                                            OFF=0(0x00), ON=127(0x7F)
+
+                               EFFECT SELECT                                     rotate                                       5          CC        B4          58             3A      hh                                            OFF=0(0x00), ON=127(0x7F)
+                                                                SLIP ROLL
+                               BEAT FX BANK(GUI)                                 press                                        5          CC        B4          58             3A      hh                                            OFF=0(0x00), ON=127(0x7F)
+
+                               EFFECT SELECT                                     rotate                                       5          CC        B4          46             2E      hh                                            OFF=0(0x00), ON=127(0x7F)
+                                                                  ROLL
+                               BEAT FX BANK(GUI)                                 press                                        5          CC        B4          46             2E      hh                                            OFF=0(0x00), ON=127(0x7F)
+
+                               EFFECT SELECT                     VINYL           rotate                                       5          CC        B4          61             3D      hh                                            OFF=0(0x00), ON=127(0x7F)
+                               BEAT FX BANK(GUI)                 BRAKE           press                                        5          CC        B4          61             3D      hh                                            OFF=0(0x00), ON=127(0x7F)
+
+                               EFFECT SELECT                                     rotate                                       5          CC        B4          62             3E      hh                                            OFF=0(0x00), ON=127(0x7F)
+                                                                 HELIX
+                               BEAT FX BANK(GUI)                                 press                                        5          CC        B4          62             3E      hh                                            OFF=0(0x00), ON=127(0x7F)
+                                            CH SELECT CF.A                       rotate                                       5          CC        B4          39             27      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                                            CH SELECT CF.B                       rotate                                       5          CC        B4          40             28      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                                            CH SELECT MIC                        rotate                                       5          CC        B4          28             1C      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                       4                    CH SELECT AUX                        rotate                                       5          CC        B4          32             20      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                                            CH SELECT CH1                        rotate                                       5          CC        B4          34             22      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                                            CH SELECT CH2                        rotate                                       5          CC        B4          35             23      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                                          CH SELECT MASTER                       rotate                                       5          CC        B4          41             29      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                                                                                                                                                                                                                                    98(0x62)~127(0x7F), 1(0x01)~30(0x1E)
+                       5                  TIME                                   rotate                                       5          CC        B4          45             2D      hh                                            Transfer count value difference from previous operation (±1~±30).
+                                                                                                                                                                                                                                    If it is ±30 or more, it is set to ±30.
+                       6                        LEVEL DEPTH                      rotate                                       5          CC        B4          91             5B      hh                                            0 (0x00)~127 (0x7F) Left (min): 0 (0x00), Right (max): 127 (0x7F)
+                                                                                                                              5          CC        B4         114             72      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                       7                 BEAT EFFECT ON/OFF                      press
+                                                                                                                +SHIFT        5          CC        B4          52             34      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                                                                 Deck 1          rotate                                       5          CC        B4          5               5      hh                                            0 (0x00)~127 (0x7F) Left (LOW): 0 (0x00), Right (HI): 127 (0x7F)
+                                                                 Deck 2          rotate                                       5          CC        B4          10             A       hh                                            0 (0x00)~127 (0x7F) Left (LOW): 0 (0x00), Right (HI): 127 (0x7F)
+                       8                 COLOR
+                                                                 Deck 3          rotate                                       5          CC        B4          22             16      hh                                            0 (0x00)~127 (0x7F) Left (LOW): 0 (0x00), Right (HI): 127 (0x7F)
+                                                                 Deck 4          rotate                                       5          CC        B4          83             53      hh                                            0 (0x00)~127 (0x7F) Left (LOW): 0 (0x00), Right (HI): 127 (0x7F)
+                       9                        PARAMETER                        rotate                                       5          CC        B4         108             6C      hh                                            0 (0x00)~127 (0x7F) Left (min): 0 (0x00), Right (max): 127 (0x7F)
+                      10                          SPACE                          press                                        5          CC        B4         105             69      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                      11                         DUB ECHO                        press                                        5          CC        B4         107             6B      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                      12                          SWEEP                          press                                        5          CC        B4         106             6A      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                      13                          NOISE                          press                                        5          CC        B4          85             55      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                      14                          CRUSH                          press                                        5          CC        B4          86             56      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                      15                          FILTER                         press                                        5          CC        B4          87             57      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                                                                                            Slider Mode                       5          CC        B4         113             71      hh                                            Left end: 0 (0x00)~Right end: 127 (0x7F)
+                                                                                 slide
+                      16                        X-PAD (GUI)                                  Beat Mode                        5          CC        B4         115             73      hh                                            Left end: 0 (0x00)~Right end: 127 (0x7F)
+                                                                                 press                                        5          CC        B4         114             72      hh                                            Same as EFFECT ON / OFF
+                                                                                                             MIDI assignment                    MIDI-IN                                 MIDI-OUT
+                                                        User Interface
+                                                                                                                reference                   (to computer)                             (from computer)
+      Group       Fig.                                                                                                                                                                                                                                         Details (Data2)
+                                                                                                              MIDI               Status           Data1           Data 2     Status       Data 1        Data 2
+                                                                                                 +SHIFT/                NOTE /
+                                          UI name                        Trigger      Mode                   Channel
+                                                                                                Long-Press               CC
+                                                                                                              (Dec)              (hex)    (Dec)           (hex)   (hex)      (hex)        (hex)         (hex)
+3, MIXER           1                    CROSSFADER                        slide                                 5         CC      B4       11              B       hh                                            0 (0x00)~127 (0x7F) Left end: 0 (0x00), Right end: 127 (0x7F)
+                                                          Deck 1          slide                                 5         CC      B4       17              11      hh                                            0 (0x00)~127 (0x7F) Lower end: 0 (0x00), Upper end: 127 (0x7F)
+                                                          Deck 2          slide                                 5         CC      B4       18              12      hh                                            0 (0x00)~127 (0x7F) Lower end: 0 (0x00), Upper end: 127 (0x7F)
+                   2             CH FADER
+                                                          Deck 3          slide                                 5         CC      B4       19              13      hh                                            0 (0x00)~127 (0x7F) Lower end: 0 (0x00), Upper end: 127 (0x7F)
+                                                          Deck 4          slide                                 5         CC      B4       20              14      hh                                            0 (0x00)~127 (0x7F) Lower end: 0 (0x00), Upper end: 127 (0x7F)
+                                                             THRU                                               5         CC      B4       95              5F       0
+                   3       CROSSFADER ASSIGN                              slide                                 5         CC      B4       95              5F      40
+                                                                                                                5         CC      B4       95              5F      7F
+                                                          Deck 1         rotate                                 5         CC      B4       1                1      hh                                            0 (0x00)～127 (0x7F) Left (-∞) : 0 (0x00), Right (+9): 127 (0x7F)
+                                                          Deck 2         rotate                                 5         CC      B4       6                6      hh                                            0 (0x00)～127 (0x7F) Left (-∞) : 0 (0x00), Right (+9): 127 (0x7F)
+                   4               TRIM
+                                                          Deck 3         rotate                                 5         CC      B4       12              C       hh                                            0 (0x00)～127 (0x7F) Left (-∞) : 0 (0x00), Right (+9): 127 (0x7F)
+                                                          Deck 4         rotate                                 5         CC      B4       80              50      hh                                            0 (0x00)～127 (0x7F) Left (-∞) : 0 (0x00), Right (+9): 127 (0x7F)
+                                                          Deck 1         rotate                                 5         CC      B4       2                2      hh                                            0 (0x00)～127 (0x7F) Left (-26): 0 (0x00), Right (+6): 127 (0x7F)
+                                                          Deck 2         rotate                                 5         CC      B4       7                7      hh                                            0 (0x00)～127 (0x7F) Left (-26): 0 (0x00), Right (+6): 127 (0x7F)
+                   5             EQ HIGH
+                                                          Deck 3         rotate                                 5         CC      B4       14              E       hh                                            0 (0x00)～127 (0x7F) Left (-26): 0 (0x00), Right (+6): 127 (0x7F)
+                                                          Deck 4         rotate                                 5         CC      B4       81              51      hh                                            0 (0x00)～127 (0x7F) Left (-26): 0 (0x00), Right (+6): 127 (0x7F)
+                                                          Deck 1         rotate                                 5         CC      B4       3                3      hh                                            0 (0x00)～127 (0x7F) Left (-26): 0 (0x00), Right (+6): 127 (0x7F)
+                                                          Deck 2         rotate                                 5         CC      B4       8                8      hh                                            0 (0x00)～127 (0x7F) Left (-26): 0 (0x00), Right (+6): 127 (0x7F)
+                   6              EQ MID
+                                                          Deck 3         rotate                                 5         CC      B4       15              F       hh                                            0 (0x00)～127 (0x7F) Left (-26): 0 (0x00), Right (+6): 127 (0x7F)
+                                                          Deck 4         rotate                                 5         CC      B4       92              5C      hh                                            0 (0x00)～127 (0x7F) Left (-26): 0 (0x00), Right (+6): 127 (0x7F)
+                                                          Deck 1         rotate                                 5         CC      B4       4                4      hh                                            0 (0x00)～127 (0x7F) Left (-26): 0 (0x00), Right (+6): 127 (0x7F)
+                                                          Deck 2         rotate                                 5         CC      B4       9                9      hh                                            0 (0x00)～127 (0x7F) Left (-26): 0 (0x00), Right (+6): 127 (0x7F)
+                   7              EQ LOW
+                                                          Deck 3         rotate                                 5         CC      B4       21              15      hh                                            0 (0x00)～127 (0x7F) Left (-26): 0 (0x00), Right (+6): 127 (0x7F)
+                                                          Deck 4         rotate                                 5         CC      B4       82              52      hh                                            0 (0x00)～127 (0x7F) Left (-26): 0 (0x00), Right (+6): 127 (0x7F)
+                   8              HEADPHONES MIXING                      rotate                                 5         CC      B4       27              1B      hh                                            0 (0x00)～127 (0x7F) Left (CUE): 0 (0x00), Right (MASTER): 127 (0x7F)
+                   9              HEADPHONES LEVEL                       rotate                                 5         CC      B4       26              1A      hh                                            0 (0x00)～127 (0x7F) Left (-∞) : 0 (0x00), Right (0): 127 (0x7F)
+                                                          Deck 1         press                                  5         CC      B4       70              46      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+
+                                  CH CUE                  Deck 2         press                                  5         CC      B4       71              47      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                  10
+                                (Headphone)               Deck 3         press                                  5         CC      B4       72              48      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                                                          Deck 4         press                                  5         CC      B4       73              49      hh      <- same as MIDI IN                    OFF=0 (0x00), ON=127 (0x7F)
+                  11            MASTER CUE (Headphone)                   press                                  5         CC      B4       74              4A      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                  12              LINK CUE (Headphone)                   press                                  5         CC      B4       75              4B      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+
+                                                                                                                                                                                                                 Select INPUT to DECK : OFF=0x00
+                                                                                                                                                                                                                 Select INPUT to LINE : ON=0x7F
+                  13                    INPUT SWITCH                      slide                              1/2/3/4      CC      Bn       99              63      hh                                            Select INPUT to PHONO : ON=0x7F
+                                                                                                                                                                                                                 When operating DECK1, send DECK 1 and DECK 3 (B0 63 hh and B2 63 hh),
+                                                                                                                                                                                                                 When operating DECK2, send DECK 2 and DECK 4 (B1 63 hh and B3 63 hh)
+
+                  14                   MASTER LEVEL                      rotate                                 5         CC      B4       24              18      hh                                            0 (0x00)～127 (0x7F) Left (-∞): 0 (0x00), Right (0): 127 (0x7F)
+                  15             BOOTH MONITOR LEVEL                     rotate                                 5         CC      B4       25              19      hh                                            0 (0x00)～127 (0x7F) Left (-∞): 0 (0x00), Right (0): 127 (0x7F)
+                  16                   CH LEVEL METER                                                        1/2/3/4      CC                                                  Bn            2            hh      Refer to MIDI-OUT/CH LEVEL METER
+                                                       OFF                                                      5         CC      B4      119              77      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                  17      AUX SELECT                   LINE               slide                                 5         CC      B4      120              78      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                                                       PORTABLE                                                 5         CC      B4      121              79      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                  18                      AUX TRIM                       rotate                                 5         CC      B4      122              7A      hh                                            0 (0x00)~127 (0x7F) Left end: 0 (0x00), Right end: 127 (0x7F)
+4, BROWSER                                                                                                      1         CC      B0       79              4F      hh                                            Count value difference from previous operation
+                                                                         rotate                                                                                                                                  Turn clockwise: 1~30 (0x01~0x1E)
+                                                                                                   +SHIFT       1         CC      B0       96              60      hh                                            Turn counterclockwise: 127~98 (0x7F~0x62)
+                   1               ROTARY SELECTOR
+                                                                                                                1        NOTE     90       51              33      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                                                                         press
+                                                                                                   +SHIFT       1        NOTE     90       97              61      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                                                                                                                1        NOTE     90       50              32      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                   2                       BACK                          press
+                                                                                                   +SHIFT       1        NOTE     90       95              5F      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                                                                                                                1        NOTE     90       48              30      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                   3              TAG TRACK/REMOVE                       press
+                                                                                                   +SHIFT       1        NOTE     90       98              62      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                                                                                                                1        NOTE     90       49              31      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                   4                    TRACK FILTER                     press
+                                                                                                   +SHIFT       1        NOTE     90       93              5D      hh                                            OFF=0 (0x00), ON=127 (0x7F)
+                   5                     SHORT CUT                       press                                                                                                                                   (Hardware Control)
+                                                                                                                                                                                                                 OFF=0 (0x00), ON=127 (0x7F)
+                   6                      DECK 1/2                       press                               1/2/3/4      CC      Bn      102              66      hh                                            DECK1/2=B0,B1
+                                                                                                                                                                                                                 DECK3/4=B2,B3
+5, PERFORMANCE                            HOT CUE                                                            1/2/3/4     NOTE     9n       34              22      hh      <- same as MIDI IN
+PADS             1[L,R]                                                  press
+                                        EXTENSION1                                                 +SHIFT    1/2/3/4     NOTE     9n       38              26      hh      <- same as MIDI IN
+                                         BEAT LOOP                                                           1/2/3/4     NOTE     9n       35              23      hh      <- same as MIDI IN                    [MIDI IN]
+                 2[L,R]                                                  press                                                                                                                                     0x00 : OFF
+                                        EXTENSION2                                                 +SHIFT    1/2/3/4     NOTE     9n       39              27      hh      <- same as MIDI IN                      0x7F : ON
+                                         SLIP LOOP                                                           1/2/3/4     NOTE     9n       36              24      hh      <- same as MIDI IN                    [MIDI OUT]
+                 3[L,R]                                                  press                                                                                                                                     0x00 : OFF (dim)
+                                        EXTENSION3                                                 +SHIFT    1/2/3/4     NOTE     9n       40              28      hh      <- same as MIDI IN                      0x01-0x7E : Light up LED with specified color number
+                                         BEAT JUMP                                                           1/2/3/4     NOTE     9n       37              25      hh      <- same as MIDI IN
+                 4[L,R]                                                  press
+                                        EXTENSION4                                                 +SHIFT    1/2/3/4     NOTE     9n       41              29      hh      <- same as MIDI IN
+
+                                                                                    HOT CUE                  6/7/8/9     NOTE     9n        0               0      hh      <- same as MIDI IN
+                                                                                     mode          +SHIFT    6/7/8/9     NOTE     9n        8               8      hh      <- same as MIDI IN
+
+                                                                                   BEAT LOOP                 6/7/8/9     NOTE     9n       16              10      hh      <- same as MIDI IN
+                                                                                     mode          +SHIFT    6/7/8/9     NOTE     9n       24              18      hh      <- same as MIDI IN
+
+                                                                                   SLIP LOOP                 6/7/8/9     NOTE     9n       32              20      hh      <- same as MIDI IN
+                                                                                      mode         +SHIFT    6/7/8/9     NOTE     9n       40              28      hh      <- same as MIDI IN
+                                                                                                             6/7/8/9     NOTE     9n       48              30      hh      <- same as MIDI IN                    [MIDI IN]
+                                                                                   BEAT JUMP
+                                                                                                                                                                                                                   0x00 : OFF
+                                                                                     mode          +SHIFT    6/7/8/9     NOTE     9n       56              38      hh      <- same as MIDI IN
+                                         Performance                                                                                                                                                               0x7F : ON
+                 5[L,R]                                                  press
+                                            Pad 1                                                            6/7/8/9     NOTE     9n       64              40      hh      <- same as MIDI IN                    [MIDI OUT]
+                                                                                   EXTENSION1
+                                                                                                                                                                                                                   0x00 : OFF (dim)
+                                                                                      mode         +SHIFT    6/7/8/9     NOTE     9n       72              48      hh      <- same as MIDI IN                      0x01-0x7E : Light up LED with specified color number
+                                                                                   EXTENSION2                6/7/8/9     NOTE     9n       80              50      hh      <- same as MIDI IN
+                                                                                      mode         +SHIFT    6/7/8/9     NOTE     9n       88              58      hh      <- same as MIDI IN
+
+                                                                                   EXTENSION3                6/7/8/9     NOTE     9n       96              60      hh      <- same as MIDI IN
+                                                                                      mode         +SHIFT    6/7/8/9     NOTE     9n      104              68      hh      <- same as MIDI IN
+
+                                                                                   EXTENSION4                6/7/8/9     NOTE     9n      112              70      hh      <- same as MIDI IN
+                                                                                      mode         +SHIFT    6/7/8/9     NOTE     9n      120              78      hh      <- same as MIDI IN
+
+                                                                                    HOT CUE                  6/7/8/9     NOTE     9n        1               1      hh      <- same as MIDI IN
+                                                                                     mode          +SHIFT    6/7/8/9     NOTE     9n        9               9      hh      <- same as MIDI IN
+
+                                                                                   BEAT LOOP                 6/7/8/9     NOTE     9n       17              11      hh      <- same as MIDI IN
+                                                                                     mode          +SHIFT    6/7/8/9     NOTE     9n       25              19      hh      <- same as MIDI IN
+
+                                                                                   SLIP LOOP                 6/7/8/9     NOTE     9n       33              21      hh      <- same as MIDI IN
+                                                                                      mode         +SHIFT    6/7/8/9     NOTE     9n       41              29      hh      <- same as MIDI IN
+                                                                                                             6/7/8/9     NOTE     9n       49              31      hh      <- same as MIDI IN                    [MIDI IN]
+                                                                                   BEAT JUMP
+                                                                                                                                                                                                                   0x00 : OFF
+                                                                                     mode          +SHIFT    6/7/8/9     NOTE     9n       57              39      hh      <- same as MIDI IN
+                                         Performance                                                                                                                                                               0x7F : ON
+                 6[L,R]                                                  press
+                                            Pad 2                                                            6/7/8/9     NOTE     9n       65              41      hh      <- same as MIDI IN                    [MIDI OUT]
+                                                                                   EXTENSION1
+                                                                                                                                                                                                                   0x00 : OFF (dim)
+                                                                                      mode         +SHIFT    6/7/8/9     NOTE     9n       73              49      hh      <- same as MIDI IN                      0x01-0x7E : Light up LED with specified color number
+                                                                                   EXTENSION2                6/7/8/9     NOTE     9n       81              51      hh      <- same as MIDI IN
+                                                                                      mode         +SHIFT    6/7/8/9     NOTE     9n       89              59      hh      <- same as MIDI IN
+
+                                                                                   EXTENSION3                6/7/8/9     NOTE     9n       97              61      hh      <- same as MIDI IN
+                                                                                      mode         +SHIFT    6/7/8/9     NOTE     9n      105              69      hh      <- same as MIDI IN
+
+                                                                                   EXTENSION4                6/7/8/9     NOTE     9n      113              71      hh      <- same as MIDI IN
+                                                                                      mode         +SHIFT    6/7/8/9     NOTE     9n      121              79      hh      <- same as MIDI IN
+
+                                                                                    HOT CUE                  6/7/8/9     NOTE     9n        2               2      hh      <- same as MIDI IN
+                                                                                     mode          +SHIFT    6/7/8/9     NOTE     9n       10              A       hh      <- same as MIDI IN
+
+                                                                                   BEAT LOOP                 6/7/8/9     NOTE     9n       18              12      hh      <- same as MIDI IN
+                                                                                     mode          +SHIFT    6/7/8/9     NOTE     9n       26              1A      hh      <- same as MIDI IN
+
+                                                                                   SLIP LOOP                 6/7/8/9     NOTE     9n       34              22      hh      <- same as MIDI IN
+                                                                                      mode         +SHIFT    6/7/8/9     NOTE     9n       42              2A      hh      <- same as MIDI IN
+                                                                                                             6/7/8/9     NOTE     9n       50              32      hh      <- same as MIDI IN                    [MIDI IN]
+                                                                                   BEAT JUMP
+                                                                                                                                                                                                                   0x00 : OFF
+                                                                                     mode          +SHIFT    6/7/8/9     NOTE     9n       58              3A      hh      <- same as MIDI IN
+                                         Performance                                                                                                                                                               0x7F : ON
+                 7[L,R]                                                  press
+                                            Pad 3                                                            6/7/8/9     NOTE     9n       66              42      hh      <- same as MIDI IN                    [MIDI OUT]
+                                                                                   EXTENSION1
+                                                                                                                                                                                                                   0x00 : OFF (dim)
+                                                                                      mode         +SHIFT    6/7/8/9     NOTE     9n       74              4A      hh      <- same as MIDI IN                      0x01-0x7E : Light up LED with specified color number
+                                                                                   EXTENSION2                6/7/8/9     NOTE     9n       82              52      hh      <- same as MIDI IN
+                                                                                      mode         +SHIFT    6/7/8/9     NOTE     9n       90              5A      hh      <- same as MIDI IN
+
+                                                                                   EXTENSION3                6/7/8/9     NOTE     9n       98              62      hh      <- same as MIDI IN
+                                                                                      mode         +SHIFT    6/7/8/9     NOTE     9n      106              6A      hh      <- same as MIDI IN
+
+                                                                                   EXTENSION4                6/7/8/9     NOTE     9n      114              72      hh      <- same as MIDI IN
+                                                                                      mode         +SHIFT    6/7/8/9     NOTE     9n      122              7A      hh      <- same as MIDI IN
+                                                                                                                    MIDI assignment                    MIDI-IN                                 MIDI-OUT
+                                                      User Interface
+                                                                                                                       reference                   (to computer)                             (from computer)
+      Group       Fig.                                                                                                                                                                                                                                          Details (Data2)
+                                                                                                                     MIDI               Status           Data1           Data 2     Status       Data 1        Data 2
+                                                                                                        +SHIFT/                NOTE /
+                                         UI name                         Trigger           Mode                     Channel
+                                                                                                       Long-Press               CC
+                                                                                                                     (Dec)              (hex)    (Dec)           (hex)   (hex)      (hex)        (hex)         (hex)
+
+                                                                                        HOT CUE                     6/7/8/9     NOTE     9n        3               3      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       11              B       hh      <- same as MIDI IN
+
+                                                                                       BEAT LOOP                    6/7/8/9     NOTE     9n       19              13      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       27              1B      hh      <- same as MIDI IN
+
+                                                                                       SLIP LOOP                    6/7/8/9     NOTE     9n       35              23      hh      <- same as MIDI IN
+                                                                                          mode            +SHIFT    6/7/8/9     NOTE     9n       43              2B      hh      <- same as MIDI IN
+                                                                                                                    6/7/8/9     NOTE     9n       51              33      hh      <- same as MIDI IN                    [MIDI IN]
+                                                                                       BEAT JUMP
+                                                                                                                                                                                                                          0x00 : OFF
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       59              3B      hh      <- same as MIDI IN
+                                      Performance                                                                                                                                                                         0x7F : ON
+                 8[L,R]                                                   press
+                                         Pad 4                                                                      6/7/8/9     NOTE     9n       67              43      hh      <- same as MIDI IN                    [MIDI OUT]
+                                                                                      EXTENSION1
+                                                                                                                                                                                                                          0x00 : OFF (dim)
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       75              4B      hh      <- same as MIDI IN                      0x01-0x7E : Light up LED with specified color number
+                                                                                      EXTENSION2                    6/7/8/9     NOTE     9n       83              53      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       91              5B      hh      <- same as MIDI IN
+
+                                                                                      EXTENSION3                    6/7/8/9     NOTE     9n       99              63      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n      107              6B      hh      <- same as MIDI IN
+
+                                                                                      EXTENSION4                    6/7/8/9     NOTE     9n      115              73      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n      123              7B      hh      <- same as MIDI IN
+
+                                                                                        HOT CUE                     6/7/8/9     NOTE     9n        4               4      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       12              C       hh      <- same as MIDI IN
+
+                                                                                       BEAT LOOP                    6/7/8/9     NOTE     9n       20              14      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       28              1C      hh      <- same as MIDI IN
+
+                                                                                       SLIP LOOP                    6/7/8/9     NOTE     9n       36              24      hh      <- same as MIDI IN
+                                                                                          mode            +SHIFT    6/7/8/9     NOTE     9n       44              2C      hh      <- same as MIDI IN
+                                                                                                                    6/7/8/9     NOTE     9n       52              34      hh      <- same as MIDI IN                    [MIDI IN]
+                                                                                       BEAT JUMP
+                                                                                                                                                                                                                          0x00 : OFF
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       60              3C      hh      <- same as MIDI IN
+                                      Performance                                                                                                                                                                         0x7F : ON
+                 9[L,R]                                                   press
+                                         Pad 5                                                                      6/7/8/9     NOTE     9n       68              44      hh      <- same as MIDI IN                    [MIDI OUT]
+                                                                                      EXTENSION1
+                                                                                                                                                                                                                          0x00 : OFF (dim)
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       76              4C      hh      <- same as MIDI IN                      0x01-0x7E : Light up LED with specified color number
+                                                                                      EXTENSION2                    6/7/8/9     NOTE     9n       84              54      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       92              5C      hh      <- same as MIDI IN
+
+                                                                                      EXTENSION3                    6/7/8/9     NOTE     9n      100              64      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n      108              6C      hh      <- same as MIDI IN
+
+                                                                                      EXTENSION4                    6/7/8/9     NOTE     9n      116              74      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n      124              7C      hh      <- same as MIDI IN
+
+                                                                                        HOT CUE                     6/7/8/9     NOTE     9n        5               5      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       13              D       hh      <- same as MIDI IN
+
+                                                                                       BEAT LOOP                    6/7/8/9     NOTE     9n       21              15      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       29              1D      hh      <- same as MIDI IN
+
+                                                                                       SLIP LOOP                    6/7/8/9     NOTE     9n       37              25      hh      <- same as MIDI IN
+                                                                                          mode            +SHIFT    6/7/8/9     NOTE     9n       45              2D      hh      <- same as MIDI IN
+                                                                                                                    6/7/8/9     NOTE     9n       53              35      hh      <- same as MIDI IN                    [MIDI IN]
+                                                                                       BEAT JUMP
+                                                                                                                                                                                                                          0x00 : OFF
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       61              3D      hh      <- same as MIDI IN
+                                      Performance                                                                                                                                                                         0x7F : ON
+                 10[L,R]                                                  press
+                                         Pad 6                                                                      6/7/8/9     NOTE     9n       69              45      hh      <- same as MIDI IN                    [MIDI OUT]
+                                                                                      EXTENSION1
+                                                                                                                                                                                                                          0x00 : OFF (dim)
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       77              4D      hh      <- same as MIDI IN                      0x01-0x7E : Light up LED with specified color number
+                                                                                      EXTENSION2                    6/7/8/9     NOTE     9n       85              55      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       93              5D      hh      <- same as MIDI IN
+
+                                                                                      EXTENSION3                    6/7/8/9     NOTE     9n      101              65      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n      109              6D      hh      <- same as MIDI IN
+
+                                                                                      EXTENSION4                    6/7/8/9     NOTE     9n      117              75      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n      125              7D      hh      <- same as MIDI IN
+
+                                                                                        HOT CUE                     6/7/8/9     NOTE     9n        6               6      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       14              E       hh      <- same as MIDI IN
+
+                                                                                       BEAT LOOP                    6/7/8/9     NOTE     9n       22              16      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       30              1E      hh      <- same as MIDI IN
+
+                                                                                       SLIP LOOP                    6/7/8/9     NOTE     9n       38              26      hh      <- same as MIDI IN
+                                                                                          mode            +SHIFT    6/7/8/9     NOTE     9n       46              2E      hh      <- same as MIDI IN
+                                                                                                                    6/7/8/9     NOTE     9n       54              36      hh      <- same as MIDI IN                    [MIDI IN]
+                                                                                       BEAT JUMP
+                                                                                                                                                                                                                          0x00 : OFF
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       62              3E      hh      <- same as MIDI IN
+                                      Performance                                                                                                                                                                         0x7F : ON
+                 11[L,R]                                                  press
+                                         Pad 7                                                                      6/7/8/9     NOTE     9n       70              46      hh      <- same as MIDI IN                    [MIDI OUT]
+                                                                                      EXTENSION1
+                                                                                                                                                                                                                          0x00 : OFF (dim)
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       78              4E      hh      <- same as MIDI IN                      0x01-0x7E : Light up LED with specified color number
+                                                                                      EXTENSION2                    6/7/8/9     NOTE     9n       86              56      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       94              5E      hh      <- same as MIDI IN
+
+                                                                                      EXTENSION3                    6/7/8/9     NOTE     9n      102              66      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n      110              6E      hh      <- same as MIDI IN
+
+                                                                                      EXTENSION4                    6/7/8/9     NOTE     9n      118              76      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n      126              7E      hh      <- same as MIDI IN
+
+                                                                                        HOT CUE                     6/7/8/9     NOTE     9n        7               7      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       15              F       hh      <- same as MIDI IN
+
+                                                                                       BEAT LOOP                    6/7/8/9     NOTE     9n       23              17      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       31              1F      hh      <- same as MIDI IN
+
+                                                                                       SLIP LOOP                    6/7/8/9     NOTE     9n       39              27      hh      <- same as MIDI IN
+                                                                                          mode            +SHIFT    6/7/8/9     NOTE     9n       47              2F      hh      <- same as MIDI IN
+                                                                                                                    6/7/8/9     NOTE     9n       55              37      hh      <- same as MIDI IN                    [MIDI IN]
+                                                                                       BEAT JUMP
+                                                                                                                                                                                                                          0x00 : OFF
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       63              3F      hh      <- same as MIDI IN
+                                      Performance                                                                                                                                                                         0x7F : ON
+                 12[L,R]                                                  press
+                                         Pad 8                                                                      6/7/8/9     NOTE     9n       71              47      hh      <- same as MIDI IN                    [MIDI OUT]
+                                                                                      EXTENSION1
+                                                                                                                                                                                                                          0x00 : OFF (dim)
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       79              4F      hh      <- same as MIDI IN                      0x01-0x7E : Light up LED with specified color number
+                                                                                      EXTENSION2                    6/7/8/9     NOTE     9n       87              57      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n       95              5F      hh      <- same as MIDI IN
+
+                                                                                      EXTENSION3                    6/7/8/9     NOTE     9n      103              67      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n      111              6F      hh      <- same as MIDI IN
+
+                                                                                      EXTENSION4                    6/7/8/9     NOTE     9n      119              77      hh      <- same as MIDI IN
+                                                                                         mode             +SHIFT    6/7/8/9     NOTE     9n      127              7F      hh      <- same as MIDI IN
+6, OTHERS          1              USB STOP (USB 1)                        press                                                                                                                                         (Hardware Control)
+                   2             USB indicator (USB 1)                                                                                                                                                                  (Hardware Control)
+                   3              USB STOP (USB 2)                        press                                                                                                                                         (Hardware Control)
+                   4             USB indicator (USB 2)                                                                                                                                                                  (Hardware Control)
+                   5                 MASTER REC                           press                                                                                                                                         (Hardware Control)
+                   6               TRACK MARKER                           press                                                                                                                                         (Hardware Control)
+
+                                    PC Control mode                                                                                                                                                                     OFF=0 (0x00), ON=127 (0x7F)
+                   －                                                                                                1/2/3/4      CC      Bn      100              64      hh
+                                                                                                                                                                                                                        ([BROWSE] > [MIDI] > [LOAD])
+                                                                                                                                                                                                                        Select MIDI CONTROL mode : 0x00
+                   －                  Mixer mode                                                                       5         CC      B4      101              65      hh      <- same as MIDI IN                    Select XDJ-RX3 mode : ON=0x7F
+                                                                                                                                                                                                                        ([UTLITY] > [MIXER MODE])
+                                                         Deck 1                                                       12        NOTE               0                                 9B            0            hh      OFF=0 (0x00), ON=127 (0x7F)
+
+                                                         Deck 2        Trigger for LOAD illumination                  12        NOTE               1                                 9B            1            hh      OFF=0 (0x00), ON=127 (0x7F)
+                   －              Load
+                                                                       (Blinking LOAD button)                         12        NOTE               2                                 9B            2            hh      OFF=0 (0x00), ON=127 (0x7F)
+                                                         Deck 3
+                                                         Deck 4                                                       12        NOTE               3                                 9B            3            hh      OFF=0 (0x00), ON=127 (0x7F)
+7, JOG DISPLAY                                                                                                                                     0                                               0           MSB
+                                                         Deck 1                                                       12         CC                                                  BB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x02, LSB：0x67) 0 ～ 359 [degree]
+                                                                                                                                                  32                                               20           LSB
+                                                                                                                                                   1                                               1           MSB
+                                                         Deck 2                                                       12         CC                                                  BB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x02, LSB：0x67) 0 ～ 359 [degree]
+                                                                                                                                                  33                                               21           LSB
+                 1[L,R]    Current Position Bar
+                                                                                                                                                   2                                               2           MSB
+                                                         Deck 3                                                       12         CC                                                  BB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x02, LSB：0x67) 0 ～ 359 [degree]
+                                                                                                                                                  34                                               22           LSB
+                                                                                                                                                   3                                               3           MSB
+                                                         Deck 4                                                       12         CC                                                  BB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x02, LSB：0x67) 0 ～ 359 [degree]
+                                                                                                                                                  35                                               23           LSB
+                                                                                                                                                   4                                               4           MSB      Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x02, LSB：0x67) 0 ～ 359 [degree]
+                                                         Deck 1                                                       12         CC                                                  BB
+                                                                                                                                                  36                                               24           LSB     Hide Cue maker： (MSB：0x7F, LSB：0x7F)
+                                                                                                                                                   5                                               5           MSB      Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x02, LSB：0x67) 0 ～ 359 [degree]
+                                                         Deck 2                                                       12         CC                                                  BB
+                                                                                                                                                  37                                               25           LSB     Hide Cue maker： (MSB：0x7F, LSB：0x7F)
+                 2[L,R]        Cue Marker
+                                                                                                                                                   6                                               6           MSB      Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x02, LSB：0x67) 0 ～ 359 [degree]
+                                                         Deck 3                                                       12         CC                                                  BB
+                                                                                                                                                  38                                               26           LSB     Hide Cue maker： (MSB：0x7F, LSB：0x7F)
+                                                                                                                                                   7                                               7           MSB      Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x02, LSB：0x67) 0 ～ 359 [degree]
+                                                         Deck 4                                                       12         CC                                                  BB
+                                                                                                                                                  39                                               27           LSB     Hide Cue maker： (MSB：0x7F, LSB：0x7F)
+CH LEVEL METER
+       Display level         MIDI OUT (C.C)
+      Red              15         109
+      Red              12         104
+     Amber             9          99
+     Amber             6          94
+     Amber             3          89
+     Amber             0          84
+  Emerald green        -3         79
+  Emerald green        -6         75
+  Emerald green        -9         70
+  Emerald green        -15        65
+  Emerald green        -24        60
+
+
+
+
+                                              © 2021 AlphaTheta Corporation All rights reserved.
+

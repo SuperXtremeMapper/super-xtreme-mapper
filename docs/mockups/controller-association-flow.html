@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Controller Association — intended flow mockup</title>
+<style>
+  :root{
+    --amber:#f59e0b; --amber-light:#fbbf24; --amber-dark:#d97706;
+    --amber-subtle:rgba(245,158,11,.10); --amber-glow:rgba(245,158,11,.35);
+    --stone950:#0c0a09; --stone900:#1c1917; --stone800:#292524; --stone700:#44403c;
+    --stone600:#57534e; --stone500:#78716c; --stone400:#a8a29e; --stone300:#d6d3d1;
+    --stone200:#e7e5e4; --stone100:#f5f5f4;
+    --success:#10b981; --danger:#ef4444;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:#141210; font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;
+    color:var(--stone300); padding:40px 20px; line-height:1.4;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page-title{max-width:1180px; margin:0 auto 8px; color:var(--stone100); font-size:20px; font-weight:600;}
+  .page-sub{max-width:1180px; margin:0 auto 26px; color:var(--stone500); font-size:13px;}
+
+  /* ---- macOS window ---- */
+  .window{
+    max-width:1180px; margin:0 auto; background:var(--stone900);
+    border:1px solid var(--stone700); border-radius:12px; overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.6);
+  }
+  .titlebar{
+    height:38px; background:var(--stone800); border-bottom:1px solid var(--stone700);
+    display:flex; align-items:center; padding:0 14px; gap:8px; position:relative;
+  }
+  .dot{width:12px; height:12px; border-radius:50%;}
+  .dot.r{background:#ff5f57;} .dot.y{background:#febc2e;} .dot.g{background:#28c840;}
+  .win-title{position:absolute; left:0; right:0; text-align:center; font-size:13px; color:var(--stone400); font-weight:500; pointer-events:none;}
+
+  /* ---- toolbar ---- */
+  .toolbar{
+    height:52px; background:var(--stone900); border-bottom:1px solid var(--stone700);
+    display:flex; align-items:center; padding:0 16px; gap:10px;
+  }
+  .tb-btn{
+    height:32px; padding:0 12px; border-radius:8px; background:var(--stone800);
+    border:1px solid var(--stone700); color:var(--stone300); font-size:13px;
+    display:flex; align-items:center; gap:6px; cursor:default;
+  }
+  .tb-btn.icon{width:32px; padding:0; justify-content:center;}
+  .spacer{flex:1;}
+
+  /* the Controller button — UX MOVE 2 (absorbs the old chip's job) */
+  .tb-btn.controller{gap:8px;}
+  .tb-btn.controller .dot{width:7px; height:7px; border-radius:50%; background:var(--success); box-shadow:0 0 6px rgba(16,185,129,.7);}
+  .tb-btn.controller .name{color:var(--stone100); font-weight:600;}
+  .tb-btn.controller.unassigned .dot{background:var(--amber); box-shadow:0 0 6px var(--amber-glow);}
+  .tb-btn.controller.unassigned{color:var(--stone400);}
+
+  /* ---- soft banner — UX MOVE 1 — matches AssistantNoticeBanner exactly ---- */
+  .banner{
+    margin:8px 12px 0; padding:8px 12px; border-radius:6px;
+    background:rgba(245,158,11,.12);
+    display:flex; align-items:center; gap:8px; font-size:13px; color:var(--stone200);
+  }
+  .banner .ico{flex:none; color:var(--amber); font-size:14px;}
+  .banner b{color:var(--stone100); font-weight:600;}
+  .banner .bspacer{flex:1;}
+  .btn-amber{
+    height:24px; padding:0 10px; border-radius:6px; background:var(--amber);
+    color:var(--stone950); font-size:12px; font-weight:700; border:none; cursor:default;
+  }
+  .btn-ghost{
+    height:24px; padding:0 10px; border-radius:6px; background:transparent;
+    color:var(--stone400); font-size:12px; border:1px solid var(--stone700); cursor:default;
+  }
+
+  /* ---- main split ---- */
+  .split{display:flex; min-height:520px;}
+  .main-col{flex:1; padding:14px 12px; min-width:0;}
+  .side-col{width:300px; border-left:1px solid var(--stone700); background:var(--stone950); padding:0;}
+
+  .section-head{
+    height:32px; display:flex; align-items:center; justify-content:space-between;
+    padding:0 6px; margin-bottom:8px;
+  }
+  .section-head h3{font-size:13px; color:var(--stone200); font-weight:600; letter-spacing:.2px;}
+  .filter-btn{width:26px;height:26px;border-radius:50%;background:var(--stone800);border:1px solid var(--stone700);display:flex;align-items:center;justify-content:center;color:var(--stone400);font-size:12px;}
+
+  /* ---- mapping table ---- */
+  table{width:100%; border-collapse:collapse; font-size:12.5px;}
+  thead th{
+    text-align:left; color:var(--stone500); font-weight:600; font-size:11px;
+    text-transform:uppercase; letter-spacing:.6px; padding:6px 8px; border-bottom:1px solid var(--stone700);
+  }
+  tbody td{padding:9px 8px; border-bottom:1px solid rgba(68,64,60,.5); vertical-align:middle;}
+  tbody tr:hover{background:var(--stone800);}
+  tr.selected{background:var(--amber-subtle);}
+  tr.selected td:first-child{box-shadow:inset 3px 0 0 var(--amber);}
+
+  .dir{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:34px; height:20px; border-radius:5px; font-size:10px; font-weight:700; letter-spacing:.4px;
+  }
+  .dir.in{background:rgba(16,185,129,.15); color:#34d399; border:1px solid rgba(16,185,129,.4);}
+  .dir.out{background:rgba(245,158,11,.15); color:var(--amber-light); border:1px solid rgba(245,158,11,.4);}
+
+  /* inline physical name — UX MOVE 3 (the payoff) */
+  .phys{color:var(--stone100); font-weight:600;}
+  .midi{color:var(--stone500); font-size:11px; font-family:"SF Mono",ui-monospace,monospace; margin-top:2px;}
+  .cmd{color:var(--stone300);}
+  .cmd .cond{color:var(--stone500); font-size:11px; margin-top:2px;}
+  .unknown .phys{color:var(--stone500); font-style:italic; font-weight:500;}
+  .badge-learn{
+    display:inline-block; font-size:10px; padding:1px 6px; border-radius:10px; margin-left:6px;
+    background:var(--stone800); border:1px solid var(--stone700); color:var(--stone400); font-style:normal;
+  }
+
+  /* ---- side details panel — UX MOVE 5 ---- */
+  .side-head{
+    height:44px; display:flex; align-items:center; gap:8px; padding:0 14px;
+    border-bottom:1px solid var(--stone700); background:var(--stone900);
+  }
+  .side-head .glyph{width:22px;height:22px;border-radius:6px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--stone950);font-size:12px;font-weight:800;}
+  .side-head .name{color:var(--stone100); font-weight:600; font-size:14px;}
+  .side-head .sub{color:var(--stone500); font-size:11px;}
+  .side-body{padding:14px;}
+  .side-label{font-size:10px; text-transform:uppercase; letter-spacing:.6px; color:var(--stone500); margin:16px 0 6px;}
+  .side-label:first-child{margin-top:0;}
+  .field{
+    height:34px; border-radius:7px; background:var(--stone800); border:1px solid var(--stone700);
+    display:flex; align-items:center; padding:0 10px; justify-content:space-between; color:var(--stone200); font-size:12.5px;
+  }
+  .field .caret{color:var(--stone500); font-size:10px;}
+  .cov{display:flex; align-items:center; gap:8px; font-size:12px; margin-top:4px;}
+  .pill-ok{background:rgba(16,185,129,.15); color:#34d399; border:1px solid rgba(16,185,129,.4); font-size:10px; padding:2px 8px; border-radius:10px; font-weight:700;}
+  .side-note{font-size:11.5px; color:var(--stone500); line-height:1.5; margin-top:6px;}
+  .side-link{color:var(--amber-light); font-size:12px; text-decoration:none; display:block; margin-top:10px;}
+
+  /* ---- status bar ---- */
+  .statusbar{
+    height:28px; background:var(--stone800); border-top:1px solid var(--stone700);
+    display:flex; align-items:center; padding:0 14px; gap:8px; font-size:11px; color:var(--stone500);
+  }
+  .statusbar .warn{color:var(--amber-light);}
+
+  /* ---- annotations ---- */
+  .legend{max-width:1180px; margin:24px auto 0; display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px;}
+  .lg{background:var(--stone900); border:1px solid var(--stone700); border-radius:10px; padding:12px 14px;}
+  .lg .n{width:22px;height:22px;border-radius:50%;background:var(--amber);color:var(--stone950);font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;}
+  .lg h4{color:var(--stone100); font-size:12.5px; margin-bottom:4px;}
+  .lg p{color:var(--stone400); font-size:11.5px; line-height:1.5;}
+</style>
+</head>
+<body>
+  <div class="page-title">Controller association — intended "ambient context" flow</div>
+  <div class="page-sub">Mockup only · colors match AppThemeV2 tokens · numbered callouts map to the 5 UX moves below</div>
+
+  <div class="window">
+    <!-- titlebar -->
+    <div class="titlebar">
+      <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+      <div class="win-title">Festival&nbsp;Set&nbsp;2026.tsi — XtremeMapping</div>
+    </div>
+
+    <!-- toolbar with controller chip -->
+    <div class="toolbar">
+      <div class="tb-btn icon">☰</div>
+      <div class="tb-btn">Wizard</div>
+      <div class="tb-btn icon">＋</div>
+      <div class="spacer"></div>
+      <!-- UX MOVE 2: Controller button — access, assign, change; shows current device + status dot.
+           Sits just before the Assistant button, same height/style as the other toolbar buttons. -->
+      <div class="tb-btn controller" title="Controller — assign or change; opens details">
+        <span class="dot"></span> Controller: <span class="name">Xone:K2</span>
+      </div>
+      <div class="tb-btn icon" title="AI setup">⚙</div>
+      <div class="tb-btn icon" title="Assistant">✦</div>
+    </div>
+
+    <!-- UX MOVE 1: soft, dismissible detect banner — first open only; matches the existing warning banner -->
+    <div class="banner">
+      <span class="ico">⚠</span>
+      <span>MIDI detected on <b>channel 15</b> across 58 rows. Which controller is this? Naming it lets SXM show your physical knobs and buttons by name — or set it anytime from the <b>Controller</b> button.</span>
+      <span class="bspacer"></span>
+      <button class="btn-amber">It's a Xone:K2</button>
+      <button class="btn-ghost">Pick another…</button>
+      <button class="btn-ghost">Skip</button>
+    </div>
+
+    <!-- split -->
+    <div class="split">
+      <div class="main-col">
+        <div class="section-head">
+          <h3>Mappings · 58</h3>
+          <div class="filter-btn">⋔</div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width:44px">Dir</th>
+              <th style="width:34%">Control</th>
+              <th>Command</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- UX MOVE 3: inline physical control names resolved from the profile -->
+            <tr class="selected">
+              <td><span class="dir in">IN</span></td>
+              <td><div class="phys">Play / Cue button</div><div class="midi">Note C1 · ch15</div></td>
+              <td><div class="cmd">Play/Pause</div><div class="cond">Deck A · direct</div></td>
+            </tr>
+            <tr>
+              <td><span class="dir in">IN</span></td>
+              <td><div class="phys">Top encoder 1 · turn</div><div class="midi">CC 0 · ch15 · relative</div></td>
+              <td><div class="cmd">Browse Tree</div><div class="cond">Deck A</div></td>
+            </tr>
+            <tr>
+              <td><span class="dir in">IN</span></td>
+              <td><div class="phys">Fader 1</div><div class="midi">CC 16 · ch15</div></td>
+              <td><div class="cmd">Volume</div><div class="cond">Deck A</div></td>
+            </tr>
+            <tr>
+              <td><span class="dir out">OUT</span></td>
+              <td><div class="phys">Play LED · green</div><div class="midi">Note C1 · ch15</div></td>
+              <td><div class="cmd">Deck Playing</div><div class="cond">Deck A · LED feedback</div></td>
+            </tr>
+            <tr>
+              <td><span class="dir in">IN</span></td>
+              <td><div class="phys">Matrix pad 1·1</div><div class="midi">Note E3 · ch15</div></td>
+              <td><div class="cmd">Hotcue 1</div><div class="cond">Deck A · Shift held</div></td>
+            </tr>
+            <!-- unresolved address — honest unknown state -->
+            <tr class="unknown">
+              <td><span class="dir in">IN</span></td>
+              <td><div class="phys">Unrecognized control <span class="badge-learn">MIDI Learn</span></div><div class="midi">CC 102 · ch15 · not in Xone:K2 profile</div></td>
+              <td><div class="cmd">Loop In</div><div class="cond">Deck A · custom template?</div></td>
+            </tr>
+            <tr>
+              <td><span class="dir in">IN</span></td>
+              <td><div class="phys">Pot 2·3</div><div class="midi">CC 23 · ch15</div></td>
+              <td><div class="cmd">Filter</div><div class="cond">Deck B</div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- UX MOVE 5: details panel — opened from the chip, only for setup / evidence / corrections -->
+      <div class="side-col">
+        <div class="side-head">
+          <div class="glyph">K2</div>
+          <div>
+            <div class="name">Allen &amp; Heath Xone:K2</div>
+            <div class="sub">profile 1.0.0 · manufacturer-documented</div>
+          </div>
+        </div>
+        <div class="side-body">
+          <div class="side-label">Coverage</div>
+          <div class="cov"><span class="pill-ok">FULL MIDI</span> <span style="color:var(--stone400);font-size:12px;">58 actions · 34 LED targets</span></div>
+
+          <div class="side-label">MIDI channel</div>
+          <div class="field">15 <span style="color:var(--stone500);font-size:11px;">documented default</span></div>
+
+          <div class="side-label">Layer mode</div>
+          <div class="field">All controls (latching) <span class="caret">▼</span></div>
+
+          <div class="side-label">Find a control</div>
+          <div class="field" style="color:var(--stone500);">Search "Play", "fader 1"… <span class="caret">⌕</span></div>
+
+          <div class="side-label">Corrections</div>
+          <div class="side-note">1 address in this mapping isn't in the profile (CC 102). Capture it with <span style="color:var(--amber-light)">MIDI Learn</span> to save a verified override.</div>
+          <a class="side-link" href="#">View sources &amp; evidence →</a>
+          <a class="side-link" href="#">Change controller…</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- status bar -->
+    <div class="statusbar">
+      <span>Xone:K2 · ch15 · All-controls mode</span>
+      <span style="color:var(--stone700)">|</span>
+      <span class="warn">⚠ 1 control unresolved</span>
+      <span class="bspacer" style="flex:1"></span>
+      <span>Undo available</span>
+    </div>
+  </div>
+
+  <!-- legend -->
+  <div class="legend">
+    <div class="lg"><div class="n">1</div><h4>Soft detect banner</h4><p>First open only, matches the existing warning banner. Dismissible — never blocks generic use. It points to the Controller button for later.</p></div>
+    <div class="lg"><div class="n">2</div><h4>Controller button</h4><p>Same style as Wizard, sits before the Assistant button. Assign, change, or inspect anytime. Shows the current device + a status dot (green = set, <span style="color:var(--amber-light)">amber = needs assigning</span>). Absorbs the old chip.</p></div>
+    <div class="lg"><div class="n">3</div><h4>Inline physical names</h4><p>Rows read "Play button", "Fader 1" — not bare CC numbers. The payoff of ambient context.</p></div>
+    <div class="lg"><div class="n">4</div><h4>Shared with Assistant</h4><p>The gear/spark Assistant uses the same document-level controller. No separate scope picker.</p></div>
+    <div class="lg"><div class="n">5</div><h4>Details = setup only</h4><p>The heavy search/evidence/override panel opens from the chip — for setup, sources, corrections.</p></div>
+  </div>
+</body>
+</html>

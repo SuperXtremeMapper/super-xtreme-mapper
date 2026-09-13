@@ -1,0 +1,427 @@
+--- PDF PAGE 1 ---
+MIDI Specification
+
+
+
+
+                     1
+       v1.0
+
+--- PDF PAGE 2 ---
+Scope
+
+This document describes the format of messages between the LC6000 PRIME and the PC/Mac Host.
+
+
+Inbound Send Messages
+
+LC6000 PRIME Control (Send)         Command                        Number                  Value
+
+              Control         Ch.    Event     Hex    MIDI Dec   MIDI Hex   Note     Dec           Hex
+
+Play/Pause                                              01        0x01      C#-1
+
+Cue                                                     02        0x02      D-1
+
+Track Skip (Previous)                                   05        0x05      F -1
+
+Track Skip (Next)                                       06        0x06      F#-1
+
+Beat Jump Back                                          03        0x03      Eb-1
+
+Beat Jump Forward                                       04        0x04      E -1
+
+Censor                                                  07        0x07      G -1
+
+Loop In                                                 08        0x08      G#-1
+
+Loop Out                                                09        0x09      A -1
+
+Auto Loop Set (Knob Press)                              10        0x0A      Bb-1
+
+Back                                                    16        0x10      E0
+
+Forward                                                 17        0x11      F0     Note On:    Note On:
+                                    Note On                                          127        0x7F
+Select (Knob Press)           1                0x90     18        0x12      F# 0
+                                    Note Off                                       Note Off:   Note Off:
+Vinyl                                                   19        0x13      G0        0         0x00
+Sync                                                    20        0x14      G# 0
+
+Master Deck                                             21        0x15      A0
+
+Key Lock                                                22        0x16      Bb 0
+
+Slip                                                    23        0x17      B0
+
+Pitch -                                                 24        0x18      C1
+
+Pitch +                                                 25        0x19      C# 1
+
+Shift                                                   26        0x1A      D1
+
+Hot Cue Mode                                            27        0x1B      Eb 1
+
+Loop Mode                                               30        0x1E      F# 1
+
+Roll Mode                                               28        0x1C      E1
+
+Slicer Mode                                             29        0x1D      F1
+
+
+
+
+2
+
+--- PDF PAGE 3 ---
+  LC6000 PRIME Control
+                                Command                 Number                       Value
+         (Send)
+
+                                                 MIDI
+           Control       Ch.    Event     Hex           MIDI Hex   Note     Dec               Hex
+                                                 Dec
+
+Performance Pad 1                                 32      0x20     G# 1
+
+Performance Pad 2                                33      0x21      A1
+
+Performance Pad 3                                 34      0x22     Bb 1
+
+Performance Pad 4                                 35      0x23     B1
+
+Performance Pad 5                                36      0x24      C2
+                                                                          Note On:       Note On:
+Performance Pad 6              Note On            37      0x25     C# 2     127           0x7F
+                                          0x90
+Performance Pad 7              Note Off          38      0x26      D2     Note Off:      Note Off:
+                                                                             0            0x00
+Performance Pad 8                                39       0x27     Eb 2
+
+Platter Touch                                    40       0x28     E2
+
+Parameter Back           1                       68       0x44     G# 4
+
+Parameter Forward                                69      0x45      A4
+
+Needle Drop (Touch)                               70      0x46     Bb 4
+
+                                                                          Reverse:       Reverse:
+                                                                          127–64        0x7F–0x40
+Auto Loop Size                                    03      0x03     Eb-1
+                                                                          Forward:       Forward:
+                                                                           1–63         0x01–0x3F
+                                 CC       0xB0
+                                                                          Slow to            Slow to
+                                                                            fast               fast
+Select (Turn)                                     06      0x06     F#-1
+                                                                          Relative       Relative
+                                                                           data           data
+
+
+
+
+                                                                                                       3
+
+--- PDF PAGE 4 ---
+LC6000
+PRIME
+Double
+                     Command          Upper Byte CC#       Upper Byte Value      Lower Byte CC#       Lower Byte Value
+Precision
+Control
+(Send)
+
+                                     MIDI   MIDI   Note                         MIDI   MIDI   Note
+Control        Ch.    Event   Hex                           Dec        Hex                             Dec        Hex
+                                     Dec    Hex                                 Dec    Hex
+
+                                                                     Reverse:                                   Reverse:
+                                                          Reverse:    0x7F–                          Reverse:    0x7F–
+                                                          127–64      0x40                           127–64      0x40
+
+                                                          Forward:   Forward:                        Forward:   Forward:
+                                                            1–63      0x01–                            1–63      0x01–
+Jog Wheel                             55    0x37   G3                  0x3F      54    0x36   F# 3                0x3F
+                                                          Slow to                                    Slow to
+                                                            fast     Slow to                           fast     Slow to
+                                                                       fast                                       fast
+                                                          Relative                                   Relative
+               1       CC     0xB0                         data      Relative                         data      Relative
+                                                                      data                                       data
+
+                                                                      0x00-                                      0x00-
+                                                                      0x7F                                       0x7F
+Pitch Slider                          08    0x08   G#-1                          40    0x28   E2
+                                                                     Absolute                                   Absolute
+                                                                      Data                                       Data
+
+                                                                      0x00-                                      0x00-
+Needle Drop                                                           0x7F                                       0x7F
+                                      64    0x40   E4                            64    0x40   E4
+(Scrub)                                                              Absolute                                   Absolute
+                                                                      Data                                       Data
+
+
+
+
+4
+
+--- PDF PAGE 5 ---
+Outbound Receive Messages
+
+  LC6000 PRIME Control
+                               Command                  Number                       LED State
+       (Receive)
+
+                                                 MIDI   MIDI
+            Control      Ch.    Event     Hex                    Note        Dec                 Hex
+                                                 Dec    Hex
+
+Play/Pause                                        01    0x01     C#-1
+
+Cue                                               02    0x02     D -1
+
+Track Skip (Previous)                            05     0x05     F -1
+
+Track Skip (Next)                                06     0x06     F#-1
+
+Beat Jump Back                                   03     0x03     Eb-1
+
+Beat Jump Forward                                 04    0x04     E -1
+
+Censor                                           07     0x07     G -1
+
+Loop In                                           08    0x08     G#-1
+
+Loop Out                                         09     0x09     A -1
+
+Auto Loop Light Ring                              10    0x0A     Bb-1
+
+Select Light Ring                                 18    0x12     F# 0
+
+Vinyl                                             19    0x13     G0
+
+Sync                                              20    0x14     G# 0       0=Off,           0x00=Off,
+Master Deck                    Note On    0x90    21    0x15     A0        1=Dim,            0x01=Dim,
+                         1
+Key Lock                       Note Off   0x80    22    0x16     Bb 0
+                                                                            2–127=          0x02–0x7F=
+Slip                                              23    0x17     B0     Full Brightness    Full Brightness
+
+Pitch -                                           24    0x18     C1
+
+Pitch +                                           25    0x19     C# 1
+
+Shift                                             26    0x1A     D1
+
+Pitch Arrow Back                                 41     0x29     F2
+
+Pitch Center                                      42    0x2A     F# 2
+
+Pitch Arrow Forward                               43    0x2B     G2
+
+Parameter Back                                   68     0x44     G# 4
+
+Parameter Forward                                69     0x45     A4
+
+Hot Cue Mode                                      27    0x1B     Eb 1
+
+Loop Mode                                         30    0x1E     F# 1
+
+Roll Mode                                        28     0x1C     E1
+
+Slicer Mode                                       29    0x1D     F1
+
+
+
+
+                                                                                                             5
+
+--- PDF PAGE 6 ---
+     LC6000 PRIME Control
+                                              Command                              Number                    Value
+          (Receive)
+
+           RGB LEDs                  Ch.        Event        Hex      MIDI Dec    MIDI Hex      Note   Dec           Hex
+
+Performance Pad 1                                                         32        0x20        G# 1
+
+Performance Pad 2                                                         33        0x21         A1
+
+Performance Pad 3                                                         34        0x22        Bb 1
+
+Performance Pad 4                                                         35        0x23         B1
+                                               Note On
+                                                                                                       See Color Table
+Performance Pad 5                     1                      0x90         36        0x24         C2
+                                                                                                           below.
+                                              Note Off
+Performance Pad 6                                                         37        0x25        C# 2
+
+Performance Pad 7                                                         38        0x26         D2
+
+Performance Pad 8                                                         39        0x27        Eb 2
+
+Platter LED Ring                                                          40        0x28         E2
+
+Note: The wheel display requires SysEx programming and is not available through manual MIDI mapping.
+
+
+
+
+6
+
+--- PDF PAGE 7 ---
+Color Table from Device
+
+   Velocity Dec   Velocity Hex         Color Example
+
+        1            0x00        OFF
+
+        2            0x01
+
+        3            0x02
+
+        4            0x03
+
+        5            0x04
+
+        6            0x05
+
+        7            0x06
+
+        8            0x07
+
+        9            0x08
+
+       10            0x09
+
+       11            0x0A
+
+       12            0x0B
+
+       13            0x0C
+
+       14            0x0D
+
+       15            0x0E
+
+       16            0x0F
+
+       17            0x10
+
+       18            0x11
+
+       19            0x12
+
+
+
+
+                                                       7
+
+--- PDF PAGE 8 ---
+    Velocity Dec   Velocity Hex   Color Example
+
+        20            0x13
+
+        21            0x14
+
+        22            0x15
+
+        23            0x16
+
+        24            0x17
+
+        25            0x18
+
+        26            0x19
+
+        27            0x1A
+
+        28            0x1B
+
+        29            0x1C
+
+        30            0x1D
+
+        31            0x1E
+
+        32            0x1F
+
+        33            0x20
+
+        34            0x21
+
+        35            0x22
+
+        36            0x23
+
+        37            0x24
+
+        38            0x25
+
+        39            0x26
+
+        40            0x27
+
+        41            0x28
+
+        42            0x29
+
+        43            0x2A
+
+
+
+
+8
+
+--- PDF PAGE 9 ---
+Velocity Dec   Velocity Hex   Color Example
+
+    44            0x2B
+
+    45            0x2C
+
+    46            0x2D
+
+    47            0x2E
+
+    48            0x2F
+
+    49            0x30
+
+    50            0x31
+
+    51            0x32
+
+    52            0x33
+
+    53            0x34
+
+    54            0x35
+
+    55            0x36
+
+    56            0x37
+
+    57            0x38
+
+    58            0x39
+
+    59            0x3A
+
+    60            0x3B
+
+    61            0x3C
+
+    62            0x3D
+
+    63            0x3E
+
+    64            0x3F
+
+
+
+
+                                              9

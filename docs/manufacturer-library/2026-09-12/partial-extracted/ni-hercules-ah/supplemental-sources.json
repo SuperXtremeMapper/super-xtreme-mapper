@@ -1,0 +1,20 @@
+{
+  "reason": "Existing archived official shared reference cited by catalogue evidence_locators; register as additive per-model catalogue source before final validation.",
+  "models": [
+    "Traktor Kontrol S2 MK3",
+    "Traktor Kontrol S3",
+    "Traktor MX2"
+  ],
+  "sources": [
+    {
+      "kind": "manufacturer-source",
+      "url": "https://support.native-instruments.com/support/solutions/articles/69000880031-native-instruments-switching-your-controller-to-midi-mode",
+      "local_file": "ni-hercules-ah/shared/ni-midi-mode.html",
+      "sha256": "82e0c13da905d67b7ac0c46934ed3381bb616373a953b4641209670553665f19",
+      "bytes": 88463,
+      "pages": null,
+      "existing_archive": false,
+      "extracted_text": "ni-hercules-ah/shared/ni-midi-mode.txt"
+    }
+  ]
+}

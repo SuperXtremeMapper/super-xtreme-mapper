@@ -1,0 +1,1830 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Denon DJ",
+  "model": "LC6000 PRIME",
+  "status": "documented-extraction",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "id": "protocol",
+      "local_file": "inmusic/lc6000/LC6000-PRIME-MIDI-Specification-v1.0.pdf",
+      "url": "https://cdn.inmusicbrands.com/denondj/lc6000/LC6000-PRIME-MIDI-Specification-v1.0.pdf",
+      "sha256": "9fde4d92bc3fa604236678d9d72833dbf669383e7427f33d490c05f872962112"
+    }
+  ],
+  "scope": "All definite scalar send buttons/encoders and receive LED addresses; documented paired jog/pitch messages retained as compound. RGB palette interpretation and scrub pair quarantined.",
+  "bindings": [
+    {
+      "id": "b00001",
+      "control": "Play/Pause",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 1,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00002",
+      "control": "Cue",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 2,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00003",
+      "control": "Track Skip Previous",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 5,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00004",
+      "control": "Track Skip Next",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 6,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00005",
+      "control": "Beat Jump Back",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 3,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00006",
+      "control": "Beat Jump Forward",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 4,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00007",
+      "control": "Censor",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 7,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00008",
+      "control": "Loop In",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 8,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00009",
+      "control": "Loop Out",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 9,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00010",
+      "control": "Auto Loop Set",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 10,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00011",
+      "control": "Back",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 16,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00012",
+      "control": "Forward",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 17,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00013",
+      "control": "Select press",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 18,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00014",
+      "control": "Vinyl",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 19,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00015",
+      "control": "Sync",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 20,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00016",
+      "control": "Master Deck",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 21,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00017",
+      "control": "Key Lock",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 22,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00018",
+      "control": "Slip",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 23,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00019",
+      "control": "Pitch -",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 24,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00020",
+      "control": "Pitch +",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 25,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00021",
+      "control": "Shift",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 26,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00022",
+      "control": "Hot Cue Mode",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 27,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00023",
+      "control": "Loop Mode",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 30,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00024",
+      "control": "Roll Mode",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 28,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00025",
+      "control": "Slicer Mode",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 29,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00026",
+      "control": "Performance Pad 1",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 32,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00027",
+      "control": "Performance Pad 2",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 33,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00028",
+      "control": "Performance Pad 3",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 34,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00029",
+      "control": "Performance Pad 4",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 35,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00030",
+      "control": "Performance Pad 5",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 36,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00031",
+      "control": "Performance Pad 6",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 37,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00032",
+      "control": "Performance Pad 7",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 38,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00033",
+      "control": "Performance Pad 8",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 39,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00034",
+      "control": "Platter Touch",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 40,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00035",
+      "control": "Parameter Back",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 68,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00036",
+      "control": "Parameter Forward",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 69,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00037",
+      "control": "Needle Drop Touch",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 1,
+      "number": 70,
+      "encoding": "Note On 127; Note Off 0",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp2\u20133 Inbound Send Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00038",
+      "control": "Auto Loop Size",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 3,
+      "encoding": "relative directional data",
+      "values": {
+        "reverse": [
+          64,
+          127
+        ],
+        "forward": [
+          1,
+          63
+        ],
+        "semantics": "slow to fast relative data; exact delta formula unspecified"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p3 Inbound CC"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00039",
+      "control": "Select Turn",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 6,
+      "encoding": "relative directional data",
+      "values": {
+        "reverse": [
+          64,
+          127
+        ],
+        "forward": [
+          1,
+          63
+        ],
+        "semantics": "slow to fast relative data; exact delta formula unspecified"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p3 Inbound CC"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00040",
+      "control": "Jog Wheel",
+      "direction": "device-to-host",
+      "message_type": "compound",
+      "channel": 1,
+      "number": null,
+      "encoding": "double precision relative CC pair",
+      "values": {
+        "upper_cc": 55,
+        "lower_cc": 54,
+        "byte_bounds": [
+          0,
+          127
+        ]
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p4 Double Precision Control"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Preserves byte pairing; no undocumented combination/delta formula imposed."
+      ]
+    },
+    {
+      "id": "b00041",
+      "control": "Pitch Slider",
+      "direction": "device-to-host",
+      "message_type": "compound",
+      "channel": 1,
+      "number": null,
+      "encoding": "double precision absolute CC pair",
+      "values": {
+        "upper_cc": 8,
+        "lower_cc": 40,
+        "byte_bounds": [
+          0,
+          127
+        ]
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p4 Double Precision Control"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Preserves byte pairing; no undocumented combination/delta formula imposed."
+      ]
+    },
+    {
+      "id": "b00042",
+      "control": "Play/Pause LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 1,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00043",
+      "control": "Cue LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 2,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00044",
+      "control": "Beat Jump Back LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 3,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00045",
+      "control": "Beat Jump Forward LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 4,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00046",
+      "control": "Track Skip Previous LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 5,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00047",
+      "control": "Track Skip Next LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 6,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00048",
+      "control": "Censor LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 7,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00049",
+      "control": "Loop In LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 8,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00050",
+      "control": "Loop Out LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 9,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00051",
+      "control": "Auto Loop Light Ring LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 10,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00052",
+      "control": "Select Light Ring LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 18,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00053",
+      "control": "Vinyl LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 19,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00054",
+      "control": "Sync LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 20,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00055",
+      "control": "Master Deck LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 21,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00056",
+      "control": "Key Lock LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 22,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00057",
+      "control": "Slip LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 23,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00058",
+      "control": "Pitch - LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 24,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00059",
+      "control": "Pitch + LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 25,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00060",
+      "control": "Shift LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 26,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00061",
+      "control": "Pitch Arrow Back LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 41,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00062",
+      "control": "Pitch Center LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 42,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00063",
+      "control": "Pitch Arrow Forward LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 43,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00064",
+      "control": "Parameter Back LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 68,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00065",
+      "control": "Parameter Forward LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 69,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00066",
+      "control": "Hot Cue Mode LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 27,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00067",
+      "control": "Loop Mode LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 30,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00068",
+      "control": "Roll Mode LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 28,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00069",
+      "control": "Slicer Mode LED",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 29,
+      "encoding": "LED brightness state",
+      "values": {
+        "0": "off",
+        "1": "dim",
+        "2\u2013127": "full brightness"
+      },
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p5 Outbound Receive Messages"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00070",
+      "control": "Performance Pad 1 RGB",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 32,
+      "encoding": "palette velocity; color interpretation quarantined",
+      "values": {},
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p6 RGB LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Palette decimal and hex columns disagree by one; no off/color value normalized."
+      ]
+    },
+    {
+      "id": "b00071",
+      "control": "Performance Pad 2 RGB",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 33,
+      "encoding": "palette velocity; color interpretation quarantined",
+      "values": {},
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p6 RGB LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Palette decimal and hex columns disagree by one; no off/color value normalized."
+      ]
+    },
+    {
+      "id": "b00072",
+      "control": "Performance Pad 3 RGB",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 34,
+      "encoding": "palette velocity; color interpretation quarantined",
+      "values": {},
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p6 RGB LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Palette decimal and hex columns disagree by one; no off/color value normalized."
+      ]
+    },
+    {
+      "id": "b00073",
+      "control": "Performance Pad 4 RGB",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 35,
+      "encoding": "palette velocity; color interpretation quarantined",
+      "values": {},
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p6 RGB LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Palette decimal and hex columns disagree by one; no off/color value normalized."
+      ]
+    },
+    {
+      "id": "b00074",
+      "control": "Performance Pad 5 RGB",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 36,
+      "encoding": "palette velocity; color interpretation quarantined",
+      "values": {},
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p6 RGB LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Palette decimal and hex columns disagree by one; no off/color value normalized."
+      ]
+    },
+    {
+      "id": "b00075",
+      "control": "Performance Pad 6 RGB",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 37,
+      "encoding": "palette velocity; color interpretation quarantined",
+      "values": {},
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p6 RGB LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Palette decimal and hex columns disagree by one; no off/color value normalized."
+      ]
+    },
+    {
+      "id": "b00076",
+      "control": "Performance Pad 7 RGB",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 38,
+      "encoding": "palette velocity; color interpretation quarantined",
+      "values": {},
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p6 RGB LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Palette decimal and hex columns disagree by one; no off/color value normalized."
+      ]
+    },
+    {
+      "id": "b00077",
+      "control": "Performance Pad 8 RGB",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 39,
+      "encoding": "palette velocity; color interpretation quarantined",
+      "values": {},
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p6 RGB LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Palette decimal and hex columns disagree by one; no off/color value normalized."
+      ]
+    },
+    {
+      "id": "b00078",
+      "control": "Platter LED Ring",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 1,
+      "number": 40,
+      "encoding": "palette velocity; color interpretation quarantined",
+      "values": {},
+      "mode": "documented MIDI mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p6 RGB LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Palette decimal and hex columns disagree by one; no off/color value normalized."
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "needle-duplicate",
+      "severity": "conflict",
+      "description": "Needle Drop Scrub upper and lower CC both printed as decimal 64 / hex 0x40. Ambiguous pair excluded.",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p4"
+        }
+      ],
+      "excluded_bindings": [
+        "Needle Drop Scrub CC pair"
+      ]
+    },
+    {
+      "id": "palette-offset",
+      "severity": "conflict",
+      "description": "Every decimal velocity is one above hexadecimal column (OFF decimal 1 vs hex 0). RGB addresses retained without palette interpretation.",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp7\u20139"
+        }
+      ],
+      "excluded_bindings": [
+        "All RGB color/off velocity meanings"
+      ]
+    },
+    {
+      "id": "wheel-display",
+      "severity": "unsupported",
+      "description": "Wheel display needs SysEx; manual gives no wire format.",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p6"
+        }
+      ],
+      "excluded_bindings": [
+        "Wheel display SysEx"
+      ]
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "protocol",
+      "file": "performance-inmusic/raw/denon-lc6000-prime-protocol.txt",
+      "extraction_method": "Archived PDF layout text with PDF page markers; diagrams additionally visually transcribed where noted."
+    }
+  ]
+}

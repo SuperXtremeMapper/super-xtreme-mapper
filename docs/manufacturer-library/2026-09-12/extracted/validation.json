@@ -1,0 +1,190 @@
+{
+  "models": 26,
+  "bindings": 27735,
+  "coverage_errors": [],
+  "results": [
+    {
+      "file": "extracted/allen-heath-hercules/djcontrol-inpulse-500.json",
+      "model": "DJControl Inpulse 500",
+      "bindings": 786,
+      "issues": 13,
+      "errors": []
+    },
+    {
+      "file": "extracted/allen-heath-hercules/euphonia.json",
+      "model": "Euphonia",
+      "bindings": 76,
+      "issues": 1,
+      "errors": []
+    },
+    {
+      "file": "extracted/allen-heath-hercules/xone-92-mk2.json",
+      "model": "Xone:92 Mk2",
+      "bindings": 6,
+      "issues": 1,
+      "errors": []
+    },
+    {
+      "file": "extracted/allen-heath-hercules/xone-96.json",
+      "model": "Xone:96",
+      "bindings": 76,
+      "issues": 1,
+      "errors": []
+    },
+    {
+      "file": "extracted/allen-heath-hercules/xone-k1.json",
+      "model": "XONE:K1",
+      "bindings": 160,
+      "issues": 4,
+      "errors": []
+    },
+    {
+      "file": "extracted/allen-heath-hercules/xone-k2.json",
+      "model": "XONE:K2",
+      "bindings": 274,
+      "issues": 6,
+      "errors": []
+    },
+    {
+      "file": "extracted/allen-heath-hercules/xone-k3.json",
+      "model": "XONE:K3",
+      "bindings": 276,
+      "issues": 8,
+      "errors": []
+    },
+    {
+      "file": "extracted/performance-inmusic/akai-apc-mini-mk2.json",
+      "model": "APC mini mk2",
+      "bindings": 1258,
+      "issues": 1,
+      "errors": []
+    },
+    {
+      "file": "extracted/performance-inmusic/akai-apc40-mkii.json",
+      "model": "APC40 mkII",
+      "bindings": 1179,
+      "issues": 3,
+      "errors": []
+    },
+    {
+      "file": "extracted/performance-inmusic/denon-lc6000-prime.json",
+      "model": "LC6000 PRIME",
+      "bindings": 78,
+      "issues": 3,
+      "errors": []
+    },
+    {
+      "file": "extracted/performance-inmusic/faderfox-uc4.json",
+      "model": "UC4",
+      "bindings": 8244,
+      "issues": 1,
+      "errors": []
+    },
+    {
+      "file": "extracted/performance-inmusic/launch-control-xl-3.json",
+      "model": "Launch Control XL 3",
+      "bindings": 223,
+      "issues": 3,
+      "errors": []
+    },
+    {
+      "file": "extracted/performance-inmusic/launchpad-mini-mk3.json",
+      "model": "Launchpad Mini MK3",
+      "bindings": 566,
+      "issues": 1,
+      "errors": []
+    },
+    {
+      "file": "extracted/performance-inmusic/launchpad-pro-mk3.json",
+      "model": "Launchpad Pro MK3",
+      "bindings": 741,
+      "issues": 1,
+      "errors": []
+    },
+    {
+      "file": "extracted/performance-inmusic/launchpad-x.json",
+      "model": "Launchpad X",
+      "bindings": 566,
+      "issues": 1,
+      "errors": []
+    },
+    {
+      "file": "extracted/pioneer-alphatheta/cdj-3000x.json",
+      "model": "CDJ-3000X",
+      "bindings": 90,
+      "issues": 1,
+      "errors": []
+    },
+    {
+      "file": "extracted/pioneer-alphatheta/ddj-flx10.json",
+      "model": "DDJ-FLX10",
+      "bindings": 3012,
+      "issues": 1,
+      "errors": []
+    },
+    {
+      "file": "extracted/pioneer-alphatheta/ddj-flx4.json",
+      "model": "DDJ-FLX4",
+      "bindings": 694,
+      "issues": 6,
+      "errors": []
+    },
+    {
+      "file": "extracted/pioneer-alphatheta/ddj-grv6.json",
+      "model": "DDJ-GRV6",
+      "bindings": 1647,
+      "issues": 1,
+      "errors": []
+    },
+    {
+      "file": "extracted/pioneer-alphatheta/ddj-rev5.json",
+      "model": "DDJ-REV5",
+      "bindings": 2746,
+      "issues": 12,
+      "errors": []
+    },
+    {
+      "file": "extracted/pioneer-alphatheta/ddj-rev7.json",
+      "model": "DDJ-REV7",
+      "bindings": 1164,
+      "issues": 1,
+      "errors": []
+    },
+    {
+      "file": "extracted/pioneer-alphatheta/djm-a9.json",
+      "model": "DJM-A9",
+      "bindings": 164,
+      "issues": 1,
+      "errors": []
+    },
+    {
+      "file": "extracted/pioneer-alphatheta/djm-s11.json",
+      "model": "DJM-S11",
+      "bindings": 495,
+      "issues": 17,
+      "errors": []
+    },
+    {
+      "file": "extracted/pioneer-alphatheta/omnis-duo.json",
+      "model": "OMNIS-DUO",
+      "bindings": 359,
+      "issues": 1,
+      "errors": []
+    },
+    {
+      "file": "extracted/pioneer-alphatheta/xdj-az.json",
+      "model": "XDJ-AZ",
+      "bindings": 1442,
+      "issues": 1,
+      "errors": []
+    },
+    {
+      "file": "extracted/pioneer-alphatheta/xdj-rx3.json",
+      "model": "XDJ-RX3",
+      "bindings": 1413,
+      "issues": 1,
+      "errors": []
+    }
+  ],
+  "passed": true
+}

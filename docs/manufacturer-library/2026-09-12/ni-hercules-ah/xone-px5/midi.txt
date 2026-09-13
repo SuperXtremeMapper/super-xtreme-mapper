@@ -1,0 +1,647 @@
+Xone:PX5 MIDI Control – Allen & Heath
+Skip to main content
+Submit a request
+English (United Kingdom)
+Deutsch
+Español
+Français
+Italiano
+Português
+简体中文
+All articles are available in English. Other languages may have limited results.
+Sign in
+HELP CENTRE
+Search
+Submit a Request
+Allen & Heath
+Xone
+PX5
+Contents
+Table of Contents
+Articles in this section
+Replacing Xone:PX5 Faders
+Xone:PX5 MIDI Control
+Xone:PX5 - MIDI clock out
+Xone:PX5. Connecting an RMX insert FX unit
+Xone:PX5 MIDI Control
+Print to PDF
+04 February 2026 15:55
+MIDI Control
+MIDI
+stands for Musical Instrument Digital Interface; an interface protocol from the 1980s to enable different keyboards, sequencers, drum machines, etc. to communicate with each other.
+MIDI is still a common interface used by most DAW software to allow remote control of various functions within the program.
+The Xone:PX5 has the ability to send and receive MIDI and features a total of 51 MIDI enabled controls;
+39 buttons/switches, 5 Faders and 7 rotary controls, that can be assigned to enable control of various parameters in DJ performance software, or DAW (Digital Audio Workstation) applications.
+Channel FX MODE Select Switches
+XONE:PX5 CHANNEL
+FX MODE
+INT
+DUAL
+EXT
+A
+C-2
+OFF
+C#-2
+CH16
+< >
+CH16
+1
+D-2
+OFF
+D#-2
+CH16
+< >
+CH16
+2
+E-2
+OFF
+F-2
+CH16
+< >
+CH16
+3
+F#-2
+OFF
+G-2
+CH16
+< >
+CH16
+4
+G#-2
+OFF
+A-2
+CH16
+< >
+CH16
+Channel FILTER Select Switches
+XONE:PX5 CHANNEL
+FILTER
+A
+A#-2
+CH16
+1
+B-2
+CH16
+2
+C-1
+CH16
+3
+C#-1
+CH16
+4
+D-1
+CH16
+EXT RTN
+D#-1
+CH16
+Channel CUE Select Switches
+XONE:PX5 CHANNEL
+CUE
+A
+E-1
+CH16
+1
+F-1
+CH16
+2
+F#-1
+CH16
+3
+G-1
+CH16
+4
+G#-1
+CH16
+XONE:FX
+D1
+CH16
+Xone:VCF
+FILTER
+HPF
+BPF
+LPF
+FREQ
+ON
+A-1
+A#-1
+B-1
+CC5
+C0
+CH16
+CH16
+CH16
+CH16
+CH16
+Xone:FX
+XONE:FX
+PRE/ POST
+MODE
+TAP
+ON
+CUE
+FX X-FADE
+X
+OFF
+Y
+C#0
+B0
+C1
+C#1
+D1
+D0
+OFF
+D#0
+CH16
+CH16
+CH16
+CH16
+CH16
+CH16
+< >
+CH16
+XONE:FX
+ASSIGN
+SELECT
+INTERVAL
+DECAY
+FOCUS
+LEVEL
+CC6
+CC7
+CC8
+CC9
+CC10
+CC11
+CH16
+CH16
+CH16
+CH16
+CH16
+CH16
+Xone:Sync
+XONE:SYNC
+BEAT LEFT
+BEAT RIGHT
+BEND LEFT
+BEND RIGHT
+STOP
+PLAY
+F0
+F#0
+G0
+G#0
+A0
+A#0
+CH16
+CH16
+CH16
+CH16
+CH16
+CH16
+Faders
+XONE:PX5 CHANNEL
+FADER
+1
+CC0
+CH16
+2
+CC1
+CH16
+3
+CC2
+CH16
+4
+CC3
+CH16
+X-FADER
+CC4
+CH16
+Changing the MIDI Channel
+1
+The Xone:PX5 DJ Mixer default MIDI Channel is 16.
+You can change MIDI channel by holding down the FX SELECT control to enter the CONFIG menu.
+2
+Select CHANNEL and press the FX SELECT control.
+This will display the current MIDI Channel.
+Press the FX SELECT control to highlight current MIDI Channel. Rotate the FX SELECT control to change the MIDI Channel.
+3
+Press FX SELECT to confirm the new MIDI Channel selection.
+4
+Rotate the FX SELECT control to scroll down to EXIT. Press the FX SELECT control to exit the CHANNEL menu.
+5
+Rotate the FX SELECT control to scroll down to EXIT. Press the FX SELECT control to exit the CONFIG menu.
+ⓘ The MIDI Channel will remain set to the last user selected channel when power to the mixer is switched OFF.
+If no change has been made in the CONFIG menu, the mixer powers ON set to the default MIDI Channel 16.
+Octave
+Note Numbers
+C
+C# /Db
+D
+D# / Eb
+E
+F
+F# / Gb
+G
+G# / Ab
+A
+A# / Bb
+B
+-1
+0
+0
+1
+1
+2
+2
+3
+3
+4
+4
+5
+5
+6
+6
+7
+7
+8
+8
+9
+9
+10
+0A
+11
+0B
+0
+12
+0C
+13
+0D
+14
+0E
+15
+0F
+16
+10
+17
+11
+18
+12
+19
+13
+20
+14
+21
+15
+22
+16
+23
+17
+1
+24
+18
+25
+19
+26
+1A
+27
+1B
+28
+1C
+29
+1D
+30
+1E
+31
+1F
+32
+20
+33
+21
+34
+22
+35
+23
+2
+36
+24
+37
+25
+38
+26
+39
+27
+40
+28
+41
+29
+42
+2A
+43
+2B
+44
+2C
+45
+2D
+46
+2E
+47
+2F
+3
+48
+30
+49
+31
+50
+32
+51
+33
+52
+34
+53
+35
+54
+36
+55
+37
+56
+38
+57
+39
+58
+3A
+59
+3B
+4
+60
+3C
+61
+3D
+62
+3E
+63
+3F
+64
+40
+65
+41
+66
+42
+67
+43
+68
+44
+69
+45
+70
+46
+71
+47
+5
+72
+48
+73
+49
+74
+4A
+75
+4B
+76
+4C
+77
+4D
+78
+4E
+79
+4F
+80
+50
+81
+51
+82
+52
+83
+53
+6
+84
+54
+85
+55
+86
+56
+87
+57
+88
+58
+89
+59
+90
+5A
+91
+5B
+92
+5C
+93
+5D
+94
+5E
+95
+5F
+7
+96
+60
+97
+61
+98
+62
+99
+63
+100
+64
+101
+65
+102
+66
+103
+67
+104
+68
+105
+69
+106
+6A
+107
+6B
+8
+108
+6C
+109
+6D
+110
+6E
+111
+6F
+112
+70
+113
+71
+114
+72
+115
+73
+116
+74
+117
+75
+118
+76
+119
+77
+9
+120
+78
+121
+79
+122
+7A
+123
+7B
+124
+7C
+125
+7D
+126
+7E
+127
+7F
+DEC
+HEX
+DEC
+HEX
+DEC
+HEX
+DEC
+HEX
+DEC
+HEX
+DEC
+HEX
+DEC
+HEX
+DEC
+HEX
+DEC
+HEX
+DEC
+HEX
+DEC
+HEX
+DEC
+HEX
+CC
+Hex
+Note
+0
+0x00
+C-1
+1
+0x01
+C#-1
+2
+0x02
+D-1
+3
+0x03
+D#-1
+4
+0x04
+E-1
+5
+0x05
+F-1
+6
+0x06
+F#-1
+7
+0x07
+G-1
+8
+0x08
+G#-1
+9
+0x09
+A-1
+10
+0x0A
+A#-1
+11
+0x0B
+B-1
+12
+0x0C
+C0
+13
+0x0C
+C#0
+14
+0x0D
+D0
+15
+0x0E
+D#0
+16
+0x10
+E0
+17
+0x11
+F0
+18
+0x12
+F#0
+19
+0x13
+G0
+20
+0x14
+G#0
+21
+0x15
+A0
+Was this article helpful?
+Yes
+No
+0 out of 0 found this helpful
+Have more questions?
+Submit a request
+Return to top
+Related articles
+Xone:PX5 - MIDI clock out
+Xone:PX5 User Guide
+Replacing Xone:PX5 Faders
+dLive. Avantis. Re-Render WAV file for USB playback
+Xone:K3 User Guide
+Products
+dLive
+Avantis
+SQ
+Qu
+CQ
+AHM
+Xone
+ZED
+ME
+IP Controllers
+CC-7/10
+GR
+MixWizard4
+XB
+Company
+About Allen & Heath
+Allen & Heath Worldwide
+Contact Allen & Heath
+Working At Allen & Heath
+Legal
+Privacy Statement
+Cookie Policy
+Terms and Conditions of Use
+Connect
+Allen & Heath Forums

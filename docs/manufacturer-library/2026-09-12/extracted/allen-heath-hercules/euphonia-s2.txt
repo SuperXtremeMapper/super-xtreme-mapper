@@ -1,0 +1,302 @@
+=== PDF page 1 ===
+                                     euphonia
+                                     MIDI Message List
+
+
+                                                                S8    S9        S10   S11             S12
+
+     S1               S3                    S5
+
+
+                                                                                      M1    M2          M3
+
+
+
+
+     S2               S4                   S6             S7
+                                                                                                 M4
+
+
+
+
+                CH1                  CH2                  CH3                   CH4
+L1         C1                   C1                   C1                    C1               M5          M6
+
+
+
+      C2        C3         C2         C3        C2        C3         C2         C3                M7
+
+
+
+                                                                                                  M8
+L2    C6        C4     C6             C4     C6            C4        C6         C4
+
+
+                                                                                                  M9
+L3    C7        C5     C7             C5     C7            C5        C7         C5
+
+
+                                                                                                  M10
+
+
+
+
+           C8                   C8                   C8                    C8
+
+
+
+
+                                                1
+
+=== PDF page 2 ===
+                  User Interface                                           MIDI-IN (to computer)             MIDI Type
+        Part
+Group
+        No.
+                                             Condition       Status *1   Data 1             Data 2
+                    UI name        Trigger
+                                              (mode)           (Hex)     (Hex)              (Hex)
+
+MIC
+                                               OFF              B0                           0x00          Trigger/Toggle
+
+        L1            MIC           slide       ON              B0        4F                 0x40          Trigger/Toggle
+
+                                             TALKOVER           B0                           0x7F          Trigger/Toggle
+
+        L2           EQ HI         rotate                       B0        1E           00(Min) - 7F(Max)         -
+
+        L3          EQ LOW         rotate                       B0        1F           00(Min) - 7F(Max)         -
+
+CH1                                                                                         00:OFF
+                                                PC                        35                                     -
+                                                                                            7F:ON
+                                                                                            00:OFF
+                                              DIGITAL                     32                                     -
+                                                                                            7F:ON
+        C1     INPUT SELECTOR *2   rotate                       90
+                                                                                            00:OFF
+                                               LINE                       33                                     -
+                                                                                            7F:ON
+                                                                                            00:OFF
+                                              PHONO                       34                                     -
+                                                                                            7F:ON
+        C2            TRIM         rotate                       B0        01           00(Min) - 7F(Max)         -
+
+        C3             HI          rotate                       B0        02           00(Min) - 7F(Max)         -
+
+        C4            MID          rotate                       B0        03           00(Min) - 7F(Max)         -
+
+        C5            LOW          rotate                       B0        04           00(Min) - 7F(Max)         -
+
+        C6           SEND          rotate                       B0        05           00(Min) - 7F(Max)         -
+                                                                                            00:OFF
+        C7            CUE          press                        90        0A                                  Toggle
+                                                                                            7F:ON
+        C8     CH ROTARY VOLUME    rotate                       B0        11           00(Min) - 7F(Max)         -
+CH2                                                                                         00:OFF
+                                                PC                        39                                     -
+                                                                                            7F:ON
+                                                                                            00:OFF
+                                              DIGITAL                     36                                     -
+                                                                                            7F:ON
+        C1     INPUT SELECTOR *2   rotate                       90
+                                                                                            00:OFF
+                                               LINE                       37                                     -
+                                                                                            7F:ON
+                                                                                            00:OFF
+                                              PHONO                       38                                     -
+                                                                                            7F:ON
+        C2            TRIM         rotate                       B0        06           00(Min) - 7F(Max)         -
+
+        C3             HI          rotate                       B0        07           00(Min) - 7F(Max)         -
+
+        C4            MID          rotate                       B0        08           00(Min) - 7F(Max)         -
+
+        C5            LOW          rotate                       B0        09           00(Min) - 7F(Max)         -
+
+        C6           SEND          rotate                       B0        0A           00(Min) - 7F(Max)         -
+                                                                                            00:OFF
+        C7            CUE          press                        90        0B                                  Toggle
+                                                                                            7F:ON
+        C8     CH ROTARY VOLUME    rotate                       B0        12           00(Min) - 7F(Max)         -
+CH3                                                                                         00:OFF
+                                                PC                        3D                                     -
+                                                                                            7F:ON
+                                                                                            00:OFF
+                                              DIGITAL                     3A                                     -
+                                                                                            7F:ON
+        C1     INPUT SELECTOR *2   rotate                       90
+                                                                                            00:OFF
+                                               LINE                       3B                                     -
+                                                                                            7F:ON
+                                                                                            00:OFF
+                                              PHONO                       3C                                     -
+                                                                                            7F:ON
+        C2            TRIM         rotate                       B0        0C           00(Min) - 7F(Max)         -
+
+        C3             HI          rotate                       B0        0E           00(Min) - 7F(Max)         -
+
+        C4            MID          rotate                       B0        0F           00(Min) - 7F(Max)         -
+
+        C5            LOW          rotate                       B0        15           00(Min) - 7F(Max)         -
+
+        C6           SEND          rotate                       B0        16           00(Min) - 7F(Max)         -
+                                                                                            00:OFF
+        C7            CUE          press                        90        0C                                  Toggle
+                                                                                            7F:ON
+        C8     CH ROTARY VOLUME    rotate                       B0        13           00(Min) - 7F(Max)         -
+
+
+
+
+                                                         2
+
+=== PDF page 3 ===
+                            User Interface                                           MIDI-IN (to computer)           MIDI Type
+                  Part
+     Group
+                  No.
+                                                       Condition       Status *1   Data 1             Data 2
+                              UI name        Trigger
+                                                        (mode)           (Hex)     (Hex)              (Hex)
+
+     CH4                                                                                              00:OFF
+                                                         PC                         41                                   -
+                                                                                                      7F:ON
+                                                                                                      00:OFF
+                                                       DIGITAL                      3E                                   -
+                                                                                                      7F:ON
+                  C1     INPUT SELECTOR *2   rotate                       90
+                                                                                                      00:OFF
+                                                         LINE                       3F                                   -
+                                                                                                      7F:ON
+                                                                                                      00:OFF
+                                                       PHONO                        40                                   -
+                                                                                                      7F:ON
+                  C2            TRIM         rotate                       B0        50           00(Min) - 7F(Max)       -
+
+                  C3             HI          rotate                       B0        51           00(Min) - 7F(Max)       -
+
+                  C4            MID          rotate                       B0        5C           00(Min) - 7F(Max)       -
+
+                  C5            LOW          rotate                       B0        52           00(Min) - 7F(Max)       -
+
+                  C6           SEND          rotate                       B0        53           00(Min) - 7F(Max)       -
+                                                                                                      00:OFF
+                  C7            CUE          press                        90        0D                                Toggle
+                                                                                                      7F:ON
+                  C8     CH ROTARY VOLUME    rotate                       B0        14           00(Min) - 7F(Max)       -
+     VIEW                                                                                             00:OFF
+                  M1            VIEW         press                        90        58                                Toggle
+                                                                                                      7F:ON
+  BRIGHTNESS
+                                             press        1                         59                 0x00              -
+
+                                             press        2                         59                 0x20              -
+
+                  M2       BRIGHTNESS        press        3               B0        59                 0x40              -
+
+                                             press        4                         59                 0x60              -
+
+                                             press        5                         59                 0x7F              -
+ MASTER INSERT                                                                                        00:OFF
+                  M3      MASTER INSERT      press                        90        60                                Toggle
+                                                                                                      7F:ON
+    MASTER
+                  M4       MASTER LEVEL      rotate                       B0        18           00(Min) - 7F(Max)       -
+BOOTH MONITOR
+                  M5          EQ LOW         rotate                       B0        6E           00(Min) - 7F(Max)       -
+
+                  M6           EQ HI         rotate                       B0        6D           00(Min) - 7F(Max)       -
+
+                  M7       BOOTH LEVEL       rotate                       B0        19           00(Min) - 7F(Max)       -
+ HEADPHONES                                                                                           00:OFF
+                  M8        MONO/SPLIT        slide                       90        21                                   -
+                                                                                                      7F:ON
+
+                  M9          MIXING         rotate                       B0        1B           00(Min) - 7F(Max)       -
+
+                  M10          LEVEL         rotate                       B0        1A           00(Min) - 7F(Max)       -
+MASTER ISOLATOR                                                                                       00:OFF
+                  S1        LOW SEND         press                        90        50                                Toggle
+                                                                                                      7F:ON
+                  S2       LOW VOLUME        rotate                       B0        67           00(Min) - 7F(Max)       -
+                                                                                                      00:OFF
+                  S3         MID SEND        press                        90        51                                Toggle
+                                                                                                      7F:ON
+                  S4        MID VOLUME       rotate                       B0        68           00(Min) - 7F(Max)       -
+                                                                                                      00:OFF
+                  S5          HI SEND        press                        90        52                                Toggle
+                                                                                                      7F:ON
+                  S6        HI VOLUME        rotate                       B0        69           00(Min) - 7F(Max)       -
+
+                                                         0dB                                           0x00              -
+
+                  S7       BOOST LEVEL        slide     +6dB              90        53                 0x40              -
+
+                                                        +12dB                                          0x7F              -
+
+
+
+
+                                                                   3
+
+=== PDF page 4 ===
+                                      User Interface                                                                 MIDI-IN (to computer)                   MIDI Type
+                       Part
+       Group
+                       No.
+                                                                                     Condition         Status *1   Data 1             Data 2
+                                         UI name                  Trigger
+                                                                                      (mode)             (Hex)     (Hex)              (Hex)
+
+     SEND FX                                                                                                                          00:OFF
+                                                                                       HPF                          2A                                           -
+                                                                                                                                      7F:ON
+                                                                                                                                      00:OFF
+                                                                                      DELAY                         37                                           -
+                                                                                                                                      7F:ON
+                                                                                                                                      00:OFF
+                                                                                   TAPE ECHO                        33                                           -
+                                                                                                                                      7F:ON
+                                                                                                                                      00:OFF
+                       S8          EFFECT SELECT *2                rotate          ECHO VERB               B0       2B                                           -
+                                                                                                                                      7F:ON
+                                                                                                                                      00:OFF
+                                                                                     REVERB                         3E                                           -
+                                                                                                                                      7F:ON
+                                                                                                                                      00:OFF
+                                                                                    SHIMMER                         36                                           -
+                                                                                                                                      7F:ON
+                                                                                                                                      00:OFF
+                                                                                       EXT                          32                                           -
+                                                                                                                                      7F:ON
+                                                                                                                                      00:OFF
+                       S9                  TAP                     press                                   B0       4E                                        Trigger
+                                                                                                                                      7F:ON
+                       S10                 TIME                    rotate                                  B0       6A           00(Min) - 7F(Max)               -
+
+                       S11            PARAMETER                    rotate                                  B0       6B           00(Min) - 7F(Max)               -
+
+                       S12           RETURN LEVEL                  rotate                                  B0       6C           00(Min) - 7F(Max)               -
+    Timing Clock
+                        -                    -                       -                                     F8        -                   -                       -
+
+
+*1 90: Note
+   B0: Control Change (CC)
+*2 For alternate selection of the user interface (UI) control, the MIDI message will be sent as follows.
+   Previously selected: OFF
+   Newly selected: ON
+
+Note is a term used for MIDI to express that a key of a keyboard or a piano is pressed or your finger is released from it.
+CC is an abbreviation of "Control Change".
+Control Change is a kind of MIDI message used to communicate many kinds of control information such as sound quality and volume level.
+
+                                                                                                                            © 2024 AlphaTheta Corporation. All rights reserved.
+
+
+
+
+                                                                                                 4

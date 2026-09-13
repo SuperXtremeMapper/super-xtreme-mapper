@@ -1,0 +1,1885 @@
+       User Guide
+        English ( 3 – 16 )
+
+  Guía del usuario
+      Español ( 17 – 30 )
+
+Guide d’utilisation
+      Français ( 31 – 44 )
+
+   Guida per l’uso
+       Italiano ( 45 – 58 )
+
+Benutzerhandbuch
+      Deutsch ( 59 – 72 )
+
+          Appendix
+            English ( 74 )
+2
+User Guide (English)
+Introduction
+Thank you for purchasing the APC mini mk2. At Akai Professional, we know how
+serious music is to you. That’s why we design our equipment with only one thing in
+mind—to make your performance the best it can be.
+
+
+Box Contents
+
+APC mini mk2                                USB Cable
+Ableton Live Lite (download)                User Guide
+Software Download Cards                     Safety & Warranty Manual
+
+
+Support
+
+For the latest information about this product (documentation, technical
+specifications, system requirements, compatibility information, etc.) and product
+registration, visit akaipro.com.
+
+For additional product support, visit akaipro.com/support.
+
+
+
+
+                                                                                3
+Setup
+1.   On your computer, open Ableton Live.
+2.   Use the included USB cable to connect APC mini mk2's USB port to an
+     available USB port on your computer (powered on).
+3.   In Ableton Live, open the Preferences:
+       • Windows: Options > Preferences
+       • MacOS: Live > Preferences
+4.   Click the Link/MIDI Tab.
+5.   Click an available Control Surface drop-down menu and select APC mini
+     mk2.
+6.   Click an available Input drop-down menu and select APC mini mk2.
+7.   Click an available Output drop-down menu and select APC mini mk2.
+8.   Make sure that the Track option under MIDI Input is enabled for APC mini
+     mk2 (Port 2).
+9.   Close the Preferences window.
+     You can now use APC mini mk2 with Ableton Live.
+
+
+
+
+4
+Features
+
+   1       2
+
+                                   7
+                                   7
+                   6
+                                   7
+                                    7
+       3       3       3   3       8
+
+       4       4       4   4   5
+
+
+                                        5
+1.   USB Port: Use a standard USB cable to connect this port to a USB port on
+     your computer. The computer's USB port provides power to APC mini mk2.
+     This connection is also used to send and receive MIDI data to and from your
+     computer.
+2.   Kensington© Lock Slot: You may use this Kensington lock slot to secure the
+     APC mini mk2 to a table or other surface.
+3.   Clip Stop Buttons: Normally, you can press one of these buttons to stop the
+     clip in the corresponding track—represented by the column of eight Clip
+     Buttons just above it.
+     You can change their functions by pressing and holding Shift and then
+     pressing one of the Scene Launch buttons labeled Soft Keys: Clip Stop,
+     Solo, Mute, Rec Arm, or Select. Each button puts the Clip Stop Buttons in a
+     different mode:
+         • Clip Stop Mode: The Clip Stop Buttons will stop their corresponding
+            tracks (the default mode).
+         • Solo Mode: The Clip Stop Buttons will solo their corresponding tracks.
+         • Mute Mode: The Clip Stop Buttons will mute their corresponding tracks.
+         • Record-Arm Mode: The Clip Stop Buttons will record-arm their
+            corresponding tracks.
+         • Select Mode: The Clip Stop Buttons will select their corresponding
+            tracks.
+     Press and hold Shift and press one of the right four Clip Stop Buttons (, ,
+     , ) to shift the viewable 8x8 matrix of clips. In Ableton Live's Session View,
+     this is indicated by a red rectangle around the clips.
+
+
+
+
+6
+4.   Faders: Normally, you can use these faders to control various parameters in
+     Ableton Live.
+     Press and hold Shift and press one of the left four Clip Stop Buttons labeled
+     Fader CTRL (Volume, Pan, Send, Device) to put APC mini mk2's Faders in
+     the corresponding mode:
+       • Volume Mode: The eight faders will control the volume levels of the first
+         eight tracks in Ableton Live.
+       • Pan Mode: The eight faders will control the panning positions of the first
+         eight tracks in Ableton Live.
+       • Send Mode: The eight faders will control the levels of Send A for the first
+         eight tracks in Ableton Live. Repeat this action to set the faders to control
+         the levels of subsequent sends (e.g., Send B, Send C, etc.).
+       • Device Mode: The eight faders will control the eight Macro Controls of
+         the current device in Ableton Live.
+5.   Master Fader: Use this fader to control the Master track volume in Ableton
+     Live.
+6.   Clip Buttons: While in Ableton Live's Session View, use these buttons in this
+     8x8 matrix to launch clips. Each Clip Button represents a single clip slot. The
+     eight columns represent eight tracks while the eight rows represent eight
+     scenes. In Clip Launch Mode, the buttons' colors will match the clip colors in
+     Ableton Live. If there is nothing loaded to a clip slot in Ableton Live, the
+     matching button will remain unlit.
+     You can launch the entire scene by pressing the Scene Launch buttons to the
+     right of the row of clips.
+
+
+
+
+                                                                                    7
+7.   Scene Launch Buttons: Normally, you can press one of these buttons to
+     launch the corresponding scene—represented by the row of eight Clip
+     Buttons to its left.
+     Press and hold Shift and then press one of the top five buttons labeled Soft
+     Keys to change the function of the Clip Stop Buttons, which can then stop,
+     solo, record-arm, mute, or select their corresponding tracks (see #3. Clip Stop
+     Buttons above).
+     Press and hold Shift and press the sixth or seventh buttons to enter Drum or
+     Note modes for the Clip Buttons. See Advanced Operation to learn more
+     about these modes.
+     Press and hold Shift and then press the eighth (last) button (Stop All Clips) to
+     stop all clips when they reach the end.
+8.   Shift: Press and hold this button and then press a Scene Launch button to
+     change the function of the Clip Stop Buttons (see #3. Clip Stop Buttons
+     above).
+     Press and hold this button and then press one of the right four Clip Stop
+     Buttons (, , , ) to shift the viewable 8x8 matrix of clips. In Ableton Live's
+     Session View, this is indicated by a red rectangle around the clips.
+     Press and hold Shift and press one of the left four Clip Stop Buttons (Volume,
+     Pan, Send, Device) to put APC mini mk2's Faders in the corresponding mode
+     (see #4. Faders above).
+
+
+
+
+8
+Basic Operation
+Refer to this section to learn how to do basic tasks in Ableton Live using APC mini
+mk2.
+Important: Before doing any of the following, set up APC mini mk2 as a controller in
+Ableton Live (described in the Setup section above).
+
+
+To launch a clip, press one of the Clip Buttons (in the 8x8 matrix) that is dimly lit,
+which means there is a clip loaded to that slot but is not playing. The Clip Button will
+be brightly lit when it is playing.
+
+
+To stop a clip:
+1.   Press and hold Shift and press the first Scene Launch Button (Clip Stop).
+     This puts the Clip Stop Buttons at the bottom of the 8x8 matrix of Clip Buttons
+     in Clip Stop Mode.
+2.   Press the Clip Stop Button in the same track (column) as the clip you want to
+     stop.
+
+
+To launch a scene, press one of the eight Scene Launch Buttons to the right of the
+8x8 matrix of Clip Buttons.
+
+
+To move around the matrix of clips, press and hold Shift and press one of the right
+four Clip Stop Buttons (, , , ) to shift the viewable 8x8 matrix. In the software,
+this is represented by a red rectangle around the clips.
+
+
+
+
+                                                                                      9
+To solo a track:
+1.   Press and hold Shift and press the second Scene Launch Button (Solo). This
+     puts the Clip Stop Buttons at the bottom of the 8x8 matrix of Clip Buttons in
+     Solo Mode.
+2.   Press the Clip Stop Button in the same column as the track you want to solo.
+
+To mute a track:
+1.  Press and hold Shift and press the third Scene Launch Button (Mute). This
+    puts the Clip Stop Buttons at the bottom of the 8x8 matrix of Clip Buttons in
+    Mute Mode.
+2.  Press the Clip Stop Button in the same column as the track you want to mute.
+
+To record-arm a track:
+1.   Press and hold Shift and press the fourth Scene Launch Button (Rec Arm).
+     This puts the Clip Stop Buttons at the bottom of the 8x8 matrix of Clip Buttons
+     in Record-Arm Mode.
+2.   Press the Clip Stop Button in the same column as the track you want to
+     record-arm.
+
+To select a track:
+1.   Press and hold Shift and press the fifth Scene Launch Button (Select). This
+     puts the Clip Stop Buttons at the bottom of the 8x8 matrix of Clip Buttons in
+     Select Mode.
+2.   Press the Clip Stop Button in the same column as the track you want to
+     select.
+
+
+
+
+10
+To stop all clips, press and hold Shift and press the eighth (last) Scene Launch
+Button (Stop All Clips).
+
+
+To adjust volumes, press and hold Shift and press the first Clip Stop Button
+(Volume) to put APC mini mk2's Faders in Volume Mode. The first eight Faders will
+control the volume levels of the first eight tracks in Ableton Live.
+
+
+To adjust panning, press and hold Shift and press the second Clip Stop Button
+(Pan) to put APC mini mk2's Faders in Pan Mode. The first eight Faders will control
+the panning positions of the first eight tracks in Ableton Live.
+
+
+To adjust send levels, press and hold Shift and press the third Clip Stop Button
+(Send) to put APC mini mk2's Faders in Send Mode. The first eight Faders will
+control the levels of Send A for the first eight tracks in Ableton Live.
+Tip: Repeat this action to set the faders to control the levels of subsequent sends
+(e.g., Send B, Send C, etc.).
+
+
+To adjust devices, press and hold Shift and press the fourth Clip Stop Button
+(Device) to put APC mini mk2's Faders in Device Mode. The first eight Faders will
+control the eight Macro Controls of the current device in Ableton Live.
+
+
+
+
+                                                                                11
+Advanced Operation
+
+Drum Mode
+
+APC mini mk2’s Drum Mode splits the matrix of Clip Buttons into 4x4 quadrants that
+align with Ableton’s 16 slot Drum Rack, starting with the lower-left quadrant.
+      To enter Drum Mode, press and hold Shift and press the sixth Scene Launch
+      Button.
+
+
+Note Mode
+
+APC mini mk2’s Note Mode changes the layout of the Clip Button matrix to be used
+to play notes like a chromatic keyboard. The note scale, octave, and layout of the
+Clip Buttons can all be adjusted directly from APC mini mk2.
+      To enter Note Mode, press and hold Shift and press the seventh Scene
+      Launch Button (Note).
+
+
+While in Note Mode, the Clip Button colors will change to reflect the selected scale
+notes. Scale root notes will be lit red, while other notes in the scale will be lit amber.
+When a Clip Button is pressed, all Clip Buttons of the same note and octave will be
+lit bright green, while all Clip Buttons of the same note in other octaves will be lit
+light green.
+
+
+
+
+12
+To edit the Note Mode settings, press and hold both Shift and the seventh Scene
+Launch Button (Note). The matrix of Clip Buttons will change to the following layout,
+which you can use to adjust various settings for Note Mode:
+
+
+               Db          Eb                      Gb         Ab           Bb
+
+
+    C           D           E          F            G          A           B
+
+
+
+
+ Separate   Separate     Separate   Separate
+ Rows by    Rows by      Rows by    Rows by
+   3rd        4th          5th        6th
+
+ Separate   Separate                Show/Hide
+ Rows by    Rows by                 Non-Scale
+   7th       Octave                   Notes
+
+                         Melodic    Harmonic      Major      Minor
+Chromatic     Major                                                      Dorian     Phrygian
+                          Minor      Minor      Pentatonic Pentatonic
+
+
+                                                                                     Whole
+  Lydian    Mixolydian   Aeolian     Locrian      Blues    Flamenco     Hungarian
+                                                                                     Tone
+
+
+
+ OCT -2      OCT -1       OCT 0      OCT 1       OCT 2       OCT 3       OCT 4       OCT 5
+
+
+
+
+                                                                                          13
+When any parameter is changed, the Clip Buttons will display an animation to
+confirm the selected choice.
+
+
+Use the top two rows of Clip Buttons to change the desired root note of the scale.
+When pressed, the new selection will light green. Press and hold a root note button
+to see the name of the currently selected scale displayed in the matrix. For instance,
+if C is selected, the matrix would appear like the following:
+
+
+
+
+14
+Use the first four columns in the fourth and fifth rows of Clip Buttons to change the
+note layout. Each row of notes can be separated by a 3rd, 4th, 5th, 6th, 7th, or an
+Octave. Press and hold one of these buttons to display the selected value in the
+matrix. For instance, if Separate Rows by 5th is selected, the pad matrix would
+appear like the following:
+
+
+
+
+Press the Show/Hide Non-Scale Notes Button to enable or disable notes not in the
+currently selected scale from appearing in the pad rows. When disabled, Clip
+Buttons for non-scale notes will be unlit.
+
+
+
+Use the sixth and seventh rows of Clip Buttons to select the scale type. Press and
+hold one of these buttons to display the scale name in the matrix as scrolling letters.
+
+
+
+
+                                                                                    15
+Use the eighth row of Clip Buttons to set the base octave for the pads. Press and
+hold one of these buttons to display the current octave setting in the matrix. For
+instance, if -1 Octave is selected, the pad matrix would appear like the following:
+
+
+
+
+To exit Note Mode editing, release both Shift and the seventh Scene Launch
+Button (Note), and the Clip Buttons will change color to reflect the updated
+selections.
+
+
+
+
+16
+Guía del usuario (Español)
+Introducción
+Gracias por comprar el APC mini mk2. En Akai Professional, sabemos que usted se
+toma la música en serio. Por eso es que diseñamos nuestros equipos con una sola
+cosa en mente—hacer que pueda tocar su mejor interpretación.
+
+
+Contenido de la caja
+
+APC mini mk2                                Cable USB
+Ableton Live Lite (descarga)                Guía del usuario
+Tarjetas de la descarga de software         Manual sobre la seguridad y garantía
+
+
+Soporte
+
+Para obtener la información más reciente acerca de este producto (documentación,
+especificaciones técnicas, requisitos de sistema, información de compatibilidad,
+etc.) y registrarlo, visite akaipro.com.
+
+Para obtener soporte adicional del producto, visite akaipro.com/support.
+
+
+
+
+                                                                                   17
+Instalación
+1.   En su ordenador, abra Ableton Live.
+2.   Use el cable USB incluido para conectar el puerto USB del APC mini mk2 a un
+     puerto USB disponible en su ordenador (encendido).
+3.   En Ableton Live, abra Preferences (Preferencias):
+       • Windows: Options > Preferences (Opciones > Preferencias)
+       • MacOS: Live > Preferences (Live > Preferencias)
+4.   Clique la pestaña Link/MIDI.
+5.   Clique un menú desplegable Control Surface (Superficie de control)
+     disponible y seleccione APC mini mk2.
+6.   Clique un menú desplegable Input (Entrada) disponible y seleccione APC mini
+     mk2.
+7.   Clique un menú desplegable Output (Salida) disponible y seleccione APC mini
+     mk2.
+8.   Asegúrese de que la opción Track dentro de MIDI Input esté activada para el
+     APC mini mk2 (Port 2).
+9.   Cierre la ventana Preferences (Preferencias).
+     De esta forma puede utilizar ahora el APC mini mk2 con Ableton Live.
+
+
+
+
+18
+Características
+
+     1     2
+
+                                      7
+                                      7
+                      6
+                                      7
+                                       7
+         3        3       3   3       8
+
+         4        4       4   4   5
+
+
+                                           19
+1.   Puerto USB: Use un cable USB estándar para conectar este puerto a un
+     puerto USB disponible en su ordenador. El puerto USB del ordenador
+     suministra corriente al APC mini mk2. Esta conexión también se utiliza para
+     enviar y recibir datos MIDI desde y hacia su ordenador.
+2.   Ranura del bloqueo Kensington: Puede utilizar esta ranura de bloqueo
+     Kensington a fin de sujetar el APC mini mk2 a una mesa u otra superficie.
+3.   Botones de detener clip: Normalmente, puede pulsar uno de estos botones
+     para detener el clip de la pista correspondiente—representada por la columna
+     de ocho botones de clip que está inmediatamente encima del mismo.
+     Puede cambiar sus funciones manteniendo pulsado Shift y luego usando uno
+     de los botones de lanzamiento de escena etiquetados como Soft Keys: Clip
+     Stop, Solo, Mute, Rec Arm o Select. Cada botón pone a los botones de
+     parada de clip) en un modo diferente:
+        • Modo Detener clip: Los botones de detener clip detienen sus pistas
+           correspondientes (es el modo predeterminado).
+        • Modo Solo: Los botones de detener clip permiten realizar un solo de sus
+           pistas correspondientes.
+        • Modo Silencio: Los botones de detener clip silencian sus pistas
+           correspondientes.
+        • Modo Armar grabación: Los botones de detener clip permiten armar la
+           grabación de sus pistas correspondientes.
+        • Modo Selección: Los botones de detener clip permiten seleccionar sus
+           pistas correspondientes.
+     Mantenga pulsado Shift y pulse uno de los cuatro botones de detener clip de
+     la derecha (, , , ) para desplazar la matriz 8x8 de clips visible. En la
+     vista de sesión de Ableton Live, esto se indica mediante un rectángulo rojo
+     alrededor de los clips.
+
+
+
+
+20
+4.   Faders: Normalmente, usted puede utilizar estos faders para controlar
+     diversos parámetros de Ableton Live.
+     Mantenga pulsado Shift y pulse uno de los cuatro botones de detener clip de
+     la izquierda etiquetados como Fader CTRL (Volume, Pan, Send y Device)
+     para poner los faders del APC mini mk2 en el modo correspondiente:
+       • Modo Volumen: Los ocho faders controlarán los niveles de volumen de
+         las primeras ocho pistas en Ableton Live.
+       • Modo Paneo: Los ocho faders controlarán las posiciones de paneo de
+         las primeras ocho pistas en Ableton Live.
+       • Modo Envío: Los ocho faders controlarán los niveles de Envío A de las
+         primeras ocho pistas en Ableton Live. Repita esta acción a fin de
+         configurar los faders para controlar los niveles de los envíos
+         subsiguientes (por ej., Envío B, Envío C, etc.).
+       • Modo Dispositivo: Los ocho faders controlarán los ocho controles
+         Macro del dispositivo actual en Ableton Live.
+5.   Fader maestro: Use este fader para controlar el volumen de la pista maestra
+     en Ableton Live.
+6.   Botones de clip: En la vista de sesión de Ableton Live, utilice estos botones
+     de la matriz 8x8 para lanzar clips. Cada botón de clip representa una única
+     ranura de clip. Las ocho columnas representan a las ocho pistas mientras que
+     las ocho filas representan a las ocho escenas. En el modo de lanzamiento de
+     clip, los colores de los botones coincidirán con los colores del clip en Ableton
+     Live. Si no hay nada cargado en la ranura de clip en Ableton Live, el botón
+     correspondiente permanecerá apagado.
+     Puede lanzar la escena completa pulsando los botones Scene Launch que
+     están a la derecha de la fila de clips.
+
+
+
+                                                                                  21
+7.   Botones de lanzar escena: Normalmente, puede pulsar uno de estos botones
+     para lanzar la escena correspondiente —representada por la fila de ocho
+     botones de clip que está a la izquierda.
+     Mantenga pulsado Shift y pulse uno de los cinco botones superiores para
+     cambiar la función de uno de los botones de detener clip, que puede
+     entonces detener, realizar un solo, armar grabación, silenciar o seleccionar sus
+     pistas correspondientes (consulte el n° 3. Botones de detener clip
+     precedente).
+     Mantenga pulsado Shift y pulse el sexto o séptimo botón para ingresar a los
+     modos de batería o nota para los botones de clip. Consulte Funcionamiento
+     avanzado para aprender más sobre estos modos.
+     Mantenga pulsado Shift y pulse el octavo (último) botón (Stop All Clips) para
+     detener todos los clips cuando lleguen al final.
+8.   Función secundaria: Mantenga pulsado este botón y luego pulse un botón
+     Scene Launch para cambiar la función de los botones de detener clip
+     (consulte el n° 3. Botones de detener clip precedente).
+     Mantenga pulsado este botón y pulse uno de los cuatro botones de detener
+     clip de la derecha (, , , ) para desplazar la matriz 8x8 de clips visible.
+     En la vista de sesión de Ableton Live, esto se indica mediante un rectángulo
+     rojo alrededor de los clips.
+     Mantenga pulsado Shift y pulse uno de los cuatro botones de detener clip de
+     la izquierda (Volume, Pan, Send y Device) para poner los faders del APC mini
+     mk2 en el modo correspondiente (consulte el n° 4. Faders precedente).
+
+
+
+
+22
+Operación básica
+Consulte esta sección para saber cómo realizar las tareas básicas en Ableton Live
+con el APC mini mk2.
+Importante: Antes de realizar cualquiera de las siguientes operaciones, configure el
+APC mini mk2 como controlador en Ableton Live (tal y como se describe en la
+sección Instalación precedente).
+
+Para lanzar un clip, pulse uno de los botones de clip (en la matriz de 8 × 8) que
+esté tenuemente iluminado, lo que significa que hay un clip cargado en esa ranura
+pero que no se está reproduciendo. El botón de clip se iluminará al máximo cuando
+se esté reproduciendo.
+
+Para detener un clip:
+1.   Mantenga pulsado Shift (Función secundaria) y pulse el primer botón Scene
+     Launch (Lanzar escena) (Clip Stop [Detener clip]). De esta manera se colocan
+     los botones de detener clip de la parte inferior de la matriz de 8x8 de los
+     botones de clip en modo Detener clips.
+2.   Pulse el botón de detener clip de la misma "pista" (columna) del clip que
+     desea detener.
+
+Para lanzar una escena (fila), pulse uno de los ocho botones Scene Launch de la
+derecha de la matriz 8x8 de botones de clip.
+
+Para recorrer la matriz de clips, mantenga pulsado Shift y pulse uno de los cuatro
+botones de detener clip de la derecha (, , , ) para desplazar la matriz 8x8
+visible. En el software, esto se representa con un rectángulo rojo alrededor de los
+clips.
+
+
+
+                                                                                 23
+Para realizar un solo de una pista:
+1.   Mantenga pulsado Shift y pulse el segundo botón Scene Launch (Solo). De
+     esta manera se colocan los botones de detener clip de la parte inferior de la
+     matriz 8x8 de los botones de clip en modo Solo.
+2.   Pulse el botón de detener clip de la misma columna de la pista del que desea
+     realizar el solo.
+
+Para silenciar una pista:
+1.   Mantenga pulsado Shift y pulse el tercer botón Scene Launch (Mute
+     [Silencio]). De esta manera se colocan los botones de detener clip de la parte
+     inferior de la matriz 8x8 de los botones de clip en modo Silencio.
+2.   Pulse el botón de detener clip de la misma columna de la pista que desea
+     silenciar.
+
+Para armar la grabación de una pista:
+1.   Mantenga pulsado Shift y pulse el cuarto botón Scene Launch (Rec Arm
+     [Armar grabación]). De esta manera se colocan los botones de detener clip de
+     la parte inferior de la matriz 8x8 de los botones de clip en modo Armar
+     grabación.
+2.   Pulse el botón de detener clip de la misma columna de la pista que desea
+     armar grabación.
+
+Para seleccionar una pista:
+1.   Mantenga pulsado Shift y pulse el quinto botón Scene Launch (Select
+     [Selección]). De esta manera se colocan los botones de detener clip de la parte
+     inferior de la matriz 8x8 de los botones de clip en modo Selección.
+2.   Pulse el botón de detener clip de la misma columna de la pista que desea
+     seleccionar.
+
+
+24
+Para detener todos los clips, mantenga pulsado Shift y pulse el octavo (último)
+botón de lanzar escena (Stop All Clips).
+
+Para ajustar los volúmenes, mantenga pulsado Shift y pulse el primero botón de
+detener clip (Volume [Volumen]) para colocar los faders del APC mini mk2 en modo
+Volumen. Los primeros ocho faders controlarán los niveles de volumen de las
+primeras ocho pistas en Ableton Live.
+
+Para ajustar el paneo, mantenga pulsado Shift y pulse el segundo botón de
+detener clip (Pan [Paneo]) para colocar los faders del APC mini mk2 en modo
+Paneo. Los primeros ocho faders controlarán las posiciones de paneo de las
+primeras ocho pistas en Ableton Live.
+
+Para ajustar los niveles de envío, mantenga pulsado Shift y pulse el tercer botón
+de detener clip (Send [Envío]) para colocar los faders del APC mini mk2 en modo
+Envío. Los primeros ocho faders controlarán los niveles de Envío A de las primeras
+ocho pistas en Ableton Live.
+Consejo: Repita esta acción a fin de configurar los faders para controlar los niveles
+de los envíos subsiguientes (por ej., Envío B, Envío C, etc.).
+
+Para ajustar los dispositivos, mantenga pulsado Shift y pulse el cuarto botón de
+detener clip (Device [Dispositivo]) para colocar los faders del APC mini mk2 en
+modo Dispositivo. Los primeros ocho faders controlarán los ocho controles Macro
+del dispositivo actual en Ableton Live.
+
+
+
+
+                                                                                  25
+Funcionamiento avanzado
+
+Modo de batería
+
+El modo de batería del APC mini mk2 divide la matriz de botones de clip en
+cuadrantes de 4x4 que coinciden con la estructura de batería de 16 ranuras de
+Ableton, comenzando desde el cuadrante inferior izquierdo.
+     Para ingresar al modo de batería, mantenga pulsado Shift y pulse el sexto
+     botón de lanzamiento de escena.
+
+
+
+Modo de nota
+
+El modo de nota del APC mini mk2 cambia la distribución de la matriz de botones de
+clip a fin de utilizarse para reproducir notas al igual que un teclado cromático. La
+escala de notas, la octava y la distribución de los botones de clip se puede ajustar
+directamente desde el APC mini mk2.
+     Para ingresar al modo de nota, mantenga pulsado Shift y pulse el séptimo
+     botón de lanzamiento de escena (nota).
+
+
+Estando en modo de nota, los colores de los botones de clip cambiarán para reflejar
+las notas de la escala seleccionada. Las notas raíz de la escala se iluminarán de
+color rojo, mientras que las otras notas de la escala se iluminarán de color ámbar.
+Cuando se pulsa un botón de clip, todos los botones de clip de la misma nota y
+octava se iluminarán de color verde brillante, mientras que todos los botones de
+clip de la misma nota en las demás octavas se encenderán de color verde claro.
+
+
+
+26
+Para editar los ajustes del modo de nota, mantenga pulsado Shift y pulse el
+séptimo botón de lanzamiento de escena (nota). La matriz de botones de clip
+cambiará su distribución de la siguiente manera, la cual podrá utilizar para modificar
+los diversos ajustes del modo de nota:
+
+
+               Db         Eb                             Gb          Ab          Bb
+
+
+    C          D           E             F               G           A           B
+
+
+
+
+  Filas     Filas     Filas
+                              Filas separadas
+separadas separadas separadas
+                                   por 6ta
+ por 3ra   por 4ta   por 5ta
+
+                                   Mostrar/ocultar
+  Filas     Filas
+                                    notas que no
+separadas separadas
+                                     sean de la
+ por 7ma por octava
+                                       escala
+
+                        Melódica     Harmónica       Pentatónica Pentatónica
+Cromática    Mayor                                                              Doria    Frigia
+                         menor         menor           mayor       menor
+
+                                                                                          Tonos
+  Lidia     Mixolidia    Eólica        Locria          Blues      Flamenco     Húngara
+                                                                                         enteros
+
+
+ OCT -2     OCT -1       OCT 0         OCT 1           OCT 2       OCT 3       OCT 4     OCT 5
+
+
+
+
+                                                                                              27
+Cuando se modifica un parámetro, los botones de clip mostrarán una animación
+para confirmar la selección realizada.
+
+
+Utilice las dos filas superiores de los botones de clip para modificar la nota raíz de la
+escala deseada. Una vez pulsada, la nueva selección se iluminará de color verde.
+Mantenga pulsado un botón de nota raíz para visualizar el nombre de la escala
+actualmente seleccionada en la pantalla. Por ejemplo, si se selecciona C, la matriz
+se verá de la siguiente manera:
+
+
+
+
+28
+Utilice las primeras cuatro columnas en la cuarta y quinta fila de botones de clip para
+modificar la distribución de las notas. Cada fila de notas se puede separar mediante
+una 3ra, 4ta, 5ta, 6ta, 7ma o una octava. Mantenga pulsado uno de estos botones
+para mostrar el valor seleccionado en la matriz. Por ejemplo, si se selecciona la
+opción de separar las filas por 5ta, la matriz de pads se verá de la siguiente
+manera:
+
+
+
+
+Pulse el botón de mostrar/ocultar notas que no son de la escala para activar o
+desactivar la presencia en las filas de pads de notas que no se encuentran en la
+escala actualmente seleccionada. Una vez desactivados, los botones de clip para
+notas que no sean de la escala no se iluminarán.
+
+
+
+
+                                                                                    29
+Utilice la sexta y séptima fila de botones de clip para seleccionar el tipo de escala.
+Mantenga pulsado uno de estos botones para mostrar el nombre de la escala en la
+matriz en forma de letras que se desplazan.
+
+
+
+Utilice la octava fila de botones de clip para ajustar la octava base para los pads.
+Mantenga pulsado uno de estos botones para mostrar el ajuste actual de octava en
+la matriz. Por ejemplo, si se selecciona -1 Octava, la matriz de pads se verá de la
+siguiente manera:
+
+
+
+
+Para salir de la edición del modo de nota, suelte Shift y el séptimo botón de
+lanzamiento de escena (Nota), y los botones de clip cambiarán de color para reflejar
+los selecciones actualizadas.
+
+
+30
+Guide d’utilisation (Français)
+Présentation
+Merci d’avoir fait l’acquisition du APC mini mk2. Chez Akai Professional, nous
+savons à quel point la musique est importante pour vous. C’est pourquoi nous
+concevons nos produits avec une seule chose en tête — faire de votre performance
+la meilleure qui soit.
+
+
+Contenu de la boîte
+
+APC mini mk2                                 Câble USB
+Ableton Live Lite (à télécharger)            Guide d'utilisation
+Cartes de téléchargement de logiciel         Consignes de sécurité et informations
+                                                 concernant la garantie
+
+Assistance
+
+Pour les toutes dernières informations concernant la documentation, les
+spécifications techniques, la configuration requise, la compatibilité et
+l’enregistrement du produit, veuillez visiter akaipro.com.
+
+Pour de l’assistance supplémentaire, veuillez visiter akaipro.com/support.
+
+
+
+
+                                                                                 31
+Installation
+1.   Lancez le logiciel Ableton Live sur votre ordinateur.
+2.   Branchez le câble USB au port USB du APC mini mk2, et ensuite au port de
+     votre ordinateur lorsque ce dernier est sous tension.
+3.   Dans Ableton Live, ouvrez le menu Preferences :
+       • Windows : Options > Preferences
+       • MacOS : Live > Preferences
+4.   Cliquez sur l'onglet Link/MIDI.
+5.   Cliquez sur un des champs de la colonne Control Surface et sélectionnez
+     APC mini mk2.
+6.   Cliquez sur un des champs de la colonne Input et sélectionnez APC mini mk2.
+7.   Cliquez sur un des champs de la colonne Output et sélectionnez APC mini
+     mk2.
+8.   Assurez-vous que l’option Track sous MIDI Input est activée pour APC Key
+     25 mk2 (Port 2).
+9.   Fermez ensuite la fenêtre Preferences.
+     Vous pouvez maintenant utiliser le APC mini mk2 avec Ableton Live.
+
+
+
+
+32
+Caractéristiques
+
+    1     2
+
+                                       7
+                                       7
+                       6
+                                       7
+                                        7
+        3          3       3   3       8
+
+        4          4       4   4   5
+
+
+                                            33
+1.   Port USB : Utilisez un câble USB standard pour relier ce port au port USB de
+     votre ordinateur. Le port USB de l'ordinateur fournit l’alimentation au APC mini
+     mk2. Cette connexion est également utilisée pour la transmission de données
+     MIDI vers et depuis votre ordinateur.
+2.   Verrou Kensington : Cet emplacement permet d’utiliser un verrou Kensington
+     pour sécuriser le APC mini mk2 sur une table ou autre surface.
+3.   Touches Clip Stop : Normalement, vous pouvez appuyer sur une de ces
+     touches pour arrêter le clip de la piste correspondante — représentée par la
+     colonne de huit touches juste au-dessus de cette dernière.
+     Vous pouvez modifier leurs fonctions en maintenant la touche Shift enfoncée,
+     puis en appuyant sur l’une des touches Scene Launch identifiées Soft Keys : Clip
+     Stop, Solo, Mute, Rec Arm ou Select. Chaque touche met les touches Clip
+     Stop dans un mode différent :
+        • Mode Clip Stop : Chaque touche Clip Stop permet d’arrêter la lecture de
+           la piste correspondante (le mode par défaut).
+       • Mode Solo : Chaque touche Clip Stop permet la mise en solo de la piste
+         correspondante.
+       • Mode Mute : Chaque touche Clip Stop permet la mise en sourdine de la
+         piste correspondante.
+       • Mode Record-Arm : Chaque touche Clip Stop permet de préparer la
+         piste correspondante pour l’enregistrement.
+         • Mode Select : Chaque touche Clip Stop permet de sélectionner la piste
+            correspondante.
+     Maintenez Shift enfoncée tout en appuyant sur l'une des quatre touches Clip
+     Stop droites (, , , ) afin d’afficher une vue d’ensemble de la matrice des
+     clips 8 x 8. Ceci est indiqué par un liseré rouge autour des clips dans l'écran
+     Session de Ableton Live.
+
+
+
+34
+4.   Potentiomètres : Normalement, vous pouvez utiliser ces potentiomètres pour
+     contrôler divers paramètres dans Ableton Live.
+     Maintenez Shift enfoncée tout en appuyant sur l'une des quatre touches Clip
+     Stop gauches identifiées Fader CTRL (Volume, Pan, Send, Device) afin de
+     mettre les potentiomètres du APC mini mk2 au mode correspondant :
+        • Mode Volume : Les huit premiers potentiomètres permettront de modifier
+          le réglage du volume des huit premières pistes dans Ableton Live.
+       • Mode Pan : Les huit premiers potentiomètres permettront de modifier le
+         réglage du panoramique des huit premières pistes dans Ableton Live.
+       • Mode Send : Les huit premiers potentiomètres permettront de régler le
+         niveau de départ (Send A) des huit premières pistes dans Ableton Live.
+         Répétez l'opération pour programmer les potentiomètres pour les
+         niveaux de départs ultérieurs (p. ex., Send B, Send C, etc.).
+        • Mode Device : Les huit premiers potentiomètres permettront de
+           commander les huit macro-commandes du périphérique sélectionné
+           dans Ableton Live.
+5.   Potentiomètre principal : Ce potentiomètre permet de commander le volume
+     principal (Master) de la piste dans Ableton Live.
+6.   Touches de lancement de clip : À partir de l’écran Session de Ableton Live,
+     vous pouvez utiliser ces touches dans la matrice des clips 8 x 8 pour lancer
+     des clips. Chaque touche Clip représente l’emplacement d’un clip. Les huit
+     colonnes représentent huit pistes, tandis que les huit rangées représentent huit
+     scènes. En mode de lancement clip, les couleurs des touches correspondent
+     aux couleurs des clips dans Ableton Live. Lorsqu’il n’a rien de chargé dans
+     l'emplacement d’un clip dans Ableton Live, la touche correspondante restera
+     éteinte.
+     Vous pouvez lancer toute une scène en appuyant sur les touches Scene
+     Launch à droite de la rangée de clips.
+
+
+                                                                                  35
+7.   Touches Scene Launch : Normalement, vous pouvez appuyer sur une de ces
+     touches pour lancer la scène correspondante — représentée par la rangée de
+     huit touches Clip à gauche.
+     Vous pouvez modifier les fonctions des touches Clip Stop en maintenant Shift
+     enfoncée et en appuyant sur une des cinq touches identifiées Soft Keys pour
+     arrêter, mettre en solo, mettre en sourdine, préparer pour l’enregistrement, ou
+     sélectionner la piste correspondante (voir no.3, Touches Clip Stop ci-dessus).
+     Maintenez la touche Shift enfoncée et appuyez sur la sixième ou la septième
+     touche pour accéder aux modes Drum et Note pour les touches de lancement
+     de clip. Veuillez consulter la section Fonctionnement avancé afin d’en savoir
+     plus sur ces modes.
+     Pour arrêter tous les clips, maintenez Shift enfoncée et appuyez sur la huitième
+     (dernière) touche (Stop All Clips).
+8.   Shift : Vous pouvez modifier les fonctions des touches Clip Stop en
+     maintenant cette touche enfoncée et en appuyant sur une des touches Scene
+     Launch (voir no.3, Touches Clip Stop ci-dessus).
+     Maintenez cette touche enfoncée tout en appuyant sur l'une des quatre
+     touches Clip Stop droites (, , , ) afin d’afficher une vue d’ensemble de
+     la matrice de clips 8 x 8. Ceci est indiqué par un liseré rouge autour des clips
+     dans l'écran Session de Ableton Live.
+     Maintenez Shift enfoncée tout en appuyant sur l'une des quatre touches Clip
+     Stop gauches (Volume, Pan, Send, Device) afin de mettre les potentiomètres
+     du APC mini mk2 au mode correspondant (voir no.4, Potentiomètres ci-
+     dessus).
+
+
+
+
+36
+Fonctionnement de base
+Veuillez consulter cette section afin d’apprendre à exécuter les tâches de base de
+Ableton Live à l'aide du APC mini mk2.
+Important : Avant de pouvoir effectuer les tâches ci-dessous, vous devez configurer
+Ableton Live afin qu’il soit pris en charge par le APC mini mk2 (décrit dans la section
+Installation ci-dessus).
+
+Pour lancer un clip, appuyez sur une des touches de lancement de clip dans la
+matrice 8 x 8 dont l’intensité est faible, indiquant qu’un clip est chargé dans cet
+emplacement, mais ne joue pas. L’intensité de la touche de lancement de clip
+devient élevée lors de la lecture.
+
+Pour arrêter un clip :
+1.   Maintenez Shift enfoncée et appuyez sur la première touche de la section
+     Scene Launch (Clip Stop). Ceci met les touches Clip Stop au bas de la
+     matrice des clips 8 x 8 en mode Stop Clip.
+2.   Appuyez sur la touche Clip Stop correspondant à la même piste (colonne) que
+     le clip dont vous souhaitez arrêter la lecture.
+
+Pour lancer une scène, appuyez sur une des huit touches de la section Scene
+Launch à droite de la matrice des clips 8 x 8.
+
+Pour parcourir la matrice des clips, maintenez Shift enfoncée tout en appuyant sur
+l'une des quatre touches Clip Stop gauches (, , , ) afin d’afficher une vue
+d’ensemble de la matrice des clips 8 x 8. Ceci est indiqué par un liseré rouge autour
+des clips dans le logiciel.
+
+
+
+
+                                                                                    37
+Pour mettre une piste en solo :
+1.   Maintenez Shift enfoncée et appuyez sur la deuxième touche de la section
+     Scene Launch (Solo). Ceci met les touches Clip Stop au bas de la matrice des
+     clips 8 x 8 en mode Solo.
+2.   Appuyez sur la touche Clip Stop correspondant à la même colonne que le
+     piste que vous souhaitez mettre en solo.
+
+Pour mettre une piste en sourdine :
+1.   Maintenez Shift enfoncée et appuyez sur la troisième touche de la section
+     Scene Launch (Mute). Ceci met les touches Clip Stop au bas de la matrice
+     des clips 8 x 8 en mode Mute.
+2.   Appuyez sur la touche Clip Stop correspondant à la même colonne que le
+     piste que vous souhaitez mettre en sourdine.
+
+Préparer une piste pour l’enregistrement :
+1.   Maintenez Shift enfoncée et appuyez sur la quatrième touche de la section
+     Scene Launch (Rec Arm). Ceci met les touches Clip Stop au bas de la matrice
+     des clips 8 x 8 en mode Record-Arm.
+2.   Appuyez sur la touche Clip Stop correspondant à la même colonne que le
+     piste que vous souhaitez préparer pour l’enregistrement.
+
+Pour sélectionner une piste :
+1.   Maintenez Shift enfoncée et appuyez sur la cinquième touche de la section
+     Scene Launch (Select). Ceci met les touches Clip Stop au bas de la matrice
+     des clips 8 x 8 en mode Select.
+2.   Appuyez sur la touche Clip Stop correspondant à la même colonne que le
+     piste que vous souhaitez sélectionner.
+
+
+
+
+38
+Pour arrêter tous les clips, maintenez Shift enfoncée et appuyez sur la huitième
+touche de la section Scene Launch (Stop All Clips).
+
+Pour régler le volume, maintenez Shift enfoncée et appuyez sur la premier touche
+Clip Stop (Volume) afin de mettre les potentiomètres du APC mini mk2 en mode
+Volume. Les huit premiers potentiomètres permettront de modifier le réglage du
+volume des huit premières pistes dans Ableton Live.
+
+Pour régler le panoramique, maintenez Shift enfoncée et appuyez sur la deuxième
+touche Clip Stop (Pan) afin de mettre les potentiomètres du APC mini mk2 en mode
+Pan. Les huit premiers potentiomètres permettront de modifier le réglage du volume
+des huit premières pistes dans Ableton Live.
+
+Pour régler les niveaux de départ, maintenez Shift enfoncée et appuyez sur la
+troisième touche Clip Stop (Send) afin de mettre les potentiomètres du APC mini
+mk2 en mode Send. Les huit premiers potentiomètres permettront de régler le
+niveau de départ (Send A) des huit premières pistes dans Ableton Live.
+Conseil : Répétez l'opération pour programmer les potentiomètres pour les niveaux
+de départs ultérieurs (p. ex., Send B, Send C, etc.).
+
+Pour régler les périphériques, maintenez Shift enfoncée et appuyez sur la
+quatrième touche Clip Stop (Device) afin de mettre les potentiomètres du APC mini
+mk2 en mode Device. Les huit premiers potentiomètres permettront de commander
+les huit macro-commandes du périphérique sélectionné dans Ableton Live.
+
+
+
+
+                                                                               39
+Fonctionnement avancé
+Mode Drum
+
+Le mode Drum du APC mini mk2 divise la matrice des touches de lancement de
+clip en sections 4x4 qui s'alignent avec le rack de batterie à 16 emplacements
+d'Ableton, en commençant par la section inférieure gauche.
+     Pour accéder au mode Drum, maintenez la touche Shift enfoncée et appuyez
+     sur la sixième touche de lancement de scène.
+
+
+Mode note
+
+Le mode Note du APC mini mk2 modifie la disposition de la matrice de lancement
+de clip afin de l’utiliser pour jouer des notes comme un clavier chromatique. La
+gamme de notes, l’octave et la disposition des touches de lancement de clip
+peuvent toutes être ajustées directement à partir du APC mini mk2.
+     Pour accéder au mode Note, maintenez la touche Shift enfoncée et appuyez
+     sur la septième touche de lancement de scène (Note).
+
+En mode Note, les couleurs des touches de lancement de clip changent afin de
+refléter les notes de la gamme sélectionnées. Les notes fondamentales de la gamme
+seront rouges, tandis que d’autres notes de la gamme seront ambre. Lorsqu’une
+touche de lancement de clip est enfoncée, toutes les touches de lancement de clip
+de la même note et de la même octave seront vert foncé, tandis que toutes les
+touches de lancement de clip de la même note dans d’autres octaves seront vert
+clair.
+
+
+
+40
+Pour modifier les réglages du mode Note, maintenez la touche Shift enfoncée et
+appuyez sur la septième touche de lancement de scène (Note). La disposition de la
+matrice des touches de lancement de clip change pour celle ci-dessous, que vous
+pouvez utiliser pour modifier les différents réglages du mode Note :
+
+
+                  Db            Eb                            Gb           Ab             Bb
+
+
+
+    C             D             E              F               G            A              B
+
+
+
+
+Séparer les   Séparer les   Séparer les   Séparer les
+rangées par   rangées par   rangées par   rangées par
+  la tierce     la quarte     la quinte     la sixte
+
+                                          Afficher/mas
+                                            quer les
+Séparer les   Séparer les
+                                          notes qui ne
+rangées par   rangées par
+                                            font pas
+la septième      octave
+                                           partie de la
+                                             gamme
+
+                             Mineure        Mineure       Pentatonique Pentatonique
+Chromatique    Majeure                                                                   Dorien       Phrygien
+                            mélodique     harmonique        majeure      mineure
+
+
+                                                                                                     Gamme par
+  Lydien      Mixolydien      Éolien        Locrien          Blues      Flamenco      Heptatonique
+                                                                                                       tons
+
+
+  OCT -2        OCT -1        OCT 0          OCT 1          OCT 2         OCT 3          OCT 4         OCT 5
+
+
+
+
+                                                                                                               41
+Lorsqu’un paramètre est modifié, les touches de lancement de clip afficheront une
+animation afin de confirmer la sélection.
+
+
+Utilisez les deux premières rangées de touches de lancement de clip pour modifier la
+note fondamentale de la gamme. Lorsqu’enfoncée, la nouvelle sélection sera vert
+clair. Maintenez une des touches de note fondamentale pour afficher le nom de la
+gamme sélectionnée dans la matrice. Par exemple, si Do est sélectionnée, la matrice
+apparaît comme suit :
+
+
+
+
+42
+Utilisez les quatre premières colonnes des quatrième et cinquième rangées de
+touches de lancement de clip pour modifier la disposition des notes. Chaque rangée
+de notes peut être séparée par la tierce, la quarte, la quinte, la sixte, la septième ou
+l’octave. Maintenez une de ces touches afin d’afficher la valeur sélectionnée dans la
+matrice. Par exemple, si Séparer les rangées par la quinte est sélectionnée, la
+matrice apparaît comme suit :
+
+
+
+
+Appuyez sur la touche Afficher/masquer les notes qui ne font pas partie de la
+gamme pour activer ou désactiver les notes qui ne se trouve pas dans la gamme
+sélectionnée et qui n’apparaissent pas dans les rangées de pads. Lorsque cette
+fonction est désactivée, les touches de lancement de clip pour les notes qui ne font
+pas partie de la gamme sont éteintes.
+
+
+
+
+                                                                                     43
+Utilisez les sixième et septième rangées de touches de lancement de clip pour
+sélectionner le type de gamme. Maintenez l’une de ces touches pour afficher le nom
+de la gamme dans la matrice sous forme de lettres déroulantes.
+
+
+
+Utilisez la huitième rangée de touches de lancement de clip pour régler l’octave de
+base pour les pads. Maintenez une de ces touches afin d’afficher le réglage de
+l’octave actuel dans la matrice. Par exemple, si -1 octave est sélectionnée, la
+matrice apparaît comme suit :
+
+
+
+
+Pour quitter la modification des paramètres du mode Note, relâchez la touche
+Shift et la septième touche de lancement de scène (Note), et les touches de
+lancement de clip changeront de couleur pour refléter les sélections mises à jour.
+
+
+
+44
+Guida per l’uso (Italiano)
+Introduzione
+Grazie per aver acquistato il APC mini mk2. Noi di Akai Professional sappiamo che
+per te la musica è una cosa seria. Ecco perché progettiamo i nostri dispositivi con un
+unico obiettivo in mente: rendere le tue prestazioni le migliori possibili.
+
+
+Contenuti della confezione
+
+APC mini mk2                                    Cavo USB
+Ableton Live Lite (download)                    Guida per l'uso
+Schede per download di software                 Istruzioni di sicurezza e garanzia
+
+
+Assistenza
+
+Per le ultime informazioni in merito a questo prodotto (documentazione, specifiche
+tecniche, requisiti di sistema, informazioni sulla compatibilità, ecc.) e per effettuarne
+la registrazione, recarsi alla pagina akaipro.com.
+
+Per ulteriore assistenza sul prodotto, recarsi alla pagina akaipro.com/support.
+
+
+
+
+                                                                                      45
+Setup
+1.   Sul computer, aprire Ableton Live.
+2.   Servirsi del cavo USB in dotazione per collegare la porta USB dell'APC mini
+     mk2 ad una porta USB libera del computer (acceso).
+3.   In Ableton Live, aprire Preferences (preferiti):
+        • Windows: Options > Preferences (opzioni > preferiti)
+        • MacOS: Live > Preferences (Live > preferiti)
+4.   Cliccare sulla scheda Link/MIDI.
+5.   Cliccare su un menù a discesa Control Surface (superficie di controllo)
+     disponibile e selezionare APC mini mk2.
+6.   Cliccare su un menù a discesa Input (ingresso) disponibile e selezionare APC
+     mini mk2.
+7.   Cliccare su un menù a discesa Output (uscita) disponibile e selezionare APC
+     mini mk2.
+8.   Assicurarsi che l’opzione Track sotto MIDI Input sia attivata per APC mini
+     mk2 (Port 2).
+9.   Chiudere la finestra Preferences (preferiti).
+     Si può ora utilizzare l'APC mini mk2 con Ableton Live.
+
+
+
+
+46
+Caratteristiche
+
+     1     2
+
+                                      7
+                                      7
+                      6
+                                      7
+                                       7
+         3        3       3   3       8
+
+         4        4       4   4   5
+
+
+                                           47
+1.   Porta USB: servirsi di un cavo USB standard per collegare questa porta a una
+     porta USB del computer. La porta USB del computer alimenta l'APC mini mk2.
+     Questo collegamento serve anche a inviare e ricevere dati MIDI da e verso il
+     computer.
+2.   Slot per lucchetto Kensington: servirsi di questa apertura per lucchetto
+     Kensington per fissare l'APC mini mk2 a un tavolo o ad altre superfici.
+3.   Tasti Clip Stop: normalmente è possibile premere uno di questi tasti per fermare la
+     clip nella traccia corrispondente (rappresentata dalla colonna di otto tasti Clip
+     subito sopra di essa).
+     È possibile modificarne la funzione tenendo premuto Shift e quindi premendo
+     uno dei tasti Scene Launch denominati Soft Keys: Clip Stop, Solo, Mute,
+     Rec Arm o Select. Ciascun tasto imposta i tasti Clip Stop in una modalità
+     diversa:
+         • Modalità Clip Stop: i tasti clip stop interrompono le tracce
+           corrispondenti (modalità predefinita).
+         • Modalità Solo (assolo): i tasti clip stop effettuano un assolo delle tracce
+           corrispondenti.
+         • Modalità Mute (muto): i tasti clip stop silenziano le tracce
+           corrispondenti.
+         • Modalità Record-Arm (arma per la registrazione): i tasti clip stop
+           armano per la registrazione le tracce corrispondenti.
+         • Modalità Select (seleziona): i tasti clip stop selezionano le tracce
+           corrispondenti.
+     Tenere premuto Shift e premere uno dei quattro tasti Clip Stop di destra (,
+     , , ) per commutare la matrice di clip 8x8 visualizzabile. Nella Session
+     View in Ableton Live, questa è indicata da un rettangolo rosso intorno alle clip.
+
+
+
+
+48
+4.   Fader: normalmente è possibile utilizzare questi fader per controllare vari
+     parametri in Ableton Live.
+     Tenere premuto Shift e premere uno dei quattro tasti Clip Stop di sinistra
+     denominati Fader CTRL (Volume, Pan, Send, Device) per impostare i fader
+     dell'APC mini mk2 nella modalità corrispondente:
+        • Modalità Volume: gli otto fader controlleranno il livello del volume delle
+          prime otto tracce in Ableton Live.
+        • Modalità Pan: gli otto fader controlleranno le posizioni di panning delle
+          prime otto tracce in Ableton Live.
+        • Modalità Send: gli otto fader controlleranno il livello di Send A delle
+          prime otto tracce in Ableton Live. ripetere questa operazione per
+          impostare i fader in modo che controllino il livello dei send successivi (ad
+          es. Send B, Send C, ecc.).
+        • Modalità Device (dispositivo): gli otto fader controlleranno gli otto
+          comandi Macro del dispositivo corrente in Ableton Live.
+5.   Fader Master: servirsi di questo fader per controllare il volume della traccia
+     Master in Ableton Live.
+6.   Tasti Clip: in Session View di Ableton Live, servirsi di questi tasti nella matrice
+     8x8 per lanciare clip. Ciascun tasto Clip rappresenta una singola slot per clip.
+     Le otto colonne rappresentano otto tracce, mentre le otto righe rappresentano
+     otto scene. In modalità Clip Launch, i colori dei tasti corrisponderanno ai colori
+     della clip in Ableton Live. Se niente è stato caricato in uno slot per clip in
+     Ableton Live, il tasto corrispondente rimarrà spento.
+     È possibile lanciare l'intera scena premendo i tasti Scene Launch alla destra
+     della fila di clip.
+
+
+
+
+                                                                                     49
+7.   Tasti Scene Launch: normalmente è possibile premere uno di questi tasti per
+     lanciare la scena corrispondente (rappresentata dalla fila di otto tasti Clip alla
+     sua sinistra).
+     Tenere premuto Shift e quindi premere uno dei cinque tasti superiori per
+     cambiare la funzione dei tasti Clip Stop, che possono quindi interrompere,
+     mandare in assolo, armare per la registrazione, silenziare o selezionare le
+     tracce corrispondenti (si veda il punto 3. Tasti Clip Stop di cui sopra).
+     Tenere premuto Shift e premere il sesto o settimo pulsante per entrare in
+     modalità Drum o Note per i tasti Clip. Si veda Utilizzo avanzato per saperne
+     di più su queste modalità.
+     Tenere premuto Shift, aquindi premere l'ottavo (ultimo) tasto (Stop All Clips)
+     per fermare tutte le clip quando arrivano alla fine.
+8.   Shift: tenere premuto questo tasto, quindi premere un tasto Scene Launch per
+     modificare la funzione dei tasti Clip Stop (si veda il punto 3. Tasti Clip Stop di
+     cui sopra).
+     Tenere premuto questo tasto e quindi premere uno dei quattro tasti Clip Stop
+     di destra (, , , ) per commutare la matrice di clip 8x8 visualizzabile.
+     Nella Session View in Ableton Live, questa è indicata da un rettangolo rosso
+     intorno alle clip.
+     Tenere premuto Shift e premere uno dei quattro tasti Clip Stop di destra
+     (Volume, Pan, Send, Device) per impostare i fader dell'APC mini mk2 nella
+     modalità corrispondente (si veda il punto 4. Fader di cui sopra).
+
+
+
+
+50
+Funzionamento base
+Fare riferimento a questa sezione per imparare ad eseguire operazioni fondamentali
+in Ableton Live utilizzando l'APC mini mk2.
+Importante: prima di svolgere una qualsiasi delle operazioni di cui sotto, configurare
+l'APC mini mk2 come controller in Ableton Live (come descritto nella precedente
+sezione Setup).
+
+Per lanciare una clip, premere uno dei pulsanti Clip (nella matrice 8x8) illuminati di
+giallo in maniera smorzata, che indicano che in un determinato slot è caricata una
+clip, che però non sta suonando. Durante la riproduzione, il pulsante Clip si illumina.
+
+Per fermare una clip:
+1.    Tenere premuto Shift (maiusc) e premere il primo tasto Scene Launch (Clip
+      Stop). In questo modo i tasti Clip Stop vengono collocati in fondo alla matrice
+      8x8 dei tasti Clip in modalità Clip Stop.
+2.    Premere il tasto Clip Stop nella stessa traccia (colonna) della clip che si
+      desidera fermare.
+
+Per lanciare una scena, premere uno degli otto tasti Scene Launch alla destra
+della matrice 8x8 di tasti Clip.
+
+Per spostarsi nella matrice di clip, tenere premuto Shift e premere uno dei quattro
+tasti Clip Stop di destra (, , , ) per far scorrere la matrice di clip 8x8
+visualizzabile. Nel software, questa è indicata da un rettangolo rosso intorno alle clip.
+
+
+
+
+                                                                                      51
+Per effettuare l'assolo di una traccia:
+1.   Tenere premuto Shift e premere il secondo tasto Scene Launch (Solo). In
+     questo modo i tasti Clip Stop vengono collocati in fondo alla matrice 8x8 dei
+     tasti Clip in modalità Solo.
+2.   Premere il tasto Clip Stop nella stessa colonna della traccia di cui si desidera
+     effettuare l'assolo.
+
+Per silenziare una traccia:
+1.   Tenere premuto Shift e premere il terzo tasto Scene Launch (Mute). In questo
+     modo i tasti Clip Stop vengono collocati in fondo alla matrice 8x8 dei tasti Clip
+     in modalità Mute.
+2.   Premere il tasto Clip Stop nella stessa colonna della traccia che si desidera
+     silenziare.
+
+Per armare una traccia per la registrazione:
+1.   Tenere premuto Shift e premere il quarto tasto Scene Launch (Rec Arm). In
+     questo modo i tasti Clip Stop vengono collocati in fondo alla matrice 8x8 dei
+     tasti Clip in modalità Record-Arm.
+2.   Premere il tasto Clip Stop nella stessa colonna della traccia che si desidera
+     armare per la registrazione.
+
+Per selezionare una traccia:
+1.   Tenere premuto Shift e premere il quinto tasto Scene Launch (Select). In
+     questo modo i tasti Clip Stop vengono collocati in fondo alla matrice 8x8 dei
+     tasti Clip in modalità Select.
+2.   Premere il tasto Clip Stop nella stessa colonna della traccia che si desidera
+     selezionare.
+
+
+52
+Per fermare tutte le clip, tenere premuto Shift e premere l'ottavo (ultimo) tasto
+Scene Launch (Stop All Clips) (interrompi tutte le clip).
+
+Per regolare i volumi, tenere premuto Shift e premere il primo tasto Clip Stop
+(Volume) per impostare i Fader dell'APC mini mk2 in modalità Volume. i primi otto
+Fader controlleranno il livello del volume delle prime otto tracce in Ableton Live.
+
+Per regolare il panning, tenere premuto Shift e premere il secondo tasto Clip Stop
+(Pan) per impostare i Fader dell'APC mini mk2 in modalità Pan. I primi otto Fader
+controlleranno le posizioni di panning delle prime otto tracce in Ableton Live.
+
+Per regolare il livello di send, tenere premuto Shift e premere il terzo tasto Clip
+Stop (Send) per impostare i Fader dell'APC mini mk2 in modalità Send. I primi otto
+Fader controlleranno il livello di Send A delle prime otto tracce in Ableton Live.
+Suggerimento: ripetere questa operazione per controllare il livello dei send
+successivi (ad es. Send B, Send C, ecc.).
+
+Per regolare i dispositivi, tenere premuto Shift e premere il quarto tasto Clip Stop
+(Device) per impostare i Fader dell'APC mini mk2 in modalità Device. I primi otto
+Fader controlleranno gli otto comandi Macro del dispositivo corrente in Ableton Live.
+
+
+
+
+                                                                                  53
+Utilizzo avanzato
+Modalità Drum
+
+La modalità Drum dell’APC mini mk2 divide la matrice dei tasti Clip in quadranti 4x4
+che si allineano con il Drum Rack a 16 slot di Ableton, a partire dal quadrante
+inferiore sinistro.
+     Per entrare in modalità Drum, tenere premuto Shift e premere il sesto tasto
+     Scene Launch.
+
+
+
+Modalità Note
+
+La modalità Note dell’APC mini mk2 modifica il layout della matrice dei tasti Clip per
+utilizzarla per suonare le note come una tastiera cromatica. La scala, l’ottava e il
+layout dei tasti Clip possono essere regolati direttamente dall’APC mini mk2.
+     Per entrare in modalità Note, tenere premuto Shift e premere il settimo tasto
+     Scene Launch (Note).
+
+
+In modalità Note, i colori del tasto Clip cambieranno per riflettere le note della scala
+selezionata. Le note radice della scala saranno illuminate di rosso, mentre le altre
+note della scala saranno illuminate di giallo. Quando si preme un tasto Clip, tutti i
+tasti Clip della stessa nota e ottava saranno illuminati di colore verde acceso,
+mentre tutti i tasti Clip della stessa nota in altre ottave saranno verde chiaro.
+
+
+
+
+54
+Per modificare le impostazioni in modalità Note, tenere premuto Shift e il settimo
+tasto Scene Launch (Note). La matrice di tasti Clip passerà al seguente layout, che
+può essere utilizzato per regolare varie impostazioni per la modalità Note:
+
+
+               Db           Eb                       Gb           Ab           Bb
+
+
+    C           D           E           F             G            A           B
+
+
+
+
+  Separa      Separa       Separa
+                                      Separa
+righe con   righe con    righe con
+                                   righe con 6°
+    3°          4°           5°
+
+                                     Mostra/
+  Separa     Separa
+                                    nascondi
+righe con   righe per
+                                   note non in
+    7°        ottave
+                                      scala
+
+                         Melodic    Harmonic        Major        Minor
+Chromatic     Major                                                          Dorian     Phrygian
+                          Minor      Minor        Pentatonic   Pentatonic
+
+                                                                                         Whole
+  Lydian    Mixolydian   Aeolian     Locrian        Blues      Flamenco     Hungarian
+                                                                                         Tone
+
+
+ OCT -2      OCT -1       OCT 0       OCT 1        OCT 2        OCT 3        OCT 4       OCT 5
+
+
+
+
+                                                                                              55
+Quando viene modificato un qualsiasi parametro, i tasti Clip mostrano un’animazione
+per confermare la scelta selezionata.
+
+
+Servirsi delle due file superiori di tasti Clip per modificare la nota radice desiderata
+della scala. Una volta premuta, la nuova selezione si illuminerà di verde. Tenere
+premuto un tasto root note per visualizzare il nome della scala selezionata
+visualizzata nella matrice. Ad esempio, se è selezionato il DO, la matrice apparirà
+come segue:
+
+
+
+
+56
+Servirsi delle prime quattro colonne nella quarta e quinta riga di tasti Clip per
+cambiare il layout delle note. Ciascuna riga di note può essere separata da un 3°, 4°,
+5°, 6°, 7° o da un’ottava. Tenere premuto uno di questi tasti per mostrare il valore
+selezionato nella matrice. Ad esempio, se è selezionato Separa righe con 5°, la
+matrice di pad apparirà come segue:
+
+
+
+
+Premere il tasto Show/Hide Non-Scale Notes per attivare o disattivare note non
+presenti nella scala attualmente selezionata dall’apparire belle file di pad. Quando
+disattivati, i tasti Clip per note non in scala saranno spenti.
+
+
+
+Servirsi della sesta e settima riga di tasti Clip per selezionare il tipo di scala. Tenere
+premuto uno di questi tasti per mostrare il nome della scala nella matrice sotto forma
+di lettere che scrollano.
+
+                                                                                       57
+Servirsi dell’ottava fila di tasti Clip per impostare l’ottava di base per i pad. Tenere
+premuto uno di questi tasti per mostrare il valore dell’ottava corrente nella matrice.
+Ad esempio, se è selezionato -1 Octave, la matrice di pad apparirà come segue:
+
+
+
+
+Per uscire dalla modifica della modalità Note Mode, lasciare i tasti Shift e il
+settimo tasto Scene Launch (Note), e i tasti Clip cambieranno colore per riflettere le
+scelte aggiornate.
+
+
+
+
+58
+Benutzerhandbuch (Deutsch)
+Einführung
+Vielen Dank für den Kauf des APC mini mk2. Wir von Akai Professional wissen, wie
+wichtig Ihnen die Musik ist. Darum entwerfen wir unsere Geräte stets nur mit einem
+einzigen Ziel vor Augen: Ihre Performance so gut wie möglich zu unterstützen.
+
+
+Lieferumfang
+
+APC mini mk2                     USB-Kabel
+Ableton Live Lite (Download)     Benutzerhandbuch
+Software-Download-Karten         Sicherheitshinweise und Garantieinformationen
+
+
+Kundendienst
+
+Für die neuesten Informationen zu diesem Produkt (Dokumentation, technische
+Daten, Systemanforderungen, Informationen zur Kompatibilität etc.) und zur
+Produktregistrierung besuchen Sie bitte: akaipro.com.
+
+Für zusätzlichen Produkt-Support besuchen Sie akaipro.com/support.
+
+
+
+
+                                                                                 59
+Setup
+1.   Öffnen Sie Ableton Live auf Ihrem Computer.
+2.   Verwenden Sie das mitgelieferte USB-Kabel, um den USB-Anschluss des APC
+     mini mk2 mit einem freien USB-Anschluss Ihres (eingeschalteten) Computers
+     zu verbinden.
+3.   Öffnen Sie die Preferences (Einstellungen) in Ableton Live:
+        • Windows: Options > Preferences (Optionen > Einstellungen)
+        • MacOS: Live > Preferences (Live > Einstellungen)
+4.   Klicken Sie auf die Registerkarte Link/MIDI.
+5.   Klicken Sie auf ein verfügbares Control Surface (Steuergerät)-Dropdown-
+     Menü und wählen APC mini mk2.
+6.   Klicken Sie auf ein verfügbares Input (Eingang)-Dropdown-Menü und wählen
+     APC mini mk2.
+7.   Klicken Sie auf ein verfügbares Output (Ausgabe)-Dropdown-Menü und wählen
+     APC mini mk2.
+8.   Stellen Sie sicher, dass die Track-Option unter MIDI Input (MIDI-Eingang) für
+     das APC mini mk2 (Port 2) aktiviert ist.
+9.   Schließen Sie das Eigenschaften-Fenster.
+     Sie können Ihr APC mini mk2 nun mit Ableton Live verwenden.
+
+
+
+
+60
+Funktionen
+
+    1        2
+
+                                     7
+                                     7
+                     6
+                                     7
+                                      7
+        3        3       3   3       8
+
+        4        4       4   4   5
+
+
+                                          61
+1.   USB-Port: Verwenden Sie ein Standard-USB-Kabel, um diesen USB-Port mit
+     Ihrem Computer zu verbinden. Der USB-Anschluss des Computers versorgt
+     das APC mini mk2 mit Strom. Diese Verbindung wird auch verwendet, um
+     MIDI-Daten vom und zum Computer zu senden und zu empfangen.
+2.   Kensington Lock Slot: Sie können diesen Kensington Lock Sicherheits-Slot
+     verwenden, um das APC mini mk2 an einem Tisch oder einer anderen
+     Oberfläche zu befestigen.
+3.   Clip-Stopp-Tasten: Normalerweise können Sie eine dieser Tasten drücken,
+     um den Clip im entsprechenden Track zu stoppen - dargestellt durch die
+     Spalte von acht Clip-Tasten knapp darüber.
+     Sie können ihre Funktionen ändern, indem Sie die Umschalttaste gedrückt
+     halten und dann eine der Szenen-Starttasten mit der Aufschrift Soft Keys
+     drücken: Clip Stopp, Solo, Stummschalten, Für Aufnahme Scharfstellen
+     oder Auswählen. Jede Taste bringt die Clip-Stopp-Tasten in einen anderen
+     Modus:
+        • Clip-Stopp-Modus: Die Clip-Stopp-Tasten stoppen die entsprechenden
+           Tracks (Standardmodus).
+        • Solo-Modus: Die Clip-Stopp-Tasten schalten die entsprechenden Tracks
+           solo.
+        • Stummschalten-Modus:         Die    Clip-Stopp-Tasten    schalten    die
+           entsprechenden Tracks stumm.
+        • Scharfstellen-Modus: Die Clip-Stopp-Tasten stellen die entsprechenden
+           Tracks für die Aufnahme scharf.
+        • Auswahl-Modus: Die Clip-Stopp-Tasten wählen die entsprechenden
+           Tracks aus.
+     Halten Sie die Umschalttaste gedrückt und drücken eine der vier rechten Clip-
+     Stopp-Tasten (, , , ), um die sichtbare 8x8-Matrix zu verschieben. In
+     Ableton Lives Session-Ansicht wird dies durch ein rotes Rechteck um die Clips
+     angezeigt.
+
+
+62
+4.   Fader: Normalerweise können Sie diese Fader verwenden, um verschiedene
+     Parameter in Ableton Live zu steuern.
+     Halten Sie die Umschalttaste gedrückt und drücken Sie eine der vier linken
+     Clip-Stopp-Tasten (Lautstärke, Pan, Send, Gerät), um die Regler Ihres APC
+     mini mk2 in den entsprechenden Modus zu versetzen:
+       • Lautstärke-Modus: Die acht Fader steuern die Lautstärke der ersten
+         acht Tracks in Ableton Live.
+       • Pan-Modus: Die acht Fader steuern die Panning-Positionen der ersten
+         acht Tracks in Ableton Live.
+       • Send-Modus: Die ersten acht Fader steuern die Send A-Pegel der ersten
+         acht Tracks in Ableton Live. Wiederholen Sie diese Aktion, um die Fader
+         so einzustellen, dass sie die Pegel der nachfolgenden Sends steuern (z.B.
+         Send B, Send C etc.).
+       • Gerätemodus: Die acht Fader steuern die acht Macro-Regler des
+         aktuellen Gerätes in Ableton Live.
+5.   Master-Fader: Verwenden Sie diesen Fader, um den Pegel des Master-Tracks
+     in Ableton Live einzustellen.
+6.   Clip-Tasten: Während Sie sich in Ableton Lives Session-Ansicht befinden,
+     können Sie diese Tasten in der 8x8-Matrix verwenden, um Clips zu starten.
+     Jede Clip-Taste stellt einen einzelnen Clip-Slot dar. Die acht Spalten stellen
+     acht Tracks dar, die acht Reihen stellen acht Szenen dar. Im Clip-Startmodus
+     stimmen die Farben der Tasten mit den Clip-Farben in Ableton Live überein.
+     Wenn in Ableton Live nichts im Clip-Slot geladen ist, bleibt die entsprechende
+     Taste unbeleuchtet.
+     Sie können die gesamte Szene starten, indem Sie die Tasten Szene starten
+     rechts von der Clips-Reihe drücken.
+
+
+
+                                                                                63
+7.   Szene-Start-Tasten: Normalerweise können Sie eine dieser Tasten drücken,
+     um die entsprechende Szene zu starten - diese Szene wird von einer Reihe von
+     acht Clip-Tasten auf der linken Seite dargestellt.
+     Halten Sie die Umschalttaste gedrückt und drücken Sie dann eine der oberen
+     fünf Tasten, um die Funktion der Clip-Stopp-Tasten zu ändern, die dann den
+     entsprechenden Track stoppen, auf Solo schalten, stummschalten, scharf
+     stellen oder auswählen können (siehe #3. Clip-Stopp-Tasten oben).
+     Halten Sie die Umschalttaste gedrückt und drücken Sie die sechste oder
+     siebte Taste, um den Drum- oder Note-Modus für die Clip-Tasten aufzurufen.
+     Weitere Informationen zu diesen Modi finden Sie unter Erweiterte Bedienung.
+     Halten Sie die Umschalttaste und drücken Sie dann die achte (letzte) Taste
+     (Alle Clips stoppen), um alle Clips zu stoppen, wenn sie das Ende erreichen.
+8.   Umschalten: Halten Sie diese Taste gedrückt und drücken Sie dann eine
+     Szene-Start-Taste, um die Funktion der Clip-Stopp-Tasten zu ändern (siehe
+     # 3. Clip-Stopp-Tasten oben).
+     Halten Sie diese Taste gedrückt und drücken Sie dann eine der vier rechten
+     Clip-Stopp-Tasten (, , , ), um die sichtbare 8x8-Clip-Matrix zu
+     verschieben. In Ableton Lives Session-Ansicht wird dies durch ein rotes
+     Rechteck um die Clips angezeigt.
+     Halten Sie die Umschalttaste gedrückt und drücken Sie eine der vier linken
+     Clip-Stopp-Tasten (Lautstärke, Pan, Send, Gerät), um die Fader Ihres APC
+     mini mk2 in den entsprechenden Modus zu versetzen (siehe #4. Fader oben).
+
+
+
+
+64
+Einfacher Betrieb
+Lesen Sie dieses Kapitel, um zu lernen, wie grundlegende Aufgaben mit APC mini
+mk2 in Ableton Live bewerkstelligt werden können.
+Wichtig: Bevor Sie fortfahren, sollten Sie APC mini mk2 als Controller in Ableton Live
+einstellen (im Abschnitt Setup oben beschrieben).
+
+Um einen Clip zu starten, drücken Sie eine der Clip-Tasten (in der 8x8-Matrix), die
+schwach leuchtet, was bedeutet, dass ein Clip geladen ist, aber nicht abgespielt
+wird. Die Clip-Taste leuchtet während der Wiedergabe hell.
+
+Um einen Clip zu stoppen:
+1.   Halten Sie die Umschalttaste und drücken die erste Szene-Start-Taste (Clip
+     Stopp) Dies versetzt die Clip-Stopp-Tasten am unteren Rand der 8x8-Matrix in
+     den Clip-Stopp-Modus.
+2.   Drücken Sie die Clip-Stopp-Taste im gleichen Track (Spalte) wie der Clip, den
+     Sie stoppen möchten.
+
+Um eine Szene zu starten, drücken Sie eine der acht Szene-Start-Tasten rechts
+von der 8x8-Matrix.
+
+Um die Matrix des Clips zu bewegen halten Sie die Umschalttaste gedrückt und
+drücken eine der vier linken Clip-Stopp-Tasten (, , , ), um die sichtbare 8x8-
+Matrix zu verschieben. In der Software wird dies durch ein rotes Rechteck um die
+Clips dargestellt.
+
+
+
+
+                                                                                   65
+Um einen Track solo zu schalten:
+1.   Halten Sie die Umschalttaste und drücken die zweite Szene-Start-Taste
+     (Solo). Dies versetzt die Clip-Stopp-Tasten am unteren Rand der 8x8-Matrix in
+     den Solo-Modus.
+2.   Drücken Sie die Clip-Stopp-Taste im gleichen Spalte wie der Track, den Sie
+     solo schalten möchten.
+
+Um einen Track stumm zu schalten:
+1.   Halten Sie die Umschalttaste und drücken Sie die dritte Szene-Start-Taste
+     (Stummschalten). Dies versetzt die Clip-Stopp-Tasten am unteren Rand der
+     8x8-Matrix in den Stummschalten-Modus.
+2.   Drücken Sie die Clip-Stopp-Taste im gleichen Spalte wie der Track, den Sie
+     stumm schalten möchten.
+
+So stellen Sie einen Track scharf:
+1.   Halten Sie die Umschalttaste und drücken Sie die vierte Szene-Start-Taste
+     (Scharfstellen). Dies versetzt die Clip-Stopp-Tasten am unteren Rand der 8x8-
+     Matrix in den Scharfstellen-Modus.
+2.   Drücken Sie die Clip-Stopp-Taste im gleichen Spalte wie der Track, den Sie
+     scharfstellen möchten.
+
+Um einen Track zu wählen:
+1.   Halten Sie die Umschalttaste und drücken Sie die fünfte Szene-Start-Taste
+     (Auswählen). Dies versetzt die Clip-Stopp-Tasten am unteren Rand der 8x8-
+     Matrix in den Auswahl-Modus.
+2.   Drücken Sie die Clip-Stopp-Taste im gleichen Spalte wie der Track, den Sie
+     auswählen möchten.
+
+
+66
+Um alle Clips zu stoppen, halten Sie die Umschalttaste und drücken Sie die achte
+(letzte) Szene-Start-Taste (Alle Clips stoppen).
+
+Um die Lautstärken einzustellen, halten Sie die Umschalttaste gedrückt und
+drücken die zuerst Clip-Stopp-Taste (Lautstärke), um die Drehregler des APC mini
+mk2 in den Lautstärkemodus zu versetzen. Die acht Regler steuern die Lautstärke
+der ersten acht Tracks in Ableton Live.
+
+Um das Panning einzustellen, halten Sie die Umschalttaste gedrückt und drücken
+die dritte Clip-Stopp-Taste (Pan), um die Regler des APC mini mk2 in den Pan-
+Modus zu versetzen. Die acht Fader steuern die Panning-Positionen der ersten acht
+Tracks in Ableton Live.
+
+Zur Einstellung der Send-Pegel halten Sie die Umschalttaste gedrückt und
+drücken die vierte Clip-Stopp-Taste (Send), um die Fader des APC mini mk2 in den
+Send-Modus zu versetzen. Die ersten acht Fader steuern die Send A-Pegel der
+ersten acht Tracks in Ableton Live.
+Tipp: Wiederholen Sie diese Aktion, um die Fader so einzustellen, dass sie die Pegel
+der nachfolgenden Sends steuern (z.B. Send B, Send C etc.).
+
+Um Geräte anzupassen, halten Sie die Umschalttaste gedrückt und drücken die
+fünfte Clip-Stopp-Taste (Gerät), um die Fader des APC mini mk2 in den Geräte-
+Modus zu versetzen. Die ersten acht Fader steuern die acht Macro-Regler des
+aktuellen Gerätes in Ableton Live.
+
+
+
+
+                                                                                 67
+Erweiterte Bedienung
+Drum-Modus
+
+Der Drum-Modus von APC mini mk2 teilt die Matrix der Clip-Schaltflächen in 4x4-
+Quadranten auf, die mit dem 16-Slot-Drum-Rack von Ableton übereinstimmen,
+beginnend mit dem unteren linken Quadranten.
+     Um in den Drum-Modus zu gelangen, halten Sie die Umschalttaste gedrückt
+     und drücken Sie die sechste Szene-Starttaste.
+
+
+
+Noten-Modus
+
+Der Noten-Modus des APC mini mk2 ändert das Layout der Clip-Button-Matrix, um
+Noten wie auf einem chromatischen Keyboard spielen zu können. Die Notenskala,
+die Oktave und das Layout der Clip-Tasten können direkt vom APC mini mk2 aus
+angepasst werden.
+     Um in den Noten-Modus zu gelangen, halten Sie die Umschalttaste gedrückt
+     und drücken Sie die siebente Szene-Starttaste (Note).
+
+
+Im Noten-Modus ändern sich die Farben der Clip-Taste, um die ausgewählten Noten
+wiederzugeben. Die Grundtöne der Tonleiter leuchten rot, während die anderen
+Tonleiternoten gelb leuchten. Wenn eine Clip-Taste gedrückt wird, leuchten alle
+Clip-Tasten derselben Note und Oktave knallgrün, während alle Clip-Tasten
+derselben Note in anderen Oktaven hellgrün leuchten.
+
+
+
+
+68
+Um die Einstellungen für den Noten-Modus zu bearbeiten, halten Sie die
+Umschalttaste und die siebente Szene-Starttaste (Note) gedrückt. Die Matrix der
+Clip-Tasten wechselt zum folgenden Layout, mit dem Sie verschiedene Einstellungen
+für den Noten-Modus anpassen können:
+
+
+                  Db            Eb                        Gb          Ab          Bb
+
+
+    C             D              E            F            G           A          B
+
+
+
+
+               Reihen         Reihen
+Reihen nach                              Reihen nach
+               nach 4.        nach 5.
+ 3. trennen                               6. trennen
+               trennen        trennen
+
+                                            Noten
+               Reihen
+                                          außerhalb
+Reihen nach      nach
+                                         der Tonleiter
+ 7. trennen    Oktave
+                                             ein-
+               trennen
+                                         /ausblenden
+
+                            Melodisches Harmonische        Dur       Moll
+Chromatisch      Dur                                                            Dorisch   Phrygisch
+                            Molltonleiter Molltonleiter Pentatonik Pentatonik
+
+
+  Lydisch     Mixolydisch     Äolisch      Lokrisch      Blues    Flamenco Ungarisch Ganzton
+
+
+  OCT -2        OCT -1        OCT 0         OCT 1        OCT 2      OCT 3       OCT 4      OCT 5
+
+
+
+                                                                                                69
+Wenn ein Parameter geändert wird, wird auf den Clip-Tasten eine Animation
+angezeigt, um die ausgewählte Auswahl zu bestätigen.
+
+
+Verwenden Sie die beiden oberen Reihen der Clip-Tasten, um den gewünschten
+Grundton der Tonleiter zu ändern. Wenn diese Taste gedrückt wird, leuchtet die neue
+Auswahl grün. Halten Sie eine Grundton-Taste gedrückt, um den Namen der aktuell
+ausgewählten Tonleiter in der Matrix anzuzeigen. Wenn beispielsweise C ausgewählt
+ist, sieht die Matrix folgendermaßen aus:
+
+
+
+
+70
+Verwenden Sie die ersten vier Spalten in der vierten und fünften Reihe der Clip-
+Tasten, um das Notenlayout zu ändern. Jede Notenreihe kann durch eine 3., 4., 5.,
+6., 7. Note oder eine Oktave getrennt werden. Halten Sie eine dieser Tasten
+gedrückt, um den ausgewählten Wert in der Matrix anzuzeigen.              Wenn
+beispielsweise Reihen nach 5. trennen ausgewählt ist, sieht die Pad-Matrix
+folgendermaßen aus:
+
+
+
+
+Drücken Sie die Taste Noten außerhalb der Tonleiter ein-/ausblenden, um die
+Anzeige von Noten, die nicht in der aktuell ausgewählten Tonleiter enthalten sind, in
+den Pad-Reihen zu aktivieren oder zu deaktivieren. Wenn diese Option deaktiviert ist,
+leuchten die Clip-Tasten für Noten außerhalb der Tonleiter nicht.
+
+
+
+
+                                                                                  71
+Verwenden Sie die sechste und siebte Reihe der Clip-Tasten, um den Tonleitertyp
+auszuwählen. Halten Sie eine dieser Tasten gedrückt, um den Tonleiternamen in der
+Matrix als Bildlaufbuchstaben anzuzeigen.
+
+
+Verwenden Sie die achte Reihe der Clip-Tasten, um die Basisoktave für die Pads
+festzulegen. Halten Sie eine dieser Tasten gedrückt, um die aktuelle Oktaveinstellung
+in der Matrix anzuzeigen. Wenn beispielsweise -1 Oktave ausgewählt ist, sieht die
+Pad-Matrix folgendermaßen aus:
+
+
+
+
+Um die Bearbeitung im Noten-Modus zu beenden, lassen Sie sowohl die
+Umschalttaste als auch die siebte Szene-Starttaste (Note) los. Die Clip-Tasten
+ändern ihre Farbe, um die aktualisierten Auswahlen widerzuspiegeln.
+
+
+
+
+72
+73
+Appendix (English)
+Technical Specifications
+
+Power                       USB-bus-powered
+Inputs/Outputs              1 USB Type-B Port
+Clip Buttons                64 RGB backlit clip-launch buttons in 8x8 matrix
+Faders                      8 assignable track faders
+                            1 assignable main fader
+Dimensions                  9.5” x 8.3” x 1.3”
+(width x depth x height)    240 x 210 x 32 mm
+Weight                      1.79 lbs.
+                            0.81 kg
+
+Specifications are subject to change without notice.
+
+
+
+
+74
+Trademarks & Licenses
+Akai Professional is a trademark of inMusic Brands, Inc., registered in the U.S. and
+other countries. Akai Professional and MPC are trademarks of inMusic Brands, Inc.,
+registered in the U.S. and other countries. Ableton is a trademark of Ableton AG.
+Kensington and the K & Lock logo are registered trademarks of ACCO Brands.
+macOS is a trademark of Apple Inc., registered in the U.S. and other countries.
+Windows is a registered trademark of Microsoft Corporation in the United States and
+other countries. All other product names, company names, trademarks, or trade
+names are those of their respective owners.
+
+
+
+
+                                                                                 75
+Manual Version 1.7
+

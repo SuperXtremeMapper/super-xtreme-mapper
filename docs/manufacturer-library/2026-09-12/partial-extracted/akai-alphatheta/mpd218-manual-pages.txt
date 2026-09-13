@@ -1,0 +1,678 @@
+
+===== PDF PAGE 1 =====
+       User Guide
+        English ( 3 – 5 )
+
+  Guía del usuario
+       Español ( 6 – 8 )
+
+Guide d’utilisation
+      Français ( 9 – 11 )
+
+   Guida per l’uso
+      Italiano ( 12 – 14 )
+
+Benutzerhandbuch
+     Deutsch ( 15 – 17 )
+
+          Appendix
+           English ( 18 )
+
+===== PDF PAGE 2 =====
+
+===== PDF PAGE 3 =====
+User Guide (English)
+Introduction
+
+Box Contents
+
+MPD218
+USB Cable
+Software Download Cards
+User Guide
+Safety & Warranty Manual
+Important: Visit akaipro.com and find the webpage for MPD218 to download the
+MPD218 Editor Software and Preset Documentation.
+
+
+
+Support
+
+For the latest information about this product (system requirements, compatibility information,
+etc.) and product registration, visit: akaipro.com.
+For additional product support, visit: akaipro.com/support.
+
+
+
+Quick Start
+1.   Use the included USB cable to connect MPD218’s USB port to an available USB port on
+     your computer (powered on).
+2.   On your computer, open your digital audio workstation (DAW).
+3.   Select MPD218 as the controller in the Preferences, Device Setup, or Options of your
+     DAW.
+
+
+Tip: You can use MPD218 with a MIDI-controllable iOS app. To do this:
+1.   Press and hold the Note Repeat button.
+2.   Connect your iOS device (powered on) to MPD218’s USB port using an Apple iPad
+     Camera Connection Kit (sold separately).
+3.   After MPD218 powers on, release the Note Repeat button.
+
+
+
+
+                                                                                             3
+
+===== PDF PAGE 4 =====
+Features
+
+                                                                    1 2
+
+        3            3
+
+        3            3
+                                                          5
+        3            3
+
+      4         10           6
+      7          9           8
+
+1.   USB Port: Use a standard USB cable to connect this USB port to your computer. The
+     computer’s USB port provides ample power to MPD218. This connection is also used to
+     send and receive MIDI data to and from your computer.
+                 ®
+2.   Kensington Lock: You may use this Kensington lock slot to secure the MPD218 to a
+     table or other surface.
+3.   Potentiometers: Use these 360º knobs to send continuous controller messages to your
+     software or external MIDI device.
+4.   Control Bank (Ctrl Bank): Use this button to select one of three independent banks of
+     potentiometers. This lets you control up to 18 independent parameters.
+5.   Pads: Use these pads to trigger drum hits or other samples in your software or external
+     MIDI sound module. The pads are pressure- and velocity-sensitive, which makes them
+     very responsive and intuitive to play.
+6.   Pad Bank: Use this button to select one of three independent banks of pads. This lets
+     you access up to 48 different pads (16 pads across 3 pad banks).
+7.   Full Level: Press this button to activate Full Level Mode in which the pads always play at
+     a maximum velocity (127), no matter how hard or soft you hit them.
+
+
+
+
+4
+
+===== PDF PAGE 5 =====
+8.   Note Repeat: Press and hold this button while striking a pad to cause the pad to
+     retrigger at a rate based on the current tempo and Time Division settings.
+     Tip: You can sync Note Repeat to an internal or external MIDI clock source. See the
+     description for Note Repeat Configuration (NR Config) to learn how to do this.
+9.   Note Repeat Configuration (NR Config): Press this button and then press a pad to
+     select its secondary function (printed next to the pad number).
+     Important: While holding this button, the pads will not send any of their normal MIDI
+     messages.
+      •   Pads 1–8: Press one of these pads to determine Time Division, which determines
+          the rate of the Note Repeat feature: quarter notes (1/4), eighth notes (1/8), 16th
+          notes (1/16), or 32nd notes (1/32). On Pads 5–8, the T indicates a triplet-based time
+          division.
+      •   Pads 9–14: Press one of these pads to select the amount of Swing: Off, 54%, 56%,
+          58%, 60%, or 62%.
+      •   Pad 15 (Ext Clock): Press this pad to set MPD218’s clock source (external or
+          internal), which will determine the rate of its time-related features. When lit (external),
+          MPD218 will use your DAW’s tempo. When off (internal), MPD218 will use its own
+          tempo, which you can set with Pad 16, which will flash at the current tempo.
+      •   Pad 16 (Tap Tempo): Press this pad at the desired rate to enter a new tempo.
+          MPD218 will detect the new tempo after 3 taps. The pad will flash at the current
+          tempo if you hold NR Config and if MPD218 is using its internal clock.
+10. Program Select (Prog Select): Press and hold this button and then press a pad to select
+    the Program with the same number as the pad. A Program is a pre-mapped layout of
+    pads, which can be useful for specific situations (using a General MIDI drum set or using
+    a specific melodic scale).
+     Important:
+     While holding this button, the pads will not send any of their normal MIDI messages.
+     Visit akaipro.com and find the webpage for MPD218 to download the MPD218 Preset
+     Documentation.
+
+
+
+
+                                                                                                   5
+
+===== PDF PAGE 6 =====
+Guía del usuario (Español)
+Introducción
+
+Contenido de la caja
+
+MPD218
+Cable USB
+Tarjetas de descarga de software
+Guía del usuario
+Manual sobre la seguridad y garantía
+Importante: Visite en akaipro.com la página correspondiente al MPD218 para descargar el
+software de edición y la documentación de los presets del MPD218.
+
+
+
+Soporte
+
+Para obtener la información más reciente acerca de este producto (requisitos de sistema,
+información de compatibilidad, etc.) y registrarlo, visite: akaipro.com.
+Para soporte adicional del producto, visite: akaipro.com/support.
+
+
+
+Inicio rápido
+1.   Utilice el cable USB incluido para conectar el puerto USB del MPD218 a un puerto USB
+     disponible en su ordenador (encendido).
+2.   Abra su estación de trabajo de audio digital (DAW) en su ordenador.
+3.   Seleccione MPD218 como controlador en Preferences (Preferencias), Device Setup
+     (Configuración de dispositivo) u Options (Opciones) de su DAW.
+
+
+Consejo: Puede utilizar el MPD218 con una aplicación controlable por MIDI para iOS. Para
+hacerlo:
+1.   Mantenga pulsado el botón Note Repeat (Repetición de nota).
+2.   Conecte su dispositivo iOS (encendido) al puerto USB del MPD218 mediante un Apple
+     iPad Camera Connection Kit (Kit de conexión de cámara para iPad de Apple) (que se
+     vende por separado).
+3.   Una vez encendido el MPD218, suelte el botón Note Repeat.
+
+
+
+
+6
+
+===== PDF PAGE 7 =====
+Características
+
+                                                                  1 2
+
+        3           3
+
+        3           3
+                                                         5
+        3           3
+
+      4         10            6
+      7          9            8
+
+1.   Puerto USB: Utilice un cable USB estándar para conectar este puerto USB a su
+     ordenador. El puerto USB de la computadora suministra suficiente alimentación al
+     MPD218. Esta conexión también se utiliza para enviar y recibir datos MIDI desde y hacia
+     su ordenador.
+                          ®
+2.   Bloqueo Kensington : Puede utilizar esta ranura de bloqueo Kensington a fin de sujetar
+     el MPD218 a una mesa u otra superficie.
+3.   Potenciómetros: Utilice estas perillas de 360º para mandar mensajes de controlador
+     continuos a su software o dispositivo MIDI externo.
+4.   Banco de Control (Ctrl Bank): Utilice este botón para seleccionar uno de los tres
+     bancos independientes de potenciómetros. Le permite controlar hasta 18 parámetros
+     independientes.
+5.   Pads: Utilice estos pads para disparar golpes de batería u otras muestras en su software
+     o módulo de sonido MIDI externo. Estos pads son sensibles a la presión y a la velocidad,
+     lo que los hace de rápida respuesta y muy intuitivos para tocar.
+6.   Banco de pads: Utilice este botón para seleccionar uno de los tres bancos
+     independientes de pads. Le permitirá acceder a hasta 48 pads diferentes (16 pads en 3
+     bancos de pads)
+7.   Nivel máximo: Pulse este botón para activar el modo de nivel máximo, en el cual los
+     pads siempre tocan a máxima velocidad (127), independientemente de lo fuerte o
+     débilmente que usted los golpee.
+
+                                                                                            7
+
+===== PDF PAGE 8 =====
+8.   Repetición de nota: Mantenga pulsado este botón mientras golpea un pad, para hacer
+     que redispare a un ritmo basado en el tempo y la división de tiempo actuales.
+     Consejo: Puede sincronizar la repetición de nota con una fuente de reloj MIDI interna o
+     externa. Consulte en la descripción la Configuración de Repetición de Nota (NR Config)
+     para aprender a hacer esto.
+9.   Configuración de Repetición de Nota (NR Config): Pulse este botón y luego pulse un
+     pad para seleccionar su función secundaria (impresa junto al número de pad).
+     Importante: Mientras mantenga pulsado este botón, los pads no enviarán ninguno de
+     sus mensajes MIDI normales.
+      •   Pads 1–8: Pulse uno de estos pads para determinar la división de tiempo, que
+          determina la velocidad de la característica de repetición de nota: negras (1/4),
+          corcheas (1/8), semicorcheas (1/16) o fusas (1/32). En los Pads 5–8, la T indica una
+          división de tiempo basada en tresillos.
+      •   Pads 9–14: Pulse alguno de estos pads para seleccionar la cantidad de Swing.
+          Apagado, 54%, 56%, 58%, 60% o 62%.
+      •   Pad 15 (Ext Clock): Pulse este pad para ajustar la fuente del reloj del MPD218
+          (externa o interna), que determinará la velocidad de sus características relacionadas
+          con el tiempo. Una vez encendido (externo), el MPD218 utilizará el tempo de su
+          DAW. Si está apagado (interno), el MPD218 utilizará su propio tempo, el cual puede
+          ajustar con el Pad 16, que parpadea según el tempo actual.
+      •   Pad 16 (Tap Tempo): Pulse este pad al ritmo deseado para introducir un nuevo
+          tempo. El MPD218 detecta el nuevo tempo tras tres toques. El pad parpadeará
+          según el tempo actual si mantiene pulsado NR Config y el MPD218 está utilizando
+          su reloj interno.
+10. Selección de programa (Prog Select): Mantenga pulsado este botón y luego pulse un
+    pad para seleccionar el programa con el mismo número que el pad. Un programa es una
+    distribución predefinida de pads, que puede resultar útil para situaciones específicas
+    (cuando utilice una batería MIDI general o una escala melódica específica).
+     Importante:
+     Mientras mantenga pulsado este botón, los pads no enviarán ninguno de sus mensajes
+     MIDI normales.
+     Visite en akaipro.com la página correspondiente al MPD218 para descargar la
+     documentación de los presets del MPD218.
+
+
+
+
+8
+
+===== PDF PAGE 9 =====
+Guide d’utilisation (Français)
+Présentation
+
+Contenu de la boîte
+
+MPD218
+Câble USB
+Cartes de téléchargement de logiciel
+Guide d’utilisation
+Consignes de sécurité et informations concernant la garantie
+Important : Visitez akaipro.com pour trouver la page Web du MPD218 afin de télécharger la
+documentation pour le logiciel d’édition MPD218 et les préréglages (Presets).
+
+
+
+Assistance technique
+
+Pour les toutes dernières informations concernant ce produit (configuration système,
+compatibilité, etc.), veuillez visiter le site : akaipro.com.
+Pour de l’assistance supplémentaire, veuillez visiter le site : akaipro.com/support.
+
+
+
+Guide de démarrage
+1.   Utilisez le câble USB inclus pour relier le port USB du MPD218 au port USB d’un
+     ordinateur (sous tension).
+2.   Sur votre ordinateur, lancez votre logiciel audio numérique (DAW).
+3.   Sélectionnez MPD218 comme contrôleur dans les menus préférences, configuration
+     des périphériques ou options de votre logiciel audionumérique.
+
+
+Astuce : Vous pouvez utiliser le MPD218 avec une application iOS MIDI. Pour ce faire :
+1.   Maintenez la touche Note Repeat enfoncée.
+2.   Reliez le port USB du MPD218 à un appareil iOS (sous tension) en utilisant le Kit de
+     connexion d’appareil photo iPad (vendu séparément).
+3.   Après avoir mis le MPD218 sous tension, relâchez la touche Note Repeat.
+
+
+
+
+                                                                                         9
+
+===== PDF PAGE 10 =====
+Caractéristiques
+
+                                                                    1 2
+
+        3           3
+
+        3           3
+                                                          5
+        3           3
+
+      4         10           6
+      7          9           8
+
+1.   Port USB : Utilisez un câble USB afin de relier ce port USB au port USB d’un ordinateur.
+     Le port USB de l’ordinateur permet d’alimenter le MPD218. Cette connexion est
+     également utilisée pour la transmission de données MIDI vers et depuis votre ordinateur.
+2.   Verrou Kensington : Cet emplacement permet d’utiliser un verrou Kensington pour
+     sécuriser le MPD218 sur une table ou autre surface.
+3.   Potentiomètres : Ces boutons rotatifs 360° permettent de transmettre des messages de
+     contrôleur en continu à votre logiciel ou appareil MIDI externe.
+4.   Sélecteur de banque (Ctrl Bank) : Cette touche permet de sélectionner l’une des trois
+     banques indépendantes de potentiomètres. Elle vous permet de commander jusqu’à 18
+     paramètres indépendants.
+5.   Pads : Ces pads permettent de déclencher des sonorités de batterie ou d’autres
+     échantillons du logiciel ou du module de son MIDI externe. Les pads sont sensibles à
+     dynamique et à la pression et donc très réactifs et intuitifs.
+6.   Pad Bank : Cette touche permet de sélectionner l’une des trois banques indépendantes
+     de pads. Cela vous donne accès à jusqu’à 48 pads différents (16 pads de 3 banques de
+     pads différentes).
+7.   Full Level : Lorsque le mode Full Level est activé, les pads jouent toujours à la vélocité
+     maximale (127), peu importe la force à laquelle ils sont frappés.
+
+
+
+
+10
+
+===== PDF PAGE 11 =====
+8.   Note Repeat : Maintenir cette touche tout en frappant un pad permet de redéclencher le
+     pad en fonction des paramètres du tempo et de la division temporelle.
+     Astuce : La fonction Note Repeat peut également être synchronisée à une source
+     d’horloge MIDI interne ou externe. Veuillez consulter la section Configuration de la
+     fonction Note Repeat (NR Config) pour apprendre comment faire.
+9.   Configuration de la fonction Note Repeat (NR Config) : Appuyez sur cette touche puis
+     appuyez sur un pad pour sélectionner sa fonction secondaire (écrit à côté du numéro du
+     pad).
+     Important : Lorsque cette touche est maintenue enfoncée, les pads n’envoient aucun de
+     leurs messages MIDI assignés.
+      •   Pads 1 à 8 : Ces pads permettent de sélectionner la division temporelle, qui
+          détermine la vitesse de la fonction Note Repeat : noires (1/4), croches (1/8), doubles
+          croches (1/16) ou triple croches (1/32). Sur les pads 5 à 8, le « T » indique une
+          division temporelle axée sur le triolet.
+      •   Tapis 9 à 14 : Ces pads permettent de sélectionner la quantité de Swing : Off
+          (désactivé), 54 %, 56 %, 58 %, 60 % ou 62 %.
+      •   Pad 15 (Ext Clock) : Ce pad permet de régler la source d’horloge du MPD218
+          (externe ou interne), qui déterminera la vitesse de ses fonctions relatives au temps.
+          Lorsqu’il est allumé (externe), le MPD218 utilise le tempo de votre logiciel
+          audionumérique. Lorsqu’il est éteint (interne), le MPD218 utilise son propre tempo,
+          que vous pouvez régler avec le pad 16, qui clignotera au tempo en cours.
+      •   Pad 16 (Tap Tempo) : Tapez cette touche au rythme désiré afin de régler un
+          nouveau tempo. Le MPD218 détecte le nouveau tempo après trois tapes. Le pad
+          clignote au rythme du tempo en cours si vous maintenez la touche NR Config et
+          que le MPD218 utilise son horloge interne.
+10. Sélecteur de programme (Prog Select) : Maintenez cette touche enfoncée tout en
+    appuyant sur un des pads pour sélectionner le programme avec le même numéro que le
+    pad. Un programme est un mappage des pads, qui peut être utile lors de situations
+    particulières comme lorsque vous utilisez un ensemble de batterie General MIDI ou une
+    échelle mélodique spécifique.
+     Important :
+     Lorsque cette touche est maintenue enfoncée, les pads n’envoient aucun de leurs
+     messages MIDI assignés.
+     Visitez akaipro.com pour trouver la page Web du MPD218 afin de télécharger la
+     documentation des préréglages (Presets) du MPD218.
+
+
+
+
+                                                                                              11
+
+===== PDF PAGE 12 =====
+Guida per l’uso (Italiano)
+Introduzione
+
+Contenuti della confezione
+
+MPD218
+Cavo USB
+Schede di download del software
+Guida per l’uso
+Istruzioni di sicurezza e garanzia
+Importante: recarsi su akaipro.com e trovare la pagina web dedicata all’MPD218 per
+scaricare il software dell’MPD218 Editor e la documentazione sui Preset.
+
+
+
+Assistenza
+
+Per le ultime informazioni in merito a questo prodotto (requisiti di sistema, informazioni sulla
+compatibilità, ecc.) e per effettuarne la registrazione, recarsi alla pagina: akaipro.com.
+Per ulteriore assistenza sul prodotto, recarsi alla pagina: akaipro.com/support.
+
+
+
+Guida rapida
+1.   Servirsi del cavo USB in dotazione per collegare la porta USB dell’MPD218 ad una porta
+     USB libera del computer (acceso).
+2.   Sul computer, aprire la workstation audio digitale (DAW).
+3.   Selezionare MPD218 come controller sotto Preferences, Device Setup, o Options
+     (preferenze, configurazione dispositivo o opzioni) del DAW.
+
+
+Suggerimento: è possibile utilizzare l’MPD218 con un’app iOS controllabile MIDI. Per farlo:
+1.   Premere e tenere premuto il pulsante Note Repeat.
+2.   Collegare il dispositivo iOS (acceso) alla porta USB dell’MPD218 utilizzando l’Apple iPad
+     Camera Connection Kit (venduto separatamente).
+3.   Una volta che l’MPD218 si è acceso, rilasciare il tasto Note Repeat.
+
+
+
+
+12
+
+===== PDF PAGE 13 =====
+Caratteristiche
+
+                                                                    1 2
+
+        3            3
+
+        3            3
+                                                          5
+        3            3
+
+      4         10           6
+      7          9           8
+
+1.   Porta USB: servirsi di un cavo USB standard per collegare questa porta USB al
+     computer. La porta USB del computer fornirà l’alimentazione all’MPD218. Questo
+     collegamento serve anche a inviare e ricevere dati MIDI da e verso il computer.
+                             ®
+2.   Lucchetto Kensington : servirsi di questa apertura per lucchetto Kensington per fissare
+     l’MPD218 a un tavolo o ad altre superfici.
+3.   Potenziometri: servirsi di queste manopole a 360º per inviare messaggi controller
+     continui al software o al dispositivo MIDI esterno.
+4.   Banco comandi (Ctrl Bank): servirsi di questo tasto per selezionare uno di tre banchi
+     indipendenti di potenziometri. Questi consentono di controllare fino a un massimo di 18
+     parametri indipendenti.
+5.   Pad: servirsi di questi pad per attivare colpi di batteria o altri campioni del software o
+     moduli audio MIDI esterno. I pad sono sensibili alla pressione e alla velocità, cosa che li
+     rende molto reattivi e intuitivi da suonare.
+6.   Pad bank (banco pad): servirsi di questo tasto per selezionare uno di tre banchi
+     indipendenti di pad. Ciò consente di accedere a 48 pad diversi (16 su 3 banchi pad).
+7.   Full Level: premere questo tasto per attivare la modalità Full Level in cui i pad suonano
+     sempre alla massima velocità (127), indipendentemente dalla forza con cui vengono
+     battuti.
+
+
+
+
+                                                                                              13
+
+===== PDF PAGE 14 =====
+8.   Note Repeat: tenendo premuto questo tasto quando si batte un pad, questo verrà
+     riattivato ad una percentuale basata sulle impostazioni attuali di tempo e Time Division.
+     Suggerimento: Note Repeat può essere sincronizzato ad una sorgente MIDI Clock interna
+     o esterna. Si veda la descrizione relativa alla Configurazione Note Repeat (NR Config) per
+     sapere come fare.
+9.   Configurazione Note Repeat (NR Config): premere questo tasto, quindi premere un
+     pad per selezionarne la funzione secondaria (stampata accanto al numero di pad).
+     Importante: quando viene tenuto premuto questo tasto, i pad non invieranno i loro
+     messaggi MIDI normali.
+      •   Pad 1–8: premere uno di questi pad per determinare la divisione di tempo (Time
+          Division), che stabilisce la frequenza della funzione Note Repeat: quartine (1/4),
+          ottave (1/8), 16esimi (1/16), o 32esimi (1/32). Sui Pad 5–8, la T indica una divisione
+          di tempo basata su terzine.
+      •   Pad 9-14: premere uno di questi pad per selezionare la quantità di Swing: Off, 54%,
+          56%, 58%, 60% o 62%.
+      •   Pad 15 (Ext Clock): premere questo pad per impostare la fonte clock dell’MPD218
+          (esterna o interna), cosa che determinerà la frequenza delle sue funzioni legate al
+          tempo. Quando è acceso (esterno), l’MPD218 si servirà del tempo del DAW. Quando
+          è spento (interno), l’MPD218 si servirà del suo stesso tempo, che può essere
+          impostato tramite il Pad 16, che lampeggerà al tempo corrente.
+      •   Pad 16 (Tap Tempo): premere questo pad alla frequenza desiderata per inserire un
+          nuovo tempo. L’MPD218 individuerà il nuovo tempo dopo 3 battiti. Il pad will
+          lampeggerà al tempo corrente se si tiene premuto NR Config e l’MPD218 utilizza il
+          proprio orologio interno.
+10. Program Select (Prog Select): premere e tenere premuto questo tasto, quindi premere
+    un pad per scegliere il Programma recante lo stesso numero del pad. Un Programma è
+    un layout di pad pre-mappato, che può essere utile per situazioni specifiche (l’uso di un
+    set batteria MIDI generico o l’impiego di una scala melodica specifica).
+     Importante:
+     Quando viene tenuto premuto questo tasto, i pad non invieranno i loro messaggi MIDI
+     normali.
+     Recarsi su akaipro.com e trovare la pagina web dedicata all’MPD218 per scaricare la
+     documentazione sui Preset dell’MPD218.
+
+
+
+
+14
+
+===== PDF PAGE 15 =====
+Benutzerhandbuch (Deutsch)
+Einführung
+
+Lieferumfang
+
+MPD218
+USB-Kabel
+Software-Download-Karten
+Benutzerhandbuch
+Sicherheitshinweise und Garantieinformationen
+Wichtig: Besuchen Sie akaipro.com und navigieren Sie zur MPD218-Webseite, um die
+MPD218 Editor Software und die Preset-Dokumentation herunterzuladen.
+
+
+
+Kundendienst
+
+Für die neuesten Informationen zu diesem Produkt (Systemanforderungen, Informationen zur
+Kompatibilität etc.) und zur Produktregistrierung besuchen Sie akaipro.com.
+Für zusätzlichen Produkt-Support besuchen Sie akaipro.com/support.
+
+
+
+Schnellstart
+1.   Verwenden Sie das mitgelieferte USB-Kabel, um den USB-Anschluss des MPD218 mit
+     einem freien USB-Anschluss Ihres (eingeschalteten) Computers zu verbinden.
+2.   Öffnen Sie Ihre digitale Audio-Workstation (DAW) auf Ihrem Computer.
+3.   Wählen Sie MPD218 als Controller unter Einstellungen, Geräte-Setup oder Optionen
+     Ihrer DAW aus.
+
+
+Tipp: Sie können MPD218 mit einer MIDI-steuerbaren iOS-App verwenden. Gehen Sie
+folgendermaßen vor:
+1.   Halten Sie die Note Repeat-Taste gedrückt.
+2.   Verbinden Sie Ihr (eingeschaltetes) iOS-Gerät mit dem USB-Anschluss des MPD218,
+     indem Sie ein Apple iPad Camera Connection Kit verwenden (separat erhältlich).
+3.   Nachdem Sie MPD218 eingeschaltet haben, lassen Sie die Note Repeat-Taste los.
+
+
+
+
+                                                                                      15
+
+===== PDF PAGE 16 =====
+Funktionen
+
+                                                                 1 2
+
+        3           3
+
+        3           3
+                                                       5
+        3           3
+
+      4        10          6
+      7          9         8
+
+1.   USB-Port: Verwenden Sie ein handelsübliches USB-Kabel, um diesen USB-Port mit
+     Ihrem Computer zu verbinden. Der USB-Port des Computers versorgt das MPD218 mit
+     ausreichend Strom. Diese Verbindung wird auch verwendet, um MIDI-Daten vom und
+     zum Computer zu senden und zu empfangen.
+                ®
+2.   Kensington Lock: Sie können diesen Kensington Lock Sicherheits-Slot verwenden, um
+     das MPD218 an einem Tisch oder einer anderen Oberfläche zu befestigen.
+3.   Potentiometer: Benutzen Sie diese 360º Drehregler, um Continuous Controller-
+     Nachrichten an Ihre Software oder externe MIDI-Geräte zu senden.
+4.   Control-Bank (Ctrl Bank): Verwenden Sie diese Taste, um eine der drei unabhängigen
+     Potentiometer-Banken auszuwählen. Diese lassen Sie bis zu 18 unabhängige Parameter
+     steuern.
+5.   Pads: Verwenden Sie diese Pads, um Drum-Hits oder andere Samples in Ihrer Software
+     oder Ihrem externen MIDI-Soundmodul anzusteuern. Die Pads sind anschlagdynamisch
+     und druckempfindlich, was sie besonders reaktionsfähig und intuitiv spielbar macht.
+6.   Pad-Bank: Verwenden Sie diese Taste, um eine der drei unabhängigen Pad-Banken
+     auszuwählen. Auf diese Weise können Sie auf 48 verschiedene Pads zugreifen (16 Pads
+     in 3 Pad-Bänken).
+7.   Full Level: Drücken Sie diese Taste, um den Full Level-Modus zu aktivieren, in dem die
+     Pads immer mit der maximalen Anschlagstärke (127) abgespielt werden, egal wie stark
+     oder schwach die Pads betätigt werden.
+
+16
+
+===== PDF PAGE 17 =====
+8.   Note Repeat: Wenn Sie diese Taste gedrückt halten, während Sie auf ein Pad drücken,
+     wird das Pad immer wieder getriggert - und zwar entsprechend des aktuellen Tempos
+     und der Zeiteinteilungseinstellungen.
+     Tipp: Sie können Note Repeat auch mit einer internen oder externen MIDI-Clock-Quelle
+     synchronisieren. Siehe Beschreibung Note Repeat-Konfiguration (NR Config), um zu
+     erfahren, wie Sie dies tun können.
+9.   Note Repeat-Konfiguration (NR Config): Drücken Sie diese Taste und anschließend ein
+     Pad, um seine Zweitfunktion auszuwählen (die neben der Pad-Nummer angegeben ist).
+     Wichtig: Während Sie diese Taste halten werden die Pads keine ihrer normalen MIDI-
+     Befehle senden.
+      •   Pads 1-8: Drücken Sie eines dieser Pads, um die Zeiteinteilung zu bestimmen, die
+          das Tempo der Note Repeat-Funktion festlegt: Viertelnoten (1/4), Achtelnoten (1/8),
+          16tel-Noten (1/16) oder 32tel-Noten (1/32). Bei den Pads 5-8 zeigt das T eine
+          Zeitteilung auf Basis von Triolen an.
+      •   Pads 9-14: Drücken Sie eines dieser Pads, um den Swing-Anteil zu wählen: Aus,
+          54%, 56%, 58%, 60% oder 62%.
+      •   Pad 15 (Ext Clock): Drücken Sie dieses Pad, um die (externe oder interne)
+          Taktquelle des MPD218 einzustellen, die das Tempo der zeitbezogenen Funktionen
+          bestimmt. Wenn es leuchtet (extern), verwendet das MPD218 das Tempo Ihrer
+          DAW. Wenn dies deaktiviert ist (intern), wird MPD218 sein eigenes Tempo
+          verwenden, das Sie mit Pad 16 bestimmen können, welches im Takt des aktuellen
+          Tempos blinken wird.
+      •   Pad 16 (Tap Tempo): Drücken Sie dieses Pad in der gewünschten Geschwindigkeit,
+          um ein neues Tempo einzugeben. MPD218 erkennt das neue Tempo nach 3-mal
+          Drücken. Das Pad wird im aktuellen Tempo blinken, wenn Sie NR Config gedrückt
+          halten und MPD218 seine interne Clock verwendet.
+10. Programmauswahl (Prog Select): Halten Sie diese Taste gedrückt und drücken Sie
+    dann auf ein Pad, um das Programm mit der gleichen Nummer wie das Pad
+    auszuwählen. Ein Programm ist ein vorkonfiguriertes Layout von Pads, das sich für
+    bestimmte Situationen eignet (bei der Verwendung eines General MIDI Drum-Sets oder
+    einer bestimmten melodischen Tonleiter).
+     Wichtig:
+     Während Sie diese Taste halten werden die Pads keine ihrer normalen MIDI-Befehle
+     senden.
+     Besuchen Sie akaipro.com und navigieren Sie zur MPD218-Webseite, um die MPD218
+     Preset-Dokumentation herunterzuladen.
+
+
+
+
+                                                                                           17
+
+===== PDF PAGE 18 =====
+Appendix (English)
+Technical Specifications
+
+Pads                       16 velocity- and pressure-sensitive pads, red-backlit
+                           3 banks accessible via Pad Bank button
+
+Knobs                      6 360° assignable potentiometers
+                           3 banks accessible via Control Bank button
+
+Buttons                    6 buttons
+
+Connections                1 USB port
+                           1 Kensington lock
+
+Power                      via USB connection
+
+Dimensions                 9.4” x 7.9” x 1.6”
+(width x depth x height)   23.9 cm x 20.1 cm x 4.1 cm
+
+Weight                     1.65 lbs.
+                           0.75 kg
+
+                                                          Specifications are subject to change without notice.
+
+
+
+Trademarks and Licenses
+Akai Professional is a trademark of inMusic Brands, Inc., registered in the U.S. and other
+countries.
+Apple and iPad are trademarks or service marks of Apple Inc., registered in the U.S. and other
+countries.
+IOS is a registered trademark of Cisco in the U.S. and other countries and is used under
+license.
+Kensington and the K & Lock logo are registered trademarks of ACCO Brands.
+All other product or company names are trademarks or registered trademarks of their
+respective owners.
+
+
+
+
+18
+
+===== PDF PAGE 19 =====
+
+===== PDF PAGE 20 =====
+akaipro.com   Manual Version 1.0

@@ -1,0 +1,58 @@
+{
+  "manufacturer": "Allen & Heath",
+  "model": "Xone:96",
+  "retrieved_on": "2026-09-12",
+  "grade": "ready-for-extraction",
+  "scope": "Source extraction readiness only; not a verified SXM profile",
+  "hardware_tested": false,
+  "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+  "notes": "PDF endpoints returned 403, but official full HTML user guide and MIDI implementation tables downloaded successfully. Explicit numeric send/receive matrix supports extraction.",
+  "coverage": {
+    "addresses": "CH faders CC00..03, crossfader CC05; CUE notes hex00..07; selector matrix hex13..33",
+    "channels": "default human channel16; startup setup supports1..16",
+    "layers": "no controller latching layers; source-selector switch positions separately enumerated",
+    "encoders": "rotary switches are discrete note positions; no relative rotary encoding needed for listed controls",
+    "led_feedback": "matrix separates OUT/IN; CUE/filter/on-off receive notes, source/faders do not; NOTE OFF00 / ON7F"
+  },
+  "inspected_locators": [
+    "midi.html: MIDI Control matrix, CH IP SOURCE MIDI VALUES, MIDI Channel Setup, MIDI Implementation Tables",
+    "manual.html: MIDI Control; CUE states can be controlled remotely via USB"
+  ],
+  "sources": [
+    {
+      "url": "https://www.allen-heath.com/content/uploads/2023/06/AP11645_2_XONE_96_USER_GUIDE.pdf",
+      "file": "xone-96/manual.pdf",
+      "status_code": 403,
+      "final_url": "https://www.allen-heath.com/content/uploads/2023/06/AP11645_2_XONE_96_USER_GUIDE.pdf",
+      "error": "403 Client Error: Forbidden for url: https://www.allen-heath.com/content/uploads/2023/06/AP11645_2_XONE_96_USER_GUIDE.pdf"
+    },
+    {
+      "url": "https://support.allen-heath.com/hc/en-gb/articles/43053562464017-Xone-96-User-Guide",
+      "file": "xone-96/manual.html",
+      "status_code": 200,
+      "final_url": "https://support.allen-heath.com/hc/en-gb/articles/43053562464017-Xone-96-User-Guide",
+      "bytes": 95693,
+      "sha256": "003e455b2721aaf827026dbd244db3150e9de0716eaa8cbbf28eb04800c19829",
+      "text_file": "xone-96/manual.txt",
+      "text_sha256": "f9089c3dc078ead45f8bf2126129933bdcf8d9a25888d455c34c47f70f78bd9e"
+    },
+    {
+      "url": "https://support.allen-heath.com/hc/en-gb/articles/43084536824849-Xone-96-MIDI-Implementation",
+      "file": "xone-96/midi.html",
+      "status_code": 200,
+      "final_url": "https://support.allen-heath.com/hc/en-gb/articles/43084536824849-Xone-96-MIDI-Implementation",
+      "bytes": 109251,
+      "sha256": "8f46a0d11cda57a45621afbf165ec6890210f805308bd777dca60ce35132d251",
+      "text_file": "xone-96/midi.txt",
+      "text_sha256": "744f79c168a9a3434d9535f18eca30b273064e1cdf199dbe0cf7b1a807e96eba"
+    },
+    {
+      "url": "https://www.allen-heath.com/content/uploads/2023/06/X96_MIDI-Control-Overview.pdf",
+      "file": "xone-96/midi.pdf",
+      "status_code": 403,
+      "final_url": "https://www.allen-heath.com/content/uploads/2023/06/X96_MIDI-Control-Overview.pdf",
+      "error": "403 Client Error: Forbidden for url: https://www.allen-heath.com/content/uploads/2023/06/X96_MIDI-Control-Overview.pdf"
+    }
+  ],
+  "shared_references": []
+}

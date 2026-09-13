@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Allen & Heath",
+  "model": "Xone:92 Mk2",
+  "status": "documented-extraction",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "id": "s1",
+      "local_file": "ni-hercules-ah/xone-92-mk2/manual.pdf",
+      "url": "https://www.allen-heath.com/content/uploads/2024/10/Xone92-Mk2-User-Guide.pdf",
+      "sha256": "7da6044d74104d1d7a3812638d0a0fe63f36e5e9e44f03afe128f5f4b0cbbc9f"
+    }
+  ],
+  "scope": "Complete four documented CC addresses plus documented clock and transport functions. Transmit only; default channel 16 with internal channel 15 option.",
+  "bindings": [
+    {
+      "id": "b0001",
+      "control": "FILTER 1 FREQ",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 12,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "normal operation",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "PDF page 24 / MIDI Control Codes / FILTER 1 FREQ"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Default 16; internal option 15."
+      ]
+    },
+    {
+      "id": "b0002",
+      "control": "FILTER 2 FREQ",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 13,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "normal operation",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "PDF page 24 / MIDI Control Codes / FILTER 2 FREQ"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Default 16; internal option 15."
+      ]
+    },
+    {
+      "id": "b0003",
+      "control": "Crossfader",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 92,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "normal operation",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "PDF page 24 / MIDI Control Codes / Crossfader"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Default 16; internal option 15."
+      ]
+    },
+    {
+      "id": "b0004",
+      "control": "DATA controller",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 94,
+      "encoding": "absolute 7-bit",
+      "values": {},
+      "mode": "internal DATA jumper enabled",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "PDF page 24 / MIDI Control Codes / DATA controller"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Default 16; internal option 15."
+      ]
+    },
+    {
+      "id": "b0005",
+      "control": "Tap Tempo LFO 2 clock",
+      "direction": "device-to-host",
+      "message_type": "realtime",
+      "channel": null,
+      "number": null,
+      "encoding": "MIDI timing clock; exact byte not printed",
+      "values": {},
+      "mode": "master tempo clock",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "PDF pages 23\u201325 / MIDI Control Codes / MIDI Implementation Chart"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel-independent system MIDI message."
+      ]
+    },
+    {
+      "id": "b0006",
+      "control": "Start/Stop",
+      "direction": "device-to-host",
+      "message_type": "compound",
+      "channel": null,
+      "number": null,
+      "encoding": "MIDI start; stop plus rewind, exact byte sequence not printed",
+      "values": {
+        "first_press": "start",
+        "second_press": "stop + rewind"
+      },
+      "mode": "normal operation",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "PDF page 24 / START / STOP"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Channel-independent system MIDI message."
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "issue-1",
+      "severity": "scope",
+      "description": "Start/stop-rewind byte sequence and CC94 range not explicitly specified; transport retained as descriptive compound, no invented bytes. Received column documents no supported MIDI input.",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "PDF pages 24\u201325 / MIDI Control Codes / MIDI Implementation Chart"
+        }
+      ],
+      "excluded_bindings": []
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "s1",
+      "file": "allen-heath-hercules/xone-92-mk2-s1.txt",
+      "extraction_method": "pdftotext -layout; original PDF page markers"
+    }
+  ]
+}

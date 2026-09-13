@@ -9,6 +9,7 @@ nonisolated struct ControllerConfiguration: Codable, Equatable, Sendable {
     var layerMode: String
     var unitMap: String
     var feedbackMode: String = "unknown"
+    var portID: String? = nil
     var overrides: [ControllerControlOverride] = []
 }
 
@@ -21,6 +22,7 @@ nonisolated struct ControllerControlOverride: Codable, Equatable, Sendable {
     var layer: ControllerProfile.Layer
     var direction: ControllerProfile.Direction
     var midi: SXMJSONMIDI
+    var portID: String? = nil
     var provenance: Provenance
 
     enum Provenance: String, Codable, Sendable {

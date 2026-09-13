@@ -1,0 +1,2930 @@
+{
+  "schema_version": 1,
+  "manufacturer": "AlphaTheta",
+  "model": "CDJ-3000X",
+  "status": "documented-extraction",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "id": "midi",
+      "local_file": "pioneer-alphatheta/cdj-3000x/midi-implementation.pdf",
+      "url": "https://downloads.support.alphatheta.com/software_info/dj-players/CDJ-3000X/CDJ3000X_MIDI_Message_List_En.pdf",
+      "sha256": "e42a4b576d24543bbf80c0798b75b27490925510a28beb7beead7e48aac1a429"
+    }
+  ],
+  "scope": "Numeric manufacturer MIDI chart extraction across all protocol pages. Per-channel expansions follow explicit decimal channel lists. Ordered CC pairs, mode/shift contexts and feedback are retained. No runnable profile or native HID/display/motor emulation claim. See issues for unnormalized rows.",
+  "bindings": [
+    {
+      "id": "b00001",
+      "control": "Jog dial (Platter)",
+      "source_group": "PLAYER",
+      "source_figure": "1",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": null,
+      "number": 16,
+      "encoding": "MIDI data byte with source-documented semantics",
+      "values": {
+        "status_template_hex": "Bn",
+        "data1_hex": [
+          "10"
+        ],
+        "data2_source": "hh",
+        "details_source": "A linear value corresponding to the speed, from stop to 4X: 64 when stopped, 65(0.06X) - 127(4X) in the forward direction, 63(0.06X) - 0(4X) in the reverse direction.",
+        "reference_channel_source": "Rotate"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 4"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00002",
+      "control": "Jog dial (Platter)",
+      "source_group": "PLAYER",
+      "source_figure": "1",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 23,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "17"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Touch"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 5"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00003",
+      "control": "Jog Dial (Wheel side)",
+      "source_group": "PLAYER",
+      "source_figure": "2",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": null,
+      "number": 48,
+      "encoding": "MIDI data byte with source-documented semantics",
+      "values": {
+        "status_template_hex": "Bn",
+        "data1_hex": [
+          "30"
+        ],
+        "data2_source": "hh",
+        "details_source": "A linear value corresponding to the speed from 0.5X to 4X: 64 when stopped, 65(0.5X) to 127(4X) in the forward direction, 63(0.5X) to 0(4X) in the reverse direction.",
+        "reference_channel_source": "Rotate"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 6"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00004",
+      "control": "TEMPO",
+      "source_group": "PLAYER",
+      "source_figure": "3",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": null,
+      "number": 29,
+      "encoding": "MIDI data byte with source-documented semantics",
+      "values": {
+        "status_template_hex": "Bn",
+        "data1_hex": [
+          "1D"
+        ],
+        "data2_source": "hh",
+        "details_source": "0 - 127, 0 on the - side, 127 on the + side.",
+        "reference_channel_source": "Slide"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 7"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00005",
+      "control": "TEMPO RESET",
+      "source_group": "PLAYER",
+      "source_figure": "4",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 9,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "9"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 8"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00006",
+      "control": "MASTER TEMPO",
+      "source_group": "PLAYER",
+      "source_figure": "5",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 11,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "B"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 9"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00007",
+      "control": "TEMPO RANGE",
+      "source_group": "PLAYER",
+      "source_figure": "6",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 10,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "A"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00008",
+      "control": "KEY SYNC",
+      "source_group": "PLAYER",
+      "source_figure": "7",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 72,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "48"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 11"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00009",
+      "control": "SYNC",
+      "source_group": "PLAYER",
+      "source_figure": "8",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 22,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "16"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 12"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00010",
+      "control": "MASTER",
+      "source_group": "PLAYER",
+      "source_figure": "9",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 21,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "15"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 13"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00011",
+      "control": "JOG MODE",
+      "source_group": "PLAYER",
+      "source_figure": "11",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 12,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "C"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 15"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00012",
+      "control": "VINYL SPEED ADJUST Vo",
+      "source_group": "PLAYER",
+      "source_figure": "12",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": null,
+      "number": 30,
+      "encoding": "MIDI data byte with source-documented semantics",
+      "values": {
+        "status_template_hex": "Bn",
+        "data1_hex": [
+          "1E"
+        ],
+        "data2_source": "hh",
+        "details_source": "0 - 127, 0(min.) on the left side, 127(max.) on the right side.",
+        "reference_channel_source": "Rotate"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 16"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00013",
+      "control": "SEARCH FWD",
+      "source_group": "PLAYER",
+      "source_figure": "13",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 2,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "2"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 17"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00014",
+      "control": "SEARCH REV",
+      "source_group": "PLAYER",
+      "source_figure": "13",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 3,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "3"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 18"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00015",
+      "control": "TRACK SEARCH FWD",
+      "source_group": "PLAYER",
+      "source_figure": "14",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 4,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "4"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 19"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00016",
+      "control": "TRACK SEARCH REV",
+      "source_group": "PLAYER",
+      "source_figure": "14",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 5,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "5"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 20"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00017",
+      "control": "SLIP REVERSE",
+      "source_group": "PLAYER",
+      "source_figure": "15",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 24,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "18"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 21"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00018",
+      "control": "REVERSE",
+      "source_group": "PLAYER",
+      "source_figure": "16",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 25,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "19"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 22"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00019",
+      "control": "BEAT JUMP FWD",
+      "source_group": "PLAYER",
+      "source_figure": "17",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 54,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "36"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 23"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00020",
+      "control": "BEAT JUMP REV",
+      "source_group": "PLAYER",
+      "source_figure": "17",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 55,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "37"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 24"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00021",
+      "control": "4 BEAT",
+      "source_group": "PLAYER",
+      "source_figure": "18",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 44,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "2C"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 25"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00022",
+      "control": "8 BEAT",
+      "source_group": "PLAYER",
+      "source_figure": "18",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 45,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "2D"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 26"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00023",
+      "control": "LOOP IN",
+      "source_group": "PLAYER",
+      "source_figure": "19",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 35,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "23"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 27"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00024",
+      "control": "LOOP OUT",
+      "source_group": "PLAYER",
+      "source_figure": "19",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 36,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "24"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 28"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00025",
+      "control": "RELOOP/EXIT",
+      "source_group": "PLAYER",
+      "source_figure": "20",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 37,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "25"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 29"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00026",
+      "control": "CUE/LOOP CALL NEXT",
+      "source_group": "PLAYER",
+      "source_figure": "21",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 14,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "E"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 30"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00027",
+      "control": "CUE/LOOP CALL PREV",
+      "source_group": "PLAYER",
+      "source_figure": "21",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 15,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "F"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 31"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00028",
+      "control": "CUE/LOOP DELETE",
+      "source_group": "PLAYER",
+      "source_figure": "22",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 16,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "10"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 32"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00029",
+      "control": "CUE/LOOP MEMORY",
+      "source_group": "PLAYER",
+      "source_figure": "23",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 13,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "D"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 33"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00030",
+      "control": "PLAY/PAUSE",
+      "source_group": "PLAYER",
+      "source_figure": "24",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 0,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "0"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 34"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00031",
+      "control": "CUE",
+      "source_group": "PLAYER",
+      "source_figure": "25",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 1,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "1"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 35"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00032",
+      "control": "QUANTIZE",
+      "source_group": "PLAYER",
+      "source_figure": "26",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 6,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "6"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 36"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00033",
+      "control": "SLIP",
+      "source_group": "PLAYER",
+      "source_figure": "27",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 7,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "7"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 37"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00034",
+      "control": "NEEDLE POSITION (Overall waveform)",
+      "source_group": "PLAYER",
+      "source_figure": "28",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": null,
+      "number": 28,
+      "encoding": "MIDI data byte with source-documented semantics",
+      "values": {
+        "status_template_hex": "Bn",
+        "data1_hex": [
+          "1C"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), 1 to 127 position data from left to right side.",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 38"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00035",
+      "control": "ROTARY SELECTOR",
+      "source_group": "BROWSER",
+      "source_figure": "29",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": null,
+      "number": 79,
+      "encoding": "Relative movement; positive clockwise and wrapped negative counterclockwise, source range retained",
+      "values": {
+        "status_template_hex": "Bn",
+        "data1_hex": [
+          "4F"
+        ],
+        "data2_source": "hh",
+        "details_source": "Count value difference from previous operation Turn clockwise: 1~30 (0x01~0x1E) Turn counterclockwise: 127~98 (0x7F~0x62) When over ±30, set at ±30",
+        "reference_channel_source": "Rotate"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 39"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00036",
+      "control": "ROTARY SELECTOR",
+      "source_group": "BROWSER",
+      "source_figure": "29",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 17,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "11"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 40"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00037",
+      "control": "BACK",
+      "source_group": "BROWSER",
+      "source_figure": "30",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 18,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "12"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 41"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00038",
+      "control": "TAG TRACK/REMOVE",
+      "source_group": "BROWSER",
+      "source_figure": "31",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 19,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "13"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 42"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00039",
+      "control": "TRACK FILTER",
+      "source_group": "BROWSER",
+      "source_figure": "32",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 20,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "14"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.3, table 1, row 43"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00040",
+      "control": "HOT CUE CALL/DELETE",
+      "source_group": "PERFOR- MANCE (Hardware)",
+      "source_figure": "34",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 26,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "1A"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 3"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00041",
+      "control": "HOT CUE A",
+      "source_group": "PERFOR- MANCE (Hardware)",
+      "source_figure": "35",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 27,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "1B"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 4"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00042",
+      "control": "HOT CUE B",
+      "source_group": "PERFOR- MANCE (Hardware)",
+      "source_figure": "35",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 28,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "1C"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 5"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00043",
+      "control": "HOT CUE C",
+      "source_group": "PERFOR- MANCE (Hardware)",
+      "source_figure": "35",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 29,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "1D"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 6"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00044",
+      "control": "HOT CUE D",
+      "source_group": "PERFOR- MANCE (Hardware)",
+      "source_figure": "35",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 30,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "1E"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 7"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00045",
+      "control": "HOT CUE E",
+      "source_group": "PERFOR- MANCE (Hardware)",
+      "source_figure": "35",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 31,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "1F"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 8"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00046",
+      "control": "HOT CUE F",
+      "source_group": "PERFOR- MANCE (Hardware)",
+      "source_figure": "35",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 32,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "20"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 9"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00047",
+      "control": "HOT CUE G",
+      "source_group": "PERFOR- MANCE (Hardware)",
+      "source_figure": "35",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 33,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "21"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00048",
+      "control": "HOT CUE H",
+      "source_group": "PERFOR- MANCE (Hardware)",
+      "source_figure": "35",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 34,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "22"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 11"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00049",
+      "control": "BEAT LOOP 1/4",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 40,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "28"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 13"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00050",
+      "control": "BEAT LOOP 1/2",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 41,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "29"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 14"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00051",
+      "control": "BEAT LOOP 1",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 42,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "2A"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 15"
+        },
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 22"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00052",
+      "control": "BEAT LOOP 2",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 43,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "2B"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 16"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00053",
+      "control": "BEAT LOOP 4",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 44,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "2C"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 17"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00054",
+      "control": "BEAT LOOP 8",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 45,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "2D"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 18"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00055",
+      "control": "BEAT LOOP 16",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 46,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "2E"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 19"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00056",
+      "control": "BEAT LOOP 32",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 47,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "2F"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 20"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00057",
+      "control": "BEAT LOOP 3/4",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 49,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "31"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 21"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00058",
+      "control": "BEAT LOOP 3/2",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 76,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "4C"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 23"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00059",
+      "control": "BEAT LOOP 3",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 50,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "32"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 24"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00060",
+      "control": "BEAT LOOP 5",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 77,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "4D"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 25"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00061",
+      "control": "BEAT LOOP 6",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 51,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "33"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 26"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00062",
+      "control": "BEAT LOOP 7",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 78,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "4E"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 27"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00063",
+      "control": "BEAT LOOP 9",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 52,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "34"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 28"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00064",
+      "control": "SLIP LOOP 1/16",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "27 + 36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 38,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "26"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 30"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00065",
+      "control": "SLIP LOOP 1/8",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "27 + 36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 39,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "27"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 31"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00066",
+      "control": "SLIP LOOP 1/4",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "27 + 36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 40,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "28"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 32"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00067",
+      "control": "SLIP LOOP 1/2",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "27 + 36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 41,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "29"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 33"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00068",
+      "control": "SLIP LOOP 1",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "27 + 36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 42,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "2A"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 34"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00069",
+      "control": "SLIP LOOP 2",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "27 + 36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 43,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "2B"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 35"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00070",
+      "control": "SLIP LOOP 1/3",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "27 + 36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 48,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "30"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 36"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00071",
+      "control": "SLIP LOOP 3/4",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "27 + 36",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 49,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "31"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 37"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00072",
+      "control": "BEAT JUMP FWD(1/2)",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "37",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 56,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "38"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 39"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00073",
+      "control": "BEAT JUMP REV(1/2)",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "37",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 57,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "39"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 40"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00074",
+      "control": "BEAT JUMP FWD(1)",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "37",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 58,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "3A"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 41"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00075",
+      "control": "BEAT JUMP REV(1)",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "37",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 59,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "3B"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 42"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00076",
+      "control": "BEAT JUMP FWD(2)",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "37",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 60,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "3C"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 43"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00077",
+      "control": "BEAT JUMP REV(2)",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "37",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 61,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "3D"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 44"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00078",
+      "control": "BEAT JUMP FWD(4)",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "37",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 62,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "3E"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 45"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00079",
+      "control": "BEAT JUMP REV(4)",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "37",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 63,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "3F"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 46"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00080",
+      "control": "BEAT JUMP FWD(8)",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "37",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 64,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "40"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 47"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00081",
+      "control": "BEAT JUMP REV(8)",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "37",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 65,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "41"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 48"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00082",
+      "control": "BEAT JUMP FWD(16)",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "37",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 66,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "42"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 49"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00083",
+      "control": "BEAT JUMP REV(16)",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "37",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 67,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "43"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 50"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00084",
+      "control": "BEAT JUMP FWD(32)",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "37",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 68,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "44"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 51"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00085",
+      "control": "BEAT JUMP REV(32)",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "37",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 69,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "45"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 52"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00086",
+      "control": "BEAT JUMP FWD(64)",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "37",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 70,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "46"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 53"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00087",
+      "control": "BEAT JUMP REV(64)",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "37",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 71,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "47"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 54"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00088",
+      "control": "KEY SHIFT +1",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "38",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 73,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "49"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 56"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00089",
+      "control": "KEY SHIFT -1",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "39",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 74,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "4A"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 57"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    },
+    {
+      "id": "b00090",
+      "control": "KEY RESET",
+      "source_group": "MANCE (GUI)",
+      "source_figure": "40",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": null,
+      "number": 75,
+      "encoding": "Note status with data-2 semantics exactly as documented; press/release and feedback may differ",
+      "values": {
+        "status_template_hex": "9n",
+        "data1_hex": [
+          "4B"
+        ],
+        "data2_source": "hh",
+        "details_source": "OFF=0(0x00), ON=127(0x7F)",
+        "reference_channel_source": "Press"
+      },
+      "mode": "MIDI chart; no additional mode specified",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF p.4, table 1, row 58"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Numeric bytes are authoritative over octave names. Source-perspective MIDI-IN means device to host; MIDI-OUT means host to device.",
+        "MIDI channel configurable in device utility; no default inferred."
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "issue-0001",
+      "severity": "scope",
+      "description": "Complete protocol page text is retained. Footnotes, color palettes, hardware-only rows and channel-allocation explanations remain authoritative raw context; no hardware validation. Table extraction preserves merged-cell context; combined modifier cells are retained literally and do not imply every modifier simultaneously.",
+      "evidence": [
+        {
+          "source_id": "midi",
+          "locator": "PDF pp.1–4"
+        }
+      ],
+      "excluded_bindings": [
+        "[]"
+      ]
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "midi",
+      "file": "pioneer-alphatheta/cdj-3000x-protocol.txt",
+      "extraction_method": "Archived pdftotext -layout text with explicit PDF page markers; original PDF authoritative."
+    },
+    {
+      "source_id": "midi",
+      "file": "pioneer-alphatheta/cdj-3000x-tables.txt",
+      "extraction_method": "pdfplumber ruled table extraction, original rows plus resolved merged rectangles; page/table/row locators are one-based indices in this evidence."
+    }
+  ]
+}

@@ -62,6 +62,7 @@ nonisolated enum ControllerProfileMetadataValidation {
             if !(1...16).contains(configuration.globalChannel) { emit("metadata.channel", path + ".configuration.globalChannel", "Controller MIDI channel must be 1–16.", .error) }
             let known = profile(configuration.profileID, configuration.version, path + ".configuration")
             if let known {
+                if let portID = configuration.portID, !(known.ports ?? []).contains(where: { $0.id == portID }) { emit("profile.configurationUnresolved", path + ".configuration.portID", "Unknown port is retained without applying bindings from another port.") }
                 if !known.modes.contains(where: { $0.id == configuration.layerMode }) { emit("profile.configurationUnresolved", path + ".configuration.layerMode", "Layer mode '\(configuration.layerMode)' is unsupported by this exact profile; the setting is retained.") }
                 if !known.unitMaps.contains(where: { $0.id == configuration.unitMap }) { emit("profile.configurationUnresolved", path + ".configuration.unitMap", "Unit map '\(configuration.unitMap)' is unsupported by this exact profile; the setting is retained.") }
             }
@@ -69,10 +70,11 @@ nonisolated enum ControllerProfileMetadataValidation {
             var identities = Set<[String]>()
             for (j, override) in configuration.overrides.enumerated() {
                 let op = path + ".configuration.overrides[\(j)]"
-                let identity = [override.controlID, override.layerMode, override.unitMap, override.layer.rawValue, override.direction.rawValue]
+                let identity = [override.controlID, override.layerMode, override.unitMap, override.layer.rawValue, override.direction.rawValue, override.portID.map { "port:" + $0 } ?? "no-port"]
                 if !identities.insert(identity).inserted { emit("metadata.duplicateOverride", op, "Duplicate override for this control, mode, map, layer and direction.", .error) }
                 if (try? override.midi.model()) == nil || override.midi.kind == .unassigned { emit("metadata.midi", op + ".midi", "Control override requires an assigned MIDI note or CC on channel 1–16 with number 0–127.", .error) }
                 if let known {
+                    if let portID = override.portID, !(known.ports ?? []).contains(where: { $0.id == portID }) { emit("profile.configurationUnresolved", op + ".portID", "Unknown override port is retained for repair and never applied to another port.") }
                     if !known.controls.contains(where: { $0.id == override.controlID }) { emit("profile.controlUnresolved", op + ".controlID", "Unknown control override is retained for its exact profile pin.") }
                     if !known.modes.contains(where: { $0.id == override.layerMode }) || !known.unitMaps.contains(where: { $0.id == override.unitMap }) { emit("profile.configurationUnresolved", op, "Override context is unsupported by this profile and remains retained without applying it to another context.") }
                 }

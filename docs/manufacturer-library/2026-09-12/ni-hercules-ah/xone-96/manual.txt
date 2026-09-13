@@ -1,0 +1,659 @@
+Xone:96 User Guide – Allen & Heath
+Skip to main content
+Submit a request
+English (United Kingdom)
+Deutsch
+Español
+Français
+Italiano
+Português
+简体中文
+All articles are available in English. Other languages may have limited results.
+Sign in
+HELP CENTRE
+Search
+Submit a Request
+Allen & Heath
+Xone
+Getting Started Guides
+Contents
+Table of Contents
+Articles in this section
+Xone:PX5 User Guide
+Xone:43 User Guide
+Xone:96 User Guide
+Xone:24C User Guide
+Xone:24 User Guide
+Xone:K3 User Guide
+Xone:96 User Guide
+Print to PDF
+26 February 2026 17:05
+Updated
+IMPORTANT - Read before starting
+Safety instructions
+Before starting, read the
+Important Safety Instructions
+printed on the sheet supplied with the equipment. For your own safety and that of the operator, technical crew and performers, follow all instructions and heed all warnings printed on the sheet and on the equipment panels.
+System operating firmware
+The function of this product is determined by the firmware (operating software) that runs it. Firmware is updated regularly as new features are added and improvements made.
+ⓘ
+Check
+www.allen-heath.com
+for the latest version of firmware for the product or the host system.
+Software licence agreement
+By using this Allen & Heath product and the software within it you agree to be bound by the terms of the relevant
+End User Licence Agreement
+(EULA), a copy of which can be found at
+www.allen-heath.com/legal
+. You agree to be bound by the terms of the EULA by installing, copying, or using the software.
+Further information
+Please refer to the
+Allen & Heath website
+for further information, knowledgebase and technical support. For more information on setup and mixing functions please refer to the Firmware Reference Guides available for download at
+www.allen-heath.com
+.
+You can also join our Allen & Heath Digital Community to share knowledge and information with other users.
+General precautions
+Protect the equipment from damage through liquid or dust contamination.
+If the equipment has been stored in sub-zero temperatures allow time for it to reach normal operating temperature before use at the venue. Recommended operating temperature is 0 to 40 degrees Celsius.
+Avoid using the equipment in extreme heat and direct sunlight. Make sure the ventilation slots and fans are not obstructed and that there is adequate air movement around the equipment.
+Clean the equipment with a soft brush and dry lint-free cloth. Do not use chemicals, abrasives or solvents. Do not use lubricant or contact cleaner on faders.
+It is recommended that servicing is carried out only by an authorised Allen & Heath agent. Contact details for your local distributor can be found on the Allen & Heath website. Allen & Heath do not accept liability for damage caused by maintenance, repair or modification by unauthorised personnel.
+Register your product
+Register your product online at
+www.allen-heath.com/register
+.
+Warranty
+A limited manufacturer's warranty applies to this product, the conditions of which can be found at
+www.allen-heath.com/legal
+.
+Packed Items
+Check that you have received the following:
+XONE:96 mixer
+Safety Sheet. Important!
+Read this sheet BEFORE starting. Retain for future reference.
+Mains Lead
+Check the correct AC mains plug is included
+Spare Knobs and Buttons
+Introduction
+Congratulations on purchasing the Allen&Heath Xone:96 DJ mixer. A genuine club classic.
+Xone:96 is an uncompromising analogue DJ mixer, destined to be the heart of your creativity, Xone:96 takes the legendary soul of the acclaimed Xone:92 and redelivers it, enhanced, and with state-of- the-art digital connectivity.
+It’s all here.
+The huge, detailed, space-shaking analogue sound that only Xone delivers.
+A refined, precision 4-band EQ. Unrivalled dual Xone:VCF filters with CRUNCH harmonic distortion.
+And a dual 32-bit USB soundcard (24 Channels @ 96kHz) that will work with Professional 4-deck DJ software, including
+Traktor Pro
+,
+djay Pro
+,
+Virtual DJ Pro
+, right out of the box.
+Xone:96 lets you connect your whole rig, from laptops and turntables, to pedals, synths, mics and drum machines. With two dedicated FX sends, four stereo input channels (with 4-Band EQ), two stereo input channels with 3-Band Parametric EQ + two auxiliary stereo return channels. And a separate master insert for your outboard hardware.
+Explore new possibilities with a familiar layout of beautifully tactile controls. And rely on the industrial build quality that exceeds the demands of relentless back-to-back performances, night after night.
+Top Panel Overview
+Please familiarize yourself with all of the controls and functions detailed in the following pages and referencing the numbers shown in the TOP PANEL OVERVIEW below and REAR PANEL OVERVIEW
+Input Channels A-B: USB 1/MIC/RTN/USB 2
+SEND 1 & SEND 2 Controls
+Control the levels of channel audio sent to external effects hardware connected via rear panel SND1 and SND2 outputs.
+SEND 1 is switchable pre/post-FADER and also routes audio to internal soundcard inputs USB 9/10
+SEND 2 is fixed post-FADER, with switched option for routing audio to internal soundcard inputs USB 11/12.
+Channel Input Select Switch
+Switch Channel A and Channel B inputs between USB1, MIC, RTN, or USB 2 sources.
+Switches also send MIDI NOTE ON/OFF messages to USB1, USB 2 and MIDI OUT ports.
+Channel GAIN Control
+Adjusts the Channel input sensitivity to compensate for different audio signal source levels. -∞ /+10dB.
+ⓘ
+If a
+PK!
+LED illuminates continuously, turn the corresponding channel GAIN level
+down
+.
+Channel Equalizer
+Auxiliary Channels A and B are equipped with extended asymmetric 3-BAND EQ providing +6dB boost and full attenuation (‘kill’) for HI and LO frequencies, and +10dB boost/-24dB cut, swept parametric MID for detailed and creative frequency control.
+EQ cut-off frequencies are set at:
+LO:
+180Hz (Low Frequency,
+bass)
+HI:
+3kHz (High Frequency,
+treble
+)
+MID:
+190Hz - 2.75kHz (Parametric,
+sweep
+)
+Channel FILTER Assign Switches
+Switch to route post-GAIN / post-EQ / post-FADER level channel audio to FILTER 1 (left) or FILTER 2 (right), or direct to the LR MIX bus when OFF (centre).
+Channel CUE Switch
+Press to listen to the channel audio levels from MONITOR headphones outputs and to view pre-LR MIX levels on the main LR MIX meters. Switches illuminate RED when active.
+The default switch setting is AUTO-CUE; switches remain on until the switch is pressed again or another CUE is selected.
+Channel Meter
+Displays the channel’s input source signal level.
+Channel audio input is metered at post-GAIN / post- EQ and pre-FADER level, to display the affect of ad- justing EQ on input levels before routing audio to the LR MIX.
+Channel GAIN control should be set so the meter averages around 0 with loudest peaks around +6.
+ⓘ
+If the +10 LED is illuminated continuously, turn the corresponding channel GAIN or boosted EQ levels
+down
+.
+Channel Fader
+Xone:96 features new custom-designed 60mm stereo linear VCA channel faders to adjust channel audio levels between fully off (∞) and fully on (unity).
+Channel A and Channel B faders are fully analogue, premium faders offering smooth performance and precise control. Perfectly balanced and built to last.
+Latching-Cue Mode
+Enables CUE switches to remain active when selecting another channel CUE.  Any active CUE is deactivated by pressing the switch again. The option can be enabled, on-the-fly, as follows:
+Press and hold any Filter Type Select switch (HPF, BPF, LPF) on both FILTER 1 and FILTER 2 simultaneously for 3s; MIDI 1 and MIDI 2 switches blink rapidly to indicate CUE setup mode.
+Press any channel CUE switch; MIDI 1 and MIDI 2 switches stop blinking and LATCHING-CUE is enabled
+NOTE:
+The setup mode times out automatically after 3s. Active CUE is deactivated by pressing the switch again.
+Repeat the process to re-enable AUTO-CUE. The current setting is stored when the mixer is powered OFF.
+MIDI Control
+CUE switches send MIDI NOTE ON/OFF messages to the rear panel MIDI OUT port, and to USB 1 and USB 2 ports when the corresponding MIDI 1/ 2 switch is active.
+CUE switche states
+can also be controlled remotely by MIDI output from USB 1 and USB 2 host devices.
+Input Channels 1-4: USB 1/PHONO/LINE/USB 2
+1 SEND 1 & SEND 2 Controls
+Control the levels of channel audio sent to external effects hardware connected via rear panel SND1 and SND2 outputs.
+SEND 1 is switchable pre/post-FADER and also routes audio to internal soundcard inputs USB 9/10
+SEND 2 is fixed post-FADER, with a top panel switch option for routing audio to internal soundcard inputs USB 11/12.
+2 Channel Input Select Switch
+Switch Channel A and Channel B inputs between USB1, MIC, RTN, or USB 2 sources.
+Switches also send MIDI NOTE ON/OFF messages to USB1, USB 2 and MIDI OUT ports.
+3 Channel GAIN Control
+Adjusts the Channel input sensitivity to compensate for different audio signal source levels. -∞ /+10dB.
+ⓘ
+If a
+PK!
+LED illuminates, turn the corresponding channel GAIN level
+down
+.
+4 Channel Equalizer
+Stereo Channels 1 - 4 are equipped with a refined asymmetric 4-BAND EQ, providing +6dB boost and full attenuation (‘kill’) for HI and LO frequencies and powerful +10dB boost/-27dB cut for HI MID and LO MID frequencies.
+EQ cut-off frequencies are set at:
+LO / HI
+∞ / centre / +6
+LO MID / HI MID
+-27 / centre / +10
+HI:
+3kHz (High Frequency,
+treble
+)
+LO:
+180Hz (Low Frequency,
+bass)
+HI MID:
+1.1kHz (Upper Midrange Frequency)
+LO MID:
+350Hz (Lower Midrange Frequency)
+Channel FILTER Assign Switches
+Switch to route post-GAIN / post-EQ / post-FADER level channel audio to FILTER 1 (left) or FILTER 2 (right), or direct to the LR MIX bus when OFF (centre).
+XFADER Assign Switches
+Switch to route post-GAIN / post-EQ / post-FADER level channel audio to X (left) or Y (right), side of the XFADER, or direct to the LR MIX bus when OFF (centre).
+Channel CUE Switch
+Press to listen to the channel audio levels from the MONITOR headphones outputs and to view pre-LR MIX levels on the main LR MIX meters.
+Switches illuminate RED when active. Default switch setting is AUTO-CUE.
+Channel Meter
+Displays the channel’s input source signal level. Channel audio input is metered at post-GAIN / post- EQ and pre-FADER level, to display the affect of adjusting EQ on input levels before routing audio to the LR MIX.
+Channel GAIN control should be set so the meter averages around 0 with loudest peaks around +6.
+ⓘ
+If the +10 LED is illuminated continuously, turn the channel GAIN, or boosted EQ controls
+down
+.
+Channel Fader
+Xone:96 features new custom-designed, user replaceable, 60mm stereo linear VCA channel faders to adjust channel audio levels between fully off (∞) and fully on (unity). Perfectly balanced for smooth performance and precise control.
+CH1 - 4 faders also enabled for MIDI control.
+MIDI Control
+CUE switches send MIDI NOTE ON/OFF messages to the rear panel MIDI OUT port, and to USB 1 and USB 2 ports when the corresponding MIDI 1 / 2 switch is active.
+CUE switch states can also be controlled remotely by MIDI output from USB 1 and USB 2 host devices when the corresponding MIDI 1 / 2 switch is active.
+CH1 - 4 faders send MIDI CC messages to the rear panel MIDI OUT port, and to USB 1 and USB 2 ports when the corresponding MIDI 1 / 2 switch is active.
+XFADER
+XFADER
+In the cross-fader position, XONE:96 implements the industry-favourite
+mini innoFADER
+as standard.
+The XFADER is a VCA (voltage controlled amplifier) that also affects the level of signals routed to the Filters.
+Use to fade between audio from CH 1 - 4 assigned to the X (Left), or Y (Right) side of the XFADER, typically to fade smoothly into a new music track, to creatively layer sounds, or for scratch and cut mixing.
+MIDI Control
+The X FADER also sends MIDI CC messages to the rear panel MIDI OUT port, and to USB 1 and USB 2 host devices when the corresponding MIDI 1 / 2 switch is active.
+Fader Curve Switches: XFADER / CH 1 - 4
+Fader Curve Switches
+CHANNEL FADER
+Selects a global fader response for Stereo Input Channels 1- 4.
+Switch between constant power, dipped, or fast-cut to suit scratch and cut mixing styles.
+XFADER
+Selects the response curve for the cross-fader.
+Switch between constant power, transition, or fast-cut to suit scratch or cut mixing.
+The images below illustrate the curves for each setting.
+Channel Fader
+XFADER
+Xone:VCF Sections, FILTER 1 and FILTER 2
+Xone:VCF
+Nothing comes close to the sound and power of the Xone:VCF.
+Xone:96 refines this classic design, preserving the unmistakable  sonic signature while taking its performance to the next level.
+Alongside the classic HPF, BPF, LPF, RES (MILD/WILD) and FREQ (sweep) control layout, we’ve added CRUNCH; controlled harmonic distortion that sits pre-FILTER in the circuit to give a powerful new effect. Xone:96 lets you route all six main channels to FILTER 1 or 2.
+CRUNCH Control
+Turn clockwise to add harmonic distortion (CRUNCH!) into the pre-FILTER signal path. Set to 0 the audio is clean and the LED is unlit. Set to 10 the signal distorts dramatically and LED illuminates RED. Use FILTER controls and switches to tune the post-FILTER output. For optimum CRUNCH system drive, maintain VCF assigned channel levels between +/-6dB
+RES Resonance Control
+Produces the classic Xone:VCF filter sound by feeding some of the filter output back to its input. The control ranges from MILD, with very subtle effect, to WILD, producing dramatic phase effects with feedback just short of self-oscillation.
+HPF/BPF/LPF, Filter Type Select Switches
+Set the output for FILTER 1 or FILTER 2. HPF selects the High Pass Filter (bass cut) slope. BPF selects the Band Pass Filter (bell shaped) response. LPF selects the Low Pass Filter (treble cut) slope. See Xone:VCF REFERENCE for details.
+FREQ Frequency Sweep Control
+This control sets the -3dB cut-off frequency of the VCF. It ranges from very low frequency (20Hz) when anti-clockwise, to very high frequency (20kHz) when turned fully clockwise.
+FILTER ON/OFF Switch
+Each VCF has its own ON switch.
+The switch illuminates BLUE when the FILTER is ON.
+The signal is not affected by the FILTER if set OFF.
+FILTER 1 and FILTER 2 ON/OFF switches are also enabled for MIDI control. See below
+MIDI Control
+All Filter Type Select and FILTER ON/OFF switches send MIDI NOTE ON/OFF messages to the rear panel MIDI OUT port, and to USB 1 and USB 2 ports when the corresponding MIDI 1/ 2 switch is active.
+All Filter Type Select and FILTER ON/OFF switches can also be controlled remotely by MIDI output via USB 1 and USB 2 host devices when the corresponding MIDI 1 / 2 switch is active.
+NOTE
+: Xone:VCF switches are also used for selecting the Xone:96 MIDI channel option.
+Xone:VCF Reference
+The Xone Voltage Controlled Filter
+A Voltage Controlled Filter is an audio filter where the cut-off frequency is altered by DC control voltage rather than a variable resistor. This produces a much wider operating range and enables more control over the filter response for creating unlimited combinations of tonal effect.
+Two stereo VCFs are provided, one either side of the crossfader, each with independent Filter Type Select (HPF, BPF, LPF), FREQuency sweep, RESonance and CRUNCH controls. These large soft touch controls are positioned either side of the crossfader and main mix channels 1 - 4 for convenient live operation.
+Filter Type Select
+The filters are ‘state variable’. This means they provide three simultaneous filter response output types: High-Pass (HPF), Band-Pass (BPF) and Low-Pass (LPF). Three large illuminated switches select which type is active. Any combination can be pressed together to create different response types such as ‘notch’ and interesting ‘all-pass’ effects. Pressing one switch automatically deselects the previously active type.
+All Xone:VCF switch controls implement fully redesigned analogue soft-switching for enhanced performance ensuring LR MIX outputs are unaffected by audible electronic artefacts as FILTER 1 and FILTER 2 are turned ON or OFF, when selecting different Filter Types, or if channel assignments to the VCFs are hot-switched.
+NOTE:
+the last selected Xone:VCF response is saved when mains power to the mixer is turned OFF.
+The graphs below illustrate effects on the audio frequency response for the three filter types. The range of sweep from low to high frequency is shown together with the effect of adjusting the RES control fully clockwise, to WILD.
+The vertical scale shows the amount of boost around the normal 0dB operating level.
+The horizontal scale shows the change in frequency from low (sub-bass) to high (treble).
+HIGH PASS FILTER [HPF]
+BAND PASS FILTER [BPF]
+The graph below shows effects on frequency response for the Low Pass Filter [LPF] swept to @20Hz, 1kHz and 20kHz, together with the effect  of adjusting the filter resonance to MILD, WILD and centred positions: one frequency with RES and FREQ set to minimum, 12 o’clock, and max.
+LOW PASS FILTER [LPF]
+Auxiliary Return Channels C-D
+Channel ON/OFF Switch
+Route signals from hardware connected via RTN C or RTN D inputs direct to the LR MIX at pre-MST levels. ON/OFF switches are enabled for MIDI control.
+SIG LED indicators
+Bi-colour LEDs illuminate GREEN to show an audio input is present.
+ⓘ
+If a SIG LED illuminates RED continuously, turn the corresponding LEVEL control down.
+Channel LEVEL Control
+Adjust the RTN C and RTN C input levels from fully off to +10dBu
+Channel CUE Switch
+Press to listen to the channel audio levels from MONITOR headphones outputs and to view pre-LR MIX levels on the main LR MIX meters. Switches illuminate RED when active.
+Default switch setting is AUTO-CUE. CUE switches are also enabled for MIDI control. See below.
+MIDI Control
+Channel ON/OFF and CUE switches send MIDI NOTE ON/OFF messages to the rear panel MIDI OUT port, and to USB 1 and USB 2 ports when the corresponding MIDI 1 / 2 switch is active.
+Channel ON/OFF and CUE switches can also be controlled remotely by MIDI output via USB 1 and USB 2 host devices when the corresponding MIDI 1 / 2 switch is active.
+Master Section
+USB 1 / USB 2 Active Indicators
+When a computer is connected to the mixer’s USB 1 or USB 2 port, the corresponding ACTIVE LED Illuminates BLUE.
+MIDI 1 / 2 Switches
+Switch the local Xone:96 MIDI output to the corresponding USB 1 or USB 2 ports ON / OFF.
+ⓘ
+The status of these switches do not affect MIDI sent to the MIDI OUT port, via X:Link, or between USB 1 and USB 2 Partners.
+MIX/MONITOR
+The main meters follow the selected monitor source.
+The default display is LR MIX levels, which is overridden by an input channel level when any channel CUE switch is selected.
+When CUE is active, the meters display the summed level of selected channels.
+When CUE is inactive, meters display the LR MIX at pre- MASTER 1 control level.
+In SPLIT CUE mode, the Left (L) meter displays active CUE channel levels and the Right (R) meter displays the main LR MIX level (PRG).
+NOTE:
+The mixer should be operated with meters averaging around 0 and loudest peaks at around +6.
+ⓘ
+If the
+PK!
+Indicators illuminate continuously, ensure any GAIN or EQ settings are not causing clipping on Channel meters; if necessary, turn Channel GAIN, boosted EQs, and/or FADERS
+down
+to prevent distortion on the main LR MIX.
+ⓘ
+Refer to the OPERATING LEVELS section for more information.
+MASTER MIX Level Controls, MASTER 1/MASTER 2
+Independent MASTER 1 and MASTER 2 controls to adjust levels for the main LR MIX, feeding MST 1 (XLR) and MST 2 (¼“Jack) outputs.
+MASTER 1 and MASTER 2 adjustment does not affect the LR MIX meter display, or RECORD, BOOTH, MONITOR or PHONES 2 levels.
+USB 11/12 Source Select Switch
+Selects the signal source routed to internal soundcard input channels USB 11/12 between MST (LR-MIX), or SEND 2
+PHONES 2 Section
+Xone:96 features two independent cue systems for back-to-back sessions and smooth set change overs.
+21. PHONES 2
+Provides dedicated 9-way source select switch, CUE/ MST mix and LEVEL controls, with stereo 6.35mm (¼“) Jack and 3.5mm mini-jack front-panel connectors.
+PHONES 2 settings do not affect channel CUE assignments, or BOOTH and MONITOR outputs.
+BOOTH and MONITOR Sections
+BOOTH
+STEREO/MONO Switch
+Enables LEFT and RIGHT monitor signals to be summed  together so a selected stereo source can be checked for mono compatibility, especially important in club or recording  applications. A drop in level or loss of low frequencies when pressed indicates reversed polarity between LEFT & RIGHT signals. Alternatively, select if you wish to run the booth monitor output in mono rather than stereo.
+This does not affect MST, MONITOR or PHONES 2 outputs.
+BOOTH Equaliser
+Independent 3-Band EQ to tune the DJ’s monitor speakers.
+Adjustment does not affect MST, MONITOR, or PHONES 2
+Level Control
+Adjusts level of the signal to the rear panel BOOTH outputs. This does not affect MONITOR or PHONES 2 outputs.
+MUTE Switch
+Press to mute signal to the BOOTH outputs. The button illuminates RED when active.
+Does not affect MST, MONITOR or PHONES 2 outputs. The switch is also enabled for MIDI control.
+MONITORS
+Cue ACTIVE Indicator
+Illuminates RED when one or more CUE switch is enabled.
+POST EQ Switch
+Switch global channel CUE source between pre & post-EQ.
+SPLIT CUE Switch
+Enables CUE channel signals to route to the Left side of the MONITOR headphones and the LR MIX to the Right. Main meters display corresponding, CUE/PRG, levels when active.
+CUE/MST Mix Control
+Allows the main LR MIX output to be blended with the CUE signal. Turned fully anti-clockwise, only active CUE Channels are routed to the MONITOR headphones. Gradually turning  the control clockwise introduces the LR MIX output to the headphones together with active CUE.
+Selecting SPLIT CUE overrides the CUE/MST mix control.
+Level Control
+Adjusts the level of audio in MONITOR headphone outputs.
+This does not affect the BOOTH or PHONES 2 levels.
+Headphone Outputs
+Stereo 6.35mm (¼“) TRS jack and 3.5mm mini-jack sockets. Plug in good quality stereo headphones designed for DJ monitoring. Use closed-ear headphones to provide the maximum acoustic isolation when cueing your sources.
+Setup Examples
+CLASSIC
+Vinyl & Media Player (RCA) / Ext FX (SND-RTN) / Mic B (XLR)
+Digital
+Vinyl & Media Player (DVS) / Laptop (USB 1 + USB 2) / X:LINK
+Sends & Returns:
+Effects & Auxiliary Device Connections
+Output Connections
+Rear Panel Overview
+Rear Panel Connectors
+Xone:96’s rear panel is fully-loaded with I/O. Alongside all the analogue connections you’d expect to find, DJs will welcome the addition of dual-soundcards, 2 stereo sends,
+4 stereo returns and a dedicated master insert.
+SND/RTN A is switchable between Line and Hi-Z levels, making it ideal for incorporating instrument level effects, like classic guitar pedals, or legacy outboard hardware.
+X:Link allows you to hook up XONE:K series controllers to the XONE:96 for hands-on control over your       software, saving USB ports on your laptop.
+MIDI Output to external hardware is catered for via the 5-pin connection on the rear panel, and to computers via USB 1 and USB 2 ports.
+X:Link
+Connect Xone:K Series Controllers to the Xone:96 mixer for remote software MIDI control and to save using USB ports on your computer.
+RJ-45, Cat-5 Ethernet.
+MIDI OUT
+MIDI signal output from XONE:96, USB 1, USB 2, or X:Link for syncing to external MIDI hardware.
+5-pin DIN.
+USB 1 and USB 2 Soundcards
+Dual 24 Channel (6 Stereo IN/6 Stereo OUT), 32Bit/96kHz, internal Hi-Speed USB sound- cards. macOS class compliant. ASIO* compatible. Direct, full-duplex, USB 1/USB 2 MIDI connection.
+USB-B.
+RECORD Outputs
+Pre-MASTER (MST) level, LR MIX output for connection to external hardware recording devices
+Unbalanced RCA.
+Chassis Earth Terminals
+2 screw terminals are provided for connecting the earth straps from turntables to prevent ground hum.
+PHONO Inputs, CH 1 - 4
+Connect turntables with magnetic cartridges requiring RIAA equalisation to PHONO inputs. For non-RIAA turntables plug into the LINE input instead.
+Unbalanced RCA.
+LINE Inputs, CH 1 - 4
+Connect stereo LINE level media players to the LINE inputs. Do not connect turntables requiring RIAA equalisation. You can also connect to LINE level jack sources using RCA to jack adapter/cables.
+Unbalanced RCA.
+USB LINE / PHONO Select Switches, CH 1 - 4
+Set CH1 - 4 USB 1 and USB 2 sources to LN or PH for LINE or RIAA signal level input to internal soundcards. For DVS (CD/Vinyl timecode) control, or recording CH1 - 4 inputs via USB 1 or USB 2.
+Audio Sync Out
+Enables future ALLEN&HEATH accessories to be easily connected to the XONE:96. Alternative secondary Record Out; pre-MASTER level, LR MIX output to external devices.
+Stereo 3.5mm mini-jack.
+*ASIO is a trademark and software of Steinberg Media Technologies
+MIC A / MIC B Inputs
+Use superior quality low impedance dynamic mics.
+Do NOT use high impedance or unbalanced mics, or condenser mics requiring phantom power.
+ⓘ
+Xone:96 implements a ‘clean feed’ bus for MIC inputs; by default MIC A and MIC B inputs do not route to the BOOTH outputs and are unaffected by MASTER INSERT hardware processing.
+Balanced XLR, wired; Pin1=Ground, Pin2=Hot [+], Pin3=Cold [-]
+K-Slot
+Security slot to connect locking, Kensington® type, anti-theft cable.
+AC Mains Input
+Connect (supplied) IEC cable with moulded plug compatible to local AC mains supply. Turns AC supply to the mixer ON/OFF.
+MST 1, MASTER Outputs
+Main stereo LR MIX outputs that feed the club PA system, or active speakers.
+Balanced XLR, wired; Pin1=Ground, Pin2=Hot [+], Pin3=Cold [-]
+MASTER INSERT SND / RTN
+Provides INSERT points for the MST1 outputs to connect hardware dynamics processors such as a limiter, compressor, or graphic equaliser. Or when connecting effects hardware in-line with the (MST1) LR MIX output for external MASTER INSERT FX. Insert devices do not affect MIC A/B inputs.
+INSERT SND: Balanced (TRS) 6.35mm (¼“) Jack, wired; Tip=Hot [+], Ring=Cold [-], Sleeve=Ground.
+INSERT RTN: Unbalanced (MONO) 6.35mm (¼“) Jack, wired; Tip=Hot [+], Sleeve=Ground.
+MST 2 Outputs
+Alternative stereo LR MIX output to feed additional zone, consumer amplifier, or active speakers.
+Balanced (TRS) 6.35mm (¼“) Jack, wired; Tip=Hot [+], Ring=Cold [-], Sleeve=Ground.
+BOOTH Outputs
+Dedicated, balanced LINE level stereo output feed to DJ’s local monitor PA system, or active speakers.
+Balanced (TRS) 6.35mm (¼“) Jack, wired; Tip=Hot [+], Ring=Cold [-], Sleeve=Ground.
+RTN C / RTN D, Auxiliary Return Inputs
+Connect auxiliary LINE level music sources, or external effects outputs to route direct to LR MIX. Connect MONO devices via the L/M socket.
+Use RTN C / RTN D top panel controls to adjust signal levels sent to the LR MIX.
+Unbalanced (MONO) 6.35mm (¼“) Jack, wired; Tip=Hot [+], Sleeve=Ground.
+RTN A / RTN B, LINE Inputs
+Connect auxiliary LINE level music sources, or external effects device outputs to RTN A and RTN B LINE inputs to route to CH A and CH B. Use L/M sockets when connecting MONO and Hi-Z devices.
+Balanced (TRS) 6.35mm (¼“) Jack, wired; Tip=Hot [+], Ring=Cold [-], Sleeve=Ground.
+SND 1 / SND 2, LINE Outputs
+Connect your external FX inputs to SND 1 or SND 2 outputs and use SEND 1 / SEND 2 controls to send Channel audio to the FX unit. Connect MONO devices via L/M.
+Switchable SND 1 input and RTN A output impedance for external FX between LN, or Hi-Z suitable for guitar FX pedals or legacy hardware.
+Balanced (TRS) 6.35mm (¼“) Jack, wired; Tip=Hot [+], Ring=Cold [-], Sleeve=Ground.
+Dual Internal Soundcard, USB 1 and USB 2
+Unlock a world of creative possibilities. The Xone:96 features two Hi-Speed USB connections, each with six stereo inputs and outputs giving you a myriad of routing options.
+State-of-the-art 96kHz/32-bit processing ensures the highest audio quality is passed between your laptops and the analogue engine.
+USB1 and USB 2 operate independently, avoiding hassles for DJs who use different platforms, operating systems, or projects saved with different preferences, from collaborating live and in the studio.
+Xone:96 soundcard channels are arranged in stereo pairs and will be displayed in your chosen Digital DJ, or DAW software, as follows:
+USB AUDIO ROUTING
+Mixer Channel outputs
+to
+Computer [USB1
+and
+USB2]
+Soundcard Input
+XONE:96 Outputs
+DAW Input
+USB 1 / USB 2_1
+CH1 L (RIAA
+or
+LINE)
+Ch 1 L
+USB 1 / USB 2_2
+CH1 R (RIAA
+or
+LINE)
+Ch 1 R
+USB 1 / USB 2_3
+CH2 L (RIAA
+or
+LINE)
+Ch 2 L
+USB 1 / USB 2_4
+CH2 R (RIAA
+or
+LINE)
+Ch 2 R
+USB 1 / USB 2_5
+CH3 L (RIAA
+or
+LINE)
+Ch 3 L
+USB 1 / USB 2_6
+CH3 R (RIAA
+or
+LINE)
+Ch 3 R
+USB 1 / USB 2_7
+CH4 L (RIAA
+or
+LINE)
+Ch 4 L
+USB 1 / USB 2_8
+CH4 R (RIAA
+or
+LINE)
+Ch 4 R
+USB 1 / USB 2_9
+SEND 1 L (PRE
+or
+POST)
+Send 1 L
+USB 1 / USB 2_10
+SEND 1 R (PRE
+or
+POST)
+Send 1 R
+USB 1 / USB 2_11
+SEND 2 L
+or
+MST L
+Send 2 L / MST L
+USB 1 / USB 2_12
+SEND 2 R
+or
+MST R
+Send 2 R / MST R
+Mixer Channel inputs
+from
+Computer
+[USB1
+or
+USB2]
+Soundcard Output
+XONE:96 Inputs
+DAW Output
+USB 1 / USB 2_1
+CH 1 USB 1
+or
+USB 2_L
+Ch 1 L
+USB 1 / USB 2_2
+CH 1 USB 1
+or
+USB 2_R
+Ch 1 R
+USB 1 / USB 2_3
+CH 2 USB 1
+or
+USB 2_L
+Ch 2 L
+USB 1 / USB 2_4
+CH 2 USB 1
+or
+USB 2_R
+Ch 2 R
+USB 1 / USB 2_5
+CH 3 USB 1
+or
+USB 2_L
+Ch 3 L
+USB 1 / USB 2_6
+CH 3 USB 1
+or
+USB 2_R
+Ch 3 R
+USB 1 / USB 2_7
+CH 4 USB 1
+or
+USB 2_L
+Ch 4 L
+USB 1 / USB 2_8
+CH 4 USB 1
+or
+USB 2_R
+Ch 4 R
+USB 1 / USB 2_9
+CHA USB 1
+or
+USB 2_L
+Ch A L
+USB 1 / USB 2_10
+CHA USB 1
+or
+USB 2_R
+Ch A R
+USB 1 / USB 2_11
+CHB USB 1
+or
+USB 2_L
+Ch B L
+USB 1 / USB 2_12
+CHB USB 1
+or
+USB 2_R
+Ch B R
+The Xone:96 internal soundcards bring support for DVS control to professional 4-deck DJ software including
+Traktor Pro
+,
+djay Pro
+,
+Virtual DJ Pro
+,
+Rekordbox (Core, Creative, Pro)
+right out of the box.
+Operating Levels
+It is most important that the system level settings are correctly set. It is well known that many DJs push the level to maximum with meters peaking hard in the belief that they are getting the best from the system.
+THIS IS NOT THE CASE
+The best can only be achieved if the system levels are set within the normal operating range and not allowed to peak. Peaking simply results in signal distortion, not more volume.
+It is the specification of the amplifier / speaker system that sets the maximum volume that can be achieved, not the console. The human ear too can fool the operator into believing that more volume is needed. Be careful as this is in fact a warning that hearing damage will result if high listening levels are maintained.
+Remember that it is the QUALITY of the sound that pleases the ear, not the VOLUME.
+The diagram below illustrates the
+NORMAL OPERATING RANGE
+of the audio signal.
+For normal music the signal should range between –6 and +6 on the meters with average around 0dB.
+This allows enough
+HEADROOM
+for unexpected peaks before the signal hits its maximum
+CLIPPING
+voltage and distorts. It also achieves the best
+SIGNAL-TO-NOISE-RATIO
+by keeping the signal well above the residual
+NOISE FLOOR
+(system hiss).
+The
+DYNAMIC RANGE
+is the maximum signal swing available between the residual noise floor and clipping.
+An important note …
+The human ear is a remarkable organ with the ability to compress or ‘shut down’ when sound levels become too high.
+Do not interpret this natural response as a reason to turn the system volume up further ! As the session wears on ear fatigue may set in, and the speaker cones may become hot so reducing the effectiveness of the system and listeners to gain any benefit from increased volume.
+BE SENSIBLE. BE SAFE WITH SOUND LEVELS.
+Earthing
+The connection to earth (ground) in an audio system is important for two reasons:
+SAFETY
+- To protect the operator from high voltage electric shock, and
+AUDIO PERFORMANCE
+- To minimise the effect of earth (ground) loops which result in audible Hum and buzz, and to shield the audio signals from interference.
+For safety it is important that all equipment earths are connected to mains earth so that exposed metal parts are prevented from carrying high voltage which can injure or even kill the operator.
+It is recommended that a qualified system engineer check the continuity of the safety earth from all points in the system including microphone bodies, turntable chassis, equipment cases, and so on.
+The same earth is also used to shield audio cables from external interference such as the hum fields associated with power transformers, lighting dimmer buzz, and computer radiation. Problems arise when the signal sees more than one path to mains earth. An ‘earth loop’ (ground loop) results causing current to flow between the different earth paths. This condition is usually detected as a mains frequency audible hum or buzz.
+To ensure safe and trouble-free operation we recommend the following:
+Have your mains system checked by a qualified electrician.
+If the supply earthing is solid to start with you are less likely to experience problems.
+DO NOT remove the earth connection from the console mains plug.
+The console chassis is connected to mains earth through the power cable to ensure your safety. Audio 0V is connected to the console chassis internally. If problems are encountered with earth loops operate the audio ‘ground lift’ switches on connected equipment accordingly, or disconnect the cable screens at one end, usually at the destination.
+Make sure that turntables are correctly earthed.
+A chassis earth terminal is provided on the console rear panel to connect to turntable earth straps.
+Use low impedance sources
+such as microphones and line level equipment rated at 200 ohms or less to reduce susceptibility to interference. The console outputs are designed to operate at very low impedance to minimise interference problems.
+Use balanced connections for microphones and mix output
+as these provide further immunity by cancelling out interference that may be picked up on long cable runs. To connect an unbalanced source to a balanced console input, link the cold input (XLR pin 3 or jack ring) to 0V earth (XLR pin 1 or jack sleeve) at the console. To connect a balanced XLR output to unbalanced equipment, link the cold output to 0V earth at the console.
+Use superior quality cables and connectors
+and check for correct wiring and reliable solder joints. Allow sufficient cable loop to prevent damage through stretching.
+If you are not sure...
+Please contact your local Allen & Heath service agent or distributor for advice:
+www.allen-
+heath.com
+Was this article helpful?
+Yes
+No
+0 out of 0 found this helpful
+Have more questions?
+Submit a request
+Return to top
+Related articles
+Xone:96 MIDI Implementation
+Xone:K3 User Guide
+Xone:24C User Guide
+Xone:96 - connecting RMX1000 to master insert
+Xone Controller Editor Help
+Products
+dLive
+Avantis
+SQ
+Qu
+CQ
+AHM
+Xone
+ZED
+ME
+IP Controllers
+CC-7/10
+GR
+MixWizard4
+XB
+Company
+About Allen & Heath
+Allen & Heath Worldwide
+Contact Allen & Heath
+Working At Allen & Heath
+Legal
+Privacy Statement
+Cookie Policy
+Terms and Conditions of Use
+Connect
+Allen & Heath Forums

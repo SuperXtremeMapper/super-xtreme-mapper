@@ -1,0 +1,1175 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="https://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+
+
+
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TJVDSJC');</script>
+  <!-- End Google Tag Manager -->
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/css/master.css">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald:400,300,700">
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/css/ui-darkness/jquery-ui-1.9.2.custom.css">
+  <script type="text/javascript" src="https://www.numark.com/js/jquery-ui-1.9.2.custom.min.js"></script>
+
+
+
+
+
+  <script type="text/javascript" charset="utf-8">
+
+    $(function () {
+      var products = [];
+
+      $("#search #keywords").autocomplete({
+        minLength: 0,
+        source: products,
+        focus: function (event, ui) {
+          $("#search").val(ui.item.label);
+          // console.log('focus');
+          return false;
+        },
+        select: function (event, ui) {
+          // $( "#select" ).val( ui.item.label );
+
+          // When selected we redirect to the product
+          window.location.href = '/product/' + ui.item.href;
+          // console.log(event);
+          return false;
+        },
+        open: function () {
+          $(this).autocomplete('widget').css('z-index', 100);
+          return false;
+        },
+
+      })
+        .data("ui-autocomplete")._renderItem = function (ul, item) {
+          return $("<li>")
+            .append("<a href='/product/" + item.href + "' class='" + item.href + "'>" + item.label + "</a>" + "<p>" + item.desc + "</p>")
+            .appendTo(ul);
+        };
+
+    });
+
+  </script>
+
+
+
+
+
+
+
+
+
+  <!--<script type="text/javascript"src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXtlNshLPJCm2CipUuT-qco9LjVCg66lU&sensor=false"></script>//-->
+
+
+
+
+
+
+
+
+
+
+
+
+  <title>Mixtrack Platinum FX | Numark</title>
+
+
+
+
+
+
+
+  <meta name="description"
+    content="Mixtrack Platinum FX 4-Deck Advanced DJ Controller with Jog Wheel Displays and Effects Paddles | Numark">
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="57x57" href="https://www.numark.com/images/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://www.numark.com/images/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://www.numark.com/images/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://www.numark.com/images/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://www.numark.com/images/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://www.numark.com/images/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://www.numark.com/images/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://www.numark.com/images/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.numark.com/images/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"
+    href="https://www.numark.com/images/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.numark.com/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://www.numark.com/images/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.numark.com/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="https://www.numark.com/images/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="https://www.numark.com/images/favicon/ms-icon-144x144.png">
+  <meta name="robots" content="index,follow">
+  <meta name="keywords" content="Numark">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/styles/master2018v1.css" />
+
+
+
+
+
+
+
+
+  <script>
+    function trackOutboundLink(link, category, action, label) {
+
+      try {
+        _gaq.push(['_trackEvent', category, action, label]);
+      } catch (err) { }
+
+      setTimeout(function () {
+        document.location.href = link.href;
+      }, 100);
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/product/info_css.css" />
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/product/right_css_v1_1.css" />
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/product/carousel_mod_css.css">
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/js/lity-1.6.6/dist/lity.css" rel="stylesheet">
+
+
+
+  <script type="text/javascript" src="https://www.numark.com/product/carousel.js"></script>
+  <script type="text/javascript" src="https://www.numark.com/js/lity-1.6.6/dist/lity.js"></script>
+  <script type="text/javascript" src="https://www.numark.com/product/tabs.js"></script>
+
+
+  <script type="text/javascript" src="https://www.numark.com/site/jquery.lightbox-0.5.pack.js"></script>
+  <script type="text/javascript" src="https://www.numark.com/site/jquery.lightbox-0.5.js"></script>
+  <script type="text/javascript"> $(function () { $('a[rel*=lightbox]').lightBox(); }); </script>
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/site/jquery.lightbox-0.5_css.css"
+    media="screen" />
+</head>
+
+<body>
+
+
+
+
+    <script>
+        let includes = 0;
+        function includeHTML() {
+            var z, i, elmnt, file, xhttp;
+            /*loop through a collection of all HTML elements:*/
+            z = document.getElementsByTagName("*");
+            for (i = 0; i < z.length; i++) {
+                elmnt = z[i];
+                /*search for elements with a certain atrribute:*/
+                file = elmnt.getAttribute("data-imb-include");
+                if (file) {
+                    /*make an HTTP request using the attribute value as the file name:*/
+                    xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4) {
+                            if (this.status == 200) { elmnt.innerHTML = this.responseText; }
+                            if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
+                            /*remove the attribute, and call this function once more:*/
+                            elmnt.removeAttribute("data-imb-include");
+                            /* exec any initializer scripts */
+                            //execIncludeScripts( elmnt );
+                            includeHTML();
+                        }
+                    }
+                    xhttp.open("GET", file, true);
+                    xhttp.send();
+                    /*exit the function:*/
+                    return;
+                }
+            }
+        };
+
+    </script>
+
+
+
+
+  <div id="wrapper">
+    <div id="container">
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJVDSJC" height="0" width="0"
+          style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+
+      <!--
+<form method="post" id="search_form" action="/search">
+-->
+
+
+
+
+
+
+
+
+
+
+<!-- nav bar include goes here -->
+<header id="main-header" data-imb-include="/__includes/nav-block-container.html"></header>
+
+
+
+
+
+
+
+
+
+            <div id="page">
+
+
+
+
+
+
+
+
+
+        <div id="showcase">
+
+
+
+
+
+
+
+          <div id="carousel">
+
+
+
+            <div id="big_image">
+              <a href=""><img src="" /></a>
+            </div>
+            <script type="text/javascript">
+
+              var params = { allowScriptAccess: "always", wmode: "opaque", showinfo: "0" };
+              var atts = { id: "playa_playa" };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              swfobject.embedSWF("https://www.youtube.com/v/epD2RtEj2As&rel=0?enablejsapi=1&playerapiid=ytplayer&version=3&showinfo=0&rel=0",
+                "swf_zone", "640", "390", "8", null, null, params, atts);
+
+
+
+              swfobject.embedSWF("https://www.youtube.com/v/BUOTcpcRppQ&rel=0?enablejsapi=1&playerapiid=ytplayer&version=3&showinfo=0&rel=0",
+                "swf_zone", "640", "390", "8", null, null, params, atts);
+
+
+
+            </script>
+
+
+
+
+            <div id="youtube_player">
+              <div id="swf_zone">You need Flash Player 8 or above!</div>
+            </div>
+
+
+
+
+            <div id="controls">
+              <div id="back">
+                <a href=""></a>
+                <div></div>
+              </div>
+
+
+
+
+              <div id="thumbs" class="5">
+
+                <div class="image" id="0">
+                  <a name="https://www.numark.com/images/product_large/Numark_MixtrackPlatinumFX_angle_web.jpg"
+                    href="https://www.numark.com/images/sized/images/product_large/Numark_MixtrackPlatinumFX_angle_web-624x390.jpg"><img
+                      src="https://www.numark.com/images/sized/images/product_large/Numark_MixtrackPlatinumFX_angle_web-120x75.jpg" /></a>
+                </div>
+
+                <div class="image" id="1">
+                  <a name="https://www.numark.com/images/product_large/Numark_MixtrackPlatinumFX_angle_front_web.jpg"
+                    href="https://www.numark.com/images/sized/images/product_large/Numark_MixtrackPlatinumFX_angle_front_web-624x390.jpg"><img
+                      src="https://www.numark.com/images/sized/images/product_large/Numark_MixtrackPlatinumFX_angle_front_web-120x75.jpg" /></a>
+                </div>
+
+                <div class="image" id="2">
+                  <a name="https://www.numark.com/images/product_large/Numark_MixtrackPlatinumFX_ortho_web.jpg"
+                    href="https://www.numark.com/images/sized/images/product_large/Numark_MixtrackPlatinumFX_ortho_web-624x390.jpg"><img
+                      src="https://www.numark.com/images/sized/images/product_large/Numark_MixtrackPlatinumFX_ortho_web-120x75.jpg" /></a>
+                </div>
+
+                <div class="image" id="3">
+                  <a name="https://www.numark.com/images/product_large/MTPFXSE_SpecialEdition.jpg"
+                    href="https://www.numark.com/images/sized/images/product_large/MTPFXSE_SpecialEdition-624x390.jpg"><img
+                      src="https://www.numark.com/images/sized/images/product_large/MTPFXSE_SpecialEdition-120x75.jpg" /></a>
+                </div>
+
+                <div class="image" id="4">
+                  <a name="https://www.numark.com/images/product_large/Numark_MixtrackPlatinumFX_front_web.jpg"
+                    href="https://www.numark.com/images/sized/images/product_large/Numark_MixtrackPlatinumFX_front_web-624x390.jpg"><img
+                      src="https://www.numark.com/images/sized/images/product_large/Numark_MixtrackPlatinumFX_front_web-120x75.jpg" /></a>
+                </div>
+
+                <div class="image" id="5">
+                  <a name="https://www.numark.com/images/product_large/Numark_MixtrackPlatinumFX_rear_web.jpg"
+                    href="https://www.numark.com/images/sized/images/product_large/Numark_MixtrackPlatinumFX_rear_web-624x390.jpg"><img
+                      src="https://www.numark.com/images/sized/images/product_large/Numark_MixtrackPlatinumFX_rear_web-120x75.jpg" /></a>
+                </div>
+
+                <div class="image" id="6">
+                  <a name="https://www.numark.com/images/product_large/Numark_MixtrackPlatinumFX_side_left_web.jpg"
+                    href="https://www.numark.com/images/sized/images/product_large/Numark_MixtrackPlatinumFX_side_left_web-624x390.jpg"><img
+                      src="https://www.numark.com/images/sized/images/product_large/Numark_MixtrackPlatinumFX_side_left_web-120x75.jpg" /></a>
+                </div>
+
+                <div class="image" id="7">
+                  <a name="https://www.numark.com/images/product_large/Numark_MixtrackPlatinumFX_side_right_web.jpg"
+                    href="https://www.numark.com/images/sized/images/product_large/Numark_MixtrackPlatinumFX_side_right_web-624x390.jpg"><img
+                      src="https://www.numark.com/images/sized/images/product_large/Numark_MixtrackPlatinumFX_side_right_web-120x75.jpg" /></a>
+                </div>
+
+
+
+
+
+              </div>
+
+
+              <div id="next">
+                <a href=""></a>
+                <div></div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <div id="info">
+            <div id="subcategories">
+              <div class="subcategory" id="0_tab">
+                <a href="#overview">OVERVIEW</a>
+              </div>
+              <div class="subcategory" id="1_tab">
+                <a href="#features">FEATURES</a>
+              </div>
+              <div class="subcategory" id="2_tab">
+                <a href="#specs">SPECS</a>
+              </div>
+
+
+              <div class="subcategory" id="5_tab">
+                <a href="#videos">VIDEOS</a>
+              </div>
+
+
+            </div>
+
+
+
+
+
+
+            <div id="output">
+              <div id="overview">
+                <h1>
+                  Mixing Starts Here</h1>
+                <p>
+                  The Mixtrack Platinum FX has all the essentials you need to sound like a professional DJ! At its core,
+                  Mixtrack Platinum FX is a 24-bit 4-deck digital DJ controller with a dedicated software effects
+                  section, large 6-inch capacitive-touch jog wheels with built in hi-res displays and 16-multifunctional
+                  performance pads. Ready to take on any DJ style and perfect for small events, parties and developing
+                  your DJ skills, Mixtrack Platinum FX fuses in-demand functionality with all the tools to craft your
+                  signature style &ndash; your entry-point into a world of unrestricted DJ performance starts here!</p>
+                <p>
+                  &nbsp;</p>
+                <h2 class="h2">
+                  Mix with Ease&mdash;Instantly!</h2>
+                <p>
+                  <img alt=""
+                    src="https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtplfx/overview/MixtrackPlatinumFX_effects.jpg"
+                    style="width: 325px; height: 200px; float: right;" />
+                </p>
+                <p>
+                  Center stage on Mixtrack Platinum FX are two all-new premium paddle triggers for effortless command
+                  over Serato&rsquo;s built-in software effects; there&rsquo;s even quick access buttons to essential
+                  effects including Echo, Reverb, Flanger, Phaser, HPF (High Pass Filter) and LPF (Low Pass Filter) - a
+                  sure-fire guarantee that everything you need for creating build-ups, crafting unforgettable
+                  transitions and adding your own unique spin to your mix is only a touch away!</p>
+                <p>
+                  &nbsp;</p>
+                <h2 class="h2">
+                  <img alt=""
+                    src="https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtplfx/overview/MixtrackPlatinumFX_jogwheel.jpg"
+                    style="width: 325px; height: 200px; float: left; padding-right: 10px;" />Command the Mix with Large
+                  Jog Wheels
+                </h2>
+                <p>
+                  Mixtrack Platinum FX&rsquo;s rugged capacitive-touch jog wheel design has a large 6-inch surface for
+                  supreme reliability and total control of your mix. Never miss a beat and keep your mix completely on
+                  point thanks to Mixtrack Platinum FX&rsquo;s bright, high-resolution Jog Wheel displays with all
+                  critical song information relayed, including Beats Per Minute (BPM), Platter Position, Time Remaining,
+                  Pitch adjustment and key.</p>
+                <p>
+                  &nbsp;</p>
+                <h2>
+                  Spice Up Your Mix</h2>
+                <h2>
+                  <img alt=""
+                    src="https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtplfx/overview/MixtrackPlatinumFX_performancepads.jpg"
+                    style="width: 325px; height: 200px; float: right;" />
+                </h2>
+                <p>
+                  Get creative, remix and perform unforgettable mixes with Mixtrack Platinum FX&rsquo;s 16
+                  multi-function backlit performance pads! With dedicated quick-access pad mode buttons per deck for Hot
+                  Cues, Auto Loop, Sample and Fader Cuts (a signature crossfader effect that emulates a 1-4 click flare
+                  on the pads), reimagine and reinterpret your favourite tracks, creating something totally unique!</p>
+                <h2>
+                  Dedicated Auto Loop</h2>
+                <p>
+                  Mixtrack Platinum FX&rsquo;s Auto Loop makes it simple to mix and blend between songs, increasing or
+                  decreasing the loop segment with the on-board Loop Multiplier buttons to make electrifying build-ups.
+                </p>
+                <h2>
+                  Four Decks in the Mix</h2>
+                <p>
+                  With the Mixtrack Platinum FX, you have access to four layered decks to create remixes and mashups on
+                  the fly. Simply tap the deck select function to access four playback decks for unrestricted
+                  performance capability.</p>
+                <p>
+                  <img alt=""
+                    src="https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtplfx/overview/MixtrackPlatinumFX_web_anatomy_650px.jpg"
+                    style="width: 550px; height: 383px;" />
+                </p>
+                <h2 class="h2">
+                  Serato DJ Ready</h2>
+                <h2 class="h2">
+                  <img alt=""
+                    src="https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtplfx/overview/MixtrackPlatinumFX_seratodj.jpg"
+                    style="width: 325px; height: 200px; float: right;" />
+                </h2>
+                <p>
+                  We know your set demands the best, that&rsquo;s why Mixtrack Platinum FX comes pre-mapped with Serato
+                  DJ Lite for Mac &amp; PC (software included) and is upgrade-ready to the full version of Serato DJ.
+                  For first-time DJs, Serato DJ Lite now comes with demo music and an easy on-boarding tutorial that
+                  will walk you through the basics so you can start DJing right away. Built on Serato DJ Pro technology,
+                  Serato DJ Lite is designed to be intuitive, reliable &amp; feature rich.</p>
+                <p>
+                  &nbsp;</p>
+                <h2 class="h2">
+                  <img alt="" src="https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/Tidal_SoundCloud.jpg"
+                    style="width: 325px; height: 163px; float: left; padding-right: 10px;" />Stream Millions of Songs
+                </h2>
+                <p>
+                  Never run out of music and keep the dance floor shaking! The Mixtrack Platinum FX comes with Serato DJ
+                  Lite, giving you access to stream millions of songs via WIFI from TIDAL or SoundCloud. Upgrade to
+                  Serato DJ Pro to unlock even more features.</p>
+                <p>
+                  &nbsp;</p>
+                <h2 class="h2">
+                  Feature Packed</h2>
+                <h2 class="h2">
+                  <img alt=""
+                    src="https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtplfx/overview/MixtrackPlatinumFX_microphone.jpg"
+                    style="width: 325px; height: 200px; float: right;" />
+                </h2>
+                <p>
+                  As if all of this wasn&rsquo;t enough, Mixtack Platinum FX features everything you need for immediate
+                  DJ performance, right out the box! Fusing plug and play high speed USB connectivity, a dedicated mixer
+                  section outfitted with a full 3-band EQ, filter knobs, channel faders and a cross fader, plus an
+                  onboard microphone input, RCA outputs and a headphone output, Mixtrack Platinum FX covers all your
+                  bases, catering for anything your next DJ set demands!</p>
+                <p style="
+    position: absolute;
+    bottom: 776px;
+    left: 479px;
+    font-size: 12px;
+">
+                  Microphone not included.</p>
+                <h2 class="h2">
+                  <img alt="" src="https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/soundswitch_logo_650.png"
+                    style="width: 325px; height: 200px; float: left; padding-right: 10px;" />SoundSwitch Premium
+                  Included
+                </h2>
+                <p>
+                  Simplify your lighting control with a 2-month trial of SoundSwitch premium DJ lighting software
+                  included with the Mixtrack Platinum FX. SoundSwitch is a Digital Lighting Workstation that lets users
+                  create lighting displays that are performed in time with audio files when played back live in Serato
+                  DJ. It allows DJs and lighting designers the ability to sync lighting visuals with live audio
+                  seamlessly.</p>
+
+              </div>
+              <div id="features">
+                <h2>FEATURES</h2>
+                <ul>
+
+                  <li>4-deck layering DJ controller</li>
+
+                  <li>(6) Fun, quick-launch effects with dual paddle triggers</li>
+
+                  <li>Large 6-inch, high-resolution capacitive-touch jog wheels with color displays</li>
+
+                  <li>Stream millions of tracks within Serato DJ Lite from leading providers including SoundCloud and
+                    TIDAL</li>
+
+                  <li>Dedicated instant loop control with multiplier buttons </li>
+
+                  <li>Full 3-band EQ and filter knobs to create audio sweeps</li>
+
+                  <li>(8) Performance pads per deck to access cues, loops, fader cuts and samples</li>
+
+                  <li>24-bit audio output</li>
+
+                  <li>Microphone input, RCA output and headphone output</li>
+
+                  <li>Includes Serato DJ Lite download</li>
+
+                  <li>Two months free access to SoundSwitch lighting software </li>
+
+                </ul>
+              </div>
+              <div id="specs">
+                <ul>
+
+                  <li><strong>Tech Specs</strong>
+                    <ul>
+                      <li>Outputs </li>
+                      <ul>
+                        <li>1 RCA stereo pair</li>
+                        <li>1 1/4&#34; (6.35 mm) TRS 1 1/8&#34; (3.5 mm) TRS </li>
+                      </ul>
+                      <li>Inputs </li>
+                      <ul>
+                        <li>1 1/4&#34; (6.35 mm) TS </li>
+                      </ul>
+                      <li>Power </li>
+                      <ul>
+                        <li>USB bus power </li>
+                      </ul>
+                      <li>Audio </li>
+                      <ul>
+                        <li>44.1 kHz, 24-bit </li>
+                      </ul>
+                      <li>Dimensions <br>(width x depth x height) </li>
+                      <ul>
+                        <li>21.1&#34; x 9.7&#34; x 2.0&#34; 53.6 x 24.6 x 5.1 cm </li>
+                      </ul>
+                      <li>Weight</li>
+                      <ul>
+                        <li>5.0 lbs. 2.3 kg </li>
+                      </ul>
+                    </ul>
+                  </li>
+
+                  <li>Mac - System Requirements
+                    <ul>
+                      <li>macOS Catalina 10.15</li>
+                      <li>macOS Mojave 10.14</li>
+                      <li>macOS High Sierra 10.13</li>
+                    </ul>
+                    PC - System Requirements
+                    <ul>
+                      <li>Windows 10<br>
+                        Note: 64-bit only (32-bit operating systems not supported)
+                      </li>
+                    </ul>
+                  </li>
+
+                </ul>
+              </div>
+              <div id="faq">
+                <ul>
+
+                </ul>
+              </div>
+              <div id="requirements">
+                <h1>MINIMUM SYSTEM REQUIREMENTS</h1>
+                <ul>
+
+                </ul>
+              </div>
+              <div id="videos">
+                <h1>VIDEOS</h1>
+                <ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  <li style="float:left;">
+
+                    <a href="https://www.youtube.com/watch?v=epD2RtEj2As&rel=0"
+                      title="Mixtrack Pro FX &amp; Mixtrack Platinum FX" data-lity>
+                      <div style="background:url(https://www.numark.com/images/video/mtplfx_thumb1.jpg)"
+                        class="thumbnail" id="video_thumb">
+                        <p class="duration">1:12</p>
+                      </div>
+                    </a>
+
+                  </li>
+
+
+
+
+
+
+
+                  <li style="float:left;">
+
+                    <a href="https://www.youtube.com/watch?v=BUOTcpcRppQ&rel=0" title="Mixtrack Platinum FX" data-lity>
+                      <div style="background:url(https://www.numark.com/images/video/mtplfx_thumb2.jpg)"
+                        class="thumbnail" id="video_thumb">
+                        <p class="duration">1:03</p>
+                      </div>
+                    </a>
+
+                  </li>
+
+
+
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div id="right">
+
+
+
+
+
+          <div id="summary">
+            <div id="name">
+              Mixtrack Platinum FX </div>
+            <div class="title">
+              4-Deck Advanced DJ Controller with Jog Wheel Displays and Effects Paddles
+            </div>
+            <div style="clear:both"></div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+          <div id="buy">
+            <div class="status"></div>
+
+            <!--  
+          
+          
+          
+
+          
+
+          
+          
+          
+
+          
+
+         -->
+
+
+
+
+
+            <!-- <div class="title">
+              <a href="https://inmusicstore.com/numark-mixtrack-platinum-fx.html" target="_blank">
+                <img style="height:92px;background-color:white;padding:14px;"
+                  src="https://www.numark.com/images/buy-now-numark.png">
+              </a>
+            </div> -->
+
+
+          </div>
+
+
+
+
+
+
+
+
+
+
+          <style type="text/css">
+            a.promo_link {
+              display: block;
+              margin-bottom: 20px;
+              margin-left: 12px;
+            }
+          </style>
+
+
+
+
+
+
+
+          <div class="dotted"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <div class="dotted"></div>
+          <div class="cluster">
+            <div class="title">DOCUMENTS</div>
+
+
+            <div class="link">
+              <a href="https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtplfx/MixTrackPlatinumFX-UserGuide-v1.2.pdf"
+                onClick="trackOutboundLink(this, 'Product Documents - Mixtrack Platinum FX', 'click', 'User Guide'); return false;">User
+                Guide</a>
+            </div>
+
+          </div>
+
+
+
+
+
+
+          <div class="dotted"></div>
+          <div class="cluster">
+            <div class="title">DOWNLOADS</div>
+
+
+
+            <div class="link">
+              <a href="https://cdn.inmusicbrands.com/Numark/MixtrackPlatinumFX/Mixtrack Platinum FX Firmware 1.10 Mac.zip"
+                onClick="trackOutboundLink(this, 'Product Downloads - Mixtrack Platinum FX', 'click', 'Firmware Update v1.10 MAC'); return false;">Firmware
+                Update v1.10 MAC</a>
+            </div>
+
+            <div class="link">
+              <a href="https://cdn.inmusicbrands.com/Numark/MixtrackPlatinumFX/Mixtrack Platinum FX Firmware 1.10 Win.zip"
+                onClick="trackOutboundLink(this, 'Product Downloads - Mixtrack Platinum FX', 'click', 'Firmware Update v1.10 WIN'); return false;">Firmware
+                Update v1.10 WIN</a>
+            </div>
+
+            <div class="link">
+              <a href="https://www.serato.com/dj/lite"
+                onClick="trackOutboundLink(this, 'Product Downloads - Mixtrack Platinum FX', 'click', 'Serato DJ Lite'); return false;">Serato
+                DJ Lite</a>
+            </div>
+
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <style type="text/css">
+            .qmark {
+              float: left;
+              font-size: 16px;
+              background-color: #555;
+              margin: 4px;
+              margin-top: 0px;
+              padding-left: 4px;
+              padding-right: 4px;
+              border-color: #555;
+              border-width: 2px;
+              border-radius: 2px;
+              font-weight: none;
+              color: #2EDBFD;
+              margin-right: 8px;
+            }
+
+            .support_links .link {
+              clear: both;
+            }
+          </style>
+
+          <div class="dotted"></div>
+          <div class="cluster support_links">
+            <div class="title">PRODUCT SUPPORT</div>
+
+
+            <div class="link">
+              <div class="qmark">?</div><a href="https://support.numark.com/" target="_blank">Have questions? Need
+                Help?</a>
+            </div>
+
+          </div>
+
+          <style type="text/css">
+            img.adspace {
+              margin: 8px 0px 8px 16px;
+            }
+          </style>
+          <!--
+      <div class="dotted"></div>
+
+      <div class="cluster">
+        <div class="title">OFFICIAL MERCHANDISE</div>
+        <a href="http://www.ptxstore.com/numark/" target="_blank"><img class="adspace" src="https://www.numark.com/images/site/Numark_Tile.png" border="0" /></a>
+      </div>
+-->
+
+        </div>
+
+
+        <div id="drop_shadow_footer"></div>
+        <div id="footer">
+
+
+          <div id="link_box">
+
+            <div class="link">
+              <div class="arrows">
+                &gt;&gt;
+              </div><a href="https://profile.inmusicbrands.com/customer/account/login/">REGISTER YOUR GEAR</a>
+            </div>
+
+
+            <!--<div class="link">
+			<div class="arrows">
+				&gt;&gt;
+			</div><a href="https://www.numark.com/news/cat/rebates">REBATES</a>
+		</div>-->
+
+
+		<div style="clear:both"></div>
+	</div>
+	<div>
+		<ul id="sitemap">
+			<li>
+				<a href="https://www.numark.com/categories">PRODUCTS</a>
+				<ul>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/controllers">Controllers</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/mixers">Mixers</a>
+					</li>
+					
+					
+					<li>
+						<a href="https://www.numark.com/product_category/portable">Portable</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/speakers">Speakers</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/headphones">Headphones</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/microphones">Microphones</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/turntables">Turntables</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/accessories">Accessories</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/cartridges">Cartridges</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/legacy">Legacy</a>
+					</li>
+					
+				</ul>
+			</li>
+
+
+
+              <li>
+                <a href="https://support.numark.com/" target="_blank">SUPPORT</a>
+                <ul>
+                  <li>
+                    <a href="https://support.numark.com/" target="_blank">Knowledge Base</a>
+                  </li>
+                  <li>
+                    <a href="https://support.numark.com/" target="_blank">Contact Support</a>
+                  </li>
+
+                  <li>
+                    <a href="https://www.numark.com/my-account/login" target="_blank">Product Registration</a>
+                  </li>
+
+                  <li>
+                    <a href="https://www.numark.com/repairs">Repairs</a>
+                  </li>
+
+
+                </ul>
+              </li>
+              <li>
+                <a href="https://www.numark.com/news">NEWS</a>
+                <ul>
+                  <li>
+                    <a href="https://www.numark.com/news/cat/press_releases">News/Press Releases</a>
+                  </li>
+
+
+
+                </ul>
+              </li>
+
+
+
+
+              <li>
+                <a href="https://www.numark.com/artists">ARTISTS</a>
+                <ul>
+                  <li>
+                    <a href="https://www.numark.com/artists">Numark Artists</a>
+                  </li>
+                  <!-- <li>
+						<a href="https://www.numark.com/artists/signup">Artist Application</a>
+					</li> -->
+                </ul>
+              </li>
+
+
+
+
+              <li>
+                <a href="https://www.numark.com/video">VIDEO</a>
+              </li>
+
+
+
+              <li>
+                COMPANY
+                <ul>
+                  <li>
+                    <a href="https://www.numark.com/company/about">About Us</a>
+                  </li>
+                  <li>
+                    <a href="https://support.numark.com/" target="_blank">Contact Us</a>
+                  </li>
+                  <li>
+                    <a href="https://www.inmusicbrands.com/careers/" target="_blank">Careers</a>
+                  </li>
+
+                </ul>
+              </li>
+
+
+
+
+
+
+              <li>
+                DEALERS/DISTRIBUTORS
+                <ul>
+                  <li>
+                    <a href="https://www.numark.com/distributors">Distributors</a>
+                  </li>
+                  <li>
+                    <a href="https://www.numark.com/dealers">Find a Dealer</a>
+                  </li>
+
+                </ul>
+              </li>
+
+
+
+
+
+
+            </ul>
+          </div>
+
+
+
+
+
+          <div class="hline"></div>
+
+          <div id="privacy">
+            <a href="https://www.numark.com/company/privacy_policy">Privacy Policy</a> | <a
+              href="https://www.numark.com/company/terms-of-use">Terms of Use</a>
+          </div>
+
+
+          <div id="legal">
+            2026 inMusic, LLC. All Rights Reserved
+          </div>
+
+
+          <div id="locale">
+
+            <!-- <a href="http://www.numark.jp"  target="_blank">
+			<div id="flag"><img src="https://www.numark.com/images/site/jp.png"></div>
+			<div id="abbrev">JP</div>
+		</a> -->
+            <!-- <a href="http://www.numark-la.com" target="_blank">
+			<div id="flag"><img src="https://www.numark.com/images/site/pe.png"></div>
+			<div id="abbrev">LA</div>
+		</a> -->
+          </div>
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+    <div style="clear:both"></div>
+
+  </div>
+
+
+
+
+<script>
+    includeHTML();
+</script>
+
+
+
+
+  <script src="//static.getclicky.com/js" type="text/javascript"></script>
+  <script type="text/javascript">try { clicky.init(101146868); } catch (e) { }</script>
+  <noscript>
+    <p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101146868ns.gif" /></p>
+  </noscript>
+
+
+
+  <script src="https://www.numark.com/js-search.js"></script>
+  <link rel="stylesheet" href="https://www.numark.com/js-search.css">
+
+
+</body>
+
+</html>

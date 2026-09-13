@@ -1,0 +1,2030 @@
+=== PDF PAGE 1 ===
+
+=== PDF PAGE 2 ===
+Table of Contents
+  1. Disclaimer .................................................................................................................. 1
+
+  2. Welcome to TRAKTOR KONTROL S2 ......................................................................... 2
+      2.1. Document Conventions ..................................................................................... 2
+      2.2. Documentation Resources ................................................................................ 3
+      2.3. In this Document .............................................................................................. 3
+
+  3. Concepts ................................................................................................................... 4
+       3.1. Automatic Track Synchronization ....................................................................... 5
+            3.1.1. Beatgrid ................................................................................................. 5
+            3.1.2. Tempo Master and Master Clock ............................................................. 5
+            3.1.3. Automatic Tempo Master Assignment ...................................................... 5
+       3.2. About the Track Collection ................................................................................ 5
+       3.3. STEM File Playback ......................................................................................... 6
+
+  4. Setting up TRAKTOR KONTROL S2 ............................................................................ 7
+       4.1. Connecting to the Computer .............................................................................. 7
+       4.2. Connecting Active Speakers .............................................................................. 8
+       4.3. Connecting Headphones ................................................................................... 9
+       4.4. Final Preparation .............................................................................................. 9
+       4.5. Importing Music to the Track Collection ............................................................. 11
+
+  5. TRAKTOR KONTROL S2 Overview ........................................................................... 12
+       5.1. Decks ............................................................................................................ 12
+       5.2. Mixer ............................................................................................................. 14
+       5.3. Mixer Channel ................................................................................................ 16
+       5.4. Front View ...................................................................................................... 17
+       5.5. Rear View ...................................................................................................... 17
+
+  6. Mixing Your First Tracks using SYNC ......................................................................... 18
+       6.1. Prerequisites .................................................................................................. 18
+       6.2. Loading the First Track into Deck A ................................................................. 18
+       6.3. Starting Playback of Deck A ............................................................................ 19
+       6.4. Loading the Second Track into Deck B ............................................................. 20
+       6.5. Syncing the Track Tempos .............................................................................. 20
+       6.6. Starting Playback of the Second Track ............................................................. 21
+       6.7. Mixing in the Audio Signal ............................................................................... 21
+
+  7. Tutorials ................................................................................................................... 23
+       7.1. Browsing and Loading Tracks .......................................................................... 24
+       7.2. Controlling Track Playback .............................................................................. 25
+       7.3. Adjusting Volume Levels ................................................................................. 26
+       7.4. Using the Equalizer to Tweak Your Sound ........................................................ 26
+       7.5. Adjusting Track Tempo .................................................................................... 27
+       7.6. Locking the Key of Tracks ............................................................................... 27
+       7.7. Playing with Mixer Effects ................................................................................ 28
+
+=== PDF PAGE 3 ===
+      7.8. Playing with Cue Points .................................................................................. 28
+      7.9. Playing with Loops .......................................................................................... 29
+      7.10. Snap Mode and Quantize Mode .................................................................... 30
+      7.11. Using Flux and Reverse Modes ..................................................................... 31
+      7.12. Previewing Tracks using the CUE Channel ..................................................... 32
+      7.13. Working with the Preparation List ................................................................... 32
+      7.14. Adding Samples to Your Mix .......................................................................... 33
+      7.15. Correcting Beatgrids of Tracks ....................................................................... 34
+      7.16. Mixing Tracks Using Jog Wheels ................................................................... 35
+           7.16.1. Prerequisites ...................................................................................... 35
+           7.16.2. Loading the First Track into Deck A ...................................................... 35
+           7.16.3. Starting Playback of Deck A ................................................................ 36
+           7.16.4. Loading the Second Track into Deck B ................................................. 37
+           7.16.5. Syncing Tracks Manually ..................................................................... 38
+           7.16.6. Cuing the Next Track using the Jog Wheels ......................................... 42
+           7.16.7. Mixing in the Next Track ...................................................................... 42
+
+8. Preferences .............................................................................................................. 43
+
+9. Integrating a Microphone ........................................................................................... 46
+
+10. Setting the TRAKTOR KONTROL S2 as Your Default Audio Interface ........................ 47
+
+=== PDF PAGE 4 ===
+                                                                                     Disclaimer
+
+
+
+1. DISCLAIMER
+
+The information in this document is subject to change without notice and does not represent a
+commitment on the part of Native Instruments GmbH. The software described by this document is
+subject to a License Agreement and may not be copied to other media. No part of this publication
+may be copied, reproduced or otherwise transmitted or recorded, for any purpose, without prior
+written permission by Native Instruments GmbH, hereinafter referred to as Native Instruments.
+“Native Instruments”, “NI” and associated logos are (registered) trademarks of Native Instruments
+GmbH.
+Mac, macOS, GarageBand, Logic and iTunes are registered trademarks of Apple Inc., registered
+in the U.S. and other countries.
+Windows and DirectSound are registered trademarks of Microsoft Corporation in the United States
+and/or other countries.
+All other trademarks are the property of their respective owners and use of them does not imply
+any affiliation with or endorsement by them.
+Document authored by: Native Instruments GmbH
+Software version: 3.0.2 (12/2018)
+Hardware version: TRAKTOR KONTROL S2 MK3
+Special thanks to the Beta Test Team, who were invaluable not just in tracking down bugs, but in
+making this a better product.
+
+
+
+
+                                               1
+
+=== PDF PAGE 5 ===
+                                                             Welcome to TRAKTOR KONTROL S2
+
+
+
+2. WELCOME TO TRAKTOR KONTROL S2
+
+Thank you for choosing TRAKTOR KONTROL S2. It is because of customers like you that we can
+continue developing groundbreaking music software and hardware. TRAKTOR KONTROL S2 is a
+fully integrated hardware and software DJ performance system. The all-in-one TRAKTOR KON-
+TROL S2 controller offers you an ergonomic DJ mixer, a built-in 24-bit/48 kHz audio interface, and
+a high-resolution control surface, perfectly tailored for TRAKTOR PRO 3.
+This documentation provides you with all the information you need to get started mixing, syncing
+and looping. If you are already familiar with TRAKTOR, this guide will also help you use the more
+advanced features of TRAKTOR KONTROL S2.
+
+
+2.1. Document Conventions
+This document uses particular formatting to point out special facts and to warn you of potential is-
+sues. The icons introducing the following notes let you see what kind of information can be expec-
+ted:
+
+
+
+            The speech bubble icon indicates a useful tip that may help you to solve a task more
+            efficiently.
+
+
+
+
+            The exclamation mark icon highlights important information that is essential for the
+            given context.
+
+
+
+
+            The warning icon warns you of serious issues and potential risks that require your
+            full attention.
+
+
+
+
+Furthermore, the following formatting is used:
+
+ • Paths to locations on your hard disk or other storage devices are printed in italics.
+ • Important names and concepts are printed in bold.
+ • Square brackets are used to reference keys on a computer’s keyboard, e.g., Press [Shift] +
+   [Enter].
+
+
+Pet Names for Software and Hardware
+Throughout the documentation, we will refer to the TRAKTOR KONTROL S2 hardware controller
+as TRAKTOR KONTROL S2, S2 controller, or simply S2.
+Likewise, the TRAKTOR software may be referred to as TRAKTOR.
+
+
+                                                  2
+
+=== PDF PAGE 6 ===
+                                                            Welcome to TRAKTOR KONTROL S2
+
+
+
+2.2. Documentation Resources
+Native Instruments provides many information sources regarding TRAKTOR KONTROL S2. The
+main resources to get you started are:
+
+• TRAKTOR KONTROL S2 Manual: This manual guides you through the hardware and soft-
+  ware setup process to get the TRAKTOR KONTROL S2 system up and running. Additionally,
+  by providing task-based tutorials, it offers a practical approach to using your TRAKTOR KON-
+  TROL S2.
+• TRAKTOR PRO 3 Manual: For in-depth information on all features provided by the TRAKTOR
+  software, refer to the TRAKTOR PRO 3 Manual.
+
+
+2.3. In this Document
+What you are reading now is the TRAKTOR KONTROL S2 Manual. This manual is structured as
+follows:
+
+• Concepts quickly introduces you to the TRAKTOR KONTROL S2 user interface and its main
+  areas, both on the hardware side and software side.
+• Setting up TRAKTOR KONTROL S2 guides you through the process of setting up your TRAK-
+  TOR KONTROL S2 system and importing your music into TRAKTOR.
+• TRAKTOR KONTROL S2 Overview is an extensive reference of all hardware control elements
+  to be found on your TRAKTOR KONTROL S2 hardware controller. Whenever you are unsure
+  about the functionality of a particular control element, you will find all the necessary information
+  here.
+• Mixing Your First Tracks using SYNC is a quickstart tutorial introducing you the main steps of
+  mixing your first tracks using the SYNC function.
+• Tutorials contains a collection of short tutorials, showing you how to work with the individual
+  areas of the controller. This also includes the tutorial of manually aligning tracks using the Jog
+  Wheels. For more information, refer to Mixing Tracks Using Jog Wheels
+• Preferences explains how to open the Preferences in TRAKTOR and introduces the options to
+  customize the TRAKTOR KONTROL S2 for particular needs.
+• Adding a Microphone shows you how to integrate TRAKTOR KONTROL S2 with your studio or
+  live setup, in various configurations.
+• Setting the TRAKTOR KONTROL S2 as Your Default Audio Interface describes how to use the
+  audio interface of the TRAKTOR KONTROL S2 as the default audio device of your computer.
+• Specification gives you the technical specifications of the TRAKTOR KONTROL S2 controller.
+
+
+
+
+                                                 3
+
+=== PDF PAGE 7 ===
+                                                                                       Concepts
+
+
+
+3. CONCEPTS
+
+This section quickly introduces the main areas and concepts of your TRAKTOR KONTROL S2
+hardware controller with reference to the TRAKTOR PRO software.
+
+
+
+
+TRAKTOR KONTROL S2.
+
+
+(1) Decks: You can use the Decks to control tracks and Samples, similar to DJ turntables or CD
+players but with additional features. TRAKTOR controls four virtual Decks and each of them can
+be operated in several Deck Types: Track Deck, Remix Deck, STEM, Deck, and Live Input.
+TRAKTOR KONTROL S2 provides you with two physical Decks. The left Deck on your S2 controls
+Deck A in the software and the right Deck controls Deck B in the software. Additionally, you can
+gain control over TRAKTOR's Decks C and D using the S2's SAMPLE mode.
+The S2 is designed to control Track Decks on Deck A and B and to control Remix Decks on C and
+D. Hence, the software's upper Decks should always are Track Decks or STEM Decks, whereas
+the software's lower Decks should always are Remix Decks.
+(2) Mixer: You can use the Mixer to mix the audio signals coming from the Decks. The Mixer sits in
+the middle of the TRAKTOR software as well as on your TRAKTOR KONTROL S2 controller. On
+the S2, the Mixer consists of the two Mixer channels A and B which receive the individual audio
+signals from the Decks A and B. Each Mixer channel contains controls to modulate the audio sig-
+nal and to adjust the outgoing volume before the audio signal is send to the MASTER output. The
+SAMPLE knob in the middle of the Mixer controls the relative level of the combined channel for
+Deck C and D. Furthermore, the Mixer provides the crossfader to let you fade between the audio
+signals in the Mixer channels A and B.
+
+
+
+
+                                                4
+
+=== PDF PAGE 8 ===
+                                                                                         Concepts
+
+
+
+3.1. Automatic Track Synchronization
+This section introduces the principles of the automatic synchronization features offered by TRAK-
+TOR.
+One of the key features of TRAKTOR is the automatic synchronization of tracks. After loading
+tracks into the Decks, you can synchronize the track tempos with the SYNC function. The tempo of
+the synced track then adjusts the tempo of the Tempo Master, for example, the track in the playing
+Deck. For this to work, TRAKTOR uses the tempo and beat information from the Beatgrids of
+tracks. Samples and time-evolving effects sync to the current Tempo Master automatically.
+
+
+3.1.1. Beatgrid
+TRAKTOR analyzes the tracks by providing reliable tempo information for syncing. This analysis
+determines the tempo (BPM) as well as the position of the beats; the result is the Beatgrid. There
+is a specific Beatgrid for each of your tracks.
+
+
+3.1.2. Tempo Master and Master Clock
+The Tempo Master represents the reference tempo to which the Decks synchronize. When ena-
+bling the SYNC function on a Deck, TRAKTOR synchronizes the track to the Tempo Master. The
+Tempo Master can either be a Deck or TRAKTOR's Master Clock. When the Master Clock is the
+Tempo Master, it then represents the global tempo reference to which all Decks can sync. The
+Tempo Master does not have to be the same throughout your mix, but there can only be one Tem-
+po Master.
+
+
+3.1.3. Automatic Tempo Master Assignment
+TRAKTOR assigns the new Tempo Master automatically using the AUTO mode in the Master Con-
+trol panel. When mixing tracks using the SYNC function, the synced Deck automatically becomes
+the new Tempo Master, as soon as the track of the current Tempo Master Deck ends or is stopped
+manually. This continues as long as there is no other track synced to the Tempo Master. Then the
+Master Clock automatically becomes the new Tempo Master as soon the current track stops play-
+ing. The MASTER button then lights up in the Master Control panel.
+The AUTO mode is activated by default.
+
+
+3.2. About the Track Collection
+The Track Collection represents all the music you use in TRAKTOR. With the Track Collection you
+can organize, tag, and prepare your tracks for being played as part of your mix.
+A benefit of the Track Collection is that reads the metadata of the tracks, like track title, artist
+name, tempo, genre, key etc. It also stores TRAKTOR-specific information about your tracks.
+
+
+
+
+                                                 5
+
+=== PDF PAGE 9 ===
+                                                                                    Concepts
+
+
+
+3.3. STEM File Playback
+Generally, the S2 is designed to control tracks using Track Decks. However, you can also load
+STEM Files into the Decks. In this case the Decks in TRAKTOR switch to Deck Type STEM Deck
+and show the individual STEM Part waveforms and additional controls. With the S2 you can play-
+back the STEM Files like normal tracks but you are not able to further control the STEM Files.
+
+
+
+
+                                              6
+
+=== PDF PAGE 10 ===
+                                                                Setting up TRAKTOR KONTROL S2
+
+
+
+4. SETTING UP TRAKTOR KONTROL S2
+
+By this section, you should have already installed TRAKTOR PRO 3 software using NATIVE AC-
+CESS, in order to configure S2 for its first use. If this is not the case, follow the instructions under
+this link Registering and Installing a Native Instruments Product using NATIVE ACCESS.
+This section describes how to set up the TRAKTOR KONTROL S2. When all devices are connec-
+ted your setup will look like the following illustration:
+
+
+
+
+TRAKTOR KONTROL S2 setup.
+
+
+
+4.1. Connecting to the Computer
+To connect the TRAKTOR KONTROL S2 to your computer:
+
+ 1.   Connect the device end (square plug) of the included USB cable to the USB socket on the
+      rear panel of your S2.
+ 2.   Connect the computer end (flat rectangle plug) of the USB cable to an available USB 2.0 port
+      (or later) on your computer.
+
+
+
+
+                                                   7
+
+=== PDF PAGE 11 ===
+                                                       Setting up TRAKTOR KONTROL S2
+
+
+
+
+4.2. Connecting Active Speakers
+To connect your power amplifier or active speakers to the TRAKTOR KONTROL S2:
+
+ •   Connect the MAIN OUT RCA (or 3.5 mm) outputs on the rear panel of the TRAKTOR KON-
+     TROL S2 to the inputs of your amplification system using the appropriate cables.
+
+
+
+
+                                            8
+
+=== PDF PAGE 12 ===
+                                                              Setting up TRAKTOR KONTROL S2
+
+
+
+
+4.3. Connecting Headphones
+To connect headphones to the TRAKTOR KONTROL S2:
+
+ •    Connect your headphones to the PHONES OUT socket on the front panel of the TRAKTOR
+      KONTROL S2, using the 3.5 mm connector.
+
+
+
+4.4. Final Preparation
+After successfully setting up the TRAKTOR KONTROL S2 system, you can switch on the devices.
+We recommended that you follow the order in the instructions below:
+
+Switching on Devices and Starting TRAKTOR
+
+ 1.   On your S2, turn down the volumes to minimum position by using the MASTER knob, and
+      the VOL knob for the headphones volume.
+ 2.   Switch on the amplification system (active speakers or power amplifier with passive speak-
+      ers).
+ 3.   Switch on your computer.
+ 4.   Start TRAKTOR by double-clicking the Traktor 3 application icon on your desktop.
+      The TRAKTOR software opens.
+
+
+Importing Data from Your Previous TRAKTOR Version
+When you start TRAKTOR for the first time, TRAKTOR recognizes if a previous version of TRAK-
+TOR is installed on you system. In this case TRAKTOR asks if you want to import your previous
+data from the existing user content into a new folder in your user folder. Your previous data will not
+be changed if you import it to the new default folder.
+
+If you want to import data from your previous TRAKTOR installation:
+
+
+                                                  9
+
+=== PDF PAGE 13 ===
+                                                                 Setting up TRAKTOR KONTROL S2
+
+
+ •    Click Yes to confirm.
+      The data is imported.
+
+
+Switching to TRAKTOR Default Settings
+When you start TRAKTOR with the S2 for the first time, TRAKTOR asks if you want to
+switch switch Mixer FX selection to default values. This is necessary to get the intended user ex-
+perience of your S2:
+
+
+
+
+TRAKTOR alert for switching Mixer FX pre-selection to default.
+
+
+ •    Click Yes.
+      The pre-selection of the Mixer FX is set to default.
+
+
+Configuring TRAKTOR using the Setup Wizard
+The Setup Wizard dialog appears automatically when you start TRAKTOR for the first time after
+installation. The Setup Wizard helps you to configure the software to your needs only with a few
+clicks. To configure TRAKTOR to be controlled with your S2 controller, perform the following ac-
+tions:
+
+ 1.   On the WELCOME page click Next to proceed.
+ 2.   On the DECK LAYOUT page select the Deck setup to control with your S2, for example, 2
+      Track Decks + 2 Remix Decks.
+ 3.   Click Next to proceed.
+      The SUMMARY page shows you the configuration of TRAKTOR.
+ 4.   Click Finish to confirm your configuration.
+      The TRAKTOR window now appears in the Essential Layout.
+
+
+
+
+                                                       10
+
+=== PDF PAGE 14 ===
+                                                           Setting up TRAKTOR KONTROL S2
+
+
+
+
+4.5. Importing Music to the Track Collection
+The most convenient way to get your tracks into TRAKTOR's Track Collection is using drag and
+drop:
+
+ •   Drag the music files from the location on your computer and drop them in the Track Collec-
+     tion folder in TRAKTOR's Browser Tree.
+     TRAKTOR now analyzes the metadata of the music files and stores the files in the Track
+     Collection.
+
+
+
+
+                                              11
+
+=== PDF PAGE 15 ===
+                                                             TRAKTOR KONTROL S2 Overview
+
+
+
+5. TRAKTOR KONTROL S2 OVERVIEW
+
+This section introduces you to the TRAKTOR KONTROL S2 and all its control elements and con-
+nectors.
+
+
+
+
+TRAKTOR KONTROL S2.
+
+
+
+(1) Decks: TRAKTOR KONTROL S2 provides you with two physical Decks. You can use the
+Decks to control tracks and Samples. The left Deck on your S2 controls Track Deck A in the soft-
+ware and the right Deck on your S2 controls Track Deck B in the software. Additionally, you can
+gain control over TRAKTOR's Remix Decks C and D. For more information on the control ele-
+ments, refer to Decks.
+
+(2) Mixer: You can use the Mixer to mix the audio signals coming from the Decks. The Mixer con-
+sists of the two Mixer channels A and B which receive the individual audio signals from the
+Decks A and B. Each Mixer channel contains controls to modulate the audio signal and to adjust
+the outgoing volume before the audio signal is send to the MASTER output. The SAMPLE knob in
+the middle of the Mixer controls the relative level of the combined channel for Deck C and D. Fur-
+thermore, the Mixer provides the crossfader to instantly fade between the audio signals in the Mix-
+er channels A and B. For more information on the control elements, refer to Mixer, and Mixer
+Channel.
+
+
+
+5.1. Decks
+TRAKTOR KONTROL S2 provides you with two physical Decks to control the TRAKTOR
+Decks. Each Deck provides you with the following control elements:
+
+
+
+
+                                                12
+
+=== PDF PAGE 16 ===
+                                                             TRAKTOR KONTROL S2 Overview
+
+
+
+
+S2 Deck.
+
+
+(1) BROWSE encoder: You can navigate within TRAKTOR's Browser, select tracks in the Track
+List by turning the BROWSE encoder. You can load the selected track into the Deck by pressing
+the BROWSE encoder.
+(2) Preparation button: Assigns the selected track in the Track List to the Preparation List. With
+the Preparation list you can prepare the tracks for your next mix.
+(3) BROWSE View button: Maximizes the Browser view in the TRAKTOR software.
+(4) Jog Wheel: The Jog Wheel provides advanced control over track transport. As with a conven-
+tional CD player or turntable, you can manually hold playback, nudge and bend, and start scratch-
+ing by touching and turning the Jog Wheel and the outer rim. Furthermore, you can manually cor-
+rect tracks' Beatgrids.
+(5) KEYLOCK : Enables Keylock for the Deck. When you change the tempo for the track on the
+Deck with Keylock enabled, then the tempo changes but the current key pitch for the track re-
+mains.
+(6) SYNC: Syncs the Deck to the Tempo Master.
+(7) TEMPO Fader: Lets you manually adjust the track tempo on that Deck. The TEMPO fader can
+be operated in Absolute mode and in Relative mode. If the Deck is synced to the Tempo Master,
+the TEMPO Fader has no effect.
+(8) Play/Pause: Lets you start or pause the track playback on that Deck.
+(9) CUE: Lets you start track playback from the Floating Cue Point when the Deck is stopped.
+Moves the playback position back to the Cue Point during playback.
+
+
+                                               13
+
+=== PDF PAGE 17 ===
+                                                             TRAKTOR KONTROL S2 Overview
+
+
+(10) SHIFT: When you hold SHIFT, you are provided with the secondary functions of some of the
+control elements on the S2.
+(11) GRID: Enables the Beatgrid Adjust mode. In this mode you can use the Jog Wheel to correct
+the Beatgrid for the loaded track.
+(12) REV button: Plays back the track in reverse when in Flux mode.
+(13) FLX button: Enables Flux mode for that Deck.
+(14) MOVE encoder: Allows you to jump within the track, and enables Looping. When Looping is
+enabled, the MOVE encoder allows you to move the Loop forwards and backwards within the
+track.
+(15) HOTCUES button: Enables HOTCUES mode. When enabled, you can use the eight Pads to
+store and trigger Cue Points and Loops.
+(16) SAMPLES button: Enables SAMPLES mode. When enabled, you can use the eight Pads to
+control the first four Samples of the Sample Slots in Remix Decks C or D.
+(17) LOOP encoder: Allows you to enable/disable Looping and change the Loop size.
+(18) Pads: Their function depends on the current Pad mode:
+
+ • When in HOTCUES mode, the Pads store and trigger Cue Points and Loops for tracks and
+   STEM Files.
+ • When in SAMPLES mode, the Pads control the first four Sample Cells of Sample Slots in Re-
+   mix Decks C and D.
+
+
+5.2. Mixer
+You can use the Mixer to mix the audio signals coming from the Decks. The Mixer is situated in the
+middle of your TRAKTOR KONTROL S2 controller and contains the following control elements:
+
+
+
+
+                                               14
+
+=== PDF PAGE 18 ===
+                                                             TRAKTOR KONTROL S2 Overview
+
+
+
+
+Mixer.
+
+
+
+(1) Mixer channel A and B: The Mixer channels A and B receive the individual audio signals from
+the Decks A and B. Each Mixer channel contains controls to adjust the audio signal's frequency
+content and to adjust the outgoing volume before the audio signal is send to the MASTER out-
+put. For more information, refer to Mixer Channel.
+
+(2) QNT: Allows you to enable or disable Quantize mode and Snap mode. More Information, refer
+to Snap Mode and Quantize Mode.
+
+(3) MASTER knob: Adjusts the Master volume level.
+
+(4) MIC button: Inserts the microphone channel signal to the Master signal.
+
+(5) SAMPLE knob: Adjusts the volume for the combined channel of Remix Deck C or D.
+
+(6) CUE MIX control: Adjusts the signal mix between Master output signal and the CUE channel
+signal in the headphones.
+
+(7) CUE VOL control: Adjusts the volume for the CUE channel.
+
+(8) Mixer FX SELECT buttons: Select the individual Mixer FX to be controlled with the Mixer FX
+Amount knob in the Mixer channel.
+
+
+
+                                               15
+
+=== PDF PAGE 19 ===
+                                                              TRAKTOR KONTROL S2 Overview
+
+
+(9) CUE button: Sends the Mixer channel’s audio signal to the CUE channel for preparing the next
+transition and previewing tracks.
+
+(10) Channel Level Meter: Gives you visual feedback of the GAIN level on that Mixer channel.
+The blue LEDs indicate the signal below clipping and the red LED indicates the signal is clipping.
+For more information, refer to Adjusting Volume Levels.
+
+(11) Crossfader: Lets you transition between the audio signals of Mixer channel A and B. At each
+crossfader end, the opposite signal is totally silent. Moving the crossfader gradually fades in and
+fades out the relevant audio signal in the Master output. At the center position, both audio signals
+are fully audible.
+
+
+
+5.3. Mixer Channel
+The Mixer channels A and B receive the individual audio signals from the Decks A and B. Each
+Mixer channel contains controls to adjust the incoming and outgoing levels, and the audio signal's
+frequency content. The Mixer channels provide you with the following control elements:
+
+
+
+
+Mixer channel.
+
+
+
+(1) GAIN knob: Adjusts the input level for the incoming signal of the corresponding Deck, before it
+passes the channel fader.
+
+(2) HI knob: Emphasizes, attenuates, or removes the high frequency band of the audio signal.
+
+(3) MID knob: Emphasizes, attenuates, or removes the middle frequency band of the audio signal.
+
+
+                                                16
+
+=== PDF PAGE 20 ===
+                                                                TRAKTOR KONTROL S2 Overview
+
+
+(4) LOW knob: Emphasizes, or attenuates, or removes the low frequency band of the audio sig-
+nal.
+(5) Mixer FX Amount knob: The Mixer FX Amount knob controls the amount of the Mixer FX to
+be applied to the audio signal. In the center position the Mixer FX is disabled for that Mixer chan-
+nel.
+(6) Channel Fader: Adjusts the volume level for the Mixer channel before the audio signal is sent
+to the crossfader.
+
+
+5.4. Front View
+The front panel of your S2 hosts the PHONES OUT socket for the CUE channel. Here you can
+connect a pair of headphones using a stereo 1/4" jack.
+
+
+
+
+Front view.
+
+
+
+5.5. Rear View
+This section describes all the sockets and controls available on the rear panel of your TRAK-
+TOR KONTROL S2.
+
+
+
+
+Rear view.
+
+
+(1) Kensington Lock slot: Attaches a Kensington Lock to protect your S2 against theft.
+(2) MIC GAIN: Adjusts the level for the incoming microphone signal.
+(3) MIC 1/4" socket: Connects a microphone using a 1/4" jack.
+(4) MAIN OUT 1/8" socket: Connects the S2 to active speakers.
+(5) MAIN OUT RCA R / L: Connects the S2 to a power amplifier.
+(6) iOS: Connects an iOS device for future iOS compatibility.
+(7) USB: Connects your S2 with your computer using the included USB cable.
+(8) Power Supply socket: Connects the optional Native Instruments Power Supply to be pur-
+chased separately on the Native Instruments online shop.
+
+
+
+
+                                                17
+
+=== PDF PAGE 21 ===
+                                                           Mixing Your First Tracks using SYNC
+
+
+
+6. MIXING YOUR FIRST TRACKS USING SYNC
+
+In this section you will learn to mix your first two tracks, using Deck A and Deck B, and the SYNC
+function. For this method, you will not need to use Jog Wheels or your headphones. If you want to
+try a more advanced method of mixing, using the Jog Wheels and headphones, refer to section
+Mixing Tracks Using Jog Wheels.
+At first, you prepare the Mixer by adjusting the control elements for mixing from Deck A to B. Then
+you will load the first track into Deck A, and begin to perform step by step.
+
+
+
+6.1. Prerequisites
+ 1.   Set the crossfader to the left-most position.
+
+
+
+
+ 2.   Set Channel fader A and Channel fader B to maximum position.
+
+
+
+
+ 3.   Set the MASTER knob to center position at 0.0 dB.
+ 4.   Set the volume of your audio system or active speakers to minimum level.
+
+
+
+6.2. Loading the First Track into Deck A
+ 1.   Press the Browser View button to maximize the Browser view in the software.
+
+
+
+
+ 2.   Turn the BROWSE encoder to select one of your tracks, or a demo track, for example Berlin
+      Hauptbahnhof by Native Instruments.
+
+
+                                                  18
+
+=== PDF PAGE 22 ===
+                                                         Mixing Your First Tracks using SYNC
+
+
+
+
+ 3.   Press the BROWSE encoder to load the track into the Deck.
+
+
+
+
+      TRAKTOR now analyzes the track to determine its tempo, and to create the Beatgrid and the
+      Waveform.
+ 4.   Press the Browser View button again to minimize the Browser View.
+
+
+
+
+6.3. Starting Playback of Deck A
+To start playback on Deck A:
+
+ 1.   Press the Play/Pause button on Deck A.
+
+
+
+
+      The Waveform starts moving and the Channel Level Meter LEDs in the left Mixer channel A
+      illuminate.
+
+
+
+
+                                               19
+
+=== PDF PAGE 23 ===
+                                                              Mixing Your First Tracks using SYNC
+
+
+ 2.   Slowly increase the volume of your audio system or active speakers to a moderate listening
+      level.
+      You now hear the audio of the track in your speakers.
+
+
+
+6.4. Loading the Second Track into Deck B
+
+
+            The next track you want to mix must have a similar tempo like the playing track.
+
+
+
+
+ 1.   Press the Browser View button to maximize the Browser view in the software.
+
+
+
+
+ 2.   Turn the BROWSE encoder to select one of your tracks, or a demo track, for example Li-
+      sa by Native Instruments.
+
+
+
+
+ 3.   Press the BROWSE encoder to load the track into the Deck.
+
+
+
+
+      TRAKTOR now analyzes the Track to determine its tempo, and to create the Beatgrid and
+      the Waveform.
+
+
+
+6.5. Syncing the Track Tempos
+In order to sync the tempos of both tracks:
+
+ •    Press the SYNC button on Deck B.
+
+
+
+                                                20
+
+=== PDF PAGE 24 ===
+                                                            Mixing Your First Tracks using SYNC
+
+
+
+
+      The tempo of the track in Deck B is now synced to the running track, indicated by the equal
+      tempo value in the software's Deck Header. The SYNC button lights up on Deck B.
+
+
+6.6. Starting Playback of the Second Track
+When the track in Deck A is almost over you can start the playback of the next track:
+
+ •    Press the Play/Pause button on Deck B to start playback.
+
+
+
+
+      The waveform starts moving and the Channel Volume Meter LEDs in Mixer channel B illumi-
+      nate. The tracks in Deck A and Deck B play in sync.
+
+
+
+
+6.7. Mixing in the Audio Signal
+You can now mix the audio signal of Mixer channel B into the Master signal:
+
+ 1.   Move the crossfader slowly towards center position and hold for a moment.
+
+
+
+
+      The audio signal of the track in Mixer channel B fades into the Master signal.
+ 2.   While the track in Deck A reaches its end, slowly move the crossfader towards the right-most
+      position.
+
+
+
+
+                                                 21
+
+=== PDF PAGE 25 ===
+                                                         Mixing Your First Tracks using SYNC
+
+
+
+
+    The audio signal of Mixer channel A slowly fades out of the Master signal. Only Mixer chan-
+    nel B is now audible.
+
+When the playback of Deck A ends, Deck B automatically becomes the Tempo Master and is
+ready to transition to the next track.
+
+
+
+
+                                              22
+
+=== PDF PAGE 26 ===
+                                                                                            Tutorials
+
+
+
+7. TUTORIALS
+
+The tutorials in this section introduces you the several functions and features of the S2. The follow-
+ing list provides you with an overview of the tutorials including the link to it:
+
+ • Browsing and Loading Tracks: By having your music imported in TRAKTOR, you can use
+   the Browse controls on the S2 to find tracks for your mix. When loading a track into a Deck,
+   TRAKTOR starts to analyze the track, calculating its exact tempo and key information. From
+   this analysis, TRAKTOR creates the Beatgrid and the Waveform. This information is then stor-
+   ed for the track in the Track Collection. For more information, refer to Browsing and Loading
+   Tracks.
+ • Controlling Track Playback: The S2 lets you control the playback of your tracks using trans-
+   port controls and the Jog Wheels. For more information, refer to Controlling Track Playback.
+ • Adjusting Levels: The Mixer lets you adjust volumes of your tracks and tweak the frequency
+   bands of the audio signals using the equalizer. For more information, refer to Adjusting Volume
+   Levels, and Using the Equalizer to Tweak Your Sound.
+ • Adjusting Tempo: You can use the TEMPO faders to adjust the tempo on each Deck manual-
+   ly. The TEMPO faders can be operated in two modes. For more information, refer to Adjusting
+   Track Tempo.
+ • Locking Key of Tracks: When adjusting the track tempo, then the pitch changes accordingly.
+   Using Keylock you can adjust the track tempo without changing the pitch. For more informa-
+   tion, refer to Locking the Key of Tracks.
+ • Working with Mixer FX: You can modulate the sound of your tracks using Mixer FX. For more
+   information, refer to Playing with Mixer Effects.
+ • Working with Cue Points: By triggering stored Hotcues from the Pads, you are able to jump
+   to specific sections within the track. For more information, refer to Playing with Cue Points.
+ • Working with Loops: To extend the playback of tracks or to loop a specific part in a track, you
+   can make use of the looping functions on your S2. For more information, refer to Playing with
+   Loops.
+ • Snap Mode and Quantize Mode: In order to precisely place Cue Points, Loops and jumps
+   within tracks without loosing the sync, use Snap mode and Quantize mode. For more informa-
+   tion, refer to Snap Mode and Quantize Mode.
+ • Using Flux and Reverse mode: Flux mode and Reverse mode allow you to create a parallel
+   playhead that you can use to perform with Hotcues and Loops. The parallel playhead ensures
+   you don't lose the original track playhead position in the track. For more information, refer to
+   Using Flux and Reverse Modes.
+ • Previewing Tracks using the CUE Channel: The CUE channel and its controls on the Mixer
+   enable you to preview your tracks and your sound adjustments before you transition to the next
+   track. For more information, refer Previewing Tracks using the CUE Channel.
+ • Working with the Preparation List: TRAKTOR's Browser allows you to prepare for your next
+   mix. The S2 has a dedicated control so you can easily add tracks to the Preparation List. For
+   more information, refer to Working with the Preparation List.
+ • Adding Samples to Your Mix: You can perform and remix your music by triggering the first
+   four Loops or One-shot Samples of Remix Decks C and D, with the Pads. For more informa-
+   tion, refer to Adding Samples to Your Mix.
+
+
+                                                 23
+
+=== PDF PAGE 27 ===
+                                                                                            Tutorials
+
+
+ • Correcting Beatgrids of Tracks: If the SYNC function is enabled but the playing tracks are
+   not synced, it is likely that the Beatgrids were miscalculated. The S2 allows you correct Beat-
+   grids manually. For more information, refer to Correcting Beatgrids of Tracks.
+ • Mixing Tracks using the Jog Wheels: This tutorial introduces you to the workflow of mixing
+   two tracks manually, using the Jog wheels and the Headphone CUE channel. For more infor-
+   mation, refer to Mixing Tracks Using Jog Wheels.
+
+
+7.1. Browsing and Loading Tracks
+The S2 lets you conveniently browse for your music in TRAKTOR. Using the BROWSE controls
+on the Decks, you can quickly maximize the Browser in TRAKTOR, navigate in the Track List, and
+select Favorite folders and Playlists for loading your desired tracks.
+
+Selecting a Track in the Track List
+To select a track in the TRAKTOR Browser's Track List:
+
+ •    Turn the BROWSE encoder to scroll through the Track List and to select a track.
+
+
+Loading the Track into a Deck
+To load the selected track on the selected Deck:
+
+ •    Push the BROWSE encoder of that Deck.
+      The track is loaded into the Deck.
+
+If the track is loaded into the Deck for the first time, TRAKTOR starts to analyze the track to deter-
+mine its tempo, and then calculate the Beatgrid and Waveform. The moment of the analysis can
+be switched to another context in the Preferences.
+Depending on the selected track or STEM File, the Deck Type switches accordingly when loading
+it.
+
+Maximizing the Browser in TRAKTOR
+To get a better overview of the Track List you can maximize the Browser in TRAKTOR:
+
+ 1.   Press the Browser View button.
+      The Browser maximizes in the TRAKTOR.
+ 2.   Press the Browser View button again to minimize the Browser in TRAKTOR.
+
+
+Selecting a Favorite Folder
+At the top of TRAKTOR's Browser you can find the favorite folders of the Browser, for example All
+Tracks or Preparation. You can use the BROWSE controls on your S2 to select a favorite folder:
+
+ •    Press and hold SHIFT + turn the BROWSE encoder to select another favorite folder.
+      The Track List content changes accordingly.
+
+Rather than selecting a Favorite folder using SHIFT, you can also scroll along the Browser Tree to
+select the subfolders. To implement this, you need to switch the Browse behavior for the SHIFT
+button on the TRAKTOR S2 MK3 page in the Preferences.
+
+
+                                                   24
+
+=== PDF PAGE 28 ===
+                                                                                           Tutorials
+
+
+
+7.2. Controlling Track Playback
+The Transport Controls and the Jog Wheels on the S2 let you control the playback behavior of
+tracks. This section describes several ways to control track playback and how to preview tracks in
+the CUE channel when creating transitions.
+
+Starting or Pausing Playback
+To start the playback of the loaded track:
+
+ •    Press the Play/Pause button.
+
+To pause the playback:
+
+ •    Press the Play/Pause button again.
+
+
+Holding Track Playback
+You can use the Jog Wheel to hold the playback of the track, just like a record on a turntable:
+
+ 1.   Touch the top plate of the Jog Wheel and keep hold of it.
+      The playback of the track held in place.
+ 2.   Release the top plate to continue playback.
+
+
+Scratching the Track
+You can use the Jog Wheel to perform scratch routines on the track:
+
+ 1.   Hold the top plate of the Jog Wheel and then quickly turn it clockwise and counterclockwise
+      in slight movements.
+      You will hear the typical vinyl scratch sound.
+ 2.   Release the top plate to continue playback.
+
+
+Seeking within the Track
+You can use the Jog Wheel to seek within the track:
+
+ •    Touch the top plate of the Jog Wheel and turn it clockwise or counterclockwise.
+      While turning the Jog Wheel the track now quickly winds forward or backward, respectively.
+
+To seek in bigger steps through the track:
+
+ •    Press and hold SHIFT and turn the Jog Wheel clockwise or counterclockwise.
+
+
+Cueing the Track using the CUE Button
+ • When pressing and holding the CUE button, playback continues from the position of the Float-
+   ing Cue Point.
+ • When releasing the CUE button, the playback position jumps back to the Cue Point and play-
+   back stops immediately.
+ • When pressing and holding the CUE button and later pressing the Play/Pause button, the play-
+   back continues as normal.
+
+
+                                                  25
+
+=== PDF PAGE 29 ===
+                                                                                            Tutorials
+
+
+
+7.3. Adjusting Volume Levels
+When mixing tracks you need to make sure that the volumes of both tracks are at the same level
+for flawless transitions. For this, you can define the volume level for the incoming audio signal into
+the Mixer channel (GAIN) on the one side, and you can define the volume for the outgoing signal
+to the MASTER output on the other side.
+
+Adjusting the GAIN Levels for Incoming Audio Signals
+To adjust the volume level for incoming audio signals, you need to use the GAIN knob:
+
+ •   Turn the GAIN knob to a position so that the LEDs stay between 0 dB and 6 dB.
+
+
+Adjusting Channel Volume Levels
+To adjust the volume of the mixer channels:
+
+ •   Move the channel faders up or down.
+
+
+Adjusting the MASTER Output Level
+To adjust the MASTER volume level:
+
+ •   Turn the MASTER knob clockwise or counterclockwise.
+
+
+
+
+            To avoid damaging your ears, always set the connected speakers or power amplifier
+            to a comfortable listening level.
+
+
+
+
+7.4. Using the Equalizer to Tweak Your Sound
+You can use the equalizer for adjusting the sound of your tracks while mixing. You can, for exam-
+ple, take out the bass frequency band of one track in order to let the bass of the other track domi-
+nate the mix. Or you can slightly adjust the middle frequencies to attenuate, for example, vocals.
+
+The EQ knobs adjust the high, middle, or low frequencies in the audio signal.
+
+Taking out Frequency Bands of the Audio Signal
+
+ •   Turn the EQ knobs counterclockwise to take out the individual frequency band.
+     Turning the EQ knobs entirely counterclockwise would remove the individual frequency band
+     from the audio signal.
+
+
+
+
+            Using EQ to remove frequencies can help to avoid the clipping that can occur when
+            two tracks play together at full volume.
+
+
+
+
+                                                 26
+
+=== PDF PAGE 30 ===
+                                                                                           Tutorials
+
+
+Attenuating Frequency Bands in the Audio Signal
+
+ •    Turn the EQ knobs clockwise to attenuate the individual frequency band.
+
+
+Using the equalizer while cueing a track can support manual tempo alignment of complex tracks.
+For example, you can remove the high and middle frequency bands from the next track to focus on
+the bassline.
+
+
+
+7.5. Adjusting Track Tempo
+Besides using SYNC to adjust the track tempo, you can also adjust the track tempo for the Decks
+individually by using the TEMPO fader on each Deck. The TEMPO faders be can operated in two
+different modes: in Relative mode and Absolute mode. By default, the TEMPO faders operate in
+Relative mode.
+
+Relative mode
+In this mode, The TEMPO fader position on your S2 Deck has not necessarily have to match the
+Tempo fader position of the software Deck. When loading tracks in Relative mode, then the Tempo
+fader in the software Deck always resets to center position and the track will play at its original
+tempo. When moving the TEMPO fader on the S2 Deck, then the Tempo fader on the software
+Deck moves accordingly.
+
+Absolute Mode
+You can also operate the Tempo faders in Absolute mode. In this mode, whenever you move the
+TEMPO fader on your S2, its position is transmitted 1:1 to the Tempo fader of the software Deck,
+no matter what the current position of the Tempo fader in the software is.
+In Absolute mode, the software Deck’s tempo always matches the TEMPO fader position on your
+S2, unless you have somehow changed the software Deck’s tempo.
+The TEMPO fader mode can be changed on the Kontrol S2 MK3 page in the TRAKTOR Prefer-
+ences.
+
+
+
+7.6. Locking the Key of Tracks
+When synchronizing tracks, you change their tempos and, consequently, their pitches (or keys).
+Slowing down a track will cause its pitch to drop while speeding up the track will cause its pitch to
+rise. This is not problematic for small tempo adjustments, but if the tempo change is more drastic,
+the resulting pitch shift might sound unnatural, especially for vocals.
+To avoid this, you can use the KEYLOCK function on the S2 Deck to lock the track's current key
+value. When you then move the TEMPO fader up or down, you change the track tempo but the
+track's key remains at the locked value.
+To lock the key for a track:
+
+ 1.   Load a track into a Deck.
+ 2.   Set the TEMPO fader to center tempo position.
+ 3.   Press the KEYLOCK button on the Deck to lock the key for the track.
+
+
+                                                 27
+
+=== PDF PAGE 31 ===
+                                                                                             Tutorials
+
+
+ 4.   Move the TEMPO fader up or down to change the track tempo.
+      The track tempo changes but the key value remains at the locked value.
+
+
+
+7.7. Playing with Mixer Effects
+A Mixer FX is a grouped effect that can be applied to the audio signal in the Mixer channel using
+the Mixer FX Amount knob. You can choose one of four preselected Mixer FX using the FX SE-
+LECT buttons:
+
+ • Filter: The FX SELECT 1 button lights up red.
+ • Reverb: The FX SELECT 2 button lights up green.
+ • Dual Delay: The FX SELECT 3 button lights up blue.
+ • Flanger: The FX SELECT 4 button lights up red.
+
+
+Besides the Filter Effect, each Mixer FX consists of the individual Effect and a Filter Effect. De-
+pending on the direction you turn the FX Amount knob, you either apply the Mixer FX in combina-
+tion with a low-pass Filter, or with a high-pass Filter.
+
+Selecting a Mixer FX
+To select a Mixer FX:
+
+ •    Press the FX SELECT button corresponding to the Mixer FX you want to add.
+      The FX SELECT button brightly lights up, indicating the Mixer FX is selected.
+
+
+Applying the Mixer FX to the Audio Signal
+To apply the selected Mixer FX in combination with a low-pass Filter to the audio signal:
+
+ •    Turn the Mixer FX Amount knob counterclockwise.
+
+
+To apply the selected Mixer FX in combination with a high-pass Filter to the audio signal:
+
+ •    Turn the Mixer FX Amount knob to center position.
+
+
+
+7.8. Playing with Cue Points
+When mixing tracks a common technique is to mix in the next track from a particular position in
+that track instead from its start, for example, at a certain beat. Mixing in tracks from a particular
+position in that track is called “cueing”. The S2 enables you to set points for cueing and for directly
+jumping to these particular positions: Cue Points. You can store Cue Points as Hotcues using the
+Pads on the Deck. This allows you to gain instant access to your Cue Points.
+
+Enabling HOTCUES Mode
+In order to work with Cue Points you need to ensure you are in HOTCUES mode:
+
+ •    Press the HOTCUES button to enable HOTCUES mode for the selected Deck.
+
+
+                                                  28
+
+=== PDF PAGE 32 ===
+                                                                                          Tutorials
+
+
+Storing Cue Points as Hotcues
+To store a Cue Point as Hotcue:
+
+ •    At the desired position in the track, press a Pad.
+      The Cue Point is set at the current playback position in the track and stored as Hotcue on the
+      Pad. This Pad lights up blue.
+
+
+Triggering Cue Points on a Deck During Playback
+To trigger Cue Points on a Deck during playback:
+
+ •    Press a blue lit Pad.
+      The playback position jumps the stored Cue Point and playback continues.
+
+
+Triggering Cue Points on a Stopped Deck
+On a stopped Deck, triggering Cue Points result in a different playback behavior:
+
+ • When pressing and holding a blue lit Pad, the playback continues from the position of the stor-
+   ed Cue point as long as the Pad is kept depressed.
+ • When releasing the Pad, the playback position jumps back to the Cue Point and playback
+   stops immediately.
+ • When pressing and holding a blue lit Pad and later pressing the Play/Pause button, the play-
+   back continues as normal.
+
+
+Removing Cue Points
+To remove a Cue Point from the track and so the Hotcue:
+
+ •    Press SHIFT and press a blue lit Pad.
+      The Hotcue is removed and the Cue Point is deleted from the track. The pad is now unlit.
+
+
+7.9. Playing with Loops
+A Loop is a snippet of audio that repeats (loops). Loops are used as tools for remixing parts of
+tracks and can be used to extend track transitions. In this section you learn to play with Loops on
+the S2. Besides enabling Loops, you can store Loops as Hotcues in the track using the Deck's
+Pads. This allows you to gain instant access to your most important Loops.
+
+Enabling a Loop
+To enable a Loop:
+
+ 1.   Press the LOOP encoder.
+      The Loop is enabled. The playback is looping by the selected Loop size. The Loop appears
+      as the green area in the Waveform. When the playhead position reaches the Loop out point,
+      the playback position seamlessly jumps back to to Loop In point. Looping continues as long
+      as as the Loop is enabled.
+ 2.   To disable the Loop, press the LOOP encoder again.
+      The playback continues as normal.
+
+
+                                                  29
+
+=== PDF PAGE 33 ===
+                                                                                        Tutorials
+
+
+Changing the Loop Size
+You can change the size of the enabled or disabled Loop:
+
+ •    Turn the LOOP encoder clockwise or counterclockwise.
+      The Loop size for the enabled Loop instantly changes by the value displayed in the Loop
+      Control bar.
+
+
+If there is no Loop enabled, turning the LOOP encoder only selects a Loop size.
+
+Storing a Loop as Hotcue
+To store a Loop as a Hotcue:
+
+ 1.   Press the LOOP encoder to enable a Loop.
+ 2.   Press an unlit Pad.
+      The Loop is stored as Hotcue in the track. The Pad lights up green.
+
+
+Triggering a Stored Loop
+To trigger a stored Loop:
+
+ •    Press a green lit Pad.
+      The Loop is enabled. The playback position jumps to the stored Loop In point and playback
+      loops by the selected Loop size.
+
+
+Moving the Loop within the Track
+You can move an enabled or disabled Loop forwards or backwards within the track:
+
+ •    Turn the MOVE encoder clockwise or counterclockwise.
+      This instantly moves the Loop within the track by the selected Loop size.
+
+
+Removing a stored Loop
+To remove a stored Loop from the Hotcue and from the track:
+
+ •    Press SHIFT and press a green lit Pad.
+      The Loop is removed from the Hotcue and from the track. The Pad is now unlit.
+
+
+
+7.10. Snap Mode and Quantize Mode
+Snap mode and Quantize mode are important tools that can help you when you work with Cue
+Points and Loops, and jump within the track:
+
+ • Snap mode: When Snap mode is enabled, any Loop or Cue Point you set in a track snap to
+   the closest beat.
+ • Qquantize mode: When Quantize mode is enabled, you remain in sync and on beat, whenev-
+   er you jump to a Loop, a Cue Point, or any position in the track.
+
+
+                                                30
+
+=== PDF PAGE 34 ===
+                                                                                            Tutorials
+
+
+Examples for Using SNAP Mode
+Depending on what you want to do, you can enable or disable Snap mode and Quantize mode at
+any time. Here are a few examples:
+
+ • Enable Snap mode, if you want to set a Loop starting directly on a beat.
+ • Disable Snap mode, if you want to set a Cue Point at the beginning of vocals that do not nec-
+   essarily start on the beat.
+ • Enable Quantize mode, if want to mix in a synced track and want the downbeats of both tracks
+   to perfectly match.
+ • Disable Quantize mode, if you want to trigger tracks or Samples any time you press play or
+   trigger Hotcue buttons.
+
+
+Enabling/Disabling Quantize Mode
+When Quantize mode is enabled, the QNT button brightly lights up. When Quantize mode is disa-
+bled, the QNT button is dimmed.
+
+To enable or disable Quantize mode:
+
+ •    Press the QNT button on your S2.
+
+
+Enabling/Disabling Snap Mode
+To enable or disable Snap mode:
+
+ 1.   Press and hold SHIFT to access the secondary functions of your S2.
+      When Snap mode is enabled, the QNT button brightly lights up. When Snap mode is disa-
+      bled, the QNT button is dimmed.
+ 2.   While holding SHIFT and press the QNT button to enable or disable SNAP Mode.
+
+
+
+7.11. Using Flux and Reverse Modes
+Flux mode lets you jump to Cue Points and Loops without loosing the phrasing of your tracks. It is
+a timeline-based transport technique that enables you to interact with TRAKTOR's transport con-
+trols, and then immediately jump back to the position in the timeline where the track would have
+been if the transport action had not been used. In other words, it is as if a second, virtual playhead
+continues forwards in the track, while TRAKTOR loops or jumps to a Cue Point.
+
+When you release the Loop or Cue Point, by releasing the relevant Pad with the Hotcue, playback
+resumes at this playhead position. The longer you loop, the further ahead the playhead position
+will move and therefore the further ahead playback will jump to when you release Pad. The virtual
+Flux mode timeline is represented by a green playhead in the Waveform view.
+
+An expansion to the Flux mode is the Reverse mode. When you enable Reverse mode while in
+Flux mode, you can let the track playback reversely from the current playhead position. The sec-
+ond, virtual playhead continues forwards in the track.
+
+Working with Flux Mode
+To enable Flux mode for the selected Deck:
+
+
+                                                 31
+
+=== PDF PAGE 35 ===
+                                                                                            Tutorials
+
+
+ 1.   Press the FLX button on the selected Deck.
+      Flux mode is enabled. The second, virtual playhead continues forwards in the track.
+ 2.   Press and hold a Pad with the Hotcue.
+      The playback continues from the stored Cue Point or Loop.
+ 3.   Release the Pad.
+      The playback resumes to the original playback position.
+
+
+Enabling Reverse Mode
+To enable Reverse mode:
+
+ 1.   Press and hold the REV mode button on the selected Deck.
+      The track begins to playback in reverse. The second, virtual playhead continues forwards in
+      the track.
+ 2.   While holding the REV button, press and hold a Pad with a stored Hotcue.
+      The playback reversely continues from the stored Cue Point or Loop.
+ 3.   Release the REV button.
+      The playback resumes at the playhead position created by Flux mode.
+
+
+
+
+            Enabling Reverse mode also enables Flux mode.
+
+
+
+
+7.12. Previewing Tracks using the CUE Channel
+With the CUE channel on your S2 and your headphones connected to your S2, you can preview
+tracks to prepare for the next transition. When you press the CUE buttons on Mixer channel A and
+B you send the audio signals from the Mixer channel A and B into the CUE channel. The CUE
+channel's audio signal is send to the headphones output on your S2.
+
+To preview the track in your headphones:
+
+ 1.   Put on your headphones.
+ 2.   Press the CUE button of the Mixer channel you want to route into the CUE channel.
+      The Mixer channel's audio signal is now audible in your heaphones
+ 3.   Adjust the volume and the cue-master-mix signal by turning the VOL knob and MIX knob, so
+      that you hear both tracks by the desired amount in your headphones.
+
+
+
+7.13. Working with the Preparation List
+In TRAKTOR's Browser you can prepare for your next mix by adding tracks to it's Preparation List.
+In TRAKTOR you can do this by tagging the selected track in the Track List. The track is then add-
+ed to the Preparation List. When you select the Preparation List in the Browser, you are then provi-
+ded with all the tracks contained in the Preparation List. On your S2 you can add the selected
+track in the Track List to the Preparation List using the Preparation List buttons on the S2 Decks.
+
+
+                                                32
+
+=== PDF PAGE 36 ===
+                                                                                           Tutorials
+
+
+Adding Tracks to the Preparation List
+To add tracks to the Preparation List:
+
+ 1.   Turn the BROWSE encoder to select a track in the Track List.
+ 2.   Press the Preparation List button on the Deck.
+      The track is added to the Preparation List. A diamond icon appears in the first column in the
+      Track List in TRAKTOR indicating that track is added to the Preparation List.
+
+
+Displaying the Preparation List
+To display the Preparation List:
+
+ •    Press and hold SHIFT and press the BROWSE encoder to directly select the Preparation
+      List in the Browser.
+
+
+7.14. Adding Samples to Your Mix
+In this section, you can learn how to configure TRAKTOR so that you can control Samples on the
+S2 and add them to your mix. For this, the TRAKTOR Decks C and D need to be enabled and
+configured as Remix Decks. The S2 can then access the first Sample Cells of the Sample Slots in
+the Remix Decks. If your S2 setup is not configured with the Remix Decks C and D, this section
+explains how to do it. The following steps are covered:
+
+ • Step 1 - Enabling Deck C and D in TRAKTOR
+ • Step 2 - Changing the Deck Types to Remix Deck in TRAKTOR
+ • Step 3 - Loading Samples or Remix Sets
+ • Step 4 - Controlling Samples
+
+
+Step 1 - Enabling Deck C and D in TRAKTOR
+To enable Deck C and D:
+
+ 1.   In TRAKTOR, open the Preferences dialog.
+ 2.   Select the Decks Layout Page.
+ 3.   Under Deck Layout select Show C & D.
+      Decks C and D are now visible in TRAKTOR.
+
+
+Step 2 - Changing the Deck Type to Remix Deck in TRAKTOR
+To change the Deck Type to Remix Deck in TRAKTOR:
+
+ 1.   Click the Deck Focus of Deck C to open the context menu.
+ 2.   Select Remix Deck.
+      The Deck Type is changed to Remix Deck.
+ 3.   Repeat these steps for Deck D if you want it to be a Remix Deck.
+
+
+Step 3 - Loading Samples or Remix Sets
+To load Samples into the Remix Deck:
+
+
+                                                 33
+
+=== PDF PAGE 37 ===
+                                                                                            Tutorials
+
+
+ 1.   In the Browser Tree in TRAKTOR, click on plus icon of the Track Collection folder to ex-
+      pand it.
+ 2.   Select the subfolder All Samples to show all Samples in the Track List.
+ 3.   In the Track List, drag the Samples and drop it into the first Sample Cell of any Sample Slot
+      in the Remix Deck one-by-one.
+      The Samples are loaded. The Pads 1 to 4 now reflect the colors of the Samples.
+
+Alternatively, you also can load a Remix Set from the All Remix Sets folder. In this case the first
+Sample of the Sample Slots are loaded.
+
+Step 4 - Controlling Samples
+To control the loaded Samples in the Remix Deck:
+
+ 1.   Press the SAMPLES button on that Deck.
+ 2.   Press Pad 1 to 4 to trigger the individual Samples.
+      The Samples are audible. As long as the Samples or One-Shot Samples play, the Pads light
+      up brightly and the LED next to the SAMPLE knob lights up.
+ 3.   Turn the SAMPLES knob to adjust the volume for the Samples channel.
+ 4.   Mute or unmute the individual Sample Slots by pressing the white illuminated Pads 5 to 8.
+      A muted Sample Slot is reflected by a dim lit Pad.
+
+
+7.15. Correcting Beatgrids of Tracks
+When a track contains a complex rhythm or an uneven timing, it can happen that the Beatgrid cal-
+culated by TRAKTOR does not precisely match the beat of the track. It is then not possible to
+match the beats of that track when mixing it using the SYNC function. Miscalculated Beatgrids can
+be corrected using the GRID mode on the S2.
+
+Checking Beatgrid
+To check the Beatgrid for the selected track:
+
+ 1.   Load the track into a Deck.
+ 2.   Press Play/Pause to start playback of the track.
+ 3.   Press the CUE button of the Mixer channel corresponding to that Deck.
+ 4.   Press and hold the GRID button on that Deck to make the Beatgrid tick audible.
+      Besides the beat of the track, you now hear a second beat tick (like a metronome tick) repre-
+      senting the Beatgrid. If the beat tick does not match the beat of the track, the Beatgrid is set
+      incorrectly.
+
+
+Correcting Beatgrid
+To correct the Beatgrid setting, proceed as follows:
+
+ 1.   While holding the GRID button, slightly turn the Jog Wheel clockwise or counterclockwise to
+      move the Beatgrid forward or backward, respectively.
+      By turning the Jog Wheel you are able to adjust the Beatgrid, so that the beat tick matches
+      the beat of the track.
+
+
+                                                  34
+
+=== PDF PAGE 38 ===
+                                                                                           Tutorials
+
+
+ 2.   Release the GRID button.
+      The track's Beatgrid is corrected and saved with the track.
+
+
+
+7.16. Mixing Tracks Using Jog Wheels
+In this section, you learn how to mix your first two tracks using Deck A and Deck B, the Jog
+Wheels and your headphones. At first, you will prepare the Mixer by adjusting the control elements
+for mixing from Deck A to B. Then you will load the first track into Deck A, and begin to perform
+step by step.
+
+
+
+7.16.1. Prerequisites
+Before you can start to mix your first tracks, you need to prepare the Mixer on your S2:
+
+ 1.   Set the crossfader to the left-most position.
+
+
+
+
+ 2.   Set Channel fader A and Channel fader B to maximum position.
+
+
+
+
+ 3.   Set the MASTER knob to center position.
+ 4.   Set the volume of your audio system or active speakers to minimum level.
+
+
+
+7.16.2. Loading the First Track into Deck A
+To load a track into Deck A:
+
+ 1.   Press the Browser View button to maximize the Browser view in the software.
+
+
+
+
+                                                  35
+
+=== PDF PAGE 39 ===
+                                                                                         Tutorials
+
+
+ 2.   Turn the BROWSE encoder to select one of your tracks in the Track List, or a demo track, for
+      example, Berlin Hauptbahnhof by Native Instruments.
+
+
+
+
+ 3.   Press the BROWSE encoder to load the track into the Deck.
+
+
+
+
+      TRAKTOR now analyzes the Track to determine its tempo and to create the Beatgrid and the
+      Waveform.
+ 4.   Press the Browser View button again to minimize the Browser View.
+
+
+
+
+7.16.3. Starting Playback of Deck A
+To start playback of the track on Deck A:
+
+ 1.   Press the Play/Pause button on Deck A.
+
+
+
+
+      The Waveform starts moving and the Channel Level Meter LEDs in the left Mixer channel A
+      illuminate.
+ 2.   Adjust the Mixer channel's GAIN level by turning its GAIN knob, so that the LEDs stay be-
+      tween 0 dB and 6 dB.
+
+
+
+
+                                                36
+
+=== PDF PAGE 40 ===
+                                                                                        Tutorials
+
+
+
+
+ 3.   Slowly increase the volume of your audio system or active speakers to a moderate listening
+      level.
+      You now hear the audio of the track in your speakers.
+
+
+7.16.4. Loading the Second Track into Deck B
+To load the second track into Deck B:
+
+
+
+            The next track you want to mix should have a similar tempo like the track currently
+            playing. Otherwise
+
+
+
+
+ 1.   Press the Browser View button to maximize the Browse View in the software.
+
+
+
+
+ 2.   Turn the BROWSE encoder to select one of your tracks in the Track List, or a demo track, for
+      example, Lisa by Native Instruments.
+
+
+
+
+ 3.   Press the BROWSE encoder to load the track into the Deck.
+
+
+
+
+                                                37
+
+=== PDF PAGE 41 ===
+                                                                                           Tutorials
+
+
+
+
+      TRAKTOR now analyzes the Track to determine its tempo and to create the Beatgrid and the
+      Waveform.
+ 4.   Press the Browser View button again to minimize the Browser View.
+
+
+
+
+ 5.   Press the Play/Pause button on Deck B to start playback.
+
+
+
+
+      The Waveform starts moving and the Channel Volume Meter LEDs in Mixer channel B illumi-
+      nate.
+
+
+
+7.16.5. Syncing Tracks Manually
+The process of manually syncing tracks consists of several steps. At first you need to align the
+next track's audio signal level in Mixer channel B so that it matches to the running track's level in
+Mixer channel A. Then you adjust the next track's tempo so that it matches to the running track's
+tempo.
+
+route the audio signal of Mixer channel B to the CUE channel to preview the next track and adjust
+the audio signal level. Then you can manually sync next track's tempo to the running track's tempo
+using the TEMPO fader and the Jog Wheel on that Deck.
+
+in Deck B to the track in Deck A:
+
+Adjusting the Tracks' Audio Signal Levels
+To adjust the the audio signal levels:
+
+ 1.   Put on your headphones.
+ 2.   Press the CUE button of Mixer channel B.
+
+
+
+                                                 38
+
+=== PDF PAGE 42 ===
+                                                                                         Tutorials
+
+
+
+
+ 3.   Adjust the Mixer channel's GAIN level by turning its GAIN knob, so that it matches to Mixer
+      channel A.
+
+
+
+
+ 4.   Adjust the volume and the cue-master-mix signal by turning the VOL knob and MIX knob, so
+      that you hear both tracks equally in your headphones.
+
+
+
+
+Adjusting the Track Tempo
+The Deck Headers in the software Decks indicate the current track tempos. To adjust the track
+tempo in Deck B to match the track tempo in Deck A, perform the following actions:
+
+ 1.   If the tempo needs to be faster, move the TEMPO fader down.
+ 2.   If the tempo needs to be slower, move the TEMPO fader up.
+
+
+
+
+                                                39
+
+=== PDF PAGE 43 ===
+                                                                                            Tutorials
+
+
+
+
+Checking the Tempo Adjustment
+You can check if the tempos of both tracks perfectly match before you perform the transition:
+
+ 1.   Hold the top plate of the Jog Wheel of Deck B.
+
+
+
+
+      The playback of the track is held in place.
+ 2.   While holding the Jog Wheel, turn it into any direction until you hear a beat in your head-
+      phones.
+
+
+
+
+                                                    40
+
+=== PDF PAGE 44 ===
+                                                                                           Tutorials
+
+
+ 3.   Turn the Jog Wheel counterclockwise to place the playhead position directly before that beat
+      and hold the Jog Wheel.
+ 4.   At the moment you hear the downbeat in the track, release the top plate.
+      Ideally the tracks now play in sync. The Phase meters in the Decks also indicate if the track
+      in Deck B is still playing faster or slower. If they do not move, the tempos are perfectly
+      synced. If the tracks are not in sync, you need to fine adjust the tempo as explained in the
+      next steps.
+
+
+Fine Adjusting Tempo
+If the tracks are not in sync, you need to fine adjust the track tempos:
+
+ 1.   To slightly speed up the track's tempo, touch the outer rim of the Jog Wheel and slightly turn
+      it clockwise. Simultaneously, move the TEMPO fader slightly down.
+
+
+
+
+ 2.   To slightly slow down the track's tempo, touch the outer rim of the Jog Wheel and turn it
+      counterclockwise. Simultaneously, move the TEMPO fader slightly up.
+
+
+
+
+ 3.   Repeat the aforementioned steps until both tracks play perfectly in sync.
+
+
+
+
+                                                  41
+
+=== PDF PAGE 45 ===
+                                                                                           Tutorials
+
+
+
+7.16.6. Cuing the Next Track using the Jog Wheels
+When the tracks are in sync, use your headphones and the Jog Wheel to find the right position in
+the next track for fading it in:
+
+ 1.   Touch and hold the Jog Wheel on its top plate.
+      The playback is held at the current position.
+ 2.   While touching the top plate turn the Jog Wheel clockwise to seek in the track.
+      While turning the Jog Wheel the playhead moves slightly.
+ 3.   To seek in bigger steps, press and hold SHIFT and turn the Jog Wheel.
+      The playhead now moves in bigger steps.
+ 4.   When you have found the right position, turn the Jog Wheel counterclockwise to place the
+      playhead position closely before that beat and hold it.
+ 5.   At the moment you hear a downbeat, release the top plate.
+      Ideally the tracks now play in sync. If necessary nudge or bend the tempo by turning the Jog
+      Wheel using its rim.
+
+
+7.16.7. Mixing in the Next Track
+You can now mix in the next track by using the crossfader:
+
+ 1.   Move the crossfader slowly towards center position:
+
+
+
+
+      The audio signal of the track in Mixer channel B is fading into the MASTER signal.
+ 2.   While the track in Deck A reaches its end, slowly move the crossfader to the right-most posi-
+      tion.
+
+
+
+
+      The audio signal of Mixer channel A slowly fades out of the Master signal. Only Mixer chan-
+      nel B is now audible.
+
+
+
+
+                                                 42
+
+=== PDF PAGE 46 ===
+                                                                                      Preferences
+
+
+
+8. PREFERENCES
+
+In this section you learn how to access the Preferences dialog in TRAKTOR and about the options
+that are provided on the Traktor S2 MK3 page. When opening the Preferences dialog in TRAK-
+TOR you will find an additional page for the S2 controller. On this page you are provided with sev-
+eral options to customize your S2 to your needs.
+
+Accessing TRAKTOR Preferences
+To open the Preferences in TRAKTOR:
+
+ 1.   Click the Preferences button in TRAKTOR's Header.
+
+
+
+
+      The Preferences dialog opens.
+ 2.   Select the Traktor S2 MK3 page.
+
+
+
+
+                                                43
+
+=== PDF PAGE 47 ===
+                                                                                     Preferences
+
+
+Preferences - Traktor S2 MK3 Page
+
+
+
+
+Preferences - Traktor S2 MK3 Page.
+
+
+
+Transport
+
+ • Tempo Faders: Determines the behavior of the TEMPO faders:
+     • In Absolute mode, the track tempo automatically adjusts according the TEMPO fader posi-
+       tion when loading the track.
+     • In Relative mode, the track tempo is always set to original tempo independently of the cur-
+       rent TEMPO fader position when loading the track.
+
+
+Browse Controls
+
+ • Shift + Encoder: Determines the behavior of using the SHIFT and BROWSE encoder combi-
+   nation when in the Browser:
+     • When Favorites is selected, you navigate the Favorites.
+     • When Tree is selected, you navigate the Browser Tree.
+
+
+                                                44
+
+=== PDF PAGE 48 ===
+                                                                                  Preferences
+
+
+Jogwheel
+
+• On touching Platter: Determines the behavior of touching the top plate of the Jog Wheel dur-
+  ing track playback:
+   • When Scratch is selected, you hold the track playback and you can scratch the track.
+   • When Pitch Bend is selected, you can bend and nudge the track tempo with the top plate
+     as with the outer rim of the Jog Wheel. This means when you touch the top plate, the track
+     playback continues.
+
+
+Restore to default
+
+• Default: Restores the S2 default settings.
+
+
+
+
+                                               45
+
+=== PDF PAGE 49 ===
+                                                                       Integrating a Microphone
+
+
+
+9. INTEGRATING A MICROPHONE
+
+On your S2 you can integrate a microphone to add vocals to your mix. On the rear panel on the S2
+you are provided with the MIC input for connecting a microphone with a 1/4" connector. With the
+MIC GAIN knob you can adjust the microphone signal level. To integrate a microphone to your S2:
+
+ 1.   Connect the microphone into the MIC input on the rear panel of the S2.
+ 2.   Set the microphone input signal to an adequate level by turning the MIC GAIN knob on the
+      rear panel of the S2.
+ 3.   Press the MIC button on the S2 to add the microphone signal to the MASTER signal.
+      The MIC button brightly lights up indicating the microphone signal is added to the MASTER
+      signal.
+ 4.   Press the MIC button again to remove the signal from the MASTER signal.
+      The MIC button is dimly lit indicating the microphone signal is removed from the MASTER
+      signal.
+
+
+
+
+                                               46
+
+=== PDF PAGE 50 ===
+                          Setting the TRAKTOR KONTROL S2 as Your Default Audio Interface
+
+
+
+10. SETTING THE TRAKTOR KONTROL S2 AS
+YOUR DEFAULT AUDIO INTERFACE
+
+If you want to use the TRAKTOR KONTROL S2 for playback of all audio applications on your com-
+puter, you can set it as your default audio interface.
+
+Windows
+On Windows you can define the TRAKTOR KONTROL S2 as your default audio interface as fol-
+lows:
+
+ 1.   Open Start > Preferences > System.
+ 2.   Select the Sound tab.
+ 3.   In the device list, select TRAKTOR KONTROL S2 and click Set Default.
+ 4.   On the Sound tab scroll down to Input.
+ 5.   In the device list, select TRAKTOR KONTROL S2 and click Set Default.
+ 6.   Close the dialog.
+      Your TRAKTOR KONTROL S2 is set as default the default audio interface on your computer.
+
+
+macOS
+On macOS you can define the TRAKTOR KONTROL S2 as your default audio interface as fol-
+lows:
+
+ 1.   From the Apple menu, select System Preferences.
+ 2.   In the panel that opens, click Sound.
+ 3.   On the Sound Effects drop-down menu, select TRAKTOR KONTROL S2 in the Play alerts
+      and sound effects through menu.
+ 4.   Click the Output tab and select TRAKTOR KONTROL S2 from the Choose a device for
+      sound output list.
+ 5.   Click the Input tab, and select TRAKTOR KONTROL S2 from the Choose a device for sound
+      input list.
+ 6.   Close the window to confirm your changes.
+      Your TRAKTOR KONTROL S2 is set as default the default audio interface on your computer.
+
+
+
+
+                                               47

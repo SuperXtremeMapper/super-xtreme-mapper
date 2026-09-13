@@ -1,0 +1,1233 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="https://www.w3.org/1999/xhtml"  xml:lang="en" lang="en">
+
+<head>  
+  
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TJVDSJC');</script>
+<!-- End Google Tag Manager -->
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="https://www.numark.com/css/master.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald:400,300,700">
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="https://www.numark.com/css/ui-darkness/jquery-ui-1.9.2.custom.css">
+<script type="text/javascript" src="https://www.numark.com/js/jquery-ui-1.9.2.custom.min.js"></script>
+
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+
+$(function() {
+	var products = [];
+
+	$( "#search #keywords" ).autocomplete({
+		minLength: 0,
+		source: products,
+		focus: function( event, ui ) {
+			$( "#search" ).val( ui.item.label );
+			// console.log('focus');
+			return false;
+		},
+		select: function( event, ui ) {
+			// $( "#select" ).val( ui.item.label );
+
+			// When selected we redirect to the product
+			window.location.href = '/product/' + ui.item.href;
+			// console.log(event);
+			return false;
+		},
+		open: function(){
+			$(this).autocomplete('widget').css('z-index', 100);
+			return false;
+		},
+
+	    })
+	    .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+	      return $( "<li>" )
+	        .append( "<a href='/product/" + item.href + "' class='" + item.href + "'>" + item.label + "</a>" + "<p>" + item.desc + "</p>" )
+	        .appendTo( ul );
+	    };
+
+});
+	
+</script>
+
+
+
+
+
+
+
+
+
+<!--<script type="text/javascript"src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXtlNshLPJCm2CipUuT-qco9LjVCg66lU&sensor=false"></script>//-->
+
+
+
+
+
+
+
+
+
+
+
+	
+		<title>NS6II | Numark</title>
+	
+
+
+
+
+
+	
+		<meta name="description" content="NS6II 4-Channel Premium DJ Controller | Numark">
+	
+
+
+
+
+	
+<link rel="apple-touch-icon" sizes="57x57" href="https://www.numark.com/images/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="https://www.numark.com/images/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="https://www.numark.com/images/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="https://www.numark.com/images/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="https://www.numark.com/images/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="https://www.numark.com/images/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="https://www.numark.com/images/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="https://www.numark.com/images/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://www.numark.com/images/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="https://www.numark.com/images/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.numark.com/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="https://www.numark.com/images/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.numark.com/images/favicon/favicon-16x16.png">
+<link rel="manifest" href="https://www.numark.com/images/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="https://www.numark.com/images/favicon/ms-icon-144x144.png">
+<meta name="robots" content="index,follow">
+<meta name="keywords" content="Numark">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" type="text/css" href="https://www.numark.com/styles/master2018v1.css"/>
+
+
+
+
+
+
+  
+
+<script>
+function trackOutboundLink(link, category, action, label) { 
+ 
+try { 
+_gaq.push(['_trackEvent', category , action, label]); 
+} catch(err){}
+ 
+setTimeout(function() {
+document.location.href = link.href;
+}, 100);
+}
+</script>
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/product/info_css.css" />
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/product/right_css_v1_1.css" />
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/product/carousel_mod_css.css">
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/js/lity-1.6.6/dist/lity.css" rel="stylesheet">
+  
+  
+  
+  <script type="text/javascript" src="https://www.numark.com/product/carousel.js"></script>
+  <script type="text/javascript" src="https://www.numark.com/js/lity-1.6.6/dist/lity.js"></script>
+  <script type="text/javascript" src="https://www.numark.com/product/tabs.js"></script>
+
+  
+  <script type="text/javascript" src="https://www.numark.com/site/jquery.lightbox-0.5.pack.js"></script>
+  <script type="text/javascript" src="https://www.numark.com/site/jquery.lightbox-0.5.js"></script>
+  <script type="text/javascript"> $(function() {$('a[rel*=lightbox]').lightBox();}); </script>
+  <link rel="stylesheet" type="text/css" href="https://www.numark.com/site/jquery.lightbox-0.5_css.css" media="screen" />  
+</head>
+
+<body>
+
+
+
+
+    <script>
+        let includes = 0;
+        function includeHTML() {
+            var z, i, elmnt, file, xhttp;
+            /*loop through a collection of all HTML elements:*/
+            z = document.getElementsByTagName("*");
+            for (i = 0; i < z.length; i++) {
+                elmnt = z[i];
+                /*search for elements with a certain atrribute:*/
+                file = elmnt.getAttribute("data-imb-include");
+                if (file) {
+                    /*make an HTTP request using the attribute value as the file name:*/
+                    xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4) {
+                            if (this.status == 200) { elmnt.innerHTML = this.responseText; }
+                            if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
+                            /*remove the attribute, and call this function once more:*/
+                            elmnt.removeAttribute("data-imb-include");
+                            /* exec any initializer scripts */
+                            //execIncludeScripts( elmnt );
+                            includeHTML();
+                        }
+                    }
+                    xhttp.open("GET", file, true);
+                    xhttp.send();
+                    /*exit the function:*/
+                    return;
+                }
+            }
+        };
+
+    </script>
+
+
+
+
+  <div id="wrapper">
+    <div id="container"> 
+      <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJVDSJC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!--
+<form method="post" id="search_form" action="/search">
+-->
+
+
+
+
+
+
+
+
+
+
+<!-- nav bar include goes here -->
+<header id="main-header" data-imb-include="/__includes/nav-block-container.html"></header>
+
+
+
+
+
+
+
+
+
+            <div id="page">
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                <div id="showcase">
+          
+          
+          
+          
+          
+          
+          
+          <div id="carousel">
+            
+            
+            
+            <div id="big_image">
+              <a href=""><img src="" /></a>
+            </div>
+            <script type="text/javascript">
+
+              var params = { allowScriptAccess: "always", wmode: "opaque", showinfo: "0" };
+              var atts = { id: "playa_playa" };
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              swfobject.embedSWF("https://www.youtube.com/v/Sk_hUPFhFKM?enablejsapi=1&playerapiid=ytplayer&version=3&showinfo=0&rel=0",
+                       "swf_zone", "640", "390", "8", null, null, params, atts);
+              
+              
+              
+              swfobject.embedSWF("https://www.youtube.com/v/REFXl9zt1-I?enablejsapi=1&playerapiid=ytplayer&version=3&showinfo=0&rel=0",
+                       "swf_zone", "640", "390", "8", null, null, params, atts);
+              
+              
+              
+              swfobject.embedSWF("https://www.youtube.com/v/3bq8yTx0MOU?enablejsapi=1&playerapiid=ytplayer&version=3&showinfo=0&rel=0",
+                       "swf_zone", "640", "390", "8", null, null, params, atts);
+              
+              
+              
+              swfobject.embedSWF("https://www.youtube.com/v/dgOUGORtw1Q?enablejsapi=1&playerapiid=ytplayer&version=3&showinfo=0&rel=0",
+                       "swf_zone", "640", "390", "8", null, null, params, atts);
+              
+              
+              
+              swfobject.embedSWF("https://www.youtube.com/v/dgOUGORtw1Q?enablejsapi=1&playerapiid=ytplayer&version=3&showinfo=0&rel=0",
+                       "swf_zone", "640", "390", "8", null, null, params, atts);
+              
+              
+              
+              swfobject.embedSWF("https://www.youtube.com/v/XKV4bGmSIwU?enablejsapi=1&playerapiid=ytplayer&version=3&showinfo=0&rel=0",
+                       "swf_zone", "640", "390", "8", null, null, params, atts);
+              
+              
+
+            </script>
+
+
+            
+
+            <div id="youtube_player"><div id="swf_zone">You need Flash Player 8 or above!</div></div>
+            
+            
+            
+            
+            <div id="controls">
+              <div id="back">
+                <a href=""></a>
+                <div></div>
+              </div>
+              
+              
+              
+
+              <div id="thumbs" class="5">
+                
+                                <div class="image" id="0">
+                  <a name="https://www.numark.com/images/product_large/NS6II_angle_3000x1875_web.jpg" href="https://www.numark.com/images/sized/images/product_large/NS6II_angle_3000x1875_web-624x390.jpg"><img src="https://www.numark.com/images/sized/images/product_large/NS6II_angle_3000x1875_web-120x75.jpg" /></a>
+                </div>
+                                
+                                <div class="image" id="1">
+                  <a name="https://www.numark.com/images/product_large/NS6II_front_3000x1875_web.jpg" href="https://www.numark.com/images/sized/images/product_large/NS6II_front_3000x1875_web-624x390.jpg"><img src="https://www.numark.com/images/sized/images/product_large/NS6II_front_3000x1875_web-120x75.jpg" /></a>
+                </div>
+                                
+                                <div class="image" id="2">
+                  <a name="https://www.numark.com/images/product_large/NS6II_ortho_3000x1875_web.jpg" href="https://www.numark.com/images/sized/images/product_large/NS6II_ortho_3000x1875_web-624x390.jpg"><img src="https://www.numark.com/images/sized/images/product_large/NS6II_ortho_3000x1875_web-120x75.jpg" /></a>
+                </div>
+                                
+                                <div class="image" id="3">
+                  <a name="https://www.numark.com/images/product_large/NS6II_rear_3000x1875_web.jpg" href="https://www.numark.com/images/sized/images/product_large/NS6II_rear_3000x1875_web-624x390.jpg"><img src="https://www.numark.com/images/sized/images/product_large/NS6II_rear_3000x1875_web-120x75.jpg" /></a>
+                </div>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+              </div>
+              
+              
+              <div id="next">
+                <a href=""></a>
+                <div></div>
+              </div>
+            </div>
+          </div>
+          
+          
+          
+          
+          
+          <div id="info">
+            <div id="subcategories">
+              <div class="subcategory" id="0_tab">
+                <a href="#overview">OVERVIEW</a>
+              </div>
+                            <div class="subcategory" id="1_tab">
+                <a href="#features">FEATURES</a>
+              </div>
+                                          <div class="subcategory" id="2_tab">
+                <a href="#specs">SPECS</a>
+              </div>
+                                          <div class="subcategory" id="3_tab">
+                <a href="#requirements">REQUIREMENTS</a>
+              </div>
+                                          
+              
+              <div class="subcategory" id="5_tab">
+                <a href="#videos">VIDEOS</a>
+              </div>
+            
+              
+            </div>
+            
+            
+            
+            
+            
+            
+            <div id="output">
+              <div id="overview">
+                                <h2 class="h2">
+	<strong><em>Iconic</em>: &ldquo;Widely known and acknowledged, especially for distinctive excellence&hellip;&rdquo;</strong></h2>
+<p>
+	When you speak, we listen. Sometimes you have to wait.</p>
+<p>
+	But the wait and anticipation is over, it&rsquo;s in your rear-view mirror. The new NS6II has arrived!</p>
+<p>
+	The original NS6 was conceived and built at a time when the 4-channel standalone DJ controller did not yet exist. We knew you wanted it, and Numark was the first to bring it to you.</p>
+<p>
+	Now, our new NS6II builds on the NS6&rsquo;s amazing legacy of innovation and performance and delivers to you a truly iconic 4-channel DJ controller, now with two USB outs and built-in hi res screens!!</p>
+<h2 class="h2">
+	<br />
+	<strong>Dual USB Outs For DJ Hand-Off</strong></h2>
+<p>
+	A Numark first&mdash;a Numark DJ controller that enables you to connect two laptops simultaneously, connected to Serato DJ for seamless DJ hand-offs. With a push of a button you and your partner DJ can switch between two laptops and play at the same time between four channels. The possibilities are endless&mdash;your creativity has been unleashed!</p>
+<p>
+	&nbsp;</p>
+<h2 class="h2">
+	<strong>Built-In Hi Res Display</strong></h2>
+<p>
+	Playing to the crowd is key to the success and energy of any event. Maximize the energy and stay connected to the crowd with the built-in full-color 2-inch hi-res displays. You can monitor BPM, platter position, time remaining, pitch adjustment and keylock. Critical information that ticks all the boxes with intuitive actions to keep you focused on the performance. Your DJ senses are on fire as you select the next song in your playlist, all without ever looking at the laptop.</p>
+<p>
+	&nbsp;</p>
+<h2 class="h2">
+	<strong>Independent Mixer</strong></h2>
+<p>
+	In addition to the dual USB outs, the NS6II is a standalone 4-channel mixer to connect turntables and external media devices. You can connect two media devices to the RCA line/phono inputs and switch between them on a dime.</p>
+<p>
+	Touch-capacitive frequency knobs (exclusive to Numark), with a simple touch adjust mid, low and high frequencies during the mix, for the perfect tone. With its audiophile-grade circuitry, the NS6II delivers impeccable 24-bit sound quality without compromise.</p>
+<p>
+	&nbsp;</p>
+<h2 class="h2">
+	<strong>Performance Pads</strong></h2>
+<p>
+	Rubber MPC performance pads &nbsp; give you quick access to hot cues, auto loop/roll, manual loop mode sampler and slicer. Each function duals-up with sub functions to give you access to a total of 16 velocity-sensitive pads.</p>
+<ul>
+	<li>
+		<em>Hot Cue</em> &ndash; Set 8 cue points within your DJ software. Secondary function (click button twice) enables hot cue + instant auto loop mode</li>
+	<li>
+		<em>Auto/Roll</em> - Pressing this button once will enter the auto looping mode (i.e. 16 bar, 8 bar, etc.). Secondary function (click button twice) enables beat-jumping once auto loop is engaged utilizing parameter keys</li>
+	<li>
+		<em>Loop Mode</em> &ndash; Activate manual loop mode and any saved loops. Secondary function (click button twice) enables a second bank of the Manual/Saved Loops section</li>
+	<li>
+		<em>8 Pad Sampler</em> &ndash; Load custom sound samples such as tags and drops (non-velocity sensitive). Secondary function (click button twice) enables velocity sensitive pads in sampler mode</li>
+	<li>
+		<em>Slicer</em> &ndash; As the track is playing the pad will follow the beat, and when pad is engaged (rhythmically) beat will stutter per parameter. Secondary function (click button twice) will change the slicer into looping when pad is engaged temporarily.</li>
+</ul>
+<h2 class="h2">
+	<strong>Pitch Fader&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong></h2>
+<p>
+	100mm pitch fader gives you full control of tight, seamless blends across 4-channels. On the built-in display, the pitch indication can be monitored without looking at the laptop. The smoothly-resistant long pitch fader is responsive to every tick of the beat.</p>
+<p>
+	&nbsp;</p>
+<h2 class="h2">
+	<strong>Software</strong></h2>
+<p>
+	The full version of Serato DJ comes with the NS6II, and all you have to do is plug and play. NS6II also has an option to upgrade in Serato DJ for the DVS expansion. The DVS expansion allows you to connect external turntables for time coded vinyl control.</p>
+<p>
+	&nbsp;</p>
+
+              </div>
+              <div id="features">
+                                <h2>FEATURES</h2>
+                <ul>
+                
+                  <li>Dual USB ports for DJ handoffs</li>
+                
+                  <li>2-inch color LCD display integrated into each jog wheel</li>
+                
+                  <li>Digital mixer with (2) phono/line inputs that can be mixed directly without software</li>
+                
+                  <li>Comes with Serato DJ (full version)</li>
+                
+                  <li>Touch-capacitive knobs</li>
+                
+                  <li>6-inch multi-function jog wheel with smart learning capacitive technology</li>
+                
+                  <li>4-channel USB Audio</li>
+                
+                  <li>Stereo XLR outputs, Master RCA outputs, Booth RCA Outputs</li>
+                
+                  <li>(2) 1/4&#34; mic inputs</li>
+                
+                  <li>Stand-alone mixer 24-bit, 44.1K audio</li>
+                
+                  <li>USB 2.0</li>
+                
+                  <li>4 in, 4 out with (2) phono preamp</li>
+                
+                  <li>Replaceable crossfader</li>
+                
+                  <li>Roll bar to protect front panel control knobs</li>
+                
+                </ul>
+                                              </div>
+              <div id="specs">
+                <ul>
+                
+                  <li><p>All specifications are measured at 20 kHz bandwidth.</p></li>
+                
+                  <li><table>
+	<tr>
+		<td><strong>Balanced Master Outputs (XLR)</strong></td>
+	</tr>
+	<tr>
+		<td>Frequency Response</td>	<td>20 Hz &#8722; 20 kHz (+0.2 dB)</td>
+	</tr>
+	<tr>
+		<td>Signal-to-Noise Ratio</td>	<td>109 dB (A-weighted, max output)</td>
+	</tr>
+	<tr>
+		<td>THD+N</td>	<td>0.001% (1 kHz, -1 dBFS)</td>
+	</tr>
+	<tr>
+		<td>Maximum Output Level</td>	<td>+24 dBu</td>
+	</tr>
+</table></li>
+                
+                  <li><table>
+	<tr>
+		<td><strong>Unbalanced Master Outputs (RCA)</strong></td>
+	</tr>
+	<tr>
+		<td>Frequency Response</td>	<td>20 Hz &#8722; 20 kHz (+0.1 dB)</td>
+	</tr>
+	<tr>
+		<td>Signal-to-Noise Ratio</td>	<td>109 dB (A-weighted, max output)</td>
+	</tr>
+	<tr>	
+		<td>THD+N</td>	<td>0.002% (1 kHz, -1 dBFS)</td>
+	</tr>	
+	<tr>
+		<td>Maximum Output Level</td>	<td>+16 dBV</td>
+	</tr>
+</table></li>
+                
+                  <li><table>
+	<tr>
+		<td><strong>Unbalanced Booth Outputs (RCA)</strong></td>
+	</tr>
+	<tr>
+		<td>Frequency Response</td>	<td>20 Hz &#8722; 20 kHz (+0.1 dB)</td>
+	</tr>
+	<tr>
+		<td>Signal-to-Noise Ratio</td>	<td>109 dB (A-weighted, max output)</td>
+	</tr>
+	<tr>
+		<td>THD+N</td>	<td>0.004% (1 kHz, -1 dBFS)</td>
+	</tr>
+	<tr>
+		<td>Maximum Output Level</td>	<td>+16 dBV</td>
+	</tr>
+</table></li>
+                
+                  <li><table>
+	<tr>
+		<td><strong>Headphone Outputs (stereo 1/4&#34; and 1/8&#34; TRS)</strong></td>
+	</tr>
+	<tr>
+		<td>Frequency Response</td>	<td>20 Hz &#8722; 20 kHz (+0.2 dB)</td>
+	</tr>
+	<tr>
+		<td>Signal-to-Noise Ratio</td>	<td>104 dB (A-weighted, max output)</td>
+	</tr>
+	<tr>
+		<td>THD+N</td>	<td>0.011% (1 kHz, -3 dBu, unloaded)</td>
+	</tr>
+	<tr>
+		<td>Maximum Output Level</td>	<td>+19 dBu (unloaded)</td>
+	</tr>
+	<tr>
+		<td>Power Output</td>    <td>55 mW RMS (per channel into 32&#937;)</td>
+	</tr>
+</table></li>
+                
+                  <li><table>
+	<tr>
+		<td><strong>Line Inputs (unbalanced RCA)</strong></td>
+	</tr>
+	<tr>		
+		<td>Frequency Response</td>	<td>20 Hz &#8722; 20 kHz (+0.1 dB)</td>
+	</tr>
+	<tr>
+		<td>Signal-to-Noise Ratio</td>	<td>102 dB (A-weighted, max input level)</td>
+	</tr>
+	<tr>
+		<td>THD+N</td>	<td>0.002% (1 kHz, +6 dBV, -1 dBFS)</td>
+	</tr>
+	<tr>
+		<td>Max Input Level</td>	<td>+8 dBV</td>
+	</tr>
+</table></li>
+                
+                  <li><table>
+	<tr>
+		<td><strong>Phono Inputs (unbalanced RCA)</strong></td>
+	</tr>
+	<tr>
+		<td>Signal-to-Noise Ratio</td>	<td>93 dB (A-weighted, max input level, 1kHz)</td>
+	</tr>	
+	<tr>
+		<td>Max Input Level</td>	<td>-22 dBV at 1khz</td>
+	</tr>	
+</table></li>
+                
+                  <li><table>
+	<tr>
+		<td><strong>Mic Inputs (balanced 1/4&#34; TRS)</strong></td>
+	</tr>
+	<tr>
+		<td>Max Input Level</td>	<td>-18 dBu</td>
+	</tr>
+
+</table></li>
+                
+                </ul>
+              </div>
+              <div id="faq">
+                <ul>
+                
+                </ul>
+              </div>
+              <div id="requirements">
+                <h1>MINIMUM SYSTEM REQUIREMENTS</h1>
+                <ul>
+                
+                  <li>Mac<ul>
+<li>Mac OS X 10.6 -  macOS 10.13 High Sierra</li>
+<li>1.6GHz Intel Core Duo</li>
+<li>All Intel i3, i5 and i7 Processors are supported</li>
+<li>Screen Resolution: 1024 x 768</li>
+<li>RAM 1GB (minimum)</li>
+<li>Available USB 2.0 port</li>
+</ul>
+ 
+Windows<ul>
+<li>Windows Vista with Service Pack 1, Windows 7 with SP1, Windows 8, Windows 8.1, Windows 10</li>
+<li>2GHz Intel Core 2 Duo</li>
+<li>Available USB 2.0 port</li>
+</ul></li>
+                
+                </ul>
+              </div>
+              <div id="videos">
+                <h1>VIDEOS</h1>
+                <ul>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+
+                <li style="float:left;">
+
+                  <a href="https://www.youtube.com/watch?v=Sk_hUPFhFKM" title="NS6II Official Overview" data-lity><div style="background:url(https://www.numark.com/images/video/ns6II_oo_thumb.jpg)" class="thumbnail" id="video_thumb"><p class="duration">2:23</p></div></a>
+                  
+                </li>
+                
+                
+                
+                
+                
+                
+
+                <li style="float:left;">
+
+                  <a href="https://www.youtube.com/watch?v=REFXl9zt1-I" title="Introducing the Highly Anticipated NS6II" data-lity><div style="background:url(https://www.numark.com/images/video/ns6ii_thumb.jpg)" class="thumbnail" id="video_thumb"><p class="duration">1:08</p></div></a>
+                  
+                </li>
+                
+                
+                
+                
+                
+                
+
+                <li style="float:left;">
+
+                  <a href="https://www.youtube.com/watch?v=3bq8yTx0MOU" title="Steve &#8220;Silk&#8221; Hurley NS6II House Mix" data-lity><div style="background:url(https://www.numark.com/images/video/steveSilk.jpg)" class="thumbnail" id="video_thumb"><p class="duration">8:28</p></div></a>
+                  
+                </li>
+                
+                
+                
+                
+                
+                
+
+                <li style="float:left;">
+
+                  <a href="https://www.youtube.com/watch?v=dgOUGORtw1Q" title="Numark NS6II Walkthrough With DJ Shortee" data-lity><div style="background:url(https://www.numark.com/images/video/dj-shortee.jpg)" class="thumbnail" id="video_thumb"><p class="duration">12:37</p></div></a>
+                  
+                </li>
+                
+                
+                
+                
+                
+                
+
+                <li style="float:left;">
+
+                  <a href="https://www.youtube.com/watch?v=dgOUGORtw1Q" title="NS6II Now Available" data-lity><div style="background:url(https://www.numark.com/images/video/now-available-ns6ii.jpg)" class="thumbnail" id="video_thumb"><p class="duration">:44</p></div></a>
+                  
+                </li>
+                
+                
+                
+                
+                
+                
+
+                <li style="float:left;">
+
+                  <a href="https://www.youtube.com/watch?v=XKV4bGmSIwU" title="Numark NS6II - 4-Channel Premium DJ Controller" data-lity><div style="background:url(https://www.numark.com/images/video/ns6ii_workhorse.jpg)" class="thumbnail" id="video_thumb"><p class="duration">:33</p></div></a>
+                  
+                </li>
+                
+                
+                
+                
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        
+               
+
+        <div id="right">
+          
+          
+          
+          
+          
+          <div id="summary">
+            <div id="name">
+              NS6II            </div>
+            <div class="title">
+              4-Channel Premium DJ Controller
+            </div>
+            <div style="clear:both"></div>
+          </div>
+          
+          
+          
+          
+                   
+         
+          
+          
+          
+
+          <div id="buy">
+            <div class="status"></div>
+
+          <!--  
+          
+          
+          
+
+          
+
+          
+          
+          
+
+          
+
+         -->
+    
+          
+          
+          
+      
+       <div class="title">
+              <a href="/dealers/us"class="button">
+                <h2 style="color:#111">Buy Now</h2>
+                <div style="clear:both"></div>
+              </a>
+            </div>
+
+      
+      
+
+                  </div>
+
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <style type="text/css">
+            a.promo_link {
+              display: block;
+              margin-bottom: 20px;
+              margin-left: 12px;
+            }
+          </style>
+          
+          
+          
+          
+          
+          
+
+          <div class="dotted"></div>
+          
+
+          
+          
+          
+          
+
+                    <div class="dotted"></div>
+          <div class="cluster">
+            <div class="title">
+              RELATED PRODUCTS
+            </div>
+            
+            <div class="link related">
+              
+                <a class="rel_thumb" href="https://www.numark.com/product/red-wave-carbon"><img src="https://www.numark.com/images/sized/images/product_large/RedWaveCarbon_angle_3000x1875_web-60x38.jpg" /></a>
+              
+              <a class="rel_name" href="https://www.numark.com/product/red-wave-carbon">Red Wave Carbon</a>
+            </div>
+            
+            <div class="link related">
+              
+                <a class="rel_thumb" href="https://www.numark.com/product/laptopstandpro"><img src="https://www.numark.com/images/sized/images/product_large/laptopstand_pro_lg_00-60x38.jpg" /></a>
+              
+              <a class="rel_name" href="https://www.numark.com/product/laptopstandpro">Laptop Stand Pro</a>
+            </div>
+            
+          </div>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            
+          <div class="dotted"></div>
+          <div class="cluster">
+            <div class="title">DOCUMENTS</div>
+            
+            
+                                    <div class="link">
+              <a href="https://www.numark.com/product/print/ns6ii" onClick="trackOutboundLink(this, 'Product Documents - NS6II', 'click', 'Product Overview'); return false;">Product Overview</a>
+            </div>
+                        
+                        <div class="link">
+              <a href="https://www.numark.com/images/product_downloads/NS6II_-_Quickstart_Guide_-_v1.1.pdf" onClick="trackOutboundLink(this, 'Product Documents - NS6II', 'click', 'Quickstart Guide'); return false;">Quickstart Guide</a>
+            </div>
+                                    
+                        <div class="link">
+              <a href="https://www.numark.com/images/product_downloads/NS6II-UserGuide-v1.1.pdf" onClick="trackOutboundLink(this, 'Product Documents - NS6II', 'click', 'User Guide'); return false;">User Guide</a>
+            </div>
+                                    
+          </div>
+                    
+          
+          
+          
+          
+
+                    <div class="dotted"></div>
+          <div class="cluster">
+            <div class="title">DOWNLOADS</div>
+            
+     
+            
+                                    <div class="link">
+              <a href="https://www.serato.com/dj/pro" onClick="trackOutboundLink(this, 'Product Downloads - NS6II', 'click', 'Serato DJ Pro'); return false;">Serato DJ Pro</a>
+            </div>
+                        
+                                    <div class="link">
+              <a href="https://www.numark.com/downloads/Install_Numark_NS6_II_1.0.4.exe" onClick="trackOutboundLink(this, 'Product Downloads - NS6II', 'click', 'NS6II Windows driver 1.0.4'); return false;">NS6II Windows driver 1.0.4</a>
+            </div>
+                        
+                                    <div class="link">
+              <a href="https://www.numark.com/downloads/NS6II Firmware Updater Win v1.0.3.exe" onClick="trackOutboundLink(this, 'Product Downloads - NS6II', 'click', 'NS6II Firmware Updater WIN v1.0.3'); return false;">NS6II Firmware Updater WIN v1.0.3</a>
+            </div>
+                        
+                                    <div class="link">
+              <a href="https://www.numark.com/downloads/NS6II Firmware Updater Mac v1.0.3.dmg" onClick="trackOutboundLink(this, 'Product Downloads - NS6II', 'click', 'NS6II Firmware Updater MAC v1.0.3'); return false;">NS6II Firmware Updater MAC v1.0.3</a>
+            </div>
+                        
+                                    <div class="link">
+              <a href="https://www.numark.com/downloads/Release_Notes_Firmware_v1.0.3.docx" onClick="trackOutboundLink(this, 'Product Downloads - NS6II', 'click', 'NS6II Firmware Updater Release Notes'); return false;">NS6II Firmware Updater Release Notes</a>
+            </div>
+                        
+          </div>
+                    
+          
+          
+          
+          
+          
+    
+                
+          
+          
+          
+          
+
+          
+          
+          
+          
+
+          <style type="text/css">
+            .qmark {
+              float: left;
+              font-size: 16px;
+              background-color: #555;
+              margin: 4px;
+              margin-top: 0px;
+              padding-left: 4px;
+              padding-right: 4px;
+              border-color: #555;
+              border-width: 2px;
+              border-radius: 2px;
+              font-weight: none;
+              color: #2EDBFD;
+              margin-right: 8px;
+            }
+            
+            .support_links .link {
+              clear: both;
+            }
+          </style>
+
+          <div class="dotted"></div>
+          <div class="cluster support_links">
+            <div class="title">PRODUCT SUPPORT</div>
+              
+
+            <div class="link"><div class="qmark">?</div><a href="https://support.numark.com/" target="_blank">Have questions? Need Help?</a></div>
+
+                      </div>
+
+      <style type="text/css">
+            img.adspace{
+              margin:8px 0px 8px 16px;
+            }
+      </style>
+<!--
+      <div class="dotted"></div>
+
+      <div class="cluster">
+        <div class="title">OFFICIAL MERCHANDISE</div>
+        <a href="http://www.ptxstore.com/numark/" target="_blank"><img class="adspace" src="https://www.numark.com/images/site/Numark_Tile.png" border="0" /></a>
+      </div>
+-->      
+      
+        </div>
+        
+        
+        <div id="drop_shadow_footer"></div>
+<div id="footer">
+
+
+	<div id="link_box">
+		
+		<div class="link">
+			<div class="arrows">
+				&gt;&gt;
+			</div><a href="https://profile.inmusicbrands.com/customer/account/login/">REGISTER YOUR GEAR</a>
+		</div>
+
+
+		<!--<div class="link">
+			<div class="arrows">
+				&gt;&gt;
+			</div><a href="https://www.numark.com/news/cat/rebates">REBATES</a>
+		</div>-->
+
+
+		<div style="clear:both"></div>
+	</div>
+	<div>
+		<ul id="sitemap">
+			<li>
+				<a href="https://www.numark.com/categories">PRODUCTS</a>
+				<ul>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/controllers">Controllers</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/mixers">Mixers</a>
+					</li>
+					
+					
+					<li>
+						<a href="https://www.numark.com/product_category/portable">Portable</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/speakers">Speakers</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/headphones">Headphones</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/microphones">Microphones</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/turntables">Turntables</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/accessories">Accessories</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/cartridges">Cartridges</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/product_category/legacy">Legacy</a>
+					</li>
+					
+				</ul>
+			</li>
+
+
+
+			<li>
+				<a href="https://support.numark.com/" target="_blank">SUPPORT</a>
+				<ul>
+					<li>
+						<a href="https://support.numark.com/" target="_blank">Knowledge Base</a>
+					</li>
+					<li>
+						<a href="https://support.numark.com/" target="_blank">Contact Support</a>
+					</li>
+					
+					<li>
+						<a href="https://www.numark.com/my-account/login" target="_blank">Product Registration</a>
+					</li>
+
+          <li>
+						<a href="https://www.numark.com/repairs">Repairs</a>
+					</li>
+					
+
+				</ul>
+			</li>
+			<li>
+				<a href="https://www.numark.com/news">NEWS</a>
+				<ul>
+					<li>
+						<a href="https://www.numark.com/news/cat/press_releases">News/Press Releases</a>
+					</li>
+					
+					
+
+				</ul>
+			</li>
+
+
+
+
+			<li>
+				<a href="https://www.numark.com/artists">ARTISTS</a>
+				<ul>
+					<li>
+						<a href="https://www.numark.com/artists">Numark Artists</a>
+					</li>
+					<!-- <li>
+						<a href="https://www.numark.com/artists/signup">Artist Application</a>
+					</li> -->
+				</ul>
+			</li>
+
+
+
+
+			<li>
+				<a href="https://www.numark.com/video">VIDEO</a>
+			</li>
+
+
+
+			<li>
+				COMPANY
+				<ul>
+					<li>
+						<a href="https://www.numark.com/company/about">About Us</a>
+					</li>
+					<li>
+						<a href="https://support.numark.com/" target="_blank">Contact Us</a>
+					</li>
+					<li>
+						<a href="https://www.inmusicbrands.com/careers/" target="_blank">Careers</a>
+					</li>
+					
+				</ul>
+			</li>
+
+
+
+
+
+
+			<li>
+				DEALERS/DISTRIBUTORS
+				<ul>
+					<li>
+						<a href="https://www.numark.com/distributors">Distributors</a>
+					</li>
+					<li>
+						<a href="https://www.numark.com/dealers">Find a Dealer</a>
+					</li>
+
+				</ul>
+			</li>
+
+
+
+
+
+			
+		</ul>
+	</div>
+
+
+
+
+
+	<div class="hline"></div>
+
+	<div id="privacy">
+		<a href="https://www.numark.com/company/privacy_policy">Privacy Policy</a> | <a href="https://www.numark.com/company/terms-of-use">Terms of Use</a>
+	</div>
+
+
+	<div id="legal">
+		2026 inMusic, LLC. All Rights Reserved
+	</div>
+
+
+	<div id="locale">
+		
+		<!-- <a href="http://www.numark.jp"  target="_blank">
+			<div id="flag"><img src="https://www.numark.com/images/site/jp.png"></div>
+			<div id="abbrev">JP</div>
+		</a> -->
+		<!-- <a href="http://www.numark-la.com" target="_blank">
+			<div id="flag"><img src="https://www.numark.com/images/site/pe.png"></div>
+			<div id="abbrev">LA</div>
+		</a> -->
+	</div>
+</div>
+
+
+        
+      </div> 
+      
+    </div> 
+    
+    <div style="clear:both"></div>
+    
+  </div> 
+
+
+
+
+<script>
+    includeHTML();
+</script>
+
+
+
+
+<script src="//static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">try{clicky.init(101146868);}catch(e){}</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101146868ns.gif" /></p></noscript>
+
+
+
+<script src="https://www.numark.com/js-search.js"></script>
+<link rel="stylesheet" href="https://www.numark.com/js-search.css">
+
+
+</body>
+</html>

@@ -1,0 +1,3575 @@
+===== PDF PAGE 1 =====
+DJ Mixer
+DJM-A9
+For FAQs and other support information for this product, visit the websites above.
+Instruction Manual
+pioneerdj.com/support/
+rekordbox.com
+
+
+===== PDF PAGE 2 =====
+2
+Contents
+Before you start ................................................................................... 5
+How to read this manual .........................................................................5
+What’s in the box.....................................................................................5
+User guides .............................................................................................6
+PRO DJ LINK........................................................................................ 7
+Part names ........................................................................................... 9
+Top panel ................................................................................................9
+Front panel............................................................................................10
+Rear panel.............................................................................................10
+PC/Mac setup ..................................................................................... 13
+Installation .............................................................................................13
+Setting Utility .........................................................................................15
+Connections (basic styles) ............................................................... 20
+Connecting to the input terminals..........................................................20
+Connecting to the output terminals .......................................................21
+Connecting to the terminals on the top and front panels.......................22
+Connecting external effects units ..........................................................23
+Audio output ...................................................................................... 24
+Channel section/master section/fader curve section.............................24
+Outputting sound...................................................................................27
+Adjusting the sound...............................................................................28
+Setting the fader curve ..........................................................................28
+Adjusting the left/right sound balance ...................................................29
+Monitoring sound .............................................................................. 31
+Headphones (A/B) section ....................................................................31
+Monitoring with headphones .................................................................32
+
+
+===== PDF PAGE 3 =====
+3
+Booth section ........................................................................................33
+Using a booth monitor ...........................................................................33
+Microphone ........................................................................................ 34
+MIC section ...........................................................................................34
+Using a microphone ..............................................................................36
+Sound Color FX.................................................................................. 38
+Sound Color FX section ........................................................................38
+Using Sound Color FX ..........................................................................39
+Sound Color FX types and settings.......................................................40
+Multi I/O............................................................................................... 42
+MULTI I/O section .................................................................................44
+Using Multi I/O.......................................................................................45
+Beat FX ............................................................................................... 46
+Beat FX section.....................................................................................47
+Screen display.......................................................................................49
+Using Beat FX .......................................................................................50
+Setting the BPM manually.....................................................................51
+Beat FX types and settings ...................................................................52
+USB/MIDI............................................................................................. 57
+USB/MIDI section..................................................................................57
+Controlling MIDI software......................................................................58
+Bluetooth............................................................................................ 59
+Bluetooth section...................................................................................59
+Pairing with a Bluetooth device .............................................................60
+Using a Bluetooth device ......................................................................61
+Wireless LAN (Wi-Fi) ......................................................................... 62
+Connecting and disconnecting the wireless antenna ............................62
+Setting wireless LAN (Wi-Fi) .................................................................64
+Connecting the unit to a wireless network.............................................65
+
+
+===== PDF PAGE 4 =====
+4
+Viewing the Wireless LAN (Wi-Fi) information ......................................72
+Viewing the LAN information.................................................................73
+Settings............................................................................................... 74
+UTILITY screen .....................................................................................74
+Changing the settings ...........................................................................75
+Utility settings ........................................................................................76
+Saving MY SETTINGS to a storage device ..........................................85
+Calling up MY SETTINGS saved on a storage device..........................86
+Sound check .........................................................................................87
+Restoring the factory settings................................................................88
+Specifications .................................................................................... 89
+Block diagram .......................................................................................92
+Additional information ...................................................................... 94
+Troubleshooting ....................................................................................94
+LCD display...........................................................................................98
+Trademarks and registered trademarks ................................................99
+Software license notice .......................................................................100
+Cautions on copyrights........................................................................108
+
+
+===== PDF PAGE 5 =====
+5
+Before you start
+How to read this manual
+• Thank you for choosing this Pioneer DJ product.
+Be sure to read this manual, the “Quick Start Guide” and the “Precautions for Use” which 
+are also included with this product. These documents include important information that 
+you should understand before using the unit.
+• In this manual the names of buttons, knobs and terminals that appear on the product, and 
+the names of buttons, menus etc. in the software on your PC/Mac or mobile device, are 
+indicated within square brackets ([ ]). (e.g. [File], [CUE] button)
+• Please note that the software screens and their specifications, as well as the external 
+appearance and specifications of the hardware, are subject to change without notice.
+• Please note that depending on the operating system version, web browser settings, etc. 
+operation may differ from the ways described in this manual.
+• Please note that the language on the screens of the software described in this manual may 
+differ from the language on your screen.
+What’s in the box
+• Power cord
+• Warranty (for some regions)*1
+• Quick Start Guide
+• Precautions for Use
+*1 Only products in Europe.
+Products in North America and Japan include warranty information in the “Precautions for 
+Use”.
+
+
+===== PDF PAGE 6 =====
+6
+Before you start
+User guides
+rekordbox Introduction, Instruction Manual
+Refer to the “rekordbox Introduction” to find out how to set up rekordbox, and see the 
+“Instruction Manual” to find out how to use rekordbox.
+Visit the URL below to find these user guides.
+rekordbox.com/manual
+
+
+===== PDF PAGE 7 =====
+7
+PRO DJ LINK
+You can use PRO DJ LINK functions by connecting the unit via a LAN cable to a PRO DJ 
+LINK compatible multi player and a PC/Mac running rekordbox.
+• You can connect up to 4 multi players and up to 2 computers (PC/Mac) to the unit via a 
+switching hub.
+• Use a 100BASE-TX compatible switching hub that is supported by multi players. Some 
+switching hubs may not work properly with selected devices.
+• Set the multi player number to the channel number which the audio cable is connected to.
+• For details on PRO DJ LINK, see the instruction manuals for the relevant multi players and 
+rekordbox.
+pioneerdj.com/support/
+Quantize
+When you are playing a track analyzed by rekordbox, the unit applies BEAT FX by 
+automatically synchronizing it with the beat according to the track’s GRID information. This 
+happens even if you operate the [ON/OFF] button in the Beat FX section and X-PAD roughly.
+Link Monitor
+You can browse and monitor via headphones the sound of tracks in rekordbox on a PC/Mac, 
+or on a multi player, while playing a different track (page 31).
+• To monitor the sound of rekordbox, click [File] > [Preferences] > [Audio] and mark the 
+[Use “LINK MONITOR” of PIONEER DJ Mixers] check box in rekordbox.
+• You can’t monitor the sound of a track from a multi player if the player doesn’t support the 
+LINK MONITOR function.
+ Status Information
+You can check on-air information with multi players.
+PLAYER 1
+CH 1
+Audio cable
+
+
+===== PDF PAGE 8 =====
+8
+PRO DJ LINK
+ Stagehand
+You can use the Stagehand app on a tablet to check the status of Pioneer DJ multi players or 
+mixers and remote-control them.
+• You can use the Stagehand app while using PRO DJ LINK.
+• For details, refer to the instruction manuals for the Stagehand app and rekordbox.
+pioneerdj.com/en/product/software/
+rekordbox.com/manual
+
+
+===== PDF PAGE 9 =====
+9
+Part names
+Top panel
+1.
+USB section (page 57)
+2.
+MIC section (page 34)
+3.
+Bluetooth section (page 59)
+4.
+MIDI section (page 57)
+5.
+Channel section (page 24)
+6.
+Booth section (page 33)
+7.
+Master section (page 24)
+8.
+MULTI I/O section (page 44)
+9.
+Headphones (A/B) section (page 31)
+10. Sound Color FX section (page 38)
+11. Fader curve section (page 24)
+12. Beat FX section (page 47)
+6
+1
+2
+7
+3
+4
+5
+8
+9 10
+9
+12
+11
+
+
+===== PDF PAGE 10 =====
+10
+Part names
+Front panel
+1.
+PHONES B terminals (pages 22, 32)
+Rear panel
+1.
+ button
+Turns the unit on and off.
+2.
+RETURN terminals (1/4”/6.35 mm, TS) (page 23)
+Connect to output terminals on external effects units.
+•
+If you connect a device to the [L (MONO)] terminal only, the sound input to the [L 
+(MONO)] terminal is also input to the [R] channel.
+3.
+SIGNAL GND terminal (page 20)
+Connect a turntable’s ground wire.
+Reduces noises that occur when a turntable is connected to the unit.
+1
+15
+1
+3
+4
+5
+3
+6
+7
+17
+16
+14
+13
+12
+11
+10
+8
+2
+9
+
+
+===== PDF PAGE 11 =====
+11
+Part names
+4.
+PHONO terminals (RCA) (page 20)
+Connect phono-level (MM cartridge) output devices.
+•
+Do not input line-level signals to the terminals.
+•
+Remove the short-circuit pin plugs from the terminals when connecting devices. 
+When you aren’t using the terminals, attach the short-circuit pin plugs to cut out 
+external noises.
+5.
+LINE terminals (RCA) (page 20)
+Connect multi players or line-level output devices.
+6.
+MIC 1 terminal (XLR or 1/4”/6.35 mm, TRS), MIC 2 terminal (1/4”/6.35 mm, TRS) 
+(page 20)
+7.
+Kensington security slot 
+Connect a cable lock.
+8.
+AC IN (page 20)
+Connect to a power outlet with the supplied power cord.
+9.
+SEND terminals (1/4”/6.35 mm, TS) (page 23)
+Connect to input terminals on external effects units.
+•
+If you connect equipment to the [L (MONO)] terminal only, mono sound is output.
+10. REC OUT terminals (RCA) (page 21)
+Connect a device for recording.
+11. MASTER 2 terminals (RCA) (page 21)
+Connect to analog input terminals on a power amplifier, etc.
+12. MASTER 1 terminals (balanced XLR) (page 21)
+Connect to analog input terminals on a power amplifier, etc.
+•
+Use the terminals for balanced output only. 
+•
+Do not connect a power cord from another product to the terminals.
+13. BOOTH terminals (1/4”/6.35 mm, TRS) (page 21)
+Connect a booth monitor.
+•
+Use the terminals for balanced output only. 
+•
+If you connect equipment to the [L (MONO)] terminal only, mono sound is output.
+ WARNING
+Keep the short-circuit pin plugs out of the reach of children and infants. If accidentally 
+swallowed, contact a doctor immediately.
+
+
+===== PDF PAGE 12 =====
+12
+Part names
+14. DIGITAL MASTER OUT terminal (RCA) (page 21)
+Connect to a digital terminal on a preamplifier, etc.
+Outputs the master sound in SPDIF format.
+•
+Do not connect to an analog input terminal.
+15. DIGITAL CH IN terminals (RCA) (page 20)
+Connect to a digital coaxial output terminal on a multi player, etc.
+•
+Sound may break when the output signal’s sampling frequency changes.
+16. LINK terminal (page 20)
+Connect to a LINK terminal on a PC/Mac running rekordbox or a PRO DJ LINK
+compatible multi player. 
+•
+Use a switching hub (100BASE-TX compatible type) to connect multiple devices.
+17. Wireless antenna (page 62)
+Connect and raise the antenna when you connect via Wi-Fi or Bluetooth.
+
+
+===== PDF PAGE 13 =====
+13
+PC/Mac setup
+To input or output your PC/Mac’s audio to/from the unit, install the dedicated audio driver 
+software and/or Setting Utility on your computer.
+If you install the dedicated software to your PC (Windows), the Setting Utility and audio driver 
+software will be installed.
+If you use a Mac, only the Setting Utility will be installed.
+• For information on the latest system requirements, compatibility, and supported operating 
+systems, visit the URL below.
+pioneerdj.com/support/
+• Operation isn’t guaranteed on all PC/Mac models, even if the system requirements are 
+met.
+• Operation isn’t guaranteed when multiple units are connected to a PC/Mac.
+• If a PC (Windows) without the dedicated audio driver software installed is connected to the 
+unit, errors may occur on the PC.
+• Malfunctions may occur due to incompatibility with other software installed on a PC/Mac.
+Installation
+Notes on installation
+• Turn the unit off and disconnect the USB cable connected to the unit and the PC/Mac 
+before installation.
+• Close all applications running on the PC/Mac before installation.
+• You’ll need admin rights to install the dedicated software to your PC/Mac.
+• Read the Software License Agreement terms carefully before installation.
+• If you quit the installation halfway through, perform the installation procedure from the 
+beginning again.
+• After the installation is complete, connect the PC/Mac to the unit.
+• Operation isn’t guaranteed on all PC/Mac models.
+
+
+===== PDF PAGE 14 =====
+14
+PC/Mac setup
+Downloading the dedicated software
+1
+Visit the URL below.
+pioneerdj.com/support/
+2
+Click [Software & firmware updates].
+3
+Click [DJM-A9] under [DJ MIXER].
+4
+Click [Drivers].
+5
+Click [Download link] and save the file.
+•
+Download the software dedicated to your PC/Mac.
+Installing the dedicated software
+1
+Unzip the downloaded dedicated software.
+2
+Double-click the installation file.
+•
+Double-click “DJM-A9_#.###.exe” if you’re using a PC (Windows), or “DJM-
+A9_M_#.#.#.dmg”“DJM-A9SettingUtility.pkg” if you’re using a Mac (# indicates the 
+version number of the software).
+3
+Read the Software License Agreement terms carefully.
+If you agree to the terms, mark the [Agree] check box and 
+click [OK].
+•
+If you don’t agree to the Software License Agreement terms, click [Disagree] (for 
+Mac)/[Cancel] (for Windows) to cancel the installation.
+4
+Follow the on-screen instructions to complete the installation.
+
+
+===== PDF PAGE 15 =====
+15
+PC/Mac setup
+Setting Utility
+Once you’ve installed the dedicated software on your PC/Mac, you can use the Setting Utility 
+to check and set connections between the unit and a PC/Mac.
+Launching Setting Utility
+For Mac
+1
+Open the [Applications] folder in Finder.
+2
+Click [Pioneer]  [DJM-A9]  [DJM-A9 Setting Utility].
+For PC (Windows)
+1
+Open the Start menu and click [Pioneer]  [DJM-A9 Setting 
+Utility].
+Checking the status of the input selector switches on the 
+unit
+1
+Click the [MIXER INPUT] tab.
+
+
+===== PDF PAGE 16 =====
+16
+PC/Mac setup
+Setting the audio data output from the unit to a PC/Mac
+1
+Click the [MIXER OUTPUT] tab.
+2
+Click the pull-down list under [DJM-A9 Audio Output] and 
+select the audio data output from the unit to the PC/Mac.
+ Read more: DJM-A9 Audio Output pull-down list (page 19)
+3
+Click the pull-down list under [USB Output Level] and select a 
+level of volume to output from the unit.
+•
+Set the volume in [USB Output Level] when you can’t produce as much volume as 
+you expect using the volume adjustment in your DJ application. Note that the sound 
+may be distorted if you set the volume too high.
+
+
+===== PDF PAGE 17 =====
+17
+PC/Mac setup
+Adjusting the buffer size (for Windows ASIO)
+• Close any running applications (DJ applications, etc.) which use the unit as the default 
+audio device before adjusting the buffer size.
+1
+Click the [ASIO] tab.
+2
+Adjust the buffer size with the slider.
+•
+Breaks in sound are less likely to occur if you set a large buffer size, but this 
+increases lag time due to the latency of audio data transmission.
+
+
+===== PDF PAGE 18 =====
+18
+PC/Mac setup
+Checking the firmware and dedicated software versions
+1
+Click the [About] tab.
+
+
+===== PDF PAGE 19 =====
+19
+PC/Mac setup
+DJM-A9 Audio Output pull-down list
+• USB 11/12 is fixed to [FX SEND(for rekordbox)] (available for software applications that 
+support the function).
+#: indicates channel number
+1 For uses other than recording, be sure to set the DJ application so that no sound loop 
+occurs. Sound may be input or output at an unintended volume level when a sound loop 
+occurs.
+2 Available for software applications that support the function. Outputs sound at the volume 
+input to the unit regardless of the [USB Output Level] setting.
+USB 1/2
+USB 3/4, USB 5/6, USB 7/8, USB 9/10
+MIX(REC OUT with MIC) 1
+CH# Control Tone PHONO 2
+Pre CH1 Fader
+CH# Control Tone LINE 2
+Pre CH2 Fader
+CH# Control Tone DIGITAL 2
+Pre CH3 Fader
+Pre CH# Fader
+Pre CH4 Fader
+Post CH# Fader
+Post CH1 Fader
+CROSSFADER A
+Post CH2 Fader
+CROSSFADER B
+Post CH3 Fader
+MIC
+Post CH4 Fader
+MIX(REC OUT with MIC) 1
+CROSSFADER A
+MIX(REC OUT without MIC) 1
+CROSSFADER B
+-
+MIC
+-
+MIX(REC OUT without MIC) 1
+-
+
+
+===== PDF PAGE 20 =====
+20
+Connections (basic styles)
+Turn the unit off and disconnect the power cord before connecting other units.
+Connect the power cord after all the connections are complete.
+• Use the supplied power cord.
+• Read the instruction manuals for the devices you are going to connect with the unit.
+• For wired LAN connections, use a Cat5e (or higher) STP cable.
+• Do not disconnect a LAN cable when using PRO DJ LINK.
+Connecting to the input terminals
+ Read more: PRO DJ LINK (page 7)
+L
+R
+L
+R
+L
+R
+L
+R
+L
+R
+L
+R
+L
+R
+rekordbox
+PRO DJ LINK
+PC/Mac
+To power outlet
+Rear panel of the unit
+Pioneer DJ multi players
+Digital audio 
+output device
+Switching
+hub
+Turntables
+Microphones
+Pioneer DJ multi players
+
+
+===== PDF PAGE 21 =====
+21
+Connections (basic styles)
+Connecting to the output terminals
+• Use the [MASTER 1] terminals for balanced output only. Connecting the terminals to 
+unbalanced inputs (RCA, etc.) with an XLR-RCA conversion cable (conversion adapter), 
+etc. results in unwanted noises and/or poor sound quality.
+• Use the [MASTER 2] terminals for unbalanced input (RCA, etc.). 
+• Use the [BOOTH] terminals for balanced output only. Connecting the terminals to 
+unbalanced inputs results in unwanted noises and/or poor sound quality.
+• Do not connect a power cord from another product to the [MASTER 1] terminals.
+L
+R
+L
+R
+Power amplifiers
+Analog audio 
+input device
+Digital audio 
+input device
+Power amplifier 
+(booth monitor)
+Rear panel of the unit
+
+
+===== PDF PAGE 22 =====
+22
+Connections (basic styles)
+Connecting to the terminals on the top and front 
+panels
+*1 Use a cable supplied with the mobile device to connect it to the unit.
+For a list of the mobile devices supported by the unit, visit the URL below.
+pioneerdj.com/support/
+*2 We recommend using a USB cable to connect this unit directly with a PC/Mac.
+If you want to use a USB hub, use a product recommended by the manufacturer of your PC/Mac.
+We don’t guarantee compatibility of all USB hubs.
+*3 Connect headphones to one of the terminals (jack or mini-jack). If you use both terminals at the same 
+time, the volume for headphones may decrease and/or the sound quality may deteriorate.
+• Do not connect mobile devices to the USB Type-B or Type-C ports.
+• To input or output your PC/Mac’s audio to/from the unit, install the dedicated software on 
+your computer (page 13).
+• Do not press or pull the USB port covers with excessive force, or they may be damaged.
+PC/Mac
+Mobile device*1
+Do not use a USB hub.
+USB port 
+cover
+USB port 
+cover
+USB cable*2
+Headphones*3
+Headphones*3
+USB ports
+
+
+===== PDF PAGE 23 =====
+23
+Connections (basic styles)
+Connecting external effects units
+Connecting to the MULTI I/O terminals
+You can use external effects units or mobile devices by connecting them to the MULTI I/O 
+terminals as follows.
+– [SEND] terminals (output) → effects unit → [RETURN] terminals (input)
+– Mobile device connection terminal (USB port) (input/output port) → mobile device
+• Be sure to connect external effects units to the [RETURN] terminals (input) as well.
+ Read more: Multi I/O (page 42)
+Mobile device
+SEND/RETURN
+USB (Type-A) port
+Effects unit
+Rear panel of the unit
+
+
+===== PDF PAGE 24 =====
+24
+Audio output
+Follow the procedures below to output and adjust sound.
+– Outputting sound (page 27)
+– Adjusting the sound (page 28)
+– Setting the fader curve (page 28)
+– Adjusting the left/right sound balance (page 29)
+ To output sound to the [BOOTH] terminals, see Using a booth monitor (page 33).
+Channel section/master section/fader curve 
+section
+Channel section
+1.
+Input selector switch
+Selects an input sound source.
+11
+1
+3
+4
+5
+6
+9
+10
+13
+14
+15
+7
+8
+2
+12
+16
+17
+
+
+===== PDF PAGE 25 =====
+25
+Audio output
+—
+[
+]: Selects a PC/Mac or mobile devices connected via Bluetooth.
+—
+[
+A, B]: Selects a PC/Mac connected to the [USB] port.
+—
+[DIGITAL]: Selects a multi player connected to the [DIGITAL CH IN] terminals.
+—
+[LINE]: Selects a multi player, etc. connected to the [LINE] terminals.
+—
+[PHONO]: Selects a turntable connected to the [PHONO] terminals.
+—
+[RETURN]: Selects the effect sound of a device connected to the [RETURN] 
+terminals.
+—
+[
+ USB]: Selects the effect sound of a device connected to the mobile device 
+connection terminals.
+2.
+Channel level indicator
+Displays the volume level before the sound passes through the channel fader.
+3.
+TRIM knob
+Adjusts the volume for the channel input sound.
+4.
+EQ/ISO (HI, MID, LOW) knobs
+Adjusts the volume of each frequency band.
+Each knob adjusts in the following range.
+—
+[HI]: -26 dB to +6 dB
+—
+[MID]: -26 dB to +6 dB
+—
+[LOW]: -26 dB to +6 dB
+5.
+COLOR knob (page 38)
+6.
+CUE A button (page 32)
+7.
+CUE B button (page 32)
+8.
+Beat FX indicator
+Lights up on the channel selected with the [CH SELECT] button.
+9.
+Channel fader
+Adjusts the volume for the channel output sound according to the channel fader curve set 
+with the [CH FADER] switch. Moving it up increases the volume, and down decreases 
+the volume.
+10. CROSSFADER ASSIGN (A, THRU, B) selector switch
+Assigns the channel output sound to the crossfader.
+—
+[A]: Assigns to the [A] (left) side.
+
+
+===== PDF PAGE 26 =====
+26
+Audio output
+—
+[THRU]: Bypasses the crossfader.
+—
+[B]: Assigns to the [B] (right) side.
+11. Crossfader
+Adjusts the volume balance between the channel output sounds according to the 
+crossfader curve specified with the [CROSSFADER] switch. Moving it to the [A] side 
+outputs the sound assigned to [A], and to the [B] side outputs the sound assigned to [B].
+12. EQ CURVE switch
+Selects the function (isolator or equalizer) to adjust with the [EQ/ISO (HI, MID, LOW)] 
+knobs.
+Master section
+13. LEVEL knob 
+Adjusts the volume for the master sound.
+14. CLIP indicator 
+Lights up when excessive volume is output from the [MASTER 1] or [MASTER 2] 
+terminals.
+15. Master level indicator 
+Displays the volume level of the master sound output to the [MASTER 1], [MASTER 2] or 
+[DIGITAL MASTER OUT] terminals.
+Fader curve section
+16. CH FADER switch
+Sets the channel fader curve.
+—
+: Steeply raises the volume when the channel fader is moved close to the top 
+position.
+—
+: Gradually raises the volume as the channel fader is moved up.
+—
+: Steeply raises the volume as the channel fader is moved from the bottom 
+position.
+17. CROSSFADER switch
+Sets the crossfader curve.
+—
+: Steeply raises the volume of the sound assigned to the other side as the 
+crossfader is moved from one side ([A] or [B]) to the other (e.g. moving the 
+crossfader away from the [A] side steeply increases the volume of the [B] side).
+
+
+===== PDF PAGE 27 =====
+27
+Audio output
+—
+: Applies the intermediate setting between 
+ and 
+.
+—
+: Gradually raises the volume of the sound assigned to the other side as the 
+crossfader is moved from one side ([A] or [B]) to the other, and decreases the 
+volume of the sound on the side it’s moving away from (e.g. moving the 
+crossfader away from the [A] side gradually increases the volume of the [B] side 
+while gradually decreasing the volume of the [A] side).
+Outputting sound
+Adjusting the channel input volume
+1
+Turn the input selector switch to select an input sound 
+source.
+2
+Turn the [TRIM] knob to adjust the volume for the input sound.
+The channel level indicator lights up when sound is input to the channel.
+Adjusting the channel output volume
+1
+Move the channel fader to adjust the volume for the output 
+sound.
+2
+Set the [CROSSFADER ASSIGN (A, THRU, B)] selector switch 
+to assign the output sound to the crossfader.
+•
+If selecting [THRU], this completes the volume adjustment for the channel output 
+sound.
+3
+Move the crossfader to adjust the volume balance of the two 
+channels.
+
+
+===== PDF PAGE 28 =====
+28
+Audio output
+Adjusting the master sound volume
+1
+Turn the [LEVEL] knob to adjust the volume for the master 
+sound.
+The master level indicator lights up when the master sound is output.
+Adjusting the sound
+1
+Sets the [EQ CURVE] switch to the function to be adjusted.
+2
+Turn the [EQ/ISO (HI, MID, LOW)] knobs to adjust the volume 
+of each band.
+Setting the fader curve
+Set the channel fader curve and crossfader curve.
+1
+Sets the [CH FADER] switch to a channel fader curve.
+2
+Sets the [CROSSFADER] switch to a crossfader curve.
+
+
+===== PDF PAGE 29 =====
+29
+Audio output
+Adjusting the left/right sound balance
+You can adjust the left/right balance for sounds output from the following terminals.
+– [MASTER 1] 
+– [MASTER 2] 
+– [BOOTH] 
+– [REC OUT] 
+– [DIGITAL MASTER OUT] 
+– [USB]
+– [PHONES A]
+– [PHONES B]
+• You can adjust the left/right balance for sound output from the USB port only when 
+[MIX(REC OUT with MIC)] or [MIX(REC OUT without MIC)] is selected for [Mixer Audio 
+Output] in Settings Utility (page 16).
+1
+Press and hold the [QUANTIZE/UTILITY (WAKE UP)] button.
+The Utility menu appears.
+ Read more: Settings (page 74).
+2
+Turn the [TIME] knob in the Beat FX section or press the [BEAT 
+] or [BEAT ] button to select [MIXER SETTINGS], and press 
+the [TAP] button.
+The setting items under [MIXER SETTINGS] appear.
+3
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] button 
+to select [BALANCE], and press the [TAP] button.
+The [BALANCE] screen appears.
+4
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to adjust the left/right balance.
+
+
+===== PDF PAGE 30 =====
+30
+Audio output
+•
+Only the left channel sound of stereo audio is output when set to the [L] (leftmost) 
+position, and only the right channel sound is output when set to the [R] (rightmost) 
+position.
+5
+Press the [TAP] button.
+•
+ To cancel the setting, press the [AUTO/TAP] button.
+6
+Press the [QUANTIZE/UTILITY (WAKE UP)] button.
+The [UTILITY] screen closes.
+
+
+===== PDF PAGE 31 =====
+31
+Monitoring sound
+Headphones (A/B) section
+1.
+LINK CUE button
+Outputs the LINK MONITOR sound.
+2.
+MONO SPLIT button 
+Sets the sound output method (MONO SPLIT or stereo) for the headphones.
+Outputs the sound of the channel with the [CUE A]/[CUE B] button pressed to the left 
+channel of your headphones, and the master sound to the right channel when the button 
+is lit.
+Outputs the stereo sound of the channel with the [CUE A]/[CUE B] button pressed when 
+the button isn’t lit.
+3.
+MIX knob
+Adjusts the volume balance between the channel with the [CUE] button pressed and the 
+master sound.
+4.
+LEVEL knob
+Adjusts the volume for the headphones monitor sound.
+5.
+PHONES A terminals
+Connect headphones.
+1
+3
+5
+2
+3
+7
+4
+6
+2
+1
+4
+
+
+===== PDF PAGE 32 =====
+32
+Monitoring sound
+•
+For monitoring sound with [HEADPHONES B], connect headphones to the [PHONES 
+B] terminals on the front panel (page 22).
+6.
+CUE A button
+Outputs sound to the [PHONES A] terminals.
+7.
+CUE B button
+Outputs sound to the [PHONES B] terminals.
+Monitoring with headphones
+1
+Connect headphones to the [PHONES A] or [PHONES B] 
+terminal.
+2
+Press the [CUE] button ([CUE A], [CUE B] or [LINK CUE]) to 
+select the sound you want to monitor.
+3
+Press the [MONO SPLIT] button of [HEADPHONES A] or 
+[HEADPHONES B] to set the sound output method (MONO 
+SPLIT or stereo).
+4
+Turn the [MIX] knob to adjust the volume balance between the 
+channel with the [CUE] button pressed and the master sound.
+5
+Turn the [LEVEL] knob to adjust the volume for the channel 
+with the [CUE] button pressed.
+• Press the [CUE] button again to turn off monitoring.
+
+
+===== PDF PAGE 33 =====
+33
+Monitoring sound
+Booth section
+1.
+BOOTH EQ (HI, LOW) knobs
+Adjusts the volume of each band.
+Each knob adjusts in the following range.
+—
+[HI]: -12 dB to +6 dB
+—
+[LOW]: -12 dB to +6 dB
+2.
+BOOTH LEVEL knob 
+Adjusts the volume for the sound output to a booth monitor.
+Using a booth monitor
+1
+Connect a booth monitor to the [BOOTH] terminals.
+ Read more: Connecting to the output terminals (page 21)
+2
+Turn the [BOOTH LEVEL] knob to adjust the volume for the 
+output sound.
+3
+Turn the [BOOTH EQ (HI, LOW)] knobs to adjust the sound.
+2
+1
+
+
+===== PDF PAGE 34 =====
+34
+Microphone
+MIC section
+1.
+LEVEL (1, 2) knobs
+Adjusts the volume of sound input from the [MIC 1] and [MIC 2] terminals.
+2.
+EQ (HI, LOW) knobs
+Adjusts the volume of sound input from the [MIC 1] and [MIC 2] terminals.
+Each knob adjusts in the following range.
+—
+[HI]: -12 dB to +12 dB
+—
+[LOW]: -12 dB to +12 dB
+3.
+TALKOVER button
+Turns microphone talkover on and off. The button lights up when it’s turned on.
+•
+When sound is input to the microphone, the volume other than the microphone 
+channel is attenuated.
+1
+2
+3
+10
+5
+6
+7
+9
+4
+8
+
+
+===== PDF PAGE 35 =====
+35
+Microphone
+•
+You can change the talkover mode setting and attenuation level in [TALKOVER] in 
+[MY SETTINGS] (page 80).
+4.
+MIC FX buttons
+Select an effect to apply to the microphone sound. The selected button lights up.
+—
+[ECHO]: Outputs a delay sound several times while attenuating it to add an echo 
+effect.
+—
+[PITCH]: Changes the pitch of the microphone sound.
+—
+[MEGAPHONE]: Changes the microphone sound so it sounds like you’re talking 
+through a megaphone.
+5.
+MIC FX PARAMETER knob
+Adjusts the quantitative parameters for the effect selected with the [MIC FX] button.
+6.
+MIC REVERB button
+Turns the microphone reverb on and off. The button lights up when it’s turned on.
+7.
+MIC REVERB PARAMETER knob
+Adjusts the quantitative parameters for the reverb applied to the microphone sound.
+8.
+BEAT FX indicator
+Lights up when the [CH SELECT] button in the Beat FX section is set to [MIC], and blinks 
+when Beat FX is applied to the microphone sound.
+9.
+MIC button
+Turn the microphone on and off. The button lights up when it’s turned on.
+•
+If you press and hold the button, the microphone turns on while the button is pressed 
+and turns off when the button is released (Push-to-talk function).
+10. MIC 1 PHANTOM ON/OFF button
+Press and hold to turn phantom power on and off. The button lights up when it’s turned 
+on and DC+48 V phantom power is supplied to the XLR plug of the [MIC 1] terminal.
+•
+Turn phantom power on when you use a condenser microphone.
+•
+If the button doesn’t light up when it’s turned on, the phantom power function is 
+locked. You can unlock it with [MIC PHANTOM LOCK] in the Utility settings 
+(page 78).
+
+
+===== PDF PAGE 36 =====
+36
+Microphone
+Using a microphone
+1
+Connect a microphone to the [MIC 1] or [MIC 2] terminal.
+ Read more: Connecting to the input terminals (page 20)
+2
+Press the [TALKOVER] button to turn the microphone talkover 
+on or off.
+3
+Press the [MIC] button to turn the microphone on or off.
+4
+Turn the [LEVEL 1] or [LEVEL 2] knob to adjust the 
+microphone volume level.
+•
+Note that turning the knob too far clockwise outputs the sound at a high volume.
+5
+Turn the [EQ (HI, LOW)] knobs to adjust the volume of each 
+band.
+6
+Speak into the microphone.
+7
+To add an effect to the microphone sound, press one of the 
+[MIC FX] buttons.
+ CAUTION
+Do not turn phantom power on except when you have a condenser microphone that 
+requires phantom power connected to the [MIC 1] terminal.
+Turn phantom power off before connecting or disconnecting a microphone to/from the 
+[MIC 1] terminal. If used improperly, the unit may be damaged.
+Only turn phantom power on or off when the [MIC] button is turned off or when the MIC 
+[LEVEL 1] knob is set to the minimum. If phantom power is used improperly, the 
+monitor device may generate a large amount of noise, which may cause device failure 
+or even hearing loss.
+
+
+===== PDF PAGE 37 =====
+37
+Microphone
+8
+Turn the [MIC FX PARAMETER] knob to adjust the quantitative 
+parameter for the microphone effect.
+9
+To apply reverb to the microphone sound, press the [MIC 
+REVERB] button.
+10 Turn the [MIC REVERB PARAMETER] knob to adjust the 
+quantitative parameter for the reverb.
+ To add BEAT FX to the microphone sound, see Beat FX section (page 47).
+
+
+===== PDF PAGE 38 =====
+38
+Sound Color FX
+You can apply a filter or an effect to the sound on any channel.
+Sound Color FX section
+1.
+CENTER LOCK indicator
+Lights up when the [CENTER LOCK] switch is set to [ON].
+2.
+CENTER LOCK switch
+Locks the [COLOR] knob when it’s quickly turned up to the center position when this 
+switch is set to [ON]. The lock is released when you release the knob, then you can turn 
+the knob freely.
+3.
+SOUND COLOR FX buttons
+Selects a Sound Color FX. The selected button blinks.
+4.
+PARAMETER knob
+Adjusts a quantitative parameter for the effect.
+5.
+COLOR knob
+Adjusts an effect.
+3
+1
+2
+4
+5
+
+
+===== PDF PAGE 39 =====
+39
+Sound Color FX
+Using Sound Color FX
+ Read more: Sound Color FX types and settings (page 40)
+1
+Press the [SOUND COLOR FX] button of an effect.
+The selected button blinks.
+•
+The selected effect is applied to CH 1 to CH 4.
+•
+If a Sound Color FX was already selected, the effect switches to the one pressed 
+most recently.
+2
+Turn the [COLOR] knob to adjust the effect.
+The effect on the channel you turned the knob for is adjusted.
+3
+Turn the [PARAMETER] knob to adjust the quantitative 
+parameter of the effect.
+• Press the [SOUND COLOR FX] button of the effect you’re using again to turn the effect off.
+
+
+===== PDF PAGE 40 =====
+40
+Sound Color FX
+Sound Color FX types and settings
+You can adjust the following settings with the knobs.
+Effect/operation
+Description
+SPACE
+Adds reverberation.
+• COLOR:
+Turn counterclockwise to add reverberation to the middle 
+frequency range and low frequency range.
+Turn clockwise to add reverberation to the middle frequency 
+range and high frequency range.
+• PARAMETER:
+Feedback
+DUB ECHO
+Adds reverberating echo by outputting the sounds slightly 
+delayed from the original sound several times and 
+attenuating them.
+• COLOR:
+Turn counterclockwise to add reverberating echo to the 
+middle frequency range.
+Turn clockwise to add reverberating echo to the high 
+frequency range.
+• PARAMETER:
+Feedback
+SWEEP
+Adds a notch filter effect or a bandpass filter effect.
+• COLOR:
+Turn counterclockwise to gradually increase the bandwidth 
+of the notch filter.
+Turn clockwise to gradually narrow the bandwidth of the 
+bandpass filter.
+• PARAMETER:
+Center frequency of the filter
+
+
+===== PDF PAGE 41 =====
+41
+Sound Color FX
+NOISE
+Outputs filtered white noise mixed with the sound of the 
+channel.
+• COLOR:
+Turn counterclockwise to lower the cut-off frequency for the 
+filter which passes white noise through.
+Turn clockwise to raise the cut-off frequency for the filter 
+which passes white noise through.
+• PARAMETER:
+Volume of the noise
+• EQ/ISO (HI, MID, 
+LOW):
+Noise quality
+CRUSH
+Outputs a ‘crushed’ version of the original sound.
+• COLOR:
+Turn counterclockwise to output the crush sound.
+Turn clockwise to pass the crush sound through the high-
+pass filter.
+• PARAMETER:
+Crush effect
+FILTER
+Outputs filtered sound.
+• COLOR:
+Turn counterclockwise to lower the cut-off frequency of the 
+low-pass filter.
+Turn clockwise to raise the cut-off frequency of the high-pass 
+filter.
+• PARAMETER:
+Resonance
+Effect/operation
+Description
+
+
+===== PDF PAGE 42 =====
+42
+Multi I/O
+You can route the effect sound of an external effects unit or a mobile device (running an FX 
+application) to the channels or the master output. 
+Insert method and Return method are supported.
+• Insert method: Replaces the original sound with the effect sound.
+*1 Selects the sound to mix with the master sound. The sound returned from an external effects unit is 
+output when [RETURN] is selected, and the sound returned from a mobile device is output when [
+ USB] 
+is selected.
+DJM-A9
+CH1
+MULTI I/O
+TRIM/EQ/
+SOUND COLOR FX
+*1
+Effects unit/mobile device
+Input
+Output
+Channel fader
+Master volume
+
+
+===== PDF PAGE 43 =====
+43
+Multi I/O
+• Return method: Routes the effect sound to a channel separate from the one with the 
+original sound. You can then mix the original sound and the effect sound using the two 
+channels.
+ For details on connections, see Connecting to the MULTI I/O terminals (page 23).
+DJM-A9
+CH3
+MULTI I/O
+TRIM/EQ/
+SOUND COLOR FX
+CH2
+(RETURN)
+TRIM/EQ/
+SOUND COLOR FX
+Effects unit/mobile device
+Input
+Output
+Channel fader
+Master volume
+Channel fader
+
+
+===== PDF PAGE 44 =====
+44
+Multi I/O
+MULTI I/O section
+1.
+INSERT SOURCE selector switch
+Selects a source of input sound for when using the Insert method.
+—
+[RETURN]: Inputs sound from the [RETURN] terminals.
+—
+[USB]: Inputs sound from the mobile device connection terminal.
+2.
+SEND CH selector switch
+Selects a channel to add the MULTI I/O effect to.
+3.
+SEND LEVEL knob
+Adjusts the send level for MULTI I/O.
+4.
+INSERT button
+Turns the Insert method on and off. The button blinks when it’s turned on.
+5.
+Mobile device connection terminal (USB port) 
+Connect a mobile device.
+6.
+USB connection indicator 
+Lights up when a compatible mobile device is connected, and blinks when an 
+incompatible mobile device is connected.
+1
+2
+3
+4
+5
+6
+
+
+===== PDF PAGE 45 =====
+45
+Multi I/O
+Using Multi I/O
+1
+According to the method you use, set the [INSERT SOURCE] 
+selector switch or the input selector switch for each channel.
+•
+When you use the Insert method:
+–
+If using an external effects unit: Set the [INSERT SOURCE] selector switch to 
+[RETURN].
+–
+If using a mobile device: Set the [INSERT SOURCE] selector switch to [USB].
+•
+When you use the Return method:
+–
+If using an external effects unit: Set the input selector switch for each channel to 
+[RETURN].
+–
+If using a mobile device: Set the input selector switch for each channel to [USB].
+ Read more: Channel section/master section/fader curve section (page 24)
+2
+Turn the [SEND CH] selector switch to select a channel to add 
+the MULTI I/O effect to.
+3
+When using the Insert method, press the [INSERT] button to 
+turn it on.
+4
+Turn the [SEND LEVEL] knob to adjust the send level for 
+MULTI I/O.
+• Press the [INSERT] button again to turn the Insert method off.
+• MULTI I/O turns off automatically in the following situations:
+• A channel from [1] to [4] is selected with the [SEND CH] selector switch, and [RETURN] 
+is selected with the input selector switch for the selected channel.
+• [CF.A] (crossfader A) or [CF.B] (crossfader B) is selected with the [SEND CH] selector 
+switch, [RETURN] is selected with the input selector switch for the selected channel, 
+and the settings selected with the [CROSSFADER ASSIGN (A, THRU, B)] selector 
+switch and the [SEND CH] selector switch are same.
+• [MASTER] is selected with the [SEND CH] selector switch, and [RETURN] is selected 
+with the input selector switch for any channel.
+
+
+===== PDF PAGE 46 =====
+46
+Beat FX
+You can add various effects according to the tempo (BPM = Beats Per Minute) of the track 
+being played.
+If you use the Quantize function in PRO DJ LINK, the unit adds effects by automatically 
+synchronizing it with the beat according to the track’s grid information analyzed by rekordbox.
+This happens even if you operate the [ON/OFF] button in the Beat FX section and X-PAD 
+roughly.
+• To use the Quantize function in PRO DJ LINK, connect a PRO DJ LINK compatible multi 
+player from Pioneer DJ to the unit.
+Analyze the tracks in rekordbox beforehand. For details on track analysis, see the 
+rekordbox Instruction Manual (page 6).
+ Read more: PRO DJ LINK (page 7)
+
+
+===== PDF PAGE 47 =====
+47
+Beat FX
+Beat FX section
+1.
+BEAT FX indicator
+The Beat FX indicator of the channel selected with the [CH SELECT] button lights up, 
+and blinks when Beat FX is being applied.
+2.
+Screen display (page 49)
+3.
+X-PAD
+Touch to turn the effect on, and release to turn the effect off.
+Touch and slide your finger on the pad to adjust the time/quantitative parameter for the 
+effect.
+4.
+BEAT / buttons
+Sets the number of beats for Beat FX.
+5.
+TAP button
+Tap to manually set a BPM.
+6.
+QUANTIZE/UTILITY (WAKE UP) button
+Press to turn Quantize on and off. The button lights up when it’s turned on.
+•
+Press during Power Management Off mode to exit Power Management Off mode.
+2
+10
+4
+5
+9
+11
+12
+8
+6
+3
+13
+1
+7
+
+
+===== PDF PAGE 48 =====
+48
+Beat FX
+•
+Press and hold to display the [UTILITY] screen (page 75).
+7.
+AUTO/TAP button
+Selects the BPM measuring method (AUTO/TAP). The selected method is displayed on 
+the screen.
+— AUTO: Automatically measures BPM of the input sound (measuring range: 70 to 
+180).
+— TAP: Manually sets a BPM (page 51).
+•
+AUTO is automatically set when you turn the unit on.
+8.
+FX FREQUENCY (LOW, MID, HI) buttons
+Selects the range ([LOW]/[MID]/[HI]) to apply Beat FX to. The selected button lights up.
+9.
+BEAT FX selector switch
+Selects a Beat FX.
+10. CH SELECT button
+Selects a channel to apply a Beat FX to. The selected button lights up.
+11. TIME knob (page 52)
+12. LEVEL/DEPTH knob (page 52)
+•
+Turning all the way counterclockwise outputs the original sound.
+13. ON/OFF button
+Turns Beat FX on and off. The button blinks when it’s turned on.
+
+
+===== PDF PAGE 49 =====
+49
+Beat FX
+Screen display
+1.
+QUANTIZE
+Indicates the status of the QUANTIZE function as follows.
+–
+Lights up in red: QUANTIZE is turned on.
+–
+Lights up in gray: QUANTIZE is turned on but the unit isn't receiving the GRID 
+information.
+–
+Not displayed: QUANTIZE is turned off.
+•
+The unit may not receive the GRID information depending on the playback status of a 
+connected multi player (e.g. if it’s off air, scratching, playing in reverse, etc.).
+2.
+AUTO/TAP
+Displays [AUTO] when in automatic BPM measuring mode, and [TAP] when in manual 
+BPM input mode.
+•
+The BPM value blinks when it can’t be measured correctly in the [AUTO] setting. Use 
+the [TAP] mode if this happens.
+3.
+BPM value
+4.
+Effect name
+Displays the name of the selected effect.
+5.
+Beat/parameter
+Lights up the selected number of beat and displays the time corresponding to the number 
+of beat.
+•
+For some effects, you can display parameters by pressing the [BEAT ] or [BEAT ] 
+button. The display blinks if the number out of the parameter range is set.
+6.
+X-PAD status
+Displays the operation position on the X-PAD.
+5
+1
+2
+6
+4
+3
+
+
+===== PDF PAGE 50 =====
+50
+Beat FX
+Using Beat FX
+ Read more: Beat FX types and settings (page 52)
+1
+Press the [AUTO/TAP] or [QUANTIZE/UTILITY (WAKE UP)] 
+button to set the BPM measuring mode.
+2
+Turn the Beat FX selector switch to select an effect.
+The display for the selected Beat FX appears.
+3
+Press the [CH SELECT] button for the channel to apply the 
+effect to.
+4
+Press the [BEAT ] or [BEAT ] button to set a beat fraction 
+to synchronize the effect with.
+5
+Press the [FX FREQUENCY (LOW, MID, HI)] button to select 
+the range to apply the effect to.
+6
+Turn the [TIME] and [LEVEL/DEPTH] knobs to adjust 
+parameters for the effect.
+7
+Press the [ON/OFF] button (or touch the X-PAD) to turn Beat 
+FX on.
+The selected effect is applied to the sound of the channel selected with the [CH SELECT] 
+button.
+• Press the [ON/OFF] button again to turn Beat FX off.
+
+
+===== PDF PAGE 51 =====
+51
+Beat FX
+Setting the BPM manually
+1
+Tap the [TAP] button more than twice in time with the beat of 
+the track.
+The BPM is set according to the average time between taps.
+•
+The beat fraction is set to [1/1] when you set the BPM with the [TAP] button, and the 
+length of one beat is set as the effect time.
+• You can also set the BPM manually by turning the [TIME] knob while pressing the [TAP] 
+button.
+• Turn the [TIME] knob while pressing the [TAP] and [AUTO/TAP] buttons, or press the 
+[BEAT ] or [BEAT ] button while pressing the [TAP] button to set the BPM in increments 
+of 0.1.
+
+
+===== PDF PAGE 52 =====
+52
+Beat FX
+Beat FX types and settings
+You can adjust the following BEAT FX settings with the relevant buttons and knobs, etc.
+BEAT FX/controls
+Descriptions
+DELAY 1 2
+Outputs a delay sound once according to the beat.
+• BEAT /:
+Delay time with respect to 1 beat of the BPM (beat fraction): 
+1/16 to 16 beats
+• TIME:
+Delay time: 1 to 4000 (ms)
+• LEVEL/DEPTH:
+Balance between the original sound and the effect sound
+• X-PAD:
+Delay time
+ECHO 1 2
+Outputs a delay sound several times while attenuating it 
+according to the beat.
+• BEAT /:
+Delay time with respect to 1 beat of the BPM (beat fraction): 
+1/16 to 16 beats
+• TIME:
+Delay time: 1 to 4000 (ms)
+• LEVEL/DEPTH:
+Balance between the original sound and the effect sound
+• X-PAD:
+Delay time
+PING PONG 1 2
+Outputs a delay sound with different delay times for the left 
+and right several times while attenuating it according to the 
+beat, producing a stereo-like effect.
+• BEAT /:
+Delay time with respect to 1 beat of the BPM (beat fraction): 
+1/16 to 16 beats
+• TIME:
+Delay time: 10 to 4000 (ms)
+• LEVEL/DEPTH:
+Balance between the original sound and the effect sound
+• X-PAD:
+Delay time
+
+
+===== PDF PAGE 53 =====
+53
+Beat FX
+SPIRAL 1 2
+Adds reverberation to the input sound.
+• BEAT /:
+Delay time with respect to 1 beat of the BPM (beat fraction): 
+1/16 to 16 beats
+• TIME:
+Delay time: 10 to 4000 (ms)
+• LEVEL/DEPTH:
+Balance between the original sound and the effect sound, 
+and feedback
+• X-PAD:
+Delay time
+HELIX
+Records the input sound, and outputs the recorded sound 
+repeatedly according to the specified beat fraction.
+• BEAT /:
+Effect time with respect to 1 beat of the BPM (beat fraction): 
+1/16 to 16 beats
+• TIME:
+Effect time: 10 to 4000 (ms)
+• LEVEL/DEPTH:
+Ratio of sound overlay
+• You can change the attenuation rate by turning the 
+[LEVEL/DEPTH] knob all the way counterclockwise and 
+then clockwise. Turn the knob all the way clockwise to fix 
+the output sound.
+• X-PAD:
+Effect time
+REVERB 1 2
+Adds reverberation to the input sound.
+• BEAT /:
+Reverberation level: 1 to 100%
+• TIME:
+Reverberation level: 1 to 100%
+• LEVEL/DEPTH:
+Balance between the original sound and the effect sound
+• X-PAD:
+Cut-off frequency for the filter
+BEAT FX/controls
+Descriptions
+
+
+===== PDF PAGE 54 =====
+54
+Beat FX
+FLANGER
+Adds a cyclic flanger effect according to the beat.
+• BEAT /:
+Moving cycle of the effect with respect to 1 beat of the BPM 
+(beat fraction): 1/16 to 64 beats
+• TIME:
+Moving cycle of the effect: 10 to 32000 (ms)
+• LEVEL/DEPTH:
+Effect level
+• X-PAD:
+Moving cycle of the effect
+PHASER
+Adds a cyclic phaser effect according to the beat.
+• BEAT /:
+Moving cycle of the effect with respect to 1 beat of the BPM 
+(beat fraction): 1/16 to 64 beats
+• TIME:
+Moving cycle of the effect: 10 to 32000 (ms)
+• LEVEL/DEPTH:
+Effect level
+• X-PAD:
+Moving cycle of the effect
+FILTER
+Changes the cut-off frequency cyclically for the filter according 
+to the beat.
+• BEAT /:
+Moving cycle of the effect with respect to 1 beat of the BPM 
+(beat fraction): 1/16 to 64 beats
+• TIME:
+Moving cycle of the effect: 10 to 32000 (ms)
+• LEVEL/DEPTH:
+Effect level
+• X-PAD:
+Moving cycle of the effect
+BEAT FX/controls
+Descriptions
+
+
+===== PDF PAGE 55 =====
+55
+Beat FX
+TRIPLET FILTER
+Changes the cut-off frequency cyclically for the filter according 
+to the beat (based on 3 beats).
+• BEAT /:
+Moving cycle of the effect with respect to 1 beat of the BPM 
+(beat fraction): 1/12 to 12/3 beats
+• TIME:
+Moving cycle of the effect: 10 to 32000 (ms)
+• LEVEL/DEPTH:
+Effect level
+• X-PAD:
+Moving cycle of the effect
+TRANS
+Cuts the sound cyclically according to the beat.
+• BEAT /:
+Cycle of the cut with respect to 1 beat of the BPM (beat 
+fraction): 1/16 to 16 beats
+• TIME:
+Effect time: 10 to 16000 (ms)
+• LEVEL/DEPTH:
+Balance between the original sound and the effect sound, 
+and duty
+• X-PAD:
+Cut cycle
+ROLL
+Records the input sound when the [ON/OFF] button is 
+pressed, and outputs the recorded sound repeatedly 
+according to the specified beat fraction.
+• BEAT /:
+Effect time with respect to 1 beat of the BPM (beat fraction): 
+1/16 to 16 beats
+• TIME:
+Effect time: 10 to 4000 (ms)
+• LEVEL/DEPTH:
+Balance between the original sound and the effect sound
+• X-PAD:
+Effect time
+BEAT FX/controls
+Descriptions
+
+
+===== PDF PAGE 56 =====
+56
+Beat FX
+1 If the [CH SELECT] button is set to [1] to [4], you can’t monitor the effect sound, even if 
+you press the [CUE A] or [CUE B] button for the relevant channel.
+2 Only the effect sound remains if you set the channel fader to the [0] position to cut the 
+input sound.
+TRIPLET ROLL
+Records the input sound when the [ON/OFF] button is 
+pressed, and outputs the recorded sound repeatedly 
+according to the specified beat fraction (based on 3 beats).
+• BEAT /:
+Cycle of the effect with respect to 1 beat of the BPM (beat 
+fraction): 1/12 to 12/3 beats
+• TIME:
+Effect time: 10 to 4000 (ms)
+• LEVEL/DEPTH:
+Balance between the original sound and the effect sound
+• X-PAD:
+Effect time
+MOBIUS
+Changes the frequency of the sounding oscillator to keep 
+rising or falling in time with the beat.
+• BEAT /:
+Moving cycle of the effect with respect to 1 beat of the BPM 
+(beat fraction): 1/16 to 64 beats/-64 to -1/16 beats
+• TIME:
+Moving cycle of the effect: 10 to 32000/-32000 to -10 (ms)
+• LEVEL/DEPTH:
+Volume of the oscillator
+• X-PAD:
+Waveform of the oscillator
+BEAT FX/controls
+Descriptions
+
+
+===== PDF PAGE 57 =====
+57
+USB/MIDI
+If you connect a PC/Mac or mobile device with MIDI software installed, to the unit via a USB 
+cable, you can control the DJ software via the unit.
+• For details on the unit’s MIDI messages, visit the URL below.
+pioneerdj.com/support/
+• Set the MIDI channel for outputting MIDI in [MIDI] in [MY SETTINGS]. You don’t need to 
+make the setting to output via HID.
+USB/MIDI section
+1.
+ A, B (USB) ports (page 22)
+•
+If devices are connected to the Type-B and Type-C ports in [
+ A] or [
+ B] at the 
+same time, they can’t be used simultaneously. The port first connected with a device 
+will be active and the other port will be inactive (the USB indicator turns off).
+2.
+USB connection indicator
+Blinks when a PC/Mac is connected, and slowly blinks when a PC/Mac without the 
+dedicated software installed is connected.
+•
+To input or output your PC/Mac’s audio to/from the unit, install the dedicated software 
+on your computer (page 13).
+1
+2
+4
+3
+
+
+===== PDF PAGE 58 =====
+58
+USB/MIDI
+3.
+MIDI ON/OFF button 
+Turns MIDI on and off. The button lights up when it’s turned on.
+4.
+MIDI START/STOP button 
+Sends the MIDI start/stop messages. The button lights up after the start message is sent, 
+and turns off after the stop message is sent.
+Controlling MIDI software
+• Install MIDI software and configure the audio and MIDI settings on a PC/Mac or mobile 
+device beforehand.
+1
+Connect a PC/Mac or mobile device to the unit.
+•
+Connect a PC/Mac to the [
+ A] or [
+ B] (USB) port, or connect a mobile device to 
+the mobile device connection terminal in the MULTI I/O section (page 22).
+2
+Launch the MIDI software.
+•
+This completes the sequence if you’re using a mobile device.
+3
+Press the [MIDI ON/OFF] button to turn MIDI on.
+The sending of MIDI messages starts.
+• Press the [MIDI ON/OFF] button again to turn MIDI off and stop sending MIDI messages.
+• The MIDI timing clock (BPM) is sent even when the [MIDI ON/OFF] button is switched off.
+• Press the [MIDI START/STOP] button to send the MIDI start and stop messages 
+alternately. The messages are sent even when the [MIDI ON/OFF] button is switched off.
+
+
+===== PDF PAGE 59 =====
+59
+Bluetooth
+You can input the sound of your PC/Mac or mobile device to the unit via Bluetooth.
+• Connect and adjust the wireless antenna when you use Bluetooth (page 63).
+Bluetooth section
+1.
+BLUETOOTH PAIRING button
+Pairs the unit with a Bluetooth device.
+The button indicates the connection status as follows.
+–
+Blinks: The unit is waiting to pair (blinks at regular intervals) or to connect (blinks 
+twice repeatedly).
+–
+Lights up: The unit is connected with a Bluetooth device.
+2.
+Input selector switch (page 24)
+3.
+TRIM knob (page 24)
+2
+3
+1
+
+
+===== PDF PAGE 60 =====
+60
+Bluetooth
+Pairing with a Bluetooth device
+1
+Press and hold the [BLUETOOTH PAIRING] button for 
+approximately 2 seconds.
+The unit enters pairing state.
+•
+The Bluetooth indicator blinks while the unit is in pairing state (for approximately 2 
+minutes).
+2
+Perform the pairing procedure on a Bluetooth device.
+The Bluetooth indicator on the unit stops blinking and lights up when the connection is 
+established.
+•
+Perform the pairing procedure on a Bluetooth device while the unit is in paring state. If 
+the unit can’t pair with a Bluetooth device within 2 minutes, the Bluetooth indicator 
+turns off.
+•
+For details on the pairing procedure for the Bluetooth device, refer to the device’s 
+instruction manual.
+•
+If you use a Bluetooth device registered to the unit, you can connect the unit with the 
+device by pressing the [BLUETOOTH PAIRING] button briefly.
+•
+You can only connect the unit to 1 Bluetooth device at a time. If the unit pairs with a 
+second device, the registration of the first device will be lost. To register the first 
+device again, perform pairing with the device.
+
+
+===== PDF PAGE 61 =====
+61
+Bluetooth
+Using a Bluetooth device
+1
+Connect a Bluetooth device with the unit.
+2
+Set the input selector switch for the channel to which 
+Bluetooth audio is input to [
+].
+3
+Play sound on the Bluetooth device.
+4
+Turn the [TRIM] knob for the channel to which Bluetooth audio 
+is input to adjust the volume.
+
+
+===== PDF PAGE 62 =====
+62
+Wireless LAN (Wi-Fi)
+By connecting a tablet with the unit via Wi-Fi, you can use the Stagehand app on the tablet to 
+check the status of Pioneer DJ multi players or mixers and remote-control them.
+• You can use the Stagehand app (page 8) while using PRO DJ LINK.
+• For details, refer to the instruction manuals for the Stagehand app and rekordbox.
+pioneerdj.com/en/product/software/
+rekordbox.com/manual
+• Connect the wireless antenna when you want to use a Bluetooth connection.
+Connecting and disconnecting the wireless 
+antenna
+You can connect and disconnect the wireless antenna to/from the unit.
+• The wireless antenna is connected by default.
+• Do not connect any antenna other than the one supplied with this unit.
+• To prevent damage, disconnect the wireless antenna when you pack away or transport the 
+unit.
+• Do not apply excessive force to the wireless antenna, or it may be damaged.
+• The wireless antenna bends in one direction. Be sure to check the moving part and bend it 
+in the correct direction.
+Disconnecting the wireless antenna
+1
+Straighten the wireless antenna.
+F
+Rear panel of the unit
+
+
+===== PDF PAGE 63 =====
+63
+Wireless LAN (Wi-Fi)
+2
+Turn the knurled part and remove the antenna from the unit.
+Connecting the wireless antenna
+1
+Align the wireless antenna horizontally with the antenna 
+terminal and turn the knurled part to attach it to the unit.
+•
+Turn the knurled part and tighten it firmly (if it’s tightened correctly, there will be an 
+approximately 3 mm gap from the base of the mounting part). Be careful not to 
+overtighten it.
+2
+Turn the wireless antenna and adjust its angle to enable a 
+strong reception.
+F
+F
+Knurled part
+F
+F
+Knurled part
+3 mm
+F
+Rear panel of the unit
+
+
+===== PDF PAGE 64 =====
+64
+Wireless LAN (Wi-Fi)
+Setting wireless LAN (Wi-Fi)
+1
+Press and hold the [QUANTIZE/UTILITY (WAKE UP)] button.
+The Utility menu appears.
+2
+Turn the [TIME] knob in the Beat FX section or press the 
+[BEAT ] or [BEAT ] button to select [GENERAL SETTINGS], 
+and press the [TAP] button.
+The setting items under [GENERAL SETTINGS] appear.
+3
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [Wi-Fi], and press the [TAP] button.
+4
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [Wi-Fi], and press the [TAP] button.
+The Wi-Fi ON/OFF screen appears.
+5
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [ON] or [OFF], and press the [TAP] button.
+•
+When set to [ON], if there is an access point that has connected with the unit 
+previously, the unit is automatically connected to the access point. The factory setting 
+is [OFF].
+•
+The signal strength (icon) of the wireless LAN (Wi-Fi) connection is displayed on the 
+[UTILITY] screen (page 74).
+
+
+===== PDF PAGE 65 =====
+65
+Wireless LAN (Wi-Fi)
+Connecting the unit to a wireless network
+You can connect the unit to a wireless network via the following methods:
+• Connecting with WPS (page 65)
+• Searching for an access point (page 68)
+• Specifying an access point (page 70)
+Connecting with WPS
+You can connect using the PBC method or PIN method.
+PBC method
+Connect the unit to the wireless router (access point) by pressing the WPS button on the 
+router.
+• Use a wireless router that supports WPS (PBC method).
+1
+Press and hold the [QUANTIZE/UTILITY (WAKE UP)] button.
+The Utility menu appears.
+2
+Turn the [TIME] knob in the Beat FX section or press the 
+[BEAT ] or [BEAT ] button to select [GENERAL SETTINGS], 
+and press the [TAP] button.
+The setting items under [GENERAL SETTINGS] appear.
+3
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [Wi-Fi], and press the [TAP] button.
+4
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [CONNECT BY WPS], and press the [TAP] 
+button.
+5
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [PBC], and press the [TAP] button.
+The [CONNECT BY WPS(PBC)] screen appears.
+
+
+===== PDF PAGE 66 =====
+66
+Wireless LAN (Wi-Fi)
+6
+Press the [TAP] button.
+[Connecting...] is displayed.
+•
+Perform the next step within 120 seconds of pressing the [TAP] button.
+7
+Press the WPS button on the wireless router.
+If the connection succeeds, [Success] is displayed.
+•
+Refer to the instruction manual of your wireless router and press the WPS button on 
+the wireless router.
+•
+If [Failure] is displayed, perform the procedure from step 1 again, or try other 
+connection methods.
+PIN method
+Connect the unit to the wireless router (access point) by using the PIN code of the unit.
+• Use a wireless router that supports WPS (PIN method).
+1
+Press and hold the [QUANTIZE/UTILITY (WAKE UP)] button.
+The Utility menu appears.
+2
+Turn the [TIME] knob in the Beat FX section or press the 
+[BEAT ] or [BEAT ] button to select [GENERAL SETTINGS], 
+and press the [TAP] button.
+The setting items under [GENERAL SETTINGS] appear.
+
+
+===== PDF PAGE 67 =====
+67
+Wireless LAN (Wi-Fi)
+3
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [Wi-Fi], and press the [TAP] button.
+4
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [CONNECT BY WPS], and press the [TAP] 
+button.
+5
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [PIN], and press the [TAP] button.
+The PIN code of the unit appears.
+•
+The PIN code changes each time the screen is displayed.
+6
+Press the [TAP] button.
+[Connecting...] is displayed.
+•
+Perform the next step within 120 seconds of pressing the [TAP] button.
+7
+Set the PIN code of the unit in the wireless router.
+If the connection succeeds, [Success] is displayed.
+•
+If [Failure] is displayed, perform the procedure from step 1 again, or try other 
+connection methods.
+•
+For details on setting the wireless router to WPS mode, refer to the instruction 
+manual for the wireless router.
+
+
+===== PDF PAGE 68 =====
+68
+Wireless LAN (Wi-Fi)
+Searching for an access point
+1
+Press and hold the [QUANTIZE/UTILITY (WAKE UP)] button.
+The Utility menu appears.
+2
+Turn the [TIME] knob in the Beat FX section or press the 
+[BEAT ] or [BEAT ] button to select [GENERAL SETTINGS], 
+and press the [TAP] button.
+The setting items under [GENERAL SETTINGS] appear.
+3
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [Wi-Fi], and press the [TAP] button.
+4
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [CONNECT BY PASSWORD], and press the 
+[TAP] button.
+5
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [SELECT SSID], and press the [TAP] button.
+The access points list is displayed.
+•
+SSIDs may not be detected depending on the signal strength. In that case, press the 
+[AUTO/TAP] button to return to the previous screen, then navigate to the access 
+points list again.
+
+
+===== PDF PAGE 69 =====
+69
+Wireless LAN (Wi-Fi)
+6
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select an access point, and press the [TAP] button.
+The encryption method selection screen appears.
+7
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select an encryption method (used in the access 
+point), and press the [TAP] button.
+The password (security key) input screen appears.
+•
+If you don’t know the encryption method, select [AUTO].
+8
+Enter a password (security key), and press the [TAP] button.
+[Connecting...] is displayed.
+If the connection succeeds, [Success] is displayed.
+•
+Use the [TIME] knob and [BEAT ], [BEAT ] and [FX FREQUENCY (LOW)] 
+buttons to enter a password (security key).
+
+
+===== PDF PAGE 70 =====
+70
+Wireless LAN (Wi-Fi)
+•
+If [Failure] is displayed, perform the procedure from step 1 again, or try other 
+connection methods.
+Specifying an access point
+1
+Press and hold the [QUANTIZE/UTILITY (WAKE UP)] button.
+The Utility menu appears.
+2
+Turn the [TIME] knob in the Beat FX section or press the 
+[BEAT ] or [BEAT ] button to select [GENERAL SETTINGS], 
+and press the [TAP] button.
+The setting items under [GENERAL SETTINGS] appear.
+3
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [Wi-Fi], and press the [TAP] button.
+4
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [CONNECT BY PASSWORD], and press the 
+[TAP] button.
+5
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [MANUAL], and press the [TAP] button.
+The SSID specification screen appears.
+
+
+===== PDF PAGE 71 =====
+71
+Wireless LAN (Wi-Fi)
+6
+Enter a network name (SSID), and press the [TAP] button.
+The encryption method selection screen appears.
+•
+Use the [TIME] knob and [BEAT ], [BEAT ] and [FX FREQUENCY (LOW)] 
+buttons to enter a network name (SSID).
+7
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select an encryption method (used in the access 
+point), and press the [TAP] button.
+The password (security key) input screen appears.
+•
+If you don’t know the encryption method, select [AUTO].
+8
+Enter a password (security key), and press the [TAP] button.
+[Connecting...] is displayed.
+If the connection succeeds, [Success] is displayed.
+•
+Use the [TIME] knob and  [BEAT ], [BEAT ] and [FX FREQUENCY (LOW)] 
+buttons to enter a password (security key).
+
+
+===== PDF PAGE 72 =====
+72
+Wireless LAN (Wi-Fi)
+•
+If [Failure] is displayed, perform the procedure from step 1 again, or try other 
+connection methods.
+Viewing the Wireless LAN (Wi-Fi) information
+1
+Press and hold the [QUANTIZE/UTILITY (WAKE UP)] button.
+The Utility menu appears.
+2
+Turn the [TIME] knob in the Beat FX section or press the 
+[BEAT ] or [BEAT ] button to select [GENERAL SETTINGS], 
+and press the [TAP] button.
+The setting items under [GENERAL SETTINGS] appear.
+3
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [Wi-Fi], and press the [TAP] button.
+4
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [INFORMATION], and press the [TAP] button.
+The SSID, IP address, and MAC address of the wireless LAN are displayed.
+•
+If there is a DHCP server in your network, the DHCP server will give an IP address. If 
+a DHCP server doesn’t exist, this unit gives an IP address. It takes time for the unit to 
+give an IP address.
+
+
+===== PDF PAGE 73 =====
+73
+Wireless LAN (Wi-Fi)
+Viewing the LAN information
+1
+Press and hold the [QUANTIZE/UTILITY (WAKE UP)] button.
+The Utility menu appears.
+2
+Turn the [TIME] knob in the Beat FX section or press the 
+[BEAT ] or [BEAT ] button to select [GENERAL SETTINGS], 
+and press the [TAP] button.
+The setting items under [GENERAL SETTINGS] appear.
+3
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [LAN], and press the [TAP] button.
+4
+Press the [TAP] button.
+The IP address and MAC address of the wired LAN are displayed.
+•
+If there is a DHCP server in your network, the DHCP server will give an IP address. If 
+a DHCP server doesn’t exist, this unit gives an IP address. It takes time for the unit to 
+give an IP address.
+•
+If a LAN cable isn’t connected, the IP address won’t be displayed.
+
+
+===== PDF PAGE 74 =====
+74
+Settings
+You can change the unit’s settings in the Utility settings. If you save MY SETTINGS to a 
+storage device (USB drive, etc.), you can load them to the unit immediately when you arrive 
+in the booth or take over from another DJ, etc.
+UTILITY screen
+1.
+Displays the status of the wireless LAN (Wi-Fi).
+–
+: Wi-Fi is turned off.
+–
+: Wi-Fi is turned on but not connected.
+–
+, 
+, 
+, 
+: Wi-Fi is turned on and connected (indication of signal strength).
+2.
+UTILITY menu (page 76)
+3.
+Operation buttons display for the screen
+4.
+Setting items (page 76)
+5.
+Indicates that the setting items under [MIXER SETTINGS] are locked. The lock setting 
+can be changed in [LOCK] under [MIXER SETTINGS].
+6.
+Page number
+Indicates current page number/total number of pages.
+7.
+/
+Turn the [TIME] knob in the Beat FX section or press the [BEAT ] or [BEAT ] button to 
+display the next or previous page.
+5
+1
+7
+2
+1
+3
+3
+4
+6
+
+
+===== PDF PAGE 75 =====
+75
+Settings
+Changing the settings
+The following is the basic procedure for changing the Utility settings. Refer also to the 
+instructions in other sections.
+1
+Press and hold the [QUANTIZE/UTILITY (WAKE UP)] button.
+The Utility menu appears.
+2
+Turn the [TIME] knob in the Beat FX section or press the 
+[BEAT ] or [BEAT ] button to select a setting menu, and 
+press the [TAP] button.
+The setting items for the selected Utility menu appear.
+3
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select a setting item, and press the [TAP] button.
+•
+If you press the [TAP] button when 
+ is displayed in the selected setting item, the 
+next level down is displayed.
+•
+Press the [AUTO/TAP] button to cancel the setting.
+ Read more: Utility settings (page 76)
+4
+Change the setting.
+5
+Press the [QUANTIZE/UTILITY (WAKE UP)] button.
+The [UTILITY] screen closes.
+
+
+===== PDF PAGE 76 =====
+76
+Settings
+Utility settings
+MIXER SETTINGS
+*: Factory setting
+Setting items
+Description
+BALANCE 1
+Sets the output balance.
+• Setting values: L128 to 0* to R127
+• You can adjust the balance using the X-PAD.
+MASTER OUT 1
+PEAK LIMITER
+Sets whether to adjust the analog master output that 
+exceeds the set value with peak limiter.
+• Setting values: OFF, 21dB*, 18dB, 15dB, 12dB
+ATT.
+Sets the attenuation level for the sound output from the 
+[MASTER 1] and [MASTER 2] terminals.
+• Setting values: -12dB, -9dB, -6dB, -3dB, 0dB*
+MONO/STEREO
+Sets the output method (mono/stereo) for the sound output 
+from the [MASTER 1] and [MASTER 2] terminals.
+• Setting values: MONO, STEREO*
+DIGITAL MASTER OUT 1
+REFERENCE LEVEL
+Sets the output level for when the master level indicator 
+lights up at [0] dB.
+• Setting values: -30dBFS, -27dBFS, -24dBFS, -21dBFS*, 
+-18dBFS, -15dBFS, -12dBFS, -9dBFS, -6dBFS
+• Sound may be distorted even when the master level 
+indicator doesn’t show the maximum level.
+SAMPLING RATE
+Sets the sampling rate for the digital signal.
+• Setting values: 44.1kHz, 48kHz, 88.2kHz, 96kHz*
+
+
+===== PDF PAGE 77 =====
+77
+Settings
+PEAK LIMITER
+Reduces distortion to the sound output from the [DIGITAL 
+MASTER OUT] terminal.
+• Setting values: OFF, ON*
+MONO/STEREO
+Sets the output method (mono/stereo) for the sound output 
+from the [DIGITAL MASTER OUT] terminal.
+• Setting values: MONO, STEREO*
+BOOTH OUT 1
+ATT.
+Reduces attenuation level to the sound output from the 
+[BOOTH] terminals.
+• Setting values: -12dB, -9dB, -6dB, -3dB, 0dB*
+MONO/STEREO
+Sets the output method (mono/stereo) for the sound output 
+from the [BOOTH] terminals.
+• Setting values: MONO, STEREO*
+MUTE WHEN MIC ON
+Sets whether to mute the sound output from the [BOOTH] 
+terminals when the microphone is turned on.
+• Setting values: OFF*, ON
+MIC
+MIC TO MASTER 
+PEAK LIMITER 1
+Sets the limiter for the microphone sound that is input to the 
+master sound.
+• Setting values: 0dB, 3dB, 6dB, 9dB, 12dB, 15dB, 18dB, 
+21dB, OFF*
+MIC TO BOOTH ATT. 1
+Sets the volume for the microphone sound that is input to the 
+sound output from the [BOOTH] terminals. 
+• Setting values: -∞, -18dB, -15dB, -12dB, -9dB, -6dB, 
+-3dB, 0dB*
+Setting items
+Description
+
+
+===== PDF PAGE 78 =====
+78
+Settings
+1 The setting is saved on the unit when you execute [SAVE] in [OWNER SETTING].
+MIC TO BOOTH PEAK 
+LIMITER
+Sets the limiter for the microphone sound that is input to the 
+sound output from the [BOOTH] terminals.
+• Setting values: 0dB, 3dB, 6dB, 9dB, 12dB, 15dB, 18dB, 
+21dB, OFF*
+MIC TO REC OUT 
+EXCLUDE MIC
+Sets whether not to input the microphone sound to the sound 
+output from the [REC OUT] terminals.
+• Setting values: OFF*, ON
+• Set to [OFF] to input the sound, and to [ON] not to input 
+the sound.
+MIC PHANTOM 
+LOCK
+Locks or unlocks the operation of the [MIC 1 PHANTOM ON/
+OFF] button.
+• Setting values: LOCKED*, UNLOCKED
+POWER MANAGEMENT 1
+Sets the Power Management function (page 84).
+• Setting values: OFF, ON*
+LOCK
+Determines whether or not the [MIXER SETTINGS] can be 
+changed.
+• Setting values: LOCKED, UNLOCKED*
+OWNER SETTING
+SAVE
+Saves the [MIXER SETTINGS] and [MY SETTINGS] as 
+[OWNER SETTING] on the unit.
+The [MY SETTINGS] saved as [OWNER SETTING] are the 
+default settings when you turn the unit on.
+LOAD
+Calls up the [OWNER SETTING] (the [MIXER SETTINGS] 
+and [MY SETTINGS]) saved on the unit.
+Setting items
+Description
+
+
+===== PDF PAGE 79 =====
+79
+Settings
+MY SETTINGS
+*: Factory setting
+Setting items
+Description
+MY SETTINGS LOAD
+Calls up the [MY SETTINGS] saved on a storage device 
+(page 86).
+MY SETTINGS SAVE
+Saves the current [MY SETTINGS] to a storage device 
+(page 85).
+LOAD STORED BEAT FX 
+SETTING
+Restores the beat and [FX FREQUENCY (LOW, MID, HI)] 
+settings for BEAT FX to the default settings of [MY 
+SETTINGS].
+STORE BEAT FX SETTING
+Saves the current beat and [FX FREQUENCY (LOW, MID, 
+HI)] settings as the default settings of [MY SETTINGS].
+HEADPHONES A 1
+MONO SPLIT
+Sets the output method (MONO SPLIT or stereo) for the 
+headphones monitor sound of [HEADPHONES A].
+• Setting values: STEREO*, MONO SPLIT, NONE
+• When set to [NONE], the headphones settings doesn’t 
+change when MY SETTINGS are imported.
+HEADPHONES B 1
+MONO SPLIT
+Sets the output method (MONO SPLIT or stereo) for the 
+headphones monitor sound of [HEADPHONES B].
+• Setting values: STEREO, MONO SPLIT, NONE*
+• When set to [NONE], the headphones settings doesn’t 
+change when MY SETTINGS are imported.
+BEAT FX QUANTIZE 1
+BEAT FX QUANTIZE
+Sets Quantize for BEAT FX.
+• Setting values: OFF, ON*
+
+
+===== PDF PAGE 80 =====
+80
+Settings
+MIC LOW CUT 1
+MIC LOW CUT
+Sets the low-frequency cut function for the microphone 
+sound.
+• Setting values: OFF, ON (for MC)*
+MIC ECHO BEATS 1
+Sets the number of beats for the microphone echo.
+• Setting values: 1/8, 1/4, 1/2, 3/4, 1*, 2, 4, 8
+TALKOVER 1
+MODE
+Sets TALKOVER mode.
+• Setting values: ADVANCED*, NORMAL
+• The [ADVANCED] setting outputs sound by attenuating 
+only the mid-frequency range of the sound from channels 
+other than the [MIC] channels according to the setting of 
+the [LEVEL] knob.
+• The [NORMAL] setting outputs sound by attenuating the 
+sound from channels other than the [MIC] channels 
+according to the [LEVEL] knob setting.
+LEVEL
+Sets the sound attenuation level for TALKOVER.
+• Setting values: -∞, -24dB, -18dB*, -12dB, -6dB
+MIDI 1
+CH
+Sets the MIDI channel.
+• Setting values: 1* to 16
+BUTTON TYPE
+Sets the MIDI signal transmission method.
+• Setting values: TOGGLE*, TRIGGER
+Setting items
+Description
+
+
+===== PDF PAGE 81 =====
+81
+Settings
+BRIGHTNESS 1
+DISPLAY
+Sets the brightness of the touch display.
+• Setting values: 1 to 5*, WHITE
+INDICATOR
+Sets the brightness of LED.
+• Setting values: 1 to 3*
+DELAY 2, ECHO 2, PING PONG 2, SPIRAL 2
+BEAT
+• Setting values: 1/16, 1/8, 1/4, 1/3, 1/2, 2/3, 3/4, 1*, 2, 4, 8, 
+16
+FX FREQUENCY HI, 
+MID, LOW
+• Setting values: OFF, ON*
+HELIX 2, TRANS 2, ROLL 2
+BEAT
+• Setting values: 1/16, 1/8, 1/4, 1/2, 1*, 2, 4, 8, 16
+FX FREQUENCY HI, 
+MID, LOW
+• Setting values: OFF, ON*
+REVERB 2
+BEAT
+• Setting values: 1, 10, 20, 30, 40, 50*, 60, 70, 80, 90, 100
+FX FREQUENCY HI, 
+MID, LOW
+• Setting values: OFF, ON*
+FLANGER 2, PHASER 2, FILTER 2
+BEAT
+• Setting values: 1/16, 1/8, 1/4, 1/2, 1, 2, 4*, 8, 16, 32, 64
+FX FREQUENCY HI, 
+MID, LOW
+• Setting values: OFF, ON*
+Setting items
+Description
+
+
+===== PDF PAGE 82 =====
+82
+Settings
+1 The setting is saved on the unit when you execute [SAVE] in [OWNER SETTING].
+2 Set the BEAT FX settings to be called up when you execute [LOAD STORED BEAT FX 
+SETTING]. For details on the functions, see Beat FX types and settings (page 52).
+TRIPLET FILTER 2
+BEAT
+• Setting values: 1/12, 1/6, 1/3, 2/3, 4/3*, 8/3, 12/3
+FX FREQUENCY HI, 
+MID, LOW
+• Setting values: OFF, ON*
+TRIPLET ROLL 2
+BEAT
+• Setting values: 1/12, 1/6, 1/3*, 2/3, 4/3, 8/3, 12/3
+FX FREQUENCY HI, 
+MID, LOW
+• Setting values: OFF, ON*
+MOBIUS 2
+BEAT
+• Setting values: 1/16, 1/8, 1/4, 1/2, 1, 2, 4*, 8, 16, 32, 64, 
+-64, -32, -16, -8, -4, -2, -1, -1/2, -1/4, -1/8, -1/16
+FX FREQUENCY HI, 
+MID, LOW
+• Setting values: OFF, ON*
+Setting items
+Description
+
+
+===== PDF PAGE 83 =====
+83
+Settings
+GENERAL SETTINGS menu
+*: Factory setting
+Setting items
+Description
+Wi-Fi
+Wi-Fi ON/OFF
+Sets whether to use wireless LAN (Wi-Fi) (page 64).
+• Setting values: OFF*, ON
+CONNECT BY WPS
+Connects the unit with a wireless router (access point) using 
+the WPS button on the router (page 65).
+CONNECT BY 
+PASSWORD
+Connects the unit with a wireless router (access point) using 
+an access point of the router (pages 68, 70).
+• Setting values: SELECT SSID, MANUAL
+• If selecting [SELECT SSID], connect the unit with a 
+wireless router by selecting an access point found by the 
+search function (page 68).
+• If selecting [MANUAL], connect the unit with a wireless 
+router by specifying an access point of the wireless router   
+(page 70).
+INFORMATION
+Displays SSID, IP address, and MAC address for the 
+wireless LAN (Wi-Fi) connection (page 72).
+LAN
+INFORMATION
+Displays IP address and MAC address for the wired LAN 
+connection (page 73).
+
+
+===== PDF PAGE 84 =====
+84
+Settings
+SOUND CHECK menu
+ Read more: Sound check (page 87)
+*: Factory setting
+Power Management
+When [POWER MANAGEMENT] is set to [ON], the unit enters Off mode after 20 minutes 
+without being used in the following ways.
+–
+No audio signals are input to the channels on the unit.
+–
+There is no PRO DJ LINK connection.
+Press the [QUANTIZE/UTILITY (WAKE UP)] button to exit Power Management Off mode.
+• The factory setting is [ON].
+• Set [POWER MANAGEMENT] to [OFF] if you don’t need to use the Power Management 
+function.
+• Power consumption may increase when [POWER MANAGEMENT] is set to [OFF].
+Setting items
+Description
+SOURCE
+Sets a signal type (white noise/sine wave) to generate.
+• Setting values: NOISE*, SINE
+• The [NOISE] setting generates white noise.
+• The [SINE] setting generates a sine wave.
+• When set to [SINE], you can use the X-PAD to set a 
+predetermined frequency.
+STEREO
+Sets a channel (left or right) to generate a signal.
+• Setting values: L, L+R*, R
+• The [L] setting generates signals in the left channel.
+• The [L+R] setting generates signals in the left and right 
+channels.
+• The [R] setting generates signals in the right channel.
+VOLUME
+Adjusts the volume of sound check signals.
+OUTPUT
+Selects where the signals are output to.
+
+
+===== PDF PAGE 85 =====
+85
+Settings
+Saving MY SETTINGS to a storage device
+You can save MY SETTINGS on a storage device plugged into the unit, or you can save them 
+to rekordbox in PRO DJ LINK.
+1
+Connect a storage device.
+ Read more: Connecting to the terminals on the top and front panels (page 22)
+2
+Press and hold the [QUANTIZE/UTILITY (WAKE UP)] button.
+The Utility menu appears.
+3
+Turn the [TIME] knob in the Beat FX section or press the 
+[BEAT ] or [BEAT ] button to select [MY SETTINGS], and 
+press the [TAP] button.
+The setting items under [MY SETTINGS] appear.
+4
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [MY SETTINGS SAVE], and press the [TAP] 
+button.
+Storage devices are listed on the [SAVE] screen.
+5
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select a storage device to save settings to, and press 
+the [TAP] button.
+MY SETTINGS are saved to the storage device.
+•
+To cancel the setting, press the [AUTO/TAP] button.
+6
+Press the [QUANTIZE/UTILITY (WAKE UP)] button.
+The [UTILITY] screen closes.
+
+
+===== PDF PAGE 86 =====
+86
+Settings
+Calling up MY SETTINGS saved on a storage 
+device
+You can call up MY SETTINGS on a storage device plugged into a multi player that is 
+connected to the unit via PRO DJ LINK, or you can call them up from rekordbox.
+1
+Connect a storage device.
+ Read more: Connecting to the terminals on the top and front panels (page 22)
+2
+Press and hold the [QUANTITY/UTILITY (WAKE UP)] button.
+The Utility menu appears.
+3
+Turn the [TIME] knob in the Beat FX section or press the 
+[BEAT ] or [BEAT ] button to select [MY SETTINGS], and 
+press the [TAP] button.
+The setting items under [MY SETTINGS] appear.
+4
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select [MY SETTINGS LOAD], and press the [TAP] 
+button.
+Storage devices are listed on the [LOAD] screen.
+5
+Turn the [TIME] knob or press the [BEAT ] or [BEAT ] 
+button to select a storage device to call up settings from, and 
+press the [TAP] button.
+MY SETTINGS are called up.
+•
+To cancel the setting, press the [AUTO/TAP] button.
+6
+Press the [QUANTIZE/UTILITY (WAKE UP)] button.
+The [UTILITY] screen closes.
+
+
+===== PDF PAGE 87 =====
+87
+Settings
+Sound check
+You can perform sound checks for connected devices (e.g. speakers) by generating signals 
+from the unit.
+1
+Press and hold the [QUANTITY/UTILITY (WAKE UP)] button.
+The Utility menu appears.
+2
+Turn the [TIME] knob in the Beat FX section or press the 
+[BEAT ] or [BEAT ] button to select [SOUND CHECK], and 
+press the [TAP] button.
+The [SOUND CHECK] screen appears.
+3
+Turn the [TIME] knob to select a setting item.
+4
+Press the [BEAT ] or [BEAT ] button to select a setting.
+ Read more: SOUND CHECK menu (page 84)
+5
+Press the [TAP] button.
+Sound is output.
+•
+To stop outputting the sound, press the [TAP] button again.
+6
+Press the [QUANTIZE/UTILITY (WAKE UP)] button.
+The [UTILITY] screen closes.
+
+
+===== PDF PAGE 88 =====
+88
+Settings
+Restoring the factory settings
+1
+While pressing the [QUANTIZE/UTILITY (WAKE UP)] button, 
+press the [] button.
+The [FACTORY RESET] screen appears.
+2
+Turn the [TIME] knob in the Beat FX section to select [YES], 
+and press the [TAP] button.
+3
+Press the [] button to turn the unit off.
+The factory settings are restored.
+
+
+===== PDF PAGE 89 =====
+89
+Specifications
+General
+Power requirements.............................................................AC 110 V – 240 V, 50 Hz / 60 Hz
+Power consumption ........................................................................................................ 61 W
+Power consumption (off)................................................................................................ 0.3 W
+Main unit weight.......................................................................................... 10.2 kg / 22.5 lbs.
+Max. external dimensions ..... (W × D × H) 407.4 × 458.3 × 107.9 mm / 16.4" x 18.4" x 4.25"
+Max. external dimensions (when the wireless antenna stands upright)
+.............................................  (W × D × H) 407.4 × 458.3 × 140.7 mm / 16.4" × 18.4" × 5.54"
+Tolerable operating temperature.........................................+5 °C – +35 °C (+41 °F – +95 °F)
+Tolerable operating humidity....................................................5 % – 85 % (no condensation)
+Audio section
+Sampling rate................................................................................................................96 kHz
+MASTER, BOOTH, REC, SEND D/A converter...............................................................32bit
+CH input A/D converter ....................................................................................................32bit
+Other A/D and D/A converters..........................................................................................24bit
+Frequency characteristic
+LINE ........................................................................................................ 20 Hz – 40 kHz
+S/N ratio (rated output, A-WEIGHTED)
+USB, DIGITAL IN...................................................................................................114 dB
+PHONO.................................................................................................................. 88 dB
+LINE ..................................................................................................................... 105 dB
+MIC 1, MIC 2.......................................................................................................... 79 dB
+Total harmonic distortion (LINE – MASTER 1, 20 Hz – 40 kHz BW) ..........................0.005 %
+Standard input level / Input impedance
+PHONO...................................................................................................-52 dBu / 47 kΩ
+LINE ........................................................................................................-12 dBu / 47 kΩ
+MIC 1, MIC 2......................................................................................... -57 dBu / 3.5 kΩ
+RETURN ................................................................................................ -12 dBu / 47 kΩ
+Max. input level
+PHONO............................................................................................................ -17.8 dBu
+LINE ................................................................................................................... +15 dBu
+MIC 1, MIC 2........................................................................................................ +2 dBu
+RETURN ...........................................................................................................  +12 dBu
+Standard output level / Load impedance / Output impedance
+MASTER 1 .................................................................................  +6 dBu / 10 kΩ / 360 Ω
+
+
+===== PDF PAGE 90 =====
+90
+Specifications
+MASTER 2 .................................................................................  +2 dBu / 10 kΩ / 700 Ω
+REC OUT.....................................................................................-8 dBu / 10 kΩ / 700 Ω
+BOOTH ....................................................................................... +6 dBu / 10 kΩ / 360 Ω
+SEND ...........................................................................................-6 dBu / 10 kΩ / 700 Ω
+PHONES............................................................................. +8 dBu / 32 Ω / 1 Ω or lower
+Rated output level / Load impedance
+MASTER 1 .............................................................................................+25 dBu / 10 kΩ
+MASTER 2 .............................................................................................+21 dBu / 10 kΩ
+BOOTH ..................................................................................................+25 dBu / 10 kΩ
+Crosstalk
+LINE ....................................................................................................................... 82 dB
+Channel equalizer characteristic
+HI..............................................................................................  -26 dB – +6 dB (20 kHz)
+MID.............................................................................................. -26 dB – +6 dB (1 kHz)
+LOW............................................................................................-26 dB – +6 dB (20 Hz)
+Microphone equalizer characteristic
+HI............................................................................................. -12 dB – +12 dB (10 kHz)
+LOW........................................................................................-12 dB – +12 dB (100 Hz)
+BOOTH MONITOR equalizer feature
+HI............................................................................................... -12 dB – +6 dB (10 kHz)
+LOW..........................................................................................-12 dB – +6 dB (100 Hz)
+Input / Output terminals
+PHONO input terminal
+RCA pin jacks........................................................................................................  4 sets
+LINE input terminal
+RCA pin jacks......................................................................................................... 4 sets
+MIC1 input terminal (XLR / TRS)
+XLR connector & 1/4” TRS jack ...............................................................................1 set
+Power supply..............48 V / 10 mA or less
+MIC2 input terminal (TRS)
+1/4” TRS jack ...........................................................................................................1 set
+RETURN input terminals (TS)
+1/4” TS jack..............................................................................................................1 set
+DIGITAL IN coaxial input terminal
+RCA pin jacks......................................................................................................... 4 sets
+MASTER output terminal
+XLR connector .........................................................................................................1 set
+RCA pin jacks...........................................................................................................1 set
+
+
+===== PDF PAGE 91 =====
+91
+Specifications
+BOOTH output terminal (TRS)
+1/4” TRS jack ...........................................................................................................1 set
+REC OUT output terminal
+RCA pin jacks...........................................................................................................1 set
+SEND output terminal (TS)
+1/4” TS jack..............................................................................................................1 set
+DIGITAL MASTER OUT coaxial output terminal
+RCA pin jacks...........................................................................................................1 set
+PHONES output terminal
+1/4” stereo jack....................................................................................................... 2 sets
+3.5 mm stereo mini-jack......................................................................................... 2 sets
+USB terminal
+USB Type-A..............................................................................................................1 set
+Power supply..................5 V / 2.1 A or less
+USB Type-B / USB Type-C..................................................................................... 2 sets
+LINK terminal
+LAN terminal (100BASE-TX)....................................................................................1 set
+Wireless LAN section
+Supported standards........................................................................... IEEE 802.11 a/b/g/n/ac
+Frequency band used ................................................................................... 2.4 GHz / 5 GHz
+Bluetooth section
+Wireless system........................................................................................... Bluetooth Ver.5.0
+Maximum transmission distance...........Approximately 10 m* in unobstructed circumstances
+Frequency band used .................................................................................................2.4 GHz
+Modulation method ....................................... FH-SS (Frequency Hopping Spread Spectrum)
+Compatible Codecs................................................................................................. SBC, AAC
+* Transmission distances are a guideline. Transmission distance may change depending on 
+the surrounding environment.
+The specifications and design of this product are subject to change without notice.
+
+
+===== PDF PAGE 92 =====
+92
+Specifications
+Block diagram
+
+
+===== PDF PAGE 93 =====
+93
+Specifications
+MULTII/O
+MULTII/O
+MULTII/O
+CUE A/B 
+ON/OFF
+MULTI I/O
+CH 
+SELECT
+CUE A CHx
++
++
++
+EQ / ISO 
+CHx
+BEAT FX
+CHx
+SOUND 
+COLOR FX
+CH䡔
+INPUT 
+SELECT
+TRIM
+PHONO
+LINE
+DIGITAL
+USBA
+USBB
+BLUETOOTH
+RETURN
+USB mobile device
+CLIP CHx
+DETECTCHxBPM
+86%䠖㻌&RQWURO 7RQH&+[
+BEAT FX
+CHx
+LEVEL METER CHx
+MULTI I/O䠖㻌RETURNCHx
+CUE A/B
+CHx
+CUE B CHx
+CH FADER
+Thru
+A
+B
+Crossfader
+CROSSFADER
+ASSIGN switch
+USB:FX SEND CHx
+BEAT FX
+CHx
+USB:FX RETURN CHx
+USB䠖POST CHx FADER
+DETECT 
+MASTER
+BPM
+MULTI I/O䠖SENDMASTER
+MULTI I/O䠖RETURNMASTER
+BEAT FX
+MASTER
+TALKOVER
+BALANCE
+MIC TO 
+BOOTH 
+ATT.
+MIC TO
+BOOTH 
+PEAK 
+BOOTH 
+MONO/
+STEREO
+BOOTH 
+BOOTH ATT.
+BOOTH OUT
+86%䠖'-05(&
+CUE A MASTER
+CUE B MASTER
+CUE 
+MASTER
+MASTER LEVEL
+MASTER 
+MONO/
+STEREO
+DIGITAL 
+REFERENC(
+DIGITAL 
+MONO/
+STEREO
+DIGITAL  
+PEAK 
+LIMITER
+MASTEROUT
+DIGITALMASTER OUT
+MASTER 
+PEAK 
+LIMITER
+MASTERATT.
+LEVEL METER MASTER
+CLIP MASTER
+REC OUT
+MIC 1
+MIC 2
+LOW 
+CUT 
+MIC EQ
+MIC ON/OFF
+MULTI I/O䠖SEND MIC
+MULTI I/O䠖RETURN MIC
+DETECTMIC BPM
+MIC 
+LEVEL 
+MIC to BOOTH
+USB䠖MIC
+MIC TO
+MASTER 
+PEAK 
+MULTI I/O : SENDMASTER
+MULTI I/O : SENDCHx
+MULTI I/O : SEND MIC
+MULTI I/O
+CH 
+SELECT
+SEND
+MULTI I/O䠖SEND
+MULTI I/O(SEND)
+MULTI I/O䠖RETURN MASTER
+MULTI I/O䠖RETURN
+MULTI I/O (RETURN)
+HEADPHONES A/B
+CUE A/B CHx
+CUE A/B LINK
+CUE A/B 
++
+MONO SPLIT/STEREO
+MIXING
+LEVEL
+HEADPHONES A/B OUT
+USB 1/2 Output
+USB䠖Pre CHx Fader
+USB䠖MIC
+USB䠖CROSSFADER B
+USB B OUT
+USB A OUT
+USBOUTPUT 
+LEVEL
+INSERT 
+212))
+USB䠖CROSSFADER A/B
+CH1-4
+USB䠖PostCHx Fader
+USB䠖CROSSFADER A
+BEAT FX
+MIC
+BOOTH EQ
+86%䠖0,; 5(& 287 ZLWK 0,&
+TALKOVER ON/OFF
+(INSERT)
+MULTI I/O䠖SEND CHx
+MULTI I/O䠖RETURN CHx
+MULTI I/O䠖RETURN MIC
+(INSERT)
+RETURN
+to CHx INPUT
+OUTPUT
+SELECT
+(EXTERNAL)
+(EXTERNAL)
+SOUND 
+COLOR FX
+SOUND 
+COLOR FX
+DETECT
+MULTII/O
+MULTI I/O䠖SEND 
+BEAT FX
+CROSSFADER
++
+MICFX
+MIC
+REVERB
+MULTI I/O䠖RETURN 
+USB䠖Control Tone CHx
+USB䠖Pre CHx Fader
+USB䠖MIC
+USB䠖CROSSFADERB
+USB B OUT
+USB A OUT
+USBOUTPUT 
+LEVEL
+USB䠖Post CHxFader
+USB䠖CROSSFADER A
+USB䠖MIX (REC OUT with MIC)
+OUTPUT
+SELECT
+USB䠖MIX (REC OUT without MIC)
+USB3/4,5/6,7/8,9/10Output
+USB䠖MIX (REC OUT without MIC)
+USB䠖MIX(REC OUT with MIC)
+USB䠖PRE CHx FADER
+MIC to BOOTH
+MIC to MASTER
+MIC to MASTER
+86%䠖0,; 5(& 287ZLWKRXW 0,&
+TALKOVER ON/OFF
+LEVEL METER BOOTH (for App)
+86%䠖'-05(&ZLWKRXW 0,&
+REC OUT (without MIC)
+MUTE WHEN MIC ON
+MUTE WHEN MIC ON
+0,&725(&287(;&/8'(0,&
+SOUNDCHECK
+BOOTH SOUNDCHECK
+MASTER SOUNDCHECK
+DIGITAL SOUNDCHECK
+BOOTH ATT.
+BOOTH 
+MASTER LEVEL
+MASTERATT.
+DIGITAL 
+REFERENC(
+NOISE
+STEREO
+VOLUME
+%227+ 6281'&+(&.
+MASTER SOUND CHECK
+DIGITAL SOUND CHECK
+USB11/12Output
+USB:FX SEND CHx
+USB A OUT
+USB B OUT
+6,1(
+
+
+===== PDF PAGE 94 =====
+94
+Additional information
+Troubleshooting
+If you think something is wrong with the unit, check the information below and refer to the
+[FAQ] for the DJM-A9 at the URL below.
+pioneerdj.com/support/
+• Inspect devices connected with the unit.
+• The unit may restore proper operation after you turn it off and on.
+If the problems continue, read the “Precautions for Use” and consult an authorized service 
+company or your dealer.
+Power
+The unit doesn’t turn on.
+• Check if the power cord is connected properly.
+• Press the  button on the rear of the unit to turn it on.
+Audio output
+The unit doesn’t output sound. The volume is low.
+• Check if the input selector switch is set properly.
+• Check all cables are connected properly.
+• Wipe any dust or dirt off the terminals and plugs before connecting them.
+• Change the [ATT.] setting for [MASTER OUT] in the Utility settings.
+The unit doesn’t output the digital sound.
+• Make sure the specified [SAMPLING RATE] setting for [DIGITAL MASTER OUT] in the 
+Utility settings is supported by the connected devices.
+
+
+===== PDF PAGE 95 =====
+95
+Additional information
+Sound is distorted.
+For the master sound:
+• Adjust the [LEVEL] knob in the MASTER section so the master level indicator lights up with 
+the peak level at around [0] dB.
+• Set [ATT.] for [MASTER OUT] to a setting between [-3dB] and [-12dB] in the Utility 
+settings.
+For the channel input sound:
+• Adjust the [TRIM] knob so the channel level indicator lights up with the peak level at around 
+[0] dB.
+The crossfader doesn’t work.
+• Check if the [CROSSFADER ASSIGN (A, THRU, B)] selector switch is set properly.
+Effects
+BEAT FX doesn’t work.
+• Make sure the [FX FREQUENCY (HI, MID, LOW)] button is lit for the band you want to add 
+the effect to.
+Sound Color FX doesn’t work.
+• Check if the [COLOR] knob is set properly.
+• Check if the [PARAMETER] knob is set properly.
+Mic FX doesn’t work.
+• Check if the [MIC FX PARAMETER] knob is set properly.
+An external effects unit or a mobile device connected to MULTI 
+I/O doesn’t work.
+• Select a channel to add the effect to with the [CH SELECT] button.
+• Make sure any external effects unit is connected to the [SEND] and [RETURN] terminals 
+properly.
+• Make sure the mobile device is properly connected to the mobile device connection 
+terminal (USB port). Launch the FX application on the mobile device.
+• Make sure the [INSERT SOURCE] selector switch is set properly.
+• Check if the [INSERT] button is turned on.
+
+
+===== PDF PAGE 96 =====
+96
+Additional information
+Sound from an external effects unit is distorted.
+• Make sure the volume for the external effects unit is set properly.
+The tempo (BPM) of a track can’t be measured.
+The measured tempo is wrong.
+• Adjust the [TRIM] knob so the channel level indicator lights up with the peak level at around 
+[0] dB.
+• Tempo (BPM) can’t be measured for some tracks. Use the [TAP] button to manually set the 
+tempo for those tracks.
+The measured tempo (BPM) differs from the value shown on 
+the information of the track.
+• The values don’t match when BPM measuring methods are different.
+MIDI
+You can’t control a MIDI device with the unit.
+• Press the [MIDI ON/OFF] button to turn MIDI on.
+• Assign this unit’s MIDI messages to the software. For details on assignment, refer to the 
+instruction manual for the software.
+Connections
+The unit isn’t recognized by the connected PC/Mac.
+The USB connection indicator is blinking slowly.
+• Install the dedicated software on the PC/Mac. If the software is already installed, reinstall it.
+Sound from the connected PC/Mac isn’t outputting from the 
+unit.
+• Make sure the PC/Mac is connected properly.
+• It’s recommended to connect this unit and a PC/Mac directly with a USB cable.
+• When using a USB hub, use a product recommended by the manufacturer of your PC/Mac.
+• We don’t guarantee the operation of all USB hubs.
+
+
+===== PDF PAGE 97 =====
+97
+Additional information
+• Select this unit in the audio output device settings in the software. For details, refer to the 
+instruction manual for the software.
+• Set the input selector switch to [
+A] or [
+B].
+Sound is distorted when a turntable is connected to the 
+[PHONO] terminals on the unit.
+The status of the channel level indicator doesn’t change when 
+you turn the [TRIM] knob.
+• Check if the connected turntable has a built-in phono equalizer (if it does, connect the 
+turntable to the [LINE] terminals).
+• If the turntable has a PHONO/LINE selector switch, set it to PHONO.
+• If the audio interface for PC/Mac, which is connected between the unit and the turntable, is 
+a line-level device, connect the turntable to the [LINE] terminals.
+Bluetooth
+The unit can’t connect with a Bluetooth device.
+• Turn on the unit and the Bluetooth device again, and perform the pairing procedure.
+Sound is interrupted.
+• If the unit and the Bluetooth device is placed far apart, bring them closer together.
+• If there is an obstacle between this unit and the Bluetooth device, remove it.
+Wireless LAN (Wi-Fi)
+The unit can’t connect to a Wireless LAN using WPS.
+• Check if the wireless router (access point) supports WPS. If it doesn’t, try other connection 
+methods.
+The unit can’t connect to an access point.
+• Check if the network (SSID), password, and encryption method are set correctly. Match the 
+settings on this unit with the network settings.
+
+
+===== PDF PAGE 98 =====
+98
+Additional information
+The access point can’t be found.
+• If the unit and the wireless router (access point) are placed far apart, bring them closer 
+together.
+• If there is an obstacle between this unit and the wireless router (access point), remove it.
+LCD display
+• Small black or shining points may appear on the LCD display. This is a phenomenon 
+inherent to LCD displays and not a malfunction.
+• When using the unit in cold places, the LCD display may be dark for a while after the power 
+is turned on. Normal brightness will restore after a while.
+• When the LCD display is exposed to direct sunlight, the light will reflect off it, making it 
+difficult to see. Block the direct sunlight to improve visibility of the display.
+Cleaning
+Wipe with a dry soft cloth.
+• Do not use organic solvents, acids or alkalis for cleaning.
+
+
+===== PDF PAGE 99 =====
+99
+Additional information
+Trademarks and registered trademarks
+• rekordbox™ is a trademark or registered trademark of AlphaTheta Corporation.
+• PRO DJ LINK™ is a trademark or registered trademark of AlphaTheta Corporation.
+• Mac, macOS and Finder are registered trademarks of Apple Inc. in the U.S. and other 
+countries.
+• Windows is a registered trademark of Microsoft Corporation in the U.S. and other 
+countries.
+• ASIO is a trademark or registered trademark of Steinberg Media Technologies GmbH.
+• The Bluetooth® word mark and logos are registered trademarks owned by the Bluetooth 
+SIG, Inc. and any use of such marks by AlphaTheta Corporation is under license. Other 
+trademarks and trade names are those of their respective owners.
+• Wi-Fi is a registered trademark of the Wi-Fi Alliance.
+Other product, technology and company names, etc. mentioned herein are trademarks or 
+registered trademarks of their respective owners.
+About using MP3 files
+This product has been licensed for nonprofit use. This product has not been licensed for 
+commercial purposes (for profit-making use), such as broadcasting (terrestrial, satellite, 
+cable or other types of broadcasting), streaming on the Internet, Intranet (a corporate 
+network) or other types of networks or distributing of electronic information (online digital 
+music distribution service). You need to acquire the corresponding licenses for such 
+uses. For details, see http://www.mp3licensing.com.
+
+
+===== PDF PAGE 100 =====
+100
+Additional information
+Software license notice
+The licenses for the open source software used on this product are shown below. For 
+accuracy purposes, here we have included the original texts (in English).
+Copyright © 2010 Texas Instruments Incorporated - http://www.ti.com/
+Redistribution and use in source and binary forms, with or without modification, are permitted 
+provided that the following conditions are met:
+Redistributions of source code must retain the above copyright notice, this list of conditions 
+and the following disclaimer.
+Redistributions in binary form must reproduce the above copyright notice, this list of 
+conditions and the following disclaimer in the documentation and/or other materials provided 
+with the distribution.
+Neither the name of Texas Instruments Incorporated nor the names of its contributors may be 
+used to endorse or promote products derived from this software without specific prior written 
+permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+«AS IS» AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A 
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+===== PDF PAGE 101 =====
+101
+Additional information
+– The curl license
+This software includes open source software codes licensed under the Curl license.
+COPYRIGHT AND PERMISSION NOTICE
+Copyright (c) 1996 - 2021, Daniel Stenberg, daniel@haxx.se, and many contributors, see the 
+THANKS file.
+All rights reserved.
+Permission to use, copy, modify, and distribute this software for any purpose with or without 
+fee is hereby granted, provided that the above copyright notice and this permission notice 
+appear in all copies.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+NONINFRINGEMENT OF THIRD PARTY RIGHTS. IN NO EVENT SHALL THE AUTHORS 
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+DEALINGS IN THE SOFTWARE.
+Except as contained in this notice, the name of a copyright holder shall not be used in 
+advertising or otherwise to promote the sale, use or other dealings in this Software without 
+prior written authorization of the copyright holder.
+– PicoJSON - a C++ JSON parser / serializer
+This software includes open source software codes licensed under BSD 2-Clause “Simplified” 
+License.
+Copyright 2009-2010 Cybozu Labs, Inc.
+Copyright 2011-2014 Kazuho Oku
+All rights reserved.
+Redistribution and use in source and binary forms, with or without modification, are permitted 
+provided that the following conditions are met:
+
+
+===== PDF PAGE 102 =====
+102
+Additional information
+1.
+Redistributions of source code must retain the above copyright notice, this list of 
+conditions and the following disclaimer.
+2.
+Redistributions in binary form must reproduce the above copyright notice, this list of 
+conditions and the following disclaimer in the documentation and/or other materials 
+provided with the distribution.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+“AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED 
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A 
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+Copyright (c) 1999-2007, The Board of Trustees of the University of Illinois
+All Rights Reserved.
+Iperf performance test
+Mark Gates
+Ajay Tirumala
+Jim Ferguson
+Jon Dugan
+Feng Qin
+Kevin Gibbs
+John Estabrook
+National Laboratory for Applied Network Research 
+National Center for Supercomputing Applications 
+University of Illinois at Urbana-Champaign 
+http://www.ncsa.uiuc.edu
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+(Iperf) and associated documentation files (the "Software"), to deal in the Software without 
+restriction, including without limitation the rights to use, copy, modify, merge, publish, 
+distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the 
+Software is furnished to do so, subject to the following conditions:
+
+
+===== PDF PAGE 103 =====
+103
+Additional information
+Redistributions of source code must retain the above copyright notice, this list of conditions 
+and the following disclaimers.
+Redistributions in binary form must reproduce the above copyright notice, this list of 
+conditions and the following disclaimers in the documentation and/or other materials provided 
+with the distribution.
+Neither the names of the University of Illinois, NCSA, nor the names of its contributors may 
+be used to endorse or promote products derived from this Software without specific prior 
+written permission. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF 
+ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+NONINFRINGEMENT. IN NO EVENT SHALL THE CONTIBUTORS OR COPYRIGHT 
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN 
+AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+SOFTWARE.
+LICENSE ISSUES
+==============
+The OpenSSL toolkit stays under a double license, i.e. both the conditions of the OpenSSL 
+License and the original SSLeay license apply to the toolkit.
+See below for the actual license texts.
+OpenSSL License
+---------------
+====================================================================
+Copyright (c) 1998-2019 The OpenSSL Project.  All rights reserved.
+Redistribution and use in source and binary forms, with or without modification, are permitted 
+provided that the following conditions are met:
+1.
+Redistributions of source code must retain the above copyright notice, this list of 
+conditions and the following disclaimer.
+2.
+Redistributions in binary form must reproduce the above copyright notice, this list of 
+conditions and the following disclaimer in the documentation and/or other materials 
+provided with the distribution.
+
+
+===== PDF PAGE 104 =====
+104
+Additional information
+3.
+All advertising materials mentioning features or use of this software must display the 
+following acknowledgment:
+“This product includes software developed by the OpenSSL Project for use in the 
+OpenSSL Toolkit. (http://www.openssl.org/)"
+4.
+The names “OpenSSL Toolkit” and “OpenSSL Project” must not be used to endorse or 
+promote products derived from this software without prior written permission. For written 
+permission, please contact openssl-core@openssl.org.
+5.
+Products derived from this software may not be called “OpenSSL” nor may “OpenSSL” 
+appear in their names without prior written permission of the OpenSSL Project.
+6.
+Redistributions of any form whatsoever must retain the following acknowledgment:
+“This product includes software developed by the OpenSSL Project for use in the 
+OpenSSL Toolkit (http://www.openssl.org/)”
+THIS SOFTWARE IS PROVIDED BY THE OpenSSL PROJECT ``AS IS'' AND ANY 
+EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
+PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE OpenSSL PROJECT OR ITS 
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY 
+OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+====================================================================
+This product includes cryptographic software written by Eric Young (eay@cryptsoft.com).
+This product includes software written by Tim Hudson (tjh@cryptsoft.com).
+Original SSLeay License
+-----------------------
+Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+All rights reserved.
+This package is an SSL implementation written by Eric Young (eay@cryptsoft.com).
+The implementation was written so as to conform with Netscapes SSL.
+This library is free for commercial and non-commercial use as long as the following conditions 
+are aheared to.  The following conditions apply to all code found in this distribution, be it the 
+
+
+===== PDF PAGE 105 =====
+105
+Additional information
+RC4, RSA, lhash, DES, etc., code; not just the SSL code. The SSL documentation included 
+with this distribution is covered by the same copyright terms except that the holder is Tim 
+Hudson (tjh@cryptsoft.com).
+Copyright remains Eric Young's, and as such any Copyright notices in the code are not to be 
+removed.
+If this package is used in a product, Eric Young should be given attribution as the author of 
+the parts of the library used. This can be in the form of a textual message at program startup 
+or in documentation (online or textual) provided with the package.
+Redistribution and use in source and binary forms, with or without modification, are permitted 
+provided that the following conditions are met:
+1.
+Redistributions of source code must retain the copyright notice, this list of conditions and 
+the following disclaimer.
+2.
+Redistributions in binary form must reproduce the above copyright notice, this list of 
+conditions and the following disclaimer in the documentation and/or other materials 
+provided with the distribution.
+3.
+All advertising materials mentioning features or use of this software must display the 
+following acknowledgement:
+“This product includes cryptographic software written by Eric Young 
+(eay@cryptsoft.com)”
+The word 'cryptographic' can be left out if the rouines from the library being used are not 
+cryptographic related :-).
+4.
+If you include any Windows specific code (or a derivative thereof) from the apps directory 
+(application code) you must include an acknowledgement:
+“This product includes software written by Tim Hudson (tjh@cryptsoft.com)”
+THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND ANY EXPRESS OR 
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR 
+BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR 
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+===== PDF PAGE 106 =====
+106
+Additional information
+The licence and distribution terms for any publically available version or derivative of this 
+code cannot be changed.  i.e. this code cannot simply be copied and put under another 
+distribution licence [including the GNU Public Licence.]
+wpa_supplicant and hostapd
+--------------------------
+Copyright (c) 2002-2019, Jouni Malinen <j@w1.fi> and contributors
+All Rights Reserved.
+See the README file for the current license terms.
+This software was previously distributed under BSD/GPL v2 dual license terms that allowed 
+either of those license alternatives to be selected. As of February 11, 2012, the project has 
+chosen to use only the BSD license option for future distribution. As such, the GPL v2 license 
+option is no longer used. It should be noted that the BSD license option (the one with 
+advertisement clause removed) is compatible with GPL and as such, does not prevent use of 
+this software in projects that use GPL.
+Some of the files may still include pointers to GPL version 2 license terms. However, such 
+copyright and license notifications are maintained only for attribution purposes and any 
+distribution of this software after February 11, 2012 is no longer under the GPL v2 option.
+Apache
+Copyright (c) 2009-2019 ARM Limited. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+Licensed under the Apache License, Version 2.0 (the License); you may not use this file 
+except in compliance with the License.
+You may obtain a copy of the License at
+www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under the 
+License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF 
+ANY KIND, either express or implied.
+
+
+===== PDF PAGE 107 =====
+107
+Additional information
+See the License for the specific language governing permissions and limitations under the 
+License.
+BSD
+The BSD-3-Clause License
+Copyright (c) 2015, Freescale Semiconductor, Inc.
+Copyright 2016-2020 NXP
+All rights reserved.
+Redistribution and use in source and binary forms, with or without modification, are permitted
+provided that the following conditions are met:
+1.
+Redistributions of source code must retain the above copyright notice, this list of 
+conditions and the following disclaimer.
+2.
+Redistributions in binary form must reproduce the above copyright notice, this list of 
+conditions and the following disclaimer in the documentation and/or other materials 
+provided with the distribution.
+3.
+Neither the name of the copyright holder nor the names of its contributors may be used to 
+endorse or promote products derived from this software without specific prior written 
+permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED 
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A 
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+===== PDF PAGE 108 =====
+108
+Additional information
+Cautions on copyrights
+Recordings you have made are for your personal enjoyment and according to copyright laws 
+may not be used without the consent of the copyright holder.
+• Music recorded from CDs, etc., is protected by the copyright laws of individual countries 
+and by international treaties. It is the full responsibility of the person who has recorded the 
+music to ensure that it is used legally.
+• When handling music downloaded from the Internet, etc., it is the full responsibility of the 
+person who has downloaded the music to ensure that it is used in accordance with the 
+contract concluded with the download site.
+ 
+The specifications and design of this product are subject to change without notice.
+© 2022 AlphaTheta Corporation. All rights reserved.
+<DRI1785-B>

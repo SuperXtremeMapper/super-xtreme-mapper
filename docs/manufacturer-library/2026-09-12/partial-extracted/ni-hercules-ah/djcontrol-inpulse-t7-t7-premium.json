@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Hercules",
+  "model": "DJControl Inpulse T7 / T7 Premium",
+  "status": "partial-extraction",
+  "coverage_state": "documentation-only",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "local_file": "ni-hercules-ah/djcontrolinpulset7/support.html",
+      "url": "https://support.hercules.com/en/product/djcontrolinpulset7-en/",
+      "sha256": "8c4373fd2873fc529b2458b5862fcede0adb67e47aa8b515b18b56aa56862f14",
+      "id": "s1"
+    },
+    {
+      "local_file": "ni-hercules-ah/djcontrolinpulset7/manual.pdf",
+      "url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse_T7/DJC_INPULSE_T7_&_PREMIUM_USER_MANUAL_EN_FR_DE_DU_IT_ES_PT_RU_CS_TU_PL_SV_FI_SL_HU_AR_HE_AR_JP_ZH_KO.pdf",
+      "sha256": "6c45001093e3836aee3415f91067ee115bd309fc12531d663f05c5017c27e38e",
+      "id": "s2"
+    },
+    {
+      "local_file": "ni-hercules-ah/djcontrolinpulset7/djuced-midi.html",
+      "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-t7-mapping-and-manual/",
+      "sha256": "4fb886791ecc15f341fd93eafec98fcfcf3605b9a881174c22fcaaac198b845f",
+      "id": "s3"
+    },
+    {
+      "local_file": "ni-hercules-ah/djcontrolinpulset7/djuced-midi.html",
+      "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-t7-manuel-et-controles-midi/",
+      "sha256": "4fb886791ecc15f341fd93eafec98fcfcf3605b9a881174c22fcaaac198b845f",
+      "id": "s4"
+    }
+  ],
+  "scope": "Documentation-only extraction of the archived owner manual and support material. No model-specific numeric MIDI addresses, channels, value encodings or LED receive assignments are established; native/software control descriptions are not wire-message evidence.",
+  "bindings": [],
+  "setup_notes": [
+    "Connect the supplied power adapter and cable, then press POWER after connecting USB. The shared manual covers T7 and T7 Premium; no distinct Premium MIDI map is established.",
+    "Connect the controller to the computer using its USB cable. Connect speakers to the master/speaker outputs and headphones to the headphone output as described in the installation section.",
+    "The control-panel MIDI controls test shows a green DIN icon when it receives a command from a tested control; this is a reception check, not a published address table."
+  ],
+  "missing_information": [
+    "Model-specific control-to-Note/CC addresses and MIDI channel assignments.",
+    "Shift, pad-mode and deck-layer wire-message differences.",
+    "Jog-wheel/encoder direction, resolution and acceleration encoding; button press/release values.",
+    "LED, pad-color and meter receive addresses and value semantics.",
+    "Any required generic MIDI mode or firmware-specific protocol setup beyond the documented software workflow."
+  ],
+  "issues": [
+    {
+      "id": "setup-provenance",
+      "severity": "scope",
+      "description": "The setup notes describe the owner-manual connection workflow; they do not establish a generic MIDI mode or numeric mapping.",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 47; Installation / Connections"
+        }
+      ],
+      "excluded_bindings": []
+    },
+    {
+      "id": "no-wire-address-chart",
+      "severity": "scope",
+      "description": "The retained control descriptions identify software actions and pad modes, not per-control MIDI status/address/value tables. No Note/CC bindings can be normalized from these descriptions.",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF pages 14, 28, 55, 56, 79, 84; English hardware/control and operating descriptions"
+        },
+        {
+          "source_id": "s4",
+          "locator": "Controls > Mixer Controls, Decks Controls and Pads Modes; software action mapping"
+        }
+      ],
+      "excluded_bindings": [
+        "All input controls and all LED/output controls pending manufacturer wire-address documentation"
+      ]
+    },
+    {
+      "id": "midi-test-not-protocol",
+      "severity": "scope",
+      "description": "A green DIN icon confirms reception only and does not identify status, channel, address or value bytes.",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 84 / printed page 83; MIDI controls test"
+        }
+      ],
+      "excluded_bindings": []
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "s1",
+      "file": "ni-hercules-ah/raw/djcontrol-inpulse-t7-t7-premium-s1.txt",
+      "extraction_method": "Complete archived HTML-to-text extraction copied; unpaginated document marker; original HTML remains authoritative"
+    },
+    {
+      "source_id": "s2",
+      "file": "ni-hercules-ah/raw/djcontrol-inpulse-t7-t7-premium-s2.txt",
+      "extraction_method": "pdftotext -layout; complete PDF retained as page-addressed text; no OCR or inferred labels"
+    },
+    {
+      "source_id": "s3",
+      "file": "ni-hercules-ah/raw/djcontrol-inpulse-t7-t7-premium-s3.txt",
+      "extraction_method": "Complete archived HTML-to-text extraction copied; unpaginated document marker; original HTML remains authoritative"
+    },
+    {
+      "source_id": "s4",
+      "file": "ni-hercules-ah/raw/djcontrol-inpulse-t7-t7-premium-s4.txt",
+      "extraction_method": "Complete archived HTML-to-text extraction copied; unpaginated document marker; original HTML remains authoritative"
+    }
+  ]
+}

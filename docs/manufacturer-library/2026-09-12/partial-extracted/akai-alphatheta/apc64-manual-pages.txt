@@ -1,0 +1,2490 @@
+
+===== PDF PAGE 1 =====
+User Guide
+      English
+
+
+
+
+ Manual Version 1.0.0
+
+===== PDF PAGE 2 =====
+                                                                Table of Contents
+
+
+    1.0     Introduction ...................................... 3                     5.3         Step Sequencer ................................ 30
+                                                                                          5.3.1        Configuration ...................................... 30
+      1.1         Box Contents ...................................... 3                   5.3.2        Note Input Pads .................................. 32
+                                                                                          5.3.3        Step Pads ............................................. 33
+      1.2         Support................................................ 3               5.3.4        Modifer Pads ....................................... 34
+                                                                                          5.3.5        Recording Sequences ........................ 35
+      1.3         About This User Guide ...................... 3
+                                                                                          5.3.6        Editing Sequences .............................. 37
+                                                                                          5.3.7        Send to Clip ......................................... 38
+
+    2.0     Setup ................................................. 4
+                                                                                      5.4         Project Mode..................................... 39
+                                                                                          5.4.1        Managing Projects .............................. 41
+
+    3.0     Features............................................. 5
+                                                                                      5.5         Touch Faders..................................... 42
+
+      3.1         Top Panel ............................................ 5
+                                                                                      5.6         Global Menu ..................................... 46
+
+      3.2         Rear Panel ......................................... 11
+                                                                                      5.7         Custom Mode ................................... 50
+                                                                                          5.7.1 Using the APC64 Project Editor
+                                                                                          Software ............................................................. 50
+    4.0     Tutorial ............................................ 12                          5.7.1.1 Download and Installation ....................... 50
+                                                                                              5.7.1.2 Setup and Overview ................................. 51
+                                                                                              5.7.1.3 Editing ........................................................ 52
+    5.0     Operation ........................................ 18                             5.7.1.4 Managing Presets ..................................... 58
+                                                                                              5.7.1.5 Global Settings .......................................... 60
+      5.1         Session View ..................................... 19
+          5.1.1      Overview Mode .................................. 20              5.8         CV Operation .................................... 62
+          5.1.2      Launching Clips .................................. 21                5.8.1        CV Connection Examples .................. 63
+          5.1.3      Recording Clips .................................. 22                    5.8.1.1 Standalone Connections ......................... 63
+
+            5.1.3.1 Fixed Length ............................................. 23             5.8.1.2 Connections with Ableton Live ............... 64
+
+          5.1.4      Quantization ........................................ 24
+          5.1.3      Managing Clips ................................... 25
+                                                                                    6.0       Appendix ......................................... 65
+
+      5.2         Note Mode and Chord Mode ......... 26
+                                                                                      6.1         Technical Specifications .................. 65
+          5.2.1      Configuration ...................................... 26
+          5.2.2      Playing Notes and Chords ................ 29
+                                                                                      6.2         Trademarks & Licenses .................... 65
+          5.2.3      Drum Tracks in Note Mode ............... 29
+
+
+
+
+2
+
+===== PDF PAGE 3 =====
+1.0 Introduction
+
+1.1     Box Contents
+
+APC64
+USB-C® Cable
+USB-C®-to-USB-A Cable
+3 1/8”-to-5-pin MIDI Adapters
+Software Download Card
+Quickstart Guide
+Safety & Warranty Manual
+
+
+
+1.2     Support
+
+For the latest information about this product (documentation, technical specifications, firmware updates, etc.),
+visit akaipro.com.
+For additional product support, visit akaipro.com/support.
+For product registration and account access, visit profile.inmusicbrands.com.
+
+
+
+1.3     About This User Guide
+
+This manual should help you get familiar with using your APC64. For consistency, the terminology throughout is
+based on the Ableton Live nomenclature. We also used specific formatting to indicate particular topics of
+significance:
+
+
+Important/Note/Tip: Important or helpful information on a given topic.
+
+
+Names of buttons, controls, parameters, settings, and other options are written in bold characters throughout the
+manual.
+    Examples: Press the CLIP STOP button to set the function of the Control Row.
+                Hold SHIFT and use the cursors to move the 8x8 focus by eight rows or columns at a time.
+                The display will show Sending… as it prepares the clip, and then Done! once it has completed.
+                If the configuration has been set to Show Non-Scale Notes, these will be unlit.
+
+
+Some parts of this manual refer to other relevant chapters or sections, which are cited in bold, italic blue
+characters. Click the text to skip immediately to that section.
+    Examples: See 5.1 Operation > Session View for more information.
+                When in 5.3 Step Sequencer mode, press this button to set the Note Modifer pads to control
+                Velocity.
+                Use the Clear button, as described in the following section.
+
+
+You can also click on certain images to jump to specific sections of the manual.
+
+
+
+                                                                                                               3
+
+===== PDF PAGE 4 =====
+2.0 Setup
+
+Important: From time to time, we may update APC64’s firmware to add exciting new features and improvements.
+Visit akaipro.com and go to the APC64 product page to check for available updates.
+
+
+1. Make sure you have downloaded and installed the latest version of Ableton Live (11 or newer) on your
+   computer. Then, open Ableton Live.
+2. Use the included USB cable to connect APC64's USB Port to an available USB 3.0 port on your computer
+   (powered on).
+    Note: If connecting to a USB hub, make sure a powered hub is used.
+3. In Ableton Live, open the Preferences menu.
+4. Click the Link/MIDI tab.
+5. Click an available Control Surface drop-down menu and select
+   APC64.
+6. Click an available Input drop-down menu and select APC64.
+7. Click an available Output drop-down menu and select APC64.
+8. The remainder of the MIDI port settings should automatically be
+   selected according to the image shown. If you are having issues,
+   ensure the settings are still set to these defaults.
+    Note: MPE should not be enabled with APC64.
+9. Close the Preferences window. You can now use APC64 with
+   Ableton Live.
+
+
+
+
+For an overview of APC64’s controls, proceed to the following 3.0 Features section.
+
+
+For a walkthrough of using APC64 with Ableton Live, proceed to the 4.0 Tutorial section.
+
+
+For a complete breakdown of all of APC64’s features and functions, proceed to the 5.0 Operation section.
+
+
+
+
+4
+
+===== PDF PAGE 5 =====
+3.0 Features
+
+Click on the picture to jump directly to the selected control.
+
+
+
+3.1     Top Panel
+
+
+
+
+A. SESSION VIEW / OVERVIEW: Press this button to cycle between Session View, which displays the clip matrix
+   on the Pad Grid, and Overview, which provides a snapshot of your entire project.
+    While in either Session View or Overview, you can press and hold this button to momentarily access the other
+    view. When you release this button, you will return to the previous view.
+    See 5.1 Operation > Session View for more information.
+
+B. NOTE MODE: Press this button to enable the Pad Grid to play configurable scales of MIDI notes.
+
+C. CHORD MODE: Press this button to enable the Pad Grid to play configurable MIDI Chords.
+    Note: For both NOTE MODE and CHORD MODE, press either button a second time, or press and hold
+    SHIFT and then press either button, to open Note and Chord Modes Configuration. You can also momentarily
+    view the Configuration mode by pressing and holding either button. When you release, you will return to
+    Note Mode or Chord Mode.
+    See 5.2 Operation > Note Mode and Chord Mode for more information.
+
+
+
+
+                                                                                                              5
+
+===== PDF PAGE 6 =====
+D. STEP SEQ: Press this button to enable the Pad Grid to function as a Step Sequencer.
+     Press this button a second time, or press and hold SHIFT and then press this button, to open the Step
+     Sequencer configuration. You can also momentarily view the configuration mode by pressing and holding
+     this button. When you release, you will return to the Step Sequencer.
+     See 5.3 Operation > Step Sequencer for more information.
+
+E. PROJECT: Press this button to view, save, and load APC64 projects, which contain step sequence patterns,
+   device parameters, and custom mode assignments.
+     See 5.4 Operation > Project Mode for more information.
+
+F. CUSTOM / GLOBAL: Press this button to open the custom control layout, where you can access modified
+   control functions assigned using the APC64 Project Editor Software. See 5.7 Operation > Custom Mode for
+   more information.
+     Press this button a second time to open the Global Menu. You can also momentarily view the Global Menu
+     by pressing and holding this button. When you release, you will return to Custom Mode. See 5.6 Operation
+     > Global Menu for more information.
+
+G. PLAY: Press this button to start or restart playback.
+     Press and hold SHIFT and this button to pause playback or resume playback from the paused point.
+
+H. STOP: Press this button to stop playback.
+     Double-press this button to stop playback and return to the start of the arrangement.
+
+I.   RECORD: Press this button to begin recording in Ableton Live.
+     Press SHIFT and this button to enable MIDI overdub recording in Ableton Live.
+
+6
+
+===== PDF PAGE 7 =====
+J. Pad Grid: This 8x8 grid of LED backlit touch-sensitive pads displays active clips or notes based on the mode
+   selected. The columns represent tracks, and the rows represent scenes. Use the cursors to change the 8x8
+   view in focus when using Ableton Live, represented by a red outline.
+
+K. Scene LAUNCH Buttons: Press these buttons to launch the adjacent scene.
+   Press and hold SHIFT and press the Scene Launch button with the following written below to access
+   additional features:
+       VELOCITY: When in 5.3 Step Sequencer mode, press this button to set the Note Modifer pads to control
+       Velocity.
+       PROBABILITY: When in 5.3 Step Sequencer mode, press this button to set the Note Modifer pads to
+       control Probability.
+       MUTATE: When in 5.3 Step Sequencer mode, press this button to set the Note Modifer pads to control
+       the Mutate function.
+       SAVE: Press this button to save the device settings to the currently selected Project.
+       SAVE TO…: Press this button to open the Save As dialog on the display to save the device settings to a
+       Project slot.
+       Note: Saved projects are for internal device settings only. Ableton Live projects must be saved from the
+       software. See 5.4 Operation > Project Mode for more information.
+       STOP ALL: Press this button to stop all playing clips in all tracks.
+
+
+
+
+                                                                                                             7
+
+===== PDF PAGE 8 =====
+L. Touch Faders: Slide your finger up and down these touch-sensitive strips to control selected session
+   parameters. Touching a spot on the fader will set the parameter to that level immediately. The current fader
+   position is represented by a white dot in the LEDs next to each fader. When automation has been recorded
+   to a touch fader, the white dot will turn red. The remaining LEDs will be lit according to the track color and
+   the current position of the parameter relative to its default value.
+    Press and hold SHIFT and touch a fader to finely adjust the selected parameter.
+
+M. Touch Fader Controls: Use these buttons to set the control parameter for the Touch Faders:
+       DEVICE: Device controls. While holding this button, use the up and down cursors to cycle between
+       banks of controls in a device. Use the left and right cursors to switch focus between multiple devices on
+       one track.
+       VOLUME: Track volume.
+       PAN: Track stereo panning.
+       SEND: Track Sends. Press this button again to cycle between Send channels when more than one is in use.
+       CHANNEL STRIP: Combination of Volume, Pan, and Sends for the selected track.
+       OFF: Disables the touch faders.
+    See 5.5 Operation > Touch Faders for more information.
+
+N. TEMPO: Press this button in time with the desired tempo to enter a new tempo.
+    Press and hold to view session tempo on the display and then use the encoder to adjust it.
+    Press and hold SHIFT and this button and then use the encoder to adjust the SWING percentage of the
+    internal Step Sequencer, as shown on the display.
+
+8
+
+===== PDF PAGE 9 =====
+O. CLEAR: Press and hold this button and then press a pad, scene launch button, step, touch fader, or project
+   to clear it.
+
+P. DUPLICATE: Press and hold this button and then press a pad containing a clip to duplicate it into the next
+   available clip slot.
+   Press and hold SHIFT, then press and hold this button and press a pad containing a clip to DOUBLE the
+   length of the selected clip.
+
+Q. FIXED LENGTH: Press to enable fixed length recording. This will stop recording once the set length has been
+   reached.
+   Press and hold this button and then use the encoder to change the fixed length recording size, as shown in
+   the display. See 5.1.3.1 Operation > Recording Clips > Fixed Length for more information.
+
+R. QUANTIZE: Press and hold this button and then press a pad containing a clip to apply quantization to its
+   notes.
+   Press and hold this button and then turn the encoder to set the quantization value, as shown in the display.
+   Press and hold SHIFT and then press this button to enable or disable RECORD Quantization. When enabled,
+   notes will be quantized to the set value as you record.
+   Note: Record Quantization values must be set in Ableton Live; the SHIFT functionality only turns Record
+   Quantization on and off.
+
+S. UNDO: Press to undo the last action performed in Ableton Live.
+   Press SHIFT and this button to REDO the last action.
+
+
+                                                                                                              9
+
+===== PDF PAGE 10 =====
+T. SHIFT: Press and hold this button to access secondary button functions, printed below the buttons.
+
+U. Cursors: Use these directional buttons as a cursor to navigate tracks and scene banks on the Pad Grid, as
+   well as device parameters in DEVICE touch fader mode.
+
+V. Control Row Function Select: Press one of these four buttons to set the function of the Control Row buttons:
+        RECORD ARM: Arm the selected track for recording.
+        MUTE: Mute the selected track.
+        SOLO: Solo the selected track.
+        CLIP STOP: Stop clips in the selected track.
+
+W. Control Row: Press to perform selected Control Row Function on the corresponding track only.
+
+X. TRACK SELECT: Press to select the corresponding track.
+     Press and hold SHIFT and press these buttons to set the launch quantization value.
+
+Y. Encoder: Turn this knob to select options on the display screen and push it to select.
+     Note: When connected to Ableton Live, pressing this encoder will also enable or disable the metronome if
+     you are not in another editing menu.
+
+Z. Display: This screen shows track and device information from your Ableton Live session and information
+   about the device’s controls.
+
+
+
+10
+
+===== PDF PAGE 11 =====
+3.2    Rear Panel
+
+
+
+
+A. Power Switch: Use this switch to power APC64 on and off.
+
+B. USB Port: Connect the included USB cable here and connect the other end to your computer’s USB 3.0 port
+   to use APC64 with Ableton Live or send MIDI data over USB. You can also connect this port to a standard USB
+   power adapter (sold separately) to power the unit for standalone use.
+
+C. CV/Gate Outputs: Insert a 1/8” (3.5 mm) TS cable into one of eight outputs and connect to an external
+   device’s CV input to send CV/Gate signals from APC64 to the connected device. See 5.8 Operation > CV
+   Operation for more information.
+
+D. MIDI Input: Use the included 1/8” (3.5 mm)-to-MIDI adapter and a standard 5-pin MIDI cable (not included)
+   to connect APC64 to another MIDI controller.
+
+E. MIDI Outputs: Use the included 1/8” (3.5 mm)-to-MIDI adapter and a standard 5-pin MIDI cable (not
+   included) to connect to an external device to send MIDI messages to.
+   Note: The two MIDI Output ports are mirrored and send the same data.
+
+F. Kensington® Lock Slot: You can use this slot to secure your APC64 to a table or other surface.
+
+
+
+
+                                                                                                            11
+
+===== PDF PAGE 12 =====
+4.0 Tutorial
+
+This chapter describes basic terminology and how to get started doing basic tasks using your APC64. To get the
+most out of this chapter, we recommend reproducing each of the described steps in order.
+
+
+To start using APC64 with Ableton Live, first make sure you have downloaded and installed the latest version of
+Ableton Live (11 or newer).
+
+
+Connect your APC64 hardware to your computer running Ableton Live using one of the included USB-C cables,
+and set the Power Switch to On. By default, APC64 will power on in Ableton Live Device Mode. If you are having
+issues connecting to Ableton Live, make sure this setting has not been changed in the Global Menu.
+
+
+Ensure that APC64 has been selected as a Control Surface and MIDI Input and Output source in Ableton Live’s
+Preferences, as described in 2.0 Setup.
+
+
+APC64 will begin with SESSION VIEW in focus. This display mode gives you an overview of your project, which
+is represented by a red outline in Ableton Live. Use the cursor buttons to move the current view of the pad grid
+by one row or column at a time.
+
+
+Each column in Session View represents a track. Tracks can be used to hold audio samples, drum kits, instrument
+plugins and more. Use the TRACK SELECT buttons to select the track in focus.
+
+
+
+
+           Session View in Ableton Live, showing MIDI and Audio tracks (left side) and Send and Master tracks (right side)
+
+
+
+
+                                                  Track Select Buttons on APC64
+
+
+
+12
+
+===== PDF PAGE 13 =====
+Each track is made up of clips, which are short sequences of audio or MIDI. Only one clip in a track can play at a
+time. When a pad has a clip loaded to it, press it to launch it. Let’s start by adding a sample from Ableton Live’s
+library to a track and launching it.
+1. Use the Ableton Live Browser to find a sound from the Samples Category.
+2. Add this to an available Audio Track in the first clip slot.
+3. Once the clip has been loaded, you will see the corresponding pad on APC64 light up.
+4. Press the pad to launch the clip. You will hear the sample playing, the PLAY button will light up, and the pad
+   will begin pulsing green to indicate playback is active.
+5. To stop playback of the project, press the STOP button. The pad will continue to pulse green, meaning it will
+   relaunch once playback is resumed. To stop clip playback, press the CLIP STOP button, and then press the
+   TRACK SELECT button for the track containing the audio clip.
+
+
+
+
+                                                                              A clip added in Session View.
+
+
+
+Clips that are aligned in the same row are called a scene. You can trigger clips in a scene at the same time by
+pressing the LAUNCH button on the right side of the row. Let’s try loading another clip to another Audio Track.
+1. Use the Ableton Live Browser to find another sound from the Samples Category.
+2. Add this clip to a second Audio Track in the same clip row as your first sample.
+3. Press the row 1 LAUNCH button to launch both clips at the same time. Now both pads will pulse green and
+   both samples will play.
+4. To stop both clips from playing at the same time, press and hold SHIFT and then press the row 8 LAUNCH /
+   STOP ALL button.
+
+
+
+
+                                                                               Two clips launched together.
+                                                                         Press SHIFT+STOP ALL to stop both clips.
+
+
+
+
+                                                                                                                    13
+
+===== PDF PAGE 14 =====
+In addition to loading audio samples, you can create your own clips using MIDI instruments. Let’s start a new clip
+recording. We’ll begin by adding and recording a drum track.
+1. Use the Ableton Live Browser to load a kit from the Drums Category. Add this to an available MIDI track.
+2. Press the NOTE MODE button, and then select the MIDI track using the TRACK SELECT button.
+     APC64’s pad grid will change, and the bottom-left quadrant of pads will be lit. You can now use these pads
+     like a traditional 4x4 drum pad layout to play samples.
+3. When a MIDI track is selected from APC64, the selected track’s track arm button in Ableton Live will turn light
+   red to indicate it has been automatically record-armed. This allows you to immediately play the pads and
+   hear the sample playback.
+     You can also manually arm the track for recording by pressing RECORD ARM button on APC64, and then
+     pressing the Control Row button for the MIDI track. The track arm button in Ableton Live will then be lit
+     bright red to indicate the track is armed, and it will stay armed even if you navigate away from the track.
+4. Press the encoder to enable the metronome while you record.
+5. Press the RECORD transport button. A new clip will be created on the track and begin recording immediately.
+6. Tap out a drum pattern on the pads to record it.
+7. When you are finished, you can press RECORD again and the clip will begin playback. You can edit the clip
+   in Ableton Live as needed.
+
+
+
+
+                                                                             Note Mode for a Drum Track.
+                                                                            Arming the track for recording.
+
+
+
+
+                                                                             Playing back the recorded clip.
+
+
+
+
+14
+
+===== PDF PAGE 15 =====
+Next, let’s continue to build out the track by adding a melodic bass line.
+1. Use the Ableton Live Browser to load a bass melodic instrument from the Instruments Category. Add this to
+   a second MIDI track.
+2. Press the NOTE MODE button, and then select the MIDI track using the TRACK SELECT button. APC64’s pad
+   grid will change to a melodic note layout. The root notes will be lit according to the track color.
+3. Press NOTE MODE a second time to configure the Note Mode settings. Use the pads or the encoder to
+   adjust the root note, scale, and pad layout as needed. Press NOTE MODE a second time to return to the
+   melodic pad layout.
+4. Once you are ready to record, ensure that the track is armed for recording, and then press the RECORD
+   transport button. A new clip will be created on the track and begin recording immediately.
+5. Tap out a bass line on the pads to record it.
+6. When you are finished, you can press RECORD again and the clip will begin playback. You can edit the clip
+   in Ableton Live as needed.
+
+
+
+
+                                                                             Note Mode for a Melodic Track.
+
+
+
+
+                                                                                                              15
+
+===== PDF PAGE 16 =====
+Finally, let’s add harmonic chords to tie everything together.
+1. Insert a new MIDI track into your Ableton Live project as needed.
+2. Use the Ableton Live Browser to load a harmonic instrument like a synth pad from the Instruments Category.
+   Add this to a third MIDI track.
+3. Press the CHORD MODE button, and then select the MIDI track using the TRACK SELECT button. APC64’s
+   pad grid will change to the same melodic note layout as Note Mode, but this time each pad plays multiple
+   notes simultaneously to create a chord.
+4. Press CHORD MODE a second time to configure the Chord Mode settings. The Chord Mode configuration
+   shares its scale and mode settings with Note Mode configuration to ensure your tracks are harmonically
+   synced. Use the pads or the encoder to adjust the chord type as needed. Press CHORD MODE a second
+   time to return to the melodic pad layout.
+5. Once you are ready to record, ensure that the track is armed for recording, and then press the RECORD
+   transport button. A new clip will be created on the track and begin recording immediately.
+6. Tap out a chord progression on the pads to record it.
+7. When you are finished, you can press RECORD again and the clip will begin playback. You can edit the clip
+   in Ableton Live as needed.
+
+
+
+
+                                                                                   Chord Mode.
+
+
+
+These steps give you the basic building blocks to launch clips and create clips in Ableton Live using your APC64.
+Try recording a few more clips with variations, and then experiment with launching different clips or scenes.
+
+
+
+
+16
+
+===== PDF PAGE 17 =====
+As you play your project, you can also begin using APC64 for editing and mixing using other controls on the
+device. Try using the Touch Fader Controls for hands-on adjustments to various track parameters:
+1. By default, the touch strips will be set to DEVICE control, with this button lit on APC64.
+2. Select a track with a MIDI device or effect using the TRACK SELECT buttons.
+3. Try adjusting one of the touch faders. The device parameter being adjusted will be shown in APC64’s display,
+   and you will see the parameter being adjusted in Ableton Live.
+
+
+
+
+                                                                    Device control mode for the Touch Faders.
+
+
+
+You can change the active Touch Fader Control by pressing the VOLUME, PAN, SEND, or CHANNEL STRIP
+buttons. Try selecting another control and making further adjustments, like turning the track volume up or down
+or adjusting a track’s Send control to add an effect.
+
+
+For an in-depth review of APC64’s features and functions, proceed to the following 5.0 Operation chapter.
+
+
+
+
+                                                                                                                17
+
+===== PDF PAGE 18 =====
+5.0 Operation
+
+This chapter describes APC64’s functions. Click a link below to jump directly to that section:
+
+
+     5.1 Session View – Create, launch, organize, and edit clips.
+
+     5.2 Note Mode and Chord Mode – Play configurable notes, chords, and drum pads.
+
+     5.3 Step Sequencer – Create sequence patterns.
+
+     5.4 Project Mode – Create and manage project templates.
+
+     5.5 Touch Faders – Adjust track parameters.
+
+     5.6 Global Menu – Adjust APC64 internal settings.
+
+     5.7 Custom Mode – Edit the MIDI assignments of APC64 using the Project Editor.
+
+     5.8 CV Operation – Connect to and control external CV devices.
+
+
+
+
+18
+
+===== PDF PAGE 19 =====
+5.1     Session View
+
+Session View in Ableton Live is where clips are organized and launched. This view is
+great for developing ideas before recording to an arrangement, or for live and on-the-
+fly performances.
+Note: Session View is only available when connected to Ableton Live. When using
+APC64 as a standalone controller, this button will be deactivated.
+   To open Session View mode on the pads, press the SESSION VIEW button.
+
+
+The current focus of APC64’s 8x8 pad grid in Ableton Live will be shown by a red outline. The eight columns of
+APC64’s pad grid will correspond to the available tracks in Ableton Live, including the Return tracks and the
+Master track. The TRACK SELECT buttons will be lit up in the same color of the track in Ableton Live. If you have
+less than eight tracks, including Returns, unused columns will have their TRACK SELECT buttons dimmed, and
+the Master track will automatically be mapped to the eighth column.
+   To select a track, press the TRACK SELECT buttons. The selected track’s button will be lit white. The display
+   will also show the track name (highlighted by the track color), device name (if one is loaded), and current
+   device bank (if a device is loaded).
+
+
+
+              Track Name
+              Device Name
+               Device Bank
+
+
+
+
+The eight rows of APC64’s pad grid correspond to eight scenes of clips. See 5.1.2 Launching Clips for more
+information on launching clips and scenes.
+
+
+As your project grows, you may have more tracks and scenes than can
+be shown on the pad grid.
+   To move the 8x8 focus by one track or scene at a time, press
+   the cursor keys. As you move, the red outline will also move in
+   Ableton Live’s Session View.
+   To move the 8x8 focus by eight tracks or scenes at a time,
+   press and hold SHIFT and press the cursor keys.
+
+
+
+
+                                                                                                               19
+
+===== PDF PAGE 20 =====
+5.1.1 Overview Mode
+
+In very large projects, you may have more than the eight tracks and eight scenes that
+are immediately visible on APC64’s pad grid while in Session View. Although you
+can move the current 8x8 focus in Session View using the cursors, Overview mode
+provides another way to quickly and easily navigate between large amounts of tracks
+and scenes and give a snapshot of the current clip statuses.                                 1   2
+     To open Overview mode, press SESSION VIEW / OVERVIEW while in Session
+     View. Alternatively, press and hold SESSION VIEW / OVERVIEW while in                    3
+     Session View to temporarily view Overview mode. When you release the button,
+     the pad grid will return to Session View.
+
+
+In Overview mode, each pad on the pad grid (starting in the upper-left corner)
+represents a block of eight tracks and eight scenes in your session. This is represented
+by the red outline in Ableton Live.
+     To move between 8x8 blocks, press a lit pad in Overview mode. The number of
+     pads available will depend on the size of your project.
+
+
+For instance, in the image to the right, you could press the pads to access the following:
+     Pad 1 (amber): Tracks 1–8, Scenes 1–8
+     Pad 2 (red): Tracks 9–16, Scenes 1–8
+     Pad 3 (green): Tracks 1–8, Scenes 9–16
+
+
+The pads in Overview mode will also change color depending on the the current 8x8
+block in focus and the behavior of clips in each block:
+     Amber: The current 8x8 block in focus.
+     Green: An 8x8 block where clips are currently playing.
+     Red: An 8x8 block where no clips are playing.
+     Off: Empty 8x8 blocks.
+
+
+
+
+20
+
+===== PDF PAGE 21 =====
+5.1.2 Launching Clips
+
+When Session View is active, pressing the pads in the pad grid will launch a clip if one is loaded. If the clip slot is
+empty, it will stop playback on the selected track, or create a new clip if the track is record-armed.
+
+
+To launch a clip, press a pad. Depending on the launch quantization value, the selected
+pad will begin flashing green as it prepares to play. Once the clip begins playing, the
+pad will slowly pulse green.
+If a track is selected and record-enabled, a new clip will be created if there is not one in
+the selected clip slot. See 5.1.3 Recording Clips for more information on creating clips.
+
+
+
+
+To select a clip without launching it, press and hold SHIFT and then press the pad.
+
+
+
+
+In addition to launching individual clips, you can also launch an entire row of clips (called
+a scene). This is useful for creating distinct song sections where you want several clips to
+begin playing simultaneously.
+    To launch a scene (or row of clips), use the LAUNCH buttons on the right side of
+    the pad grid.
+
+
+
+
+To stop a clip:
+1. Press the CLIP STOP button to set the function of the Control Row.
+2. Press the Control Row button that corresponds with the track of the clip you would
+   like to stop. The Control Row button will begin flashing until the clip stops (depending
+   on the global launch quantization value).                                                                2
+
+                                                                                                    1
+
+
+
+
+To stop all clips, press and hold SHIFT and press the Row 8 LAUNCH / STOP ALL
+button.
+
+
+
+
+To move the current matrix display view, use the cursors. Hold SHIFT and use the
+cursors to move the 8x8 focus by eight rows or columns at a time. The red outline in
+Ableton Live will move accordingly.
+
+
+
+
+                                                                                                                    21
+
+===== PDF PAGE 22 =====
+5.1.3 Recording Clips
+
+To create a new clip:
+1. Press the RECORD ARM button, and then press the TRACK SELECT button for the
+   track where you want to add a clip.                                                           1
+
+2. Tap an empty clip slot on the pads. A new clip will be created and begin recording                   2
+   immediately.
+     Alternatively, press the RECORD transport button. A new clip will be created in the
+     selected track in the next available clip slot.
+
+
+To stop recording, do any of the following:
+ • Press the CONTROL ROW button again while RECORD ARM is still selected. The clip
+   will exit recording and begin playback.
+ • Press the clip slot pad you are recording to. The clip will exit recording and begin
+   playback.
+ • Press the RECORD transport button. The clip will exit recording and begin playback.
+ • Press the STOP transport button. The clip will exit recording and playback will stop.
+
+
+
+
+In addition to recording a new clip, you can also use MIDI overdub recording to add on to an existing clip.
+
+
+To begin MIDI overdub recording:
+1. Press and hold SHIFT and press the RECORD transport button.
+2. Select the track with the clip you want to overdub record onto using the TRACK SELECT buttons.
+3. Launch the desired clip, or press PLAY to begin playback of the clip if it is prepared for launch.
+4. Begin recording. Your new performance will be layered on top of the existing MIDI data in the clip.
+
+
+To stop MIDI overdub recording:
+ • Press the CONTROL ROW button again while RECORD ARM is still selected. The clip will exit recording and
+   begin playback.
+ • Press the RECORD transport button. The clip will exit recording and begin playback.
+ • Press the STOP transport button. The clip will exit recording and playback will stop.
+
+
+
+
+22
+
+===== PDF PAGE 23 =====
+5.1.3.1 Fixed Length
+
+
+By default, when you begin recording a clip, it will continue playing and recording until
+the clip is stopped or transport playback is stopped. However, you can also set a clip to
+only record for a certain time by using the Fixed Length function.
+    To enable Fixed Length recording, press the FIXED LENGTH button. When
+    enabled, this button will light up.
+    To adjust the Fixed Length value, press and hold the FIXED LENGTH button. The
+    APC64 display will show “Fixed Length” and the current value. Turn the encoder to
+    adjust the value, and then release the FIXED LENGTH button to set it.
+
+
+
+
+               Fixed Length
+                  1 BAR
+
+
+
+
+                                                                                            23
+
+===== PDF PAGE 24 =====
+5.1.4 Quantization
+
+As you record new clips, your playing may not be perfectly aligned to a given tempo subdivision. This can be
+easily corrected by using quantization, which will snap notes (either already recorded or as you record) to the
+timing grid.
+
+
+Before you apply quantization, set the tempo subdivision that you want your notes to
+align with.
+     To adjust the quantization value, press and hold the QUANTIZE button. The
+     APC64 display will show “Quantization” and the current value. Turn the encoder to
+     adjust the value, and then release the QUANTIZE button to set it.
+
+
+
+
+               Quantization
+                   1/16
+
+
+
+
+Once your quantization value is set, you can apply it to recorded clips or apply it as you record notes.
+     To apply quantization to a recorded clip, press and hold the QUANTIZE button, and then tap the desired
+     clip. The notes in the clip will be shifted to align with the closest quantization value subdivision.
+     To apply quantization as you record, press and hold SHIFT, and then press the QUANTIZE button. When
+     pressed, the APC64 display will show “Record Quantize” and its current status, either On or Off. Set this to
+     On to enable quantization as you record. This will automatically snap new notes to the closest quantization
+     value subdivision as you record. When enabled, the QUANTIZE button will be lit while SHIFT is also being
+     held.
+     Note: This feature only toggles Record Quantization on and off. To set the Record Quantization value, use
+     the Edit > Record Quantization menu option in Ableton Live.
+
+
+
+
+              Record Quantize
+                    On
+
+
+
+
+24
+
+===== PDF PAGE 25 =====
+5.1.3 Managing Clips
+
+Basic clip editing and management can be done directly from the APC64 hardware using the following controls.
+
+
+Use the CLEAR button to erase clips and scenes:
+    To erase a clip, press and hold the CLEAR button, and then press the
+    desired pad.
+    To erase an entire scene, press and hold the CLEAR button, and then press
+    the LAUNCH button for the desired scene. All clips in that row will be
+    removed.
+
+
+Use the DUPLICATE button to copy clips and scenes.
+    To duplicate a clip, press and hold the DUPLICATE button, and then press
+    the desired pad. The clip and all its note and performance data will be
+    copied to the next clip slot below.
+    To duplicate a scene, press and hold the DUPLICATE button, and then
+    press the LAUNCH button for the desired scene. All clips in that row will be
+    copied to the next row below.
+Note: If another clip or scene is in the next clip slot or row, its contents will be
+overwritten by the duplicated clip or scene.
+
+
+To double the length of a clip, press and hold both SHIFT and the DUPLICATE / DOUBLE button, and then
+press the desired pad. The clip’s total length will instantly be doubled. If note or performance data is already
+recorded into the clip, it will also be doubled to the new length.
+Note: Audio clips cannot be doubled.
+
+
+
+
+                                                                                                             25
+
+===== PDF PAGE 26 =====
+5.2        Note Mode and Chord Mode
+
+APC64 features two modes for playing melodic content from the pad grid.
+In Note Mode, each pad plays an individual note. In Chord Mode, each pad
+plays a chord comprised of three or more notes in sync.
+     To open Note Mode, press the NOTE MODE button.
+     To open Chord Mode, press the CHORD MODE button.
+Both Note Mode and Chord Mode may be used in conjunction with Ableton
+Live MIDI tracks, or when using APC64 as a standalone MIDI or CV device.
+
+
+5.2.1 Configuration
+
+Both Note Mode and Chord Mode have Configuration options which can be accessed by pressing and holding
+SHIFT and then pressing either NOTE MODE or CHORD MODE. You can also press and hold the NOTE MODE
+or CHORD MODE buttons while viewing either mode to momentarily access the Configuration view. When you
+release the button, you will return to the previous mode.
+Although they can be accessed separately, the configurations of these two modes are identical and the settings
+are shared across both modes to ensure your tracks are harmonically synced. When you press SHIFT and either
+button, both buttons will be lit up, and you will see Note/Chord Cfg on the display along with the following pad
+layout:
+
+               C1           C2          C3           C4          C5            C6           C7           C8
+
+
+      R1                    Db          Eb                       Gb            Ab           Bb
+
+
+      R2        C            D          E            F            G             A           B            C
+
+
+      R3                                                                      1-3-5        1-2-5       1-4-5
+
+
+            Separate    Separate    Separate    Separate
+      R4                                                                     1-3-5-7      1-3-5-6      1-3-5-9
+           Rows by 3rd Rows by 4th Rows by 5th Rows by 6th
+
+                         Separate               Show/Hide
+            Separate                                          Send Poly
+      R5                 Rows by                Non-Scale                      Maj         Min          Dim
+           Rows by 7th                                         On/Off
+                          Octave                  Notes
+
+                                      Melodic   Harmonic        Major         Minor
+      R6   Chromatic       Major                                                          Dorian      Phrygian
+                                       Minor     Minor        Pentatonic    Pentatonic
+
+
+      R7      Lydian     Mixolydian   Aeolian      Locrian      Blues       Flamenco     Hungarian   Whole Tone
+
+
+      R8     OCT -2       OCT -1      OCT 0        OCT 1       OCT 2         OCT 3        OCT 4        OCT 5
+
+
+
+In the example above, the following is selected:
+     Key: C                                                  Non-Scale Notes: Hidden
+     Chord: 1-3-5                                            Send Poly Aftertouch: On
+     Chord Type: Major                                       Scale: Major
+     Layout: Separate rows by 5th                            Octave: 1
+See the following page for descriptions of each parameter.
+
+
+26
+
+===== PDF PAGE 27 =====
+Use Rows 1–2 to set the root note of the scale. These pads are laid out like the keys of a piano, from C to C in the
+lower row.
+When one of these pads is pressed, the selected root note will be lit green. The remaining scale notes will be lit
+amber, and any non-scale notes will be lit red. These colors will automatically update as you change root notes
+and other scale parameters.
+
+
+Use Rows 3–5, Columns 6–8 to select a chord type. For five- and seven-tone scales, press one of the Rows 3–4
+pads:
+       1-3-5 (major/minor)         1-2-5 (sus2)             1-4-5 (sus4)
+       1-3-5-7 (major7/minor7) 1-3-5-6 (major6/minor6) 1-3-5-9 (major9/minor9)
+For six- or twelve-tone scales, press one of the Rows 3–4 pads and one of the Row 5 pads to change the Alt Chord
+Type.
+       Major                       Minor                    Diminished
+When selected, the chosen chord will play in the set scale each time a pad is pressed while Chord Mode is active.
+The selected pad will be lit green.
+
+
+Use Rows 4–5, Columns 1–4 to determine how notes are laid out on the 8x8 pad grid:
+       Separate Rows by 3rd        Separate Rows by 5th     Separate Rows by 7th
+
+       Separate Rows by 4th        Separate Rows by 6th     Separate Rows by Octave
+
+
+Press the Show/Hide Non-Scale Notes pad (R5,C4) to enable or disable notes from outside the selected scale
+from being shown on the pad grid. Non-scale notes will be unlit in the pad grid when enabled.
+
+
+Press the Send Poly Aftertouch pad (R5,C5) to enable poly aftertouch messages from the pad grid.
+
+
+Use Rows 6–7 to set the scale type:
+       Chromatic              Major Pentatonic    Lydian              Blues
+
+       Major                  Minor Pentatonic    Mixolydian          Flamenco
+
+       Melodic Minor          Dorian              Aeolian             Hungarian
+
+       Harmonic Minor         Phrygian            Locrian             Whole Tone
+
+
+Use Row 8 is used to set the base octave for the pads in Note Mode, starting from the lower-left pad:
+       Octave                -2        -1    0      1       2        3        4      5
+
+       Lowest Note           C-2       C-1   C0     C1      C2       C3       C4     C5
+
+
+
+
+                                                                                                                 27
+
+===== PDF PAGE 28 =====
+As an alternative to using the pads to change the note mode, you can also use the encoder to change these
+values as shown on the display. Turn the encoder to browse each note mode category. Press the encoder to
+open it, and then turn the encoder to browse the available options. When you are finished, press the encoder
+again to confirm your selection.
+
+
+
+             Note/Chord Cfg
+            1. Root Note
+             C
+
+
+
+
+28
+
+===== PDF PAGE 29 =====
+5.2.2 Playing Notes and Chords
+
+In both Note and Chord Modes, root notes of the set scale will
+be lit according to the color of the selected track, and the
+remaining scale notes will be lit white. If the configuration has
+been set to Show Non-Scale Notes, these will be unlit.
+    To play a note or chord, press a pad. When pressed, the
+    played pad will be lit green, and all other pads of the same
+    note value will be lit a lighter shade of green. Notes and
+    Chords are always sent on MIDI Channel 1 in Ableton Live.
+    Note: When Note and Chord Modes are active, selecting
+    a MIDI track from APC64 will automatically arm it so you
+    can immediately play and hear notes. The track arm
+    button for the selected track in Ableton Live will turn light
+    red to indicate it has been automatically armed.
+
+
+
+5.2.3 Drum Tracks in Note Mode
+
+When a drum track is selected in Ableton Live, the appearance
+of Note Mode will automatically adjust to a traditional 4x4
+drum pad layout, beginning in the bottom-left quadrant of the
+pad grid. These pads will be lit according to the selected
+track’s color.
+    To play a drum note, press a pad. The played pad will be
+    lit green while pressed, and then be lit white. Drum Notes
+    are always sent on MIDI Channel 16 in Ableton Live.
+
+
+If you are using more than 16 drum slots in the Ableton Live
+drum rack, use the up and down cursors to shift the pad grid
+selection by one row at a time. Press and hold SHIFT and press
+the up and down cursors to shift the pad grid selection by
+four rows at a time.
+
+
+When using APC64 as a standalone controller, use use the track-specific Step Sequencer 5.3.1 Configuration
+menu to set the track type to Drum to enbable the Drum-style Note Mode layout.
+
+
+To adjust the MIDI note assignments for the drum pad layout, use the Drum1–16 Note options in the
+5.6 Global Menu. These settings only affect the Drum Note layout in Step Sequencer mode and standalone
+operation. Drum Note configuration is automatically assigned when controlling a drum track in Ableton Live.
+
+
+
+
+                                                                                                        29
+
+===== PDF PAGE 30 =====
+5.3      Step Sequencer
+
+The Step Sequencer is used to create or edit clips by using the pad matrix as
+“step buttons,” simulating the experience of a traditional step-sequencer-style
+drum machine.
+     To enter Step Sequencer mode, press the STEP SEQ button.
+
+
+Use the Track Select 1–8 buttons to select one of the eight available Step
+Sequence tracks. You can also switch between tracks using the left and right
+cursors. The Track Select button for the current track will be brightly lit in
+white.
+
+
+Step Sequence tracks are internal to APC64 and do not correspond with Ableton Live tracks as shown in Session
+View. This means you can send any of the eight Step Sequence tracks to any available track in Ableton Live.
+By default, Ableton Live monitors and records MIDI on all available MIDI channels at once. To send specific Step
+Sequencer tracks to specific Ableton Live tracks for recording, use the track-specific 5.3.1 Configuration menu
+described in the following section to set the Step Sequencer tracks to individual MIDI channels (for instance,
+Channels 4, 5, and 6). Then, set the MIDI From of desired tracks in Ableton Live to Channels 4, 5, and 6. Each
+channel will now receive the correct MIDI data from the corresponding Step Sequencer track.
+
+
+
+
+5.3.1 Configuration
+
+The Step Sequencer has two Configuration modes: a Global Configuration mode for setting defaults across all
+tracks, and a Track Configuration mode for setting parameters on specific tracks.
+     To configure the global Step Sequencer settings, press the STEP SEQ button a second time while in Step
+     Sequencer mode, or press and hold SHIFT and press STEP SEQ. You can also momentarily access the
+     Configuration view by pressing and holding the STEP SEQ button while in Step Sequencer mode. When you
+     release the button, you will return to Step Sequence mode.
+     From here, you can adjust the following settings directly from the pads:
+                C1          C2          C3          C4          C5          C6          C7          C8
+
+
+        R1    Step 1      Step 2      Step 3      Step 4      Step 5      Step 6      Step 7      Step 8
+
+
+        R2    Step 9     Step 10     Step 11     Step 12     Step 13     Step 14     Step 15     Step 16
+
+
+        R3   Step 17     Step 18     Step 19     Step 20     Step 21     Step 22     Step 23     Step 24
+
+
+        R4   Step 25     Step 26     Step 27     Step 28     Step 29     Step 30     Step 31     Step 32
+
+
+        R5
+
+
+             Time Div:   Time Div:   Time Div:   Time Div:   Time Div:   Time Div:   Time Div:   Time Div:
+        R6
+                1/4        1/4T         1/8        1/8T        1/16        1/16T       1/32        1/32T
+
+        R7
+
+
+
+        R8
+
+
+
+
+30
+
+===== PDF PAGE 31 =====
+Use Rows 1–4 to set the total length of the sequence in steps. When all tracks are set to the same length, the pad
+for the value of the last step in the sequence will be lit green. If there are tracks with differing lengths, no selection
+will be shown.
+
+
+Use Row 6 to set the Time Division for the step sequencer. This determines the note length of each step:
+          1/4                  1/8                   1/16                1/32
+          1/4T                 1/8T                  1/16T               1/32T
+If all tracks are set to the same time division, the selected value will be lit green. If there are tracks with differing
+time divisions, no selection will be shown.
+
+
+You can also use the encoder to change these values as shown on the display. Turn the encoder to browse
+each Step Sequencer category. Press the encoder to open it, and then turn the encoder to browse the available
+options. When you are finished, press the encoder again to confirm your selection. Some options in the display
+will prompt you to select a track. See the following section for track-specific Step Sequencer settings.
+
+
+
+
+              StepSeq Config
+              1. Last Step
+                32
+
+
+
+
+To configure the track-specific Step Sequencer settings, press a TRACK SELECT button while the global Step
+Sequencer configuration is open. You can also press and hold multiple TRACK SELECT buttons to edit more than
+one track at a time. The TRACK SELECT button for the selected track(s) will be brightly lit in white. When editing
+multiple tracks at once, selections may not be shown on the pad if they differ between the selected tracks.
+From here, you can adjust the following settings directly from the pads:
+                 C1               C2          C3          C4          C5          C6          C7           C8
+
+
+        R1     Step 1           Step 2      Step 3      Step 4      Step 5      Step 6      Step 7       Step 8
+
+
+        R2     Step 9          Step 10     Step 11     Step 12     Step 13     Step 14     Step 15      Step 16
+
+
+        R3    Step 17          Step 18     Step 19     Step 20     Step 21     Step 22     Step 23      Step 24
+
+
+        R4    Step 25          Step 26     Step 27     Step 28     Step 29     Step 30     Step 31      Step 32
+
+
+             Track Type: Track Type:                    Swing                  Send to     Send to
+        R5                                                                                             Send to CV
+                Note        Drum                        Enable                  USB         MIDI
+
+             Time Div:         Time Div:   Time Div:   Time Div:   Time Div:   Time Div:   Time Div:   Time Div:
+        R6
+                1/4              1/4T         1/8        1/8T        1/16        1/16T       1/32        1/32T
+
+              MIDI Ch:         MIDI Ch:    MIDI Ch:    MIDI Ch:    MIDI Ch:    MIDI Ch:    MIDI Ch:     MIDI Ch:
+        R7
+                 1                2           3           4           5           6           7            8
+
+              MIDI Ch:         MIDI Ch:    MIDI Ch:    MIDI Ch:    MIDI Ch:    MIDI Ch:    MIDI Ch:     MIDI Ch:
+        R8
+                 9               10          11          12          13          14          15           16
+
+
+
+
+                                                                                                                       31
+
+===== PDF PAGE 32 =====
+Use Rows 1–4 to set the total length of the track’s sequence in steps. The pad for the value of the last step in the
+sequence will be lit green. This will be set to the global Step Sequence length by default, but can be set to a
+different value per track.
+
+
+Use the Track Type pads (R5,C1–2) to set the type of track controlled by the step sequencer. Use Note type for
+melodic tracks, and Drum type for drum tracks. The pad for the selected type will be lit green.
+
+
+Use the Swing Enable pad (R5,C4) to turn swing timing On or Off when using the Step Sequencer. When
+enabled, this pad will be lit green. The swing value can be set by pressing and holding the SHIFT and TEMPO
+buttons, and then using the encoder to adjust the value between 50% (no swing) and 75% (heavy swing).
+
+
+Use the Send To pads (R5,C6–8) to select where the track’s step sequencer data is sent: To USB (to a computer
+connected to the USB Port), To MIDI (to devices connected to the MIDI Outputs), and/or To CV (to devices
+connected to the CV Outputs). When enabled, the selected pad will be lit green.
+
+
+Use Row 6 to set the Time Division for the the track’s step sequencer. This determines the note length of each
+step:
+         1/4                       1/8             1/16                1/32
+         1/4T                      1/8T            1/16T               1/32T
+This will be set to the global Time Division by default, but can be set to a different value per track.
+
+
+Use Rows 8–9 to select the MIDI Channel that the track’s Step Sequencer data is sent on when connected to USB
+or MIDI, from 1–16.
+
+
+You can also use the encoder to change these values as shown on the display. Turn the encoder to browse each
+Step Sequencer category. Press the encoder to open it, and then turn the encoder to browse the available
+options. When you are finished, press the encoder again to confirm your selection.
+
+
+
+                  StepSeq Config
+                1. Last Step
+                 32
+
+
+
+
+5.3.2 Note Input Pads
+
+The bottom-left quadrant of pads can be used to input notes. The function of these pads depends on the mode
+selected:
+     •   Drum Mode: In Drum Mode, the bottom-left quadrant of pads is used like a traditional 4x4 drum pad
+         layout. You can adjust the MIDI note assignments for these pads in the 5.6 Global Menu.
+     •   Note Mode: In Note Mode, the bottom-left quadrant of pads represents notes in a scale. The root note
+         of the scale will be lit in the color of the selected track. Use the Note and Chord Mode Configuration to
+         set the root note and scale type. You can also use the up and down cursors to move the starting note
+         octave.
+After selecting a mode, all the pads (in Drum Mode) or the root note pads (in Note Mode) will be lit according to
+the selected track’s color. Press a pad to select the note and audition the pad’s sound. Press and hold SHIFT and
+then press a pad to silently select it.
+
+
+
+
+32
+
+===== PDF PAGE 33 =====
+5.3.3 Step Pads
+
+In Step Sequencer mode, the top four rows of pads represent the steps of the
+sequence. The number of pads available depends on the size and number of
+the steps. These can be adjusted using the Step Sequencer 5.3.1 Configuration
+settings.
+
+
+When no pads from the Note Input pads are selected, the top four rows will
+show an overview of the sequence, where all steps with a note event added to it
+are lit according to the track color. The brightness of the pad will also reflect the
+velocity value or other modifier value for the note event. Unused steps will be
+unlit.
+
+
+When a single Note Input Pad is pressed and selected, only steps with the
+selected note added to it will be lit in the top four rows. You can press unlit pads
+in the top four rows to add the selected note to the selected step. See the 5.3.5
+Recording Sequences section for more information.
+
+
+
+
+If you press and hold on a filled step pad, all notes assigned to that step in the
+Note Input Pads will be lit green. You can press these green pads in the Drum
+Mode or Note Mode pad matrix to add or remove the notes assigned to that
+step.
+
+
+
+
+The current play position will be indicated by a green pad.
+    To play the step sequence, press PLAY.
+    To stop the step sequence, press STOP.
+Step Sequences may also be managed and launched using APC64’s built-in
+Project save slots. See the following 5.4 Project Mode chapter for more
+information.
+
+
+
+
+                                                                                        33
+
+===== PDF PAGE 34 =====
+5.3.4 Modifer Pads
+
+The bottom-right quadrant of pads is used to set the velocity or other modifier
+value for each note. By default, this controls the Velocity value of each step.
+You can swap between viewing VELOCITY, PROBABILITY, or MUTATE by
+pressing the Rows 1–3 LAUNCH buttons on the right side of the pad grid when
+in Step Sequencer mode.
+
+
+When Velocity is selected, the pads control the note dynamics as follows:
+             C5        C6          C7         C8
+
+
+     R5     103        111        119        Full
+
+
+     R6      71        79         87          95
+
+
+     R7      39        47         55          63
+
+
+     R8   As Played    15         23          31
+
+
+
+When Probability is selected, the pads control the likelihood that the selected note is played, as follows:
+             C5        C6          C7         C8
+
+
+     R5     81%       87%         93%       100%
+
+
+     R6     56%       62%         68%        75%
+
+
+     R7     31%       37%         43%        50%
+
+
+     R8      3%       12%         18%        25%
+
+
+
+When Mutate is selected, the pads determine whether a step will be played at its set pitch or be transposed up
+or down within one octave, as follows. The specific notes are determined by the currently selected key and scale.
+Note: Mutate is available for Note type Step Sequencer tracks only.
+             C5        C6          C7         C8
+
+
+     R5     81%       87%         93%       100%
+
+
+     R6     56%       62%         68%        75%
+
+
+     R7     31%       37%         43%        50%
+
+
+     R8      3%       12%         18%        25%
+
+
+
+
+34
+
+===== PDF PAGE 35 =====
+5.3.5 Recording Sequences
+
+When you are ready to add notes to your sequence, you can do this in two ways. You can use the Note Input
+Pads to manually add notes to steps, or you can record a performance from the pads into the sequence.
+Note: You can add up to sixteen notes per step in a Drum sequence, and up to eight notes per step in a Note
+sequence.
+
+   To manually add a note to the sequence:
+   1. Select a note pad from the bottom-left quadrant Note Input Pads.
+   2. Press a pad in the Step Pads.
+       The selected note will be added at the selected step.
+
+
+   To remove a note from the sequence, do either of the following:
+    • Select a note pad from the bottom-left quadrant Note Input Pads, and then press the Step Pad where you
+      want to remove the note.
+    • Use the Clear button, as described in the following section.
+
+
+When inputting notes using the Note Input Pads, you can also create a tie so that a note is held over multiple
+steps. This is not available when controlling a Drum Track.
+
+   To add a tied note that stretches over multiple steps, press and hold SHIFT and then press the pad or
+   pads adjacent to the step that you want tied. These pads will then be lit in white, and the note will be held
+   throughout the number of steps marked.
+   For instance, if you want to tie a note between Step 1 and Step 4, add the first note at Step 1, then press and
+   hold SHIFT and press the Steps 2, 3, and 4 pads.
+   Note: Tied notes will not be shown when viewing the sequence overview with no Note Input Pad selected.
+   To remove a tie, release SHIFT and press the tied pad so it is dimly lit again.
+
+
+
+
+                                                                                                               35
+
+===== PDF PAGE 36 =====
+In addition to inputting notes manually using the Step Pads, you can also record a performance from the Note
+Input Pads, or even Note and Chord Modes directly, into the Step Sequence.
+
+     To record a performance into the Step Sequencer:
+     1. Press the RECORD ARM Control Row Function button.
+     2. Press the Control Row button for the Sequencer track that you want to record on. The button will be lit
+        red, and the bottom line of the display will turn red to indicate recording is armed. Only one track may
+        be armed at a time.
+        Once the track is armed, the Note Input Pads will trigger sound on the selected track.
+     3. Press PLAY to begin playback and recording of the sequence. (If the sequence is already playing, arming
+        the track in the previous step will enable it to begin recording immediately.)
+     4. Use the Note Input Pads to add notes, or switch to Note Mode or Chord Mode to add notes or chords.
+        Notes will be added to the nearest step, snapping backward or forward as needed.
+        Note: When connected to Ableton Live and live recording into the Step Sequencer using Note Mode or
+        Chord Mode, it is recommended to set the Sequence MIDI Channel to Ch 1 in the track Configuration
+        menu in order to match the Ableton Live track assignment and hear the audio as you play it.
+     5. Recording will continue and begin overdubbing when the sequence returns to the beginning.
+     6. To end recording, press the Control Row button for the selected track to disarm recording. Alternatively,
+        press the STOP button to stop the sequence playback.
+        To disable recording, disarm the track by pressing the RECORD ARM Control Row Function button and
+        then pressing the Control Row button for the Sequencer track again.
+
+
+When recording into the Step Sequencer, note lengths and note ties will not be recorded, and you will not be
+able to manually enter notes using the Step Pads.
+
+
+
+
+36
+
+===== PDF PAGE 37 =====
+5.3.6 Editing Sequences
+
+Use the CLEAR button to erase notes, steps, or tracks:
+   To clear a note from a step, press the lit pad.
+   To clear all steps containing a specific note, press and hold CLEAR and then
+   press the desired Note Input pad.
+   To clear all notes from a specific step, press and hold CLEAR and then press the
+   desired Step Input pad.
+   To clear an entire step sequence, press and hold CLEAR and then press the
+   desired Track Select button.
+Note: Step Sequencer editing cannot be undone.
+
+
+Use the MUTE button to mute notes, steps, or tracks:
+   To mute all notes on a specific step, press and hold the MUTE Control Row
+   Function button, and then press the desired Step Input pad. The muted step pad
+   will be lit bright yellow to indicate it has been muted. Repeat this process to
+   unmute the step. No Note Input Pad may be selected when muting a specific
+   step.
+   To mute a specific note, press and hold the MUTE Control Row Function button,
+   and then press the desired Note Input Pad. The muted Note Input Pad will be lit
+   bright yellow to indicate it has been muted. Repeat this process to unmute the
+   note.
+   To mute an entire track, press the MUTE Control Row Function button, and then
+   press the Control Row button for the desired track. Repeat this process to unmute
+   the track.
+   To clear all Mutes from the current track, press and hold CLEAR, and then press
+   MUTE. All steps and notes will be unmuted and return to their previous state.
+Note: Note, step, and track mutes are not saved as part of the sequence. Mutes will
+render when using the 5.3.7 Send to Clip function to export the sequence into
+Ableton Live.
+
+
+Use the SOLO button to solo tracks. Press the SOLO Control Row Function button,
+and then press the Control Row button for the desired track. Repeat this process to
+disable solo for the track.
+
+
+
+
+                                                                                       37
+
+===== PDF PAGE 38 =====
+5.3.7 Send to Clip
+
+If you would like to export the sequence you have made into Ableton Live, you can use the Send to Clip option
+to capture the sequence data into a new clip.
+     1. While connected to Ableton Live, select a MIDI track and a blank clip slot.
+     2. On APC64 (while in Step Sequencer mode), select the track containing the sequence you want to send
+        to a clip.
+     3. Press and hold SHIFT so Send to Clip is shown in the display.
+     4. Press the encoder to continue, or release SHIFT to return.
+        Note: Only one track can send to a clip at a time. The sequencer must also be stopped to send to a clip.
+        The display will show Stop Seq 1st to remind you to stop playback before continuing.
+     5. The display will show Sending… as it prepares the clip, and then Done! once it has completed. You will
+        now see the exported sequence clip in Session View.
+
+
+
+               Send To Clip
+               Note Track 1
+                Press Enter
+
+
+
+
+38
+
+===== PDF PAGE 39 =====
+5.4      Project Mode
+
+APC64 can save and load up to 24 projects in its internal memory. These projects
+contain device and performance information, including:
+   •     Step Sequence Mode parameters and patterns
+   •     Note and Chord Mode parameters
+   •     Global parameters
+   •     Custom Mode assignments
+These can be used to recall parameters for certain projects or as larger sequences for building a track for
+recording or performance.
+   To view the current projects, press the PROJECT button. The top three rows of pads will represent the 24
+   available project slots.
+   To load a project, press one of the 24 available project slot pads.
+
+
+Projects may be selected and loaded while playback is active. In this way, you can queue up different sequences
+or parameters sets during a performance without stopping playback.
+   To initiate playback of a project, press PLAY. This will begin playing the data in the current project’s 5.3
+   Step Sequencer.
+   To stop project playback, press STOP.
+
+
+The color of each Project pad provides information about its current save status and playback state:
+
+      Pad Color          Project State
+      Dim White          Empty project slot, playback stopped.
+      Amber (Solid)      Selected project, playback stopped.
+      Amber (Blinking)   Project with unsaved changes, playback stopped.
+      Blue               Saved project, unselected.
+      Green (Solid)      Selected project, playback in progress.
+      Green (Pulsing)    Selected project with unsaved changes, playback in progress.
+      White (Blinking)   Project in queue to play after playback of the current project is finished.
+      Red (Blinking)     Project with unsaved changes is being navigated away from. Press the encoder
+                         to confirm you wish to proceed without saving your changes.
+
+
+
+
+                                                                                                            39
+
+===== PDF PAGE 40 =====
+Playback of project sequences can also be chained together to create longer sequence patterns.
+1. Press and hold a pad containing the first Project sequence you want to use.
+2. While still holding the pad, press another Project slot. The currently selected Project pad will remain amber,
+   and all pads between it and the second Project pad pressed will turn yellow.
+3. Press PLAY to begin playback of the project sequence.
+     All Projects between the two pads will then be chained together and play in sequence. For instance, if you
+     press and hold Project 1 and then press Project 5, playback will move through Projects 1, 2, 3, 4, and 5 before
+     circling back to Project 1 again. The current and next projects will be shown in the display.
+
+
+
+               Project Mode
+               Curr Project: 5
+               Next Project: 1
+
+
+
+
+The sequence length for chained proejects is determined by the project with the most steps, regardless of the
+track’s time division setting. For example, if Project 1 contains thirty-two 1/16 notes, and Project 2 contains sixteen
+1/4 notes, when chained together the sequence length will follow Project 1.
+
+
+Note: Only adjacent projects can be chained together to play in sequential order. You can rearrange your
+projects using the SAVE AS function to place them in the correct order for sequential playback. See the following
+5.4.1 Managing Projects section for more information.
+
+
+
+
+40
+
+===== PDF PAGE 41 =====
+5.4.1 Managing Projects
+
+To save changes to a project in the current slot, press the row five LAUNCH / SAVE
+button.
+
+
+
+
+To save your changes to a new project slot:
+1. Press the row six LAUNCH / SAVE TO… button.
+2. Select another one of the 24 Project slots. The pad will begin blinking red.
+3. Press the encoder to save the project to the selected slot.
+
+
+
+
+To delete project information from a slot:
+1. Press and hold the CLEAR button, and then press the desired Project pad.
+2. Press the encoder to confirm deletion of the project.
+    To cancel, press any other button on APC64.
+
+
+
+
+To copy a project to another pad:
+1. Press and hold the DUPLICATE button, and then press the desired Project pad.
+2. Press the pad where you want to have the selected project copied. The project
+   and all its settings will be saved into the new Project slot.
+
+
+
+
+                                                                                     41
+
+===== PDF PAGE 42 =====
+5.5     Touch Faders
+
+APC64’s Touch Faders act as continuous controllers which can be used to
+control the following parameters, selectable by pressing the desired Touch
+Fader Control button:
+     DEVICE: Device controls.
+     VOLUME: Track volume.
+     PAN: Track stereo panning.
+     SEND: Track Sends.
+     CHANNEL STRIP: Combination of Volume, Pan, and Sends for the
+     selected track.
+     OFF: Disables the touch faders.
+
+
+To adjust a touch fader parameter, tap or drag your finger along the touch strip.
+The current position of the touch fader is indicated by a white LED to the right of the fader. The remaining LEDs
+may be lit according to the track color to indicate the current value position and its direction relative to the default
+value.
+
+
+To finely adjust a touch fader parameter, press and hold SHIFT and drag your finger along the touch strip.
+While SHIFT is held, this will act as an increment/decrement control. Moving your finger up will increase the value
+in small amounts, and moving your finger down will decrease it, regardless of where your finger was initially
+placed along the touch fader.
+
+
+To record automation with a touch fader:
+1. Press the RECORD ARM button, and then press the TRACK SELECT button for the track(s) that you would
+   like to record automation to.
+2. Press the RECORD button to begin recording.
+3. Touch or slide your finger along the touch strip to control the selected parameter.
+4. When you are finished, press RECORD or STOP to stop recording.
+     When automation has been recorded to a parameter that is being controlled by a touch fader, the white
+     current position LED will be red instead of white.
+
+
+To remove touch fader automation, press and hold CLEAR and then tap the desired touch fader.
+
+
+
+
+42
+
+===== PDF PAGE 43 =====
+Device
+In Device Mode, the touch faders adjust up to eight parameters in a loaded instrument or
+effect device on the current track.
+Press and hold the DEVICE button and then use the up and down cursors to navigate
+between banks of device parameters.
+If you have more than one device on a track, press and hold the DEVICE button and then
+use the left and right cursors to navigate between them.
+
+
+
+
+Volume
+Press the VOLUME button to adjust track volume with the touch faders. This includes Audio
+and MIDI tracks, as well as Return tracks and the Master track.
+If you have more than eight tracks (including Return tracks and the Master track), use the
+cursors to change the track focus, and the touch faders will automatically map to the new
+selection.
+If you have less than eight tracks (including Return tracks), touch faders that are not currently
+controlling a track will have their LEDs off, and the Master track will automatically map to
+track eight.
+
+
+
+
+                                                                                                    43
+
+===== PDF PAGE 44 =====
+Pan
+Press the PAN button to adjust track panning with the touch faders. This includes Audio and
+MIDI tracks, as well as Return tracks and the Master track.
+If you have more than eight tracks (including Return tracks and the Master track), use the
+cursors to change the track focus, and the touch faders will automatically map to the new
+selection.
+If you have less than eight tracks (including Return tracks), touch faders that are not currently
+controlling a track will have their LEDs off, and the Master track will automatically map to
+track eight.
+When controlling Pan, the Center stereo field position will be represented by a single white
+LED in the middle of each touch fader’s LED layout. As you adjust the panning left or right,
+the white dot will indicate the stereo position, and LEDs between this value and the center
+position will be lit according to the track color.
+
+
+
+
+Send
+Press the SEND button to adjust track send controls. These controls send track audio to the
+associated Return track.
+Each touch fader will control a single Send level for the associated track. If you have more
+than eight tracks (including Return tracks), use the cursors to change the track focus, and
+the touch faders will automatically map to the new selection.
+If you have less than eight tracks (including Return tracks), touch faders that are not currently
+controlling a track will have their LEDs off.
+If you have multiple Return tracks, press the SEND button again to cycle between the Send
+controls for each track. For instance, if you have Return Tracks A, B, and C, the touch faders
+will control the A Sends for all tracks on first press, then B Sends for all tracks on second
+press, and so on. As you move your finger along the touch fader, the display will indicate
+which Send control is being adjusted.
+
+
+
+                 1-AcdBss
+                  B-Delay
+                 -20.233
+
+
+
+
+44
+
+===== PDF PAGE 45 =====
+Channel Strip
+Press the CHANNEL STRIP button to control multiple parameters on a single channel. This
+includes Volume (fader 1), Pan (fader 2), and Send controls. The number of available touch
+faders will depend on the number of Return tracks in your session.
+Use the Track Select buttons to choose which track is in focus, or press the left and right
+cursors to change track focus.
+
+
+
+
+Off
+Press the OFF button to disable the touch fader controls.
+
+
+
+
+                                                                                              45
+
+===== PDF PAGE 46 =====
+5.6     Global Menu
+
+The Global Menu is used to customize the hardware device settings of APC64,
+including swapping between Ableton Live control and Standalone Mode.
+     To open the Global Menu, press and hold SHIFT and then press CUSTOM. You
+     can also press and hold the CUSTOM / GLOBAL button while in Custom Mode
+     to momentarily view Global Mode. When you release the button, you will return
+     to Custom Mode.
+
+
+Turn the encoder to browse the menu options on the display. Press the encoder to
+open a setting, and then turn the encoder to browse the available options. Press the
+encoder again to select an option and return to the Global configuration menu.
+
+
+
+                Global Config
+             1. Device Mode
+              Ableton Live
+
+
+
+
+       # Setting                Values             Notes
+       1. Device Mode           Ableton Live       The device may be used while connected to a computer
+                                                   running Ableton Live.
+                                Standalone         The device may be used disconnected from the computer
+                                                   as a standalone device.
+       2. Standalone Sync       Internal           Tempo is synced by the internal MIDI clock.
+                                USB                Tempo is synced by MIDI clock data sent to the USB port.
+                                MIDI-DIN           Tempo is synced by MIDI clock data sent to the MIDI In port.
+       3. Sync Out USB          Off, On            Enables or disables the USB port from sending out internal
+                                                   MIDI clock.
+       4. Sync Out MIDI         Off, On            Enables or disables the MIDI Out port from sending out
+                                                   internal MIDI clock.
+ 5. – 19. CV1–8 Source          Pitch-Last         See the 5.8 CV Operation chapter for more information.
+  (odd)                         Pitch-Low
+                                Pitch-High
+                                Gate-Last
+                                Gate-Low
+                                Gate-High
+                                Gate-Legato
+                                Vel-Last
+                                Vel-Low
+                                Vel-High
+                                Vel-Legato
+                                Aftertouch
+                                CC16–23
+                                Fader 1–8
+                                Drum Pad 1–16
+                                None
+
+
+46
+
+===== PDF PAGE 47 =====
+     # Setting           Values            Notes
+6. – 20. CV1–8 Channel   1–16              See the 5.8 CV Operation chapter for more information.
+ (even)
+  21. – Drum1–16 Note:   C-2 – G+8         Selects the MIDI note value for the 4x4 pad layout when
+   36.                                     controlling a drum instrument.
+                                           These values are by default mapped to correspond with
+                                           Ableton Live’s Drum Rack. Changing the values could result
+                                           in misaligned mapping when controlling Ableton Live.
+   37. LED Level         25, 50, 75, 100% Sets the overall brightness level of the device LEDs.
+   38. Factory Reset     Off, On           Select On to perform a factory reset, reverting all settings
+                                           to default. After selecting On, a second menu will appear
+                                           asking you to confirm. Press the encoder again to initiate
+                                           the reset. Press any other button to return to the Global
+                                           Configuration menu.
+
+
+
+
+                                                                                                          47
+
+===== PDF PAGE 48 =====
+You can also select menu options directly from the pads. When the Device Mode is set to Ableton Live (R3,C1
+selected), the pads can be used as follows:
+
+
+              C1          C2          C3        C4           C5         C6          C7          C8
+
+
+             CV1         CV2         CV3       CV4         CV5         CV6         CV7         CV8
+     R1
+            Source      Source      Source    Source      Source      Source      Source      Source
+
+
+     R2
+
+
+
+            Device       Device
+     R3     Mode:        Mode:
+          Ableton Live Standalone
+
+
+     R4
+
+
+
+           Drum13       Drum14      Drum15    Drum16
+     R5
+            Note         Note        Note      Note
+
+
+            Drum9       Drum10      Drum11    Drum12
+     R6
+             Note        Note        Note      Note
+
+
+            Drum5       Drum6       Drum7     Drum8
+     R7
+             Note        Note        Note      Note
+
+
+            Drum1       Drum2       Drum3     Drum4
+     R8
+             Note        Note        Note      Note
+
+
+
+Press a CV Source (Row 1) or Drum Note (R5–8, C1–4) pad to open that menu option, and then use the encoder
+to adjust the value. Press the encoder to confirm.
+
+
+Press the Device Mode buttons (R3, C1–2) to select the active mode.
+
+
+
+
+48
+
+===== PDF PAGE 49 =====
+When the Device Mode is set to Standalone (R3,C2 selected), the pads can be used as follows:
+
+
+             C1          C2          C3         C4          C5          C6            C7           C8
+
+
+            CV1         CV2         CV3        CV4         CV5         CV6          CV7          CV8
+    R1
+           Source      Source      Source     Source      Source      Source       Source       Source
+
+
+    R2
+
+
+
+           Device       Device                                      Standalone    Standalone   Standalone
+    R3     Mode:        Mode:                                          Sync:         Sync:        Sync:
+         Ableton Live Standalone                                      Internal       USB        MIDI-DIN
+
+                                                                     SyncOut
+    R4
+                                                                    USB On/Off
+
+
+          Drum13       Drum14      Drum15    Drum16                  SyncOut
+    R5
+           Note         Note        Note      Note                  MIDI On/Off
+
+
+           Drum9       Drum10      Drum11    Drum12
+    R6
+            Note        Note        Note      Note
+
+
+           Drum5       Drum6       Drum7      Drum8
+    R7
+            Note        Note        Note       Note
+
+
+           Drum1       Drum2       Drum3      Drum4
+    R8
+            Note        Note        Note       Note
+
+
+
+
+Press a CV Source (Row 1) or Drum Note (R5–8, C1–4) pad to open that menu option, and then use the encoder
+to adjust the value. Press the encoder to confirm.
+
+
+Press the Device Mode pad (R3, C1–2) to select the active mode.
+
+
+Use the Standalone Sync pads (R4–5, C6–8) to select where APC64’s internal tempo is synced from: Internal
+(the tempo is generated by APC64’s built-in MIDI Clock), USB (from a computer connected to the USB Port) or
+MIDI (from a device connected to the MIDI Input). When enabled, the selected pad will be lit green.
+
+
+Use the Sync Out pads (R4–5, C6) to select where APC64’s internal tempo is sent to: USB (to a computer
+connected to the USB Port) or MIDI (to devices connected to the MIDI Outputs). When enabled, the selected
+pad will be lit green. Both options may be enabled at once, or neither.
+
+
+
+
+                                                                                                            49
+
+===== PDF PAGE 50 =====
+5.7     Custom Mode
+
+APC64’s Custom Mode allows you to modify the functions of the pad grid and touch
+faders, particularly for using APC64 in standalone mode. You can adjust MIDI
+assignments, pad and fader LED colors, and even create customized pad layouts for
+any use.
+     To open Custom Mode, press the CUSTOM button.
+
+
+Custom Mode assignments are edited using the APC64 Project Editor software, which is described in the
+following section.
+
+
+5.7.1 Using the APC64 Project Editor Software
+
+5.7.1.1 Download and Installation
+
+To download the included APC64 Project Editor software, register your device at profile.inmusicbrands.com.
+If you do not already have an account, you will be prompted to create one. Once you are signed in, you can
+download the editor from your Account by selecting APC64 from your registered products.
+You can also visit akaipro.com to find the latest system requirements and compatibility information.
+For additional product support, visit akaipro.com/support.
+
+
+Windows®
+1. Follow the instructions above to register your product and download your software.
+2. Double-click the .exe installer file you downloaded.
+3. Follow the on-screen instructions.
+
+
+macOS®
+1. Follow the instructions above to register your product and download your software.
+2. Double-click the .pkg installer file you downloaded.
+3. Follow the on-screen instructions.
+
+
+
+
+50
+
+===== PDF PAGE 51 =====
+5.7.1.2 Setup and Overview
+
+To use the APC64 Project Editor:
+1. Optional: Connect APC64 to your computer using one of the included USB-C® cables. You can still use the
+   editor without connecting an APC64, but you will not be able to send Projects to it or load (get) Projects from
+   it.
+2. Open the APC64 Project Editor. The right side of the window will show a graphical representation of your
+   APC64, and the left side of the window will show the pad layout presets and editable parameters for the
+   selected control.
+    Click a part of the image below to jump directly to that section.
+
+
+
+
+                                                                                                               51
+
+===== PDF PAGE 52 =====
+5.7.1.3 Editing
+
+Click a pad in the pad grid to edit the assignments for an individual pad.
+
+
+
+
+ • Note: Sets the MIDI note that the pad will play.
+ • Octave: Sets the octave of the MIDI note.
+ • MIDI Channel: Sets the MIDI channel that the note is played on.
+ • Poly On/Off: Enables or disables the pad from sending poly aftertouch messages.
+ • Send to USB: Enables or disables the pad from sending note data over USB.
+ • Send to MIDI: Enables or disables the pad from sending note data over MIDI.
+ • Send to CV: Enables or disables the pad from sending note data over CV.
+ • Pad On Color: Sets the color of the pad when the note is pressed.
+ • Pad Off Color: Sets the color of the pad when the note is released.
+Note: When editing colors, you can click on the color swatch to open the color picker to select a new color. You
+can also directly enter a hex code in the field next to the color swatch, or in the color picker window.
+
+
+Use the Show LED Color option to switch between the Pad Off color and Pad On color from displaying in the
+window.
+
+
+
+
+52
+
+===== PDF PAGE 53 =====
+In addition to setting assignments per pad, you can choose from three preset pad layouts to add to the pad grid.
+• Drum Pads: Adds a classic 4x4 drum layout.
+• Scale Keyboard: Adds a configurable scale to a single row of pads.
+• Chromatic Keyboard: Adds a representation of a traditional chromatic piano key layout over two rows of
+  pads.
+
+
+
+
+To apply a pad layout, click and drag a pad layout to the desired location on the pad grid.
+To edit the pad layout assignments, click the outlined layout in the pad grid. You can then edit the assignments
+shown below.
+To remove a pad layout, right-click on the group in the pad grid, and then select Remove Pad Group.
+
+
+
+
+                                                                                                             53
+
+===== PDF PAGE 54 =====
+Drum Group
+
+
+
+
+• Root Note: Sets the starting note of the pad group.
+• Base Octave: Sets the starting octave for the pad group.
+• MIDI Channel: Sets the MIDI Channel of the pad group (1–16).
+• Poly On/Off: Enables or disables the pad group from sending poly aftertouch messages.
+• Send to USB: Enables or disables the pad group from sending note data over USB.
+• Send to MIDI: Enables or disables the pad group from sending note data over MIDI.
+• Send to CV: Enables or disables the pad group from sending note data over CV.
+• Pads On Color: Sets the color of the pad when the note is pressed. You can enter a hex value or use the color
+  picker to select a color.
+• Pads Off Color: Sets the color of the pad when the note is released.
+
+
+
+
+54
+
+===== PDF PAGE 55 =====
+Scaled Keyboard Group
+
+
+
+
+• Root Note: Sets the starting note of the scale.
+• Root Octave: Sets the starting octave for the root note for the scaled keyboard group.
+• MIDI Channel: Sets the MIDI Channel of the scaled keyboard group.
+• Scale: Sets the type of scale used for the keyboard group.
+• Poly On/Off: Enables or disables the scaled keyboard group from sending poly aftertouch messages.
+• Send to USB: Enables or disables the scaled keyboard group from sending note data over USB.
+• Send to MIDI: Enables or disables the scaled keyboard group from sending note data over MIDI.
+• Send to CV: Enables or disables the scaled keyboard group from sending note data over CV.
+• Pad On Color: Sets the color of the pad when the note is pressed. You can enter a hex value or use the color
+  picker to select a color.
+• Pad Off Root Color: Sets the color of the root note pad when the note is released.
+• Pad Off Scale Color: Sets the color of the non-root note pads when the note is released.
+
+
+
+
+                                                                                                           55
+
+===== PDF PAGE 56 =====
+Chromatic Group
+
+
+
+
+• Root Note: Sets the starting note of the scale.
+• Base Octave: Sets the starting octave for the chromatic group.
+• MIDI Channel: Sets the MIDI Channel of the chromatic group.
+• Poly On/Off: Enables or disables the chromatic group from sending poly aftertouch messages.
+• Send to USB: Enables or disables the chromatic group from sending note data over USB.
+• Send to MIDI: Enables or disables the chromatic group from sending note data over MIDI.
+• Send to CV: Enables or disables the chromatic group from sending note data over CV.
+• Pad On Color: Sets the color of the pad when the note is pressed. You can enter a hex value or use the color
+  picker to select a color.
+• Pad Off Root Color: Sets the color of the root note pad when the note is released.
+• Pad Off Scale Color: Sets the color of the non-root note pads when the note is released.
+
+
+
+
+56
+
+===== PDF PAGE 57 =====
+Click on a Fader to edit the assignments for the associated touch fader control.
+
+
+
+
+ • Message Type: Sets whether the fader message type is Single (1 CC) or Double (2 CC).
+ • CC 1 / CC 2: Sets the continuous controller value for the fader. CC 2 is only available when Message Type
+   has been set to Double (2 CC). They CC function will be shown when a new value is entered.
+ • Note: Sets the note value sent by the fader. Set this to Off to disable sending a note value.
+ • Octave: Sets the octave of the set note value. This option is not available when Note has been set to Off.
+ • MIDI Channel: Sets the MIDI Channel of the fader.
+ • Fader Style: Sets whether the Fader Tip begins at the bottom of the fader (Volume) or the middle of the
+   fader (Pan). Use Volume for unidirectional parameters, and Pan for bidirectional parameters.
+ • Send to USB: Enables or disables the fader from sending note data over USB.
+ • Send to MIDI: Enables or disables the fader from sending note data over MIDI.
+ • Fader Color: Sets the main fader LED color.
+ • Tip Color: Sets the fader LED color for the fader position LED.
+
+
+
+
+                                                                                                                57
+
+===== PDF PAGE 58 =====
+5.7.1.4 Managing Presets
+
+APC64’s Projects can be saved as preset files that contain all the MIDI assignments you make in the editor. Using
+Projects lets you maintain many different control configurations to use in different situations. For instance, you
+may use different presets for different performances, or use other presets for production with different software.
+APC64 can store a maximum of 24 Projects, and you can store additional Projects on your computer to load onto
+APC64 with this editor.
+
+
+Send Project
+After you create custom MIDI assignments using the editor, you can send
+that preset to be stored in one of APC64’s Project slots.
+     To send a Project:
+     1. Go to File > Send Project (Windows) or APC64 Project Editor >
+        Send Project (macOS).
+     2. In the window that appears, select the desired Project slot. Use the
+        RAM option to send the preset to the device without saving it to a
+        slot. This lets you try out the preset’s assignments without
+        “committing” them to a particular Project. If you decide that you like
+        the results, you can save them to your computer or send them to a
+        specific Project slot.
+     3. Click Send Project to send it to the device, or Cancel to return to
+        the Editor.
+
+
+Get Project
+If you want to edit an existing preset on APC64 using the Editor, you can
+use the Get Project option to retrieve the current MIDI assignments.
+     To import a Project:
+     1. Go to File > Get Project (Windows) or APC64 Project Editor >
+        Get Project (macOS).
+     2. In the window that appears, select the Project slot that you want to
+        import into the Editor. Use the RAM option to retrieve the active
+        MIDI assignments, even if they have not been saved to a Project
+        slot.
+     3. Click Get Project to send it to the device, or click Cancel to return
+        to the Editor.
+
+
+
+
+58
+
+===== PDF PAGE 59 =====
+Save Project
+If you want to save a particular Project on your computer so you can access it later, use the Save Project option.
+    To save a Project:
+    1. Go to File > Save Project (Windows) or APC64 Project Editor > Save Project (macOS).
+    2. Select a desired location on your computer to store the file.
+    3. Click Save to save the file as an .APC64 file, or click Cancel to return to the Editor.
+
+
+Open Project
+Projects saved to your computer can be reopened in the Editor to make further changes or send them to your
+device:
+    To open a saved Project:
+    1. Go to File > Open Project (Windows) or APC64 Project Editor > Open Project (macOS).
+    2. Locate the desired .APC64 file using the file browser.
+    3. Click Open to load the Project into the editor, or click Cancel to return to the Editor.
+
+
+
+
+                                                                                                                59
+
+===== PDF PAGE 60 =====
+5.7.1.5 Global Settings
+
+In addition to managing Projects using the Project Editor, you can also manage the APC64 Global Settings. Your
+APC64 must be connected to the computer in order to open this window and adjust the settings.
+     To open the Global Settings, Go to File > Global Settings (Windows) or APC64 Project Editor > Global
+     Settings (macOS).
+
+
+
+
+From this window, you can adjust the following settings:
+• Current Mode: Sets whether APC64 is operating in Live Mode or Standalone Mode.
+• LED Brightness: Adjusts the overall brightness level of the device LEDs to 25%, 50%, 75%, or 100%.
+• Pad Sensitivty: Adjusts how responsive the pads are. Set to Default for standard sensitivity. Set to Low to
+  allow for stronger playing, or High to lighter playing.
+• Sync Source: Sets whether the Tempo is synced by the Internal MIDI clock, by MIDI clock data sent to the
+  USB port, or by MIDI clock data sent to the MIDI DIN input.
+• Sync Destination: Enables or disables whether the internal MIDI clock is sent from the USB port (Send to
+  USB) or MIDI DIN output (Send to MIDI).
+• CV Settings: These settings determine what type of MIDI messages each CV port receives, and what MIDI
+  channel each CV port receives messages from. See the following 5.8 CV Operation chapter for more
+  information.
+• Step Sequencer Drum Note Assignments: Selects the MIDI note value for the 4x4 pad layout when
+  controlling a drum instrument in the Step Sequencer. These values are by default mapped to correspond with
+  Ableton Live’s Drum Rack. Changing the values could result in misaligned mapping when controlling Ableton
+  Live.
+
+
+
+
+60
+
+===== PDF PAGE 61 =====
+To retrieve the current Global Device Settings from
+APC64, click the Get button. The changes will be applied
+immediately.
+To send the Global Device Settings to APC64, click the
+Send button. The changes will be applied immediately, and
+the Global Settings window will close.
+To save the Global Device Settings from the Project Editor,
+click the Save button. Use the file browser to select a desired
+location on your computer to store the .APC64GlobalSettings
+file, and then click Save.
+To load a previously saved Global Device Settings file into
+the Project Editor, click the Load button. Use the file browser
+to locate the desired .APC64GlobalSettings file, and then
+click Open.
+
+
+
+
+                                                                  61
+
+===== PDF PAGE 62 =====
+5.8     CV Operation
+
+APC64 features eight CV/Gate ports which can be used to connect to and control other CV-compatible devices,
+such as synthesizers or drum machines. Use standard 1/8” (3.5 mm) TS cables to send a single CV/Gate signal per
+output.
+
+
+Use APC64’s 5.6 Global Menu to access the following CV setup options:
+
+
+The CV1–8 Source options (odd numbers between 5 and 19 in the Global Menu) determine what type of MIDI
+messages the CV port receives.
+     Pitch: Note messages are sent as CV Pitch messages.
+      • Last: The pitch will change to its new value each time a note message is received.
+      • Low: The pitch will change when the new note value is lower than the current value.
+      • High: The pitch will change the new note value is higher than the current value.
+
+
+     Gate: Note messages are sent as Gate messages, which open and close to trigger note ons and note offs.
+      • Last: The gate is retriggered each time a note message is received.
+      • Low: The gate is retrigged when the new note value is lower than the current value.
+      • High: The gate is retrigged when the new note value is higher than the current value.
+      • Legato: The gate is only retrigged when all held notes are released and then a new note is triggered.
+
+
+     Velocity: Note messages are translated into velocity values, variable between 0–5 V.
+      • Last: The velocity will change each time a note message is received.
+      • Low: The velocity will change when the new note value is lower than the current value.
+      • High: The velocity will change when the new note value is higher than the current value.
+      • Legato: The velocity will change when all held notes are released and then a new note is triggered.
+
+
+     Aftertouch: Channel aftertouch messages on the current channel are sent as a variable CV signal between
+     0–5 V.
+
+
+     CC 16–23: Continuous controller (CC) messages on the current channel are sent as a variable CV signal
+     between 0–5 V.
+
+
+     Fader 1–8: Messages from the selected fader are sent as a variable CV signal between 0–5 V.
+
+
+     Drum 01–16: The selected drum pad will send a gate message when pressed.
+
+
+The CV1–8 Channel options (even numbers between 6 and 20 in the Global Menu) determine what MIDI channel
+each CV port receives messages from.
+
+
+
+
+62
+
+===== PDF PAGE 63 =====
+5.8.1 CV Connection Examples
+
+The following examples describe how to connect the CV/Gate outputs on your APC64 to an external device such
+as a modular or semi-modular analog synthesizer with CV/Gate inputs. In these examples, APC64 will connect to
+the Moog Music Mother-32 semi-modular analog synthesizer, but the instructions can apply to any device with
+comparable connections.
+
+
+5.8.1.1 Standalone Connections
+
+First, set up pitch and gate control to send note information from APC64 in standalone mode to your device.
+   1. In the 5.6 Global Menu, set the CV1 Source option to Pitch-Last. This will send pitch information (such
+      as notes being played in Note Mode) to your device. Since the CV output is monophonic, the pitch will
+      change each time a new note is received when set to Pitch-Last.
+   2. Next, set the CV2 Source option to Gate-Last. This will trigger a new note on message each time a new
+      note is played.
+   3. Connect the CV1 output to your external CV device. This will usually be connected to a VCO input; in this
+      case, connect to the VCO 1V/OCT input on Mother-32.
+   4. Connect the CV2 output to your external CV device. This will usually be connected to a Gate input; in this
+      case, connect to the Gate input on Mother-32.
+   5. Enter Note Mode on APC64 and begin playing the pads. Your external device should begin responding
+      to each new note event.
+
+
+For even greater note control, you can continue by setting up Veloctiy and Aftertouch.
+   1. In the 5.6 Global Menu, set the CV3 Source option to Velocity-Last. This will send velocity MIDI data to
+      your device each time a new value is received.
+   2. Next, set the CV4 Source option to Aftertouch. This will send send poly aftertouch MIDI data to your
+      device.
+   3. Connect the CV3 output to your external CV device. This will usually be connected to a VCA or Velocity
+      input; in this case, connect to the VCA CV input on Mother-32.
+   4. Connect the CV4 output to your external CV device. This will usually be connected to ome kind of
+      modulation input; in this case, try connecting to the VCO Mod input on Mother-32 to use aftertouch to
+      control the amount of modulation applied to the signal.
+   5. Enter Note Mode on APC64 and begin playing the pads. Your external device should now respond to
+      velocity and aftertouch messages.
+
+
+Next, try setting up fader control to use APC64’s touch faders to control other parameters on your device.
+   1. In the 5.6 Global Menu, set the CV5 Source option to Fader 1. This will send data from APC64’s Touch
+      Fader 1 to your device.
+   2. Connect the CV3 output to the CV input of the external device parameter that you want to control. In this
+      case, connect to the Mix CV input on Mother-32, allowing you to use the fader to crossfade between the
+      VCO waveform and external audio/white noise.
+   3. As you move your finger up and down the touch fader, the fader’s values will be converted by APC64 and
+      sent to your external CV device to control the selected parameter.
+Note: You can customize the CC number, range, and behavior of the touch fader using the APC64 Project Editor
+Software to further customize fader control. For instance, in the example above you could set the Fader Style to
+Pan so that the fader begins at the midpoint of the Mix control and can be moved up or down to adjust the mix
+balance.
+
+
+
+
+                                                                                                              63
+
+===== PDF PAGE 64 =====
+You can also use the internal Step Sequencer as a control for your external device. You can use the same setups
+as above to control pitch, gate, and velocity from the Step Sequencer data, or you can use the Drum Pad source
+options to use the CV outputs as gate triggers based on your sequence.
+     1. In the 5.6 Global Menu, set the CV1–8 Source options to Drum Pad 1–8.
+     2. Connect the CV1–8 outputs to the inputs of an external CV device. In this example, you could connect
+        these to trigger inputs or to the inputs of other settings that can be open and closed using a gate.
+     3. Open the 5.3 Step Sequencer, and then use drum pads 1–8 to create a rhythmic sequence.
+     4. When you play the sequence, each drum pad note event will send a gate message to the CV device. You
+        can use this to trigger notes or rhythmically manipulate other parameters.
+
+
+
+
+5.8.1.2 Connections with Ableton Live
+
+In addition to controlling note information from APC64 in standalone mode, you can use APC64 as an interface
+between Ableton Live and your external CV device.
+
+
+Begin again by setting up pitch, gate, and velocity control, except this time the MIDI data will come from a track
+in Ableton Live.
+     1. Make sure your device is in Ableton Live mode in the 5.6 Global Menu and open Ableton Live.
+     2. Follow the same steps above to set the CV1 Source option to Pitch, the CV2 Source to Gate, and the
+        CV3 Source to Velocity, and connect the CV1–3 outputs to the same inputs on your device.
+     3. In the Global Menu, set the CV1–3 Channels to the desired MIDI Channel; in this example, set this to 11.
+     4. In Ableton Live, create a new MIDI Track, and then set the MIDI To output to APC64.
+     5. Set the track’s MIDI To channel to the same channel as the CV1–3 Channels, in this case Ch. 11.
+     6. Create a new MIDI clip in your Ableton Live track, and then use the clip editor to add note information to
+        it.
+     7. When you launch the clip in Ableton Live, the pitch, note on/off, and velocity MIDI note data will be
+        converted by APC64 and sent to your external CV device.
+
+
+You can also use Ableton Live to send MIDI CC data to control other parameters like modulation on your external
+CV device. Continue by building on the setup above.
+     1. In the 5.6 Global Menu, set the CV4 Source option to CC 16, and the CV4 Channel to 11.
+     2. Connect the CV4 output to the CV input of the external device parameter that you want to control. In this
+        case, try connecting to the VCO Mod input on Mother-32 to use MIDI CC to control the amount of
+        modulation applied to the signal.
+     3. In the MIDI track you created above (with MIDI To set to APC64 and Ch.11), add automation using MIDI
+        CC 16. You can add this to your clip in Session View (using Clip Envelopes) or to your recording in
+        Arrangement View (using Automation Mode).
+     4. Launch the clip again, and this time the MIDI CC 16 automation will be converted by APC64 and sent to
+        your external device to control the selected parameter.
+
+
+
+
+64
+
+===== PDF PAGE 65 =====
+6.0 Appendix
+
+6.1     Technical Specifications
+
+Display                                 Graphical full color LCD
+
+Connections                             USB-C®
+                                        8 1/8” (3.5 mm) CV/Gate
+                                        2 1/8” (3.5 mm) MIDI Output
+                                        1 1/8” (3.5 mm) MIDI Input
+
+Dimensions                              10.7” x 14.6” x 1.4”
+(width x depth x height)                272 x 371 x 34.5 mm
+
+Weight                                  3.5 lb
+                                        1.6 kg
+
+Specifications are subject to change without notice.
+Model: ADAB
+
+
+
+
+6.2     Trademarks & Licenses
+
+Akai Professional is a trademark of inMusic Brands, Inc., registered in the U.S. and other countries.
+Ableton, the Ableton Logo, and the Live logo are trademarks of Ableton AG.
+Kensington and the K & Lock logo are registered trademarks of ACCO Brands.
+Moog is a trademark of Moog Music, Inc. Registered in U.S. Patent and Trademark Office and elsewhere. Moog
+products are produced by inMusic Brands, Inc., Cumberland, RI 02864 U.S.A.
+macOS is a trademark of Apple Inc., registered in the U.S. and other countries.
+Windows is a registered trademark of Microsoft Corporation in the U.S. and other countries.
+All other product names, company names, trademarks, or trade names are those of their respective owners.
+
+
+
+
+                                                                                                           65
+
+===== PDF PAGE 66 =====
+AKAIPRO.COM
+
+
+
+
+ Manual Version 1.0.0

@@ -1,0 +1,689 @@
+Guide
+MX2user
+Traktor
+Table of Contents
+ 1. Disclaimer ................................................................................................................... 1
+
+ 2. Welcome to Traktor MX2 ............................................................................................... 2
+     Document conventions ................................................................................................ 2
+
+ 3. Setting up Traktor MX2 ................................................................................................. 3
+     Connecting the power supply ........................................................................................ 3
+     Connecting to the computer ......................................................................................... 3
+     Connecting an amplification system .............................................................................. 4
+     Connecting headphones .............................................................................................. 4
+     Connecting a microphone ............................................................................................ 4
+     Setting up Traktor for the Traktor MX2 ........................................................................... 5
+
+ 4. Traktor MX2 overview ................................................................................................... 7
+      Decks ....................................................................................................................... 8
+          FX Unit ................................................................................................................ 9
+          Browse controls ................................................................................................. 10
+          Jog wheel .......................................................................................................... 11
+          Pads ................................................................................................................. 11
+      Mixer ...................................................................................................................... 12
+          Mixer channels ................................................................................................... 14
+          Mixer FX and output section ................................................................................. 15
+      Lights on the bottom panel ......................................................................................... 16
+
+ 5. Customizing your MX2 ................................................................................................ 17
+     Preferences – Traktor MX2 Main page ......................................................................... 17
+     Preferences – Traktor MX2 Colors page ....................................................................... 18
+                                                                               DISCLAIMER       1
+
+
+
+
+1. Disclaimer
+The information in this document is subject to change without notice and does not represent a
+commitment on the part of Native Instruments GmbH. The software described by this document is
+subject to a License Agreement and may not be copied to other media. No part of this publication
+may be copied, reproduced or otherwise transmitted or recorded, for any purpose, without prior
+written permission by Native Instruments GmbH, hereinafter referred to as Native Instruments.
+“Native Instruments,” “NI” and associated logos are (registered) trademarks of Native Instruments
+GmbH.
+Mac, macOS, iPad, Logic and iTunes are registered trademarks of Apple Inc., registered in the U.S.
+and other countries.
+Windows and DirectSound are registered trademarks of Microsoft Corporation in the United States
+and/or other countries.
+All other trademarks are the property of their respective owners and use of them does not imply
+any affiliation with or endorsement by them.
+Document authored by: Native Instruments GmbH, Nicolas Sidi
+Software version: 4.3 (10/2025)
+Hardware version: MX2
+                                                                    WELCOME TO TRAKTOR MX2         2
+
+
+
+
+2. Welcome to Traktor MX2
+Traktor MX2 is a 2-channel DJ controller designed for emerging DJs who want professional
+features in a portable format. It includes the full version of the Traktor Pro 4 software, giving you
+hands-on control of beatmatching, looping, effects, and stem separation. Mix with jog wheels,
+faders, EQ, and 16 RGB pads offering hotcues, loops, pattern sequencing, and stem editing.
+Creative tools like 40+ studio-grade effects, Mixer FX, and the Pattern Player can be controlled
+directly.
+This user guide will help you get started using your Traktor MX2. For in-depth information about all
+the features provided by the Traktor Pro software, please refer to the Traktor Pro manual.
+
+
+Document conventions
+In this document the following formatting is used to highlight useful information:
+
+  Italics             Indicates paths to locations on your hard disk or other storage devices.
+  Bold                Highlights important names, concepts, software interface elements, and
+                      hardware controls.
+  [Brackets]          References keys on the computer keyboard.
+                      Denotes a single step instruction.
+                      Denotes the expected result when following instructions.
+
+
+The following three icons denote special types of information:
+
+
+            The light bulb icon indicates a useful tip, suggestion, or interesting fact.
+
+
+
+
+            The information icon highlights essential information in a given context.
+
+
+
+
+            The warning icon alerts you of potential risks and serious issues.
+
+
+Naming conventions
+We refer to the hardware as Traktor MX2 or just MX2, and the software installed on your computer
+as Traktor Pro or just Traktor.
+                                                            SETTING UP TRAKTOR MX2           3
+
+
+
+
+3. Setting up Traktor MX2
+This section describes how to set up the Traktor MX2. When all devices are connected your setup
+will look as depicted in this illustration:
+
+
+
+
+Connecting the power supply
+To connect the power supply to the Traktor MX2:
+
+
+
+
+1. Connect the device end of the power supply cable to the PSU socket on the rear panel of your
+   Traktor MX2.
+2. Connect the power supply unit to a power outlet.
+
+
+Connecting to the computer
+To connect the Traktor MX2 to your computer:
+                                                              SETTING UP TRAKTOR MX2          4
+
+
+
+
+1. Connect the device end of the included USB cable to the USB socket on the rear panel of
+   yourTraktor MX2.
+2. Connect the computer end of the USB cable to an available USB-C port on your computer.
+
+
+Connecting an amplification system
+To connect your power amplifier system to the Traktor MX2:
+
+
+
+
+▶ Connect the L/R RCA plugs or the OUT ⅛" (3.5 mm) plug on the rear panel of the Traktor MX2
+  to the inputs of your amplification system using the appropriate cables (not included).
+You can adjust the volume level of the mix sent to your amplification system using the MAIN knob
+in the output section of the Mixer.
+
+
+Connecting headphones
+To connect headphones to the Traktor MX2:
+
+
+
+
+▶ Connect your headphones to either plug on the front panel of the Traktor MX2 using a ¼"
+  (6.35 mm) or ⅛" (3.5 mm) connector.
+You can adjust the headphones volume level using the VOL knob in the output section of the
+Mixer.
+
+
+Connecting a microphone
+To connect a microphone to the Traktor MX2, do the following on the rear panel of the
+Traktor MX2:
+
+
+
+
+1. Turn the MIC VOL knob fully down (full left).
+2. Connect your microphone to the MIC plug using a ¼" (6.35 mm) connector.
+3. Progressively raise the MIC VOL knob to adjust the microphone input level.
+                                                                  SETTING UP TRAKTOR MX2             5
+
+
+
+
+         Once your microphone is correctly set up, it is best to leave the MIC VOL knob
+         untouched during your performance in order to avoid unwanted feedback loops that
+         could damage the ears of your audience, and yours. Instead, you can mute or unmute
+         the microphone at any time during your performance using the MIC button in the
+         output section of the Mixer.
+
+
+
+Setting up Traktor for the Traktor MX2
+After successfully connecting the Traktor MX2 system, you need to complete these final steps
+before you can start using your Traktor MX2.
+
+
+Switching on your devices and starting Traktor
+You can now switch on your devices. We recommended that you follow the order in the
+instructions below:
+1. In the top center of your Traktor MX2, turn the MAIN knob and the headphones VOL knob fully
+   down (full left).
+
+
+
+
+2. Switch on your computer.
+3. Switch on your Traktor MX2.
+
+
+
+
+4. Switch on your amplification system.
+5. Start Traktor on your computer, for example by double-clicking the Traktor application icon on
+   your desktop.
+
+
+Importing data from your previous Traktor version
+When you start Traktor for the first time, Traktor checks if a previous version of Traktor is installed
+on your system. In this case, Traktor asks if you want to import your previous data from the
+existing user content into a new folder in your user folder. Your previous data will not be changed if
+you import it to the new default folder.
+If you want to import data from your previous Traktor installation:
+                                                                 SETTING UP TRAKTOR MX2         6
+
+
+
+
+▶ Click Yes to confirm.
+
+→ The data is imported.
+
+
+Importing music into the Track Collection
+You can import your music into Traktor’s Track Collection in several ways. You can drag and drop
+your music files from your computer into the Track Collection, you can use the context menu in the
+Browser tree to import the music from your local music folders, and you can use the context menu
+to import Remix Sets.
+To import your music files into your Track Collection using drag and drop:
+▶ Drag the music files from the location on your computer and drop them in the Track Collection
+  folder in Traktor’s Browser tree.
+
+→ Traktor now analyzes the music files and imports the metadata into the Track Collection.
+To import your music from your local music folders into the Track Collection:
+1. Right-click the Track Collection root folder in the folder tree to open the context menu.
+2. Select Import Music Folders.
+
+→ Traktor now analyzes the music files in the local music folders and imports the metadata into
+  the Track Collection.
+The local music folders can be added to the File Management page of the Preferences.
+You can find more details on these Track Collection workflows in the Traktor Pro manual.
+                                                                  TRAKTOR MX2 OVERVIEW             7
+
+
+
+
+4. Traktor MX2 overview
+This section introduces you to the Traktor MX2’s top panel and all its control elements.
+
+
+         The elements on the front and rear panels of the controller are described in Setting up
+         Traktor MX2.
+
+
+The top panel of the Traktor MX2 controller provides the following areas:
+
+
+
+
+1.   Decks: You can use the Decks to control tracks, similar to DJ turntables or CD players but
+     with additional features. Traktor provides you with four virtual decks. The two Decks on your
+     Traktor MX2 hardware controller allow you to control the two software Decks A and B in
+     Traktor: The left Deck on your Traktor MX2 controls Deck A in the software, and the right Deck
+     on your Traktor MX2 controls Deck B in the software. For more information about the Decks
+     and their control elements, refer to Decks.
+2.   Mixer: You can use the Mixer to mix the audio signals coming from the Decks. The Mixer
+     sits in the middle of the Traktor software as well as on your Traktor MX2 controller. On the
+     Traktor MX2, the Mixer consists of two Mixer channels that receive the individual audio signals
+     from the left and right Decks, respectively. Each Mixer channel contains controls to modulate
+     the audio signal and to adjust the outgoing volume before the audio signal is sent to the MAIN
+     output. Furthermore, the Mixer provides a crossfader to let you fade between the audio signals
+     in the Mixer channels. For more information about the Mixer and its control elements, refer to
+     Mixer.
+                                                                    TRAKTOR MX2 OVERVIEW          8
+
+
+
+
+Decks
+Traktor MX2 provides you with two physical Decks to control the Traktor Decks. Each Deck
+provides the following control elements:
+
+
+
+
+1.   PLAY: Starts or pauses the track playback on that Deck. The button brightly lights up green
+     during playback.
+2.   CUE: When the Deck is stopped, the CUE button starts the track playback from the Floating
+     Cue Point. When the Deck is playing, it moves the playback position back to the Cue Point.
+3.   SHIFT: Holding SHIFT lets you access the secondary functions of other control elements on
+     the MX2.
+4.   Reverse (REV): Holding REV temporarily activates Flux mode on the Deck and plays back the
+     track in reverse. When you release REV, the playhead jumps back to where it would have been
+     if you hadn’t held REV.
+5.   Flux (FLX): Activates or deactivates Flux mode on that Deck. The Flux mode lets you jump
+     to Cue Points and Loops without loosing the phrasing of your tracks. The Traktor Pro manual
+     provides more information about the Flux mode.
+6.   FX Unit: Lets you control one of Traktor’s FX Units. Refer to FX Unit.
+7.   Browse controls: This set of controls lets you scroll through the Track Collection to find,
+     preview, and load tracks onto the Deck, as well as prepare playlists. Refer to Browse controls.
+8.   TT / JOG switch: Switches the jog wheel between Turntable mode (TT) and Jog mode (JOG).
+     The features available in each mode are described in Jog wheel.
+                                                                    TRAKTOR MX2 OVERVIEW              9
+
+
+
+
+9.   Jog wheel: Provides advanced control over the track transport. As with a conventional CD
+     player or turntable, you can manually hold the playback, nudge and bend, and start scratching
+     by touching and turning the jog wheel’s top plate and outer rim. The detailed features of the
+     wheel are described in Jog wheel.
+10. Sync (SNC) / Master (MST): Pressing SNC syncs the Deck to the current Tempo Master.
+    When sync is on, the SNC button turns red in case the Deck gets out of sync. Pressing MST
+    sets this Deck as the new Tempo Master. Pressing SNC and MST together lets you reset
+    the software’s Tempo fader to the fader position on your controller: For example, this can be
+    useful if the fader on your controller is in Relative mode and you want to match both faders
+    again.
+11. Tempo fader: Lets you manually adjust the track tempo on that Deck. If the Deck is synced
+    to another Tempo Master, moving the Tempo fader will have no effect. By default the Tempo
+    fader operates in Absolute mode: Whenever you move the fader, its position is transmitted
+    1:1 to the Tempo fader in the software. In the Traktor Preferences you can switch the Tempo
+    fader to Relative mode, in which your fader actions are applied to the software fader relative
+    to its current position.
+12. Move encoder: Pressing the encoder activates or deactivates looping. If a loop is active,
+    turning the encoder moves the loop forward and backward in the track. If no loop is active,
+    turning the encoder jumps within the track.
+13. Keylock button: Locks the current key value (or pitch) of the track. With Keylock active, moving
+    the Tempo fader changes the track tempo but the track key remains at the locked value. When
+    Keylock is on, holding Keylock and turning the Move or the Loop encoder lets you modify the
+    track key in semitones without affecting its tempo.
+
+
+              You can adjust the track key in finer increments using the KEY knob in the Mixer
+              channel of the Traktor software.
+
+14. Loop encoder: Pressing the encoder activates or deactivates looping. If a loop is active,
+    turning the encoder lets you change the loop size, otherwise it changes the size of the next
+    loop that you will activate.
+15. Pad Mode buttons: These buttons select a mode for the pads below. Refer to Pads.
+16. Pads: You can use the pads to store and trigger Cue Points and Loops, control Stem files,
+    adjust the patterns of the Pattern Player, and set Flux Loops. The pads’ function depends on
+    the selected Pad mode and the current Deck type. Refer to Pads.
+
+
+FX Unit
+At the top of either Deck, the FX Unit lets you control one of the FX Units available in the Traktor Pro
+software.
+
+
+
+
+The four knobs and four buttons mirror the corresponding FX Unit elements in the software. As
+in the software, their function will depend on the FX Unit’s mode and on the loaded effect(s). The
+Traktor Pro manual describes in detail how to use the FX Units, and provides a comprehensive
+reference of all the available effects.
+                                                                    TRAKTOR MX2 OVERVIEW         10
+
+
+
+
+          The FX Unit is not bound to the Deck below: You can freely send the audio from the
+          Deck to either FX Unit, or to both. This is done using the FX Assign buttons of the
+          Mixer channels.
+
+
+On your MX2, referring to the four buttons as button 1 to 4 (from left to right), you can use the
+following shortcuts to switch between FX Unit modes and to load other effects into the FX Unit:
+•    You can press SHIFT + button 1 to cycle through the three available FX Unit modes: Group
+     mode, Single mode, and Pattern Player mode.
+•    When the FX Unit is in Group mode, you can press SHIFT + button 2, 3, or 4 to load the next
+     effect from each effect selector, and compose your custom group of effects.
+•    When the FX Unit is in Single mode, you can press SHIFT + button 2 or 3 to load the previous or
+     next effect from the effect selector.
+•    When the FX Unit is in Pattern Player mode, you can press button 2 or 3 to switch to the
+     previous or next sample from the current kit, and press SHIFT + button 2 or 3 to load the
+     previous or next kit from the kit selector.
+
+
+             When the FX Unit is in Patter Player mode, you can also switch the pads at the
+             bottom of the Deck to Pattern mode and edit the individual steps in the pattern.
+
+
+
+Browse controls
+The Browse controls let you browse the Track Collection to find and load tracks as well as preview
+tracks and prepare playlists.
+
+
+
+
+1.    FAV button: When you hold this button the Browse encoder selects favorites.
+2.    Preparation List button: Assigns the selected track to the Preparation List.
+3.    Browse encoder: You can select tracks in the Track List by turning the Browse encoder, and
+      load the selected track into the Deck by pressing the encoder. You can also use the Browse
+      encoder to seek within the track that is playing in the Preview Player.
+4.    VIEW button: Maximizes or minimizes the Browser view in the Traktor software.
+5.    Preview Player button: Loads the selected track into the Preview Player of Traktor’s Browser
+      and plays it back.
+                                                                    TRAKTOR MX2 OVERVIEW             11
+
+
+
+
+Jog wheel
+The jog wheel provides various ways to manually control the transport of the Deck. The wheel
+includes two distinct control areas: its outer ring, and its top plate. Their features depend on the jog
+wheel mode, which is selected using the TT / JOG switch located at the top right of the wheel.
+Pressing TT switches the jog wheel to Turntable mode. In this mode you can use the wheel as
+follows:
+•    When the playback is stopped, turning the outer ring or the top plate lets you adjust the
+     playhead position. For example, you can use it for scratching, or to cue the track onto the
+     desired beat. Holding SHIFT and turning the top plate lets you fast seek through the track.
+•    When the playback is running, turning the outer ring lets you temporarily bend the Deck tempo,
+     whereas turning the top plate holds the playback and lets you adjust the playhead position.
+     Holding SHIFT and turning the top plate lets you fast seek through the track.
+Pressing JOG switches the jog wheel to Jog mode. In this mode the distinct features on the top
+plate are deactivated, the top plate now behaving like the outer ring. You can use the wheel as
+follows:
+•    When the playback is stopped, turning the outer ring or the top plate lets you adjust the
+     playhead position.
+•    When the playback is running, turning the outer ring or the top plate lets you temporarily bend
+     the Deck tempo.
+
+
+Pads
+The eight pads can be used to store and trigger Cue Points and Loops, to control stems, to turn
+steps on and off in the Pattern Player, or to trigger Flux Loops. The pads’ function depends on
+the selected pad mode and the selected Deck type. You can select the pad mode using the four
+buttons above the pads:
+
+
+
+
+1.    Hotcue button: Switches the pads to Hotcue mode. In this mode you can store and trigger
+      Cue Points and Loops within tracks using the pads. Pressing a colored pad jumps to the
+      corresponding Cue Point in your track. Pressing an unlit pad stores a Cue Point (or the current
+      Loop if looping is active) onto that pad for later use. You can press SHIFT + a colored pad to
+      erase its contents and make the pad available for other Cue Points. The pads use the same
+      color code as in the Traktor Pro software: They are off when empty, white for Grid markers,
+      blue for Cue Points, green for Loops, orange for Fade-in/Fade-out Points, and yellow for Load
+      Points.
+                                                                    TRAKTOR MX2 OVERVIEW            12
+
+
+
+
+2.   Stem button: Switches the pads to Stem mode. In this mode the upper row of pads lets you
+     mute and unmute individual stems (from left to right: drums, bass, other, and voice) in the
+     loaded stem track. On the lower row of pads, you can press and hold a pad to select that stem,
+     and adjust the stem’s volume and filter amount by turning the Move encoder and the Loop
+     encoder, respectively.
+3.   Pattern button: This button can be pressed only if the FX Unit above is in Pattern Player mode.
+     Pressing the button switches the pads to Pattern mode. In this mode you can press the pads
+     to turn individual steps on or off for the selected sample of the pattern. By default, the Pattern
+     button is blue and the eight pads represent the first eight steps of the pattern (the upper row
+     of the step grid in Traktor Pro). If you press the Pattern button again, it turns white and the
+     pads switch to the last eight steps (the lower row of the step grid in the software). Active steps
+     are fully lit. The orange pad indicates the playhead position, all other steps are green. Pressing
+     SHIFT + Pattern lets you quickly erase the step grid (all the steps are turned off).
+4.   Flux Loop button: Switches the pads to Flux Loop mode. In this mode, holding the pads
+     automatically switches the Deck to Flux mode and triggers loops of different predefined sizes.
+     When you release the pad, the playhead jumps back to where it would have been if you hadn’t
+     held any pad.
+
+
+Mixer
+In the middle of the Traktor MX2 controller, the Mixer receives the audio signals from the Decks
+and generates the mix that is sent to your audience. The Mixer includes two channels on either
+side (one for each Deck), a crossfader, and the FX and output section in the center:
+                                                                  TRAKTOR MX2 OVERVIEW              13
+
+
+
+
+1.   Mixer channels A and B: Each channel receives the audio signal from the Deck next to it.
+     The channels contain controls adjusting the audio signal’s level, frequency content, and effect
+     amount. Refer to Mixer channels.
+2.   Mixer FX and output section: Between the two channels, the FX and output section lets you
+     select the Mixer FX used on either channel, control and adjust the level of the main mix, and
+     select the signals sent to your headphones. Refer to Mixer FX and output section.
+3.   Crossfader: Controls the mix between the channels A and B. At each crossfader’s end, the
+     opposite channel is totally silent. Moving the crossfader gradually fades in and fades out the
+     relevant channels in the main output. At the center position, the signals from both sides are
+     fully audible.
+
+
+              By default, the left Deck and right Deck are respectively assigned to the left side
+              and right side of the crossfader. You can change or extend this default setup by
+              using the Crossfader Assign buttons in the Traktor software.
+                                                                  TRAKTOR MX2 OVERVIEW            14
+
+
+
+
+Mixer channels
+The Mixer channels receive the individual audio signals from the Decks. On each channel the Deck
+signal goes from top to bottom. Each channel contains controls for the incoming and outgoing
+levels, the frequency content, the amount of Mixer FX applied, and the routing to the FX Units and
+to the cue channel.
+Each Mixer channel provides the following control elements:
+
+
+
+
+1.   GAIN knob: Adjusts the input level of the signal from the Deck before it passes through the
+     channel strip.
+2.   FX Assign buttons (left and right arrows): Activating the left or right Assign button sends the
+     channel to the left or right FX Unit. The color of the Assign buttons quickly reminds you the
+     mode of its FX Unit: orange for Group or Single mode, green for Pattern Player mode.
+3.   HI, MID, and LOW knobs: These knobs respectively adjust the level of the high-frequency,
+     mid-frequency, and low-frequency contents in the audio signal. With a knob in the middle
+     position the corresponding frequency band is left untouched. Pulling the knob to the right
+     emphasizes its frequency band, while pulling it to the left attenuates its frequency band, up to
+     complete removal with the knob at full left.
+                                                                    TRAKTOR MX2 OVERVIEW             15
+
+
+
+
+4.   Mixer FX Amount knob: When the FX button is on below, this knob simultaneously filters
+     the channel and controls the amount of Mixer FX applied to the remaining part. In center
+     position the Mixer FX is deactivated on that channel. Turning the knob to the left progressively
+     removes the high-frequency contents from the channel and applies the Mixer FX to the
+     remaining low- and mid-frequency contents, while turning the knob to the right does the
+     opposite, progressively removing the low-frequency contents and applying the Mixer FX to the
+     remaining high- and mid-frequency contents.
+5.   Mixer FX On button (FX): Turns the Mixer FX on or off on that channel. On either channel there
+     can be only one active Mixer FX at a time. The FX button color reminds you which Mixer FX
+     is active for this channel. You can activate another Mixer FX by pressing the desired Mixer FX
+     Select button (1–4 or FILTER) located nearby in the FX and output section.
+6.   Cue button (headphones symbol): Adds the channel to the Cue channel that is sent to your
+     headphones. For example, this is useful to prepare your next track in your headphones before
+     mixing it in.
+7.   Channel fader: Adjusts the channel level before the signal is sent to the crossfader.
+
+
+Mixer FX and output section
+The vertical strip of controls in the center of the Mixer is the FX and output section. It receives the
+signal blend from the crossfader and lets you adjust its final level before it is sent to your audience.
+It also lets you adjust the signal mix sent to your headphones, choose which Mixer FX is available
+on channel A and B, and activate the microphone input.
+                                                                         TRAKTOR MX2 OVERVIEW       16
+
+
+
+
+1.    MAIN knob: Adjusts the level of the main signal sent to your audience. Under the knob, a
+      clipping LED lights up orange if your main signal is too loud. In such a case, turn the MAIN
+      knob to the left until the clipping light turns back off.
+2.    Channel Level meters: The left and right bar graph indicators show the pre-fader level of
+      the signal on the left and right channels, respectively. If all the lights of an indicator are
+      continuously on, the signal on that channel is too loud and you should attenuate it (for
+      example, by turning the channel’s GAIN knob to the left). You can also use these indicators to
+      visually balance both channel levels before mixing them.
+3.    Headphones MIX knob: Adjusts the mix in your headphones between the cue channel and the
+      main signal: At full left you hear only the cue channel in the headphones, at full right only the
+      main signal.
+4.    Headphones VOL knob: Adjusts the volume level of the headphones output.
+5.    Mixer FX Select buttons (1–4 and FILTER): These buttons let you activate one of four
+      different Mixer FX or the Filter for use on the Mixer channels. Pressing either of the 1–4
+      or FILTER button will activate that Mixer FX on both channels. Pressing either button + the FX
+      button on the left or right channel will activate the Mixer FX on that specific channel.
+
+
+               You can change the particular Mixer FX loaded with button 1–4 in the Mixer page
+               of the Preferences in the Traktor software.
+
+6.    MIC button: Mutes and unmutes the microphone input in the main mix.
+
+
+               If needed, you can adjust the microphone input level using the MIC VOL knob on
+               the rear panel of your controller.
+
+
+
+Lights on the bottom panel
+Under either Deck, the bottom panel of your controller features independent LED lights that provide
+further visual feedback for the Deck above.
+
+
+
+
+By default, the light under either Deck is blue. This light changes to warn you in the following
+situations:
+•    A green light indicates that a loop is active on that Deck.
+•    A continuous red light indicates that the Deck is out of sync.
+•    A blinking red light indicates that the track is nearing its end.
+You can deactivate any of these color indicators, and modify the default color of the bottom lights
+in the Preferences of the Traktor Pro software, as described in Preferences – Traktor MX2 Colors
+page.
+                                                               CUSTOMIZING YOUR MX2             17
+
+
+
+
+5. Customizing your MX2
+You can customize the Traktor MX2 in the Preferences dialog of the Traktor Pro software. Two
+dedicated pages are available for customizing the MX2:
+•   The Traktor MX2 Main page lets you change the functionality of some controls. Refer to
+    Preferences – Traktor MX2 Main page.
+•   The Traktor MX2 Colors page lets you modify the color of various elements. Refer to
+    Preferences – Traktor MX2 Colors page.
+
+
+        The Traktor MX2 Main and Traktor MX2 Colors pages of the Traktor Preferences are
+        only visible when the Traktor MX2 is connected to your computer.
+
+
+
+        You can also overwrite the default functionality of each button of the MX2 using the
+        Controller Manager page in the Traktor Preferences. The Controller Manager page
+        and its available mapping options are described in detail in the Traktor Pro Software
+        Manual.
+
+
+
+
+Preferences – Traktor MX2 Main page
+In the Preferences of the Traktor Pro software, the Traktor MX2 Main page includes options for
+changing the functionality of some controls on your controller.
+                                                                   CUSTOMIZING YOUR MX2            18
+
+
+
+
+The following options are available:
+•   Transport – Tempo Faders selector: You can select between two operating mode for the
+    Tempo faders of the Decks:
+    •   Absolute: In Absolute mode, whenever you move the Tempo fader on your controller, its
+        position is transmitted 1:1 to the Tempo fader of the software Deck, no matter what the
+        current position of the Tempo fader in the software is.
+    •   Relative: In Relative mode, The Tempo fader position on your controller does not
+        necessarily have to match the Tempo fader position of the software Deck. When loading
+        tracks with the Tempo fader in Relative mode, the fader in the software Deck always resets
+        to center position and the track will play at its original tempo. When moving the Tempo
+        fader on your controller, the Tempo fader on the software Deck will follow your movements
+        relative to its original position.
+
+
+                In Relative mode, you can reset the software Tempo fader to the fader position
+                on your controller by pressing SNC + MST above the fader.
+
+•   Mixer Effects – On/Off selector: Selects between two behaviors for the Mixer FX On (FX)
+    buttons located on the Mixer channels. When Temporary is selected, the button stays on as
+    long as you hold it depressed, and turns back off when you release it. When Toggle is selected,
+    the button switches on or off each time you press it.
+•   Browse Controls – Preview Player and View Switch selectors: You can select between two
+    behaviors for the Preview Player and VIEW buttons, respectively, located in the Browse controls
+    of each Deck. When Temporary is selected, the corresponding button stays on as long as you
+    hold it depressed, and turns back off when you release it. When Toggle is selected, the button
+    switches on or off each time you press it.
+•   Global – Default Settings: Pressing the Restore button will reset all the controller settings from
+    the Traktor MX2 Main and Traktor MX2 Colors pages to their default values.
+
+
+             If you click the Restore button when the controller is turned off or disconnected,
+             the reset values don’t appear immediately in the Preferences dialog: They will be
+             applied as soon as you connect your controller and turn it on again.
+
+
+
+Preferences – Traktor MX2 Colors page
+In the Preferences of the Traktor Pro software, the Traktor MX2 Colors page lets you modify the
+color of various luminous elements on your controller.
+                                                                 CUSTOMIZING YOUR MX2           19
+
+
+
+
+In the Device Setup section at the top, you can use the Global Color Scheme setting to assign
+another default color to all the buttons on your controller.
+Below, the Deck Buttons, Pad Modes, Browse Buttons, FX Buttons, Mixer FX Buttons, and Mixer
+Buttons sections let you choose custom colors for individual buttons or group of buttons. Besides
+the 16 colors available in each menu, the Default entry sets the button color to the color selected
+as Global Color Scheme at the top of the page.
+
+
+        The pads on the Decks are not affected by these color settings. The pads always use
+        the same color code to indicate their contents or function: For example, in Hotcue
+        mode the white pads indicate Cue Points, the green pads indicate Loops, and the unlit
+        pads indicate empty, available Hotcues.
+
+
+At the bottom of the page, the Bottom LEDs section lets you adjust the behavior of the lights below
+each Deck on the bottom panel of your controller: You can activate or deactivate each of the three
+available color indicators (End Warning, Sync Warning, and Active Loop), and change the bottom
+lights’ default color (when no indicator is shown) using the Color menu. Besides the 16 colors
+available in the Color menu, you can also select a Rainbow setting, or select the Off entry to turn
+off the bottom lights completely.
+

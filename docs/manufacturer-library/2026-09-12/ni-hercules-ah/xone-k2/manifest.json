@@ -1,0 +1,37 @@
+{
+  "manufacturer": "Allen & Heath",
+  "model": "XONE:K2",
+  "grade": "ready-for-extraction",
+  "sources": [
+    {
+      "file": "XtremeMapping/docs/controllers/xone-k2/sources/XoneK2_UG_AP8509_3.pdf",
+      "url": "https://www.allen-heath.com/content/uploads/2023/06/XoneK2_UG_AP8509_3.pdf",
+      "documentRevision": "AP8509 issue 3",
+      "pageCount": 30,
+      "visuallyReviewedPages": [
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "sha256": "de0621425801bdb47eea6deee8efa1bfd883244fe9dcc6b53c7be532975daf74",
+      "existing_archive": true
+    }
+  ],
+  "notes": "Original official PDF already archived; separate extracted text added here for indexing.",
+  "coverage": {
+    "addresses": "existing MIDI send and return diagrams",
+    "channels": "default15; configurable",
+    "layers": "K1 fixed map; K2/K3 optional three latching layers; distinguish exact model",
+    "encoders": "two’s complement relative CC; K3 configurable",
+    "led_feedback": "dedicated return diagrams; K1/K2 tri-color, K3 factory return plus editor-custom RGB"
+  },
+  "inspected_locators": [
+    "existing manual.pdf: pp9,11-19 MIDI controls/channel/implementation Send and Return"
+  ],
+  "retrieved_on": "2026-09-12",
+  "hardware_tested": false,
+  "scope": "Source extraction readiness only; not a verified SXM profile"
+}

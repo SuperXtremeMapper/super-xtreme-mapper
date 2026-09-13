@@ -1,0 +1,155 @@
+{
+  "models": 21,
+  "bindings": 18381,
+  "coverage_errors": [],
+  "results": [
+    {
+      "file": "partial-extracted/akai-alphatheta/apc64.json",
+      "model": "APC64",
+      "bindings": 0,
+      "issues": 2,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/akai-alphatheta/mpd218.json",
+      "model": "MPD218",
+      "bindings": 0,
+      "issues": 2,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/akai-alphatheta/slab.json",
+      "model": "SLAB",
+      "bindings": 765,
+      "issues": 4,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/ni-hercules-ah/djcontrol-inpulse-200-mk2.json",
+      "model": "DJControl Inpulse 200 MK2",
+      "bindings": 0,
+      "issues": 2,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/ni-hercules-ah/djcontrol-inpulse-200-mk3.json",
+      "model": "DJControl Inpulse 200 MK3",
+      "bindings": 0,
+      "issues": 2,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/ni-hercules-ah/djcontrol-inpulse-300-mk2.json",
+      "model": "DJControl Inpulse 300 MK2",
+      "bindings": 0,
+      "issues": 2,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/ni-hercules-ah/djcontrol-inpulse-t7-t7-premium.json",
+      "model": "DJControl Inpulse T7 / T7 Premium",
+      "bindings": 0,
+      "issues": 3,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/ni-hercules-ah/djcontrol-starlight.json",
+      "model": "DJControl Starlight",
+      "bindings": 0,
+      "issues": 2,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/ni-hercules-ah/traktor-kontrol-f1.json",
+      "model": "Traktor Kontrol F1",
+      "bindings": 0,
+      "issues": 2,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/ni-hercules-ah/traktor-kontrol-s2-mk3.json",
+      "model": "Traktor Kontrol S2 MK3",
+      "bindings": 0,
+      "issues": 3,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/ni-hercules-ah/traktor-kontrol-s3.json",
+      "model": "Traktor Kontrol S3",
+      "bindings": 0,
+      "issues": 2,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/ni-hercules-ah/traktor-mx2.json",
+      "model": "Traktor MX2",
+      "bindings": 0,
+      "issues": 2,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/ni-hercules-ah/traktor-x1-mk3.json",
+      "model": "Traktor X1 MK3",
+      "bindings": 0,
+      "issues": 2,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/ni-hercules-ah/traktor-z1-mk2.json",
+      "model": "Traktor Z1 MK2",
+      "bindings": 0,
+      "issues": 2,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/ni-hercules-ah/xone-px5.json",
+      "model": "Xone:PX5",
+      "bindings": 12,
+      "issues": 4,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/performance/faderfox-ec4.json",
+      "model": "EC4",
+      "bindings": 9408,
+      "issues": 3,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/performance/korg-nanokontrol2.json",
+      "model": "nanoKONTROL2",
+      "bindings": 97,
+      "issues": 2,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/performance/launch-control-xl-legacy.json",
+      "model": "Launch Control XL MK1/MK2",
+      "bindings": 122,
+      "issues": 3,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/performance/midi-fighter-3d.json",
+      "model": "Midi Fighter 3D",
+      "bindings": 348,
+      "issues": 7,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/performance/midi-fighter-twister.json",
+      "model": "Midi Fighter Twister",
+      "bindings": 720,
+      "issues": 4,
+      "errors": []
+    },
+    {
+      "file": "partial-extracted/performance/neon.json",
+      "model": "Neon",
+      "bindings": 6909,
+      "issues": 35,
+      "errors": []
+    }
+  ],
+  "passed": true
+}

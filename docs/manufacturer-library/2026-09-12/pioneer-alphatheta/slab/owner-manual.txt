@@ -1,0 +1,1215 @@
+===== PDF PAGE 1 =====
+Instruction Manual
+Music Production Controller
+alphatheta.com/support/
+serato.com
+For FAQ and other support information for this product, visit the websites above.
+Cover
+
+
+===== PDF PAGE 2 =====
+2
+Contents
+Before you start ................................................................................... 4
+How to read this manual .........................................................................4
+What’s in the box.....................................................................................4
+Software..................................................................................................5
+Part names ........................................................................................... 8
+Top panel ................................................................................................8
+Transport section ....................................................................................9
+OLED display ........................................................................................11
+Encoder section ....................................................................................13
+Pad mode section .................................................................................16
+Performance Pad section......................................................................17
+Touch strip section ................................................................................18
+App control section................................................................................19
+Rear panel.............................................................................................21
+Connections (basic styles) ............................................................... 22
+USB connection ....................................................................................22
+Using Serato Studio .......................................................................... 23
+Installing Serato Studio .........................................................................23
+Using Serato Studio ..............................................................................25
+Using Serato Sample......................................................................... 26
+Installing Serato Sample .......................................................................26
+Using Serato Sample ............................................................................28
+Using Serato DJ Pro.......................................................................... 29
+Installing Serato DJ Pro ........................................................................29
+Using Serato DJ Pro .............................................................................32
+Using other software......................................................................... 33
+
+
+===== PDF PAGE 3 =====
+3
+Settings............................................................................................... 34
+Changing the settings ...........................................................................34
+Utility settings ........................................................................................35
+Specifications .................................................................................... 37
+Additional information ...................................................................... 38
+Troubleshooting ....................................................................................38
+Trademarks and registered trademarks ................................................40
+Software licenses ..................................................................................41
+Cautions on copyrights..........................................................................43
+
+
+===== PDF PAGE 4 =====
+4
+Before you start
+How to read this manual
+• Thank you for choosing this AlphaTheta product.
+Be sure to read this manual, the Quick Start Guide and the Precautions for Use which are 
+also included with this product. These documents include important information that you 
+should understand before using the unit.
+• In this manual the names of buttons, knobs and terminals that appear on the product, and 
+the names of buttons, menus etc. in the software on your PC/Mac, are indicated within 
+square brackets ([ ]). (e.g. [File], [Play·Stop] button)
+• Please note that the software screens and their specifications, as well as the external 
+appearance and specifications of the hardware, are subject to change without notice.
+• Please note that depending on the operating system version, web browser settings, etc. 
+operation may differ from the ways described in this manual.
+• Please note that the language on the screens of the software described in this manual may 
+differ from the language on your screen.
+What’s in the box
+• Music production controller × 1
+• USB cable × 1
+• Warranty (for some regions)* × 1
+• Quick Start Guide × 1
+• Precautions for Use × 1
+*
+Only products in Europe. Products in North America and Japan include warranty 
+information in the Precautions for Use.
+
+
+===== PDF PAGE 5 =====
+5
+Before you start
+Software
+The unit supports the following software.
+• Serato Studio
+• Serato Sample (paid license is needed)
+• Serato DJ Pro (Serato DJ Pro compatible hardware is needed)
+ Serato Studio
+Serato Studio is a digital audio workstation (DAW) from Serato Limited.
+Serato Studio is fully licensed when the SLAB hardware is connected.
+Serato Studio isn’t physically included with this product. Download the software from the URL 
+below.
+serato.com/studio/downloads
+• If you don’t have one already, follow the steps below to create a user account.
+1.
+Follow the on-screen instructions to enter your email address and password.
+2.
+Click the [Create account] icon and answer the questions displayed on the screen.
+3.
+Download the Serato Studio software.
+4.
+After your user account has been registered, check the email sent to you from 
+Serato and confirm your registration.
+• Be sure to remember the email address and password you use to register. You’ll need 
+them when you update the software.
+• Personal information registered to your user account is collected, processed, and used in 
+accordance with the Serato Privacy Policy, which is posted on the Serato Limited website.
+• For information on the latest system requirements, compatibility, and supported operating 
+systems, visit the URL below.
+serato.com/studio/downloads
+• Operation isn’t guaranteed on all PC/Mac models, even if the system requirements are 
+met.
+• Depending on power-saving settings and other conditions of your PC/Mac, the CPU and 
+hard disk may not provide sufficient processing capabilities. For laptops in particular, make 
+sure the PC/Mac is in the best condition to provide constant high-level performance when 
+using Serato Studio (for example by keeping the AC power connected).
+
+
+===== PDF PAGE 6 =====
+6
+Before you start
+ Serato Sample
+Serato Sample is a plugin from Serato Limited.
+Serato Sample requires a paid license to use. Download the software from the URL below.
+serato.com/sample/downloads
+• If you don’t have one already, follow the steps below to create a user account.
+1.
+Follow the on-screen instructions to enter your email address and password.
+2.
+Click the [Create account] icon and answer the questions displayed on the screen.
+3.
+Download the Serato Sample software.
+4.
+After your user account has been registered, check the email sent to you from 
+Serato and confirm your registration.
+• Be sure to remember the email address and password you use to register. You’ll need 
+them when you update the software.
+• Personal information registered to your user account is collected, processed, and used in 
+accordance with the Serato Privacy Policy, which is posted on the Serato Limited website.
+• For information on the latest system requirements, compatibility, and supported operating 
+systems, visit the URL below.
+serato.com/sample/downloads
+• Operation isn’t guaranteed on all PC/Mac models, even if the system requirements are 
+met.
+• Depending on power-saving settings and other conditions of your PC/Mac, the CPU and 
+hard disk may not provide sufficient processing capabilities. For laptops in particular, make 
+sure the PC/Mac is in the best condition to provide constant high-level performance when 
+using Serato Sample (for example by keeping the AC power connected).
+
+
+===== PDF PAGE 7 =====
+7
+Before you start
+ Serato DJ Pro
+Serato DJ Pro is a DJ software application from Serato Limited.
+Serato DJ Pro compatible hardware is required to use this device as an official accessory. 
+Download the software from the URL below.
+serato.com/dj/downloads
+• If you don’t have one already, follow the steps below to create a user account.
+1.
+Follow the on-screen instructions to enter your email address and password.
+2.
+Click the [Create account] icon and answer the questions displayed on the screen.
+3.
+Download the Serato DJ Pro software.
+4.
+After your user account has been registered, check the email sent to you from 
+Serato and confirm your registration.
+• Be sure to remember the email address and password you use to register. You’ll need 
+them when you update the software.
+• Personal information registered to your user account is collected, processed, and used in 
+accordance with the Serato Privacy Policy, which is posted on the Serato Limited website.
+• For information on the latest system requirements, compatibility, and supported operating 
+systems, visit the URL below.
+serato.com/dj/downloads
+• Operation isn’t guaranteed on all PC/Mac models, even if the system requirements are 
+met.
+• Depending on power-saving settings and other conditions of your PC/Mac, the CPU and 
+hard disk may not provide sufficient processing capabilities. For laptops in particular, make 
+sure the PC/Mac is in the best condition to provide constant high-level performance when 
+using Serato DJ Pro (for example by keeping the AC power connected).
+
+
+===== PDF PAGE 8 =====
+8
+Part names
+This section describes the functions when you use Serato Studio with the unit. When using 
+Serato Sample or Serato DJ Pro, refer to the Hardware Diagram.
+Top panel
+1.
+Transport section
+Controls playback, scrubbing and library navigation.
+2.
+OLED display
+Displays status of each section and parameters.
+3.
+Encoder section
+Switches encoder modes and controls parameters for encoder modes.
+4.
+Pad mode section
+Switches pad modes.
+5.
+Performance Pads section
+Controls functions of each pad mode.
+1
+2
+7
+6
+5
+4
+3
+
+
+===== PDF PAGE 9 =====
+9
+Part names
+6.
+Touch strip section
+Switches Touch Strip modes and controls parameters for Touch Strip modes.
+7.
+App control section
+Switches functions.
+Transport section
+1.
+UNDO button
+Undoes operations.
+2.
+REDO button
+Redoes operations.
+3.
+ (Left) button
+Moves the focus to the left in Library mode.
+Moves the playhead backward in Deck Scrub mode and Song Scrub mode.
+4.
+ (Right) button
+Moves the focus to the right in Library mode.
+Moves the playhead forward in Deck Scrub mode and Song Scrub mode.
+5.
+Dial
+Controls the following in each mode.
+•
+Library mode:
+– Rotate to move the selection cursor in the library.
+3
+1
+4
+6
+5
+7
+8
+9 
+10
+2
+
+
+===== PDF PAGE 10 =====
+10
+Part names
+– Rotate while holding the [SHIFT] button to move the selection cursor quickly in the 
+library.
+– Press to load the selected file to the empty deck.
+– Press while holding the [SHIFT] button to load the selected file and overwrite the 
+file on the current deck.
+•
+Deck Scrub mode:
+– Rotate to scrub a sample.
+– Rotate while holding the [SHIFT] button to scrub a sample quickly.
+– Press to play a sample.
+•
+Song Scrub mode:
+– Rotate to scrub the song.
+– Rotate while holding the [SHIFT] button to scrub the song quickly.
+– Press to play the song.
+•
+Focus mode:
+– Rotate to emulate a mouse wheel.
+– Press to emulate a mouse click.
+6.
+DIAL MODE button
+Switches dial modes.
+•
+Dial modes switch in the order of Library mode → Deck Scrub mode→ Song Scrub 
+mode every time you press the button.
+7.
+FOCUS button
+Turns Focus mode on.
+8.
+SHIFT button
+While holding the [SHIFT] button, press another button to use a secondary function 
+assigned to it.
+9.
+' (REC) button
+Starts recording a focused area.
+•
+Press while holding the [SHIFT] button to turn Overdub on and off.
+10.   (PLAY·STOP) button
+Plays/stops the focused area.
+•
+Press while holding the [SHIFT] button to play/stop the unfocused area.
+
+
+===== PDF PAGE 11 =====
+11
+Part names
+OLED display
+Main screen
+The main screen is displayed when buttons and knobs on the unit aren’t being used.
+Example: When Encoder mode is set to Stems mode, Touch Strip mode is set to FX1 mode, 
+and the pad mode is set to Trigger mode.
+1.
+Encoder mode display
+Displays the Encoder mode.
+2.
+Touch Strip mode display
+Displays the Touch Strip mode.
+3.
+Pad mode display
+Displays the Performance Pad mode.
+Mode screen
+The selected mode is displayed when each mode button is pressed.
+Example: When Library mode is selected for Dial mode with the [DIAL MODE] button.
+1.
+Mode display
+•
+Press the [DIAL MODE] button to display Dial mode.
+•
+Press the [ENCODER MODE] button to display Encoder mode.
+•
+Press the [STRIP MODE] button to display Touch Strip mode.
+1
+2
+3
+1
+
+
+===== PDF PAGE 12 =====
+12
+Part names
+Numerical value screen
+The numerical value is displayed when buttons and knobs on the unit are used.
+Example: When the numerical value for Vocal Stem is displayed in Stems mode.
+1.
+Deck/pad name
+Displays the name of the deck or pad being adjusted.
+2.
+Function
+Displays a function assigned to buttons and knobs.
+3.
+Numerical value
+Displays the numerical value, which is changed by controlling buttons and knobs.
+1
+2
+3
+
+
+===== PDF PAGE 13 =====
+13
+Part names
+Encoder section
+1.
+ENCODER MODE button
+Switches encoder modes.
+•
+The mode switches in the order of EQ mode→ Stems mode → FX mode → 
+Parameter mode every time you press the button.
+•
+Press and hold to switch between General mode and Serato mode in Device mode.
+– General mode: Controls the general DAW.
+– Serato mode: Controls Serato Studio or Serato Sample.
+•
+Press while holding the [SHIFT] button to switch between the pad and deck to control.
+2.
+Encoder 1
+Controls the following in each mode.
+•
+EQ mode
+– Rotate to adjust the high frequency band level of the control target (pad or deck).
+– Rotate while holding the [SHIFT] button to adjust the high frequency band level of 
+the opposite of the control target.
+– Press to reset the high frequency band level of the control target (pad or deck).
+– Press while holding the [SHIFT] button to reset the high frequency band level of the 
+opposite of the control target.
+•
+Stems mode
+– Rotate to adjust the Vocal Stem level.
+– Press to turn Vocal Stem on and off.
+– Press while holding the [SHIFT] button to turn Vocal Stem solo on and off.
+– Press and hold to reset the Vocal Stem level.
+•
+FX mode
+– Rotate to adjust the FX 1 level.
+– Rotate while holding the [SHIFT] button to switch effects for FX 1.
+– Press to turn FX 1 on and off.
+•
+Parameter mode
+– Rotate to adjust project BPM or pad attack.
+2
+3
+4
+5
+1
+
+
+===== PDF PAGE 14 =====
+14
+Part names
+– Press to reset the pad attack, or press to calculate the project BPM from the 
+intervals between encoder presses.
+3.
+Encoder 2
+Controls the following in each mode.
+•
+EQ mode
+– Rotate to adjust the middle frequency band level of the control target (pad or deck).
+– Rotate while holding the [SHIFT] button to adjust the middle frequency band level 
+of the opposite of the control target.
+– Press to reset the middle frequency band level of the control target (pad or deck).
+– Press while holding the [SHIFT] button to reset the middle frequency band level of 
+the opposite of the control target.
+•
+Stems mode
+– Rotate to adjust the Melody Stem level.
+– Press to turn Melody Stem on and off.
+– Press while holding the [SHIFT] button to turn Melody Stem solo on and off.
+– Press and hold to reset the Melody Stem level.
+•
+FX mode
+– Rotate to adjust the FX 2 level.
+– Rotate while holding the [SHIFT] button to switch effects for FX 2.
+– Press to turn FX 2 on and off.
+•
+Parameter mode
+– Rotate to adjust project key or pad release.
+– Press to reset the pad release, or press to switch the project scale between minor 
+and major.
+4.
+Encoder 3
+Controls the following in each mode.
+•
+EQ mode
+– Rotate to adjust the low frequency band level of the control target (pad or deck).
+– Rotate while holding the [SHIFT] button to adjust the low frequency band level of 
+the opposite of the control target.
+– Press to reset the low frequency band level of the control target (pad or deck).
+– Press while holding the [SHIFT] button to reset the low frequency band level of the 
+opposite of the control target.
+•
+Stems mode
+– Rotate to adjust the Bass Stem level.
+– Press to turn Bass Stem on and off.
+– Press while holding the [SHIFT] button to turn Bass Stem solo on and off.
+
+
+===== PDF PAGE 15 =====
+15
+Part names
+– Press and hold to reset the Bass Stem level.
+•
+FX mode
+– Rotate to adjust the FX 3 level.
+– Rotate while holding the [SHIFT] button to switch effects for FX 3.
+– Press to turn FX 3 on and off.
+•
+Parameter mode
+– Rotate to adjust the tempo of the pad or deck.
+– Press to reset the pad tempo, or press to toggle tempo sync for the deck.
+5.
+Encoder 4
+Controls the following in each mode.
+•
+EQ mode
+– Rotate to adjust the volume level of the control target (pad or deck).
+– Rotate while holding the [SHIFT] button to adjust the volume level of the opposite 
+of the control target.
+– Press to reset the volume level of the control target (pad or deck).
+– Press while holding the [SHIFT] button to reset the volume level of the opposite of 
+the control target.
+•
+Stems mode
+– Rotate to adjust the Drum Stem level.
+– Press to turn Drum Stem on and off.
+– Press while holding the [SHIFT] button to turn Drum Stem solo on and off.
+– Press and hold to reset the Drum Stem level.
+•
+FX mode
+– Rotate to adjust the number of beats to apply to effects.
+•
+Parameter mode
+– Rotate to adjust the key of the pad or deck.
+– Press to reset the pad key, or press to turn on and off the key sync for the deck.
+
+
+===== PDF PAGE 16 =====
+16
+Part names
+Pad mode section
+1.
+TRIGGER MODE button
+Switches the pad mode to Trigger mode. 
+Toggle the Playback mode between momentary or trigger while Trigger mode is active.
+•
+Press while holding the [SHIFT] button to switch to Pad FX mode. If you press the 
+button in Pad FX mode, it returns to the previously selected Trigger mode or the 
+Piano mode.
+2.
+PIANO MODE button
+Switches the pad mode to Piano mode.
+•
+Press and hold to switch to Play in Key mode.
+•
+Press while holding the [SHIFT] button to switch to Step Sequence mode. If you press 
+the button in Step Sequence mode, it returns to the previously selected Trigger mode 
+or the Piano mode.
+3.
+DECK SELECT button
+Switches the pad mode to Deck Select mode while holding the button. Release the 
+button to return to the previously selected Trigger mode or the Piano mode.
+•
+Press while holding the [SHIFT] button to switch to Deck Select mode. If you press 
+the button in Deck Select mode, it returns to the previously selected Trigger mode or 
+the Piano mode.
+4.
+SCENE SELECT button
+Switches the pad mode to Scene Select mode while holding the button. Release the 
+button to return to the previously selected Trigger mode or the Piano mode.
+•
+Press while holding the [SHIFT] button to switch to Scene Select mode. If you press 
+the button in Scene Select mode, it returns to the previously selected Trigger mode or 
+the Piano mode.
+1
+2
+3
+4
+
+
+===== PDF PAGE 17 =====
+17
+Part names
+Performance Pad section
+1.
+Performance Pads
+Press Performance Pads to control the following in each mode.
+•
+Trigger mode
+– Press to trigger the audio source assigned to the pad.
+– Press while holding the [DELETE] button to delete the audio source assigned to 
+the pad.
+•
+Pad FX mode
+– Press to trigger the audio source assigned to the pad while applying an effect to 
+the audio source.
+•
+Piano mode
+– Press to trigger the audio source with the key assigned to the Performance Pad.
+•
+Step Sequence mode
+– Press to turn on and off the step assigned to the Performance Pad.
+– Press while holding the [SHIFT] button to select the pad of the corresponding 
+sample deck or drum deck.
+– Touch the touch strip while holding the pad to adjust the velocity of the step 
+assigned to the Performance Pad.
+– Rotate the dial while holding the pad to adjust the position of the step assigned to 
+the Performance Pad.
+•
+Deck Select mode
+– Press to select the deck assigned to the Performance Pad.
+– Press while holding the [DELETE] button to delete the deck assigned to the 
+Performance Pad.
+•
+Scene Select mode
+– Press to select the scene assigned to the Performance Pad.
+1
+
+
+===== PDF PAGE 18 =====
+18
+Part names
+– Press while holding the [DELETE] button to delete the scene assigned to the 
+Performance Pad.
+Touch strip section
+1.
+STRIP MODE button
+Switches Touch Strip modes.
+•
+When Encoder mode is set to Stems mode, Touch Strip mode switches in the order of 
+FX 1 → FX 2 → FX 3 every time you press the button.
+•
+When Encoder mode is set to Parameter mode, Touch Strip mode switches in the 
+order of Filter mode → Swing mode → Note Repeat mode → Pitch Bend mode every 
+time you press the button.
+•
+When Encoder mode is set to EQ mode or FX mode, Touch Strip mode is set to Filter 
+mode.
+•
+Press while holding the [SHIFT] button to reset the function assigned to the touch 
+strip.
+•
+Press and hold to display the Utility screen.
+2.
+Touch strip
+Controls the following in each mode.
+•
+FX mode
+1
+2
+
+
+===== PDF PAGE 19 =====
+19
+Part names
+– Touch to adjust the FX1, FX 2, or FX3 level.
+•
+Filter mode
+– Touch to adjust the filter value.
+•
+Note Repeat mode
+– Touch to adjust the repeat rate.
+•
+Pitch Bend mode
+– Touch to adjust the pitch.
+•
+Swing mode
+– Touch to adjust the swing value.
+App control section
+1.
+AUTO SET button
+Executes the Auto Set function.
+•
+Press while holding the [SHIFT] button to switch Auto Set modes.
+2.
+FAVORITE button
+Adds or deletes to/from Favorite.
+•
+Press while holding the [SHIFT] button to switch between Mono and Poly modes.
+3.
+OCTAVE - button
+Shifts the pad range down by one octave.
+•
+Press while holding the [SHIFT] button to move the Piano Roll display to lower 
+frequency range.
+4.
+OCTAVE + button
+Shifts the pad range up by one octave.
+•
+Press while holding the [SHIFT] button to move the Piano Roll display to higher 
+frequency range.
+4
+2
+1
+6
+8
+7
+9
+10
+3
+5
+
+
+===== PDF PAGE 20 =====
+20
+Part names
+5.
+SCENE SIZE - button
+Decreases the scene size.
+•
+In Step Sequence mode, Deck Select mode, and Scene Select mode, press to switch 
+to display the previous page.
+•
+Press while holding the [SHIFT] button to decrease the Quantize size.
+6.
+SCENE SIZE + button
+Increases the scene size.
+•
+In Step Sequence mode, Deck Select mode, and Scene Select mode, press to switch 
+to display the next page.
+•
+Press while holding the [SHIFT] button to increase the Quantize size.
+7.
+LIBRARY button
+Toggles between the library and song view.
+•
+Press while holding the [SHIFT] button to expand/collapse the scene player.
+8.
+DELETE button
+While holding the button, press a Performance Pad to delete a scene, deck or pad.
+•
+Press while holding the [SHIFT] button to clear a sequence.
+9.
+SELECT ALL button
+Selects all pads from a sample deck or drum deck.
+•
+Press while holding the [SHIFT] button to turn Quantize mode on and off.
+10. NOTE REPEAT button
+While holding the button, press a Performance Pad to perform Note Repeat.
+•
+Press while holding the [SHIFT] button to enter Note Repeat mode.
+
+
+===== PDF PAGE 21 =====
+21
+Part names
+Rear panel
+1.
+Kensington security slot
+Connect a cable lock.
+2.
+USB port
+Connect a PC/Mac with a USB cable.
+•
+Use the supplied cable when connecting to a USB Type-C port on a PC/Mac.
+•
+Use a 3 m or shorter standard USB cable when connecting to a USB Type-A port on 
+a PC/Mac.
+•
+When using a USB hub, use a product recommended by the manufacturer of your 
+PC/Mac.
+1
+2
+
+
+===== PDF PAGE 22 =====
+22
+Connections (basic styles)
+• Use the supplied USB cable.
+• You can use the unit when it’s only connected to the PC/Mac with a USB cable (USB bus 
+power). The unit may not work via USB bus power in the following cases.
+– The power supply capacity of the USB port on your PC/Mac is insufficient.
+– Another USB device is connected to your PC/Mac.
+• Use the supplied cable when connecting to a USB Type-C port on a PC/Mac.
+• Use a 3 m or shorter standard USB cable when connecting to a USB Type-A port on a PC/
+Mac.
+• When using a USB hub, use a product recommended by the manufacturer of your PC/Mac.
+• Operation isn’t guaranteed on all PC/Mac models, even if the system requirements are 
+met.
+USB connection
+Example:
+PC/Mac
+
+
+===== PDF PAGE 23 =====
+23
+Using Serato Studio
+Installing Serato Studio
+O Serato Studio (page 5)
+ Notes on installation
+• Disconnect the USB cable connected to the unit and the PC/Mac before installation.
+• Close all applications running on the PC/Mac before installation.
+• You’ll need admin rights to install the software to your PC (Windows).
+• Read the License Agreement terms carefully before installation.
+• If you quit the installation halfway through, perform the installation procedure from the 
+beginning again.
+• After the installation is complete, connect the PC/Mac to the unit.
+• Operation isn’t guaranteed on all PC/Mac models.
+ For Mac
+1
+Unzip the downloaded Serato Studio software file.
+2
+Double-click the unzipped file.
+The installer opens.
+3
+Read the Software end user license agreement carefully. If 
+you agree to the terms, click [Agree].
+•
+If you don’t agree to the license agreement terms, click [Disagree] to cancel the 
+installation.
+
+
+===== PDF PAGE 24 =====
+24
+Using Serato Studio
+4
+Follow the on-screen instructions to complete the installation.
+The success screen appears when the installation is complete.
+5
+Click [Close].
+The installer closes.
+ For PC (Windows)
+1
+Unzip the downloaded Serato Studio software file.
+2
+Double-click the unzipped file.
+The installer opens.
+3
+Read the Software end user license agreement carefully. If 
+you agree to the terms, select [I agree to the license terms and 
+conditions] and click [Install].
+
+
+===== PDF PAGE 25 =====
+25
+Using Serato Studio
+•
+If you don’t agree to the license agreement terms, click [Close] to cancel the 
+installation.
+The success screen appears when the installation is complete.
+4
+Click [Close].
+The installer closes.
+Using Serato Studio
+• For details on using Serato Studio, refer to the Serato Studio user manual.
+serato.com/studio/downloads
+
+
+===== PDF PAGE 26 =====
+26
+Using Serato Sample
+Installing Serato Sample
+O Serato Sample (page 6)
+ Notes on installation
+• Disconnect the USB cable connected to the unit and the PC/Mac before installation.
+• Close all applications running on the PC/Mac before installation.
+• You’ll need admin rights to install the software to your PC (Windows).
+• Read the License Agreement terms carefully before installation.
+• If you quit the installation halfway through, perform the installation procedure from the 
+beginning again.
+• After the installation is complete, connect the PC/Mac to the unit.
+• Operation isn’t guaranteed on all PC/Mac models.
+ For Mac
+1
+Unzip the downloaded Serato Sample software file.
+2
+Double-click the unzipped file.
+The installer opens.
+3
+Read the Software end user license agreement carefully. If 
+you agree to the terms, click [Agree].
+•
+If you don’t agree to the license agreement terms, click [Disagree] to cancel the 
+installation.
+
+
+===== PDF PAGE 27 =====
+27
+Using Serato Sample
+4
+Follow the on-screen instructions to complete the installation.
+The success screen appears when the installation is complete.
+5
+Click [Close].
+The installer closes.
+ For PC (Windows)
+1
+Unzip the downloaded Serato Sample software file.
+2
+Double-click the unzipped file.
+The installer opens.
+3
+Read the Software end user license agreement carefully. If 
+you agree to the terms, select [I agree to the license terms and 
+conditions] and click [Install].
+
+
+===== PDF PAGE 28 =====
+28
+Using Serato Sample
+•
+If you don’t agree to the license agreement terms, click [Close] to cancel the 
+installation.
+The success screen appears when the installation is complete.
+4
+Click [Close].
+The installer closes.
+Using Serato Sample
+• For details on using Serato Sample, refer to the Serato Sample user manual.
+serato.com/sample/downloads
+
+
+===== PDF PAGE 29 =====
+29
+Using Serato DJ Pro
+Installing Serato DJ Pro
+O Serato DJ Pro (page 7)
+ Notes on installation
+• Disconnect the USB cable connected to the unit and the PC/Mac before installation.
+• Close all applications running on the PC/Mac before installation.
+• You’ll need admin rights to install the software to your PC (Windows).
+• Read the License Agreement terms carefully before installation.
+• If you quit the installation halfway through, perform the installation procedure from the 
+beginning again.
+• After the installation is complete, connect the PC/Mac to the unit.
+• Operation isn’t guaranteed on all PC/Mac models.
+ For Mac
+1
+Unzip the downloaded Serato DJ Pro software file.
+2
+Double-click the unzipped file.
+The installer opens.
+3
+Read the Software end user license agreement carefully. If 
+you agree to the terms, click [Agree].
+•
+If you don’t agree to the license agreement terms, click [Disagree] to cancel the 
+installation.
+
+
+===== PDF PAGE 30 =====
+30
+Using Serato DJ Pro
+4
+Follow the on-screen instructions to complete the installation.
+The success screen appears when the installation is complete.
+5
+Click [Close].
+The installer closes.
+
+
+===== PDF PAGE 31 =====
+31
+Using Serato DJ Pro
+ For PC (Windows)
+1
+Unzip the downloaded Serato DJ Pro software file.
+2
+Double-click the unzipped file.
+The installer opens.
+3
+Read the Software end user license agreement carefully. If 
+you agree to the terms, select [I agree to the license terms and 
+conditions] and click [Install].
+•
+If you don’t agree to the license agreement terms, click [Close] to cancel the 
+installation.
+The success screen appears when the installation is complete.
+4
+Click [Close].
+The installer closes.
+
+
+===== PDF PAGE 32 =====
+32
+Using Serato DJ Pro
+Using Serato DJ Pro
+• For details on using Serato DJ Pro, refer to the Serato DJ Pro user manual.
+serato.com/dj/downloads
+• Use the unit with Serato DJ Pro compatible hardware. A paid license may be needed, 
+depending on the hardware you use. For details, refer to the following website.
+serato.com/dj/hardware
+
+
+===== PDF PAGE 33 =====
+33
+Using other software
+The unit can output control information for its buttons and knobs in general MIDI format. If you 
+connect the unit to a PC/Mac with MIDI software installed via a USB cable, you can control 
+the software with the unit.
+• Install software and configure the audio and MIDI settings on a PC/Mac beforehand. For 
+details, refer to the software user manual.
+• For details on the unit’s MIDI messages, visit the URL below.
+alphatheta.com/support/
+
+
+===== PDF PAGE 34 =====
+34
+Settings
+You can change the settings of the unit from the Utility menu.
+Changing the settings
+1
+Press and hold the [STRIP MODE] button.
+The Utility screen appears on the OLED display.
+2
+Rotate the Dial to select a setting item.
+3
+Press the Dial.
+The setting screen appears.
+4
+Rotate the Dial to select a setting value.
+5
+Press the Dial to confirm the setting.
+The display returns to the previous screen.
+6
+Press the [STRIP MODE] button.
+The Utility screen closes.
+•
+Press the 
+ (Left) or [STRIP MODE] button while changing the setting to cancel the 
+change and close the Utility screen.
+
+
+===== PDF PAGE 35 =====
+35
+Settings
+Utility settings
+Setting item
+Description
+VERSION
+Displays the firmware version.
+BRIGHTNESS
+Sets the brightness for the buttons and display.
+• Setting values: 1, 2*, 3
+PAD CODE CHANGE
+Sets the MIDI note assigned to each Performance Pad.
+• This setting will be valid only when outputting the standard 
+MIDI format.
+VELOCITY
+Sets whether to enable or disable the velocity.
+• Setting values: ENABLE*, DISABLE
+• When it’s set to [DISABLE], the velocity is fixed at 127, 
+regardless of how hard you tap the Performance Pad.
+VELOCITY CURVES
+Sets the strength for tapping the pad and curve characteristic 
+for volume.
+• Setting values: SOFT3, SOFT2*, SOFT1, LINEAR, HARD
+VELOCITY THRESHOLD
+Sets the minimum velocity for tapping the pad.
+• Setting values: LOW 4 to NORMAL* to HIGH 11
+VELOCITY SENSITIVITY
+Sets the maximum velocity for tapping the pad.
+• Setting values: LIGHT 11 to NORMAL* to HEAVY 4
+AFTER TOUCH
+Sets whether to enable or disable the after touch.
+• Setting values: ENABLE*, DISABLE
+• When it’s set to [DISABLE], the after touch MIDI message 
+isn’t output.
+AFTER TOUCH 
+THRESHOLD
+Sets the pushing strength for the minimum after touch.
+• Setting values: 1 to 5* to 16
+
+
+===== PDF PAGE 36 =====
+36
+Settings
+*: Factory setting
+Power Management
+When [POWER MANAGEMENT] is set to [ON], the unit automatically enters Off mode after 
+20 minutes without being used.
+Press the [' (REC)] button to exit Off mode.
+• The factory setting is [ON].
+• Set [POWER MANAGEMENT] to [OFF] if you don’t need to use the Power Management 
+function.
+• Power consumption will increase if [POWER MANAGEMENT] is set to [OFF].
+POWER MANAGEMENT
+Sets the power management function.
+O Power Management (page 36)
+• Setting values: OFF, ON*
+FACTORY RESET
+Restores the settings to the factory settings.
+• Setting values: CANCEL*, RESET
+Setting item
+Description
+
+
+===== PDF PAGE 37 =====
+37
+Specifications
+The specifications and design of this product are subject to change without notice.
+General
+Power requirements
+DC 5 V
+Power consumption
+500 mA
+Main unit weight
+1.0 kg/2.2 lbs.
+Max. external dimensions
+(W × D × H) 284.3 × 209.0 × 44.6 mm/11.19″ × 8.23″ 
+× 1.76″
+Tolerable operating temperature
++5 °C – +35 °C (+41 °F – +95 °F)
+Tolerable operating humidity
+5 % – 85 % (no condensation)
+Input/Output terminals
+USB Type-C port
+1 set
+
+
+===== PDF PAGE 38 =====
+38
+Additional information
+Troubleshooting
+If you think something is wrong with the unit, check the information below and refer to the 
+[FAQ] for [SLAB] at the URL below.
+alphatheta.com/support/
+• Inspect devices connected with the unit.
+• The unit may restore proper operation after you turn it off and on.
+If the problems continue, read the Precautions for Use and consult an authorized service 
+company or your dealer.
+Power
+  You can’t turn the unit on.
+• Check if the USB cable is properly connected.
+O Connections (basic styles) (page 22)
+• Use another USB cable and check if the unit properly works.
+ The power is automatically turned off.
+• Use a standard USB cable.
+
+
+===== PDF PAGE 39 =====
+39
+Additional information
+Connections
+ The unit isn’t recognized by the connected PC/Mac.
+• User the supplied USB cable.
+O Connections (basic styles) (page 22)
+• When using a USB hub, use a product recommended by the manufacturer of your PC/Mac.
+• Quit any other open applications including screen savers and antivirus security software on 
+your PC/Mac. (When quitting antivirus security software, before doing so, disable the 
+internet connection to ensure the security of your PC/Mac.)
+• Remove any external hard discs or keyboards etc. and check if the unit is recognized by 
+the connected PC/Mac.
+• If your PC/Mac has multiple USB ports, connect the unit to another USB port.
+• If you’re using a Mac, disconnect the USB cable connected to the unit, launch the macOS 
+utility software [Audio MIDI Setup], and display [MIDI Window] or [MIDI Studio]. Select 
+the [SLAB] icon and click [Remove Device]. ([USB MIDI Device] may be displayed 
+instead of the [SLAB] icon. In that case, select [USB MIDI Device].) Connect the unit and 
+Mac again with a USB cable and check if the [SLAB] icon is displayed.
+• If you’re using a PC, check if [SLAB] is displayed under [Device Manager] → [Sound, 
+Video, and Game controllers].
+
+
+===== PDF PAGE 40 =====
+40
+Additional information
+Trademarks and registered trademarks
+• Mac, macOS and OS X are trademarks of Apple Inc., registered in the U.S. and other 
+countries and regions.
+• Windows is a trademark or registered trademark of Microsoft Corporation in the U.S. and 
+other countries.
+• Serato Studio, Serato Sample, and Serato DJ Pro are registered trademarks of Serato 
+Limited.
+Other product, technology and company names, etc. mentioned herein are trademarks or 
+registered trademarks of their respective owners.
+About using MP3 files
+This product has been licensed for nonprofit use. This product has not been licensed for 
+commercial purposes (for profit-making use), such as broadcasting (terrestrial, satellite, 
+cable or other types of broadcasting), streaming on the Internet, Intranet (a corporate 
+network) or other types of networks or distributing of electronic information (online digital 
+music distribution service). You need to acquire the corresponding licenses for such 
+uses. For details, see http://www.mp3licensing.com.
+
+
+===== PDF PAGE 41 =====
+41
+Additional information
+Software licenses
+Apache
+Copyright (c) 2009-2022 ARM Limited. All rights reserved.
+CMSIS: Apache-2.0
+Licensed under the Apache License, Version 2.0 (the License); you may not use this file 
+except in compliance with the License.
+You may obtain a copy of the License at
+www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under the 
+License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF 
+ANY KIND, either express or implied.
+See the License for the specific language governing permissions and limitations under the 
+License.
+BSD
+The BSD-3-Clause License
+Copyright (c) 2015, Freescale Semiconductor, Inc.
+Copyright 2016-2024 NXP
+All rights reserved.
+Redistribution and use in source and binary forms, with or without modification, are permitted 
+provided that the following conditions are met:
+1.
+Redistributions of source code must retain the above copyright notice, this list of 
+conditions and the following disclaimer.
+2.
+Redistributions in binary form must reproduce the above copyright notice, this list of 
+conditions and the following disclaimer in the documentation and/or other materials 
+provided with the distribution.
+3.
+Neither the name of the copyright holder nor the names of its contributors may be used to 
+endorse or promote products derived from this software without specific prior written 
+permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED 
+TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A 
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+
+
+===== PDF PAGE 42 =====
+42
+Additional information
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY 
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+FreeRTOS Kernel V10.5.0 
+Copyright (C) 2024 Amazon.com, Inc. or its affiliates. All Rights Reserved. 
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+and associated documentation files (the “Software”), to deal in the Software without 
+restriction, including without limitation the rights to use, copy, modify, merge, publish, 
+distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the 
+Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or 
+substantial portions of the Software.
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS 
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS 
+BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN 
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+SOFTWARE.
+
+
+===== PDF PAGE 43 =====
+43
+Additional information
+Cautions on copyrights
+Recordings you have made are for your personal enjoyment and according to copyright laws 
+may not be used without the consent of the copyright holder.
+• Music recorded from CDs, etc., is protected by the copyright laws of individual countries 
+and by international treaties. It is the full responsibility of the person who has recorded the 
+music to ensure that it is used legally.
+• When handling music downloaded from the Internet, etc., it is the full responsibility of the 
+person who has downloaded the music to ensure that it is used in accordance with the 
+contract concluded with the download site.
+The specifications and design of this product are subject to change without notice.
+© 2025 AlphaTheta Corporation. All rights reserved.
+<DRI1975-A>

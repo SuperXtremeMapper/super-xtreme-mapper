@@ -1,0 +1,749 @@
+=== HTML DOCUMENT (unpaginated) ===
+DJControl Starlight : drivers, firmware and guides | Support Hercules
+Technical support website
+Sign In
+English
+Français
+Deutsch
+Español
+Italiano
+Nederlands
+Português
+Русский
+中文 (中国)
+日本語
+HERCULES.COM
+Stream
+Wireless Audio
+Speakers
+DJ Controllers
+DJ Headphones
+DJ Speakers
+Legacy
+Webcams
+Sound Cards
+WiFi
+PLC
+eCafé
+Video Cards
+Français
+English
+Deutsch
+Español
+Italiano
+Nederlands
+Português
+Русский
+中文 (中国)
+日本語
+Sign in
+DJControl Starlight
+Product number
+4780884
+4780887
+Drivers
+Software
+Manual
+MIDI mapping
+Tutorials
+Knowledge base
+Contact us for this product
+Drivers
+HDJCSeries MAC [DJSeriesInstall 6.51s - macOS 11 (Big Sur) to macOS 26 (Tahoe)]
+MAC
+Release notes - HDJCSeries MAC [DJSeriesInstall 6.51s - macOS 11 (Big Sur) to macOS 26 (Tahoe)]
+HDJCSeries MAC [DJSeriesInstall 6.51s - macOS 11 (Big Sur) to macOS 26 (Tahoe)]
+System Requirement:  OS X 10.11  to macOS 26 (Tahoe)  - Intel Core or Apple M Series.
+**PLEASE NOTE: The MP3 e2 controller is not supported on computers with Apple Silicon processors (M1/M2).
+Changes in this release:
+-	Added support for DJControl Inpulse 200 MK2
+-	Added support for DJControl Inpulse 300 MK2
+-	Added support for DJControl Inpulse T7
+-	Added support for macOS 13 (Ventura), 14 (Sonoma), 15 (Sequoia)
+-	Reboot no longer requested following installation.
+Changes in previous versions:
+V6.44s
+- Inpulse 500: update to Firmware v1.66
+This update solves the problem with the touch on the jogwheel that could stop playing the track while spinning.
+V6.43s
+- Added support for MacOS 12 (Monterey);
+- Added support for DJControl Mix.
+V6.40 BETA
+- Added support for Mac OS 11 (Big Sur);
+- Added support for Apple M1 processors;
+- Added Dark Mode support on several control panel;
+- Fixes minor graphics bugs on several control panel;
+**NOTE :  Control panels for Hercules RMX, Original MP3 and MK2 will not be available on macOS 10.13 and superior.
+- P32DJ: update to Firmware v1.47
+With this firmware, the Light Show mode can be disabled by pressing HOTCUE and SAMPLER mode at the same time for more than 3sec. This is a volatile setting will have to redone at each unplug/replug.
+V6.18
+- Added support for DJControl Inpulse 500
+- DJControl Inpulse 200: Firmware V1.72 (PADFX now single button)
+- DJControl Inpulse 300: Firmware V1.72 (PADFX now single button)
+For more information about how this changes relates to DJUCED:
+https://www.djuced.com/change-your-pad-fx-on-hercules-djcontrol-inpulse-firmware-update-guide/
+V6.08
+- DJControl Starlight: Update to Firmware FW 1.27
+This firmware fixes an IPad compatibility issue when using a USB Camera Kit.
+V6.07
+-CONTROL PANEL: Added audio, MIDI and LED test feature to DJControl Inpulse 300/200 and DJControl Starlight.
+V6.05
+- Added support for DJControl Inpulse 300
+- Added support for DJControl Inpulse 200
+- Added support for DJControl Starlight
+V5.99
+- Fixes minor graphics bugs on several control panel in macOS Sierra (10.12) & High Sierra (10.13)
+- Set the the link from the control panel to current website address of support.hercules.com
+- DJControl Jogvision: firmware (FW) v2.60
+This firmware sets a minimal jog rotation speed to detect rotation & and adds faster touch detection on jog
+- Universal DJ: FW v30
+This firmware sets a minimal jog rotation speed to detect rotation
+V5.92
+- Added support for DJControl Instinct P8
+- P32DJ: update to Firmware v46
+This firmware add 2 changes into digit displays behavior:
+-Ability to display Active Step Sequence Size in Traktor 2.11
+-Headphones volume display (in %) when the corresponding buttons Vol +/- are pressed
+V5.89
+- Added support for P32DJ
+- Support and performance fixes for OS X 10.11 (using 10.11.4 is highly recommended)
+V5.69
+- DJControl Jogvision: update to Firmware v256
+V5.65
+- Added support for DJControl Compact
+- DJControl Jogvision: update to Firmware v255
+- MIDI enumeration fixes for OS X 10.9/ 10.10
+V5.57
+- Added support for DJControl Jogvision
+- Added support for DJControl Glow
+- DJControl Wave: update to Firmware v38
+- DJControl Jogvision: update to Firmware v250
+- Minor bug fixes
+v5.18
+- Added support for Universal DJ
+- Universal DJ: update to Firmware v24
+- Minor bug fixes
+NOTE: Firmware updates from v5.03 are not included with this package.
+v5.03
+Mandatory Firmware update to prevent installation issues on USB 3.0 controllers (<b>Please be sure to strictly follow the on-screen instructions for this very important procedure.</b>)
+- DJ Console MK2: update to Firmware v16
+- DJ Console Rmx: update to Firmware v32
+- DJ Console 4-Mx: update to Firmware v16
+- DJ Console MK4: update to Firmware v22
+- DJ 4Set: update to Firmware v18
+- DJ Trim 4&6: update to Firmware v14
+- Added support for DJControlWave
+- DJControl AIR+: update to Firmware v25
+- DJControl AIR: update to Firmware v23
+- DJControl Instinct: update to Firmware v21
+- Various control panel and Firmware updater improvements
+V4.69
+- Added support for DJControl AIR+
+- DJControl AIR+: update to Firmware v23
+- Corrected some minor control panel bugs
+V4.58
+- Minor control panel bug fix
+v4.47
+- Improved firmware update process.
+V4.45
+- Optimized support for USB 3.0
+- MP3 e2: Bug fix for MIDI when connected to a USB 3.0 port
+- DJControl AIR: Update to firmware 22
+- DJ Console Mk4: Update to firmware 21
+v4.24
+- Added support for DJConsole Rmx2
+v4.21.
+- Added support for OS X Mountain Lion (10.8)
+v3.76
+- Added support for DJ Control Instinct
+Includes DJ Instinct Firmware 20
+v3.31
+- Added support for DJ Control AIR
+- DJ Control AIR: Firmware v21
+v2.87
+- Added support for OS X 10.7 Lion
+v2.71
+- Firmware update correcting a potential latency issue on the jog wheels (DJ Console 4-Mx and DJ 4Set)
+v2.69
+- Added support for DJ 4Set
+- All controllers can now transmit on the same MIDI channel simultaneously (default channel is still 1)
+v2.47
+- The MIDI Channel is set to default during the installation process.
+v2.45
+- Added support for DJ Console 4-Mx
+v2.11
+- Added support for DJ Console Mk4
+- USB traffic optimization.
+- Minor bug fixes in the MIDI driver.
+v2.09
+- Added support for DJ Console Mk4
+- Minor bug fixes
+v1.77
+- Corrects MIDI Mapper compatibility with Snow Leopard.
+- Minor bug fixes.
+v1.73
+- Snow Leopard support.
+- Support for DJ Control MP3 e2
+- Firmware updater redesign.
+- Minor bug fixes.
+v1.48
+- Firmware updater improvement
+- Various minor bug fixes
+v1.36
+- Correct the "error in sound driver" problem in Virtual DJ after upgrading to OS X 10.5.7 (Aggregate Device)
+v1.09
+- Unified driver package for all DJ Series products
+- DJ Console MK2/ DJ Control MP3: Correct a LED related issues with Traktor Pro
+- Update for DJ Console Rmx and DJ Control Steel related to support of a future MIDI utility
+- Minor bug fixes
+Share
+Close
+HDJCSeries MAC® [DJSeriesInstall 6.18s - OS X 10.6  to macOS 10.15.7]
+MAC
+Release notes - HDJCSeries MAC® [DJSeriesInstall 6.18s - OS X 10.6  to macOS 10.15.7]
+HDJCSeries MAC® [DJSeriesInstall 6.18s - OS X 10.6  to macOS 10.15.7]
+**IMPORTANT**: This is the last released package that will support OS X 10.6.x to MacOS 10.11
+Supported products:
+-DJControl Inpulse 500
+-DJControl Inpulse 300
+-DJControl Inpulse 200
+-DJControl Starlight
+-DJControl Instinct P8
+-P32 DJ
+-DJControl Compact
+-DJControl MP3 GLOW
+-DJControl Jogvision
+-DJHerculesMix Universal
+-DJControl Wave
+-DJControl AIR+
+-DJConsole Rmx2
+-DJControl MP3 LE
+-DJControl Instinct
+-DJControl AIR
+-DJ 4Set
+-DJ Trim 4&6
+-DJ Console 4-MX
+-DJ Control Steel
+-DJ Control MP3 e2
+-DJ Control MP3
+-DJ Console Rmx
+-DJ Console Mk4
+-DJ Console Mk2
+-DJ Console
+Changes:
+- Added support for DJControl Inpulse 500
+- DJControl Inpulse 200: Firmware V1.72 (PADFX now single button)
+- DJControl Inpulse 300: Firmware V1.72 (PADFX now single button)
+For more information about how this changes relates to DJUCED:
+https://www.djuced.com/change-your-pad-fx-on-hercules-djcontrol-inpulse-firmware-update-guide/
+V6.08
+- DJControl Starlight: Update to Firmware FW 1.27
+This firmware fixes an IPad compatibility issue when using a USB Camera Kit.
+V6.07
+-CONTROL PANEL: Added audio, MIDI and LED test feature to DJControl Inpulse 300/200 and DJControl Starlight.
+V6.05
+- Added support for DJControl Inpulse 300
+- Added support for DJControl Inpulse 200
+- Added support for DJControl Starlight
+V5.99
+- Fixes minor graphics bugs on several control panel in macOS Sierra (10.12) & High Sierra (10.13)
+- Set the the link from the control panel to current website address of support.hercules.com
+- DJControl Jogvision: firmware (FW) v2.60
+This firmware sets a minimal jog rotation speed to detect rotation & and adds faster touch detection on jog
+- Universal DJ: FW v30
+This firmware sets a minimal jog rotation speed to detect rotation
+V5.92
+- Added support for DJControl Instinct P8
+- P32DJ: update to Firmware v46
+This firmware add 2 changes into digit displays behavior:
+-Ability to display Active Step Sequence Size in Traktor 2.11
+-Headphones volume display (in %) when the corresponding buttons Vol +/- are pressed
+V5.89
+- Added support for P32DJ
+- Support and performance fixes for OS X 10.11 (using 10.11.4 is highly recommended)
+V5.69
+- DJControl Jogvision: update to Firmware v256
+V5.65
+- Added support for DJControl Compact
+- DJControl Jogvision: update to Firmware v255
+- MIDI enumeration fixes for OS X 10.9/ 10.10
+V5.57
+- Added support for DJControl Jogvision
+- Added support for DJControl Glow
+- DJControl Wave: update to Firmware v38
+- DJControl Jogvision: update to Firmware v250
+- Minor bug fixes
+v5.18
+- Added support for Universal DJ
+- Universal DJ: update to Firmware v24
+- Minor bug fixes
+NOTE: Firmware updates from v5.03 are not included with this package.
+v5.03
+Mandatory Firmware update to prevent installation issues on USB 3.0 controllers (<b>Please be sure to strictly follow the on-screen instructions for this very important procedure.</b>)
+- DJ Console MK2: update to Firmware v16
+- DJ Console Rmx: update to Firmware v32
+- DJ Console 4-Mx: update to Firmware v16
+- DJ Console MK4: update to Firmware v22
+- DJ 4Set: update to Firmware v18
+- DJ Trim 4&6: update to Firmware v14
+- Added support for DJControlWave
+- DJControl AIR+: update to Firmware v25
+- DJControl AIR: update to Firmware v23
+- DJControl Instinct: update to Firmware v21
+- Various control panel and Firmware updater improvements
+V4.69
+- Added support for DJControl AIR+
+- DJControl AIR+: update to Firmware v23
+- Corrected some minor control panel bugs
+V4.58
+- Minor control panel bug fix
+v4.47
+- Improved firmware update process.
+V4.45
+- Optimized support for USB 3.0
+- MP3 e2: Bug fix for MIDI when connected to a USB 3.0 port
+- DJControl AIR: Update to firmware 22
+- DJ Console Mk4: Update to firmware 21
+v4.24
+- Added support for DJConsole Rmx2
+v4.21.
+- Added support for OS X Mountain Lion (10.8)
+v3.76
+- Added support for DJ Control Instinct
+Includes DJ Instinct Firmware 20
+v3.31
+- Added support for DJ Control AIR
+- DJ Control AIR: Firmware v21
+v2.87
+- Added support for OS X 10.7 Lion
+v2.71
+- Firmware update correcting a potential latency issue on the jog wheels (DJ Console 4-Mx and DJ 4Set)
+v2.69
+- Added support for DJ 4Set
+- All controllers can now transmit on the same MIDI channel simultaneously (default channel is still 1)
+v2.47
+- The MIDI Channel is set to default during the installation process.
+v2.45
+- Added support for DJ Console 4-Mx
+v2.11
+- Added support for DJ Console Mk4
+- USB traffic optimization.
+- Minor bug fixes in the MIDI driver.
+v2.09
+- Added support for DJ Console Mk4
+- Minor bug fixes
+v1.77
+- Corrects MIDI Mapper compatibility with Snow Leopard.
+- Minor bug fixes.
+v1.73
+- Snow Leopard support.
+- Support for DJ Control MP3 e2
+- Firmware updater redesign.
+- Minor bug fixes.
+v1.48
+- Firmware updater improvement
+- Various minor bug fixes
+v1.36
+- Correct the "error in sound driver" problem in Virtual DJ after upgrading to OS X 10.5.7 (Aggregate Device)
+v1.09
+- Unified driver package for all DJ Series products
+- DJ Console MK2/ DJ Control MP3: Correct a LED related issues with Traktor Pro
+- Update for DJ Console Rmx and DJ Control Steel related to support of a future MIDI utility
+- Minor bug fixes
+Share
+Close
+HDJCSeries PC [2020.HDJS.1 - Windows 7 -8.1] Asio drivers
+PC
+Release notes - HDJCSeries PC [2020.HDJS.1 - Windows 7 -8.1] Asio drivers
+HDJCSeries PC [2020.HDJS.1 - Windows 7 -8.1] Asio drivers
+**IMPORTANT**: This is the last released package that will support 8.1/ 8 / 7 (32-bit / 64-bit) ****
+Supported products:
+-DJControl Inpulse 500
+-DJControl Inpulse 300
+-DJControl Inpulse 200
+-DJControl Starlight
+-DJControl Instinct P8
+-P32 DJ
+-DJControl Compact
+-DJControl MP3 GLOW
+-DJControl Jogvision
+-DJHerculesMix Universal
+-DJControl Wave
+-DJControl AIR+
+-DJConsole Rmx2
+-DJControl MP3 LE
+-DJControl Instinct
+-DJControl AIR
+-DJ 4Set
+-DJ Trim 4&6
+-DJ Console 4-MX
+-DJ Control Steel
+-DJ Control MP3 e2
+-DJ Control MP3
+-DJ Console Rmx
+-DJ Console Mk4
+-DJ Console Mk2
+-DJ Console
+2020.HDJS.1
+- Added support for DJControl Inpulse 500
+- DJControl Inpulse 200: Firmware V1.72 (PADFX now single button)
+- DJControl Inpulse 300: Firmware V1.72 (PADFX now single button)
+For more information about how this changes relates to DJUCED:
+https://www.djuced.com/change-your-pad-fx-on-hercules-djcontrol-inpulse-firmware-update-guide/
+2019.HDJS.1
+- DJControl Starlight: update to Firmware FW 1.27
+This firmware fixes an IPad compatibility issue when using a USB Camera Kit.
+2018.HDJS.3
+- CONTROL PANEL: Added audio, MIDI and LED test feature to DJControl Inpulse 300/200 and DJControl Starlight.
+- Corrected installation problem on system using Secure Boot.
+2018.HDJS.2
+- Added support for DJControl Inpulse 300
+- Added support for DJControl Inpulse 200
+- Added support for DJControl Starlight
+2018.HDJS.1
+- Fixes a crash issue in ASIO on Universal DJ/DJControl AIR Plus in Djuced 40;
+- Fixes possible enumeration issues on Jogvision/Rmx2 in 88/96kHz;
+- DJControl Jogvision: update to firmware (FW) v2.60
+This firmware sets a minimal jog rotation speed to detect rotation & and adds faster touch detection on jog
+- Universal DJ: update to FW v30
+This firmware sets a minimal jog rotation speed to detect rotation
+2016.HDJS.3
+- P32DJ: update to Firmware v46
+This firmware add 2 changes into digit displays behavior:
+-Ability to display Active Step Sequence Size in Traktor 2.11
+-Headphones volume display (in %) when the corresponding buttons Vol +/- are pressed
+2016.HDJS.2
+- Added support for DJControl Instinct P8
+2016.HDJS.1
+- Added support for P32DJ
+2015.HDJS.6
+- DJControl Jogvision: update to Firmware v256
+2015.HDJS.5
+- Added support for DJControl Compact
+- DJControl Jogvision: update to Firmware v255
+- DJConsole Rmx2: control panel bugs fixes
+2015.HDJS.4
+- DJControl Jogvision: update to Firmware v250
+- DJControl Jogvision: control panel bugs fixes
+2015.HDJS.3
+- Added support for DJControl Jogvision
+- Added support for DJControl MP3 GLOW
+- DJControl WAVE: update to Firmware v38
+- DJ TRAY: Various bug fixes
+2014.HDJS.1
+Mandatory Firmware update to prevent installation issues on USB 3.0 controllers
+- DJ Console MK2: update to Firmware v16
+- DJ Console Rmx: update to Firmware v32
+- DJ Console 4-Mx: update to Firmware v16
+- DJ Console MK4: update to Firmware v22
+- DJ 4Set: update to Firmware v18
+- DJ Trim 4&6: update to Firmware v14
+- Added support for DJControlWave
+- DJControl AIR+: update to Firmware v25
+- DJControl AIR: update to Firmware v23
+- DJControl Instinct: update to Firmware v21
+- Various control panel and Firmware updater improvements
+2013.HDJS.2
+- Added support for DJControl AIR+
+- DJControl AIR+: update to Firmware v23
+- Added support for DJConsole Rmx2
+- New system tray and Control Panel options
+- Corrected some minor control panel bugs
+2012.HDJS.6
+- Corrects a potential MIDI problem for DJConsole AIR and DJControl Instinct under Windows 7 64 bit
+2012.HDJS.5
+- Optimized support for USB 3.0
+- MP3 e2: Bug fix for MIDI when connected to a USB 3.0 port
+- DJControl AIR: Update to firmware 22
+- DJ Console Mk4: Update to firmware 21
+2012.HDJS.3
+- Added support for DJControl Instinct
+- Corrects ASIO 24-bit issue
+*Includes DJ Instinct Firmware 20
+2011.HDJS.7
+- Added support for DJ Control AIR
+- Improved ASIO performances
+- DJ Control AIR: Firmware v21
+- DJ Control AIR : Correct MIDI issue with non-English version of Windows XP
+(Be sure to always connect to the same USB port where the installation was performed)
+2011.HDJS.4
+- Reduced ASIO latency.
+2011.HDJS.3
+- Firmware update correcting potential latency issue on the jog wheels (DJ Console 4-Mx and DJ 4Set)
+2011.HDJS.2
+- Added support for DJ 4Set
+- All Hercules DJ controllers can now transmit on the same MIDI channel simultaneously (default channel is still 1)
+- Improved support and bug fixes for NEC/Renesas USB 3.0 controllers*
+*Using the latest driver (v2.0.34.0) and firmware (v3027) from the manufacturer is necessary.
+2011.HDJS.1
+Never Released
+2010.HDJS.4
+- The MIDI Channel is set to default during the installation process
+2010.HDJS.3
+- Added support for DJ Console 4-Mx
+2010.HDJS.2
+- USB traffic optimization.
+- Minor bug fixes in the MIDI driver.
+2010.HDJS.1
+- Added support for DJ Console Mk4
+- Various minor bug fixes
+2009.HDJS.4
+- New Firmware updater process
+- Various minor bug fixes
+2009.HDJS.3
+- Added support for Windows 7 RC1
+- Firmware updater improvements
+- Various minor bug fixes
+2009.HDJS.2
+2009.HDJS.1
+- Minor bugfixes
+- Avoids a potential issue in firmware update
+- MIDI drivers update for DJ Console Rmx and DJ Control Steel to support a future MIDI utility
+2008.HDJS.4
+- New DJ Console Mk2 firmware (v15)
+- Minor ASIO bugfixes.
+2008.HDJS.3
+-Added support for DJ Control Steel.
+-Upgraded KMDF coinstaller to 1.7 from 1.5- should fix some install issues.
+-Fixed possible ASIO dropout issues when connected to a hub on Windows Vista.
+- New DJ Console Mk2 firmware (v14) which solves a minor mixer issue.
+-Minor bugfixes.
+2008.HDJS.2
+- Fixed MIDI and ASIO communication issues.
+- Code optimization which reduces CPU utilization and improve controller latency.
+- Minor bugfixes.
+DJ Console Rmx
+- Latest firmware (v29) which fixes a MIDI Led issue
+2008.HDJS.1
+-  Added support for Windows XP/Vista 64-bit
+DJ Console Rmx
+- First driver package for DJ Console Rmx in Windows
+DJ Console / DJ Console MK2
+- Support for lower ASIO buffer sizes in 44.1KHz
+- Miscellaneous bug fixes
+DJ Control MP3
+- Miscellaneous bug fixes
+Share
+Close
+HDJCSeries PC [2023.HDJS.2 - Windows 10-11] ASIO drivers
+PC
+Release notes - HDJCSeries PC [2023.HDJS.2 - Windows 10-11] ASIO drivers
+HDJCSeries PC [2023.HDJS.2 - Windows 10-11] ASIO drivers
+System Requirement:
+- Intel or AMD processor equipped computers (ARM processors currently not supported).
+Changes in this release:
+-	Added support for DJControl Inpulse T7
+-	Added support for DJControl Inpulse 200 MK2
+-	Package will now upgrade to new version instead of having to uninstall first.
+Changes in previous versions:
+2023.HDJS.1
+Added support for DJControl Inpulse 300 MK2
+2022.HDJS.1
+- Inpulse 500: update to Firmware v1.66
+This update solves the problem with the touch on the jogwheel that could stop playing the track while spinning.
+2021.HDJS.1
+- Support for Windows 10 & 11 EXCLUSIVELY.
+- Added support for DJControl Mix
+- Fix for DJControl Inpulse 500: ASIO settings are now save upon unplug/replug.
+- P32DJ: update to Firmware v1.47
+With this firmware, the Light Show mode can be disabled by pressing HOTCUE and SAMPLER mode at the same time for more than 3sec. This is a volatile setting will have to redone at each unplug/replug.
+2020.HDJS.1
+- Added support for DJControl Inpulse 500
+- DJControl Inpulse 200: Firmware V1.72 (PADFX now single button)
+- DJControl Inpulse 300: Firmware V1.72 (PADFX now single button)
+For more information about how this changes relates to DJUCED:
+https://www.djuced.com/change-your-pad-fx-on-hercules-djcontrol-inpulse-firmware-update-guide/
+2019.HDJS.1
+- DJControl Starlight: update to Firmware FW 1.27
+This firmware fixes an IPad compatibility issue when using a USB Camera Kit.
+2018.HDJS.3
+- CONTROL PANEL: Added audio, MIDI and LED test feature to DJControl Inpulse 300/200 and DJControl Starlight.
+- Corrected installation problem on system using Secure Boot.
+2018.HDJS.2
+- Added support for DJControl Inpulse 300
+- Added support for DJControl Inpulse 200
+- Added support for DJControl Starlight
+2018.HDJS.1
+- Fixes a crash issue in ASIO on Universal DJ/DJControl AIR Plus in Djuced 40;
+- Fixes possible enumeration issues on Jogvision/Rmx2 in 88/96kHz;
+- DJControl Jogvision: update to firmware (FW) v2.60
+This firmware sets a minimal jog rotation speed to detect rotation & and adds faster touch detection on jog
+- Universal DJ: update to FW v30
+This firmware sets a minimal jog rotation speed to detect rotation
+2016.HDJS.3
+- P32DJ: update to Firmware v46
+This firmware add 2 changes into digit displays behavior:
+-Ability to display Active Step Sequence Size in Traktor 2.11
+-Headphones volume display (in %) when the corresponding buttons Vol +/- are pressed
+2016.HDJS.2
+- Added support for DJControl Instinct P8
+2016.HDJS.1
+- Added support for P32DJ
+2015.HDJS.6
+- DJControl Jogvision: update to Firmware v256
+2015.HDJS.5
+- Added support for DJControl Compact
+- DJControl Jogvision: update to Firmware v255
+- DJConsole Rmx2: control panel bugs fixes
+2015.HDJS.4
+- DJControl Jogvision: update to Firmware v250
+- DJControl Jogvision: control panel bugs fixes
+2015.HDJS.3
+- Added support for DJControl Jogvision
+- Added support for DJControl MP3 GLOW
+- DJControl WAVE: update to Firmware v38
+- DJ TRAY: Various bug fixes
+2014.HDJS.1
+Mandatory Firmware update to prevent installation issues on USB 3.0 controllers
+- DJ Console MK2: update to Firmware v16
+- DJ Console Rmx: update to Firmware v32
+- DJ Console 4-Mx: update to Firmware v16
+- DJ Console MK4: update to Firmware v22
+- DJ 4Set: update to Firmware v18
+- DJ Trim 4&6: update to Firmware v14
+- Added support for DJControlWave
+- DJControl AIR+: update to Firmware v25
+- DJControl AIR: update to Firmware v23
+- DJControl Instinct: update to Firmware v21
+- Various control panel and Firmware updater improvements
+2013.HDJS.2
+- Added support for DJControl AIR+
+- DJControl AIR+: update to Firmware v23
+- Added support for DJConsole Rmx2
+- New system tray and Control Panel options
+- Corrected some minor control panel bugs
+2012.HDJS.6
+- Corrects a potential MIDI problem for DJConsole AIR and DJControl Instinct under Windows 7 64 bit
+2012.HDJS.5
+- Optimized support for USB 3.0
+- MP3 e2: Bug fix for MIDI when connected to a USB 3.0 port
+- DJControl AIR: Update to firmware 22
+- DJ Console Mk4: Update to firmware 21
+2012.HDJS.3
+- Added support for DJControl Instinct
+- Corrects ASIO 24-bit issue
+*Includes DJ Instinct Firmware 20
+2011.HDJS.7
+- Added support for DJ Control AIR
+- Improved ASIO performances
+- DJ Control AIR: Firmware v21
+- DJ Control AIR : Correct MIDI issue with non-English version of Windows XP
+(Be sure to always connect to the same USB port where the installation was performed)
+2011.HDJS.4
+- Reduced ASIO latency.
+2011.HDJS.3
+- Firmware update correcting potential latency issue on the jog wheels (DJ Console 4-Mx and DJ 4Set)
+2011.HDJS.2
+- Added support for DJ 4Set
+- All Hercules DJ controllers can now transmit on the same MIDI channel simultaneously (default channel is still 1)
+- Improved support and bug fixes for NEC/Renesas USB 3.0 controllers*
+*Using the latest driver (v2.0.34.0) and firmware (v3027) from the manufacturer is necessary.
+2011.HDJS.1
+Never Released
+2010.HDJS.4
+- The MIDI Channel is set to default during the installation process
+2010.HDJS.3
+- Added support for DJ Console 4-Mx
+2010.HDJS.2
+- USB traffic optimization.
+- Minor bug fixes in the MIDI driver.
+2010.HDJS.1
+- Added support for DJ Console Mk4
+- Various minor bug fixes
+2009.HDJS.4
+- New Firmware updater process
+- Various minor bug fixes
+2009.HDJS.3
+- Added support for Windows 7 RC1
+- Firmware updater improvements
+- Various minor bug fixes
+2009.HDJS.2
+2009.HDJS.1
+- Minor bugfixes
+- Avoids a potential issue in firmware update
+- MIDI drivers update for DJ Console Rmx and DJ Control Steel to support a future MIDI utility
+2008.HDJS.4
+- New DJ Console Mk2 firmware (v15)
+- Minor ASIO bugfixes.
+2008.HDJS.3
+-Added support for DJ Control Steel.
+-Upgraded KMDF coinstaller to 1.7 from 1.5- should fix some install issues.
+-Fixed possible ASIO dropout issues when connected to a hub on Windows Vista.
+- New DJ Console Mk2 firmware (v14) which solves a minor mixer issue.
+-Minor bugfixes.
+2008.HDJS.2
+- Fixed MIDI and ASIO communication issues.
+- Code optimization which reduces CPU utilization and improve controller latency.
+- Minor bugfixes.
+DJ Console Rmx
+- Latest firmware (v29) which fixes a MIDI Led issue
+2008.HDJS.1
+-  Added support for Windows XP/Vista 64-bit
+DJ Console Rmx
+- First driver package for DJ Console Rmx in Windows
+DJ Console / DJ Console MK2
+- Support for lower ASIO buffer sizes in 44.1KHz
+- Miscellaneous bug fixes
+DJ Control MP3
+- Miscellaneous bug fixes
+Share
+Close
+Software
+Djay iOS Free -  Compatibility
+Mobile
+DJUCED
+MAC
+PC
+Serato DJ Lite
+MAC
+PC
+Manual
+DJControl Starlight - Serato DJ Pro - Quick Start Guide
+MAC
+PC
+DJControl Starlight Quick Install
+Hercules DJ Series Warranty Information - V11
+Hercules DJ Warranty Information - Version 9
+DJControl Starlight - Serato DJ Lite - Quick Start Guide
+MAC
+PC
+How to use - DJControl Starlight - En Fr De Nl It Es Pr Ru Cz Tr Pl Zh Ko Ar
+MIDI mapping
+DEX 3 DJ Mapping
+PC
+DJay Pro  - DJControl Starlight
+MAC
+PC
+Djuced 5 - DJControl Starlight - Mapping for decks 3 and 4
+Release notes - Djuced 5 - DJControl Starlight - Mapping for decks 3 and 4
+Djuced 5 - DJControl Starlight - Mapping for decks 3 and 4
+Share
+Close
+Traktor Pro 2-3  - DJControl Starlight (Traktor Pro 2/3 Midi Mapping)
+MAC
+PC
+VirtualDJ Pro - DJControl Starlight native support embedded
+MAC
+PC
+Tutorials
+Hercules DJ Academy: Intro -
+Hercules DJ Academy: Intro
+Share
+Close
+Knowledge base
+Optimize your Windows settings for DJing
+If the audio tracks are stored on a USB key, the playback quality is bad.
+What DJ software is my DJControl Inpulse, Starlight or Jogvision compatible with?
+My DJ controller is not recognized or does not turn on
+Help and links to DJUCED
+Community
+Contact
+Hercules teams are here to help you! Feel free to contact us.
+Contact us
+Legal notices
+Terms of use
+Privacy Policy
+Accessibility: partially conformant
+Site map
+© 2025 Guillemot Corporation S.A. All rights reserved.
+Hercules is a registered trademarks of Guillemot Corporation S.A. All other trademarks or registered trademarks are the property of their respective owners.

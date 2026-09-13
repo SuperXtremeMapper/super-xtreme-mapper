@@ -1,0 +1,75 @@
+{
+  "manufacturer": "Hercules",
+  "model": "DJControl Inpulse 500",
+  "retrieved_on": "2026-09-12",
+  "grade": "ready-for-extraction",
+  "scope": "Source extraction readiness only; not a verified SXM profile",
+  "hardware_tested": false,
+  "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+  "notes": "Detailed official 14-page MIDI chart has Note/CC bytes, Shift and pad modes, relative encoders, paired MSB/LSB tempo and LED colors. Ready means extraction may begin; source anomalies require a review queue.",
+  "coverage": {
+    "addresses": "numeric decimal and hex input/output tables throughout pp1-14",
+    "channels": "chart uses zero-based channel nibble: Deck1 91/B1 = human channel2, shifted 94/B4 = human channel5; do not use printed 1 as human channel1",
+    "layers": "Shift changes deck/mixer channel; pads use mode-dependent note ranges, pp2-4 and 12-14",
+    "encoders": "p1 Autoloop CC0E relative 7F..40 CCW / 01..3F CW; p2 jog and 14-bit tempo CC08+CC28",
+    "led_feedback": "p4/p14 RGB palette and pp7-8 meters/individual LEDs"
+  },
+  "inspected_locators": [
+    "midi.pdf: pp1-14; p1 D1-1 Play 91 07 00/7F; p2 tempo/jog; p14 palette visually inspected",
+    "Source anomalies: p2 Centre backlight blank address; jog touch B1 08 overlaps tempo coarse CC08; resolve against hardware/manufacturer before final profile",
+    "midi.pdf: PDF page2 visually checked; blank Centre LED address and B1 08 jog-touch/tempo overlap confirmed in original rendering (inspection/anomalies.png)"
+  ],
+  "sources": [
+    {
+      "url": "https://support.hercules.com/en/product/djcontrolinpulse500-en/",
+      "file": "djcontrolinpulse500/support.html",
+      "status_code": 200,
+      "final_url": "https://support.hercules.com/en/product/djcontrolinpulse500-en/",
+      "bytes": 153093,
+      "sha256": "431c6345b2601117e744f0db1490dc95a4f1d6f5eb4a842c14f017f95a74b7b4",
+      "text_file": "djcontrolinpulse500/support.txt",
+      "text_sha256": "925dbf906bbb7de5286f01b196632eeb103f65c57dc149a895aa1512400a9c11"
+    },
+    {
+      "url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse500/DJControlInpulse500_MIDI_Commands.pdf",
+      "file": "djcontrolinpulse500/midi.pdf",
+      "status_code": 200,
+      "final_url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse500/DJControlInpulse500_MIDI_Commands.pdf",
+      "bytes": 1082100,
+      "sha256": "b1274a096816e795f0d35183527fc69a170d6d21a4f0e9151a1dae7810e3aee7",
+      "text_file": "djcontrolinpulse500/midi.txt",
+      "text_sha256": "2e0d498b7ebd48ca482ba5d598ce8c226ea0792a616c7cb788c64f79c087e21e"
+    },
+    {
+      "url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse500/DJControl_Inpulse_500_User_Manual.pdf",
+      "file": "djcontrolinpulse500/manual.pdf",
+      "status_code": 200,
+      "final_url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse500/DJControl_Inpulse_500_User_Manual.pdf",
+      "bytes": 20153227,
+      "sha256": "786f6445191606af6d11c0ddbbf4e00df515cdeb514dfadcecc8787cb4fcb26d",
+      "text_file": "djcontrolinpulse500/manual.txt",
+      "text_sha256": "8ab88e0f4dc537dc24d49d27b642ee7fd510a2c8955c45048749146adc590be9"
+    },
+    {
+      "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-500/",
+      "file": "djcontrolinpulse500/djuced-midi.html",
+      "status_code": 200,
+      "final_url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-500/",
+      "bytes": 446407,
+      "sha256": "058a933bd1d377ab845431eb9a7c3b4e73a4231e8d06dc2239d7bfbe604a8472",
+      "text_file": "djcontrolinpulse500/djuced-midi.txt",
+      "text_sha256": "bba9f543a0220e48d075366cd7fdbf1917a301fc4315f5aa7529d62f83309e25"
+    },
+    {
+      "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-500-manuel-et-controles-midi/",
+      "file": "djcontrolinpulse500/djuced-midi.html",
+      "status_code": 200,
+      "final_url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-500/",
+      "bytes": 446407,
+      "sha256": "058a933bd1d377ab845431eb9a7c3b4e73a4231e8d06dc2239d7bfbe604a8472",
+      "text_file": "djcontrolinpulse500/djuced-midi.txt",
+      "text_sha256": "bba9f543a0220e48d075366cd7fdbf1917a301fc4315f5aa7529d62f83309e25"
+    }
+  ],
+  "shared_references": []
+}

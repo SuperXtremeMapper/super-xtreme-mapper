@@ -1,0 +1,36 @@
+{
+  "manufacturer": "Native Instruments",
+  "model": "Traktor Z1 MK2",
+  "retrieved_on": "2026-09-12",
+  "grade": "partial",
+  "scope": "Source extraction readiness only; not a verified SXM profile",
+  "hardware_tested": false,
+  "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+  "notes": "Manual confirms MIDI mode via --- + menu buttons. Native four-deck switching does not establish MIDI layer addresses. No complete wire protocol table found.",
+  "coverage": {
+    "addresses": "not established by retrieved protocol documentation",
+    "channels": "not established by retrieved protocol documentation",
+    "layers": "not established by retrieved protocol documentation",
+    "encoders": "not established by retrieved protocol documentation",
+    "led_feedback": "not established by retrieved protocol documentation"
+  },
+  "inspected_locators": [
+    "manual.pdf: PDF page 8, printed page 6, Using the Traktor Z1 MK2 as a MIDI Controller"
+  ],
+  "sources": [
+    {
+      "url": "https://docs.native-instruments.com/pdf-guides/traktor/Traktor_Z1_Manual_EN_30102024.pdf",
+      "file": "z1-mk2/manual.pdf",
+      "status_code": 200,
+      "final_url": "https://docs.native-instruments.com/pdf-guides/traktor/Traktor_Z1_Manual_EN_30102024.pdf",
+      "bytes": 1645715,
+      "sha256": "1e01dc5492fb928df8dde38c0749eb42b7e348f4b0badee42f054018daeee761",
+      "text_file": "z1-mk2/manual.txt",
+      "text_sha256": "324c6794f63e0e512b822597ba56706d47c90214fb221d388d20f42379870760"
+    }
+  ],
+  "shared_references": [
+    "shared/ni-current-downloads.html",
+    "shared/ni-midi-mode.html"
+  ]
+}

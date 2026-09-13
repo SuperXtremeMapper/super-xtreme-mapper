@@ -1,0 +1,47 @@
+{
+  "manufacturer": "Native Instruments",
+  "model": "Traktor Kontrol F1",
+  "retrieved_on": "2026-09-12",
+  "grade": "partial",
+  "scope": "Source extraction readiness only; not a verified SXM profile",
+  "hardware_tested": false,
+  "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+  "notes": "MIDI mode and configurable Controller Editor behavior documented. Ordinary MIDI requires the MIDI Mode preference; default User Map uses proprietary NHL. Need a pinned/exported Controller Editor template before assigning concrete addresses.",
+  "coverage": {
+    "addresses": "template-dependent; no single fixed factory address table established",
+    "channels": "template-dependent",
+    "layers": "Controller Editor pages; User Map is NHL, not MIDI",
+    "encoders": "freely assignable encoder turn and push; message modes in editor reference",
+    "led_feedback": "RGB pads single/dual/HSB modes and 7-segment Note velocity/CC display described"
+  },
+  "inspected_locators": [
+    "manual.pdf: pp119-121 section 4.12; p128 MIDI Mode preference",
+    "controller-editor.pdf: pp162-168 section 14 Using Your Traktor Kontrol F1; pp166-168 LED/display details"
+  ],
+  "sources": [
+    {
+      "url": "https://docs.native-instruments.com/pdf-guides/traktor/traktor_kontrol_f1_manual_english.pdf",
+      "file": "f1/manual.pdf",
+      "status_code": 200,
+      "final_url": "https://docs.native-instruments.com/pdf-guides/traktor/traktor_kontrol_f1_manual_english.pdf",
+      "bytes": 3377124,
+      "sha256": "802243ad2c55d6a22fb451514bca0b096698730d520cc949f0db93cf7a55f2db",
+      "text_file": "f1/manual.txt",
+      "text_sha256": "0492dd2f9576ecb212b97f5443921cc9f20874e15a27b8711a8f19e7a66355d7"
+    },
+    {
+      "url": "https://www.native-instruments.com/fileadmin/ni_media/downloads/manuals/Controller_Editor_Manual_English_2017_11.pdf",
+      "file": "f1/controller-editor.pdf",
+      "status_code": 200,
+      "final_url": "https://docs.native-instruments.com/pdf-guides/Controller_Editor_Manual_English_2017_11.pdf",
+      "bytes": 5785112,
+      "sha256": "b388d0e709305a683b5d4a0f10989e3ccd11008b253139c4de5dfb262070e5b7",
+      "text_file": "f1/controller-editor.txt",
+      "text_sha256": "d5529b4fc676e3cc0557f7bd00bad3a3f6b0bea8b47169770643051cfc1eae61"
+    }
+  ],
+  "shared_references": [
+    "shared/ni-current-downloads.html",
+    "shared/ni-midi-mode.html"
+  ]
+}

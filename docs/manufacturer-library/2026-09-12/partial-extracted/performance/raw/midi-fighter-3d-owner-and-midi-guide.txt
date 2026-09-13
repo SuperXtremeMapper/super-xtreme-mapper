@@ -1,0 +1,927 @@
+
+--- PDF PAGE 1 ---
+Midi Fighter 3D
+
+
+ User
+
+ Guide
+
+
+
+
+
+  DJTECHTOOLS.COM
+
+
+
+
+
+                                                                            Ver 1.03
+
+--- PDF PAGE 2 ---
+Introduction
+
+This user guide is split in two parts, ﬁrst covering the Midi Fighter 3D hardware, then the
+second covering the Midi Fighter Utility and all relevant device settings.
+
+If you are simply looking to learn how to set up and use an existing mapping in either Traktor
+or Ableton, please refer to the quick start guides, these are both available here.
+
+djtechtools.com/midiﬁghterhelp
+
+Nomenclature
+
+The Musical Instrument Device Interface (MIDI) protocol at its most basic level describes 16
+channels, each consisting of 128 Notes, and 128 Control Change (CC) messages.
+
+This user guide and the Midi Fighter Utility refers to these 16 channels as channels 0 through
+15, the notes as notes 0 through 127, and the control change messages as CC’s 0 through
+127.
+
+
+
+
+
+!2
+
+--- PDF PAGE 3 ---
+The Midi Fighter 3D Hardware
+
+This section describes the hardware & MIDI operation of the Midi Fighter 3D in detail and
+should be used as a reference when creating your own MIDI mapping in your software of
+choice.
+
+This section assumes that the reader is already familiar with the basics of the MIDI protocol.
+
+Introduction
+
+The Midi Fighter 3D consists of 16 arcade triggers with MIDI controlled  full color ring
+illumination, 4 user conﬁgurable top mounted bank buttons, 6 user conﬁgurable buttons
+mounted on the side of the device and multiple axis motion controls (tilt & rotation). The side
+buttons have no LED illumination.
+
+Each of the 16 arcade triggers will send a different note in each bank, allowing access of up
+to 64 unique notes across the four banks. By default any side button MIDI Notes or CC’s are
+also unique for each bank, this behaviour can be disabled with the Utility by unchecking the
+“Bank Side Buttons” option.
+
+For a full description of the bank operation refer to the virtual bank section. 
+
+
+
+
+
+!3
+
+--- PDF PAGE 4 ---
+Arcade Triggers
+
+Each trigger sends a Note On when pressed and a Note Off once released. Because these
+triggers are not velocity sensitive the velocity defaults to 127. This value may be adjusted
+using the Utility. By default all arcade trigger notes are sent on MIDI Channel 3.
+
+If the ‘Momentary CC’ option is enabled then the Midi Fighter 3D arcade triggers will also
+send CC’s. When the trigger is pressed a CC with value 127 is sent, when the trigger is
+released a CC with value 0 is sent. Momentary CC’s are sent on Channel 4.
+
+This is useful for control of effects in Ableton, where note messages will only toggle the effect
+each time the button is pressed and released. By mapping to a CC rather than the note you
+can create a mapping where the effect is on while the button is down, and off when the
+button is released.
+
+In Appendix 1 you will ﬁnd a complete list of MIDI data for each button in each bank
+
+
+Setting Arcade Trigger Color
+
+The ring illumination color of the arcade triggers has two states, active (pressed) and inactive
+(released). The Utility can be used to set the inactive and active color state of each ring in
+each of the four virtual banks.
+
+By using MIDI messages the user can also override the default inactive/active color setting
+and control both the color and animation state of each arcade trigger ring.
+
+There are 10 colors available, each with a bright state and a dim state. To set the color send
+a MIDI Note On of the same pitch and channel as the arcade trigger you are trying to control.
+The velocity of the note will determine the color selected. A velocity of 0 will disable MIDI
+control of color.
+
+     I.e. To set the color of the first arcade trigger to Bright Red send a Ch3 C3 Note On of
+    Velocity 13.
+
+The following table shows the velocity range for each color. You may notice that the velocity
+range 121 - 127 is not covered, this range will force the LED to its active color as set in the
+Utility regardless of if the button is pushed or not.
+
+
+
+
+           13-18             37-42             61-66             85-90            109-114
+           19-24             43-48             67-72             91-96            115-120
+ ""
+
+           25-30             49-54             73-78             97-102            121-127
+           31-36             55-60             79-84            103-108             0-12 ""
+
+
+
+                                            Fig 2 MIDI Color Velocity Settings
+
+
+!4
+
+--- PDF PAGE 5 ---
+Setting Arcade Trigger Animation State
+
+By sending MIDI Notes of a particular velocity it is also possible to set a variety of animation
+states for each ring, these animations modify the color state of the ring illumination.
+
+The available animation states are,
+
+      Brightness Level | Velocity 18 - 33
+
+       This animation allows the user to set the brightness of the current color to one of 16
+       brightness levels between 0 and 100%. This is useful for creating VU meters.
+
+     Gate | Velocity 34 - 41
+
+      Allows the user to gate (ﬂash) the current color at one of 8 different rates.  If a MIDI
+       clock signal is present the timing is derived from that, otherwise the timing is based on
+      a half second interval which is the equivalent of 120 BPM. This is useful for creating
+      warnings, for example in Traktor you could map the Track End Warning output to ﬂash
+      an LED when the track is nearing its end.
+
+      Pulse | Velocity 42 - 49
+
+       Similar to the Gate animation this allows the user to pulse the current color at one of 8
+        different rates. If a MIDI clock is present the timing is derived from that otherwise the
+       timing is based on a half second interval which is the equivalent of 120 BPM. This
+      animation is useful for creating subtle alerts, for example in Traktor you could map the
+     Loop On output to control the pulse rate to reﬂect that the loop is active, and what
+       length it is set to.
+
+To set the animation state of a given arcade trigger ring send a Note On message of the
+same pitch, but on Channel 4.
+
+     I.e. To set the animation state of the first arcade trigger to Gate 1/4 send a Ch4 C3 Note On
+    of Velocity 39.
+
+It is important to note that the MIDI color setting and MIDI animation setting can be used in
+conjunction.
+
+     i.e. To set the first arcade trigger to Bright Red flashing at a rate of 1/2 first send the color
+   information with a Ch3 C3 Note On of Velocity 13, then the animation setting with a Ch4 C3
+   Note On of Velocity 39.
+
+
+
+
+
+!5
+
+--- PDF PAGE 6 ---
+4 Banks Mode
+The Midi Fighter 3D defaults to banked mode. In this mode the 16 arcade buttons send
+different notes depending on which bank is currently selected. All arcade button notes are
+sent on channel 3. All other messages are sent on channels 4 - 6.
+
+The bank selection can be changed by pushing the desired bank button, the LED of the
+currently selected bank will glow white. In Traktor mode the banks buttons also send midi
+signal as detailed in the diagram below.
+
+The 6 side buttons are ﬁxed and send the same notes regardless of which bank is selected
+unless the option “Bank Side Buttons” is enabled in the Midi Fighter Utility.
+
+When four banks is enabled there is no capability to change the state of the LEDs. In this
+mode any MIDI out message will force the device to switch the to the bank selected by the
+relevant button.
+
+4 Banks Mode Disabled
+If you do not wish to use banks when creating your own midi mapping you can set the “Four
+Banks Mode” to “Disabled” using the Midi Fighter Utility software. When four banks mode is
+disabled the arcade buttons will send the same MIDI data regardless of the state of the bank
+buttons.
+
+   Four Banks Disabled Hold
+    In this mode the bank buttons behave like any normal button, sending a note on when
+    held, and a note off when released. By sending a MIDI out message with a non-zero
+    velocity on the same note as the MIDI in for any of the bank buttons you can turn the LED
+   on, sending a 0 velocity or note off will turn this LED off.
+
+   Four Banks Disabled Toggle
+    In this mode the banks buttons have toggle functionality, changing state each time they
+   are pressed then released. In this mode there is no control of the LED as the LED will
+   always reﬂects the state of the toggle.
+
+Advanced Bank Control
+
+It is also possible to use MIDI to read and set the currently selected bank.
+
+When the virtual bank selection changes the Midi Fighter 3D sends a Note On to indicate a
+new bank has been selected. It will also send a Note Off to indicate the previously selected
+bank is no longer active. By default the bank selection notes are sent on MIDI Channel 4.
+
+     I.e. When changing from Bank 1 to Bank 2 the Midi Fighter will send a Ch4 C-1 Note Off
+   followed by a Ch4 C#-1 Note On.
+
+By sending Note On messages to the MIDI Fighter 3D  it  is also possible to force  it to
+automatically change to a speciﬁc bank.
+
+Bank Change Notes
+   Bank 1 | Ch4 C-1  Bank 2 | Ch4 C#-1  Bank 3 | Ch4 D-1  Bank 4 | Ch4 D#-1
+
+!6
+
+--- PDF PAGE 7 ---
+Motion Messages
+
+The Midi Fighter 3D carries an arsenal of electronic sensors which are used to track  its
+orientation and translate this into a variety of MIDI messages allowing highly expressive
+control of your software. There are two types of orientation messages: edge  tilt and button
+rotation.
+
+Edge Tilt Messages
+
+The Midi Fighter 3D generates the following  tilt based control change messages. All  tilt
+messages are sent on Channel 4.
+
+   Left Tilt | CC0
+   Forwards Tilt | CC1
+   Right Tilt | CC2
+   Back Tilt | CC3
+
+In Traktor mode the Midi Fighter 3D also sends secondary tilt CC's. These operate over the
+second half of the range of the primary CC.
+
+   Left Tilt Secondary | CC4
+   Forwards Tilt Secondary | CC5
+   Right Tilt Secondary | CC6
+   Back Tilt Secondary | CC7
+
+While sitting ﬂat on the table all four CC's will be at zero, when the Midi Fighter 3D is tilted on
+an edge  it will send a CC which varies from 0 – 127 corresponding to its  tilt angle on that
+edge.
+
+The Midi Fighter 3D also sends a channel 4 F0 note on event when any edge CC is active,
+and note off event when all edges are inactive, i.e., the Midi Fighter 3D is ﬂat on the table.
+
+As well as a note to indicate  if the device is in edge  tilt or not, the Midi Fighter 3D sends a
+channel 4 F1 note on event whenever  it detects that  it has been picked up. This is Pickup
+Mode.
+
+Button Rotation Messages
+
+The Midi Fighter 3D also generates rotation or “pitch” CC's for each arcade button.
+
+There are 3 rotation modes, Relative (default), Absolute, and Disabled.
+
+The rotation messages are only sent when a button is pressed, and the device is in “Pick Up
+Mode”
+
+Relative Mode
+
+In relative mode when an arcade button is pressed, then the device is rotated a CC is sent
+proportional to the change in rotation from the point at which the arcade button was pressed.
+The CC is sent on channel 4 when the rotation is counter clock-wise, and channel 5
+when the rotation is clock-wise.
+!7
+
+--- PDF PAGE 8 ---
+                          Ch4 CC Ch5 CC
+
+
+
+
+
+Absolute Mode
+
+Absolute mode was created for the instance when you want to be able to point the Midi
+Fighter 3D in a certain direction and always get the same CC value.
+
+This is primarily useful for FX like the beatmasher and gater where you need to be able to
+reliably jump between different rates.
+
+In absolute mode the Midi Fighter 3D takes a compass reading when  it is ﬁrst powered on,
+this is its home position.  If the device is in pickup mode and button is pressed while in the
+home position a CC of 64 is sent, on channel 4, if the Midi Fighter 3D is pointing 80 degrees
+clockwise to the home position it will send 127, and at 80 degrees counter clock-wise from
+the home position it will send 0.
+
+If you use this mode  it is important to always connect the device only once  it is positioned
+correctly.
+
+                       Home Position 
+
+
+
+
+
+!8
+
+--- PDF PAGE 9 ---
+The Midi Fighter Utility Software
+
+This section covers the Midi Fighter Utility software. This is an application for PC & Mac that
+can be used to control, conﬁgure, and update your Midi Fighter 3D.
+
+Getting Started
+
+The Midi Fighter Utility software can be downloaded using the following links.
+
+Download For Mac
+
+Download For PC
+
+Once this has been installed you will ﬁnd a shortcut on your desktop if using PC, or you can
+ﬁnd the utility in your Applications folder if using Mac.
+
+To get started launch the application and connect your Midi Fighter 3D to a spare USB port.
+
+Note: If the Midi Fighter Utility does not detect the Midi Fighter 3D please make sure all
+other MIDI software has been shut down, then restart the utility and reconnect the device.
+
+
+
+
+
+!9
+
+--- PDF PAGE 10 ---
+Firmware Update
+
+It is important to ensure your device is loaded with the latest ﬁrmware. You can tell  if you
+need to update your ﬁrmware by looking at the device information section.
+
+
+
+
+
+If the device ﬁrmware needs to be updated the “Update Firmware” button will display in
+orange, and the text “new ﬁrmware available” will display in red. If the ﬁrmware is already up
+to date the ‘Update Firmware’ button will display in grey and the text “up to date” will appear
+in green.
+
+To update the device ﬁrmware simply click the update ﬁrmware button.
+
+Note: When updating the ﬁrmware do not connect the Midi Fighter 3D via a USB Hub, this
+may lead to a bricked device.
+
+Performing a Factory Reset
+
+Using the Midi Fighter Utility it is possible to restore all device settings and color information
+back to the factory defaults. If you are having trouble with your Midi Fighter 3D this can be a
+good place to start when diagnosing the problem.
+
+To perform a factory reset connect your Midi Fighter 3D to the Utility and in the menu bar
+click,
+
+Tools>Midi Fighter>Factory Reset
+
+Importing & Exporting Settings
+
+It is possible to import and export device settings, this is useful for saving and sharing device
+settings and color information used for a particular mappings.
+
+To export your settings click File>Export Settings and enter the name you wish to save the ﬁle
+under.
+
+To import your settings click File>Import Settings and select the settings ﬁle you wish to load.
+
+Note: Once these settings are loaded you must still press “Send to Midi Fighter” to save them
+to the device.
+
+
+
+
+!10
+
+--- PDF PAGE 11 ---
+Color Settings
+
+The right hand side of the Midi Fighter Utility interface is used for conﬁguring the color of the
+arcade rim lighting. You can set the color for both the active (pressed) and inactive (released)
+state for each arcade trigger in all four virtual banks.
+
+To choose your color settings ﬁrst pick a color from the palette tool.
+
+
+
+
+
+To apply this color to the inactive state click in the outer rim of the desired button.
+
+
+
+
+
+To apply this color to the active state click in the center of the desired button.
+
+
+
+
+
+You can change between  virtual banks using the four bank buttons above the arcade
+buttons.
+
+
+
+Once you are happy with your changes you must save them by click the “Send To Midi
+Fighter” button.
+
+
+
+
+
+!11
+
+--- PDF PAGE 12 ---
+Device Settings
+
+On the left side of the Utility interface are a number of device hardware settings.
+
+MIDI Channel
+
+This sets the base MIDI channel that the Midi Fighter will send and receive MIDI data on. The
+Midi Fighter 3D uses 3 channels and the second and third channels will follow the base
+channel sequentially.
+
+MIDI Velocity
+
+The Midi Fighter triggers & buttons are not velocity sensitive. This setting sets the default
+velocity for Note On messages from the Midi Fighter.
+
+Software Mode
+
+When this option is set to Ableton the Midi Fighter 3D arcade triggers will send both Note &
+Control Change messages. This is useful when using the device in Ableton as it allows you to
+map momentary control of FX to the arcade triggers, whereas Note On messages will only
+provide toggle control. Setting it to Traktor will only send Note messages.
+
+Combos
+
+The Combos check box enables sending of ‘Super Combo’ MIDI notes. These are special
+notes sent only when speciﬁc patterns of arcade triggers are pressed, just like an arcade
+game. The full details of the super combos are secret, but details can be found on the Midi
+Fighter forum!
+
+Sleep Timer
+
+The Midi Fighter 3D can be conﬁgured to sleep after a certain period of inactivity. You can
+conﬁgure the sleep timer to be between 0 and 120 minutes. A setting of 0 will disable sleep.
+Pressing any key will wake the Midi Fighter from sleep.
+
+Bank Buttons
+
+When this option is enabled you will gain access to the 4 built in virtual banks. If you decide
+to disable it you can set the Bank Buttons behaviour to either hold or toggle.
+
+Bank Side Buttons
+
+The 6 side buttons are ﬁxed and send the same notes regardless of which bank is selected
+unless this option is enabled.
+
+Animations
+
+The animations section allows you to conﬁgure the various global animations settings for the
+Midi Fighter 3D display.
+
+   Spark
+
+   Spark enables an animation where a burst of sparks shoot across the display with each
+   press of an arcade trigger.
+
+!12
+
+--- PDF PAGE 13 ---
+   Button Pitch
+
+   Enables an animation that displays the position of Button Rotation or Pitch.
+
+   Edge Tilt
+
+   Enables an animation that gives proper feedback  for the position of  all   tilt motion
+   messages.
+
+Motion
+
+All customisation and sensitivity parameters can be tweaked in this section of the Midi Fighter
+Utility.
+
+   Pickup Sensitivity
+
+   The 3D sends an independent message when the device is lifted from a surface, this
+    setting gives you control over the sensitivity of it with a range of 0-127. If you want to turn
+    off this feature completely set the sensitivity to 0.
+
+   Rotation
+
+   Displays and selects the active rotation mode. Options available are: Disabled, Absolute
+   and Relative
+
+   Rotation Range (Deg)
+
+   Sets Rotation (Pitch) range between 0º and 90º. Higher values normally give more precise
+    control
+
+    Tilt Directions
+
+   Toggles control over each tilt direction independently.
+
+   Join Tilt CCs
+
+   Merges the CC messages on each axis for a wider control range. X axis controls Left|
+   Right and Y axis controls Front|Back
+
+    Tilt Dead Zone
+
+   Dead Zone moves the starting point of the motion controls to a set angle to prevent them
+   from activating as soon as the device is moved. Range for this setting is 0º-30º
+
+    Tilt Range
+
+   Controls the overall range for the tilt motion controls. The Range available is 0º-85.
+
+    Tilt Sensitivity
+
+   Smooths out the responsiveness of the motion controls to prevent the device from picking
+   up unwanted vibrations during operation. 
+
+
+
+
+!13
+
+--- PDF PAGE 14 ---
+                 Appendix 1
+
+                         Bank 1 MIDI
+
+
+                    Control          Ch             Note           Note #
+
+          LH Side Switch 1*          4             A#0             22
+
+          LH Side Switch 2*          4             A0              21
+
+          LH Side Switch 3*          4            G#0             20
+
+         RH Side Switch 1*          4             C#1             25
+
+         RH Side Switch 2*          4             C1              24
+
+         RH Side Switch 3*          4             B0              23
+
+* Side Switch MIDI only changes with bank when the “Bank Side Button” option is enabled.
+
+
+
+
+      Control        Note Ch        Note         Note #      CC Ch       CC #
+
+  Arcade Button 1        3          C3           48            4             48
+
+  Arcade Button 2        3          C#3           49            4             49
+
+  Arcade Button 3        3          D3           50            4             50
+
+  Arcade Button 4        3          D#3           51            4             51
+
+  Arcade Button 5        3          G#2           44            4             44
+
+  Arcade Button 6        3          A2           45            4             45
+
+  Arcade Button 7        3          A#2           46            4             46
+
+  Arcade Button 8        3          B2           47            4             47
+
+  Arcade Button 9        3           E2           40            4             40
+
+ Arcade Button 10       3           F2            41            4             41
+
+ Arcade Button 11       3           F#2           42            4             42
+
+ Arcade Button 12       3          G2           43            4             43
+
+ Arcade Button 13       3          C2           36            4             36
+
+ Arcade Button 14       3          C#2           37            4             37
+
+ Arcade Button 15       3          D2           38            4             38
+
+ Arcade Button 16       3          D#2           39            4             39
+
+* CC only available when Ableton Mode is active
+
+
+
+!14
+
+--- PDF PAGE 15 ---
+                         Bank 2 MIDI
+
+
+                    Control          Ch             Note           Note #
+
+          LH Side Switch 1*          4             E1              28
+
+          LH Side Switch 2*          4             D#1             27
+
+          LH Side Switch 3*          4             D1              26
+
+         RH Side Switch 1*          4            G1              31
+
+         RH Side Switch 2*          4              F#1             30
+
+         RH Side Switch 3*          4              F1              29
+
+* Side Switch MIDI only changes with bank when the “Bank Side Button” option is enabled.
+
+
+
+
+      Control        Note Ch        Note         Note #      CC Ch       CC #
+
+  Arcade Button 1        3           E4           64            4             64
+
+  Arcade Button 2        3           F4            65            4             65
+
+  Arcade Button 3        3           F#4           66            4             66
+
+  Arcade Button 4        3          G4           67            4             67
+
+  Arcade Button 5        3          C4           60            4             60
+
+  Arcade Button 6        3          C#4           61            4             61
+
+  Arcade Button 7        3          D4           62            4             62
+
+  Arcade Button 8        3          D#4           63            4             63
+
+  Arcade Button 9        3          G#4           56            4             56
+
+ Arcade Button 10       3          A3           57            4             57
+
+ Arcade Button 11       3          A#3           58            4             58
+
+ Arcade Button 12       3          B3           59            4             59
+
+ Arcade Button 13       3           E3           52            4             52
+
+ Arcade Button 14       3           F3            53            4             53
+
+ Arcade Button 15       3           F#3           54            4             54
+
+ Arcade Button 16       3          G3           55            4             55
+
+* CC only available when Ableton Mode is active
+
+
+
+
+
+!15
+
+--- PDF PAGE 16 ---
+                         Bank 3 MIDI
+
+
+                    Control          Ch             Note           Note #
+
+          LH Side Switch 1*          4             A#1             34
+
+          LH Side Switch 2*          4             A1              33
+
+          LH Side Switch 3*          4            G#1             32
+
+         RH Side Switch 1*          4             C#1             37
+
+         RH Side Switch 2*          4             C1              36
+
+         RH Side Switch 3*          4             B0              35
+
+* Side Switch MIDI only changes with bank when the “Bank Side Button” option is enabled.
+
+
+
+
+      Control        Note Ch        Note         Note #      CC Ch       CC #
+
+  Arcade Button 1        3          G#5           80            4             80
+
+  Arcade Button 2        3          A5           81            4             81
+
+  Arcade Button 3        3          A#5           82            4             82
+
+  Arcade Button 4        3          B5           83            4             83
+
+  Arcade Button 5        3           E5           76            4             76
+
+  Arcade Button 6        3           F5            77            4             77
+
+  Arcade Button 7        3           F#5           78            4             78
+
+  Arcade Button 8        3          G5           79            4             79
+
+  Arcade Button 9        3          C5           72            4             72
+
+ Arcade Button 10       3          C#5           73            4             73
+
+ Arcade Button 11       3          D5           74            4             74
+
+ Arcade Button 12       3          D#5           75            4             75
+
+ Arcade Button 13       3          G#4           68            4             68
+
+ Arcade Button 14       3          A4           69            4             69
+
+ Arcade Button 15       3          A#4           70            4             70
+
+ Arcade Button 16       3          B4           71            4             71
+
+* CC only available when Ableton Mode is active
+
+
+
+
+
+!16
+
+--- PDF PAGE 17 ---
+                         Bank 4 MIDI
+
+
+                    Control          Ch             Note           Note #
+
+          LH Side Switch 1*          4             E2              40
+
+          LH Side Switch 2*          4             D#2             39
+
+          LH Side Switch 3*          4             D2              38
+
+         RH Side Switch 1*          4            G2              43
+
+         RH Side Switch 2*          4              F#2             42
+
+         RH Side Switch 3*          4              F2              41
+
+* Side Switch MIDI only changes with bank when the “Bank Side Button” option is enabled.
+
+
+
+
+      Control        Note Ch        Note         Note #      CC Ch       CC #
+
+  Arcade Button 1        3          C7           96            4             96
+
+  Arcade Button 2        3          C#7           97            4             97
+
+  Arcade Button 3        3          D7           98            4             98
+
+  Arcade Button 4        3          D#7           99            4             99
+
+  Arcade Button 5        3          G#6           92            4             92
+
+  Arcade Button 6        3          A6           93            4             93
+
+  Arcade Button 7        3          A#6           94            4             94
+
+  Arcade Button 8        3          B6           95            4             95
+
+  Arcade Button 9        3           E6           88            4             88
+
+ Arcade Button 10       3           F6            89            4             89
+
+ Arcade Button 11       3           F#6           90            4             90
+
+ Arcade Button 12       3          G6           91            4             91
+
+ Arcade Button 13       3          C6           84            4             84
+
+ Arcade Button 14       3          C#6           85            4             85
+
+ Arcade Button 15       3          D6           86            4             86
+
+ Arcade Button 16       3          D#6           87            4             87
+
+* CC only available when Ableton Mode is active
+
+
+
+
+
+!17
+
+--- PDF PAGE 18 ---
+                         Edge Tilt MIDI
+
+
+                     Control      Ch       Primary CC    Secondary CC
+
+                     Left Tilt          4          E2             40
+
+                 Forwards Tilt     4          D#2             39
+
+                   Right Tilt         4          D2             38
+
+                Back Tilt         4         G2             43
+
+* Secondary CCs are only available in Traktor Mode
+
+                         Button Rotation MIDI
+
+
+      Control       CC Ch       Bank 1       Bank 2       Bank 3        Bank 4
+
+  Arcade Button 1       5            48            64            80            96
+
+  Arcade Button 2       5            49            65            81            97
+
+  Arcade Button 3       5            50            66            82            98
+
+  Arcade Button 4       5            51            67            83            99
+
+  Arcade Button 5       5            44            60            76            92
+
+  Arcade Button 6       5            45            61            77            93
+
+  Arcade Button 7       5            46            62            78            94
+
+  Arcade Button 8       5            47            63            79            95
+
+  Arcade Button 9       5            40            56            72            88
+
+ Arcade Button 10       5            41            57            73            89
+
+ Arcade Button 11       5            42            58            74            90
+
+ Arcade Button 12       5            43            59            75            91
+
+ Arcade Button 13       5            36            52            68            84
+
+ Arcade Button 14       5            37            53            69            85
+
+ Arcade Button 15       5            38            54            70            86
+
+ Arcade Button 16       5            39            55            71            87
+
+
+
+
+
+!18
+
+--- PDF PAGE 19 ---
+                 Appendix 2
+
+                         Animation Settings
+
+
+        Velocity / CC Value               Animation                         Setting
+
+            0 - 17                    None                                            -
+
+            18 - 33                     Brightness          Level 0 - 15
+
+             34                         Gate            Toggles every 16 beats
+
+             35                         Gate            Toggles every 8 beats
+
+             36                         Gate            Toggles every 4 beats
+
+             37                         Gate            Toggles every 2 beats
+
+             38                         Gate            Toggles every beat
+
+             39                         Gate            Toggles every 1/2 beat
+
+             40                         Gate            Toggles every 1/4 beat
+
+             41                         Gate            Toggles every 1/8 beat
+
+             42                         Pulse            Pulses every 32 beats
+
+             43                         Pulse            Pulses every 16 beats
+
+             44                         Pulse            Pulses every 8 beats
+
+             45                         Pulse            Pulses every 4 beats
+
+             46                         Pulse            Pulses every 2 beats
+
+             47                         Pulse            Pulses every beat
+
+             48                         Pulse            Pulses every 1/2 beat
+
+             49                         Pulse            Pulses every 1/8 beat
+
+           50 - 127                    None                                            -
+
+Note: Animations are sent on the same Note as the buttons but on Ch.4 (e.g. Animations for
+the top left arcade button and button on Bank 1 are sent to Note C3 Ch4 )
+
+
+
+
+
+!19

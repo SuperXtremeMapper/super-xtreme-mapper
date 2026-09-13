@@ -24,10 +24,44 @@ nonisolated struct ControllerProfileLibrary: Sendable {
     private struct Pin: Hashable, Sendable { let id: String; let version: String }
     private let profilesByPin: [Pin: ControllerProfile]
     let profiles: [ControllerProfile]
+    private let controlsByPin: [Pin: [String: ControllerProfile.Control]]
+
+    private static let bundled = Result { try ControllerProfileLibrary(loading: .main) }
 
     init(bundle: Bundle = .main) throws {
+        if bundle == .main { self = try Self.bundled.get() }
+        else { self = try Self(loading: bundle) }
+    }
+
+    private init(loading bundle: Bundle) throws {
+        func resourceURL(_ name: String) -> URL? {
+            bundle.url(forResource: name, withExtension: "json", subdirectory: "ControllerProfiles")
+                ?? bundle.url(forResource: name, withExtension: "json", subdirectory: "Resources/ControllerProfiles")
+                ?? bundle.url(forResource: name, withExtension: "json")
+        }
+        let manifestName = "controller-profile-catalogue"
+        guard let manifestURL = resourceURL(manifestName) else {
+            throw ControllerProfileLibraryError.invalidResource(resource: manifestName + ".json", path: "$", reason: "Bundled catalogue is missing.")
+        }
+        struct Catalogue: Decodable { let resources: [String] }
+        let catalogue: Catalogue
+        do {
+            guard (try manifestURL.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0) <= 16_384 else {
+                throw ControllerProfileLibraryError.invalidResource(resource: manifestName, path: "$", reason: "Catalogue exceeds size limit.")
+            }
+            let data = try Data(contentsOf: manifestURL)
+            guard data.count <= 16_384 else { throw ControllerProfileLibraryError.invalidResource(resource: manifestName, path: "$", reason: "Catalogue exceeds size limit.") }
+            try Self.checkBounds(.init(name: manifestName, data: data))
+            catalogue = try JSONDecoder().decode(Catalogue.self, from: data)
+            guard !catalogue.resources.isEmpty, catalogue.resources.count <= 64,
+                  Set(catalogue.resources).count == catalogue.resources.count,
+                  catalogue.resources.allSatisfy({ !$0.isEmpty && $0.count <= 200 && $0.utf8.allSatisfy { (97...122).contains($0) || (48...57).contains($0) || $0 == 45 || $0 == 46 } }) else {
+                throw ControllerProfileLibraryError.invalidResource(resource: manifestName, path: "$.resources", reason: "Expected unique bounded resource names.")
+            }
+        } catch let error as ControllerProfileLibraryError { throw error }
+        catch { throw ControllerProfileLibraryError.invalidResource(resource: manifestName, path: "$", reason: error.localizedDescription) }
         var resources: [ControllerProfileResource] = []
-        for filename in ["xone-k1-1.0.0", "xone-k2-1.0.0", "xone-k3-1.0.0"] {
+        for filename in catalogue.resources {
             let url = bundle.url(forResource: filename, withExtension: "json", subdirectory: "ControllerProfiles")
                 ?? bundle.url(forResource: filename, withExtension: "json", subdirectory: "Resources/ControllerProfiles")
                 ?? bundle.url(forResource: filename, withExtension: "json")
@@ -51,6 +85,9 @@ nonisolated struct ControllerProfileLibrary: Sendable {
     init(resources: [ControllerProfileResource]) throws {
         var entries: [Pin: ControllerProfile] = [:]
         var ordered: [ControllerProfile] = []
+        guard resources.count <= 64, resources.reduce(0, { $0 + $1.data.count }) <= 64_000_000 else {
+            throw ControllerProfileLibraryError.invalidResource(resource: "catalogue", path: "$", reason: "Catalogue exceeds resource count or total size limit.")
+        }
         for resource in resources {
             try Self.checkBounds(resource)
             let profile: ControllerProfile
@@ -68,6 +105,7 @@ nonisolated struct ControllerProfileLibrary: Sendable {
         }
         profilesByPin = entries
         profiles = ordered
+        controlsByPin = entries.mapValues { Dictionary(uniqueKeysWithValues: $0.controls.map { ($0.id, $0) }) }
     }
 
     func profile(id: String, version: String) throws -> ControllerProfile {
@@ -77,7 +115,11 @@ nonisolated struct ControllerProfileLibrary: Sendable {
         return profile
     }
 
-    private static let maximumBytes = 1_000_000
+    func control(id: String, profileID: String, version: String) -> ControllerProfile.Control? {
+        controlsByPin[Pin(id: profileID, version: version)]?[id]
+    }
+
+    private static let maximumBytes = 12_000_000
 
     /// Scan before decoding so hostile nesting cannot consume decoder stack space.
     private static func checkBounds(_ resource: ControllerProfileResource) throws {
@@ -137,7 +179,7 @@ nonisolated struct ControllerProfileLibrary: Sendable {
                 try require(known.contains(value), "\(path)[\(index)]", "Unknown reference: \(value).")
             }
         }
-        try require(profile.schemaVersion == 1, "$.schemaVersion", "Unsupported profile schema version.")
+        try require([1, 2].contains(profile.schemaVersion), "$.schemaVersion", "Unsupported profile schema version.")
         try text(profile.id, "$.id")
         try text(profile.version, "$.version")
         try text(profile.manufacturer, "$.manufacturer")
@@ -147,8 +189,23 @@ nonisolated struct ControllerProfileLibrary: Sendable {
         let evidence = try ids(profile.evidence.map(\.id), "$.evidence")
         let modes = try ids(profile.modes.map(\.id), "$.modes")
         _ = try ids(profile.unitMaps.map(\.id), "$.unitMaps")
-        _ = try ids(profile.controls.map(\.id), "$.controls")
+        if profile.coverageState == .documentationOnly {
+            try require(profile.schemaVersion == 2 && profile.controls.isEmpty, "$.controls", "Documentation-only profiles must have no invented controls.")
+            try require(!(profile.coverageNotes ?? []).isEmpty && !profile.limitations.isEmpty, "$.coverageNotes", "Documentation-only profiles require coverage notes and limitations.")
+        } else {
+            _ = try ids(profile.controls.map(\.id), "$.controls")
+        }
         let groups = Set(profile.controls.map(\.group))
+        let ports: Set<String>
+        if let records = profile.ports, !records.isEmpty {
+            ports = try ids(records.map(\.id), "$.ports")
+            for (index, port) in records.enumerated() { try text(port.name, "$.ports[\(index)].name") }
+        } else { ports = [] }
+        if profile.schemaVersion == 1 {
+            try require(profile.ports == nil && profile.coverageNotes == nil && profile.coverageState == nil, "$", "Schema 2 fields require schemaVersion 2.")
+        }
+        for (index, note) in (profile.coverageNotes ?? []).enumerated() { try text(note, "$.coverageNotes[\(index)]") }
+
         for (index, source) in profile.sources.enumerated() {
             let path = "$.sources[\(index)]"
             let url = URL(string: source.url)
@@ -180,11 +237,41 @@ nonisolated struct ControllerProfileLibrary: Sendable {
             try require(!control.bindings.isEmpty, path + ".bindings", "Expected at least one documented binding.")
             for (bindingIndex, binding) in control.bindings.enumerated() {
                 let bp = path + ".bindings[\(bindingIndex)]"
-                try require((0...127).contains(binding.number), bp + ".number", "MIDI number must be 0...127.")
-                let validEncoding = binding.kind == .note
-                    ? binding.encoding == .noteGate
-                    : binding.encoding == .absolute7Bit || binding.encoding == .relativeTwosComplement
+                let scalar = binding.kind == .note || binding.kind == .controlChange
+                if profile.schemaVersion == 1 {
+                    try require(binding.channel == nil && binding.modeID == nil && binding.portID == nil && binding.context == nil && binding.support == nil && binding.components == nil && binding.semantics == nil, bp, "Schema 2 binding fields require schemaVersion 2.")
+                } else {
+                    try require(binding.layer == .base, bp + ".layer", "Schema 2 contexts use explicit modes and ports, with base layer.")
+                }
+                if scalar {
+                    try require(binding.number.map { (0...127).contains($0) } == true, bp + ".number", "Scalar MIDI number must be 0...127.")
+                    try require(binding.components == nil, bp + ".components", "Scalar bindings cannot contain compound components.")
+                } else {
+                    try require(profile.schemaVersion == 2 && binding.number == nil, bp + ".number", "Compound and other messages require schema 2 and no scalar number.")
+                    try require(binding.support == .documentedOnly, bp + ".support", "Non-scalar messages must be documentedOnly.")
+                    if binding.kind == .compound { try require((binding.components?.count ?? 0) >= 2, bp + ".components", "Compound messages require at least two documented components.") }
+                }
+                let validEncoding: Bool
+                switch binding.encoding {
+                case .noteGate: validEncoding = binding.kind == .note
+                case .absolute7Bit, .relativeTwosComplement: validEncoding = binding.kind == .controlChange
+                case .relativeBinaryOffset: validEncoding = profile.schemaVersion == 2 && binding.kind == .controlChange
+                case .paired14Bit: validEncoding = profile.schemaVersion == 2 && binding.kind == .compound
+                case .palette: validEncoding = profile.schemaVersion == 2 && scalar
+                case .documented, .unsupported: validEncoding = profile.schemaVersion == 2
+                }
                 try require(validEncoding, bp + ".encoding", "Encoding is incompatible with the MIDI message kind.")
+                if let channel = binding.channel { try require((1...16).contains(channel), bp + ".channel", "Channel must be 1...16.") }
+                if let modeID = binding.modeID { try require(modes.contains(modeID), bp + ".modeID", "Unknown mode reference.") }
+                if let portID = binding.portID { try require(ports.contains(portID), bp + ".portID", "Unknown port reference.") }
+                if let context = binding.context { try text(context, bp + ".context") }
+                if let semantics = binding.semantics { try text(semantics, bp + ".semantics") }
+                for (index, component) in (binding.components ?? []).enumerated() {
+                    let cp = bp + ".components[\(index)]"
+                    try require(component.kind == .note || component.kind == .controlChange, cp + ".kind", "Components must describe scalar Note or CC messages.")
+                    try require((0...127).contains(component.number), cp + ".number", "MIDI number must be 0...127.")
+                    try text(component.role, cp + ".role")
+                }
                 if let minimum = binding.valueMin {
                     try require((0...127).contains(minimum), bp + ".valueMin", "MIDI value must be 0...127.")
                     try require(binding.valueMax != nil, bp + ".valueMax", "Both value bounds must be specified together.")

@@ -1,0 +1,2148 @@
+
+--- PDF PAGE 1 ---
+1
+
+--- PDF PAGE 2 ---
+    Caution:
+   The normal operation of this product may be affected by a strong electrostatic discharge (ESD).
+    In the event of this happening, simply reset the unit by removing and then replugging the USB
+    cable. Normal operation should return.
+
+Trade Marks
+
+ The Novation trade mark is owned by Focusrite Audio Engineering Ltd. All other brand, product and
+ company names and any other registered names or trade marks mentioned in this manual belong to
+  their respective owners.
+
+Disclaimer
+
+  Novation has taken all possible steps to ensure that the information given here is both correct and
+  complete. In no event can Novation accept any liability or responsibility for any loss or damage to the
+ owner of the equipment, any third party, or any equipment which may result from use of this manual
+  or the equipment which it describes. The information provided in this document may be modified
+  at any time without prior warning. Specifications and appearance may differ from those listed and
+  illustrated.
+
+Copyright and Legal Notices
+
+  Novation is a registered trade mark of Focusrite Audio Engineering Limited. Launchpad Pro is a trade
+ mark of Focusrite Audio Engineering Plc.
+
+
+   2019 © Focusrite Audio Engineering Limited. All rights reserved.
+
+                  Novation
+                                                                                     Tel: +44 1494 462246
+     A division of Focusrite Audio Engineering Ltd.
+                                                                       Fax: +44 1494 459920
+             Windsor House, Turnpike Road
+                                                                     e-mail: sales@novationmusic.com
+          Cressex Business Park , High Wycombe
+                                                     Web: www.novationmusic.com
+               Buckinghamshire , HP12 3FX
+                    United Kingdom
+
+
+
+
+
+                                                                                           2
+
+--- PDF PAGE 3 ---
+Contents
+
+ 1. Introduction...........................................................................................................................6
+    1.1 Launchpad Pro Key Features....................................................................................................6
+    1.2 In the Box..................................................................................................................................7
+ 2. Getting Up and Running........................................................................................................7
+        2.1.1 If you’re on a Mac:...............................................................................................................................................................7
+        2.1.2 If you’re on Windows:..........................................................................................................................................................8
+    2.2 Launchpad Intro .......................................................................................................................9
+    2.3 Ableton Live............................................................................................................................10
+    2.4 Using with Other Software......................................................................................................10
+    2.5 Using Standalone....................................................................................................................10
+    2.6 Having Trouble?......................................................................................................................10
+ 3. Hardware Overview............................................................................................................11
+ 4. Launchpad Pro Interface.....................................................................................................12
+    4.1 Modes.....................................................................................................................................12
+    4.2 Shift.........................................................................................................................................13
+ 5. Session Mode......................................................................................................................14
+    5.1 Ableton Live’s Session View....................................................................................................14
+    5.2 Session Overview....................................................................................................................16
+    5.3 Clip Functions.........................................................................................................................16
+        5.3.1 Select a clip or empty clip slot..........................................................................................................................................16
+        5.3.2 Clear a clip..........................................................................................................................................................................17
+        5.3.5 Quantise a clip...................................................................................................................................................................17
+    5.4 Track Controls.........................................................................................................................18
+        5.4.1 Record Arm........................................................................................................................................................................19
+        5.4.2 Mute....................................................................................................................................................................................19
+        5.4.3 Solo.....................................................................................................................................................................................19
+        5.4.4 Volume................................................................................................................................................................................19
+        5.4.5 Pan......................................................................................................................................................................................19
+        5.4.6 Send....................................................................................................................................................................................19
+        5.4.7 Device.................................................................................................................................................................................19
+        5.4.8 Stop Clip.............................................................................................................................................................................19
+        5.4.9 Fader orientation...............................................................................................................................................................20
+    5.5 Record Arm & Recording........................................................................................................20
+    5.6 Production Controls................................................................................................................20
+        5.6.1 Undo...................................................................................................................................................................................21
+        5.6.2 Redo....................................................................................................................................................................................21
+        5.6.3 Tap (Tap Tempo).................................................................................................................................................................21
+        5.6.4 Click (metronome).............................................................................................................................................................21
+    5.7 Momentary View Switching....................................................................................................21
+ 6. Note mode..........................................................................................................................22
+    6.1 Overview.................................................................................................................................22
+    6.2 Chromatic Mode.....................................................................................................................22
+    6.3 Scale Mode.............................................................................................................................23
+    6.4 Note Mode Settings...............................................................................................................24
+    6.5 Overlap...................................................................................................................................25
+    6.6 Drum Mode.............................................................................................................................26
+ 7. Chord Mode........................................................................................................................27
+                                                                                           3
+
+--- PDF PAGE 4 ---
+  7.1 Overview.................................................................................................................................27
+  7.2 Triads.......................................................................................................................................27
+  7.3 The Note Area........................................................................................................................27
+  7.4 Saving Chords & Playing them back.......................................................................................28
+  7.5 Sustain control........................................................................................................................28
+8. Custom Modes....................................................................................................................29
+  8.1 Overview.................................................................................................................................29
+  8.2 Default Custom Modes...........................................................................................................29
+  8.3 Custom Mode Master MIDI Channel......................................................................................30
+  8.4 Setting up a Custom Mode....................................................................................................31
+  8.5 Lighting Pads with external MIDI............................................................................................32
+9. Sequencer............................................................................................................................33
+  9.1 Sequencer Overview...............................................................................................................33
+  9.2 Steps View .............................................................................................................................33
+      9.2.1 Using the Play Area............................................................................................................................................................33
+      9.2.2 Assigning to steps.............................................................................................................................................................34
+      9.2.3 Clearing steps ...................................................................................................................................................................34
+      9.2.4 Duplicating steps...............................................................................................................................................................34
+      9.2.5 Playback..............................................................................................................................................................................35
+      9.2.6 Recording into the sequencer..........................................................................................................................................35
+      9.2.7 Setting gate length............................................................................................................................................................35
+      9.2.8 Using multiple sequencer tracks......................................................................................................................................36
+      9.2.9 Using the Sequencer with Ableton Live...........................................................................................................................36
+  9.3 Patterns View..........................................................................................................................37
+      9.3.1 Chaining Patterns .............................................................................................................................................................38
+      9.3.2 Queuing Patterns...............................................................................................................................................................38
+      9.3.3 Clearing a Pattern..............................................................................................................................................................38
+      9.3.4 Duplicating a Pattern.........................................................................................................................................................38
+      9.3.5 Instant Pattern Change.....................................................................................................................................................38
+  9.4 Scenes.....................................................................................................................................39
+      9.4.1 Assigning to Scenes..........................................................................................................................................................39
+      9.4.2 Chaining Scenes................................................................................................................................................................39
+      9.4.3 Queuing Scenes.................................................................................................................................................................39
+      9.4.4 Clearing a Scene................................................................................................................................................................40
+  9.5 Pattern Settings......................................................................................................................40
+      9.5.1 Pattern Sync Rate...............................................................................................................................................................40
+      9.5.2 Pattern Playback Direction................................................................................................................................................41
+      9.5.3 Pattern start and end points.............................................................................................................................................42
+  9.6 Velocity...................................................................................................................................42
+      9.6.1 Step Velocity edit...............................................................................................................................................................42
+      9.6.2 Live Recording with Velocity.............................................................................................................................................43
+  9.7 Probability ..............................................................................................................................43
+      9.7.1 Editing Step Probability....................................................................................................................................................43
+      9.7.2 Printing Probability............................................................................................................................................................44
+  9.8 Mutation..................................................................................................................................45
+      9.8.1 Editing Step Mutation.......................................................................................................................................................45
+      9.8.2 Printing Mutation...............................................................................................................................................................45
+  9.9 Micro Steps.............................................................................................................................46
+      9.9.1 Editing Micro Steps...........................................................................................................................................................46
+      9.9.2 Clearing micro steps .........................................................................................................................................................46
+      9.9.3 Duplicating steps...............................................................................................................................................................46
+  9.10 Tempo and Swing.................................................................................................................47
+
+                                                                                          4
+
+--- PDF PAGE 5 ---
+      9.10.1 Editing Tempo and Swing...............................................................................................................................................47
+  9.11 Print to Clip...........................................................................................................................48
+  9.12 Projects.................................................................................................................................49
+      9.12.1 Saving your Sequencer Project.......................................................................................................................................49
+      9.12.2 Backing up your Projects.................................................................................................................................................49
+  9.13 Sequencer Settings ..............................................................................................................50
+      9.13.1 Accessing Sequencer Settings.......................................................................................................................................50
+      9.13.2 Track Types.......................................................................................................................................................................50
+      9.13.3 Root Select/Scale Viewer................................................................................................................................................50
+      9.13.4 Selecting the Scale..........................................................................................................................................................51
+      9.13.5 Setting MIDI Channel .....................................................................................................................................................51
+10. Setup.................................................................................................................................52
+  10.1 Setup Menu..........................................................................................................................52
+  10.2 LED Settings.........................................................................................................................52
+  10.3 Velocity Settings...................................................................................................................53
+  10.4 Aftertouch Settings...............................................................................................................54
+  10.5 MIDI Settings........................................................................................................................55
+  10.6 Fader Settings.......................................................................................................................56
+  10.7 Live and Programmer Mode.................................................................................................57
+  10.8 Bootloader Menu..................................................................................................................58
+A. Appendix............................................................................................................................59
+  A.1 Default MIDI mappings..........................................................................................................59
+      A.1.1 Custom 1............................................................................................................................................................................ 59
+      A.1.2 Custom 2............................................................................................................................................................................ 60
+      A.1.3 Custom 3............................................................................................................................................................................ 60
+      A.1.4 Custom 4............................................................................................................................................................................ 61
+      A.1.5 Custom 5............................................................................................................................................................................ 61
+      A.1.6 Custom 6............................................................................................................................................................................ 62
+      A.1.7 Custom 7............................................................................................................................................................................ 62
+      A.1.8 Custom 8............................................................................................................................................................................ 63
+      A.1.9 Programmer Mode............................................................................................................................................................ 63
+  A.2 Overlap Layouts.....................................................................................................................64
+      A.1.1 Overlap - 5 Finger............................................................................................................................................................. 64
+      A.1.2 Overlap - 4 Finger............................................................................................................................................................. 65
+      A.1.3 Overlap – Sequential........................................................................................................................................................ 66
+
+
+
+
+
+                                                                                          5
+
+--- PDF PAGE 6 ---
+1. Introduction
+
+   Launchpad Pro is our most powerful grid controller for producing: both in Ableton Live and with your
+   hardware. It gives you everything you need to create and perform your tracks.
+
+   Launchpad Pro is the perfect beating heart of your studio. Use the powerful 32-step sequencer to
+   create tracks with your hardware and software and create evolving and intricate sequences with
+    probability and mutation. Get complete control of your studio with Custom Modes and send MIDI to
+   your hardware via the two MIDI out ports.
+
+   Launchpad Pro will allow you to quickly lay down expressive beats, play intricate melodies and launch
+   Ableton Live clips with the 64 velocity and pressure sensitive pads. Every control is RGB backlit, so
+   you know exactly which clips you’re launching, which notes you’re playing, or which steps you’re
+   sequencing.
+
+   Launchpad Pro is a fully standalone unit that doesn’t require a computer to operate. Simply plug in
+   Launchpad Pro with the included wall plug directly to the USB-C port.
+
+    This manual will help you to understand every feature of your new Launchpad Pro and show you how
+   you can use it to push your production and performance to the next level.
+
+ 1.1 Launchpad Pro Key Features
+
+    •  Our deepest Ableton Live Integration: play,     •  Dynamic Note and Scale modes: effortlessly
+       record and produce your tracks, all without         play perfectly in-key basslines, melodies,
+       touching your mouse                            chords and leads. Launchpad Pro even
+                                                knows when you’re drumming and shows    •  64 super-sensitive RGB pads: large velocity
+                                                       your drum rack on the grid      and pressure sensitive pads for playing your
+      sounds expressively                            •  MIDI In, Out 1, Out 2/Thru: Control anything
+                                                  MIDI in your studio directly from Launchpad    •  Powerful four-track sequencer: 32 step
+                                                      Pro       patterns, scenes for arrangement, and
+       probability and mutation controls to keep       •  Eight Custom Modes: use Novation
+       your tracks evolving                         Components to customise MIDI mappings
+                                                                for your unique performance needs    •  Chord mode: easily explore, build, save and
+       play complex chords straight from the grid
+      and quickly find new harmonies
+
+
+
+
+
+                                                                                             6
+
+--- PDF PAGE 7 ---
+ 1.2 In the Box
+
+         •  Launchpad Pro                                 •  USB-A power adapter
+
+         •  USB-C to USB-A cable                          •  3x TRS Minijack to DIN MIDI Adapter
+
+         •  USB-C to USB-C cable
+2. Getting Up and Running
+
+   We’ve made getting up and running with Launchpad Pro as easy as possible, whether you’re a brand
+   new beatmaker or a seasoned producer. Our Easy Start Tool provides a step-by-step guide on getting
+    set up that is tailored to your needs, whether you’ve never made music before or you just want to
+   download your included software.
+
+   To access the Easy Start Tool, first plug in your Launchpad Pro.
+  2.1.1 If you’re on a Mac:
+
+   1. On your Desktop find and open the folder “LAUNCHPAD”.
+   2. Inside the folder, click the link: “Click Here to Get Started.html”
+   3. You’ll be taken to the Easy Start Tool where we’ll get you set up.
+
+
+
+
+
+              2.1.1.A – Plug in Launchpad Pro to find the LAUNCHPAD folder on your desktop
+
+    Alternatively, if you have Google Chrome open upon plugging in Launchpad Pro, a pop-up will appear
+    that will take you straight to the easy start tool.
+
+
+
+
+
+                      2.1.1.B – Easy Start Tool pop-up upon plugging in Launchpad Pro
+
+
+                                                                                             7
+
+--- PDF PAGE 8 ---
+ 2.1.2 If you’re on Windows:
+
+1. Press the Start button and type “This PC”, then press enter.
+2. In This PC, find the drive: “Launchpad Pro”, and double click.
+ Inside the drive, click the link: “Click Here to Get Started.html” 4. You’ll be taken to the Easy Start
+ Tool where we’ll get you set up.
+
+
+
+
+
+                      2.1.2.A – Open the Launchpad Pro drive to view its contents
+
+
+
+
+
+                 2.1.2.B – Click “Click Here To Get Started” to go straight to the Easy
+
+                                                 Start Tool
+
+
+
+
+
+                                                                                           8
+
+--- PDF PAGE 9 ---
+2.2 Launchpad Intro
+
+   If you’re brand new to Launchpads, Launchpad Intro is a great place to start. Choose from a variety
+  of curated packs from Ampify Music and start performing immediately. Your Launchpad Pro will match
+  the on-screen grid - press pads to launch loops and one-shots to build up your track.
+
+  To get there, plug your Launchpad Pro into your computer and visit intro.novationmusic.com/. Your
+ Launchpad Pro will be automatically detected and you’ll immediately be able to play beats using our
+  curated packs.
+
+  Warning: To access Launchpad Intro, you must use a WebMIDI enabled browser. We recommend
+ Google Chrome or Opera.
+
+
+
+
+
+                                        2.2.A – Launchpad Intro
+
+
+
+
+
+                                                                                           9
+
+--- PDF PAGE 10 ---
+2.3 Ableton Live
+
+ Ableton Live (often referred to as Live) is a unique and powerful piece of software for music creation.
+  Ableton Live 10 Lite is provided with your Launchpad Pro, which gives you all the tools you’ll need
+  to get started with making your own music. Launchpad Pro’s Session Mode is designed to control
+  Ableton Live’s Session View.
+
+   If you’ve never used Ableton Live before, we recommend visiting our Easy Start Tool (see 2. Getting
+ up and Running) which will walk you through registering your Launchpad Pro and getting your
+  included copy of Ableton Live 10. You’ll also find videos covering Ableton Live’s core features and
+ how to get started with making music using your Launchpad Pro.
+
+ When you open Live your Launchpad Pro will be automatically detected and it will enter Session
+ Mode.
+
+ More resources on using Ableton Live’s many functions may be found on Ableton’s site at:
+  www.ableton.com/en/live/learn-live/.
+
+  You may register your Launchpad Pro and obtain your Ableton Live 10 Lite license at:
+  customer.novationmusic.com/register.
+
+2.4 Using with Other Software
+
+   If you’re using other music production software, visit support.novationmusic.com for more information
+ on how to set up your Launchpad Pro. Keep in mind that the information displayed in Session Mode
+ and Note Mode may vary depending on which software you are using.
+
+2.5 Using Standalone
+
+  To use Launchpad Pro standalone, plug the unit in via the included wall-plug with the USB-A to USB-C
+  cable. Use the included TRS Minijack to DIN MIDI adapters, along with a MIDI cable, to connect to
+  your external hardware. The Sequencer, Custom Modes, Note Mode, Chord Mode and Programmer
+ Mode will all send out MIDI data via the MIDI Out ports.
+
+2.6 Having Trouble?
+
+  In case you’re having any trouble getting setup, don’t hesitate to contact our support team! You can
+  find more information and answers to FAQs in the Novation Help Centre at support.novationmusic.
+ com.
+
+
+                                                                                           10
+
+--- PDF PAGE 11 ---
+ 3. Hardware Overview
+ 1                       2                     3         4            5
+  Access to Shift functions    Navigational buttons    Session   Note Mode   Chord Mode
+6               7                     8                   9
+  Custom Mode    Standalone Sequencer    Sequencer Projects     Navigational buttons
+10            11                              12     13                    14
+  8x8 Pad grid   Scene Launch & Sequencer Buttons    Play   Record & Capture MIDI   Setup
+15                  16
+  Track Select Buttons   Ableton Track Controls
+
+
+                2             3      4      5      6      7      8
+           1
+
+         9      10                                                      11
+
+
+
+
+
+        12
+
+
+        13
+
+
+               15
+          14
+               16
+
+
+    17            18
+      USB-C Socket   MIDI In, Out 1, Out2/Thru on standard TRS Minijack
+
+                                                                      18          17
+
+
+                                                                                                      11
+
+--- PDF PAGE 12 ---
+4. Launchpad Pro Interface
+
+ 4.1 Modes
+
+   Modes are the core of the Launchpad Pro interface. They allow you to switch between views, offering
+    different functionality in each.
+
+   There are five different modes available – Session, Note, Chord, Custom and Sequencer.
+
+
+
+
+
+                                   4.1.A – Launchpad Pro’s Mode buttons
+
+   Press a mode button (above) to enter the respective mode. The currently active mode will be lit pale
+   green. Currently available modes will be lit white.
+
+    Additionally, Projects gives you access to your saved sequencer projects. The Projects page is treated
+   as a sub-mode of Sequencer.
+
+   There are 8 Custom modes available on Launchpad Pro. Custom Modes allow you to control your
+   hardware and software via MIDI (see 8. Custom Modes for more information). When the Custom
+   button is pressed you will enter the last Custom Mode used (Custom Mode 1 by default). Access each
+    of the 8 Custom Modes by pressing the Track Select buttons after the Custom button is pressed. The
+   Custom Mode lit in pale green is selected, while available ones will be lit dim white. Using Novation
+   Components, you are able to edit these eight modes and customise them to your needs (see Custom
+   Modes).
+
+
+
+
+
+                                                                                             12
+
+--- PDF PAGE 13 ---
+4.2 Shift
+
+  Shift is a consistent control throughout Launchpad Pro [MK3]. Shift functions can be identified by
+  the small text on the bottom of relevant buttons – see below, where Save is the shift function for the
+  Projects button.
+
+
+
+
+
+                        4.2.A – The Projects button has Save as its Shift function
+
+ When Shift is held, available functions will be lit gold, while unavailable functions will be unlit. Toggle
+  functions that are accessed with Shift (Record Quantise, Continue and Click) will be lit red when
+  disabled, or green when enabled.
+
+  Available functions vary by mode. For example, Save is only available to press when in Sequencer
+ Mode.
+
+
+
+
+
+                                                                                           13
+
+--- PDF PAGE 14 ---
+5. Session Mode
+
+ 5.1 Ableton Live’s Session View
+
+   Session mode is designed to control Ableton Live’s Session view, seen below.
+
+
+      If you’ve never used Ableton Live before, we recommend visiting our Easy Start Tool (see page 5).
+   Here you’ll find your included Ableton Live 10 Lite download code (if you choose to register your
+   Launchpad Pro), alongside videos covering installing, the software’s basic features, and how to get
+    started making music with your Launchpad Pro in Ableton Live.
+
+   Session view is a grid that consists of clips, tracks (columns) and scenes (rows).
+   Session mode provides an 8x8 view of your clips in Session view on Launchpad Pro.
+
+    Clips are typically loops that contain MIDI notes or audio.
+
+   Tracks represent virtual instruments or audio tracks. MIDI clips placed on instrument tracks will play
+   back on the instrument that is assigned to that track.
+
+   Scenes are rows of clips. Launching a scene will launch all clips in that row. This means that you can
+   arrange clips into horizontal groups (across tracks) to form a song structure, launching scene after
+   scene to progress through a song.
+
+
+
+                                                                 A row
+                                                   Clip                                  represents
+                                                                                    a scene,
+                                                                                       highlighted
+                                                                                                                           is scene “9”
+
+
+
+
+        The yellow
+      column shows a
+        track, titled “1
+         Rhodes”
+
+
+
+
+
+                                                                                             14
+
+--- PDF PAGE 15 ---
+ The ▲▼◄ ► buttons let you navigate session view. The outline in the Session View grid shows the
+ area currently visible on Launchpad Pro.
+
+
+•  Press a pad to play the corresponding clip in Ableton. The colour will match between the screen and
+   pads.
+
+• When a pad is pressed it will flash green, indicating that the clip is queued and will soon begin to
+   play. When a clip is playing, the pad will pulse green.
+
+•  Only one clip may play at a time per track. Pressing an empty clip will stop the current one on that
+   track.
+• A horizontal line of clips is called a Scene. Scenes can be triggered using the > (scene launch)
+   buttons on the right-hand side of Launchpad Pro.
+
+
+
+
+
+                  5.1.B – Session View seen in Ableton Live and on Launchpad Pro
+
+
+
+
+                                                                                           15
+
+--- PDF PAGE 16 ---
+ When a track is record armed, you may use the Session Record button [O] to enable overdub
+  recording of the currently playing clip.
+
+
+
+
+
+             5.1.C – The Session Record Button, which has Capture MIDI as its shift function
+
+  Press Shift and Session Record to access Ableton Live’s Capture MIDI function. Live 10 is always
+  listening to MIDI input on armed or input-monitored tracks and capture MIDI lets you retrieve the
+  material you’ve just played on those tracks. If no clip was playing on the armed track, Ableton Live
+  will place the MIDI notes into a new clip. If a clip was playing, the MIDI notes will be overdubbed onto
+  that clip.
+
+  Press the Play button to play the currently active clips while they are stopped. Press Play during
+  playback and playback will stop.
+
+5.2 Session Overview
+
+  Access Session Overview by holding Session when in Session Mode. This will display a zoomed-out
+  version of the Session view grid, with each pad representing an 8x8 block of clips. Pressing a pad
+  will navigate to that 8x8 block, providing a fast way to navigate large Live sets. Alternatively, the
+  navigational arrow buttons may be used to navigate the Session Overview.
+
+ The currently viewed 8x8 block will be lit light brown, while other blocks are blue. If a clip is playing in
+  a block that is not being viewed, the block will pulse green.
+
+5.3 Clip Functions
+
+ Beyond launching and stopping clips, Launchpad Pro provides additional clip functionality that’s great
+  for production in Live.
+
+ 5.3.1 Select a clip or empty clip slot
+
+  To select a clip without Launching it, hold shift and press the clip. This also works for empty clip slots.
+  Notice in Live that the selected clip and track will change, and it will become the focused clip. This is
+  useful for choosing a location to print clips to from the sequencer.
+
+
+
+                                                                                           16
+
+--- PDF PAGE 17 ---
+ 5.3.2 Clear a clip
+
+ Hold clear and press a clip on the 8x8 grid to clear it, deleting it from the Session View grid.
+
+  If in Note Mode, pressing Clear will instantly clear the currently selected clip.
+
+ 5.3.3 Duplicate a clip
+ Hold duplicate and press a clip on the 8x8 grid to copy it to the clip slot below. This will overwrite
+ existing clips.
+
+  If in Note Mode, pressing Duplicate will instantly duplicate the currently selected clip and select the
+ newly created duplicate. This is useful when you want to create a new clip that is a variation on a
+ previous one.
+
+ 5.3.4 Double a clip’s length
+
+ Double may be used to double a clip’s length. For example, a 2-bar clip becomes 4 bars.
+
+
+•  In Session Mode, hold Shift and Duplicate then press a pad to double the corresponding clip’s
+   length.
+
+•   If a clip is selected and playing in either Note or Device Mode, one press of Duplicate while holding
+   the Shift button will double clip length.
+  If in Note Mode, pressing Double will instantly double the currently selected clip. This is useful if you
+ want to create a variation of a loop and overdub it.
+
+ 5.3.5 Quantise a clip
+
+ Hold quantise and press a clip on the 8x8 grid to quantise its contents. The MIDI notes in the clip will
+ be snapped to the grid to the closest 16th note interval.
+
+ 5.3.6 Record Quantise
+
+ With Record Quantise enabled, any recorded MIDI will be automatically quantised to the grid with the
+ current quantisation setting.
+
+ Hold shift to see if Record Quantise is enabled or disabled. If the Quantise button is lit red, record
+ quantise is disabled. If it is lit green, Record Quantise is enabled. With shift held, press Quantise to
+ enabled or disable Record Quantise.
+
+ To change the quantisation setting in Live, navigate to the top bar and press Edit, then Record
+ Quantisation, then select from the available options.
+                                                                                           17
+
+--- PDF PAGE 18 ---
+ 5.3.7 Fixed Length
+
+  Fixed Length allows you to define a bar length for any new clips that are recorded. Press Fixed length
+  to enable or disable this behaviour. The Fixed Length button will be lit white when it is disabled and
+   lit blue when it is enabled.
+
+ The number of bars that will be recorded when Fixed Length is enabled can be defined. Hold
+  Fixed Length briefly and the Track Select buttons will begin to pulse blue. Each Track Select button
+  represents one bar – press a track select to determine a bar length from 1 to 8 bars. Recording will
+  stop automatically once the set number of bars is reached, and the recorded clip will loop.
+
+ The left-hand image shows fixed length is set to 1 bar, while the right-hand image shows that it is set
+  to 4 bars.
+
+
+
+
+
+   5.3.7.A – Setting the number of bars with the Track Select Buttons for Fixed Length. A fixed length
+
+                        of 1 bar is seen on the left image, and 4 bars on the right.
+
+5.4 Track Controls
+
+ Launchpad Pro’s Track Controls allow you to control various track parameters in Ableton Live 10. The
+  Track Controls are found on the bottom row of Launchpad Pro, beneath the Track Select buttons.
+
+
+                                                                                           Track Select
+                                                                                        buttons
+    Track
+  Controls
+
+
+                    5.4.A – Track Select Buttons & Track Controls on Launchpad Pro
+
+ The Track Controls are located on the bottom row of the Launchpad Pro. These functions work in
+  conjunction with the row of 8 Track Select buttons just above it as well as with the 8x8 area.
+                                                                                           18
+
+--- PDF PAGE 19 ---
+5.4.1 Record Arm
+
+Overlay the Track Select buttons with Record Arm track toggles. When pressed, the clip in the
+corresponding track will stop playing.
+5.4.2 Mute
+
+Overlay the Track Select buttons with Mute track toggles. When pressed, the clip in the
+corresponding track will stop playing.
+
+5.4.3 Solo
+
+Overlay the Track Select buttons with Solo track toggles. When pressed, the clip in the corresponding
+track will stop playing.
+
+5.4.4 Volume
+
+Control the volume levels of the tracks within the currently selected 8x8 area in Session view. Volume
+faders are vertical.
+
+5.4.5 Pan
+
+Control the stereo panning of the tracks within the currently selected 8x8 area in Session view. Pans
+will show horizontally - the top pan represents the leftmost track, and the bottom represents the
+rightmost.
+
+5.4.6 Send
+
+Control the send level of the tracks within the currently selected 8x8 area in Session view to Send A.
+Send faders are vertical.
+
+5.4.7 Device
+
+Overlay the row of pads above the mixer function with device select (first to eighth in the track’s
+chain). Once a device in the chain is selected, control the value of the 8 macro parameters controls
+within the currently selected 8x8 area in Session view. Macro parameters faders are vertical.
+
+5.4.8 Stop Clip
+
+Overlay the Track Select buttons with Stop Clip triggers. When pressed, the clip in the corresponding
+track will stop playing at the end of the phrase.
+
+
+                                                                                          19
+
+--- PDF PAGE 20 ---
+ 5.4.9 Fader orientation
+
+  Volume, Pan, Sends and Device are each sets of 8 faders. The faders are vertical for Volume, Sends
+ and Device, whereas they are horizontal for pans (see below). Press a pad to move the fader position
+ up and down (or left to right).
+
+  For Volume and Send faders, tracks are arranged horizontally across the pads. For Pan faders, tracks
+  are arranged vertically.
+
+
+
+
+
+                            5.4.9.A – Faders for track pans (left) and volume (right)
+
+5.5 Record Arm & Recording
+
+ When a track is record armed, all empty clips in a column will be dimly lit red. When a clip is pressed
+   it will flash red to show that it is queued to record (the record button will also flash in unison). The
+ pad will pulse red once recording begins, with the record button lit bright red. If the record button is
+  then pressed, the clip will flash red to indicate that it will soon stop recording. If the track is un-armed
+  during recording, the clip will immediately stop recording.
+
+5.6 Production Controls
+
+ Launchpad Pro offers several shortcuts to aid production within Ableton Live.
+
+
+
+
+                                                                                           20
+
+--- PDF PAGE 21 ---
+ 5.6.1 Undo
+
+  Hold Shift and press Record Arm to Undo your last action. Press it again to undo the action before
+  that, and so forth.
+ 5.6.2 Redo
+
+  Hold Shift and press Mute to Redo the last Undone action.
+ 5.6.3 Tap (Tap Tempo)
+
+  Hold Shift and repeatedly press Sends to set the tempo at the rate would like to set.
+
+ 5.6.4 Click (metronome)
+
+  Hold Shift and press Solo to toggle Ableton Live’s click function on or off.
+
+5.7 Momentary View Switching
+
+  Views within Session Mode can be switched between momentarily, which is great for live performance.
+
+  For example, you may currently be viewing your track mutes, but you want to quickly visit your volume
+  faders to turn a track up. Press and hold Volume, edit a volume fader, and release Volume to return to
+ Mute view.
+
+
+
+
+
+                                                                                           21
+
+--- PDF PAGE 22 ---
+6. Note mode
+
+ 6.1 Overview
+
+   Use Launchpad Pro’s Note Mode to play drums and melodic instruments expressively with the velocity
+   and pressure sensitive 8x8 grid.
+
+   The layout of Note mode is variable, with the option to have a chromatic, scale, or drum layout. You
+   are able to customise Launchpad Pro’s playing surface to suit you.
+
+   When in any layout, use ▲▼ to increase or decrease the octave, and use ◄ ► to transpose the grid
+   by a semitone up or down.
+
+   Note Mode will react dynamically to the currently armed instrument in Ableton Live. When a track
+   with a Drum Rack is armed in Live, Note Mode will automatically switch to a Drum layout, and vice
+   versa for any other instrument.
+
+    In Ableton Live, load an instrument into a MIDI track by selecting an instrument from the browser and
+   double clicking it (or alternatively drag it to a track). If you cannot hear anything, ensure that the track
+     is record armed and that monitoring is set to auto.
+
+
+
+
+                                                         Monitor
+                                                                                       is set to
+                                                             Auto.
+
+
+
+
+
+                                                    Red arm button
+                                                                  indicates that track
+                                                                                          is record armed.
+
+
+                        6.1.A - Ensure that tracks in Ableton Live are set up correctly
+
+                                               for a smooth experience
+ 6.2 Chromatic Mode
+
+   Chromatic Mode is the default layout of Note mode. Press pads in the 8x8 grid to trigger notes.
+   While Chromatic Mode allows all notes to be played, a visual indication for which notes are in scale is
+   provided.
+                                                                                             22
+
+--- PDF PAGE 23 ---
+                 6.2.A – Note Mode in Chromatic Mode with 5-finger overlap selected
+
+  Blue pads represent notes in the currently selected scale (C Minor by default), purple pads represent
+  the root of the scale, and blank pads represent notes outside of the scale.
+
+ The default chromatic layout seen here is similar to that of a guitar, with an octave being two pads up
+ and two pads across. This allows for guitar chord shapes to be used. Additionally, the sixth column of
+  pads will play the same notes as the first column on the row above, further mimicking a guitar layout.
+
+ The layout of chromatic mode can be altered in Note Mode settings, accessed by holding Shift and
+  pressing Note. See 6.4 Note Mode Settings for details.
+
+6.3 Scale Mode
+
+  In Scale Mode, Launchpad Pro will only display notes in the current scale. This allows you to play
+  freely without ever going out of key.
+
+ As with Chromatic Mode, Blue pads represent notes in the currently selected scale, while purple pads
+  represent the root of the scale. Here, blank pads show that no note exists at their location as pads are
+  outside of playable range. This out of range behaviour also applies to Chromatic Mode.
+
+ The layout of chromatic mode can be altered in Note Mode settings, accessed by holding Note. See
+  6.4 Note Mode Settings for details.
+
+
+
+
+
+                                                                                           23
+
+--- PDF PAGE 24 ---
+                  6.3.A – Note Mode in Scale Mode with Sequential overlap selected
+
+6.4 Note Mode Settings
+
+ Note Mode settings allow you to switch between Chromatic Mode and Scale Mode, change the
+  currently selected scale and root note, alter Note Mode’s layout with overlap controls, and change
+ Note Mode’s MIDI channel.
+
+  Enter Note Mode settings by holding Shift and pressing Note or Chord. Note and Chord will pulse
+  green when in Note Mode settings. These settings are shared between Note and Chord – they share
+  the same scale, root note and MIDI channel.
+
+
+
+
+
+                                      6.4.A – Note Mode Settings
+                                                                                           24
+
+--- PDF PAGE 25 ---
+ The Chromatic/Scale toggle will switch between Chromatic Mode (lit dim red) and Scale Mode (lit
+  bright green) upon being pressed.
+
+ Overlap allows you to alter the layout of both Chromatic Mode and Scale Mode. See 6.5 Overlap for
+  a detailed explanation.
+
+ The Scale Viewer shows which notes are in the currently selected scale on a piano layout keyboard.
+  Blue pads show notes in the scale, the purple pad shows the root, and the dimly lit white pads show
+  notes outside of the scale. Press a pad in the Scale Viewer to change the root note of the scale.
+
+  Scale select lets you choose from 16 different scales. Press a pad to select a scale. The selected scale
+  will be lit bright white, while unselected scales will be lit dim blue.
+
+ The available scales are:
+
+  •  Natural Minor                 •  Harmonic Minor               •  Marva
+
+  •  Natural Major                 • Bebop Dorian                 •  Todi
+
+  •  Dorian                        •  Blues                         •  Whole Tone
+
+  •  Phrygian                      •  Minor Pentatonic              •  Hirajoshi
+
+  •  Mixolydian                    •  Hungarian Minor
+
+  •  Melodic Minor                 •  Ukrainian Dorian
+
+ The MIDI channel that Note Mode transmits on may be selected between 1 and 16. This is useful
+ when you want to send notes to a specific track when you have multiple tracks record armed.
+
+6.5 Overlap
+
+  Overlap determines the relationship between notes on different rows. An overlap of 5 means that the
+  leftmost pad on a row will play the same note as the sixth pad across on the row below (see A.1.1
+  Overlap - 5 Finger).
+
+  Each overlap level represents how many fingers are needed to play a scale (excluding sequential
+  layout). For example, with the 4 finger overlay you are able to play a scale going vertically up the grid
+  with only 4 fingers (see A.1.2 Overlap - 4 Finger)
+
+ The sequential overlay behaves differently from the 2, 3, 4 and 5 finger overlays. In Chromatic Mode,
+  notes will be laid out linearly and are unique to each pad. In Scale Mode, only octaves of the root will
+ be overlaid. Sequential layout in Scale Mode is similar to the layout on the Novation Circuit range,
+ and offers a great way to play scales over a range of octaves easily (see A.1.3 Overlap – Sequential).
+
+                                                                                           25
+
+--- PDF PAGE 26 ---
+6.6 Drum Mode
+
+   If an Ableton Live Drum rack is loaded to the currently armed track, Note Mode will represent the
+  current state of the drum rack, showing which slots are currently filled.
+
+  In Ableton Live, load a drum kit into a MIDI track by selecting a Drum kit from the browser and double
+  clicking it (or alternatively drag it to a track). If you cannot hear anything, ensure that the track is
+  record armed and that monitoring is set to auto (see 5.5 Record Arm & Recording).
+
+ The view is divided into four 4x4 areas, each of which represents the areas of the Drum rack, shown
+  below.
+
+
+
+
+
+                6.6.A – How Launchpad Pro’s Drum layout relates to a Drum Rack in Live
+
+ The visible area of the Drum rack may be scrolled through in sets of 16 slots using the ▲▼ buttons,
+  or in sets of 4 slots using the ◄ ► buttons. The bottom left 4x4 area will always correspond with the
+  currently visible slots in the Ableton Drum rack.
+
+   If there is a sample loaded in the areas 2, 3 or 4 in the diagram above, it will be visible as a brightly lit
+  yellow pad, exactly as seen in area 1.
+
+ When a drum pad is pressed, the pad will turn blue to indicate that it is selected. The sample present
+  in this slot may then be edited from within the Ableton Drum Rack.
+
+ When any other instrument is on the currently armed track, the grid will revert to Scale Mode or
+  Chromatic Mode.
+
+  In Ableton Live, load an instrument into a MIDI track by selecting an instrument from the browser and
+  double clicking it (or alternatively drag it to a track). If you cannot hear anything, ensure that the track
+  is record armed and that monitoring is set to auto.
+
+                                                                                           26
+
+--- PDF PAGE 27 ---
+7. Chord Mode
+
+ 7.1 Overview
+
+   Chord Mode allows you to explore, build, and save complex chords easily. Chord Mode’s layout is
+   designed specifically for playing chords that always work together.
+
+
+
+
+
+                                         7.1.A – Chord Mode layout
+
+ 7.2 Triads
+
+   The orange column of pads in Chord Mode represents triads. Pressing one of these pads will play
+   back three notes that form a triad, such as C, E and G to form a C Major chord. As you progress
+    vertically up the grid, the root note will rise, but the notes of the triads will remain within the currently
+   viewed octave of the scale. This ensures a natural sounding voicing of the chords within the octave.
+
+ 7.3 The Note Area
+
+   The left-hand column of the Note Area represents the currently selected scale (scales may be selected
+    in the Note Mode Settings which are shared between Note and Chord Mode). Playing from the
+   bottom left pad to the top left pad will play through the notes of the scale (if the scale has fewer than
+    7-notes, the octave will be reached on the 6th or 7th pad).
+
+
+                                                                                             27
+
+--- PDF PAGE 28 ---
+  Horizontal rows in the Note Area represent chords. Play any three adjacent horizontal notes to play a
+  triad. To find nice chords particularly easily, try playing chords across only one horizontal row at a time
+ and including the left-most pad in each chord.
+
+ The three leftmost notes in each row play a basic triad, with the 3rd interval raised an octave. The
+  fourth note from the left plays a 7th, while the fifth note along plays a 5th raised an octave.
+
+7.4 Saving Chords & Playing them back
+
+  Chords may be saved to the chord bank, represented by the 14 white pads on the right-hand side of
+  the grid. To assign to a chord slot, hold an empty chord slot in the bank and press notes in the Note
+  Area or triads. Alternatively, you may hold notes first, then assign them to a slot.
+
+  To play a chord that is saved to the Chord Bank, press the corresponding pad in the bank. Chord bank
+  slots that contain a saved chord are lit bright white, while unassigned slots are lit dim white.
+
+ The Chord Bank Lock control on the bottom right pad allows you to lock the Chord Bank. When it is
+  locked, you may play chords in the bank while still playing notes in the Note Area without assigning to
+  the bank. This way you are able to play melodies on top of saved chords, while playing those chords
+  with a single finger.
+
+7.5 Sustain control
+
+ Chord Mode’s Sustain pad will hold pressed notes in a similar way to a sustain pedal. This is a great
+ way to build up chords progressively. Pressing a sustained note again will re-trigger it with the new
+  velocity.
+
+
+
+
+
+                                                                                           28
+
+--- PDF PAGE 29 ---
+8. Custom Modes
+
+ 8.1 Overview
+
+   Custom Modes turn Launchpad Pro’s 8x8 grid to be a deeply customisable control surface.
+
+   Custom Modes can be created & edited using Novation Components – our online hub for all
+   Novation products. You may also back up any Custom Modes you create here. We have several
+   Custom Mode templates for you to download and explore on Components.
+
+   To access Components, visit components.novationmusic.com/ using a WebMIDI enabled browser (we
+   recommend Google Chrome or Opera).
+
+    Alternatively, download the standalone version of Components from your Account page on the
+   Novation site.
+
+   Custom modes are fully compatible between Launchpad Mini [MK3], Launchpad X and Launchpad Pro.
+
+ 8.2 Default Custom Modes
+
+   Eight custom modes are available by default on the device.
+
+   To access custom modes, press the Custom button. The Track Select buttons will be lit white, with
+   the currently selected Custom Mode lit pale green. Press the Track Select buttons to select between
+   Custom Modes.
+
+   Custom 1 provides 8 unipolar vertical faders set to CCs 7 through to 14. These can be MIDI mapped
+    in your DAW.
+
+   Custom 2 provides 8 bipolar horizontal faders set to CCs 15 through to 22. These can be MIDI
+   mapped in your DAW.
+
+   Custom 3 is a Drum Rack layout that matches Note Mode’s Drum Rack layout. This is a static layout –
+     it is not representative of the current Ableton Drum Rack.
+
+   Custom 4 is a chromatic layout that is representative of a traditional keyboard with black and white
+    notes.
+
+   Custom 5 provides Program Change messages 0-63.
+
+                                                                                             29
+
+--- PDF PAGE 30 ---
+ Custom 6 provides Program Change messages 64-127.
+
+ Custom 7 is a non-lit version of Custom 3. Sending MIDI notes to this layout will light the pads in a
+  colour that corresponds to the velocity of the incoming notes. This is a legacy layout that matches
+  User 1 from previous Launchpads
+
+ Custom 8 is a non-lit layout that matches the layout of Programmer Mode. Sending MIDI notes to this
+  layout will light the pads in a colour that corresponds to the velocity of the incoming notes. This is a
+  legacy layout that matches User 2 from previous Launchpads.
+
+8.3 Custom Mode Master MIDI Channel
+
+ The Master Channel for a Custom Mode may be set by holding shift and pressing Custom.
+
+ The bottom two rows of pads will present the Master MIDI channel for the selected Custom Mode
+  from Channel 1-16. Each Custom Mode may have its own independent Master Channel.
+
+  Select different Custom Modes using the Track Select buttons. The currently selected Custom Mode
+  will be lit green, as will its selected Master Channel. The Master Channel of unselected Custom Modes
+  will be shown as dim red.
+
+
+
+
+
+                            8.3.A – Selecting Custom Mode Master Channel
+
+
+
+
+                                                                                           30
+
+--- PDF PAGE 31 ---
+8.4 Setting up a Custom Mode
+
+  To set up a Custom Mode, open Novation Components and connect your Launchpad Pro.
+
+
+
+
+
+                      8.4.A – Setting up a Custom Mode in Novation Components
+
+  Within a Custom Mode, each pad within the 8x8 grid may act as a Note, a CC (control change), or a
+ Program Change message.
+
+ The pads may behave either as toggles, triggers or momentary switches. Momentary behaviour will
+  turn on a note when the pad is pressed and release the note when un-pressed. Triggers will always
+  send a specified CC value or program change message.
+
+  Full rows and columns of pads may also act as faders. Faders can be assigned CC values and may be
+  unipolar or bipolar. Faders may also be positioned horizontally or vertically.
+
+  Pads within a Custom Mode may be assigned an “on” and “off” colour for when pads within the 8x8
+  grid are pressed/toggled. (e.g. when a note is being played or a temporary CC change is toggled).
+  There may only be one “on” colour per Custom Mode, but each pad may have a unique “off” colour.
+
+ Custom Modes may have any combination of notes, CCs, program changes and faders – you can set
+ up your own personalised control surface for your studio.
+
+  For more hands-on information on how to create your own Custom Modes, visit components for an
+  interactive tutorial.
+
+
+                                                                                           31
+
+--- PDF PAGE 32 ---
+8.5 Lighting Pads with external MIDI
+
+ By default, Custom 7 & 8 have all pads unlit. MIDI Note messages sent to Launchpad Pro will light
+  pads according to note number and velocity. The note sent will determine which pad lights up, and
+  the note’s velocity will determine the colour.
+
+ The RGB LEDs are capable of outputting 127 colours, the index of which can be found in the
+  Programmer’s Reference Guide.
+
+  Additionally, all pads and buttons can be lit in Programmer Mode.
+
+  For detailed information on lighting pads and using Launchpad Pro as a control surface for software,
+  see the Programmers Reference Guide which can be downloaded at customer.novationmusic.com/
+  support/downloads.
+
+
+
+
+
+                                                                                           32
+
+--- PDF PAGE 33 ---
+9. Sequencer
+
+ 9.1 Sequencer Overview
+
+   Launchpad Pro features a powerful 4-track sequencer that may be used with both software and
+   hardware equipment. It features many powerful and creative functions to help you to generate
+    interesting musical ideas.
+
+   To sequence your software, connect Launchpad Pro to your computer via USB. Ensure that your
+   software is set to the same MIDI channel as the sequencer track you wish to control it. See 9.13
+   Sequencer Settings for details on changing the Launchpad Pro Sequencer track MIDI channels.
+
+   Sequencer data is sent out the MIDI Out ports in addition to the To sequence your hardware, use
+   the included TRS Minijack to MIDI DIN adapter as well as a MIDI cable to connect to your gear.
+   Launchpad Pro’s sequencer can be used entirely without a computer – just power the device using the
+   included wall-plug and USB-C cable.
+
+ 9.2 Steps View
+
+    In steps view, the top half of the grid represents the 32 steps of a pattern. Press the Play button to
+   see the white playhead progress through the steps of the pattern, and back around to the beginning.
+   Press play once again to stop playback – you’ll notice the white playhead has stopped.
+
+   The bottom half of the grid represents the Play Area, which allows you to play notes when pressed.
+
+  9.2.1 Using the Play Area
+
+   The notes in the Play Area may be shifted up or down an octave with the up and down buttons for
+   Chromatic or Scale track types, or by 16 notes (a full 4x4 grid) from Drum tracks. The left and right
+   buttons can be used to offset Drum tracks by a single row (four notes) at a time.
+
+
+
+
+
+                                                                                             33
+
+--- PDF PAGE 34 ---
+                                                       Sequencer
+
+
+
+
+
+                         Play Area in
+                  Drum Layout
+
+
+
+
+
+                                      9.2.1.A – The layout of Steps View
+
+9.2.2 Assigning to steps
+
+
+Notes may be assigned to steps by holding a note in the Play Area and pressing a step. Up to 8
+notes may be assigned to each step. When a step is held, notes which are assigned to it will turn red
+in the Play Area. The step will also be previewed when pressed.
+
+Alternatively, you may hold a step first, then press notes in the Play Area to assign notes to steps.
+
+Hold a note in the Play Area to see which steps it is assigned to - after holding the note briefly, the
+steps it is assigned to will turn red. If multiple notes (e.g. a chord) are held, steps which contain all
+held notes will go red.
+
+9.2.3 Clearing steps
+
+
+Notes may be cleared from steps by holding Clear and pressing the step you wish to clear. Individual
+notes may be removed from a step by holding the step and pressing assigned (red) notes in the Play
+Area.
+
+9.2.4 Duplicating steps
+To duplicate a step, hold Duplicate and press a step to copy it. While still holding Duplicate, press
+another step to paste the copied step there. A duplicated step can be pasted multiple times as long
+as duplicate is held down.
+                                                                                          34
+
+--- PDF PAGE 35 ---
+  9.2.5 Playback
+
+  Press the Play button to begin playback from the start of your patterns. You can resume from the
+  middle of a stopped sequence by holding shift & pressing play. Notice that play turns gold when shift
+   is held.
+
+  9.2.6 Recording into the sequencer
+  Press the Record [O] button to enable live recording to the sequencer. Recording is enabled when
+  the record button is red. When enabled, notes played in the Play Area during sequencer playback will
+  be recorded into the sequencer. MIDI received externally via USB or the TRS MIDI In port will also be
+  recorded.
+
+  9.2.7 Setting gate length
+
+  To set the gate length of notes on a step, press the step and hold it briefly until it pulses green. Now,
+  with the step still held down, press any other step in the pattern to set a length – the notes will be
+  held for the duration of the green pulsing steps.
+
+  To reduce the gate length back to a single step, press the pad that would assign a gate length of 2
+  twice. The second press will reduce the gate to 1 step.
+
+  In the image below the held step has a gate length of 10 steps, indicated by the 10 green pads.
+
+
+
+
+
+9.2.7.A – The gate length of the 9th step in this pattern is set to 10 steps, indicated by the 10 green pads
+
+
+                                                                                           35
+
+--- PDF PAGE 36 ---
+9.2.8 Using multiple sequencer tracks
+
+Four independent sequencer tracks are available on Launchpad Pro. Press the lit track select buttons
+to select between them. Each track has a specific colour, which is matched between the track select
+buttons and the Play Area. All four tracks play simultaneously.
+
+
+
+
+
+                         9.2.8.A – The four sequencer tracks are colour coded
+
+9.2.9 Using the Sequencer with Ableton Live
+
+Be aware of which MIDI channels you wish to send each track to in Ableton Live. By default, MIDI
+tracks in Live will accept input from any channel. This means that when you have patterns playing on
+multiple sequencer tracks, the notes will play in all record armed Ableton Live tracks by default.
+
+Setting up the sequencer tracks to play with Live can be done in several ways – an example follows:
+
+Set the tracks you wish to use in Live to receive MIDI from “Launchpad Pro MK3 (LPProMK3 MIDI)” if
+you’re on a Mac.
+
+If you’re on Windows, set MIDI From to “LPProMK3 MIDI (MIDI 1)”.
+
+
+
+
+
+              9.2.9.A – (Mac) Setting MIDI to come from the correct Launchpad Pro port
+
+Next, set each track to receive MIDI on different channels that correspond to your Launchpad Pro’s
+sequencer tracks. By default, these are Channels 1, 2, 3 and 4 for Tracks 1, 2, 3 and 4 respectively. See
+9.13 Sequencer Settings for details on how to change sequencer track MIDI channels.
+
+
+
+                                                                                          36
+
+--- PDF PAGE 37 ---
+                  9.2.9.B – Setting the MIDI channel of each track to match Launchpad Pro
+
+ Make sure Monitor is set to Auto, then arm all 4 tracks by holding command (Mac) or control
+  (Windows) as you click each record arm button. Alternatively, disable ‘Arm Exclusive’ by right clicking
+  the record arm button. This allows you to arm multiple tracks without holding command/control.
+
+
+
+
+
+                               9.2.9.C – Setting Arm Exclusive in Ableton Live
+
+9.3 Patterns View
+
+  In the Launchpad Pro sequencer, each 32-step sequence is a Pattern. Patterns allow you to build up a
+  track consisting of multiple sections. Each track has access to 8 patterns per project - navigate to the
+  Patterns page to see your patterns. The currently playing pattern will be pulsing. This is the pattern
+  that will be seen in Steps View.
+
+
+
+
+
+                                                                                           37
+
+--- PDF PAGE 38 ---
+                                        9.3.A – Patterns View
+
+9.3.1 Chaining Patterns
+
+Patterns may be chained together by pressing two patterns simultaneously – these two presses will
+define the start and end point for the chain. When you press play, the patterns will play one after
+another. A chain may consist of up to 8 patterns, for a total of 256 steps.
+
+9.3.2 Queuing Patterns
+
+During playback, press a Pattern (or a Pattern chain) to queue it to play next. The queued pattern (or
+chain) will flash to indicate that it is queued and will begin playing at the end of the current pattern.
+
+9.3.3 Clearing a Pattern
+
+To clear a Pattern, hold Clear and press a Pattern.
+
+9.3.4 Duplicating a Pattern
+
+To duplicate a Pattern, hold Duplicate and press a Pattern to copy it. While still holding Duplicate,
+press another Pattern slot to paste the copied pattern there. If you keep Duplicate held, you can
+paste the copied Pattern multiple times.
+
+9.3.5 Instant Pattern Change
+
+You may instantly switch between Patterns while the sequencer is playing. Hold shift and select a
+pattern (or pattern chain) to instantly switch. The sequencer will count into the new pattern as if it had
+                                                                                          38
+
+--- PDF PAGE 39 ---
+ been playing from the start of playback.
+
+  Tip: If queued switching between patterns of different lengths has left your track out of sync, use an
+  instant pattern switch to knock it back in time.
+
+9.4 Scenes
+
+  Scenes allow you to trigger multiple patterns for all tracks in a single press and may be chained to
+  build up a longer song structure. Scenes are represented by the 16 white pads at the bottom of
+  Patterns view.
+
+ 9.4.1 Assigning to Scenes
+
+  Hold a Scene to preview which Patterns are assigned to it. After a short delay, the assigned Patterns
+  (or Pattern Chains) will light red.
+
+  To assign a Pattern to the Scene, press a Pattern (or Pattern Chain) while holding a Scene. This will not
+  affect what the sequencer is currently playing. The newly assigned pattern chains will only take effect
+   if you reselect the scene or if the scene chain comes back round to this scene. Alternatively, you can
+  press and hold a pattern chain and then press a scene to assign it.
+
+  You can see whether the pattern chains have taken effect as the scene will turn from green to white if
+  the current pattern chains do not match what is stored in the current scene.
+
+ 9.4.2 Chaining Scenes
+
+  You can chain together multiple Scenes by pressing two scenes at the same time. This will set the
+  start and end of your chain. When you press play, the scenes will play one after the other. A scene will
+ move on to the next scene when all tracks have completed their pattern chain at least once.
+
+ 9.4.3 Queuing Scenes
+
+  Scenes may be queued in the same way as Patterns. While the sequencer is playing, selecting a new
+  scene (or scene chain) will queue it for playback. The queued scenes will flash and at the end of the
+  currently playing pattern on Track 1, the new scene (or scene chain) will begin playing from the start
+  without losing sync.
+
+  While the sequencer is playing, hold shift and select a scene (or scene chain) to instantly switch. The
+  sequencer will count into the new scene chain as if it had been playing from the start of playback.
+
+  Tip: If queued switching between scenes of different lengths has left your track out of sync, use an
+  instant scene switch to knock it back in time.
+                                                                                           39
+
+--- PDF PAGE 40 ---
+ 9.4.4 Clearing a Scene
+
+  To clear a Scene, hold Clear and press the Scene you wish to clear. This will return the Scene to its
+  default state (Pattern 1 for all tracks).
+
+ 9.4.5 Duplicating a Scene
+  To duplicate a Scene, hold Duplicate and press a Scene to copy it. While still holding Duplicate, press
+  another Scene slot to paste the copied Scene there. If you keep Duplicate held, you can paste the
+  copied Scene multiple times.
+
+
+
+
+
+                      9.4.5.A – Scenes occupy up the 16 bottom pads in Patterns View
+
+
+9.5 Pattern Settings
+
+  Pattern Settings allow you to alter the way that steps are played back within Patterns.
+ When Pattern Settings is selected, the top half of the Play Area will be replaced with settings that
+  affect the playback of the current pattern.
+
+ 9.5.1 Pattern Sync Rate
+
+ The eight peach-coloured pads control the sync rate of the pattern and determines the length of each
+  step and therefore the speed at which the pattern will play in relation to the current tempo.
+
+ The sync rates available are 1/4, 1/4T, 1/8, 1/8T, 1/16, 1/16T, 1/32, 1/32T, with T representing triplets.
+                                                                                           40
+
+--- PDF PAGE 41 ---
+ 1/16 is the default sync rate, where each step corresponds to a 16th note. Increasing the sync rate is
+ a great way to increase the sequencer’s step resolution at the cost of overall playback time. Reducing
+ the sync rate is useful for creating longer patterns that don’t require quite as fine detail, such as long,
+ evolving pads.
+
+ 9.5.2 Pattern Playback Direction
+ The four pink pads control the playback direction. The four playback directions are as follows (left to
+ right):
+•  Forward - plays steps incrementally from the start to the end of the pattern
+•  Backward - plays steps in reverse order, from the end to the start of the pattern
+•  Ping-Pong - alternates between forward and backward. The start and end steps are played twice to
+   maintain timing but the length of the pattern will double.
+• Random - each step is chosen randomly at playback time. Each step could play any number of times
+   within a single pattern cycle but the length of the pattern is maintained when chaining with other
+   patterns.
+  If pattern settings are changed during playback, the new pattern settings will take effect when the
+ current pattern reaches the end of its current cycle.
+
+
+
+
+
+                                    9.5.2.A – The Pattern Settings view
+
+
+
+
+
+                                                                                           41
+
+--- PDF PAGE 42 ---
+ 9.5.3 Pattern start and end points
+
+ The start and end point of Patterns may also be changed when in Pattern Settings. Pressing a step will
+  select the end step of the currently viewed pattern, with the end step displayed in peach. Hold shift
+  to instead view the start step of the current pattern (also displayed in peach). While shift is held, the
+  start step may be adjusted in the same way as the end step.
+
+  Steps that have notes assigned but fall outside of the selected start and end points are displayed in
+ dim red, while unassigned steps are not lit.
+
+9.6 Velocity
+
+ 9.6.1 Step Velocity edit
+
+  You can view and edit the velocity of each step by pressing Velocity.
+
+ The top two rows of the Play Area become a “slider” for the velocity value of the currently selected
+  step. To select a step, press a pad in the top half of the grid. The velocity value for the step will be
+  displayed on the velocity slider.
+
+  Press a pad on the slider to change the velocity of the notes on the step from 1 (minimum) to 16
+  (maximum).
+
+ When you manually edit the velocity of a step with multiple notes, all notes on the step will be set to
+  the same velocity value.
+
+
+
+
+
+                                         9.8.1.A – The Velocity view
+                                                                                           42
+
+--- PDF PAGE 43 ---
+ 9.6.2 Live Recording with Velocity
+
+ When live recording, multiple notes with varying velocity values may be recorded to a single step. In
+  this case, range of velocities will be displayed using bright and dim pads. The bright pads indicate the
+  lowest velocity and the dim pads show the range up to the highest velocity.
+
+9.7 Probability
+
+  Probability is a powerful tool that keeps your sequences evolving and moving. It can be a great way to
+ add variety and surprise to drum sequences.
+ 9.7.1 Editing Step Probability
+
+  You can view and edit the probability that notes on a step are triggered by pressing Probability. The
+  top row of the Play Area becomes a “slider” for the probability value of the currently selected step.
+
+
+
+
+
+                                      9.7.1.A – The Probability view
+
+  To select a step, press a pad in the top half of the grid. The probability value for the step will be
+  displayed on the probability slider.
+
+  Press a pad on the slider to change the probability of the step from 1 (minimum) to 8 (maximum).
+  These values correspond to the following probabilities:
+
+ 1. 13% (one pad lit)
+ 2. 25%
+ 3. 38%
+
+                                                                                           43
+
+--- PDF PAGE 44 ---
+4. 50%
+5. 63%
+6. 75%
+7. 88%
+8. 100% (eight pads lit)
+
+
+ For steps with multiple notes, the probability is independent for each note. That is, if a step has 2
+ notes with a probability of 50% assigned to the step, there is a 50% chance for each note to trigger.
+ This means sometimes only one note may play, sometimes both notes will trigger, and other times
+ neither note will trigger – their probabilities to play are exclusive.
+
+ A step may only have one probability value – it is not possible to have a 100% chance for one note to
+ trigger, and a 25% chance for another note on the same step to trigger.
+
+ The default Probability value when recording or assigning notes is 100% meaning that all the notes on
+ a step will always play. Clearing steps, patterns and projects will also reset all probabilities to 100%.
+
+ 9.7.2 Printing Probability
+
+ Printing a clip to Ableton Live will calculate probability for each relevant step a single time. Print a
+ pattern several times to get repeatable variations of the pattern across multiple clips. See 9.11 Print
+ to Clip for more information on this function.
+
+
+
+
+
+                                                                                           44
+
+--- PDF PAGE 45 ---
+9.8 Mutation
+
+  Mutation allows you to add a further element of randomness to your sequences. Apply mutation to a
+  step to add a chance for the pitch of the notes to be altered upon playback.
+ 9.8.1 Editing Step Mutation
+  You can view and edit the mutation that notes on a step possess by pressing Mutation.
+
+
+
+
+
+                                        9.8.1.A – The Mutation view
+
+ The top row of the Play Area becomes a slider for the value of the currently selected step. To select a
+  step, press a pad in the top half of the grid. The Mutation value for the step will be displayed on the
+  slider. There are 8 values for Mutation, with the minimum value (no mutation) on the far left, and the
+ maximum on the far right.
+
+ Newly assigned or recorded steps always start with no Mutation (one pad lit).
+
+ 9.8.2 Printing Mutation
+
+  Printing a clip to Ableton Live will Mutate each relevant step a single time. Print a pattern several
+  times to get repeatable variations of the pattern across multiple clips. See 9.11 Print to Clip for more
+  information on this function.
+
+ Use Mutation and Probability together to create evolving and generative patterns, then print these to
+  Ableton Live to nail down new ideas quickly.
+
+
+                                                                                           45
+
+--- PDF PAGE 46 ---
+9.9 Micro Steps
+
+  Micro steps allow for access to an increased resolution for note placement. This is great for creating
+  strumming effects or quickly re-triggering a single note.
+
+ 9.9.1 Editing Micro Steps
+
+  Press Micro Steps to edit the assignment of notes. The 6 leftmost pads on the top row of the Play
+  Area represent the micro steps for the currently selected step. To select a step, press a pad in the top
+  half of the grid.
+
+  Hold a note in the Play Area and press a micro step to assign directly to that micro step. De-assign
+  notes by holding a micro step and pressing the assigned notes (red) in the Play Area.
+
+
+
+
+
+                                   9.9.1.A – The Micro Step editing view
+
+ 9.9.2 Clearing micro steps
+  Notes may be cleared from micro steps by holding Clear and pressing the micro step you wish to
+  clear. Individual notes may be removed from a step by holding the step and pressing assigned (red)
+  notes in the Play Area.
+
+ 9.9.3 Duplicating steps
+  To duplicate a micro step, hold Duplicate and press a micro step to copy it. While still holding
+  Duplicate, press another micro step to paste the copied step there. If the number of notes on the
+  whole step exceeds the maximum of 8 when attempting to duplicate a micro step, duplication will not
+  occur.
+                                                                                           46
+
+--- PDF PAGE 47 ---
+9.10 Tempo and Swing
+
+ The Tempo and Swing views allow you to adjust the bpm (beats per minute) and swing of your track.
+
+ 9.10.1 Editing Tempo and Swing
+
+  Enter the Tempo or Swing view by holding shift and pressing Device or Stop Clip respectively.
+
+  In Tempo view (blue/white), the number displayed represents the current tempo in bpm.
+
+  In Swing view, (orange/white) the number displayed represents the current swing value. Numbers
+ above 50 represent positive swing, where the off-beat notes will trigger late, while numbers below 50
+  represent negative swing, where off-beat notes will trigger early.
+
+ The up and down arrow buttons on the left are used to change Tempo or Swing, and may be held to
+  cycle through values quickly.
+
+
+
+
+
+                                      9.10.1.A – Tempo and Swing views
+
+
+
+
+
+                                                                                           47
+
+--- PDF PAGE 48 ---
+9.11 Print to Clip
+
+  Sequencer patterns may be instantly transferred from Launchpad Pro to Ableton Live and placed in
+  clip slots, with no need to record them. Print to Clip is extremely useful for taking your ideas from the
+  sequencer into more complete tracks within Ableton Live.
+
+  This function is accessed via the Print to Clip button.
+
+ When you have created a sequence with the Launchpad Pro that you would like to transfer to Ableton
+  Live, select a clip slot in Live by clicking it with your mouse, then press Print to Clip on Launchpad Pro.
+ The current pattern or pattern chain for the selected track will be transferred to Live.
+
+
+
+
+
+                      9.11.A - A selected                      9.11.B – The same
+                    empty clip slot                           clip slot, now filled
+                                                                    after pressing Print
+                                                                    to Clip
+
+  Alternatively, a clip slot in may be selected using Launchpad Pro by navigating to Session View,
+  holding shift, and pressing a pad on the 8x8 grid.
+
+   If you had an empty clip slot selected, the printed pattern will now be in that slot as a clip. If you
+  press Print to Clip while an occupied clip slot is selected, the sequencer pattern will be printed to the
+  next empty clip slot below. This enables you to print a pattern multiple times without overwriting any
+  clips.
+
+  You can also use Print to Clip in Patterns view. To do so, hold Print to Clip and press a track select
+  button. Notice that the track buttons will pulse while Print to Clip is held. The currently selected
+  pattern or pattern chain on chosen track will be transferred to Ableton Live.
+
+   If you are using Ableton Live Lite and all 8 available clip slots for a track are full, the Print to Clip
+  button will become unlit to indicate that there are no available clip slots to transfer to.
+
+
+
+
+
+                                                                                           48
+
+--- PDF PAGE 49 ---
+      9.11.C – (Ableton Live Lite only) When 8 clip slots are full, Print to Clip will be unavailable.
+
+ The Print to Clip button function will only be available when connected to Ableton Live.
+
+9.12 Projects
+
+ A Project is an entire copy of the Sequencer state, including Patterns, Scenes, Scale/Root, Track Types
+ and Track Channels. There are 64 project slots that may be saved to, allowing you to build many
+  tracks on Launchpad Pro.
+
+ 9.12.1 Saving your Sequencer Project
+
+ A project can be saved from any of the Sequencer views (Steps view, Projects view or Patterns view).
+ When in the Steps, Projects or Patterns view hold shift and press Project to initiate saving. This will
+  cause the Save button to pulse green. Press Projects once again while in this state to save the current
+  Project to the active Project slot. The Save button will flash briefly to indicate the device is saving
+  during which any interaction is disabled. Alternatively, you can exit saving by pressing any button
+  other than Shift, Projects or Setup.
+
+  While in the Project view it is also possible to save the current project to another Project slot. To do
+  this hold shift and press Projects to initiate saving which will cause the Save button to pulse white. At
+  this point you may use the Track select buttons to select between 8 colours for the Project to save as.
+ Now press any Project slot to save the currently active session to that slot. The Save button and pad
+  will both flash briefly to confirm that the project saved.
+
+ A saved Project also stores the Note/Chord mode settings, as well as all Custom Mode Master MIDI
+  Channels.
+
+ 9.12.2 Backing up your Projects
+  Using Novation Components, you are able to back-up your projects online.
+  Novation Components is our online editor and librarian for all Novation products. You can access
+ Components in a Web-MIDI compatible browser (we recommend Google Chrome or Opera), or you
+  can download a standalone version from the Novation Customer Portal.
+                                                                                           49
+
+--- PDF PAGE 50 ---
+9.13 Sequencer Settings
+
+  In Sequencer settings you are able to change the current scale and root note, each Track’s type
+  (Drum, Scale, Chromatic), and the MIDI channel each track sends on.
+ 9.13.1 Accessing Sequencer Settings
+
+  Sequencer settings may be accessed by holding shift and pressing Sequencer.
+
+
+
+
+
+                                   9.13.1.A - Sequencer Settings view
+
+ 9.13.2 Track Types
+
+ The three track types available are Drum, Scale and Chromatic. Select between these three options
+  using the 3 pads at the top right of the grid. Choose which track you are altering by pressing the
+  Track Select buttons.
+
+ A preview of track type is given in the top left 4x2 section of the page. This represents the left-hand
+  side of the Play Area layout for each track type.
+
+ 9.13.3 Root Select/Scale Viewer
+
+ The Root Select/Scale Viewer shows which notes are in the currently selected scale on a piano layout
+  keyboard. Blue pads show notes in the scale, the purple pad shows the root, and the dimly lit white
+  pads show notes outside of the scale. Press a pad in the Scale Viewer to change the root note of the
+  scale. The selected root note will persist throughout Note, Chord and Sequencer Mode.
+
+
+
+                                                                                           50
+
+--- PDF PAGE 51 ---
+9.13.4 Selecting the Scale
+
+Scale select lets you choose from 16 different scales. Press a pad to select a scale. The selected scale
+will be lit bright white, while unselected scales will be lit dim blue. The selected Scale will persist
+throughout Note, Chord and Sequencer Mode.
+
+The available scales are:
+
+  Natural Minor                  Harmonic Minor               Marva
+  Natural Major                Bebop Dorian                    Todi
+  Dorian                           Blues                       Whole Tone
+  Phrygian                       Minor Pentatonic                  Hirajoshi
+  Mixolydian                     Hungarian Minor
+  Melodic Minor                    Ukrainian Dorian
+
+9.13.5 Setting MIDI Channel
+
+The MIDI channel that each Track transmits on may be selected between 1 and 16. This is useful when
+you want to send notes to multiple instruments in Ableton Live, or when you want to control different
+pieces of hardware.
+
+
+
+
+
+                                                                                          51
+
+--- PDF PAGE 52 ---
+10. Setup
+
+ 10.1 Setup Menu
+
+   Launchpad Pro’s setup menu allows you to set your preferences across many aspects of the controller.
+   There are five pages available: LED, Velocity, Aftertouch, MIDI, and Fader Behaviour.
+
+   To enter the Setup menu, press and hold Setup. The top 4 rows will display the characters LED,
+    indicating the topic of the menu. Use the five leftmost Track Select buttons to access the different
+   Setup pages.
+
+ 10.2 LED Settings
+
+
+
+
+
+                                       10.2.A - LED Settings view
+
+   The first Track Select button accesses the LED settings for Launchpad Pro. Here you can change LED
+    brightness, LED feedback, and enter LED sleep
+
+   The LED brightness level slider has 8 levels, from minimum to maximum brightness. The brightly lit
+   white pad indicates which level is currently selected.
+
+   The Vegas Mode Toggle may be pressed to enable or disable the Vegas Mode. Vegas Mode will
+   occur after 5 minutes of inactivity. If the toggle is red, Vegas Mode is disabled, or green if it is
+   enabled.
+
+                                                                                             52
+
+--- PDF PAGE 53 ---
+10.3 Velocity Settings
+
+ The second Track Select button accesses the velocity (VEL) settings for Launchpad Pro.
+
+
+
+
+
+                                    10.3.A - Velocity Settings view
+
+  Press the Enable/Disable Velocity toggle to enable or disable velocity globally on Launchpad Pro.
+ The pad will be lit bright green when velocity is enabled, and dim red when disabled.
+
+  Three Velocity Curves may be selected between. Low requires higher force to trigger high velocity
+  values, and high requires lower force for high values. The selected curve is lit bright orange, while the
+  others are lit dim white.
+
+
+
+
+
+                                                                                           53
+
+--- PDF PAGE 54 ---
+10.4 Aftertouch Settings
+
+ The third Track Select button accesses the aftertouch (AFT) settings for Launchpad Pro.
+
+
+
+
+
+                                   10.4.A - Aftertouch Settings view
+
+ The Pressure Mode can be chosen to be Aftertouch disabled, Polyphonic Aftertouch or Channel
+  Pressure. The selected mode will be brightly lit, the other dimly lit.
+
+  Channel Pressure sends out a single pressure value for all pads/notes. The highest pressure value
+  across the 8x8 grid will be transmitted. Polyphonic Aftertouch allows for each pad/note to send out
+  its own pressure value. This allows for expressive playing of supported instruments.
+
+  Polyphonic Aftertouch is not currently supported in Ableton Live, and Channel Pressure should be
+  used in this case.
+
+ The Aftertouch Threshold can be set to be off, low, or high. When set to off, pressure messages will
+ be sent out as soon as a pad/note is pressed. When set to low, a threshold pressure must be reached
+  before pressure messages will be sent out. When set to high, a higher pressure is required before
+  pressure messages will be sent out.
+
+  Using an Aftertouch Threshold is useful for when you do not want to immediately engage the
+  parameter related to aftertouch whenever a pad is pressed.
+
+
+
+
+                                                                                           54
+
+--- PDF PAGE 55 ---
+10.5 MIDI Settings
+
+ The fourth Track Select button accesses the MIDI settings.
+
+  Press Receive Clock (Rx) to toggle this behaviour on and off. When disabled, incoming clock
+ messages will be ignored. The default setting is On.
+
+  Press Transmit Clock (Tx) to toggle this behaviour on and off. When disabled, Launchpad Pro will not
+  transmit clock messages. The default setting is On.
+
+ Use Out2/Thru select to choose the behaviour of this MIDI port. Out 2 will duplicate the output of
+ Out 1. Thru will forward messages received via MIDI In.
+
+
+
+
+
+                                     10.5.A - MIDI Settings view
+
+
+
+
+
+                                                                                           55
+
+--- PDF PAGE 56 ---
+10.6 Fader Settings
+
+ The fifth Track Select button accesses the fader (FAD) settings. Here you may enable or disable
+  velocity sensitivity for faders independently of global velocity sensitivity.
+
+
+
+
+
+                                     10.6.A. Fader Settings view
+
+  Enable or Disable Velocity for Faders by pressing the pad. The pad will be lit bright green when
+  fader velocity is enabled, and dim red when it is disabled.
+
+
+
+
+
+                                                                                           56
+
+--- PDF PAGE 57 ---
+10.7 Live and Programmer Mode
+
+  In Live Mode, all functions described elsewhere in this manual are available, such as Session Mode,
+ Note Mode, Chord Mode, Custom Modes & the Sequencer. Live Mode is the default state of
+ Launchpad Pro.
+
+ Programmer Mode is an alternate state that may be used to control Launchpad Pro’s surface
+  externally via MIDI messages. In Programmer Mode, Launchpad Pro loses access to all other modes
+ and functionality. Each pad and button will send out and respond to a specified MIDI message when
+  pressed.
+
+  To switch between Live Mode and Programmer Mode, first enter the setup menu by holding Setup.
+  Press the green Scene Launch button to enter Live Mode, or the orange Scene Launch button to
+  enter Programmer Mode (see image on p.19). The Mode will not be entered until the Setup button is
+  released.
+ Launchpad Pro will always power on into Live Mode.
+
+
+
+
+
+                                  10.7.A. Live/ Programmer mode select
+
+ The pads and buttons may be lit up by sending their corresponding MIDI messages to Launchpad Pro.
+  For more information see the Programmer Reference Guide, which can be downloaded at:
+  https://customer.novationmusic.com/support/downloads.
+
+
+
+
+
+                                                                                           57
+
+--- PDF PAGE 58 ---
+10.8 Bootloader Menu
+
+ Launchpad Pro’s bootloader menu allows you to change LED brightness, LED feedback, mass storage
+  device availability, and device ID.
+
+  To enter the bootloader menu, hold Setup when plugging in Launchpad Pro.
+
+
+
+
+
+                                    10.8.A Bootloader menu view
+
+ The LED brightness level slider has 8 levels, from minimum to maximum brightness. The brightly
+   lit white pad indicates which level is currently selected. Certain USB host devices may not provide
+  sufficient power to fully boot Launchpad Pro. The power consumption may be reduced by using lower
+  brightness levels, allowing these devices to fully boot Launchpad Pro.
+
+ Use the Bootloader Version and App Version pads to view what is currently installed on Launchpad
+  Pro.
+
+  Pressing the Boot-up button will start Launchpad Pro normally, exiting the bootloader menu.
+
+  Device ID allows you to use multiple Launchpad Pro units with Ableton Live at once. When different
+  ID values are selected on each Launchpad Pro, they will each have their own Session View outline and
+  thus can navigate the Live session independently.
+
+ MSD Mode toggles the mass storage device behaviour of Launchpad Pro on or off. Once you’re set
+ up with Launchpad Pro you may no longer want it to appear as a mass storage device. Use this toggle
+  to disable the behaviour completely. When the pad is brightly lit MSD mode is enabled, and it is dimly
+   lit when disabled.
+                                                                                           58
+
+--- PDF PAGE 59 ---
+  MSD Mode is enabled by default. This is why Launchpad Pro appears as a mass storage device when
+   plugged in to your computer. Inside the LAUNCHPAD folder is a link to our Easy Start Tool, which will
+   help to get you set up with your Launchpad Mini (see 2. Getting Up and Running).
+
+A. Appendix
+
+ A.1 Default MIDI mappings
+
+
+   A.1.1 Custom 1: 8x8 Grid, 8 Vertical Unipolar Faders, CC numbers below
+
+
+
+
+
+                                                                                             59
+
+--- PDF PAGE 60 ---
+A.1.2 Custom 2: 8x8 Grid, 8 Horizontal Bipolar Faders, CC numbers below
+
+
+
+
+
+A.1.3 Custom 3: 8x8 grid, Momentary Note On messages (note numbers below)
+
+
+
+
+
+                                                                                          60
+
+--- PDF PAGE 61 ---
+A.1.4 Custom 4: 8x8 grid, Momentary Note On messages (note numbers below)
+
+
+
+
+
+A.1.5 Custom 5: 8x8 grid, Program Change messages
+
+
+
+
+
+                                                                                          61
+
+--- PDF PAGE 62 ---
+A.1.6 Custom 6: 8x8 grid, Momentary Note On messages (note numbers below)
+
+
+
+
+
+A.1.7 Custom 7: 8x8 grid, Momentary Note On messages (note numbers below)
+
+
+
+
+
+                                                                                          62
+
+--- PDF PAGE 63 ---
+A.1.8 Custom 8: 8x8 grid, Momentary Note On messages (note numbers below)
+
+
+
+
+
+A.1.9 Programmer Mode: Includes buttons and pads (full 9x9 grid), logo LED may
+be addressed, Momentary Note On messages (note numbers below)
+
+
+
+
+
+For more detailed information regarding the MIDI implementation of Launchpad
+Pro, please see the programmer’s reference guide at www.novationmusic.com.
+                                                                                          63
+
+--- PDF PAGE 64 ---
+A.2 Overlap Layouts
+
+ A.2.1 Overlap - 5 Finger
+
+
+
+
+
+                                                                                           64
+
+--- PDF PAGE 65 ---
+A.2.2 Overlap - 4 Finger
+
+
+
+
+
+                                                                                          65
+
+--- PDF PAGE 66 ---
+A.2.3 Overlap – Sequential
+
+
+
+
+
+                                                                                          66

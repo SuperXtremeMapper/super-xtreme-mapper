@@ -1,0 +1,100 @@
+Why does the S4MK3 still not have MIDI mode? - Community
+Home
+Categories
+Discussions
+Hangouts
+Home
+Traktor Software & Hardware
+Mapping Traktor
+Why does the S4MK3 still not have MIDI mode?
+marinelli
+I don't even know how to put this politely anymore.
+It's been four years and the S4Mk3 still has no MIDI mode.
+This is far beyond disgusting. I'ts feels more like a Pioneer move honestly.
+When is NI going to fix this?
+Find more posts tagged with
+Accepted answers
+MichaelK_NI
+Hi everybody,
+let me quickly add some insights here. We did not remove MIDI implementation off of the S2 MK3, S3 or S4 MK3. The facts are the following:
+S2 and S3
+have what we call native MIDI support. These two units have a specific MIDI control assigned to each button and knob on the device as part of their firmware. This eliminated the need to use the Controller Editor for these units. Unfortunately this also removes the option to change the Note or CC that a specific control is sending.
+Bottom line, these devices send MIDI but do not support customisability of what kind of messages are being send.
+S4 MK3
+has never supported MIDI in the first place. This has been a decision we needed to take back during the development process due to the increased architectural complexity of the product.
+I hope this has cleared things up a bit
+😁
+.
+cheers from Berlin
+Michael
+All comments
+Stevan
+In case you did not know, the S2 MK3 and S3 MIDI Modes has been removed from the firmware and the Controller Editor!
+Chances are wery low that we will ever get the MIDI mode on S4.
+marinelli
+Thanks for the insight.
+Well that is a very aggressive move against the needs of the costumers. I'm thinking of leaving the Traktor platform altogether.
+Enough is enough.
+The Sarge
+sorry for asking, but I´m new to Traktor:
+what was the MIDI Mode planed for?
+I´ve seen a video where someone is controlling Traktor over Maschine, and that was MIDI, but our S4 is in my opinion at the moment fully able to control Traktor Pro, isn´t it?
+PS: have mercy for my english and for my little knowledge about S4 (so much to read & learn)
+lord-carlos
+Midi mode on s4mk3 would allow easy to use the controller with
+other
+midi software.
+Right now if you want to use s4 mk3 on other software the Developers have to put in some work to make it workable with HID. For example Mixxx has done so.
+marinelli
+@lord-carlos
+That‘s right but missing my point a bit. I‘m no company capable of doing HID code. I‘m just a user with a big controller that can‘t be used for anything else than Traktor.
+lord-carlos
+https://community.native-instruments.com/discussion/comment/46586#Comment_46586
+I know. I was just answering The Sarge question.
+The Sarge
+thx
+@lord-carlos
+for explaining this to me
+so I see that there´s nothing for me(!) missing, cause I use KK S88 and Maschine Mk2 for the other things in controlling of MIDI
+@marinelli
+sorry for hijacking your topic :(
+Stevan
+https://community.native-instruments.com/discussion/comment/46500#Comment_46500
+All have some kind of issues or sounds worse or are limited in other ways.
+I think you should just sell your S4 MK3 and get an MK2. I use my S2 MK2 all the time.
+marinelli
+MK2 feels like a toy compared to the MK3. Also MK3 is the perfect Traktor-Controller for me.
+The question is not which Kontrol is the best for me but rather if there's any future with the platform at all.
+If the pattern player has priority before elastic grids or stem separation or giving the S4 a MIDI mode than I don't know if I still believe that Traktor is my platform.
+Of course it is still the best software out there when it comes to sound, effects, tightness and so on.
+If I could Drag and Drop tracks from Rekordbox to Traktor I would just use them parallel.
+Stevan
+Yeah MK2 could be compared as a toy but comes with a MIDI Mode if you really need it. And it is fully overmappable unlike S4 MK3.
+Also nothing wrong with MK2. I has one of first S2 MK2 controllers ever made and it still works perfectly. We'll see how MK3's compares after that many years.
+marinelli
+Did you get that I'm not talking about a specific hardware? I have plenty of controllers to use.
+The problem is NI itself in my opinion. Not giving the S4MK3 a MIDI mode could be caused by a lack of resources. But removing it actively from S2MK3 and S3 is a paradigm shift in  NI's attitude towards its customers in my opinion.
+Markovicz
+https://community.native-instruments.com/discussion/9022/why-does-the-s4mk3-still-not-have-midi-mode
+Hi
+@marinelli
+,
+from what I heard, this decision has been made during the development of the S4 MK3 based on two basic shortcomings that would apply when trying to use the controller in MIDI mode: neither the jog wheels nor the displays would be functional, and this is a technical limitation you couldn't work around.
+I am not trying to justify this decision, just sharing context.
+Markovicz
+https://community.native-instruments.com/discussion/comment/46468#Comment_46468
+This is not true. Nothing has been removed, both S2MK3 and S3 can be set to MIDI mode and used with other applications:
+How to Switch Your TRAKTOR KONTROL S2 MK3 to MIDI Mode
+How to Switch Your TRAKTOR KONTROL S3 to MIDI Mode
+The way this is technically implemented simply does not rely on the Controller Editor.
+zephry
+https://community.native-instruments.com/discussion/comment/53602#Comment_53602
+The driver is not even available for the mk3.
+It is definitely more intricate than previous controllers. As said "the jogs!"
+Although I think the initial release of the S4mk3 had no midi mappable controls at all, NI did add some later.
+My guess is that it would have been a support nightmare, everyone constantly saying they couldn't get it to work.
+Markovicz
+https://community.native-instruments.com/discussion/comment/53606#Comment_53606
+Which driver are you referring to?
+Quick links
+Unanswered questions

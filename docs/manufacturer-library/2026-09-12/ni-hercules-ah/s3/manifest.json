@@ -1,0 +1,38 @@
+{
+  "manufacturer": "Native Instruments",
+  "model": "Traktor Kontrol S3",
+  "retrieved_on": "2026-09-12",
+  "grade": "partial",
+  "scope": "Source extraction readiness only; not a verified SXM profile",
+  "hardware_tested": false,
+  "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+  "notes": "Official support confirms fixed firmware MIDI mode: hold left FLX while connecting, disconnect to exit. Manual lacks control-address chart. NI staff distinguishes fixed firmware messages from Controller Editor configuration.",
+  "coverage": {
+    "addresses": "not established by retrieved protocol documentation",
+    "channels": "not established by retrieved protocol documentation",
+    "layers": "not established by retrieved protocol documentation",
+    "encoders": "not established by retrieved protocol documentation",
+    "led_feedback": "not established by retrieved protocol documentation"
+  },
+  "inspected_locators": [
+    "shared/ni-midi-mode.html: controller model table, S3 row and *** footnote",
+    "manual.pdf: hardware and operation sections; full-text MIDI search",
+    "s4-mk3/ni-staff-midi-explanation.html: MichaelK_NI accepted answer"
+  ],
+  "sources": [
+    {
+      "url": "https://docs.native-instruments.com/pdf-guides/traktor/TRAKTOR_KONTROL_S3_MK1_Manual_English_0120.pdf",
+      "file": "s3/manual.pdf",
+      "status_code": 200,
+      "final_url": "https://docs.native-instruments.com/pdf-guides/traktor/TRAKTOR_KONTROL_S3_MK1_Manual_English_0120.pdf",
+      "bytes": 6649559,
+      "sha256": "ddc9919116c1d89b13510069a9f228dc929fe851df9e19fc7fdb2622c3d6bfc2",
+      "text_file": "s3/manual.txt",
+      "text_sha256": "fab2b23cb37a2cce6ea7c95f8c6f895eb9eaa3228d80cd123f8bc6a2ce2bf273"
+    }
+  ],
+  "shared_references": [
+    "shared/ni-current-downloads.html",
+    "shared/ni-midi-mode.html"
+  ]
+}

@@ -1,0 +1,6578 @@
+===== PDF PAGE 1 =====
+ 【MIDI channel assignment】
+  MIDI channel is defined as shown below.
+  0x9* : Note
+  0xB* : Control Change (CC)
+MIDI
+Channel
+1
+As a reference for MIDI assign, MIDI message sent from buttons and knobs of this controller are listed in decimal numbers and English scale.
+2
+Use this as a reference for your MIDI compatible software.
+3
+4
+NOTE is a MIDI term used for pressing and releasing keys on a piano or keyboard.
+5
+CC is an abbreviation for control change.
+6
+Control change is a type of MIDI signal used to convey various control information such as sound quality and volume.
+7
+English scale uses alphabetical letters of C, D, E, F, G, A and B as well as # to indicate halftone.
+PERFORMANCE PAD 1-8 (DECK1 without SHIFT)
+8
+PERFORMANCE PAD 1-8 (DECK1 with SHIFT)
+9
+PERFORMANCE PAD 1-8 (DECK2 without SHIFT)
+10
+PERFORMANCE PAD 1-8 (DECK2 with SHIFT)
+11
+PERFORMANCE PAD 1-8 (DECK3 without SHIFT)
+12
+PERFORMANCE PAD 1-8 (DECK3 with SHIFT)
+13
+PERFORMANCE PAD 1-8 (DECK4 without SHIFT)
+14
+PERFORMANCE PAD 1-8 (DECK4 with SHIFT)
+15
+(Dec)
+(English
+scale)
+BROWSE
+B1
+7
+CC
+64
+-
+B6
+40
+hh
+-
+-
+-
++SHIFT
+7
+CC
+100
+-
+B6
+64
+hh
+-
+-
+-
+7
+NOTE
+65
+F4
+96
+41
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+66
+F#4
+96
+42
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+B2
+7
+NOTE
+101
+F7
+96
+65
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+102
+F#7
+96
+66
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+B3
+7
+NOTE
+70
+A#4
+96
+46
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+93
+A6
+96
+5D
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+7
+NOTE
+71
+B4
+96
+47
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+109
+C#8
+96
+6D
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+7
+NOTE
+72
+C5
+96
+48
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+94
+A#6
+96
+5E
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+7
+NOTE
+73
+C#5
+96
+49
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+110
+D8
+96
+6E
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+MIDI-IN
+(to computer)
+MIDI-OUT
+(from computer)
+Details (Data 2)
+UI name
+Trigger
++SHIFT
+Condition
+(mode)
+MIDI
+Channel
+(Dec)
+NOTE
+/ CC
+LOAD
+press
+Deck1
+Deck4
+MIDI Data (Data 1)
+MIDI assign reference
+Status
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+Status
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+press
+-
+-
+BACK
+press
+-
+BROWSE
+rotate
+-
+Difference count value from previous operated
+Turn clockwise : 1 ～ 30 (0x01 ～ 0x1E)
+Turn counterclockwise : 127 ～ 98 (0x7F ～ 0x62)
+-
+Deck3
+Deck2
+Channel Category
+DECK 1
+DECK 2
+FX (CH2/CH4)
+BROWSER, Global Section
+DECK 3
+DECK 4
+FX (CH1/CH3)
+Channel No.  (Hex)
+n=0
+n=1
+n=2
+n=3
+m=4
+m=5
+m=6
+Group
+Fig.
+User Interface
+p=7
+s=8
+p=9
+s=A
+p=B
+s=C
+p=D
+s=E
+DDJ-REV5
+List of MIDI Messages
+1
+D1
+D2
+D3
+D11
+D12
+D13
+D18
+D20
+D24
+D25
+D5
+D8
+D9
+D10
+D4
+D14
+D15
+D16
+D17
+D26
+B1
+B3
+B2
+M1
+M2
+M3
+M7
+M8
+M13
+M14
+M9
+M11
+E1
+E2
+E3
+E4
+E5
+E6
+E11
+E9
+E10
+P1
+P2
+P3
+P4
+P5
+P6
+P7
+D6
+D7
+D21
+D22
+D23
+D19
+M4
+M5
+M6
+M12
+M10
+E7
+E8
+E12
+M15
+M16
+M17
+M19
+M20
+M21
+M22
+M23
+M18
+M24
+M25
+1
+
+
+===== PDF PAGE 2 =====
+(Dec)
+(English
+scale)
+DECK
+D1
+1/2/3/4
+NOTE
+11
+B-1
+9n
+0B
+hh
+9n
+0B
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+27
+D#1
+9n
+1B
+hh
+9n
+1B
+hh
+OFF=0x00, ON=0x7F
+D2
+1/2/3/4
+NOTE
+12
+C0
+9n
+0C
+hh
+9n
+0C
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+28
+E1
+9n
+1C
+hh
+9n
+1C
+hh
+OFF=0x00, ON=0x7F
+D3
+1/2/3/4
+CC
+34
+-
+Bn
+22
+hh
+-
+-
+-
+1/2/3/4
+CC
+35
+-
+Bn
+23
+hh
+-
+-
+-
++SHIFT
+1/2/3/4
+CC
+31
+-
+Bn
+1F
+hh
+-
+-
+-
+1/2/3/4
+CC
+13
+-
+9n
+0D
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+CC
+28
+-
+9n
+1C
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+1/2/3/4
+CC
+33
+-
+Bn
+21
+hh
+-
+-
+-
++SHIFT
+1/2/3/4
+CC
+38
+-
+Bn
+26
+hh
+-
+-
+-
+JOG ILLUMINATION
+1/2/3/4
+-
+-
+-
+-
+-
+-
+Bn
+１E
+hh
+hh：0x00-0x48  '00' means lights off.
+D4
+D5
+1/2/3/4
+NOTE
+8
+G#-1
+9n
+08
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+24
+C1
+9n
+18
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+D6
+1/2/3/4
+NOTE
+9
+A-1
+9n
+09
+hh
+9n
+09
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+25
+C#1
+9n
+19
+hh
+9n
+19
+hh
+OFF=0x00, ON=0x7F
+D7
+1/2/3/4
+NOTE
+10
+A#-1
+9n
+0A
+hh
+9n
+0A
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+26
+D1
+9n
+1A
+hh
+9n
+1A
+hh
+OFF=0x00, ON=0x7F
+D8
+BPM TRANSITION BAR
+Indicate
+-
+-
+-
+-
+-
+-
+-
+9n
+30
+hh
+OFF=0x00, ON=0x7F
+D9
+7
+NOTE
+62
+D4
+96
+3E
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+48
+C3
+96
+30
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+D10
+1/2/3/4
+NOTE
+49
+C#3
+9n
+31
+hh
+9n
+31
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+51
+D#3
+9n
+33
+hh
+9n
+33
+hh
+OFF=0x00, ON=0x7F
+D11
++SHIFT
+1/2/3/4
+NOTE
+20
+G#0
+9n
+14
+hh
+9n
+14
+hh
+OFF=0x00, ON=0x7F
+D12
+1/2/3/4
+NOTE
+1
+C#-1
+9n
+01
+hh
+9n
+01
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+16
+E0
+9n
+10
+hh
+9n
+10
+hh
+OFF=0x00, ON=0x7F
+D13
+1/2/3/4
+NOTE
+3
+D#-1
+9n
+03
+hh
+9n
+03
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+18
+F#0
+9n
+12
+hh
+9n
+12
+hh
+OFF=0x00, ON=0x7F
+D14
+1/2/3/4
+NOTE
+40
+E2
+9n
+28
+hh
+9n
+28
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+56
+G#3
+9n
+38
+hh
+9n
+38
+hh
+OFF=0x00, ON=0x7F
+D15
+1/2/3/4
+NOTE
+41
+F2
+9n
+29
+hh
+9n
+29
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+57
+A3
+9n
+39
+hh
+9n
+39
+hh
+OFF=0x00, ON=0x7F
+D16
+1/2/3/4
+NOTE
+42
+F#2
+9n
+2A
+hh
+9n
+2A
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+58
+A#3
+9n
+3A
+hh
+9n
+3A
+hh
+OFF=0x00, ON=0x7F
+D17
+1/2/3/4
+NOTE
+43
+G2
+9n
+2B
+hh
+9n
+2B
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+59
+B3
+9n
+3B
+hh
+9n
+3B
+hh
+OFF=0x00, ON=0x7F
+D18
+1/2/3/4
+NOTE
+37
+C#2
+9n
+25
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+53
+F3
+9n
+35
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++VOCAL
+7
+NOTE
+32
+G#1
+96
+20
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+7
+NOTE
+33
+A1
+96
+21
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+7
+NOTE
+34
+A#1
+96
+22
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+7
+NOTE
+35
+B1
+96
+23
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++MELODY
+7
+NOTE
+36
+C2
+96
+24
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+7
+NOTE
+37
+C#2
+96
+25
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+7
+NOTE
+38
+D2
+96
+26
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+7
+NOTE
+39
+D#2
+96
+27
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++BASS
+7
+NOTE
+40
+E2
+96
+28
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+7
+NOTE
+41
+F2
+96
+29
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+7
+NOTE
+42
+F#2
+96
+2A
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+7
+NOTE
+43
+G2
+96
+2B
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++DRUMS
+7
+NOTE
+44
+G#2
+96
+2C
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+7
+NOTE
+45
+A2
+96
+2D
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+7
+NOTE
+46
+A#2
+96
+2E
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+7
+NOTE
+47
+B2
+96
+2F
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+D19
+STEMS SOLO
+Indicate
+-
+-
+-
+-
+-
+-
+-
+9n
+34
+hh
+OFF=0x00, ON=0x7F
+D20
+8/10/12/14
+NOTE
+72
+C5
+9p
+48
+hh
+9p
+48
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+9/11/13/15
+NOTE
+72
+C5
+9s
+48
+hh
+9s
+48
+hh
+OFF=0x00, ON=0x7F
+8/10/12/14
+NOTE
+88
+E6
+9p
+58
+hh
+9p
+58
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+9/11/13/15
+NOTE
+88
+E6
+9s
+58
+hh
+9s
+58
+hh
+OFF=0x00, ON=0x7F
+8/10/12/14
+NOTE
+104
+G#7
+9p
+68
+hh
+9p
+68
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+9/11/13/15
+NOTE
+104
+G#7
+9s
+68
+hh
+9s
+68
+hh
+OFF=0x00, ON=0x7F
+8/10/12/14
+NOTE
+120
+C9
+9p
+78
+hh
+9p
+78
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+9/11/13/15
+NOTE
+120
+C9
+9s
+78
+hh
+9s
+78
+hh
+OFF=0x00, ON=0x7F
+D21
+8/10/12/14
+NOTE
+73
+C#5
+9p
+49
+hh
+9p
+49
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+9/11/13/15
+NOTE
+73
+C#5
+9s
+49
+hh
+9s
+49
+hh
+OFF=0x00, ON=0x7F
+8/10/12/14
+NOTE
+89
+F6
+9p
+59
+hh
+9p
+59
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+9/11/13/15
+NOTE
+89
+F6
+9s
+59
+hh
+9s
+59
+hh
+OFF=0x00, ON=0x7F
+8/10/12/14
+NOTE
+105
+A7
+9p
+69
+hh
+9p
+69
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+9/11/13/15
+NOTE
+105
+A7
+9s
+69
+hh
+9s
+69
+hh
+OFF=0x00, ON=0x7F
+8/10/12/14
+NOTE
+121
+C#9
+9p
+79
+hh
+9p
+79
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+9/11/13/15
+NOTE
+121
+C#9
+9s
+79
+hh
+9s
+79
+hh
+OFF=0x00, ON=0x7F
+D22
+8/10/12/14
+NOTE
+NOTE
+74
+D5
+4A
+hh
+9p
+4A
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+9/11/13/15
+NOTE
+NOTE
+74
+D5
+4A
+hh
+9s
+4A
+hh
+OFF=0x00, ON=0x7F
+8/10/12/14
+NOTE
+NOTE
+90
+F#6
+5A
+hh
+9p
+5A
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+9/11/13/15
+NOTE
+NOTE
+90
+F#6
+5A
+hh
+9s
+5A
+hh
+OFF=0x00, ON=0x7F
+8/10/12/14
+NOTE
+NOTE
+106
+A#7
+6A
+hh
+9p
+6A
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+9/11/13/15
+NOTE
+NOTE
+106
+A#7
+6A
+hh
+9s
+6A
+hh
+OFF=0x00, ON=0x7F
+8/10/12/14
+NOTE
+NOTE
+122
+D9
+7A
+hh
+9p
+7A
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+9/11/13/15
+NOTE
+NOTE
+122
+D9
+7A
+hh
+9s
+7A
+hh
+OFF=0x00, ON=0x7F
+hh
+OFF=0x00, ON=0x7F
+STEMS MODE
+1/2/3/4
+NOTE
+46
+A#2
+9n
+BASS / PAD 3
+press
+HOT CUE MODE
+press
+SAVED LOOP MODE
+press
+SCRATCH BANK MODE
+press
+SAMPLER MODE
+press
+hh
+OFF=0x00, ON=0x7F
+STEMS MODE
+1/2/3/4
+NOTE
+45
+A2
+9n
+MELODY / PAD 2
+press
+HOT CUE MODE
+press
+SAVED LOOP MODE
+press
+SCRATCH BANK MODE
+press
+SAMPLER MODE
+press
+hh
+OFF=0x00, ON=0x7F
+STEMS MODE
+1/2/3/4
+NOTE
+44
+G#2
+9n
+VOCAL / PAD 1
+press
+HOT CUE MODE
+press
+SAVED LOOP MODE
+press
+SCRATCH BANK MODE
+press
+SAMPLER MODE
+press
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+"－" side : Min (MSB:0x00 LSB:0x00)
+"＋" side : Max (MSB:0x7F LSB:0x7F)
++SHIFT
+1/2/3/4
+CC
+5
+37
+-
+Bn
+05
+25
+MSB
+LSB
+-
+Bn
+00
+20
+MSB
+LSB
+-
+-
+TEMPO
+slide
+-
+1/2/3/4
+CC
+0
+32
+-
+-
+hh
+9n
+KEY LOCK
+press
+-
+SYNC
+press
+-
+-
+BPM TRANSITION SELECT
+press
+-
+Deck4
+Deck2
+KEY ＋
+press
+-
+BPM TRANSITION START
+press
+-
+CENSOR
+press
+-
+KEY －
+press
+-
+SLIP
+press
+-
+Deck4
+Deck2
+Deck3
+LOOP 1/2X
+press
+-
+LOOP 2X
+press
+-
+-
+-
+TEMPO RANGE
+press
+-
+2C
+hh
+9n
+2C
+2D
+hh
+9n
+2D
+2E
+hh
+9n
+2E
+Deck3
+Deck4
+hh
+OFF=0x00, ON=0x7F
+Mark the check
+box in [LOOP options.] to
+activate the loop length
+set by the slider.
+1/2/3/4
+NOTE
+5
+F-1
+9n
+05
+4
+E-1
+9n
+04
+-
+STEMS
+press
+-
+Deck1
+Deck1
+Deck1
+Deck1
+Deck2
+Deck3
+Group
+Fig.
+User Interface
+JOG
+(side)
+rotate
+Difference count value from previous operated
+Turn clockwise : Increases from 65 (0x41)
+Turn counterclockwise : Decreases from 63 (0x3F)
+AUTO LOOP
+press
+Clear the check box in
+[LOOP options.] to work
+as the Auto Beat Loop
+button.
+1/2/3/4
+NOTE
+Data 2
+(Hex)
+PLAY/PAUSE
+press
+-
+CUE
+press
+-
+MIDI Data (Data 1)
+Status
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+Status
+(Hex)
+Data 1
+(Hex)
+hh
+9n
+04
+hh
+OFF=0x00,
+1/4 beat = 0x01
+1/2 beat = 0x02
+1 beat = 0x03
+2 beats = 0x04
+4 beats = 0x05
+8 beats = 0x06
+16 beats = 0x07
+-
+04
+MIDI assign reference
+MIDI-IN
+(to computer)
+MIDI-OUT
+(from computer)
+Details (Data 2)
+UI name
+Trigger
++SHIFT
+Condition
+(mode)
+MIDI
+Channel
+(Dec)
+NOTE
+/ CC
+-
+-
+-
+rotate
+Vinyl mode on
+Difference count value from previous operated
+Turn clockwise : Increases from 65 (0x41)
+Turn counterclockwise : Decreases from 63 (0x3F)
+Vinyl mode off
+-
+touch
+-
+JOG
+(top)
+-
+Deck2
+Deck3
+Deck4
+1
+
+
+===== PDF PAGE 3 =====
+(Dec)
+(English
+scale)
+DECK
+D23
+8/10/12/14
+NOTE
+75
+D#5
+9p
+4B
+hh
+9p
+4B
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+9/11/13/15
+NOTE
+75
+D#5
+9s
+4B
+hh
+9s
+4B
+hh
+OFF=0x00, ON=0x7F
+8/10/12/14
+NOTE
+91
+G6
+9p
+5B
+hh
+9p
+5B
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+9/11/13/15
+NOTE
+91
+G6
+9s
+5B
+hh
+9s
+5B
+hh
+OFF=0x00, ON=0x7F
+8/10/12/14
+NOTE
+107
+B7
+9p
+6B
+hh
+9p
+6B
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+9/11/13/15
+NOTE
+107
+B7
+9s
+6B
+hh
+9s
+6B
+hh
+OFF=0x00, ON=0x7F
+8/10/12/14
+NOTE
+123
+D#9
+9p
+7B
+hh
+9p
+7B
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+9/11/13/15
+NOTE
+123
+D#9
+9s
+7B
+hh
+9s
+7B
+hh
+OFF=0x00, ON=0x7F
+D24
+1/2/3/4
+NOTE
+38
+D2
+9n
+26
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+54
+F#3
+9n
+36
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+D25
+1/2/3/4
+NOTE
+39
+D#2
+9n
+27
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+55
+G3
+9n
+37
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+D26
+3
+NOTE
+6
+F#-1
+92
+06
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+1
+NOTE
+62
+D4
+90
+3E
+7F
+-
+-
+-
+Deck1 on
+3
+NOTE
+62
+D4
+92
+3E
+00
+-
+-
+-
+Deck3 off
+3
+NOTE
+6
+F#-1
+92
+06
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+1
+NOTE
+62
+D4
+90
+3E
+00
+-
+-
+-
+Deck1 off
+3
+NOTE
+62
+D4
+92
+3E
+7F
+-
+-
+-
+Deck3 on
++SHIFT
+7
+NOTE
+124
+E9
+96
+7C
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+4
+NOTE
+6
+F#-1
+93
+06
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+2
+NOTE
+62
+D4
+91
+3E
+7F
+-
+-
+-
+Deck2 on
+4
+NOTE
+62
+D4
+93
+3E
+00
+-
+-
+-
+Deck4 off
+4
+NOTE
+6
+F#-1
+93
+06
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+2
+NOTE
+62
+D4
+91
+3E
+00
+-
+-
+-
+Deck2 off
+4
+NOTE
+62
+D4
+93
+3E
+7F
+-
+-
+-
+Deck4 on
++SHIFT
+7
+NOTE
+125
+F9
+96
+7D
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+MIXER
+M1
+1/2/3/4
+NOTE
+14
+D0
+9n
+0E
+7F
+-
+-
+-
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+15
+D#0
+9n
+0F
+00
+-
+-
+-
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+14
+D0
+9n
+0E
+00
+-
+-
+-
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+15
+D#0
+9n
+0F
+7F
+-
+-
+-
+OFF=0x00, ON=0x7F
+M2
+M3
+M4
+M5
+M6
+M7
+M8
+M9
+M10
+CHANNEL LEVEL METER
+Indicate
+-
+-
+-
+-
+-
+-
+-
+Bn
+02
+hh
+OFF=0x00, ON=0x7F
+M11
+7
+G-1
+90
+07
+hh
+90
+07
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+31
+G1
+90
+1F
+hh
+90
+1F
+hh
+OFF=0x00, ON=0x7F
+7
+G-1
+92
+07
+hh
+92
+07
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+31
+G1
+92
+1F
+hh
+92
+1F
+hh
+OFF=0x00, ON=0x7F
+M12
+7
+G-1
+91
+07
+hh
+91
+07
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+31
+G1
+91
+1F
+hh
+91
+1F
+hh
+OFF=0x00, ON=0x7F
+7
+G-1
+93
+07
+hh
+93
+07
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+31
+G1
+93
+1F
+hh
+93
+1F
+hh
+OFF=0x00, ON=0x7F
+M13
+Group
+Fig.
+User Interface
+MIDI assign reference
+MIDI-IN
+(to computer)
+MIDI-OUT
+(from computer)
+Details (Data 2)
+UI name
+Trigger
++SHIFT
+Condition
+(mode)
+MIDI
+Channel
+(Dec)
+NOTE
+/ CC
+MIDI Data (Data 1)
+Status
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+Status
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+-
+-
+OFF=0x00, ON=0x7F
+16
+17
+9ｎ
+1E
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+CUE
+9ｎ
+15
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+HOT CUE
+Fader stop
+9ｎ
+9ｎ
+hh
+-
+-
+23
+F#1
+A0
+A#0
+B0
+-
+OFF=0x00, ON=0x7F
+hh
+-
+-
+Deck3
+Deck4
+CH FADER
+(Fader Start)
+slide
+Sync ON
++SHIFT
+HEADPHONES CUE CH2/CH4
+19
+51
+-
+1/2/3/4
+1/2/3/4
+1/2/3/4
+1/2/3/4
+NOTE
+NOTE
+NOTE
+NOTE
+30
+21
+22
+NOTE
+-
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+3
+35
+-
+B6
+03
+23
+MSB
+LSB
+-
+0B
+2B
+MSB
+LSB
+-
+-
+1
+NOTE
+3
+NOTE
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+-
+Bn
+0F
+2F
+MSB
+LSB
+-
+-
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+09
+29
+MSB
+LSB
+-
+-
+-
+7
+CC
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at bottom end, Max at top end
+Bn
+13
+33
+MSB
+LSB
+-
+-
+-
+press
+HEADPHONES CUE CH1/CH3
+press
+CH FADER
+slide
+-
+1/2/3/4
+CC
+Deck2
+4
+NOTE
+Deck1
+2
+EQ LOW
+rotate
+-
+1/2/3/4
+CC
+15
+47
+7
+CC
+9
+41
+08
+28
+MSB
+LSB
+-
+-
+-
+SAMPLER LEVEL
+rotate
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+MASTER LEVEL
+rotate
+-
+7
+CC
+8
+40
+-
+B6
+-
+B6
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+EQ MID
+rotate
+-
+1/2/3/4
+CC
+11
+43
+-
+Bn
+-
+Bn
+07
+27
+MSB
+LSB
+-
+-
+-
+-
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+EQ HI
+rotate
+-
+1/2/3/4
+CC
+7
+39
+CH 4
+7
+CC
+24
+56
+-
+B6
+1A
+3A
+MSB
+LSB
+-
+B6
+17
+37
+MSB
+LSB
+-
+-
+FILTER
+rotate
+CH 1
+7
+CC
+23
+55
+CH 3
+7
+CC
+24
+56
+-
+B6
+19
+39
+MSB
+LSB
+-
+-
+-
+Bn
+04
+24
+MSB
+LSB
+-
+-
+TRIM
+rotate
+-
+1/2/3/4
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+CH 2
+7
+CC
+INPUT SELECT
+slide
+Set to 'the USB A
+terminal
+Set to 'the USB B
+terminal
+CC
+04
+36
+24
+56
+-
+B6
+18
+38
+MSB
+LSB
+-
+-
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+BOOTH LEVEL
+rotate
+-
+2F
+hh
+9n
+2F
+hh
+OFF=0x00, ON=0x7F
+STEMS MODE
+1/2/3/4
+NOTE
+47
+B2
+9n
+DRUMS / PAD 4
+press
+HOT CUE MODE
+press
+SAVED LOOP MODE
+press
+SCRATCH BANK MODE
+press
+SAMPLER MODE
+press
+press
+-
+SCRATCH BANK
+press
+-
+Switch from Deck3
+to Deck1
+DECK2/4
+press
+Switch from Deck4
+to Deck2
+Switch from Deck1
+to Deck3
+Switch from Deck2
+to Deck4
+Dual Deck
+DECK1/3
+press
+Dual Deck
+HOT CUE
+1
+
+
+===== PDF PAGE 4 =====
+(Dec)
+(English
+scale)
+MIXER
+M14
++SHIFT
+M15
+slide
+106
+A#7
+96
+6A
+7F
+-
+-
+-
+OFF=0x00, ON=0x7F
+107
+B7
+96
+6B
+00
+-
+-
+-
+OFF=0x00, ON=0x7F
+107
+B7
+96
+6B
+7F
+-
+-
+-
+OFF=0x00, ON=0x7F
+106/108
+A#7/C8
+96
+6A/6C
+00
+-
+-
+-
+OFF=0x00, ON=0x7F
+108
+C8
+96
+6C
+7F
+-
+-
+-
+OFF=0x00, ON=0x7F
+107
+B7
+96
+6B
+00
+-
+-
+-
+OFF=0x00, ON=0x7F
+M16
+M17
+M18
+M19
+M20
+M21
+M22
+M23
+M24
+slide
+97
+C#7
+96
+61
+7F
+-
+-
+-
+OFF=0x00, ON=0x7F
+98
+D7
+96
+62
+00
+-
+-
+-
+OFF=0x00, ON=0x7F
+98
+D7
+96
+62
+7F
+-
+-
+-
+OFF=0x00, ON=0x7F
+97/99
+C#7/D#7
+96
+61/63
+00
+-
+-
+-
+OFF=0x00, ON=0x7F
+99
+D#7
+96
+63
+7F
+-
+-
+-
+OFF=0x00, ON=0x7F
+98
+D7
+96
+62
+00
+-
+-
+-
+OFF=0x00, ON=0x7F
+M25
+EFFECT
+E1
+FX1-1
+5
+NOTE
+112
+E8
+94
+70
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+48
+C3
+96
+30
+hh
+96
+30
+hh
+OFF=0x00, ON=0x7F
+E2
+FX1-2
+5
+NOTE
+113
+F8
+94
+71
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+49
+C#3
+96
+31
+hh
+96
+31
+hh
+OFF=0x00, ON=0x7F
+E3
+FX1-3
+5
+NOTE
+114
+F#8
+94
+72
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+50
+D3
+96
+32
+hh
+96
+32
+hh
+OFF=0x00, ON=0x7F
+E4
+FX2-1
+6
+NOTE
+112
+E8
+95
+70
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+51
+D#3
+96
+33
+hh
+96
+33
+hh
+OFF=0x00, ON=0x7F
+E5
+FX2-2
+6
+NOTE
+113
+F8
+95
+71
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+52
+E3
+96
+34
+hh
+96
+34
+hh
+OFF=0x00, ON=0x7F
+E6
+FX2-3
+6
+NOTE
+114
+F#8
+95
+72
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+53
+F3
+96
+35
+hh
+96
+35
+hh
+OFF=0x00, ON=0x7F
+E7
+BEAT t
+5
+NOTE
+6
+F#-1
+94
+06
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+6
+NOTE
+6
+F#-1
+95
+06
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+54
+F#3
+96
+36
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+E8
+BEAT u
+5
+NOTE
+7
+G-1
+94
+07
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+6
+NOTE
+7
+G-1
+95
+07
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+55
+G3
+96
+37
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+E9
+CH1 EFFECT LEVER
+5
+NOTE
+80
+G#5
+94
+50
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+5
+NOTE
+81
+A5
+94
+51
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+5
+NOTE
+71
+B4
+94
+47
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+5
+NOTE
+72
+C5
+94
+48
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+5
+NOTE
+73
+C#5
+94
+49
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+6
+NOTE
+71
+B4
+95
+47
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+6
+NOTE
+72
+C5
+95
+48
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+6
+NOTE
+73
+C#5
+95
+49
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+E10
+CH2 EFFECT LEVER
+6
+NOTE
+80
+G#5
+95
+50
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+6
+NOTE
+81
+A5
+95
+51
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+5
+NOTE
+71
+B4
+94
+47
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+5
+NOTE
+72
+C5
+94
+48
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+5
+NOTE
+73
+C#5
+94
+49
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+6
+NOTE
+71
+B4
+95
+47
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+6
+NOTE
+72
+C5
+95
+48
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+6
+NOTE
+73
+C#5
+95
+49
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+LINE
+PORTABLE
+AUX LEVEL
+rotate
+-
+7
+CC
+12
+44
+-
+B6
+07
+27
+MSB
+LSB
+-
+-
+-
+Deck4: HOT CUE
+93
+16
+hh
+-
+-
+-
+-
+MSB
+LSB
+-
+-
+-
+NOTE
+21
+OFF=0x00, ON=0x7F
+Deck4: Fader stop
+93
+17
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+Deck4: Sync ON
+93
+1E
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+Deck4: CUE
+93
+15
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+4
+4
+4
+NOTE
+21
+-
+-
+-
+OFF=0x00, ON=0x7F
+Deck1: Fader stop
+90
+17
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+Deck1: Sync ON
+90
+1E
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+Deck1: CUE
+90
+15
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+Deck1: HOT CUE
+90
+Deck3: HOT CUE
+92
+16
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+Deck3: Fader stop
+92
+17
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+Deck3: Sync ON
+92
+1E
+hh
+-
+-
+3
+3
+3
+3
+16
+hh
+OFF=0x00, ON=0x7F
+Deck3: CUE
+92
+15
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+OFF=0x00, ON=0x7F
+Deck2: HOT CUE
+91
+16
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+Deck2: Fader stop
+91
+17
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+NOTE
+21
+A0
+NOTE
+CROSSFADER
+(Fader Start)
+slide
+Deck2: Sync ON
+91
+1E
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+Deck2: CUE
+91
+15
+hh
+-
+-
+-
+MSB
+LSB
+-
+2
+NOTE
+2
+NOTE
+AUTO
+FX1-3 selected
+FX2-3 selected
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+AUX LINE/PORTABLE SW
+OFF
+press
+-
+CH2
+ FX2-2 selected
+FX2-1 selected
+FX1-1 selected
+FX1-2 selected
+CH1
+press
+CH3
+ FX1-1 selected
+FX1-2 selected
+FX1-3 selected
+ FX2-1 selected
+ FX2-2 selected
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+7
+-
+MIC EQ LOW
+rotate
+-
+7
+CC
+15
+47
+54
+hh
+-
+-
+-
+OFF=0x00, ON=0x7F
+CROSSFADER REVERSE
+slide
+-
+7
+NOTE
+84
+C6
+96
+-
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+CROSSFADER CURVE
+rotate
+-
+7
+CC
+11
+43
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+-
+B6
+06
+26
+MSB
+LSB
+-
+-
+MIC 2 LEVEL
+rotate
+-
+7
+CC
+06
+38
+0E
+2E
+MSB
+LSB
+-
+-
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+MIC EQ HI
+rotate
+-
+7
+CC
+14
+46
+-
+B6
+-
+B6
+MIC OFF/ON/TALKOVER
+OFF
+ON
+TALKOVER
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+HEADPHONES MIX
+rotate
+-
+7
+CC
+12
+44
+-
+B6
+0C
+2C
+B6
+0D
+2D
+MSB
+LSB
+-
+-
+-
+HEADPHONES LEVEL
+rotate
+-
+7
+CC
+13
+45
+-
+-
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+05
+37
+-
+CROSSFADER
+slide
+-
+7
+CC
+31
+63
+-
+B6
+1F
+3F
+-
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+Group
+Fig.
+User Interface
+MIDI assign reference
+MIDI-IN
+(to computer)
+MIDI-OUT
+(from computer)
+Details (Data 2)
+UI name
+Status
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+Status
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+Trigger
++SHIFT
+Condition
+(mode)
+MIDI
+Channel
+(Dec)
+NOTE
+/ CC
+MIDI Data (Data 1)
+MIC 1 LEVEL
+rotate
+-
+7
+CC
+press
+B6
+05
+25
+MSB
+LSB
+-
+0F
+2F
+MSB
+LSB
+-
+0B
+2B
+MSB
+LSB
+-
+FX2-1/2/3 selected
+7
+NOTE
+NOTE
+NOTE
+CH4
+ FX1-1/2/3 selected
+FX2-1/2/3 selected
+TAP
+-
+B6
+NOTE
+30
+F#1
+22
+A#0
+2
+NOTE
+2
+FX1-1/2/3 selected
+-
+-
+press
+-
+press
+press
+-
+-
+press
+-
+-
+press
+-
+-
+press
+-
+-
+FX2-3 selected
+press
+NOTE
+30
+21
+22
+23
+F#1
+A0
+A#0
+B0
+NOTE
+30
+F#1
+1
+1
+1
+1
+4
+NOTE
+23
+B0
+A0
+NOTE
+22
+A#0
+NOTE
+23
+B0
+NOTE
+30
+F#1
+7
+7
+NOTE
+7
+NOTE
+7
+NOTE
+A0
+NOTE
+22
+A#0
+NOTE
+23
+B0
+1
+
+
+===== PDF PAGE 5 =====
+(Dec)
+(English
+scale)
+EFFECT
+E11
+LEVEL/DEPTH
+M12
+PERFORMANCE
+P1
+1/2/3/4
+NOTE
+64
+E4
+9n
+40
+hh
+9n
+40
+hh
+OFF=0x00, ON=0x7F
+PADS
++SHIFT
+1/2/3/4
+NOTE
+80
+G#5
+9n
+50
+hh
+9n
+50
+hh
+OFF=0x00, ON=0x7F
+press twice
+1/2/3/4
+NOTE
+68
+G#4
+9n
+44
+hh
+9n
+44
+hh
+OFF=0x00, ON=0x7F
+P2
+1/2/3/4
+NOTE
+65
+F4
+9n
+41
+hh
+9n
+41
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+81
+A5
+9n
+51
+hh
+9n
+51
+hh
+OFF=0x00, ON=0x7F
+press twice
+1/2/3/4
+NOTE
+69
+A4
+9n
+45
+hh
+9n
+45
+hh
+OFF=0x00, ON=0x7F
+P3
+1/2/3/4
+NOTE
+66
+F#4
+9n
+42
+hh
+9n
+42
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+82
+A#5
+9n
+52
+hh
+9n
+52
+hh
+OFF=0x00, ON=0x7F
+press twice
+1/2/3/4
+NOTE
+70
+A#4
+9n
+46
+hh
+9n
+46
+hh
+OFF=0x00, ON=0x7F
+P4
+1/2/3/4
+NOTE
+67
+G4
+9n
+43
+hh
+9n
+43
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+83
+B5
+9n
+53
+hh
+9n
+53
+hh
+OFF=0x00, ON=0x7F
+press twice
+1/2/3/4
+NOTE
+71
+B4
+9n
+47
+hh
+9n
+47
+hh
+OFF=0x00, ON=0x7F
+P5
+8/10/12/14
+NOTE
+0
+C-1
+9p
+00
+hh
+9p
+00
+hh
++SHIFT
+9/11/13/15
+NOTE
+0
+C-1
+9s
+00
+hh
+9s
+00
+hh
+8/10/12/14
+NOTE
+16
+E0
+9p
+10
+hh
+9p
+10
+hh
++SHIFT
+9/11/13/15
+NOTE
+16
+E0
+9s
+10
+hh
+9s
+10
+hh
+8/10/12/14
+NOTE
+32
+G#1
+9p
+20
+hh
+9p
+20
+hh
++SHIFT
+9/11/13/15
+NOTE
+32
+G#1
+9s
+20
+hh
+9s
+20
+hh
+8/10/12/14
+NOTE
+48
+C3
+9p
+30
+hh
+9p
+30
+hh
++SHIFT
+9/11/13/15
+NOTE
+48
+C3
+9s
+30
+hh
+9s
+30
+hh
+8/10/12/14
+NOTE
+64
+E4
+9p
+40
+hh
+9p
+40
+hh
++SHIFT
+9/11/13/15
+NOTE
+64
+E4
+9s
+40
+hh
+9s
+40
+hh
+8/10/12/14
+NOTE
+80
+G#5
+9p
+50
+hh
+9p
+50
+hh
++SHIFT
+9/11/13/15
+NOTE
+80
+G#5
+9s
+50
+hh
+9s
+50
+hh
+8/10/12/14
+NOTE
+96
+C7
+9p
+60
+hh
+9p
+60
+hh
++SHIFT
+9/11/13/15
+NOTE
+96
+C7
+9s
+60
+hh
+9s
+60
+hh
+8/10/12/14
+NOTE
+112
+E8
+9p
+70
+hh
+9p
+70
+hh
++SHIFT
+9/11/13/15
+NOTE
+112
+E8
+9s
+70
+hh
+9s
+70
+hh
+8/10/12/14
+NOTE
+8
+G#-1
+9p
+08
+hh
+9p
+08
+hh
++SHIFT
+9/11/13/15
+NOTE
+8
+G#-1
+9s
+08
+hh
+9s
+08
+hh
+8/10/12/14
+NOTE
+24
+C1
+9p
+18
+hh
+9p
+18
+hh
++SHIFT
+9/11/13/15
+NOTE
+24
+C1
+9s
+18
+hh
+9s
+18
+hh
+8/10/12/14
+NOTE
+40
+E2
+9p
+28
+hh
+9p
+28
+hh
++SHIFT
+9/11/13/15
+NOTE
+40
+E2
+9s
+28
+hh
+9s
+28
+hh
+8/10/12/14
+NOTE
+56
+G#3
+9p
+38
+hh
+9p
+38
+hh
++SHIFT
+9/11/13/15
+NOTE
+56
+G#3
+9s
+38
+hh
+9s
+38
+hh
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+SHIFT
+press
+-
+7
+NOTE
+STEMS MODE
+SAMPLER MODE
+ROLL MODE
+SAVED LOOP MODE
+SAMPLER MODE
+HOT CUE MODE
+ROLL MODE
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+FX2-2 selected
+6
+CC
+4
+36
+-
+B5
+PERFORMANCE PAD 1
+press
+PITCH PLAY MODE
+PIANO PLAY MODE
+STEMS MODE
+SCRATCH BANK MODE
+SAVED LOOP MODE
+-
+-
+-
+63
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+FX1-3 selected
+5
+CC
+6
+38
+-
+B4
+04
+24
+MSB
+LSB
+-
+-
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+FX2-3 selected
+6
+CC
+6
+38
+-
+B5
+-
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+-
+-
+-
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+ FX1-2 selected
+5
+CC
+4
+36
+-
+B4
+ FX1-1 selected
+Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+Min at left side, Max at right side
+FX2-1 selected
+6
+CC
+2
+34
+-
+B5
+5
+CC
+2
+34
+-
+B4
+02
+22
+MSB
+LSB
+02
+22
+MSB
+LSB
+-
+-
+-
+Group
+Fig.
+MIDI assign reference
+MIDI-IN
+(to computer)
+MIDI-OUT
+(from computer)
+06
+26
+MSB
+LSB
+-
+-
+-
+04
+24
+MSB
+LSB
+-
+-
+-
+Details (Data 2)
+UI name
+Trigger
+Data 1
+(Hex)
+Data 2
+(Hex)
+Status
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
++SHIFT
+Condition
+(mode)
+MIDI
+Channel
+(Dec)
+NOTE
+/ CC
+MIDI Data (Data 1)
+Status
+(Hex)
+SAVED LOOP MODE
+SAMPLER MODE
+press
+HOT CUE MODE
+PITCH PLAY MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+press
+press
+press
+ROLL MODE
+PIANO PLAY MODE
+SCRATCH BANK MODE
+HOT CUE MODE
+D#4
+96
+3F
+hh
+-
+06
+26
+MSB
+LSB
+-
+User Interface
+OFF=0x00, ON=0x7F
+MIDI-OUT: lit in color specified in color number(1-127).
+OFF=0x00(dimmer)
+1
+
+
+===== PDF PAGE 6 =====
+(Dec)
+(English
+scale)
+PERFORMANCE
+PADS
+P5
+8/10/12/14
+NOTE
+1
+C#-1
+9p
+01
+hh
+9p
+01
+hh
++SHIFT
+9/11/13/15
+NOTE
+1
+C#-1
+9s
+01
+hh
+9s
+01
+hh
+8/10/12/14
+NOTE
+17
+F0
+9p
+11
+hh
+9p
+11
+hh
++SHIFT
+9/11/13/15
+NOTE
+17
+F0
+9s
+11
+hh
+9s
+11
+hh
+8/10/12/14
+NOTE
+33
+A1
+9p
+21
+hh
+9p
+21
+hh
++SHIFT
+9/11/13/15
+NOTE
+33
+A1
+9s
+21
+hh
+9s
+21
+hh
+8/10/12/14
+NOTE
+49
+C#3
+9p
+31
+hh
+9p
+31
+hh
++SHIFT
+9/11/13/15
+NOTE
+49
+C#3
+9s
+31
+hh
+9s
+31
+hh
+8/10/12/14
+NOTE
+65
+F4
+9p
+41
+hh
+9p
+41
+hh
++SHIFT
+9/11/13/15
+NOTE
+65
+F4
+9s
+41
+hh
+9s
+41
+hh
+8/10/12/14
+NOTE
+81
+A5
+9p
+51
+hh
+9p
+51
+hh
++SHIFT
+9/11/13/15
+NOTE
+81
+A5
+9s
+51
+hh
+9s
+51
+hh
+8/10/12/14
+NOTE
+97
+C#7
+9p
+61
+hh
+9p
+61
+hh
++SHIFT
+9/11/13/15
+NOTE
+97
+C#7
+9s
+61
+hh
+9s
+61
+hh
+8/10/12/14
+NOTE
+113
+F8
+9p
+71
+hh
+9p
+71
+hh
++SHIFT
+9/11/13/15
+NOTE
+113
+F8
+9s
+71
+hh
+9s
+71
+hh
+8/10/12/14
+NOTE
+9
+A-1
+9p
+09
+hh
+9p
+09
+hh
++SHIFT
+9/11/13/15
+NOTE
+9
+A-1
+9s
+09
+hh
+9s
+09
+hh
+8/10/12/14
+NOTE
+25
+C#1
+9p
+19
+hh
+9p
+19
+hh
++SHIFT
+9/11/13/15
+NOTE
+25
+C#1
+9s
+19
+hh
+9s
+19
+hh
+8/10/12/14
+NOTE
+41
+F2
+9p
+29
+hh
+9p
+29
+hh
++SHIFT
+9/11/13/15
+NOTE
+41
+F2
+9s
+29
+hh
+9s
+29
+hh
+8/10/12/14
+NOTE
+57
+A3
+9p
+39
+hh
+9p
+39
+hh
++SHIFT
+9/11/13/15
+NOTE
+57
+A3
+9s
+39
+hh
+9s
+39
+hh
+P5
+8/10/12/14
+NOTE
+2
+D-1
+9p
+02
+hh
+9p
+02
+hh
++SHIFT
+9/11/13/15
+NOTE
+2
+D-1
+9s
+02
+hh
+9s
+02
+hh
+8/10/12/14
+NOTE
+18
+F#0
+9p
+12
+hh
+9p
+12
+hh
++SHIFT
+9/11/13/15
+NOTE
+18
+F#0
+9s
+12
+hh
+9s
+12
+hh
+8/10/12/14
+NOTE
+34
+A#1
+9p
+22
+hh
+9p
+22
+hh
++SHIFT
+9/11/13/15
+NOTE
+34
+A#1
+9s
+22
+hh
+9s
+22
+hh
+8/10/12/14
+NOTE
+50
+D3
+9p
+32
+hh
+9p
+32
+hh
++SHIFT
+9/11/13/15
+NOTE
+50
+D3
+9s
+32
+hh
+9s
+32
+hh
+8/10/12/14
+NOTE
+66
+F#4
+9p
+42
+hh
+9p
+42
+hh
++SHIFT
+9/11/13/15
+NOTE
+66
+F#4
+9s
+42
+hh
+9s
+42
+hh
+8/10/12/14
+NOTE
+82
+A#5
+9p
+52
+hh
+9p
+52
+hh
++SHIFT
+9/11/13/15
+NOTE
+82
+A#5
+9s
+52
+hh
+9s
+52
+hh
+8/10/12/14
+NOTE
+98
+D7
+9p
+62
+hh
+9p
+62
+hh
++SHIFT
+9/11/13/15
+NOTE
+98
+D7
+9s
+62
+hh
+9s
+62
+hh
+8/10/12/14
+NOTE
+114
+F#8
+9p
+72
+hh
+9p
+72
+hh
++SHIFT
+9/11/13/15
+NOTE
+114
+F#8
+9s
+72
+hh
+9s
+72
+hh
+8/10/12/14
+NOTE
+10
+A#-1
+9p
+0A
+hh
+9p
+0A
+hh
++SHIFT
+9/11/13/15
+NOTE
+10
+A#-1
+9s
+0A
+hh
+9s
+0A
+hh
+8/10/12/14
+NOTE
+26
+D1
+9p
+1A
+hh
+9p
+1A
+hh
++SHIFT
+9/11/13/15
+NOTE
+26
+D1
+9s
+1A
+hh
+9s
+1A
+hh
+8/10/12/14
+NOTE
+42
+F#2
+9p
+2A
+hh
+9p
+2A
+hh
++SHIFT
+9/11/13/15
+NOTE
+42
+F#2
+9s
+2A
+hh
+9s
+2A
+hh
+8/10/12/14
+NOTE
+58
+A#3
+9p
+3A
+hh
+9p
+3A
+hh
++SHIFT
+9/11/13/15
+NOTE
+58
+A#3
+9s
+3A
+hh
+9s
+3A
+hh
+Details (Data 2)
+UI name
+Trigger
++SHIFT
+Condition
+(mode)
+MIDI
+Channel
+(Dec)
+NOTE
+/ CC
+MIDI Data (Data 1)
+Status
+(Hex)
+Data 1
+(Hex)
+PERFORMANCE PAD 3
+press
+HOT CUE MODE
+ROLL MODE
+SAVED LOOP MODE
+SAMPLER MODE
+PITCH PLAY MODE
+PIANO PLAY MODE
+STEMS MODE
+SCRATCH BANK MODE
+PERFORMANCE PAD 2
+press
+HOT CUE MODE
+ROLL MODE
+SAVED LOOP MODE
+SAMPLER MODE
+PITCH PLAY MODE
+PIANO PLAY MODE
+STEMS MODE
+SCRATCH BANK MODE
+Group
+Fig.
+MIDI assign reference
+MIDI-IN
+(to computer)
+MIDI-OUT
+(from computer)
+Data 2
+(Hex)
+Status
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+User Interface
+OFF=0x00, ON=0x7F
+MIDI-OUT: lit in color specified in color number(1-127).
+OFF=0x00(dimmer)
+OFF=0x00, ON=0x7F
+MIDI-OUT: lit in color specified in color number(1-127).
+OFF=0x00(dimmer)
+1
+
+
+===== PDF PAGE 7 =====
+(Dec)
+(English
+scale)
+PERFORMANCE
+PADS
+P5
+8/10/12/14
+NOTE
+3
+D#-1
+9p
+03
+hh
+9p
+03
+hh
++SHIFT
+9/11/13/15
+NOTE
+3
+D#-1
+9s
+03
+hh
+9s
+03
+hh
+8/10/12/14
+NOTE
+19
+G0
+9p
+13
+hh
+9p
+13
+hh
++SHIFT
+9/11/13/15
+NOTE
+19
+G0
+9s
+13
+hh
+9s
+13
+hh
+8/10/12/14
+NOTE
+35
+B1
+9p
+23
+hh
+9p
+23
+hh
++SHIFT
+9/11/13/15
+NOTE
+35
+B1
+9s
+23
+hh
+9s
+23
+hh
+8/10/12/14
+NOTE
+51
+D#3
+9p
+33
+hh
+9p
+33
+hh
++SHIFT
+9/11/13/15
+NOTE
+51
+D#3
+9s
+33
+hh
+9s
+33
+hh
+8/10/12/14
+NOTE
+67
+G4
+9p
+43
+hh
+9p
+43
+hh
++SHIFT
+9/11/13/15
+NOTE
+67
+G4
+9s
+43
+hh
+9s
+43
+hh
+8/10/12/14
+NOTE
+83
+B5
+9p
+53
+hh
+9p
+53
+hh
++SHIFT
+9/11/13/15
+NOTE
+83
+B5
+9s
+53
+hh
+9s
+53
+hh
+8/10/12/14
+NOTE
+99
+D#7
+9p
+63
+hh
+9p
+63
+hh
++SHIFT
+9/11/13/15
+NOTE
+99
+D#7
+9s
+63
+hh
+9s
+63
+hh
+8/10/12/14
+NOTE
+115
+G8
+9p
+73
+hh
+9p
+73
+hh
++SHIFT
+9/11/13/15
+NOTE
+115
+G8
+9s
+73
+hh
+9s
+73
+hh
+8/10/12/14
+NOTE
+11
+B-1
+9p
+0B
+hh
+9p
+0B
+hh
++SHIFT
+9/11/13/15
+NOTE
+11
+B-1
+9s
+0B
+hh
+9s
+0B
+hh
+8/10/12/14
+NOTE
+27
+D#1
+9p
+1B
+hh
+9p
+1B
+hh
++SHIFT
+9/11/13/15
+NOTE
+27
+D#1
+9s
+1B
+hh
+9s
+1B
+hh
+8/10/12/14
+NOTE
+43
+G2
+9p
+2B
+hh
+9p
+2B
+hh
++SHIFT
+9/11/13/15
+NOTE
+43
+G2
+9s
+2B
+hh
+9s
+2B
+hh
+8/10/12/14
+NOTE
+59
+B3
+9p
+3B
+hh
+9p
+3B
+hh
++SHIFT
+9/11/13/15
+NOTE
+59
+B3
+9s
+3B
+hh
+9s
+3B
+hh
+P5
+8/10/12/14
+NOTE
+4
+E-1
+9p
+04
+hh
+9p
+04
+hh
++SHIFT
+9/11/13/15
+NOTE
+4
+E-1
+9s
+04
+hh
+9s
+04
+hh
+8/10/12/14
+NOTE
+20
+G#0
+9p
+14
+hh
+9p
+14
+hh
++SHIFT
+9/11/13/15
+NOTE
+20
+G#0
+9s
+14
+hh
+9s
+14
+hh
+8/10/12/14
+NOTE
+36
+C2
+9p
+24
+hh
+9p
+24
+hh
++SHIFT
+9/11/13/15
+NOTE
+36
+C2
+9s
+24
+hh
+9s
+24
+hh
+8/10/12/14
+NOTE
+52
+E3
+9p
+34
+hh
+9p
+34
+hh
++SHIFT
+9/11/13/15
+NOTE
+52
+E3
+9s
+34
+hh
+9s
+34
+hh
+8/10/12/14
+NOTE
+68
+G#4
+9p
+44
+hh
+9p
+44
+hh
++SHIFT
+9/11/13/15
+NOTE
+68
+G#4
+9s
+44
+hh
+9s
+44
+hh
+8/10/12/14
+NOTE
+84
+C6
+9p
+54
+hh
+9p
+54
+hh
++SHIFT
+9/11/13/15
+NOTE
+84
+C6
+9s
+54
+hh
+9s
+54
+hh
+8/10/12/14
+NOTE
+100
+E7
+9p
+64
+hh
+9p
+64
+hh
++SHIFT
+9/11/13/15
+NOTE
+100
+E7
+9s
+64
+hh
+9s
+64
+hh
+8/10/12/14
+NOTE
+116
+G#8
+9p
+74
+hh
+9p
+74
+hh
++SHIFT
+9/11/13/15
+NOTE
+116
+G#8
+9s
+74
+hh
+9s
+74
+hh
+8/10/12/14
+NOTE
+12
+C0
+9p
+0C
+hh
+9p
+0C
+hh
++SHIFT
+9/11/13/15
+NOTE
+12
+C0
+9s
+0C
+hh
+9s
+0C
+hh
+8/10/12/14
+NOTE
+28
+E1
+9p
+1C
+hh
+9p
+1C
+hh
++SHIFT
+9/11/13/15
+NOTE
+28
+E1
+9s
+1C
+hh
+9s
+1C
+hh
+8/10/12/14
+NOTE
+44
+G#2
+9p
+2C
+hh
+9p
+2C
+hh
++SHIFT
+9/11/13/15
+NOTE
+44
+G#2
+9s
+2C
+hh
+9s
+2C
+hh
+8/10/12/14
+NOTE
+60
+C4
+9p
+3C
+hh
+9p
+3C
+hh
++SHIFT
+9/11/13/15
+NOTE
+60
+C4
+9s
+3C
+hh
+9s
+3C
+hh
+Group
+Fig.
+User Interface
+MIDI assign reference
+MIDI-IN
+(to computer)
+MIDI-OUT
+(from computer)
+Details (Data 2)
+UI name
+Trigger
++SHIFT
+Condition
+(mode)
+MIDI
+Channel
+(Dec)
+NOTE
+/ CC
+MIDI Data (Data 1)
+Status
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+Status
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+PERFORMANCE PAD 5
+press
+HOT CUE MODE
+ROLL MODE
+SAVED LOOP MODE
+SAMPLER MODE
+PITCH PLAY MODE
+PIANO PLAY MODE
+STEMS MODE
+SCRATCH BANK MODE
+PERFORMANCE PAD 4
+press
+HOT CUE MODE
+ROLL MODE
+SAVED LOOP MODE
+SAMPLER MODE
+PITCH PLAY MODE
+PIANO PLAY MODE
+STEMS MODE
+SCRATCH BANK MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+OFF=0x00, ON=0x7F
+MIDI-OUT: lit in color specified in color number(1-127).
+OFF=0x00(dimmer)
+OFF=0x00, ON=0x7F
+MIDI-OUT: lit in color specified in color number(1-127).
+OFF=0x00(dimmer)
+1
+
+
+===== PDF PAGE 8 =====
+(Dec)
+(English
+scale)
+PERFORMANCE
+PADS
+P5
+8/10/12/14
+NOTE
+5
+F-1
+9p
+05
+hh
+9p
+05
+hh
++SHIFT
+9/11/13/15
+NOTE
+5
+F-1
+9s
+05
+hh
+9s
+05
+hh
+8/10/12/14
+NOTE
+21
+A0
+9p
+15
+hh
+9p
+15
+hh
++SHIFT
+9/11/13/15
+NOTE
+21
+A0
+9s
+15
+hh
+9s
+15
+hh
+8/10/12/14
+NOTE
+37
+C#2
+9p
+25
+hh
+9p
+25
+hh
++SHIFT
+9/11/13/15
+NOTE
+37
+C#2
+9s
+25
+hh
+9s
+25
+hh
+8/10/12/14
+NOTE
+53
+F3
+9p
+35
+hh
+9p
+35
+hh
++SHIFT
+9/11/13/15
+NOTE
+53
+F3
+9s
+35
+hh
+9s
+35
+hh
+8/10/12/14
+NOTE
+69
+A4
+9p
+45
+hh
+9p
+45
+hh
++SHIFT
+9/11/13/15
+NOTE
+69
+A4
+9s
+45
+hh
+9s
+45
+hh
+8/10/12/14
+NOTE
+85
+C#6
+9p
+55
+hh
+9p
+55
+hh
++SHIFT
+9/11/13/15
+NOTE
+85
+C#6
+9s
+55
+hh
+9s
+55
+hh
+8/10/12/14
+NOTE
+101
+F7
+9p
+65
+hh
+9p
+65
+hh
++SHIFT
+9/11/13/15
+NOTE
+101
+F7
+9s
+65
+hh
+9s
+65
+hh
+8/10/12/14
+NOTE
+117
+A8
+9p
+75
+hh
+9p
+75
+hh
++SHIFT
+9/11/13/15
+NOTE
+117
+A8
+9s
+75
+hh
+9s
+75
+hh
+8/10/12/14
+NOTE
+13
+C#0
+9p
+0D
+hh
+9p
+0D
+hh
++SHIFT
+9/11/13/15
+NOTE
+13
+C#0
+9s
+0D
+hh
+9s
+0D
+hh
+8/10/12/14
+NOTE
+29
+F1
+9p
+1D
+hh
+9p
+1D
+hh
++SHIFT
+9/11/13/15
+NOTE
+29
+F1
+9s
+1D
+hh
+9s
+1D
+hh
+8/10/12/14
+NOTE
+45
+A2
+9p
+2D
+hh
+9p
+2D
+hh
++SHIFT
+9/11/13/15
+NOTE
+45
+A2
+9s
+2D
+hh
+9s
+2D
+hh
+8/10/12/14
+NOTE
+61
+C#4
+9p
+3D
+hh
+9p
+3D
+hh
++SHIFT
+9/11/13/15
+NOTE
+61
+C#4
+9s
+3D
+hh
+9s
+3D
+hh
+P5
+8/10/12/14
+NOTE
+6
+F#-1
+9p
+06
+hh
+9p
+06
+hh
++SHIFT
+9/11/13/15
+NOTE
+6
+F#-1
+9s
+06
+hh
+9s
+06
+hh
+8/10/12/14
+NOTE
+22
+A#0
+9p
+16
+hh
+9p
+16
+hh
++SHIFT
+9/11/13/15
+NOTE
+22
+A#0
+9s
+16
+hh
+9s
+16
+hh
+8/10/12/14
+NOTE
+38
+D2
+9p
+26
+hh
+9p
+26
+hh
++SHIFT
+9/11/13/15
+NOTE
+38
+D2
+9s
+26
+hh
+9s
+26
+hh
+8/10/12/14
+NOTE
+54
+F#3
+9p
+36
+hh
+9p
+36
+hh
++SHIFT
+9/11/13/15
+NOTE
+54
+F#3
+9s
+36
+hh
+9s
+36
+hh
+8/10/12/14
+NOTE
+70
+A#4
+9p
+46
+hh
+9p
+46
+hh
++SHIFT
+9/11/13/15
+NOTE
+70
+A#4
+9s
+46
+hh
+9s
+46
+hh
+8/10/12/14
+NOTE
+86
+D6
+9p
+56
+hh
+9p
+56
+hh
++SHIFT
+9/11/13/15
+NOTE
+86
+D6
+9s
+56
+hh
+9s
+56
+hh
+8/10/12/14
+NOTE
+102
+F#7
+9p
+66
+hh
+9p
+66
+hh
++SHIFT
+9/11/13/15
+NOTE
+102
+F#7
+9s
+66
+hh
+9s
+66
+hh
+8/10/12/14
+NOTE
+118
+A#8
+9p
+76
+hh
+9p
+76
+hh
++SHIFT
+9/11/13/15
+NOTE
+118
+A#8
+9s
+76
+hh
+9s
+76
+hh
+8/10/12/14
+NOTE
+14
+D0
+9p
+0E
+hh
+9p
+0E
+hh
++SHIFT
+9/11/13/15
+NOTE
+14
+D0
+9s
+0E
+hh
+9s
+0E
+hh
+8/10/12/14
+NOTE
+30
+F#1
+9p
+1E
+hh
+9p
+1E
+hh
++SHIFT
+9/11/13/15
+NOTE
+30
+F#1
+9s
+1E
+hh
+9s
+1E
+hh
+8/10/12/14
+NOTE
+46
+A#2
+9p
+2E
+hh
+9p
+2E
+hh
++SHIFT
+9/11/13/15
+NOTE
+46
+A#2
+9s
+2E
+hh
+9s
+2E
+hh
+8/10/12/14
+NOTE
+62
+D4
+9p
+3E
+hh
+9p
+3E
+hh
++SHIFT
+9/11/13/15
+NOTE
+62
+D4
+9s
+3E
+hh
+9s
+3E
+hh
+PERFORMANCE PAD 7
+press
+HOT CUE MODE
+ROLL MODE
+SAVED LOOP MODE
+SAMPLER MODE
+PITCH PLAY MODE
+PIANO PLAY MODE
+STEMS MODE
+SCRATCH BANK MODE
+USER MODE
+USER MODE
+USER MODE
+Details (Data 2)
+UI name
+Trigger
++SHIFT
+Condition
+(mode)
+MIDI
+Channel
+(Dec)
+NOTE
+/ CC
+MIDI Data (Data 1)
+Status
+(Hex)
+Data 1
+(Hex)
+Group
+Fig.
+MIDI assign reference
+MIDI-IN
+(to computer)
+MIDI-OUT
+(from computer)
+Data 2
+(Hex)
+Status
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+PERFORMANCE PAD 6
+press
+HOT CUE MODE
+ROLL MODE
+SAVED LOOP MODE
+SAMPLER MODE
+PITCH PLAY MODE
+PIANO PLAY MODE
+STEMS MODE
+SCRATCH BANK MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+OFF=0x00, ON=0x7F
+MIDI-OUT: lit in color specified in color number(1-127).
+OFF=0x00(dimmer)
+User Interface
+OFF=0x00, ON=0x7F
+MIDI-OUT: lit in color specified in color number(1-127).
+OFF=0x00(dimmer)
+1
+
+
+===== PDF PAGE 9 =====
+(Dec)
+(English
+scale)
+PERFORMANCE
+PADS
+P5
+8/10/12/14
+NOTE
+7
+G-1
+9p
+07
+hh
+9p
+07
+hh
++SHIFT
+9/11/13/15
+NOTE
+7
+G-1
+9s
+7
+hh
+9s
+7
+hh
+8/10/12/14
+NOTE
+23
+B0
+9p
+17
+hh
+9p
+17
+hh
++SHIFT
+9/11/13/15
+NOTE
+23
+B0
+9s
+17
+hh
+9s
+17
+hh
+8/10/12/14
+NOTE
+39
+D#2
+9p
+27
+hh
+9p
+27
+hh
++SHIFT
+9/11/13/15
+NOTE
+39
+D#2
+9s
+27
+hh
+9s
+27
+hh
+8/10/12/14
+NOTE
+55
+G3
+9p
+37
+hh
+9p
+37
+hh
++SHIFT
+9/11/13/15
+NOTE
+55
+G3
+9s
+37
+hh
+9s
+37
+hh
+8/10/12/14
+NOTE
+71
+B4
+9p
+47
+hh
+9p
+47
+hh
++SHIFT
+9/11/13/15
+NOTE
+71
+B4
+9s
+47
+hh
+9s
+47
+hh
+8/10/12/14
+NOTE
+87
+D#6
+9p
+57
+hh
+9p
+57
+hh
++SHIFT
+9/11/13/15
+NOTE
+87
+D#6
+9s
+57
+hh
+9s
+57
+hh
+8/10/12/14
+NOTE
+103
+G7
+9p
+67
+hh
+9p
+67
+hh
++SHIFT
+9/11/13/15
+NOTE
+103
+G7
+9s
+67
+hh
+9s
+67
+hh
+8/10/12/14
+NOTE
+119
+B8
+9p
+77
+hh
+9p
+77
+hh
++SHIFT
+9/11/13/15
+NOTE
+119
+B8
+9s
+77
+hh
+9s
+77
+hh
+8/10/12/14
+NOTE
+15
+D#0
+9p
+0F
+hh
+9p
+0F
+hh
++SHIFT
+9/11/13/15
+NOTE
+15
+D#0
+9s
+0F
+hh
+9s
+0F
+hh
+8/10/12/14
+NOTE
+31
+G1
+9p
+1F
+hh
+9p
+1F
+hh
++SHIFT
+9/11/13/15
+NOTE
+31
+G1
+9s
+1F
+hh
+9s
+1F
+hh
+8/10/12/14
+NOTE
+47
+B2
+9p
+2F
+hh
+9p
+2F
+hh
++SHIFT
+9/11/13/15
+NOTE
+47
+B2
+9s
+2F
+hh
+9s
+2F
+hh
+8/10/12/14
+NOTE
+63
+D#4
+9p
+3F
+hh
+9p
+3F
+hh
++SHIFT
+9/11/13/15
+NOTE
+63
+D#4
+9s
+3F
+hh
+9s
+3F
+hh
+P6
+1/2/3/4
+NOTE
+96
+C7
+9n
+60
+hh
+9n
+60
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+72
+C5
+9n
+48
+hh
+9n
+48
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+97
+C#7
+9n
+61
+hh
+9n
+61
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+73
+C#5
+9n
+49
+hh
+9n
+49
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+98
+D7
+9n
+62
+hh
+9n
+62
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+74
+D5
+9n
+4A
+hh
+9n
+4A
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+99
+D#7
+9n
+63
+hh
+9n
+63
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+75
+D#5
+9n
+4B
+hh
+9n
+4B
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+100
+E7
+9n
+64
+hh
+9n
+64
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+76
+E5
+9n
+4C
+hh
+9n
+4C
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+101
+F7
+9n
+65
+hh
+9n
+65
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+77
+F5
+9n
+4D
+hh
+9n
+4D
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+102
+F#7
+9n
+66
+hh
+9n
+66
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+84
+C6
+9n
+54
+hh
+9n
+54
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+103
+G7
+9n
+67
+hh
+9n
+67
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+85
+C#6
+9n
+55
+hh
+9n
+55
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+104
+G#7
+9n
+68
+hh
+9n
+68
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+86
+D6
+9n
+56
+hh
+9n
+56
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+105
+A7
+9n
+69
+hh
+9n
+69
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+87
+D#6
+9n
+57
+hh
+9n
+57
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+106
+A#7
+9n
+6A
+hh
+9n
+6A
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+88
+E6
+9n
+58
+hh
+9n
+58
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+107
+B7
+9n
+6B
+hh
+9n
+6B
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+89
+F6
+9n
+59
+hh
+9n
+59
+hh
+OFF=0x00, ON=0x7F
+P7
+1/2/3/4
+NOTE
+112
+E8
+9n
+70
+hh
+9n
+70
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+90
+F#6
+9n
+5A
+hh
+9n
+5A
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+113
+F8
+9n
+71
+hh
+9n
+71
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+91
+G6
+9n
+5B
+hh
+9n
+5B
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+114
+F#8
+9n
+72
+hh
+9n
+72
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+92
+G#6
+9n
+5C
+hh
+9n
+5C
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+115
+G8
+9n
+73
+hh
+9n
+73
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+93
+A6
+9n
+5D
+hh
+9n
+5D
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+116
+G#8
+9n
+74
+hh
+9n
+74
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+94
+A#6
+9n
+5E
+hh
+9n
+5E
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+117
+A8
+9n
+75
+hh
+9n
+75
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+95
+B6
+9n
+5F
+hh
+9n
+5F
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+118
+A#8
+9n
+76
+hh
+9n
+76
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+108
+C8
+9n
+6C
+hh
+9n
+6C
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+119
+B8
+9n
+77
+hh
+9n
+77
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+109
+C#8
+9n
+6D
+hh
+9n
+6D
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+120
+C9
+9n
+78
+hh
+9n
+78
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+110
+D8
+9n
+6E
+hh
+9n
+6E
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+121
+C#9
+9n
+79
+hh
+9n
+79
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+111
+D#8
+9n
+6F
+hh
+9n
+6F
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+122
+D9
+9n
+7A
+hh
+9n
+7A
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+124
+E9
+9n
+7C
+hh
+9n
+7C
+hh
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+123
+D#9
+9n
+7B
+hh
+9n
+7B
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+125
+F9
+9n
+7D
+hh
+9n
+7D
+hh
+OFF=0x00, ON=0x7F
+© 2023 AlphaTheta Corporation All rights reserved.  
+Group
+Fig.
+User Interface
+MIDI assign reference
+MIDI-IN
+(to computer)
+MIDI-OUT
+(from computer)
+Details (Data 2)
+UI name
+Trigger
++SHIFT
+Condition
+(mode)
+MIDI
+Channel
+(Dec)
+NOTE
+/ CC
+MIDI Data (Data 1)
+Status
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+Status
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+PARAMETER 1 ▶
+press
+HOT CUE MODE
+ROLL MODE
+SAVED LOOP MODE
+SAMPLER MODE
+PITCH PLAY MODE
+SLICER LOOP MODE
+SAVED FLIP MODE
+SCRATCH BANK MODE
+PARAMETER 1 ◀
+press
+HOT CUE MODE
+ROLL MODE
+SAVED LOOP MODE
+SAMPLER MODE
+PITCH PLAY MODE
+SLICER LOOP MODE
+SAVED FLIP MODE
+SCRATCH BANK MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+PERFORMANCE PAD 8
+press
+HOT CUE MODE
+ROLL MODE
+SAVED LOOP MODE
+SAMPLER MODE
+PITCH PLAY MODE
+PIANO PLAY MODE
+STEMS MODE
+SCRATCH BANK MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+USER MODE
+OFF=0x00, ON=0x7F
+MIDI-OUT: lit in color specified in color number(1-127).
+OFF=0x00(dimmer)
+1

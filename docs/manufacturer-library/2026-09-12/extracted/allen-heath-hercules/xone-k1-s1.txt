@@ -1,0 +1,252 @@
+=== PDF page 8 ===
+                                  MIDI CONTROLS
+   The default MIDI Channel for the K1 is Channel 15. To change the MIDI Channel see Page 12.
+
+
+
+
+                                                         Rotary Encoders
+                                                     1   Turning an encoder produces MIDI CC
+                                                         (continuous controller) messages with a
+                                             1           unique controller number in two’s
+                                                         compliment binary encoding (this is
+                                                         relevant to certain DAW applications).
+                                             2           These encoders feature a built in
+                                                         momentary push switch. Pressing down
+                                             3           on the encoder knob activates the switch
+                                                         and sends a “Note On” MIDI message,
+                                                         releasing the switch sends a corresponding
+                                                         “Note Off” message.
+
+
+                                                         Rotary Potentiometers
+                                                     2   These controls are standard
+                                                         potentiometers with end stops. Turning a
+                                                         pot from left to right will send MIDI
+                                                         messages with a unique CC number and a
+                                                         control value from 0 to 127.
+
+
+
+                                                         Pot Switches
+                                                     3
+                                             4           Each rotary potentiometer has a switch
+                                                         with three-colour illumination below it.
+
+
+                                                         Linear Faders
+                                                     4   Moving a linear fader will send a MIDI
+                                             5           message with a unique CC number and a
+                                                         control value from 0 (bottom) to 127
+                                                         (top).
+
+
+                                                         Switch Matrix
+                                                     5   The switch matrix consists of 16 back-lit
+                                                         three-colour switches.
+
+
+
+
+Allen & Heath                                    8                            XONE:K1 User Guide
+
+=== PDF page 12 ===
+                             MIDI CHANNEL NUMBER
+                                     The default MIDI Channel for the K1 is Channel 15.
+
+                                     To change the MIDI Channel:
+                                     1.   Press and hold down the encoder [1], then power up by
+                              1           plugging the USB cable to your PC/Mac.
+                                     2.   The switch matrix LED’s will flash RED three times to indi-
+                                          cate that the K1 has entered setup mode.
+
+                                      The display will default as above, with Switch ‘A’ (the MIDI
+                                      CHANNEL setup option) being illuminated.
+                                      Press the setup encoder [1] to display the current MIDI channel
+                                      number.
+
+                                     1.    The channel number is represented by the number of illumi-
+                                           nated switches; in this case MIDI Channel 14.
+                                     2.    To change the MIDI Channel number, rotate the Setup en-
+                                           coder.
+                                     3.    Once the desired MIDI Channel Number has been chosen,
+                               1           press the Setup Encoder [1] to store it and return to the
+                                           setup mode.
+                                     4.    Press the amber switch to exit setup mode and the switch
+                                           matrix LED’s will flash RED three times.
+
+
+                                      MIDI MAPPING
+
+Mapping controls differ from one application to another.
+
+
+Traktor
+
+                                      1.   Go to: Preferences > Controller Manager.
+                                      2.   Select “XONE:K1” as the Device.
+                                      3.   Select the function to learn.
+                                      4.   Press “Learn”.
+
+
+
+
+Ableton Live
+                                     1.    Select the “MIDI Map Switch” to ON.
+                                     2.    Click on a given control in Ableton.
+                                     3.    Move the associated XONE:K1 control that you wish to
+                                           assign.
+
+
+
+
+Allen & Heath                                      12                            XONE:K1 User Guide
+
+=== PDF page 13 ===
+                      MIDI IMPLEMENTATION
+
+
+
+
+    Send/Return     ▼E3      ▼F3      ▼F#3          ▼G3
+    Send           ◄►CC0    ◄►CC1    ◄►CC2         ◄►CC3
+    Return          ▼E6      ▼F6      ▼F#6          ▼G6
+    Return          ▼E9      ▼F9      ▼F#9          ▼G9
+
+
+
+
+    Send           ◄►CC4    ◄►CC5    ◄►CC6         ◄►CC7
+
+
+
+
+    Send/Return    ■ C3     ■ C#3         ■ D3      ■ D#3(Eb3)
+    Return         ■ C6     ■ C#6         ■ D6      ■ D#6(Eb6)
+    Return         ■ C9     ■ C#9         ■ D9      ■ D#9(Eb9)
+
+
+
+
+    Send           ◄►CC8    ◄►CC9    ◄►CC10        ◄►CC11
+
+
+
+
+     Send/Return   ■ G#2    ■ A2      ■ A#2(Bb2)    ■ B2
+     Return        ■ G#5    ■ A5      ■ A#5(Bb5)    ■ B5
+     Return        ■ G#8    ■ A8      ■ A#8(Bb8)    ■ B8
+
+
+
+
+     Send          ◄►CC12   ◄►CC13   ◄►CC14        ◄►CC15
+
+
+
+
+     Send/Return    ■ E2     ■ F2     ■ F#2         ■ G2
+     Return         ■ E5     ■ F5     ■ F#5         ■ G5
+     Return         ■ E8     ■ F8     ■ F#8         ■ G8
+
+
+
+
+Allen & Heath                        13                          XONE:K1 User Guide
+
+=== PDF page 14 ===
+                       MIDI IMPLEMENTATION
+
+
+
+
+      Send          ◄►CC16    ◄►CC17    ◄►CC18           ◄►CC19
+
+
+
+
+      Send/Return    ■ C2      ■ C#2        ■ D2          ■ D#2(Eb2)
+      Return         ■ C5      ■ C#5        ■ D5          ■ D#5(Eb5)
+      Return         ■ C8      ■ C#8        ■ D8          ■ D#8(Eb8)
+
+
+
+
+      Send/Return     ■ G#1    ■ A1         ■ A#1(Bb1)    ■ B1
+      Return          ■ G#4    ■ A4         ■ A#4(Bb4)    ■ B4
+      Return          ■ G#7    ■ A7         ■ A#7(Bb7)    ■ B7
+
+
+
+
+      Send/Return     ■ E1     ■ F1         ■ F#1         ■ G1
+      Return          ■ E4     ■ F4         ■ F#4         ■ G4
+      Return          ■ E7     ■ F7         ■ F#7         ■ G7
+
+
+
+
+      Send/Return     ■ C1     ■ C#1        ■ D1         ■ D#1(Eb1)
+      Return          ■ C4     ■ C#4        ■ D4         ■ D#4(Eb4)
+      Return          ■ C7     ■ C#7        ■ D7         ■ D#7(Eb7)
+
+
+
+
+                                  Send Only
+      Send/Return     ■ C0    ▼ C#0          ▼ D0         ■ D#0(Eb0)
+                              ◄►CC20     ◄►CC21
+      Return          ■ E0                               ■ G0
+      Return          ■ G#0                              ■ B0
+Allen & Heath                          14                              XONE:K1 User Guide
+
+=== PDF page 15 ===
+                            MIDI NOTE IMPLEMENTATION TABLE
+
+                                                                       Note Numbers
+Octave
+              C        C# /Db         D        D# / Eb        E             F        F# / Gb          G        G# / Ab        A        A# / Bb        B
+  -1      0       0    1     1   2        2    3    3    4         4   5        5     6     6    7        7    8    8    9        9    10   0A   11       0B
+  0      12       0C   13   0D   14       0E   15   0F   16       10   17       11   18     12   19       13   20   14   21       15   22   16   23       17
+  1      24       18   25   19   26       1A   27   1B   28       1C   29       1D   30     1E   31       1F   32   20   33       21   34   22   35       23
+  2      36       24   37   25   38       26   39   27   40       28   41       29   42     2A   43       2B   44   2C   45       2D   46   2E   47       2F
+  3      48       30   49   31   50       32   51   33   52       34   53       35   54     36   55       37   56   38   57       39   58   3A   59       3B
+  4      60       3C   61   3D   62       3E   63   3F   64       40   65       41   66     42   67       43   68   44   69       45   70   46   71       47
+  5      72       48   73   49   74       4A   75   4B   76       4C   77       4D   78     4E   79       4F   80   50   81       51   82   52   83       53
+  6      84       54   85   55   86       56   87   57   88       58   89       59   90     5A   91       5B   92   5C   93       5D   94   5E   95       5F
+  7      96       60   97   61   98       62   99   63 100 64 101 65 102 66 103 67 104 68 105 69 106 6A 107 6B
+  8      108 6C 109 6D 110 6E 111                   6F   112 70 113 71 114 72 115 73 116 74 117 75 118 76 119                                             77
+  9      120 78 121 79 122 7A 123 7B 124 7C 125 7D 126 7E 127                                             7F
+         DEC HEX DEC HEX DEC HEX DEC HEX DEC HEX DEC HEX DEC HEX DEC HEX DEC HEX DEC HEX DEC HEX DEC HEX
+
+
+
+
+                                                              CC        Hex          Note
+                                                                  0     0x00         C-1
+                                                                  1     0x01         C#-1
+                                                                  2     0x02         D-1
+                                                                  3     0x03         D#-1
+                                                                  4     0x04         E-1
+                                                                  5     0x05         F-1
+                                                                  6     0x06         F#-1
+                                                                  7     0x07         G-1
+                                                                  8     0x08         G#-1
+                                                                  9     0x09         A-1
+                                                                  10    0x0A         A#-1
+                                                                  11    0x0B         B-1
+                                                                  12   0x0C          C0
+                                                                  13   0x0C          C#0
+                                                                  14   0x0D          D0
+                                                                  15    0x0E         D#0
+                                                                  16    0x10          E0
+                                                                  17    0x11          F0
+                                                                  18    0x12         F#0
+                                                                  19    0x13         G0
+                                                                  20    0x14         G#0
+                                                                  21    0x15          A0
+
+
+
+
+Allen & Heath                                                               15                                           XONE:K1 User Guide

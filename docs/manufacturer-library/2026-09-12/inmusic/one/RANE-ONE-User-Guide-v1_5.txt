@@ -1,0 +1,2717 @@
+User Guide                     English (3–11)
+
+
+
+Guía del usuario             Español (12–21)
+
+
+
+Guide d’utilisation         Français (22–31)
+
+
+
+Guida per l’uso              Italiano (32–41)
+
+
+
+Benutzerhandbuch             Deutsch (42–51)
+
+
+
+Appendix                     English (53–54)
+
+
+
+
+        Powered by Serato DJ Pro
+2
+User Guide (English)
+Introduction
+Thank you for purchasing the ONE. At Rane, performance and reliability mean as much to us
+as they do to you. That’s why we design our equipment with only one thing in mind—to make
+your performance the best it can be.
+
+
+Box Contents
+
+ONE
+Power Cable
+USB Cable
+Software Download Card
+User Guide
+Safety & Warranty Manual
+
+
+
+Support
+
+For the latest information about this product (documentation, technical specifications, system
+requirements, compatibility information, etc.) and product registration, visit rane.com.
+For additional product support, visit rane.com/support.
+
+
+
+
+                                                                                             3
+Setup
+
+1. Assemble the Platter System
+
+1. Remove the ONE base from the packaging. Remove the platter assemblies
+   from the package (underneath ONE). Place ONE on a flat, stable surface
+   for assembly and operation.
+2. Place the platters onto each deck of the ONE base by aligning the pins in
+   the bottom of the platter with the holes in ONE’s motor. Press it down
+   firmly. Check to make sure that it rotates uniformly and does not wobble
+   excessively.
+3. Place the slipmat onto the platter. Then place the Control Disc over the
+   spindle (with the attached Quick Release Adapter on top). To lock the
+   Control Disc to the spindle, pinch the top of the spindle while slowly
+   rotating the disc until you hear it click. It locks when the groove in the
+   spindle lines up directly opposite to the button on the side of the Quick
+   Release Adapter.
+
+
+
+
+2. Connect and Start DJing!
+
+1. Make sure you have downloaded and installed the latest version of your DJ software.
+2. Place ONE on a flat, stable surface.
+3. While the power is switched off, plug the included power cable into ONE first, then plug the
+   cable into a power outlet.
+4. Power on ONE using the power switch.
+5. Use a standard USB cable (included) to connect the USB Port to an available USB port on your
+   computer or a powered hub connected to the computer.
+6. Open Serato DJ Pro and go!
+    For more information on how to use Serato DJ Pro with the ONE, please visit
+    support.serato.com.
+
+Example
+                                       Turntable
+
+                                                                                           Computer
+
+
+
+       Microphone
+
+        Powered
+      Loudspeakers                                                                                    Power
+
+
+
+
+                                                                          Booth Monitors
+
+Items not listed under Introduction > Box Contents are sold separately.
+
+
+
+4
+Features
+
+Top Panel
+
+
+           18                                      17          2       1         1         2
+                            20
+           19                                           23     3           7               3
+                            21                                             8
+                                                        24     4                           4
+                                                                      9              10
+                                                        25     5                11         5
+                            22                                 6            12             6
+
+                                                                      13             13
+
+                                 28                      26     15          14            15
+      29                                      27
+      30        31                            39
+                     34 35 36 37 38
+                                              40
+           32               33
+                                                         28                16
+                                            41 42
+
+
+1.   Deck Source: Set this knob to the desired audio source from this channel: USB A or B (a track
+     playing on that layer in the software), or Line (a device connected to the Deck Phono/Line In on
+     the rear panel).
+     Note: If you select Line, set the Phono/Line selector switches on the rear panel properly.
+     Note: A deck’s controls will send MIDI information only when its deck source selector is set to
+     USB A or B.
+     Note: If you are using DVS with ONE, connect your turntables to the phono input, but set the
+     Deck Source selector to USB A or B, whichever your computer is connected to.
+2.   Deck Level: Turn this knob to set the pre-fader, pre-EQ audio level of the corresponding
+     channel. The meter next to this knob indicates the signal’s volume level (reduce it if it begins
+     "clipping," reaching the red part of the meter).
+3.   Deck EQ High: Turn this knob to adjust the high (treble) frequencies. Note: All EQ controls
+                                                                           are full-kill.
+4.   Deck EQ Mid: Turn this knob to adjust the mid-range frequencies.
+5.   Deck EQ Low: Turn this knob to adjust the low (bass) frequencies.
+6.   Deck LP/HP: Turn this knob to adjust the filter applied to the deck. Turn the knob
+     counterclockwise to apply a low-pass filter. Turn the knob clockwise to apply a high-pass filter.
+     Set it to the center (“12:00”) position to deactivate the filters.
+7.   Main: Turn this knob to adjust the output volume of the program mix. The meters next to this
+     knob indicate the audio signal level of the program mix.
+8.   Booth: Turn this knob to adjust the output volume of the Booth Outs.
+9.   Depth: Turn this knob to adjust the “wet-dry” mix of the internal Flex FX on that deck.
+
+                                                                                                    5
+10.   Beat: Turn this knob to set the Time Division for the selected effects.
+11.   Tap: Press this button multiple times at the desired tempo to manually set the BPM rate for
+      beat-tempo effects, per channel.
+12.   FX 1–6: Press one of these buttons to activate or deactivate the corresponding software effect
+      shown in the Serato software FX 1 and FX 2. Pressing the buttons will activate one effect at a
+      time, or pressing and holding the buttons will activate multiple effects at once.
+13.   Effects Toggle: Move this toggle switch away from you to activate the software effects—the toggle
+      will latch to that position. Pull the toggle back to the center position to deactivate the effects.
+      Pull and hold this toggle toward you to activate the software effects momentarily, and release
+      the toggle to deactivate the effects—the toggle will return to the center position.
+14.   Deck Cue: Press this button to send this deck’s pre-fader signal to the cue channel for
+      monitoring. When engaged, the button will be lit. To cue multiple channels simultaneously,
+      press the Deck Cue buttons for both decks.
+15.   Deck Fader: Move this fader to adjust the volume level of the corresponding deck.
+16.   Crossfader: Move this fader to mix between the decks.
+17.   Search: The length of this strip represents the length of the entire track. Place your finger on a
+      point along this sensor to jump to that point in the track. The LEDs above the strip indicate the
+      approximate location of the playhead in the track.
+18.   Scroll/Load / Instant Doubles: Turn this knob to browse through lists and press it to select an
+      item or load the currently selected track to the deck.
+      Press this knob twice quickly to load the same track to both decks (“instant doubles”).
+19.   Back / Load Prep: Press this button to view the previous screen in the software.
+      Hold Shift and press this button to load the currently selected track to the Prepare Crate.
+20.   High Torque Direct Drive Platter: A powerful motor turns this aluminum platter with speed
+      position dots. Use the Motor Torque switch on the rear panel to adjust the torque of the platters
+      Note: The platter itself should not be held in position for sustained periods while powered to
+      rotate.
+21.   Control Disc with Slipmat: This 7.2" (18.2 cm) disc controls the audio playhead in your DJ
+      software. Place the included slipmat under the Control Disc (or a different slipmat can be
+      used, if preferred).
+      Note: The Control Disc can be user replaced by attaching the Quick Release Adapter to your
+      own modified disc. The replacement disc must have three 6 mm holes, and the included disc
+      should be used as a reference.
+22.   Quick Release Adapter: This secures the Control Disc to the platter. It comes attached to
+      the top of the Control Disc. To remove the Control Disc or slipmat from the platter, hold in the
+      button on the side of the Quick Release Adapter while lifting the disc off the spindle. After
+      placing the disc back on the spindle, pinch the top of the spindle while slowly rotating the disc
+      until you hear it click. It locks when the groove in the spindle lines up directly opposite to the
+      button on the side of the Quick Release Adapter.
+23.   Stop Time: Controls the rate at which the platter slows to a complete stop (“brake time”).
+24.   Slip / Motor Off: Press this button to enable or disable Slip Mode. In Slip Mode, you can jump
+      to Hot Cue Points, trigger Loop Rolls, or use the platters, while the track’s timeline continues. In
+      other words, when you stop the action, the track will resume normal playback from where it
+      would have been if you had never done anything (i.e., as if the track had been playing forward
+      the whole time).
+      Press and hold Shift and press this button to activate or deactivate the corresponding platter’s
+      motor. This will not affect the track’s playback.
+
+
+
+
+6
+25.   Censor / Reverse: Press and hold this button to activate Censor, which temporarily reverses
+      the playback of the track. Release the button to resume normal playback from where it would
+      have been if you had never engaged the Censor function (i.e., as if the track had been playing
+      forward the whole time).
+      Press Shift and press this button to activate Reverse, which will reverse the playback of the track.
+      Press the button again to resume normal playback from wherever the audio playhead stops.
+26.   Pitch Fader: Move this fader to adjust the speed (pitch) of the track. You can adjust its total
+      range with the Pitch Range buttons.
+27.   Pitch Range / Keylock: Press one of these buttons to adjust the range of the Pitch Fader to
+      ±8%, ±16%, and ±50%.
+      Press and hold Shift and then press this button to activate or deactivate Keylock: the key of the
+      song will lock to whatever position the pitch fader is at when Keylock is activated. This feature
+      allows you to change the speed of the song without changing the key.
+28.   Pitch Bend -/+: Press and hold one of these buttons to momentarily reduce or increase
+      (respectively) the speed of the track.
+29.   Shift: Press and hold this button to access secondary functions of other controls on ONE.
+30.   Cue / Previous: When the Deck is paused, you can set a Temporary Cue Point by moving the
+      platter to place the playhead at the desired location and then pressing the Cue Button.
+      During playback, you can press the Cue Button to return the track to this Temporary Cue
+      Point. (If you did not set a Temporary Cue Point, then it will return to the beginning of the track.)
+      If the Deck is paused, you can press and hold the Cue Button to play the track from the
+      Temporary Cue Point. Releasing the Cue Button will return the track to the Temporary Cue
+      Point and pause it. To continue playback without returning to the Temporary Cue Point, press
+      and hold the Cue Button, then press and hold the Play Button, and then release both buttons.
+      Press and hold Shift and then press this button to "stutter-play" the track by returning to the
+      beginning of the track and restarting playback.
+31.   Sync / Sync Off: Press this button to automatically match the corresponding Deck’s tempo
+      with the opposite Deck’s tempo and phase.
+      Press and hold Shift and press this button to deactivate Sync.
+32.   Start/Stop: Press this button to start and stop the platter. The LED around this button will be
+      dim when power is on and no track is playing, bright when a track is playing, and flashing red
+      when the track is near its end.
+33.   Performance Pads: These pads have different functions on each deck depending on the
+      current pad mode.
+      Note: See Operation > Pad Modes to learn how to use the pads in each mode, described below.
+34.   Hot Cue / Pitch Play: Press this button to enter Hot Cue mode. Press the button a second
+      time to enter Pitch Play mode.
+      Note: The Serato Pitch N Time plugin (not included) is required to use Pitch Play mode.
+35.   Saved Loop: Press this button to enter Saved Loop mode.
+36.   Roll / Auto Loop: Press this button to enter Roll mode. Press the button a second time to
+      enter Auto Loop mode.
+37.   Sampler / Scratch Bank: Press this button to enter Sampler mode. Press the button a second
+      time to enter Scratch Bank mode. In this mode, you can assign songs to each pad in the
+      software, and then tap the pad to quickly load the song from the specified starting point to the
+      deck. This is useful for preparing and performing with song samples for scratching.
+38.   Slicer / Slicer Loop: Press this button to enter Slicer mode. Press the button a second time to
+      enter Slicer Loop mode.
+39.   Parameter /: Use these buttons for various functions in each pad mode. Press and hold
+      Shift and use these buttons to access secondary parameters.
+
+
+
+
+                                                                                                         7
+40.   Loop On/Off / Reloop: Press this button to create an auto-loop with the length that is set in
+      the software.
+      Press and hold Shift and then press this button to skip to the last-played loop and activate it
+      immediately.
+      Note: Roll sizes will affect loop sizes in the software and loop based on the last roll size.
+41.   Loop In / x1/2: Press this button to create a Loop In point at the current location.
+      Press and hold Shift and press this button to halve the length of the current loop.
+42.   Loop Out / x2: Press this button to create a Loop Out point at the current location.
+      Press and hold Shift and press this button to double the length of the current loop.
+
+
+Front Panel
+
+          2              5                    8             9             11        13
+
+      1        3     4       6            7       7                            12        14
+                                                                10
+
+1.    Mic 1 – Off/On: When set to Off, the Mic 1 Input is disabled. When set to On, the Mic 1 Input on
+      the rear panel is active, and its audio signal is routed directly to the program mix and cue mix.
+2.    Mic 1 Level: Turn this knob to adjust the gain of the Mic 1 Input.
+3.    Mic 1 Tone: Turn this knob to adjust the balance of low (bass) and high (treble) frequencies of
+      the audio signal coming from the Mic 1 Input.
+4.    Mic 2 – Aux/Off/Mic 2: When set to Aux, the Aux In on the rear panel is active. When set to
+      Off, the Aux Input and Mic 2 Input are both disabled. When set to Mic 2, the Mic 2 Input on
+      the rear panel is active, and its audio signal is routed directly to the program mix and cue mix.
+      Both audio signals are routed directly to the program mix and cue mix when active.
+5.    Mic 2 / Aux Level: Turn this knob to adjust the gain of the Mic 2 Input or AUX Input.
+6.    Mic 2 / Aux Tone: Turn this knob to adjust the balance of low (bass) and high (treble)
+      frequencies of the audio signal coming from the Mic 2 Input or AUX Input.
+7.    Deck Reverse: Set this switch to On to reverse the direction of the deck faders. Set it to Off to
+      use the conventional fader direction.
+8.    Deck Contour: Adjusts the slope of the deck fader curve. Turn the knob to the left for a
+      smooth fade (mixing) or to the right for a sharp cut (scratching). The center position is a typical
+      setting for club performances.
+9.    Crossfader Contour: Adjusts the slope of the crossfader curve. Turn the knob to the left for a
+      smooth fade (mixing) or to the right for a sharp cut (scratching). The center position is a typical
+      setting for club performances.
+10.   Crossfader Reverse: Set this switch to On to reverse the direction of the crossfader. Set it to
+      Off to use the conventional fader direction.
+11.   Cue Mix: Turn to mix between the cue channel and program mix in the headphone outputs.
+      When all the way to the left, only the cue channel will be heard. When all the way to the right,
+      only the program mix will be heard.
+12.   Cue Split: When this switch is in the On position, the headphone audio will be “split” such that
+      the cue channel are summed to mono and sent to the left headphone channel while the
+      program mix is summed to mono and sent to the right channel. When the switch is in the Off
+      position, the cue channel and program mix will be “blended” together. In both cases, use the
+      Cue Mix knob to control the blend of the two signals.
+13.   Cue Level: Turn this knob to adjust the volume level of the cue channel.
+14.   Headphone Outputs (1/4”, 1/8” / 6.35 mm, 3.5 mm, TRS): Connect your 1/4” or 1/8” (6.35 mm
+      or 3.5 mm) headphones to this output for cueing and mix monitoring.
+
+
+8
+Rear Panel
+
+       1    2       4       6   7       8
+                        5                                                                  12     13
+                                                 9    10
+                                                                               11
+                3       3
+
+1.    Mic Inputs 1–2 (XLR / 1/4”/6.35 mm, TRS): Connect microphones or line-level devices to these
+      mono inputs. Their mono audio signals are split and routed directly to the stereo program mix
+      and cue channel. If you prefer a stereo line input, the Aux In may be used.
+
+2.    Aux In (RCA): Connect these inputs to an external line-level audio source. Remember to set the
+      Mic 2/AUX switch to Aux to play its audio signal.
+3.    Line/Phono Selectors: Set this switch to the appropriate position, depending on the device
+      connected to the Phono/Line Ins of the corresponding deck. If you are using phono-level
+      turntables, set this switch to Phono to provide the additional amplification needed for phono-
+      level signals. If you are using a line-level device, such as a line-level turntable, CD player or
+      sampler, set this switch to Line.
+4.    Deck Phono/Line In (RCA): Connect these inputs to an external audio source or to a turntable,
+      CD player, or other line-level device. Remember to set the corresponding Phono/Line selector
+      to the appropriate position and to set the deck source knob for that deck to Phono/Line to
+      play its audio signal on that deck.
+
+5.    Phono Ground: If you are using phono-level turntables with a grounding wire, connect the
+      grounding wire to this terminal. If you experience a low “hum” or “buzz”, this could mean that
+      your turntables are not grounded.
+      Note: Some turntables have a grounding wire built into the RCA connection and, therefore,
+      nothing needs to be connected to the grounding terminal.
+
+6.    Master Out (RCA): Connect these outputs to another mixer, recording device, etc. The
+      program mix will be sent to these outputs.
+
+7.    Main Out (XLR): Connect these outputs to loudspeakers or an amplifier system. Use the Main
+      knob on the top panel to control the volume level.
+8.    Booth Out (XLR): Connect these outputs to booth monitors or a booth amplifier system. Use
+      the Booth knob on the top panel to control the volume level.
+9.    USB Ports (USB Type-B): Use USB cables to connect these USB ports to available USB ports
+      on your computer. These connections send and receive audio and MIDI control information to
+      and from the computer.
+      Note: Make sure you have downloaded and installed the Rane Control Panel from rane.com.
+10.   Motor Torque: Flip this switch to adjust the torque of the platters. At the high setting, the
+      platters will have the heavier, stronger feel of “modern” turntables. At the lower setting, they are
+      lighter and more graceful—the feel of a “classic” turntable.
+
+11.   Cooling Fan: Keep the area in front of this vent clear from obstructions. The fan behind the
+      vent cools the ONE, preventing overheating.
+
+12.   Power Input: While ONE is powered off, connect the included power cable to this input and
+      then to a power outlet.
+
+13.   Power Button: Use this button to power ONE on or off. Power on ONE only after you have
+      connected all of your input devices and before you power on your amplifiers and loudspeakers.
+      Power off your amplifiers and loudspeakers before powering off ONE.
+
+
+
+
+                                                                                                        9
+Operation
+
+Pad Modes
+
+This chapter describes the different pad modes. Each
+deck has eight pads, which are always in one of
+these modes, and each deck’s pads can be in a
+different mode. Press one of the Pad Mode buttons
+to enter the corresponding pad mode on that deck.
+                                                              1          2            3           4
+
+
+Hot Cue
+                                                              5          6            7           8
+In Hot Cue Mode, each pad assigns a hot cue point
+or returns the track to that hot cue point.
+To enter Hot Cue Mode, press Hot Cue.
+To assign a hot cue point, press an unlit Pad at the desired point in your track. The pad will light
+up when it is assigned (with the corresponding color, if available).
+To jump to a hot cue point, press a lit Pad.
+To delete an assigned hot cue point, press Shift and the corresponding pad.
+
+
+Pitch Play                                                                   Up
+In Pitch Play Mode, each pad plays the track from
+a hot cue point at a different transposition              +4           +5        +6        +7
+(adjustable by semitones). The Serato Pitch ‘n         semitones    semitones semitones semitones
+Time DJ Expansion Pack (sold separately) must be
+installed to use this mode. See Hot Cue to learn
+how to assign hot cue points.                               0
+                                                                      +1           +2        +3
+                                                        (original
+                                                                    semitone    semitones semitones
+To enter Pitch Play Mode, press Hot Cue a                pitch)
+second time.
+To select which hot cue point to use, press                              Middle
+Shift and a dimly lit Pad.
+To select the range of transpositions the pads              0
+                                                                      +1           +2        +3
+will use, use the Parameter / buttons (see the        (original
+                                                                    semitone    semitones semitones
+                                                         pitch)
+diagrams here).
+To adjust the key of the current track down or
+up, press Shift and the Parameter / buttons,            -4           -3        -2             -1
+respectively.                                          semitones    semitones semitones      semitone
+
+To play the track from the hot cue point, press a
+lit Pad. Each pad corresponds to a specific
+transposition (by semitones), depending on the                            Down
+current range of transposition (see the diagrams
+here). The pad with no transposition (the original                                                0
+                                                          -3           -2            -1
+pitch) will be lit white.                                                                     (original
+                                                       semitones    semitones     semitone
+                                                                                               pitch)
+
+
+                                                          -7           -6        -5             -4
+                                                       semitones    semitones semitones      semitones
+
+
+
+
+10
+Saved Loop
+In Saved Loop Mode, each pad triggers a loop previously saved in your software.
+To enter Saved Loop Mode, press Saved Loop.
+To play a loop, press a lit Pad. Each deck’s eight pads will correspond to Saved Loops 1–8 in your
+software, and the color of each pad will correspond to the color assigned to each loop in your
+software.
+
+Roll
+In Roll Mode, each pad triggers a momentary loop roll. Releasing the pad stops the loop roll and
+resumes normal playback where the playhead would be if you had not triggered the loop roll (i.e., as
+if the track had been playing forward the whole time).
+Note: Disable Show Beat Jump Controls in the Serato Setup menu to access 8 loop rolls at once.
+You can also view and edit the set loop sizes in the software.
+To enter Roll Mode, press Roll.
+To trigger a loop roll, press and hold a Pad.
+To change which eight lengths for loop rolls are shown (in the software), press either of the
+Parameter / buttons. The pad layout will shift to match it.
+To shift the loop roll backward or forward, press Shift and the Parameter / buttons, respectively.
+
+Auto Loop                                                                Auto Loop Sizes
+In Auto Loop Mode, each pad triggers or releases an
+auto-loop of a different length.
+                                                             1/4 Beat    1/2 Beat     1 Beat     2 Beats
+To enter Auto Loop Mode, press Roll a second time.
+
+Sampler
+In Sampler Mode, each pad triggers a sample, which you       4 Beats     8 Beats    16 Beats    32 Beats
+can assign in the software.
+To enter Sample Mode, press Sample.
+
+Scratch Bank
+In Scratch Bank Mode, each pad loads a song to the selected deck. You can assign the song and
+set the starting point in the software. This is useful for preparing and performing with song samples
+for scratching.
+To enter Scratch Bank Mode, press Sample a second time.
+
+Slicer
+Important: Your track must have a set beatgrid for this mode to work.
+In Slicer Mode, the eight pads represent eight sequential beats—“slices”—in the beatgrid. The
+currently playing slice is represented by the currently lit pad; the light will “move through the pads”
+as it progresses through each eight-slice phrase. You can press a pad to play that slice. When you
+release the pad, the track will resume normal playback from where it would have been if you had
+never pressed it (i.e., as if the track had been playing forward the whole time).
+To enter Slicer Mode, press Slicer. The deck will exit Slicer Mode if you load another track to the
+deck or enable Grid Edit Mode.
+To play a slice, press the corresponding Pad.
+To decrease or increase the quantize size, press the Parameter / buttons.
+To decrease or increase the size of the slices, press Shift and the Parameter / buttons.
+
+Slicer Loop
+Press Slicer a second time to enter Slicer Loop mode. The pads behave identically to the pads in
+Slicer Mode, except the eight-Slice phrase will loop rather than moving forward continuously through
+the track.
+
+
+                                                                                                    11
+Guía del usuario (Español)
+Introducción
+Gracias por comprar el ONE. En Rane, el rendimiento y la confiabilidad significan tanto para
+nosotros como para usted. Por eso es que diseñamos nuestros equipos con una sola cosa en
+mente—hacer que pueda tocar su mejor interpretación.
+
+
+Contenido de la caja
+
+ONE
+Cable de alimentación
+Cable USB
+Tarjeta de descarga de software
+Guía del usuario
+Manual sobre la seguridad y garantía
+
+
+
+Soporte
+
+Para obtener la información más reciente acerca de este producto (documentación,
+especificaciones técnicas, requisitos de sistema, información de compatibilidad, etc.) y
+registrarlo, visite rane.com.
+Para obtener soporte adicional del producto, visite rane.com/support.
+
+
+
+
+12
+Instalación
+
+1. Ensamble del sistema del plato
+
+1. Retire la base del ONE del embalaje. Retire el conjunto del plato del
+   embalaje (debajo del ONE). Coloque el ONE sobre una superficie plana y
+   estable para su ensamble y operación.
+2. Coloque los platos en cada bandeja de la base del ONE alineando los
+   pernos de la parte inferior del plato con los orificios del motor del ONE.
+   Presiónelo firmemente. Asegúrese de que gire uniformemente y que no se
+   tambalee en exceso.
+3. Coloque la alfombrilla de fieltro sobre el plato. Luego coloque el disco de
+   control sobre el husillo (con el adaptador de liberación rápida en la parte
+   superior). Para bloquear el disco de control al husillo, inmovilice la
+   parte superior del husillo mientras gira el disco hasta escuchar un clic.
+   El mismo se bloquea cuando la ranura del husillo se alinea de forma
+   directamente opuesta al botón del lado del adaptador de liberación
+   rápida.
+
+
+
+
+2. ¡Conecte y sea el DJ!
+
+1. Asegúrese de haber descargado e instalado la última versión del software.
+2. Coloque el ONE sobre una superficie plana y estable.
+3. Con la alimentación eléctrica desconectada, enchufe el cable al ONE primero y a continuación a
+   la toma de corriente.
+4. Encienda el ONE utilizando el interruptor de encendido.
+5. Utilice un cable USB (incluido) para conectar este puerto USB a un puerto USB disponible en su
+   ordenador o en un concentrador USB alimentado conectado al ordenador.
+6. ¡Abra Serato DJ Pro y a tocar!
+    Para obtener más información sobre cómo utilizar el Serato DJ Pro con el ONE, visite
+    support.serato.com.
+
+Ejemplo
+                                Giradiscos
+
+                                                                        Computadora
+
+
+
+       Micrófono
+
+
+
+   Altavoces activos                                                                  Toma de
+                                                                                      corriente
+
+
+
+
+                                                          Monitores de cabina
+
+Los elementos que no se enumeran en Introducción > Contenido de la caja se venden por separado.
+
+
+                                                                                                  13
+Características
+
+Panel superior
+
+
+           18                                        17           2        1        1         2
+                             20
+           19                                             23      3            7              3
+                             21                                                8
+                                                          24      4                           4
+                                                                         9              10
+                                                          25      5                11         5
+                             22                                   6            12             6
+
+                                                                         13             13
+
+                                  28                       26       15         14            15
+      29                                        27
+      30        31                              39
+                     34 35 36 37 38
+                                                40
+           32                33
+                                                           28                 16
+                                              41 42
+
+
+1.   Fuente de la bandeja: Ajuste esta perilla a la fuente de audio deseada de este canal: USB A o
+     B (una pista reproduciéndose en esa capa en el software, o Line (un dispositivo conectado la
+     entrada fonográfica/línea de la bandeja Deck Phono/Line en el panel trasero).
+     Nota: Si elige Line, mueva los interruptores selectores Phono/Line del panel trasero a la
+     posición que corresponda.
+     Nota: Los controles de una bandeja enviarán la información de MIDI solamente cuando su
+     selector de fuente se ajuste a USB A o B.
+     Nota: Si está utilizando DVS con ONE, conecte sus giradiscos a la entrada fonográfica, pero
+     coloque el selector de fuente de la bandeja en USB A o B, según la cual esté conectado su
+     ordenador.
+2.   Nivel de bandeja: Gire esta perilla para ajustar el pre-fader y el nivel de audio del
+     preecualizador del canal correspondiente. El medidor junto a esta perilla indica el nivel de
+     volumen de la señal (redúzcalo si comienza a "recortarse" y llega a la parte roja del medidor).
+3.   Ecualizador de agudos de la bandeja: Gire esta perilla para ajustar las frecuencias altas
+     (agudos).
+4.   Ecualizador de medios de la bandeja: Gire esta perilla para ajustar las frecuencias de los
+     rangos intermedios.
+5.   Ecualizador de graves de la bandeja: Gire esta perilla para ajustar las frecuencias bajas
+     (graves).
+     Nota: Todos los controles del ecualizador son de atenuación completa ("full-kill").
+6.   LP/HP de la bandeja: Gire esta perilla para ajustar el filtro aplicado a la bandeja. Gire esta
+     perilla en sentido antihorario para aplicar un filtro pasabajos. Gire esta perilla en sentido horario
+     para aplicar un filtro pasaaltos. Déjela en la posición central ("12:00") para desactivar los filtros.
+
+
+14
+7.    Main: Gire esta perilla para ajustar el volumen de salida de la mezcla de programa. El medidor
+      junto a esta perilla indica el nivel de volumen de la mezcla de programa.
+8.    Booth: Gire esta perilla para ajustar el volumen de salida de las salidas Booth Out.
+9.    Profundidad: Gire esta perilla para ajustar la mezcla "con-sin efectos" del Flex FX en esa
+      bandeja.
+10.   Beat: Gire esta perilla para ajustar la división de tiempo de los efectos seleccionados.
+11.   Tap: Pulse este botón varias veces al ritmo del tempo deseado para definir manualmente los
+      BPM para los efectos de beat-tempo, por canal.
+12.   FX 1–6: Pulse uno de estos botones para activar o desactivar el efecto de software
+      correspondiente que se muestra en el FX 1 y FX 2 del software Serato. Al pulsar los botones se
+      activará un efecto por vez y al mantener pulsados los botones se activarán múltiples efectos a
+      la vez.
+13.   Conmutador de efectos: Coloque este interruptor conmutador en la posición más alejada de
+      usted para activar los efectos de software—el conmutador quedará trabado en esa posición.
+      Mueva el interruptor de regreso a la posición central para desactivar los efectos.
+      Mueva este conmutador hacia la posición más cercana a usted y manténgalo ahí para activar
+      los efectos de software momentáneamente, y suéltelo para desactivarlos—el conmutador
+      regresará a la posición central.
+14.   Cue de bandeja: Pulse este botón para enviar la señal de nivel pre-fader de esta bandeja al
+      canal de cue para monitorización. Cuando está pulsado, el botón se enciende. Para poner
+      múltiples canales en cue simultáneamente, pulse los botones Deck Cue de ambas bandejas.
+15.   Fader de bandeja: Mueva este fader para ajustar el nivel de volumen de la bandeja
+      correspondiente.
+16.   Crossfader: Mueva este crossfader para mezclar entre las bandejas.
+17.   Búsqueda: La longitud de esta tira representa la longitud de la totalidad de la pista. Coloque
+      su dedo en un punto de este sensor para saltar a ese punto en la pista. Los LED que se
+      encuentran arriba de la tira indica la ubicación aproximada del cabezal de reproducción en la
+      pista.
+18.   Scroll/Load / Instant Doubles: Gire esta perilla para recorrer las listas y púlsela para
+      seleccionar un elemento o cargar la pista actualmente seleccionada en la bandeja.
+      Pulse esta perilla dos veces rápidamente para cargar la misma pista en ambas bandejas
+      ("dobles instantáneos").
+19.   Back / Load Prep: Pulse este botón para visualizar la pantalla anterior en el software.
+      Mantenga pulsado Shift y pulse este botón para cargar la pista actualmente seleccionada en la
+      caja de preparación.
+20.   Plato de transmisión directa de alto par de rotación: Un potente motor gira este plato de
+      aluminio con puntos de posición de velocidad. Utilice el interruptor Motor Torque en el panel
+      trasero para ajustar el torque de los platos
+      Nota: El plato no debe ser mantenido en una posición por períodos prolongados mientras se
+      esté accionando su rotación.
+21.   Disco de control con alfombrilla de fieltro: Este disco de 18,2 cm (7,2 pulg.) de tamaño
+      completo controla el cabezal de reproducción de audio de su software de DJ. Coloque la
+      alfombrilla de fieltro debajo del disco de control (también se puede usar una alfombrilla
+      diferente, si se prefiere).
+      Nota: El usuario puede reemplazar el disco de control fijando el adaptador de liberación
+      rápida a su propio disco modificado. El disco de reemplazo debe tener tres orificios de 6 mm y
+      debe usarse el disco incluido como referencia.
+
+
+
+
+                                                                                                  15
+22.   Adaptador de liberación rápida: Sujeta el disco de control al plato. Viene sujetado a la parte
+      superior del disco de control. Para retirar el disco de control o la alfombrilla de fieltro del
+      plato, mantenga presionado el botón que se encuentra al costado del adaptador de
+      liberación rápida mientras levanta el disco del husillo. Después de bloquear el disco
+      nuevamente al husillo, inmovilice la parte superior del husillo mientras gira el disco lentamente
+      hasta escuchar un clic. El mismo se bloquea cuando la ranura del husillo se alinea de forma
+      directamente opuesta al botón del lado del adaptador de liberación rápida.
+23.   Stop Time: Controla la desaceleración con la que el plato se detiene ("tiempo de frenado").
+24.   Slip / Motor Off: Pulse este botón para activar o desactivar el modo de resbalamiento. En
+      modo de resbalamiento, puede saltar a puntos de cue rápido, disparar rotaciones de bucles o
+      usar los platos, mientras la línea de tiempo de la pista continúa. En otras palabras, cuando
+      detenga la acción, se reanuda la reproducción normal de la pista desde donde habría estado si
+      nunca hubiera hecho nada (es decir, como si la pista hubiera estado reproduciéndose en
+      avance todo el tiempo).
+      Mantenga pulsado Shift y pulse este botón para activar o desactivar el motor del plato
+      correspondiente. Esto no afectará la reproducción de la pista.
+25.   Censor / Reverse: Mantenga pulsado este botón para activar el censor, el cual invierte
+      momentáneamente la reproducción de la pista. Suelte el botón para reanudar la reproducción
+      normal desde donde lo haría si nunca se hubiera activado la función Censor (es decir, si la
+      pista se hubiera estado reproduciendo hacia adelante todo el tiempo).
+      Pulse Shift y pulse este botón para activar el censor, el cual invierte momentáneamente la
+      reproducción de la pista. Pulse el botón nuevamente para reanudar la reproducción normal
+      desde donde se haya detenido el cabezal de reproducción de audio.
+26.   Fader de tono: Mueva este fader para ajustar la velocidad (tono) de la pista. Puede ajustar el
+      rango completo con los botones Pitch Range (rango de tono).
+27.   Rango de tono / Keylock: Pulse uno de estos botones para ajustar el rango del fader de pitch
+      a ±8%, ±16% y ±50%.
+      Mantenga pulsado Shift y luego pulse este botón para activar o desactivar el bloqueo de
+      tonalidad: el tono del tema quedará fijo en la posición en la que esté el fader de tono cuando
+      se active el bloqueo de tonalidad. Esta función permite cambiar la velocidad del tema sin
+      cambiar la tonalidad.
+28.   Inflexión de tono –/+: Mantenga pulsado uno de estos botones para reducir o aumentar
+      (respectivamente) la velocidad de la pista momentáneamente.
+29.   Shift: Mantenga pulsado este botón para acceder a las funciones secundarias de otros
+      controles en ONE.
+30.   Cue / Anterior: Cuando la bandeja se ponen pausa, se puede definir un punto de cue
+      temporario moviendo el plato para ubicar el cabezal de reproducción en la posición deseada y
+      luego pulsando el botón Cue.
+      Durante la reproducción, puede pulsar el botón Cue para que la pista vuelva a este punto de
+      cue temporal. (Si no estableció un punto de cue temporal, volverá al principio de la pista.)
+      Si la bandeja está en pausa, puede mantener pulsado el botón Cue para reproducir la pista
+      desde el punto de cue temporal. Al soltar el botón Cue, la pista vuelve al punto de cue
+      temporal y se pone en pausa. Para continuar la reproducción sin volver al punto de cue
+      temporal, mantenga pulsado el botón Cue, después mantenga pulsado el botón Play
+      (reproducir) y luego suelte ambos botones.
+      Mantenga pulsado Shift y luego pulse este botón para que la pista "tartamudee" volviendo al
+      comienzo de la pista y reiniciando la reproducción.
+31.   Sync / Sync Off: Pulse este botón para hacer coincidir automáticamente el tempo de la
+      bandeja correspondiente con el tempo y la fase de la bandeja opuesta. Mantenga pulsado Shift
+      y pulse este botón para desactivar la sincronización.
+32.   Start/Stop: Pulse este botón para iniciar o detener el plato. El LED que rodea a este botón se
+      atenuará cuando la unidad esté encendida y no se esté reproduciendo ninguna pista, brillará
+      cuando se esté reproduciendo una pista y parpadeará de color rojo cuando la pista se acerque
+      a su fin.
+
+16
+33.   Pads de actuaciones en vivo: Estos pads tienen distintas funciones en cada bandeja en
+      función del modo de pad activo.
+      Nota: Consulte Funcionamiento > Modos de pad para aprender a utilizar los pads en cada
+      modo, como se describe a continuación.
+34.   Hot Cue / Pitch Play: Pulse este botón para entrar al modo Hot Cue. Pulse el botón una
+      segunda vez para entrar al modo de reproducción de tono.
+      Nota: El plugin Pitch N Time de Serato (se vende por separado) es necesario para poder usar
+      el modo de reproducción de tono.
+35.   Saved Loop: Pulse este botón para entrar al modo bucles guardados.
+36.   Roll / Auto Loop: Pulse este botón para entrar al modo redoble. Púlselo una segunda vez para
+      entrar al modo bucle automático.
+37.   Sampler: Pulse este botón para entrar al modo muestreador. Pulse el botón una segunda vez
+      para entrar al modo de banco de rayado. En este modo, podrá asignar canciones a cada pad
+      en el software y luego tocar el pad para cargar rápidamente en la bandeja la canción desde el
+      punto inicial especificado. Esto resulta de gran utilidad para preparar y actuar con muestras de
+      canciones para rayar.
+38.   Slicer / Slicer Loop: Pulse este botón para entrar al modo cortador. Pulse el botón una
+      segunda vez para entrar al modo bucle del cortador.
+39.   Parameter /: Utilice estos botones para las diversas funciones en cada modo de pad.
+      Mantenga pulsado Shift y utilice estos botones para acceder a los parámetros secundarios.
+40.   Loop On/Off / Reloop: Pulse este botón para crear un bucle automático con la longitud
+      definida en el software. Mantenga pulsado Shift y luego pulse el botón para saltar al último
+      bucle reproducido y activarlo inmediatamente.
+41.   Loop In / x1/2: Pulse este botón para crear un punto de inicio de bucle en la posición actual.
+      Mantenga pulsado Shift y pulse este botón para dividir a la mitad la duración de la pista actual.
+42.   Loop Out / x2: Pulse este botón para crear un punto de salida de bucle en la posición actual.
+      Mantenga pulsado Shift y pulse este botón para duplicar la duración de la pista actual.
+
+
+Panel frontal
+
+          2              5                   8             9             11        13
+
+      1        3     4       6           7       7                            12        14
+                                                               10
+
+1.    Mic 1 – Off/On: Cuando se ajusta a Off (apagado), la entrada Mic 1 se desactiva. Cuando se
+      ajusta a On (activado), la entrada Mic 1 del panel trasero se activa y su señal de audio se
+      direcciona directamente hacia la mezcla de programa y la mezcla de cue.
+2.    Mic 1 Level: Gire esta perilla para ajustar la ganancia de la entrada Mic 1.
+3.    Mic 1 Tone: Gire esta perilla para ajustar el equilibrio entre las frecuencias bajas (graves) y
+      altas (agudos) de la señal de audio proveniente de la entrada Mic 1.
+4.    Mic 2 – Aux/Off/Mic 2: Cuando se ajusta a Aux, la entrada Aux del panel trasera se activa.
+      Cuando se ajusta a Off, ambas entradas Aux y Mic 2 se desactivan. Cuando se ajusta a Mic
+      2, la entrada Mic 2 del panel trasero se activa y su señal de audio se direcciona directamente
+      hacia la mezcla de programa y la mezcla de cue. Al activarse, ambas señales de audio se
+      direccionan directamente hacia la mezcla de programa y la mezcla de cue.
+5.    Mic 2 / Aux Level: Gire esta perilla para ajustar la ganancia de la entrada Mic 2 o AUX.
+6.    Mic 2 / Aux Tone: Gire esta perilla para ajustar el equilibrio entre las frecuencias bajas (graves)
+      y altas (agudos) de la señal de audio proveniente de la entrada Mic 2 o AUX.
+7.    Deck Reverse: Ajuste este interruptor a On para invertir la dirección de los faders de bandeja.
+      Ajústelo a Off para utilizar la dirección convencional del fader.
+
+                                                                                                       17
+8.    Deck Contour: Permite ajustar la pendiente de la curva del fader de bandeja. Gire la perilla a la
+      izquierda para una fusión suave (mezcla) o a la derecha para un corte abrupto (rayado). La
+      posición central es un ajuste típico para actuaciones en clubes.
+9.    Crossfader Contour: Permite ajustar la pendiente de la curva del crossfader. Gire la perilla a la
+      izquierda para una fusión suave (mezcla) o a la derecha para un corte abrupto (rayado). La
+      posición central es un ajuste típico para actuaciones en clubes.
+10.   Crossfader Reverse: Ajuste este interruptor a On para invertir la dirección del crossfader.
+      Ajústelo a Off para utilizar la dirección convencional del fader.
+11.   Cue Mix: Gírela para mezclar el canal de cue y la mezcla del programa en las salidas de
+      auriculares. Cuando se gira totalmente a la izquierda, sólo se oye el canal de cue. Cuando se
+      gira totalmente a la derecha, se oye sólo la mezcla del programa.
+12.   Cue Split: Cuando este interruptor está la posición On (Activado), se “divide” el audio de los
+      auriculares de modo que el canal de cue se suma a mono y se envía al canal del auricular
+      izquierdo mientras que la mezcla del programa se suma a mono y se envía al canal derecho.
+      Cuando este interruptor está la posición Off (Desactivado), el canal de cue y la mezcla del
+      programa se “combinan”. En ambos casos, use la perilla Cue Mix para controlar la mezcla de
+      las dos señales.
+13.   Cue Level: Gire esta perilla para ajustar el nivel de volumen del canal de cue.
+14.   Salidas para auriculares (1/4 pulg., 1/8 pulg. / 6,35 mm, 3,5 mm, TRS): Conecte sus
+      auriculares de 1/4 o 1/8 pulg. (6,35 o 3,5 mm) a esta salida para búsqueda del punto inicial
+      (cueing) y monitoreo de la mezcla.
+
+
+
+Panel trasero
+
+       1    2       4       6   7      8
+                        5                                                               12     13
+                                                9    10
+                                                                              11
+                3       3
+
+1.    Entradas Mic 1–2 (XLR / 1/4 pulg. / 6,35 mm, TS): Conecte micrófonos o dispositivos de nivel
+      de línea a estas entradas mono. Sus señales de audio mono se dividen y encaminan
+      directamente a la mezcla de programa estéreo y al canal de cue. Si prefiere una entrada de
+      línea estéreo, puede utilizarse la entrada Aux.
+2.    Entrada auxiliar (RCA): Conecte estas entradas a una fuente de audio de nivel de línea
+      externa. Recuerde colocar el interruptor Mic 2/AUX en la posición Aux para reproducir su
+      señal de audio.
+3.    Selector Phono/Line: Ajuste este interruptor a la posición adecuada, en función del
+      dispositivo conectado a las entradas Phono/Line de la bandeja correspondiente. Si utiliza
+      giradiscos de nivel fonográfico, ajuste este interruptor a Phono para proporcionar la
+      amplificación adicional necesaria para las señales de este nivel. Si está utilizando un
+      dispositivo de nivel de línea, como un giradiscos de nivel de línea, reproductor de CD o
+      muestreador, ajuste este interruptor a Line.
+4.    Entrada Phono/Line de la bandeja (RCA): Conecte estas entradas a una fuente de audio
+      externa o a un giradiscos, reproductor de CD u otro dispositivo de nivel de línea. Recuerde
+      ajustar el selector Phono/Line correspondiente a la posición adecuada y ajustar la perilla de la
+      fuente de esa bandeja a Phono/Line para reproducir su señal de audio en dicha bandeja.
+5.    Phono Ground: Si está utilizando giradiscos de nivel fonográfico con cable de conexión a
+      tierra, conecte dicho cable a este terminale. Si se experimenta un zumbido grave, puede
+      significar que sus giradiscos no están conectados a tierra.
+      Nota: Algunos giradiscos tienen el cable de conexión a tierra incorporado a la conexión RCA y,
+      por lo tanto, no es necesario conectar nada al terminal de tierra.
+
+
+
+18
+6.    Salida Master (RCA): Conecte estas salidas a otro mezclador, dispositivo de grabación, etc. La
+      mezcla de programa se enviará a estas salidas.
+7.    Salida Main (XLR): Conecte estas salidas a un sistema de altavoces o amplificador. Utilice la
+      perilla Main (Principal) ubicada en el panel superior para controlar el nivel de volumen.
+8.    Salida Booth (XLR): Conecte estas salidas a un sistema de monitores de cabina o amplificador
+      de cabina. Utilice la perilla Booth (Cabina) ubicada en el panel superior para controlar el nivel
+      de volumen.
+9.    Puertos USB (USB tipo B): Utilice unos cables USB para conectar estos puertos USB a
+      puertos USB disponibles en su ordenador. Estas conexiones envían y reciben audio e
+      información de controles MIDI desde y hacia el ordenador.
+      Nota: Asegúrese de haber descargado e instalado el panel de control de Rane desde
+      rane.com.
+10.   Torque del motor: Accione este interruptor para ajustar el torque del plato. En el ajuste High
+      (alto), el plato tiene la sensación más pesada y fuerte de los giradiscos “modernos.” En el
+      ajuste Low (bajo), son más livianos y suaves—la sensación de un giradiscos “clásico.”
+11.   Ventilador de enfriamiento: Mantenga el área frente a esta ventilación libre de obstáculos. El
+      ventilador que está detrás de la ventilación enfría el ONE, evitando el recalentamiento.
+12.   Entrada de alimentación: Con el ONE apagado, conecte el cable de alimentación incluido a
+      esta entrada y, a continuación, en una toma de corriente.
+13.   Interruptor de encendido: Utilice este interruptor para encender y apagar el ONE. Encienda el
+      ONE después de haber conectado todos sus dispositivos de entrada y antes de encender sus
+      amplificadores y altavoces. Apague sus amplificadores y altavoces antes de apagar el ONE.
+
+
+
+Funcionamiento
+
+Modos de pads
+
+Este capítulo describe los distintos modos de pads.
+Cada bandeja tiene ocho pads, los cuales siempre
+están en uno de estos modos, y los pads de cada
+bandeja pueden estar en un modo diferente. Pulse
+uno de los botones de modo de pads para entrar al
+modo de pad correspondiente en esa bandeja.                    1          2          3           4
+
+
+Hot Cue
+                                                               5          6          7           8
+En el modo de cue, cada pad asigna un punto de cue
+rápido o hace que la pista vuelva a ese punto de cue
+rápido.
+Para entrar al modo de cue, pulse Hot Cue.
+Para asignar un punto de cue rápido, pulse un pad apagado en el punto deseado de su pista. El
+pad se iluminará cuando se lo asigne (con el color correspondiente, si está disponible).
+Para saltar a un punto de cue rápido, pulse un pad iluminado.
+Para borrar un punto de cue rápido asignado, pulse Shift y el pad correspondiente.
+
+
+
+Reproducción de tonos
+En el modo de reproducción de tonos, cada pad reproduce la pista desde un punto de cue rápido
+en una transposición diferente (ajustable por semitonos). El paquete de expansión para DJ Serato
+Pitch ‘n Time (se vende por separado) debe estar instalado para poder utilizar este modo. Consulte
+Hot Cue para aprender cómo asignar puntos de cue rápidos.
+
+
+                                                                                                     19
+                                                                         Arriba
+Para entrar al modo de reproducción de tonos,
+pulse Hot Cue una segunda vez.                           +4         +5         +6          +7
+Para seleccionar el punto de cue rápido que           semi-tonos semi-tonos semi-tonos semi-tonos
+desea utilizar, pulse Shift y un pad tenuemente
+iluminado.
+Para seleccionar el rango de transposiciones               0
+                                                                      +1          +2          +3
+                                                        (tono
+que utilizará el pad, use los botones Parameter                    semitono    semi-tonos semi-tonos
+                                                       original)
+/ (consulte los diagramas aquí detallados).
+Para ajustar el tono de la pista actual hacia                            Medio
+arriba o hacia abajo, pulse Shift y los botones
+Parameter / respectivamente.                             0
+                                                                      +1          +2          +3
+Para reproducir la pista desde el punto de cue          (tono
+                                                                   semi-tono   semi-tonos semi-tonos
+                                                       original)
+rápido, pulse un pad iluminado. Cada pad
+corresponde a una transposición específica (por
+semitonos), en función del rango de transposición
+                                                         -4         -3          -2        -1
+actual (consulte los diagramas aquí detallados). El
+                                                      semi-tonos semi-tonos semi-tonos semi-tono
+pad sin transposición (el tono original) estará
+iluminado en blanco.
+                                                                         Abajo
+
+                                                                                                0
+                                                         -3         -2            -1
+Bucles guardados                                                                             (tono
+                                                      semi-tonos semi-tonos    semi-tono
+                                                                                            original)
+En el modo de bucle guardado, cada pad dispara
+o libera un bucle automático de diferente longitud.
+Para entrar al modo de bucle guardado, pulse             -7         -6          -5         -4
+                                                      semi-tonos semi-tonos semi-tonos semi-tonos
+Saved Loop.
+Para reproducir un bucle, pulse un pad
+iluminado. Los ocho pads de cada bandeja se
+corresponderán con los bucles guardados 1–8 en
+su software y el color de cada pad se
+corresponderá con el color asignado a cada bucle
+en su software.
+
+
+Redoble
+En el modo de redoble, cada pad dispara un redoble de bucle momentáneo. Al soltar el pad, se
+detiene el redoble del bucle y se retoma la reproducción normal donde se encontraría el cabezal de
+reproducción si no se hubiese disparado el redoble del bucle (es decir, como si la pista se hubiese
+estado reproduciendo en avance todo el tiempo).
+Nota: Desactive Show Beat Jump Controls (Mostrar controles de salteo de beats) en el menú
+Setup de Serato para acceder a 8 bucles enrollados a la vez. También puede ver y editar los
+tamaños de bucles configurados en el software.
+Para entrar al modo de redoble, pulse Roll.
+Para disparar un redoble de bucle, mantenga pulsado un pad.
+Para cambiar cuáles son las ocho longitudes de bucles con retorno que se muestran (en el
+software), pulse cualquiera de los botones Parameter /. La disposición de los pads cambiará
+para que coincida.
+Para desplazar el bucle con retorno hacia atrás o hacia adelante, pulse Shift y los botones
+Parameter /, respectivamente.
+
+
+
+
+20
+Bucle automático                                              Tamaños de bucle automático
+En el modo de bucle automático, cada pad dispara o
+libera un bucle automático de diferente longitud.
+                                                          1/8 Pulso   1/4 Pulso   1/2 Pulso     1 Pulso
+Para entrar al modo de bucle automático, pulse Roll
+una segunda vez.
+
+
+Muestreador                                               2 Pulsos    4 Pulsos    8 Pulsos     16 Pulsos
+
+En el modo Muestreador, cada pad dispara una muestra,
+que puede asignar en el software.
+
+
+Banco de rayado
+En el modo banco de rayado, cada pad carga una canción en la bandeja seleccionada. Puede
+asignar una canción y definir su punto inicial en el software. Esto resulta de gran utilidad para
+preparar y actuar con muestras de canciones para rayar.
+Para entrar al modo de banco de rayado, pulse Sample una segunda vez.
+
+
+Cortador
+Importante: Su pista debe tener una grilla de beats establecida para que este modo funcione.
+En el modo de cortador, los 8 pads representan 8 pulsos secuenciales—“cortes”—de la grilla de
+beats. El pad iluminado representa el corte que se está reproduciendo en ese momento. La luz
+"recorre los pads" a medida que progresa a lo largo de cada una de las frases de ocho cortes.
+Puede pulsar un pad para reproducir ese corte. Cuando suelte el pad, se reanuda la reproducción
+normal de la pista desde donde habría estado si nunca lo hubiera presionado (es decir, como si la
+pista hubiera estado reproduciéndose en avance todo el tiempo).
+Para entrar al modo de cortador, pulse Slicer. La bandeja saldrá del modo de cortador si carga
+otra pista en la bandeja o activa el modo de edición de la grilla.
+Para reproducir un corte, pulse el pad correspondiente.
+Para aumentar o reducir el tamaño de cuantificación, pulse los botones Parameter /.
+Para aumentar o reducir el tamaño de los cortes, pulse Shift y los botones Parameter /.
+
+
+Bucle del cortador
+Pulse Slicer una segunda vez para entrar al modo cortador de bucles. Los pads se comportan de
+manera idéntica al modo cortador, excepto que la frase de ocho cortes realiza un bucle en vez de
+avanzar continuamente por la pista.
+
+
+
+
+                                                                                                   21
+Guide d’utilisation (Français)
+Présentation
+Merci d’avoir fait l’acquisition du ONE. Chez Rane, la performance et la fiabilité sont aussi
+importantes pour nous qu’ils le sont pour vous. C’est pourquoi nous concevons nos produits
+avec une seule chose en tête — faire de votre performance la meilleure qui soit.
+
+
+Contenu de la boîte
+
+ONE
+Câble d’alimentation
+Câble USB
+Carte de téléchargement de logiciel
+Guide d’utilisation
+Consignes de sécurité et informations concernant la garantie
+
+
+
+Assistance
+
+Pour les toutes dernières informations concernant la documentation, les spécifications
+techniques, la configuration requise, la compatibilité et l’enregistrement du produit, veuillez
+visiter rane.com.
+Pour de l’assistance supplémentaire, veuillez visiter rane.com/support.
+
+
+
+
+22
+Démarrage
+
+1. Assemblez le système de plateaux
+
+1. Retirez ONE de son emballage. Retirez les plateaux de l’emballage (se
+   trouvant sous ONE). Placez ONE sur une surface plane et stable afin de
+   procéder à son assemblage et à son utilisation.
+2. Placez un plateau sur chaque module de la base ONE en alignant les
+   broches au bas du plateau avec les trous du moteur. Appuyez fermement.
+   Vérifiez qu'ils tournent uniformément et qu’ils ne vacillent pas
+   excessivement, puis placez le tapis sur le plateau.
+3. Placez ensuite le disque de contrôle au-dessus de l'axe (avec
+   l'adaptateur à dégagement rapide vers le haut). Pour verrouiller le
+   disque de contrôle sur l’axe, pincez le haut de l’axe tout en faisant tourner
+   le disque lentement jusqu'à ce que vous entendiez un déclic. Il se verrouille
+   lorsque la rainure de l’axe s’aligne face à la touche sur le côté de
+   l’adaptateur à dégagement rapide.
+
+
+
+
+2. Faites tous les branchements puis commencez à faire du DJing !
+
+1. Veuillez vous assurer d’avoir téléchargé et installé la dernière version du logiciel audionumérique.
+2. Placez ONE sur une surface plane et stable.
+3. Alors que la touche d’alimentation est hors tension, reliez le câble d'alimentation d’abord au
+   ONE, puis à la prise secteur.
+4. Appuyez sur la touche d'alimentation pour mettre ONE sous tension.
+5. Utilisez le câble USB standard fourni pour relier le port USB de l'appareil à un port USB sur
+   votre ordinateur ou sur un concentrateur USB alimenté connecté à votre ordinateur.
+6. Lancez le logiciel Serato DJ Pro, puis laissez libre cours à votre imagination !
+    Pour plus d'informations sur l'utilisation de Serato DJ Pro avec ONE, veuillez visiter
+    support.serato.com.
+
+Exemple
+                               Platine disque
+
+                                                                             Ordinateur
+
+
+
+        Microphone
+
+
+      Haut-parleurs                                                                          Prise
+        actives                                                                             secteur
+
+
+
+
+                                                             Enceintes cabine
+
+Les éléments qui ne figurent pas dans Présentation > Contenu de la boîte sont vendus séparément.
+
+
+
+                                                                                                      23
+Caractéristiques
+
+Panneau supérieur
+
+
+           18                                       17          2        1        1         2
+                             20
+           19                                            23     3            7              3
+                             21                                              8
+                                                         24     4                           4
+                                                                       9              10
+                                                         25     5                11         5
+                             22                                 6            12             6
+
+                                                                       13             13
+
+                                  28                      26      15         14            15
+      29                                       27
+      30        31                             39
+                     34 35 36 37 38
+                                               40
+           32                33
+                                                          28                16
+                                             41 42
+
+
+1.   Sélecteur de source : Ce bouton permet de sélectionner la source audio pour le canal : USB A
+     ou B (une piste qui joue sur cette couche dans le logiciel) ou Line (un appareil branché à l’entrée
+     Phono/Line sur le panneau arrière).
+     Remarque : Si vous sélectionnez Line, réglez le sélecteur Phono/Line du panneau arrière sur
+     Line.
+     Remarque : Les commandes d’un module transmettent des données MIDI seulement lorsque
+     son sélecteur de source est réglé sur USB A ou B.
+     Remarque : Si vous utilisez DVS avec ONE, connectez vos platines à l'entrée phono, mais
+     réglez le sélecteur de source sur USB A ou B, celle à laquelle votre ordinateur est connecté.
+2.   Deck Level : Ce bouton permet de définir le niveau de pré-égalisation et de pré-atténuation du
+     module. Le vumètre à côté du bouton indique le niveau du signal. Diminuez le réglage s’il
+     atteint la partie rouge (écrêtage).
+3.   Deck EQ High : Ce bouton permet d’ajuster le réglage des hautes fréquences du module.
+4.   Deck EQ Mid : Ce bouton permet d’ajuster le réglage des moyennes fréquences du module.
+5.   Deck EQ Low : Ce bouton permet d’ajuster le réglage des basses fréquences du module.
+     Remarque : Toutes les commandes d'égalisation offrent la suppression complète des fréquences
+     définies.
+6.   Deck LP/HP : Ce bouton permet de régler le filtre appliqué au module. Tourner le bouton dans
+     le sens antihoraire permet d’appliquer un filtre passe-bas. Tourner le bouton dans le sens des
+     aiguilles d'une montre permet d’appliquer un filtre passe-haut. Régler ce bouton sur la position
+     centrale (12 h) permet de désactiver les filtres.
+7.   Main : Ce bouton permet d’ajuster le volume du mix du programme. Les vumètres à côté du
+     bouton indiquent le niveau du mix du programme.
+
+
+24
+8.    Booth : Ce bouton permet d’ajuster le volume des sorties Booth.
+9.    Depth : Ce bouton permet de régler l'équilibre traité/non traité de l’effet interne (Flex FX) sur ce
+      module.
+10.   Beat : Ce bouton permet de sélectionner la division temporelle pour les effets sélectionnés.
+11.   Tap : Appuyer sur cette touche à plusieurs reprises au rythme désiré permet de régler
+      manuellement le BPM du tempo des effets du module.
+12.   FX 1–6 : Ces touches permettent d’activer et de désactiver l'effet logiciel correspondant affiché
+      en tant que FX 1 et FX 2 dans le logiciel Serato. Appuyer sur une touche permet d’activer un
+      effet à la fois. Maintenir plusieurs touches enfoncées permet d’activer plusieurs effets à la fois.
+13.   Interrupteur d’effets : Pousser cet interrupteur vers le haut permet d’activer les effets
+      logiciels ; l’interrupteur demeure verrouillé dans cette position. Pousser l’interrupteur vers la
+      position centrale permet de désactiver les effets.
+      Pousser et maintenir cet interrupteur vers le bas permet d’activer les effets logiciels
+      momentanément, et le relâcher permet de les désactiver ; l’interrupteur retourne à la position
+      centrale.
+14.   Cue : Cette touche permet d’acheminer le signal pré-atténuation du module au canal de pré-
+      écoute. La touche s’allume lorsque cette fonction est activée. Pour pré-écouter simultanément
+      plusieurs canaux, appuyez sur les touches Cue des deux modules.
+15.   Curseur : Ce curseur permet d'ajuster le volume du module correspondant.
+16.   Crossfader : Déplacez ce curseur afin de mélanger les signaux des modules.
+17.   Search : La longueur de la bande représente la durée de la piste. Placer le doigt sur n’importe
+      quel endroit sur la bande permet de sauter sur ce point dans la piste. Les DEL au-dessus de la
+      bande indiquent l'emplacement approximatif du curseur de lecture dans la piste.
+18.   Scroll/Load/Instant Doubles : Tourner ce bouton permet de parcourir les listes et l’enfoncer
+      permet de sélectionner un des items ou de charger la piste sélectionnée sur le module.
+      Appuyer deux fois rapidement permet de charger la même piste sur les deux modules (« double
+      instantané »).
+19.   Back/Load Prep : Cette touche permet de revenir à la fenêtre précédente dans le logiciel.
+      Maintenir la touche Shift enfoncée et appuyer sur cette touche permet de charger la piste
+      sélectionnée dans le Prepare Crate.
+20.   Plateau avec moteur à couple élevé à entraînement direct : Un moteur puissant fait tourner
+      le plateau en aluminium avec des points de position de vitesse. Le sélecteur Motor Torque sur
+      le panneau arrière permet de régler le niveau de couple des plateaux.
+      Remarque : Le plateau ne doit pas être retenu pour de longues périodes lorsqu’il est alimenté
+      par le moteur.
+21.   Disque de contrôle avec feutrine : Ce disque de 18,2 cm permet de contrôler le curseur de
+      lecture dans votre logiciel audionumérique. Placez la feutrine fournie sous le disque de
+      contrôle, ou encore, utilisez-en une autre de votre choix.
+      Remarque : Le disque de contrôle peut être remplacé par l'utilisateur en fixant l'adaptateur à
+      dégagement rapide à votre propre disque modifié. Le disque de remplacement doit avoir trois
+      trous de 6 mm, et le disque fourni doit être utilisé comme référence.
+22.   Adaptateur à dégagement rapide : Cet adaptateur permet de verrouiller le disque de
+      contrôle au plateau. Il est préfixé sur le dessus du disque de contrôle. Pour retirer le disque
+      de contrôle ou la feutrine du plateau, maintenez la touche située sur le côté de l'adaptateur à
+      dégagement rapide enfoncée tout en soulevant le disque pour le dégager de l'axe. Après
+      avoir replacé le disque de contrôle sur l’axe, pincez le haut de l’axe tout en faisant tourner le
+      disque lentement jusqu'à ce que vous entendiez un déclic. Il se verrouille lorsque la rainure de
+      l’axe s’aligne face à la touche sur le côté de l’adaptateur à dégagement rapide.
+23.   Stop Time : Contrôle la vitesse à laquelle le plateau s’arrête complètement (« temps de
+      décélération »).
+
+                                                                                                       25
+24.   Slip/Motor Off : Cette touche permet d’activer et de désactiver le mode Slip. En Mode Slip,
+      vous pouvez sauter à des points de repère rapides, déclencher des boucles momentanées, ou
+      utiliser les plateaux, alors que la chronologie de la piste se poursuit. En d’autres mots, lorsque
+      vous cessez l'action en cours, la piste reprend la lecture normale à partir de l’emplacement où
+      elle serait si vous n’aviez pas touché à l’une des commandes (c.-à-d., comme si la lecture avait
+      suivi son cours).
+      Maintenir la touche Shift enfoncée puis appuyer sur cette touche permet d'activer ou de
+      désactiver le moteur du plateau correspondant. Cela n'affecte pas la lecture de la piste.
+25.   Censor/Reverse : Maintenir cette touche enfoncée permet d’activer la fonction Censor, qui
+      inverse temporairement la lecture de la piste. Relâcher la touche permet de relancer la lecture
+      normale de la piste à partir de l’emplacement où elle serait si vous n’aviez pas activé la fonction
+      Censor (c.-à-d., comme si la lecture n’avait jamais été interrompue).
+      Appuyer sur la touche Shift et sur cette touche permet d’activer la fonction Reverse, qui inversera
+      la lecture de la piste. Appuyer de nouveau sur la touche permet de reprendre la lecture normale
+      d'où la tête de lecture s’est arrêtée.
+26.   Curseur de hauteur tonale : Ce curseur permet de régler la vitesse (hauteur tonale) de la piste.
+      Vous pouvez ajuster sa plage en utilisant la touche Range/Keylock.
+27.   Range/Keylock : Cette touche permet d’ajuster la plage du curseur de hauteur tonale à
+      ±8%, ±16% et ±50%.
+      Maintenir la touche Shift enfoncée puis appuyer sur cette touche permet d’activer et de
+      désactiver la fonction de verrouillage tonale : La hauteur tonale de la chanson sera verrouillée à
+      la position à laquelle était réglé le curseur lorsque le verrouillage a été activé. Cette fonction
+      permet de modifier la vitesse de la chanson sans changer la hauteur tonale.
+28.   Pitch Bend -/+ : Maintenir une de ces touches enfoncée permet de diminuer ou d’augmenter
+      temporairement la vitesse de la piste.
+29.   Shift : Maintenir cette touche enfoncée permet d’accéder aux fonctions secondaires des autres
+      commandes du ONE.
+30.   Cue/Précédent : Lorsque la lecture du module est interrompue, il est possible de programmer
+      un point de repère temporaire en déplaçant le plateau afin de placer le curseur audio à
+      l'endroit désiré et en appuyant sur la touche Cue.
+      Pendant la lecture, appuyer sur la touche Cue permet de revenir à ce point de repère
+      temporaire. (Si aucun point de repère temporaire n’est programmé, la lecture reprendra au
+      début de la piste.)
+      Si la lecture du module est interrompue, maintenir la touche Cue enfoncée permet de
+      reprendre la lecture à partir du point de repère temporaire. Relâcher la touche Cue permet de
+      retourner sur le point de repère temporaire et d’interrompre la lecture. Maintenir la touche Cue
+      et la touche de lecture enfoncée, puis relâcher les deux touches permet de reprendre la
+      lecture sans revenir au point de repère temporaire.
+      Maintenir la touche Shift enfoncée puis appuyer sur cette touche permet d’ajouter un effet de
+      « bégaiement » en revenant au début de la piste et en la relançant.
+31.   Sync/Sync Off : Cette touche permet de synchroniser automatiquement le tempo du module
+      au tempo et phase de l’autre module. Maintenir la touche Shift enfoncée et appuyer sur cette
+      touche permet de désactiver la synchronisation.
+32.   Start/Stop : Cette touche permet de lancer et d’arrêter le plateau. L’intensité de la DEL autour
+      de cette touche sera faible lorsque le plateau est activé et qu’aucune piste ne joue, élevée
+      lorsqu’une piste joue, et clignotera rouge lorsque la piste touche à sa fin.
+33.   Pads : Ces pads ont différentes fonctions sur chaque module selon le mode de fonctionnement
+      sélectionné.
+      Remarque : Veuillez consulter la section Fonctionnement > Modes de fonctionnement des
+      pads afin d’apprendre à utiliser les pads selon le mode.
+
+
+
+26
+34.   Hot Cue / Pitch Play : Cette touche permet d’accéder au mode Hot Cue. Appuyer une
+      deuxième fois sur la touche permet de passer en mode Pitch Play.
+      Remarque : Le plug-in Serato Pitch N Time (vendu séparément) est requis pour utiliser le mode
+      Pitch Play.
+35.   Saved Loop : Cette touche permet de passer en mode Saved Loop.
+36.   Roll / Auto Loop : Cette touche permet d’accéder au mode Roll. Appuyer une deuxième fois
+      sur la touche permet de passer en mode Auto Loop.
+37.   Sampler : Cette touche permet d’accéder au mode Sampler. Appuyer une deuxième fois sur la
+      touche permet de passer en mode Scratch Bank. En mode Scratch Bank, vous pouvez
+      assigner des chansons à chaque pad du logiciel, puis appuyer sur le pad pour charger
+      rapidement la chanson à partir du point de départ spécifié sur le module. Ceci est utile pour
+      préparer et faire jouer des échantillons de chanson lors de l’utilisation de la fonction scratch.
+38.   Slicer / Slicer Loop : Cette touche permet d’accéder au mode Slicer. Appuyer une deuxième
+      fois sur la touche permet de passer en mode Slicer Loop.
+39.   Parameter / : Ces touches permettent d’utiliser les différentes fonctions selon le mode de
+      fonctionnement des pads sélectionné. Maintenir la touche Shift enfoncée puis utiliser ces
+      touches permet d’accéder aux paramètres secondaires.
+40.   Loop On/Off/Reloop : Cette touche permet de programmer une boucle automatique dont la
+      durée est définie dans le logiciel. Maintenir la touche Shift enfoncée puis appuyer sur cette
+      touche permet de revenir à la dernière boucle lue et de la relancer.
+41.   Loop In/x1/2 : Cette touche permet de programmer un point d’entrée de boucle à partir de la
+      position actuelle dans la piste.
+      Maintenir la touche Shift enfoncée puis appuyer sur cette touche permet de couper de moitié
+      la durée de la boucle sélectionnée.
+42.   Loop Out/x2 : Cette touche permet de programmer un point de sortie de boucle à partir de la
+      position actuelle dans la piste.
+      Maintenir la touche Shift enfoncée puis appuyer sur cette touche permet de doubler la durée
+      de la boucle sélectionnée.
+
+
+Panneau avant
+
+           2             5                    8            9             11        13
+
+       1        3    4       6            7       7                           12        14
+                                                               10
+
+1.    Mic 1 – Off/On : Lorsque ce sélecteur est réglé sur Off, l’entrée Mic 1 est désactivée. Lorsque ce
+      sélecteur est réglé sur On, l’entrée Mic 1 sur le panneau arrière est activée et le signal audio est
+      acheminé directement au mix du programme et au mix de pré-écoute.
+2.    Mic 1 Level : Ce bouton permet d’ajuster le gain de l’entrée Mic 1.
+3.    Mic 1 Tone : Ce bouton permet d’ajuster l’équilibre entre les basses et les hautes fréquences
+      du signal provenant de l'entrée Mic 1.
+4.    Mic 2 – Aux/Off/Mic 2 : Lorsque ce sélecteur est réglé sur Aux, l'entrée auxiliaire sur le
+      panneau arrière est activée. Lorsqu’il est réglé sur Off, l’entrée auxiliaire et l’entrée Mic 2 sont
+      désactivées. Lorsqu’il est réglé sur Mic 2, l’entrée Mic 2 sur le panneau arrière est activée et le
+      signal audio est acheminé directement au mix du programme et au mix de pré-écoute. Le
+      signal audio de ces deux entrées est acheminé directement au mix du programme et au mix de
+      pré-écoute.
+5.    Mic 2/Aux Level : Ce bouton permet d’ajuster le gain de l’entrée Mic 2 et de l’entrée
+      auxiliaire.
+6.    Mic 2/Aux Tone : Ce bouton permet d’ajuster l’équilibre entre les basses et les hautes
+      fréquences du signal provenant de l'entrée Mic 2 ou de l’entrée auxiliaire.
+
+
+                                                                                                       27
+7.    Deck Reverse : Lorsque ce sélecteur est réglé sur On, la direction du curseur du module est
+      inversée. Lorsqu’il est réglé sur Off, la direction des curseurs est normale.
+8.    Deck Contour : Ce bouton permet de régler l'intensité du fondu du curseur du module.
+      Tourner dans le sens antihoraire permet d’obtenir un fondu progressif (mixage) et tourner dans
+      le sens horaire permet d’obtenir une coupure nette (scratch). La position centrale est
+      typiquement utilisée dans les clubs.
+9.    Crossfader Contour : Ce bouton permet de régler l'intensité du fondu du crossfader. Tourner
+      dans le sens antihoraire permet d’obtenir un fondu progressif (mixage) et tourner dans le sens
+      horaire permet d’obtenir une coupure nette (scratch). La position centrale est typiquement
+      utilisée dans les clubs.
+10.   Crossfader Reverse : Lorsque ce sélecteur est réglé sur On, la direction du crossfader est
+      inversée. Lorsqu’il est réglé sur Off, la direction du crossfader est normale.
+11.   Cue Mix : Ce bouton permet d’ajuster le mix entre le canal de pré-écoute et le mix du
+      programme des sorties casque. Lorsqu'il est réglé complètement à gauche, seul le canal de
+      pré-écoute est entendu. Lorsqu'il est réglé complètement à droite, seul le mix du programme
+      est entendu.
+12.   Cue Split : Lorsque cette touche est enfoncée, l'audio du casque est partagé afin que tous les
+      canaux envoyés au canal de pré-écoute soient combinés en mono et transmis au canal gauche
+      et que le mix du programme soit combiné en mono et transmis au canal droit. Lorsque cette
+      touche est relâchée, l’audio du canal de pré-écoute et du mix du programme sont combinés.
+      Dans les deux cas, le bouton Cue Mix permet de contrôler le mélange des deux signaux.
+13.   Cue Level : Ce bouton permet d’ajuster le volume du canal de pré-écoute.
+14.   Sorties casque (6,35 mm, 3,5 mm, TRS) : Cette sortie permet de brancher un casque d’écoute
+      6,35 mm ou 3,5 mm pour la pré-écoute et le calage.
+
+
+Panneau arrière
+
+       1     2       4       6   7       8
+                         5                                                                   12      13
+                                                  9    10
+                                                                                  11
+                 3       3
+
+1.    Entrées Mic 1–2 (XLR/6,35 mm, TRS) : Ces entrées permettent de brancher un microphone ou
+      un appareil à niveau ligne. Les signaux audio mono de ces entrées sont séparés puis
+      acheminés directement au mix du programme stéréo et au canal de pré-écoute. Pour une
+      entrée ligne stéréo, l'entrée Session doit être utilisée.
+2.    Entrées auxiliaires (RCA) : Ces entrées permettent de brancher des sources audio externes à
+      niveau ligne. N'oubliez pas de régler le sélecteur Mic 2/AUX sur Aux afin de pouvoir entendre
+      le signal audio.
+3.    Sélecteur Phono/Line : Ce sélecteur permet de sélectionner le niveau du signal approprié selon
+      l’appareil branché aux entrées Phono/Line du module correspondant. Si vous utilisez des
+      platines vinyle phono, réglez le sélecteur sur Phono afin d’ajouter plus d’amplification aux
+      signaux phono. Pour brancher un appareil à niveau de ligne, comme une platine vinyle à niveau
+      ligne, un lecteur CD ou un échantillonneur, réglez-le sur Line.
+4.    Entrée Phono/Line (RCA) : Ces entrées permettent de brancher des sources audio externes
+      comme une platine vinyle, un lecteur CD ou un autre appareil à niveau ligne. Le sélecteur
+      Phono/Line du module doit être réglé en fonction de l’appareil branché et le sélecteur de
+      source doit être réglé sur Phono/Line afin que le signal du module puisse être joué.
+5.    Phono Ground : Si vous utilisez des platines vinyle phono avec fil de mise à la terre, veillez à
+      relier le fil à cette borne. S’il y a un ronflement ou du bruit, il se pourrait que vos platines vinyle
+      ne soient pas mises à la terre.
+      Remarque : Certaines platines vinyle sont dotées d'un fil de mise à la terre intégré à la
+      connexion RCA, et donc, n'ont pas besoin d’être reliées à la borne de mise à la terre.
+
+28
+6.    Sorties Master (RCA) : Ces sorties permettent de brancher une autre console de mixage, un
+      appareil d’enregistrement, etc. Le mix du programme sera transmis à ces sorties.
+7.    Sorties Main (XLR) : Ces sorties permettent de brancher des enceintes ou un système
+      d’amplification. Le niveau du signal de ces sorties est commandé par le bouton Main du
+      panneau supérieur.
+8.    Sorties Booth (XLR) : Ces sorties permettent de brancher des enceintes cabine ou un système
+      d’amplification. Le niveau du signal de ces sorties est commandé par le bouton Booth du
+      panneau supérieur.
+9.    Ports USB (USB de type-B) : Ces ports permettent de relier des ordinateurs en utilisant des
+      câbles USB. Ces connexions permettent de transmettre et de recevoir de l’audio et des
+      données de commande depuis et vers un ordinateur.
+      Remarque : Veuillez vous assurer d’avoir téléchargé et installé le logiciel Rane Control Panel à
+      partir du site rane.com.
+10.   Motor Torque : Ce commutateur permet d’ajuster le niveau de couple de plateau. Un réglage
+      plus élevé donne l’impression que le plateau sont plus lourds, semblable aux tourne-disques «
+      modernes ». Un réglage plus bas donne l’impression que le plateau sont plus légers et plus
+      gracieux, semblable aux tourne-disques « classiques ».
+11.   Orifice de ventilation : Assurez vous de maintenir cet orifice non obstrué en tout temps. Le
+      ventilateur se trouvant derrière permet de refroidir l'ONE afin qu’il ne surchauffe pas.
+12.   Entrée d'alimentation : Alors que l'ONE est hors tension, utilisez le câble d’alimentation fourni
+      pour brancher l’entrée d’alimentation à une prise secteur.
+13.   Interrupteur d'alimentation : Cet interrupteur permet de mettre l'ONE sous et hors tension.
+      Veillez à mettre l'ONE sous tension uniquement après avoir raccordé tous les appareils d'entrée
+      et avant de mettre les amplificateurs et enceintes sous tension. Veillez à mettre les amplificateurs
+      et les enceintes hors tension avant de mettre l'ONE hors tension.
+
+
+
+Fonctionnement
+
+Modes de fonctionnement des pads
+
+Cette section explique les différents modes de
+fonctionnement des pads. Chaque module dispose
+de huit pads qui peuvent être en mode différent.
+Appuyez sur une des touches des modes de
+fonctionnement des pads afin de faire basculer les
+pads du module au mode correspondant.                           1           2           3           4
+
+Mode de programmation de points de
+repère rapide                                                   5           6           7           8
+En mode de programmation de points de repère
+rapide, chaque pad peut assigner un point de repère
+rapide ou retourner la piste à ce point de repère.
+Pour accéder au mode de programmation de points de repère rapide, appuyez sur la touche
+Hot Cue.
+Pour assigner un point de repère rapide, appuyez sur un pad éteint lorsque le curseur atteint
+l’endroit désiré sur la piste. Le pad s'allume lorsqu’il est assigné à point de repère rapide (avec la
+couleur correspondante, lorsque disponible).
+Pour sauter à un point de repère rapide, appuyez sur un pad allumé.
+Pour supprimer un point de repère rapide, maintenez la touche Shift enfoncée tout en appuyant
+sur le pad correspondant.
+
+
+
+                                                                                                        29
+                                                                      Plage vers le haut
+Pitch Play
+En mode Pitch Play, chaque pad joue la piste à
+partir d'un point de repère rapide avec une                +4            +5          +6        +7
+                                                        demi-tons     demi-tons   demi-tons demi-tons
+transposition différente (réglable en demi-tons). Le
+logiciel Serato Pitch ‘n Time DJ Expansion Pack
+(vendu séparément) doit être installé afin d’utiliser        0
+ce mode. Veuillez consulter la section Mode de           (Hauteur       +1           +2        +3
+programmation de points de repère rapide afin             tonale      demi-ton    demi-tons demi-tons
+d’en savoir plus.                                        originale)
+Pour accéder au mode Pitch Play, appuyez une
+deuxième fois sur la touche Hot Cue.                                    Plage moyenne
+
+Pour sélectionner un point de repère rapide,                 0
+appuyez sur la touche Shift et un sur pad allumé        (Hauteur       +1           +2        +3
+à faible intensité.                                       tonale      demi-ton    demi-tons demi-tons
+                                                         originale)
+Pour sélectionner la plage des transpositions
+utilisée par les pads, utilisez les touches Parameter
+/ (consultez les diagrammes ci-contre).                  -4            -3          -2          -1
+Pour augmenter ou baisser la tonalité de la piste       demi-tons     demi-tons   demi-tons   demi-ton
+sélectionnée, maintenez la touche Shift enfoncée
+et appuyez sur une des touches Parameter /.
+                                                                       Plage vers le bas
+Pour faire la lecture de la piste à partir d’un point
+de repère rapide, appuyez sur un pad allumé.                                                      0
+Chaque pad correspond à une transposition                  -3            -2         -1        (Hauteur
+spécifique (en demi-tons), selon la plage de            demi-tons     demi-tons   demi-ton     tonale
+transposition sélectionnée (consultez les diagrammes                                          originale)
+ci-contre). Le pad sans transposition (hauteur tonale
+originale) sera allumé et blanc.                           -7            -6          -5          -4
+                                                        demi-tons     demi-tons   demi-tons   demi-tons
+Saved Loop
+En mode Saved Loop, chaque pad déclenche une boucle précédemment sauvegardée dans le
+logiciel.
+Pour accéder au mode bouclage automatique, appuyez sur la touche Saved Loop.
+Pour déclencher une boucle, appuyez sur un pad allumé. Les huit pads de chaque module
+correspondent aux boucles sauvegardées 1 à 8 du logiciel, et la couleur de chaque pad correspond
+à la couleur attribuée à chaque boucle du logiciel.
+
+Roulement de boucle
+En mode roulement de boucle, chaque pad déclenche un roulement de boucle momentanée.
+Lorsque le pad est relâché, le roulement de boucle est désactivé et la lecture normale de la piste
+reprend à partir de l’emplacement où elle serait si vous n’aviez pas activé le roulement de boucle (c.-
+à-d., comme si la lecture n’avait jamais été interrompue).
+Remarque : Veuillez désactiver l’option Show Beat Jump Controls dans le menu Setup de Serato
+afin d’afficher les 8 roulements de boucle en même temps. Vous pouvez également afficher et
+modifier la durée des roulements de boucle dans le logiciel.
+Pour accéder au mode de roulement de boucle, appuyez sur la touche Roll.
+Pour déclencher un roulement de boucle, maintenez un des pads enfoncé.
+Pour modifier quelles huit durées de boucles automatiques sont affichées (dans le logiciel),
+appuyez sur une des touches Parameter /. La disposition des pads changera en conséquence.
+Pour décaler le roulement de boucle vers l’arrière ou l’avant, maintenez la touche Shift
+enfoncée et appuyez sur une des touches Parameter /.
+
+
+
+30
+Bouclage automatique                                              Tailles de boucle automatique
+En mode bouclage automatique, chaque pad active ou
+désactive une boucle automatique d'une durée                     1/8         1/4         1/2          1
+différente.                                                    temps       temps       temps       temps
+Pour accéder au mode bouclage automatique,
+appuyez une deuxième fois sur la touche Roll.
+                                                                 2           4           8            16
+                                                               temps       temps       temps        temps
+Échantillonneur
+En mode échantillonneur, chaque pad déclenche un échantillon, que vous pouvez assigner
+dans le logiciel.
+
+
+Scratch Bank
+En mode Scratch Bank, chaque pad charge une chanson sur le module sélectionné. Vous pouvez
+assigner la chanson et définir le point de départ dans le logiciel. Ceci est utile pour préparer et faire
+jouer des échantillons de chanson lors de l’utilisation de la fonction scratch.
+
+Pour accéder au mode Scratch Bank, appuyez une deuxième fois sur la touche Sample.
+
+
+
+Slicer
+Important : Un Beatgrid pour la piste doit avoir été configuré afin que ce mode fonctionne.
+En mode Slicer, les huit pads représentent huit battements séquentiels ou « tranches » dans le
+Beatgrid. La tranche en cours de lecture est représentée par le pad qui est allumé ; la lumière
+parcourra les pads au fur et à mesure que les huit tranches de la phase sont jouées. Vous pouvez
+appuyer sur un pad pour faire jouer la tranche correspondante. Lorsque le pad est relâché, la lecture
+normale de la piste est relancée à partir de l’emplacement où elle serait si vous ne l’aviez pas
+enfoncé (c.-à-d., comme si la lecture n’avait jamais été interrompue).
+Pour accéder au mode Slicer, appuyez sur la touche Slicer/Transport afin qu’elle devienne rouge. Le
+module quitte le mode Slicer si vous chargez une autre piste au module ou activez le mode Grid Edit.
+Pour activer une tranche, appuyez sur le pad correspondant.
+Pour augmenter ou diminuer la taille de quantification, appuyez sur les touches Parameter /.
+Pour augmenter ou de diminuer la durée des tranches, maintenez la touche Shift enfoncée puis
+appuyez sur les touches Parameter /.
+
+
+Slicer Loop
+Appuyez une deuxième fois sur la touche Slicer afin de passer en mode Slicer Loop. Les pads se
+comportent de manière identique au mode Slicer, sauf que la phrase de huit tranches sera bouclée
+au lieu d’avancer dans la piste.
+
+
+
+
+                                                                                                      31
+Guida per l’uso (Italiano)
+Introduzione
+Grazie per aver acquistato l’ONE. Per noi di Rane, prestazioni e affidabilità contano
+moltissimo, proprio come per te. Ecco perché progettiamo i nostri dispositivi con un unico
+obiettivo in mente: rendere le tue prestazioni le migliori possibili.
+
+
+Contenuti della confezione
+
+ONE
+Cavo di alimentazione
+Cavo USB
+Scheda per il download del software
+Guida per l’uso
+Istruzioni di sicurezza e garanzia
+
+
+
+Assistenza
+
+Per le ultime informazioni in merito a questo prodotto (documentazione, specifiche tecniche,
+requisiti di sistema, informazioni sulla compatibilità, ecc.) e per effettuarne la registrazione,
+recarsi alla pagina rane.com.
+Per ulteriore assistenza sul prodotto, recarsi alla pagina rane.com/support.
+
+
+
+
+32
+Configurazione
+
+1. Montaggio del sistema del piatto
+
+1. Estrarre la base del ONE dalla confezione. Estrarre il gruppo del piatto
+   dalla confezione (sotto ONE). Collocare l’ONE su una superficie piana e
+   stabile per il montaggio e l’uso.
+2. Collocare i piatti su ciascun deck dell’ONE allineando i perni a livello della
+   parte inferiore del piatto con i fori nel motore dell’ONE. Premerlo verso il
+   basso con decisione. Assicurarsi che ruoti uniformemente e non oscilli
+   eccessivamente.
+3. Collocare il tappetino sul piatto. Quindi collocare il disco di controllo
+   sull’asse centrale (con l’adattatore a sgancio rapido incluso in alto). Per
+   fissare il disco di controllo all'asse, pizzicare la parte alta dell’asse
+   ruotando lentamente il disco fino a sentire uno scatto. Si blocca quando il
+   solco a livello dell’asse si allinea direttamente di fronte al pulsante sul lato
+   dell’adattatore a sgancio rapido.
+
+
+
+
+2. Collegare il tutto e iniziare a fare il DJ!
+
+1. Assicurarsi di aver già scaricato e installato l'ultima versione del proprio software da DJ.
+2. Collocare il ONE su una superficie uniforme e stabile.
+3. Ad alimentazione spenta, collegare il cavo di alimentazione in dotazione innanzitutto all'ONE,
+   quindi ad una presa elettrica.
+4. Accendere il ONE servendosi del power switch.
+5. servirsi di un cavo USB standard (in dotazione) per collegare la porta USB a una porta USB
+   disponibile del computer o a un hub connesso al computer.
+6. Aprire il Serato DJ Pro e via!
+    Per maggiori informazioni su come utilizzare il Serato DJ Pro con il ONE, recarsi alla pagina
+    support.serato.com.
+
+Esempio
+                                    Giradischi
+                                                                              Computer
+
+
+
+
+        Microfono
+
+
+
+       Altoparlanti                                                                           Presa
+                                                                                             elettrica
+
+
+
+
+                                                              Monitor booth
+
+Elementi non elencati sotto Introduzione > Contenuti della confezione sono venduti separatamente.
+
+
+                                                                                                         33
+Caratteristiche
+
+Pannello superiore
+
+
+           18                                        17          2        1        1         2
+                             20
+           19                                             23     3            7              3
+                             21                                               8
+                                                          24     4                           4
+                                                                        9              10
+                                                          25     5                11         5
+                             22                                  6            12             6
+
+                                                                        13             13
+
+                                  28                       26     15          14            15
+      29                                       27
+      30        31                             39
+                     34 35 36 37 38
+                                               40
+           32                33
+                                                           28                16
+                                             41 42
+
+
+1.   Fonte del deck: impostare questa manopola sulla fonte audio desiderata per questo canale:
+     USB A o B (una traccia che suona su quel livello nel software), o Linea (un dispositivo collegato
+     all'ingresso Deck Phono/Linea a livello del pannello posteriore).
+     Nota bene: se si seleziona Line, impostare i selettori Phono/Line sul pannello posteriore di
+     conseguenza.
+     Nota bene: i comandi del deck invieranno informazioni MIDI unicamente quando il selettore
+     fonte del deck è impostato su USB A o B.
+     Nota bene: se si utilizza il DVS con il ONE, collega il giradischi all’ingresso phono, ma
+     impostare il selettore fonte del deck su USB A o B, a seconda di quale dei due è collegato al
+     computer.
+2.   Livello del deck: girare questa manopola per regolare il volume del segnale audio pre-fader,
+     pre-EQ per il canale corrispondente. Il misuratore accanto a questa manopola indica il livello
+     del volume del segnale (ridurlo se inizia a “saltare”, raggiungendo la parte rossa del
+     misuratore).
+3.   Deck EQ High: girare questa manopola per regolare le frequenze alte (treble).
+4.   Deck EQ Mid: girare questa manopola per regolare le frequenze di gamma intermedia.
+5.   Deck EQ Low: girare questa manopola per regolare le frequenze basse (bass).
+     Nota bene: tutti i comandi EQ sono full-kill.
+6.   Deck LP/HP: girare questa manopola per regolare il filtro applicato al deck. Girare la manopola
+     in senso antiorario per applicare un filtro passa basso. Girare la manopola in senso orario per
+     applicare un filtro passa alto. Impostarlo in posizione centrale (“12:00”) per disattivare i filtri.
+
+
+
+34
+7.    Main: girare questa manopola per regolare il volume di uscita del mix di programma. l
+      misuratori accanto a questa manopola indicano il livello del volume del mix di programma.
+8.    Booth: girare questa manopola per regolare il volume di uscita delle Uscite Booth.
+9.    Depth: girare questa manopola per regolare il mix “wet-dry” del Flex FX su quel deck.
+10.   Beat: girare questa manopola per impostare la divisione di tempo per gli effetti selezionati.
+11.   Tap: premere questo tasto più volte al tempo desiderato per impostare manualmente il BPM
+      per gli effetti beat-tempo per canale.
+12.   FX 1–6: premere uno di questi tasti per attivare o disattivare l’effetto software corrispondente
+      illustrato nell’FX 1 ed FX 2 del software Serato. La pressione dei tasti attiverà un effetto alla
+      volta; tenendo premuti i tasti, invece, si attiveranno più effetti contemporaneamente.
+13.   Comandi effetti: allontanare questo comando per attivare gli effetti software; il comando si
+      bloccherà in quella posizione. Riportare il comando in posizione centrale per disattivare gli
+      effetti.
+      Tirare il comando verso di sé per attivare momentaneamente gli effetti software e rilasciare il
+      comando per disattivare gli effetti; il comando tornerà in posizione centrale.
+14.   Deck Cue (cue del deck): premere questo tasto per inviare il segnale pre-fader di questo deck
+      al canale cue per il monitoraggio. Una volta attivato, il tasto sarà acceso. Per effettuare il cueing
+      di più canali contemporaneamente, premere i tasti Deck Cue per entrambi i deck.
+15.   Fader del deck: spostare questo fader per regolare il volume del deck corrispondente.
+16.   Crossfader: muovere questo fader per mixare tra i due deck.
+17.   Search: la lunghezza di questa fascia rappresenta la lunghezza dell’intera traccia. Puntare il
+      dito in un punto lungo questo sensore per saltare a quel punto della traccia. I LED al di sopra
+      della fascia indicano il punto approssimativo della testina di riproduzione lungo la traccia.
+18.   Scroll/Load / Instant Doubles: girare questa manopola per navigare tra le liste e premerla per
+      selezionare una voce o caricare la traccia attualmente selezionata sul deck.
+      Premerla rapidamente due volte per caricare la stessa traccia su entrambi i deck (“raddoppio
+      istantaneo”).
+19.   Back/Load Prep: premere questo tasto per visualizzare la schermata precedente nel software.
+      Tenere premuto Shift e premere questo tasto per caricare la traccia selezionata sul Prepare
+      Crate.
+20.   Piatto ad alta coppia a trazione diretta: un motore potente fa girare questo piatto in alluminio
+      con punti di posizionamento velocità. Servirsi dell’interruttore Motor Torque sul pannello
+      posteriore per regolare la coppia dei piatti.
+      Nota bene: il piatto stesso non dovrebbe essere mantenuto in posizione per periodi prolungati
+      quando è alimentato per ruotare.
+21.   Disco di controllo con tappetino: Questo disco da 18,2 cm (7,2”) controlla la testina di
+      riproduzione audio nel software da DJ. Collocare il tappetino in dotazione sotto il disco di
+      controllo (se si preferisce è possibile utilizzare un tappetino diverso).
+      Nota bene: il disco di controllo può essere sostituito dall’utente fissando l’adattatore a
+      sgancio rapido al suo disco modificato. Il disco sostitutivo deve avere fori da 6 mm e il disco
+      in dotazione deve essere utilizzato come riferimento.
+22.   Adattatore a sgancio rapido: fissa il disco di controllo al piatto. Viene fornito fissato alla
+      parte superiore del disco di controllo. Per rimuovere il disco di controllo o il tappetino dal
+      piatto, tenere premuto il tasto sul lato dell’adattatore a sgancio rapido sollevando il disco
+      dall'asse. Dopo aver collocato nuovamente il disco sull'asse, pizzicare la parte alta dell’asse
+      stesso ruotando lentamente il disco fino a sentire uno scatto. Si blocca quando il solco a livello
+      dell’asse si allinea direttamente di fronte al pulsante sul lato dell’adattatore a sgancio rapido.
+23.   Stop Time: controlla la velocità alla quale il piatto rallenta fino a giungere all'arresto completo
+      ("tempo di frenata").
+
+
+                                                                                                        35
+24.   Slip / Motor Off: premere questo tasto per abilitare o disabilitare la modalità slip. In modalità
+      slip si può saltare ai punti Hot Cue, attivare Loop roll o utilizzare i piatti, mentre la timeline della
+      traccia procede. In altre parole, quando si interrompe l'azione verrà ripresa la normale
+      riproduzione della traccia dal punto in cui si sarebbe trovata se non fosse mai stata premuta
+      (ossia, come se la traccia avesse continuato a suonare).
+      Tenere premuto Shift e premere questo tasto per attivare o disattivare il motore del piatto
+      corrispondente. Ciò non influirà sulla riproduzione della traccia.
+25.   Censor / Reverse: tenere premuto questo tasto per attivare Censor, invertendo
+      temporaneamente la riproduzione della traccia. Rilasciare il tasto per riprendere la normale
+      riproduzione dal punto in cui si sarebbe trovata se la funzione Censor non fosse mai stata
+      attivata (ossia, come se la traccia avesse continuato a suonare).
+      Premere Shift per attivare Reverse, invertendo la riproduzione della traccia. Premere
+      nuovamente il tasto per riprendere la riproduzione normale da qualsiasi punto la testina si sia
+      arrestata.
+26.   Fader del pitch: muovere questo fader per regolare la velocità (pitch) della traccia. Si può
+      regolare l'intero intervallo con i tasti Pitch Range.
+27.   Pitch Range/Keylock: premere uno di questi tasti per regolare la gamma del fader del pitch a
+      ±8%, ±16% e ±50%.
+      Tenere premuto Shift, quindi premere questo tasto per attivare o disattivare il blocco tonalità: la
+      tonalità della canzone sarà bloccata in qualsiasi posizione si trovi il fader del pitch quando il
+      blocco tonalità è attivo. Questa funzione consente di modificare la velocità della canzone senza
+      cambiare la tonalità.
+28.   Bend del pitch -/+: tenere premuto uno di questi tasti per ridurre o aumentare (rispettivamente)
+      momentaneamente la velocità della traccia.
+29.   Shift: tenere premuto questo pulsante per accedere alle funzioni secondarie di altri comandi
+      dell’One.
+30.   Cue/Previous: quando il deck è in pausa, si può impostare un punto cue temporaneo
+      muovendo il piatto in modo da collocare la testina di riproduzione nel punto desiderato e
+      quindi premendo il tasto cue.
+      Durante la riproduzione, si può premere il tasto cue per far tornare la traccia a questo punto cue
+      temporaneo (se non è stato impostato alcun punto cue temporaneo, tornerà all'inizio della traccia).
+      Se il deck è in pausa, si può tenere premuto il tasto cue per riprodurre la traccia dal punto cue
+      temporaneo. Lasciando la pressione, il tasto cue farà tornare la traccia al punto cue
+      temporaneo e la riproduzione verrà interrotta. Per continuare la riproduzione senza tornare al
+      punto cue temporaneo, tenere premuto il tasto cue, quindi premere e tenere premuto il tasto
+      play e rilasciare entrambi i tasti.
+      Tenere premuto Shift e premere questo tasto per riprodurre la traccia con un effetto "stutter"
+      tornando all’inizio della traccia e riavviando la riproduzione.
+31.   Sync/Sync Off: premere questo tasto per abbinare automaticamente il tempo del deck
+      corrispondente con il tempo e la fase del deck opposto. Tenere premuto Shift e premere
+      questo tasto per disattivare la funzione Sync.
+32.   Start/Stop: premere questo tasto per avviare o fermare il piatto. Il LED attorno a questo tasto
+      sarà soffuso quando l’alimentazione è accesa e non ci sono tracce in corso di riproduzione,
+      luminoso quando una traccia viene riprodotta e rosso lampeggiante quando la riproduzione
+      della traccia è vicina alla fine.
+33.   Pad performance: questi pad hanno funzioni diverse su ciascun deck a seconda della
+      modalità pad corrente.
+      Nota bene: si veda Operazione > Modalità pad per scoprire come utilizzare i pad in ciascuna
+      modalità descritta di seguito.
+34.   Hot Cue / Pitch Play: premere questo tasto per entrare in modalità Hot Cue. Premere il tasto
+      una seconda volta per entrare in modalità Pitch Play.
+      Nota bene: il plugin Serato Pitch N Time (venduto separatamente) è necessario per utilizzare
+      la modalità Pitch Play.
+35.   Saved Loop: premere questo tasto per entrare in modalità Saved Loop (loop salvato).
+
+36
+36.   Roll / Auto Loop: premere questo tasto per entrare in modalità Roll. Premere il tasto una
+      seconda volta per entrare in modalità Auto Loop.
+37.   Sampler / Scratch Bank: premere questo tasto per entrare in modalità Sampler
+      (campionatore). Premere il tasto una seconda volta per entrare in modalità Scratch Bank. In
+      questa modalità è possibile assegnare canzoni a ciascun pad presente nel software e quindi
+      toccare il pad per caricare rapidamente la canzone sul deck dal punto di inizio specificato.
+      Questa funzione è utile per prepararsi ed esibirsi con lo scratch di campioni di canzoni.
+38.   Slicer / Slicer Loop: premere questo tasto per entrare in modalità Slicer. Premere il tasto una
+      seconda volta per entrare in modalità Slicer Loop.
+39.   Parameter /: servirsi di questi tasti per varie funzioni in ciascuna modalità pad. Tenere
+      premuto Shift e utilizzare questi tasti per accedere a parametri secondari.
+40.   Loop On/Off / Reloop: premere questo tasto per creare un loop automatico con la lunghezza
+      impostata nel software. Tenere premuto Shift e premere questo tasto per tornare all'ultimo loop
+      riprodotto e attivarlo immediatamente.
+41.   Loop In / x1/2: premere questo tasto per creare un punto di Loop In nel punto attuale.
+      Tenere premuto Shift e premere questo tasto per dimezzare la lunghezza del loop corrente.
+42.   Loop Out / x2: premere questo tasto per creare un punto di Loop Out nel punto attuale.
+      Tenere premuto Shift e premere questo tasto per raddoppiare la lunghezza del loop corrente.
+
+
+
+Pannello anteriore
+
+          2             5                   8             9            11        13
+
+      1       3     4       6           7       7                           12        14
+                                                              10
+
+1.    Mic 1 – Off/On: quando è impostato su Off, l'ingresso Mic 1 è disattivo. Quando è impostato
+      su On, l'ingresso Mic 1 sul pannello posteriore è attivo, e il suo segnale audio viene
+      convogliato direttamente al mix programma e cue mix.
+2.    Mic 1 Level: girare questa manopola per regolare il guadagno dell’ingresso Mic 1.
+3.    Mic 1 Tone: girare questa manopola per regolare l’equilibrio delle frequenze basse (bass) e alte
+      (treble) del segnale audio proveniente dall’ingresso Mic 1.
+4.    Mic 2 – Aux/Off/Mic 2: quando impostato su Aux, l’ingresso Aux In sul pannello posteriore è
+      attivo. Quando è impostato su Off, l’ingresso Aux e l’ingresso Mic 2 Input sono entrambi
+      disattivi. Quando è impostato su Mic 2, l'ingresso Mic 2 sul pannello posteriore è attivo, e il
+      suo segnale audio viene convogliato direttamente al mix programma e al mix cue. Entrambi i
+      segnali audio sono convogliati direttamente al mix programma e al mix cue quando attivi.
+5.    Mic 2 / Aux Level: girare questa manopola per regolare il guadagno dell’ingresso Mic 2 o
+      dell’ingresso AUX.
+6.    Mic 2 / Aux Tone: girare questa manopola per regolare l’equilibrio delle frequenze basse (bass)
+      e alte (treble) del segnale audio proveniente dall’ingresso Mic 2 o dell’ingresso AUX.
+7.    Deck Reverse: impostare questo interruttore su On per invertire la direzione dei fader del deck.
+      Impostarlo su Off per utilizzare la direzione convenzionale del fader.
+8.    Deck Contour: regola la variazione della curva del fader del deck. Girare la manopola verso
+      sinistra per una dissolvenza uniforme (mix) oppure verso destra per un taglio netto (scratch). La
+      posizione centrale è un'impostazione tipica per esibizioni in discoteca.
+9.    Crossfader Contour: regola la variazione della curva del crossfader. Girare la manopola verso
+      sinistra per una dissolvenza uniforme (mix) oppure verso destra per un taglio netto (scratch). La
+      posizione centrale è un'impostazione tipica per esibizioni in discoteca.
+
+
+                                                                                                    37
+10.   Crossfader Reverse: impostare questo interruttore su On per invertire la direzione del
+      crossfader. Impostarlo su Off per utilizzare la direzione convenzionale del fader.
+11.   Cue Mix: girare questo comando per mixare tra il canale cue e il mix di programma nelle uscite
+      cuffie. Quando impostato all’estrema sinistra, si sentirà unicamente il canale cue. Quando
+      impostato all’estrema destra, si udrà solo il mix programma.
+12.   Cue Split: quando questo tasto è acceso (On), l’audio delle cuffie sarà “suddiviso” in modo che
+      il canale cue venga sommato a mono e inviato al canale cuffie di sinistra, e che il mix di
+      programma venga sommato a mono e inviato al canale destro. Quando il tasto è fioco (Off), il
+      canale Cue e il mix di programma verranno “miscelati” insieme. In entrambi i casi, servirsi della
+      manopola Cue Mix per regolare la miscela dei due segnali.
+13.   Cue Level: girare questa manopola per regolare il livello del volume del canale cue.
+14.   Uscite cuffie (1/4”, 1/8” / 6,35 mm, 3,5 mm, TRS): collegare cuffie da 1/4” o 1/8” (6,5 mm o 3,5
+      mm) a questa uscita per il monitoraggio del mix e il cueing.
+
+
+Pannello posteriore
+
+       1    2       4       6   7      8
+                        5                                                                 12     13
+                                                9    10
+                                                                               11
+                3       3
+1.    Ingressi Mic 1–2 (XLR / 1/4”/6,35 mm, TRS): collegare microfoni o dispositivi a livello di linea a
+      questi ingressi mono. I relativi segnali audio mono sono divisi e convogliati direttamente al mix
+      programma stereo e al canale cue. Se si preferisce un ingresso di linea stereo, è possibile
+      utilizzare l’Ingresso Aux.
+2.    Ingresso Aux (RCA): collegare questi ingressi a una fonte audio esterna a livello di linea.
+      Ricordarsi di impostare l’interruttore Mic 2/AUX su Aux per riprodurre il segnale audio.
+3.    Selettore Phono/Line: impostare questo interruttore sulla posizione adeguata, a seconda del
+      dispositivo collegato agli ingressi Phono/Line del deck corrispondente. Se si utilizzano giradischi
+      a livello phono, impostare l’interruttore su Phono per garantire l’amplificazione aggiuntiva
+      necessaria per i segnali a livello phono. Se si utilizza un dispositivo a livello di linea quale un
+      giradischi a livello di linea, un lettore CD o un campionatore, impostare l’interruttore su Line.
+4.    Ingressi Deck Phono/Line (RCA): collegare questi ingressi a una fonte audio esterna o a un
+      giradischi, a un lettore CD o a un altro dispositivo a livello di linea. Ricordarsi di impostare il
+      selettore Phono/Line corrispondente nella posizione adeguata e impostare la manopola deck
+      source per quel deck su Phono/Line per riprodurre il relativo segnale audio su quel deck.
+5.    Phono Ground: se si utilizzano giradischi a livello phono dotati di cavo di messa a terra,
+      collegare quest’ultimo a questo terminale. Se si verifica un “ronzio” o un “brusio” basso, ciò
+      può significare che i giradischi non sono messi a terra.
+      Nota bene: alcuni giradischi hanno il cavo di messa a terra incorporato nel collegamento RCA
+      e, di conseguenza, non è necessario collegare nulla al terminale di messa a terra.
+6.    Uscite Master (RCA): collegare queste uscite a un altro mixer, dispositivo di registrazione, ecc.
+      Il mix di programma sarà inviato a queste uscite.
+7.    Uscite Main (XLR): collegare queste uscite ad altoparlanti o a un impianto di amplificazione.
+      Servirsi della manopola Main sul pannello superiore per controllare il livello del volume.
+8.    Uscite Booth (XLR): collegare queste uscite a monitor booth o a un impianto di amplificazione
+      booth. Servirsi della manopola Booth sul pannello superiore per controllare il livello del volume.
+9.    Porte USB (USB Tipo B): servirsi di cavi USB per collegare queste porte USB ad una porta
+      USB libera del computer. Questi collegamenti inviano e ricevono audio e informazioni di
+      controllo MIDI da e verso il computer.
+      Nota bene: assicurarsi di aver scaricato e installato il pannello di controllo Rane da rane.com.
+
+
+38
+10.   Coppia motore: girare questo interruttore per regolare la coppia del piatto. All’impostazione
+      massima, il piatto avranno la sensazione più forte e pesante dei giradischi “moderni”. Impostato
+      al minimo, saranno più leggeri e pieni di grazia: la sensazione di un giradischi “classico”.
+11.   Ventola di raffreddamento: mantenere l’area di fronte a questa bocchetta libera da ostacoli.
+      La ventola dietro la bocchetta raffredda il ONE, impedendone il surriscaldamento.
+12.   Ingresso di alimentazione: quando il ONE è spento, collegare il cavo di alimentazione in
+      dotazione a questo ingresso e quindi a una presa di alimentazione.
+13.   Interruttore di alimentazione: servirsi di questo interruttore per accendere e spegnere il ONE.
+      Accendere il ONE solo dopo aver collegato tutti i dispositivi di ingresso e prima di accendere
+      amplificatori e casse. Spegnere amplificatori e casse prima di spegnere il ONE.
+
+
+Operazione
+
+Modalità Pad
+
+Questo capitolo descrive le diverse modalità pad.
+Ciascun deck presenta otto pad, che si trovano
+sempre in una di queste modalità e i pad di ciascun
+deck si possono trovare in una modalità diversa.
+Premere uno dei tasti modalità pad per entrare nella
+modalità pad corrispondente su quel deck.                      1           2            3          4
+
+
+Hot Cue
+                                                               5           6            7          8
+In modalità Cue, ciascun pad assegna un punto hot
+cue o fa tornare la traccia a quel punto hot cue.
+
+Per entrare in modalità Cue, premere Hot Cue.
+Per assegnare un punto hot cue, premere un pad spento nel punto desiderato della traccia.
+Quando è assegnato, il pad si illumina (del colore corrispondente, se disponibile).
+
+Per saltare a un punto hot cue, premere un pad illuminato.
+Per cancellare un punto hot cue assegnato, premere Shift e il pad corrispondente.
+
+
+
+Pitch Play                                                                     Su
+In modalità Pitch Play, ciascun pad riproduce la
+traccia da un punto hot cue ad una trasposizione           +4           +5            +6         +7
+diversa (regolabile in semitoni). Per poter utilizzare   semitoni     semitoni      semitoni   semitoni
+questa modalità, il pack di espansione DJ Serato
+Pitch ‘n Time (venduto separatamente) deve
+essere installato. Si veda Hot Cue per sapere                0
+                                                                         +1           +2         +3
+come si assegnano i punti hot cue.                         (pitch
+                                                                      semitono      semitoni   semitoni
+                                                         originale)
+Per entrare in modalità Pitch Play, premere Hot
+Cue una seconda volta.                                                     Centro
+Per selezionare quale punto hot cue utilizzare,              0
+premere Shift e un pad dalla luce smorzata.                              +1           +2         +3
+                                                           (pitch
+                                                                      semitono      semitoni   semitoni
+                                                         originale)
+Per selezionare l’intervallo di trasposizione che
+utilizzeranno i pad, servirsi dei tasti Parameter
+/ (vedi schemi qui di seguito).
+                                                           -4           -3            -2          -1
+                                                         semitoni     semitoni      semitoni   semitono
+
+
+                                                                                                          39
+                                                                                Giù
+Per regolare la tonalità della traccia corrente in
+alto o in basso, premere Shift e i tasti Parameter                                                      0
+/, rispettivamente.                                       -3             -2            -1
+                                                                                                      (pitch
+                                                          semitoni       semitoni     semitone
+                                                                                                    originale)
+Per riprodurre la traccia dal punto hot cue,
+premere un pad acceso. Ciascun pad corrisponde
+a una trasposizione specifica (in semitoni), che
+dipende dall’intervallo di trasposizione corrente (si       -7             -6            -5           -4
+                                                          semitoni       semitoni      semitoni     semitoni
+vedano gli schemi qui di seguito). Il pad privo di
+trasposizione (il pitch originale) sarà illuminato di
+bianco.
+
+
+
+Saved Loop
+In modalità Saved Loop, ciascun pad attiva un loop precedentemente salvato nel software.
+Per entrare in modalità Saved Loop, premere Saved Loop.
+Per riprodurre un loop, premere un pad illuminato. Gli otto pad di ciascun deck corrisponderanno
+ai loop salvati 1-8 nel software e il colore di ciascun pad corrisponderà al colore assegnato a ciascun
+loop nel software.
+
+
+
+Roll
+In modalità Roll, ciascun pad attiva un Loop Roll momentaneo. Rilasciando il pad si ferma il loop roll
+e si riprende la riproduzione normale nel punto in cui la testina di riproduzione si troverebbe se non
+fosse stato attivato il loop roll (ossia, se la traccia avesse continuato la sua riproduzione per tutto il
+tempo).
+Nota bene: disattivare Show Beat Jump Controls nel menu Serato Setup per accedere a 8 giri di
+loop contemporaneamente. Si possono anche visualizzare e modificare le dimensioni del loop
+impostate nel software.
+
+Per entrare in modalità Roll, premere Roll.
+Per attivare un loop roll, tenere premuto un pad.
+Per modificare le otto lunghezze dei loop illustrate (nel software) premere uno dei tasti
+Parameter /. Il layout dei pad cambierà di conseguenza.
+Per spostare il loop in avanti o indietro, premere Shift e i tasti Parameter /, rispettivamente.
+
+
+
+Auto Loop                                                            Lunghezze di loop automatico
+In modalità Loop automatico, ciascun pad attiva o
+rilascia un auto-Loop di una lunghezza diversa.
+                                                               1/4 Beat      1/2 Beat      1 Beat        2 Beats
+Per entrare in modalità Auto Loop, premere Roll una
+seconda volta.
+
+                                                               4 Beats       8 Beats      16 Beats      32 Beats
+
+
+
+
+40
+Sampler
+In modalità campionatore, ogni pad innesca un campione, che è possibile assegnare nel software.
+
+
+
+Scratch Bank
+In modalità Scratch Bank, ciascun pad carica una canzone sul deck selezionato. È possibile
+assegnare la canzone e impostare il punto d’inizio nel software. Questa funzione è utile per
+prepararsi ed esibirsi con lo scratch di campioni di canzoni.
+Per entrare in modalità Scratch Bank, premere Sample una seconda volta.
+
+
+
+Slicer
+Importante: la traccia deve avere una griglia del beat affinché questa modalità funzioni.
+In modalità Slicer, gli otto pad rappresentano otto beat sequenziali, "slice", nella griglia del beat. Lo
+slice che viene riprodotto è rappresentato dal pad acceso; la luce si "sposta tra i pad" man mano
+che avanza attraverso ciascuna frase di otto slice. Si può premere un pad per riprodurre quello slice.
+Quando si rilascia il pad verrà ripresa la normale riproduzione della traccia dal punto in cui si sarebbe
+trovata se non fosse mai stata premuta (ossia, come se la traccia avesse continuato a suonare).
+
+Per entrare in modalità Slicer, premere Slicer. Se si carica un’altra traccia sul deck o si abilita la
+modalità Grid Edit, il deck uscirà dalla modalità Slicer.
+
+Per riprodurre uno slice, premere il pad corrispondente.
+Per ridurre o aumentare le dimensioni di quantizzazione, premere i tasti Parameter /.
+Per ridurre o aumentare le dimensioni degli slice, premere Shift e i tasti Parameter /.
+
+
+
+Slicer Loop
+Premere Slicer una seconda volta per entrare in modalità Slicer Loop. i pad si comportano come i
+pad nella modalità Slicer, tranne per il fatto che la frase da otto Slice effettuerà un loop anziché
+avanzare in maniera continua lungo la traccia.
+
+
+
+
+                                                                                                      41
+Benutzerhandbuch (Deutsch)
+Einführung
+Vielen Dank für den Kauf des ONE. Bei Rane schätzen wir Leistung und Zuverlässigkeit -
+genau wie Sie. Darum entwerfen wir unsere Geräte stets nur mit einem einzigen Ziel vor
+Augen: Ihre Anwendung so gut wie möglich zu unterstützen.
+
+
+Lieferumfang
+
+ONE
+Netzkabel
+USB-Kabel
+Software-Download-Karte
+Benutzerhandbuch
+Sicherheitshinweise und Garantieinformationen
+
+
+
+Kundendienst
+
+Für die neuesten Informationen zu diesem Produkt (Dokumentation, technische Daten,
+Systemanforderungen, Informationen zur Kompatibilität etc.) und zur Produktregistrierung
+besuchen Sie bitte: rane.com.
+Für zusätzlichen Produkt-Support besuchen Sie rane.com/support.
+
+
+
+
+42
+Setup
+
+1. Montieren Sie das Plattensystem
+
+1. Entfernen Sie die Verpackung der ONE-Basis. Entfernen
+   Sie die Plattenbaugruppen aus der Verpackung
+   (unterhalb des ONE). Für Montage und Betrieb stellen
+   Sie ONE am besten auf eine ebene, stabile Oberfläche.
+2. Legen Sie die Plattenteller auf jedes Deck der ONE-
+   Basis, indem Sie die Stifte im Boden der Plattenteller
+   mit den Löchern im ONE-Motor ausrichten. Drücken Sie
+   den Teller fest nach unten. Stellen Sie sicher, dass er
+   sich gleichmäßig dreht und nicht übermäßig wackelt.
+
+3. Legen Sie die Slipmat auf den Plattenteller. Bringen Sie dann die Control-Disc über die Spindel
+   (mit dem angebrachten Schnellwechseladapter darüber). Um die Control-Disc an der Spindel
+   zu fixieren, drücken Sie auf die Oberseite der Spindel, während Sie die Scheibe langsam drehen,
+   bis Sie ein Klicken hören. Sie rastet ein, wenn die Nut in der Spindel direkt gegenüber der Taste
+   an der Seite des Schnellwechseladapters ausgerichtet ist.
+
+
+2. Schließen Sie die Geräte an und beginnen Sie zu mixen!
+
+1. Vergewissern Sie sich, dass Sie die neueste Version Ihrer DJ-Software heruntergeladen und
+   installiert haben.
+2. Platzieren Sie ONE auf einer flachen, stabilen Oberfläche.
+3. Stellen Sie sicher, dass das Gerät ausgeschaltet ist. Verbinden Sie zuerst das mitgelieferte
+   Stromkabel mit dem ONE und stecken das Netzteil dann in eine Steckdose.
+4. Schalten Sie ONE mit dem Netzschalter ein.
+5. Verwenden Sie ein standardmäßiges USB-Kabel (im Lieferumfang enthalten), um den USB-
+   Anschluss mit einem verfügbaren USB-Anschluss Ihres Computers oder einem an den
+   Computer angeschlossenen Hub zu verbinden.
+6. Öffnen Sie Serato DJ Pro und los geht's!
+    Weitere Informationen zur Verwendung von Serato DJ Pro mit dem ONE finden Sie unter
+    support.serato.com.
+
+Beispiel
+                                Plattenspieler
+
+                                                                               Computer
+
+
+
+
+        Mikrofon
+
+
+
+      Lautsprecher                                                                          Steckdose
+
+
+
+
+                                                              Booth-Monitoren
+
+
+Teile, die nicht unter Einführung > Lieferumfang angegeben sind, sind separat erhältlich.
+
+
+
+                                                                                                        43
+Funktionen
+
+Oberseite
+
+
+           18                                       17         2       1         1         2
+                             20
+           19                                            23    3           7               3
+                             21                                            8
+                                                         24    4                           4
+                                                                      9              10
+                                                         25    5                11         5
+                             22                                6            12             6
+
+                                                                      13             13
+
+                                  28                      26    15          14            15
+      29                                       27
+      30        31                             39
+                     34 35 36 37 38
+                                               40
+           32                33
+                                                          28               16
+                                             41 42
+
+
+1.   Deck-Quelle: Stellen Sie diesen Regler auf die gewünschte Audioquelle von diesem Kanal: USB A
+     oder B (ein Track, der auf dieser Layer in der Software abgespielt wird) oder Line (ein Gerät, das
+     mit Deck Phono/Line In auf der Rückseite verbunden ist).
+     Hinweis: Wenn Sie Line auswählen, stellen Sie die Phono/Line-Wahlschalter auf der Rückseite
+     entsprechend ein.
+     Hinweis: Die Bedienelemente eines Decks senden MIDI-Informationen nur, wenn der Deck-
+     Quellenwahlschalter auf USB A oder B gestellt ist.
+     Hinweis: Wenn Sie DVS mit ONE verwenden, schließen Sie Ihre Plattenspieler an den Phono-
+     Eingang an, stellen Sie den Deck-Quellen-Wahlschalter jedoch auf USB A oder B, je nachdem,
+     wo Ihr Computer angeschlossen ist.
+2.   Deck-Level: Drehen Sie diesen Regler, um den Pre-Fader, Pre-EQ-Audiopegel des
+     entsprechenden Kanals einzustellen. Die Anzeige neben diesem Regler zeigt den Signalpegel
+     an (reduzieren Sie ihn, wenn das Signal zu "clippen" beginnt und den roten Teil der Anzeige
+     erreicht).
+3.   Deck EQ High: Drehen Sie diesen Regler, um die hohen Frequenzen anzupassen.
+4.   Deck EQ Mid: Drehen Sie diesen Regler, um die Mittenfrequenzen einzustellen.
+5.   Deck EQ Low: Drehen Sie diesen Regler, um die tiefen (Bass)-Frequenzen einzustellen.
+     Hinweis: Alle EQ-Steuerelemente sind "full-kill".
+6.   Deck LP/HP: Drehen Sie diesen Regler, um den Filter für das Deck einzustellen. Drehen Sie
+     den Regler gegen den Uhrzeigersinn, um einen Tiefpassfilter anzulegen. Drehen Sie den Regler
+     im Uhrzeigersinn, um einen Hochpassfilter anzuwenden. Stellen Sie ihn auf die mittlere Position
+     ("12:00") ein, um die Filter zu deaktivieren.
+
+
+44
+7.    Main: Mit diesem Regler stellen Sie die Ausgabelautstärke der Programm-Mix ein. Die Meter
+      neben diesem Regler zeigt den Programm-Mix Signalpegel an.
+8.    Booth: Mit diesem Regler stellen Sie die Ausgabelautstärke der Booth-Ausgänge ein.
+9.    Depth: Drehen Sie diesen Regler, um den „wet/dry“-Mix der internen Flex FX auf diesem Deck
+      einzustellen.
+10.   Beat: Drehen Sie diesen Regler, um die Zeiteinteilung für die ausgewählten Effekte einzustellen.
+11.   Tap: Drücken Sie diese Taste mehrmals im gewünschten Tempo, um die BPM-Rate für Beat-
+      Tempo-Effekte pro Kanal manuell einzustellen.
+12.   FX 1–6: Drücken Sie eine dieser Tasten, um den entsprechenden Softwareeffekt zu
+      aktivieren/deaktivieren, der in der Serato-Software FX 1 und FX 2 angezeigt wird. Durch
+      Drücken der Tasten wird jeweils ein Effekt aktiviert, durch Drücken und Halten der Tasten
+      werden mehrere Effekte gleichzeitig aktiviert.
+13.   Effekte umschalten: Kippen Sie diesen Schalter vom Körper weg, um die Software-Effekte
+      vorübergehend zu aktivieren. Kippen Sie den Schalter in die andere Richtung, um die Effekte
+      zu deaktivieren.
+      Ziehen und halten Sie diesen Schalter zum Körper hin, um die Software-Effekte vorübergehend
+      zu aktivieren, und lassen Sie den Schalter los, um die Effekte zu deaktivieren. Der Schalter
+      kehrt in die mittlere Position zurück.
+14.   Deck Cue: Drücken Sie diese Taste, um das Pre-Fader-Signal dieses Decks an den Cue-Kanal
+      zum Monitoring zu senden. Wenn die Taste aktiviert ist, leuchtet sie auf. Um mehrere Kanäle
+      gleichzeitig aufzurufen, drücken Sie die Deck Cue-Tasten für beide Decks.
+15.   Deck Fader: Bewegen Sie diesen Fader, um die Lautstärke des entsprechenden Decks
+      einzustellen.
+16.   Crossfader: Bewegen Sie diesen Fader, um zwischen den Decks zu mischen.
+17.   Search: Die Länge des Strips repräsentiert die Länge des gesamten Tracks. Legen Sie Ihren
+      Finger auf einen Punkt dieser Sensorfläche, um zu dieser Stelle im Track zu springen. Die LEDs
+      über dem Streifen zeigen die ungefähre Position des Abspielkopfs in der Spur an.
+18.   Scroll/Load / Instant Doubles: Drehen Sie diesen Regler, um durch die Listen zu blättern und
+      drücken Sie ihn, um ein Element auszuwählen oder den aktuell ausgewählten Track ins Deck zu
+      laden.
+      Drücken Sie diesen Regler zweimal schnell hintereinander, um den gleichen Track auf beide
+      Decks zu laden ("Instant Doubles").
+19.   Back / Load Prep: Drücken Sie diese Taste, um den vorherigen Bildschirm in der Software
+      anzuzeigen.
+      Halten Sie Shift gedrückt und drücken Sie diese Taste, um den aktuell ausgewählten Track in
+      den Bereich "Crate Vorbereiten" zu laden.
+20.   Plattenteller mit Direktantrieb und hohem Drehmoment: Ein leistungsstarker Motor dreht
+      diesen Aluminiumteller mit Geschwindigkeitspositionspunkten. Verwenden Sie den
+      Motordrehmomentschalter auf der Rückseite, um das Drehmoment der Plattenteller einzustellen
+      Hinweis: Der Plattenteller sollte nicht über längere Zeit hinweg in einer Position gehalten
+      werden, während er sich dreht.
+21.   Control-Disc mit Slipmat: Diese 18,2 cm (7,2") große Disc steuert den Audio-Abspielkopf in
+      Ihrer DJ-Software. Legen Sie die mitgelieferte Slipmat unter die Control-Disc (oder verwenden
+      Sie eine andere Slipmat, falls gewünscht).
+      Hinweis: Die Control-Disc kann vom Benutzer ersetzt werden, indem der
+      Schnellwechseladapter an Ihre eigene modifizierte Disc angebracht wird. Die Ersatz-Disc
+      muss drei 6mm-Löcher haben. Die mitgelieferte Disc sollte als Referenz verwendet werden.
+22.   Schnellwechseladapter: Dieser sichert die Control-Disc auf dem Plattenteller. Er ist an der
+      Oberseite der Control-Disc angebracht. Um die Control-Disc oder Slipmat von der Platte zu
+      entfernen, halten Sie die Taste an der Seite des Schnellwechseladapters gedrückt, während
+      Sie die Disc von der Spindel abheben. Nachdem Sie die Disc wieder auf die Spindel gesetzt
+      haben, drücken Sie auf die Oberseite der Spindel, während Sie die Disc langsam drehen, bis
+      Sie ein Klicken hören. Sie rastet ein, wenn die Nut in der Spindel direkt gegenüber der Taste an
+      der Seite des Schnellwechseladapters ausgerichtet ist.
+
+
+                                                                                                   45
+23.   Stop Time: Steuert die Geschwindigkeit, mit der der Plattenteller bis zum Stillstand bremst
+      ("Bremszeit").
+24.   Slip / Motor Off: Drücken Sie diese Taste, um den Slip-Modus zu aktivieren/deaktivieren. Im
+      Slip-Modus können Sie zu Hot Cue-Punkten springen, Loop-Rolls auslösen oder die
+      Plattenteller verwenden während die Zeitleiste des Tracks normal fortgesetzt wird. Mit anderen
+      Worten: Wenn Sie die Aktion stoppen, nimmt der Track die normale Wiedergabe an jenem
+      Punkt auf, an dem sich der Track befunden hätte, wenn Sie keine Aktionen durchgeführt hätten
+      (praktisch als ob der Track einfach normal weitergespielt worden wäre).
+      Halten Sie die Shift gedrückt und drücken Sie diese Taste, um den Motor des entsprechenden
+      Plattentellers zu aktivieren bzw. zu deaktivieren. Dies hat keinen Einfluss auf die Wiedergabe
+      des Tracks.
+25.   Censor / Reverse: Halten Sie diese Taste gedrückt, um Censor zu aktivieren, wodurch die
+      Wiedergabe des Tracks vorübergehend umgekehrt wird. Lassen Sie diese Taste los, um die
+      normale Wiedergabe ab der Stelle wieder aufzunehmen, an der sich der Track befunden hätte,
+      wenn Sie die Censor-Funktion nie aktiviert hätten (so als ob der Track die ganze Zeit normal
+      abgespielt worden wäre).
+      Drücken Sie Shift und diese Taste, um die Umkehrung zu aktivieren, wodurch die Wiedergabe
+      des Tracks umgekehrt wird. Drücken Sie die Taste erneut, um die normale Wiedergabe an der
+      Stelle fortzusetzen, an der der Audio-Abspielkopf stoppt.
+26.   Pitch Fader: Bewegen Sie diesen Fader, um die Geschwindigkeit (Pitch) des Tracks
+      einzustellen. Sie können den Gesamtbereich mit den Pitch Range-Tasten einstellen.
+27.   Pitch-Bereich / Keylock: Drücken Sie eine dieser Tasten, um den Bereich des Pitch Faders
+      auf ±8%, ±16% und ±50% einzustellen.
+      Halten Sie Shift gedrückt und drücken Sie dann diese Taste, um die Keylock-Funktion zu
+      aktivieren oder zu deaktivieren: die Tonart des Songs wird sich danach richten, in welcher
+      Position der Pitch-Fader war, als die Keylock-Funktion aktiviert wurde. Mit dieser Funktion
+      können Sie das Tempo des Songs ändern, ohne die Tonart zu ändern.
+28.   Pitch Bend -/+: Halten Sie eine dieser Tasten gedrückt, um das Tempo des Tracks
+      vorübergehend (entweder) zu verringern oder zu erhöhen.
+29.   Shift: Halten Sie diese Taste gedrückt, um auf sekundäre Funktionen anderer Bedienelemente
+      des ONE zuzugreifen.
+30.   Cue / Zurück: Wenn die Wiedergabe des Decks pausiert wird, können Sie einen temporären
+      Cue-Punkt setzen, indem Sie den Plattenteller bewegen, um den Audio-Abspielkopf in die
+      gewünschte Position zu bringen, und dann die Cue-Taste drücken.
+      Während der Wiedergabe können Sie die Cue-Taste drücken, um den Track zu diesem
+      temporären Cue-Punkt zurückzubringen. (Wenn Sie keinen temporären Cue-Punkt eingestellt
+      haben, beginnt die Wiedergabe wieder am Beginn des Tracks.)
+      Wenn das Deck pausiert ist, können Sie die Cue-Taste gedrückt halten, um den Track ab dem
+      temporären Cue-Punkt wiederzugeben. Das Loslassen der Cue-Taste bringt den Track zum
+      temporären Cue-Punkt zurück und pausiert ihn. Um die Wiedergabe fortzusetzen ohne zum
+      temporären Cue-Punkt zurückzuspringen, halten Sie die Cue-Taste und dann die
+      Wiedergabe-Taste gedrückt und lassen dann beide Tasten los.
+      Halten Sie Shift gedrückt und drücken Sie diese Taste, um den Track mit einem "Stottereffekt"
+      zu versehen, indem Sie zum Anfang des Tracks zurückkehren und die Wiedergabe neu starten.
+31.   Sync / Sync Off: Drücken Sie diese Taste, um Tempo und Phase des jeweiligen Decks mit dem
+      Tempo und der Phase des anderen Decks automatisch zu synchronisieren. Halten Sie Shift
+      und drücken Sie diese Taste, um Sync zu deaktivieren.
+32.   Start/Stop: Drücken Sie diese Taste, um den Plattenteller zu starten oder zu stoppen. Die LED
+      um diese Taste leuchtet nur schwach, wenn das Gerät eingeschaltet ist und kein Track
+      abgespielt wird. Sie leuchtet hell bei der Wiedergabe eines Tracks und blinkt rot, wenn der
+      Track beinahe am Ende angelangt ist.
+33.   Performance-Pads: Je nach aktuellem Pad-Modus besitzen diese Pads unterschiedliche
+      Funktionen auf jedem Deck.
+      Hinweis: Unter Betrieb > Pad-Modi erfahren Sie, wie Sie die Pads in jedem Modus verwenden.
+
+46
+34.   Hot Cue / Pitch Play: Drücken Sie diese Taste, um den Hot Cue-Modus aufzurufen. Drücken
+      Sie die Taste ein zweites Mal, um den Pitch Play-Modus aufzurufen.
+      Hinweis: Für die Verwendung des Pitch Play-Modus ist das Serato Pitch N Time-Plugin
+      (separat erhältlich) erforderlich.
+35.   Saved Loop: Drücken Sie diese Taste, um in den Saved Loop-Modus zu gelangen.
+36.   Roll / Auto Loop: Drücken Sie diese Taste, um in den Roll-Modus zu gelangen. Drücken Sie
+      die Taste ein zweites Mal, um den Auto Loop-Modus aufzurufen.
+37.   Sampler: Drücken Sie diese Taste, um in den Sampler-Modus zu gelangen. Drücken Sie die
+      Taste ein zweites Mal, um den Scratch Bank-Modus aufzurufen. In diesem Modus können Sie
+      jedem Pad in der Software Songs zuweisen und dann auf das Pad tippen, um den Song schnell
+      vom angegebenen Startpunkt auf das Deck zu laden. Dies ist nützlich, wenn Sie Song-Samples
+      zum Scratchen vorbereiten und aufführen möchten.
+38.   Slicer / Slicer Loop: Drücken Sie diese Taste, um in den Slicer-Modus zu gelangen. Drücken
+      Sie die Taste ein zweites Mal, um den Slicer Loop-Modus aufzurufen.
+39.   Parameter /: Diese Tasten haben in jedem Pad-Modus unterschiedliche Funktionen. Halten
+      Sie Shift gedrückt und verwenden Sie diese Tasten, um auf Sekundärparameter zuzugreifen.
+40.   Loop On/Off / Reloop: Drücken Sie diese Taste, um einen Auto-Loop mit der in der Software
+      eingestellten Länge zu erstellen. Halten Sie Shift gedrückt und drücken Sie diese Taste, um
+      zum zuletzt gespielten Loop zu springen und diesen sofort zu aktivieren.
+41.   Loop In / x1/2: Halten Sie diese Taste gedrückt, um einen Loop In-Punkt an der aktuellen
+      Position zu erstellen.
+      Halten Sie Shift gedrückt und drücken Sie diese Taste, um die Länge des aktuellen Loops zu
+      halbieren.
+42.   Loop Out / x2: Halten Sie diese Taste gedrückt, um einen Loop Out-Punkt an der aktuellen
+      Position zu erstellen.
+      Halten Sie Shift gedrückt und drücken Sie diese Taste, um die Länge des aktuellen Loops zu
+      verdoppeln.
+
+Vorderseite
+
+          2              5                    8             9              11        13
+
+      1        3     4       6            7       7                             12        14
+                                                                10
+
+1.    Mic 1 – Off/On: Ist Aus eingestellt, wird der Mic 1-Eingang deaktiviert. Ist Ein eingestellt, dann ist
+      der Mic 1-Eingang auf der Rückseite aktiv und sein Audiosignal wird direkt zum Programm-Mix
+      und Cue-Mix geroutet.
+2.    Mic 1 Level: Drehen Sie diesen Regler, um die Lautstärke des Mic 1-Eingang einzustellen.
+3.    Mic 1 Tone: Drehen Sie diesen Regler, um die Balance zwischen tiefen Frequenzen (Bass) und
+      hohen Frequenzen (Treble) des Audiosignals einzustellen, das vom Mic 1-Eingang kommt.
+4.    Mic 2 – Aux/Off/Mic 2: Bei Einstellung auf Aux ist der Aux In auf der Rückseite aktiv. Ist Off
+      eingestellt, sind sowohl der Aux-Eingang als auch der Mic 2-Eingang deaktiviert. Ist Mic 2
+      eingestellt, dann ist der Mic 2-Eingang auf der Rückseite aktiv und sein Audiosignal wird direkt
+      zum Programm-Mix und Cue- Mix geroutet. Beide Audiosignale werden direkt zum Programm-
+      Mix und Cue-Mix geleitet, wenn sie aktiv sind.
+5.    Mic 2 / Aux Level: Drehen Sie diesen Regler, um die Lautstärke des Mic 2-Eingangs oder des
+      AUX-Eingangs einzustellen.
+6.    Mic 2 / Aux Tone: Drehen Sie diesen Regler, um die Balance zwischen tiefen Frequenzen
+      (Bass) und hohen Frequenzen (Treble) des Audiosignals einzustellen, das vom Mic 2-Eingang
+      oder AUX-Eingang kommt.
+7.    Deck Reverse: Stellen Sie diesen Schalter auf Ein, um die Richtung der Deck-Fader
+      umzukehren. Stellen Sie es auf Aus, um die konventionelle Fader-Richtung zu verwenden.
+
+
+                                                                                                         47
+8.    Deck Contour: Passt die Steigung der Deckfaderkurve an. Drehen Sie den Regler nach links
+      für sanfte Übergänge (Mixing) oder nach rechts für abrupte Übergänge (Scratching). Die
+      Mittelposition ist eine typische Einstellung für Club-Performances.
+9.    Crossfader Contour: Passt die Steigung der Crossfader-Kurve an. Drehen Sie den Regler
+      nach links für sanfte Übergänge (Mixing) oder nach rechts für abrupte Übergänge (Scratching).
+      Die Mittelposition ist eine typische Einstellung für Club-Performances.
+10.   Crossfader Reverse: Stellen Sie diesen Schalter auf Ein, um die Richtung des Crossfaders
+      umzukehren. Stellen Sie es auf Aus, um die konventionelle Fader-Richtung zu verwenden.
+11.   Cue Mix: Drehen Sie den Regler, um im Kopfhörerkanal zwischen Cue und Programm zu
+      wechseln. Wenn der Regler ganz nach links gedreht ist, kann nur der Cue-Kanal gehört werden.
+      Wenn der Regler ganz nach rechts gedreht ist, ist nur der Programm-Mix zu hören.
+12.   Cue Split: Wenn dieser Schalter in der Position On, wird das Kopfhörersignal „aufgeteilt“, so
+      dass der Cue-Kanal auf Mono summiert und an den linken Kopfhörerkanal gesendet wird und
+      der Programm-Mix auf Mono summiert und an den rechten Kanal gesendet wird. Wenn dieser
+      Schalter in der Position Off ist, wird der Cue-Kanal und Programm-Mix „zusammengemischt“.
+      Verwenden Sie in beiden Fällen den Cue Mix-Regler, um den Mix der beiden Signale zu
+      steuern.
+13.   Cue Level: Drehen Sie diesen Regler, um die Lautstärke des Cue-Kanals einzustellen.
+14.   Kopfhörerausgänge (1/4”, 1/8” / 6,35 mm, 3.5 mm, TRS): Schließen Sie Ihren 1/4" oder 1/8"-
+      Kopfhörer (6,35 mm oder 3,5 mm) zum Cueing und Mix-Monitoring an diesen Ausgang an.
+
+
+Rückseite
+
+       1    2       4       6   7    8
+                        5                                                            12     13
+                                              9   10
+                                                                          11
+                3       3
+
+1.    Mic Eingänge 1–2 (XLR / 1/4”/6,35 mm, TS): Verbinden Sie Mikrofone oder Line-Level-Geräte
+      mit diesen Mono-Eingängen. Ihre Mono-Audiosignale werden aufgeteilt und direkt an den
+      Stereo-Programm-Mix und den Cue-Kanal geleitet. Wenn Sie eine Stereo-Line-Eingabe
+      bevorzugen, kann Aux-Eingänge verwendet werden.
+2.    Aux In (Cinch): Verbinden Sie diese Eingänge mit einer externen Line-Level-Audioquelle.
+      Denken Sie daran, den Mic 2/AUX -Schalter auf Aux zu stellen, um das Audiosignal
+      abzuspielen.
+3.    Phono/Line-Wahlschalter: Stellen Sie diesen Schalter auf die richtige Position, je nachdem,
+      welches Gerät an die Phono/Line-Eingänge des entsprechenden Decks angeschlossen ist.
+      Wenn Sie Phono-Level-Plattenspieler verwenden, stellen Sie diesen Schalter auf Phono, um eine
+      zusätzliche Verstärkung zu ermöglichen, die bei Phono-Level-Signalen notwendig ist. Wenn Sie
+      ein Line-Level-Gerät, wie etwa einen Line-Level-Plattenspieler, einen CD-Player oder einen
+      Sampler, verwenden, stellen Sie diesen Schalter auf Line.
+4.    Deck Phono/Line In (Cinch): Schließen Sie diese Eingänge an eine externe Audioquelle oder
+      an einen Plattenspieler, CD-Player oder ein anderes Line-Level-Gerät an. Denken Sie daran,
+      den entsprechenden Phono/Line-Wahlschalter auf die richtige Position zu stellen und den
+      Deck-Quellenwahlschalter für dieses Deck auf Phono/Line zu stellen, um sein Audiosignal
+      auf diesem Deck abzuspielen.
+5.    Phono Ground: Wenn Sie Phono-Level-Plattenspieler mit einem Erdungsdraht verwenden,
+      verbinden Sie den Draht mit diese Klemme. Wenn Sie ein tiefes Brummgeräusch oder Summen
+      hören, könnte dies bedeuten, dass Ihre Plattenspieler nicht geerdet sind.
+      Hinweis: Einige Plattenspieler haben einen im Cinch-Anschluss integrierten Erdungsdraht. In
+      diesem Fall muss nichts an die Erdungsklemmen angeschlossen werden.
+6.    Session-Ausgang (Cinch): Verbinden Sie diese Ausgänge mit einem anderen Mixer,
+      Aufnahmegerät usw. Der Programmmix wird an diese Ausgänge gesendet.
+
+
+48
+7.    Main-Ausgang (XLR): Verbinden Sie diese Ausgänge mit Ihren Lautsprechern oder einem
+      Verstärkersystem. Verwenden Sie den Main-Regler an der Oberseite, um die Lautstärke
+      einzustellen.
+8.    Booth-Ausgang (XLR): Verbinden Sie diese Ausgänge mit Booth-Monitoren oder einem Booth-
+      Verstärkersystem. Verwenden Sie den Booth-Regler an der Oberseite, um die Lautstärke
+      einzustellen.
+9.    USB-Anschlüsse (USB Typ-B): Verwenden Sie USB-Kabel, um diese Anschlüsse mit einem
+      freien USB-Anschluss Ihres Computers zu verbinden. Diese Verbindungen senden und
+      empfangen MIDI-Steuerinformationen an - oder von - einem Computer.
+      Hinweis: Stellen Sie sicher, dass Sie das Rane Control-Panel von rane.com heruntergeladen
+      und installiert haben.
+10.   Drehmoment des Motors: Legen Sie diesen Schalter um, um das Drehmoment der
+      Plattenteller einzustellen. Ist der Schalter nach oben gekippt, fühlen sich die Plattenteller so
+      schwer und robust wie die „modernen“ Plattenspieler an. Ist der Schalter nach unten gekippt,
+      sind sie leichter und beweglicher—etwa wie bei einem „klassischen“ Plattenspieler.
+11.   Lüfter: Der Bereich vor dieser Lüftungsöffnung darf nie blockiert werden. Der Ventilator
+      verhindert, dass das Gerät überhitzt.
+12.   Netzeingang: Während ONE ausgeschaltet ist, schließen Sie das mitgelieferte Netzkabel an
+      diesen Eingang und dann an eine Steckdose an.
+13.   Netzschalter: Verwenden Sie diesen Schalter, um ONE ein- oder auszuschalten. Schalten Sie
+      ONE erst ein, nachdem Sie all Ihre Eingabegeräte verbunden haben und bevor Sie Ihren
+      Verstärker und Lautsprecher einschalten. Schalten Sie Ihre Verstärker und Lautsprecher aus,
+      bevor Sie Ihren ONE ausschalten.
+
+
+
+Betrieb
+
+Pad-Modi
+
+In diesem Kapitel werden die verschiedenen Pad-
+Modi beschrieben. Jedes Deck hat acht Pads, die
+sich stets in einem dieser Modi befinden. Die Pads
+eines Decks können sich in einem anderen Modus
+befinden. Drücken Sie eine der Pad Modus-Tasten,
+um in den entsprechenden Pad-Modus auf diesem                 1          2           3          4
+Deck zu wechseln.
+
+
+Hot Cue                                                       5          6           7          8
+Im Cue-Modus weist jedes Pad einen Hot Cue-Punkt
+zu oder lässt den Track zu diesem Hot Cue-Punkt
+zurückspringen.
+Um in den Hot Cue-Modus zu gelangen, drücken Sie Hot Cue.
+
+Um einen Hot-Cue-Punkt zuzuweisen, drücken Sie ein unbeleuchtetes Pad an der gewünschten
+Stelle in Ihrem Track. Das Pad leuchtet auf, wenn es zugewiesen ist (mit der entsprechenden Farbe,
+falls verfügbar).
+Um zu einem Hot-Cue-Punkt zu springen, drücken Sie ein beleuchtetes Pad.
+Um einen zugewiesenen Hot Cue-Punkt zu löschen, drücken Sie die Shift und das
+entsprechende Pad.
+
+
+
+
+                                                                                                    49
+Pitch Play                                                            Aufwärts
+
+Im Pitch Play-Modus spielt jedes Pad den Track
+eines     Hot-Cue-Punkts       in   einer   anderen      +4          +5         +6           +7
+                                                      Halbtöne    Halbtöne   Halbtöne     Halbtöne
+Transposition (in Halbtönen einstellbar). Das
+Serato Pitch'n Time DJ Expansion Pack (separat
+erhältlich) muss installiert sein, um diesen Modus
+                                                          0
+zu verwenden. Im Hot Cue erfahren Sie, wie Sie                      +1          +2           +3
+                                                      (Original
+Hot-Cue-Punkte zuweisen.                                          Halbton    Halbtöne     Halbtöne
+                                                      Tonhöhe)
+Um den Pitch Play-Modus aufzurufen, drücken
+Sie ein zweites Mal Hot Cue.                                            Mitte
+Um auszuwählen, welcher Hot-Cue-Punkt
+verwendet werden soll, drücken Sie Shift und             0
+                                                                    +1          +2           +3
+                                                      (Original
+ein schwach beleuchtetes Pad.                                     Halbton    Halbtöne     Halbtöne
+                                                      Tonhöhe)
+Um den Transpositionsbereich auszuwählen,
+den die Pads verwenden, verwenden Sie die
+Parameter /-Tasten (siehe Diagramme).                  -4          -3         -2          -1
+Um die Tonart des aktuellen Tracks nach unten         Halbtöne    Halbtöne   Halbtöne     Halbton
+oder oben zu verschieben, drücken Sie die Taste
+Shift bzw. die Tasten Parameter /.                                 Abwärts
+Um den Track vom Hot-Cue-Punkt abzuspielen,
+drücken Sie ein beleuchtetes Pad. Jedes Pad                                                   0
+                                                         -3          -2           -1
+entspricht einer spezifischen Transposition (in                                           (Original
+                                                      Halbtöne    Halbtöne      Halbton
+                                                                                          Tonhöhe)
+Halbtonschritten) je nach dem aktuellen Bereich der
+Tranposition (siehe Diagramme). Das Pad ohne
+Transposition (ursprüngliche Tonhöhe) leuchtet
+weiß.                                                    -7          -6         -5           -4
+                                                      Halbtöne    Halbtöne   Halbtöne     Halbtöne
+
+
+Saved Loop
+Im Modus Gespeichertes Loop löst jedes Pad einen zuvor in Ihrer Software gespeicherten Loop aus.
+Drücken Sie zum Aufrufen des Modus Gespeichertes Loop die Taste Saved Loop.
+Um einen Loop abzuspielen, drücken Sie ein beleuchtetes Pad. Die acht Pads jedes Decks
+entsprechen den gespeicherten Loops 1 bis 8 in Ihrer Software. Die Farbe jedes Pads entspricht der
+Farbe, die jedem Loop in Ihrer Software zugewiesen ist.
+
+Roll
+Im Roll-Modus löst jedes Pad einen temporären Loop-Roll aus. Das Loslassen des Pads stoppt die
+Loop-Roll und wechselt zur normalen Wiedergabe an den Punkt, an dem die Wiedergabe sich
+befinden würde, wenn keine Loop-Roll getriggert worden wäre (so als ob der Track normal
+wiedergegeben worden wäre).
+Hinweis: Deaktivieren Sie Show Beat Jump Controls im Serato Setup-Menü, um auf 8 Loop-Rolls
+gleichzeitig zuzugreifen. Sie können in der Software auch die festgelegten Loop-Größen anzeigen
+und bearbeiten.
+Um in den Roll-Modus zu gelangen, drücken Sie Roll, so dass es türkis leuchtet.
+Um einen Loop-Roll auszulösen, halten Sie ein Pad gedrückt.
+Um zu ändern, welche acht Längen (in der Software) für die Loop-Rolls angezeigt werden,
+drücken Sie einen der Parameter /-Tasten. Das Pad-Layout wird verschoben, um es
+anzupassen.
+Um einen Loop-Roll rückwärts oder vorwärts zu verschieben, drücken Sie Shiftund die
+jeweiligen Parameter /-Tasten.
+
+
+
+50
+Auto-Loop                                                             Auto-Loop-Längen
+Im Autoloop-Modus triggert oder gibt jedes Pad einen
+Autoloop mit unterschiedlicher Länge frei.
+                                                           1/4 Beat    1/2 Beat    1 Beat    2 Beats
+Um den Auto-Loop-Modus aufzurufen, drücken Sie ein
+zweites Mal Roll.
+
+
+Sampler                                                    4 Beats     8 Beats    16 Beats   32 Beats
+
+Im Sampler-Modus löst jedes Pad ein Sample aus, das
+Sie in der Software zuweisen können.
+
+
+Scratch-Bank
+Im Scratch Bank-Modus lädt jedes Pad einen Song in das ausgewählte Deck. Sie können den Song
+zuweisen und den Startpunkt in der Software festlegen. Dies ist nützlich, wenn Sie Song-Samples
+zum Scratchen vorbereiten und aufführen möchten.
+Um den gespeicherten Scratch Bank-Modus aufzurufen, drücken Sie ein zweites Mal auf
+Sample.
+
+
+Slicer
+Wichtig: Ihr Track muss über ein Beatgrid verfügen, damit dieser Modus funktioniert.
+Im Slicer-Modus repräsentieren die acht Pads acht aufeinanderfolgende Schläge - sogenannte
+„Slices“ - innerhalb des Beat-Grid. Die aktuell wiedergegebene Slice wird durch das aktuell
+beleuchtete Pad dargestellt; das Licht „bewegt sich durch die Pads“, so wie es sich durch jedes der
+acht Slices bewegt. Sie können ein Pad drücken, um diese Slice abzuspielen. Wenn Sie das Pad
+loslassen, wird der Track zur normalen Wiedergabe zu jenem Punkt zurückkehren, an dem sich der
+Track befinden würde, wenn Sie das Pad nie gedrückt hätten (so als ob der Track einfach normal
+weitergelaufen wäre).
+Um in den Slicer-Modus zu gelangen, drücken Sie Slicer / Transport, so dass es rot leuchtet. Das
+Deck wird den Slicer-Modus verlassen, wenn Sie einen anderen Track in das Deck laden oder den
+Grid-Bearbeitungsmodus aktivieren.
+Um eine Scheibe abzuspielen, drücken Sie das entsprechende Pad.
+Um die Quantize-Größe zu erhöhen oder zu reduzieren, drücken Sie auf die Parameter /-
+Tasten.
+Um die Größe des Slices zu erhöhen oder zu reduzieren, drücken Sie Shift und die Parameter
+/-Tasten.
+
+
+Slicer Loop
+Drücken Sie Slicer ein zweites Mal, um den Slicer Loop-Modus aufzurufen. Die Pads verhalten sich
+genauso wie im Slicer-Modus, mit dem Unterschied, dass die Phrase mit den acht Slices als
+kontinuierlicher Loop im Track wiedergegeben wird.
+
+
+
+
+                                                                                                 51
+52
+Appendix (English)
+Technical Specifications
+
+Digital Audio
+Converters                       Cirrus Logic, 24-bit PCM, 48 kHz
+
+Digital Signal Processing        32-bit, Floating Pont, Double precision
+
+Dynamic Range                    ADC                             113 dB
+(A-weighted, unity gain)         DAC                             113 dB
+                                 CD Input to Analog Output       110 dB
+                                 CD Input to USB Output          113 dB
+                                 USB Input to Analog Output      113 dB
+
+Inputs
+Microphone 1/2                   Analog Gain                     25 dB
+(Combo XLR/1/4" [6.35 mm] TRS,   Maximum Input                   110 mV
+Mic/Line switchable)
+                                 Gain Trim                       Off to +26 dB (unity at center)
+                                 Tone Control                    2-band
+
+Aux Input                        Maximum Input                   4 Vrms
+(RCA stereo pair)                Dynamic Range (A-weighted)      114 dB
+                                 Gain Trim                       Off to +12 dB
+                                 Tone Control                    2-band
+
+CD/Phono Inputs 1/2              CD                              Line
+(RCA stereo pairs, switchable)   Maximum Input                   4 Vrms
+                                 Gain Trim                       Off to +12 dB
+                                 Tone Control                    3-band, full-cut to +10 dB
+                                 THD+N (20 kHz BW @ 1 kHz)       0.004%
+
+                                 Phono                           RIAA
+                                 RIAA Curve                      +/-0.25 dB
+                                 Gain (@ 1 kHz)                  31.5 dB
+                                 Maximum Input (@ 1 kHz)         106 mV
+                                 Dynamic Range (A-weighted)      102 dB
+
+Outputs
+Main Outputs                     Gain Trim                       Off to 0 dB
+(XLR)                            Maximum Output                  8 Vrms
+                                 THD+N (20 kHz BW @ 1 kHz)       0.004%
+                                 Frequency Response              Flat
+
+Booth Outputs                    Gain Trim                       Off to 0 dB
+(XLR)                            Maximum Output                  8 Vrms
+                                 THD+N (20 kHz BW @ 1 kHz)       0.004%
+                                 Frequency Response              Flat
+
+
+
+
+                                                                                                   53
+ Outputs (continued)
+ Master Outputs                     Maximum Output                    4 Vrms
+ (RCA stereo pair)                  THD+N (20 kHz BW @ 1 kHz)         0.004%
+                                    Frequency Response                Flat
+
+ Headphone Outputs                  Maximum Output Voltage            4 Vrms (no load)
+ (1/4"/6.35 mm and 1/8"/3.5 mm      Output Power                      50 mW (50 ohms)
+ TRS)
+                                    Dynamic Range (A-weighted)        108 dB
+
+ General
+ Pads                               (16) on/off multi-color back-lit pads (8 per deck, 8 modes each)
+
+ Faders                             (1) MAG FOUR tension-adjustable crossfader with independent
+                                    Contour and Reverse controls
+                                    (2) Standard channel faders with shared Contour and Reverse
+                                    controls
+
+ Connectors                         (2) XLR outputs (Main)
+                                    (2) XLR outputs (Booth)
+                                    (1) RCA stereo output pair (Master)
+                                    (2) XLR / 1/4” (6.35 mm) TRS inputs (Mic 1–2)
+                                    (2) RCA stereo input pairs (Deck 1–2)
+                                    (1) RCA stereo input pair (Aux)
+                                    (1) 1/4” (6.35 mm) TRS output (Headphones)
+                                    (1) 1/8” (3.5 mm) TRS output (Headphones)
+                                    (2) USB Type-B ports
+                                    (1) IEC power cable input
+
+ Power                              Connection: IEC
+                                    Voltage: 100–240 V, 50/60 Hz
+                                    Consumption: 50 W
+
+ Dimensions                         26.5” x 13.6” x 4.9”
+ (width x depth x height)           674 x 345 x 124.3 mm
+
+ Weight                             23.55 lbs.
+ (including platters)               10.68 kg
+
+Specifications are subject to change without notice.
+
+
+
+Trademarks & Licenses
+Rane is a trademark of inMusic Brands, Inc., registered in the U.S. and other countries.
+Serato, Serato DJ Pro, and the Serato logo are registered trademarks of Serato Audio Research.
+All other product names, company names, trademarks, or trade names are those of their respective owners.
+
+
+
+
+54
+55
+rane.com
+
+
+
+
+Manual Version 1.5
+

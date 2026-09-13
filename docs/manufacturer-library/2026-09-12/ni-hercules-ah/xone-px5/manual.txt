@@ -1,0 +1,2165 @@
+                                                 ®
+
+
+
+
+                            ®
+
+
+              USER GUIDE
+
+
+              Publication AP10733_2
+
+
+
+ALLEN&HEATH            1              AP10733_2_XONE:PX5 User Guide
+              Page left intentionally blank.
+
+
+
+
+ALLEN&HEATH                     2              AP10733_2_XONE:PX5 User Guide
+                      Limited One Year Manufacturer’s Warranty
+      Allen & Heath warrants the Allen & Heath - branded hardware product and accessories
+      contained in the original packaging ("Allen & Heath Product”) against defects in materials
+      and workmanship when used in accordance with Allen & Heath's user manuals, technical
+      specifications and other Allen & Heath product published guidelines for a period of ONE (1)
+      YEAR from the date of original purchase by the end-user purchaser ("Warranty Period").
+      This warranty does not apply to any non-Allen & Heath branded hardware products or any
+      software, even if packaged or sold with Allen & Heath hardware.
+      Please refer to the licensing agreement accompanying the software for details of your rights
+      with respect to the use of software (“EULA”).
+      Details of the EULA, warranty policy and other useful information can be found on the Allen &
+      Heath website: www.allen-heath.com/legal.
+      Repair or replacement under the terms of the warranty does not provide right to extension or
+      renewal of the warranty period. Repair or direct replacement of the product under the terms
+      of this warranty may be fulfilled with functionally equivalent service exchange units.
+      This warranty is not transferable. This warranty will be the purchaser’s sole and exclusive
+      remedy and neither Allen & Heath nor its approved service centres shall be liable for any
+      incidental or consequential damages or breach of any express or implied warranty of this
+      product.
+
+      Conditions of Warranty
+      The equipment has not been subject to misuse either intended or accidental, neglect, or
+      alteration other than as described in the User Guide or Service Manual, or approved by Allen
+      & Heath.
+      Any necessary adjustment, alteration or repair has been carried out by an authorised Allen &
+      Heath distributor or agent.
+      The defective unit is to be returned carriage prepaid to the place of purchase, an authorised
+      Allen & Heath distributor or agent with proof of purchase. Please discuss this with the
+      distributor or the agent before shipping. If the unit is to be repaired in a different country to
+      that of its purchase the repair may take longer than normal, whilst the warranty is confirmed
+      and parts are sourced. Units returned should be packed in the original carton to avoid transit
+      damage.
+
+      DISCLAIMER: Allen & Heath shall not be liable for the loss of any saved/stored data in
+      products that are either repaired or replaced.
+
+      Check with your Allen & Heath distributor or agent for any additional warranty information
+      which may apply. If further assistance is required please contact Allen & Heath Ltd.
+
+                 Xone:PX5 complies with the European Electromagnetic Compatibility
+                 directives 2014/30/EU and the European Low Voltage directives 2014/35/EU.
+
+     Any changes or modifications to the equipment not approved by Allen & Heath could
+     void the compliance of the product and therefore the users authority to operate it.
+
+                              XONE:PX5 User Guide AP10733 Issue 1
+                    Copyright © 2016 Allen & Heath Limited. All rights reserved
+
+                                         Allen & Heath Limited
+                      Kernick Industrial Estate, Penryn, Cornwall, TR10 9LU, UK
+
+                                        http://www.allen-heath.com
+
+ALLEN&HEATH                                         3                   AP10733_2_XONE:PX5 User Guide
+                                     INTRODUCTION
+
+Congratulations on purchasing the Allen & Heath Xone:PX5 DJ mixer.
+
+Combining the signature warm analogue Xone sound with class leading digital connectivity, the Xone:PX5
+breathes life and soul into electronic music performance. The built-in XONE:FX technology offers new
+levels of manipulation with our new Xone:Xcite FX suite of performance focused delays, reverbs,
+modulators, flangers and distorters, which are all assignable through simple hands-on control for fine
+tuning effects and expressing the DJ’s inner creativity.
+
+Xone:PX5 is a 4+1 channel mixer, equipped with the legendary analogue XONE:VCF (Voltage Controlled
+Filter), 3 band isolator EQ on all channels, and intuitive layout.
+
+The versatile Send/Return feature enables connection of external effects hardware with both Send/Return
+(Line level, or Hi-Z) and Master Insert mode connections, and equips Xone:PX5 for numerous enhanced
+setup scenarios. Each channel has its own dedicated send control for external effects processing and can
+also be routed to the internal XONE:FX engine.
+
+Connect your laptop or computer to the premium 20, 24Bit/96kHz, Hi-Speed USB internal soundcard for
+easy integration into digital DJ workflows, plus connection via X:LINK to Xone:K Series controllers for
+expanded software application MIDI control.
+
+The cross-fader has three switchable curve settings for blending or scratching styles and can be easily
+replaced, or upgraded to the innoFADER Pro2 for ultimate cross-fader performance.
+
+No matter what your mixing style, the Xone:PX5 combines a modern approach to DJing with all the tools
+required for creating your own individual sound.
+
+
+
+
+  ALLEN&HEATH                                       4                  AP10733_2_XONE:PX5 User Guide
+                                                  CONTENTS
+
+To ensure you get the maximum benefit from the mixer, please spend a few minutes familiarizing yourself
+with all of the controls and setup procedures outlined in this user guide.
+
+For further information, please refer to the additional details available on our website, or contact our
+Product Support team
+                www.allen-heath.com/xonepx5            http://support.allen-heath.com
+
+
+
+                       Warranty ........................................................         3
+                       Introduction ...................................................          4
+                       Contents ........................................................         5
+                       Packed Items..................................................            6
+                       Setup Examples .............................................              7
+                       Rear Connectors ..........................................                9
+                       Mic / USB / Line Input, Channel A .............                           12
+                       Phono / USB / Line Input, Channels 1 - 4                                  13
+                       Cross-fader ....................................................          15
+                       Headphone Section ......................................                  16
+                       Master Section ..............................................             17
+                       Voltage Controlled Filter Section ..............                          18
+                       XONE:FX Control Section Overview .....                                    19
+                       FX Library Reference ..................................                   21
+                       BPM Detection..............................................               22
+                       Xone:Sync ......................................................          23
+                       Driver Installation (PC) ...............................                  26
+                       USB Soundcard (Defaults) ..........................                       28
+                       MIDI Control.................................................             29
+                       MIDI Note Implementation ........................                         35
+                       Connecting X:Link Controllers .................                           36
+                       Timecode Setup; Traktor Scratch Pro 2 ...                                 37
+                       Recording a Mix; Traktor Scratch Pro 2 ...                                40
+                       Block Diagram ...............................................             41
+                       Specifications .................................................          42
+                       Panel Drawings..............................................              44
+                       Filter Reference ............................................             46
+                       Operating Levels ...........................................              47
+                       Earthing...........................................................       48
+                       Replacing the Faders ...................................                  49
+
+
+
+  ALLEN&HEATH                                                   5                            AP10733_2_XONE:PX5 User Guide
+                     PACKED ITEMS
+              Check that you have received the following:
+
+
+
+
+                         Xone:PX5 mixer
+
+                  Safety Sheet
+                  Important !
+                  Read this sheet BEFORE starting.
+                  Retain for future reference.
+
+
+                      Spare knobs and buttons
+
+
+                                                     Mains Lead
+                                                     Check that the correct
+                                                     mains plug is fitted.
+
+ALLEN&HEATH                       6                  AP10733_2_XONE:PX5 User Guide
+                            SETUP EXAMPLES - CLASSIC
+                                   CLASSIC ANALOGUE MIX : VINYL ONLY
+
+
+
+
+                     CLASSIC DIGITAL MIX : CD / MEDIA PLAYER + HARDWARE FX
+                             MEDIA PLAYER (RCA) / EXT FX (SND-RTN)
+KEY: CABLE & CONNECTOR TYPES
+
+     PHONO/LINE   (RCA)
+     USB          (TYPE A-B)
+     EXT FX       (TRS, ¼” JACK)
+     X:LINK       (CAT-5, RJ-45)
+     INSERT       (TRS, Y LEAD)
+     MIDI SYNC    (5PIN DIN)
+     MIC          (XLR)
+
+
+
+
+                          CLASSIC HYBRID MIX : ANALOGUE + DIGITAL + MC
+                      VINYL & MEDIA PLAYER (RCA) / LAPTOP (USB) / MIC (XLR)
+
+
+
+
+ ALLEN&HEATH                                      7             AP10733_2_XONE:PX5 User Guide
+                  SETUP EXAMPLES - ADVANCED
+
+         ADVANCED HYBRID MIX : ANALOGUE + DIGITAL + MIDI SYNC + CONTROL
+ VINYL & MEDIA PLAYER (RCA) / LAPTOP (USB) / EXT FX (INSERT + SND-RTN) / X:LINK (RJ-45)
+
+
+
+
+‘FULLY LOADED’ HYBRID MIX : ANALOGUE + DIGITAL + HARDWARE FX + MIDI SYNC + CONTROL
+         VINYL & MEDIA PLAYER (RCA) / LAPTOP (USB) / EXT FX (INSERT + SND-RTN)
+                          MIDI SYNC (5PIN DIN) / X:LINK (RJ-45)
+
+
+
+
+ ALLEN&HEATH                               8              AP10733_2_XONE:PX5 User Guide
+                             REAR CONNECTORS
+
+                     1                     2               3          4        5
+
+
+
+
+1    External Effects Connectors, EXT RTN / LINE/Hi-Z / FX SEND
+
+     Balanced (TRS) 1/4” Jack. Connect external effects device outputs to EXT RTN inputs and use
+     EXT RTN control to adjust FX signal level sent to main LR MIX or XONE:VCF.
+     Set input impedance for external effects between LN (suitable for Line level inputs), or Hi-Z
+     (suitable for guitar effects pedals and legacy hardware).
+     Connect your external effects hardware inputs to FX SEND and outputs to EXT RTN.
+     Use FX SEND controls to send Channel audio to the external effects device.
+
+
+2    USB LINE / PHONO Select Switches, CH 1 - 4
+
+     Set CH1 - 4 USB SND to LN (for Line level) or PH (for RIAA level) signal input to internal
+     soundcard. For CD / Vinyl timecode control, or to record Channel input via USB.
+
+3    LINE Inputs, CH 1 - 4
+     Unbalanced (RCA). Connect stereo LINE level media players to the LINE input.
+     Do not connect turntables requiring RIAA equalisation.
+     You can also connect to LINE level jack sources using RCA to 1/4” Jack adapters.
+     Avoid using low grade cables such as those often supplied with domestic equipment as these
+     can quickly prove unreliable in use.
+
+
+4    Chassis Earth Terminals
+
+     2 x Screw terminals are provided for connecting the earth straps from turntables to prevent
+     ground hum.
+
+
+5    PHONO Inputs, CH 1 - 4
+     Unbalanced (RCA). Plug in turntables with magnetic cartridges requiring RIAA equalisation.
+     For non-RIAA turntables plug into the LINE input instead.
+     Do not plug in LINE level sources to the PHONO Inputs as these will overload the preamp
+     and cause severe, high level, distortion.
+
+
+ALLEN&HEATH                                     9                 AP10733_2_XONE:PX5 User Guide
+                    REAR CONNECTORS continued
+
+                                                6      7      8           9           10      11
+
+
+
+
+ 6   X:Link
+     Cat-5 Ethernet (RJ-45). Connect Xone:K Series Controllers to the Xone:PX5 mixer to expand
+     software application MIDI control and to save using USB ports on your computer.
+
+
+ 7   BOOTH Outputs
+
+     Balanced (TRS) 1/4” Jack. LINE level stereo output feed to DJ’s local monitor.
+
+
+ 8   MASTER INSERT
+
+     Unbalanced (TRS) 1/4” Jack. Provides INSERT points for LR MIX output to connect hardware
+     dynamics processors such as a limiter, compressor, or graphic equaliser.
+     Or connect external hardware in-line with LR MIX outputs for external MASTER INSERT FX.
+     Use Insert patch cable (Y lead), wired; Tip=Send, Ring=Return, Sleeve=Ground.
+
+
+ 9   MASTER Outputs
+
+     Master1. Balanced (XLR). The main stereo LR MIX outputs that feeds the club PA system, or
+     balanced active speakers. Wired; Pin1=Ground, Pin2=Hot(+), Pin3=Cold(-).
+     Master2. Unbalanced (RCA). Alternative stereo LR MIX output to feed unbalanced active
+     speakers, or consumer type amplifiers.
+
+
+10   MIC Input, CH A
+
+     Balanced (XLR). Use a good quality low impedance dynamic mic, wired; Pin1=Ground, Pin2=Hot
+     (+), Pin3=Cold(-). Do not use high impedance or unbalanced microphones, or condenser mics
+     requiring phantom power.
+
+
+11   LINE Inputs, CH A
+
+     Balanced (TRS) 1/4” Jack. Connect auxiliary or balanced LINE level music sources to the CH A
+     LINE input. Connect mono sources to the L/M socket.
+
+
+ALLEN&HEATH                                     10                 AP10733_2_XONE:PX5 User Guide
+                     REAR CONNECTORS continued
+
+12 13 14 15                         16 17
+
+
+
+
+12   USB 9-10 Send Select Switch
+
+     Set CH9-10 USB SND to MST or FX to route LR MIX, or FX SEND output via USB.
+     For pre-MASTER level stereo LR MIX recording to computer, or using FX SEND for software
+     effects plug-ins.
+
+13   K-Slot
+
+     Security slot to connect locking, Kensington® type, anti-theft cable.
+
+14   RECORD Outputs
+     Unbalanced (RCA).
+     Pre-MASTER level, LR MIX output for connection to external hardware recording devices.
+
+15   AC Mains Input
+     Connect (supplied) IEC cable with moulded mains plug compatible to local AC mains supply.
+     Turn AC supply to the mixer ON / OFF
+     Check the correct IEC ‘mains’ lead with moulded plug has been supplied with your mixer.
+     The internal power supply accepts mains voltages within the range 100-240V without changing
+     any fuses or settings.
+     Ensure the IEC mains plug is pressed fully into the rear panel socket before switching ON.
+     NOTE: It is standard practice to turn connected power amplifiers, or active speakers, down or
+     OFF before switching mains power to the mixer ON or OFF. This prevents any potential
+     damage to speaker systems due to switch-on transients.
+
+16   MIDI SYNC / OUT
+
+     5pin DIN.
+     MIDI Clock and MIDI Tx (transmit) signal output for syncing to external MIDI hardware.
+
+17   USB Soundcard
+
+     USB (Type A).
+     20 Channel (5 Stereo IN / 5 Stereo OUT), 24Bit/96kHz, Hi-Speed USB internal soundcard.
+     Mac OS X CoreAudio/CoreMIDI class compliant. ASIO® driver support for Windows® PC.
+
+ALLEN&HEATH                                      11                  AP10733_2_XONE:PX5 User Guide
+              MIC / USB / LINE INPUT CHANNEL A
+                            Channel FX Mode Select Switch
+                        1
+                            Selects option for Channel FX SEND routing to; INT,
+                            EXT, or DUAL. For SEND to internal XONE:FX engine,
+                            external effects hardware connected via FX SEND / EXT
+                            RTN, or to both for simultaneous use with internal and
+                            external effects.
+
+                        2   FX SEND Control
+ 1
+                            Controls the amount of Channel audio sent to the
+                            XONE:FX bus and/or external effects hardware
+                            connected via FX SEND / EXT RTN on the rear panel.
+ 2
+                        3   MIC / USB / LINE Input Select Switch
+                            Switch CH A input between XLR MIC, CH5 USB RTN
+ 3                          soundcard input, or auxiliary CH A TRS LINE sources.
+
+                            Channel GAIN Control
+                        4
+ 4                          Adjusts the Channel input sensitivity to compensate for
+                            different audio signal source levels. -∞/+10dB.
+ 5                          PK! Input Signal Level LED, CH A
+                        5
+                            If the PK! LED is illuminated, turn the Channel GAIN
+                            level down.
+
+                        6   Channel Equalizer
+                            Each main Channel is equipped with a powerful 3 band
+                            isolator EQ, providing a controlled +6dB boost when
+ 6                          fully clockwise and full attenuation (‘Total Kill’) on each
+                            band when fully anti-clockwise.
+                            Centre/cut-off frequencies are set at:
+                                   HF 3.5kHz         (High Frequency, treble)
+                                   MF 1.2KHz (Mid Frequency)
+                                   LF    400Hz       (Low Frequency, bass)
+
+                        7   Channel ON/OFF Switch
+                            Turns the Channel ON or OFF, allowing audio to be
+                            routed to the main LR MIX. Useful if an un-switched
+ 7                          microphone is used to easily bring vocals in and out of a
+                            mix. This does not affect CH A signal output to CUE.
+
+                        8   Channel FILTER Select Switches
+ 8
+                            Press to route post-GAIN / post-EQ level Channel audio
+                            to the XONE:VCF.
+
+ 9                      9   Channel Cue Switch
+                            Press to listen to the Channel pre-LR MIX audio level
+                            from PHONES and BOOTH DJ monitor outputs and to
+                            view its level on the main (MIX) Meters.
+                            Press again to deselect CUE.
+
+ALLEN&HEATH                     12                   AP10733_2_XONE:PX5 User Guide
+        PHONO / USB / LINE INPUT CHANNELS 1 - 4
+
+
+
+                      1   Channel FX Mode Select Switch
+                          Selects option for Channel FX SEND routing to; INT,
+                          EXT, or DUAL. For SEND to internal XONE:FX engine,
+                          external effects hardware connected via FX SEND / EXT
+                          RTN, or to both for simultaneous use with internal and
+ 1                        external effects.
+
+
+                      2   FX SEND Control
+ 2                        Controls the amount of Channel audio sent to the
+                          XONE:FX bus and/or external effects hardware
+                          connected via FX SEND / EXT RTN on the rear panel.
+
+ 3
+                      3   PHONO / USB / LINE Input Select Switch
+                          Switch CH 1 - 4 inputs between RCA PHONO,
+                          CH 1 - 4 USB RTN soundcard inputs, or RCA LINE
+ 4                        level audio sources.
+
+
+                          Channel GAIN Control
+                      4
+                          Adjusts the Channel input sensitivity to compensate for
+                          different audio signal source levels. -∞/+10dB.
+
+
+
+                      5   Channel Equalizer
+                          Each main Channel is equipped with a powerful 3 band
+                          isolator EQ, providing a controlled +6dB boost when
+ 5                        fully clockwise and full attenuation (‘Total Kill’) on each
+                          band when fully anti-clockwise.
+                          Centre/cut-off frequencies are set at:
+                                 HF 3.5kHz         (High Frequency, treble)
+                                 MF 1.2kHz         (Mid Frequency)
+                                 LF    400Hz       (Low Frequency, bass)
+
+
+
+
+ALLEN&HEATH                   13                   AP10733_2_XONE:PX5 User Guide
+        PHONO / USB / LINE INPUT CHANNELS 1 - 4
+
+                     6    X-FADE Assign Switch
+ 6                        Use to assign the Channel to either X (left), or Y (right)
+                          side of the cross-fader, or direct to the MIX bus when
+                          OFF (centre),
+
+
+ 7                   7    Channel FILTER Select Switch
+                          Press to route post-GAIN / post-EQ / post-FADER level
+                          Channel audio to the XONE:VCF.
+                          The switch illuminates BLUE when active.
+ 8
+                     8    Channel CUE Switch
+                          Press to listen to the Channel pre-FADER audio levels
+                          from PHONES and BOOTH DJ monitor outputs and to
+                          view its level on the main (MIX) Meters.
+                          Press the switch again to deselect CUE.
+
+
+                     9    Channel Meter
+ 9                        Displays the channel signal level.
+                          Channel audio input is metered at post-GAIN / post-EQ
+                          and pre-FADER level, to display the affect of adjusting
+                          EQ on input levels before routing audio to the LR MIX.
+                          The channel GAIN control should be set so the meter
+                          averages about 0 with loudest peaks around +6 and +9.
+                          If the ! indicator lights, turn the GAIN control down.
+
+10
+                     10   Channel Fader
+                          A high quality, smooth travel, 60mm, dual-rail VCA fader
+                          adjusts the channel signal level from fully off to fully on.
+
+
+
+
+ALLEN&HEATH                    14                  AP10733_2_XONE:PX5 User Guide
+                                               CROSS-FADER
+
+
+
+
+                                                                                                      3
+
+
+                                     1                                                2
+
+         1   X-FADER
+             Fade between audio from CH 1 - 4 assigned to the X (Left), or Y (Right) side of the
+             cross-fader, typically to fade smoothly into a new music track, to creatively layer sounds,
+             or for scratch and cut mixing.
+             The cross-fader is a VCA (voltage controlled amplifier) control that also affects the level
+             of signals routed via the XONE:VCF
+             Ensure switches on channels you want to fade are set to X or Y as appropriate.
+             When the XONE:FX, FX X-FADE switch is set to X or Y, the cross-fader acts as a
+             VCA, controlling send levels to the internal XONE:FX engine, following the active
+             FX:ASSIGN (see page19) and X-FADER curve switch settings.
+             Assigned to X, the VCA send level is X = fully ON / Y = fully OFF.
+             Assigned to Y, the VCA send level is X = fully OFF / Y = fully ON.
+
+
+         2   XFADE Curve Control
+             This switch selects the cross-fader response curve between Constant power, Transition,
+             or Fast-cut to suit scratch or cut mixing styles.
+               Constant      power
+                  Constant Power
+                                         10
+                                                     Transition
+                                                       Transition
+                                                                          10
+                                                                                      Fast-cut
+                                                                                       Fast-cut
+   10
+                                          0                                0
+    0
+                                         -10                             -10
+   -10
+
+                                         -20                             -20
+   -20
+
+   -30                                   -30                             -30
+
+   -40                                   -40                             -40
+
+   -50                                   -50                             -50
+
+   -60                                   -60                             -60
+
+   -70                                   -70                             -70
+
+   -80                                   -80                             -80
+
+   -90                                   -90                             -90
+                       X   Y                               X    Y                         X       Y
+
+
+
+
+             CH FADER Curve Control
+         3
+             This switch selects a global channel fader response curve for Stereo Input Channels 1- 4
+             between Constant power, Dipped, or Fast-cut to suit scratch and cut mixing styles.
+
+                   Dip-less
+                Constant power                         Dipped
+                                                       Dipped                         Fast-cut
+                                                                                      Fast-cut
+      10                                        10                         10
+       0                                         0                          0
+     -10                                       -10                        -10
+     -20                                       -20                        -20
+     -30                                       -30                        -30
+     -40                                       -40                        -40
+     -50                                       -50                        -50
+     -60                                       -60                        -60
+     -70                                       -70                        -70
+     -80                                       -80                        -80
+     -90                                       -90                        -90
+
+
+
+
+ALLEN&HEATH                                           15                AP10733_2_XONE:PX5 User Guide
+              HEADPHONE SECTION
+
+
+                 1   SPLIT Cue Switch
+                     Selects the way the CUE bus operates.
+1                    Normally, pressing a Channel CUE switch overrides
+                     both left and right monitor program signals with the
+                     active CUE signal. With SPLIT set ON, the CUE bus
+                     overrides just the left channel, leaving the program in
+                     the right channel. L MIX meter displays CUE signal level
+2                    and R MIX meter displays PRG (LR MIX level) signal.
+                     This is very useful when beat mixing using headphones.
+
+
+                 2   Cue / Mix Control
+                     Allows the main MIX output to be blended with the
+3                    CUE signal. Turned fully anticlockwise, only active CUE
+                     Channels are heard through the headphones outputs.
+                     Gradually turning clockwise introduces the main MIX
+                     output to the headphones, together with active CUE.
+                     Setting SPLIT, ON automatically overrides the control.
+
+
+                 3   PHONES Level Control
+4
+                     Adjusts the level of the audio in the stereo headphones.
+                     This does not affect the level of the local booth monitor.
+
+
+                 4   Headphone Outputs
+                     Stereo 1/4” TRS jack and 3.5mm mini-jack sockets.
+                     Plug in good quality stereo headphones designed for
+                     DJ monitoring.
+                     Use closed-ear headphones to provide maximum
+                     acoustic isolation when cueing your sources.
+
+                     For more information, please refer to the Operating
+                     Levels section on page 47.
+
+
+
+
+ALLEN&HEATH               16                  AP10733_2_XONE:PX5 User Guide
+              MASTER SECTION
+
+
+               1   MASTER Level Control
+                   A rotary MASTER control adjusts the level of the main,
+                   MASTER 1 and MASTER 2, rear panel outputs feeding
+                   the house sound system.
+                   This does not affect BOOTH output level or the meters.
+
+
+                   BOOTH Level Control
+               2
+                   Adjusts the level of the signal to the stereo BOOTH
+                   RCA output. This does not affect the headphones level.
+                   BOOTH output can be used for a DJ Booth monitor, or
+                   as an additional zone feed or recording output.
+1
+               3   MIX / Monitor Meters
+                   The main meters follow the selected monitor source.
+                   The default display is the mix level, pre-master level,
+                   which is overridden with an input channel level if the
+2                  channel cue switch is selected.
+                   In SPLIT cue mode, the left (L) MIX meter displays the
+                   cued channel signal level and the right (R) MIX meter
+                   displays mix bus levels. Cued MIX audio level is pre-
+                   MASTER, to prevent mismatch due to position of the
+                   MASTER level control.
+                   NOTE:
+                   The mixer should be operated with meters averaging
+                   around 0 and loudest peaks between +6 and +9.
+3                  If the ! indicator lights, ensure GAIN or EQ settings are
+                   not clipping Channel meters and, if necessary, turn
+                   Channel GAIN, EQ, or FADERS down to prevent LR
+                   MIX meters clipping.
+                   For more information, please refer to the Operating
+                   Levels section on page 47.
+
+
+               4   EXT RTN Level Control
+                   Adjusts the level of audio input from effects hardware
+                   connected via FX SEND / EXT RTN and routed to the
+                   XONE:VCF or LR MIX outputs.
+
+4
+
+
+
+
+ALLEN&HEATH            17                  AP10733_2_XONE:PX5 User Guide
+         VOLTAGE CONTROLLED FILTER SECTION
+
+
+                    1   EXT RTN to FILTER Select Switch
+                        Press to route the EXT RTN input to the XONE:VCF,
+ 1                      instead of directly into the main LR MIX, for extra
+                        versatility and creativity with your mixes.
+
+
+
+                    2   RESONANCE Control
+                        This produces the classic Xone:VCF filter sound by
+                        feeding some of the filter output back to its input.
+ 2                      The control ranges from MILD, producing a very subtle
+                        effect, to WILD, producing a dramatic phase effect with
+                        feedback just short of oscillation.
+
+
+                    3   HPF Switch
+
+ 3                      Turns on the High Pass Filter (bass cut) slope.
+                        See page 46 for more details.
+
+
+                        BPF Switch
+                    4
+                        Turns on the Band Pass Filter (bell shaped) slope.
+                        See page 46 for more details.
+ 4
+                    5   LPF Switch
+                        Turns on the Low Pass Filter (treble cut) slope.
+                        See page 46 for more details.
+
+ 5
+                    6   FREQ Frequency Sweep Control
+                        This control sets the -3dB cut-off frequency for the
+                        Voltage Controlled Filter. It ranges from very low
+                        frequency (20Hz) to very high frequency (20kHz).
+
+
+ 6                 7    XONE:VCF ON / OFF Switch
+                        Switches the Voltage Controlled Filter ON / OFF.
+                        Illuminates GREEN when active.
+
+
+
+ 7                      See the Filter Reference section on page 46 for more
+                        information.
+
+
+
+
+ALLEN&HEATH                  18                  AP10733_2_XONE:PX5 User Guide
+         XONE:FX CONTROL SECTION OVERVIEW
+
+                   1   FX ASSIGN Switch
+ 1                     7 position rotary selector used to assign the internal
+                       XONE:FX engine routing as
+                       Channel INSERT (CH A, CH 1 - 4), Master INSERT, or
+                       SEND / RETURN to LR MIX.
+ 2
+                       Default position = SEND.
+
+ 3                 2   FX SEND PRE / POST Switch
+                       Used to configure Internal and External FX SEND from
+ 4                     Channels to pre-FADER, or post-FADER levels.
+
+                   3   FX X-FADE Assign Switch
+ 5                     Assign the XONE:FX to X (left), or Y (right) position of
+                       the cross-fader to enable fading between Wet (effected)
+                       or Dry (un-effected) signal, or OFF (centre).
+ 6
+                       Default position = OFF
+
+ 7                 4   FX SELECT Encoder
+
+                       Scroll between XONE:FX and CONFIG options. Push
+ 8                     ONCE to enter FX MENU, Scroll then PRESS to select
+                       FX. Push + HOLD for CONFIG options.
+
+                   5   TFT Screen
+                       Displays XONE:FX types or current XONE:FX settings,
+                       BPM and MIDI CLOCK details, and other MENU
+                       options dependent on the active MODE.
+
+                   6   BEAT Adjust / Tempo BEND / MIDI Transport
+
+                       BEAT - Adjust beat fraction of any time based effect
+                       (Delay, Flanger, etc).
+                       BEND - Press to speed up or slow down BPM Clock,
+                       or to lock-in sync.
+                       MIDI - Transport sends START, STOP & CONTINUE
+                       messages for USB and MIDI SYNC / OUT.
+
+                   7   MODE Button Switch
+                       3 layer functionality. Push to increment and scroll
+                       through BEAT / BEND / MIDI CLOCK modes.
+
+                   8   TAP Tempo Button
+
+                       Guide the tempo of the BPM clock manually by tapping
+                       to the beat.
+
+ALLEN&HEATH                 19                  AP10733_2_XONE:PX5 User Guide
+              XONE:FX CONTROL SECTION continued
+
+                        9    XONE:FX INTERVAL Control
+                             Rotary control to adjust beat fraction of the currently
+                             selected XONE:FX
+                             Illuminates WHITE when active
+                             The last adjustment setting is saved globally for FX recall
+
+
+                        10   XONE:FX DECAY Control
+                             Rotary control to adjust time based parameters for the
+                             currently selected XONE:FX.
+                             Control illuminates RED
+                             The last adjustment setting is saved globally for FX recall
+                             Default position = MIN (fully anti-clockwise).
+
+
+                        11   XONE:FX FOCUS Control
+                             Rotary control with centre detent used to adjust tonal
+                             parameters for the currently selected XONE:FX.
+                             Turning anti-clockwise = LPF. Turning clockwise = HPF
+                             Control illuminates RED or BLUE when active
+                             Control illuminates GREEN in centre (OFF) position
+                             Default position = centre (OFF).
+
+ 9                      12   XONE:FX LEVEL Control
+                             Adjust XONE:FX output level to LR MIX in SEND mode.
+                             Blend level between Channel audio and selected
+                             XONE:FX in INSERT mode.
+10                           Illuminates RED when SND / RTN is active.
+                             Illuminates CYAN when INSERT is active.
+
+
+                        13   XONE:FX ON Switch
+11
+                             Turns the internal XONE:FX channel ON / OFF.
+                             Illuminates GREEN when active.
+
+
+                        14   XONE:FX CUE Switch
+12
+                             Press to listen to the FX channel pre-Fade signal level
+                             from PHONES outputs and to view its level on the main
+                             LR MIX meters.
+                             Illuminates RED when active.
+13
+
+14
+
+ALLEN&HEATH                       20                  AP10733_2_XONE:PX5 User Guide
+                XONE:XCITE FX LIBRARY REFERENCE
+NAME             FX1 PROGRAM            FX2 PROGRAM           BEAT       INTERVAL        DECAY             FOCUS
+
+                 Stereo Beat Delay                             Time                                         Delay
+MASIF-Q DELAY                                                             Time MS      Delay Regen
+                 (Pre Delay Filters)                          Fraction                                   Output Filters
+
+
+                 Stereo Beat Delay                             Time                                          Delay
+PCM DELAY                                 Compressor                      Time MS      Delay Regen
+                 (Pre Delay Filters)                          Fraction                                    Input Filters
+
+
+                  Stereo Beat Delay                            Time                                         Delay
+FILTER DELAY                              Compressor                      Time MS      Delay Regen
+                 (Post Delay Filters)                         Fraction                                   Output Filters
+
+
+                                                               Time
+DLY & RVB        Stereo Beat Delay         Hall Reverb                    Time MS      Delay Regen       Reverb Filters
+                                                              Fraction
+
+                                                               Time
+MOD DELAY       Bucket Brigade Delay      Mod Doubler                     Time MS      Delay Regen      Mod LFO Speed
+                                                              Fraction
+
+                                                                         Echo Repeat
+TAPE ECHO            Space Echo                                                        Echo Intensity     Echo Tone
+                                                                            Rate
+
+                                                                          Reverb
+                                                                                       Reverb Decay
+CLEAN PLATE         Plate Reverb                                          Diffusion                      Reverb Filters
+                                                                                           Time
+                                                                           Level
+
+                                                                          Reverb
+                                                                                       Reverb Decay
+SWELL VERB          EMT Reverb            Compressor                      Diffusion                      Reverb Filters
+                                                                                           Time
+                                                                           Level
+
+                                                                          Reverb
+                                                                                       Reverb Decay
+CONCRT HALL         Plate Reverb                                          Diffusion                      Reverb Filters
+                                                                                           Time
+                                                                           Level
+
+                                                                          Reverb
+                                                                                       Reverb Decay
+TILED ROOM         Room Reverb                                            Diffusion                      Reverb Filters
+                                                                                           Time
+                                                                           Level
+
+
+                                                               Time                    Gated Reverb      Gated Reverb
+ATTACK GATE      Stereo Beat Delay       Gated Reverb                     Time MS
+                                                              Fraction                 Attack Time          Filters
+
+
+                                                                                          Gated
+                                                               Time                                     Gated Resonator
+RESO GATE        Stereo Beat Delay      Gated Resonator                   Time MS       Resonator
+                                                              Fraction                                     Frequency
+                                                                                       Release Time
+
+                                                               Time                       Mod
+FLANGER             Mod Flanger           Compressor                      Time MS                         Mod Depth
+                                                              Fraction                  Resonance
+
+                                                                         Reverb HF     Reverb Decay      Vocal Shifter
+PITCH VERB          Vocal Shifter         Plate Reverb
+                                                                           Slope           time           Semitones
+
+                                                                                        FX2 > FX1
+                                                               Time                                      Vocal Shifter
+TIME WARP           Vocal Shifter       Stereo Beat Delay                 Time MS        Feedback
+                                                              Fraction                                    Semitones
+                                                                                           Level
+                                                                                                          Distortion
+DISTORTION             Clipper
+                                                                                                           Amount
+
+
+ ALLEN&HEATH                                             21                   AP10733_2_XONE:PX5 User Guide
+                                  BPM DETECTION
+
+The Xone:PX5 features an internal BPM engine that is used for synchronising the internal
+XONE:FX to the incoming audio signal.
+It is also used for transmitting or receiving midi clock information through the Xone:Sync engine.
+
+
+BPM Detection
+By default the Xone:PX5 BPM detection is Automatic (AUTO) between 60 - 260 BPM and
+continuously listens to the FX source:
+
+When in FX INSERT for channels 1, 2, 3, 4, or A, the BPM source is derived from the Assigned
+Channel.
+
+When FX ASSIGN is set to: SEND or MASTER, the XONE:FX BPM is derived from the main LR
+MIX Clean-feed (Pre XONE:FX Return).
+
+Hold TAP for 3 seconds to reset BPM detection back to AUTO
+
+MIDI Clock Transmit
+The Xone:PX5 can generate internal MIDI clock signals which can be sent via USB to a DAW, or
+via the MIDI SYNC / OUT port to external hardware.
+Refer to the MIDI SETUP Menu option on page 23 for details.
+
+When MIDI Clock Transmit is OFF BPM Detection is Automatic (AUTO)
+
+When MIDI Clock is ON FX unit BPM is derived from the Master MIDI Clock.
+
+MIDI Clock BPM can be adjusted from the menu on the screen or by the ‘BEND’ layer on the top
+panel buttons < >
+
+Tap Tempo will overwrite Master MIDI Clock BPM
+
+BPM Clock range 60.00 – 260.00
+BPM Accurate to: 000.00 - 2 decimal places
+
+MIDI Clock Receive
+
+If your playback source is a DAW or DJ software running through the internal Hi-Speed USB
+multi- channel soundcard, you can use MIDI clock as the timing source for the Xone:PX5; this will
+override normal BPM detection and affects all channels.
+If you select this mode ensure that your DAW supports sending MIDI clocks, and that this feature
+is enabled.
+
+When MIDI Clock is set to OFF BPM Detection is Automatic as above (BPM Detection).
+When MIDI Clock is set to Receive FX unit is derived from the incoming external MIDI Clock .
+
+
+
+
+ALLEN&HEATH                                     22                 AP10733_2_XONE:PX5 User Guide
+                                      XONE:SYNC
+
+ The Xone:PX5 features Xone:Sync which enables you to synchronise external equipment through
+ the USB connection and the MIDI SYNC / OUT port.
+
+
+ Xone:Sync can generate internal MIDI clock signals which can be sent via USB to a DAW or via the
+ MIDI SYNC / OUT port to external hardware devices, such as drum machines, synths or external
+ effects processors.
+
+ It can also receive MIDI clock signals via USB from a DAW or DJ performance software which will
+ ensure that the XONE:FX engine is synchronised accurately to the incoming audio signal.
+
+
+ Sending External MIDI Clock via USB
+
+ Connect the Xone:PX5 directly to your laptop using a type A-B USB
+ cable.
+ Ensure that your DAW is set-up to receive MIDI clock (consult the
+ manufacturer’s documentation to find out how to do this).
+
+ In AUTO BPM detection mode, the Xone:PX5’s internal BPM engine
+ will set the BPM based on the incoming audio signal of the channel
+ selected by the FX ASSIGN control.
+
+ In this example, the AUTO BPM engine will detect the BPM from the
+ input signal of Channel 2.
+ This will be used as the tempo of the MIDI clock output via USB to
+ your DAW.
+
+ To control the playback
+
+ Press the MODE button to enter the GREEN layer.
+ This mode controls the MIDI Clock transport controls;
+ STOP / START / PAUSE
+
+ To send the Xone:PX5’s internal MIDI Clock to your DAW,
+ press the PLAY button.
+ So long as your DAW is set to receive MIDI Clock correctly, this will
+ start playback in the software.
+ Pressing the STOP button will stop playback.
+
+
+ Sending External MIDI Clock via MIDI SYNC / OUT
+
+ Connect the Xone:PX5 to your external device using a 5pin DIN MIDI cable.
+ Ensure that your DAW is set-up to receive MIDI clock.
+ Consult your software application documentation to find out how to do this.
+
+ Follow the steps above to control the playback of your external device.
+
+
+
+
+ALLEN&HEATH                                     23                 AP10733_2_XONE:PX5 User Guide
+                             XONE:SYNC continued
+
+Adjusting the Xone:Sync DIN offset
+When sending external MIDI Clock via the MIDI SYNC / OUT port, you can offset the signal in
+order to time-align the synchronisation of external hardware devices, which compensates for the
+inherent latency when syncing external devices.
+
+ 1                         To access the DIN offset control, hold down the FX SELECT control
+                           to enter the CONFIG menu..
+                           Use the FX SELECT control to scroll down to highlight DIN OFFSET.
+                           Press FX SELECT to enter the DIN OFFSET setup.
+
+
+
+
+ 2                         Press the FX SELECT control.
+                           The parameter will be highlighted in RED.
+                           Use the FX SELECT control to adjust the DIN OFFSET time in MS.
+                           You can adjust the time by up to +/- 50ms.
+
+
+
+
+ 3                         Press FX SELECT, then scroll to highlight EXIT. Press again to return
+                           to the main CONFIG menu.
+                           Use the FX SELECT control to scroll down to highlight EXIT and press
+                           to leave the CONFIG menu.
+                           Continue to adjust the DIN offset until your external device is in sync
+                           with the Xone:PX5 BPM engine.
+
+
+
+NOTE: It is not possible to adjust the MIDI Clock offset via USB when synchronising
+external software. This is achieved through the software MIDI preferences.
+Please refer to your software application documentation for details how to do this.
+
+
+MIDI Clock Tempo Bend
+When sending external MIDI Clock via the USB or the
+MIDI SYNC / OUT port, you can bend the tempo to momentarily
+speed up or slow down the MIDI Clock signal in order to time-align
+the synchronisation of external software and hardware devices.
+
+To access the MIDI Clock Tempo Bend controls, press the MODE
+button to access the BLUE layer.
+By holding down either the TEMPO BEND DOWN button (<) or the
+TEMPO BEND UP button (>), you can momentarily speed up or slow
+down the MIDI Clock output, much like beat matching, in order to
+time-align the phase of the external software or hardware.
+
+
+ALLEN&HEATH                                    24                    AP10733_2_XONE:PX5 User Guide
+                            XONE:SYNC continued
+
+Receiving MIDI Clock via USB from an external DAW or DJ performance software
+
+
+The Xone:PX5 can be configured to receive MIDI Clock from an external DAW or DJ performance
+software via the USB connection. Connect the Xone:PX5 directly to your computer using a type A-B
+USB cable.
+
+
+ 1                       Hold down the FX SELECT control to enter the CONFIG menu, and
+                         scroll to select CLOCK.
+
+
+
+
+ 2                       Push down on the FX SELECT control to enter the CLOCK menu.
+                         Scroll and press the FX SELECT control to turn MIDI CLOCK RECEIVE
+                         ON / OFF
+
+
+
+
+ 3                       Scroll down using the FX SELECT control and press FX SELECT to exit.
+                         Exit the CONFIG menu.
+                         The display will now show MIDI RX indicating that the Xone:PX5 is in
+                         EXTERNAL MIDI CLOCK RECEIVE MODE.
+
+
+
+
+ Ensure that your software is set-up to transmit MIDI Clock to the Xone:PX5.
+ Please consult your software application documentation for details on how to do this.
+ Now, when you start your external DAW, the Xone:PX5 BPM engine will follow the tempo set in
+ the DAW, and the XONE:FX engine will be in sync.
+
+
+
+
+ALLEN&HEATH                                   25                 AP10733_2_XONE:PX5 User Guide
+                        DRIVER INSTALLATION (PC)
+
+Installing XONE:PX5 Soundcard Device Drivers
+
+Apple Mac OS X
+The Xone:PX5 is a Mac CoreAudio and CoreMIDI class compliant interface and works on Apple Mac
+platforms without hardware device drivers.
+
+Microsoft Windows® PC
+
+ In order to access the soundcard channels on your Xone:PX5 you will need to install the dedicated
+ Device Drivers, which can be downloaded from the Allen & Heath website:
+                                  www.allen-heath.com/xonepx5
+               PLEASE FOLLOW INSTALL INSTRUCTIONS CAREFULLY
+ NOTE: Please ensure you are logged on to the PC with Administrator access enabled.
+ When the driver package has downloaded, extract the installer to your computer desktop.
+ Follow the on-screen instructions as detailed below:
+ The installer will also prompt you through the steps necessary to install this software.
+ •    Double-click on the Xone:PX5 DriverSetup file to begin.
+
+
+
+
+ •    Click Yes on the User Account Control prompt to confirm and continue installation.
+
+
+
+
+ •    Click Next to run the installer application.
+ •    Click on the Install tab to pre-install the Device Drivers to the default system folder.
+      A series of messages will be displayed…
+
+
+
+ALLEN&HEATH                                      26                  AP10733_2_XONE:PX5 User Guide
+               DRIVER INSTALLATION (PC) continued
+
+ •    This may take some time to complete.
+ •    Please wait while XONE:PX5 v3.39.0 software is installed...
+
+
+
+
+ •    Click Install when prompted to install Allen&Heath Sound, video and game controllers
+      software.
+
+
+
+
+ •    Click Install when prompted to install Allen&Heath XONE:PX5 Audio Devices software.
+ •    Connect the Xone:PX5 DJ Mixer to your PC via USB and power the unit ON.
+                                                                                             •
+
+
+
+
+ •    Click Next to continue once the pre-installation process has completed.
+ •    Click Finish to complete the Device Driver installation.
+ NOTE:
+ It is possible to complete the Xone:PX5 Device Driver pre-installation process without connecting
+ the Xone:PX5 mixer to your computer. In this case you are prompted to “...disconnect and reconnect
+ the device to complete driver installation.”
+ If the mixer cannot be connected, click Yes on the prompt to close the application.
+ To complete installation, connect the Xone:PX5 to your PC via USB, power the mixer ON.
+ Wait for PC to enumerate the mixer before opening your DAW software application.
+
+ALLEN&HEATH                                        27               AP10733_2_XONE:PX5 User Guide
+                     USB SOUNDCARD — DEFAULT
+ The Xone:PX5 includes a 20 Channel (5 Stereo IN / 5 Stereo OUT), 24Bit/96kHz, Hi-Speed USB
+ internal soundcard.
+ Mac USB Class Compliant CoreAudio CoreMIDI interface;
+ No Driver installation is required for operation with Mac OS X.
+ For operation with Microsoft Windows® PC, see the Driver Installation section on page 26.
+ USB Soundcard Specification
+ Channels:                        20 Channel (5 Stereo IN / 5 Stereo OUT),
+ Supported Variable Buffer Sizes: 32 / 64 / 128 / 256 / 512 / 1024 / 2048 / 4096 / 8192 samples
+ Supported Sample Rates:          44.1 kHz / 48kHz / 88.2kHz / 96kHz
+ Bit depth:                       24Bit
+ USB MIDI Ports:                  1 x MIDI IN / 1 x MIDI OUT
+
+
+
+
+                              DEFAULT USB AUDIO ROUTING
+                                   Mixer Channel to Computer
+   Soundcard Input                    Xone:PX5               DAW Software IP Option
+       USB_1               CH1 L (RIAA or LINE)_SND_L_1            Analogue 1
+       USB_2               CH1 R (RIAA or LINE)_SND_R_1            Analogue 2
+       USB_3               CH2 L (RIAA or LINE)_SND_L_2            Analogue 3
+       USB_4               CH2 R (RIAA or LINE)_SND_R_2            Analogue 4
+       USB_5               CH3 L (RIAA or LINE)_SND_L_3            Analogue 5
+       USB_6               CH3 R (RIAA or LINE)_SND_R_3            Analogue 6
+       USB_7               CH4 L (RIAA or LINE)_SND_L_4            Analogue 7
+       USB_8               CH4 R (RIAA or LINE)_SND_R_4           Analogue 8
+       USB_9               MASTER L or FXSEND_L_A                 Analogue 9
+       USB_10              MASTER R or FXSEND_R_A                 Analogue 10
+                                 Mixer Channel from Computer
+  Soundcard Output                    Xone:PX5               DAW Software OP Option
+       USB_1                   CH 1 L (USB)_RTN_L_1                Analogue 1
+       USB_2                   CH 1 R (USB)_RTN_R_1                Analogue 2
+       USB_3                   CH 2 L (USB)_RTN_L_2                Analogue 3
+       USB_4                   CH 2 R (USB)_RTN_R_2                Analogue 4
+       USB_5                   CH 3 L (USB)_RTN_L_3                Analogue 5
+       USB_6                   CH 3 R (USB)_RTN_R_3                Analogue 6
+       USB_7                   CH 4 L (USB)_RTN_L_4                Analogue 7
+       USB_8                   CH 4 R (USB)_RTN_R_4               Analogue 8
+       USB_9                   CH 5 L (USB)_RTN_L_A               Analogue 9
+       USB_10                  CH 5 R (USB)_RTN_R_A               Analogue 10
+
+ NOTE: The Xone:PX5 is fully Traktor Scratch Certified for use with timecode control setups
+ from Traktor Scratch Pro 2 v2.11
+
+ Please refer to page 37 for details on configuring the Xone:PX5 for Traktor Scratch Pro 2.
+
+
+
+ALLEN&HEATH                                      28                 AP10733_2_XONE:PX5 User Guide
+                                    MIDI CONTROL
+MIDI stands for Musical Instrument Digital Interface; an interface protocol from the 1980s to enable
+different keyboards, sequencers, drum machines, etc. to communicate with each other.
+MIDI is still a common interface used by most DAW software to allow remote control of various
+functions within the program.
+
+The Xone:PX5 has the ability to send and receive MIDI and features a total of 51 MIDI enabled
+controls;
+39 buttons/switches, 5 Faders and 7 rotary controls, that can be assigned to enable control of
+various parameters in DJ performance software, or DAW (Digital Audio Workstation) applications.
+
+
+
+
+ALLEN&HEATH                                      29                 AP10733_2_XONE:PX5 User Guide
+                        MIDI CONTROL continued
+
+                        CHANNEL FX MODE SELECT SWITCHES
+
+
+
+
+                                            FX MODE
+XONE:PX5 CHANNEL
+                               INT             DUAL                 EXT
+                                C-2             OFF                 C#-2
+         A
+                               CH16             <>                  CH16
+                                D-2            OFF                  D#-2
+         1
+                               CH16            <>                   CH16
+                                E-2            OFF                   F-2
+         2
+                               CH16            <>                   CH16
+                               F#-2            OFF                   G-2
+         3
+                               CH16            <>                   CH16
+                               G#-2            OFF                   A-2
+         4
+                               CH16             <>                  CH16
+
+
+
+
+                        CHANNEL FILTER SELECT SWITCHES
+
+
+
+
+     XONE:PX5 CHANNEL                                FILTER
+
+                                                      A#-2
+                A
+                                                     CH16
+                                                      B-2
+                 1
+                                                     CH16
+                                                      C-1
+                 2
+                                                     CH16
+                                                     C#-1
+                 3
+                                                     CH16
+                                                      D-1
+                 4
+                                                     CH16
+                                                     D#-1
+              EXT RTN
+                                                     CH16
+
+
+
+ALLEN&HEATH                           30          AP10733_2_XONE:PX5 User Guide
+                        MIDI CONTROL continued
+
+                        CHANNEL CUE SELECT SWITCHES
+
+
+
+                        CHANNEL CUE SELECT SWITCHES
+
+
+     XONE:PX5 CHANNEL                              CUE
+
+                                                    E-1
+                A
+                                                   CH16
+                                                    F-1
+                 1
+                                                   CH16
+                                                   F#-1
+                 2
+                                                   CH16
+                                                    G-1
+                 3
+                                                   CH16
+                                                   G#-1
+                 4
+                                                   CH16
+                                                    D1
+              XONE:FX
+                                                   CH16
+
+
+
+
+                        XONE FILTER
+
+              HPF       BPF    LPF         FREQ    ON
+FILTER         A-1      A#-1    B-1         CC5    C0
+              CH16      CH16   CH16        CH16   CH16
+
+
+
+
+ALLEN&HEATH                           31          AP10733_2_XONE:PX5 User Guide
+                       MIDI CONTROL continued
+
+                                    XONE:FX
+
+
+
+
+              PRE/                                                FX X-FADE
+                       MODE      TAP         ON      CUE
+              POST                                            X       OFF    Y
+XONE:FX
+              C#0       B0        C1         C#1      D1      D0      OFF   D#0
+              CH16     CH16      CH16        CH16    CH16    CH16     <>    CH16
+
+              ASSIGN    SELECT     INTERVAL         DECAY     FOCUS         LEVEL
+XONE:FX        CC6        CC7         CC8            CC9       CC10          CC11
+               CH16       CH16          CH16        CH16       CH16         CH16
+
+ALLEN&HEATH                             32             AP10733_2_XONE:PX5 User Guide
+                          MIDI CONTROL continued
+
+                                     XONE:SYNC
+
+
+
+
+              BEAT LEFT     BEAT RIGHT BEND LEFT BEND RIGHT        STOP    PLAY
+
+XONE:SYNC            F0        F#0             G0       G#0         A0      A#0
+                 CH16          CH16          CH16      CH16        CH16     CH16
+
+
+                                      FADERS
+
+
+
+
+      XONE:PX5 CHANNEL                               FADER
+
+                                                      CC0
+                 1
+                                                      CH16
+                                                       CC1
+                 2
+                                                      CH16
+                                                       CC2
+                 3
+                                                      CH16
+                                                       CC3
+                 4
+                                                      CH16
+                                                       CC4
+              X-FADER
+                                                      CH16
+
+ALLEN&HEATH                             33          AP10733_2_XONE:PX5 User Guide
+              MIDI CHANNEL CHANGE
+
+ 1             The Xone:PX5 DJ Mixer default MIDI Channel is 16.
+
+
+               You can change MIDI channel by holding down the FX SELECT control
+               to enter the CONFIG menu.
+
+
+
+
+ 2             Select CHANNEL and press the FX SELECT control.
+               This will display the current MIDI Channel.
+               Press the FX SELECT control to highlight current MIDI Channel.
+               Rotate the FX SELECT control to change the MIDI Channel.
+
+
+
+
+ 3             Press FX SELECT to confirm the new MIDI Channel selection.
+
+
+
+
+ 4             Rotate the FX SELECT control to scroll down to EXIT.
+               Press the FX SELECT control to exit the CHANNEL menu.
+
+
+
+
+ 5             Rotate the FX SELECT control to scroll down to EXIT.
+               Press the FX SELECT control to exit the CONFIG menu.
+
+               NOTE:
+               MIDI Channel will remain set to the last user selected channel when
+               power to the mixer is switched OFF.
+               If no change has been made in the CONFIG menu, the mixer powers
+               ON set to default MIDI Channel 16.
+
+
+ALLEN&HEATH                      34                 AP10733_2_XONE:PX5 User Guide
+                            MIDI NOTE IMPLEMENTATION TABLE
+
+
+
+                                                                          Note Numbers
+Octave
+              C        C# /Db         D        D# / Eb        E                F        F# / Gb          G        G# / Ab        A        A# / Bb        B
+  -1      0       0    1    1    2        2    3    3    4        4       5         5   6      6    7        7    8    8    9        9    10   0A   11       0B
+  0      12       0C   13   0D   14       0E   15   0F   16       10      17       11   18     12   19       13   20   14   21       15   22   16   23       17
+  1      24       18   25   19   26       1A   27   1B   28       1C      29       1D   30     1E   31       1F   32   20   33       21   34   22   35       23
+  2      36       24   37   25   38       26   39   27   40       28      41       29   42     2A   43       2B   44   2C   45       2D   46   2E   47       2F
+  3      48       30   49   31   50       32   51   33   52       34      53       35   54     36   55       37   56   38   57       39   58   3A   59       3B
+  4      60       3C   61   3D   62       3E   63   3F   64       40      65       41   66     42   67       43   68   44   69       45   70   46   71       47
+  5      72       48   73   49   74       4A   75   4B   76       4C      77       4D   78     4E   79       4F   80   50   81       51   82   52   83       53
+  6      84       54   85   55   86       56   87   57   88       58      89       59   90     5A   91       5B   92   5C   93       5D   94   5E   95       5F
+  7      96       60   97   61   98       62   99   63 100 64 101 65 102 66 103 67 104 68 105 69 106 6A 107                                                  6B
+  8      108 6C 109 6D 110 6E 111                   6F   112 70 113 71 114 72 115 73 116 74 117 75 118 76 119                                                77
+  9      120 78 121 79 122 7A 123 7B 124 7C 125 7D 126 7E 127                                                7F
+         DEC HEX DEC HEX DEC HEX DEC HEX DEC HEX DEC HEX DEC HEX DEC HEX DEC HEX DEC HEX DEC HEX DEC HEX
+
+
+
+
+                                                                  CC          Hex       Note
+                                                                      0       0x00      C-1
+                                                                      1       0x01      C#-1
+                                                                      2       0x02      D-1
+                                                                      3       0x03      D#-1
+                                                                      4       0x04       E-1
+                                                                      5       0x05       F-1
+                                                                      6       0x06      F#-1
+                                                                      7       0x07      G-1
+                                                                      8       0x08      G#-1
+                                                                      9       0x09      A-1
+                                                                   10         0x0A      A#-1
+                                                                   11         0x0B       B-1
+                                                                   12         0x0C       C0
+                                                                   13         0x0C      C#0
+                                                                   14         0x0D       D0
+                                                                   15         0x0E      D#0
+                                                                   16         0x10       E0
+                                                                   17         0x11       F0
+                                                                   18         0x12      F#0
+                                                                   19         0x13       G0
+                                                                   20         0x14      G#0
+                                                                   21         0x15       A0
+
+
+
+
+ ALLEN&HEATH                                                                   35                            AP10733_2_XONE:PX5 User Guide
+              CONNECTING X:LINK CONTROLLERS
+Connecting XONE:K Series Controllers
+
+ The Xone:PX5 includes X:LINK, enabling remote control over computer software programs via a
+ direct connection between the mixer and Xone:K Series MIDI Controllers.
+ X:LINK uses a standard RJ-45 connector to distribute power and MIDI data, avoiding the need
+ to use additional computer USB ports, or a USB hub.
+
+              Connect the Cat-5 Ethernet (RJ-45) patch lead, supplied with your Xone:K Series
+              controller, to the X:LINK OUT socket of the controller.
+
+
+
+
+ Connect the other end of the patch lead to the X:LINK socket on the rear panel of the Xone:PX5
+ NOTE:
+ Ensure the Xone:K Series unit is
+ configured to send and receive
+ MIDI messages via a different
+ channel to the Xone:PX5
+ For example:
+ Xone:PX5         = CH16
+ Xone:K           = CH15
+
+
+
+
+ It is also possible to further expand remote MIDI control over software by ‘daisy-chaining’ two
+ Xone:K Series controllers, using another Cat-5 Ethernet (RJ-45) patch lead between X:LINK OUT on
+ the second Xone:K Series unit and X:LINK IN on the controller connecting to the X:LINK socket on
+ the Xone:PX5 rear panel.
+ NOTE:
+ Ensure both Xone:K Series units and the Xone:PX5
+ are configured to send and receive MIDI messages
+ on different channels.
+ For example:
+ Xone:PX5         = CH16
+ 1st Xone:K       = CH15
+ 2nd Xone:K       = CH14
+
+
+
+
+ Using setups described
+ above, set Xone:PX5 as the MIDI device in the host software preferences.
+ Please refer to your software application documentation for details on how to do this.
+
+ALLEN&HEATH                                    36                AP10733_2_XONE:PX5 User Guide
+         TIMECODE SETUP - TRAKTOR SCRATCH PRO 2
+This section explains how to set up TRAKTOR SCRATCH PRO 2 to control playback via Timecode from
+an external turntable or CD player when using with a Xone:PX5 DJ Mixer.
+
+•      Ensure TRAKTOR SCRATCH PRO 2 is installed and activated on your computer
+       NOTE: TRAKTOR PRO 2 does not support Timecode control.
+•      Ensure that your Xone:PX5 DJ Mixer is connected to the computer via USB.
+•      Connect turntables or CDJ media players to the LINE / PHONO Inputs on the Xone:PX5.
+•      Set the USB LN / PH switches on the Xone:PX5 rear panel for turntables or CDJ media players.
+       E.g. Switch in to PH for use turntables. Switch out to LN for use with CDJ media players.
+
+
+
+
+•      Next, on the Xone:PX5 top panel;
+•      set the corresponding Channel PHONO / USB / LINE Switch to: USB.
+
+
+
+
+•      Next, in TRAKTOR SCRATCH PRO 2; open Preferences
+•      Select the Audio Setup dialogue
+•      Check, or Select Xone:XP5 as the Audio Device.
+
+
+
+
+    ALLEN&HEATH                                   37                 AP10733_2_XONE:PX5 User Guide
+                          TIMECODE SETUP continued
+•      Next, select the Output Routing dialogue
+•      Check, or select Mixing Mode > External.
+•      When connected, the Xone:PX5 internal soundcard input channels 1 - 8 default to;
+       TRAKTOR Deck Layout: C-A-B-D
+
+
+
+
+•      Next, select the Input Routing dialogue
+•      When connected, Xone:PX5 internal soundcard output channels 1 - 8 default to;
+       TRAKTOR Deck Layout: C-A-B-D
+
+
+
+
+                                 C A B D
+
+
+    ALLEN&HEATH                                    38                AP10733_2_XONE:PX5 User Guide
+                          TIMECODE SETUP continued
+
+•      Select the Timecode Setup dialogue
+•      Change the Timecode inputs on the decks (A/B/C/D) from;
+       Internal Playback to Scratch Control
+
+
+
+
+•      Select the Decks Layout dialogue
+•      In the section Platter / Scope, choose Scope for the Decks you want to control with timecode.
+
+
+
+
+•      Calibrate the deck(s) on the scopes with the timecode source;
+       Control CD, Control Vinyl, or WAV on a USB stick.
+
+
+
+
+    ALLEN&HEATH                                   39                   AP10733_2_XONE:PX5 User Guide
+         RECORDING A MIX - TRAKTOR SCRATCH PRO 2
+•      On the Xone:PX5 rear panel, set the USB 9-10 MST/FX switch to: MST.
+
+
+
+
+•      In Traktor, select the Input Routing dialogue.
+•      Set Input FX Send (Ext) to: L (Mono) 9: Analogue 9 / R 10: Analogue 10
+
+
+
+
+•      Next, select the Mix Recorder dialogue.
+•      Set Source to: External.
+•      Set External Input to; Input FX Send (Ext).
+
+
+
+
+•      Finally, go to the Audio Recorder in the main Traktor screen, set your level and hit record.
+
+
+
+
+    ALLEN&HEATH                                    40                 AP10733_2_XONE:PX5 User Guide
+              BLOCK DIAGRAM
+
+
+
+
+ALLEN&HEATH        41         AP10733_2_XONE:PX5 User Guide
+                               SPECIFICATIONS
+Hardware Specification
+
+Output Levels; Nom / Max        Master Mix             + 4dBu     +24dBu
+                                Master RCA             -10dBV     + 8dBV
+                                Booth                    0dBu     +18dBu
+                                FX Send                  0dBu     +18dBu
+                                Record RCA             -10dBV     + 8dBV
+
+Internal headroom               Channels               +18dB
+
+Frequency response              Line in to master out +/-0.5dB from 20Hz to 30kHz
+
+Distortion                      Typically 0.01% @ 1kHz 0dBu
+
+Crosstalk                       < -85dB inter-channel @ 1kHz +10dBu
+
+Residual Noise                  Master Mix             -96dBu
+                                Master RCA             -99dBu
+                                Booth                  -96dBu
+
+Mix Noise                       Master Mix             -86dBu
+                                Master RCA             -95dBu
+                                Booth                  -90dBu
+                                Record RCA             -95dBu
+
+Mic Gain                        +40dB, EIN = -118dB (@ 40dB gain with 150R source)
+
+RIAA Gain                       +39dB @ 1kHz           (10mV RMS= 0VU @ 1kHz)
+
+Channel/ Master Meters          12 LED                 -25dBu to +12dBu
+
+Channel EQ                      LF 400Hz MF 1.2kHz HF 3.5kHz
+                                +6dB boost to ‘Total Kill’.
+                                Total Kill attenuation -75dB
+
+Channel fader                   60mm VCA control individually replaceable.
+                                Plug in replacement - user replaceable (see p.44)
+                                < -85dB shutoff @ 1kHz             +10dBu
+
+Cross-fader                     45mm Voltage Controlled Amplifier control.
+                                Plug in replacement - user replaceable (see p.44)
+
+Filters                         Stereo. Analogue Voltage Controlled Filter.
+
+
+Digital Architecture Specification
+
+Analogue/Digital conversion                            24 bit
+Analogue/Digital Line-up                               +14dBu = 0dBFS
+USB soundcard sampling frequency range                 44.1kHz to 96kHz
+
+
+
+
+ALLEN&HEATH                                  42                  AP10733_2_XONE:PX5 User Guide
+                         SPECIFICATIONS continued
+
+Model                         Xone:PX5
+Type                          Analog
+Channels                      4+1
+EQ                            3-band / Total Kill (CH 1- 4 + CH A)
+USB Soundcard                 20 Channel (10 in / 10 out)
+                              USB2 / Class Compliant
+                              24bit / 96kHz
+                              1 x MIDI IN
+                              1 x MIDI Out
+Line Inputs                   4 x RCA (CH 1- 4)
+                              1 x 1/4" TRS (CH A) Mono/Stereo
+Phono Inputs                  4 x RCA (CH 1- 4)
+                              LN/PH Switch for DVS
+USB Inputs                    5 x USB (CH 1- 4 + CH A)
+Mic Input                     1 x XLR
+Master Output                 1 x XLR (Balanced)
+Master 2 Output               1 x RCA (Un-balanced)
+Booth Output                  1 x 1/4" TRS
+Record Output                 1 x RCA (Un-balanced)
+Master Insert                 1 x 1/4" TRS
+MIDI Sync/Out                 1 x 5-Pin DIN
+                              DIN Offset Control
+Send/Return I/O               1 x 1/4" TRS Send
+                              1 x 1/4" TRS Return
+                              1 x LN/Hi-Z Switch
+Internal Xone:FX              Yes
+Hybrid FX Mode                Yes (Internal < Dual > External)
+FX Send                       1 x Pre/Post Selectable (CH 1- 4 + CH A)
+Filter                        1 x Voltage Controlled Filter
+                              HPF / BPF / LPF
+                              Adjustable Frequency & Resonance
+                              Assignable CH 1- 4 + CH A + External Return
+X-Link                        1 x RJ45
+Headphones                    1 x 1/4"
+                              1 x 3.5mm
+                              Split Cue Monitoring
+Channel Faders                60mm Voltage Controlled Amplier / Replaceable
+Chanel Meters                 12 Segment LED
+Channel Fader Curve           3 Types
+X-Fader                       45mm VCA / Replaceable / innoFADER Pro2 Compatible
+X-Fader Curve Settings        3 Types
+MIDI Clock                    Send + Receive
+                              Start / Stop / Pause / Tempo Bend (-/+)
+MIDI Assignable               Yes (MIDI CC / MIDI Note ON -OFF)
+BPM Detection                 Auto / Manual / Tap Tempo
+Earth Ground Terminals        x2
+Headroom                      +20dB
+AC Mains                      100 to 240V
+                              AC 50/60Hz
+                              Consumption 35W max
+Mains Adaptor                 3 pin IEC socket with cable clamp
+Fuse Rating                   250V AC T1AL 20mm
+
+
+
+ALLEN&HEATH                             43                AP10733_2_XONE:PX5 User Guide
+       PANEL DRAWINGS / WEIGHTS & DIMENSIONS
+
+ XONE:PX5                 UN-PACKED                    PACKED
+
+    Height       110mm            4.3”         190mm               7.5”
+
+    Width        320mm            12.6”        450mm               17.7”
+
+    Depth        375.6mm          14.8”        530mm               20.9”
+
+   Weight         5.2kg          11.5lbs       6.6kg              14.6lbs
+
+
+Top Panel View
+
+
+
+
+ ALLEN&HEATH                              44    AP10733_2_XONE:PX5 User Guide
+                     PANEL DRAWINGS continued
+
+Rear Panel View
+
+
+
+
+  IMPORTANT NOTE: Warning ! Do NOT cover louvres on Front or Side Panels !
+                  Xone:PX5 is NOT compatible with standard Xone Series Rack Ear kits.
+
+Side View
+
+
+
+
+Front View
+
+
+
+
+ ALLEN&HEATH                              45              AP10733_2_XONE:PX5 User Guide
+                                       FILTER REFERENCE
+The XONE:VCF Voltage Controlled Filter
+A Voltage Controlled Filter is an audio filter where the cut-off frequency is altered by a DC control
+voltage rather than a variable resistor. This produces a much wider operating range and more control
+over the filter response to create unlimited combinations of tonal effect.
+Filter Type Select
+The filters are ‘state variable’. This means that they provide three simultaneous filter types: high-pass,
+band-pass and low-pass. Three large illuminated switches select which type is active.
+You can press any combination together to create different response types such as ‘notch’ and an
+interesting ‘all-pass’ effect. The switches are ‘soft switched’ for live performance, meaning that the
+audio signal is ramped between filter states to prevent audible clicks.
+NOTE: the last selected XONE:VCF response and Channel FILTER assignments are saved when mains
+power to the mixer is turned OFF.
+The graphs below show typical effects on audio frequency response for the three filter types.
+The range of sweep from low to high frequency is shown together with the effect of adjusting
+RESONANCE (one frequency with several resonance settings shown).
+The vertical scale shows the amount of cut or boost around the normal 0dB operating level.
+The horizontal scale shows the change in frequency from low (bass) to high (treble).
+
+                     HI-PASS FILTER
+    +20
+
+    +15
+
+    +10
+
+    +5
+               LO                        HI
+
+    0dB
+
+    -5
+                                                                                BAND-PASS FILTER
+    -10                                                         +20
+
+
+    -15                                                         +15
+
+
+    -20                                                         +10
+          20        100         1kHz          10k    20k
+                                                                +5
+                                                                           LO                      HI
+
+                                                                0dB
+                     LO-PASS FILTER
+    +20                                                         -5
+
+    +15                                                         -10
+
+    +10                                                         -15
+
+    +5
+                    LO                              HI          -20
+                                                                      20    100            1kHz         10k   20k
+    0dB
+
+    -5
+
+    -10
+
+    -15
+
+    -20
+          20        100         1kHz          10k    20k
+
+
+
+ALLEN&HEATH                                                46                     AP10733_2_XONE:PX5 User Guide
+                                OPERATING LEVELS
+
+    It is most important that the system level settings are correctly set. It is well known that
+    many DJs push the level to maximum with meters peaking hard in the belief that they are
+    getting the best from the system. THIS IS NOT THE CASE !
+    The best can only be achieved if the system levels are set within the normal operating
+    range and not allowed to peak.
+    Peaking simply results in signal distortion, not more volume. It is the specification of the
+    amplifier / speaker system that sets the maximum volume that can be achieved, not the
+    console.
+    The human ear too can fool the operator into believing that more volume is needed.
+    Be careful as this is in fact a warning that hearing damage will result if high listening levels
+    are maintained.
+    Remember that it is the QUALITY of the sound that pleases the ear, not the VOLUME.
+
+    The diagram below illustrates the operating range of the audio signal.
+    NORMAL OPERATING RANGE. For normal music the signal should range between
+    –6 and +6 on the meters with average around 0dB. This allows enough HEADROOM for
+    unexpected peaks before the signal hits its maximum CLIPPING voltage and distorts.
+    It also achieves the best SIGNAL-TO-NOISE-RATIO by keeping the signal well above
+    the residual NOISE FLOOR (system hiss).
+    The DYNAMIC RANGE is the maximum signal swing available between the residual
+    noise floor and clipping.
+
+
+
+
+                        An important note …
+  !                   The human ear is a remarkable organ with the ability to compress
+                        or ‘shut down’ when sound levels become too high.
+                        Do not interpret this natural response as a reason to turn the
+                        system volume up further !
+                        As the session wears on ear fatigue may set in, and the speaker
+                        cones may become hot so reducing the effectiveness of the system
+                        and listeners to gain any benefit from increased volume.
+
+ALLEN&HEATH                                        47                   AP10733_2_XONE:PX5 User Guide
+                                          EARTHING
+
+              The connection to earth (ground) in an audio system is important for
+              two reasons:
+              SAFETY - To protect the operator from high voltage electric shock,
+              and
+              AUDIO PERFORMANCE - To minimise the effect of earth (ground)
+              loops which result in audible hum and buzz, and to shield the audio
+              signals from interference.
+
+              For safety it is important that all equipment earths are connected to
+              mains earth so that exposed metal parts are prevented from carrying
+              high voltage which can injure or even kill the operator. It is
+              recommended that a qualified system engineer check the continuity of
+              the safety earth from all points in the system including microphone
+              bodies, turntable chassis, equipment cases, and so on.
+              The same earth is also used to shield audio cables from external
+              interference such as the hum fields associated with power transformers,
+              lighting dimmer buzz, and computer radiation. Problems arise when the
+              signal sees more than one path to mains earth. An ‘earth loop’ (ground
+              loop) results causing current to flow between the different earth paths.
+              This condition is usually detected as a mains frequency audible hum or
+              buzz.
+              To ensure safe and trouble-free operation we recommend the following:
+              Have your mains system checked by a qualified electrician. If
+              the supply earthing is solid to start with you are less likely to experience
+              problems.
+              Do not remove the earth connection from the console mains
+              plug. The console chassis is connected to mains earth through the
+              power cable to ensure your safety. Audio 0V is connected to the
+              console chassis internally. If problems are encountered with earth loops
+              operate the audio ‘ground lift’ switches on connected equipment
+              accordingly, or disconnect the cable screens at one end, usually at the
+              destination.
+              Make sure that turntables are correctly earthed. A chassis earth
+              terminal is provided on the console rear panel to connect to turntable
+              earth straps.
+              Use low impedance sources such as microphones and line level
+              equipment rated at 200 ohms or less to reduce susceptibility to
+              interference. The console outputs are designed to operate at very low
+              impedance to minimise interference problems.
+              Use balanced connections for microphones and mix output as
+              these provide further immunity by cancelling out interference that may
+              be picked up on long cable runs. To connect an unbalanced source to a
+              balanced console input, link the cold input (XLR pin 3 or jack ring) to 0V
+              earth (XLR pin 1 or jack sleeve) at the console. To connect a balanced
+              XLR output to unbalanced equipment, link the cold output to 0V earth
+              at the console.
+              Use good quality cables and connectors and check for correct
+              wiring and reliable solder joints. Allow sufficient cable loop to prevent
+              damage through stretching.
+              If you are not sure ...
+              Contact your service agent or local Allen & Heath dealer for advice.
+
+ALLEN&HEATH                                        48                  AP10733_2_XONE:PX5 User Guide
+                              REPLACING THE FADERS
+
+Channel and cross-faders subject to excessive ‘wear and tear’, or extensive use, over time will require
+replacing. Intermittent or noisy operation is an indication of faders becoming worn. Using a propriety
+fader cleaner, such as CaigLube, DeOxit, etc. may temporarily restore use, but DO NOT use on new
+faders as this can displace factory applied finishes.
+IMPORTANT NOTES:
+Warning! Please read the following steps in full BEFORE starting work.
+If you are unsure of your ability to safely carry out the procedure described, it is advised that you contact
+an authorised Allen & Heath agent for local service assistance by a qualified technician. Please contact
+your mixer retailer, or local authorised Allen & Heath agent, for more information:
+www.allen-heath.com/where-to-buy
+Ensure that the power switch on the rear panel is set OFF and that IEC mains cable is disconnected from
+the AC mains supply BEFORE opening the unit.
+Have a clean flat work surface ready before starting work.
+Tools you will need:
+•   T8 Torx screwdriver
+•   Pliers
+•   A small container for retaining screws
+
+Ensure erroneous objects, such as cover screws etc. do not fall into the chassis or through louvres
+during disassembly, and check to make sure none are loose inside the unit BEFORE reassembling.
+
+To replace Faders
+ONLY use spare part components approved by Allen & Heath for replacement.
+Please contact your mixer retailer, officially authorised Allen & Heath spares supplier, or local authorised
+Allen & Heath agent to order spare A&H parts: www.allen-heath.com/where-to-buy
+
+To replace the factory standard Allen & Heath Alpha Channel Fader, order;
+A&H spare part-code:         004-852X - XONE:PX5 CH FDR SPARE
+
+
+
+
+To replace the factory standard Allen & Heath Alpha cross-fader, order;
+A&H spare part-code:         004-853X - XONE:PX5 XFDR SPARE
+
+
+
+
+The innoFADER Pro2, from Audio Innovate, is also fully compatible as a cross-fader upgrade for the
+XONE:PX5. For details of innoFADER Pro2 stockists, and setup and calibration options, please visit the
+innoFADER website: www.innofader.com
+
+    ALLEN&HEATH                                     49                  AP10733_2_XONE:PX5 User Guide
+                       REPLACING THE FADERS continued
+                                                  [v]
+
+                      [v]                                      [v]
+
+
+
+
+                [v]
+
+
+
+
+                                                                                         [v]
+
+
+
+
+                                                                                          [v]
+
+
+                                            [v]
+
+                                                                [v]                                       [ii]
+
+
+
+                                                                                                  [iii]
+
+
+
+
+                                                                             [iv]
+                                                                 [i]
+
+Step 1:
+•     Ensure power switch on the mixer’s rear panel is turned OFF.
+•     Disconnect the mains cable from AC mains supply and mixer’s IEC socket.
+Step 2:
+•     Remove and retain 1 Torx screw securing, RECORD, RCA sockets to the rear panel [i].
+•     Remove and retain 2 Torx screws securing the rear panel MIC, XLR socket [ii].
+•     Remove and retain 4 Torx screws between LINE and PHONO RCA sockets on rear panel [iii].
+•     Remove and retain 4 circular nuts securing, EXT RTN / FX SEND, TRS (1/4” Jack) sockets [iv].
+Step 3:
+•     Remove and retain 8 Torx screws securing top panel to the mixer chassis [v].
+Step 4:
+•     Lift the front edge of the top panel up from the chassis, as illustrated above, to access and
+      disconnect the internal harnesses (see below).
+     NOTE: Do not yet attempt to completely separate the top panel and chassis.
+
+ ALLEN&HEATH                                            50              AP10733_2_XONE:PX5 User Guide
+                     REPLACING THE FADERS continued
+Step 5:
+•      With care, unplug 4, grey, flat harnesses and 1, orange, wire-form connecting the main top panel
+       PCBA to the PCBA fixed to base of the mixer chassis, following the order shown below;
+
+
+
+
+                                       [1]                                                [2]
+
+
+
+
+                                         [3]                                            [4]
+
+
+                                                                             [5]
+                                                                [4]          [3]
+
+
+                                                                             [1]       [2]
+                                       [5]
+•      The top panel can now be lifted away and separated from the chassis.
+•      Place the top panel face-down on a clean surface, taking care not to damage harnesses.
+       NOTE: when re-assembling the mixer, take great care to refit harnesses in correct positions
+       and to ensure that connectors are fully fitted into their corresponding sockets.
+
+
+    ALLEN&HEATH                                     51                 AP10733_2_XONE:PX5 User Guide
+                        REPLACING THE CROSS-FADER
+
+Step 6: To replace the cross-fader
+•      With care, disconnect the black wire-form connecting cross-fader to the main PCBA.
+
+
+
+
+•      Turn the top panel face up. Remove and retain 2 screws securing cross-fader tray to top panel
+
+
+
+
+•      Take the knob off the cross-fader shaft to remove the tray clear from the top panel
+
+
+
+
+•      Remove and retain 2 screws securing the cross-fader PCBA to the tray
+•      Fit the new replacement cross-fader PCBA to the bracket as shown below; slot [1].
+       The standard cross-fader must be fitted to slot [1] and not slot [2].
+
+                                                                  [2]
+
+                                        [1]
+
+
+       The longer slot [2] is for mounting the optional innoFADER Pro2 (not supplied).
+•      Screw the cross-fader plate back to the console.
+•      Replace the cross-fader knob.
+•      Re-connect the black wire-form from connecting cross-fader to the main PCBA.
+•      Reassembly of the mixer is the reverse of Steps 1 - 5, detailed above.
+
+       NOTE: when re-assembling the mixer, take great care to refit harnesses in correct positions
+       (shown in Step 5 above) and to ensure that connectors are fully fitted into their corresponding
+       sockets.
+
+
+
+    ALLEN&HEATH                                     52                  AP10733_2_XONE:PX5 User Guide
+                     REPLACING THE CHANNEL FADER
+
+Step 7: To replace the channel faders
+•      Remove the cross-fader tray prior to replacing channel fader/s, as described in Step 6 above.
+•      Remove and retain 2 screws securing the channel fader PCBA.
+
+
+
+
+•      Turn the top panel over and slide the Channel Fader PCBA away from its connection to the main
+       top panel PCBA as shown.
+
+
+
+
+•      Take the cap off the Channel Fader shaft to remove the assembly clear from the top panel.
+•      Fit the new replacement Channel Fader assembly to the main top panel PCBA.
+•      Ensure that pins on the main top panel PCBA fit correctly to the Channel Fader PCBA connector,
+       as illustrated below.
+
+
+
+                                            
+                                            
+
+
+
+
+•      Turn the top panel over, replace the Channel Fader knob.
+•      Screw the Channel Fader back to the top panel.
+•      Refit the cross-fader tray back to the console and replace the cross-fader knob.
+•      Re-connect the black wire-form connecting cross-fader to the main PCBA.
+•      Reassembly of the mixer is the reverse of Steps 1 - 5, detailed above.
+       NOTE: when re-assembling the mixer, take great care to refit harnesses in correct positions
+       (shown in Step 5 above) and to ensure that connectors are fully fitted into their corresponding
+       sockets.
+
+
+    ALLEN&HEATH                                     53                  AP10733_2_XONE:PX5 User Guide
+              For more information, please visit our website: www.allen-heath.com
+
+
+
+
+ALLEN&HEATH                                      54                     AP10733_2_XONE:PX5 User Guide
+

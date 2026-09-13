@@ -54,6 +54,11 @@ nonisolated struct MappingExplanationSnapshot: Codable, Sendable, Equatable {
                     deviceLimitations.append("The exact pinned profile \(profile) is unavailable; no substitute profile was used.")
                 }
                 if let library, let pinned = try? library.profile(id: configuration.profileID, version: configuration.version) {
+                    if pinned.coverageState == .documentationOnly {
+                        deviceLimitations.append("This controller has documentation only: no physical-control addresses are established. MIDI Learn or a verified template is needed; do not infer manufacturer addresses.")
+                    } else if pinned.coverageState == .partial {
+                        deviceLimitations.append("This controller has partial MIDI coverage. Only listed bindings are established; missing controls and source conflicts remain unresolved.")
+                    }
                     if !pinned.modes.contains(where: { $0.id == configuration.layerMode }) {
                         deviceLimitations.append("Configured layer mode \(configuration.layerMode) is absent from the exact pinned profile.")
                     }

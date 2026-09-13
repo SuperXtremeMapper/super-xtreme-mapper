@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Native Instruments",
+  "model": "Traktor Z1 MK2",
+  "status": "partial-extraction",
+  "coverage_state": "documentation-only",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "local_file": "ni-hercules-ah/z1-mk2/manual.pdf",
+      "url": "https://docs.native-instruments.com/pdf-guides/traktor/Traktor_Z1_Manual_EN_30102024.pdf",
+      "sha256": "1e01dc5492fb928df8dde38c0749eb42b7e348f4b0badee42f054018daeee761",
+      "id": "s1"
+    }
+  ],
+  "scope": "Documentation-only extraction of the archived owner manual and support material. No model-specific numeric MIDI addresses, channels, value encodings or LED receive assignments are established; native/software control descriptions are not wire-message evidence.",
+  "bindings": [],
+  "setup_notes": [
+    "Press --- together with the ☰ menu button to switch to MIDI mode; the center display shows MIDI MODE. Press the combination again to return to Traktor mode."
+  ],
+  "missing_information": [
+    "Manufacturer control-to-message table with numeric MIDI addresses and channels.",
+    "Mode/shift/deck-layer address differences in MIDI mode.",
+    "Encoder/jog-wheel value encoding and button press/release bytes.",
+    "LED/display/meter receive protocol and values; native display behavior does not establish MIDI feedback."
+  ],
+  "issues": [
+    {
+      "id": "setup-provenance",
+      "severity": "scope",
+      "description": "MIDI mode entry/exit is documented separately from native deck A/B versus C/D switching.",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "PDF page 8 / printed page 6; Using the Traktor Z1 MK2 as a MIDI Controller"
+        }
+      ],
+      "excluded_bindings": []
+    },
+    {
+      "id": "no-wire-address-chart",
+      "severity": "scope",
+      "description": "The owner manual describes native control functions without a complete numeric MIDI address/channel/encoding table. MIDI-mode availability does not establish those wire values.",
+      "evidence": [
+        {
+          "source_id": "s1",
+          "locator": "PDF pages 6–16; Using the Z1 with Traktor and customization"
+        }
+      ],
+      "excluded_bindings": [
+        "All per-control MIDI inputs and outputs; no numeric wire map established"
+      ]
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "s1",
+      "file": "ni-hercules-ah/raw/traktor-z1-mk2-s1.txt",
+      "extraction_method": "pdftotext -layout; complete PDF retained as page-addressed text; no OCR or inferred labels"
+    }
+  ]
+}

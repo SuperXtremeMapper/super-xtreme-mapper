@@ -1,0 +1,3605 @@
+Table of Contents
+  1. Disclaimer .................................................................................................................. 1
+
+  2. Welcome to TRAKTOR KONTROL S4 ......................................................................... 2
+      2.1. Document Conventions ..................................................................................... 2
+      2.2. Documentation Resources ................................................................................ 3
+      2.3. In this Document .............................................................................................. 3
+
+  3. Concepts ................................................................................................................... 4
+       3.1. S4 and TRAKTOR Control Concept ................................................................... 4
+       3.2. Haptic Drive Modes .......................................................................................... 5
+       3.3. Pad Modes ....................................................................................................... 5
+       3.4. Tempo Synchronization ..................................................................................... 6
+             3.4.1. Master Clock .......................................................................................... 6
+             3.4.2. Tempo Master and Tempo Master Assignment ......................................... 6
+             3.4.3. Sync Modes ........................................................................................... 7
+             3.4.4. Beatgrid ................................................................................................. 8
+       3.5. Harmonic Mixing ............................................................................................... 8
+       3.6. About the Track Collection .............................................................................. 10
+       3.7. Snap Mode and Quantize Mode ...................................................................... 10
+
+  4. Setting up TRAKTOR KONTROL S4 .......................................................................... 12
+       4.1. Connecting to the Computer ............................................................................ 12
+       4.2. Connecting an Amplification System ................................................................ 13
+       4.3. Connecting Monitors for DJ Booth ................................................................... 13
+       4.4. Connecting Headphones ................................................................................. 14
+       4.5. Connecting to the Power Supply ...................................................................... 14
+       4.6. Final Preparation ............................................................................................ 15
+       4.7. Importing Music into the Track Collection ......................................................... 17
+
+  5. TRAKTOR KONTROL S4 Overview ........................................................................... 19
+       5.1. Decks ............................................................................................................ 21
+            5.1.1. Browse Controls ................................................................................... 23
+            5.1.2. Pad Section ......................................................................................... 23
+            5.1.3. Display Elements for Tracks and STEM Files ......................................... 25
+            5.1.4. Display Elements on a Remix Deck ....................................................... 25
+       5.2. Mixer ............................................................................................................. 26
+            5.2.1. Mixer Channel ...................................................................................... 28
+       5.3. FX Unit .......................................................................................................... 29
+       5.4. Front Panel View ............................................................................................ 30
+       5.5. Rear Panel ..................................................................................................... 30
+
+  6. Mixing Your First Tracks ............................................................................................ 32
+       6.1. Prerequisites .................................................................................................. 32
+       6.2. Loading the First Track into Deck A ................................................................. 33
+       6.3. Starting Playback of Deck A ............................................................................ 34
+       6.4. Loading the Second Track into Deck B ............................................................. 34
+      6.5. Syncing the Track Tempos .............................................................................. 36
+      6.6. Starting Playback of the Second Track ............................................................. 36
+      6.7. Mixing in the Audio Signal ............................................................................... 36
+
+7. Tutorials ................................................................................................................... 38
+     7.1. Browsing and Loading .................................................................................... 39
+     7.2. Controlling Playback ....................................................................................... 40
+           7.2.1. Using Transport Controls ...................................................................... 41
+           7.2.2. Using Jog Wheels in JOG Mode ............................................................ 41
+           7.2.3. Using Jog Wheels in Turntable Mode ..................................................... 45
+     7.3. Assigning Mixer Channels to the Crossfader .................................................... 48
+           7.3.1. Setting the Crossfader Curve ................................................................ 49
+     7.4. Adjusting Levels ............................................................................................. 50
+     7.5. Using the Equalizer ......................................................................................... 52
+     7.6. Using CUE Channel ........................................................................................ 53
+     7.7. Adjusting Tempo ............................................................................................. 54
+     7.8. Working with Key Lock .................................................................................... 57
+           7.8.1. Locking the Original Key ....................................................................... 57
+           7.8.2. Transposing the Original Key in Semitones ............................................ 58
+           7.8.3. Resetting the Changed Key to the Original Key ...................................... 59
+     7.9. Playing with Cue Points .................................................................................. 60
+     7.10. Playing with Loops ........................................................................................ 61
+     7.11. Playing with Flux Mode and Reverse Mode .................................................... 63
+     7.12. Playing with MIXER Effects ........................................................................... 65
+     7.13. Playing with FX Units .................................................................................... 66
+     7.14. Adding Tracks to the Preparation List ............................................................. 68
+     7.15. Previewing Tracks in the Browser .................................................................. 68
+     7.16. Switching Deck Focus ................................................................................... 69
+     7.17. Playing with Remix Decks ............................................................................. 69
+           7.17.1. Using Pattern Recorder ....................................................................... 75
+     7.18. Playing with STEM Decks ............................................................................. 75
+     7.19. Correcting Beatgrids of Tracks ....................................................................... 80
+
+8. Preferences .............................................................................................................. 82
+
+9. Integrating External Devices ...................................................................................... 84
+      9.1. Integrating Microphone ................................................................................... 84
+      9.2. Integrating Turntable ....................................................................................... 85
+      9.3. Integrating CD Players .................................................................................... 86
+      9.4. Enabling Scratch Function in TRAKTOR .......................................................... 86
+      9.5. Using the S4 as a Standalone DJ Mixer ........................................................... 87
+
+10. Setting the TRAKTOR KONTROL S4 as Your Default Audio Interface ........................ 89
+                                                                                     Disclaimer
+
+
+
+1. DISCLAIMER
+
+The information in this document is subject to change without notice and does not represent a
+commitment on the part of Native Instruments GmbH. The software described by this document is
+subject to a License Agreement and may not be copied to other media. No part of this publication
+may be copied, reproduced or otherwise transmitted or recorded, for any purpose, without prior
+written permission by Native Instruments GmbH, hereinafter referred to as Native Instruments.
+“Native Instruments”, “NI” and associated logos are (registered) trademarks of Native Instruments
+GmbH.
+Mac, macOS, GarageBand, Logic and iTunes are registered trademarks of Apple Inc., registered
+in the U.S. and other countries.
+Windows and DirectSound are registered trademarks of Microsoft Corporation in the United States
+and/or other countries.
+All other trademarks are the property of their respective owners and use of them does not imply
+any affiliation with or endorsement by them.
+Document authored by: Native Instruments GmbH
+Software version: 3.2 (07/2019)
+Hardware version: TRAKTOR KONTROL S4 MK3
+Special thanks to the Beta Test Team, who were invaluable not just in tracking down bugs, but in
+making this a better product.
+
+
+
+
+                                               1
+                                                             Welcome to TRAKTOR KONTROL S4
+
+
+
+2. WELCOME TO TRAKTOR KONTROL S4
+
+Thank you for choosing TRAKTOR KONTROL S4, it is because of customers like you that we can
+continue developing groundbreaking music software and hardware. TRAKTOR KONTROL S4 is a
+fully integrated hardware and software DJ performance system. The all-in-one TRAKTOR KON-
+TROL S4 controller offers you an ergonomic DJ mixer, a built-in 24-bit/96 kHz audio interface, and
+a high-resolution control surface, perfectly tailored for TRAKTOR PRO 3.
+This documentation provides you with all the information you need to get started mixing, syncing
+and looping. If you are already familiar with TRAKTOR, this guide will also help you use the more
+advanced features of TRAKTOR KONTROL S4.
+
+
+2.1. Document Conventions
+This document uses particular formatting to point out special facts and to warn you of potential is-
+sues. The icons introducing the following notes let you see what kind of information can be expec-
+ted:
+
+
+
+            The speech bubble icon indicates a useful tip that may help you to solve a task more
+            efficiently.
+
+
+
+
+            The exclamation mark icon highlights important information that is essential for the
+            given context.
+
+
+
+
+            The warning icon warns you of serious issues and potential risks that require your
+            full attention.
+
+
+
+
+Furthermore, the following formatting is used:
+
+ • Paths to locations on your hard disk or other storage devices are printed in italics.
+ • Important names and concepts are printed in bold.
+ • Square brackets are used to reference keys on a computer’s keyboard, e.g., Press [Shift] +
+   [Enter].
+
+
+Pet Names for Software and Hardware
+Throughout the documentation, we will refer to the TRAKTOR KONTROL S4 hardware controller
+as TRAKTOR KONTROL S4, S4 controller, or simply S4.
+Likewise, the TRAKTOR software may be referred to as TRAKTOR.
+
+
+                                                  2
+                                                            Welcome to TRAKTOR KONTROL S4
+
+
+
+2.2. Documentation Resources
+Native Instruments provides many information sources regarding TRAKTOR KONTROL S4. The
+main resources to get you started are:
+
+• TRAKTOR KONTROL S4 Manual: This manual guides you through the hardware and soft-
+  ware setup process to get the TRAKTOR KONTROL S4 system up and running. Additionally,
+  by providing task-based tutorials, it offers a practical approach to using your TRAKTOR KON-
+  TROL S4.
+• TRAKTOR PRO 3 Manual: For in-depth information on all features provided by the TRAKTOR
+  software, refer to the TRAKTOR PRO 3 Manual.
+
+
+2.3. In this Document
+What you are reading now is the TRAKTOR KONTROL S4 Manual. This manual is structured as
+follows:
+
+• Concepts quickly introduces you to the TRAKTOR KONTROL S4 user interface and its main
+  areas, both hardware and software.
+• Setting up TRAKTOR KONTROL S4 guides you through the process of setting up your TRAK-
+  TOR KONTROL S4 system and importing your music into TRAKTOR.
+• TRAKTOR KONTROL S4 Overview is an extensive reference of all hardware control elements
+  to be found on your TRAKTOR KONTROL S4 hardware controller. Whenever you are unsure
+  about the functionality of a particular control element, you will find all the necessary information
+  here.
+• Mixing Your First Tracks is a quickstart tutorial introducing you to the main steps of mixing your
+  first tracks using the SYNC function.
+• Tutorials contains a collection of short tutorials, showing you how to work with the individual
+  areas of the controller.
+• Preferences explains how to open the Preferences in TRAKTOR and introduces the options to
+  customize the TRAKTOR KONTROL S4 for specific needs.
+• Integrating External Devices shows you how to integrate TRAKTOR KONTROL S4 with your
+  studio or live setup, in various configurations.
+• Setting the TRAKTOR KONTROL S4 as Your Default Audio Interface describes how to use the
+  audio interface of the TRAKTOR KONTROL S4 as the default audio device of your computer.
+
+
+
+
+                                                 3
+                                                                                          Concepts
+
+
+
+3. CONCEPTS
+
+In this section you are briefly introduced to the main concepts of the TRAKTOR KONTROL S4 and
+some basic concepts of the TRAKTOR software.
+
+
+3.1. S4 and TRAKTOR Control Concept
+This section quickly introduces the main areas and concepts of your TRAKTOR KONTROL S4
+hardware controller with reference to the TRAKTOR PRO software.
+
+
+
+
+S4 and TRAKTOR control concept.
+
+
+(1) Decks: You can use the Decks to control tracks and Samples, similar to DJ turntables or CD
+players but with additional features. TRAKTOR controls four virtual Decks and each of them can
+be operated in several Deck Types: Track Deck, Remix Deck, STEM, Deck, and Live Input.
+TRAKTOR provides you with four virtual Decks. The two Decks on your S4 hardware controller al-
+low you to control the four software Decks A, B, C and D in TRAKTOR: the left Deck on your S4
+controls Decks A and C in the software. The right Deck on your S4 controls Decks B and D in the
+software.
+(2) Mixer: You can use the Mixer to mix the audio signals coming from the Decks. The Mixer sits in
+the middle of the TRAKTOR software as well as on your TRAKTOR KONTROL S4 controller. On
+the S4, the Mixer consists of the four Mixer channels A, B, C, and D which receive the individual
+audio signals from the corresponding Decks. Each Mixer channel contains controls to modulate
+the audio signal and to adjust the outgoing volume before the audio signal is send to the MAS-
+TER output. Furthermore, the Mixer provides the crossfader to let you fade between the audio sig-
+nals in the Mixer channels.
+(3) FX Units: You can further process the signals in the Mixer channels by using the two FX Units
+located at the top-left and top-right on your S4 and in the software interface. The FX Units give you
+access to a collection of high-quality effects included in TRAKTOR. FX Unit 1 at the top-left on
+your S4 controls FX Unit 1 in the software. FX Unit 2 at the top-right on your S4 control FX Unit 2
+in the software.
+
+
+
+
+                                                 4
+                                                                                       Concepts
+
+
+
+3.2. Haptic Drive Modes
+You can operate the Jog Wheels on the S4 in three different modes, called HAPTIC DRIVE
+MODEs. Each HAPTIC DRIVE MODE provides you with different control functions for the Jog
+Wheels.
+
+ • JOG mode: The JOG mode lets you control the playback of your tracks by spinning the Jog
+   Wheel. Depending on the playback state or if you touch the top plate or the outer rim, the be-
+   havior differs accordingly. In JOG mode you can use the Jog Wheel for tempo bending and
+   nudging, to cue beats and scratch tracks, as well as seeking within tracks. Furthermore, you
+   can adjust the tension for the Jog Wheel using the JOG button as well as in the Preferences.
+   Furthermore, you can enable a tick felt as haptic feedback in the Jog Wheel in the Preferences.
+   For more information, refer to Using Jog Wheels in JOG Mode.
+ • TT mode: As with the JOG mode, the TT mode (turntable mode) lets you control the playback
+   of your tracks. The difference is, the Jog Wheels rotate during playback. This enables you to
+   control your tracks as you would on conventional turntables. In TT mode you can use the Jog
+   Wheel for tempo bending and nudging, to cue beats and scratch tracks, as well as seeking
+   within tracks. Furthermore, you can adjust the base rotation speed using 33.3 revolutions or 45
+   revolutions per minute. For more information, refer to Using Jog Wheels in Turntable Mode.
+ • GRID mode: The GRID mode lets you correct faulty Beatgrids for tracks directly on the S4 us-
+   ing the Jog Wheels and the CUE channel on the fly. For more information, refer to Correcting
+   Beatgrids of Tracks.
+
+
+3.3. Pad Modes
+You can operate the Pads on a Deck in three different Pad modes. Depending on selected Pad
+mode the functions differ accordingly:
+
+ • HOTCUES mode: In HOTCUES mode, the Pads let you store and trigger Cue Points and
+   Loops in tracks and STEM Files as Hotcues. On Decks A and B the HOTCUES button lights
+   up blue whereas on Decks C and D the HOTCUES button lights up orange. The HOTCUES
+   mode is the default mode for Track Decks and STEM Decks. For more information on using
+   HOTCUES mode, refer to Playing with Cue Points, and Playing with Loops.
+
+
+
+           HOTCUES mode is not available for Remix Decks. When a Remix Deck is focused,
+           the HOTCUES button is disabled.
+
+
+
+ • SAMPLES mode: In SAMPLES mode, the Pads let you control the Samples on the Remix
+   Deck. The upper row of Pads give you direct access to the first Samples in the Sample Slots.
+   When the Deck is focused on a Remix Deck, the SAMPLES mode is enabled by default. You
+   can enable the SAMPLES mode on a Track Deck and on a STEM Deck as well. This way you
+   can control the Track Deck or STEM Deck together with the Remix Deck, without switching the
+   Deck focus to the Remix Deck. For more information, refer to Playing with Remix Decks.
+
+ • STEMS mode: In STEMS mode, the Pads let you control the individual STEM Parts in the
+   STEM File. With the Pads you can adjust the individual STEM Part volume levels, and filters.
+
+
+                                                5
+                                                                                     Concepts
+
+
+   The STEMS mode is available only for STEM Decks. On the S4 Decks A and B the STEMS
+   button lights up blue whereas on the S4 Decks C and D the STEMS button lights up orange.
+   For more information, refer to Playing with STEM Decks.
+
+
+3.4. Tempo Synchronization
+TRAKTOR provides several ways to synchronize tempo between decks. You can synchronize tem-
+po manually by using the tempo faders and the tempo bend buttons on the decks. However, you
+can also synchronize tempo automatically by pressing the SYNC button on the decks.
+To understand how to work with tempo synchronization in TRAKTOR, this section will introduce
+you to the principles of MASTER and SYNC, and related functions.
+
+
+3.4.1. Master Clock
+The Master Clock is a central component which coordinates tempo and beat synchronization of
+decks, loops, tempo-based effects, and external applications via MIDI Clock function.
+
+
+
+
+Master Clock in the Master Control panel.
+
+
+
+3.4.2. Tempo Master and Tempo Master Assignment
+Whether you are beat-matching manually or syncing between several decks, TRAKTOR always
+defines a master tempo source, the Tempo Master, to which other decks, effects, and loops can be
+synced. You can assign it manually, or you can let TRAKTOR assign it automatically to any deck.
+There can only be one Tempo Master at a time.
+
+Manual Tempo Master Assignment
+When you want to assign the Tempo Master manually, you need to disable automatic Tempo Mas-
+ter assignment (AUTO mode) using the AUTO button in the Master Control panel.
+
+
+
+
+AUTO Mode disabled.
+
+
+When AUTO mode is disabled, you can assign any deck to be the Tempo Master by pressing the
+MASTER button on the deck.
+
+
+
+
+                                               6
+                                                                                       Concepts
+
+
+
+
+Deck A is the Tempo Master.
+
+
+If you are using a complex deck setup, you can also use the Master Clock as Tempo Master by
+using the MASTER button in the Master Control panel. With the Master Clock as Tempo Master
+you can sync all decks to the Master Clock and adjust the tempo globally.
+
+
+
+
+Master Clock is the Tempo Master.
+
+
+When a deck is synced to a Tempo Master, the tempo for the synced deck cannot be adjusted
+manually. This can only be changed by the Tempo Master.
+
+Automatic Tempo Master Assignment
+You can let TRAKTOR assign the Tempo Master automatically by enabling AUTO mode using the
+AUTO button in the Master Control panel. When AUTO mode is enabled and you start playback on
+any deck, that deck will automatically become the Tempo Master. As soon as the track of the cur-
+rent Tempo Master deck ends or is stopped manually, the synced deck automatically becomes the
+new Tempo Master. This continues until no other track is synced to the Tempo Master. As soon the
+current track stops playing, then the Master Clock automatically becomes the new Tempo Master.
+
+Customizing Tempo Master Behavior
+You can customize the behavior of your decks in AUTO mode in the Transport page in the Prefer-
+ences. You can define if only Track decks or Stem Decks can be the Tempo Master (Remix Decks
+excluded). This can be useful in a typical workflow where Remix Decks are always synced to a
+running Track deck and not the other way around.
+You can also define only on-air decks can be the Tempo Master. This is useful in a workflow where
+decks that are actually playing to the main output should respond to the logic of tempo master and
+sync.
+For more information on the preferences, refer to Preferences – Track Decks Page.
+
+
+
+3.4.3. Sync Modes
+TRAKTOR provides two different modes for track synchronization of which you can choose in the
+Transport Page in the Preferences. These are BeatSync and TempoSync.
+
+
+                                                7
+                                                                                         Concepts
+
+
+BeatSync
+BestSync is the most reliable way to synchronize tracks in TRAKTOR. BeatSync will always main-
+tain tempo and phase synchronization between decks. This means, whatever action you perform,
+for example, scratching or beat jumping, the playback will always remain synchronized to the beat
+of the Master deck or Master Clock.
+
+TempoSync
+TempoSync ensures the tempo is locked but not the phase. This means, there can be offsets in
+the beat synchronization when performing transport operations, for example, scratching or beat
+jumping. In this case the SYNC buttons will change appearance and the phase meter will show an
+offset.
+
+The behavior of TempoSync can be beneficial for DJs who rely on manual beat-matching. If two
+synced tracks are out of phase, you can manually adjust the phase by pitch bending.
+
+In TempoSync you can always pitch bend on the phase while the tracks are playing. This is not
+possible with BeatSync since the phase is locked accordingly to the Beatgrid and not to the beat.
+
+For more information about the Sync Mode preferences, refer to Preferences – Transport Page.
+
+
+
+3.4.4. Beatgrid
+TRAKTOR offers both automatic and manual functions to detect and set the correct tempo and
+beat measures of a track. This information is needed to make correct use of the Sync function,
+quantized beat jumps as well as snapping Hotcues and loops to the beat of the track.
+
+TRAKTOR's Analyze function will detect the Beatgrid of your tracks automatically.
+
+For more information on manually correcting Beatgrids, refer to Correcting Beatgrids.
+
+
+
+3.5. Harmonic Mixing
+In this section, you will learn about Harmonic Mixing and the Open Key notation that TRAKTOR
+uses to help you harmonically mix your tracks.
+
+When mixing tracks, you notice that some track combinations fit well together and create a pleas-
+ing musical blend. More often than not, this is due to the fact that these track combinations are in
+the same key. The technique of Harmonic Mixing previously relied on either knowing the key of
+tracks or using additional software to identify it. TRAKTOR detects the keys for you automatically.
+Key can quickly be utilized in the selection process of identifying harmonically complimentary
+tracks and avoiding key clashes.
+
+For more information on working with Key Lock, refer to Working with Key Lock.
+
+Open Key Notation
+The Open Key notation basically applies a number scale that reflects the 12 tonic scales. It also
+identifies major scale tracks with a d value, whereas minor scale tracks contain an m value in their
+abbreviation.
+
+
+
+
+                                                 8
+                                                                                           Concepts
+
+
+
+
+             In order to use Open Key notation, the setting Open Key must be selected in the
+             Displayed in Traktor drop-down menu on the Analyze Options Preference page.
+             For more information, refer to Preferences – Analyze Options Page.
+
+
+
+In the Browser, analyzed tracks contain values in the Key field such as 11d, 12m, 7d, and so on.
+For 'Harmonic Mixing', tracks in the same key will tend to yield the best mixing results, for exam-
+ple, 11d to 11d. Likewise, mixing songs that are of the same scale (major or minor), and adjacent
+numerical value. If, for example, you are playing a track with a key of 1m, you can also use tracks
+with keys of 2m or 12m. Although 3m and 11m are near to 1m, so they would not work so well.
+It is possible to mix tracks of opposing key, which is mixing from a track in a major to a minor key,
+for example, mixing track 5d to 5m or vice versa. You will notice that there is a change in mood
+when this occurs. In this scenario, it is best to experiment with suitable tracks to identify sections
+that lend themselves for transitions to take place, for example, a percussive outro.
+
+Key Lock and Color-Coding
+Usually, when you change a track's tempo you will also change its key. However, it is possible to
+lock the original key of the track so that you can change the tempo without changing the key.
+When you lock the original key using the Key Lock button in the Stripe, TRAKTOR displays the
+track's original key in the Key Lock button and highlights it in the respective color.
+
+
+
+
+The Key Lock buttons display different keys in their respective color.
+
+
+If the key for the track in the Master deck is locked, the Browser highlights the tracks with the
+matching keys in the Key column with the same color code. This way you can instantly identify
+tracks that are in harmony with the track playing.
+
+
+
+
+                                                         9
+                                                                                             Concepts
+
+
+
+
+The Browser offers tracks which harmonically match the track playing in the Master deck.
+
+
+Transposing Locked Keys in Semitones
+It is possible to transpose the locked key in semitones using the semitone up and down buttons
+next to the Key Lock button in the Stripe. This is useful, for example, if you want to transpose the
+key of the next track to make it match the track in the Master deck. The offset to the original key
+will then be displayed in the Key Lock button.
+For more information, refer to Transposing the Original Key in Semitones.
+
+
+3.6. About the Track Collection
+The Track Collection represents all the music you use in TRAKTOR. With the Track Collection you
+can organize, tag, and prepare your tracks for being played as part of your mix.
+A benefit of the Track Collection is that it stores the metadata of the tracks, like track title, artist
+name, tempo, genre, key etc. It also stores TRAKTOR-specific information about your tracks.
+
+
+3.7. Snap Mode and Quantize Mode
+Snap mode and Quantize mode are important tools that can help you when working with Cue
+Points and Loops, and for jumping in the track:
+
+ • The Snap mode ensures that any Loop or Cue Point you set in a track snaps to the closest
+   beat.
+ • The Quantize mode ensures that you remain in sync to the quantize value, whenever you jump
+   to a Loop, to a Cue Point, or to any position within the track.
+
+
+Examples for using and not using Snap Mode
+Depending on what you want to do, you can enable or disable Snap mode and Quantize mode at
+any time. Here are a few examples on different use cases:
+
+ • Enable Snap mode if you want to set a Loop starting directly on a beat.
+ • Disable Snap mode if you want to set a Cue Point at the beginning of vocals that do not neces-
+   sarily start on the beat.
+
+
+                                                      10
+                                                                                       Concepts
+
+
+ • Enable Quantize mode if want to mix in a synced track and want the downbeats of both tracks
+   to perfectly match.
+ • Disable Quantize mode if you want to trigger tracks or Samples any time you press play or trig-
+   ger Hotcues.
+
+
+Enabling and Disabling Quantize Mode
+When Quantize mode is enabled, the QUANT (Snap) button lights up brightly. When Quantize
+mode is disabled, the QUANT (Snap) button lights up dimly.
+To enable or disable Quantize mode:
+
+ •    Press the QUANT (Snap) button.
+
+
+Enabling and Disabling Snap Mode
+To enable or disable Snap mode:
+
+ 1.   Press and hold SHIFT to access the secondary functions of your S4.
+      When Snap mode is disabled, the QUANT (Snap) button lights up dimly. When Snap mode
+      is enabled, the QUANT (Snap) button lights up brightly.
+ 2.   While holding SHIFT, press the QUANT (Snap) button to enable or disable Snap mode, re-
+      spectively.
+
+
+
+
+                                               11
+                                                              Setting up TRAKTOR KONTROL S4
+
+
+
+4. SETTING UP TRAKTOR KONTROL S4
+
+By this section, you should have already installed TRAKTOR PRO 3 software using NATIVE AC-
+CESS, in order to configure the S4 for its first use. If this is not the case, follow the instructions
+under this link Registering and Installing a Native Instruments Product using NATIVE ACCESS.
+This section describes how to set up the TRAKTOR KONTROL S4. When all devices are connec-
+ted your setup will look like the following illustration:
+
+
+
+
+TRAKTOR KONTROL S4 setup.
+
+
+
+4.1. Connecting to the Computer
+To connect the TRAKTOR KONTROL S4 to your computer:
+
+ 1.   Connect the device end of the included USB cable to the USB socket on the rear panel of
+      your S4.
+ 2.   Connect the computer end of the USB cable to an available USB 2.0 port (or later) on your
+      computer.
+
+
+
+
+                                                 12
+                                                        Setting up TRAKTOR KONTROL S4
+
+
+
+
+4.2. Connecting an Amplification System
+To connect your power amplifier system to the TRAKTOR KONTROL S4:
+
+ •   Connect the MAIN OUT XLR or RCA outputs on the rear panel of the TRAKTOR KONTROL
+     S4 to the inputs of your amplification system using the appropriate cables.
+
+
+
+
+4.3. Connecting Monitors for DJ Booth
+To connect your monitor speakers or a second power amplifier for the DJ booth to the TRAKTOR
+KONTROL S4:
+
+
+                                            13
+                                                          Setting up TRAKTOR KONTROL S4
+
+
+•    Connect the BOOTH OUT outputs on the rear panel of the TRAKTOR KONTROL S4 to the
+     inputs of your monitoring system using appropriate cables.
+
+
+
+
+4.4. Connecting Headphones
+To connect headphones to the TRAKTOR KONTROL S4:
+
+•    Connect your headphones to the PHONES OUT socket on the front panel of the TRAKTOR
+     KONTROL S4 using a 1/4" or a 1/8" connector.
+
+
+
+
+4.5. Connecting to the Power Supply
+To connect the Power supply to the TRAKTOR KONTROL S4:
+
+1.   Connect the device end of the Power supply cable to the Power socket on the rear panel of
+     your S4.
+2.   Connect the Power Supply unit to a power outlet.
+
+
+
+
+                                              14
+                                                              Setting up TRAKTOR KONTROL S4
+
+
+
+
+4.6. Final Preparation
+After successfully setting up the TRAKTOR KONTROL S4 system, you need to prepare final steps
+before you can start using your S4. At first you switch on your devices and then you configure
+TRAKTOR to be used with your S4.
+
+Switching on Devices and Starting TRAKTOR
+You can now switch on the devices. We recommended that you follow the order in the instructions
+below:
+
+ 1.   On your S4, turn down the volume controls to minimum position by using the MASTER knob,
+      the BOOTH knob and the VOL knob.
+ 2.   Switch on your amplification system.
+ 3.   Switch on your computer.
+ 4.   Switch on your S4.
+ 5.   Start TRAKTOR by double-clicking the Traktor application icon on your desktop.
+      The TRAKTOR software opens.
+
+
+Importing Data from Your Previous TRAKTOR Version
+When you start TRAKTOR for the first time, TRAKTOR recognizes if a previous version of TRAK-
+TOR is installed on you system. In this case TRAKTOR asks if you want to import your previous
+data from the existing user content into a new folder in your user folder. Your previous data will not
+be changed if you import it to the new default folder.
+
+If you want to import data from your previous TRAKTOR installation:
+
+ •    Click Yes to confirm.
+      The data is imported.
+
+
+
+                                                 15
+                                                                    Setting up TRAKTOR KONTROL S4
+
+
+Switching to TRAKTOR Default Settings
+When you start TRAKTOR with the S4 for the first time, TRAKTOR asks if you want to switch Mix-
+er FX selection and the Tempo fader range to default setting. This is necessary to get the intended
+user experience of your S4:
+
+
+
+
+TRAKTOR alert for switching Mixer FX and TEMPO fader range to default settings.
+
+
+ •    Click Yes.
+      The Mixer FX and the TEMPO fader range are set to default settings.
+
+
+Configuring TRAKTOR using the Setup Wizard
+The Setup Wizard dialog appears automatically when you start TRAKTOR for the first time after
+installation. The Setup Wizard helps you to configure the software to your needs only with a few
+clicks. To configure TRAKTOR to be controlled with your S4 controller, perform the following ac-
+tions:
+
+ 1.   On the WELCOME page click Next to proceed.
+ 2.   On the DECK LAYOUT page select the Deck setup to control with your S4, for example, 2
+      Track Decks + 2 Remix Decks.
+ 3.   Click Next to proceed.
+      The SUMMARY page shows you the configuration of TRAKTOR.
+ 4.   Click Finish to confirm your configuration.
+      The TRAKTOR window now appears in the Essential Layout.
+
+
+
+
+                                                     16
+                                                               Setting up TRAKTOR KONTROL S4
+
+
+
+
+4.7. Importing Music into the Track Collection
+You can import your music into TRAKTOR's Track Collection in several ways. You can drag and
+drop your music files from your computer into the Track Collection, you can use the context menu
+in the Browser tree to import the music from your local music folders, and you can use the context
+menu to import Remix Sets.
+
+Importing Music using Drag and Drop
+To import your music files into your Track Collection using drag and drop:
+
+ •    Drag the music files from the location on your computer and drop them in the Track Collec-
+      tion folder in TRAKTOR's Browser tree.
+      TRAKTOR now analyzes the music files and imports the metadata into the Track Collection.
+
+
+Importing Music Folders using the Context Menu
+To import your music from your local music folders into the Track Collection:
+
+ 1.   Right-click the Track Collection root folder in the folder tree to open the context menu.
+ 2.   Select Import Music Folders.
+      TRAKTOR now analyzes the music files in the local music folders and imports the metadata
+      into the Track Collection.
+
+The local music folders can be added to the File Management Page in the Preferences. For more
+information, refer to .
+
+Importing Remix Sets using the context Menu
+To import Remix Sets into the Track Collection:
+
+
+                                                  17
+                                                              Setting up TRAKTOR KONTROL S4
+
+
+1.   Right-click the Track Collection root folder in the folder tree to open the context menu.
+2.   Select Import Traktor Pak.
+3.   Locate your Remix Sets on your computer in the dialog.
+4.   Click Confirm.
+     TRAKTOR now analyzes the Remix Sets and imports the metadata into the Track Collection.
+
+
+
+
+                                                 18
+                                                              TRAKTOR KONTROL S4 Overview
+
+
+
+5. TRAKTOR KONTROL S4 OVERVIEW
+
+This section introduces you to the TRAKTOR KONTROL S4 and all its control elements and con-
+nectors.
+
+
+
+
+TRAKTOR KONTROL S4 Overview.
+
+
+(1) Decks: You can use the Decks to control tracks and Samples, similar to DJ turntables or CD
+players but with additional features. TRAKTOR controls four virtual Decks and each of them can
+be operated in several Deck Types: Track Deck, Remix Deck, STEM, Deck, and Live Input.
+TRAKTOR provides you with four virtual Decks. The two Decks on your S4 hardware controller al-
+low you to control the four software Decks A, B, C and D in TRAKTOR: the left Deck on your S4
+controls Decks A and C in the software. The right Deck on your S4 controls Decks B and D in the
+software. For more information on the Deck control elements, refer to Decks.
+(2) Mixer: You can use the Mixer to mix the audio signals coming from the Decks. The Mixer sits in
+the middle of the TRAKTOR software as well as on your TRAKTOR KONTROL S4 controller. On
+the S4, the Mixer consists of the four Mixer channels A, B, C, and D which receive the individual
+audio signals from the corresponding Decks. Each Mixer channel contains controls to modulate
+the audio signal and to adjust the outgoing volume before the audio signal is send to the MAS-
+TER output. Furthermore, the Mixer provides the crossfader to let you fade between the audio sig-
+nals in the Mixer channels.
+For more information on the Mixer control elements, refer to Mixer.
+
+
+
+
+                                                19
+                                                               TRAKTOR KONTROL S4 Overview
+
+
+(3) FX Units: You can further process the signals in the Mixer channels by using the two FX Units
+located at the top-left and top-right on your S4 and in the software interface. The FX Units give you
+access to a collection of high-quality effects included in TRAKTOR. FX Unit 1 at the top-left on
+your S4 controls FX Unit 1 in the software. FX Unit 2 at the top-right on your S4 control FX Unit 2
+in the software. For more information, refer to FX Unit.
+
+
+
+
+                                                 20
+                                                             TRAKTOR KONTROL S4 Overview
+
+
+
+5.1. Decks
+TRAKTOR KONTROL S4 provides you with two physical Decks to control the TRAKTOR
+Decks. Each Deck provides you with the following control elements:
+
+
+
+
+S4 Deck.
+
+
+(1) Browse controls: Allow you to scroll through the Track Collection to find and load tracks, as
+well as previewing tracks and preparing playlists. For more information, refer to Browse Controls.
+
+(2) Jog Wheel: The Jog Wheel provides advanced control over track transport. As with a conven-
+tional CD player or turntable, you can manually hold playback, nudge and bend, and start scratch-
+ing by touching and turning the Jog Wheel and the outer rim. Furthermore, you can manually cor-
+rect tracks' Beatgrids. The outer LED ring around the Jog Wheel gives you visual feedback on the
+playback status. For more information, refer to Using Jog Wheels in JOG Mode and Using Jog
+Wheels in Turntable Mode.
+
+(3) MASTER (Reset) button: Assigns the Deck to Tempo Master. Using the SHIFT button, it resets
+the relative TEMPO fader position in the software. For more information, refer to Adjusting Tempo
+and Automatic Track Synchronization.
+
+
+                                               21
+                                                             TRAKTOR KONTROL S4 Overview
+
+
+(4) SYNC (Lock): Syncs the Deck to the Tempo Master. Using SHIFT and SYNC (Lock) locks the
+TEMPO fader for the Deck. For more information, refer to Adjusting Tempo and Locking the Key of
+Tracks.
+(5) TEMPO fader: Lets you manually adjust the track tempo on that Deck. The TEMPO fader can
+be operated in Absolute mode and in Relative mode. If the Deck is synced to the Tempo Master,
+the TEMPO fader has no effect. When the Deck is playing at original track tempo, the LED lights
+up blue independently from the current TEMPO fader position. When the Deck tempo is faster or
+slower than the original tempo, the LED is unlit. When the tempo is locked for the Deck, the LED
+lights up red. For more information, refer to Adjusting Tempo.
+(6) Pad section: You can use the Pads to store and trigger Cue Points and Loops, and to control
+Samples and STEM Files. The individual function depends on the selected Pad mode and on the
+selected Deck Type. For more information, refer to Pad Section.
+(7) Play/Pause: Lets you start or pause the track playback on that Deck. The button brightly lights
+up green during playback. For more information, refer to Using Transport Controls.
+(8) CUE: Lets you start track playback from the Floating Cue Point when the Deck is stopped.
+Moves the playback position back to the Cue Point during playback. For more information, refer
+to Using Transport Controls.
+(9) SHIFT: When you hold SHIFT, you are provided with the secondary functions of some of the
+control elements on the S4.
+(10) DECK SELECT buttons: Allow you to switch between TRAKTOR Decks A and C on the left
+Deck, and between TRAKTOR Decks B and C on the right Deck. For more information, refer to
+Switching Deck Focus.
+(11) JOG button: Enables JOG mode (Jog Wheel mode) for the Jog Wheel. For more information,
+refer to Using Jog Wheels in JOG Mode.
+(12) TT button: Enables TT mode (turntable mode) for the Jog Wheel. For more information, refer
+to Using Jog Wheels in Turntable Mode.
+(13) GRID button: Enables GRID mode to manually correct the Beatgrid for the current track us-
+ing the Jog Wheel. For more information, refer to Correcting Beatgrids of Tracks.
+(14) MOVE encoder: Allows you to jump within the track. When Looping is enabled the MOVE en-
+coder allows you to move the Loop forwards and backwards in the track. Furthermore, it adjusts
+volume parameters for Samples and STEM parts using SHIFT. For more information, refer to Us-
+ing Transport Controls and Playing with Loops.
+(15) Multicolor display: The multicolor display gives visual feedback about playback times and
+the Loop settings, and also provides track details such as artist name and track name. For more
+information, refer to Display Elements for Tracks and STEM Files and Display Elements on a Re-
+mix Deck.
+(16) LOOP encoder: Allows you to enable/disable Looping as well as changing the Loop
+size. Furthermore, it adjusts Filter effect parameters for Samples and STEM parts using SHIFT.
+For more information, refer to Playing with Loops.
+(17) REV button: Plays back the track in reverse when in Flux mode. When you press the REV
+button, this automatically enables Flux mode as long as the REV button is pressed. For more infor-
+mation, refer to Playing with Flux Mode and Reverse Mode.
+(18) FLX button: Enables Flux mode for that Deck. For more information, refer to Playing with
+Flux Mode and Reverse Mode.
+
+
+                                                22
+                                                             TRAKTOR KONTROL S4 Overview
+
+
+(19) FX Unit: The FX Units allow you to control the effect parameters in the FX Units in the TRAK-
+TOR software. Each Deck features one FX Unit which can be assigned to any Mixer channel. FX
+Unit 1 is located on the left Deck, and FX Unit 2 on the right Deck. For more information, refer
+to FX Unit.
+
+
+5.1.1. Browse Controls
+The Browse controls let you browse the Track Collection to find and load tracks as well as preview
+tracks and prepare playlists.
+
+
+
+
+Browse controls.
+
+
+(1) Browse encoder: You select tracks in the Track List by turning the Browse encoder and you
+can load the selected track into the Deck by pressing the Browse encoder. You can also use the
+Browse encoder to seek within the track that is playing in the Preview Player. When in SAMPLES
+mode you can can select another Sample in the Sample Slot by turning the Browse encoder. For
+more information, refer to Browsing and Loading and Previewing Tracks in the Browser.
+(2) VIEW button: Maximizes or minimizes the Browser view in the TRAKTOR software. For more
+information, refer to Browsing and Loading.
+(3) Preparation List button: Assigns a track to the Preparation List. For more information, refer
+to Adding Tracks to the Preparation List.
+(4) Star button: When this button is held the Browse encoder then selects favorites. For more in-
+formation, refer to Browsing and Loading.
+(5) Preview Player: Loads a track into the Preview Player in TRAKTOR's Browser and plays it
+back. For more information, refer to Previewing Tracks in the Browser.
+
+
+5.1.2. Pad Section
+The Pads can be used to store and trigger Cue Points and Loops, as well as to trigger Samples,
+and to control STEM Files. The individual function depends on the selected Pad mode as well as
+on the selected Deck Type.
+
+
+
+
+                                               23
+                                                            TRAKTOR KONTROL S4 Overview
+
+
+
+
+Pad section.
+
+
+
+(1) HOTCUES button: Enables HOTCUES mode. In this mode, you can store and trigger Cue
+Points and Loops within tracks using the Pads. On Decks A and B the HOTCUES button lights up
+blue whereas on Decks C and D the HOTCUES button lights up orange. The HOTCUES mode is
+the default mode for Track Decks and STEM Decks. For more information, refer to Playing with
+Cue Points and Playing with Loops.
+
+
+
+
+               HOTCUES mode is not available for Remix Decks. When a Remix Deck is focused,
+               the HOTCUES button is disabled.
+
+
+
+
+(2) Record button: Enables the Pattern Recorder on the Remix Deck. With the Pattern Recorder
+you can record sequences to be played by the Samples. For more information, refer to Using Pat-
+tern Recorder.
+
+(3) SAMPLES button: Enables SAMPLES mode. The SAMPLES mode can only be enabled when
+the underlying Deck is configured as Remix Deck. Otherwise the SAMPLES button remains un-
+lit. For more information, refer to Playing with Remix Decks.
+
+(4) Mute button: Mutes or un-mutes Samples on a Remix Deck or STEM Parts on a STEM
+Deck. For more information, refer to Playing with Remix Decks and Playing with STEM Decks.
+
+(5) STEMS button: Enables STEMS mode on a STEM Deck. Using the Pads, you can adjust the
+volumes and mute the individual STEM Parts of the STEM File. The STEMS mode is only availa-
+ble on STEM Decks. For more information, refer to Playing with STEM Decks.
+
+(6) Pads: Depending on the current Pad mode, the eight Pads have individual functions:
+
+ • When in HOTCUES mode the Pads store and trigger Cue Points and Loops for Track Decks
+   and STEM Decks.
+ • When in SAMPLES mode the Pads control the first four SAMPLE Slots of Remix Decks.
+ • When in STEMS mode the Pads control the volumes of the individual STEM Parts and also
+   mute them.
+
+
+
+                                               24
+                                                                 TRAKTOR KONTROL S4 Overview
+
+
+
+5.1.3. Display Elements for Tracks and STEM Files
+When the HOTCUES mode or the STEMS mode is enabled, the display contains the following ele-
+ments:
+
+
+
+
+Display elements for tracks and STEM Files.
+
+
+(1) Track title: Displays the title of the loaded track or STEM File.
+(2) Key value: Displays the current key value of the track or STEM File.
+(3) Loop indicator: Displays the selected Loop size. When a Loop is enabled the Loop indicator is
+highlighted in green.
+(4) Waveform: Displays the Waveform of the track or the STEM File. It also shows stored Cue
+Points as white and blue markers, and stored Loops in green markers. The moving red marker
+represents the current playhead position.
+(5) Remaining Track time: Displays the time remaining until the track or the STEM File ends.
+(6) Current Track Tempo: Displays the current tempo for the track or STEM File.
+
+
+
+5.1.4. Display Elements on a Remix Deck
+When the Deck is a Remix Deck or the SAMPLES mode is enabled, the display contains the fol-
+lowing elements:
+
+
+
+
+Display elements on a Remix Deck.
+
+
+(1) Remix Set title: Displays the title of the loaded Remix Set.
+(2) Quantize value: Displays the Quantize value of the Remix Deck. If Quantize mode is enabled
+the field is highlighted in blue.
+(3) Loop indicator: Displays the selected Loop size. When a Loop is enabled the Loop indicator is
+highlighted in green.
+(4) Play Type indicator: Indicates if the corresponding Sample in the Sample Cell is a Loop or a
+One-shot Sample.
+
+
+                                                  25
+                                                             TRAKTOR KONTROL S4 Overview
+
+
+(5) Beat Counter: Represents the current internal Beat Count position of the Remix Deck. Syn-
+chronization and Quantize functions are based on this value.
+(6) Remix Deck Tempo: Displays the current tempo of the Remix Deck.
+For more information, refer to Playing with Remix Decks.
+
+
+5.2. Mixer
+Sitting in the middle of the TRAKTOR KONTROL S4 controller, the Mixer receives the audio sig-
+nals coming from Decks. There is one channel for each Deck. The Mixer’s purpose is to adjust the
+relative level of each channel, to control the mixer channels’ frequency content, possibly feeding
+them into the FX Units before sending the overall result to the Master output, and in the end, to
+generate the mix that is sent to your audience. The Mixer also provides you with a crossfader,
+which allows you to make seamless transitions between various channels.
+
+
+
+
+Mixer.
+
+
+(1) Mixer Channel A ,B, C, D: The Mixer channels receive the individual audio signals from the
+Decks. Each Mixer channel contains controls to adjust the audio signal's frequency content and to
+adjust the outgoing volume before the audio signal is send to the MASTER output. Any Mixer
+channel can be individually assigned to FX Units. For more information, refer to Mixer Channel.
+
+
+                                               26
+                                                             TRAKTOR KONTROL S4 Overview
+
+
+(2) MASTER knob: Adjusts the MASTER signal level. For more information, refer to Adjusting
+Levels.
+(3) QUANT (Snap) button: Allows you to enable or disable Quantize mode and Snap mode. For
+more information, refer to Snap Mode and Quantize Mode.
+(4) Master Level Meter: Gives you visual feedback on the current Master Output volume level.
+The blue LEDs indicate if the signal is below Headroom area. The red LED indicates if the signal is
+clipping. The yellow LEDs indicate if the audio signal is currently within the Headroom area before
+the audio signal starts clipping.
+(5) BOOTH knob: Adjusts the volume of the Booth output signal for the DJ monitors. For more
+information, refer to Adjusting Levels.
+(6) MIXER FX SELECT buttons: Select the MIXER FX to be controlled by the individual MIXER
+FX controls in the Mixer channels. For more information, refer to Playing with MIXER Effects.
+(7) MIX knob: Adjusts the signal mix between MASTER signal and the CUE channel signal in the
+headphones. For more information, refer to Using CUE Channel.
+(8) VOL knob: Adjusts the level for the CUE channel. For more information, refer to Using CUE
+Channel.
+(9) Crossfader: Controls the mix between the Mixer channels’ signals that are assigned to the left
+crossfader side and the right crossfader side. At each crossfader’s end, the opposite signals are
+totally silent. Moving the crossfader gradually fades in and fades out the relevant audio signal in
+the master output. At the center position, both audio signals are fully audible. For more informa-
+tion, refer to Assigning Mixer Channels to the Crossfader.
+
+
+
+
+                                                27
+                                                             TRAKTOR KONTROL S4 Overview
+
+
+
+5.2.1. Mixer Channel
+The Mixer channels receive the individual audio signals from the Decks. Each Mixer channel con-
+tains controls to adjust the incoming and outgoing levels, and the audio signal's frequency con-
+tent. Any of the four Mixer channels can integrate different external sources. Whereas Mixer chan-
+nels A and B are equipped with an additional PHONO pre-amplifier for connecting turntables, Mix-
+er channels C and D integrate microphones instead. The Mixer channels provide you with the fol-
+lowing control elements:
+
+
+
+
+Mixer channel.
+
+
+(1) GAIN knob: Adjusts the input level for the incoming signal of the corresponding Deck, before it
+passes the channel fader. For more information, refer to Adjusting Levels.
+(2) FX Assign buttons: These buttons individually assign the FX Units to the Mixer channel. For
+more information, refer to Playing with FX Units.
+(3) HI knob: Emphasizes, attenuates, or removes the high frequency band of the audio signal. For
+more information, refer to Using the Equalizer.
+(4) MID knob: Emphasizes or attenuates the middle frequency band of the audio signal. For more
+information, refer to Using the Equalizer.
+(5) LOW knob: Emphasizes, or attenuates, or removes the low frequency band of the audio sig-
+nal. For more information, refer to Using the Equalizer.
+
+
+                                                28
+                                                                TRAKTOR KONTROL S4 Overview
+
+
+(6) MIXER FX Amount knob: The MIXER FX Amount knob controls the amount of the MIXER FX
+to be applied to the audio signal. In center position the MIXER FX is disabled for the individual
+Mixer channel. For more information, refer to Playing with MIXER Effects.
+
+(7) MIXER FX ON button: Enables or disables the MIXER FX for the individual Mixer channel. For
+more information, refer to Playing with MIXER Effects.
+
+(8) CUE button: Routes the audio signal of the Mixer channel into the CUE channel. For more in-
+formation, refer to Using CUE Channel.
+
+(9) Channel fader: Adjusts the Mixer channel’s level before the audio signal is sent to the cross-
+fader and MASTER volume knob. For more information, refer to Adjusting Levels.
+
+(10) Channel Level Meter: The Channel Level Meter gives you visual feedback on the current
+channel volume. The blue LEDs indicate if the audio signal is below Headroom area. The red LED
+indicates if the audio signal is clipping. The yellow LEDs indicate if the audio signal is currently in
+the Headroom area before the audio signal starts to clip.
+
+(11) MIC C or D / PHONO LED: On Mixer channel A and B, the PHONO LED lights up if the exter-
+nal input for the Mixer channel is set to receive a phono level signal from a turntable. On Mixer
+channel C and D, the MIC LED lights up if the external input for the Mixer channel is set to receive
+a microphone signal. For more information, refer to Integrating External Devices.
+
+(12) EXT button: Switches the Mixer channel to insert the audio signal coming from the external
+audio source. For more information, refer to Integrating External Devices.
+
+(13) LINE LED: Indicates if the external input for the Mixer channel is set to receive a line level
+signal, for example, from a CD player. For more information, refer to Integrating External Devices.
+
+
+
+5.3. FX Unit
+The FX Units 1 and 2 on your S4 allow you to control the effect parameters selected in the FX
+Units in the TRAKTOR software. The FX Units can be assigned to any Mixer channel.
+
+
+
+
+FX Unit 1 controls.
+
+
+
+(1) – (4) FX knob 1 – 4: Adjusts the individual effect parameter that is selected in the FX Unit in
+the TRAKTOR software.
+
+(5) – (8) FX ON button 1 – 4: Enables or disables the individual effect that is selected in the FX
+Unit in the TRAKTOR software.
+
+For more information on using FX Units, refer to Playing with FX Units.
+
+
+                                                  29
+                                                             TRAKTOR KONTROL S4 Overview
+
+
+
+5.4. Front Panel View
+The front panel hosts controls for assigning the Mixer channels to the crossfader, and sockets for
+connecting headphones and a microphone.
+
+
+
+
+Front panel.
+
+
+(1) Crossfader Curve selector: Selects the curve which lets the audio signals fade in and out
+when moving the crossfader from one side to the other. For more information, refer to Assigning
+Mixer Channels to the Crossfader.
+(2) Crossfader Assignment selectors C, A, B, D: Assigns the individual Mixer channels to either
+the left or right crossfader side. You can also unassigns the Mixer channels from the crossfader
+when the selectors are set to center position. For more information, refer to Assigning Mixer Chan-
+nels to the Crossfader.
+(3) MIC D: Connects a microphone to Mixer channel D using an XLR connector. For more informa-
+tion, refer to Integrating Microphone.
+(4) PHONES OUT 1/8" and 1/4": Connect one or two pairs of headphones. When two pairs of
+headphones are connected, the maximum headphone volume level is decreased.
+
+
+
+5.5. Rear Panel
+The rear panel hosts all sockets for connecting the S4 to the computer, for powering it up, and for
+connecting external devices.
+
+
+
+
+Rear panel.
+
+
+(1) MAIN OUT RCA R/L: Connects the S4 to a power amplifier using unbalanced RCA cables.
+(2) MAIN OUT XLR R/L: Connects the S4 to a power amplifier using balanced XLR cables.
+(3) BOOTH OUT 1/4" R/L: Connects the S4 to a power amplifier for the DJ booth using balanced
+1/4" cables.
+(4) LINE IN D RCA R/L: Connects a line level audio source, for example, a CD player to Mixer
+channel D using RCA cables.
+(5) PHONO / LINE IN B RCA R/L: Connects a phono level device, for example, a turntable, or a
+line level audio source, for example a CD player to Mixer channel B using RCA cables.
+(6) GND: The GND (ground) screw connects the ground wire of turntables to prevent buzzing in
+the audio signal.
+(7) PHONO / LINE IN A RCA R/L: Connects a phono level device, for example, a turntable, or a
+line level audio source, for example, a CD player to Mixer channel A using RCA cables.
+
+
+                                                30
+                                                            TRAKTOR KONTROL S4 Overview
+
+
+(8) LINE IN C RCA R/L: Connects a line level audio source, for example, a CD player to Mixer
+channel C using RCA cables.
+(9) MIC C: Connects a microphone to Mixer channel C using a 1/4" connector.
+(10) Kensington Lock slot: Connects a Kensignton Lock to the S4 to help prevent against theft.
+(11) USB HUB: Connects a USB device, for example, another TRAKTOR controller or a USB-Hub.
+(12) USB socket: Connects your S4 to the computer using the supplied USB cable.
+(13) PSU socket: Connects the supplied Native Instruments Power Supply to the S4.
+(14) Power switch: Switches the S4 on or off.
+
+
+
+
+                                                31
+                                                                         Mixing Your First Tracks
+
+
+
+6. MIXING YOUR FIRST TRACKS
+
+In this section you will learn to mix your first two tracks, using Deck A and Deck B, with the SYNC
+function. For this method, you will not need to use the Jog Wheels or your headphones.
+
+At first you will prepare the Mixer by adjusting the control elements for mixing tracks between Deck
+A to Deck B. Then you will load the first track into Deck A, and begin to perform step by step.
+
+
+
+6.1. Prerequisites
+ 1.   Set Crossfader Assignment selector A to the left to assign Mixer channel A to the left cross-
+      fader end.
+
+
+
+
+ 2.   Set Crossfader Assignment selector B to the right to assign Mixer channel B to the right
+      crossfader end.
+
+
+
+
+ 3.   Set the crossfader to the left-most position.
+
+
+
+
+ 4.   Set channel fader A and channel fader B to maximum position.
+
+
+
+
+                                                  32
+                                                                          Mixing Your First Tracks
+
+
+ 5.   Set the MASTER knob to center position.
+
+
+
+
+ 6.   Set the BOOTH knob to center position.
+
+
+
+
+ 7.   Set the volume of your audio system or active speakers to minimum level.
+
+
+6.2. Loading the First Track into Deck A
+To load the first track into Deck A:
+
+ 1.   Press DECK SELECT button A to focus the left S4 Deck on Deck A.
+      The DECK SELECT button A and the Deck LEDs light up blue.
+ 2.   Press the VIEW button to maximize the Browser view in the software.
+
+
+
+
+ 3.   Turn the Browse encoder to select one of your tracks in the Track List, or a demo track, for
+      example, Berlin Hauptbahnhof by Native Instruments.
+
+
+
+
+ 4.   Press the Browse encoder to load the selected track into that Deck.
+
+
+
+
+                                                 33
+                                                                       Mixing Your First Tracks
+
+
+
+
+      TRAKTOR now analyzes the track to determine its tempo, and to create the Beatgrid and the
+      Waveform.
+ 5.   Press the VIEW button again to minimize the Browser view in the software.
+
+
+
+
+6.3. Starting Playback of Deck A
+To start playback on Deck A:
+
+ 1.   Press the Play/Pause button on the left S4 Deck.
+
+
+
+
+      The Waveform starts moving and the Channel Level Meter LEDs in the left Mixer channel A
+      illuminate.
+ 2.   Slowly increase the volume of your audio system or active speakers to a moderate listening
+      level.
+      You now hear the audio of the track in your speakers.
+
+
+6.4. Loading the Second Track into Deck B
+To load the second track into Deck B:
+
+
+
+
+                                                34
+                                                                         Mixing Your First Tracks
+
+
+
+
+           The next track you want to mix must have a similar tempo like the playing track.
+
+
+
+
+1.   Press DECK SELECT button B to set the right S4 Deck's focus to Deck B.
+
+
+
+
+     The DECK SELECT button B and the Deck LEDs light up blue.
+2.   Press the VIEW button to maximize the Browser view in the software.
+
+
+
+
+3.   Turn the Browse encoder to select one of your tracks in the Track List, or a demo track, for
+     example, Lisa by Native Instruments.
+
+
+
+
+4.   Press the Browse encoder to load the track into the Deck.
+
+
+
+
+     TRAKTOR now analyzes the track to determine its tempo, and to create the Beatgrid and the
+     Waveform.
+
+
+                                                35
+                                                                         Mixing Your First Tracks
+
+
+ 5.   Press the VIEW button again to minimize the Browser view in the software.
+
+
+
+
+6.5. Syncing the Track Tempos
+In order to sync the tempos of both tracks:
+
+ •    Press the SYNC (Lock) button on the right S4 Deck.
+
+
+
+
+      The tempo of the track in Deck B is now synced to the running track, indicated by the equal
+      tempo value in the software's Deck Header. The SYNC (Lock) button lights up on the right
+      S4 Deck.
+
+
+
+6.6. Starting Playback of the Second Track
+When the track in Deck A is almost over you can start the playback of the next track:
+
+ •    Press the Play/Pause button on the right S4 Deck to start playback of the track in Deck B.
+
+
+
+
+      The Waveform starts moving and the Channel Volume Meter LEDs in Mixer channel B illumi-
+      nate. The tracks in Deck A and Deck B play in sync.
+
+
+
+6.7. Mixing in the Audio Signal
+You can now mix the audio signal of Mixer channel B into the Master signal:
+
+ 1.   Move the crossfader slowly towards center position and hold for a moment.
+
+
+                                                36
+                                                                         Mixing Your First Tracks
+
+
+
+
+     The audio signal of the track in Mixer channel B fades into the Master signal.
+2.   While the track in Deck A reaches its end, slowly move the crossfader towards the right-most
+     position.
+
+
+
+
+     The audio signal of Mixer channel A slowly fades out of the Master signal. Only Mixer chan-
+     nel B is now audible.
+
+When the playback of Deck A ends, Deck B automatically becomes the Tempo Master and is
+ready to transition to the next track.
+
+
+
+
+                                                37
+                                                                                            Tutorials
+
+
+
+7. TUTORIALS
+
+The tutorials in this section introduces you to the several functions and features of the S4. The fol-
+lowing list provides you with an overview of the tutorials including the link to it:
+
+ • Browsing and Loading Tracks: By having your music imported in TRAKTOR, you can use
+   the Browse controls on the S4 to find tracks for your mix. When loading a track into a Deck,
+   TRAKTOR starts to analyze the track, calculating its exact tempo and key information. From
+   this analysis, TRAKTOR creates the Beatgrid and the Waveform. This information is then stor-
+   ed for the track in the Track Collection. For more information, refer to Browsing and Loading.
+ • Controlling Track Playback: The S4 lets you control the playback of your tracks using trans-
+   port controls and the Jog Wheels which can be operated several modes. For more information,
+   refer to Controlling Playback, Using Jog Wheels in JOG Mode, and Using Jog Wheels in Turn-
+   table Mode.
+ • Adjusting the Crossfader: You can determine which Mixer channel is to be routed to the
+   crossfader and set the crossfader curve accordingly. For more information, refer to Assigning
+   Mixer Channels to the Crossfader.
+ • Switching Decks Focus: Each S4 Deck controls two TRAKTOR Decks. The Deck Select but-
+   tons determine which of the Decks is in focus. For more information, refer to Switching Deck
+   Focus.
+ • Adjusting Levels and Using the Equalizer: The Mixer lets you adjust volumes of your tracks
+   and tweak the frequency bands of the audio signals using the equalizer. For more information,
+   refer to Adjusting Levels and Using the Equalizer.
+ • Adjusting Tempo: You can use the TEMPO faders to adjust the tempo on each Deck manual-
+   ly. The TEMPO faders can be operated in two modes. For more information, refer to Adjusting
+   Tempo.
+ • Working with Key Lock: By locking the original key of a track, you can change the track's
+   tempo without affecting its key and you can adjust the next track's key to make it match the
+   playing track. For more information, refer to Working with Key Lock.
+ • Working with MIXER FX: You can modulate the sound of your tracks using MIXER FX and the
+   FX Units. For more information, refer to Playing with MIXER Effects, and Playing with FX Units.
+ • Working with Cue Points and Loops: By triggering stored Hotcues from the Pads, you are
+   able to jump to specific sections within the track. For more information, refer to Playing with
+   Cue Points. To extend the playback of tracks or to loop a specific part in a track, you can make
+   use of the S4's looping functions. For more information, refer to Playing with Loops.
+ • Snap Mode and Quantize Mode: In order to precisely place Cue Points, Loops and jumps
+   within tracks without loosing the sync, use Snap mode and Quantize mode. For more informa-
+   tion, refer to Snap Mode and Quantize Mode.
+ • Using Flux and Reverse mode: Flux mode and Reverse mode allow you to create a parallel
+   playhead when performing with Hotcues and Loops. The parallel playhead ensures you don't
+   lose the original track playhead position in the track. For more information, refer to Playing with
+   Flux Mode and Reverse Mode.
+ • Previewing Tracks: The Preview Player in the Browser lets you conveniently preview tracks
+   without loading them into the Deck. The CUE channel and its controls on the Mixer also enable
+
+
+
+
+                                                 38
+                                                                                          Tutorials
+
+
+      you to preview your tracks and your sound adjustments before you transition to the next track.
+      For more information, refer to Previewing Tracks in the Browser, and Using CUE Channel.
+ • Working with the Preparation List: TRAKTOR's Browser allows you to prepare for your next
+   mix. The S4 has a dedicated control so you can easily add tracks to the Preparation List. For
+   more information, refer to Adding Tracks to the Preparation List.
+ • Working with Remix Decks: The Remix Decks allow you to playback Samples and add them
+   to your mix. Furthermore, you can enable the Pattern Recorder for recording sequences to be
+   played by the Samples. For more information, refer to Playing with Remix Decks.
+ • Working with STEM Decks: The STEM Decks let you playback STEM Files which include four
+   individual STEM Parts for musical elements. The STEM Deck gives you the control over the
+   STEM Parts. For more information, refer to Playing with STEM Decks.
+ • Correcting Beatgrids of Tracks: If the SYNC function is enabled but the playing tracks are
+   not synced, it is likely that the Beatgrids were miscalculated. The S4 allows you correct Beat-
+   grids manually. For more information, refer to Correcting Beatgrids of Tracks.
+
+
+7.1. Browsing and Loading
+The S4 lets you conveniently browse for your music in the Track Collection in TRAKTOR. Using
+the Browse controls on the Decks, you can quickly open the Browser view, navigate in the Track
+List, and select Favorite folders and Playlists for loading your desired tracks.
+
+Maximizing and Minimizing Browser View
+Using the Browse controls you can instantly browse for your music in TRAKTOR. However, you
+can maximize Browser view in TRAKTOR for a better overview:
+
+ 1.     Press the VIEW button.
+
+
+
+
+        The TRAKTOR Layout switches to Browser view.
+ 2.     Press the VIEW button again to close the Browser view in TRAKTOR.
+
+
+Finding a Track
+On the Deck you want load a track:
+
+ 1.     Turn the Browse encoder to scroll through the Track List for selecting a track.
+
+
+
+
+                                                   39
+                                                                                            Tutorials
+
+
+
+
+ 2.   Press and hold the Star button + turn the Browse encoder to select another favorite folder.
+
+
+
+
+      The Track List shows the content according to the selected folder.
+
+
+Loading the Track into the Deck
+To load the selected track into the Deck:
+
+ •    Press the Browse encoder.
+
+
+
+
+      The track is loaded into the Deck. Depending on the loaded track, the Deck Type switches
+      accordingly.
+
+
+If the track is loaded into the Deck for the first time, TRAKTOR starts to analyze the track to deter-
+mine its tempo, and then calculate the Beatgrid and Waveform. The moment of the analysis can
+be switched to another context in the Preferences.
+
+
+
+7.2. Controlling Playback
+The Transport Controls and the Jog Wheels on the S4 let you control the playback of tracks. This
+section describes the several interactions you can perform to control the playing track, as well as
+previewing tracks in the CUE channel for the next transition.
+
+
+                                                 40
+                                                                                           Tutorials
+
+
+
+7.2.1. Using Transport Controls
+The Transport Controls let you start and pause playback as well as cue the track.
+
+Starting/Pausing Playback
+To start the playback of the loaded track:
+
+ •   Press the Play/Pause button.
+
+
+
+
+To pause the playback:
+
+ •   Press the Play/Pause button again.
+
+
+Cueing the Track using the CUE Button
+The CUE button has several functions:
+
+
+
+
+ • When pressing and holding the CUE button, the playback continues from the position of the
+   floating Cue Point as long as the CUE button remains depressed.
+ • When releasing the CUE button, playback stops immediately and the playback position jumps
+   back to the Cue Point.
+ • When pressing and holding the CUE button and pressing the Play/Pause button, the playback
+   continues as normal.
+
+
+7.2.2. Using Jog Wheels in JOG Mode
+In this section you are provided with the several interactions you can perform with the Jog Wheels
+when used in JOG mode. In JOG mode you can use the Jog Wheel to bend and nudge the tempo,
+to cue a beat and to perform a scratch, and to fast seek within the track. Furthermore, you can
+disable the touch-sensitivity of the top plate and you can adjust the resistance for spinning the Jog
+Wheel.
+
+
+                                                 41
+                                                                                        Tutorials
+
+
+Enabling JOG Mode
+To enable JOG mode:
+
+ •   Press the JOG button on the Deck.
+
+
+
+
+     The JOG button brightly lights up in the color of the focused Deck.
+
+
+Tempo Bending and Nudging
+You can use the Jog Wheel to manually correct the sync of tracks by bending or nudging the Deck
+tempo.
+To nudge the Deck tempo:
+
+ •   Touch the Jog Wheel's outer rim and spin it clockwise to temporarily raise the Deck tem-
+     po. When you stop spinning the rim, the Deck returns to its original tempo.
+
+
+
+
+To bend the Deck tempo:
+
+ •   Touch the Jog Wheel's outer rim and spin it counterclockwise to temporarily lower the Deck
+     tempo. When you stop spinning the rim, the Deck returns to its original tempo.
+
+
+
+
+                                                42
+                                                                                         Tutorials
+
+
+
+
+            If you select the option Ticks when Nudging in the Preferences, you then feel ticks
+            in the Jog Wheel when spinning it using its outer rim. This option applies only
+            for JOG mode. For more information, refer to Preferences.
+
+
+
+
+Cueing and Scratching
+You can hold the track playback with the Jog Wheel to cue a beat or to scratch:
+
+ 1.   Touch and hold the top plate of the Jog Wheel.
+
+
+
+
+      The playback is held. When you release the top plate, the playback continues as normal.
+ 2.   While holding the top plate, spin the Jog Wheel clockwise or counterclockwise to cue a beat.
+
+
+
+
+                                                43
+                                                                                             Tutorials
+
+
+
+
+ 3.   While holding the top plate, spin the Jog Wheel back and forth to perform a scratch.
+
+
+
+            If you select the option Enable Haptic Hotcues in the Preferences, you then feel
+            haptic feedback in the Jog Wheel when cuieng Cue Points and Loop markers while
+            touching the top plate. For more information, refer to Preferences.
+
+
+
+
+Fast Seeking
+You can use the Jog Wheel to fast seek within the track:
+
+ 1.   Press and hold SHIFT to access the secondary S4 functions.
+
+
+
+
+ 2.   While holding SHIFT turn the Jog Wheel clockwise or counterclockwise to fast seek within
+      the track.
+
+
+
+
+                                                44
+                                                                                            Tutorials
+
+
+
+
+Disabling the Top Plate's Touch-Sensitivity
+You can disable the touch-sensitivity of the top plate for the JOG mode. This enables you to also
+use the top plate to bend or nudge the track tempo.
+To disable the touch-sensitivity:
+
+ •    Press the JOG button.
+      The JOG button now illuminates red indicating the touch-sensitivity of that top plate is disa-
+      bled. When you press the JOG button again, the touch-sensitivity is re-enabled.
+
+When you disable the touch-sensitivity of the top plate, you cannot perform backspins. Also, the
+haptic feedback options in the Preferences do not apply.
+
+Adjusting the Jog Wheel Spinning Tension
+You can adjust the spinning tension for the Jog Wheel:
+
+ 1.   Press and hold the JOG button and turn the Jog Wheel clockwise to raise the tension.
+      The Jog Wheel's tension raises.
+ 2.   Press and hold the JOG button and turn the Jog Wheel counterclockwise to loosen the ten-
+      sion.
+      The Jog Wheel's tension gets loose.
+ 3.   Release the JOG button at the desired Jog Wheel tension.
+
+You can adjust the tension also in the Preferences.
+
+
+7.2.3. Using Jog Wheels in Turntable Mode
+This section introduces you the several interactions you can perform with the jog wheels used in
+TT mode (Turntable mode). In TT mode the jog wheels behave like the platters of conventional DJ
+turntables. When the TT mode is enabled, the jog wheel will rotate during playback.
+In the Preferences you can adjust the Base speed for the Jog wheels. For more information, refer
+to Preferences.
+
+
+                                                 45
+                                                                                        Tutorials
+
+
+
+
+           In Turntable mode, the tempo fader range is limited to +-8 %. If you have set another
+           tempo fader range, for example, 16 % on the Transport page in the Preferences, the
+           tempo fader on the S4 changes values only by +-8 % relatively from the current tem-
+           po fader position.
+
+
+
+
+Enabling Turntable Mode
+To enable Turntable mode:
+
+ •   Press the TT button on that Deck.
+
+
+
+
+     The TT button brightly lights up in the color of the focused Deck.
+
+
+Tempo Bending and Nudging
+During Deck playback you can use the Jog Wheel to temporarily bend or to nudge the Deck tem-
+po. This is used when syncing tracks manually.
+To nudge the Deck tempo:
+
+ •   Touch the Jog Wheel's outer rim and spin it clockwise to temporarily raise the Deck tem-
+     po. When you stop spinning the rim, the Jog Wheel and the Deck returns to original tempo.
+
+
+
+
+To bend the Deck tempo:
+
+
+                                                46
+                                                                                         Tutorials
+
+
+ •    Slightly touch the Jog Wheel's outer rim to temporarily lower the Jog Wheel rotation tempo
+      and the Deck tempo. When you stop touching the rim, the Jog Wheel and the Deck return to
+      original tempo.
+
+
+
+
+Cueing, Seeking and Scratching
+You can use the Jog Wheel to cue a beat or to scratch:
+
+ 1.   Touch and hold the top plate of the Jog Wheel.
+
+
+
+
+      The Jog Wheel stops to rotate and the playback is held.
+ 2.   While holding the top plate, spin the Jog Wheel clockwise or counterclockwise to cue a beat
+      or to seek in the track.
+
+
+
+
+                                                47
+                                                                                            Tutorials
+
+
+
+
+ 3.   While holding the top plate, quickly spin the Jog Wheel back and forth for scratching the
+      track.
+      When you release the top plate, the Jog Wheel continues to rotate and the Deck playback
+      continues.
+
+
+
+            By enabling the option Enable Haptic Hotcues in the Preferences, you then feel a
+            haptic feedback in the Jog Wheel when cuing Cue Points and Loop markers using
+            the top plate. For more information, refer to Preferences.
+
+
+
+
+7.3. Assigning Mixer Channels to the Crossfader
+You can use the crossfader to transition between the audio signals in the Mixer channels. You can
+assign any Mixer channel to either crossfader side. If you do not intend to use the crossfader, we
+recommend you to unassign the Mixer channels from the crossfader to prevent accidental usage
+in a live situation.
+Furthermore, you can determine the fading behavior for the audio signals when moving the cross-
+fader.
+
+Assigning Mixer Channels
+For any Mixer channel there is a crossfader assign selector on the front panel.
+To assign a Mixer channel to the left crossfader side:
+
+ •    Set the crossfader assign selector for the corresponding Mixer channel to the left.
+
+
+
+
+                                                 48
+                                                                                            Tutorials
+
+
+To assign a Mixer channel to the right crossfader side:
+
+ •   Set the crossfader assign selector for the corresponding Mixer channel to the right.
+
+
+
+
+Unassigning Mixer Channels
+To unassign a Mixer channel from the crossfader:
+
+ •   Set the crossfader assign selector for the corresponding Mixer channel to the center position.
+
+
+
+
+7.3.1. Setting the Crossfader Curve
+You can determine the fading behavior of the crossfader with the crossfader curve selector on the
+front panel. You can set it to the positions constant, smooth, or sharp.
+
+ • Constant: With this setting, moving the crossfader allows the levels of the Mixer channel sig-
+   nals to be raised and lowered constantly.
+ • Smooth: With this setting, moving the crossfader enables the levels of the Mixer channel sig-
+   nals to be raised and lowered smoothly.
+ • Sharp: With this setting, moving the crossfader lets the level of the other Mixer channel signal
+   immediately raise to full volume. Both signals are audible in full volume when the crossfader is
+   placed at any position between the crossfader ends.
+
+If you want the crossfader to use the constant curve:
+
+ •   Set the crossfader curve selector to the left.
+
+
+
+
+If you want the crossfader to use the smooth curve:
+
+
+                                                 49
+                                                                                          Tutorials
+
+
+ •   Set the crossfader curve selector to the center position.
+
+
+
+
+If you want the crossfader to use the sharp curve:
+
+ •   Set the crossfader curve selector to the right.
+
+
+
+
+7.4. Adjusting Levels
+When you mix tracks you need to make sure that the levels of both tracks are similar for flawless
+transitions. But also, you need to make sure the signals are not too loud neither too silent to gain
+the best possible audio quality. For this, you can define the level for the incoming audio signals
+into the Mixer channel, and you can define the levels for the outgoing signals send to the MASTER
+output.
+
+Adjusting Levels for Incoming Audio Signals
+With the GAIN knob in the Mixer channel you can determine the level for the incoming audio sig-
+nal. When you adjust the incoming level the Channel Volume Meter visually indicates the current
+level.
+To adjust the level for the incoming audio signal in the Mixer channel:
+
+ •   Turn the individual GAIN knob clockwise or counterclockwise so that the incoming level does
+     not exceed the Headroom area reflected by the yellow LEDs of the Channel Volume Meter.
+
+
+
+
+Adjusting Outgoing Mixer Channel Levels
+The channel fader in a Mixer channel limits the maximum level sent from the Mixer channel to the
+MASTER output.
+
+
+                                                 50
+                                                                                       Tutorials
+
+
+To adjust the outgoing level of a Mixer channel:
+
+ •   Move the relevant channel fader up or down.
+
+
+
+
+     The outgoing level changes accordingly. When the channel fader is set to its maximum posi-
+     tion, the outgoing signal level equals the level of the incoming signal.
+
+
+You can also use the channel faders to transitions between audio signals without using the cross-
+fader.
+
+Adjusting the MASTER Output Level
+The MASTER output stage receives the signals coming from the Mixer channels. You can deter-
+mine the MASTER output level with the MASTER knob.
+
+To adjust the MASTER output level:
+
+ •   Turn the MASTER knob clockwise or counterclockwise.
+
+
+
+
+     The MASTER output level adjusts accordingly.
+
+
+Adjusting the BOOTH Output Level
+The BOOTH output stage receives the same signals coming from the Mixer channels like the
+MASTER output stage. You can determine the BOOTH output level with the BOOTH knob:
+
+ •   Turn the BOOTH knob clockwise or counterclockwise.
+
+
+
+
+     The BOOTH output level adjusts accordingly.
+
+
+                                                   51
+                                                                                         Tutorials
+
+
+
+
+           To avoid damaging your ears, always watch the listening level of the connected
+           speakers or power amplifier, and set it to a comfortable listening level.
+
+
+
+
+7.5. Using the Equalizer
+You can use the equalizer to slightly adjust certain frequencies in the audio signal to highlight a
+specific part, like, attenuating vocals or a lead line. Another common technique is to take out the
+bass frequency of one track in order to let the bass of the other track dominate the mix.
+
+The EQ knobs adjust the high, middle, or low frequencies in the audio signal.
+
+Attenuating Frequency Bands of the Audio Signal
+To attenuate frequency bands of the audio signal:
+
+ •   Turn the individual EQ knob counterclockwise to attenuate the corresponding frequency
+     band.
+
+
+
+
+     When you turn the EQ knob entirely counterclockwise you entirely remove the individual fre-
+     quency band from the audio signal.
+
+
+
+
+                 Attenuating frequencies can avoid clipping that can easily occur when two
+                 tracks play together with full level.
+
+
+
+
+Emphasizing Frequency Bands in the Audio Signal
+To emphasize frequency bands of the audio signal:
+
+ •   Turn the individual EQ knob clockwise to emphasize the corresponding frequency band.
+
+
+
+
+                                                52
+                                                                                        Tutorials
+
+
+
+7.6. Using CUE Channel
+You can use the CUE channel on the Mixer to preview tracks in the headphones. Any Mixer chan-
+nel is equipped with a CUE button to route the audio signal into the CUE channel. You can use the
+MIX and VOL knobs to determining the level for the CUE channel, as well as the ratio between the
+cued signal and the MASTER signal.
+
+Routing Audio Signals into the CUE Channel
+To route the audio signal from a Mixer channel into the CUE channel:
+
+ •    Press the CUE button of that Mixer channel.
+
+
+
+
+      The audio signal is audible in the CUE channel.
+
+
+You can route the audio signals of all Mixer channels into the CUE channel at once.
+
+Adjusting the Ratio between the Cued Signal and the Master Signal
+In the CUE channel, you can use the MIX knob to determine the ratio between the cued signal and
+the MASTER signal.
+
+ 1.   Turn the MIX knob clockwise to let the MASTER signal dominate.
+
+
+
+
+      When you turn the MIX knob entirely clockwise, then you will only hear the MASTER signal
+      in the headphones.
+ 2.   Turn the MIX knob counterclockwise to let the cued signal dominate.
+      When you turn the MIX knob entirely counterclockwise, you then only hear the cued in the
+      headphones.
+
+
+Adjusting the CUE Channel Level
+To adjust the CUE channel level:
+
+ •    Turn the VOL knob clockwise or counterclockwise to increase or to decrease the CUE chan-
+      nel level.
+
+
+
+                                               53
+                                                                                            Tutorials
+
+
+
+
+7.7. Adjusting Tempo
+You can adjust the track tempo with the automatic Deck synchronization function SYNC and the
+TEMPO fader. When using the TEMPO fader the resulting effect depends on several factors:
+
+ • When the SYNC function is used, changing the tempo by moving the TEMPO fader only works
+   on the Deck assigned to Tempo Master. Moving the TEMPO fader on the synced Deck has no
+   effect.
+ • When the TEMPO fader is locked on the Deck, moving the TEMPO fader has no effect.
+ • The TEMPO faders can be operated in two different modes, in Absolute mode and in Relative
+   mode. By default, the TEMPO faders operate in Relative mode.
+     • Relative: In this mode, each TEMPO fader on your S4 affects the TEMPO fader of the soft-
+       ware Deck relatively to its current position, even if this position does not match the position
+       of the TEMPO fader on your S4. This notably resolves possible conflicts between the TEM-
+       PO fader and the Deck synchronization.
+     • Absolute: In this mode, whenever you move the TEMPO fader on your S4, its position is
+       transmitted 1:1 to the TEMPO fader of the software Deck, no matter what the current posi-
+       tion of the Tempo fader in the software is. In Absolute mode, the software Deck’s tempo al-
+       ways matches the TEMPO fader position on your S4, unless you have somehow changed
+       the software Deck’s tempo.
+
+You can select the TEMPO fader mode in the Preferences. For more information, refer to Prefer-
+ences.
+
+Adjusting Tempo
+To change the tempo on a Deck:
+
+ •    Move the TEMPO fader up or down.
+
+
+
+
+                                                 54
+                                                                                        Tutorials
+
+
+
+
+      The track tempo decreases or increases, respectively. The key of the track changes accord-
+      ingly.
+
+
+Locking TEMPO Fader
+To prevent accidental tempo changes you can lock the TEMPO fader:
+
+ 1.   On the Deck, press and hold SHIFT to access the secondary Deck controls.
+
+
+
+
+ 2.   While holding SHIFT, press the SYNC (Lock) button.
+
+
+
+
+      The TEMPO fader is locked, indicated by the red TEMPO fader LED. Moving the TEM-
+      PO fader will have no effect.
+ 3.   To unlock the TEMPO fader, repeat the aforementioned steps.
+
+
+
+           When you unlock a TEMPO fader that is operated in Absolute Mode, the tempo for
+           that Deck will immediately change to the value reflected by the current TEMPO fader
+           position.
+
+
+
+
+                                               55
+                                                                                       Tutorials
+
+
+Resetting Relative Tempo Fader Position
+When the TEMPO fader position in the software Deck does not match the TEMPO fader position
+on the S4 Deck, then you can reset the relative TEMPO fader position on the S4:
+
+ 1.   On the S4 Deck, press and hold SHIFT to access the secondary Deck controls.
+
+
+
+
+ 2.   While holding SHIFT, press the MASTER (Reset) button.
+
+
+
+
+      The TEMPO fader position in the software now reflects the TEMPO fader position of the S4
+      Deck.
+
+
+
+           When you reset the TEMPO fader that is operated in Absolute Mode, the tempo for
+           that Deck will immediately change to the value reflected by the current Tempo Fader
+           position.
+
+
+
+
+Syncing Deck Tempo to Tempo Master using Sync
+You can sync the Deck tempo to the Tempo Master:
+
+ •    Press the SYNC (Lock) button to sync the Deck.
+
+
+
+
+      The Deck tempo is now synced to the Tempo Master. The button brightly lights up blue.
+
+
+
+
+                                               56
+                                                                                            Tutorials
+
+
+
+7.8. Working with Key Lock
+In this section, you will learn how to use the Key Lock feature that helps you to mix your tracks
+harmonically. By locking the key of a track, you can change the track's tempo without affecting its
+key. When the original key is locked, the resulting key information is shown in the Key Lock field
+and highlighted in the color defined for that key. This information can help you to adjust the key of
+the next track to make it match the track playing. You can change the original key by transposing it
+in semitones. Furthermore, when you lock the original key for the track in the Master deck, the
+Browser also highlights matching tracks using the same color-coding.
+For more information about the principle of Harmonic Mixing, refer to Harmonic Mixing.
+
+
+7.8.1. Locking the Original Key
+When you load a track and enable Key Lock, the original key will be locked. You can then change
+the track tempo without affecting the key.
+To lock the original key of a track:
+
+ 1.   Load a track into any deck.
+ 2.   Press and hold SHIFT to access the secondary deck functions.
+
+
+
+
+ 3.   While holding SHIFT, press the LOOP encoder on that deck to lock the original key for the
+      track.
+
+
+
+
+      The original key is locked. The Key Lock field now illuminates in the color defined for the dis-
+      played key.
+
+
+
+
+                                                  57
+                                                                                            Tutorials
+
+
+ 4.   You can now move the TEMPO fader up or down to change the track tempo.
+
+
+
+
+      The track tempo changes but the key value remains the same.
+
+
+7.8.2. Transposing the Original Key in Semitones
+It is possible to transpose the original key in semitones. This is useful, for example, if you want to
+transpose the original key of the next track to match the track in the Master Deck. The offset to the
+original key will then be displayed in the Key Lock field.
+To transpose the locked key in semitones:
+
+ 1.   Load two tracks of different keys.
+ 2.   Play back one of the tracks.
+      This deck is now assigned as MASTER deck.
+ 3.   On the MASTER deck, press and hold SHIFT and press the LOOP encoder to lock the origi-
+      nal key for the track.
+
+
+
+
+ 4.   On the other deck, also press and hold SHIFT and press the LOOP encoder to lock the origi-
+      nal key for the next track too.
+      You now see the difference between both track's keys indicated by the key information and
+      color-coding. You can now transpose the key of the next track to match the track in the Mas-
+      ter deck.
+
+
+
+
+                                                 58
+                                                                                          Tutorials
+
+
+
+
+ 5.   In the deck with the next track, press and hold SHIFT and turn the LOOP encoder clockwise
+      to transpose the original key up.
+      In this example, the original key has transposed one semitone up from 10m to 5m with an
+      offset of +1. By the rules of the open key notation, the next track now harmonically matches
+      the playing track. You can also try to to transpose the key down.
+
+
+
+
+ 6.   In the deck with the next track, press and hold SHIFT and turn the LOOP encoder counter-
+      clockwise to transpose the locked key down.
+      In this example, the key has transposed down one semitones up from 10m to 3m with an
+      offset of -1. By the rules of the open key notation, the next track now harmonically matches
+      the playing track.
+
+
+
+
+            It is recommend that tracks are not transposed more than two semitones up or
+            down. An offset of more than two semitones may result in bad sound quality.
+
+
+
+
+7.8.3. Resetting the Changed Key to the Original Key
+You can quickly reset the changed key to the original key by using the LOOP encoder.
+To reset the changed key of the playing track to the original key:
+
+ 1.   Press and hold SHIFT and press the LOOP encoder once to disable Key Lock.
+ 2.   Press and hold SHIFT and press the LOOP encoder again to lock the original key.
+
+
+                                                 59
+                                                                                             Tutorials
+
+
+     The changed key has been reset to the original key.
+
+
+
+7.9. Playing with Cue Points
+When mixing tracks a common technique is to mix in the next track from a particular position in
+that track instead from its start, for example, at a certain beat. Mixing in tracks from a particular
+position in that track is called “cueing”. The S4 enables you to set points for cueing and for directly
+jumping to these particular positions: Cue Points. You can store Cue Points as Hotcues using the
+Pads on the Deck. This allows you to gain instant access to your Cue Points.
+
+Enabling Hotcues Mode
+In order to work with Cue Points you need to ensure you are in HOTCUES mode:
+
+ •   Press the HOTCUES button to enable HOTCUES mode for the selected Deck.
+
+
+
+
+Storing Cue Points as Hotcues Buttons
+To store a Cue Point as Hotcue:
+
+ •   At the desired position in the track, press a Pad.
+     The Cue Point is set at the current playback position in the track and stored as Hotcue on the
+     Pad. This Pad lights up blue.
+
+
+
+
+Triggering Cue Points on a Deck During Playback
+To trigger Cue Points on a Deck during playback:
+
+ •   Press a Pad.
+     The playback position jumps to the stored Cue Point and playback continues.
+
+
+Triggering Cue Points on a Stopped Deck
+On a stopped Deck, triggering Cue Points result in a different playback behavior:
+
+
+                                                  60
+                                                                                          Tutorials
+
+
+ • When pressing and holding a blue lit Pad, the playback continues from the position of the stor-
+   ed Cue point as long as the Pad is kept depressed.
+ • When releasing the Pad, the playback position jumps back to the Cue Point and playback
+   stops immediately.
+ • When pressing and holding a blue lit Pad and later pressing the Play/Pause button, the play-
+   back continues as normal.
+
+
+Removing Cue Points
+To remove a Cue Point from the track and so the Hotcue:
+
+ •    Press SHIFT and press a blue lit Pad.
+      The Hotcue is removed and the Cue Point is deleted from the track. The Pad is now unlit.
+
+
+
+7.10. Playing with Loops
+Loops are used as tools for remixing parts of tracks and can be used to extend track transitions. In
+this section you learn to play with Loops on the S4. Besides enabling Loops, you can store Loops
+as Hotcues in the track using the Deck's Pads. This allows you to gain instant access to your most
+important Loops.
+
+Enabling Hotcues Mode
+In order to store and work with Loops you need to ensure you are in HOTCUES mode:
+
+ •    Press HOTCUES to enable HOTCUES mode for the Deck.
+
+
+
+
+Enabling a Loop
+To enable a Loop:
+
+ 1.   Press the LOOP encoder.
+
+
+
+
+                                                61
+                                                                                        Tutorials
+
+
+      The Loop is enabled. The playback is looping by the selected Loop size. The Loop appears
+      as the green area in the Waveform. When the playhead position reaches the Loop out point,
+      the playback position seamlessly jumps back to to Loop In point. Looping continues as long
+      as as the Loop is enabled.
+
+
+
+
+ 2.   To disable the Loop, press the LOOP encoder again.
+      The playback continues.
+
+
+Changing the Loop Size
+You can instantly change the size of an enabled or disabled Loop:
+
+ •    Turn the LOOP encoder clockwise or counterclockwise.
+
+
+
+
+      The Loop size for the enabled Loop instantly changes by the value displayed in the Loop
+      Control bar.
+
+
+
+
+If there is no Loop enabled, turning the LOOP encoder only selects a Loop size.
+
+Storing a Loop as Hotcue
+To store a Loop as a Hotcue:
+
+ 1.   Press the LOOP encoder to enable a Loop.
+ 2.   Press an unlit Pad.
+      The Loop is stored as a Hotcue. The Pad lights up green.
+
+
+
+                                               62
+                                                                                            Tutorials
+
+
+Triggering a Stored Loop
+To trigger a stored Loop:
+
+ •   Press a green lit Pad.
+     The Loop is enabled. The playback position jumps to the stored Loop In point and playback
+     loops by the selected Loop size.
+
+
+Moving the Loop within the Track
+You can move an enabled or disabled Loop forwards or backwards within the track:
+
+ •   Turn the MOVE encoder clockwise or counterclockwise.
+
+
+
+
+     This instantly moves the Loop within the track by the selected Loop size.
+
+
+
+
+Removing a Stored Loop
+To remove a stored Loop from the Hotcue and from the track:
+
+ •   Press SHIFT and press a green lit Pad.
+     The Loop is removed from the Hotcue and from the track. The Pad is now unlit.
+
+
+
+7.11. Playing with Flux Mode and Reverse Mode
+Flux mode lets you jump to Cue Points and Loops without loosing the phrasing of your tracks. It is
+a timeline-based transport technique that enables you to interact with TRAKTOR's transport con-
+trols, and then immediately jump back to the position in the timeline where the track would have
+been if the transport action had not been used. In other words, it is as if a second, virtual playhead
+continues forwards in the track, while TRAKTOR loops or jumps to a Cue Point.
+
+When you release the Loop or Cue Point, by releasing the relevant Pad with the Hotcue, playback
+resumes at this playhead position. The longer you loop, the further ahead the playhead position
+will move and therefore the further ahead playback will jump to when you release Pad. The virtual
+Flux mode timeline is represented by a green playhead in the Waveform view.
+
+
+                                                 63
+                                                                                            Tutorials
+
+
+An expansion to the Flux mode is the Reverse mode. When you enable Reverse mode while in
+Flux mode, you can let the track playback reversely from the current playhead position. The sec-
+ond, virtual playhead continues forwards in the track.
+
+Enabling Flux Mode
+To enable Flux mode for the selected Deck:
+
+ 1.   Press the FLX button on the selected Deck.
+
+
+
+
+      Flux mode is enabled. The second, virtual playhead continues forwards in the track.
+ 2.   Press and hold a Pad with the Hotcue.
+      The playback continues from the stored Cue Point or Loop.
+ 3.   Release the Pad.
+      The playback resumes at the playhead position created by Flux mode.
+
+
+
+            You can also use Flux mode in conjunction with the Jog Wheel in JOG mode. When
+            you backspin and release the Jog Wheel, the playback resumes at the playhead po-
+            sition created by Flux mode.
+
+
+
+
+Enabling Reverse Mode
+To enable Reverse mode:
+
+ 1.   Press and hold the REV mode button on the selected Deck.
+
+
+
+
+      The track begins to playback in reverse. The second, virtual playhead continues forwards in
+      the track.
+ 2.   While holding the REV button, press and hold a Pad with a stored Hotcue.
+      The playback reversely continues from the stored Cue Point or Loop.
+ 3.   Release the REV button.
+      The playback resumes at the playhead position created by Flux mode.
+
+
+                                                64
+                                                                                         Tutorials
+
+
+
+
+            Enabling Reverse mode also enables Flux mode.
+
+
+
+
+7.12. Playing with MIXER Effects
+A Mixer FX is a grouped effect that can be applied to the audio signal in the Mixer channel using
+the Mixer FX Amount knob. You can choose between the FILTER effect and one of four preselec-
+ted MIXER FX with the FX SELECT buttons 1 to 4.
+The following effects can be selected using the FX SELECT buttons:
+
+
+
+
+FX SELECT buttons.
+
+
+ • FILTER: Selects the FILTER effect.
+ • FX SELECT 1: Selects the Reverb effect.
+ • FX SELECT 2: Selects the Dual Delay effect.
+ • FX SELECT 3: Selects the Noise effect.
+ • FX SELECT 4: Selects the Time Gater effect.
+
+
+Besides the Filter Effect, each Mixer FX consists of the individual Effect and a Filter Effect. De-
+pending on the direction you turn the FX Amount knob, you either apply the Mixer FX in combina-
+tion with a low-pass Filter, or with a high-pass Filter.
+
+Selecting a MIXER Effect for all Mixer Channels
+To select a MIXER FX to be applied to all Mixer channels:
+
+ •    Press a FX SELECT button.
+      The FX SELECT button brightly lights up, indicating that MIXER FX is selected. The MIXER
+      FX ON buttons in the Mixer channels also light up in the corresponding color.
+
+
+Selecting a MIXER FX for individual Mixer Channels
+You can select an individual MIXER FX for any of the Mixer channels:
+
+ 1.   Press and hold a FX SELECT button.
+      The FX SELECT button lights up brightly.
+
+
+                                                 65
+                                                                                             Tutorials
+
+
+ 2.   While holding the FX SELECT button, press the MIXER FX ON button on the individual Mix-
+      er channel.
+ 3.   Release the FX SELECT button.
+      The MIXER FX ON button in the Mixer channel now reflects the color of the correspond-
+      ing FX SELECT button.
+
+
+Applying the MIXER FX to the Audio Signal
+To apply the selected MIXER FX, in combination with a low-pass filter, to the audio signal:
+
+ •    Turn the MIXER FX Amount knob counterclockwise.
+
+
+
+
+To apply the selected MIXER FX in combination with a high-pass filter to the audio signal:
+
+ •    Turn the MIXER FX Amount knob clockwise.
+
+
+
+
+If the FILTER is selected, turning the MIXER FX Amount knob only applies a low-pass filter or a
+high-pass filter to the audio signal.
+
+
+
+7.13. Playing with FX Units
+In this section you learn how to assign FX Units to Mixer channels and how to control individual
+effect parameters.
+
+In TRAKTOR you can use the FX Units in the Global section to modulate the audio signals in the
+Mixer channels. You can directly control the parameters of FX Unit 1 and 2 in the software using
+the controls of the corresponding FX Unit 1 and 2 on the S4. In the software the FX Units are free-
+ly configurable, whereas on the S4 you can only control the effect parameters that are assigned in
+the software.
+
+Assigning FX Units to Mixer Channels
+To assign FX Units to the Mixer channels:
+
+
+
+                                                66
+                                                                                              Tutorials
+
+
+ •    Press the FX Unit Assign buttons for the corresponding FX Unit in the Mixer channel. The left
+      FX Unit Assign button assigns FX Unit 1, and the right FX Unit Assign button assigns FX Unit
+      2.
+
+
+
+
+      The FX Unit Assign button lights up brightly.
+
+
+
+            You can assign both FX Units to any Mixer channel at a time.
+
+
+
+
+Controlling FX Units
+On the S4 the FX Units reflect the current FX Unit configuration in TRAKTOR. To control the FX
+Units:
+
+ 1.   Turn the FX Unit knobs 1 - 4 clockwise or counterclockwise to change the corresponding Ef-
+      fect parameter.
+      The FX Unit knobs in the software change accordingly.
+ 2.   Press the FX Unit ON buttons 1 - 4 to enable or disable the corresponding Effect parameter.
+      The FX Unit ON buttons brightly light up on the S4 and in the software.
+
+If the FX Unit is operated in Group FX mode in the software, the FX Unit ON button 1 on the S4
+has no effect. The FX Unit ON button remains dimmed.
+
+Displaying FX Units in the TRAKTOR Software
+You can control the FX Units in the software from the S4, with or without displaying the FX Units in
+the software. However, it can be helpful to display the FX Units in the software for getting instant
+feedback about the selected Effects and the individual parameters.
+To display the FX Units in the TRAKTOR software:
+
+ 1.   In TRAKTOR, select Extended from the Layout drop-down menu to display the Global sec-
+      tion.
+ 2.   In the Global section, click the FX buttons on the far left and far right to display the FX Units
+      1 and 2.
+
+
+
+
+                                                   67
+                                                                                           Tutorials
+
+
+
+7.14. Adding Tracks to the Preparation List
+In TRAKTOR's Browser you can prepare for your next mix by adding tracks to it's Preparation List.
+In TRAKTOR you can do this by tagging the selected track in the Track List. The track is then add-
+ed to the Preparation List. When you select the Preparation List in the Browser, you are then provi-
+ded with all the tracks contained in the Preparation List. On your S4 you can add the selected
+track in the Track List to the Preparation List using the Preparation List buttons on the S4 Decks.
+To add tracks to the Preparation List:
+
+ 1.   Turn the Browse encoder to select a track in the Track List.
+ 2.   Press the Preparation List button on that Deck.
+
+
+
+
+      The track is added to the Preparation List. A diamond icon appears in the first column in the
+      Track List in TRAKTOR indicating that track is added to the Preparation List. Pressing the
+      Preparation List button again removes the track from the Preparation List.
+
+
+7.15. Previewing Tracks in the Browser
+With the Browse controls you can conveniently preview tracks in the Browser view:
+
+ 1.   Put on your headphones.
+ 2.   Turn the Browse encoder to select a track in the Track List.
+ 3.   Press and hold the Preview button to load the track into the Preview Player and to instantly
+      start playback.
+
+
+
+
+      The track is now playing back and audible in the CUE channel.
+ 4.   While holding the Preview button turn the Browse encoder to seek within the track.
+ 5.   Release the preview button to stop preview.
+      The Preview Player is unloaded.
+
+
+
+
+                                                 68
+                                                                                      Tutorials
+
+
+
+7.16. Switching Deck Focus
+Any of the S4 Decks control two Decks in TRAKTOR. The left S4 Deck controls Deck A and Deck
+C, the right S4 Deck controls Deck B and Deck D. However, the S4 Decks can focus only on one
+of the TRAKTOR Decks.
+
+To switch the Deck Focus on the left S4 Deck:
+
+ •   On the left S4 Deck press the DECK SELECT buttons A or C to switch the Deck focus to the
+     corresponding Deck.
+
+
+
+
+To switch the Deck Focus on the right S4 Deck:
+
+ •   Press the DECK SELECT buttons B or D to switch the Deck focus to the corresponding
+     Deck.
+
+
+
+
+When Decks A and Deck B are focused on the S4, the Deck LEDs light up blue. When Deck C
+and Deck D are focused on the S4, the Deck LEDs light up orange.
+
+
+
+7.17. Playing with Remix Decks
+Remix Decks enable you to load collections of Samples (Remix Sets) and trigger the individual
+Samples in your mix. As with Track Decks and STEM Decks, the Remix Decks can be synchron-
+ized to the Tempo Master to ensure the Samples always play in sync with other tracks.
+
+A Remix Set can contain up to 64 Samples organized in the Sample Grid. The Sample Grid con-
+sists of four columns containing 16 Sample Cells each. When a Remix Set is loaded into a Remix
+Deck on the S4, the first of the 16 Samples is visible in each Sample Slot. You can trigger them
+individually and manipulate their volume and sound using the Pads and the MOVE and LOOP en-
+coders. You can instantly select another Sample in the Sample Slots using the Browse encoder.
+
+
+
+                                                 69
+                                                                                       Tutorials
+
+
+Loading Remix Sets
+To load a Remix Set from your Track Collection and to switch the Deck Type to Remix Deck:
+
+ 1.   Press the VIEW button.
+
+
+
+
+      The TRAKTOR Layout switches to Browser view.
+ 2.   Press and hold the Star button and turn the Browse encoder to select the All Remix Sets
+      favorite folder.
+
+
+
+
+ 3.   Turn the Browse encoder to select a Remix Set in the Track List.
+ 4.   Press the Browse encoder to load the Remix Set into that Deck.
+
+
+
+
+      The Deck Type switches to Remix Deck and enables the SAMPLES mode for that S4 Deck.
+
+
+
+
+Triggering Samples
+Once the Remix Set is loaded into the Deck you can trigger the Samples:
+
+
+                                                70
+                                                                                       Tutorials
+
+
+ 1.   Press Pad 1 – 4 to trigger the corresponding Samples.
+      The Deck and the Samples play back and the Pads brightly light up.
+
+
+
+
+ 2.   To stop the playback of a Sample, press and hold SHIFT to access the Deck's secondary
+      functions.
+
+
+
+
+      The colors of the first row of Pads change to white.
+ 3.   While holding SHIFT, press the Pad for the corresponding Sample you want to stop play-
+      back.
+      The Sample stops immediately and the Pad turns dim. The Deck playback continues.
+
+
+Adjusting Sample Slot Volume
+The volume level of any Sample Slot can be adjusted and muted individually:
+To adjust the volume level of a Sample Slot:
+
+ 1.   Press and hold the Pad below the Pad for the corresponding Sample to access the sound
+      controls for the Sample Slot.
+      The display shows the current Volume and Filter parameter values.
+
+
+
+
+ 2.   While holding the Pad, turn the MOVE encoder clockwise or counterclockwise to adjust the
+      volume for the Sample Slot.
+
+
+
+
+                                                 71
+                                                                                         Tutorials
+
+
+
+
+      The Volume parameter value in the display changes accordingly.
+
+
+
+
+Muting Sample Slots
+You can mute a Sample Slot immediately:
+
+ 1.   Press and hold the Mute button.
+
+
+
+
+ 2.   While holding the Mute button, press the Pad corresponding to the Sample Slot.
+      The Sample Slot is muted.
+ 3.   To unmute the Sample Slot, repeat the aforementioned steps.
+
+
+Applying Filter Effect to the Sample Slot
+Any Sample Slot contains a Filter control for applying a high-pass or low-pass filter:
+
+ 1.   Press and hold the Pad below the Pad for the corresponding Sample to access the sound
+      controls for the Sample Slot.
+      The display shows the current Volume and Filter parameter values.
+
+
+
+
+                                                 72
+                                                                                       Tutorials
+
+
+2.   While holding the Pad, turn the LOOP encoder clockwise or counterclockwise to apply a
+     high-pass or low-pass Filter effect to the Sample Slot.
+
+
+
+
+     The Filter parameter value in the display changes accordingly.
+
+
+
+
+Selecting another Sample in Sample Slot
+
+1.   Press and hold the Pad below the Pad for the corresponding Sample to access the sound
+     controls for the Sample Slot.
+     The display shows the current Volume and Filter parameter values.
+
+
+
+
+2.   While holding the Pad, turn the Browse encoder clockwise or counterclockwise to scroll
+     through the List of Samples contained in the Sample Slot.
+
+
+
+
+                                               73
+                                                                                           Tutorials
+
+
+
+
+ 3.   When the new Sample is highlighted, release the Pad.
+      The playback of the Sample starts immediately in sync with the Quantize value.
+
+
+Enabling and Adjusting the Remix Deck's Quantize Mode
+The Remix Deck provides an internal Quantize mode to let the Samples trigger at the right beat in
+the internal timeline. You can adjust the Quantize value with the LOOP encoder.
+
+To enable Quantize mode for the Remix Deck:
+
+ 1.   Press and hold SHIFT to access the secondary Deck functions.
+
+
+
+
+ 2.   While holding SHIFT, press the LOOP encoder to enable or disable Quantize mode for the
+      Remix Deck.
+
+
+
+
+      The enabled Quantize mode is indicated by the blue dot next to the Quantize value.
+
+
+
+
+ 3.   To adjust the Quantize value, hold SHIFT and turn the LOOP encoder clockwise or counter-
+      clockwise.
+
+
+                                               74
+                                                                                       Tutorials
+
+
+      The Quantize value changes accordingly.
+
+
+
+7.17.1. Using Pattern Recorder
+The Pattern Recorder allows you to program sequences to be played by the Samples in the Sam-
+ple Slots. When the Pattern Recorder is enabled, you can instantly play and record your sequen-
+ces by tapping the Pads. Upon recording, the sequences will automatically be quantized and in-
+stantly play back in sync to the Deck tempo and repeat. You can program sequences up to 16
+steps.
+The Pattern Recorder is meant to be used with one-shot Samples such as kick drum, snare, hi-
+hat, sound FX, etc. The usage of Loops will also work, but may not bring the appropriate results.
+
+Enabling Pattern Recorder
+To enable Pattern Recorder:
+
+ 1.   Load a Remix Set into a Deck.
+      The Deck Type switches to Remix Deck. Alternatively, you can load individual Samples into
+      an empty Remix Deck.
+ 2.   To enable Pattern Recorder, press the record button on the Deck.
+
+
+
+
+      The Pattern Recorder is enabled and the record button brightly lights up red.
+
+
+Recording Sequences
+Once the Pattern Recorder is enabled you can play and record your sequences:
+
+ •    Play your sequences by tapping Pad 1 to Pad 4, corresponding to the Samples.
+      The Pattern Recorder instantly records your sequences and repeat them.
+
+
+Removing a Sequence
+To remove a sequence:
+
+ •    Press and hold SHIFT and press the Pad corresponding to the sequence you want to re-
+      move.
+      The sequence is removed. You can now tap in a new sequence on that Pad.
+
+
+
+7.18. Playing with STEM Decks
+In this section you will learn how to load and play back a STEM File, how to adjust volumes and
+apply Filter FX on individual STEM Parts in the STEM Decks.
+
+
+                                                75
+                                                                                         Tutorials
+
+
+STEM Files allow you to interact with four different musical elements of a track independently. You
+can modify these four STEM Parts individually to create spontaneous instrumentals, remixes, or
+mashups. You can create transitions between musical elements STEM Part by STEM Part, or ap-
+ply effects and EQ to a specific STEM Part, rather than the entire track. Furthermore, you can mix
+musical elements across multiple STEM Decks, for example, taking the vocals from one STEM
+File and mixing it with the beat from another.
+
+Loading a STEM File
+To load a STEM File into a Deck and switch the Deck Type to STEM Deck:
+
+ 1.   Press the VIEW button.
+
+
+
+
+      The TRAKTOR Layout switches to Browser view.
+ 2.   Press and hold the Star button and turn the Browse encoder to select the All Stems favorite
+      folder.
+
+
+
+
+ 3.   In the Track List, select the STEM File you want to load by turning the Browse encoder.
+ 4.   Press the Browse encoder to load the STEM File into the Deck.
+      The Deck Type automatically switches to STEM Deck. The display shows the Waveform for
+      the entire STEM File.
+
+
+
+
+Playing Back the STEM File
+In order to play back a STEM File:
+
+
+
+                                                76
+                                                                                       Tutorials
+
+
+ •    Press the Play/Pause button on the Deck.
+
+
+
+
+      The STEM Deck plays back the STEM File.
+
+
+Adjusting STEM Part Volumes
+In order to adjust the volumes for the individual STEM Parts:
+
+ 1.   Press the STEMS button to access STEM Deck controls.
+
+
+
+
+ 2.   Press and hold the Pad below the Pad for the corresponding STEM Part to access the sound
+      controls for that STEM Part.
+      The display shows the current Volume and Filter parameter values.
+
+
+
+
+ 3.   While holding the Pad, turn the MOVE encoder clockwise or counterclockwise to adjust the
+      volume for the STEM Part.
+
+
+
+
+      The volume of the musical element in the STEM Part decreases or increases accordingly.
+
+
+
+
+                                                 77
+                                                                                     Tutorials
+
+
+
+
+ 4.   To reset the STEM Part volume, press and hold the Pad below the Pad of the corresponding
+      STEM Part and press the MOVE encoder.
+
+
+
+
+      The STEM Part volume is reset to full level.
+
+
+Muting STEM Parts
+You can mute a STEM Part immediately:
+
+ 1.   Press and hold the Mute button and press the Pad corresponding to the STEM Part.
+
+
+
+
+      The STEM Part is muted.
+ 2.   To unmute the STEM Part, repeat the aforementioned steps.
+
+
+Applying Filter FX to STEM Parts
+In order to apply a Filter effect to key elements of the music:
+
+ 1.   Press the STEMS button to access STEM Deck controls.
+
+
+
+
+                                                  78
+                                                                                         Tutorials
+
+
+2.   Press and hold the Pad below the Pad corresponding to the STEM Part to access the sound
+     controls for that STEM Part.
+     The display shows the current Volume and Filter effect parameter values.
+
+
+
+
+3.   While holding the Pad, press the LOOP encoder to enable the Filter effect for that STEM
+     Part.
+
+
+
+
+     The Filter effect parameter in the display is highlighted accordingly.
+4.   While still holding the Pad, turn the LOOP encoder clockwise or counterclockwise to apply a
+     high-pass or low-pass Filter effect to the STEM Part.
+
+
+
+
+     The Filter effect parameter value in the display changes accordingly.
+
+
+
+
+5.   To reset the Filter effect for the STEM Part, press and hold the Pad below the Pad for the
+     corresponding STEM Part and press the LOOP encoder.
+     The Filter effect parameter set back to the center position.
+
+
+
+
+                                                 79
+                                                                                       Tutorials
+
+
+
+7.19. Correcting Beatgrids of Tracks
+When a track contains a complex rhythm or an uneven timing, it can happen that the Beatgrid cal-
+culated by TRAKTOR does not precisely match the beat of the track. It is then not possible to
+match the beats of that track when mixing it using the SYNC function. Miscalculated Beatgrids can
+be corrected using the GRID mode on the S4. The GRID mode allows you to check and correct
+the Beatgrid of tracks.
+
+Checking Beatgrid
+To check the Beatgrid for the selected track:
+
+ 1.   Load the track into a Deck.
+ 2.   Press Play/Pause to start playback of the track.
+
+
+
+
+ 3.   Press the CUE button of the Mixer channel corresponding to that Deck.
+
+
+
+
+ 4.   Press the JOG button to enable JOG mode.
+
+
+
+
+ 5.   Press and hold the GRID button on that Deck to make the Beatgrid tick audible.
+
+
+
+
+                                                80
+                                                                                            Tutorials
+
+
+
+
+      Besides the beat of the track, you now hear a second beat tick (like a metronome tick) repre-
+      senting the Beatgrid. If the beat tick does not match the beat of the track, the Beatgrid is set
+      incorrectly.
+
+
+Correcting Beatgrid
+To correct the Beatgrid setting, proceed as follows:
+
+ 1.   While holding the GRID button, slightly turn the Jog Wheel clockwise or counterclockwise to
+      move the Beatgrid forward or backward, respectively.
+      By turning the Jog Wheel you are able to adjust the Beatgrid, so that the beat tick matches
+      the beat of the track.
+ 2.   Release the GRID button.
+      The track's Beatgrid is corrected and saved with the track.
+
+
+Disable Analysis Lock if Tick is not audible
+Ensure the Analysis Lock is disabled for the track to make Beatgrid correction possible.
+To disable the Analysis Lock you need to perform the following actions in the TRAKTOR software:
+
+ 1.   Select the Extended Layout in the Layout drop-down menu in the Header.
+      The Decks provide you with more functions and controls.
+ 2.   Click the Advanced Panel button to open the Advanced Panel for that Deck.
+ 3.   Click on GRID to open the GRID page.
+ 4.   Disable the Analysis Lock by clicking the Analysis Lock button.
+      The Beatgrid for the track can now be corrected.
+
+
+
+
+                                                  81
+                                                                                  Preferences
+
+
+
+8. PREFERENCES
+
+When opening the Preferences dialog in TRAKTOR you will find an additional page for the S4 con-
+troller with configuration settings.
+
+Accessing TRAKTOR Preferences
+To open the Preferences in TRAKTOR:
+
+ 1.   Click the Preferences button in TRAKTOR's Header.
+
+
+
+
+ 2.   Select the Traktor S4 MK3 page.
+
+
+TRAKTOR S4 MK3 Preferences Page
+
+
+
+
+Traktor S4 MK3 Preferences Page.
+
+
+
+                                              82
+                                                                                      Preferences
+
+
+Transport
+
+• Tempo Faders: Determines the TEMPO fader mode.
+   • In Absolute mode, the track tempo automatically adjusts according to the TEMPO fader
+     position when loading the track.
+   • In Relative mode, the track tempo is always set to the original tempo independent of the
+     current TEMPO fader position when loading the track.
+
+
+Haptic Drive
+
+• Ticks when Nudging: Determines the haptic feedback sensitivity when turning the Jog Wheel
+  using the rim in JOG mode.
+   • When None is selected, you do not feel any feedback in the Jog Wheel by turning it.
+   • When Coarse is selected, you feel ticks in coarse increments in the Jog Wheel by turning it.
+   • When Fine is selected, you feel ticks in fine increments in the Jog Wheel by turning it.
+• Jogwheel Tension: Determines the resistance when turning the Jog Wheel. A lower value re-
+  sults in less resistance, a higher value results in more resistance. The range is between 0 and
+  255.
+• Enable Haptic Hotcues: When this option is ticked, you feel Cue Points and Loop markers in
+  the Jog Wheel as haptic feedback when cueing them by touching the top plate.
+
+
+TT Mode
+
+• Base: Determines the Jog Wheel's revolutions per minute when used in TT mode.
+   • When 33.3 RPM is selected, the Jog Wheel rotates slower.
+   • When 45 RPM is selected, the Jog Wheel rotates faster.
+
+
+Restore Default
+
+• Restore: Restores to default S4 settings.
+
+
+
+
+                                               83
+                                                                       Integrating External Devices
+
+
+
+9. INTEGRATING EXTERNAL DEVICES
+
+The S4 provides you with the possibility to integrate external audio devices. Besides integrating
+microphones, you can also connect devices like turntables and CD players. This enables you to
+mix in external audio from vinyl and CD. In conjunction with turntables and CD players you can
+enable TRAKTOR's Scratch function to control the Decks with timecode vinyls or timecode CDs,
+which you can purchase separately. You can also use the S4 as standalone DJ mixer for your ex-
+ternal devices without your computer.
+In this section you learn how to integrate external audio devices and how to setup TRAKTOR for
+using the Scratch function:
+
+ • For integrating a microphone, refer to Integrating Microphone.
+ • For integrating turntables into your setup, refer to Integrating Turntable.
+ • For integrating CD players into your setup, refer to Integrating CD Players.
+ • For configuring your S4 system connected with turntables or CD players to be used with TRAK-
+   TOR's Scratch function, refer to Enabling Scratch Function in TRAKTOR.
+ • For using your S4 as standalone DJ mixer, refer to Using the S4 as a Standalone DJ Mixer.
+
+
+
+9.1. Integrating Microphone
+The Mixer channels C and D on the S4 allow you to integrate a microphone. On the rear panel on
+the S4 you can connect a microphone using a 1.8" connector to be inserted into Mixer channel C.
+On the front panel you can connect a microphone using an XLR connector to be integrated into
+Mixer channel D.
+This section introduces you the workflow to integrate a microphone. At first you connect the micro-
+phone to the S4. Then you enable the microphone pre-amplifier stage for the Mixer channel. Final-
+ly, you switch the Deck to Live Input to insert the microphone signal.
+
+Connecting Microphone
+To connect a microphone to your S4 system:
+
+ 1.   Switch off the S4.
+ 2.   Connect the microphone to the input MIC C on the rear panel, or to the input MIC D on the
+      front panel on the S4, corresponding to its connector.
+
+
+Enabling the Microphone Pre-Amplifier for the Mixer Channel
+To let the Mixer channel receive the microphone signal, you need to enable the microphone pre-
+amplifier stage for the Mixer channel:
+
+ 1.   Switch on the S4.
+ 2.   Press and hold SHIFT on the S4 Deck to access the secondary Deck functions.
+ 3.   While holding SHIFT, press the EXT button on the corresponding Mixer channel.
+      The MIC C or MIC D LED lights up indicating the microphone pre-amplifier stage is enabled
+      for the Mixer channel.
+
+
+                                                  84
+                                                                    Integrating External Devices
+
+
+Switching the Deck to Live Input
+To switch the S4 Deck to Live Input
+
+ 1.   Press the EXT button on the Mixer channel you want to insert the microphone signal from.
+      The Deck has switched to Live Input. You can now speak into the microphone.
+ 2.   Set the incoming microphone signal to an adequate level by turning the GAIN knob on the
+      Mixer channel.
+
+
+9.2. Integrating Turntable
+The Mixer channels on the S4 allow you to connect up to two phono level audio devices and two
+line level devices simultaneously.
+A turntable that requires a separate phono pre-amplifier stage has to be connected to Mixer chan-
+nel A or B. A turntable that has an integrated phono pre-amplifier can be connected to any Mixer
+channel.
+This section provides you with the steps of how to connect a turntable without an integrated pho-
+no-pre-amplifier stage. At first you connect the turntable to the S4. Then you enable the phono
+pre-amplifier stage for the Mixer channel. Finally, you switch the Deck to Live Input.
+
+Connecting Turntable
+To connect your turntable to the S4:
+
+ 1.   Switch off the S4.
+ 2.   Connect your turntable to the inputs PHONO / LINE IN A or B on the rear panel of the S4
+      using a stereo RCA cable.
+ 3.   Attach the ground wire of your turntable to the ground post GND on the rear panel of the S4.
+
+
+Enabling the Phono Pre-Amplifier for the Mixer Channel
+To let the Mixer channel receive the phono signal, you need to enable the phono pre-amplifier
+stage for the Mixer channel:
+
+ 1.   Switch on the S4.
+ 2.   Press and hold SHIFT on the S4 Deck you want to integrate the turntable to access the sec-
+      ondary Deck functions.
+ 3.   While holding SHIFT press the EXT button on the corresponding Mixer channel.
+      The PHONO LED lights up indicating the phono pre-amplifier is enabled for the Mixer chan-
+      nel.
+
+
+Switching the Deck to Live Input
+To switch the S4 Deck to Live input:
+
+ 1.   Press the EXT button on the Mixer channel you want to insert the external audio from.
+      The Deck has switched to Live Input.
+ 2.   Put a vinyl on your turntable and start playback.
+      The Mixer channel now inserts the audio signal from the turntable.
+
+
+                                                 85
+                                                                    Integrating External Devices
+
+
+
+9.3. Integrating CD Players
+The Mixer channels on the S4 allow you to connect up four line level devices simultaneously. This
+section guides you through the steps for connecting a CD player. At first you connect the CD play-
+er to the S4. Then you enable the line level input for the Mixer channel. Finally, you switch the
+Deck to Live Input.
+
+Connecting CD Players
+To connect a CD player to the S4:
+
+ 1.   Switch off your S4.
+ 2.   Connect your CD player to any of the inputs PHONO / LINE IN A or B or LINE IN C or
+      D respectively, on the rear panel of the S4 using a stereo RCA cable.
+
+
+Enabling Inputs for Line Level Signals
+You need to enable the Mixer channel to receive a line level audio signal. In this case the LINE
+LED has to light up. If this is not the case, you need to enable the line level input for the Mixer
+channel:
+
+ 1.   Switch on the S4.
+ 2.   Press and hold SHIFT on the S4 Deck you want to integrate the CD player to access the
+      secondary Deck functions.
+ 3.   While holding SHIFT press the EXT button on the Mixer channel corresponding to the con-
+      nected CD player.
+      The LINE LED lights up indicating the Mixer channel receives the line level audio signal from
+      the Deck used as Live Input.
+
+
+Switching the Deck to Live Input
+To switch the S4 Deck to Live input:
+
+ 1.   Press the EXT button on the Mixer channel you want to insert the external audio from.
+      The Deck has switched to Live Input.
+ 2.   Insert a CD into the CD player and start playback.
+      The Mixer channel now receives the line level audio signal from the CD player.
+
+
+
+9.4. Enabling Scratch Function in TRAKTOR
+The S4 enables you to use TRAKTOR's Scratch function in conjunction with the connected turnta-
+ble(s) or CD player(s). For this, you need the timecode control vinyl or CD which you can purchase
+separately on the Native Instruments website. This section introduces you the workflow on how to
+enabling the Scratch function in TRAKTOR.
+
+Enabling Scratch Function in TRAKTOR
+To enable the Scratch function for a Deck in TRAKTOR:
+
+ 1.   Start TRAKTOR.
+
+
+                                                86
+                                                                      Integrating External Devices
+
+
+ 2.   Click the Deck letter of the Deck for which you want to enable the Scratch function.
+      The context menu opens.
+ 3.   Select Track Deck.
+      The Deck switches to Track Deck.
+ 4.   Click the Deck letter again to open the context menu.
+ 5.   Select Scratch Control.
+      The Scratch function is enabled for the Track Deck. The CUE and CUP buttons of the Trans-
+      port Controls are replaced by the Absolute mode button and Relative mode button.
+ 6.   Repeat the aforementioned steps if you have another device for Scratch control connected.
+
+
+Using Timecode Media
+To control the Decks you need to use the timecode media corresponding to the devices you use:
+
+ 1.   Load a track into the Deck.
+ 2.   Put on the timecode vinyl(s) on your turntable(s) or insert the CD(s) into your CD player(s).
+ 3.   Start playback on the device(s).
+      TRAKTOR now calibrates the incoming timecode signal.
+ 4.   Click either the Absolute mode button or the Relative mode button in the Transport Controls.
+      The track playback in the Deck is now controlled by the timecode signal coming from the ex-
+      ternal device.
+
+
+Displaying the Timecode Scopes in the Decks
+To additionally monitor the timecode signal quality, you can display the timecode signal scopes on
+the individual Decks in TRAKTOR:
+
+ 1.   Open the Preferences in TRAKTOR.
+ 2.   Select the Decks Layout page.
+ 3.   In the Platter / Scope section, select Scope from the individual drop-down menus.
+      The timecode scopes are now visible in the Decks.
+
+
+
+9.5. Using the S4 as a Standalone DJ Mixer
+You can operate the S4 in Standalone mode to mix music from your connected turntables or CD
+players without using your computer. In Standalone mode the Decks and the FX Units have no
+function. Only the Mixer operates as a conventional DJ mixer. This means the Mixer FX are not
+available, but you can use the Filter on each Mixer channel. In this section you will learn how to
+enable Standalone mode and how you configure the mixer channels according to your connected
+audio devices.
+
+Prerequisites
+We assume that you already have connected your external audio devices to the S4. If this is not
+the case, follow the instructions in these sections before you proceed:
+
+ • Integrating Turntable
+ • Integrating CD Players
+
+
+                                                 87
+                                                                     Integrating External Devices
+
+
+ • Integrating Microphone
+
+
+Enabling Standalone Mode
+To enable the standalone mode:
+
+ 1.   Switch off the S4.
+ 2.   Disconnect the S4 from your computer by disconnecting the USB cable.
+ 3.   Switch on the S4.
+      After the S4 startup sequence, the EXT buttons flash and the ON buttons light up red in the
+      Mixer channels. The S4 is now in Standalone mode. The next step is to enable the Mixer
+      channels you want to use.
+
+
+Enabling Mixer Channels
+To enable the mixer channels you want to use:
+
+ •    Press the EXT buttons corresponding to the Mixer channels.
+      The EXT buttons now permanently illuminate, indicating these Mixer channels are enabled.
+
+
+Switching the Mixer Channel Input Type
+When enabling Standalone mode, the input type for any Mixer channel is set to LINE by default.
+Depending on the connected audio devices, the Mixer channels need to be switched to the correct
+input type. This can also be PHONO, MIC C, or MIC D. If you have connected cd players or any
+other line level device, you can leave the input type setting as is. If you have connected turntables
+or a microphone, proceed as follows to switch the input type:
+
+ •    Press and hold any SHIFT button and press the EXT button of the mixer channel corre-
+      sponding to your connected turntable or microphone.
+      The input type for the mixer channel is switched. The PHONO LED or the MIC C or MIC D
+      LED illuminate. Repeat this step for other Mixer channels.
+
+You can now use the S4 as standalone DJ mixer.
+
+
+
+
+                                                 88
+                          Setting the TRAKTOR KONTROL S4 as Your Default Audio Interface
+
+
+
+10. SETTING THE TRAKTOR KONTROL S4 AS
+YOUR DEFAULT AUDIO INTERFACE
+
+If you want to use the TRAKTOR KONTROL S4 for playback of all audio applications on your com-
+puter, you can set it as your default audio interface.
+
+Windows
+On Windows you can define the TRAKTOR KONTROL S4 as your default audio interface as fol-
+lows:
+
+ 1.   Open Start > Preferences > System.
+ 2.   Select the Sound tab.
+ 3.   In the device list, select TRAKTOR KONTROL S4 and click Set Default.
+ 4.   On the Sound tab scroll down to Input.
+ 5.   In the device list, select TRAKTOR KONTROL S4 and click Set Default.
+ 6.   Close the dialog.
+
+
+macOS
+On macOS you can define the TRAKTOR KONTROL S4 as your default audio interface as fol-
+lows:
+
+ 1.   From the Apple menu, select System Preferences.
+ 2.   In the panel that opens, click Sound.
+ 3.   On the Sound Effects drop-down menu, select TRAKTOR KONTROL S4.
+ 4.   Click the Output tab and select TRAKTOR KONTROL S4 from the Choose a device for
+      sound output list.
+ 5.   Click the Input tab, and select TRAKTOR KONTROL S4 from the Choose a device for sound
+      input list.
+ 6.   Close the window to confirm your changes.
+
+
+
+
+                                               89
+

@@ -27,6 +27,18 @@ struct ContentView: View {
     @State private var isManualOrder = true
     @State private var compatibilityBannerDismissed = false
     @State private var profileMatchIDs: Set<UUID>?
+    /// Session-scoped dismissal of the identify-controller notice banner.
+    @State private var identifyBannerDismissed = false
+    /// Row id → resolved physical control name, across every device that has an
+    /// associated profile. Recomputed on `explanationRevision`. Empty otherwise.
+    @State private var physicalNames: [UUID: String] = [:]
+    /// Per-device cache of the expensive reverse-name index plus the configuration it was
+    /// built from. Rebuilt only when a device's configuration changes; the cheap row remap
+    /// runs on every revision. Prevents re-resolving thousands of controls per keystroke.
+    @State private var reverseNameCache: [UUID: (configuration: ControllerConfiguration,
+                                                 index: ControllerControlResolver.ReverseNameIndex)] = [:]
+    /// Loaded once; the library init is throwing so failures leave this nil.
+    private static let sharedProfileLibrary = try? ControllerProfileLibrary()
 
     private var canReorder: Bool {
         !isLocked && profileMatchIDs == nil && isManualOrder && categoryFilter == .all && ioFilter == .all
@@ -68,6 +80,48 @@ struct ContentView: View {
             return "Select mappings from only one destination device before pasting."
         }
         return nil
+    }
+
+    /// The device configuration associated with a device id, if any.
+    private func configuration(for deviceID: UUID) -> ControllerConfiguration? {
+        document.mappingFile.interchangeMetadata?.deviceProfiles?.first { $0.deviceID == deviceID }?.configuration
+    }
+
+    /// Devices with no associated profile — the identify banner targets the first.
+    private var devicesNeedingProfile: [Device] {
+        document.mappingFile.devices.filter { configuration(for: $0.id) == nil }
+    }
+
+    /// Rebuild the row → physical-name map from every associated profile.
+    ///
+    /// The expensive address→name index depends only on (profile + configuration), not on
+    /// rows, so it is cached per device and rebuilt only when that device's configuration
+    /// changes. The cheap row remap runs every time (rows change under the same revision).
+    private func recomputePhysicalNames() {
+        guard let library = Self.sharedProfileLibrary else {
+            physicalNames = [:]
+            reverseNameCache = [:]
+            return
+        }
+        let resolver = ControllerControlResolver(library: library)
+        var combined: [UUID: String] = [:]
+        var freshCache: [UUID: (configuration: ControllerConfiguration,
+                                index: ControllerControlResolver.ReverseNameIndex)] = [:]
+        for device in document.mappingFile.devices {
+            guard let configuration = configuration(for: device.id) else { continue }
+            let index: ControllerControlResolver.ReverseNameIndex
+            if let cached = reverseNameCache[device.id], cached.configuration == configuration {
+                index = cached.index // configuration unchanged; reuse the expensive index.
+            } else {
+                index = resolver.reverseNameIndex(configuration: configuration)
+            }
+            freshCache[device.id] = (configuration, index)
+            for (id, name) in resolver.physicalNames(index: index, device: device) {
+                combined[id] = name
+            }
+        }
+        reverseNameCache = freshCache // drops entries for devices that no longer exist.
+        physicalNames = combined
     }
 
     // Sheet types for single sheet modifier (avoids crash from multiple sheets)
@@ -194,6 +248,10 @@ struct ContentView: View {
             // Re-show the notice if the set of preserved assignments changes.
             compatibilityBannerDismissed = false
         }
+        .onChange(of: document.explanationRevision) { _, _ in
+            // Associations/rows change under the same revision key the explanation uses.
+            recomputePhysicalNames()
+        }
         .sheet(item: $activeSheet) { sheet in
             switch sheet {
             case .about:
@@ -277,6 +335,7 @@ struct ContentView: View {
             }
         }
         .onAppear {
+            recomputePhysicalNames()
             WizardTrace.write(" ContentView.onAppear: flag=\(WizardCoordinator.pendingWizardForNextNewDocument) document=\(ObjectIdentifier(document))")
             if WizardCoordinator.pendingWizardForNextNewDocument {
                 WizardCoordinator.pendingWizardForNextNewDocument = false
@@ -328,6 +387,7 @@ struct ContentView: View {
         HSplitView {
             // Left: Mappings Table
             VStack(alignment: .leading, spacing: 0) {
+                if showIdentifyBanner { identifyBanner }
                 mappingsHeader
                 V2Divider()
                 MappingsTableView(
@@ -380,6 +440,7 @@ struct ContentView: View {
                         updateSelectedMappings { if $0.ioType == .output { $0.ledInvert.toggle() } else { $0.invert.toggle() } }
                     },
                     sharedMIDIIDs: sharedMIDIIDs,
+                    physicalNames: physicalNames,
                     isManualOrder: $isManualOrder,
                     canReorder: canReorder,
                     onMove: { ids, target in moveMappings(ids, before: target) },
@@ -413,6 +474,38 @@ struct ContentView: View {
         }
     }
 
+    // MARK: - Identify controller banner
+
+    private var showIdentifyBanner: Bool {
+        !devicesNeedingProfile.isEmpty && !identifyBannerDismissed && !isLocked
+    }
+
+    /// Soft, dismissible on-load notice matching `AssistantNoticeBanner`'s
+    /// warning treatment, with actions. Dismiss is session-scoped, not permanent.
+    private var identifyBanner: some View {
+        let count = devicesNeedingProfile.count
+        let color = AppThemeV2.Colors.warning
+        return HStack(alignment: .center, spacing: AppThemeV2.Spacing.sm) {
+            Image(systemName: "exclamationmark.triangle.fill").foregroundStyle(color)
+            Text(count == 1
+                 ? "SXM doesn't know which controller this is. Identify it to see each mapping's physical control."
+                 : "\(count) devices have no controller identified. Identify them to see each mapping's physical control.")
+                .font(AppThemeV2.Typography.body)
+                .foregroundStyle(AppThemeV2.Colors.stone200)
+                .fixedSize(horizontal: false, vertical: true)
+            Spacer(minLength: AppThemeV2.Spacing.sm)
+            Button("Identify controller") {
+                if let first = devicesNeedingProfile.first { activeSheet = .controllerProfile(first.id) }
+            }
+            .buttonStyle(AssistantButtonStyle(primary: true))
+            Button("Not now") { identifyBannerDismissed = true }
+                .buttonStyle(AssistantButtonStyle())
+        }
+        .padding(.horizontal, AppThemeV2.Spacing.lg)
+        .padding(.vertical, AppThemeV2.Spacing.sm)
+        .background(color.opacity(0.12))
+    }
+
     // MARK: - Mappings header
 
     /// The mappings pane header: title, controller setup, and the ordering /
@@ -428,10 +521,22 @@ struct ContentView: View {
                     .foregroundColor(AppThemeV2.Colors.amber)
             }
             Spacer()
+            // Persistent re-open entry so dismissing the banner is not a dead end.
+            if let target = identifyTargetDeviceID {
+                V2ToolbarButton(icon: "pianokeys", label: "Controller",
+                                action: { activeSheet = .controllerProfile(target) })
+                    .help("Identify the controller for this file")
+            }
         }
         .padding(.horizontal, AppThemeV2.Spacing.lg)
         .frame(height: AppThemeV2.Components.sectionHeaderHeight)
         .background(AppThemeV2.Colors.stone800)
+    }
+
+    /// Device the persistent Controller entry opens: prefer the first still
+    /// needing a profile, else the first device.
+    private var identifyTargetDeviceID: UUID? {
+        devicesNeedingProfile.first?.id ?? document.mappingFile.devices.first?.id
     }
 
     // MARK: - Assistant and Wizard

@@ -1,0 +1,1496 @@
+=== PDF page 1 ===
+                                                MIDI COMMANDS
+
+
+
+
+                                                                                                                                                   MIDI OUT
+                                                                                                     MIDI IN
+                                     Control                                                                                                       PC/Mac-
+                                                                                                Controller->PC/Mac
+                                                                                                                                                  >controller
+
+Area     Number                                                                                                                              Note/CC                                   Detail on Data 2
+                                                                                       Data 1      Data 2               Data 1      Data 2              Data 1     Data 2
+                                                                                                            Note= 9x
+                                                                         Channel
+                    Name                                  Mode /
+                   (Label)
+                                   Type        + Shift
+                                                           Part                                                                              Channel
+                                                                                                             CC = Bx
+                                                                                   Dec            Dec                  Hex         Hex       Hex Hex             Hex
+
+
+                                                  -          -       1             7            0/127       91         07        00/7F       91        07        00/7F 00 = Off / 7F = On
+          D1-1      Play          Toggle
+                                               +Shift        -       4             7            0/127       94         07        00/7F       94        07        00/7F 00 = Off / 7F = On
+                                                  -          -       1             6            0/127       91         06        00/7F       91        06        00/7F 00 = Off / 7F = On
+          D1-2       Cue          Toggle
+                                               +Shift        -       4             6            0/127       94         06        00/7F       94        06        00/7F 00 = Off / 7F = On
+          D1-3      Shift         Toggle          -          -       1             4            0/127       91         04        00/7F                                      00 = Off / 7F = On
+                                                  -          -       1             9            0/127       91         09        00/7F       91        09        00/7F 00 = Off / 7F = On
+          D1-4        In          Toggle       +Shift        -       4             9            0/127       94         09        00/7F       94        09        00/7F 00 = Off / 7F = On
+                                                  -      Long press 1              11           0/127       91         0B        00/7F                                      00 = Off / 7F = On
+                                                  -          -       1             10           0/127       91         0A        00/7F       91        0A        00/7F 00 = Off / 7F = On
+
+
+
+
+DECK 1
+          D1-5       Out          Toggle
+                                               +Shift        -                     10           0/127    94            0A        00/7F    94           0A        00/7F 00 = Off / 7F = On
+                                                                                                127 > 64                         7F > 40                               7F > 40: CCW Slow->Fast
+                                Increment         -          -       1             14                    B1            0E
+                                                                                                01 > 63                          01 > 03F                              01 > 3F: CC Slow->Fast
+                                (Rotary 24
+                                                                                                127 > 64                         7F > 40                               7F > 40: CCW Slow->Fast
+          D1-6    Autoloop      steps/turn)    +Shift                4             14                    B4            0E
+                                                                                                01 > 63                          01 > 03F                              01 > 3F: CC Slow->Fast
+                                                  -          -       1             44           0/127    91            2C        00/7F                                 00 = Off / 7F = On
+                               Toggle (Push)
+                                               +Shift        -       4             44           0/127       94         2C        00/7F                                      00 = Off / 7F = On
+                                                  -      Guide On                                                                            91        1C        00/7F 00 = Off / 7F = On
+          D1-7      Fwd          Backlight
+                                                  -      Guide Off                                                                           91        21        00/7F 00 = Off / 7F = On
+                                                  -      Guide On                                                                            91        1D        00/7F 00 = Off / 7F = On
+          D1-8       Rev         Backlight
+                                                  -      Guide Off                                                                           91        22        00/7F 00 = Off / 7F = On
+                                                  -      Guide On                                                                            91        2D        00/7F 00 = Off / 7F = On
+          D1-9    Beat-Align     Backlight
+                                                  -      Guide Off                                                                           91        2F        00/7F 00 = Off / 7F = On
+                                                  -          -       1             5            0/127       91         05        00/7F       91        05        00/7F 00 = Off / 7F = On
+         D1-10      Sync          Toggle
+                                               +Shift        -       4             5            0/127       94         05        00/7F       94        05        00/7F 00 = Off / 7F = On
+
+
+
+
+                                                                                                   1                                                                               © 2022 Guillemot Corporation
+
+=== PDF page 2 ===
+                                                                                                                                                                                       MIDI COMMANDS
+
+                                                                                                                                                        MIDI OUT
+                                                                                                          MIDI IN
+                                          Control                                                                                                       PC/Mac-
+                                                                                                     Controller->PC/Mac
+                                                                                                                                                       >controller
+
+ Area         Number                                                                                                                              Note/CC                                    Detail on Data 2
+                                                                                            Data 1      Data 2               Data 1      Data 2              Data 1     Data 2
+                                                                                                                 Note= 9x
+                                                                              Channel
+                           Name                                Mode /
+                          (Label)
+                                        Type        + Shift
+                                                                Part                                                                              Channel
+                                                                                                                  CC = Bx
+                                                                                        Dec            Dec                  Hex         Hex       Hex Hex             Hex
+
+
+                                                       -      Guide On                                                                            91        2C        00/7F 00 = Off / 7F = On
+              D1-1
+              D1-11        Play
+                          Tempo        Toggle
+                                      Backlight
+                                                       -      Guide Off                                                                           91        2E        00/7F 00 = Off / 7F = On
+                                                       -      Guide On                                                                            91        1E        00/7F 00 = Off / 7F = On
+              D1-12         Up        Backlight
+                                                       -      Guide Off                                                                           91        23        00/7F 00 = Off / 7F = On
+                                                       -      Guide On                                                                            91                  00/7F 00 = Off / 7F = On
+              D1-13       Centre      Backlight
+                                                       -      Guide Off                                                                           91                  00/7F 00 = Off / 7F = On
+                                                       -      Guide On                                                                            91        1F        00/7F 00 = Off / 7F = On
+              D1-14       Down        Backlight
+                                                       -      Guide Off                                                                           91        24        00/7F 00 = Off / 7F = On
+                                                                                                     Analog                           Analog
+
+
+
+
+DECK 1 1
+   DECK
+                                                       -        MSB       1             8                     B1            08                                                   00>7F: Full left>Full right
+                                                                                                     coarse                           coarse
+                                                                                                     Analog                           Analog
+                                                       -         LSB      1             40                    B1            28                                                   LSByte of associated data
+                                                                                                     coarse                           coarse
+              D1-15    Tempo Fader     Analog
+                                                                                                     Analog                           Analog
+                                                    +Shift      MSB       4             8                     B4            08                                                   00>7F: Full left>Full right
+                                                                                                     coarse                           coarse
+                                                                                                     Analog                           Analog
+                                                    +Shift       LSB      4             40                    B4            28                                                   LSByte of associated data
+                                                                                                     coarse                           coarse
+                                                                                                     127 > 64                         7F > 40                                    7F > 40: CCW Slow->Fast
+                                                       -                  1             9                     B1            09
+                                                                                                     01 > 63                          01 > 03F                                   01 > 3F: CC Slow->Fast
+                                                                                                     127 > 64                         7F > 40                                    7F > 40: CCW Slow->Fast
+                                                    +Shift                4             9                     B4            09
+                                     Incremental                                                     01 > 63                          01 > 03F                                   01 > 3F: CC Slow->Fast
+                                       (rotary)                                                      127 > 64                         7F > 40                                    7F > 40: CCW Slow->Fast
+              D1-16     Jog-wheel                      -        Vinyl     1             10                    B1            0A
+                                                                                                     01 > 63                          01 > 03F                                   01 > 3F: CC Slow->Fast
+                                                                                                     127 > 64                         7F > 40                                    7F > 40: CCW Slow->Fast
+                                                    +Shift      Vinyl     4             10                    B4            0A
+                                                                                                     01 > 63                          01 > 03F                                   01 > 3F: CC Slow->Fast
+                                        Toggle         -                  1             8            0/127    B1            08        00/7F                                      00 = Off / 7F = On
+                                       (Touch)      +Shift                4             8            0/127       B4         08        00/7F                                      00 = Off / 7F = On
+                                                       -          -       1             3            0/127       91         03        00/7F       91        03        00/7F 00 = Off / 7F = On
+              D1-17        Vinyl       Toggle
+                                                    +Shift        -       4             3            0/127       94         03        00/7F       94        03        00/7F 00 = Off / 7F = On
+                                                       -          -       1             1            0/127       91         01        00/7F       91        01        00/7F 00 = Off / 7F = On
+              D1-18        Slip        Toggle
+                                                    +Shift        -       4             1            0/127       94         01        00/7F       94        01        00/7F 00 = Off / 7F = On
+                                                       -          -       1             2            0/127       91         02        00/7F       91        02        00/7F 00 = Off / 7F = On
+              D1-19       Quant        Toggle
+                                                    +Shift        -       4             2            0/127       94         02        00/7F       94        02        00/7F 00 = Off / 7F = On
+              D1-20        Big 1      Backlight                   -                                                                               91        30        00/7F 00 = Off / 7F = On
+
+
+                       Mode 1          Toggle          -          -       1             15           0/127       91         0F        00/7F       91        0F        00/7F 00 = Off / 7F = On
+               P1-1    Mode 5          Toggle       +Shift        -       1             19           0/127       91         13        00/7F       91        13        00/7F 00 = Off / 7F = On
+                       Mode 1A         Toggle          -      Long press 1              64           0/127       91         40        00/7F                                      00 = Off / 7F = On
+                       Mode 2          Toggle          -          -       1             16           0/127       91         10        00/7F       91        10        00/7F 00 = Off / 7F = On
+               P1-2    Mode 6          Toggle       +Shift        -       1             20           0/127       91         14        00/7F       91        14        00/7F 00 = Off / 7F = On
+                       Mode 2A         Toggle          -      Long press 1              65           0/127       91         41        00/7F                                      00 = Off / 7F = On
+                       Mode 3          Toggle                     -       1             17           0/127       91         11        00/7F       91        11        00/7F 00 = Off / 7F = On
+               P1-3    Mode 7          Toggle          -          -       1             21           0/127       91         15        00/7F       91        15        00/7F 00 = Off / 7F = On
+
+
+
+
+PADS DECK 1
+                       Mode 3A         Toggle          -      Long press 1              66           0/127       91         42        00/7F                                      00 = Off / 7F = On
+                       Mode 4          Toggle       +Shift        -       1             18           0/127       91         12        00/7F       91        12        00/7F 00 = Off / 7F = On
+               P1-4    Mode 8          Toggle          -          -       1             22           0/127       91         16        00/7F       91        16        00/7F 00 = Off / 7F = On
+                       Mode 4A         Toggle          -      Long press 1              67           0/127       91         43        00/7F                                      00 = Off / 7F = On
+               P1-5    Pad 1           Toggle          -       Mode 1     6             0            0/127       96         00        00/7F       96        00        Value See Value / Color match below
+               P1-6    Pad 2           Toggle          -       Mode 1     6             1            0/127       96         01        00/7F       96        01        Value See Value / Color match below
+               P1-7    Pad 3           Toggle          -       Mode 1     6             2            0/127       96         02        00/7F       96        02        Value See Value / Color match below
+               P1-8    Pad 4           Toggle          -       Mode 1     6             3            0/127       96         03        00/7F       96        03        Value See Value / Color match below
+               P1-9    Pad 5           Toggle          -       Mode 1     6             4            0/127       96         04        00/7F       96        04        Value See Value / Color match below
+              P1-10    Pad 6           Toggle          -       Mode 1     6             5            0/127       96         05        00/7F       96        05        Value See Value / Color match below
+              P1-11    Pad 7           Toggle          -       Mode 1     6             6            0/127       96         06        00/7F       96        06        Value See Value / Color match below
+              P1-12    Pad 8           Toggle          -       Mode 1     6             7            0/127       96         07        00/7F       96        07        Value See Value / Color match below
+               P1-5    Pad 1           Toggle       +Shift     Mode 1     6             8            0/127       96         08        00/7F       96        08        Value See Value / Color match below
+               P1-6    Pad 2           Toggle       +Shift     Mode 1     6             9            0/127       96         09        00/7F       96        09        Value See Value / Color match below
+               P1-7    Pad 3           Toggle       +Shift     Mode 1     6             10           0/127       96         0A        00/7F       96        0A        Value See Value / Color match below
+               P1-8    Pad 4           Toggle       +Shift     Mode 1     6             11           0/127       96         0B        00/7F       96        0B        Value See Value / Color match below
+               P1-9    Pad 5           Toggle       +Shift     Mode 1     6             12           0/127       96         0C        00/7F       96        0C        Value See Value / Color match below
+              P1-10    Pad 6           Toggle       +Shift     Mode 1     6             13           0/127       96         0D        00/7F       96        0D        Value See Value / Color match below
+              P1-11    Pad 7           Toggle       +Shift     Mode 1     6             14           0/127       96         0E        00/7F       96        0E        Value See Value / Color match below
+              P1-12    Pad 8           Toggle       +Shift     Mode 1     6             15           0/127       96         0F        00/7F       96        0F        Value See Value / Color match below
+
+
+
+                                                                                                        2                                                                                © 2022 Guillemot Corporation
+
+=== PDF page 3 ===
+                                                                                                                                                                        MIDI COMMANDS
+
+                                                                                                                                              MIDI OUT
+                                                                                                 MIDI IN
+                                       Control                                                                                                PC/Mac-
+                                                                                            Controller->PC/Mac
+                                                                                                                                             >controller
+
+ Area         Number                                                                                                                    Note/CC                              Detail on Data 2
+                                                                                   Data 1      Data 2               Data 1     Data 2              Data 1     Data 2
+                                                                                                        Note= 9x
+                                                                        Channel
+                           Name                            Mode /
+                          (Label)
+                                    Type         + Shift
+                                                            Part                                                                        Channel
+                                                                                                         CC = Bx
+                                                                                  Dec         Dec                  Hex         Hex      Hex Hex             Hex
+
+
+               P1-5    Pad 1        Toggle          -      Mode 2   6             16        0/127       96         10        00/7F      96        10        Value See Value / Color match below
+               D1-1        Play     Toggle
+               P1-6    Pad 2        Toggle          -      Mode 2   6             17        0/127       96         11        00/7F      96        11        Value See Value / Color match below
+               P1-7    Pad 3        Toggle          -      Mode 2   6             18        0/127       96         12        00/7F      96        12        Value See Value / Color match below
+               P1-8    Pad 4        Toggle          -      Mode 2   6             19        0/127       96         13        00/7F      96        13        Value See Value / Color match below
+               P1-9    Pad 5        Toggle          -      Mode 2   6             20        0/127       96         14        00/7F      96        14        Value See Value / Color match below
+              P1-10    Pad 6        Toggle          -      Mode 2   6             21        0/127       96         15        00/7F      96        15        Value See Value / Color match below
+              P1-11    Pad 7        Toggle          -      Mode 2   6             22        0/127       96         16        00/7F      96        16        Value See Value / Color match below
+              P1-12    Pad 8        Toggle          -      Mode 2   6             23        0/127       96         17        00/7F      96        17        Value See Value / Color match below
+                                                                    6             24                    96         18                   96        18
+
+
+
+
+DECK 1
+               P1-5    Pad 1        Toggle       +Shift    Mode 2                           0/127                            00/7F                          Value See Value / Color match below
+               P1-6    Pad 2        Toggle       +Shift    Mode 2   6             25        0/127       96         19        00/7F      96        19        Value See Value / Color match below
+               P1-7    Pad 3        Toggle       +Shift    Mode 2   6             26        0/127       96         1A        00/7F      96        1A        Value See Value / Color match below
+               P1-8    Pad 4        Toggle       +Shift    Mode 2   6             27        0/127       96         1B        00/7F      96        1B        Value See Value / Color match below
+               P1-9    Pad 5        Toggle       +Shift    Mode 2   6             28        0/127       96         1C        00/7F      96        1C        Value See Value / Color match below
+              P1-10    Pad 6        Toggle       +Shift    Mode 2   6             29        0/127       96         1D        00/7F      96        1D        Value See Value / Color match below
+              P1-11    Pad 7        Toggle       +Shift    Mode 2   6             30        0/127       96         1E        00/7F      96        1E        Value See Value / Color match below
+              P1-12    Pad 8        Toggle       +Shift    Mode 2   6             31        0/127       96         1F        00/7F      96        1F        Value See Value / Color match below
+               P1-5    Pad 1        Toggle          -      Mode 3   6             32        0/127       96         20        00/7F      96        20        Value See Value / Color match below
+               P1-6    Pad 2        Toggle          -      Mode 3   6             33        0/127       96         21        00/7F      96        21        Value See Value / Color match below
+               P1-7    Pad 3        Toggle          -      Mode 3   6             34        0/127       96         22        00/7F      96        22        Value See Value / Color match below
+               P1-8    Pad 4        Toggle          -      Mode 3   6             35        0/127       96         23        00/7F      96        23        Value See Value / Color match below
+               P1-9    Pad 5        Toggle          -      Mode 3   6             36        0/127       96         24        00/7F      96        24        Value See Value / Color match below
+              P1-10    Pad 6        Toggle          -      Mode 3   6             37        0/127       96         25        00/7F      96        25        Value See Value / Color match below
+              P1-11    Pad 7        Toggle          -      Mode 3   6             38        0/127       96         26        00/7F      96        26        Value See Value / Color match below
+
+
+
+
+PADS DECK 1
+              P1-12    Pad 8        Toggle          -      Mode 3   6             39        0/127       96         27        00/7F      96        27        Value See Value / Color match below
+               P1-5    Pad 1        Toggle       +Shift    Mode 3   6             40        0/127       96         28        00/7F      96        28        Value See Value / Color match below
+               P1-6    Pad 2        Toggle       +Shift    Mode 3   6             41        0/127       96         29        00/7F      96        29        Value See Value / Color match below
+               P1-7    Pad 3        Toggle       +Shift    Mode 3   6             42        0/127       96         2A        00/7F      96        2A        Value See Value / Color match below
+               P1-8    Pad 4        Toggle       +Shift    Mode 3   6             43        0/127       96         2B        00/7F      96        2B        Value See Value / Color match below
+               P1-9    Pad 5        Toggle       +Shift    Mode 3   6             44        0/127       96         2C        00/7F      96        2C        Value See Value / Color match below
+              P1-10    Pad 6        Toggle       +Shift    Mode 3   6             45        0/127       96         2D        00/7F      96        2D        Value See Value / Color match below
+              P1-11    Pad 7        Toggle       +Shift    Mode 3   6             46        0/127       96         2E        00/7F      96        2E        Value See Value / Color match below
+              P1-12    Pad 8        Toggle       +Shift    Mode 3   6             47        0/127       96         2F        00/7F      96        2F        Value See Value / Color match below
+               P1-5    Pad 1        Toggle          -      Mode 4   6             48        0/127       96         30        00/7F      96        30        Value See Value / Color match below
+               P1-6    Pad 2        Toggle          -      Mode 4   6             49        0/127       96         31        00/7F      96        31        Value See Value / Color match below
+               P1-7    Pad 3        Toggle          -      Mode 4   6             50        0/127       96         32        00/7F      96        32        Value See Value / Color match below
+               P1-8    Pad 4        Toggle          -      Mode 4   6             51        0/127       96         33        00/7F      96        33        Value See Value / Color match below
+               P1-9    Pad 5        Toggle          -      Mode 4   6             52        0/127       96         34        00/7F      96        34        Value See Value / Color match below
+              P1-10    Pad 6        Toggle          -      Mode 4   6             53        0/127       96         35        00/7F      96        35        Value See Value / Color match below
+              P1-11    Pad 7        Toggle          -      Mode 4   6             54        0/127       96         36        00/7F      96        36        Value See Value / Color match below
+              P1-12    Pad 8        Toggle          -      Mode 4   6             55        0/127       96         37        00/7F      96        37        Value See Value / Color match below
+               P1-5    Pad 1        Toggle       +Shift    Mode 4   6             56        0/127       96         38        00/7F      96        38        Value See Value / Color match below
+               P1-6    Pad 2        Toggle       +Shift    Mode 4   6             57        0/127       96         39        00/7F      96        39        Value See Value / Color match below
+               P1-7    Pad 3        Toggle       +Shift    Mode 4   6             58        0/127       96         3A        00/7F      96        3A        Value See Value / Color match below
+               P1-8    Pad 4        Toggle       +Shift    Mode 4   6             59        0/127       96         3B        00/7F      96        3B        Value See Value / Color match below
+               P1-9    Pad 5        Toggle       +Shift    Mode 4   6             60        0/127       96         3C        00/7F      96        3C        Value See Value / Color match below
+              P1-10    Pad 6        Toggle       +Shift    Mode 4   6             61        0/127       96         3D        00/7F      96        3D        Value See Value / Color match below
+              P1-11    Pad 7        Toggle       +Shift    Mode 4   6             62        0/127       96         3E        00/7F      96        3E        Value See Value / Color match below
+              P1-12    Pad 8        Toggle       +Shift    Mode 4   6             63        0/127       96         3F        00/7F      96        3F        Value See Value / Color match below
+               P1-5    Pad 1        Toggle          -      Mode 5   6             64        0/127       96         40        00/7F      96        40        Value See Value / Color match below
+               P1-6    Pad 2        Toggle          -      Mode 5   6             65        0/127       96         41        00/7F      96        41        Value See Value / Color match below
+               P1-7    Pad 3        Toggle          -      Mode 5   6             66        0/127       96         42        00/7F      96        42        Value See Value / Color match below
+               P1-8    Pad 4        Toggle          -      Mode 5   6             67        0/127       96         43        00/7F      96        43        Value See Value / Color match below
+               P1-9    Pad 5        Toggle          -      Mode 5   6             68        0/127       96         44        00/7F      96        44        Value See Value / Color match below
+              P1-10    Pad 6        Toggle          -      Mode 5   6             69        0/127       96         45        00/7F      96        45        Value See Value / Color match below
+              P1-11    Pad 7        Toggle          -      Mode 5   6             70        0/127       96         46        00/7F      96        46        Value See Value / Color match below
+              P1-12    Pad 8        Toggle          -      Mode 5   6             71        0/127       96         47        00/7F      96        47        Value See Value / Color match below
+               P1-5    Pad 1        Toggle       +Shift    Mode 5   6             72        0/127       96         48        00/7F      96        48        Value See Value / Color match below
+               P1-6    Pad 2        Toggle       +Shift    Mode 5   6             73        0/127       96         49        00/7F      96        49        Value See Value / Color match below
+
+
+
+
+                                                                                               3                                                                          © 2022 Guillemot Corporation
+
+=== PDF page 4 ===
+                                                                                                                                                                        MIDI COMMANDS
+
+                                                                                                                                              MIDI OUT
+                                                                                                 MIDI IN
+                                       Control                                                                                                PC/Mac-
+                                                                                            Controller->PC/Mac
+                                                                                                                                             >controller
+
+ Area         Number                                                                                                                    Note/CC                              Detail on Data 2
+                                                                                   Data 1      Data 2               Data 1     Data 2              Data 1     Data 2
+                                                                                                        Note= 9x
+                                                                        Channel
+                           Name                            Mode /
+                          (Label)
+                                    Type         + Shift
+                                                            Part                                                                        Channel
+                                                                                                         CC = Bx
+                                                                                  Dec         Dec                  Hex         Hex      Hex Hex             Hex
+
+
+               P1-7    Pad 3        Toggle       +Shift    Mode 5   6             74        0/127       96         4A        00/7F      96        4A        Value See Value / Color match below
+               D1-1        Play     Toggle
+               P1-8    Pad 4        Toggle       +Shift    Mode 5   6             75        0/127       96         4B        00/7F      96        4B        Value See Value / Color match below
+               P1-9    Pad 5        Toggle       +Shift    Mode 5   6             76        0/127       96         4C        00/7F      96        4C        Value See Value / Color match below
+              P1-10    Pad 6        Toggle       +Shift    Mode 5   6             77        0/127       96         4D        00/7F      96        4D        Value See Value / Color match below
+              P1-11    Pad 7        Toggle       +Shift    Mode 5   6             78        0/127       96         4E        00/7F      96        4E        Value See Value / Color match below
+              P1-12    Pad 8        Toggle       +Shift    Mode 5   6             79        0/127       96         4F        00/7F      96        4F        Value See Value / Color match below
+               P1-5    Pad 1        Toggle          -      Mode 6   6             80        0/127       96         50        00/7F      96        50        Value See Value / Color match below
+               P1-6    Pad 2        Toggle          -      Mode 6   6             81        0/127       96         51        00/7F      96        51        Value See Value / Color match below
+                                                                    6             82                    96         52                   96        52
+
+
+
+
+DECK 1
+               P1-7    Pad 3        Toggle          -      Mode 6                           0/127                            00/7F                          Value See Value / Color match below
+               P1-8    Pad 4        Toggle          -      Mode 6   6             83        0/127       96         53        00/7F      96        53        Value See Value / Color match below
+               P1-9    Pad 5        Toggle          -      Mode 6   6             84        0/127       96         54        00/7F      96        54        Value See Value / Color match below
+              P1-10    Pad 6        Toggle          -      Mode 6   6             85        0/127       96         55        00/7F      96        55        Value See Value / Color match below
+              P1-11    Pad 7        Toggle          -      Mode 6   6             86        0/127       96         56        00/7F      96        56        Value See Value / Color match below
+              P1-12    Pad 8        Toggle          -      Mode 6   6             87        0/127       96         57        00/7F      96        57        Value See Value / Color match below
+               P1-5    Pad 1        Toggle       +Shift    Mode 6   6             88        0/127       96         58        00/7F      96        58        Value See Value / Color match below
+               P1-6    Pad 2        Toggle       +Shift    Mode 6   6             89        0/127       96         59        00/7F      96        59        Value See Value / Color match below
+               P1-7    Pad 3        Toggle       +Shift    Mode 6   6             90        0/127       96         5A        00/7F      96        5A        Value See Value / Color match below
+               P1-8    Pad 4        Toggle       +Shift    Mode 6   6             91        0/127       96         5B        00/7F      96        5B        Value See Value / Color match below
+               P1-9    Pad 5        Toggle       +Shift    Mode 6   6             92        0/127       96         5C        00/7F      96        5C        Value See Value / Color match below
+              P1-10    Pad 6        Toggle       +Shift    Mode 6   6             93        0/127       96         5D        00/7F      96        5D        Value See Value / Color match below
+              P1-11    Pad 7        Toggle       +Shift    Mode 6   6             94        0/127       96         5E        00/7F      96        5E        Value See Value / Color match below
+
+
+
+
+PADS DECK 1
+              P1-12    Pad 8        Toggle       +Shift    Mode 6   6             95        0/127       96         5F        00/7F      96        5F        Value See Value / Color match below
+               P1-5    Pad 1        Toggle          -      Mode 7   6             96        0/127       96         60        00/7F      96        60        Value See Value / Color match below
+               P1-6    Pad 2        Toggle          -      Mode 7   6             97        0/127       96         61        00/7F      96        61        Value See Value / Color match below
+               P1-7    Pad 3        Toggle          -      Mode 7   6             98        0/127       96         62        00/7F      96        62        Value See Value / Color match below
+               P1-8    Pad 4        Toggle          -      Mode 7   6             99        0/127       96         63        00/7F      96        63        Value See Value / Color match below
+               P1-9    Pad 5        Toggle          -      Mode 7   6             100 0/127             96         64        00/7F      96        64        Value See Value / Color match below
+              P1-10    Pad 6        Toggle          -      Mode 7   6             101 0/127             96         65        00/7F      96        65        Value See Value / Color match below
+              P1-11    Pad 7        Toggle          -      Mode 7   6             102 0/127             96         66        00/7F      96        66        Value See Value / Color match below
+              P1-12    Pad 8        Toggle          -      Mode 7   6             103 0/127             96         67        00/7F      96        67        Value See Value / Color match below
+               P1-5    Pad 1        Toggle       +Shift    Mode 7   6             104 0/127             96         68        00/7F      96        68        Value See Value / Color match below
+               P1-6    Pad 2        Toggle       +Shift    Mode 7   6             105 0/127             96         69        00/7F      96        69        Value See Value / Color match below
+               P1-7    Pad 3        Toggle       +Shift    Mode 7   6             106 0/127             96         6A        00/7F      96        6A        Value See Value / Color match below
+               P1-8    Pad 4        Toggle       +Shift    Mode 7   6             107 0/127             96         6B        00/7F      96        6B        Value See Value / Color match below
+               P1-9    Pad 5        Toggle       +Shift    Mode 7   6             108 0/127             96         6C        00/7F      96        6C        Value See Value / Color match below
+              P1-10    Pad 6        Toggle       +Shift    Mode 7   6             109 0/127             96         6D        00/7F      96        6D        Value See Value / Color match below
+              P1-11    Pad 7        Toggle       +Shift    Mode 7   6             110 0/127             96         6E        00/7F      96        6E        Value See Value / Color match below
+              P1-12    Pad 8        Toggle       +Shift    Mode 7   6             111 0/127             96         6F        00/7F      96        6F        Value See Value / Color match below
+               P1-5    Pad 1        Toggle          -      Mode 8   6             112 0/127             96         70        00/7F      96        70        Value See Value / Color match below
+               P1-6    Pad 2        Toggle          -      Mode 8   6             113 0/127             96         71        00/7F      96        71        Value See Value / Color match below
+               P1-7    Pad 3        Toggle          -      Mode 8   6             114 0/127             96         72        00/7F      96        72        Value See Value / Color match below
+               P1-8    Pad 4        Toggle          -      Mode 8   6             115 0/127             96         73        00/7F      96        73        Value See Value / Color match below
+               P1-9    Pad 5        Toggle          -      Mode 8   6             116 0/127             96         74        00/7F      96        74        Value See Value / Color match below
+              P1-10    Pad 6        Toggle          -      Mode 8   6             117 0/127             96         75        00/7F      96        75        Value See Value / Color match below
+              P1-11    Pad 7        Toggle          -      Mode 8   6             118 0/127             96         76        00/7F      96        76        Value See Value / Color match below
+              P1-12    Pad 8        Toggle          -      Mode 8   6             119 0/127             96         77        00/7F      96        77        Value See Value / Color match below
+               P1-5    Pad 1        Toggle       +Shift    Mode 8   6             120 0/127             96         78        00/7F      96        78        Value See Value / Color match below
+               P1-6    Pad 2        Toggle       +Shift    Mode 8   6             121 0/127             96         79        00/7F      96        79        Value See Value / Color match below
+               P1-7    Pad 3        Toggle       +Shift    Mode 8   6             122 0/127             96         7A        00/7F      96        7A        Value See Value / Color match below
+               P1-8    Pad 4        Toggle       +Shift    Mode 8   6             123 0/127             96         7B        00/7F      96        7B        Value See Value / Color match below
+               P1-9    Pad 5        Toggle       +Shift    Mode 8   6             124 0/127             96         7C        00/7F      96        7C        Value See Value / Color match below
+              P1-10    Pad 6        Toggle       +Shift    Mode 8   6             125 0/127             96         7D        00/7F      96        7D        Value See Value / Color match below
+              P1-11    Pad 7        Toggle       +Shift    Mode 8   6             126 0/127             96         7E        00/7F      96        7E        Value See Value / Color match below
+              P1-12    Pad 8        Toggle       +Shift    Mode 8   6             127 0/127             96         7F        00/7F      96        7F        Value See Value / Color match below
+
+
+
+
+                                                                                               4                                                                          © 2022 Guillemot Corporation
+
+=== PDF page 5 ===
+                                                                                                                                                                                             MIDI COMMANDS
+
+                                                                                                                                                           MIDI OUT
+                                                                                                              MIDI IN
+                                                 Control                                                                                                   PC/Mac-
+                                                                                                         Controller->PC/Mac
+                                                                                                                                                          >controller
+
+ Area        Number                                                                                                                                  Note/CC                                       Detail on Data 2
+                                                                                                Data 1      Data 2               Data 1     Data 2              Data 1        Data 2
+                                                                                                                     Note= 9x
+                                                                                  Channel
+                                   Name                              Mode /
+                                  (Label)
+                                              Type         + Shift
+                                                                      Part                                                                           Channel
+                                                                                                                      CC = Bx
+                                                                                            Dec            Dec                  Hex         Hex      Hex Hex             Hex
+
+
+              D1-1                    Play    Toggle
+                                                           COLOR PER DATA2 VALUE ON PAD MIDI OUT
+                               No light                                                                                                                                  00            96 XX 00, with XX from 00 to 7F
+                               Blue low                                                                                                                                  02            96 XX 02 with XX from 00 to 7F
+                                                                                                                                                                                       96 XX 03 with XX from 00 to 7F
+
+
+
+
+PADS   1 1
+     DECK
+  DECK
+                               Blue                                                                                                                                      03
+                               Green low                                                                                                                                 10            96 XX 10 with XX from 00 to 7F
+                               Cyan low                                                                                                                                  12            96 XX 12 with XX from 00 to 7F
+                               Green                                                                                                                                     1C            96 XX 1C with XX from 00 to 7F
+
+
+
+
+               P1-5 to P1-12
+                               Cyan                                                                                                                                      1F            96 XX 1F with XX from 00 to 7F
+                               Lime low                                                                                                                                  30            96 XX 30 with XX from 00 to 7F
+                               Red low                                                                                                                                   40            96 XX 40 with XX from 00 to 7F
+                               Fuchsia low                                                                                                                               42            96 XX 42 with XX from 00 to 7F
+                               Orange low                                                                                                                                4C            96 XX 4C with XX from 00 to 7F
+                               Yellow low                                                                                                                                50            96 XX 50 with XX from 00 to 7F
+                               White low                                                                                                                                 52            96 XX 52 with XX from 00 to 7F
+                               Lime                                                                                                                                      5C            96 XX 5C with XX from 00 to 7F
+                               Red                                                                                                                                       60            96 XX 60 with XX from 00 to 7F
+                               Fuchsia                                                                                                                                   63            96 XX 63 with XX from 00 to 7F
+                               Orange                                                                                                                                    74            96 XX 74 with XX from 00 to 7F
+                               Yellow                                                                                                                                    7C            96 XX 7C with XX from 00 to 7F
+                               White                                                                                                                                     7F            96 XX 7F with XX from 00 to 7F
+
+
+                                                                                                         Analog                           Analog
+                                                              -       MSB     0             0                        B0         00                                                     00>7F: Full left>Full right
+                                                                                                         coarse                           coarse
+              M-1                 Xfader      Analog
+                                                                                                         Analog                           Analog
+                                                              -       LSB     0             32                       B0         20                                                     LSByte of associated data
+                                                                                                         coarse                           coarse
+                                              On/off          -        -      0             24           0/127       90         18        00/7F                                        00 = Off / 7F = On
+              M-2              Xfader curve
+                                              Curve           -        -      0             11           0/127       B0         0B        00/7F                                        00 = Mix / 7F = Scratch
+                                                                                                         Analog                           Analog
+                                                              -       MSB     1             0                        B1         00                                                     00>7F: Full left>Full right
+                                                                                                         coarse                           coarse
+                                                                                                         Analog                           Analog
+                                                              -       LSB     1             0                        B1         00                                                     LSByte of associated data
+                                                                                                         coarse                           coarse
+              M-3               Deck 1 vol    Analog
+                                                                                                         Analog                           Analog
+                                                           +Shift     MSB     4             32                       B4         20                                                     00>7F: Full left>Full right
+                                                                                                         coarse                           coarse
+                                                                                                         Analog                           Analog
+                                                           +Shift     LSB     4             32                       B4         20                                                     LSByte of associated data
+                                                                                                         coarse                           coarse
+                                                                                                         Analog                           Analog
+                                                              -       MSB     2             0                        B2         00                                                     00>7F: Full left>Full right
+                                                                                                         coarse                           coarse
+                                                                                                         Analog                           Analog
+                                                              -       LSB     2             32                       B2         20                                                     LSByte of associated data
+                                                                                                         coarse                           coarse
+              M-4               Deck 2 vol    Analog
+
+
+
+
+MIXER
+                                                                                                         Analog                           Analog
+                                                           +Shift     MSB     5             0                        B5         00                                                     00>7F: Full left>Full right
+                                                                                                         coarse                           coarse
+                                                                                                         Analog                           Analog
+                                                           +Shift     LSB     5             32                       B5         20                                                     LSByte of associated data
+                                                                                                         coarse                           coarse
+                                                                              1             12           0/127       91         0C        00/7F      91        0C        00/7F 00 = Off / 7F = On
+              M-5               Deck 1 pfl    Toggle
+                                                           +Shift             4             12           0/127       94         0C        00/7F      4         94        0C            00 = Off / 7F = On
+              M-6                 Guides      Toggle          -               0             1            0/127       90         01        00/7F      90        01                      00 = Off / 7F = On
+                                                              -               2             12           0/127       92         0C        00/7F      92        0C        00/7F 00 = Off / 7F = On
+              M-7               Deck 2 pfl    Toggle
+                                                           +Shift             5             12           0/127       95         0C        00/7F      5         95        0C            00 = Off / 7F = On
+                                                                                                         Analog                           Analog
+                                                              -       MSB     1             1                        B1         01                                                     00>7F: Full left>Full right
+                                                                                                         coarse                           coarse
+                                                                                                         Analog                           Analog
+                                                              -       LSB     1             33                       B1         21                                                     LSByte of associated data
+                                                                                                         coarse                           coarse
+              M-8              Deck1 Filter   Analog
+                                                                                                         Analog                           Analog
+                                                           +Shift     MSB     4             1                        B4         01                                                     00>7F: Full left>Full right
+                                                                                                         coarse                           coarse
+                                                                                                         Analog                           Analog
+                                                           +Shift     LSB     4             33                       B4         21                                                     LSByte of associated data
+                                                                                                         coarse                           coarse
+                                                                                                         Analog                           Analog
+                                                              -       MSB     2             1                        B2         01                                                     00>7F: Full left>Full right
+                                                                                                         coarse                           coarse
+                                                                                                         Analog                           Analog
+                                                              -       LSB     2             33                       B2         21                                                     LSByte of associated data
+                                                                                                         coarse                           coarse
+              M-9              Deck2 Filter   Analog
+                                                                                                         Analog                           Analog
+                                                           +Shift     MSB     5             1                        B5         01                                                     00>7F: Full left>Full right
+                                                                                                         coarse                           coarse
+                                                                                                         Analog                           Analog
+                                                           +Shift     LSB     5             33                       B5         21                                                     LSByte of associated data
+                                                                                                         coarse                           coarse
+
+
+
+                                                                                                            5                                                                                  © 2022 Guillemot Corporation
+
+=== PDF page 6 ===
+                                                                                                                                                                           MIDI COMMANDS
+
+                                                                                                                                            MIDI OUT
+                                                                                               MIDI IN
+                                  Control                                                                                                   PC/Mac-
+                                                                                          Controller->PC/Mac
+                                                                                                                                           >controller
+
+Area     Number                                                                                                                       Note/CC                                    Detail on Data 2
+                                                                                 Data 1      Data 2               Data 1     Data 2              Data 1     Data 2
+                                                                                                      Note= 9x
+                                                                   Channel
+                    Name                              Mode /
+                   (Label)
+                               Type         + Shift
+                                                       Part                                                                           Channel
+                                                                                                       CC = Bx
+                                                                             Dec            Dec                  Hex         Hex      Hex Hex             Hex
+
+
+                                               -               0             20           0/127       90         14        00/7F      90        14        00/7F 00 = Off / 7F = On
+          D1-1
+          M-10       Play
+                     Fx1       Toggle
+                               Toggle
+                                            +Shift             3             20           0/127       93         14        00/7F      93        14        00/7F 00 = Off / 7F = On
+                                               -               0             21           0/127       90         15        00/7F      90        15        00/7F 00 = Off / 7F = On
+          M-11       Fx2       Toggle
+                                            +Shift             3             21           0/127       93         15        00/7F      93        15        00/7F 00 = Off / 7F = On
+                                               -               0             22           0/127       90         16        00/7F      90        16        00/7F 00 = Off / 7F = On
+          M-12       Fx3       Toggle
+                                            +Shift             3             22           0/127       93         16        00/7F      93        16        00/7F 00 = Off / 7F = On
+                                               -               0             23           0/127       90         17        00/7F      90        17        00/7F 00 = Off / 7F = On
+          M-13       Fx4       Toggle
+                                            +Shift             3             23           0/127       93         17        00/7F      93        17        00/7F 00 = Off / 7F = On
+                                                                                          Analog                           Analog
+
+
+
+
+DECK 1
+         M-14     Deck1 Low    Analog          -       MSB     1             2                        B1         02                                                  00>7F: Full left>Full right
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                               -       LSB     1             34                       B1         22                                                  LSByte of associated data
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+          M14     Deck1 Low    Analog       +Shift     MSB     4             2                        B4         02                                                  00>7F: Full left>Full right
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                            +Shift     LSB     4             34                       B4         22                                                  LSByte of associated data
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                               -       MSB     2             2                        B2         02                                                  00>7F: Full left>Full right
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                               -       LSB     2             34                       B2         22                                                  LSByte of associated data
+                                                                                          coarse                           coarse
+          M-15    Deck2 low    Analog
+                                                                                          Analog                           Analog
+                                            +Shift     MSB     5             2                        B5         02                                                  00>7F: Full left>Full right
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                            +Shift     LSB     5             34                       B5         22                                                  LSByte of associated data
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                               -       MSB     1             3                        B1         03                                                  00>7F: Full left>Full right
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                               -       LSB     1             35                       B1         23                                                  LSByte of associated data
+
+
+
+
+MIXER
+                                                                                          coarse                           coarse
+          M-16    Deck1 mid    Analog
+                                                                                          Analog                           Analog
+                                            +Shift     MSB     4             3                        B4         03                                                  00>7F: Full left>Full right
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                            +Shift     LSB     4             35                       B4         23                                                  LSByte of associated data
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                               -       MSB     2             3                        B2         03                                                  00>7F: Full left>Full right
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                               -       LSB     2             35                       B2         23                                                  LSByte of associated data
+                                                                                          coarse                           coarse
+          M-17    Deck2 mid    Analog
+                                                                                          Analog                           Analog
+                                            +Shift     MSB     5             3                        B5         03                                                  00>7F: Full left>Full right
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                            +Shift     LSB     5             35                       B5         23                                                  LSByte of associated data
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                               -       MSB     1             4                        B1         04                                                  00>7F: Full left>Full right
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                               -       LSB     1             36                       B1         24                                                  LSByte of associated data
+                                                                                          coarse                           coarse
+          M-18     Deck1 hi    Analog
+                                                                                          Analog                           Analog
+                                            +Shift     MSB     4             4                        B4         04                                                  00>7F: Full left>Full right
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                            +Shift     LSB     4             36                       B4         24                                                  LSByte of associated data
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                               -       MSB     2             4                        B2         04                                                  00>7F: Full left>Full right
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                               -       LSB     2             36                       B2         24                                                  LSByte of associated data
+                                                                                          coarse                           coarse
+          M-19     Deck2 hi    Analog
+                                                                                          Analog                           Analog
+                                            +Shift     MSB     5             4                        B5         04                                                  00>7F: Full left>Full right
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                            +Shift     LSB     5             36                       B5         24                                                  LSByte of associated data
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                               -       MSB     1             5                        B1         05                                                  00>7F: Full left>Full right
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                               -       LSB     1             37                       B1         25                                                  LSByte of associated data
+                                                                                          coarse                           coarse
+          M-20    Deck1 gain   Analog
+                                                                                          Analog                           Analog
+                                            +Shift     MSB     4             5                        B4         05                                                  00>7F: Full left>Full right
+                                                                                          coarse                           coarse
+                                                                                          Analog                           Analog
+                                            +Shift     LSB     4             37                       B4         25                                                  LSByte of associated data
+                                                                                          coarse                           coarse
+
+
+
+
+                                                                                             6                                                                               © 2022 Guillemot Corporation
+
+=== PDF page 7 ===
+                                                                                                                                                                               MIDI COMMANDS
+
+                                                                                                                                                MIDI OUT
+                                                                                                   MIDI IN
+                                      Control                                                                                                   PC/Mac-
+                                                                                              Controller->PC/Mac
+                                                                                                                                               >controller
+
+Area     Number                                                                                                                           Note/CC                                    Detail on Data 2
+                                                                                     Data 1      Data 2               Data 1     Data 2              Data 1     Data 2
+                                                                                                          Note= 9x
+                                                                       Channel
+                     Name                                 Mode /
+                    (Label)
+                                   Type         + Shift
+                                                           Part                                                                           Channel
+                                                                                                           CC = Bx
+                                                                                 Dec            Dec                  Hex         Hex      Hex Hex             Hex
+
+
+                                                                                              Analog                           Analog
+          D1-1       Play         Toggle           -       MSB     2             5                        B2         05                                                  00>7F: Full left>Full right
+                                                                                              coarse                           coarse
+                                                                                              Analog                           Analog
+                                                   -       LSB     2             37                       B2         25                                                  LSByte of associated data
+                                                                                              coarse                           coarse
+          M-21    Deck 2 gain     Analog
+                                                                                              Analog                           Analog
+                                                +Shift     MSB     5             5                        B5         05                                                  00>7F: Full left>Full right
+                                                                                              coarse                           coarse
+                                                                                              Analog                           Analog
+                                                +Shift     LSB     5             37                       B5         25                                                  LSByte of associated data
+                                                                                              coarse                           coarse
+                                                                                                                                                                    From 00 = all LEDs off
+                                                                                                                                                                    to 7FF = all LEDs on
+                                                                                                                                                              00 >  00 - 0D = 0 LED
+
+
+
+
+DECK 1
+                                                          Deck 1                                                                          B1        40
+                                                                                                                                                              7F    0E - 1B = 1 LED
+                                                                                                                                                                    1C - 29 = 2 LEDs
+                     Deck         Global                                                                                                                            2A - 37 = 3 LEDs
+          M-22
+                   vumeter       backlight                                                                                                                          38 - 45 = 4 LEDs
+                                                                                                                                                                    46 - 53 = 5 LEDs
+                                                                                                                                                              00 >  54 - 61 = 6 LEDs
+                                                          Deck 2                                                                          B2        40
+                                                                                                                                                              7F    62 - 6F = 7 LEDs
+                                                                                                                                                                    70 - 7D = 8 LEDs
+                                                                                                                                                                    7E - 7F = 9 LEDs
+                                Deck 1 LED 1                                                                                              91        31        00/7F 00 = Off / 7F = On
+                                Deck 1 LED 2                                                                                              91        32        00/7F 00 = Off / 7F = On
+                                Deck 1 LED 3                                                                                              91        33        00/7F 00 = Off / 7F = On
+                                Deck 1 LED 4                                                                                              91        34        00/7F 00 = Off / 7F = On
+                                Deck 1 LED 5                                                                                              91        35        00/7F 00 = Off / 7F = On
+                                Deck 1 LED 6                                                                                              91        36        00/7F 00 = Off / 7F = On
+                                Deck 1 LED 7                                                                                              91        37        00/7F 00 = Off / 7F = On
+                                Deck 1 LED 8                                                                                              91        38        00/7F 00 = Off / 7F = On
+                     Deck       Deck 1 LED 9                                                                                              91        39        00/7F 00 = Off / 7F = On
+          M-22
+                   vumeter      Deck 2 LED 1                                                                                              92        31        00/7F 00 = Off / 7F = On
+
+
+
+
+MIXER
+                                Deck 2 LED 2                                                                                              92        32        00/7F 00 = Off / 7F = On
+                                Deck 2 LED 3                                                                                              92        33        00/7F 00 = Off / 7F = On
+                                Deck 2 LED 4                                                                                              92        34        00/7F 00 = Off / 7F = On
+                                Deck 2 LED 5                                                                                              92        35        00/7F 00 = Off / 7F = On
+                                Deck 2 LED 6                                                                                              92        36        00/7F 00 = Off / 7F = On
+                                Deck 2 LED 7                                                                                              92        37        00/7F 00 = Off / 7F = On
+                                Deck 2 LED 8                                                                                              92        38        00/7F 00 = Off / 7F = On
+                                Deck 2 LED 9                                                                                              92        39        00/7F 00 = Off / 7F = On
+                                                                                              Analog                           Analog
+                                                   -       MSB     0             6                        B0         06                                                  00>7F: Full left>Full right
+                                                                                              coarse                           coarse
+                    Mic vol       Analog
+                                                                                              Analog                           Analog
+          M-23                                     -       LSB     0             38                       B0         26                                                  LSByte of associated data
+                                                                                              coarse                           coarse
+                                Green Light                                                                                               90        10        00/7F 00 = Off / 7F = On
+                   Mic Ring
+                                 Red Light         -                                                                                      90        11        00/7F 00 = Off / 7F = On
+                                                                                              Analog                           Analog
+                                                           MSB     0             7                        B0         07                                                  00>7F: Full left>Full right
+                                                                                              coarse                           coarse
+          M-24      Mic hi        Analog
+                                                                                              Analog                           Analog
+                                                           LSB     0             39                       B0         27                                                  LSByte of associated data
+                                                                                              coarse                           coarse
+                                                                                              Analog                           Analog
+                                                           MSB     0             8                        B0         08                                                  00>7F: Full left>Full right
+                                                                                              coarse                           coarse
+          M-25     Mic low        Analog
+                                                                                              Analog                           Analog
+                                                           LSB     0             40                       B0         28                                                  LSByte of associated data
+                                                                                              coarse                           coarse
+                                                                                              Analog                           Analog
+                                                           MSB     0             9                        B0         09                                                  00>7F: Full left>Full right
+                                                                                              coarse                           coarse
+                   Aux vol        Analog
+                                                                                              Analog                           Analog
+          M-26                                             LSB     0             41                       B0         29                                                  LSByte of associated data
+                                                                                              coarse                           coarse
+                                Green Light                                                                                               90        12        00/7F 00 = Off / 7F = On
+                   Aux Ring
+                                 Red Light         -                                                                                      90        13        00/7F 00 = Off / 7F = On
+                                                                                              Analog                           Analog
+                                                           MSB     0             10                       B0         0A                                                  00>7F: Full left>Full right
+                                                                                              coarse                           coarse
+          M-27    Aux Filter      Analog
+                                                                                              Analog                           Analog
+                                                           LSB     0             42                       B0         2A                                                  LSByte of associated data
+                                                                                              coarse                           coarse
+                                                                                              Analog                           Analog
+                                                           MSB     0             3                        B0         03                                                  00>7F: Full left>Full right
+                                                                                              coarse                           coarse
+          M-28    Master vol      Analog
+                                                                                              Analog                           Analog
+                                                           LSB     0             35                       B0         23                                                  LSByte of associated data
+                                                                                              coarse                           coarse
+
+
+
+
+                                                                                                 7                                                                               © 2022 Guillemot Corporation
+
+=== PDF page 8 ===
+                                                                                                                                                                                             MIDI COMMANDS
+
+                                                                                                                                                           MIDI OUT
+                                                                                                             MIDI IN
+                                       Control                                                                                                             PC/Mac-
+                                                                                                        Controller->PC/Mac
+                                                                                                                                                          >controller
+
+Area      Number                                                                                                                                     Note/CC                                       Detail on Data 2
+                                                                                               Data 1      Data 2               Data 1      Data 2              Data 1        Data 2
+                                                                                                                    Note= 9x
+                                                                                 Channel
+                       Name                                     Mode /
+                      (Label)
+                                     Type            + Shift
+                                                                 Part                                                                                Channel
+                                                                                                                     CC = Bx
+                                                                                           Dec            Dec                  Hex         Hex       Hex Hex             Hex
+
+
+                                                                                                                                                                               From 00 = off to 7FF = LEDs on
+           D1-1        Play         Toggle                                                                                                                               00 >
+                                                                 Deck 1                                                                              B0        40              00 - 18 = 0 LED
+                                                                                                                                                                         7F    19 - 31 = 1 LED
+                                    Global
+                                   Backlight                                                                                                                                   32- 4A = 2 LEDs
+                                                                                                                                                                         00 >  4B - 63 = 3 LEDs
+                                                                 Deck 2                                                                              B0        41
+                                                                                                                                                                         7F    64 - 7C = 4 LEDs
+                                                                                                                                                                               7D -7F = 5 LEDs
+                                 Deck 1 LED 1                                                                                                        90        06        00/7F 00 = Off / 7F = On
+                                 Deck 1 LED 2                                                                                                        90        07        00/7F 00 = Off / 7F = On
+                      Master
+           M-29                  Deck 1 LED 3                                                                                                        90        08        00/7F 00 = Off / 7F = On
+                     vumeter
+
+
+
+
+MIXER1
+DECK
+                                 Deck 1 LED 4                                                                                                        90        09        00/7F 00 = Off / 7F = On
+                                 Deck 1 LED 5                                                                                                        90        0A        00/7F 00 = Off / 7F = On
+                                 Deck 2 LED 1                                                                                                        90        0B        00/7F 00 = Off / 7F = On
+                                 Deck 2 LED 2                                                                                                        90        0C        00/7F 00 = Off / 7F = On
+                                 Deck 2 LED 3                                                                                                        90        0D        00/7F 00 = Off / 7F = On
+                                 Deck 2 LED 4                                                                                                        90        0E        00/7F 00 = Off / 7F = On
+                                 Deck 2 LED 5                                                                                                        90        0F        00/7F 00 = Off / 7F = On
+                                                        -                    0             2            00/7F       90         02        00/7F                                         00 = Off / 7F = On
+           M-30     Master pfl      Toggle
+                                                     +Shift                  3             2            00/7F       93         02        00/7F                                         00 = Off / 7F = On
+                                                                                                        Analog                           Analog
+                                                                  MSB        0             5                        B0         05                                                      00>7F: Full left>Full right
+                                                                                                        coarse                           coarse
+           M31     Cue-Master       Analog
+                                                                                                        Analog                           Analog
+                                                                   LSB       0             37                       B0         25                                                      LSByte of associated data
+                                                                                                        coarse                           coarse
+                                                                                                        Analog                           Analog
+                                                                  MSB        0             4                        B0         04                                                      00>7F: Full left>Full right
+                   Headphones                                                                           coarse                           coarse
+           M32                      Analog
+                       vol                                                                              Analog                           Analog
+                                                                   LSB       0             36                       B0         24                                                      LSByte of associated data
+                                                                                                        coarse                           coarse
+
+
+                                                        -                    1             13           0/127       91         0D        00/7F                                         00 = Off / 7F = On
+            B1        Load 1        Toggle           +Shift                  4             13           0/127       94         0D        00/7F                                         00 = Off / 7F = On
+                                                               Long press 1                14           0/127       91         0E        00/7F                                         00 = Off / 7F = On
+                                                        -                    2             13           0/127       92         0D        00/7F                                         00 = Off / 7F = On
+            B2        Load 2        Toggle           +Shift                  4             13           0/127       95         0D        00/7F                                         00 = Off / 7F = On
+                                                               Long press 2                14           0/127       92         0E        00/7F                                         00 = Off / 7F = On
+
+
+            B4     Assistant        Toggle              -                         0        1            0/127       90         01        00/7F                                         00 = Off / 7F = On
+
+
+                                                                                                        127 > 64                         7F > 40                                       7F > 40: CCW Slow->Fast
+                                                        -           -        0             1                     B0            01
+                                                                                                        01 > 63                          01 > 03F                                      01 > 3F: CC Slow->Fast
+                                  Increment
+                                                                                                        127 > 64                         7F > 40                                       7F > 40: CCW Slow->Fast
+                                  (Rotary 24         +Shift                  3             1                     B3            01
+
+
+
+
+BROWSER
+                                                                                                        01 > 63                          01 > 03F                                      01 > 3F: CC Slow->Fast
+                      Browse      steps/turn)
+                                                                                                        127 > 64                         7F > 40                                       7F > 40: CCW Slow->Fast
+                                                               +Assistant 0                2                     B0            02
+                                                                                                        01 > 63                          01 > 03F                                      01 > 3F: CC Slow->Fast
+                                                                             0             0            0/127    90            00        00/7F                                         00 = Off / 7F = On
+                                 Toggle (Push)
+                                                     +Shift                  3             0            0/127       93         00        00/7F                                         00 = Off / 7F = On
+                                     LED                                                                                                             90        04        Value See Value / Color match below
+                                           Colour                 Brightness
+                                      No backlight                                                                                                                       00
+                                            Navy               Full bright                                                                                               01            90 04 01
+            B3                              Blue               Full bright                                                                                               02            90 04 02
+                                        Sapphire               Full bright                                                                                               03            90 04 03
+                                       Navy Blue               Full bright                                                                                               04            90 04 04
+                                     Deep Sky Blue             Full bright                                                                                               05            09 04 05
+                      Energy
+                                  Medium spring green Full bright                                                                                                        06            09 04 06
+                                      Bright green             Full bright                                                                                               07            90 04 07
+                                           Yellow              Full bright                                                                                               08            90 04 08
+                                    Selective yellow           Full bright                                                                                               09            90 04 09
+                                     Safety orange             Full bright                                                                                               0A            90 04 0A
+                                           Scarlet             Full bright                                                                                               0B            90 04 0B
+                                             Red               Full bright                                                                                               0C            90 04 0C
+
+
+
+
+                                                                                                           8                                                                                   © 2022 Guillemot Corporation
+
+=== PDF page 9 ===
+                                                                                                                                                                       MIDI COMMANDS
+
+                                                                                                                                       MIDI OUT
+                                                                                             MIDI IN
+                                  Control                                                                                              PC/Mac-
+                                                                                        Controller->PC/Mac
+                                                                                                                                      >controller
+
+Area      Number                                                                                                                 Note/CC                                     Detail on Data 2
+                                                                               Data 1      Data 2              Data 1   Data 2             Data 1        Data 2
+                                                                                                    Note= 9x
+                                                                     Channel
+                    Name                                Mode /
+                   (Label)
+                               Type          + Shift
+                                                         Part                                                                    Channel
+                                                                                                     CC = Bx
+                                                                               Dec        Dec                  Hex      Hex      Hex Hex            Hex
+
+
+                                     Navy              Half bright                                                                                  0E            90 04 0E
+           D1-1     Play       Toggle
+                                     Blue              Half bright                                                                                  0F            90 04 0F
+                                  Sapphire             Half bright                                                                                  10            90 04 10
+                                  Navy Blue            Half bright                                                                                  11            90 04 11
+                                Deep Sky Blue          Half bright                                                                                  12            90 04 12
+                             Medium spring green Half bright                                                                                        13            90 04 13
+                                 Bright green          Half bright                                                                                  14            90 04 14
+                                   Yellow              Half bright                                                                                  15            90 04 15
+                               Selective yellow        Half bright
+
+
+
+
+DECK 1
+                                                                                                                                                    16            90 04 16
+                                Safety orange          Half bright                                                                                  17            90 04 17
+                                   Scarlet             Half bright                                                                                  18            90 04 18
+                                      Red              Half bright                                                                                  19            90 04 19
+
+
+                                      Navy             Blink                                                                                        1B            90 04 1B
+                                      Blue             Blink                                                                                        1C            90 04 1C
+                                  Sapphire             Blink                                                                                        1D            90 04 1D
+                                  Navy Blue            Blink                                                                                        1E            90 04 1E
+                                Deep Sky Blue          Blink                                                                                        1F            09 04 1F
+                             Medium spring green Blink                                                                                              20            09 04 20
+                                 Bright green          Blink                                                                                        21            90 04 21
+                                   Yellow              Blink                                                                                        22            90 04 22
+                               Selective yellow        Blink                                                                                        23            90 04 23
+
+
+
+
+BROWSER
+                                Safety orange          Blink                                                                                        24            90 04 24
+                                   Scarlet             Blink                                                                                        25            90 04 25
+                                      Red              Blink                                                                                        26            90 04 26
+
+            B3     Energy
+                                      Navy             Breath                                                                                       28            90 04 28
+                                      Blue             Breath                                                                                       29            90 04 29
+                                  Sapphire             Breath                                                                                       2A            90 04 2A
+                                  Navy Blue            Breath                                                                                       2B            90 04 2B
+                                Deep Sky Blue          Breath                                                                                       2C            09 04 2C
+                             Medium spring green Breath                                                                                             2D            09 04 2D
+                                 Bright green          Breath                                                                                       2E            90 04 2E
+                                   Yellow              Breath                                                                                       2F            90 04 2F
+                               Selective yellow        Breath                                                                                       30            90 04 30
+                                Safety orange          Breath                                                                                       31            90 04 31
+                                   Scarlet             Breath                                                                                       32            90 04 32
+                                      Red              Breath                                                                                       33            90 04 33
+
+
+                                      Navy             Full bright fade                                                                             35            90 04 35
+                                      Blue             Full bright fade                                                                             36            90 04 36
+                                  Sapphire             Full bright fade                                                                             37            90 04 37
+                                  Navy Blue            Full bright fade                                                                             37            90 04 37
+                                Deep Sky Blue          Full bright fade                                                                             39            90 04 39
+                             Medium spring green Full bright fade                                                                                   3A            90 04 3A
+                                 Bright green          Full bright fade                                                                             3B            90 04 3B
+                                   Yellow              Full bright fade                                                                             3C            90 04 3C
+                               Selective yellow        Full bright fade                                                                             3D            90 04 3D
+                                Safety orange          Full bright fade                                                                             3E            90 04 3E
+                                   Scarlet             Full bright fade                                                                             3F            90 04 3F
+                                      Red              Full bright fade                                                                             40            90 04 40
+
+
+
+
+                                                                                           9                                                                             © 2022 Guillemot Corporation
+
+=== PDF page 10 ===
+                                                                                                                                                                                              MIDI COMMANDS
+
+                                                                                                                                                            MIDI OUT
+                                                                                                              MIDI IN
+                                          Control                                                                                                           PC/Mac-
+                                                                                                         Controller->PC/Mac
+                                                                                                                                                           >controller
+
+ Area           Number                                                                                                                                Note/CC                                      Detail on Data 2
+                                                                                                Data 1      Data 2               Data 1      Data 2              Data 1        Data 2
+                                                                                                                     Note= 9x
+                                                                                  Channel
+                           Name                                  Mode /
+                          (Label)
+                                        Type          + Shift
+                                                                  Part                                                                                Channel
+                                                                                                                      CC = Bx
+                                                                                            Dec            Dec                  Hex         Hex       Hex Hex             Hex
+
+
+                                             Navy               Half bright fade                                                                                          42            90 04 42
+                 D1-1      Play        Toggle
+                                             Blue               Half bright fade                                                                                          43            90 04 43
+                                           Sapphire             Half bright fade                                                                                          44            90 04 44
+                                          Navy Blue             Half bright fade                                                                                          45            90 04 45
+                                        Deep Sky Blue           Half bright fade                                                                                          46            90 04 46
+                                     Medium spring green Half bright fade                                                                                                 47            90 04 47
+                                         Bright green           Half bright fade                                                                                          48            90 04 48
+                                            Yellow              Half bright fade                                                                                          49            90 04 49
+                                       Selective yellow         Half bright fade
+
+
+
+
+BROWSERDECK 1
+                                                                                                                                                                          4A            90 04 4A
+                                        Safety orange           Half bright fade                                                                                          4B            90 04 4B
+                                            Scarlet             Half bright fade                                                                                          4C            90 04 4C
+                                                Red             Half bright fade                                                                                          4D            90 04 4D
+
+
+                                               Navy             Blink fade                                                                                                4F            90 04 4F
+                                               Blue             Blink fade                                                                                                50            90 04 50
+                                           Sapphire             Blink fade                                                                                                51            90 04 51
+                                          Navy Blue             Blink fade                                                                                                52            90 04 52
+                                        Deep Sky Blue           Blink fade                                                                                                53            90 04 53
+                                     Medium spring green Blink fade                                                                                                       54            90 04 54
+                  B3      Energy
+                                         Bright green           Blink fade                                                                                                55            90 04 55
+                                            Yellow              Blink fade                                                                                                56            90 04 56
+                                       Selective yellow         Blink fade                                                                                                57            90 04 57
+                                        Safety orange           Blink fade                                                                                                58            90 04 58
+                                            Scarlet             Blink fade                                                                                                59            90 04 59
+                                                Red             Blink fade                                                                                                5A            90 04 5A
+
+
+                                               Navy             Breath fade                                                                                               5C            90 04 5C
+                                               Blue             Breath fade                                                                                               5D            90 04 5D
+                                           Sapphire             Breath fade                                                                                               5E            90 04 5E
+                                          Navy Blue             Breath fade                                                                                               5F            90 04 5F
+                                        Deep Sky Blue           Breath fade                                                                                               60            90 04 60
+                                     Medium spring green Breath fade                                                                                                      61            90 04 61
+                                         Bright green           Breath fade                                                                                               62            90 04 62
+                                            Yellow              Breath fade                                                                                               63            90 04 63
+                                       Selective yellow         Breath fade                                                                                               64            90 04 64
+                                        Safety orange           Breath fade                                                                                               65            90 04 65
+                                            Scarlet             Breath fade                                                                                               66            90 04 66
+                                                Red             Breath fade                                                                                               67            90 04 67
+
+
+                                                         -           -        2             7            0/127       92         07        00/7F       92        07        00/7F 00 = Off / 7F = On
+                 D2-1      Play        Toggle
+                                                      +Shift         -        5             7            0/127       95         07        00/7F       95        07        00/7F 00 = Off / 7F = On
+                                                         -           -        2             6            0/127       92         06        00/7F       92        06        00/7F 00 = Off / 7F = On
+                 D2-2      Cue         Toggle
+                                                      +Shift         -        5             6            0/127       95         06        00/7F       95        06        00/7F 00 = Off / 7F = On
+                 D2-3      Shift       Toggle            -           -        2             4            0/127       92         04        00/7F                                         00 = Off / 7F = On
+
+
+
+
+DECK 2
+                                                         -           -        2             9            0/127       92         09        00/7F       92        09        00/7F 00 = Off / 7F = On
+                 D2-4       In         Toggle         +Shift         -        5             9            0/127       95         09        00/7F       95        09        00/7F 00 = Off / 7F = On
+                                                         -      Long press 2                11           0/127       92         0B        00/7F                                         00 = Off / 7F = On
+                                                         -           -        2             10           0/127       92         0A        00/7F       92        0A        00/7F 00 = Off / 7F = On
+                 D2-5      Out         Toggle
+                                                      +Shift         -                      10           0/127       95         0A        00/7F       95        0A        00/7F 00 = Off / 7F = On
+
+                                                                                                         127 > 64                         7F > 40                                       7F > 40: CCW Slow->Fast
+                                                         -           -        2             14                    B2            0E
+                                     Increment                                                           01 > 63                          01 > 03F                                      01 > 3F: CC Slow->Fast
+                                     (Rotary 24
+                 D2-6    Autoloop    steps/turn)                                                         127 > 64                         7F > 40                                       7F > 40: CCW Slow->Fast
+                                                      +Shift                  5             14                    B5            0E
+                                                                                                         01 > 63                          01 > 03F                                      01 > 3F: CC Slow->Fast
+
+                                                         -           -        2             44           0/127       92         2C        00/7F                                         00 = Off / 7F = On
+                                    Toggle (Push)
+                                                      +Shift         -        5             44           0/127       95         2C        00/7F                                         00 = Off / 7F = On
+
+
+
+
+                                                                                                           10                                                                                  © 2022 Guillemot Corporation
+
+=== PDF page 11 ===
+                                                                                                                                                                                       MIDI COMMANDS
+
+                                                                                                                                                        MIDI OUT
+                                                                                                          MIDI IN
+                                          Control                                                                                                       PC/Mac-
+                                                                                                     Controller->PC/Mac
+                                                                                                                                                       >controller
+
+ Area         Number                                                                                                                              Note/CC                                    Detail on Data 2
+                                                                                            Data 1      Data 2               Data 1      Data 2              Data 1     Data 2
+                                                                                                                 Note= 9x
+                                                                              Channel
+                           Name                                Mode /
+                          (Label)
+                                        Type        + Shift
+                                                                Part                                                                              Channel
+                                                                                                                  CC = Bx
+                                                                                        Dec            Dec                  Hex         Hex       Hex Hex             Hex
+
+
+                                                       -      Guide On                                                                            92        1C        00/7F 00 = Off / 7F = On
+               D1-1
+               D2-7        Play
+                           Fwd         Toggle
+                                      Backlight
+                                                       -      Guide Off                                                                           92        21        00/7F 00 = Off / 7F = On
+                                                       -      Guide On                                                                            92        1D        00/7F 00 = Off / 7F = On
+               D2-8        Rev        Backlight
+                                                       -      Guide Off                                                                           92        22        00/7F 00 = Off / 7F = On
+                                                       -      Guide On                                                                            92        2D        00/7F 00 = Off / 7F = On
+               D2-9     Beat-Align    Backlight
+                                                       -      Guide Off                                                                           92        2F        00/7F 00 = Off / 7F = On
+                                                       -          -       2             5            0/127       92         05        00/7F       92        05        00/7F 00 = Off / 7F = On
+              D2-10        Sync        Toggle
+                                                    +Shift        -       5             5            0/127       95         05        00/7F       95        05        00/7F 00 = Off / 7F = On
+
+
+
+
+DECK 1
+                                                       -      Guide On                                                                            92        2C        00/7F 00 = Off / 7F = On
+              D2-11       Tempo       Backlight
+                                                       -      Guide Off                                                                           92        2E        00/7F 00 = Off / 7F = On
+                                                       -      Guide On                                                                            92        1E        00/7F 00 = Off / 7F = On
+              D2-12         Up        Backlight
+                                                       -      Guide Off                                                                           92        23        00/7F 00 = Off / 7F = On
+                                                       -      Guide On                                                                            92                  00/7F 00 = Off / 7F = On
+              D2-13       Centre      Backlight
+                                                       -      Guide Off                                                                           92                  00/7F 00 = Off / 7F = On
+                                                       -      Guide On                                                                            92        1F        00/7F 00 = Off / 7F = On
+              D2-14       Down        Backlight
+                                                       -      Guide Off                                                                           92        24        00/7F 00 = Off / 7F = On
+                                                                                                     Analog                           Analog
+                                                       -        MSB       2             8                        B2         08                                                   00>7F: Full left>Full right
+                                                                                                     coarse                           coarse
+
+
+
+
+DECK 2
+                                                                                                     Analog                           Analog
+                                                       -         LSB      2             40                       B2         28                                                   LSByte of associated data
+                                                                                                     coarse                           coarse
+              D2-15    Tempo Fader     Analog
+                                                                                                     Analog                           Analog
+                                                    +Shift      MSB       5             8                        B5         08                                                   00>7F: Full left>Full right
+                                                                                                     coarse                           coarse
+                                                                                                     Analog                           Analog
+                                                    +Shift       LSB      5             40                       B5         28                                                   LSByte of associated data
+                                                                                                     coarse                           coarse
+                                                                                                     127 > 64                         7F > 40                                    7F > 40: CCW Slow->Fast
+                                                       -                  2             9                     B2            09
+                                                                                                     01 > 63                          01 > 03F                                   01 > 3F: CC Slow->Fast
+
+                                                                                                     127 > 64                         7F > 40                                    7F > 40: CCW Slow->Fast
+                                                    +Shift                5             9                     B5            09
+                                                                                                     01 > 63                          01 > 03F                                   01 > 3F: CC Slow->Fast
+                                     Incremental
+                                       (rotary)
+              D2-16     Jog-wheel                                                                    127 > 64                         7F > 40                                    7F > 40: CCW Slow->Fast
+                                                       -        Vinyl     2             10                    B2            0A
+                                                                                                     01 > 63                          01 > 03F                                   01 > 3F: CC Slow->Fast
+
+                                                                                                     127 > 64                         7F > 40                                    7F > 40: CCW Slow->Fast
+                                                    +Shift      Vinyl     5             10                    B5            0A
+                                                                                                     01 > 63                          01 > 03F                                   01 > 3F: CC Slow->Fast
+
+                                        Toggle         -                  2             8            0/127       B2         08        00/7F                                      00 = Off / 7F = On
+                                       (Touch)      +Shift                5             8            0/127       B5         08        00/7F                                      00 = Off / 7F = On
+                                                       -          -       2             3            0/127       92         03        00/7F       92        03        00/7F 00 = Off / 7F = On
+              D2-17        Vinyl       Toggle
+                                                    +Shift        -       5             3            0/127       95         03        00/7F       95        03        00/7F 00 = Off / 7F = On
+                                                       -          -       2             1            0/127       92         01        00/7F       92        01        00/7F 00 = Off / 7F = On
+              D2-18        Slip        Toggle
+                                                    +Shift        -       5             1            0/127       95         01        00/7F       95        01        00/7F 00 = Off / 7F = On
+                                                       -          -       2             2            0/127       92         02        00/7F       92        02        00/7F 00 = Off / 7F = On
+              D2-19       Quant        Toggle
+                                                    +Shift        -       5             2            0/127       95         02        00/7F       95        02        00/7F 00 = Off / 7F = On
+              D2-20        Big 2      Backlight                   -                                                                               92        30        00/7F 00 = Off / 7F = On
+
+
+                       Mode 1          Toggle          -          -       2             15           0/127       92         0F        00/7F       92        0F        00/7F 00 = Off / 7F = On
+               P2-1    Mode 5          Toggle       +Shift        -       2             19           0/127       92         13        00/7F       92        13        00/7F 00 = Off / 7F = On
+
+
+
+
+PADS DECK 2
+                       Mode 1A         Toggle          -      Long press 2              64           0/127       92         40        00/7F                                      00 = Off / 7F = On
+                       Mode 2          Toggle          -          -       2             16           0/127       92         10        00/7F       92        10        00/7F 00 = Off / 7F = On
+               P2-2    Mode 6          Toggle       +Shift        -       2             20           0/127       92         14        00/7F       92        14        00/7F 00 = Off / 7F = On
+                       Mode 2A         Toggle          -      Long press 2              65           0/127       92         41        00/7F                                      00 = Off / 7F = On
+                       Mode 3          Toggle                     -       2             17           0/127       92         11        00/7F       92        11        00/7F 00 = Off / 7F = On
+               P2-3    Mode 7          Toggle          -          -       2             21           0/127       92         15        00/7F       92        15        00/7F 00 = Off / 7F = On
+                       Mode 3A         Toggle          -      Long press 2              66           0/127       92         42        00/7F                                      00 = Off / 7F = On
+                       Mode 4          Toggle       +Shift        -       2             18           0/127       92         12        00/7F       92        12        00/7F 00 = Off / 7F = On
+               P2-4    Mode 8          Toggle          -          -       2             22           0/127       92         16        00/7F       92        16        00/7F 00 = Off / 7F = On
+                       Mode 4A         Toggle          -      Long press 2              67           0/127       91         43        00/7F                                      00 = Off / 7F = On
+               P2-5    Pad 1           Toggle          -       Mode 1     7             0            0/127       97         00        00/7F       97        00        Value See Value/color match below
+               P2-6    Pad 2           Toggle          -       Mode 1     7             1            0/127       97         01        00/7F       97        01        Value See Value/color match below
+               P2-7    Pad 3           Toggle          -       Mode 1     7             2            0/127       97         02        00/7F       97        02        Value See Value/color match below
+               P2-8    Pad 4           Toggle          -       Mode 1     7             3            0/127       97         03        00/7F       97        03        Value See Value/color match below
+
+
+
+
+                                                                                                       11                                                                                © 2022 Guillemot Corporation
+
+=== PDF page 12 ===
+                                                                                                                                                                           MIDI COMMANDS
+
+                                                                                                                                                 MIDI OUT
+                                                                                                    MIDI IN
+                                       Control                                                                                                   PC/Mac-
+                                                                                               Controller->PC/Mac
+                                                                                                                                                >controller
+
+ Area         Number                                                                                                                       Note/CC                             Detail on Data 2
+                                                                                      Data 1      Data 2               Data 1     Data 2              Data 1     Data 2
+                                                                                                           Note= 9x
+                                                                        Channel
+                           Name                            Mode /
+                          (Label)
+                                    Type         + Shift
+                                                            Part                                                                           Channel
+                                                                                                            CC = Bx
+                                                                                  Dec            Dec                  Hex         Hex      Hex Hex             Hex
+
+
+               P2-9    Pad 5        Toggle          -      Mode 1   7             4            0/127       97         04        00/7F      97        04        Value See Value/color match below
+              D1-1         Play     Toggle
+              P2-10    Pad 6        Toggle          -      Mode 1   7             5            0/127       97         05        00/7F      97        05        Value See Value/color match below
+              P2-11    Pad 7        Toggle          -      Mode 1   7             6            0/127       97         06        00/7F      97        06        Value See Value/color match below
+              P2-12    Pad 8        Toggle          -      Mode 1   7             7            0/127       97         07        00/7F      97        07        Value See Value/color match below
+               P2-5    Pad 1        Toggle       +Shift    Mode 1   7             8            0/127       97         08        00/7F      97        08        Value See Value/color match below
+               P2-6    Pad 2        Toggle       +Shift    Mode 1   7             9            0/127       97         09        00/7F      97        09        Value See Value/color match below
+               P2-7    Pad 3        Toggle       +Shift    Mode 1   7             10           0/127       97         0A        00/7F      97        0A        Value See Value/color match below
+               P2-8    Pad 4        Toggle       +Shift    Mode 1   7             11           0/127       97         0B        00/7F      97        0B        Value See Value/color match below
+                                                                    7             12                       97         0C                   97        0C
+
+
+
+
+DECK 1
+               P2-9    Pad 5        Toggle       +Shift    Mode 1                              0/127                            00/7F                          Value See Value/color match below
+              P2-10    Pad 6        Toggle       +Shift    Mode 1   7             13           0/127       97         0D        00/7F      97        0D        Value See Value/color match below
+              P2-11    Pad 7        Toggle       +Shift    Mode 1   7             14           0/127       97         0E        00/7F      97        0E        Value See Value/color match below
+              P2-12    Pad 8        Toggle       +Shift    Mode 1   7             15           0/127       97         0F        00/7F      97        0F        Value See Value/color match below
+               P2-5    Pad 1        Toggle          -      Mode 2   7             16           0/127       97         10        00/7F      97        10        Value See Value/color match below
+               P2-6    Pad 2        Toggle          -      Mode 2   7             17           0/127       97         11        00/7F      97        11        Value See Value/color match below
+               P2-7    Pad 3        Toggle          -      Mode 2   7             18           0/127       97         12        00/7F      97        12        Value See Value/color match below
+               P2-8    Pad 4        Toggle          -      Mode 2   7             19           0/127       97         13        00/7F      97        13        Value See Value/color match below
+               P2-9    Pad 5        Toggle          -      Mode 2   7             20           0/127       97         14        00/7F      97        14        Value See Value/color match below
+              P2-10    Pad 6        Toggle          -      Mode 2   7             21           0/127       97         15        00/7F      97        15        Value See Value/color match below
+              P2-11    Pad 7        Toggle          -      Mode 2   7             22           0/127       97         16        00/7F      97        16        Value See Value/color match below
+              P2-12    Pad 8        Toggle          -      Mode 2   7             23           0/127       97         17        00/7F      97        17        Value See Value/color match below
+               P2-5    Pad 1        Toggle       +Shift    Mode 2   7             24           0/127       97         18        00/7F      97        18        Value See Value/color match below
+               P2-6    Pad 2        Toggle       +Shift    Mode 2   7             25           0/127       97         19        00/7F      97        19        Value See Value/color match below
+               P2-7    Pad 3        Toggle       +Shift    Mode 2   7             26           0/127       97         1A        00/7F      97        1A        Value See Value/color match below
+
+
+
+
+PADS DECK 2
+               P2-8    Pad 4        Toggle       +Shift    Mode 2   7             27           0/127       97         1B        00/7F      97        1B        Value See Value/color match below
+               P2-9    Pad 5        Toggle       +Shift    Mode 2   7             28           0/127       97         1C        00/7F      97        1C        Value See Value/color match below
+              P2-10    Pad 6        Toggle       +Shift    Mode 2   7             29           0/127       97         1D        00/7F      97        1D        Value See Value/color match below
+              P2-11    Pad 7        Toggle       +Shift    Mode 2   7             30           0/127       97         1E        00/7F      97        1E        Value See Value/color match below
+              P2-12    Pad 8        Toggle       +Shift    Mode 2   7             31           0/127       97         1F        00/7F      97        1F        Value See Value/color match below
+               P2-5    Pad 1        Toggle          -      Mode 3   7             32           0/127       97         20        00/7F      97        20        Value See Value/color match below
+               P2-6    Pad 2        Toggle          -      Mode 3   7             33           0/127       97         21        00/7F      97        21        Value See Value/color match below
+               P2-7    Pad 3        Toggle          -      Mode 3   7             34           0/127       97         22        00/7F      97        22        Value See Value/color match below
+               P2-8    Pad 4        Toggle          -      Mode 3   7             35           0/127       97         23        00/7F      97        23        Value See Value/color match below
+               P2-9    Pad 5        Toggle          -      Mode 3   7             36           0/127       97         24        00/7F      97        24        Value See Value/color match below
+              P2-10    Pad 6        Toggle          -      Mode 3   7             37           0/127       97         25        00/7F      97        25        Value See Value/color match below
+              P2-11    Pad 7        Toggle          -      Mode 3   7             38           0/127       97         26        00/7F      97        26        Value See Value/color match below
+              P2-12    Pad 8        Toggle          -      Mode 3   7             39           0/127       97         27        00/7F      97        27        Value See Value/color match below
+               P2-5    Pad 1        Toggle       +Shift    Mode 3   7             40           0/127       97         28        00/7F      97        28        Value See Value/color match below
+               P2-6    Pad 2        Toggle       +Shift    Mode 3   7             41           0/127       97         29        00/7F      97        29        Value See Value/color match below
+               P2-7    Pad 3        Toggle       +Shift    Mode 3   7             42           0/127       97         2A        00/7F      97        2A        Value See Value/color match below
+               P2-8    Pad 4        Toggle       +Shift    Mode 3   7             43           0/127       97         2B        00/7F      97        2B        Value See Value/color match below
+               P2-9    Pad 5        Toggle       +Shift    Mode 3   7             44           0/127       97         2C        00/7F      97        2C        Value See Value/color match below
+              P2-10    Pad 6        Toggle       +Shift    Mode 3   7             45           0/127       97         2D        00/7F      97        2D        Value See Value/color match below
+              P2-11    Pad 7        Toggle       +Shift    Mode 3   7             46           0/127       97         2E        00/7F      97        2E        Value See Value/color match below
+              P2-12    Pad 8        Toggle       +Shift    Mode 3   7             47           0/127       97         2F        00/7F      97        2F        Value See Value/color match below
+               P2-5    Pad 1        Toggle          -      Mode 4   7             48           0/127       97         30        00/7F      97        30        Value See Value/color match below
+               P2-6    Pad 2        Toggle          -      Mode 4   7             49           0/127       97         31        00/7F      97        31        Value See Value/color match below
+               P2-7    Pad 3        Toggle          -      Mode 4   7             50           0/127       97         32        00/7F      97        32        Value See Value/color match below
+               P2-8    Pad 4        Toggle          -      Mode 4   7             51           0/127       97         33        00/7F      97        33        Value See Value/color match below
+               P2-9    Pad 5        Toggle          -      Mode 4   7             52           0/127       97         34        00/7F      97        34        Value See Value/color match below
+              P2-10    Pad 6        Toggle          -      Mode 4   7             53           0/127       97         35        00/7F      97        35        Value See Value/color match below
+              P2-11    Pad 7        Toggle          -      Mode 4   7             54           0/127       97         36        00/7F      97        36        Value See Value/color match below
+              P2-12    Pad 8        Toggle          -      Mode 4   7             55           0/127       97         37        00/7F      97        37        Value See Value/color match below
+               P2-5    Pad 1        Toggle       +Shift    Mode 4   7             56           0/127       97         38        00/7F      97        38        Value See Value/color match below
+               P2-6    Pad 2        Toggle       +Shift    Mode 4   7             57           0/127       97         39        00/7F      97        39        Value See Value/color match below
+               P2-7    Pad 3        Toggle       +Shift    Mode 4   7             58           0/127       97         3A        00/7F      97        3A        Value See Value/color match below
+               P2-8    Pad 4        Toggle       +Shift    Mode 4   7             59           0/127       97         3B        00/7F      97        3B        Value See Value/color match below
+               P2-9    Pad 5        Toggle       +Shift    Mode 4   7             60           0/127       97         3C        00/7F      97        3C        Value See Value/color match below
+              P2-10    Pad 6        Toggle       +Shift    Mode 4   7             61           0/127       97         3D        00/7F      97        3D        Value See Value/color match below
+
+
+
+
+                                                                                                 12                                                                         © 2022 Guillemot Corporation
+
+=== PDF page 13 ===
+                                                                                                                                                                        MIDI COMMANDS
+
+                                                                                                                                              MIDI OUT
+                                                                                                 MIDI IN
+                                       Control                                                                                                PC/Mac-
+                                                                                            Controller->PC/Mac
+                                                                                                                                             >controller
+
+ Area         Number                                                                                                                    Note/CC                             Detail on Data 2
+                                                                                   Data 1      Data 2               Data 1     Data 2              Data 1     Data 2
+                                                                                                        Note= 9x
+                                                                        Channel
+                           Name                            Mode /
+                          (Label)
+                                    Type         + Shift
+                                                            Part                                                                        Channel
+                                                                                                         CC = Bx
+                                                                                  Dec         Dec                  Hex         Hex      Hex Hex             Hex
+
+
+              P2-11    Pad 7        Toggle       +Shift    Mode 4   7             62        0/127       97         3E        00/7F      97        3E        Value See Value/color match below
+              D1-1         Play     Toggle
+              P2-12    Pad 8        Toggle       +Shift    Mode 4   7             63        0/127       97         3F        00/7F      97        3F        Value See Value/color match below
+               P2-5    Pad 1        Toggle          -      Mode 5   7             64        0/127       97         40        00/7F      97        40        Value See Value/color match below
+               P2-6    Pad 2        Toggle          -      Mode 5   7             65        0/127       97         41        00/7F      97        41        Value See Value/color match below
+               P2-7    Pad 3        Toggle          -      Mode 5   7             66        0/127       97         42        00/7F      97        42        Value See Value/color match below
+               P2-8    Pad 4        Toggle          -      Mode 5   7             67        0/127       97         43        00/7F      97        43        Value See Value/color match below
+               P2-9    Pad 5        Toggle          -      Mode 5   7             68        0/127       97         44        00/7F      97        44        Value See Value/color match below
+              P2-10    Pad 6        Toggle          -      Mode 5   7             69        0/127       97         45        00/7F      97        45        Value See Value/color match below
+                                                                    7             70                    97         46                   97        46
+
+
+
+
+DECK 1
+              P2-11    Pad 7        Toggle          -      Mode 5                           0/127                            00/7F                          Value See Value/color match below
+              P2-12    Pad 8        Toggle          -      Mode 5   7             71        0/127       97         47        00/7F      97        47        Value See Value/color match below
+               P2-5    Pad 1        Toggle       +Shift    Mode 5   7             72        0/127       97         48        00/7F      97        48        Value See Value/color match below
+               P2-6    Pad 2        Toggle       +Shift    Mode 5   7             73        0/127       97         49        00/7F      97        49        Value See Value/color match below
+               P2-7    Pad 3        Toggle       +Shift    Mode 5   7             74        0/127       97         4A        00/7F      97        4A        Value See Value/color match below
+               P2-8    Pad 4        Toggle       +Shift    Mode 5   7             75        0/127       97         4B        00/7F      97        4B        Value See Value/color match below
+               P2-9    Pad 5        Toggle       +Shift    Mode 5   7             76        0/127       97         4C        00/7F      97        4C        Value See Value/color match below
+              P2-10    Pad 6        Toggle       +Shift    Mode 5   7             77        0/127       97         4D        00/7F      97        4D        Value See Value/color match below
+              P2-11    Pad 7        Toggle       +Shift    Mode 5   7             78        0/127       97         4E        00/7F      97        4E        Value See Value/color match below
+              P2-12    Pad 8        Toggle       +Shift    Mode 5   7             79        0/127       97         4F        00/7F      97        4F        Value See Value/color match below
+               P2-5    Pad 1        Toggle          -      Mode 6   7             80        0/127       97         50        00/7F      97        50        Value See Value/color match below
+               P2-6    Pad 2        Toggle          -      Mode 6   7             81        0/127       97         51        00/7F      97        51        Value See Value/color match below
+               P2-7    Pad 3        Toggle          -      Mode 6   7             82        0/127       97         52        00/7F      97        52        Value See Value/color match below
+               P2-8    Pad 4        Toggle          -      Mode 6   7             83        0/127       97         53        00/7F      97        53        Value See Value/color match below
+               P2-9    Pad 5        Toggle          -      Mode 6   7             84        0/127       97         54        00/7F      97        54        Value See Value/color match below
+
+
+
+
+PADS DECK 2
+              P2-10    Pad 6        Toggle          -      Mode 6   7             85        0/127       97         55        00/7F      97        55        Value See Value/color match below
+              P2-11    Pad 7        Toggle          -      Mode 6   7             86        0/127       97         56        00/7F      97        56        Value See Value/color match below
+              P2-12    Pad 8        Toggle          -      Mode 6   7             87        0/127       97         57        00/7F      97        57        Value See Value/color match below
+               P2-5    Pad 1        Toggle       +Shift    Mode 6   7             88        0/127       97         58        00/7F      97        58        Value See Value/color match below
+               P2-6    Pad 2        Toggle       +Shift    Mode 6   7             89        0/127       97         59        00/7F      97        59        Value See Value/color match below
+               P2-7    Pad 3        Toggle       +Shift    Mode 6   7             90        0/127       97         5A        00/7F      97        5A        Value See Value/color match below
+               P2-8    Pad 4        Toggle       +Shift    Mode 6   7             91        0/127       97         5B        00/7F      97        5B        Value See Value/color match below
+               P2-9    Pad 5        Toggle       +Shift    Mode 6   7             92        0/127       97         5C        00/7F      97        5C        Value See Value/color match below
+              P2-10    Pad 6        Toggle       +Shift    Mode 6   7             93        0/127       97         5D        00/7F      97        5D        Value See Value/color match below
+              P2-11    Pad 7        Toggle       +Shift    Mode 6   7             94        0/127       97         5E        00/7F      97        5E        Value See Value/color match below
+              P2-12    Pad 8        Toggle       +Shift    Mode 6   7             95        0/127       97         5F        00/7F      97        5F        Value See Value/color match below
+               P2-5    Pad 1        Toggle          -      Mode 7   7             96        0/127       97         60        00/7F      97        60        Value See Value/color match below
+               P2-6    Pad 2        Toggle          -      Mode 7   7             97        0/127       97         61        00/7F      97        61        Value See Value/color match below
+               P2-7    Pad 3        Toggle          -      Mode 7   7             98        0/127       97         62        00/7F      97        62        Value See Value/color match below
+               P2-8    Pad 4        Toggle          -      Mode 7   7             99        0/127       97         63        00/7F      97        63        Value See Value/color match below
+               P2-9    Pad 5        Toggle          -      Mode 7   7             100 0/127             97         64        00/7F      97        64        Value See Value/color match below
+              P2-10    Pad 6        Toggle          -      Mode 7   7             101 0/127             97         65        00/7F      97        65        Value See Value/color match below
+              P2-11    Pad 7        Toggle          -      Mode 7   7             102 0/127             97         66        00/7F      97        66        Value See Value/color match below
+              P2-12    Pad 8        Toggle          -      Mode 7   7             103 0/127             97         67        00/7F      97        67        Value See Value/color match below
+               P2-5    Pad 1        Toggle       +Shift    Mode 7   7             104 0/127             97         68        00/7F      97        68        Value See Value/color match below
+               P2-6    Pad 2        Toggle       +Shift    Mode 7   7             105 0/127             97         69        00/7F      97        69        Value See Value/color match below
+               P2-7    Pad 3        Toggle       +Shift    Mode 7   7             106 0/127             97         6A        00/7F      97        6A        Value See Value/color match below
+               P2-8    Pad 4        Toggle       +Shift    Mode 7   7             107 0/127             97         6B        00/7F      97        6B        Value See Value/color match below
+               P2-9    Pad 5        Toggle       +Shift    Mode 7   7             108 0/127             97         6C        00/7F      97        6C        Value See Value/color match below
+              P2-10    Pad 6        Toggle       +Shift    Mode 7   7             109 0/127             97         6D        00/7F      97        6D        Value See Value/color match below
+              P2-11    Pad 7        Toggle       +Shift    Mode 7   7             110 0/127             97         6E        00/7F      97        6E        Value See Value/color match below
+              P2-12    Pad 8        Toggle       +Shift    Mode 7   7             111 0/127             97         6F        00/7F      97        6F        Value See Value/color match below
+               P2-5    Pad 1        Toggle          -      Mode 8   7             112 0/127             97         70        00/7F      97        70        Value See Value/color match below
+               P2-6    Pad 2        Toggle          -      Mode 8   7             113 0/127             97         71        00/7F      97        71        Value See Value/color match below
+               P2-7    Pad 3        Toggle          -      Mode 8   7             114 0/127             97         72        00/7F      97        72        Value See Value/color match below
+               P2-8    Pad 4        Toggle          -      Mode 8   7             115 0/127             97         73        00/7F      97        73        Value See Value/color match below
+               P2-9    Pad 5        Toggle          -      Mode 8   7             116 0/127             97         74        00/7F      97        74        Value See Value/color match below
+              P2-10    Pad 6        Toggle          -      Mode 8   7             117 0/127             97         75        00/7F      97        75        Value See Value/color match below
+              P2-11    Pad 7        Toggle          -      Mode 8   7             118 0/127             97         76        00/7F      97        76        Value See Value/color match below
+              P2-12    Pad 8        Toggle          -      Mode 8   7             119 0/127             97         77        00/7F      97        77        Value See Value/color match below
+
+
+
+
+                                                                                              13                                                                         © 2022 Guillemot Corporation
+
+=== PDF page 14 ===
+                                                                                                                                                                                          MIDI COMMANDS
+
+                                                                                                                                                         MIDI OUT
+                                                                                                            MIDI IN
+                                                  Control                                                                                                PC/Mac-
+                                                                                                       Controller->PC/Mac
+                                                                                                                                                        >controller
+
+ Area          Number                                                                                                                              Note/CC                                     Detail on Data 2
+                                                                                              Data 1      Data 2               Data 1     Data 2              Data 1        Data 2
+                                                                                                                   Note= 9x
+                                                                                   Channel
+                                     Name                             Mode /
+                                    (Label)
+                                               Type         + Shift
+                                                                       Part                                                                        Channel
+                                                                                                                    CC = Bx
+                                                                                             Dec         Dec                  Hex         Hex      Hex Hex             Hex
+
+
+                P2-5             Pad 1         Toggle       +Shift    Mode 8   7             120 0/127             97         78        00/7F      97        78        Value See Value/color match below
+                D1-1                 Play      Toggle
+                P2-6             Pad 2         Toggle       +Shift    Mode 8   7             121 0/127             97         79        00/7F      97        79        Value See Value/color match below
+                P2-7             Pad 3         Toggle       +Shift    Mode 8   7             122 0/127             97         7A        00/7F      97        7A        Value See Value/color match below
+                P2-8             Pad 4         Toggle       +Shift    Mode 8   7             123 0/127             97         7B        00/7F      97        7B        Value See Value/color match below
+                P2-9             Pad 5         Toggle       +Shift    Mode 8   7             124 0/127             97         7C        00/7F      97        7C        Value See Value/color match below
+               P2-10             Pad 6         Toggle       +Shift    Mode 8   7             125 0/127             97         7D        00/7F      97        7D        Value See Value/color match below
+               P2-11             Pad 7         Toggle       +Shift    Mode 8   7             126 0/127             97         7E        00/7F      97        7E        Value See Value/color match below
+               P2-12             Pad 8         Toggle       +Shift    Mode 8   7             127 0/127             97         7F        00/7F      97        7F        Value See Value/color match below
+
+
+
+
+PADS DECK 21
+                                                            COLOR PER DATA2 VALUE ON PAD MIDI OUT
+                                 No light                                                                                                                              00            97 XX 00, with XX from 00 to 7F
+                                 Blue low                                                                                                                              02            97 XX 02 with XX from 00 to 7F
+                                 Blue                                                                                                                                  03            97 XX 03 with XX from 00 to 7F
+                                 Green low                                                                                                                             10            97 XX 10 with XX from 00 to 7F
+                                 Cyan low                                                                                                                              12            97 XX 12 with XX from 00 to 7F
+                                 Green                                                                                                                                 1C            97 XX 1C with XX from 00 to 7F
+                                 Cyan                                                                                                                                  1F            97 XX 1F with XX from 00 to 7F
+                                 Lime low                                                                                                                              30            97 XX 30 with XX from 00 to 7F
+
+
+
+                 P2-5 to P2-12
+                                 Red low                                                                                                                               40            97 XX 40 with XX from 00 to 7F
+                                 Fuchsia low                                                                                                                           42            97 XX 42 with XX from 00 to 7F
+                                 Orange low                                                                                                                            4C            97 XX 4C with XX from 00 to 7F
+                                 Yellow low                                                                                                                            50            97 XX 50 with XX from 00 to 7F
+                                 White low                                                                                                                             52            97 XX 52 with XX from 00 to 7F
+                                 Lime                                                                                                                                  5C            97 XX 5C with XX from 00 to 7F
+                                 Red                                                                                                                                   60            97 XX 60 with XX from 00 to 7F
+                                 Fuchsia                                                                                                                               63            97 XX 63 with XX from 00 to 7F
+                                 Orange                                                                                                                                74            97 XX 74 with XX from 00 to 7F
+                                 Yellow                                                                                                                                7C            97 XX 7C with XX from 00 to 7F
+                                 White                                                                                                                                 7F            97 XX 7F with XX from 00 to 7F
+
+
+
+
+                                                                                                         14                                                                                 © 2022 Guillemot Corporation

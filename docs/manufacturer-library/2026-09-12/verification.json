@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-12",
+  "checks": "Existence and SHA256 of model-referenced originals; existence/hash of supplied text derivatives; unique file counts",
+  "counts": {
+    "models": 68,
+    "manufacturers": 15,
+    "model_source_references": 120,
+    "unique_verified_source_files": 114,
+    "unique_pdf_files": 92,
+    "new_pdf_files": 88,
+    "existing_pdf_files": 4,
+    "source_bytes": 561788520,
+    "grades": {
+      "ready-for-extraction": 26,
+      "partial": 21,
+      "protocol-gap": 21
+    },
+    "existing_sxm_profiles": 3
+  },
+  "issues": [],
+  "passed": true,
+  "report_local_links_valid": true,
+  "csv_json_model_counts_match": true
+}

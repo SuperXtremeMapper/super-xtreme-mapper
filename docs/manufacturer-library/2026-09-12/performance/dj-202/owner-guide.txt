@@ -1,0 +1,656 @@
+
+--- PDF PAGE 1 ---
+                                Startup Guide
+
+
+
+
+
+Before using this unit, carefully read “USING THE UNIT SAFELY” (p. 10) and “IMPORTANT NOTES” (p. 11).
+After reading, keep the document(s) where it will be available for immediate reference.
+
+Copyright © 2017 ROLAND CORPORATION
+
+--- PDF PAGE 2 ---
+  Contents
+
+
+  Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   2       Using Serato DJ Intro . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   8
+      About This Document . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   2               Starting Serato DJ Intro . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   8
+      Check the Included Items . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   2               Basic Operations in Serato DJ Intro  . . . . . . . . . . . . . . . . . . . . . . . . .   8
+      Downloading the Owner’s Manual . . . . . . . . . . . . . . . . . . . . . . . . . .   2                   Importing a Song  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   8
+                                                                                    Loading a Song . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   8
+  Installing the Software  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   3                    Playing a Song . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   9
+      System Requirements . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   3                   Monitoring Through Headphones . . . . . . . . . . . . . . . . . . . . .   9
+      Downloading the Software . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   3              Closing Serato DJ Intro  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   9
+           Downloading the DJ-202 USB Driver . . . . . . . . . . . . . . . . . . .   3
+           Downloading the Serato DJ Intro Software  . . . . . . . . . . . . .   3      USING THE UNIT SAFELY . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  10
+        Installing the Software  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   3
+          Mac OS Users . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   3      IMPORTANT NOTES . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  11
+          Windows Users  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   3
+                                                        Main Specifications . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  11
+  Panel Descriptions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   4
+      Browser Section . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   4
+      Deck Section  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   5
+      Mixer Section . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   6
+       Front Panel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   7
+       Rear Panel (Connecting Your Equipment) . . . . . . . . . . . . . . . . . . . .   7
+
+
+
+  Introduction
+
+
+ About This Document                                      Downloading the Owner’s Manual
+ The Startup Guide (which we’ll subsequently refer to as “this document”)      The owner’s manual is in PDF format. In order to read the owner’s manual,
+ explains how to obtain the software that you’ll need in order to use the          you’ll need a PDF reader installed on your computer.
+ DJ-202, how to make settings, and the names and functions of the parts.
+
+ Before you use the DJ-202, please read this document together with the     Downloading the DJ-202 owner’s manual
+ owner’s manual.
+ For details on how to obtain the owner’s manual, refer to “Downloading the   1. Start a browser and access the following Roland support
+ Owner’s Manual” (p. 2).                                         webpage.
+                                                                      http://www.roland.com/support/
+                                                                   2. Search for “DJ-202.” Check the Included Items
+                                                                   3. From the owner’s manuals, find “DJ-202 owner’s manual” and
+ The DJ-202 includes the following items. Please take a moment to confirm       click it.
+ that all of these items have been included with the DJ-202. If you find that
+ any item is missing, contact the nearest authorized Roland distributor in      4. Download the manual as directed by the screen.
+ your country.
+   55 Startup Guide (this document)                              Downloading the Serato DJ Intro owner’s manual
+   55 USB cable
+                                                                   1. Start a browser and access the following Serato DJ Intro
+                                                         webpage.
+                                                                        https://serato.com/dj/downloads
+                                                                   2. Click “Manuals and Downloads.”
+                                                                   3. From “Manuals and Downloads,” download the Serato DJ Intro
+                                                                owner’s manual.
+
+
+
+
+
+2
+
+--- PDF PAGE 3 ---
+  Installing the Software
+
+
+ System Requirements                                                  Installing the Software
+ Verify that your computer meets the system requirements before you             Install the software as follows.
+ proceed with installing the software.
+                           Mac OS                      Windows          Mac OS Users
+                         macOS 10.12                   Windows 10
+  Operating System            OS X 10.11                   Windows 8.1            1. Decompress the DJ-202 USB driver file that you downloaded.
+                           OS X 10.10                   Windows 7 SP1
+                                                       Intel® Core™ i7/1.07 GHz                    2. Open the decompressed file, and double-click “DJ202_USBDriver.
+  CPU/Clock                                         Intel® Core™ i5/1.07 GHz                       pkg.”
+                                                       Intel® Core™ i3/1.07 GHz                     The installer starts.
+  Screen Resolution                             1280 x 720
+  Memory                                        4 GB                          3. Install the software as directed by the screen.
+  Free    HDD Space                                                 5                                           GB
+  USB                                                   Available                                             USB                                                                   2.0 port                     4. Decompress the Serato DJ Intro software file that you
+                                                           downloaded.
+ *  For the latest system requirements, refer to the Serato DJ Intro webpage.   5. Double-click the decompressed file.
+                                                                  The installer starts.
+                                                                   6. Read the license agreement, and if you accept the conditions,
+ Downloading the Software                                                click [Agree].
+ The DJ-202 USB driver and Serato DJ Intro are not included in the package.    7. When the following screen appears, drag and drop the
+ Download them from the Roland or Serato website.                         [Serato DJ Intro] icon into the Applications folder.
+
+ Downloading the DJ-202 USB Driver
+ The DJ-202 USB driver is software that outputs audio from your computer
+ to the DJ-202.
+
+Mac OS users
+1. Start a browser and access the following Roland support
+  webpage.
+  http://www.roland.com/support/                                            This completes the installation.
+2. Search for “DJ-202.”
+3. In downloads, find “DJ-202 Driver for macOS / OS X” and click it.   Windows Users
+4. Download the driver as directed by the screen.                                                                   1. Right-click the DJ-202 USB driver folder that you downloaded,
+                                                       and choose “Extract all.”Windows 10 users
+                                                                  The folder is decompressed.
+1. Connect your internet-connected computer to the DJ-202’s       2. Open the decompressed folder, and double-click “Setup.exe.”
+  USB port.                                                       The installer starts.
+2. Power-on the DJ-202.                                            3. Install the software as directed by the screen.
+3. Download the driver as directed by the screen.                   4. Right-click the Serato DJ Intro software folder that you
+                                                           downloaded, and choose “Extract all.”
+Users of other than Windows 10                                    The folder is decompressed.
+                                                                   5. Double-click the decompressed file.1. Start a browser and access the following Roland support                                                                  The installer starts.  webpage.
+                                                                   6. Read the license agreement, and if you accept the conditions,  http://www.roland.com/support/                                                           choose [I agree to the license terms and conditions] and click
+2. Search for “DJ-202.”                                                             [Install].
+                                                                                         Installation begins.
+3. In downloads, find “DJ-202 Driver for Windows **” and click it.
+                                                                   7. When the following screen appears, click [Close].
+4. Download the driver as directed by the screen.
+
+
+ Downloading the Serato DJ Intro Software
+1. Start a browser and access the following Serato DJ Intro
+  webpage.
+  https://serato.com/dj/intro/downloads
+2. Click “DOWNLOAD SERATO DJ INTRO.”
+3. Enter your email address, and click “CONTINUE.”
+4. Enter your password and country, and click “CONTINUE.”              This completes the installation.
+  An email is sent to the address you specified.
+5. Click “Download Serato DJ Intro” as directed by the email.
+6. Follow the instructions as directed by the screen, then
+  download the Serato DJ Intro.
+
+
+
+
+                                                                                    3
+
+--- PDF PAGE 4 ---
+  Panel Descriptions
+
+
+ The top panel of the DJ-202 is divided into three sections by function: browser, deck, and mixer.
+ Phones jack is located on the front side, and input/output jacks are located on the rear side.
+ For details about each part, refer to the DJ-202 owner’s manual and the Serato DJ Intro manual.
+
+
+                            2                         1                         2
+
+
+
+
+
+                                                      3
+
+
+
+                       1  Browser section
+
+                       2 Deck section
+
+                       3  Mixer section
+
+
+
+
+ Browser Section
+ Use these controls to operate Serato DJ Intro and load songs.
+
+
+
+
+
+                  1         2         1
+
+
+ 1  [LOAD] buttons
+ Load a song selected on Serato DJ Intro into a deck.
+
+  [SHIFT] + [LOAD]                   Sorts the song library by SONG or BPM.
+
+ 2  Rotary selector
+ Turn this knob to move the cursor up/down. Press this knob to move the
+ cursor to a lower level.
+
+  [SHIFT] + Press the knob         Moves the cursor to a higher level.
+
+
+
+
+
+4
+
+--- PDF PAGE 5 ---
+                                                                                                   Panel Descriptions
+
+
+Deck Section
+The deck sections located at the left and right control four decks (left: decks 1 and 3, right: decks 2 and 4).
+
+                                                           7  Pad Mode select
+                                                                   Here you can select the control mode of the performance pads.
+                          13                                 [HOT CUE] button
+                                                                               Selects hot cue mode.
+                                                      12        [LOOP] button
+                                                                               Selects loop mode.
+                                                          [SEQUENCER] button    2                                                                               Selects sequencer mode.
+                                                                                                                                               Selects pattern mode.
+                            1                                                    [SHIFT] + [SEQUENCER]           Switches the sequencer’s pattern.
+
+                                                           [SAMPLER] button
+                                                                               Selects sampler mode.
+
+                                                           8  Performance pads
+                                                                 Use these pads to perform in the pad mode that you’ve selected.
+
+                                                           9 PARAM area
+                                                                   Here you can specify the value of the parameter that’s operated by the
+                                                                   performance pads.
+    3                                                11
+                                                                10 [KEY LOCK] button
+                            7                                     Turns the key lock function on/off.
+    4                                                10              [SHIFT] + [KEY LOCK]               Specifies the variable range of the Tempo slider.
+
+    5                                                          11 [DECK 3], [DECK 4] buttons
+                            8                     9          Switch the deck (left: decks 1 and 3, right: decks 2 and 4) to be operated.
+    6                                                          12 Tempo slider
+                                                                           Adjusts the playback speed of the song.
+
+                                                                13 FX 1, FX 2 area
+                                                                   Here you can adjust the effects (FX 1: decks 1 and 3, FX 2: decks 2 and 4).
+                                                                    [LEVEL] knob
+1  Jog dial                                                              Adjust the character of the effect.
+Controls scratch and pitch bend (playback speed adjustment).                       [SHIFT] + [LEVEL] knob            Adjusts the time for which the effect is applied.
+                                 Performs scratch if the VINYL mode is on, or performs pitch Rotate the top surface
+                            bend if the button is off.                                Effect buttons [1]–[3] Rotate the outer edge            Performs pitch bend.
+ [SHIFT] + rotate the top surface    Rapidly moves the playback location.                     Turn the effect on/off.
+                                                                                                    [SHIFT] + Effect button          Changes the effect type.
+
+2  [VINYL] button                                                                    [TAP] button
+Turns VINYL mode on/off.                                            The interval at which you press this button (tap tempo) specifies the
+                                                                            reference tempo of the effect.
+3  [SHIFT] button                                                                                          If you long-press the button, the specified tempo is reset.
+You can recall other functions by holding down this button and pressing
+another button.
+
+4  [SYNC] button
+Automatically matches the tempo (pitch) of multiple songs.
+ [SHIFT] + [SYNC]                  Cancels SYNC.
+
+5  [CUE u] button
+Specifies, plays, or recalls a temporary cue point.
+6 [r] button
+Plays or pauses the song.
+ [SHIFT] + [r]                   Returns to the temporary cue point, and plays.
+
+
+
+
+
+                                                                                    5
+
+--- PDF PAGE 6 ---
+Panel Descriptions
+
+
+ Mixer Section
+ This is a four-channel mixer. Here you can adjust the sound, connect sounds, and turn headphone cue on/off.
+
+                                                            1  [TRIM] knobs
+                                                                           Adjust the volume.
+
+                                                            2  [HI], [MID], [LOW] knobs
+                                                                           Boost/cut the volume of the high-frequency, mid-frequency, and low-             1                              1                                                                       frequency regions.
+                        7
+                                                            3  [FILTER] knobs
+                                                                           Applies a filter to each channel.
+                        8                                                                       If you turn the [FILTER] knob toward the right, only the high-frequency
+                                                                     range is heard.
+             2                              2                                If you turn the knob toward the left, only the low-frequency range is heard.
+                        9
+                                                            4  Channel [CUE] buttons
+                                                                       Turn cue on/off for each channel. The sound of channels whose [CUE]
+                          10                                        button is lit is output from the headphones.
+                                                                                                                   You can specify the tempo of the track by the interval at
+             3                              3                           [SHIFT] + [CUE]                 which you repeatedly press the [CUE] button (Tap Tempo
+                          11                                                                                                      function).
+
+                          13             4                                           4               5  Channel faders
+                                                                           Adjust the output level of each channel.
+
+                                                            6  Cross fader
+                                                                         Switches between the audio output of the left and right decks.
+             5                              5
+                                                            7 [MASTER LEVEL] knob
+                                                                            Adjusts the master output level.
+                              12
+                                                            8  [MIXING] knob
+                                                                            Adjusts the volume balance of the channel whose Channel [CUE] button is
+                                                                                                                             lit and the master output for phones output.
+
+                            6                               9 [PHONES LEVEL] knob
+                                                                            Adjusts the volume of the headphones.
+
+                                                                 10 [SAMPLER LEVEL] knob
+                                                                            Adjusts SAMPLER output level.
+
+                                                                 11 SAMPLER [CUE] button
+                                                                         Turns SAMPLER output cue on/off.
+
+                                                                 12 MASTER level indicator
+                                                                                Indicates the master output level.
+
+                                                                 13 SEQUENCER area
+
+                                                                [SYNC] button
+                                                                         Synchronizes the tempo of the sequencer to the tempo of Serato DJ Intro.
+                                                                                                     [SHIFT] + [SYNC]                  Disables tempo synchronization.
+
+                                                                [START/STOP] button
+                                                                               Plays/stops the pattern.
+                                                                                                                     The interval at which you press this button (tap tempo)                                                                                                     [SHIFT] + [START/STOP]                                                                                                                                                        specifies the tempo of the sequencer.
+
+
+
+
+
+6
+
+--- PDF PAGE 7 ---
+                                                                                                   Panel Descriptions
+
+
+Front Panel
+
+   Headphones                                                 1  [PHONES] jacks
+                             1                                Connect headphones here.
+
+
+
+
+
+Rear Panel (Connecting Your Equipment)
+
+                                                                                                                                                  Microphone
+
+         To prevent malfunction and equipment failure, always turn down the volume, and turn off all the
+          units before making any connections.
+
+
+
+
+                                 1      2                                             3      4    5
+
+
+
+
+
+                                                                             MIDI device
+
+
+
+
+              Computer
+
+
+
+
+
+                                                                                                                Powered speaker, amp
+
+
+
+1 PC port                                                  4 MIC IN jack
+Use the included USB cable to connect this port to your computer.           Connect your microphone here.
+When this is connected, power is supplied from the computer.
+                                                           5  [MIC SENS] knob
+2  MIDI OUT connector                                                 Adjusts the mic input sensitivity.
+This outputs MIDI messages such as MIDI clock.
+
+3 MASTER OUT L, R jacks
+Connect your powered speakers or power amp here.
+
+
+
+
+
+                                                                                    7
+
+--- PDF PAGE 8 ---
+  Using Serato DJ Intro
+
+
+ This document explains basic use of Serato DJ Intro. For details on the functions and use of the software, refer to the Serato DJ Intro software manual.
+
+ Starting Serato DJ Intro
+
+ *  Before turning the unit on/off, always be sure to turn the volume down. Even with the volume turned down, you might hear some sound when
+    switching the unit on/off. However, this is normal and does not indicate a malfunction.
+
+1. Turn on the power of the computer.                            Windows 7
+2. Connect the DJ-202 (USB port) to the computer.                           In the [Start] menu, click [All Programs] & [Serato] &
+  The power of the DJ-202 turns on.                                               [Serato DJ Intro] & [Serato DJ Intro] icon.
+3. Turn on the power of the equipment that’s connected to the
+  DJ-202.                                                   Windows 8.1
+4. Start Serato DJ Intro.                                                           In the [App View], click the [Serato DJ Intro] icon.
+
+  Mac OS
+    In the Finder, open the [Applications] folder and double-click the          Windows 10
+    [Serato DJ Intro] icon.                                                            In the [Start] screen or [App View], click the [Serato DJ Intro] icon.
+
+
+
+
+ Basic Operations in Serato DJ Intro
+ Songs shown in the browser view can be imported into a deck area, and controlled from the DJ-202.
+
+
+                                                                      1 Deck section
+
+              1                2                1                                                                      4 Waveform panel
+
+                                                                      5  crate panel
+
+                                                                      6  Library
+
+
+     3                             4
+
+
+
+
+
+ Importing a Song                                           Loading a Song
+ Here we’ll explain typical operations for importing a song.                      Here’s how to load a song so that it can be output.
+
+ *  Serato DJ Intro provides a variety of ways to import songs. For details,     1. On the DJ-202, hold down the [SHIFT] button and press the
+     refer to the Serato DJ Intro software manual.                            rotary selector to move the cursor to the crate panel.
+ *   If you’re using Serato Corporation’s DJ software (Scratch Live, ITCH,        2. Turn the DJ-202’s rotary selector to move to the folder
+    Serato DJ) and you have already created a song library, the library you       containing the song that you want to load; then press the
+    created can be used as-is.                                            rotary selector.
+                                                                  The cursor moves to the library.
+1. In Serato DJ Intro, click the [Files] key.
+  The [Files] panel opens, and the files on your computer and on the         3. Turn the rotary selector to move to the song that you want to
+  peripheral devices connected to your computer are displayed.               load.
+                                                                   4. On the DJ-202, press the [LOAD] button of the deck into which
+2. In the [Files] panel, click the folder that contains the songs you     you want to load the song.
+  want to add to the library.
+3. Drag and drop the selected folder onto the crate panel.
+  A crate is created, and the songs are added to the library.
+
+
+
+
+
+8
+
+--- PDF PAGE 9 ---
+                                                                                               Using Serato DJ Intro
+
+
+ Playing a Song                                               Monitoring Through Headphones
+1. Set the DJ-202’s knobs and switches as follows.                   1. Set the DJ-202’s knobs as follows.
+
+   [MASTER LEVEL] knob                   Turned all the way to the left                            [MIXING] knob
+                                                                                                                     Turned all the way to the left    [TRIM] knobs                                                                    [PHONES LEVEL] knob
+     [HI], [MID], [LOW] knobs                  Center
+    [FILTER] knobs
+    Channel faders                         Lowest position                          2. Press the channel [CUE] button of the channel that you want to
+                                                                  monitor.
+2. Press the [r] button to play back the loaded song.              3. Turn the [PHONES LEVEL] knob toward the right to adjust the
+                                                       headphone level.3. Move the channel fader upward and turn the [TRIM] knob
+  toward the right to adjust the volume.
+  Adjust the volume so that the channel level indicator is lit as far as the
+  orange portion.
+
+4. Turn the [MASTER LEVEL] knob toward the right to adjust the
+  level of the speakers.
+
+
+
+
+
+ Closing Serato DJ Intro
+
+1. Close the Serato DJ Intro screen.
+
+  Mac OS
+    In the upper left of the Serato DJ Intro screen, click the [6] (red: close)
+    button.
+
+  Windows
+    In the upper right of the Serato DJ Intro screen, click the [X] button.
+
+  A confirmation screen appears.
+
+2. Click [Yes] to close Serato DJ Intro.
+3. Turn off the power of the equipment that’s connected to the
+  DJ-202.
+4. Turn off the power of the computer.
+
+
+
+
+
+                                                                                    9
+
+--- PDF PAGE 10 ---
+  USING THE UNIT SAFELY
+
+
+
+ About  WARNING and   CAUTION Notices           About the Symbols
+
+                                                              The   symbol alerts the user to important instructions or
+                  Used for instructions intended to alert the                                                                    warnings.The specific meaning of the symbol is
+                     user to the risk of death or severe injury                                                                 determined by the design contained within the triangle. In
+                    should the unit be used improperly.                                                                     the case of the symbol at left, it is used for general
+                                                                            cautions, warnings, or alerts to danger.
+                  Used for instructions intended to alert the
+                     user to the risk of injury or material               The   symbol alerts the user to items that must never be
+                damage should the unit be used                      carried out (are forbidden). The specific thing that must
+                     improperly.                                     not be done is indicated by the design contained within
+                                                                     the circle. In the case of the symbol at left, it means that
+                      * Material damage refers to damage or                                                                     the unit must never be disassembled.
+                      other adverse effects caused with
+                       respect to the home and all its                  The   symbol alerts the user to things that must be
+                         furnishings, as well to domestic animals             carried out. The specific thing that must be done is
+                       or pets.                                           indicated by the design contained within the circle. In the
+                                                                     case of the symbol at left, it means that the power-cord
+                                                                  plug must be unplugged from the outlet.
+
+                                    ALWAYS OBSERVE THE FOLLOWING
+
+           WARNING                      WARNING                        CAUTION
+ Do not disassemble or modify by yourself      Turn off the unit if an abnormality or                                                                                  Route all power cords and cables in such a
+ Do not carry out anything unless you are instructed to          malfunction occurs                                                                         way as to prevent them from getting
+ do    so in the owner’s manual. Otherwise, you risk causing             Immediately                                                                                turn                                                                                 the                                                                                              unit off,                                                                                and request                                                                                                                  servicing                                                                                     entangled malfunction.                                                          by your retailer,                                                                               the                                                                                       nearest                                                                                     Roland                                                                                                        Service                                                                                                                   Center,
+                                                                     or an authorized Roland distributor, as listed on the                     Injury could result if someone were to trip on a cable
+ Do not repair or replace parts by yourself          “Information” when:                                        and cause the unit to fall or topple.
+ Refer all servicing to your retailer, the nearest Roland                       55 If smoke or unusual odor occurs; or
+ Service         Center,                or an authorized Roland distributor, as                      55 Objects have fallen into, or liquid has been spilled onto the     Avoid climbing on top of the unit, or  listed on         the “Information.”
+                                                                                    unit; or                                       placing heavy objects on it
+ Do not use or store in the following types             55 The unit has been exposed to rain (or otherwise has become       Otherwise, you risk injury as the result of the unit
+ of locations                                                          wet); or                                                        toppling over or dropping down.
+                                                                                      55 The unit does not appear to operate normally or exhibits a   55 Subject to temperature extremes (e.g., direct sunlight              marked change in performance.
+     in an enclosed vehicle, near a heating duct, on top of                                                    Disconnect all cords/cables before moving
+    heat-generating equipment); or are                 Be cautious to protect children from injury     the unit
+   55 Damp (e.g., baths, washrooms, on wet floors); or are
+                                                              Always make sure that an adult is on hand to provide             Damage or malfunction may result if you fail to
+   55 Exposed to steam or smoke; or are                                supervision and guidance when using the unit in places              disconnect all cables before moving the unit.
+   55 Subject to salt exposure; or are                             where children are present, or when a child will be using
+   55 Exposed to rain; or are                                         the unit.
+   55 Dusty or sandy; or are                      Do not drop or subject to strong impact
+   55 Subject to high levels of vibration and shakiness; or are            Otherwise, you risk causing damage or malfunction.
+   55 Placed in a poorly ventilated location.
+
+ Do not place in an unstable location
+ Otherwise, you risk injury as the result of the unit
+ toppling over or dropping down.
+
+ Avoid extended use at high volume
+ Use of the unit at high volume for extended periods
+ of time may cause hearing loss. If you ever experience
+ any hearing loss or ringing in the ears, you should
+ immediately stop using the unit and consult a
+ specialized physician.
+
+ Do not allow foreign objects or liquids to
+ enter unit; never place containers with
+ liquid on unit
+ Do not place containers containing liquid (e.g., flower
+ vases) on this product. Never allow foreign objects (e.g.,
+ flammable objects, coins, wires) or liquids (e.g., water or
+  juice) to enter this product. Doing so may cause short
+  circuits, faulty operation, or other malfunctions.
+
+
+
+
+
+10
+
+--- PDF PAGE 11 ---
+ IMPORTANT NOTES
+
+
+Placement                                    Additional Precautions                           Intellectual Property Right
+                                                                       data stored                                                                                      within                                                                                        the unit                                                                                         can be lost                                                                                                               as the                                                                                                                                                                                                   is forbidden                                                                                                                                 by                                                                                                                                            law                                                                                                                                                               to make                                                                                                                                             an                                                                                                                                                            audio                                                                                                                                                                                      recording,                                                                                                                                                                              video                                                                                                                                    result                55 It        unit         may                  interfere                        with                              radio and                                           television                                                   reception.            55 Any 55 This                                                                          of equipment                                                                                                         failure,                                                                                                incorrect                                                                                                      operation,                                                                                                                                   etc.                                                                                                      To protect                                                                                                                                               recording,                                                                                                                                copy                                                                                                                                                         or                                                                                                                                                                       revision                                                                                                                                                                           of a                                                                                                                                                                                        third                                                                                                                                                                                               party’s                                                                                                                                                                          copyrighted                                                                                                                                                                  work  Do not         use                this                   unit in the                                 vicinity                                     of such                                                receivers.
+ 55 Noise may be produced if wireless communications devices,           yourselfhabit of creatingagainst theregularirretrievablebackupslossof theof data,data you’vetry to makestoreda in          (musicalother work),work,whethervideo work,in wholebroadcast,or in part,liveandperformance,distribute, orsell,
+   such as cell phones, are operated in the vicinity of this unit.           the unit.                                                                    lease, perform, or broadcast it without the permission of the   Such noise could occur when receiving or initiating a call, or
+   while conversing. Should you experience such problems, you         55 Roland assumes no liability concerning the restoration of any         copyright owner.
+                                                                      stored content that has been lost.
+   should relocate such wireless devices so they are at a greater                                                                                            55 Do not use this product for purposes that could infringe on a
+   distance from this unit, or switch them off.                               55 Use a reasonable amount of care when using the unit’s               copyright held by a third party. We assume no responsibility
+                                                                       buttons,                                                                                                 sliders, or                                                                                      other                                                                                                        controls;                                                                                    and                                                                                when                                                                                                            using                                                                                                                                                                  its jacks           whatsoever                                                                                                                                             with regard                                                                                                                                                                 to any                                                                                                                                                                  infringements                                                                                                                                                                                             of third-party       moved              from one                           location                                  to another                                     where                                                the 55 When                                                          and connectors.                                                                     Rough                                                                                       handling                                                                                          can                                                                                                        lead                                                                                                               to                                                                                                                  malfunctions.                                                                                                                                         copyrights arising                                                                                                                                            through                                                                                                                                                        your                                                                                                                                                         use of this product.   temperature               and/or                     humidity                                            is very                                            different,                                            water
+   droplets (condensation) may form inside the unit. Damage            55 When disconnecting all cables, grasp the connector itself—
+   or malfunction may result if you attempt to use the unit in            never pull on the cable. This way you will avoid causing                55 The copyright of content in this product (the sound waveform
+    this condition. Therefore, before using the unit, you must               shorts, or damage to the cable’s internal elements.                     data, style data, accompaniment patterns, phrase data, audio
+                                                                                                                                    loops and image data) is reserved by Roland Corporation.   allow it to stand for several hours, until the condensation has         55 To avoid disturbing others nearby, try to keep the unit’s
+   completely evaporated.                                      volume at reasonable levels.                                               55 Purchasers of this product are permitted to utilize said
+ 55 Depending on the material and temperature of the surface                                                                           content (except song data such as Demo Songs) for the
+   on which you place the unit, its rubber feet may discolor or            55 Continuous playing may cause dis-coloration of the pad, but           creating, performing, recording and distributing original
+   mar the surface.                                                            this will not affect the pad’s function.                               musical works.
+                                                                                    55 Do not use connection cables that contain a built-in resistor.                                                                                                                                                           of                                                                                                                                                                               this                                                                                                                                              product                                                                                                                                                                     are NOT permitted                                                                                                                                                                                      to extract                                                                                                                                                                       55 Purchasers 55 Do not place containers or anything else containing liquid on                                                                                                                                                said content                                                                                                                                                                       in                                                                                                                                                                        original                                                                                                                                                                or modified                                                                                                                                                                           form, for the                                                                                                                                                                   purpose
+   top of this unit. Also, whenever any liquid has been spilled                                                                                                                                                of distributing recorded medium of said content or making
+   on the surface of this unit, be sure to promptly wipe it away                                                                                                             them available on a computer network.
+   using a soft, dry cloth.
+                                                                                                                                                                       55 ASIO is a trademark and software of Steinberg Media
+                                                                                                                                    Technologies GmbH.
+Maintenance                                                                                                                                                                       55 This product contains eParts integrated software platform of
+ 55 Never use benzine, thinners, alcohol or solvents of any kind,                                                                eSOL Co.,Ltd. eParts is a trademark of eSOL Co., Ltd. in Japan.
+   to avoid the possibility of discoloration and/or deformation.
+                                                                                                                                                                       55 Roland and SLICER are either registered trademarks or
+                                                                                                                                trademarks of Roland Corporation in the United States and/
+Repairs and Data                                                                                                                  or other countries.
+ 55 Before sending the unit away for repairs, be sure to make                                                                                                 55 Company names and product names appearing in this
+   a backup of the data stored within it; or you may prefer to                                                                 document are registered trademarks or trademarks of their
+   write down the needed information. Although we will do our                                                                               respective owners.
+   utmost to preserve the data stored in your unit when we carry
+   out repairs, in some cases, such as when the memory section
+    is physically damaged, restoration of the stored content may
+   be impossible. Roland assumes no liability concerning the
+   restoration of any stored content that has been lost.
+
+
+
+  Main Specifications
+
+ Roland DJ-202: DJ Controller
+
+   Power supply    USB bus power
+    Current draw     500 mA
+                   478 (W) x 297 (D) x 62 (H) mm   Dimensions                      18-7/8 (W) x 18-7/8 (D) x2-1/2 (H) inches
+                        2.1 kg   Weight                   4 lbs 11 oz
+                      Startup Guide    Accessories                  USB cable
+
+
+  *  This document explains the specifications of the product at the time
+     that the document was issued. For the latest information, refer to the
+    Roland website.
+
+
+
+
+
+                                                                                   11
+
+--- PDF PAGE 12 ---

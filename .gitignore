@@ -48,3 +48,10 @@ docs/plans/
 docs/Codex_Improvement_Suggestions.md
 docs/HANDOFF.md
 docs/KNOWN_ISSUES.md
+
+# LLVM profiling artifacts
+default.profraw
+*.profraw
+
+# Superpowers tooling cache
+.superpowers/

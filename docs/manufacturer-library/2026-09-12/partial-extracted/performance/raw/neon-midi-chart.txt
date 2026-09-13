@@ -1,0 +1,774 @@
+
+--- PDF PAGE 1 ---
+NEON MIDI MAP
+
+
+
+
+
+SAMPLE MODE 1st layer
+
+
+             Pad 1-8             Pad 1-8 (Shift)       Pad 1-8 + Trax (move)  MODE + PAD 1-8     REPEAT + PAD 1-8   SYNC + PAD 1-8     BANK button      BANK button (Shift)
+
+ Bank A       97,00-07,pp           97,20-27,pp           BB,00-07,pp          9B,48-4f,pp           9B,50-57,pp           9B,58-5f,pp           93,00,pp             93,45,pp
+
+ Bank B       97,00-07,pp           97,20-27,pp           BB,00-07,pp          9B,48-4f,pp           9B,50-57,pp           9B,58-5f,pp           94,00,pp             94,45,pp
+
+ Bank C        97,00-07,pp           97,20-27,pp           BB,00-07,pp          9B,48-4f,pp           9B,50-57,pp           9B,58-5f,pp           95,00,pp             95,45,pp
+
+ Bank D       97,00-07,pp           97,20-27,pp           BB,00-07,pp          9B,48-4f,pp           9B,50-57,pp           9B,58-5f,pp           96,00,pp             96,45,pp
+
+ Bank C+D                                                                                                                                                           96,49,pp
+
+
+           MODE           MODE (Shift)       REPEAT          REPEAT (Shift)      SYNC            SYNC (Shift)           Velocity ON           After Touch ON
+
+ Bank A       96,0D,pp             96,52,pp             96,0E,pp             96,53,pp              96,0F,pp             96,54,pp              B7,00-07,pp           A7,00-07,pp
+
+ Bank B       96,0D,pp             96,52,pp             96,0E,pp             96,53,pp              96,0F,pp             96,54,pp              B7,00-07,pp           A7,00-07,pp
+
+ Bank C       96,0D,pp             96,52,pp             96,0E,pp             96,53,pp              96,0F,pp             96,54,pp              B7,00-07,pp           A7,00-07,pp
+
+ Bank D       96,0D,pp             96,52,pp             96,0E,pp             96,53,pp              96,0F,pp             96,54,pp              B7,00-07,pp           A7,00-07,pp
+
+ Bank C+D
+
+
+
+
+            LED 1-5 PAD 1       LED 1-5 PAD 2      LED 1-5 PAD 3      LED 1-5 PAD 4      LED 1-5 PAD 5      LED 1-5 PAD 6      LED 1-5 PAD 7      LED 1-5 PAD 8
+
+ Bank A       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank B       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank C       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank D       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+
+
+
+                                                                                                                                      When switched from any Deck mode to Sampler Mode,
+ TRAX-encoder  CC                 Note             CC (Shift)            Note (Shift)         Pad 1-8 + Trax (move)                           the following Note must be adopted for Bank A-D
+ Deck A        B6,00,pp              96,*,pp               B6,45,pp              96,5F,pp             BB,00-07,pp                                     *: From Deck A      96,20,pp
+ Deck B        B6,00,pp              96,*,pp               B6,45,pp              96,5F,pp             BB,00-07,pp                                     *: From Deck B      96,21,pp
+ Deck C        B6,00,pp              96,*,pp               B6,45,pp              96,5F,pp             BB,00-07,pp                                     *: From Deck C      96,22,pp
+ Deck D        B6,00,pp              96,*,pp               B6,45,pp              96,5F,pp             BB,00-07,pp                                     *: From Deck D      96,23,pp
+
+
+
+
+ LOOP-encoder  CC                 Note             CC (Shift)            Note (Shift)
+
+ Bank A        B6,*,pp                96,*1,pp              B6,*2,pp              96,*3,pp
+
+ Bank B        B6,*,pp                96,*1,pp              B6,*2,pp              96,*3,pp
+
+ Bank C        B6,*,pp                96,*1,pp              B6,*2,pp              96,*3,pp
+
+ Bank D        B6,*,pp                96,*1,pp              B6,*2,pp              96,*3,pp
+
+
+When switched from any Deck mode to Sampler Mode, the following Note must be adopted for Bank A-D
+
+ *: From Deck A     B6,04,pp               *1: From Deck A    96,24,pp            *2: From Deck A    B6,49,pp            *3: From Deck A    96,63,pp
+
+ *: From Deck B     B6,05,pp               *1: From Deck B    96,25,pp            *2: From Deck B    B6,4A,pp            *3: From Deck B    96,64,pp
+
+ *: From Deck C     B6,06,pp               *1: From Deck C    96,26,pp            *2: From Deck C    B6,4B,pp            *3: From Deck C    96,65,pp
+
+ *: From Deck D     B6,07,pp               *1: From Deck D     96,27,pp            *2: From Deck D    B6,4C,pp            *3: From Deck D    96,66,pp
+
+--- PDF PAGE 2 ---
+NEON MIDI MAP
+
+
+
+
+
+SAMPLE MODE 2st layer
+
+
+             Pad 1-8             Pad 1-8 (Shift)       Pad 1-8 + Trax (move)  CENSOR + PAD 1-8   SLIP + PAD 1-8      DECK SYNC + PAD 1-8  DECK button       DECK button (Shift)
+
+ Deck A        97,60-67,pp           97,40-47,pp          B6,00,pp              97,60-67,pp           97,60-67,pp           97,60-67,pp            93,01,pp               93,47,pp
+
+ Deck B       98,60-67,pp          98,40-47,pp          B6,00,pp             98,60-67,pp          98,60-67,pp          98,60-67,pp           94,01,pp              94,47,pp
+
+ Deck C        99,60-67,pp           99,40-47,pp          B6,00,pp             99,60-67,pp           99,60-67,pp           99,60-67,pp           95,01,pp              95,47,pp
+
+ Deck D       9A,60-67,pp          9A,40-47,pp          B6,00,pp             9A,60-67,pp          9A,60-67,pp          9A,60-67,pp           96,01,pp              96,47,pp
+
+ Deck C+D                                                                                                                                                                                                          ---*
+
+
+           CENSOR          CENSOR (Shift)      SLIP               SLIP (Shift)        DECK SYNC        DECK SYNC (Shift)      Velocity ON            Velocity ON (Shift)
+
+ Deck A        93,10,pp              93,55,pp                93,11,pp               93,56,pp               93,12,pp               93,57,pp              B7,60-67,pp           B7,40-47,pp
+
+ Deck B        94,10,pp              94,55,pp                94,11,pp              94,56,pp              94,12,pp              94,57,pp              B8,60-67,pp          B8,40-47,pp
+
+ Deck C        95,10,pp              95,55,pp                95,11,pp              95,56,pp                95,11,pp               95,57,pp              B9,60-67,pp          B9,40-47,pp
+
+ Deck D        96,10,pp              96,55,pp                96,11,pp              96,56,pp               96,11,pp               96,57,pp              BA,60-67,pp          BA,40-47,pp
+
+ Deck C+D
+
+
+                After Touch ON        After Touch ON (Shift)
+
+ Deck A       A7,60-67,pp           A7,40-47,pp
+
+ Deck B       A8,60-67,pp          A8,40-47,pp
+
+ Deck C       A9,60-67,pp          A9,40-47,pp
+
+ Deck D       AA,60-67,pp          AA,40-47,pp
+
+ Deck C+D
+
+
+
+
+            LED 1-5 PAD 1       LED 1-5 PAD 2      LED 1-5 PAD 3      LED 1-5 PAD 4      LED 1-5 PAD 5      LED 1-5 PAD 6      LED 1-5 PAD 7      LED 1-5 PAD 8
+
+ Bank A       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank B       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank C       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank D       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+
+
+
+ TRAX-encoder  CC                 Note             CC (Shift)            Note (Shift)         Pad 1-8 + Trax (move)
+
+ Deck A        B6,00,pp             96,20,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck B        B6,00,pp              96,21,pp              B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck C        B6,00,pp             96,22,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck D        B6,00,pp             96,23,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+
+
+
+ LOOP-encoder CC                 Note             CC (Shift)            Note (Shift)
+
+ Deck A       B6,04,pp             96,24,pp             B6,49,pp             96,63,pp
+
+ Deck B        B6,05,pp             96,25,pp             B6,4A,pp             96,64,pp
+
+ Deck C        B6,06,pp             96,26,pp             B6,4B,pp             96,65,pp
+
+ Deck D        B6,07,pp              96,27,pp             B6,4C,pp             96,66,pp
+
+--- PDF PAGE 3 ---
+NEON MIDI MAP
+
+
+
+
+
+SLICER MODE 1st layer
+
+
+             Pad 1-8             Pad 1-8 (Shift)       Pad 1-8 + Trax (move)  CENSOR + PAD 1-8   SLIP + PAD 1-8      DECK SYNC + PAD 1-8  DECK button       DECK button (Shift)
+
+ Deck A       97,08-0F,pp           97,28-2F,pp           B6,00,pp              97,08-0F,pp           97,08-0F,pp           97,08-0F,pp            93,01,pp              93,48,pp
+
+ Deck B       98,08-0F,pp           98,28-2F,pp          B6,00,pp             98,08-0F,pp          98,08-0F,pp          98,08-0F,pp           94,01,pp              94,48,pp
+
+ Deck C       99,08-0F,pp           99,28-2F,pp          B6,00,pp             99,08-0F,pp           99,08-0F,pp           99,08-0F,pp           95,01,pp              95,48,pp
+
+ Deck D       9A,08-0F,pp          9A,28-2F,pp          B6,00,pp             9A,08-0F,pp          9A,08-0F,pp          9A,08-0F,pp           96,01,pp              96,48,pp
+
+ Deck C+D                                                                                                                                                                                                          ---*
+
+
+           CENSOR          CENSOR (Shift)      SLIP               SLIP (Shift)        DECK SYNC        DECK SYNC (Shift)      Velocity ON            Velocity ON (Shift)
+
+ Deck A        93,10,pp              93,55,pp                93,11,pp               93,56,pp               93,12,pp               93,57,pp              B7,08-0F,pp           B7,28-2F,pp
+
+ Deck B        94,10,pp              94,55,pp                94,11,pp              94,56,pp              94,12,pp              94,57,pp             B8,08-0F,pp          B8,28-2F,pp
+
+ Deck C        95,10,pp              95,55,pp                95,11,pp              95,56,pp                95,11,pp               95,57,pp              B9,08-0F,pp           B9,28-2F,pp
+
+ Deck D        96,10,pp              96,55,pp                96,11,pp              96,56,pp               96,11,pp               96,57,pp             BA,08-0F,pp          BA,28-2F,pp
+
+ Deck C+D
+
+
+                After Touch ON        After Touch ON (Shift)
+
+ Deck A       A7,08-0F,pp           A7,28-2F,pp
+
+ Deck B       A8,08-0F,pp          A8,28-2F,pp
+
+ Deck C       A9,08-0F,pp          A9,28-2F,pp
+
+ Deck D       AA,08-0F,pp          AA,28-2F,pp
+
+ Deck C+D
+
+
+
+
+            LED 1-5 PAD 1       LED 1-5 PAD 2      LED 1-5 PAD 3      LED 1-5 PAD 4      LED 1-5 PAD 5      LED 1-5 PAD 6       LED 1-5 PAD 7      LED 1-5 PAD 8
+
+ Bank A       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank B       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank C       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank D       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+
+
+
+ TRAX-encoder  CC                 Note             CC (Shift)            Note (Shift)         Pad 1-8 + Trax (move)
+
+ Deck A        B6,00,pp             96,20,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck B        B6,00,pp              96,21,pp              B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck C        B6,00,pp             96,22,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck D        B6,00,pp             96,23,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+
+
+
+ LOOP-encoder CC                 Note             CC (Shift)            Note (Shift)
+
+ Deck A       B6,04,pp             96,24,pp             B6,49,pp             96,63,pp
+
+ Deck B        B6,05,pp             96,25,pp             B6,4A,pp             96,64,pp
+
+ Deck C        B6,06,pp             96,26,pp             B6,4B,pp             96,65,pp
+
+ Deck D        B6,07,pp              96,27,pp             B6,4C,pp             96,66,pp
+
+--- PDF PAGE 4 ---
+NEON MIDI MAP
+
+
+
+
+
+SLICER MODE 2nd layer
+
+
+             Pad 1-8             Pad 1-8 (Shift)       Pad 1-8 + Trax (move)  CENSOR + PAD 1-8   SLIP + PAD 1-8      DECK SYNC + PAD 1-8  DECK button       DECK button (Shift)
+
+ Deck A        97,68-6F,pp           97,48-4F,pp          B6,00,pp              97,68-6F,pp           97,68-6F,pp           97,68-6F,pp            93,01,pp              93,48,pp
+
+ Deck B       98,68-6F.pp          98,48-4F,pp          B6,00,pp             98,68-6F.pp          98,68-6F.pp          98,68-6F.pp           94,01,pp              94,48,pp
+
+ Deck C        99,68-6F,pp           99,48-4F,pp          B6,00,pp             99,68-6F,pp           99,68-6F,pp           99,68-6F,pp           95,01,pp              95,48,pp
+
+ Deck D       9A,68-6F,pp          9A,48-4F,pp          B6,00,pp             9A,68-6F,pp          9A,68-6F,pp          9A,68-6F,pp           96,01,pp              96,48,pp
+
+ Deck C+D                                                                                                                                                                                                          ---*
+
+
+           CENSOR          CENSOR (Shift)      SLIP               SLIP (Shift)        DECK SYNC        DECK SYNC (Shift)      Velocity ON            Velocity ON (Shift)
+
+ Deck A        93,10,pp              93,55,pp                93,11,pp               93,56,pp               93,12,pp               93,57,pp              B7,68-6F,pp           B7,48-4F,pp
+
+ Deck B        94,10,pp              94,55,pp                94,11,pp              94,56,pp              94,12,pp              94,57,pp              B8,68-6F.pp          B8,48-4F,pp
+
+ Deck C        95,10,pp              95,55,pp                95,11,pp              95,56,pp                95,11,pp               95,57,pp              B9,68-6F,pp          B9,48-4F,pp
+
+ Deck D        96,10,pp              96,55,pp                96,11,pp              96,56,pp               96,11,pp               96,57,pp             BA,68-6F,pp          BA,48-4F,pp
+
+ Deck C+D
+
+
+                After Touch ON        After Touch ON (Shift)
+
+ Deck A       A7,68-6F,pp           A7,48-4F,pp
+
+ Deck B       A8,68-6F.pp          A8,48-4F,pp
+
+ Deck C       A9,68-6F,pp          A9,48-4F,pp
+
+ Deck D       AA,68-6F,pp          AA,48-4F,pp
+
+ Deck C+D
+
+
+
+
+            LED 1-5 PAD 1       LED 1-5 PAD 2      LED 1-5 PAD 3      LED 1-5 PAD 4      LED 1-5 PAD 5      LED 1-5 PAD 6       LED 1-5 PAD 7      LED 1-5 PAD 8
+
+ Bank A       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank B       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank C       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank D       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+
+
+
+ TRAX-encoder  CC                 Note             CC (Shift)            Note (Shift)         Pad 1-8 + Trax (move)
+
+ Deck A        B6,00,pp             96,20,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck B        B6,00,pp              96,21,pp              B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck C        B6,00,pp             96,22,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck D        B6,00,pp             96,23,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+
+
+
+ LOOP-encoder CC                 Note             CC (Shift)            Note (Shift)
+
+ Deck A       B6,04,pp             96,24,pp             B6,49,pp             96,63,pp
+
+ Deck B        B6,05,pp             96,25,pp             B6,4A,pp             96,64,pp
+
+ Deck C        B6,06,pp             96,26,pp             B6,4B,pp             96,65,pp
+
+ Deck D        B6,07,pp              96,27,pp             B6,4C,pp             96,66,pp
+
+--- PDF PAGE 5 ---
+NEON MIDI MAP
+
+
+
+
+
+HOT CUE MODE 1st layer
+
+
+             Pad 1-8             Pad 1-8 (Shift)       Pad 1-8 + Trax (move)  CENSOR + PAD 1-8   SLIP + PAD 1-8      DECK SYNC + PAD 1-8  DECK button       DECK button (Shift)
+
+ Deck A         97,10-17,pp             97,30-37,pp           B6,00,pp               97,10-17,pp              97,10-17,pp              97,10-17,pp             93,01,pp              93,46,pp
+
+ Deck B        98,10-17,pp            98,30-37,pp          B6,00,pp               98,10-17,pp             98,10-17,pp             98,10-17,pp            94,01,pp              94,46,pp
+
+ Deck C        99,10-17,pp            99,30,37,pp           B6,00,pp               99,10-17,pp             99,10-17,pp             99,10-17,pp             95,01,pp              95,46,pp
+
+ Deck D        9A,10-17,pp            9A,30-37,pp          B6,00,pp               9A,10-17,pp             9A,10-17,pp             9A,10-17,pp            96,01,pp              96,46,pp
+
+ Deck C+D                                                                                                                                                                                                          ---*
+
+
+           CENSOR          CENSOR (Shift)      SLIP               SLIP (Shift)        DECK SYNC        DECK SYNC (Shift)      Velocity ON            Velocity ON (Shift)
+
+ Deck A        93,10,pp              93,55,pp                93,11,pp               93,56,pp               93,12,pp               93,57,pp                B7,10-17,pp             B7,30-37,pp
+
+ Deck B        94,10,pp              94,55,pp                94,11,pp              94,56,pp              94,12,pp              94,57,pp               B8,10-17,pp            B8,30-37,pp
+
+ Deck C        95,10,pp              95,55,pp                95,11,pp              95,56,pp                95,11,pp               95,57,pp                B9,10-17,pp            B9,30,37,pp
+
+ Deck D        96,10,pp              96,55,pp                96,11,pp              96,56,pp               96,11,pp               96,57,pp               BA,10-17,pp            BA,30-37,pp
+
+ Deck C+D
+
+
+                After Touch ON        After Touch ON (Shift)
+
+ Deck A        A7,10-17,pp            A7,30-37,pp
+
+ Deck B        A8,10-17,pp            A8,30-37,pp
+
+ Deck C        A9,10-17,pp            A9,30,37,pp
+
+ Deck D        AA,10-17,pp           AA,30-37,pp
+
+ Deck C+D
+
+
+
+
+            LED 1-5 PAD 1       LED 1-5 PAD 2      LED 1-5 PAD 3      LED 1-5 PAD 4      LED 1-5 PAD 5      LED 1-5 PAD 6       LED 1-5 PAD 7      LED 1-5 PAD 8
+
+ Bank A       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank B       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank C       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank D       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+
+
+
+ TRAX-encoder  CC                 Note             CC (Shift)            Note (Shift)         Pad 1-8 + Trax (move)
+
+ Deck A        B6,00,pp             96,20,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck B        B6,00,pp              96,21,pp              B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck C        B6,00,pp             96,22,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck D        B6,00,pp             96,23,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+
+
+
+ LOOP-encoder CC                 Note             CC (Shift)            Note (Shift)
+
+ Deck A       B6,04,pp             96,24,pp             B6,49,pp             96,63,pp
+
+ Deck B        B6,05,pp             96,25,pp             B6,4A,pp             96,64,pp
+
+ Deck C        B6,06,pp             96,26,pp             B6,4B,pp             96,65,pp
+
+ Deck D        B6,07,pp              96,27,pp             B6,4C,pp             96,66,pp
+
+--- PDF PAGE 6 ---
+NEON MIDI MAP
+
+
+
+
+
+HOT CUE MODE 2nd layer
+
+
+             Pad 1-8             Pad 1-8 (Shift)       Pad 1-8 + Trax (move)  CENSOR + PAD 1-8   SLIP + PAD 1-8      DECK SYNC + PAD 1-8  DECK button       DECK button (Shift)
+
+ Deck A        97,70-77,pp            97,50-57,pp           B6,00,pp              97,70-77,pp            97,70-77,pp            97,70-77,pp            93,01,pp              93,46,pp
+
+ Deck B        98,70-77,pp           98,50-57,pp          B6,00,pp              98,70-77,pp           98,70-77,pp           98,70-77,pp            94,01,pp              94,46,pp
+
+ Deck C        99,70-77,pp           99,50-57,pp          B6,00,pp              99,70-77,pp            99,70-77,pp            99,70-77,pp            95,01,pp              95,46,pp
+
+ Deck D        9A,70-77,pp           9A,50-57,pp          B6,00,pp              9A,70-77,pp           9A,70-77,pp           9A,70-77,pp           96,01,pp              96,46,pp
+
+ Deck C+D                                                                                                                                                                                                          ---*
+
+
+           CENSOR          CENSOR (Shift)      SLIP               SLIP (Shift)        DECK SYNC        DECK SYNC (Shift)      Velocity ON            Velocity ON (Shift)
+
+ Deck A        93,10,pp              93,55,pp                93,11,pp               93,56,pp               93,12,pp               93,57,pp               B7,70-77,pp           B7,50-57,pp
+
+ Deck B        94,10,pp              94,55,pp                94,11,pp              94,56,pp              94,12,pp              94,57,pp              B8,70-77,pp           B8,50-57,pp
+
+ Deck C        95,10,pp              95,55,pp                95,11,pp              95,56,pp                95,11,pp               95,57,pp              B9,70-77,pp           B9,50-57,pp
+
+ Deck D        96,10,pp              96,55,pp                96,11,pp              96,56,pp               96,11,pp               96,57,pp              BA,70-77,pp           BA,50-57,pp
+
+ Deck C+D
+
+
+                After Touch ON        After Touch ON (Shift)
+
+ Deck A        A7,70-77,pp           A7,50-57,pp
+
+ Deck B        A8,70-77,pp           A8,50-57,pp
+
+ Deck C        A9,70-77,pp           A9,50-57,pp
+
+ Deck D        AA,70-77,pp          AA,50-57,pp
+
+ Deck C+D
+
+
+
+
+            LED 1-5 PAD 1       LED 1-5 PAD 2      LED 1-5 PAD 3      LED 1-5 PAD 4      LED 1-5 PAD 5      LED 1-5 PAD 6       LED 1-5 PAD 7      LED 1-5 PAD 8
+
+ Bank A       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank B       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank C       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank D       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+
+
+
+ TRAX-encoder  CC                 Note             CC (Shift)            Note (Shift)         Pad 1-8 + Trax (move)
+
+ Deck A        B6,00,pp             96,20,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck B        B6,00,pp              96,21,pp              B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck C        B6,00,pp             96,22,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck D        B6,00,pp             96,23,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+
+
+
+ LOOP-encoder CC                 Note             CC (Shift)            Note (Shift)
+
+ Deck A       B6,04,pp             96,24,pp             B6,49,pp             96,63,pp
+
+ Deck B        B6,05,pp             96,25,pp             B6,4A,pp             96,64,pp
+
+ Deck C        B6,06,pp             96,26,pp             B6,4B,pp             96,65,pp
+
+ Deck D        B6,07,pp              96,27,pp             B6,4C,pp             96,66,pp
+
+--- PDF PAGE 7 ---
+NEON MIDI MAP
+
+
+
+
+
+HOT LOOP MODE 1st layer
+
+
+             Pad 1-8             Pad 1-8 (Shift)       Pad 1-8 + Trax (move)  CENSOR + PAD 1-8   SLIP + PAD 1-8      DECK SYNC + PAD 1-8  DECK button       DECK button (Shift)
+
+ Deck A         97,18-1F,pp             97,38-3F,pp           B6,00,pp                97,18-1F,pp              97,18-1F,pp              97,18-1F,pp             93,01,pp              93,48,pp
+
+ Deck B        98,18-1F,pp            98,38-3F,pp          B6,00,pp               98,18-1F,pp             98,18-1F,pp             98,18-1F,pp            94,01,pp              94,48,pp
+
+ Deck C         99,18-1F,pp            99,38-3F,pp          B6,00,pp               99,18-1F,pp              99,18-1F,pp              99,18-1F,pp             95,01,pp              95,48,pp
+
+ Deck D        9A,18-1F,pp            9A,38-3F,pp          B6,00,pp               9A,18-1F,pp             9A,18-1F,pp             9A,18-1F,pp            96,01,pp              96,48,pp
+
+ Deck C+D                                                                                                                                                                                                          ---*
+
+
+           CENSOR          CENSOR (Shift)      SLIP               SLIP (Shift)        DECK SYNC        DECK SYNC (Shift)      Velocity ON            Velocity ON (Shift)
+
+ Deck A        93,10,pp              93,55,pp                93,11,pp               93,56,pp               93,12,pp               93,57,pp                B7,18-1F,pp             B7,38-3F,pp
+
+ Deck B        94,10,pp              94,55,pp                94,11,pp              94,56,pp              94,12,pp              94,57,pp                B9,18-1F,pp            B8,38-3F,pp
+
+ Deck C        95,10,pp              95,55,pp                95,11,pp              95,56,pp                95,11,pp               95,57,pp                B9,18-1F,pp            B9,38-3F,pp
+
+ Deck D        96,10,pp              96,55,pp                96,11,pp              96,56,pp               96,11,pp               96,57,pp               BA,18-1F,pp            BA,38-3F,pp
+
+ Deck C+D
+
+
+                After Touch ON        After Touch ON (Shift)
+
+ Deck A        A7,18-1F,pp            A7,38-3F,pp
+
+ Deck B        A8,18-1F,pp            A8,38-3F,pp
+
+ Deck C        A9,18-1F,pp            A9,38-3F,pp
+
+ Deck D        AA,18-1F,pp           AA,38-3F,pp
+
+ Deck C+D
+
+
+
+
+            LED 1-5 PAD 1       LED 1-5 PAD 2      LED 1-5 PAD 3      LED 1-5 PAD 4      LED 1-5 PAD 5      LED 1-5 PAD 6       LED 1-5 PAD 7      LED 1-5 PAD 8
+
+ Bank A       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank B       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank C       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank D       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+
+
+
+ TRAX-encoder  CC                 Note             CC (Shift)            Note (Shift)         Pad 1-8 + Trax (move)
+
+ Deck A        B6,00,pp             96,20,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck B        B6,00,pp              96,21,pp              B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck C        B6,00,pp             96,22,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck D        B6,00,pp             96,23,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+
+
+
+ LOOP-encoder CC                 Note             CC (Shift)            Note (Shift)
+
+ Deck A       B6,04,pp             96,24,pp             B6,49,pp             96,63,pp
+
+ Deck B        B6,05,pp             96,25,pp             B6,4A,pp             96,64,pp
+
+ Deck C        B6,06,pp             96,26,pp             B6,4B,pp             96,65,pp
+
+ Deck D        B6,07,pp              96,27,pp             B6,4C,pp             96,66,pp
+
+--- PDF PAGE 8 ---
+NEON MIDI MAP
+
+
+
+
+
+HOT LOOP MODE 2nd layer
+
+
+             Pad 1-8             Pad 1-8 (Shift)       Pad 1-8 + Trax (move)  CENSOR + PAD 1-8   SLIP + PAD 1-8      DECK SYNC + PAD 1-8  DECK button       DECK button (Shift)
+
+ Deck A        97,78-7F,pp            97,58-5F,pp           B6,00,pp              97,78-7F,pp            97,78-7F,pp            97,78-7F,pp            93,01,pp              93,48,pp
+
+ Deck B        98,78-7F.pp           98,58-5F,pp          B6,00,pp              98,78-7F.pp           98,78-7F.pp           98,78-7F.pp            94,01,pp              94,48,pp
+
+ Deck C        99,78-7F,pp           99,58-5F,pp          B6,00,pp              99,78-7F,pp            99,78-7F,pp            99,78-7F,pp            95,01,pp              95,48,pp
+
+ Deck D        9A,78-7F,pp           9A,58-5F,pp          B6,00,pp              9A,78-7F,pp           9A,78-7F,pp           9A,78-7F,pp           96,01,pp              96,48,pp
+
+ Deck C+D                                                                                                                                                                                                          ---*
+
+
+           CENSOR          CENSOR (Shift)      SLIP               SLIP (Shift)        DECK SYNC        DECK SYNC (Shift)      Velocity ON            Velocity ON (Shift)
+
+ Deck A        93,10,pp              93,55,pp                93,11,pp               93,56,pp               93,12,pp               93,57,pp               B7,78-7F,pp            B7,58-5F,pp
+
+ Deck B        94,10,pp              94,55,pp                94,11,pp              94,56,pp              94,12,pp              94,57,pp              B8,78-7F.pp           B8,58-5F,pp
+
+ Deck C        95,10,pp              95,55,pp                95,11,pp              95,56,pp                95,11,pp               95,57,pp              B9,78-7F,pp           B9,58-5F,pp
+
+ Deck D        96,10,pp              96,55,pp                96,11,pp              96,56,pp               96,11,pp               96,57,pp              BA,78-7F,pp           BA,58-5F,pp
+
+ Deck C+D
+
+
+                After Touch ON        After Touch ON (Shift)
+
+ Deck A        A7,78-7F,pp           A7,58-5F,pp
+
+ Deck B        A8,78-7F.pp           A8,58-5F,pp
+
+ Deck C        A9,78-7F,pp           A9,58-5F,pp
+
+ Deck D        AA,78-7F,pp          AA,58-5F,pp
+
+ Deck C+D
+
+
+
+
+            LED 1-5 PAD 1       LED 1-5 PAD 2      LED 1-5 PAD 3      LED 1-5 PAD 4      LED 1-5 PAD 5      LED 1-5 PAD 6       LED 1-5 PAD 7      LED 1-5 PAD 8
+
+ Bank A       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank B       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank C       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+ Bank D       9B,20-24,pp          9B,25-29,pp          9B,2A-2E,pp          9B,2F-33,pp          9B,34-38,pp          9B,39-3D,pp          9B,3E-42,pp          9B,43-47,pp
+
+
+
+
+ TRAX-encoder  CC                 Note             CC (Shift)            Note (Shift)         Pad 1-8 + Trax (move)
+
+ Deck A        B6,00,pp             96,20,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck B        B6,00,pp              96,21,pp              B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck C        B6,00,pp             96,22,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+ Deck D        B6,00,pp             96,23,pp             B6,45,pp              96,5F,pp             B6,00,pp
+
+
+
+
+ LOOP-encoder CC                 Note             CC (Shift)            Note (Shift)
+
+ Deck A       B6,04,pp             96,24,pp             B6,49,pp             96,63,pp
+
+ Deck B        B6,05,pp             96,25,pp             B6,4A,pp             96,64,pp
+
+ Deck C        B6,06,pp             96,26,pp             B6,4B,pp             96,65,pp
+
+ Deck D        B6,07,pp              96,27,pp             B6,4C,pp             96,66,pp
+
+--- PDF PAGE 9 ---
+NEON MIDI MAP
+
+
+
+
+
+SysEx messages
+
+
+ F0 0A 40 F7           Will be sent when slave TM1 is plugged in via link cable
+
+ F0 0A 00 F7      Enable Deck 3&4
+
+ F0 0A 01 F7        Disable Deck 4
+
+ F0 0A 02 F7       Disable Deck 3&4
+
+
+
+PERFORMANCE MODE buttons
+
+
+               Sampler 1st layer      Sampler 2nd             Slicer 1st                 Slicer 2nd            Hot Cue 1st           Hot 2nd             Hot Loop 1st          Hot Loop 2nd
+
+ Deck A       93,05,pp              93,09,pp              93,06,pp             93,0A,pp              93,07,pp              93,0B,pp             93,08,pp             93,0C,pp
+
+ Deck B       94,05,pp             94,09,pp             94,06,pp             94,0A,pp              94,07,pp             94,0B,pp             94,08,pp             94,0C,pp
+
+ Deck C       95,05,pp             95,09,pp             95,06,pp             95,0A,pp              95,07,pp             95,0B,pp             95,08,pp             95,0C,pp
+
+ Deck D       96,05,pp              96,07,pp             96,06,pp             96,0A,pp              96,07,pp             96,0B,pp             96,09,pp             96,0C,pp
+
+
+
+Long press HOT CUE Button
+
+93,44,pp
+
+
+
+Sampler Mode 1st layer TRIGGER
+
+
+ 93,0D,pp
+
+ 94,0D,pp
+
+ 95,0D,pp
+
+ 96,0D,pp
+
+
+
+Notes
+
+MIDI IN = MIDI OUT
+Velocity and After Touch is always ON within Sampler Mode 2nd layer
+Hardware-based = LED will change by hardware when switching between Deck buttons.
+MIDI triggered = LED will light up by MIDI only. LED status will also be memorized in the background.
+Hardware + MIDI = Specifically for Sampler mode 1st layer. Pressing buttons will change Bank A-D. Additionally when dedicated Bank button MIDI message is received,
+Bank will change too.
+Default Start Up Mode = HOT CUE 1st layer
+All Decks remember it‘s current/last used Performance Mode
+
+
+
+Bank/Deck-buttons behaviour
+
+
+ NON-Shift-layer                Bank/Deck Buttons 1-4
+
+ Sample Mode 1st layer            Hardware-based + MIDI triggered (Switch Bank on incoming MIDI message)
+
+ NON-Sample Mode 1st layer       Hardware-based
+
+
+ SHIFT-layer                    Bank/Deck Buttons 1-4
+
+ Sample Mode 1st layer             MIDI-triggered
+
+ NON-Sample Mode 1st layer        MIDI-triggered

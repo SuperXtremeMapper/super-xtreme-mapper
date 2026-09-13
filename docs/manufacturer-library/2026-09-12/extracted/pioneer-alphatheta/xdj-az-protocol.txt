@@ -1,0 +1,666 @@
+
+===== PDF PAGE 1 =====
+                                                                                                                                                                   XDJ-AZ
+                                                                                                                                                             List of MIDI messages
+
+
+
+
+                                                                                                                                                                                                                             4-2                 4-3      3-14
+                                              3-19                            3-21            3-22      3-23         3-24
+                                                                                                                            1-27
+                                                                                                                                                                                                                                               4-1
+
+                                                                                                                                                                                                                         4-4                     4-5
+                                                         3-20
+                                 1-19           1-20                                                  1-21     1-22         1-23
+                                                                                                                                                                                                                                                                3-13      3-15      3-16      3-17     3-18
+                                                                 1-10
+                                                                                                                                                                                                                                     1-28
+                 1-18
+                                                                                                               1-11                                   1-29
+                                                                                                                                                                  3-5                                3-5
+                 1-17                                                                                                   1-9
+                                                                                                                                                                                                                               2-1
+                                                                                                               1-8
+                                                                                                                                                                                                                               2-2
+                                                                        7-1
+                1-16                                                                                           1-7                                                3-6                                3-6             2-3       2-4       2-5
+                                                                                                7-2
+                                                                                                                      1-6          2-16        2-17
+                                                  1-1                                                                                                                                                                2-6           2-7   2-8
+                  1-15
+                                                                                                                                   2-18         2-19              3-7                                3-7
+
+                  1-14                                                                                                             2-20        2-21                                                                      2-9
+                                                     1-26                                                                                                         3-8                                3-8
+
+                                                                                                                  1-5           2-15
+                  1-13
+                                                                                                                  1-4                                             2-14                              2-14
+                                                                                                                                                                                                                               2-10
+                  1-12
+                                                                                                                                 3-12
+                                                                                                                                                                  3-11                              3-11                2-11
+                                                         5-1       5-2          5-3           5-4
+                                                                                                                      1-3          3-9
+                   1-25
+                                                                                                                                                                                                                        2-12
+                                                                                                                                   3-10
+                                                         5-5       5-6          5-7           5-8                 1-2                                             3-2                               3-2
+
+                   1-24                                                                                                                                                                                                 2-13
+                                                         5-9       5-10        5-11           5-12
+                                                                                                                                                                   3-1
+
+
+
+
+【MIDI channel assignment】
+       MIDI channel is defined as shown below.
+                                                                                      MIDI              Channel No.                                     As a reference for MIDI assign, MIDI messages sent from buttons and knobs of this unit are listed in decimal numbers.
+                             Channel Category
+                                                                                     channel               (hex)
+Browser                                                                                   1                 n=0                                         0x9* :Note
+DECK 1                                                                                    1                 n=0                                         0xB* :Control Change（CC）
+DECK 2                                                                                    2                 n=1
+DECK 3                                                                                    3                 n=2                                         NOTE is a term used for MIDI to express that a key of a keyboard or a piano is pressed or your finger is released from it.
+DECK 4                                                                                    4                 n=3                                         CC is an abbreviation of "Control Change". Control Change is a kind of MIDI message used to communicate many kinds
+EFFECT＆MIXER                                                                              5                 n=4                                         of control information such as sound quality and volume level.
+                                                            5-5~5-8                       6                 n=5
+                                            DECK1
+                                                            5-9~5-12                     10                 n=9
+                                                            5-5~5-8                       7                 n=6
+                                            DECK2
+                                                            5-9~5-12                     11                 n=A
+    PERFORMANCE PADS
+                                                            5-5~5-8                       8                 n=7
+                                            DECK3
+                                                            5-9~5-12                     12                 n=B
+                                                            5-5~5-8                       9                 n=8
+                                            DECK4
+                                                            5-9~5-12                     13                 n=C
+OTHERS＆JOG DISPLAY                                                                       14                 n=D
+
+
+
+                                                                                                                                            MIDI assignment                           MIDI-IN                                 MIDI-OUT
+                                                                       User Interface
+                                                                                                                                               reference                     （XDJ-AZ → PC/Mac）                       （PC/Mac → XDJ-AZ）
+       Group              Fig.                                                                                                                                                                                                                                                                                Detail of Data2
+                                                                                                         Condition                           MIDI                   Status            Data1                Data 2   Status     Data 1    Data 2
+                                                                                                                              +SHIFT/                    NOTE /
+                                                     UI name                        Operation                                               Channel
+                                                                                                             (mode)          Long-Press                   CC        (hex)       (dec)         (hex)        (hex)    (hex)      (hex)     (hex)
+                                                                                                                                             (dec)
+1, DECK              * Functions are the same for both left and right decks.
+                                                                                                                                            1/2/3/4          CC         Bn       34             22           hh                                   Count value difference from previous operation
+                                                                                        Rotate                                                                                                                                                    When turned clockwise: Increases from 65(0x41)
+                                                     Jog dial                                                                   +SHIFT      1/2/3/4          CC         Bn       41             29           hh                                   When turned counterclockwise: Decreases from 63(0x3F)
+                                                     (Platter)                                                                              1/2/3/4      NOTE           9n       32             20           hh                                   OFF=0(0x00), ON=127(0x7F)
+                         1[L,R]                                                         Touch
+                                                                                                                                +SHIFT      1/2/3/4      NOTE           9n       72             48           hh                                   OFF=0(0x00), ON=127(0x7F)
+                                                                                                                                            1/2/3/4          CC         Bn       33             21           hh                                   Count value difference from previous operation
+                                                    Jog Dial
+                                                                                        Rotate                                                                                                                                                    When turned clockwise: Increases from 65(0x41)
+                                                  (Wheel side)                                                                  +SHIFT      1/2/3/4          CC         Bn       38             26           hh                                   When turned counterclockwise: Decreases from 63(0x3F)
+                                                                                                                                                             CC      Bn          0              0           MSB
+                         2[L,R]                      TEMPO                              Slide                                               1/2/3/4                                                                                               0～16383 "－" side : 0 "＋" side : 16383
+                                                                                                                                                             CC      Bn          32             20          LSB
+                         3[L,R]                  TEMPO RESET                            Press                                               1/2/3/4      NOTE           9n       19             13           hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                         4[L,R]                 MASTER TEMPO                            Press                                               1/2/3/4      NOTE           9n       17             11           hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                         5[L,R]                  TEMPO RANGE                            Press                                               1/2/3/4      NOTE           9n       16             10           hh                                   OFF=0(0x00), ON=127(0x7F)
+                         6[L,R]                     KEY SYNC                            Press                                               1/2/3/4      NOTE           9n       20             14           hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                                                                                                                                            1/2/3/4      NOTE           9n       31             1F           hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                                                       SYNC                             Press
+                         7[L,R]                                                                                                Long press   1/2/3/4      NOTE           9n       71             47           hh                                   OFF=0(0x00), ON=127(0x7F)
+                                                     MASTER                             Press                                               1/2/3/4      NOTE           9n       30             1E           hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                         8[L,R]                   JOG ADJUST                            Rotate                                                                                                                                                    ( Hardware Control )
+                         9[L,R]                     JOG MODE                            Press                                               1/2/3/4      NOTE           9n       18             12           hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                       10[L,R]                   DECK SELECT                            Press                                               1/2/3/4      NOTE           9n       21             15           hh                                   OFF=0(0x00), ON=127(0x7F) Turning on/off the button LED is controlled by XDJ-AZ
+                       11-1[L,R]        VINYL SPEED ADJUST (Hard Button)                Press                                               1/2/3/4      NOTE           9n       42             2A           hh                                   OFF=0(0x00), ON=127(0x7F)
+
+                                                                                                                                                                                                                                                  When Vinyl SPEED ADJUST is ON, Vo position data is sent every time the Vo position changes.（whether you change the settings in
+                                            VINYL SPEED ADJUST Vo
+                       11-2[L,R]                                                        Press                                               1/2/3/4          CC         Bn       30             1E           hh                                   SHORT CUT or UTILITY）
+                                             （SHORT CUT/UTILITY）
+                                                                                                                                                                                                                                                  While OFF, no transmission is made even if the Vo position changes.（5 Stages : 0(0x00)、 18(0x12)、 63(0x3F)、109(0x6D)、127(0x7F) )
+                                                 SEARCH FWD                             Press                                               1/2/3/4      NOTE           9n        2             2            hh                                   OFF=0(0x00), ON=127(0x7F)
+                       12[L,R]
+                                                  SEARCH REV                            Press                                               1/2/3/4      NOTE           9n        3             3            hh                                   OFF=0(0x00), ON=127(0x7F)
+                                              TRACK SEARCH FWD                          Press                                               1/2/3/4      NOTE           9n        4             4            hh                                   OFF=0(0x00), ON=127(0x7F)
+                       13[L,R]
+                                              TRACK SEARCH REV                          Press                                               1/2/3/4      NOTE           9n        5             5            hh                                   OFF=0(0x00), ON=127(0x7F)
+                       14[L,R]                         SHIFT                            Press                                               1/2/3/4      NOTE           9n       63             3F           hh                                   OFF=0(0x00), ON=127(0x7F)
+                                                                                                                                            1/2/3/4      NOTE           9n       33             21           hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                       15[L,R]                   SLIP REVERSE                           Press
+                                                                                                                                +SHIFT      1/2/3/4      NOTE           9n       82             52           hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                       16[L,R]                         SLIP                             Press                                               1/2/3/4      NOTE           9n       44             2C           hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                                                                                                                                            1/2/3/4      NOTE           9n       22             16           hh                                   OFF=0(0x00), ON=127(0x7F)
+                                                BEAT JUMP FWD                           Press
+                                                                                                                                +SHIFT      1/2/3/4      NOTE           9n       23             17           hh                                   OFF=0(0x00), ON=127(0x7F)
+                        17[L,R]
+                                                                                                                                            1/2/3/4      NOTE           9n       24             18           hh                                   OFF=0(0x00), ON=127(0x7F)
+                                                BEAT JUMP REV                           Press
+                                                                                                                                +SHIFT      1/2/3/4      NOTE           9n       25             19           hh                                   OFF=0(0x00), ON=127(0x7F)
+                                                     4 BEAT                             Press                                               1/2/3/4      NOTE           9n       67             43           hh                                   OFF=0(0x00), ON=127(0x7F)
+                       18[L,R]
+                                                     8 BEAT                             Press                                               1/2/3/4      NOTE           9n       68             44           hh                                   OFF=0(0x00), ON=127(0x7F)
+                                                                                                                                            1/2/3/4      NOTE           9n        6             6            hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                                                     LOOP IN                            Press
+                       19[L,R]                                                                                                 Long press   1/2/3/4      NOTE           9n       69             45           hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                                                    LOOP OUT                            Press                                               1/2/3/4      NOTE           9n        7             7            hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                       20[L,R]                    RELOOP/EXIT                           Press                                               1/2/3/4      NOTE           9n        8             8            hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                                              CUE/LOOP CALL NEXT                        Press                                               1/2/3/4      NOTE           9n       11             B            hh                                   OFF=0(0x00), ON=127(0x7F)
+                       21[L,R]
+                                              CUE/LOOP CALL PREV                        Press                                               1/2/3/4      NOTE           9n       12             C            hh                                   OFF=0(0x00), ON=127(0x7F)
+                       22[L,R]                 CUE/LOOP DELETE                          Press                                               1/2/3/4      NOTE           9n       13             D            hh                                   OFF=0(0x00), ON=127(0x7F)
+                       23[L,R]                 CUE/LOOP MEMORY                          Press                                               1/2/3/4      NOTE           9n       10             A            hh                                   OFF=0(0x00), ON=127(0x7F)
+                       24[L,R]                    PLAY/PAUSE                            Press                                               1/2/3/4      NOTE           9n        0             0            hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                       25[L,R]                         CUE                              Press                                               1/2/3/4      NOTE           9n        1             1            hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                       26[L,R]                      JOG RING                             －                                                                                                                                                        ( Hardware Control )
+                       27[L,R]                  DECK QUANTIZE                           Press                                               1/2/3/4      NOTE           9n       26             1A           hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                       28[L,R]                         LOAD                             Press                                               1/2/3/4      NOTE           9n       81             51           hh        <- same as MIDI IN         OFF=0(0x00), ON=127(0x7F)
+                                               NEEDLE POSITION                                                                              1/2/3/4          CC         Bn       28             1C           hh                                   OFF=0(0x00)1→127
+                        29[L,R]               （Overall waveform：                        Press
+                                        2DECK/4DECK/Simple DECK Display)                                                                    1/2/3/4      NOTE           9n       54             36           hh                                   OFF=0(0x00), ON=127(0x7F)
+
+===== PDF PAGE 2 =====
+                                                                                                        MIDI assignment                     MIDI-IN                           MIDI-OUT
+                                                   User Interface
+                                                                                                           reference                 （XDJ-AZ → PC）                      （PC → XDJ-AZ）
+      Group   Fig.                                                                                                                                                                                                                                               Detail of Data2
+                                                                             Condition                   MIDI               Status          Data1           Data 2   Status    Data 1    Data 2
+                                                                                            +SHIFT/                NOTE /
+                                   UI name                      Operation                               Channel
+                                                                              (mode)       Long-Press               CC      (hex)     (dec)         (hex)   (hex)    (hex)     (hex)     (hex)
+                                                                                                         (dec)
+2, EFFECT                                                           Slide    Slider Mode                  5            CC     B4      116             74      hh                                  Left End：0(0x00)～Right End：127(0x7F)
+               1                    X-PAD
+                                                                    Press                                 5            CC     B4      114             72      hh                                  EFFECT ON/OFF
+                                  BEAT LEFT                         Press                                 5            CC     B4       76             4C      hh                                  OFF=0(0x00), ON=127(0x7F)
+               2
+                                 BEAT RIGHT                         Press                                 5            CC     B4       77             4D      hh                                  OFF=0(0x00), ON=127(0x7F)
+               3                  AUOT/TAP                          Press                                 5            CC     B4       69             45      hh                                  OFF=0(0x00), ON=127(0x7F)
+               4                        TAP                         Press                                 5            CC     B4       78             4E      hh                                  OFF=0(0x00), ON=127(0x7F)
+               5                 FX QUANTIZE                        Press                                 5        NOTE       94      118             76      hh                                  OFF=0(0x00), ON=127(0x7F)
+               6              FREQUENCY HI                          Press                                 5            CC     B4      102             66      hh                                  OFF=0(0x00), ON=127(0x7F)
+               7             FREQUENCY MID                          Press                                 5            CC     B4      103             67      hh                                  OFF=0(0x00), ON=127(0x7F)
+               8             FREQUENCY LOW                          Press                                 5            CC     B4      104             68      hh                                  OFF=0(0x00), ON=127(0x7F)
+                         EFFECT SELECT DELAY                        Rotate                                5            CC     B4       42             2A      hh                                  OFF=0(0x00), ON=127(0x7F)
+                          EFFECT SELECT ECHO                        Rotate                                5            CC     B4       55             37      hh                                  OFF=0(0x00), ON=127(0x7F)
+                       EFFECT SELECT PING PONG                      Rotate                                5            CC     B4       51             33      hh                                  OFF=0(0x00), ON=127(0x7F)
+                         EFFECT SELECT SPIRAL                       Rotate                                5            CC     B4       43             2B      hh                                  OFF=0(0x00), ON=127(0x7F)
+                          EFFECT SELECT HELIX                       Rotate                                5            CC     B4       62             3E      hh                                  OFF=0(0x00), ON=127(0x7F)
+                        EFFECT SELECT REVERB                        Rotate                                5            CC     B4       54             36      hh                                  OFF=0(0x00), ON=127(0x7F)
+                        EFFECT SELECT FLANGER                       Rotate                                5            CC     B4       50             32      hh                                  OFF=0(0x00), ON=127(0x7F)
+               9
+                        EFFECT SELECT PHASER                        Rotate                                5            CC     B4       57             39      hh                                  OFF=0(0x00), ON=127(0x7F)
+                         EFFECT SELECT FILTER                       Rotate                                5            CC     B4       59             3B      hh                                  OFF=0(0x00), ON=127(0x7F)
+                     EFFECT SELECT TRIPRET FILTER                   Rotate                                5            CC     B4       61             3D      hh                                  OFF=0(0x00), ON=127(0x7F)
+                         EFFECT SELECT TRANS                        Rotate                                5            CC     B4       53             35      hh                                  OFF=0(0x00), ON=127(0x7F)
+                          EFFECT SELECT ROLL                        Rotate                                5            CC     B4       46             2E      hh                                  OFF=0(0x00), ON=127(0x7F)
+                     EFFECT SELECT TRIPRET ROLL                     Rotate                                5            CC     B4       63             3F      hh                                  OFF=0(0x00), ON=127(0x7F)
+                         EFFECT SELECT MOBIUS                       Rotate                                5            CC     B4       58             3A      hh                                  OFF=0(0x00), ON=127(0x7F)
+                             CH SELECT CH3 *                        Press                                 5            CC     B4       34             22      hh                                  OFF=0(0x00), ON=127(0x7F)
+                             CH SELECT CH1 *                        Press                                 5            CC     B4       35             23      hh                                  OFF=0(0x00), ON=127(0x7F)
+                             CH SELECT CH2 *                        Press                                 5            CC     B4       36             24      hh                                  OFF=0(0x00), ON=127(0x7F)
+                              CH SELECT CH4                         Press                                 5            CC     B4       37             25      hh                                  OFF=0(0x00), ON=127(0x7F)
+              10
+                              CH SELECT MIC                         Press                                 5            CC     B4       28             1C      hh                                  OFF=0(0x00), ON=127(0x7F)
+                              CH SELECT CF.A                        Press                                 5            CC     B4       39             27      hh                                  OFF=0(0x00), ON=127(0x7F)
+                              CH SELECT CF.B                        Press                                 5            CC     B4       40             28      hh                                  OFF=0(0x00), ON=127(0x7F)
+                           CH SELECT MASTER                         Press                                 5            CC     B4       41             29      hh                                  OFF=0(0x00), ON=127(0x7F)
+                                                                                                                                                                                                  98(0x62)~127(0x7F), 1(0x01)~30(0x1E)
+              11                     TIME                           Rotate                                5            CC     B4       45             2D      hh                                  Transfer count value difference from previous operation (±1~±30).
+                                                                                                                                                                                                  If it is ±30 or more, it is set to ±30.
+              12                 LEVEL DEPTH                        Rotate                                5            CC     B4       91             5B      hh                                  0(0x00)～127(0x7F) Left Side（min)=0(0x00)、Right Side（max）=127(0x7F)
+              13           BEAT EFFECT ON/OFF                       Press                                 5            CC     B4      114             72      hh                                  OFF=0(0x00), ON=127(0x7F)
+                                                Deck 1              Rotate                                5            CC     B4        5             5       hh                                  0(0x00)～127(0x7F) Left Side（LOW)=0(0x00)、Right Side（HI）=127(0x7F)
+                                                Deck 2              Rotate                                5            CC     B4       10             A       hh                                  0(0x00)～127(0x7F) Left Side（LOW)=0(0x00)、Right Side（HI）=127(0x7F)
+              14         COLOR
+                                                Deck 3              Rotate                                5            CC     B4       22             16      hh                                  0(0x00)～127(0x7F) Left Side（LOW)=0(0x00)、Right Side（HI）=127(0x7F)
+                                                Deck 4              Rotate                                5            CC     B4       83             53      hh                                  0(0x00)～127(0x7F) Left Side（LOW)=0(0x00)、Right Side（HI）=127(0x7F)
+              15                 PARAMETER                          Rotate                                5            CC     B4      108             6C      hh                                  0(0x00)～127(0x7F) Left Side（min)=0(0x00)、Right Side（max）=127(0x7F)
+              16                    SPACE                           Press                                 5            CC     B4      105             69      hh                                  OFF=0(0x00), ON=127(0x7F)
+              17                  DUB ECHO                          Press                                 5            CC     B4      107             6B      hh                                  OFF=0(0x00), ON=127(0x7F)
+              18                   CRUSH                            Press                                 5            CC     B4       86             56      hh                                  OFF=0(0x00), ON=127(0x7F)
+              19                   SWEEP                            Press                                 5            CC     B4      106             6A      hh                                  OFF=0(0x00), ON=127(0x7F)
+              20                    NOISE                           Press                                 5            CC     B4       85             55      hh                                  OFF=0(0x00), ON=127(0x7F)
+              21                    FILTER                          Press                                 5            CC     B4       87             57      hh                                  OFF=0(0x00), ON=127(0x7F)
+3, MIXER       1               CROSSFADER                           Slide                                  5           CC     B4       11             B       hh                                  0(0x00)～127(0x7F) Left Side=0(0x00)、Right Side=127(0x7F)
+                                                Deck 1              Slide                                  5           CC     B4       17             11      hh                                  0(0x00)～127(0x7F) Upper Side=0(0x00), Lower Side=127(0x7F)
+                                                Deck 2              Slide                                  5           CC     B4       18             12      hh                                  0(0x00)～127(0x7F) Upper Side=0(0x00), Lower Side=127(0x7F)
+               2       CH FADER
+                                                Deck 3              Slide                                  5           CC     B4       19             13      hh                                  0(0x00)～127(0x7F) Upper Side=0(0x00), Lower Side=127(0x7F)
+                                                Deck 4              Slide                                  5           CC     B4       20             14      hh                                  0(0x00)～127(0x7F) Upper Side=0(0x00), Lower Side=127(0x7F)
+                     CROSSFADER                   A                                                                                                           0
+                      ASSIGN CH 1
+                                                THRU                Press                                  5           CC     B4       65             41     40
+                     (Mixer Settings/
+                       UTILITY *)                 B                                                                                                          7F
+                     CROSSFADER                   A                                                                                                           0
+                      ASSIGN CH 2
+                                                THRU                Press                                  5           CC     B4       66             42     40
+                     (Mixer Settings/
+                       UTILITY *)                 B                                                                                                          7F
+               3                                                                                                                                                                                  *：MIDI will be output regardless of whether you change the settings in Mixer Settings or UTILITY.
+                     CROSSFADER                   A                                                                                                           0
+                      ASSIGN CH 3
+                                                THRU                Press                                  5           CC     B4       67             43     40
+                     (Mixer Settings/
+                       UTILITY *)                 B                                                                                                          7F
+                     CROSSFADER                   A                                                                                                           0
+                      ASSIGN CH 4
+                                                THRU                Press                                  5           CC     B4       68             44     40
+                     (Mixer Settings/
+                       UTILITY *)                 B                                                                                                          7F
+                                               DECK/PC                                                                                 61             3D     hh
+                     INPUT SELECT
+                      SWITCH (CH3)               LINE                                                                                  59             3B     hh
+                                                                    Press                                  5       NOTE       94
+                     (Mixer Settings/           PHONO                                                                                  60             3C     hh
+                       UTILITY *)
+                                               Bluetooth                                                                               62             3E     hh
+               4                                                                                                                                                                                  OFF=0(0x00), ON=127(0x7F) *：MIDI will be output regardless of whether you change the settings in Mixer Settings or UTILITY.
+                                               DECK/PC                                                                                 65             41     hh
+                     INPUT SELECT
+                      SWITCH (CH4)               LINE                                                                                  63             3F     hh
+                                                                    Press                                  5       NOTE       94
+                     (Mixer Settings/           PHONO                                                                                  64             40     hh
+                       UTILITY *)
+                                               Bluetooth                                                                               66             42     hh
+                                                Deck 1              Rotate                                 5           CC     B4       1              1       hh                                  0(0x00)～127(0x7F)      Left Side (-∞）= 0(0x00), Right Side(+6) = 127(0x7F)
+                                                Deck 2              Rotate                                 5           CC     B4       6              6       hh                                  0(0x00)～127(0x7F)      Left Side (-∞）= 0(0x00), Right Side(+6) = 127(0x7F)
+               5          TRIM
+                                                Deck 3              Rotate                                 5           CC     B4       12             C       hh                                  0(0x00)～127(0x7F)      Left Side (-∞）= 0(0x00), Right Side(+6) = 127(0x7F)
+                                                Deck 4              Rotate                                 5           CC     B4       80             50      hh                                  0(0x00)～127(0x7F)      Left Side (-∞）= 0(0x00), Right Side(+6) = 127(0x7F)
+                                                Deck 1              Rotate                                 5           CC     B4       2              2       hh                                  0(0x00)～127(0x7F)      Left Side (-26）= 0(0x00), Right Side(+6) = 127(0x7F)
+                                                Deck 2              Rotate                                 5           CC     B4       7              7       hh                                  0(0x00)～127(0x7F)      Left Side (-26）= 0(0x00), Right Side(+6) = 127(0x7F)
+               6        EQ HIGH
+                                                Deck 3              Rotate                                 5           CC     B4       14             E       hh                                  0(0x00)～127(0x7F)      Left Side (-26）= 0(0x00), Right Side(+6) = 127(0x7F)
+                                                Deck 4              Rotate                                 5           CC     B4       81             51      hh                                  0(0x00)～127(0x7F)      Left Side (-26）= 0(0x00), Right Side(+6) = 127(0x7F)
+                                                Deck 1              Rotate                                 5           CC     B4       3              3       hh                                  0(0x00)～127(0x7F)      Left Side (-26）= 0(0x00), Right Side(+6) = 127(0x7F)
+                                                Deck 2              Rotate                                 5           CC     B4       8              8       hh                                  0(0x00)～127(0x7F)      Left Side (-26）= 0(0x00), Right Side(+6) = 127(0x7F)
+               7         EQ MID
+                                                Deck 3              Rotate                                 5           CC     B4       15             F       hh                                  0(0x00)～127(0x7F)      Left Side (-26）= 0(0x00), Right Side(+6) = 127(0x7F)
+                                                Deck 4              Rotate                                 5           CC     B4       92             5C      hh                                  0(0x00)～127(0x7F)      Left Side (-26）= 0(0x00), Right Side(+6) = 127(0x7F)
+                                                Deck 1              Rotate                                 5           CC     B4       4              4       hh                                  0(0x00)～127(0x7F)      Left Side (-26）= 0(0x00), Right Side(+6) = 127(0x7F)
+                                                Deck 2              Rotate                                 5           CC     B4       9              9       hh                                  0(0x00)～127(0x7F)      Left Side (-26）= 0(0x00), Right Side(+6) = 127(0x7F)
+               8        EQ LOW
+                                                Deck 3              Rotate                                 5           CC     B4       21             15      hh                                  0(0x00)～127(0x7F)      Left Side (-26）= 0(0x00), Right Side(+6) = 127(0x7F)
+                                                Deck 4              Rotate                                 5           CC     B4       82             52      hh                                  0(0x00)～127(0x7F)      Left Side (-26）= 0(0x00), Right Side(+6) = 127(0x7F)
+               9          HEADPHONES MIXING                         Rotate                                 5           CC     B4       27             1B      hh                                  0(0x00)～127(0x7F)      Left Side (CUE）= 0(0x00), Right Side(MASTER) = 127(0x7F)
+              10           HEADPHONES LEVEL                         Rotate                                 5           CC     B4       26             1A      hh                                  0(0x00)～127(0x7F)      Left Side (-∞）= 0(0x00), Right Side(+6) = 127(0x7F)
+                                                Deck 1              Press                                  5           CC     B4       70             46      hh                                  OFF=0(0x00), ON=127(0x7F)
+                        CH CUE                  Deck 2              Press                                  5           CC     B4       71             47      hh                                  OFF=0(0x00), ON=127(0x7F)
+              11
+                      (Headphone)               Deck 3              Press                                  5           CC     B4       72             48      hh                                  OFF=0(0x00), ON=127(0x7F)
+                                                Deck 4              Press                                  5           CC     B4       73             49      hh                                  OFF=0(0x00), ON=127(0x7F)
+              12          LINK CUE (Headphone)                      Press                                  5           CC     B4       84             54      hh                                  OFF=0(0x00), ON=127(0x7F)
+              13        MASTER CUE (Headphone)                      Press                                  5           CC     B4       74             4A      hh                                  OFF=0(0x00), ON=127(0x7F)
+              14              MASTER LEVEL                          Rotate                                 5           CC     B4       24             18      hh                                  0(0x00)～127(0x7F)      Left Side (-∞）= 0(0x00), Right Side(+6) = 127(0x7F)
+              15             MASTER EQ LOW                          Rotate                                 5           CC     B4       49             31      hh                                  0(0x00)～127(0x7F)      Left Side (-26）= 0(0x00), Right Side(+6) = 127(0x7F)
+              16              MASTER EQ MID                         Rotate                                 5           CC     B4       48             30      hh                                  0(0x00)～127(0x7F)      Left Side (-26）= 0(0x00), Right Side(+6) = 127(0x7F)
+              17               MASTER EQ HI                         Rotate                                 5           CC     B4       47             2F      hh                                  0(0x00)～127(0x7F)      Left Side (-26）= 0(0x00), Right Side(+6) = 127(0x7F)
+              18         BOOTH MONITOR LEVEL                        Rotate                                 5           CC     B4       25             19      hh                                  0(0x00)～127(0x7F)      Left Side (-∞）= 0(0x00), Right Side(+6) = 127(0x7F)
+                                 MIC 1 SWITCH                       Press                                  5           CC     B4       75             4B      hh                                  OFF=0(0x00), ON=127(0x7F)
+              19
+                                 MIC 2 SWITCH                       Press                                  5           CC     B4       79             4F      hh                                  OFF=0(0x00), ON=127(0x7F)
+              20                  TALKOVER                          Press                                  5           CC     B4       89             59      hh                                  OFF=0(0x00), ON=127(0x7F)
+                                 MIC 1 LEVEL                        Rotate                                                                                                                        ( Hardware Control )
+              21
+                                 MIC 2 LEVEL                        Rotate                                                                                                                        ( Hardware Control )
+                               MIC 1 EQ LOW                         Rotate                                 5           CC     B4       31             1F      hh                                  0(0x00)～127(0x7F)      Left Side (-12）= 0(0x00), Right Side(+12) = 127(0x7F)
+              22
+                               MIC 2 EQ LOW                         Rotate                                 5           CC     B4       97             61      hh                                  0(0x00)～127(0x7F)      Left Side (-12）= 0(0x00), Right Side(+12) = 127(0x7F)
+                                 MIC 1 EQ MID                       Rotate                                 5           CC     B4       98             62      hh                                  0(0x00)～127(0x7F)      Left Side (-12）= 0(0x00), Right Side(+12) = 127(0x7F)
+              23
+                                 MIC 2 EQ MID                       Rotate                                 5           CC     B4       99             63      hh                                  0(0x00)～127(0x7F)      Left Side (-12）= 0(0x00), Right Side(+12) = 127(0x7F)
+                                 MIC 1 EQ HI                        Rotate                                 5           CC     B4       30             1E      hh                                  0(0x00)～127(0x7F)      Left Side (-12）= 0(0x00), Right Side(+12) = 127(0x7F)
+              24
+                                 MIC 2 EQ HI                        Rotate                                 5           CC     B4       96             60      hh                                  0(0x00)～127(0x7F)      Left Side (-12）= 0(0x00), Right Side(+12) = 127(0x7F)
+
+===== PDF PAGE 3 =====
+                                                                                                       MIDI assignment                     MIDI-IN                           MIDI-OUT
+                                                    User Interface
+                                                                                                          reference                 （XDJ-AZ → PC）                      （PC → XDJ-AZ）
+     Group         Fig.                                                                                                                                                                                                                                        Detail of Data2
+                                                                              Condition                 MIDI               Status          Data1           Data 2   Status    Data 1    Data 2
+                                                                                           +SHIFT/                NOTE /
+                                     UI name                     Operation                             Channel
+                                                                               (mode)     Long-Press               CC      (hex)     (dec)         (hex)   (hex)    (hex)     (hex)     (hex)
+                                                                                                        (dec)
+4, BROWSER                                                                                                1           CC     B0       79             4F      hh                                  Count value difference from previous operation
+                                                                     Rotate                                                                                                                      Turn clockwise: 1~30 (0x01~0x1E)
+                                                                                             +SHIFT       1           CC     B0       96             60      hh                                  Turn counterclockwise: 127~98 (0x7F~0x62)
+                    1          ROTARY SELECTOR
+                                                                                                          1       NOTE       90       51             33      hh                                  OFF=0(0x00), ON=127(0x7F)
+                                                                     Press
+                                                                                             +SHIFT       1       NOTE       90       97             61      hh                                  OFF=0(0x00), ON=127(0x7F)
+                                                                                                          1       NOTE       90       50             32      hh                                  OFF=0(0x00), ON=127(0x7F)
+                    2                    BACK                        Press
+                                                                                             +SHIFT       1       NOTE       90       95             5F      hh                                  OFF=0(0x00), ON=127(0x7F)
+                                                                                                          1       NOTE       90       48             30      hh                                  OFF=0(0x00), ON=127(0x7F)
+                    3          TAG TRACK/REMOVE                      Press
+                                                                                             +SHIFT       1       NOTE       90       98             62      hh                                  OFF=0(0x00), ON=127(0x7F)
+                                                                                                          1       NOTE       90       49             31      hh                                  OFF=0(0x00), ON=127(0x7F)
+                    4             TRACK FILTER                       Press
+                                                                                             +SHIFT       1       NOTE       90       93             5D      hh                                  OFF=0(0x00), ON=127(0x7F)
+                    5              SHORT CUT                         Press                                                                                                                       ( Hardware Control )
+5, PERFOR-MANCE                     HOT CUE                                                            1/2/3/4    NOTE       9n       34             22      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+PADS              1[L,R]                                             Press
+                                    GATE CUE                                                 +SHIFT    1/2/3/4    NOTE       9n       38             26      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                   BEAT LOOP                                                           1/2/3/4    NOTE       9n       35             23      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                  2[L,R]                                             Press
+                                   BEAT LOOP2                                                +SHIFT    1/2/3/4    NOTE       9n       39             27      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                    SLIP LOOP                                                          1/2/3/4    NOTE       9n       36             24      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                  3[L,R]                                             Press
+                                    KEY SHIFT                                                +SHIFT    1/2/3/4    NOTE       9n       40             28      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                   BEAT JUMP                                                           1/2/3/4    NOTE       9n       37             25      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                  4[L,R]                                             Press
+                                   BEAT JUMP2                                                +SHIFT    1/2/3/4    NOTE       9n       41             29      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                 HOT CUE                                               6/7/8/9    NOTE       9n        0             0       hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n        1             1       hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT LOOP                                              6/7/8/9    NOTE       9n        2             2       hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n        3             3       hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                                              PAD FX        Page1      6/7/8/9    NOTE       9n        4             4       hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                                              BANK1         Page2      6/7/8/9    NOTE       9n        5             5       hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                                                                                                                                                                                                 *Note: When connected to Rekordbox: The currently selected BANK and Page are detected and the corresponding MIDI is sent
+                                                SLIP LOOP                     PAD FX        Page1      6/7/8/9    NOTE       9n        6             6       hh        <- same as MIDI IN
+                                                                                                                                                                                                        When connected to a DJ app other than Rekordbox (including when connected to a PC and not connected to a DJ app):
+                                                  mode                        BANK2         Page2      6/7/8/9    NOTE       9n        7             7       hh        <- same as MIDI IN               Outputs MIDI for PAD FX BANK1/Page1
+
+                                                                                                                                                                       <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                                                             +SHIFT    6/7/8/9    NOTE       9n        8             8       hh
+                           Performance                                                                                                                                                           /[MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                  6[L,R]                                             Press
+                               Pad2             BEAT JUMP                                              6/7/8/9    NOTE       9n        9             9       hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       10             A       hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                GATE CUE                                               6/7/8/9    NOTE       9n       11             B       hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       12             C       hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT LOOP2                                             6/7/8/9    NOTE       9n       13             D       hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                   mode                                      +SHIFT    6/7/8/9    NOTE       9n       14             E       hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                KEY SHIFT                                              6/7/8/9    NOTE       9n       15             F       hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       16             10      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT JUMP2                                             6/7/8/9    NOTE       9n       17             11      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                   mode                                      +SHIFT    6/7/8/9    NOTE       9n       18             12      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                 HOT CUE                                               6/7/8/9    NOTE       9n       19             13      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       20             14      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT LOOP                                              6/7/8/9    NOTE       9n       21             15      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       22             16      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                                              PAD FX        Page1      6/7/8/9    NOTE       9n       23             17      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                                              BANK1         Page2      6/7/8/9    NOTE       9n       24             18      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                                                                                                                                                                                                 *Note: When connected to Rekordbox: The currently selected BANK and Page are detected and the corresponding MIDI is sent
+                                                SLIP LOOP                     PAD FX        Page1      6/7/8/9    NOTE       9n       25             19      hh        <- same as MIDI IN
+                                                                                                                                                                                                        When connected to a DJ app other than Rekordbox (including when connected to a PC and not connected to a DJ app):
+                                                  mode                        BANK2         Page2      6/7/8/9    NOTE       9n       26             1A      hh        <- same as MIDI IN               Outputs MIDI for PAD FX BANK1/Page1
+
+                                                                                                                                                                       <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                                                             +SHIFT    6/7/8/9    NOTE       9n       27             1B      hh
+                           Performance                                                                                                                                                           /[MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                  6[L,R]                                             Press
+                               Pad2             BEAT JUMP                                              6/7/8/9    NOTE       9n       28             1C      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       29             1D      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                GATE CUE                                               6/7/8/9    NOTE       9n       30             1E      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       31             1F      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT LOOP2                                             6/7/8/9    NOTE       9n       32             20      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                   mode                                      +SHIFT    6/7/8/9    NOTE       9n       33             21      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                KEY SHIFT                                              6/7/8/9    NOTE       9n       34             22      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       35             23      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT JUMP2                                             6/7/8/9    NOTE       9n       36             24      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                   mode                                      +SHIFT    6/7/8/9    NOTE       9n       37             25      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                 HOT CUE                                               6/7/8/9    NOTE       9n       38             26      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       39             27      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT LOOP                                              6/7/8/9    NOTE       9n       40             28      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       41             29      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                                              PAD FX        Page1      6/7/8/9    NOTE       9n       42             2A      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                                              BANK1         Page2      6/7/8/9    NOTE       9n       43             2B      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                                                                                                                                                                                                 *Note: When connected to Rekordbox: The currently selected BANK and Page are detected and the corresponding MIDI is sent
+                                                SLIP LOOP                     PAD FX        Page1      6/7/8/9    NOTE       9n       44             2C      hh        <- same as MIDI IN
+                                                                                                                                                                                                        When connected to a DJ app other than Rekordbox (including when connected to a PC and not connected to a DJ app):
+                                                  mode                        BANK2         Page2      6/7/8/9    NOTE       9n       45             2D      hh        <- same as MIDI IN               Outputs MIDI for PAD FX BANK1/Page1
+
+                                                                                                                                                                       <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                                                             +SHIFT    6/7/8/9    NOTE       9n       46             2E      hh
+                           Performance                                                                                                                                                           /[MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                  7[L,R]                                             Press
+                               Pad3                                                                    6/7/8/9    NOTE       9n       47             2F      hh        <- same as MIDI IN
+                                                BEAT JUMP                                                                                                                                        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       48             30      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                GATE CUE                                               6/7/8/9    NOTE       9n       49             31      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       50             32      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT LOOP2                                             6/7/8/9    NOTE       9n       51             33      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                   mode                                      +SHIFT    6/7/8/9    NOTE       9n       52             34      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                KEY SHIFT                                              6/7/8/9    NOTE       9n       53             35      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       54             36      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT JUMP2                                             6/7/8/9    NOTE       9n       55             37      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                   mode                                      +SHIFT    6/7/8/9    NOTE       9n       56             38      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                 HOT CUE                                               6/7/8/9    NOTE       9n       57             39      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       58             3A      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT LOOP                                              6/7/8/9    NOTE       9n       59             3B      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       60             3C      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                                              PAD FX        Page1      6/7/8/9    NOTE       9n       61             3D      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                                              BANK1         Page2      6/7/8/9    NOTE       9n       62             3E      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                                                                                                                                                                                                 *Note: When connected to Rekordbox: The currently selected BANK and Page are detected and the corresponding MIDI is sent
+                                                SLIP LOOP                     PAD FX        Page1      6/7/8/9    NOTE       9n       63             3F      hh        <- same as MIDI IN
+                                                                                                                                                                                                        When connected to a DJ app other than Rekordbox (including when connected to a PC and not connected to a DJ app):
+                                                  mode                        BANK2         Page2      6/7/8/9    NOTE       9n       64             40      hh        <- same as MIDI IN               Outputs MIDI for PAD FX BANK1/Page1
+
+                                                                                                                                                                       <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                                                             +SHIFT    6/7/8/9    NOTE       9n       65             41      hh
+                           Performance                                                                                                                                                           /[MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                  8[L,R]                                             Press
+                               Pad4             BEAT JUMP                                              6/7/8/9    NOTE       9n       66             42      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       67             43      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                GATE CUE                                               6/7/8/9    NOTE       9n       68             44      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       69             45      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT LOOP2                                             6/7/8/9    NOTE       9n       70             46      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                   mode                                      +SHIFT    6/7/8/9    NOTE       9n       71             47      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                KEY SHIFT                                              6/7/8/9    NOTE       9n       72             48      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                       +SHIFT    6/7/8/9    NOTE       9n       73             49      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT JUMP2                                             6/7/8/9    NOTE       9n       74             4A      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                   mode                                      +SHIFT    6/7/8/9    NOTE       9n       75             4B      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+===== PDF PAGE 4 =====
+                                                                                                                  MIDI assignment                      MIDI-IN                           MIDI-OUT
+                                                     User Interface
+                                                                                                                     reference                  （XDJ-AZ → PC）                      （PC → XDJ-AZ）
+     Group         Fig.                                                                                                                                                                                                                                                    Detail of Data2
+                                                                                  Condition                        MIDI                Status          Data1           Data 2   Status    Data 1    Data 2
+                                                                                                    +SHIFT/                   NOTE /
+                                      UI name                      Operation                                     Channel
+                                                                                   (mode)          Long-Press                  CC      (hex)     (dec)         (hex)   (hex)    (hex)     (hex)     (hex)
+                                                                                                                   (dec)
+5, PERFOR-MANCE                                  HOT CUE                                                        10/11/12/13   NOTE       9n        0             0       hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+PADS                                              mode                                                                                                                             <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                                                                                                      +SHIFT    10/11/12/13   NOTE       9n        1             1       hh
+                                                BEAT LOOP                                                       10/11/12/13   NOTE       9n        2             2       hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n        3             3       hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                                                  PAD FX             Page1      10/11/12/13   NOTE       9n        4             4       hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                                                  BANK1              Page2      10/11/12/13   NOTE       9n        5             5       hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                                                                                                                                                                                                             *Note: When connected to Rekordbox: The currently selected BANK and Page are detected and the corresponding MIDI is sent
+                                                SLIP LOOP                         PAD FX             Page1      10/11/12/13   NOTE       9n        6             6       hh        <- same as MIDI IN
+                                                                                                                                                                                                                    When connected to a DJ app other than Rekordbox (including when connected to a PC and not connected to a DJ app):
+                                                  mode                            BANK2              Page2      10/11/12/13   NOTE       9n        7             7       hh        <- same as MIDI IN               Outputs MIDI for PAD FX BANK1/Page1
+
+                                                                                                                                                                                   <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                                                                      +SHIFT    10/11/12/13   NOTE       9n        8             8       hh
+                            Performance                                                                                                                                                                      /[MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                  9[L,R]                                              Press
+                                Pad5                                                                            10/11/12/13   NOTE       9n        9             9       hh        <- same as MIDI IN
+                                                BEAT JUMP                                                                                                                                                    OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       10             A       hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                GATE CUE                                                        10/11/12/13   NOTE       9n       11             B       hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       12             C       hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT LOOP2                                                      10/11/12/13   NOTE       9n       13             D       hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                   mode                                               +SHIFT    10/11/12/13   NOTE       9n       14             E       hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                KEY SHIFT                                                       10/11/12/13   NOTE       9n       15             F       hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       16             10      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT JUMP2                                                      10/11/12/13   NOTE       9n       17             11      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                   mode                                               +SHIFT    10/11/12/13   NOTE       9n       18             12      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                 HOT CUE                                                        10/11/12/13   NOTE       9n       19             13      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       20             14      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT LOOP                                                       10/11/12/13   NOTE       9n       21             15      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       22             16      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                                                  PAD FX             Page1      10/11/12/13   NOTE       9n       23             17      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                                                  BANK1              Page2      10/11/12/13   NOTE       9n       24             18      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                                                                                                                                                                                                             *Note: When connected to Rekordbox: The currently selected BANK and Page are detected and the corresponding MIDI is sent
+                                                SLIP LOOP                         PAD FX             Page1      10/11/12/13   NOTE       9n       25             19      hh        <- same as MIDI IN
+                                                                                                                                                                                                                    When connected to a DJ app other than Rekordbox (including when connected to a PC and not connected to a DJ app):
+                                                  mode                            BANK2              Page2      10/11/12/13   NOTE       9n       26             1A      hh        <- same as MIDI IN               Outputs MIDI for PAD FX BANK1/Page1
+
+                                                                                                                                                                                   <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                                                                      +SHIFT    10/11/12/13   NOTE       9n       27             1B      hh
+                            Performance                                                                                                                                                                      /[MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                  10[L,R]                                             Press
+                                Pad6                                                                            10/11/12/13   NOTE       9n       28             1C      hh        <- same as MIDI IN
+                                                BEAT JUMP                                                                                                                                                    OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       29             1D      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                GATE CUE                                                        10/11/12/13   NOTE       9n       30             1E      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       31             1F      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT LOOP2                                                      10/11/12/13   NOTE       9n       32             20      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                   mode                                               +SHIFT    10/11/12/13   NOTE       9n       33             21      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                KEY SHIFT                                                       10/11/12/13   NOTE       9n       34             22      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       35             23      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT JUMP2                                                      10/11/12/13   NOTE       9n       36             24      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                   mode                                               +SHIFT    10/11/12/13   NOTE       9n       37             25      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                 HOT CUE                                                        10/11/12/13   NOTE       9n       38             26      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       39             27      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT LOOP                                                       10/11/12/13   NOTE       9n       40             28      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       41             29      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                                                  PAD FX             Page1      10/11/12/13   NOTE       9n       42             2A      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                                                  BANK1              Page2      10/11/12/13   NOTE       9n       43             2B      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                                                                                                                                                                                                             *Note: When connected to Rekordbox: The currently selected BANK and Page are detected and the corresponding MIDI is sent
+                                                SLIP LOOP                         PAD FX             Page1      10/11/12/13   NOTE       9n       44             2C      hh        <- same as MIDI IN
+                                                                                                                                                                                                                    When connected to a DJ app other than Rekordbox (including when connected to a PC and not connected to a DJ app):
+                                                  mode                            BANK2              Page2      10/11/12/13   NOTE       9n       45             2D      hh        <- same as MIDI IN               Outputs MIDI for PAD FX BANK1/Page1
+
+                                                                                                                                                                                   <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                                                                      +SHIFT    10/11/12/13   NOTE       9n       46             2E      hh
+                            Performance                                                                                                                                                                      /[MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                  11[L,R]                                             Press
+                                Pad7                                                                            10/11/12/13   NOTE       9n       47             2F      hh        <- same as MIDI IN
+                                                BEAT JUMP                                                                                                                                                    OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       48             30      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                GATE CUE                                                        10/11/12/13   NOTE       9n       49             31      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       50             32      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT LOOP2                                                      10/11/12/13   NOTE       9n       51             33      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                   mode                                               +SHIFT    10/11/12/13   NOTE       9n       52             34      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                KEY SHIFT                                                       10/11/12/13   NOTE       9n       53             35      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       54             36      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT JUMP2                                                      10/11/12/13   NOTE       9n       55             37      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                   mode                                               +SHIFT    10/11/12/13   NOTE       9n       56             38      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                 HOT CUE                                                        10/11/12/13   NOTE       9n       57             39      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       58             3A      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT LOOP                                                       10/11/12/13   NOTE       9n       59             3B      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       60             3C      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                                                  PAD FX             Page1      10/11/12/13   NOTE       9n       61             3D      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                                                  BANK1              Page2      10/11/12/13   NOTE       9n       62             3E      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                                                                                                                                                                                                             *Note: When connected to rekordbox: The currently selected BANK and Page are detected and the corresponding MIDI is sent
+                                                SLIP LOOP                         PAD FX             Page1      10/11/12/13   NOTE       9n       63             3F      hh        <- same as MIDI IN
+                                                                                                                                                                                                                    When connected to a DJ app other than rekordbox (including when connected to a computer and not connected to a DJ app):
+                                                  mode                            BANK2              Page2      10/11/12/13   NOTE       9n       64             40      hh        <- same as MIDI IN               Outputs MIDI for PAD FX BANK1/Page1
+
+                                                                                                                                                                                   <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                                                                      +SHIFT    10/11/12/13   NOTE       9n       65             41      hh
+                            Performance                                                                                                                                                                      /[MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+                  12[L,R]                                             Press
+                                Pad8            BEAT JUMP                                                       10/11/12/13   NOTE       9n       66             42      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       67             43      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                GATE CUE                                                        10/11/12/13   NOTE       9n       68             44      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       69             45      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT LOOP2                                                      10/11/12/13   NOTE       9n       70             46      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                   mode                                               +SHIFT    10/11/12/13   NOTE       9n       71             47      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                KEY SHIFT                                                       10/11/12/13   NOTE       9n       72             48      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                  mode                                                +SHIFT    10/11/12/13   NOTE       9n       73             49      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+
+                                                BEAT JUMP2                                                      10/11/12/13   NOTE       9n       74             4A      hh        <- same as MIDI IN        OFF=0(0x00), ON=127(0x7F)
+                                                   mode                                               +SHIFT    10/11/12/13   NOTE       9n       75             4B      hh        <- same as MIDI IN        [MIDI OUT] 0(0x00) : OFF(Dark Lighting),1(0x01)-127(0x7F) : LED lights up in the color specified by the color number
+6, OTHERS           －             PC Control mode                                                                 1/2/3/4        CC      Bn      100             64      hh                                  OFF=0(0x00), ON=127(0x7F)([BROWSE] > [MIDI] > [LOAD])
+                                                  Deck 1                                                            14        NOTE                                               9D         0         hh     OFF=0(0x00), ON=127(0x7F)
+                                                  Deck 2                                                            14        NOTE                                               9D         1         hh     OFF=0(0x00), ON=127(0x7F)
+                    －          Load                            LOAD button illumination blinking
+                                                  Deck 3                                                            14        NOTE                                               9D         2         hh     OFF=0(0x00), ON=127(0x7F)
+                                                  Deck 4                                                            14        NOTE                                               9D         3         hh     OFF=0(0x00), ON=127(0x7F)
+7. JOG DISPLAY                                                                                                                                                                              0        MSB     Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x02, LSB：0x67) 0 ～ 359 [degree]
+                                                                                                     Deck 1         14           CC                                              BD
+                                                                                                                                                                                            20       LSB
+                                                                                                                                                                                            1        MSB     Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x02, LSB：0x67) 0 ～ 359 [degree]
+                                                                                                     Deck 2         14           CC                                              BD
+                  1[L,R]                          Current Position Bar                                                                                                                      21       LSB
+                                                                                                                                                                                            2        MSB     Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x02, LSB：0x67) 0 ～ 359 [degree]
+                                                                                                     Deck 3         14           CC                                              BD
+                                                                                                                                                                                            22       LSB
+                                                                                                     Deck 4         14           CC                                              BD          3       MSB     Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x02, LSB：0x67) 0 ～ 359 [degree]
+                                                                                                                                                                                            23       LSB
+                                                                                                     Deck 1         14           CC                                              BD          4       MSB     Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x02, LSB：0x67)               0 ～ 359 [degree]
+                                                                                                                                                                                            24       LSB     Hide Cue maker：(MSB：0x7F, LSB：0x7F)
+                                                                                                     Deck 2         14           CC                                              BD          5       MSB     Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x02, LSB：0x67)               0 ～ 359 [degree]
+                                                      Cue Marker                                                                                                                            25       LSB     Hide Cue maker：(MSB：0x7F, LSB：0x7F)
+                  2[L,R]
+                                                                                                     Deck 3         14           CC                                              BD          6       MSB     Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x02, LSB：0x67)               0 ～ 359 [degree]
+                                                                                                                                                                                            26       LSB     Hide Cue maker：(MSB：0x7F, LSB：0x7F)
+                                                                                                     Deck 4         14           CC                                              BD          7       MSB     Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x02, LSB：0x67)               0 ～ 359 [degree]
+                                                                                                                                                                                            27       LSB     Hide Cue maker：(MSB：0x7F, LSB：0x7F)
+
+
+
+
+                                                                                                                                                                                                                                                      © 2024 AlphaTheta Corporation. All rights reserved.

@@ -1,0 +1,5853 @@
+===== PDF PAGE 1 =====
+pioneerdj.com/support/
+serato.com
+For FAQ and other support information for this product, visit the websites above.
+DJ Controller
+DDJ-FLX10
+Instruction Manual
+rekordbox.com
+
+
+===== PDF PAGE 2 =====
+2 En
+How to read this manual 
+Thank you for choosing this Pioneer DJ product.
+Be sure to read this manual, the Quick Start Guide and the Precautions 
+for Use which are included with this product. These documents include 
+important information that you should understand before using the unit. 
+In particular, be sure to read the IMPORTANT SAFETY 
+INSTRUCTIONS.
+• In this manual, the names of buttons, knobs, and terminals that 
+appear on the product, and the names of buttons, menus, etc. in the 
+software on your PC/Mac, are indicated within square brackets ([ ]). 
+(e.g. [File], [CUE] button)
+• Please note that the software screens and their specifications, as 
+well as the external appearance and specifications of the hardware, 
+are subject to change without notice.
+• Please note that depending on the operating system version, web 
+browser settings, etc. operation may differ from the ways described 
+in this manual.
+• Please note that the language on the screens of the software 
+described in this manual may differ from the language on your 
+screen.
+
+
+===== PDF PAGE 3 =====
+3 En
+Contents
+How to read this manual............................................................... 2
+Before you start.........................................................................5
+What’s in the box .......................................................................... 5
+User guides................................................................................... 5
+DJ software................................................................................... 6
+PC/Mac setup ............................................................................... 8
+Part names and functions ......................................................10
+Top panel.................................................................................... 10
+Browse section ........................................................................... 11
+Deck section ............................................................................... 14
+On Jog Display (using rekordbox) .............................................. 33
+On Jog Display (using Serato DJ Pro)........................................ 43
+Mixer section............................................................................... 50
+Effects section ............................................................................ 54
+Rear panel .................................................................................. 58
+Front panel.................................................................................. 61
+Connections.............................................................................62
+Connection examples ................................................................. 63
+rekordbox.................................................................................67
+Installing rekordbox..................................................................... 67
+Basic use .................................................................................... 70
+Advanced use............................................................................. 76
+Changing the settings in rekordbox .......................................... 107
+
+
+===== PDF PAGE 4 =====
+4 En
+Serato DJ Pro.........................................................................114
+Installing Serato DJ Pro............................................................ 114
+Basic use .................................................................................. 117
+Advanced use........................................................................... 124
+Changing the settings...........................................................154
+Launching Utilities mode........................................................... 154
+Setting Utility software .............................................................. 159
+Additional information..........................................................165
+Troubleshooting........................................................................ 165
+LCD display .............................................................................. 173
+Signal flow ................................................................................ 174
+Specifications............................................................................ 175
+Using the unit as a controller for other DJ applications ............ 179
+Trademarks and registered trademarks.................................... 180
+Software license notice............................................................. 181
+Cautions on copyrights ............................................................. 183
+
+
+===== PDF PAGE 5 =====
+5 En
+Before you start
+What’s in the box
+• AC adapter
+• Power cord
+• USB cable
+• Warranty (for some regions)1
+• Quick Start Guide
+• Precautions for Use
+• Serato Pitch 'n Time DJ voucher2
+1 Only products in Europe.
+Products in North America and Japan include warranty information in 
+the Precautions for Use.
+2 The voucher codes needed to activate functions can’t be reissued. 
+Keep them in a safe place to be sure you don’t lose them.
+User guides
+rekordbox Introduction, Instruction Manual
+Refer to the rekordbox Introduction to find out how to set up rekordbox, 
+and see the rekordbox Instruction Manual to find out how to use 
+rekordbox.
+rekordbox.com/manual
+Serato DJ Pro software manual
+Visit the Serato DJ Pro website.
+serato.com/dj/pro/downloads
+
+
+===== PDF PAGE 6 =====
+Before you start
+6 En
+DJ software
+rekordbox
+• rekordbox is a complete DJ application you can use to manage your 
+music and perform. And in Lighting mode, you can create lighting 
+sequences to sync with your performances.
+• Even if you don’t have a paid subscription plan, you can use 
+Performance mode by connecting this unit to your PC/Mac with 
+rekordbox installed. This is called Hardware Unlock.
+• You’ll find details of the functions available via Hardware Unlock on 
+[Hardware Unlock] under [Support] at rekordbox.com.
+• The rekordbox software is not included with the unit. Download the 
+software from the URL below.
+rekordbox.com
+• For information on the latest system requirements, compatibility, and 
+supported operating systems of rekordbox, check [System 
+requirements] under [Support] at rekordbox.com.
+• Operation isn’t guaranteed on all PC/Mac models, even if the system 
+requirements are met.
+• Depending on power-saving settings and other conditions of the PC/
+Mac, the CPU and hard disk may not provide sufficient processing 
+capabilities. For laptops in particular, make sure the PC/Mac is in the 
+best condition to provide constant high-level performance when 
+using rekordbox (for example by keeping the AC power connected).
+• To use the internet, you need a separate contract with an internet 
+service provider, which you may have to pay for.
+• Operating system support always assumes you’re using the latest 
+point release for that version.
+
+
+===== PDF PAGE 7 =====
+Before you start
+7 En
+Serato DJ Pro
+Serato DJ Pro is DJ software from Serato Limited.
+This unit unlocks the software, which you can download from the 
+Serato website.
+serato.com/dj/pro/downloads
+• For information on the latest system requirements, compatibility, and 
+supported operating systems of Serato DJ Pro, visit the website 
+below.
+serato.com/dj/pro/downloads
+• Operation isn’t guaranteed on all PC/Mac models, even if the system 
+requirements are met.
+• Depending on power-saving settings and other conditions of the PC/
+Mac, the CPU and hard disk may not provide sufficient processing 
+capabilities. For laptops in particular, make sure the PC/Mac is in the 
+best condition to provide constant high-level performance when 
+using Serato DJ Pro (for example by keeping the AC power 
+connected).
+
+
+===== PDF PAGE 8 =====
+Before you start
+8 En
+PC/Mac setup
+To input or output your PC/Mac’s audio to/from the unit, install the 
+dedicated audio driver software and/or Setting Utility on your PC/Mac.
+If you install the audio driver software to your PC (Windows), Setting 
+Utility will also be installed with the driver software.
+If you use a Mac, install Setting Utility only.
+• For information on the latest system requirements, compatibility, and 
+supported operating systems, visit the URL below.
+pioneerdj.com/support/
+• Operation isn’t guaranteed on all PC/Mac models, even if the system 
+requirements are met.
+• Operation isn’t guaranteed when multiple units are connected to a 
+PC/Mac.
+• If a PC (Windows) without the dedicated audio driver software 
+installed is connected to the unit, errors may occur on the PC.
+• Malfunctions may occur due to incompatibility with other software 
+installed on a PC/Mac.
+Installation
+Notes on installation
+• Turn the unit off and disconnect the USB cable connected to the unit 
+and the PC/Mac before installation.
+• Close all applications running on the PC/Mac before installation.
+• You’ll need admin rights to install the dedicated software to your PC/
+Mac.
+• Read the License Agreement terms carefully before installation.
+• If you quit the installation halfway through, perform the installation 
+procedure from the beginning again.
+• After the installation is complete, connect the PC/Mac to the unit.
+• Operation isn’t guaranteed on all PC/Mac models.
+
+
+===== PDF PAGE 9 =====
+Before you start
+9 En
+Downloading the dedicated software
+1
+Visit the URL below.
+pioneerdj.com/support/
+2
+Click [Software & firmware updates].
+3
+Click [DDJ-FLX10] under [DJ CONTROLLER].
+4
+Click [Drivers].
+5
+Click [Download link] and save the file.
+• Download the dedicated software to your PC/Mac.
+Installing the dedicated software
+1
+Unzip the downloaded dedicated software.
+2
+Double-click the installation file.
+• Double-click “DDJ-FLX10_#.###.exe” if you’re using a PC (Windows), or 
+“DDJ-FLX10_M_#.#.#.dmg”  “DDJ-FLX10SettingUtility.pkg” if you’re 
+using a Mac (# indicates the version number of the software).
+3
+Read the Software end user license agreement carefully.
+If you agree to the terms, mark the [Agree] check box and click [OK].
+• If you don’t agree to the license agreement terms, click [Disagree] (for Mac)/
+[Cancel] (for Windows) to cancel the installation.
+4
+Follow the on-screen instructions to complete the installation.
+
+
+===== PDF PAGE 10 =====
+10 En
+Part names and functions
+Top panel
+1
+Browse section
+Selects tracks and loads them to the decks.
+2
+Deck sections
+Control each deck. There are knobs and buttons on the left side to control deck 
+1 and deck 3, and on the right side to control deck 2 and deck 4.
+3
+Mixer section
+Controls the level adjustment for each channel, track mixing, etc.
+4
+Effects section
+Controls the effects.
+1
+2
+1
+3
+2
+4
+
+
+===== PDF PAGE 11 =====
+Part names and functions
+11 En
+Browse section
+Using rekordbox
+1
+Rotary selector
+Turn:
+Moves the cursor in rekordbox.
+[SHIFT] + turn:
+Enlarges or shrinks the enlarged waveform in rekordbox.
+Turn to the right to enlarge, or the left to shrink it.
+Press:
+If the cursor is pointed to a track, the track loads onto the deck.
+If the cursor is pointed to a playlist, the cursor moves to the track list. 
+If the cursor is pointed to a folder, the folder opens.
+• When the playlist palette is displayed, the cursor will also move to the track 
+list when the cursor is on a playlist in the playlist palette.
+• The tree view, track list, and playlist palette are displayed in the browse 
+section of rekordbox. For details on each, read the rekordbox Instruction 
+Manual.
+Press twice:
+Loads the track from the deck that isn't playing onto the deck that is playing.
+If you do this while the track is playing, it plays from the same position (Instant 
+Doubles).
+1
+2
+3
+
+
+===== PDF PAGE 12 =====
+Part names and functions
+12 En
+2
+BACK button
+Press:
+Moves the cursor between the tree view and track list each time you press the 
+button.
+• When the playlist palette is displayed, the cursor will move between the tree 
+view, track list, and a playlist in the playlist palette.
+• The tree view, track list, and playlist palette are displayed in the browse 
+section of rekordbox. For details on each, read the rekordbox Instruction 
+Manual.
+[SHIFT] + press:
+Displays/hides the playlist palette.
+3
+VIEW button
+Press:
+Shrinks the deck display and enlarges the browse area. Press the button again 
+to return to the original display status.
+Hold:
+Adds or deletes the selected track to/from [Tag List].
+[SHIFT] + press:
+Moves the cursor into [Related Tracks] in the tree view.
+Using Serato DJ Pro
+1
+Rotary selector
+Turn:
+Moves the cursor up or down in the library or in the [crates] panel.
+[SHIFT] + turn:
+Enlarges or shrinks the detailed waveform on the On Jog Display.
+Turn to the right to enlarge, or the left to shrink it.
+
+
+===== PDF PAGE 13 =====
+Part names and functions
+13 En
+Press:
+If the cursor is pointed to a track, the track loads onto the deck.
+If the cursor is pointed to a library or [crates], the cursor moves between the 
+library and [crates] panels each time you press the button.
+Press twice:
+Loads the track from the deck that isn't playing onto the deck that is playing. 
+If you do this while the track is playing, it plays from the same position (Instant 
+Doubles).
+2
+BACK button
+Press:
+Moves the cursor between the library and [crates] panel each time you press
+the button.
+Hold:
+Launches Utilities mode.
+ Read more: Changing the settings (page 154)
+[SHIFT] + press:
+Loads a track onto the [PREPARE] panel.
+3
+VIEW button
+Press: 
+Changes the screen layout of Serato DJ Pro.
+[SHIFT] + press:
+Changes the panel display each time you press the button.
+
+
+===== PDF PAGE 14 =====
+Part names and functions
+14 En
+Deck section
+Using rekordbox
+1
+CUE/LOOP CALL  button
+Press:
+Selects and calls up the cue point or loop point.
+[SHIFT] + press:
+Saves the cue point or loop point.
+2
+CUE/LOOP CALL  button
+Press:
+Selects and calls up the cue point or loop point.
+30
+29
+28
+27
+26 
+25 
+24 
+23 
+22 
+20 
+19 
+21 
+10
+9
+6
+5
+4
+3
+7
+8
+11
+12
+18
+31 32
+1
+2
+13
+13
+13 14
+14
+14 15
+15
+15 16
+16
+16 17
+17
+17
+
+
+===== PDF PAGE 15 =====
+Part names and functions
+15 En
+[SHIFT] + press:
+Deletes the cue point or loop point.
+3
+MIX POINT SELECT  button
+Press:
+Selects a point to be mixed from a Hot Cue point or cue point set on the track 
+that's loaded to the deck to be mixed.
+[SHIFT] + press:
+Cancels the setting for Mix Point Link.
+4
+MIX POINT SELECT  button
+Press:
+Selects a point to be mixed from a Hot Cue point or cue point set on the track 
+that's loaded to the deck to be mixed.
+[SHIFT] + press:
+Selects the deck to be mixed.
+• This is enabled when using MIX POINT LINK.
+• The deck that's already playing in rekordbox can be selected.
+5
+MIX POINT LINK button
+Press:
+Displays the Mix Point Link screen on the On Jog Display and you can start 
+making settings for Mix Point Link.
+ Read more: Using Mix Point Link (page 102)
+[SHIFT] + press:
+If you start playback with Mix Point Link, you can change the audio output from 
+the beginning of the track to the mix point to mute (Silent setting).
+To set Silent during the Mix Point Link setting, read: Using Mix Point Link 
+(page 102)
+
+
+===== PDF PAGE 16 =====
+Part names and functions
+16 En
+6
+QUANTIZE button
+Press:
+Turns the Quantize function on/off.
+Press (during Off mode):
+Cancels Off mode.
+• You can only do this on the left deck.
+[SHIFT] + press:
+Hold the [SHIFT] button and tap the button to set the tempo of the respective 
+deck in time with your tapping (Tap feature).
+7
+SLIP button
+Press:
+Turns Slip mode on/off.
+[SHIFT] + press:
+Turns Vinyl mode on/off.
+8
+JOG FEEL knob
+Turn:
+Adjusts the load applied (“weight”) when the jog wheel is turned.
+Turn the knob clockwise to increase the load, or turn the knob 
+counterclockwise to decrease the load.
+9
+BEAT SYNC button
+Press:
+Automatically synchronizes the tempo (BPM) and beatgrid with the deck set as 
+the master.
+Press (during Beat Sync):
+Cancels Beat Sync.
+Hold (during Beat Sync):
+Sync Rate
+Changes the BPM on the deck that's playing to the original, double, or half.
+
+
+===== PDF PAGE 17 =====
+Part names and functions
+17 En
+[SHIFT] + press:
+Sets the deck as the master.
+10 TEMPO slider
+Adjusts the playing speed of the track.
+11 KEY SYNC button
+Press:
+Changes the key of the track to match the other deck.
+[SHIFT] + press:
+Changes the key of the track that's playing to the original key.
+12 TEMPO RESET button
+Press:
+Returns the playback speed to the original speed, regardless of the position of 
+the [TEMPO] slider.
+[SHIFT] + press:
+Switches the range of the [TEMPO] slider each time the button is pressed 
+while holding the [SHIFT] button.
+Switch between [±6%]  [±10%]  [±16%]  [WIDE]  [±6%].
+13 HOT CUE mode button
+Press:
+Enters Hot Cue mode.
+ Read more: Using Hot Cues (page 78)
+[SHIFT] + press:
+Enters Keyboard mode.
+ Read more: Using Keyboard mode (page 84)
+14 PAD FX1 mode button
+Press:
+Enters Pad FX mode 1.
+ Read more: Using Pad FX (page 80)
+
+
+===== PDF PAGE 18 =====
+Part names and functions
+18 En
+[SHIFT] + press:
+Enters Pad FX mode 2.
+ Read more: Using Pad FX (page 80)
+15 BEAT JUMP mode button
+Press:
+Enters Beat Jump mode.
+ Read more: Using Beat Jump (page 82)
+[SHIFT] + press:
+Enters Beat Loop mode.
+ Read more: Using Beat Loop (page 85)
+16 SAMPLER mode button
+Press:
+Enters Sampler mode.
+ Read more: Using Sampler (page 82)
+[SHIFT] + press:
+Enters Key Shift mode.
+ Read more: Using Key Shift (page 86)
+17 PAGE  button, PAGE  button
+Press:
+Changes the pad page of each pad mode.
+ Read more: Using the Performance Pads (page 78)
+Hold:
+Displays the function assigned to the pad on the On Jog Display.
+[SHIFT] + press:
+Switches information on the On Jog Display.
+
+
+===== PDF PAGE 19 =====
+Part names and functions
+19 En
+18 Performance Pads
+Press:
+You can use Performance Pads to trigger various features.
+ Read more: Using the Performance Pads (page 78)
+19 PLAY/PAUSE  button
+Press:
+Plays/pauses a track.
+20 CUE button
+Press:
+Sets, calls up, and plays a cue point.
+• Press the button when the track is paused to set the cue point.
+• Press the button when the track is playing to return to the cue point and 
+pause. (Back Cue)
+• Press the button and hold it after the track returns to the cue point and 
+playback will continue until you release the button. (Cue Point Sampler)
+[SHIFT] + press:
+Returns the playback position to the beginning of the track.
+21 4 BEAT JUMP  button, 4 BEAT JUMP  button
+Press:
+Instantly moves the playback position by 4 beats without breaking the rhythm.
+Hold:
+Fast-forward or fast-reverse the track until you release the button.
+[SHIFT] + press:
+Instantly moves the playback position by 16 beats without breaking the rhythm.
+
+
+===== PDF PAGE 20 =====
+Part names and functions
+20 En
+22 SHIFT button
+Press another button while holding the [SHIFT] button to use a different feature 
+assigned to the button.
+Press twice:
+Switches between display and non-display of the Digital Marker on the On Jog 
+Display.
+23 On Jog Display
+ Read more: On Jog Display (using rekordbox) (page 33)
+24 Jog wheel
+Turn the top when Vinyl mode is on:
+Scratches the track.
+Turn the outer section or turn the top when Vinyl mode is off:
+Bends the pitch (Pitch Bend – slows down or speeds up the track).
+[SHIFT] + turn the top:
+Adjusts the beatgrid interval of the loaded track.
+[SHIFT] + turn the side:
+Slides the whole beatgrid of the loaded track to the left or right.
+[4 BEAT JUMP ] or [4 BEAT JUMP ] + turn the top:
+Fast-forward or fast-reverse the track with extra speed in the direction the 
+wheel is turned.
+25 DECK SELECT button
+Press:
+Switches the deck to be used.
+[SHIFT] + press:
+Turns Dual Deck mode on/off.
+
+
+===== PDF PAGE 21 =====
+Part names and functions
+21 En
+26 SLIP REVERSE button
+Press:
+Plays in reverse while you hold the button and returns to normal playback when 
+you release it.
+• Normal playback continues in the background during reverse playback, then 
+normal playback resumes from the position it's reached when you release 
+the button.
+• Even if you keep holding the button, reverse playback will automatically 
+cancel after 8 beats, then normal playback resumes from the position it's 
+reached.
+[SHIFT] + press:
+Plays in reverse.
+Reverse playback cancels when you press the button while holding the 
+[SHIFT] button again, and normal playback resumes.
+27 LOOP IN, 1/2X button
+Press:
+Sets the loop in point.
+Press (during loop playback):
+Halves the loop playback length.
+• When paused at the loop in point, the loop playback length isn’t changed.
+[SHIFT] + press (during loop playback):
+Adjusts the loop in point using the jog wheel.
+28 LOOP OUT, 2X button
+Press:
+Sets the loop out point, and loop playback begins.
+Press (during loop playback):
+Doubles the loop playback length.
+
+
+===== PDF PAGE 22 =====
+Part names and functions
+22 En
+[SHIFT] + press:
+Playback returns to the previously set loop in point and loop playback resumes.
+[SHIFT] + press (during loop playback):
+Adjusts the loop out point using the jog wheel.
+29 4 BEAT/EXIT button
+Press:
+Starts Auto Beat Loop of 4 beats.
+Press (during loop playback):
+Cancels loop playback.
+[SHIFT] + press:
+Switches the active/non-active status of the loop. (Active Loop)
+• During playback, the loop nearest the playback position is set to active.
+• When you call up the loop, the called-up loop is set to active or non-active.
+30 ACTIVE PART DRUMS button
+Press:
+(When Mute is set), turns muting of the Drums part on/off.
+(When Solo is set), outputs only the Drums part. Press the button again to 
+output all parts.
+• You can set the [Preferences] > [Extensions] > [TRACK SEPARATION] 
+tab > [ACTIVE PART setting] in rekordbox.
+[SHIFT] + press twice:
+Part Instant Doubles
+You can duplicate a track loaded on a deck so it plays on the other deck from 
+exactly the same point.
+Press the button twice while holding down the [SHIFT] button on the deck 
+where you want the duplicate track to start playing.
+The deck you pressed the button only plays the Drums part, and the other deck 
+mutes the Drums part.
+
+
+===== PDF PAGE 23 =====
+Part names and functions
+23 En
+31 ACTIVE PART VOCAL button
+Press:
+(When Mute is set), turns muting of the Vocal part on/off.
+(When Solo is set), outputs only the Vocal part. Press the button again to output 
+all parts.
+• You can set the [Preferences] > [Extensions] > [TRACK SEPARATION] 
+tab > [ACTIVE PART setting] in rekordbox.
+[SHIFT] + press twice:
+Part Instant Doubles
+You can duplicate a track loaded on a deck so it plays on the other deck from 
+exactly the same point.
+Press the button twice while holding down the [SHIFT] button on the deck 
+where you want the duplicate track to start playing.
+The deck you pressed the button only plays the Vocal part, and the other deck 
+mutes the Vocal part.
+32 ACTIVE PART INST button
+Press:
+(When Mute is set), turns muting of the INST part on/off.
+(When Solo is set), outputs only the INST part. Press the button again to output 
+all parts.
+• You can set the [Preferences] > [Extensions] > [TRACK SEPARATION] 
+tab > [ACTIVE PART setting] in rekordbox.
+[SHIFT] + press twice:
+Part Instant Doubles
+You can duplicate a track loaded on a deck so it plays on the other deck from 
+exactly the same point.
+Press the button twice while holding down the [SHIFT] button on the deck 
+where you want the duplicate track to start playing.
+The deck you pressed the button only plays the INST part, and the other deck 
+mutes the INST part.
+
+
+===== PDF PAGE 24 =====
+Part names and functions
+24 En
+Using Serato DJ Pro
+1
+CUE/LOOP CALL  button
+Press:
+Selects the loop slot.
+[SHIFT] + press:
+Locks the loop slot.
+2
+CUE/LOOP CALL  button
+Press:
+Selects the loop slot.
+[SHIFT] + press:
+Deletes the loop slot.
+3
+MIX POINT SELECT  button
+Press:
+Lowers the key of the track.
+4
+MIX POINT SELECT  button
+Press:
+Raises the key of the track.
+[SHIFT] + press:
+Selects another deck displayed on the Waveform mode screen of the On Jog 
+Display.
+5
+MIX POINT LINK button
+Press:
+Turns the Key Lock function on/off.
+
+
+===== PDF PAGE 25 =====
+Part names and functions
+25 En
+6
+QUANTIZE button
+Press:
+Turns the Quantize function on/off.
+Press (during Off mode):
+Cancels Off mode.
+• You can only do this on the left deck.
+[SHIFT] + press:
+Hold the [SHIFT] button and tap the button to set the tempo of the respective 
+deck in time with your tapping (Tap feature).
+7
+SLIP button
+Press:
+Turns Slip mode on/off.
+[SHIFT] + press:
+Turns Vinyl mode on/off.
+8
+JOG FEEL knob
+Turn:
+Adjusts the load ("weight") applied when you turn the jog wheel.
+Turn the knob clockwise to increase the load, or turn it counterclockwise to 
+decrease the load.
+9
+BEAT SYNC button
+Press:
+The tempo (BPM) and beatgrid of multiple decks are automatically 
+synchronized.
+[SHIFT] + press:
+Cancels Sync mode.
+10 TEMPO slider
+Adjusts the playing speed of the track.
+
+
+===== PDF PAGE 26 =====
+Part names and functions
+26 En
+11 KEY SYNC button
+Press:
+Changes the key of the track to match the other deck.
+[SHIFT] + press:
+Changes the key of the track on the deck that is playing to the original key.
+12 TEMPO RESET button
+Press:
+Returns the playback speed to the original speed, regardless of the position of 
+the [TEMPO] slider.
+[SHIFT] + press:
+Switches the range of the [TEMPO] slider each time the button is pressed
+while holding the [SHIFT] button.
+Switch between [±8%]  [±16%]  [±50%]  [±8%].
+13 HOT CUE mode button
+Press:
+Enters Hot Cue mode.
+ Read more: Using Hot Cues (page 126)
+Hold:
+Enters Saved Flip mode.
+ Read more: Using Saved Flip (page 134)
+[SHIFT] + press:
+Enters Pitch Play mode.
+ Read more: Using Pitch Play (page 129)
+14 PAD FX1 mode button
+Press:
+Enters Pad FX mode.
+ Read more: Using Pad FX (page 127)
+
+
+===== PDF PAGE 27 =====
+Part names and functions
+27 En
+[SHIFT] + press:
+Enters Roll mode.
+ Read more: Using Roll (page 131)
+15 BEAT JUMP mode button
+Press:
+Enters Beat Jump mode.
+ Read more: Using Beat Jump (page 127)
+[SHIFT] + press:
+Enters Auto Loop mode.
+ Read more: Using Auto Loop (page 132)
+16 SAMPLER mode button
+Press:
+Enters Sampler mode.
+ Read more: Using Sampler (page 128)
+[SHIFT] + press:
+Enters Key Shift mode.
+ Read more: Using Key Shift (page 133)
+17 PAGE  button, PAGE  button
+Press or [SHIFT] + press:
+Adjusts the parameter of each pad mode.
+ Read more: Using the Performance Pads (page 126)
+Hold:
+Displays the function assigned to the pad on the On Jog Display.
+[SHIFT] + hold:
+Switches information on the On Jog Display.
+
+
+===== PDF PAGE 28 =====
+Part names and functions
+28 En
+18 Performance Pads
+Press:
+You can use Performance Pads to trigger various features.
+ Read more: Using the Performance Pads (page 126)
+19 PLAY/PAUSE  button
+Press:
+Plays/pauses a track.
+[SHIFT] + press:
+Returns to the temporary cue point and playback starts (Stutter).
+20 CUE button
+Press:
+Sets, calls up, and plays a cue point.
+• Press the button when the track is paused to set the cue point.
+• Press the button when the track is playing to return to the cue point and 
+pause (Back Cue).
+• Press the button and hold it after the track returns to the cue point and 
+playback will continue until you release the button (Cue Point Sampler).
+[SHIFT] + press:
+Returns the playback position to the beginning of the track.
+21 4 BEAT JUMP  button, 4 BEAT JUMP  button
+Press:
+Instantly moves the playback position by 4 beats without breaking the rhythm.
+Hold:
+Fast-forward or fast-reverse the track until you release the button.
+[SHIFT] + press:
+Instantly moves the playback position by 16 beats without breaking the rhythm.
+
+
+===== PDF PAGE 29 =====
+Part names and functions
+29 En
+22 SHIFT button
+Press another button while holding the [SHIFT] button to use a different feature
+assigned to the button.
+Press twice:
+Switches between display and non-display of the Digital Marker on the On Jog 
+Display.
+23 On Jog Display
+ Read more: On Jog Display (using Serato DJ Pro) (page 43)
+24 Jog wheel
+Turn the top when Vinyl mode is on:
+Scratches the track.
+Turn the outer section or turn the top when Vinyl mode is off:
+Bends the pitch (Pitch Bend – slows down or speeds up the track).
+[SHIFT] + turn the top:
+Adjusts the beatgrid interval of the loaded track.
+[SHIFT] + turn the side:
+Slides the whole beatgrid of the loaded track to the left or right.
+[4 BEAT JUMP ] or [4 BEAT JUMP ] + turn the top:
+Fast-forward or fast-reverse the track with extra speed in the direction you turn 
+the jog wheel (Skip mode).
+25 DECK SELECT button
+Press:
+Switches the deck to be used.
+[SHIFT] + press:
+Turns Dual Deck mode on/off.
+
+
+===== PDF PAGE 30 =====
+Part names and functions
+30 En
+26 SLIP REVERSE button
+Press:
+Plays in reverse while you hold the button and returns to normal playback when 
+you release it.
+• Normal playback continues in the background during reverse playback, then 
+normal playback resumes from the position it's reached when you release 
+the button.
+• Even if you hold the button, reverse playback automatically cancels after 8 
+beats, and normal playback resumes from the position it's reached.
+[SHIFT] + press:
+Plays in reverse.
+Reverse playback cancels when you press the button while holding the 
+[SHIFT] button again, and normal playback resumes.
+27 LOOP IN, 1/2X button
+Press:
+Sets the loop in point.
+Press (during loop playback):
+Halves the loop playback length.
+• When paused at the loop in point, the loop playback length isn’t changed.
+[SHIFT] + press (during loop playback):
+Adjusts the loop in point using the jog wheel.
+28 LOOP OUT, 2X button
+Press:
+Sets the loop out point, and loop playback begins.
+Press (during loop playback):
+Doubles the loop playback length.
+[SHIFT] + press:
+Playback returns to the previously set loop in point and loop playback resumes.
+
+
+===== PDF PAGE 31 =====
+Part names and functions
+31 En
+[SHIFT] + press (during loop playback):
+Adjusts the loop out point using the jog wheel.
+29 4 BEAT/EXIT button
+Press:
+Starts Auto Beat Loop of 4 beats.
+Press (during loop playback):
+Cancels loop playback.
+[SHIFT] + press:
+Switches the active/non-active status of the loop.
+30 ACTIVE PART DRUMS button
+Press:
+Turns muting of the Drums Stem on/off.
+[SHIFT] + press twice:
+You can duplicate a track loaded on a deck so it plays on the other deck from 
+exactly the same point.
+Press the button twice while holding down the [SHIFT] button on the deck 
+where you want the duplicate track to start playing.
+The deck you pressed the button only plays the Drums Stem, and the other 
+deck mutes the Drums Stem.
+31 ACTIVE PART VOCAL button
+Press:
+Turns muting of the Vocal Stem on/off.
+[SHIFT] + press twice:
+You can duplicate a track loaded on a deck so it plays on the other deck from 
+exactly the same point.
+Press the button twice while holding down the [SHIFT] button on the deck 
+where you want the duplicate track to start playing.
+
+
+===== PDF PAGE 32 =====
+Part names and functions
+32 En
+The deck you pressed the button only plays the Vocal Stem, and the other deck 
+mutes the Vocal Stem.
+32 ACTIVE PART INST button
+Press:
+Turns muting of the Bass and Melody Stems on/off.
+[SHIFT] + press twice:
+You can duplicate a track loaded on a deck so it plays on the other deck from 
+exactly the same point.
+Press the button twice while holding down the [SHIFT] button on the deck 
+where you want the duplicate track to start playing.
+The deck you pressed the button only plays the Bass and Melody Stems, and 
+the other deck mutes the Bass and Melody Stems.
+
+
+===== PDF PAGE 33 =====
+Part names and functions
+33 En
+On Jog Display (using rekordbox)
+When loading a track from DJ software to a deck, the On Jog Display shows 
+various track information.
+If you're using rekordbox, press the [PAGE ] button or [PAGE ] button while 
+holding the [SHIFT] button to switch information on the On Jog Display 
+between Deck Info mode, Waveform mode, Artwork Display, and DJ Logo 
+Display.
+Deck Info mode
+1
+BPM
+Displays the BPM of the track.
+2
+Master tempo
+Shows when the master tempo is turned on.
+3
+Key
+Shows the current key of the track.
+4
+Key change amount
+Shows the amount of change between the original key and the current key of 
+the track.
+12
+10
+11
+13
+18
+19
+14
+15
+5
+6
+4
+3
+2
+1
+9
+8
+7
+17
+16
+
+
+===== PDF PAGE 34 =====
+Part names and functions
+34 En
+5
+Cue / Loop / Hot Cue points
+Shows the set cue points, loop points, and Hot Cue points as markers.
+6
+Playback position
+Shows the current playback position.
+7
+Cue scope
+Shows the cue points, loop points, and Hot Cue points set in the section from 
+4 bars before to 16 bars after the current playback position as markers. Also, 
+4-bar units based on positions of the set or called-up cue / loop points are 
+displayed as markers.
+8
+Time (minutes, seconds)
+Indicates the remaining time or elapsed time.
+You can change the display via the settings in [Preferences] in rekordbox.
+ Read: Changing the settings in rekordbox (page 107)
+• Shows loop beats during loop playback.
+9
+SYNC
+Lights up when Beat Sync is turned on.
+10 Artwork
+Displays the track artwork.
+11 Deck number
+Indicates the current playing deck.
+12 Track Separation status 
+Lights up when Track Separation of the loaded track is complete.
+13 Playing speed adjustment range
+Displays the adjustable range based on the original playing speed of the track.
+14 Playing speed
+The value changes according to the position of the [TEMPO] slider.
+
+
+===== PDF PAGE 35 =====
+Part names and functions
+35 En
+15 On Air
+Indicates the On Air status for the deck you're using.
+Lights up in white when playing deck 1 or deck 2, and lights up in blue when 
+playing deck 3 or deck 4.
+16 Digital Marker
+Shows the current playback position. Rotates during playback, and stops when 
+the deck is paused.
+• Press the [SHIFT] button twice to switch between display and non-display.
+• The default setting is non-display.
+17 Waveform
+Displays the waveform.
+You can switch the color and format ([Full Waveform] or [Half Waveform]) 
+according to the setting in [Preferences] > [View] > [Waveform] in rekordbox. 
+For information about settings in rekordbox, read the rekordbox Instruction 
+Manual.
+18 MASTER
+Lights up when the deck is set as the master.
+19 Cue point
+Shows the position of the set or called-up cue point.
+
+
+===== PDF PAGE 36 =====
+Part names and functions
+36 En
+Waveform mode
+1
+BPM
+Displays the BPM of the track.
+2
+Master tempo
+Shows when the master tempo is turned on.
+3
+Key
+Shows the current key of the track.
+4
+Key change amount
+Shows the amount of change between the original key and the current key of 
+the track.
+5
+Cue / Loop / Hot Cue points
+Shows the set cue points, loop points, and Hot Cue points as markers.
+6
+Playback position
+Shows the current playback position.
+12
+10
+11
+13
+19
+18
+20
+14
+15
+16
+17
+5
+6
+4
+3
+2
+1
+9
+8
+7
+
+
+===== PDF PAGE 37 =====
+Part names and functions
+37 En
+7
+Deck number (deck for mixing)
+Indicates the deck number of the waveform for mixing.
+8
+Time (minutes, seconds)
+Indicates the remaining time or elapsed time.
+You can change the display via the settings in [Preferences] in rekordbox.
+ Read: Changing the settings in rekordbox (page 107)
+• Shows loop beats during loop playback.
+9
+SYNC
+Lights up when Beat Sync is turned on.
+10 Artwork
+Displays the track artwork.
+11 Deck number
+Indicates the current playing deck.
+12 Track Separation status 
+Lights up when Track Separation of the loaded track is complete.
+13 Playing speed adjustment range
+Displays the adjustable range based on the original playing speed of the track.
+14 Playing speed
+The value changes according to the position of the [TEMPO] slider.
+15 On Air
+Indicates the On Air status for the deck you're using.
+Lights up in white when playing deck 1 or deck 2, and lights up in blue when 
+playing deck 3 or deck 4.
+16 Digital Marker
+Shows the current playback position. Rotates during playback, and stops when 
+the deck is paused.
+• Press the [SHIFT] button twice to switch between display and non-display.
+• The default setting is non-display.
+
+
+===== PDF PAGE 38 =====
+Part names and functions
+38 En
+17 Enlarged waveform (playing deck)
+Displays the enlarged waveform of the playing deck.
+18 Enlarged waveform (deck for mixing)
+Displays the enlarged waveform of the track on the deck for mixing.
+19 MASTER
+Lights up when the deck is set as the master.
+20 Cue point
+Shows the position of the set or called-up cue point.
+
+
+===== PDF PAGE 39 =====
+Part names and functions
+39 En
+To display Mix Point Link
+When you press the [MIX POINT SELECT ] button, [MIX POINT SELECT ] 
+button, or [MIX POINT LINK] button, Mix Point Link information appears.
+ Read: Using Mix Point Link (page 102)
+1
+Playback position (playing deck)
+Indicates the current playback position of the track on the playing deck.
+2
+Playback start time
+After setting Mix Point Link, the remaining time to start playback of the next 
+track will flash.
+When the time reaches 0:00, this disappears.
+3
+Playback position (deck for mixing)
+Indicates the current playback position of the track on the deck for mixing.
+4
+Mix Point Link position
+(When Mix Point Link is set), displays the Mix Point Link position in the center 
+of the waveform.
+5
+Mix Point Link status
+This indicator appears when Mix Point Link is turned on.
+4
+5
+1
+2
+3
+
+
+===== PDF PAGE 40 =====
+Part names and functions
+40 En
+Artwork Display
+1
+Artwork
+Displays the track artwork.
+2
+SYNC
+Lights up when Beat Sync is turned on.
+3
+Deck number
+Indicates the current playing deck.
+4
+On Air
+Indicates the On Air status of the deck you're using.
+Lights up in white when playing deck 1 or deck 2, and lights up in blue when 
+playing deck 3 or deck 4.
+5
+Digital Marker
+Shows the current playback position. Rotates during playback, and stops when 
+the deck is paused.
+• Press the [SHIFT] button twice to switch between display and non-display.
+• The default setting is non-display.
+6
+MASTER
+Lights up when the deck is set as the master.
+3
+4
+6
+7
+5
+1
+2
+
+
+===== PDF PAGE 41 =====
+Part names and functions
+41 En
+7
+Cue point
+Shows the position of the set or called-up cue point.
+DJ Logo Display
+1
+DJ Logo
+Displays the DJ Logo.
+• You can change the DJ Logo in [DJ LOGO DISPLAY] of the Setting Utility 
+(page 159).
+2
+Cue point
+Shows the position of the set or called-up cue point.
+3
+SYNC
+Lights up when Beat Sync is turned on.
+4
+Deck number
+Indicates the current playing deck.
+5
+On Air
+Indicates the On Air status for the deck you're using.
+Lights up in white when playing deck 1 or deck 2, and lights up in blue when 
+playing deck 3 or deck 4.
+4
+5
+6
+7
+1
+2
+3
+
+
+===== PDF PAGE 42 =====
+Part names and functions
+42 En
+6
+Digital Marker
+Shows the current playback position. Rotates during playback, and stops when 
+the deck is paused.
+• Press the [SHIFT] button twice to switch between display and non-display.
+• The default setting is non-display.
+7
+MASTER
+Lights up when the deck is set as the master.
+To display the pad functions
+When you press and hold down the [PAGE ] button or [PAGE ] button, 
+information about the functions assigned to the Performance Pads shows. 
+When you release the button, the display returns to the previous screen.
+1
+Pad mode
+Indicates the current pad mode.
+2
+Pad function
+Shows the function name, parameter, and color information assigned to the 
+pad.
+3
+Time (minutes, seconds)
+Indicates the remaining time or elapsed time.
+3
+2
+1
+
+
+===== PDF PAGE 43 =====
+Part names and functions
+43 En
+On Jog Display (using Serato DJ Pro)
+When loading a track from DJ software to a deck, the On Jog Display shows 
+various track information. If you're using Serato DJ Pro, press the [PAGE ] 
+button or [PAGE ] button while holding the [SHIFT] button to switch 
+information on the On Jog Display between Virtual Deck mode, Waveform 
+mode, Artwork Display, and DJ Logo Display.
+Virtual Deck mode
+1
+BPM
+Displays the BPM of the track.
+2
+Playing speed
+The value changes according to the position of the [TEMPO] slider.
+3
+Loop
+Shows the loop beat value. During loop playback, this displays in blue.
+4
+Elapsed time
+5
+Remaining time
+6
+SYNC
+Lights up when Sync is turned on.
+7
+8
+14
+13
+12
+15
+9
+10
+11
+5
+6
+4
+3
+2
+1
+
+
+===== PDF PAGE 44 =====
+Part names and functions
+44 En
+7
+Deck number
+Indicates the current playing deck.
+8
+Playing speed adjustment range
+Displays the adjustable range based on the original playing speed of the track.
+9
+Key lock
+Displays this symbol when Key Lock is turned on.
+10 Key
+Shows the current key of the track.
+11 Key change amount
+Shows the amount of change between the original key and the current key of 
+the track.
+12 Selected deck
+Lights up in white when playing deck 1 or deck 2, and lights up in blue when 
+playing deck 3 or deck 4.
+13 Hot Cue
+Shows the nearest Hot Cue point from the current playback position.
+• You can display the Hot Cue information similar to the virtual deck of Serato 
+DJ Pro by setting [Display HOT CUE INDICATOR] in the Setting Utility 
+(page 159).
+14 Digital Marker
+Shows the current playback position. Rotates during playback, and stops when 
+the deck is paused.
+• Press the [SHIFT] button twice to switch between display and non-display.
+• The default setting is non-display.
+15 Playback position
+Shows the current playback position. Rotates during playback, and stops when 
+the deck is paused.
+
+
+===== PDF PAGE 45 =====
+Part names and functions
+45 En
+Waveform mode
+1
+Loop
+Shows the loop beat value. During loop playback, this displays in blue.
+2
+Playing speed
+The value changes according to the position of the [TEMPO] slider.
+3
+Selected deck
+Lights up in white when playing deck 1 or deck 2, and lights up in blue when 
+playing deck 3 or deck 4.
+4
+Playback position
+Shows the current playback position.
+5
+Detailed waveform
+Displays the detailed waveform near the current playback position.
+• To enlarge or shrink the detailed waveform, turn the rotary selector while 
+holding the [SHIFT] button.
+6
+Deck number (deck for mixing)
+Indicates the deck number of the waveform for mixing.
+7
+SYNC
+Lights up when the Sync function is turned on.
+8
+9
+14
+13
+15
+10
+11
+12
+6
+7
+5
+4
+3
+2
+1
+
+
+===== PDF PAGE 46 =====
+Part names and functions
+46 En
+8
+Key
+Shows the current key of the track.
+9
+BPM
+Displays the BPM of the track.
+10 Deck number
+Indicates the current playing deck.
+11 Playing speed adjustment range
+Displays the adjustable range based on the original playing speed of the track.
+12 Key lock
+Displays this symbol when Key Lock is turned on.
+13 Waveform (deck for mixing)
+Displays the waveform of the track on the deck for mixing.
+14 Digital Marker
+Shows the current playback position. Rotates during playback, and stops when 
+the deck is paused.
+• Press the [SHIFT] button twice to switch between display and non-display.
+• The default setting is non-display.
+15 Time
+Indicates the remaining time or elapsed time.
+You can change the display setting in [Time Mode] in the Setting Utility 
+(page 159).
+
+
+===== PDF PAGE 47 =====
+Part names and functions
+47 En
+Artwork Display
+1
+Artwork
+Displays the artwork.
+2
+SYNC
+Lights up when the Sync function is turned on.
+3
+Deck number
+Indicates the current playing deck.
+4
+Selected deck
+Lights up in white when playing deck 1 or deck 2, and lights up in blue when 
+playing deck 3 or deck 4.
+5
+Digital Marker
+Shows the current playback position. Rotates during playback, and stops when 
+the deck is paused.
+• Press the [SHIFT] button twice to switch between display and non-display.
+• The default setting is non-display.
+4
+3
+5
+1
+2
+
+
+===== PDF PAGE 48 =====
+Part names and functions
+48 En
+DJ Logo Display
+1
+DJ Logo
+Displays the DJ Logo.
+• You can change the DJ Logo in [DJ LOGO DISPLAY] in the Setting Utility 
+(page 159).
+2
+SYNC
+Lights up when the Sync function is turned on.
+3
+Deck number
+Indicates the current playing deck.
+4
+Selected deck
+Lights up in white when playing deck 1 or deck 2, and lights up in blue when 
+playing deck 3 or deck 4.
+5
+Digital Marker
+Shows the current playback position. Rotates during playback, and stops when 
+the deck is paused.
+• Press the [SHIFT] button twice to switch between display and non-display.
+• The default setting is non-display.
+4
+3
+5
+1
+2
+
+
+===== PDF PAGE 49 =====
+Part names and functions
+49 En
+To display the pad functions
+When you press and hold down the [PAGE ] button or [PAGE ] button, 
+information about the functions assigned to the Performance Pads shows. 
+When you release the button, the display returns to the previous screen.
+1
+Pad mode
+Indicates the current pad mode.
+2
+Pad function
+Shows the function name, parameter, and color information assigned to the 
+pad.
+3
+Time (minutes, seconds)
+Indicates the remaining time or elapsed time.
+3
+2
+1
+
+
+===== PDF PAGE 50 =====
+Part names and functions
+50 En
+Mixer section
+1
+ A, PHONO/LINE, 
+ B switches
+Selects the input source of each channel.
+• [
+ A] or [
+ B]: Select to use a track loaded onto a deck.
+• [PHONO/LINE]: Select to use a phono-level (MM cartridge) output device 
+such as a turntable connected to the [LINE/PHONO] input terminals.
+ Read more: Using external inputs (page 105)(page 152)
+2
+ A, LINE, 
+ B switches
+Selects the input source of each channel.
+• [
+ A] or [
+ B]: Select to use a track loaded onto a deck.
+• [LINE]: Select to use a line-level output device (multi player, etc.) connected 
+to the [LINE] input terminals.
+ Read more: Using external inputs (page 105)(page 152)
+8
+1
+2
+2
+1
+3
+4
+10
+5
+6
+7
+9
+8
+9
+8
+9
+8
+9
+11
+11
+11
+12
+12
+12
+13
+13
+13
+23
+22
+18
+17
+16
+15
+19
+21
+20
+14
+
+
+===== PDF PAGE 51 =====
+Part names and functions
+51 En
+3
+MASTER LEVEL knob
+Adjusts the volume of the master output sound.
+4
+BOOTH LEVEL knob
+Adjusts the volume of the sound output from the [BOOTH] output terminals.
+5
+CLIP indicator
+Flashes when the output level is too high.
+• Slow flashing: Occurs just before the distortion of sound begins.
+• Fast flashing: Occurs when the sound is distorted.
+6
+Master level indicator
+Indicates the volume of the master output sound.
+7
+TRIM knobs
+Adjust the volume of each channel’s sound.
+8
+Channel level indicators
+Indicate the volume of the sound of the respective channels before it passes 
+through the channel faders.
+9
+EQ (HI, MID, LOW) knobs
+For EQ mode, increase or decrease the relevant frequency for each channel.
+For Part ISO mode, adjust the volume of each part (Stem).
+For rekordbox, adjust the volume of the INST part with the EQ [HI] knob, the 
+Vocal part with the EQ [MID] knob, and the Drums part with the EQ [LOW] 
+knob.
+• You can change the part to be adjusted by setting the [Preferences] > 
+[Extensions] > [TRACK SEPARATION] > [Layout] in rekordbox.
+For Serato DJ Pro, adjust the volume of the Vocal Stem with the EQ [HI] knob, 
+the Bass and Melody Stems with the EQ [MID] knob, and the Drums Stem with 
+the EQ [LOW] knob.
+For information on changing the mode, see: 11. Headphones CUE buttons 
+(channel)
+
+
+===== PDF PAGE 52 =====
+Part names and functions
+52 En
+10 Headphones CUE button (master)
+Press:
+Plays the master sound through your headphones.
+11 Headphones CUE buttons (channel)
+Press:
+Play the sound of the relevant channel through your headphones.
+[SHIFT] + press:
+Switches between EQ mode and Part ISO mode for the EQ knobs on the 
+channels that are controlling DJ software.
+ See: 9 EQ (HI, MID, LOW) knobs
+12 Channel faders
+Adjust the volume of the sound for each channel.
+13 Crossfader assign switches
+Assign the channel output to the crossfader.
+[A]: Assigns output to [A] (left) of the crossfader.
+[B]: Assigns output to [B] (right) of the crossfader.
+[THRU]: Select this when you don’t want to use the crossfader. (The signals 
+don’t pass through the crossfader.)
+14 Crossfader
+Outputs sound assigned by the crossfader assign switches.
+15 HEADPHONES LEVEL knob
+Adjusts the volume of the headphones sound.
+16 HEADPHONES MIX knob
+Adjusts the monitor volume balance between sounds from the channels which 
+have the headphones [CUE] button pressed, and the master channel.
+17 SAMPLER VOL knob
+Adjusts the volume of the sampler sound.
+
+
+===== PDF PAGE 53 =====
+Part names and functions
+53 En
+18 SAMPLER CUE button
+Outputs the sampler sound from the headphones.
+• When using Serato DJ Pro, set [Sample Player Output Select] to [A] in 
+Serato DJ Pro.
+19 MIC OFF, ON, TALKOVER switch
+Turns the microphone on/off.
+ Read: Using a microphone (page 104)(page 151)
+20 MIC (microphone) indicator
+ Read: Using a microphone (page 104)(page 151)
+21 MIC EQ (HI, LOW) knobs
+Adjust the sound from the [MIC 1] and [MIC 2] input terminals.
+22 MIC2 LEVEL knob
+Adjusts the volume of sound from the [MIC 2] input terminal.
+23 MIC1 LEVEL knob
+Adjusts the volume of sound from the [MIC 1] input terminal.
+Don’t forcibly pull out the channel fader and crossfader knobs. 
+These knobs are hard to pull out and may break if pulled with 
+force.
+
+
+===== PDF PAGE 54 =====
+Part names and functions
+54 En
+Effects section
+Using rekordbox
+1
+FX PART SELECT (VOCAL, DRUMS, INST) buttons
+Press:
+Select a part to be applied with an effect when using Beat FX or Sound Color 
+FX.
+The effect applies to the parts which are lit.
+• For sound from the external inputs, microphone sound, and sampler sound, 
+the effect applies to all parts, even if the buttons aren’t lit.
+2
+Effects section display
+Displays the effect name, BPM, parameter, etc.
+3
+BEAT  button
+Press:
+Decreases the number of beats for synchronizing the Beat FX sound each time 
+the button is pressed.
+[SHIFT] + press:
+Sets the Beat FX Tempo mode to BPM Auto mode. The track’s BPM is used as 
+the basis for the Beat FX tempo.
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+10
+10
+11
+11
+11
+
+
+===== PDF PAGE 55 =====
+Part names and functions
+55 En
+4
+BEAT  button
+Press:
+Increases the number of beats for synchronizing the Beat FX sound each time 
+the button is pressed.
+[SHIFT] + press:
+Sets the Beat FX Tempo mode to BPM Tap mode. The BPM used as the basis 
+for Beat FX is set in time with your tapping of the button.
+5
+BEAT FX select knob
+Changes the Beat FX.
+6
+BEAT FX CH select knob
+Changes the channel that Beat FX will be applied to.
+7
+BEAT FX LEVEL/DEPTH knob
+Adjusts the parameter of Beat FX.
+8
+BEAT FX ON/OFF button
+Press:
+Turns Beat FX on/off.
+[SHIFT] + press:
+Turns Release FX on/off.
+9
+BEAT FX indicators
+Light up for the channel selected with the BEAT FX CH select knob.
+When [MST] is selected, the indicators of all channels light up.
+When Beat FX is on, the indicator flashes on the channel to which the effect is 
+applied.
+10 COLOR knobs
+Change the parameter of Sound Color FX for each channel.
+
+
+===== PDF PAGE 56 =====
+Part names and functions
+56 En
+11 SOUND COLOR FX buttons
+Turn Sound Color FX on/off.
+ Read: Using Sound Color FX (page 99)
+Using Serato DJ Pro
+1
+FX PART SELECT (VOCAL, DRUMS, INST) buttons
+Press:
+Select a Stem to be applied with an effect when using Beat FX or Sound Color 
+FX.
+The effect applies to the Stems which are lit.
+• For sound from the external inputs, microphone sound, and sampler sound, 
+the effect applies to all Stems, even if the buttons aren’t lit.
+2
+Effect section display
+Displays the effect name, BPM, parameter, etc.
+3
+BEAT  button
+Press:
+Decreases the number of beats for synchronizing the FX sound each time the 
+button is pressed.
+[SHIFT] + press:
+Sets the FX Tempo mode to BPM Auto mode. The track’s BPM is used as the 
+basis for the FX tempo.
+4
+BEAT  button
+Press:
+Increases the number of beats for synchronizing the FX sound each time the
+button is pressed.
+[SHIFT] + press:
+Sets the FX Tempo mode to BPM Tap mode. The BPM used as the basis
+for FX is set in time with your tapping of the button.
+
+
+===== PDF PAGE 57 =====
+Part names and functions
+57 En
+5
+BEAT FX select knob
+Changes the FX.
+6
+BEAT FX CH select knob
+Changes the channel that the effect will be applied to.
+7
+BEAT FX LEVEL/DEPTH knob
+Adjusts the parameter of FX.
+8
+BEAT FX ON/OFF button
+Press:
+Turns FX on/off.
+9
+BEAT FX indicators
+Light up for the channel selected with the BEAT FX CH select knob.
+When [MST] is selected, the indicators of all channels light up.
+When FX is turned on, the indicator flashes on the channel to which the effect 
+is applied.
+10 COLOR knobs
+Change the parameter of Sound Color FX for each channel.
+11 SOUND COLOR FX buttons
+Turn Sound Color FX on/off.
+ Read: Using Sound Color FX (page 148)
+
+
+===== PDF PAGE 58 =====
+Part names and functions
+58 En
+Rear panel
+1
+Kensington security slot
+Connection for a cable lock for security.
+2
+MASTER 1 output terminals (balanced XLR)
+Connection for analog input terminals of a power amplifier, etc.
+• Be sure to use these terminals as balanced outputs. If you use an XLR to 
+RCA converter cable (or a converter adapter), etc. to connect to the 
+unbalanced input (RCA, etc.), sound quality may decrease or unwanted 
+noise may occur.
+• Be careful not to accidentally insert the power cord plug of another unit or 
+device into any of these terminals.
+• Never connect devices capable of supplying phantom power to these 
+terminals.
+3
+MASTER 2 output terminals (RCA pin jack type)
+Connection for analog input terminals of a power amplifier, etc.
+• To connect to a balanced input (RCA, etc.), use the [MASTER 2] output 
+terminals.
+4
+BOOTH output terminals (1/4” / 6.35 mm, TRS)
+Outputs for a booth monitor.
+• Be sure to use these terminals as balanced outputs. If you connect them to 
+an unbalanced input, sound quality may decrease or unwanted noise may 
+occur.
+5 SIGNAL GND terminal
+Connection for the ground wire of a turntable to reduce unwanted noise that 
+occurs when a turntable is connected.
+MASTER
+USB
+6
+6
+2
+3
+7
+7
+8
+8
+4
+9
+10 11
+12
+13
+14 15
+16
+1
+5
+
+
+===== PDF PAGE 59 =====
+Part names and functions
+59 En
+6 LINE/PHONO switch
+Set to [LINE] when connecting a line-level output device (multi player, etc.) to 
+the [CH3] / [CH4] input terminals.
+Set to [PHONO] when connecting a phono-level (MM cartridge) output device 
+(turntable, etc.) to the [CH3] / [CH4] input terminals.
+7
+LINE/PHONO input terminals
+Connection for a phono-level (MM cartridge) output device (turntable, etc.) or 
+a line-level output device (multi player, etc.). You can switch the input source 
+depending on the connected device using the [LINE/PHONO] switch on the 
+unit's rear panel.
+• Set the [
+ A, PHONO/LINE, 
+ B] switch on the top of the unit to 
+[PHONO/LINE] before connecting a device.
+8
+LINE input terminals
+Connection for a line-level output device (multi player, etc.).
+• Set the [
+ A, LINE, 
+ B] switch on the top of the unit to [LINE] before 
+connecting a device.
+9
+DMX output terminal
+This is a DMX interface for rekordbox to enable lighting effects to be 
+synchronized with music.
+Lighting information set in Lighting mode in rekordbox can be sent as DMX
+signals from the unit to a DMX compatible lighting fixture. Also, when using 
+Performance mode in rekordbox, you can synchronize lighting effects with the 
+music played by a DJ.
+10 USB port (USB B)
+Connection for a PC/Mac.
+• Be sure to use the USB cable specified below.
+– To connect to a USB Type-C port: use the USB cable supplied with the unit 
+or a USB 2.0 compliant cable
+– To connect to a USB Type-A port: use a USB cable certified to the 
+appropriate standard with a length of 3 m or less
+• When using a USB hub, be sure it's a product recommended by the 
+manufacturer of your PC/Mac.
+
+
+===== PDF PAGE 60 =====
+Part names and functions
+60 En
+11 USB port (USB A)
+Connection for a PC/Mac.
+• Be sure to use the USB cable specified below.
+– To connect to a USB Type-C port: use the USB cable supplied with the unit 
+or a USB 2.0 compliant cable
+– To connect to a USB Type-A port: use a USB cable certified to the 
+appropriate standard with a length of 3 m or less
+• When using a USB hub, be sure it's a product recommended by the 
+manufacturer of your PC/Mac.
+12 MIC 2 input terminal
+Connection for a microphone.
+13 MIC 1 input terminal
+Connection for a microphone.
+14  switch
+Turn the power to the unit on () or off ().
+15 DC IN terminal
+Connection for a power outlet using the supplied AC adapter (connected with 
+the supplied power cord).
+• Connect the AC adapter after all other connections are complete.
+• Be sure to use the AC adapter supplied with the unit.
+16 Cord hook
+Hook for the AC adapter's power cord to reduce the risk of accidental 
+disconnection.
+• If the AC adapter is disconnected during playback, the sound will be 
+interrupted.
+
+
+===== PDF PAGE 61 =====
+Part names and functions
+61 En
+Front panel
+1
+PHONES output terminals
+Connection for your headphones.
+1/4” stereo jack and 3.5-mm stereo mini jack can be used with the unit.
+• Only use headphones with 32 Ω or more impedance. Headphones with 
+impedance lower than 32 Ω won’t work with the unit.
+1
+
+
+===== PDF PAGE 62 =====
+62 En
+Connections
+• Be sure to turn off the unit and disconnect the power cord from the 
+outlet before connecting devices.
+• Only connect the power cord to a power outlet after you’ve made all 
+other connections.
+• Be sure to use the supplied power cord and AC adapter.
+• Refer to the instruction manuals for any devices you want to connect.
+• To connect to your PC/Mac, use the supplied USB cable or one that 
+supports USB 2.0.
+• Be sure to use the USB cable specified below.
+– To connect to a USB Type-C port: use the USB cable supplied with 
+the unit or a USB 2.0 compliant cable
+– To connect to a USB Type-A port: use a USB cable certified to the 
+appropriate standard with a length of 3 m or less
+• When using a USB hub, be sure it's a product recommended by the 
+manufacturer of your PC/Mac.
+
+
+===== PDF PAGE 63 =====
+Connections
+63 En
+Connection examples
+Connecting input terminals
+Rear panel
+(1) Turntable, (2) Multi player, (3) Microphone, (4) PC/Mac, (5) Portable 
+audio device, (6) AC adapter, (7) Power cord, (8) Connection to a 
+power outlet
+When connecting a turntable to the [CH3] / [CH4] input terminals, set 
+the [LINE/PHONO] switch beside the terminals to [PHONO]. 
+When connecting a multi player to the [CH3] / [CH4] input terminals, 
+set the [LINE/PHONO] switch beside the terminals to [LINE].
+R
+L
+R
+L
+R
+L
+R
+L
+(3)
+(5)
+(5)
+(2)
+(2)
+(2)
+(2)
+(1)
+(1)
+(4)
+(7)
+(6)
+(8)
+
+
+===== PDF PAGE 64 =====
+Connections
+64 En
+Cord hook
+Fasten the AC adapter’s power cord in place by hooking it onto the 
+cord hook.
+This prevents the power cord from being accidentally pulled and the 
+plug from being disconnected from the terminal.
+• Never bend the base of the AC adapter's power cord when fastening 
+it. If used continuously under these conditions, the power cord may 
+be damaged, resulting in faulty contact.
+Connecting output terminals
+Front panel
+(1) Headphones
+(1)
+
+
+===== PDF PAGE 65 =====
+Connections
+65 En
+Rear panel
+(1) Powered amplifier, powered speakers, etc., 
+(2) Powered amplifier (for booth monitor), powered speakers, etc., 
+(3) Home stereo, powered amplifier, powered speakers, etc.,
+(4) DMX cable (XLR 3 pin), (5) Lighting fixture
+• Be sure to use the [MASTER 1] output terminals for a balanced 
+output.
+If these terminals are connected to an unbalanced input (such as 
+RCA) using an XLR to RCA converter cable (or a converter adapter), 
+etc., sound quality may decrease or unwanted noise may occur.
+• To connect to an unbalanced input (such as RCA), use the [MASTER 
+2] output terminals.
+• Be careful not to accidentally insert the power cord plug of another 
+unit or device into one of the [MASTER 1] output terminals.
+• Never connect devices capable of supplying phantom power to the 
+[MASTER 1] output terminals.
+(3)
+(1)
+(2)
+(4)
+(5)
+R
+L
+
+
+===== PDF PAGE 66 =====
+Connections
+66 En
+• Be sure to use the [BOOTH] output terminals for a balanced output.
+If these terminals are connected to an unbalanced input (such as an 
+RCA or TS terminal) using a TRS to RCA converter cable (or a 
+converter adapter), TS cable, etc., sound quality may decrease or 
+unwanted noise may occur.
+Connecting
+1
+Connect your headphones to one of the [PHONES] output 
+terminals on the unit's front panel.
+2
+Connect an output device such as a powered amplifier to the 
+[MASTER 1] output terminals or [MASTER 2] output terminals.
+• To output the sound from the [BOOTH] output terminals, connect a device to 
+use as a booth monitor.
+• To use an output device such as a multi player, connect to the [CH3] / [CH4] 
+input terminals and set the [LINE/PHONO] switch.
+3
+Connect the unit to your PC/Mac via a USB cable.
+4
+Turn on your PC/Mac.
+5
+Connect the AC adapter.
+6
+Press the [] switch on the unit’s rear panel to turn it on.
+• For Windows users
+The “preparing device” message may appear. In this case, wait until the 
+“ready-to-use” message appears.
+7
+Turn on the devices connected to the [MASTER 1] output terminals 
+and [MASTER 2] output terminals.
+• When a microphone, multi player, or other external device is connected to 
+the input terminals, turn on that device too.
+
+
+===== PDF PAGE 67 =====
+67 En
+rekordbox
+Installing rekordbox
+Getting started with rekordbox
+If you’re using rekordbox for the first time, download the latest version 
+from rekordbox.com and install it in the following way.
+If you already have rekordbox installed, update to the latest version 
+using the Update Manager which you’ll see when you start rekordbox.
+• You are responsible for preparing your PC/Mac, network devices, 
+and other elements needed to connect to the internet.
+Installing rekordbox
+Procedures may differ depending on the operating system (OS) of your 
+PC/Mac.
+Installing (Mac)
+Do not connect the unit to your Mac until installation is complete.
+• Close all programs on your Mac.
+1
+Unzip the downloaded rekordbox software file.
+2
+Double-click the unzipped software file to launch the installer.
+
+
+===== PDF PAGE 68 =====
+rekordbox
+68 En
+3
+Read the terms of the License Agreement carefully and if you agree 
+to them, click [Agree].
+• If you do not agree to the contents of the License Agreement, click 
+[Disagree] to cancel the installation.
+4
+When the screen for completing the installation appears, click 
+[Close] to end the installation.
+Installing (Windows)
+Do not connect the unit to your PC until installation is complete.
+• Log into your PC as an administrator before starting the installation.
+• Close all programs on your PC.
+1
+Unzip the downloaded rekordbox software file.
+2
+Double-click the unzipped software file to launch the installer.
+
+
+===== PDF PAGE 69 =====
+rekordbox
+69 En
+3
+Read the terms of the License Agreement carefully and if you agree 
+to them, select [Agree], then click [Next].
+• If you do not agree to the contents of the license agreement, click [Cancel] 
+to cancel the installation.
+• After specifying the destination, the installation will start.
+When the installation is finished, a completion message will be displayed.
+4
+Click [Finish] to complete the installation.
+Installation is complete.
+
+
+===== PDF PAGE 70 =====
+rekordbox
+70 En
+Basic use
+Starting rekordbox
+You need to register a Pioneer DJ account to use rekordbox.
+For details, refer to the rekordbox Introduction.
+For Mac
+In Finder, open the [Applications] folder, then double-click the 
+[rekordbox 6] > [rekordbox.app] icon.
+For Windows 11
+In the [Start] menu, open the [All apps] screen, then click the 
+[rekordbox 6] icon under [Pioneer].
+For Windows 10
+In the [Start] menu, click the [rekordbox 6] icon under [Pioneer].
+
+
+===== PDF PAGE 71 =====
+rekordbox
+71 En
+Checking audio setup
+Check that the [Audio] settings in [Preferences] in rekordbox are set 
+as follows:
+For Mac
+[Audio]: [DDJ-FLX10]
+[Output channels]:
+[Master Output]: [DDJ-FLX10 : MASTER + audio device name on 
+Mac] 
+[Headphones Output]: [DDJ-FLX10 : PHONES]
+• When PC MASTER OUT is off, [Master Output] in the [Audio] 
+setting is [DDJ-FLX10 : MASTER].
+For Windows
+[Audio]: [DDJ-FLX10 ASIO]
+[Output channels]:
+[Master Output]: [DDJ-FLX10 ASIO : MASTER + audio device 
+name on PC]
+[Headphones Output]: [DDJ-FLX10 ASIO : PHONES]
+• When PC MASTER OUT is off, [Master Output] in the [Audio] 
+setting is [DDJ-FLX10 ASIO : MASTER].
+• PC Master Out is a function that can output the master sound of 
+rekordbox from the speaker(s) of the connected PC/Mac. By default, 
+PC Master Out is set to on.
+• To cancel outputting the master sound of rekordbox from the 
+speaker(s) of the connected PC/Mac, click 
+ in the top-right area 
+of the rekordbox screen so its light switches off.
+
+
+===== PDF PAGE 72 =====
+rekordbox
+72 En
+Adding music files into your Collection
+The [Collection] screen contains a list of music files managed by
+rekordbox.
+Add music files on your PC/Mac to your Collection so the software can 
+analyze them and they can be used in rekordbox.
+1
+Click [Collection] on the tree view.
+A list of tracks in your [Collection] is displayed.
+2
+Open Finder (Mac) or Explorer (Windows) and drag and drop music 
+files, or folders containing music files, into the track list.
+Music files are added into the [Collection] and analysis for the music files 
+begins. Wait until analysis of all music files is complete.
+Loading an audio track onto a deck
+The following explains how to load a track onto deck 1 as an example.
+Turn the rotary selector to select a track in your [Collection] and press 
+the rotary selector for deck 1.
+The track loads onto deck 1.
+
+
+===== PDF PAGE 73 =====
+rekordbox
+73 En
+Playing a track
+This section explains how to play sound from deck 1 (left) as an 
+example.
+1
+Set the positions of the knobs, etc. as follows:
+• [
+ A, LINE, 
+ B] switch: [
+ A]
+• [TRIM] knob: turned fully counterclockwise
+• EQ [HI/MID/LOW] knobs: center position (12 o’clock)
+• [COLOR] knob: center position
+• Channel fader: bottom position
+• [MASTER LEVEL] knob: turned fully counterclockwise
+• Crossfader: center position
+• Crossfader assign switch: [THRU]
+2
+Press the [PLAY/PAUSE ] button to play the track.
+3
+Turn the [TRIM] knob.
+Adjust the [TRIM] knob so the channel level indicator lights up orange at the 
+loudest part of the track.
+
+
+===== PDF PAGE 74 =====
+rekordbox
+74 En
+4
+Move the channel fader to the top.
+5
+Turn the [MASTER LEVEL] knob to adjust the volume of the 
+speakers to a level you’re happy with.
+Adjust the volume of sound output from the [MASTER 1] output terminals or 
+[MASTER 2] output terminals.
+• If you’re outputting sound from the speaker of your PC/Mac, adjust the 
+speaker volume on the PC/Mac instead of using the [MASTER LEVEL] 
+knob.
+• If you can’t output sound from the [MASTER 1] output terminals or 
+[MASTER 2] output terminals or the unit isn’t recognized by your PC/Mac, 
+refer to the [FAQ] on the Pioneer DJ support website.
+pioneerdj.com/support/
+
+
+===== PDF PAGE 75 =====
+rekordbox
+75 En
+Monitoring with headphones
+This section explains how to play sound from deck 1 (left) as an 
+example.
+1
+Set the positions of knobs, etc. as shown below.
+• [HEADPHONES MIX] knob: Center
+• [HEADPHONES LEVEL] knob: Turned fully counterclockwise
+2
+Press the headphones [CUE] button for channel 1.
+3
+Turn the [HEADPHONES LEVEL] knob.
+Adjust the headphones volume to a level you’re happy with.
+Quitting rekordbox
+Click the [x] button or select [Exit] from the [File] menu. 
+Turning off the unit
+Press the [] switch on the unit’s rear panel to turn the unit off.
+
+
+===== PDF PAGE 76 =====
+rekordbox
+76 En
+Advanced use
+Using 4 Beat Loop
+While a track is playing, press the [4 BEAT/EXIT] button.
+Loop playback starts with 4 beats from the point where you press the 
+button.
+• When the Quantize function is turned on, you might notice a slight 
+delay as the loop synchronizes to the beat.
+Canceling loop playback
+Press the [4 BEAT/EXIT] button.
+When the loop out point is reached, the rest of the track continues to 
+play without returning to the loop in point.
+Using Manual Loop
+You can use Manual Loop to choose the section you want to loop in a 
+track.
+• When the Quantize function is turned on, you might notice a slight 
+delay as the loop synchronizes to the beat.
+1
+During playback, press the [LOOP IN, 1/2X] button at the point you 
+want to start looping (the loop in point).
+2
+Press the [LOOP OUT, 2X] button at the point you want the loop to 
+end (the loop out point).
+Loop playback starts.
+
+
+===== PDF PAGE 77 =====
+rekordbox
+77 En
+Cutting the loop
+Press the [LOOP IN, 1/2X] button during loop playback.
+Each time you press the button, the loop cuts in half.
+• You can cut the loop length in half even during 4 Beat Loop playback.
+Extending the loop
+Press the [LOOP OUT, 2X] button during loop playback.
+Each time you press the button, the loop doubles in length.
+• You can double the loop length even during 4 Beat Loop playback.
+Canceling a loop
+Press the [4 BEAT/EXIT] button.
+The rest of the track continues to play without returning to the loop in 
+point.
+Changing the loop in point
+Press the [LOOP IN, 1/2X] button while holding the [SHIFT] button and 
+turn the jog wheel during loop playback.
+The loop in point changes.
+Changing the loop out point
+Press the [LOOP OUT, 2X] button while holding the [SHIFT] button 
+and turn the jog wheel during loop playback.
+The loop out point changes.
+
+
+===== PDF PAGE 78 =====
+rekordbox
+78 En
+Using the Performance Pads
+You can switch functions using the respective Pad mode buttons (the 
+[HOT CUE] mode button, [PAD FX1] mode button, [BEAT JUMP] 
+mode button, and [SAMPLER] mode button).
+Using Hot Cues
+You can start playback instantly from the position where a Hot Cue is 
+set. Loops can also be set and called up instantly.
+• Up to 16 Hot Cues can be set and saved for each track in rekordbox.
+Setting and calling up a Hot Cue
+1
+Press the [HOT CUE] mode button.
+The unit enters Hot Cue mode.
+• For 16 Hot Cues assigned to the Performance Pads, you can switch to Hot 
+Cue A through H by pressing the [PAGE ] button, and Hot Cue I through P 
+by pressing the [PAGE ] button. Also, the Hot Cue display on the deck 
+screen in rekordbox will be switched.
+2
+When the track is playing or paused, press a Performance Pad to 
+set a Hot Cue.
+Hot Cues are set to Performance Pads as follows:
+When you press the [PAGE ] button
+1: Hot Cue A, 2: Hot Cue B, 3: Hot Cue C, 4: Hot Cue D, 
+5: Hot Cue E, 6: Hot Cue F, 7: Hot Cue G, 8: Hot Cue H
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 79 =====
+rekordbox
+79 En
+When you press the [PAGE ] button
+1: Hot Cue I, 2: Hot Cue J, 3: Hot Cue K, 4: Hot Cue L,
+5: Hot Cue M, 6: Hot Cue N, 7: Hot Cue O, 8: Hot Cue P
+3
+Press a Performance Pad you’ve set a Hot Cue for.
+Playback starts from the Hot Cue point.
+• You can clear Hot Cues by pressing a Performance Pad while holding the 
+[SHIFT] button.
+• You can use Gate playback while the track is paused by setting the 
+[Preferences] > [Controller] > [Deck] > [HOT CUE] > [During Pause, 
+GATE playback is applied.] in rekordbox.
+Setting and calling up 4 Beat Loop
+1
+Press the [HOT CUE] mode button.
+The unit enters Hot Cue mode.
+2
+Press the [4 BEAT/EXIT] button during playback.
+A loop with 4 beats is set at the position where you pressed the button, and 
+loop playback starts.
+3
+Press a Performance Pad to set a loop during loop playback.
+4
+Press the Performance Pad.
+Loop playback starts from the loop in point.
+• You can clear the loop by pressing the Performance Pad while holding the 
+[SHIFT] button.
+Setting and calling up Manual Loop
+1
+Press the [HOT CUE] mode button.
+The unit enters Hot Cue mode.
+2
+Press the [LOOP IN, 1/2X] button during playback, and press the 
+[LOOP OUT, 2X] button.
+Loop playback starts.
+
+
+===== PDF PAGE 80 =====
+rekordbox
+80 En
+3
+Press a Performance Pad to set a loop during the loop playback.
+4
+Press the Performance Pad.
+Loop playback starts from the loop in point.
+• You can clear the loop by pressing the Performance Pad while holding the 
+[SHIFT] button.
+Using Pad FX
+You can add a wide range of effects to your performances simply by 
+pressing and releasing the Performance Pads.
+1
+Press the [PAD FX1] mode button.
+The unit enters Pad FX mode.
+Effects are set to the Performance Pads as follows:
+• For 16 effects assigned to the pads, you can switch to Effect A through H by 
+pressing the [PAGE ] button, and Effect I through P by pressing the [PAGE 
+] button. Also, the Pad FX display on the deck screen in rekordbox will be 
+switched.
+When you press the [PAGE ] button
+1: Effect A, 2: Effect B, 3: Effect C, 4: Effect D, 
+5: Effect E, 6: Effect F, 7: Effect G, 8: Effect H
+When you press the [PAGE ] button
+1: Effect I, 2: Effect J, 3: Effect K, 4: Effect L, 
+5: Effect M, 6: Effect N, 7: Effect O, 8: Effect P
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 81 =====
+rekordbox
+81 En
+To use Pad FX mode 2, press the [PAD FX1] mode button while holding 
+the [SHIFT] button.
+Effects are set to the Performance Pads as follows:
+• For 16 effects assigned to the pads, you can switch to Effect Q through X by 
+pressing the [PAGE ] button, and Effect Y through AF by pressing the 
+[PAGE ] button. Also, the Pad FX display on the deck screen in rekordbox 
+will be switched.
+When you press the [PAGE ] button
+1: Effect Q, 2: Effect R, 3: Effect S, 4: Effect T,
+5: Effect U, 6: Effect V, 7: Effect W, 8: Effect X
+When you press the [PAGE ] button
+1: Effect Y, 2: Effect Z, 3: Effect AA, 4: Effect AB,
+5: Effect AC, 6: Effect AD, 7: Effect AE, 8: Effect AF
+2
+Press and hold down a Performance Pad.
+The effect turns on. The sound changes according to the type of effect and the 
+number of beats in the settings assigned to that pad.
+3
+Release the Performance Pad.
+The effect turns off.
+Using Release FX of Pad FX
+You need to assign a Release FX to a Performance Pad in advance.
+1
+Press and hold down a Performance Pad that has an effect other 
+than a Release FX assigned to it.
+The effect turns on. The sound changes according to the type of effect and the 
+number of beats in the settings assigned to that pad.
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 82 =====
+rekordbox
+82 En
+2
+Press the Performance Pad that has a Release FX assigned to it, 
+and release it.
+The effect turns off, and the Release FX is added.
+Using Beat Jump
+You can move the playback position instantly, without breaking the 
+rhythm of the track that’s playing.
+1
+Press the [BEAT JUMP] mode button.
+The unit enters Beat Jump mode.
+The number of beats set to the Performance Pads are as follows (Default):
+• To change the number of beats or bars, press the [PAGE ] button or [PAGE 
+] button.
+1: 1 beat (left direction), 2: 1 beat (right direction), 3: 2 beats (left direction), 
+4: 2 beats (right direction), 5: 4 beats (left direction), 6: 4 beats (right direction), 
+7: 8 beats (left direction), 8: 8 beats (right direction)
+2
+Press a Performance Pad.
+• Pad 1, 3, 5 or 7: The playback position is moved to the left by the number of 
+beats set on the pad.
+• Pad 2, 4, 6 or 8: The playback position is moved to the right by the number 
+of beats set on the pad.
+Using Sampler
+You can use the Performance Pads to play tracks or sounds assigned 
+to the Sampler slots.
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 83 =====
+rekordbox
+83 En
+Preparing to use Sampler
+Click the 
+ button at the top-left of the rekordbox screen to display 
+the [SAMPLER] panel.
+Loading a track into a Sampler slot
+1
+Press the [SAMPLER] mode button.
+The unit enters Sampler mode.
+2
+Press the [PAGE ] button or [PAGE ] button.
+The Sampler bank changes.
+3
+Press the rotary selector to move the cursor to the track list.
+4
+Turn the rotary selector.
+Select a track you want to load into a Sampler slot.
+5
+Press a Performance Pad while holding the [SHIFT] button.
+The selected track is loaded into the Sampler slot.
+• Loading a sound into a slot that already has a sound loaded may not be 
+possible depending on the [Preferences] settings in rekordbox. You may 
+need to clear the slot before loading the new sound.
+Playing Sampler sounds with Performance Pads
+1
+Press the [SAMPLER] mode button.
+The unit enters Sampler mode.
+2
+Press the [PAGE ] button or [PAGE ] button.
+The Sampler bank changes.
+3
+Turn the 
+ [GAIN] on the [SAMPLER] panel to adjust the Sampler 
+volume.
+4
+Press a Performance Pad.
+The track or sound assigned to the relevant slot is played.
+
+
+===== PDF PAGE 84 =====
+rekordbox
+84 En
+• Sampler slots are set to Performance Pads as follows. (The slots in brackets 
+are for when the Pad mode of deck 2 or deck 4 is set to Sampler mode.)
+1: Slot 1 (slot 9), 2: Slot 2 (slot 10), 3: Slot 3 (slot 11), 4: Slot 4 (slot 12), 
+5: Slot 5 (slot 13), 6: Slot 6 (slot 14), 7: Slot 7 (slot 15), 8: Slot 8 (slot 16)
+5
+During Sampler playback, press the Performance Pad again.
+The sound plays from the beginning again.
+6
+Press a Performance Pad while holding the [SHIFT] button during 
+Sampler playback.
+The sound of the slot that is currently playing stops.
+Using Keyboard mode
+Use Performance Pads to play a Hot Cue in different pitches, as if 
+you’re using a keyboard.
+1
+Press the [HOT CUE] mode button while holding the [SHIFT] 
+button.
+The unit enters Keyboard mode.
+2
+Press a Performance Pad.
+Select the Hot Cue you want to use with Keyboard mode.
+• If no Hot Cue is set, the current playback position is set as a Hot Cue. After 
+selecting the Hot Cue which you set, the Hot Cue is used with Keyboard 
+mode.
+• To reselect a Hot Cue, press the [HOT CUE] mode button while holding the 
+[SHIFT] button.
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 85 =====
+rekordbox
+85 En
+When the Hot Cue is selected, the various pitches are set to the Performance 
+Pads as follows (Default):
+1: +4 Semitones, 2: +5 Semitones, 3: +6 Semitones, 4: +7 Semitones, 
+5: 0 Semitones, 6: +1 Semitone, 7: +2 Semitones, 8: +3 Semitones
+A semitone is a unit used to determine the pitch of a sound. +1 semitone 
+means the sound is higher in pitch than the original sound by half.
+3
+Press the [PAGE ] button or [PAGE ] button to change the pitch 
+set to the Performance Pad.
+4
+Press a Performance Pad.
+Playback starts from the Hot Cue point, with the sound pitch assigned to that 
+pad.
+Using Beat Loop
+If you press a Performance Pad, a loop with the number of beats 
+assigned to the pad is set. The loop keeps playing after you remove 
+your finger from the pad.
+1
+Press the [BEAT JUMP] mode button while holding the [SHIFT] 
+button.
+The unit enters Beat Loop mode.
+The number of beats set to the Performance Pads are as follows (Default):
+• Press the [PAGE ] button or [PAGE ] button to change the number of 
+beats set to the Performance Pad.
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 86 =====
+rekordbox
+86 En
+1: Beat Loop 1/64 beat, 2: Beat Loop 1/32 beat, 3: Beat Loop 1/16 beat, 
+4: Beat Loop 1/8 beats, 5: Beat Loop 1/4 beats, 6: Beat Loop 1/2 beats, 
+7: Beat Loop 1 beats, 8: Beat Loop 2 beats
+2
+Press a Performance Pad.
+The loop plays with the number of beats set on that pad.
+3
+Press the same Performance Pad again.
+The loop is canceled and the rest of the track continues to play.
+Using Key Shift
+When you press a Performance Pad in Key Shift mode, the key of the 
+track that’s currently playing is changed to the pitch set to the pressed 
+pad.
+1
+Press the [SAMPLER] mode button while holding the [SHIFT] 
+button.
+The unit enters Key Shift mode.
+The various pitches are set to the Performance Pads as follows (Default):
+1: +4 Semitones, 2: +5 Semitones, 3: +6 Semitones, 4: +7 Semitones, 
+5: 0 Semitones, 6: +1 Semitone, 7: +2 Semitones, 8: +3 Semitones
+A semitone is a unit used to determine the pitch of a sound. +1 semitone 
+means the sound is higher in pitch than the original sound by half.
+1
+2
+3
+4
+5
+6
+7
+8
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 87 =====
+rekordbox
+87 En
+2
+Press the [PAGE ] button or [PAGE ] button to change the pitch 
+set to the Performance Pad.
+3
+Press a Performance Pad.
+The track’s key is changed to the pitch assigned to the pad.
+4
+Press the [KEY SYNC] button while holding the [SHIFT] button.
+The track’s key returns to the original key.
+Setting and calling up a cue point or loop point
+Setting a cue point or loop point
+1
+Pause the track and move the playback position to where you want 
+to set a cue point or loop point.
+2
+Press the [CUE] button while the track is paused.
+3
+Press the [CUE/LOOP CALL ] button while holding the [SHIFT] 
+button.
+The cue point or loop point is saved.
+Calling up the cue point or loop point
+Press the [CUE/LOOP CALL ] button or [CUE/LOOP CALL ] 
+button.
+The cue point or loop point is called up.
+Deleting the cue point or loop point
+1
+Press the [CUE/LOOP CALL ] button or [CUE/LOOP CALL ] 
+button.
+The cue point or loop point is called up.
+
+
+===== PDF PAGE 88 =====
+rekordbox
+88 En
+2
+Press the [CUE/LOOP CALL ] button while holding the [SHIFT] 
+button.
+The cue point or loop point is deleted.
+Using Slip
+If you turn Slip mode on, normal playback continues in the background
+while you scratch, play a loop, or play a Hot Cue. When you stop 
+scratching or playing the loop or Hot Cue, normal playback resumes 
+from the position reached in the background.
+• The [SLIP] button lights up when Slip mode is on, and flashes during 
+playback in the background.
+Slip Scratch Play
+1
+Make sure Vinyl mode is turned on.
+Check that the [SLIP] button lights up while holding the [SHIFT] button.
+• For the default setting, Vinyl mode is on.
+2
+Press the [SLIP] button.
+The unit enters Slip mode.
+3
+To scratch the track, turn the top of the jog wheel during playback.
+Normal playback continues in the background while you're scratching.
+4
+Release the top of the jog wheel.
+Playback starts from the position reached in the background.
+• To cancel Slip mode, press the [SLIP] button again.
+Slip Hot Cue
+1
+Press the [HOT CUE] mode button.
+The unit enters Hot Cue mode.
+2
+Press the Performance Pad to set the Hot Cue.
+
+
+===== PDF PAGE 89 =====
+rekordbox
+89 En
+3
+Press the [SLIP] button.
+The unit enters Slip mode.
+4
+Press and hold a Performance Pad during playback.
+Playback starts from the Hot Cue point. While holding the pad, playback 
+continues.
+Normal playback continues in the background during Hot Cue playback.
+5
+Release the Performance Pad.
+Playback starts from the position reached in the background.
+• To cancel Slip mode, press the [SLIP] button again.
+Slip Braking
+1
+Adjust the [Vinyl Speed Adjust] - [Touch/Brake] setting in the 
+[Preferences] > [Controller] > [Deck] tab in rekordbox.
+With the [Vinyl Speed Adjust] setting, you can adjust the speed at which a 
+track slows down until it stops.
+When using Slip Braking, adjust [Touch/Brake] of [Vinyl Speed Adjust] to 
+stop slowly.
+2
+Press the [SLIP] button.
+The unit enters Slip mode.
+3
+Press the [PLAY/PAUSE ] button during playback.
+Playback slows down gradually and stops. Normal playback continues in the 
+background.
+4
+Press the [PLAY/PAUSE ] button again.
+Playback starts from the position reached in the background.
+• To cancel Slip mode, press the [SLIP] button again.
+Slip Auto Beat Loop
+1
+Press the [SLIP] button.
+The unit enters Slip mode.
+
+
+===== PDF PAGE 90 =====
+rekordbox
+90 En
+2
+Press the [4 BEAT/EXIT] button.
+A 4-beat loop is set, and loop playback starts.
+Normal playback continues in the background during loop playback.
+3
+Press the [4 BEAT/EXIT] button again.
+The loop is canceled and playback starts from the position reached in the 
+background.
+• To cancel Slip mode, press the [SLIP] button again.
+Slip Manual Loop
+1
+Press the [SLIP] button.
+The unit enters Slip mode.
+2
+Press the [LOOP IN, 1/2X] button, then press the [LOOP OUT, 2X] 
+button.
+Loop playback starts.
+Normal playback continues in the background during loop playback.
+3
+Press the [4 BEAT/EXIT] button.
+The loop is canceled and playback resumes from the position reached in the 
+background.
+• To cancel Slip mode, press the [SLIP] button again.
+Using Fader Start
+Using Channel Fader Start
+1
+Set the cue point.
+Pause the track at the position you want to start playback from, then press the 
+[CUE] button on that deck.
+
+
+===== PDF PAGE 91 =====
+rekordbox
+91 En
+2
+While holding the [SHIFT] button, move the channel fader from the 
+bottom to the top.
+Playback starts from the cue point.
+• If you move the channel fader back to the bottom while holding the [SHIFT] 
+button during playback, the track instantly jumps back to the cue point and 
+playback pauses. (Back Cue)
+When no cue point is set, playback starts from the beginning of the track.
+Using Crossfader Start
+When you want to use the Crossfader Start function, set the crossfader 
+assign switch of the channel to [A] or [B].
+1
+Set the cue point.
+Pause the track at the position you want to start playback from, then press the 
+[CUE] button on that deck.
+2
+Move the crossfader all the way to the left or right side.
+If you want to use Crossfader Start to trigger playback on channel 2, set the 
+crossfader to the left side, and vice versa.
+3
+While holding the [SHIFT] button, move the crossfader towards the 
+opposite side from where it’s set.
+Playback starts from the cue point.
+• If you move the crossfader back while holding the [SHIFT] button during 
+playback, the playback position instantly jumps back to the cue point and 
+pauses. (Back Cue)
+When no cue point is set, playback starts from the beginning of the track.
+Analyzing tracks
+Track analysis starts when you drag and drop a music file, or a folder 
+containing music files, into the Track List in rekordbox.
+• If a track is loaded to a deck before analysis is complete, it may take 
+some time to display its BPM and waveform.
+
+
+===== PDF PAGE 92 =====
+rekordbox
+92 En
+• Depending on the number of tracks, analysis may take some time.
+Using Beat FX
+You can apply effects that match the tempo (BPM) of the track loaded 
+on the deck.
+Effects section display
+1
+Effect name
+Displays the name of the selected effect.
+2
+AUTO / TAP
+When the BPM measurement mode is set to Auto mode, [AUTO] is displayed. 
+When it’s set to Manual Input mode, [TAP] is displayed.
+3
+BPM value
+Displays the automatically detected BPM in Auto mode.
+If the BPM can't be detected, the previously detected BPM value flashes.
+Displays the manually input BPM in Manual Input mode.
+4
+Selected channel
+Displays the channel to which the effect will be applied. Displays [SP] 
+(Sampler), [MIC], [CH 1], [CH 2], [CH 3], [CH 4], or [MST] (Master) according 
+to the selected channel.
+5
+Parameter
+Displays parameters of the selected effect.
+1
+2
+3
+4
+5
+
+
+===== PDF PAGE 93 =====
+rekordbox
+93 En
+Using Beat FX
+1
+Press the [BEAT ] button or [BEAT ] button while holding the 
+[SHIFT] button.
+Selects the BPM measurement mode.
+– [AUTO]: Press the [BEAT ] button while holding the [SHIFT] button. The 
+BPM is automatically measured from the input audio signal.
+– [TAP]: Press the [BEAT ] button while holding the [SHIFT] button. You can 
+now enter the BPM manually by tapping the [TAP] button.
+2
+Turn the [BEAT FX] select knob.
+Selects a type of effect.
+The first effect type on the FX1 unit in rekordbox will be changed.
+3
+Turn the BEAT FX CH select knob.
+Selects a channel to apply the effect to.
+– [SP]: Applies the effect to the sampler sound.
+– [MIC]: Applies the effect to the microphone sound.
+– [1] to [4]: Applies the effect to the sound of the respective channel.
+– [MST]: Applies the effect to the sound of the master channel.
+• For microphone sound and external input sound, the effect from the unit will 
+be applied.
+ Read: Beat FX types on the unit (page 94)
+4
+Press the [BEAT ] button or [BEAT ] button.
+Sets the number of beats synchronized to the effect sound.
+The effect time corresponding to the number of beats is set automatically.
+5
+Press the [BEAT FX ON/OFF] button.
+The effect is applied to the sound.
+You can adjust the effect’s parameter by turning the [BEAT FX LEVEL/
+DEPTH] knob.
+The [BEAT FX ON/OFF] button flashes when the effect is on.
+• Press the [BEAT FX ON/OFF] button again to turn the effect off.
+
+
+===== PDF PAGE 94 =====
+rekordbox
+94 En
+Beat FX types on the unit
+Beat FX
+Explanation
+LOW CUT ECHO
+Outputs the delay sound with the low 
+frequency cut several times while 
+attenuating it according to the number of 
+beats.
+•  / : Sets the delay time (number of 
+beats) from 1/16 to 16 beats.
+• LEVEL/DEPTH: Sets the balance 
+between the original sound and the echo 
+sound.
+ECHO
+Outputs the delay sound several times while 
+attenuating it according to the number of 
+beats.
+•  / : Sets the delay time (number of 
+beats) from 1/16 to 16 beats.
+• LEVEL/DEPTH: Sets the balance 
+between the original sound and the echo 
+sound.
+MULTI TAP DELAY
+Outputs the delay sound up to 7 times in 
+1/8 beat units according to the number of 
+beats.
+•  / : Sets the effect time (number of 
+beats) from 1/16 to 16 beats.
+• LEVEL/DEPTH: Sets the balance 
+between the original sound and the effect 
+sound.
+
+
+===== PDF PAGE 95 =====
+rekordbox
+95 En
+SPIRAL
+Adds a reverb effect to the input sound.
+When the delay time is changed, the pitch 
+will also change at the same time.
+•  / : Sets the delay time (number of 
+beats) from 1/16 to 16 beats.
+• LEVEL/DEPTH: Sets the balance and 
+feedback between the original sound and 
+the effect sound.
+REVERB
+Adds a reverb effect to the input sound.
+•  / : Sets the reverb effect size (1 to 
+100%).
+• LEVEL/DEPTH: Sets the balance 
+between the original sound and the effect 
+sound.
+TRANS
+Cuts the sound periodically according to the 
+number of beats.
+•  / : Sets the cycle (number of beats) to 
+cut from 1/16 to 16 beats.
+• LEVEL/DEPTH: Sets the balance 
+between the original sound and the effect 
+sound and the length of time to cut the 
+sound.
+ENIGMA JET
+Creates a flanger effect in which the pitch 
+continues to rise or fall according to the 
+number of beats.
+•  / : Sets the effect rate (number of 
+beats). When you set from +1/16 to +64 
+beats, the pitch raises. When you set from 
+-64 to -1/16 beats, the pitch lowers.
+• LEVEL/DEPTH: Sets how the effect 
+applies.
+Beat FX
+Explanation
+
+
+===== PDF PAGE 96 =====
+rekordbox
+96 En
+FLANGER
+Creates a one-cycle flanger effect 
+according to the number of beats.
+•  / : Sets the effect rate (number of 
+beats) from 1/16 to 64 beats per beat of 
+BPM.
+• LEVEL/DEPTH: Sets how the effect 
+applies.
+PHASER
+Changes the Phaser effect according to the 
+number of beats.
+•  / : Sets the effect rate (number of 
+beats) from 1/16 to 64 beats.
+• LEVEL/DEPTH: Sets how the effect 
+applies.
+STRETCH
+Records the input sound when the effect is 
+turned on, and outputs the recorded sound 
+stretched to the set number of beats.
+•  / : Sets the retrigger cycle (number of 
+beats) from 1/16 to 16 beats. The input 
+sound is recorded again according to the 
+retrigger cycle.
+• LEVEL/DEPTH: Sets the number of beats 
+of time-stretch.
+SLIP ROLL
+Records the input sound when the effect is 
+turned on, and outputs the recorded sound 
+repeatedly according to the set number of 
+beats. When the effect time changes, the 
+input sound is recorded again.
+•  / : Sets the effect time (number of 
+beats) from 1/16 to 16 beats.
+• LEVEL/DEPTH: Sets the balance 
+between the original sound and the effect 
+sound.
+Beat FX
+Explanation
+
+
+===== PDF PAGE 97 =====
+rekordbox
+97 En
+ROLL
+Records the input sound when the effect is 
+turned on, and outputs the recorded sound 
+repeatedly according to the set number of 
+beats.
+•  / : Sets the effect time (number of 
+beats) from 1/16 to 16 beats.
+• LEVEL/DEPTH: Sets the balance 
+between the original sound and the effect 
+sound.
+MOBIUS 
+ (SAW)
+Creates a saw wave that sounds as if the 
+pitch continues to rise or fall according to 
+the number of beats.
+The sound mixed with the input sound 
+outputs. The saw wave can output without 
+input sound.
+•  / : Sets the effect rate (number of 
+beats). When setting between +1/16 and 
++64 beats, the pitch raises. When setting 
+between -64 and -1/16 beats, the pitch 
+lowers.
+• LEVEL/DEPTH: Sets the volume of the 
+saw wave to be mixed.
+Beat FX
+Explanation
+
+
+===== PDF PAGE 98 =====
+rekordbox
+98 En
+MOBIUS 
+ (TRI)
+Creates a triangle wave that sounds as if 
+the pitch continues to rise or fall according 
+to the number of beats.
+The sound mixed with the input sound 
+outputs. The triangle wave can output 
+without input sound.
+•  / : Sets the effect rate (number of 
+beats). When setting between +1/16 and 
++64 beats, the pitch raises. When setting 
+between -64 and -1/16 beats, the pitch 
+lowers.
+• LEVEL/DEPTH: Sets the volume of the 
+triangle wave to be mixed.
+Beat FX
+Explanation
+
+
+===== PDF PAGE 99 =====
+rekordbox
+99 En
+Using Sound Color FX
+You can apply effects that change as you turn the [COLOR] knob for 
+each channel.
+• For channels with external input sound, the unit's effects are applied.
+ Read: Sound Color FX types on the unit (page 99)
+1
+Press one of the [SOUND COLOR FX] buttons.
+Selects an effect type.
+The pressed button flashes.
+• If you already selected one button and then pressed another, the newly 
+pressed button is selected.
+• The same effect is set for all channels.
+2
+Turn a [COLOR] knob.
+The effect is applied to that channel.
+Canceling Sound Color FX
+Press the flashing [SOUND COLOR FX] button.
+The effect is canceled.
+Sound Color FX types on the unit
+Effect
+Explanation
+SPACE
+Gives a reverb effect.
+• COLOR:
+Turn counterclockwise: Applies the reverb 
+effect to the mid-range and low-range.
+Turn clockwise: Applies the reverb effect 
+to the mid-range and high-range.
+
+
+===== PDF PAGE 100 =====
+rekordbox
+100 En
+DUB ECHO
+Outputs delayed sound repeatedly while 
+attenuating it and gives an echo effect.
+• COLOR:
+Turn counterclockwise: Applies the echo 
+effect to the mid-range.
+Turn clockwise: Applies the echo effect to 
+the high-range.
+CRUSH
+Changes the output sound so it sounds like 
+it's “crushing”.
+• COLOR:
+Turn counterclockwise: Applies “crushed” 
+effect to the sound.
+Turn clockwise: Crushes sound, then 
+applies the high-pass filter effect.
+PITCH
+Changes the pitch.
+• COLOR:
+Turn counterclockwise: The pitch falls.
+Turn clockwise: The pitch rises.
+NOISE
+Outputs white noise generated inside the 
+unit mixed into the sound of the channel via 
+the filter.
+• COLOR:
+Turn counterclockwise: Gradually 
+decreases the cut-off frequency of the 
+filter through which the white noise 
+passes.
+Turn clockwise: Gradually increases the 
+cut-off frequency of the filter through 
+which the white noise passes. 
+Effect
+Explanation
+
+
+===== PDF PAGE 101 =====
+rekordbox
+101 En
+Using FX Part Select
+The effect applies to the selected part (Drums / Vocal / INST) of the 
+loaded track.
+• The effect applies to all parts when using sound from the external 
+inputs, microphone, or sampler.
+1
+Select a part, or multiple parts, with the [FX PART SELECT] 
+buttons.
+Press [DRUMS], [VOCAL], or [INST] button and the button will light up. The 
+effect applies to all parts with lit buttons.
+2
+Apply an effect.
+When the sound is applied with Beat FX, Sound Color FX, or Pad FX, the effect 
+applies to the selected part only.
+ Read: Using Beat FX (page 92)
+ Read: Using Sound Color FX (page 99)
+ Read: Using Pad FX (page 80)
+To cancel FX Part Select
+When all [FX PART SELECT] ([VOCAL], [DRUMS], [INST]) buttons 
+light up, the effect applies to all parts, which means FX Part Select is 
+canceled.
+FILTER
+Outputs sound that has passed through a 
+filter.
+• COLOR:
+Turn counterclockwise: Gradually 
+decreases the low-pass filter’s cut-off 
+frequency.
+Turn clockwise: Gradually increases the 
+high-pass filter’s cut-off frequency.
+Effect
+Explanation
+
+
+===== PDF PAGE 102 =====
+rekordbox
+102 En
+Using Mix Point Link
+You can use this function to mix to your next track easily by setting the 
+start and end points on the track for On Air.
+This section explains how to mix track A which is On Air on deck 1 with 
+track B on deck 2 as an example.
+1
+Press the [PAGE ] button or [PAGE ] button while holding the 
+[SHIFT] button to change the On Jog Display to Waveform mode.
+• Set a cue point or Hot Cue point where you want to set the mix point on the 
+track in advance.
+2
+Load track B onto deck 2 to be played after track A.
+• On the On Jog Display of deck 2, the upper enlarged waveform is for track 
+B, and the lower enlarged waveform is for track A.
+3
+Press the [CUE/LOOP CALL ] button or [CUE/LOOP CALL ] 
+button, or the Performance Pad set with the Hot Cue point on deck 
+2 to call up the cue point or Hot Cue point where you want to set the 
+mix point to start for mixing on track B.
+ Read: Setting and calling up a cue point or loop point (page 87)
+ Read: Using Hot Cues (page 78)
+ Read: Monitoring with headphones (page 75)
+4
+Press the [MIX POINT SELECT ] button or [MIX POINT SELECT 
+] button on deck 2 to select a mix point to end for mixing on 
+currently playing track A.
+• On the On Jog Display, the mix point on track B appears on the upper 
+enlarged waveform, and the mix point on track A appears on the lower 
+enlarged waveform.
+• On the On Jog Display, the Mix Point Link status indicator appears on green 
+as activated.
+• In step 4, the operation of the cue point or Hot Cue point is for selecting mix 
+points, and sound on deck 2 can't be monitored. To monitor the sound on 
+deck 2, go to step 3.
+
+
+===== PDF PAGE 103 =====
+rekordbox
+103 En
+5
+Press the [MIX POINT LINK] button of deck 2.
+The Mix Point Link settings are complete.
+The point on track A and the point on track B are linked, and auto playback is 
+set on track B (Mix Point Link).
+Track B automatically starts playing from the beginning of the track at the 
+specified mix point.
+• To mute sound from the beginning of track B to a specific point, call up the 
+point when the Mix Point Link status indicator appears, and press the [MIX 
+POINT LINK] button while holding the [SHIFT] button. Track B will start 
+playing from the beginning, but the sound will be muted until you reach the 
+point where you pressed the [MIX POINT LINK] button (Silent). When you 
+press the [MIX POINT LINK] button while holding the [SHIFT] button again, 
+Silent will be canceled.
+• After setting Mix Point Link, if the playback position of deck 1 jumps before 
+reaching the mix point (e.g. if you call up a Hot Cue, scratch the track, etc.), 
+the mix point link is canceled, but you can relink at the set mix point by 
+pressing the [MIX POINT LINK] button again while the [MIX POINT LINK] 
+button flashes.
+• After setting Mix Point Link, press the [MIX POINT LINK] button again or 
+press the [MIX POINT SELECT] button while holding the [SHIFT] button 
+to cancel the setting for Mix Point Link.
+Recording
+rekordbox has a recording feature that you can use to capture your 
+performances. For detailed instructions on recording, see the 
+rekordbox Instruction Manual.
+1
+Click the 
+ button at the top-left of the rekordbox screen to display 
+the [REC] panel.
+2
+Click 
+ on the [REC] panel in rekordbox to start recording.
+• If you click 
+ again, recording stops.
+• When recording is complete, the file is automatically saved.
+
+
+===== PDF PAGE 104 =====
+rekordbox
+104 En
+• You can change the saving destination of files in the [Preferences] > 
+[Controller] > [Recordings] tab in rekordbox.
+Using a microphone
+1
+Connect a microphone to the [MIC 1] input terminal or [MIC 2] input 
+terminal.
+2
+Set the [MIC OFF, ON, TALKOVER] switch to [ON] or 
+[TALKOVER].
+– [ON]: The indicator lights up.
+– [TALKOVER]: The indicator flashes.
+• When you set the switch to [TALKOVER], the sound of channels other than 
+the [MIC1] channel and [MIC2] channel is attenuated by -18 dB (default) 
+when a sound of -10 dB or greater is input to the microphone.
+• The level of attenuation applied when you set the switch to [TALKOVER] 
+can be changed in [Preferences] in rekordbox. For details on how to change 
+this setting, read: [Microphone Input] > [Talkover Level] setting (page 110)
+• You can switch Talkover mode between Normal mode and Advanced mode. 
+For details on how to change this setting, read: [Microphone Input] > 
+[Talkover Mode] setting (page 109)
+3
+Turn the [MIC 1 LEVEL] knob or [MIC 2 LEVEL] knob.
+Adjust the volume of the sound output from the [MIC 1] input terminal or [MIC 
+2] input terminal.
+• The sound comes out at a high volume if the knob is turned all the way to the 
+right.
+4
+Speak into the microphone.
+• Sound input from the [MIC 1] input terminal or [MIC 2] input terminal can’t be 
+output from the speaker(s) of your PC/Mac even if PC Master Out is turned 
+on.
+
+
+===== PDF PAGE 105 =====
+rekordbox
+105 En
+Adjusting the sound
+Turn the [MIC EQ (HI, LOW)] knobs.
+– [HI]: -12 dB to +12 dB (10 kHz)
+– [LOW]: -12 dB to +12 dB (100 Hz)
+Using MIC FX
+1
+Click the 
+ button at the top-left of the rekordbox screen.
+The MIC panel is displayed.
+2
+Adjust the [FX] knob in rekordbox.
+3
+Click the [REVERB] button in rekordbox.
+REVERB applies to the microphone sound.
+MIC FX in rekordbox can only be set to Reverb.
+Using external inputs
+The unit has four sets of external inputs to connect multi players, 
+turntables, etc. The “4-channel mixer” of the unit can be used to mix 
+input sound without it passing through your PC/Mac. You can use the 
+following mixer features even when not connected to a PC/Mac.
+• For details on the respective items, read: Connecting (page 66) and 
+Part names and functions (page 10)
+Mixing the sound of a multi player, etc.
+1
+Connect a multi player or other line-level output device to the [LINE] 
+input terminal or the [LINE/PHONO] input terminal.
+
+
+===== PDF PAGE 106 =====
+rekordbox
+106 En
+2
+Set the [LINE/PHONO] switch on the unit's rear panel to [LINE].
+3
+Set the [
+ A, LINE, 
+ B] switch or [
+ A, PHONO/LINE, 
+ 
+B] switch on the unit's top panel to [LINE] or [PHONO/LINE].
+4
+Turn the [TRIM] knob and move the channel fader to adjust the 
+volume of the sound output from each channel.
+Mixing the sound of turntables, etc.
+1
+Connect turntables or other phono-level (MM cartridge) output 
+devices to the [LINE/PHONO] input terminals of [CH3] or [CH4].
+• [CH1] and [CH2] are input terminals for line-level devices only.
+• Be sure to connect the ground wire of the turntable to the [SIGNAL GND] 
+terminal of the unit.
+2
+Set the [LINE/PHONO] switch on the unit's rear panel to [PHONO].
+3
+Set the [
+ A, PHONO/LINE, 
+ B] switch on the unit's top panel 
+to [PHONO/LINE].
+4
+Turn the [TRIM] knob and move the channel fader to adjust the 
+volume of the sound output from each channel.
+
+
+===== PDF PAGE 107 =====
+rekordbox
+107 En
+Changing the settings in rekordbox
+You can change the settings of the unit in rekordbox under [Controller] 
+in [Preferences].
+When you connect the unit to rekordbox, you can change the following 
+settings:
+[Controller] > [Deck] tab:
+[Ring Brightness] setting
+Set the brightness of the jog ring illumination.
+[OFF] turns off the illumination, and you can set it from [1] to [3].
+• Set to [1] for the darkest illumination, and [3] for the brightest 
+illumination.
+[Ring Color] setting
+Set the lighting color of the jog ring illumination.
+• [ACTIVE PART Linked to Jog Color 1]
+The lighting color of the jog ring illumination is linked to the setting of 
+the active part.
+When two parts are selected, the illumination lights with the mixed 
+color of the two parts. When all parts are selected, the illumination 
+lights in white.
+• [ACTIVE PART Linked to Jog Color 2]
+The lighting color of the jog ring illumination is linked to the setting of 
+the active part.
+When more than one part is selected, the illumination lights in white.
+• [Customize]
+The illumination lights in the specified color regardless of the active 
+part settings.
+[Display Brightness] setting
+Set the brightness of the On Jog Display.
+You can set it from [1] to [5].
+• Set to [1] for the darkest display, and [5] for the brightest display.
+
+
+===== PDF PAGE 108 =====
+rekordbox
+108 En
+[Time Mode] setting
+Set time information displayed on the On Jog Display.
+• [Elapsed]: Displays the time of the current playback position with the 
+beginning of the track as 0:00.
+• [Remaining]: Displays the remaining time from the current playback 
+position with the end of the track as 0:00.
+[Slip Mode Flashing] setting
+Set Slip Mode Flashing.
+• [Enable]: When Slip mode is on, the buttons that can work in Slip 
+mode will flash.
+• [Disable]: When Slip mode is on, the buttons that can work in Slip 
+mode won’t flash.
+[Slip button LED while Slip mode is on] setting
+Set the lighting operation of the [SLIP] button when Slip mode is on.
+• [Light is On]: When Slip mode is on, the [SLIP] button lights, and 
+the button flashes during slip operation.
+• [Blink]: When Slip mode is on, the [SLIP] button always flashes.
+[Controller] > [Mixer] tab:
+[CROSSFADER Curve] setting
+Set the crossfader curve.
+• When turning counterclockwise, the curve slowly rises.
+• When turning clockwise, the curve quickly rises.
+[Fader Start] setting
+Change the setting of the Fader Start function.
+Select [Activate the fader start when moving a channel fader or the 
+crossfader while pressing the SHIFT button.] to turn the setting on.
+
+
+===== PDF PAGE 109 =====
+rekordbox
+109 En
+[CROSSFADER] > [Cut Lag] setting
+Adjust the Cut Lag on both edges of the crossfader.
+Units of 0.1 mm can be adjusted from 0.3 mm to 5.5 mm.
+• The default Cut Lag amount is 1.0 mm.
+• This Cut Lag setting is a guide, and may not be exact.
+[Booth Output] setting
+Change whether or not the microphone sound comes out of the booth 
+channel.
+If you don’t select [Don’t output microphone sound to the Booth 
+output.], the microphone sound comes out of the booth channel. If you 
+select the setting, microphone sound doesn’t come out of the booth 
+channel.
+[Microphone Input] > [Talkover Mode] setting
+Change Talkover mode.
+• [Advanced]: Only the mid-range sound, other than the microphone 
+channel, is attenuated according to the set value of the Talkover 
+level.
+Volume
+Frequency
+
+
+===== PDF PAGE 110 =====
+rekordbox
+110 En
+• [Normal]: Sound, other than the microphone channel, is attenuated 
+according to the set value of the Talkover level.
+[Microphone Input] > [Talkover Level] setting
+Set the audio attenuation level of Talkover mode.
+Setting values: [-6 dB] / [-12 dB] / [-18 dB] / [-24 dB]
+[Headphones] setting
+Change the output sound from the [PHONES] output terminals.
+• [STEREO]: Outputs the monitor sound in stereo.
+• [MONO SPLIT]: Outputs the monitor sound other than the master 
+sound from the left channel and the monitor sound of the master 
+sound from the right channel.
+If you select [Invert LR audio of the headphones] when setting 
+[MONO SPLIT], sound of the left and right channel will be swapped.
+[Display Brightness] setting
+Set the brightness of the effects section display.
+You can set it from [1] to [3].
+• Set to [1] for the darkest display, and [3] for the brightest display.
+Volume
+Frequency
+
+
+===== PDF PAGE 111 =====
+rekordbox
+111 En
+[Controller] > [DDJ-FLX10] setting
+[Master Output] > [Attenuator Level] setting
+Set the master output attenuator level.
+Setting values: [0 dB] / [-6 dB] / [-12 dB]
+[Master Output] > [Monaural/Stereo Selection] setting
+Change whether mono or stereo sound is output from the master 
+output.
+• [Monaural]: Outputs in mono.
+• [Stereo]: Outputs in stereo.
+[Booth Output] > [Attenuator Level] setting
+Set the booth output attenuator level.
+Setting values: [0 dB] / [-6 dB] / [-12 dB]
+[Booth Output] > [Monaural/Stereo Selection] setting
+Change whether mono or stereo sound is output from the [BOOTH] 
+output terminals.
+• [Monaural]: Outputs booth sound in mono.
+• [Stereo]: Outputs booth sound in stereo.
+[Peak Limiter] > [Master/Booth Output] setting
+Prevent sudden and unpleasant digital clipping of audio output from 
+the [MASTER 1], [MASTER 2], and [BOOTH] output terminals.
+• [Enable]: Enable the peak limiter.
+• [Disable]: Disable the peak limiter.
+[Peak Limiter] > [Microphone Output (Master)] setting
+Prevent sudden and unpleasant digital clipping of microphone sound 
+added to the master output.
+• [Enable]: Enable the peak limiter.
+• [Disable]: Disable the peak limiter.
+
+
+===== PDF PAGE 112 =====
+rekordbox
+112 En
+[Peak Limiter] > [Microphone Output (Booth)] setting
+Prevent sudden and unpleasant digital clipping of microphone sound 
+added to the booth output.
+• [Enable]: Enable the peak limiter.
+• [Disable]: Disable the peak limiter.
+[REC OUT] setting
+Set whether to output microphone sound to the REC output.
+If you set [Mix the MIC audio to REC OUT], the microphone sound 
+can be output to the REC output.
+[Demo / Screen saver] setting
+Set the Screen Saver and the time to pass before Demo mode starts.
+The default setting is [Demo (10 minutes)].
+To cancel Demo mode or Screen Saver, operate any knob or button on 
+the unit.
+• [Demo (1 minute)]: Demo mode starts when there is no operation on 
+the unit for 1 minute.
+• [Demo (5 minutes)]: Demo mode starts when there is no operation 
+on the unit for 5 minutes.
+• [Demo (10 minutes)]: Demo mode starts when there is no operation 
+on the unit for 10 minutes.
+• [Screen Saver]: Screen Saver starts when there is no operation on 
+the unit for 30 minutes.
+• [Disable]: Demo mode and Screen Saver feature never start.
+
+
+===== PDF PAGE 113 =====
+rekordbox
+113 En
+[Power Management] setting
+Change the Power Management setting.
+When this setting is set to [ON], the unit enters Off mode automatically 
+after 20 minutes if the following conditions are met.
+– None of the unit's buttons or knobs are operated.
+– No audio signal of -24 dB or greater is input to an input terminal of 
+the unit.
+• The [QUANTIZE] button on the left deck lights up in Off mode.
+• Press the [QUANTIZE] button on the left deck to cancel Off mode.
+• Power consumption may increase when this setting is set to [OFF].
+
+
+===== PDF PAGE 114 =====
+114 En
+Serato DJ Pro
+Installing Serato DJ Pro
+Installing (Mac)
+Do not connect the unit to your Mac until installation is complete.
+• Close all programs on your Mac.
+1
+Unzip the downloaded Serato DJ Pro software file.
+2
+Double-click the unzipped software file to launch the installer.
+3
+Read the terms of the License Agreement carefully and if you 
+agree, click [Agree].
+• If you don’t agree to the contents of the License Agreement, click [Disagree] 
+to cancel the installation.
+4
+Click [Install].
+5
+Follow the on-screen instructions to install the software.
+
+
+===== PDF PAGE 115 =====
+Serato DJ Pro
+115 En
+6
+Click [Close] to quit the installer.
+Installing (Windows)
+Do not connect the unit to your PC until installation is complete.
+• Log into your PC as an administrator before starting the installation.
+• Close all programs on your PC.
+1
+Unzip the downloaded Serato DJ Pro software file.
+2
+Double-click the unzipped software file to launch the installer.
+3
+Read the terms of the License Agreement carefully and if you 
+agree, select [I agree to the license terms and conditions], then 
+click [Install].
+• If you don’t agree to the contents of the License Agreement, click [Close] to 
+cancel the installation.
+
+
+===== PDF PAGE 116 =====
+Serato DJ Pro
+116 En
+A message indicating successful installation appears when installation is 
+complete.
+4
+Click [Close] to quit the Serato DJ Pro installer.
+
+
+===== PDF PAGE 117 =====
+Serato DJ Pro
+117 En
+Basic use
+Starting Serato DJ Pro
+This manual mainly focuses on explaining the hardware functions of 
+the unit. For detailed instructions on using the Serato DJ Pro software, 
+see the Serato DJ Pro software manual.
+For Mac
+In Finder, open the [Applications] folder, then double-click the 
+[Serato DJ Pro] icon.
+For Windows 11
+In the [Start] menu, open the [All apps] screen, then click the [Serato 
+DJ Pro] icon under [Serato].
+For Windows 10
+From the [Start] menu, click [Serato] > [Serato DJ Pro] icon.
+The following screen shows after Serato DJ Pro launches:
+• The [BUY/ACTIVATE] icon may appear on the right side of the 
+screen when you launch Serato DJ Pro for the first time. However, 
+you don’t need a license to use the software with this unit.
+
+
+===== PDF PAGE 118 =====
+Serato DJ Pro
+118 En
+The following screen shows when tracks are loaded onto decks 
+in Serato DJ Pro:
+Click [Library] in the top-left corner of the screen, then select 
+[Vertical] or [Horizontal] from the pull-down menu to change the 
+screen layout.
+A Deck section
+Track information (track name, artist name, BPM, etc.), the overall 
+waveform, and other information about the loaded track is displayed.
+B Waveform display
+The waveform of the loaded track is displayed.
+C Browse section
+Tracks in the library, or crates containing multiple tracks, are displayed.
+
+
+===== PDF PAGE 119 =====
+Serato DJ Pro
+119 En
+Importing music files (tracks)
+• There are various ways to import tracks into Serato DJ Pro. For 
+details, see the Serato DJ Pro software manual.
+• If you've previously used Serato Limited’s DJ software (e.g. Scratch 
+Live, ITCH, or Serato DJ Intro) and you’ve already created track 
+libraries, you can use these libraries with Serato DJ Pro.
+• If you've previously used Serato DJ Intro and you’ve already created 
+track libraries, you may need to reanalyze tracks to use them with 
+Serato DJ Pro.
+The typical way to import music files (tracks) is as follows:
+1
+Click the [Files] button in the Serato DJ Pro screen to open the 
+[Files] panel.
+The contents of your PC/Mac or the hard drive/device connected to the PC/
+Mac are displayed in the [Files] panel.
+2
+Click the folder containing the tracks you want to add to your library.
+3
+Drag and drop the selected folder to the crates panel.
+A crate is created and the tracks are added to your library.
+A [Files] panel
+B Crates panel
+
+
+===== PDF PAGE 120 =====
+Serato DJ Pro
+120 En
+Loading an audio track onto a deck
+The following explains how to load a track onto deck 1 as an example:
+1
+Press the [BACK] button on the unit to move the cursor to the 
+crates panel of the Serato DJ Pro software screen, then turn the 
+rotary selector to select a crate, etc.
+2
+Press the rotary selector to move the cursor to the library of the 
+Serato DJ Pro software screen, then turn the rotary selector to 
+select the track you want to load.
+A Library
+B Crates panel
+3
+Press the rotary selector.
+The track loads onto deck 1.
+
+
+===== PDF PAGE 121 =====
+Serato DJ Pro
+121 En
+Playing a track
+This section explains how to play sound from deck 1 (left) as an 
+example.
+1
+Set the positions of the knobs etc. as shown below.
+• [
+ A, LINE, 
+ B] switch: [
+ A]
+• [TRIM] knob: turned fully counterclockwise
+• EQ [HI/MID/LOW] knobs: center position (12 o’clock)
+• [COLOR] knob: center position
+• Channel fader: bottom position
+• [MASTER LEVEL] knob: turned fully counterclockwise
+• Crossfader: center position
+• Crossfader assign switch: [THRU]
+2
+Press the [PLAY/PAUSE ] button to play the track.
+3
+Turn the [TRIM] knob.
+Adjust the [TRIM] knob so the channel level indicator lights up orange at the 
+loudest part of the track.
+
+
+===== PDF PAGE 122 =====
+Serato DJ Pro
+122 En
+4
+Move the channel fader to the top.
+5
+Turn the [MASTER LEVEL] knob to adjust the volume of the 
+speakers to a level you’re happy with.
+Adjust the volume of sound output from the [MASTER 1] output terminals or 
+[MASTER 2] output terminals.
+• If you can’t output sound from the [MASTER 1] output terminals or 
+[MASTER 2] output terminals or the unit isn’t recognized by your PC/Mac, 
+refer to the [FAQ] on the Pioneer DJ support website.
+pioneerdj.com/support/
+
+
+===== PDF PAGE 123 =====
+Serato DJ Pro
+123 En
+Monitoring with headphones
+This section explains how to play sound from deck 1 (left) as an 
+example.
+1
+Set the positions of knobs etc. as shown below.
+• [HEADPHONES MIX] knob: Center
+• [HEADPHONES LEVEL] knob: Turned fully counterclockwise
+2
+Press the headphones [CUE] button for channel 1.
+3
+Turn the [HEADPHONES LEVEL] knob.
+Adjust the headphones volume to a level you’re happy with.
+Quitting Serato DJ Pro
+Click the [x] button. 
+Turning off the unit
+Press the [] switch on the unit's rear panel to turn the unit off.
+
+
+===== PDF PAGE 124 =====
+Serato DJ Pro
+124 En
+Advanced use
+Using 4 Beat Loop
+While a track is playing, press the [4 BEAT/EXIT] button.
+Loop playback starts with 4 beats from the point where you press the 
+button.
+Canceling loop playback
+Press the [4 BEAT/EXIT] button.
+When the loop out point is reached, the rest of the track continues to 
+play without returning to the loop in point.
+Using Manual Loop
+You can use Manual Loop to choose the section you want to loop in a 
+track.
+1
+During playback, press the [LOOP IN, 1/2X] button at the point you 
+want to start looping (the loop in point).
+2
+Press the [LOOP OUT, 2X] button at the point you want the loop to 
+end (the loop out point).
+Loop playback starts.
+
+
+===== PDF PAGE 125 =====
+Serato DJ Pro
+125 En
+Cutting the loop
+Press the [LOOP IN, 1/2X] button during loop playback.
+Each time you press the button, the loop cuts in half.
+• You can cut the loop length in half even during 4 Beat Loop playback.
+Extending the loop
+Press the [LOOP OUT, 2X] button during loop playback.
+Each time you press the button, the loop doubles in length.
+• You can double the loop length even during 4 Beat Loop playback.
+Canceling a loop
+Press the [4 BEAT/EXIT] button.
+The rest of the track continues to play without returning to the loop in 
+point.
+Changing the loop in point
+Press the [LOOP IN, 1/2X] button while holding the [SHIFT] button and 
+turn the jog wheel during loop playback.
+The loop in point changes.
+Changing the loop out point
+Press the [LOOP OUT, 2X] button while holding the [SHIFT] button 
+and turn the jog wheel during loop playback.
+The loop out point changes.
+
+
+===== PDF PAGE 126 =====
+Serato DJ Pro
+126 En
+Using the Performance Pads
+You can switch functions using the respective Pad mode buttons (the 
+[HOT CUE] mode button, [PAD FX1] mode button, [BEAT JUMP] 
+mode button, and [SAMPLER] mode button).
+Using Hot Cues
+You can start playback instantly from the position where a Hot Cue is 
+set.
+• Up to 8 Hot Cues can be set and saved for each track in Serato DJ 
+Pro.
+1
+Press the [HOT CUE] mode button.
+The unit enters Hot Cue mode.
+2
+When the track is playing or paused, press a Performance Pad to 
+set a Hot Cue.
+The pad's settings are as shown below.
+1: Hot Cue 1, 2: Hot Cue 2, 3: Hot Cue 3, 4: Hot Cue 4, 
+5: Hot Cue 5, 6: Hot Cue 6, 7: Hot Cue 7, 8: Hot Cue 8
+3
+Press a Performance Pad you’ve set a Hot Cue for.
+Playback starts from the Hot Cue point.
+• You can clear Hot Cues by pressing a Performance Pad while holding the 
+[SHIFT] button.
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 127 =====
+Serato DJ Pro
+127 En
+Using Pad FX
+You can add a wide range of effects to your performances simply by 
+pressing and releasing the Performance Pads.
+1
+Press the [PAD FX1] mode button.
+The unit enters Pad FX mode.
+2
+Press and hold down a Performance Pad.
+The effect set on the Performance Pad turns on.
+The pad's settings are as shown below.
+1: Effect A, 2: Effect B, 3: Effect C, 4: Effect D,
+5: Effect E, 6: Effect F, 7: Effect G, 8: Effect H
+3
+Release the Performance Pad.
+The effect turns off.
+Using Beat Jump
+You can use Beat Jump to move the playback position by different 
+numbers of beats.
+1
+Press the [BEAT JUMP] mode button.
+The unit enters Beat Jump mode.
+2
+Press a Performance Pad when the track is playing or paused.
+The pad's settings are as shown below.
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 128 =====
+Serato DJ Pro
+128 En
+1: Beat Jump to the left, 2: Halve the Beat Jump length, 
+3: Double the Beat Jump length, 4: Beat Jump to the right, 
+5: Previous track, 6: Search , 7: Search , 8: Censor
+Using Sampler
+You can use the Performance Pads to play tracks or sounds assigned 
+to the Sampler slots.
+1
+Open the [SAMPLER] panel in Serato DJ Pro.
+2
+Press the [SAMPLER] mode button on the unit.
+The unit enters Sampler mode.
+3
+Press the [PAGE ] button or [PAGE ] button.
+The Sampler bank changes.
+The sampler has 4 banks, A, B, C, and D, and each bank has 8 slots.
+4
+Drag and drop tracks or sounds from the library to load them into 
+the [SAMPLER] panel’s slots.
+The track is loaded into the Sampler slot.
+5
+Press a Performance Pad.
+The track or sound assigned to the relevant slot is played.
+• The playback method differs depending on the Sampler mode in Serato DJ 
+Pro. For details, see the Serato DJ Pro software manual.
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 129 =====
+Serato DJ Pro
+129 En
+1: Slot 1, 2: Slot 2, 3: Slot 3, 4: Slot 4, 
+5: Slot 5, 6: Slot 6, 7: Slot 7, 8: Slot 8
+• When you press a Performance Pad while holding the [SHIFT] button, the 
+sound of the slot that is currently playing stops.
+Using Pitch Play
+Pitch Play is a function of the Pitch 'n Time DJ expansion pack.
+1
+Press the [HOT CUE] mode button while holding the [SHIFT] 
+button.
+The unit enters Pitch Play mode.
+2
+Press a Performance Pad while holding the [SHIFT] button.
+The Hot Cue point set on the Performance Pad is selected.
+3
+Press a Performance Pad.
+Playback starts from the selected Hot Cue point with the pitch set to the 
+Performance Pad as follows.
+• To change the pitch range, press the [PAGE ] button or [PAGE ] button 
+during Pitch Play. The pitch range changes between Up range, Middle range, 
+and Down range each time you press the button.
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 130 =====
+Serato DJ Pro
+130 En
+Up range:
+1: +4, 2: +5, 3: +6, 4: +7, 5: 0, 6: +1, 7: +2, 8: +3
+Middle range:
+1: 0, 2: +1, 3: +2, 4: +3, 5: -4, 6: -3, 7: -2, 8: -1
+Down range:
+1: -3, 2: -2, 3: -1, 4: 0, 5: -7, 6: -6, 7: -5, 8: -4
+You can shift the pitch range in semitone steps by pressing the [PAGE ] 
+button or [PAGE ] while holding the [SHIFT] button.
+1
+2
+3
+4
+5
+6
+7
+8
+1
+2
+3
+4
+5
+6
+7
+8
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 131 =====
+Serato DJ Pro
+131 En
+Using Roll
+If you press a Performance Pad when the unit is in Roll mode, a loop 
+with the number of beats assigned to the pad is set and the loop plays 
+until you release the pad.
+During Loop Roll playback, normal playback with the original rhythm 
+continues in the background (but you can only hear the Loop Roll). 
+When you cancel Loop Roll, playback resumes from the position 
+reached in the background.
+1
+Press the [PAD FX1] mode button while holding the [SHIFT] button.
+The unit enters Roll mode.
+2
+Press and hold down a Performance Pad.
+Loop Roll playback starts with the number of beats in the settings assigned to 
+that pad.
+Playback continues in the background during Loop Roll playback (but you can 
+only hear the Loop Roll).
+• Press the [PAGE ] or [PAGE ] button during Loop Roll to change the 
+number of beats for the Loop Roll that’s currently playing.
+For example, when you set the pads to 1/8 – 16 beats, the pad’s settings are 
+as shown below.
+1: 1/8 beat, 2: 1/4 beat, 3: 1/2 beat, 4: 1 beat, 
+5: 2 beats, 6: 4 beats, 7: 8 beats, 8: 16 beats
+The range of beats set for Loop Roll is shown on the Serato DJ Pro screen.
+3
+Release the Performance Pad.
+Loop Roll is canceled, and playback resumes from the position reached in the 
+background.
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 132 =====
+Serato DJ Pro
+132 En
+Using Auto Loop
+When you press a Performance Pad in Auto Loop mode, a loop with 
+the number of beats assigned to the pad is set and the loop plays until 
+you release the pad.
+1
+Press the [BEAT JUMP] mode button while holding the [SHIFT] 
+button.
+The unit enters Auto Loop mode.
+2
+Press a Performance Pad during playback.
+Loop playback starts with the number of beats in the setting assigned to that 
+pad.
+• Each time you press the [PAGE ] button, the loop length is cut in half.
+• Each time you press the [PAGE ] button, the loop length is doubled. 
+• When you press the [PAGE ] button or [PAGE ] button while holding the 
+[SHIFT] button, the playback position moves by the length of the loop (Loop 
+Shift).
+• When you press the same Performance Pad again, loop playback is 
+canceled.
+The pad's settings are as shown below.
+1: 1/8 beat, 2: 1/4 beat, 3: 1/2 beat, 4: 1 beat,
+5: 2 beats, 6: 4 beats, 7: 8 beats, 8: 16 beats
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 133 =====
+Serato DJ Pro
+133 En
+Using Key Shift
+Key Shift is a function of the Pitch 'n Time DJ expansion pack.
+1
+Press the [SAMPLER] mode button while holding the [SHIFT] 
+button.
+The unit enters Key Shift mode.
+2
+Press a Performance Pad.
+The track's key is changed to the pitch assigned to the pad.
+• To change the key range, press the [PAGE ] button or [PAGE ] button 
+during Key Shift. The key range changes between Up range, Middle range, 
+and Down range each time you press the button.
+Up range:
+1: +4, 2: +5, 3: +6, 4: +7, 5: 0, 6: +1, 7: +2, 8: +3
+Middle range:
+1: 0, 2: +1, 3: +2, 4: +3, 5: -4, 6: -3, 7: -2, 8: -1
+1
+2
+3
+4
+5
+6
+7
+8
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 134 =====
+Serato DJ Pro
+134 En
+Down range:
+1: -3, 2: -2, 3: -1, 4: 0, 5: -7, 6: -6, 7: -5, 8: -4
+Using Saved Flip
+Serato Flip is a function that enables you to record a sequence, or call 
+up a recorded sequence, of Hot Cues. The recorded sequence of Hot 
+Cues is called a Flip.
+You can save and play a Flip using Performance Pads on the unit.
+• To use Saved Flip mode, you need to buy or subscribe to the Serato 
+Expansion Packs, then activate them. For details, visit the URL 
+below.
+serato.com
+Saving a Flip to a slot
+1
+Create a Flip using Serato DJ Pro.
+• For details on how to create a Flip, refer to the Serato DJ Pro software 
+manual (page 5).
+2
+Press and hold down the [HOT CUE] mode button.
+The unit enters Saved Flip mode.
+3
+Press the Performance Pad for the slot you want to save the Flip to.
+The Flip is saved to the slot.
+• Slots are assigned to Performance Pads as follows:
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 135 =====
+Serato DJ Pro
+135 En
+1: Slot 1, 2: Slot 2, 3: Slot 3, 4: Slot 4, 5: Slot 5, 6: Slot 6, 7: no slot, 8: no slot
+• You can't save a Flip to a slot if all slots have saved Flips already. Delete a 
+Flip on the slot screen in Serato DJ Pro to free up a slot for a new Flip.
+Calling up and playing a Flip
+1
+Press and hold down the [HOT CUE] mode button.
+The unit enters Saved Flip mode.
+2
+Press the Performance Pad assigned with the slot (Flip) you want 
+to play.
+The Flip is called up and playback starts from the beginning of the Flip.
+• Slots are assigned to Performance Pads as follows:
+1: Slot 1, 2: Slot 2, 3: Slot 3, 4: Slot 4, 5: Slot 5, 6: Slot 6, 7: no slot, 8: no slot
+• If you call up a Flip by pressing a Performance Pad while holding the [SHIFT] 
+button, playback doesn't start from the beginning. Instead, Flip playback 
+starts when the playback of the track reaches the beginning of the Flip.
+• Press a Performance Pad during Flip playback to move to the beginning of 
+the Flip that's playing.
+Canceling Flip playback
+Press the Performance Pad while holding the [SHIFT] button to cancel 
+Flip playback and return to normal playback.
+1
+2
+3
+4
+5
+6
+7
+8
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+===== PDF PAGE 136 =====
+Serato DJ Pro
+136 En
+Using Slip
+If you turn Slip mode on, normal playback continues in the background 
+while you're scratching or playing a loop or Hot Cue. When you stop 
+scratching or playing the loop or Hot Cue, normal playback resumes 
+from the position reached in the background.
+• The [SLIP] button lights up when Slip mode is on, and flashes during 
+playback in the background.
+Slip Scratch Play
+1
+Make sure Vinyl mode is turned on.
+Check that the [SLIP] button lights up while holding the [SHIFT] button.
+• For the default setting, Vinyl mode is on.
+2
+Press the [SLIP] button.
+The unit enters Slip mode.
+3
+To scratch the track, turn the top of the jog wheel during playback.
+Normal playback continues in the background while you're scratching.
+4
+Release the top of the jog wheel.
+Playback starts from the position reached in the background.
+• To cancel Slip mode, press the [SLIP] button again.
+
+
+===== PDF PAGE 137 =====
+Serato DJ Pro
+137 En
+Slip Hot Cue
+1
+Press the [HOT CUE] mode button.
+The unit enters Hot Cue mode.
+2
+Press a Performance Pad to set a Hot Cue.
+3
+Press the [SLIP] button.
+The unit enters Slip mode.
+4
+Press and hold a Performance Pad during playback.
+Playback starts from the Hot Cue point. While holding the pad, playback 
+continues.
+Normal playback continues in the background during Hot Cue playback.
+5
+Release the Performance Pad.
+Playback starts from the position reached in the background.
+• To cancel Slip mode, press the [SLIP] button again.
+Slip Braking
+1
+Adjust the [BRAKING] - [Stop Time] setting in the [DJ Preferences] 
+tab of the [
+] menu in Serato DJ Pro.
+With the [BRAKING] setting, you can adjust the speed at which a track slows 
+down until it stops.
+When using Slip Braking, adjust the [Stop Time] knob of [BRAKING] to stop 
+slowly.
+2
+Press the [SLIP] button.
+The unit enters Slip mode.
+3
+Press the [PLAY/PAUSE ] button during playback.
+Playback slows down gradually and stops. Normal playback continues in the 
+background.
+
+
+===== PDF PAGE 138 =====
+Serato DJ Pro
+138 En
+4
+Press the [PLAY/PAUSE ] button again.
+Playback starts from the position reached in the background.
+• To cancel Slip mode, press the [SLIP] button again.
+Slip Auto Beat Loop
+1
+Press the [SLIP] button.
+The unit enters Slip mode.
+2
+Press the [4 BEAT/EXIT] button.
+A 4-beat loop is set, and loop playback starts.
+Normal playback continues in the background during loop playback.
+3
+Press the [4 BEAT/EXIT] button again.
+The loop is canceled and playback starts from the position reached in the 
+background.
+• To cancel Slip mode, press the [SLIP] button again.
+Slip Manual Loop
+1
+Press the [SLIP] button.
+The unit enters Slip mode.
+2
+Press the [LOOP IN, 1/2X] button, then press the [LOOP OUT, 2X] 
+button.
+Loop playback starts.
+Normal playback continues in the background during loop playback.
+3
+Press the [4 BEAT/EXIT] button.
+The loop is canceled and playback starts from the position reached in the 
+background.
+• To cancel Slip mode, press the [SLIP] button again.
+
+
+===== PDF PAGE 139 =====
+Serato DJ Pro
+139 En
+Using Fader Start
+Using Channel Fader Start
+1
+Set the cue point.
+Pause the track at the position you want to start playback from, then press the 
+[CUE] button on that deck.
+2
+While holding the [SHIFT] button, move the channel fader from the 
+bottom to the top.
+Playback starts from the cue point.
+• If you move the channel fader back to the bottom while holding the [SHIFT] 
+button during playback, the track instantly jumps back to the cue point and 
+playback pauses (Back Cue).
+When no cue point is set, playback starts from the beginning of the track.
+Using Crossfader Start
+When you want to use the Crossfader Start function, set the crossfader 
+assign switch of the channel to [A] or [B].
+1
+Set the cue point.
+Pause the track at the position you want to start playback from, then press the 
+[CUE] button on that deck.
+2
+Move the crossfader all the way to the left or right side.
+If you want to use Crossfader Start to trigger playback on channel 2, set the 
+crossfader to the left side, and vice versa.
+3
+While holding the [SHIFT] button, move the crossfader towards the 
+opposite side from where it’s set.
+Playback starts from the cue point.
+• If you move the crossfader back while holding the [SHIFT] button during 
+playback, the playback position instantly jumps back to the cue point and 
+pauses (Back Cue).
+When no cue point is set, playback starts from the beginning of the track.
+
+
+===== PDF PAGE 140 =====
+Serato DJ Pro
+140 En
+Analyzing tracks
+Track analysis starts when you drag and drop a music file, or a folder 
+containing music files, into the Track List in Serato DJ Pro.
+• If a track is loaded to a deck before analysis is complete, it may take 
+some time to display its BPM and waveform.
+• Depending on the number of tracks, analysis may take some time.
+
+
+===== PDF PAGE 141 =====
+Serato DJ Pro
+141 En
+Using effects
+Effects in Serato DJ Pro can be controlled with the unit.
+1
+Effect name
+Displays the name of the selected effect.
+2
+AUTO / TAP
+When the BPM measurement mode is Auto mode, [AUTO] is displayed. When 
+it's Manual Input mode, [TAP] is displayed.
+3
+BPM value
+Displays the automatically detected BPM in Auto mode.
+If the BPM can't be detected, the previously detected BPM value flashes.
+Displays the manually input BPM in Manual Input mode.
+4
+Selected channel
+Displays the channel to which the effect will to be applied. Displays [SP] 
+(Sampler), [MIC], [CH 1], [CH 2], [CH 3], [CH 4], or [MST] (Master) according 
+to the selected channel.
+5
+Parameter
+Displays parameters of the selected effect.
+1
+2
+3
+4
+5
+Effects section display
+
+
+===== PDF PAGE 142 =====
+Serato DJ Pro
+142 En
+Using an effect
+1
+Press the [BEAT ] button or [BEAT ] button while holding the 
+[SHIFT] button.
+Select the BPM measurement mode.
+– [AUTO]: Press the [BEAT ] button while holding the [SHIFT] button. The 
+BPM is automatically measured from the input audio signal.
+– [TAP]: Press the [BEAT ] button while holding the [SHIFT] button. Enter 
+the BPM manually.
+2
+Turn the [BEAT FX] select knob.
+Selects a type of effect in Serato DJ Pro.
+3
+Turn the BEAT FX CH select knob.
+Selects a channel to apply the effect to.
+– [SP]: Applies the effect to the sampler sound.
+– [MIC]: Applies the effect to the microphone sound.
+– [1] to [4]: Applies the effect to the sound of the respective channel.
+– [MST]: Applies the effect to the sound of the master channel.
+• Set [Sample Player Output Select] to [A] in Serato DJ Pro.
+• For microphone sound and external input sound, the effect from the unit will 
+be applied.
+ Read: Beat FX types on the unit (page 143)
+4
+Press the [BEAT ] button or [BEAT ] button.
+Sets the number of beats synchronized to the effect sound.
+The effect time corresponding to the number of beats is set automatically.
+5
+Press the [BEAT FX ON/OFF] button.
+The effect is applied to the sound.
+You can adjust the parameter of the effect by turning the [BEAT FX LEVEL/
+DEPTH] knob.
+The [BEAT FX ON/OFF] button flashes when the effect is on.
+• Press the [BEAT FX ON/OFF] button again to turn the effect off.
+
+
+===== PDF PAGE 143 =====
+Serato DJ Pro
+143 En
+Beat FX types on the unit
+Beat FX
+Explanation
+LOW CUT ECHO
+Outputs the delay sound with the low 
+frequency cut several times while 
+attenuating it according to the number of 
+beats.
+•  / : Sets the delay time (number of 
+beats) from 1/16 to 16 beats.
+• LEVEL/DEPTH: Sets the balance 
+between the original sound and the echo 
+sound.
+ECHO
+Outputs the delay sound several times while 
+attenuating it according to the number of 
+beats.
+•  / : Sets the delay time (number of 
+beats) from 1/16 to 16 beats.
+• LEVEL/DEPTH: Sets the balance 
+between the original sound and the echo 
+sound.
+MULTI TAP DELAY
+Outputs the delay sound up to 7 times in 
+1/8 beat units according to the number of 
+beats.
+•  / : Sets the effect time (number of 
+beats) from 1/16 to 16 beats.
+• LEVEL/DEPTH: Sets the balance 
+between the original sound and the effect 
+sound.
+
+
+===== PDF PAGE 144 =====
+Serato DJ Pro
+144 En
+SPIRAL
+Adds a reverb effect to the input sound.
+When the delay time is changed, the pitch 
+will also change at the same time.
+•  / : Sets the delay time (number of 
+beats) from 1/16 to 16 beats.
+• LEVEL/DEPTH: Sets the balance and 
+feedback between the original sound and 
+the effect sound.
+REVERB
+Adds a reverb effect to the input sound.
+•  / : Sets the reverb effect size (1 to 
+100%).
+• LEVEL/DEPTH: Sets the balance 
+between the original sound and the effect 
+sound.
+TRANS
+Cuts the sound periodically according to the 
+number of beats.
+•  / : Sets the cycle (number of beats) to 
+cut from 1/16 to 16 beats.
+• LEVEL/DEPTH: Sets the balance 
+between the original sound and the effect 
+sound and the length of time to cut the 
+sound.
+ENIGMA JET
+Creates a flanger effect in which the pitch 
+continues to rise or fall according to the 
+number of beats.
+•  / : Sets the effect rate (number of 
+beats). When you set from +1/16 to +64 
+beats, the pitch raises. When you set from 
+-64 to -1/16 beats, the pitch lowers.
+• LEVEL/DEPTH: Sets how the effect 
+applies.
+Beat FX
+Explanation
+
+
+===== PDF PAGE 145 =====
+Serato DJ Pro
+145 En
+FLANGER
+Creates a one-cycle flanger effect 
+according to the number of beats.
+•  / : Sets the effect rate (number of 
+beats) from 1/16 to 64 beats per beat of 
+BPM.
+• LEVEL/DEPTH: Sets how the effect 
+applies.
+PHASER
+Changes the Phaser effect according to the 
+number of beats.
+•  / : Sets the effect rate (number of 
+beats) from 1/16 to 64 beats.
+• LEVEL/DEPTH: Sets how the effect 
+applies.
+STRETCH
+Records the input sound when the effect is 
+turned on, and outputs the recorded sound 
+stretched to the set number of beats.
+•  / : Sets the retrigger cycle (number of 
+beats) from 1/16 to 16 beats. The input 
+sound is recorded again according to the 
+retrigger cycle.
+• LEVEL/DEPTH: Sets the number of beats 
+of time-stretch.
+SLIP ROLL
+Records the input sound when the effect is 
+turned on, and outputs the recorded sound 
+repeatedly according to the set number of 
+beats. When the effect time changes, the 
+input sound is recorded again.
+•  / : Sets the effect time (number of 
+beats) from 1/16 to 16 beats.
+• LEVEL/DEPTH: Sets the balance 
+between the original sound and the effect 
+sound.
+Beat FX
+Explanation
+
+
+===== PDF PAGE 146 =====
+Serato DJ Pro
+146 En
+ROLL
+Records the input sound when the effect is 
+turned on, and outputs the recorded sound 
+repeatedly according to the set number of 
+beats.
+•  / : Sets the effect time (number of 
+beats) from 1/16 to 16 beats.
+• LEVEL/DEPTH: Sets the balance 
+between the original sound and the effect 
+sound.
+MOBIUS 
+ (SAW)
+Creates a saw wave that sounds as if the 
+pitch continues to rise or fall according to 
+the number of beats.
+The sound mixed with the input sound 
+outputs. The saw wave can output without 
+input sound.
+•  / : Sets the effect rate (number of 
+beats). When setting between +1/16 and 
++64 beats, the pitch raises. When setting 
+between -64 and -1/16 beats, the pitch 
+lowers.
+• LEVEL/DEPTH: Sets the volume of the 
+saw wave to be mixed.
+Beat FX
+Explanation
+
+
+===== PDF PAGE 147 =====
+Serato DJ Pro
+147 En
+MOBIUS 
+ (TRI)
+Creates a triangular wave that sounds as if 
+the pitch continues to rise or fall according 
+to the number of beats.
+The sound mixed with the input sound 
+outputs. It can oscillate even if there is no 
+input sound.
+•  / : Sets the moving cycle of the effect 
+(number of beats). When setting between 
++1/16 and +64 beats, the pitch raises. 
+When setting between -64 and -1/16 
+beats, the pitch lowers.
+• LEVEL/DEPTH: Sets the volume of the 
+triangular wave to be mixed.
+Beat FX
+Explanation
+
+
+===== PDF PAGE 148 =====
+Serato DJ Pro
+148 En
+Using Sound Color FX
+You can apply effects that change as you turn the [COLOR] knob for 
+each channel.
+• For channels with external input sound, the unit's effects are applied.
+ Read: Sound Color FX types on the unit (page 148)
+1
+Press one of the [SOUND COLOR FX] buttons.
+Selects an effect type.
+The pressed button flashes.
+• If you already selected one button and then pressed another, the newly 
+pressed button is selected.
+• The same effect is set for all channels.
+2
+Turn a [COLOR] knob.
+The effect is applied to that channel.
+Canceling Sound Color FX
+Press the flashing [SOUND COLOR FX] button.
+The effect is canceled.
+Sound Color FX types on the unit
+Effect
+Explanation
+SPACE
+Gives a reverb effect.
+• COLOR:
+Turn counterclockwise: Applies the reverb 
+effect to the mid-range and low-range.
+Turn clockwise: Applies the reverb effect 
+to the mid-range and high-range.
+
+
+===== PDF PAGE 149 =====
+Serato DJ Pro
+149 En
+DUB ECHO
+Outputs delayed sound repeatedly while 
+attenuating it and gives an echo effect.
+• COLOR:
+Turn counterclockwise: Applies the echo 
+effect to the mid-range.
+Turn clockwise: Applies the echo effect to 
+the high-range.
+CRUSH
+Changes the output sound so it sounds like 
+it's “crushing”.
+• COLOR:
+Turn counterclockwise: Applies “crushed” 
+effect to the sound.
+Turn clockwise: Crushes sound, and then 
+applies the high-pass filter effect.
+PITCH
+Changes the pitch.
+• COLOR:
+Turn counterclockwise: The pitch falls.
+Turn clockwise: The pitch rises.
+NOISE
+Outputs white noise generated inside the 
+unit mixed into the sound of the channel via 
+the filter.
+• COLOR:
+Turn counterclockwise: Gradually 
+decreases the cut-off frequency of the 
+filter through which the white noise 
+passes.
+Turn clockwise: Gradually increases the 
+cut-off frequency of the filter through 
+which the white noise passes. 
+Effect
+Explanation
+
+
+===== PDF PAGE 150 =====
+Serato DJ Pro
+150 En
+Using FX Part Select
+The effect applies to the selected Stem (Drums / Vocal / Bass & 
+Melody) of the loaded track.
+• The effect applies to all Stems when using sound from the external 
+inputs, microphone, or sampler.
+1
+Select a Stem, or multiple Stems, with the [FX PART SELECT] 
+buttons.
+Press [DRUMS], [VOCAL], or [INST] (Bass & Melody) button and the button 
+will light up. The effect applies to all Stems with lit buttons.
+2
+Apply an effect.
+When the sound is applied with Beat FX or Sound Color FX, the effect applies 
+to the selected Stem only.
+ Read: Using an effect (page 142)
+ Read: Using Sound Color FX (page 148)
+To cancel FX Part Select
+When all [FX PART SELECT] ([VOCAL], [DRUMS], [INST]) buttons 
+light up, the effect applies to all Stems, which means FX Part Select is 
+canceled.
+FILTER
+Outputs sound that has passed through a 
+filter.
+• COLOR:
+Turn counterclockwise: Gradually 
+decreases the low-pass filter’s cut-off 
+frequency.
+Turn clockwise: Gradually increases the 
+high-pass filter’s cut-off frequency.
+Effect
+Explanation
+
+
+===== PDF PAGE 151 =====
+Serato DJ Pro
+151 En
+Recording
+Serato DJ Pro has a recording feature that you can use to capture your 
+performances. For detailed instructions on recording, see the Serato 
+DJ Pro software manual.
+1
+Click [REC] in the upper area of the Serato DJ Pro screen.
+The [REC] panel is displayed.
+2
+Click [REC] in the [REC] panel to start recording.
+• If you click [REC] again, recording stops.
+• When recording is complete, the file is automatically saved.
+Using a microphone
+1
+Connect a microphone to the [MIC 1] input terminal or [MIC 2] input 
+terminal.
+2
+Set the [MIC OFF, ON, TALKOVER] switch to [ON] or 
+[TALKOVER].
+– [ON]: The indicator lights up.
+– [TALKOVER]: The indicator flashes.
+• When you set the switch to [TALKOVER], the sound of channels other than 
+the [MIC1] channel and [MIC2] channel is attenuated by -18 dB (default) 
+when a sound of -10 dB or greater is input to the microphone.
+• The level of attenuation applied when you set the switch to [TALKOVER] 
+can be changed in Utilities mode. For details on how to change this setting, 
+read: Launching Utilities mode (page 154)
+• You can switch Talkover mode between Normal mode and Advanced mode. 
+For details on how to change this setting, read: Launching Utilities mode 
+(page 154)
+3
+Turn the [MIC 1 LEVEL] knob or [MIC 2 LEVEL] knob.
+Adjust the volume of the sound output from the [MIC 1] input terminal or [MIC 
+2] input terminal.
+
+
+===== PDF PAGE 152 =====
+Serato DJ Pro
+152 En
+• The sound comes out at a high volume if the knob is turned all the way to the 
+right.
+4
+Speak into the microphone.
+• You can’t affect the microphone sound input to the unit in Serato DJ Pro.
+Adjusting the sound
+Turn the [MIC EQ (HI, LOW)] knobs.
+– [HI]: -12 dB to +12 dB (10 kHz)
+– [LOW]: -12 dB to +12 dB (100 Hz)
+Using external inputs
+The unit has four sets of external inputs to connect multi players, 
+turntables, etc. The “4-channel mixer” of the unit can be used to mix 
+input sound without it passing through your PC/Mac. You can use the 
+following mixer features even when not connected to a PC/Mac.
+• For details on the respective items, read: Connecting (page 66) and 
+Part names and functions (page 10)
+Mixing the sound of a multi player, etc.
+1
+Connect a multi player or other line-level output device to the [LINE] 
+input terminal or the [LINE/PHONO] input terminal.
+2
+Set the [LINE/PHONO] switch on the unit's rear panel to [LINE].
+3
+Set the [
+ A, LINE, 
+ B] switch or [
+ A, PHONO/LINE, 
+ 
+B] switch on the unit's top panel to [LINE] or [PHONO/LINE].
+4
+Turn the [TRIM] knob and move the channel fader to adjust the 
+volume of the sound output from each channel.
+
+
+===== PDF PAGE 153 =====
+Serato DJ Pro
+153 En
+Mixing the sound of turntables, etc.
+1
+Connect turntables or other phono-level (MM cartridge) output 
+devices to the [LINE/PHONO] input terminals of [CH3] or [CH4].
+• [CH1] and [CH2] are input terminals for line-level devices only.
+• Be sure to connect the ground wire of the turntable to the [SIGNAL GND] 
+terminal of the unit.
+2
+Set the [LINE/PHONO] switch on the unit's rear panel to [PHONO].
+3
+Set the [
+ A, PHONO/LINE, 
+ B] switch on the unit's top panel 
+to [PHONO/LINE].
+4
+Turn the [TRIM] knob and move the channel fader to adjust the 
+volume of the sound output from each channel.
+Setting the crossfader curve
+You can set the crossfader curve on the Serato DJ Pro screen.
+1
+Click 
+ in Serato DJ Pro.
+2
+Click the [Mixer] tab.
+3
+Adjust the crossfader curve.
+• The more you turn it toward [SLOW], the more gradual the rise of the curve.
+• The more you turn it toward [FAST], the sharper the rise of the curve.
+
+
+===== PDF PAGE 154 =====
+154 En
+Changing the settings
+Launching Utilities mode
+Use Utilities mode to change the settings of the unit.
+If the unit is connected to your PC/Mac while it's running rekordbox, 
+you won't be able to use Utilities mode.
+To change the settings when connected to rekordbox, change them on 
+the Preferences screen in rekordbox.
+ Read: Changing the settings in rekordbox (page 107)
+1
+Press and hold down the [BACK] button.
+The settings screen appears on the On Jog Display.
+2
+Turn the rotary selector to select a setting item.
+3
+Press the rotary selector to confirm the selection.
+The screen for changing the setting appears.
+4
+Turn the rotary selector to select a setting value.
+5
+Press the rotary selector to confirm the selection.
+• Press the [BACK] button to cancel the setting.
+6
+Press the [BACK] button.
+The settings screen for Utilities mode closes.
+
+
+===== PDF PAGE 155 =====
+Changing the settings
+155 En
+Utilities mode settings
+*: Default
+Setting item
+ Explanation
+POWER MANAGEMENT
+Sets the Power Management function 
+(page 157).
+• Setting values: OFF, ON*
+DEMO/S.SAVER
+Sets the amount of time until demo mode or 
+the screen saver starts.
+• Setting values: DISABLE, DEMO 1min, 
+DEMO 5min, DEMO 10min*, S.SAVER
+• S.SAVER: Starts the screen saver if no 
+operation is performed for 30 minutes.
+TALKOVER MODE
+Sets the Talkover mode for the microphone 
+(page 158).
+• Setting values: ADVANCED*, NORMAL
+TALKOVER LEVEL
+Sets the talkover level for the microphone.
+• Setting values: -6dB, -12dB, -18dB*, -
+24dB
+PHONES OUT
+Sets the output method for the [PHONES] 
+output terminal.
+• Setting values: STEREO*, MONO SPLIT
+SPLIT CUE OUTPUT
+Sets the L/R outputs of sound from the 
+[PHONES] output terminal when [MONO 
+SPLIT] is selected on the [PHONES OUT] 
+setting.
+• Setting values: NORMAL*, INVERT
+MIC TO BOOTH
+Determines whether or not to output the 
+microphone sound from the [BOOTH] 
+output terminals.
+• Setting values: OFF, ON*
+
+
+===== PDF PAGE 156 =====
+Changing the settings
+156 En
+MIC LMT (MSTR)
+Sets whether or not to use the limiter for the 
+microphone sound input to the master 
+output sound.
+• Setting values: OFF, ON*
+MIC LMT (BOOTH)
+Sets whether or not to use the limiter for the 
+microphone sound input to sound to the 
+[BOOTH] output terminals.
+• Setting values: OFF, ON*
+MASTER ATT.
+Sets the attenuation level of the sound from 
+the [MASTER 1] and [MASTER 2] output 
+terminals.
+• Setting values: 0dB*, -6dB, -12dB
+MASTER OUT
+Sets the output method for the sound from 
+the [MASTER 1] and [MASTER 2] output 
+terminals.
+• Setting values: STEREO*, MONO
+MASTER LIMITER
+Reduces distortion to the sound from the 
+[MASTER 1] and [MASTER 2] terminals.
+• Setting values: OFF, ON*
+BOOTH ATT.
+Sets the attenuation level of the sound from 
+the [BOOTH] output terminals.
+• Setting values: 0dB*, -6dB, -12dB
+BOOTH OUT
+Sets the output method for the sound from 
+the [BOOTH] output terminals.
+• Setting values: STEREO*, MONO
+JOG RING BRT.
+Sets the brightness of the jog ring 
+illumination.
+• Setting values: OFF, 1, 2, 3*
+JOG DISP. BRT.
+Sets the brightness of the On Jog Display.
+• Setting values: 1, 2, 3, 4, 5*
+Setting item
+ Explanation
+
+
+===== PDF PAGE 157 =====
+Changing the settings
+157 En
+Power Management
+When [POWER MANAGEMENT] is set to [ON], the unit enters Off 
+mode automatically after 20 minutes without being used (no audio 
+signal (more than -24 dB) is input to the unit).
+The [QUANTIZE] button on the left deck lights up in Off mode.
+Press the [QUANTIZE] button on the left deck to cancel Off mode.
+• The factory setting is [ON].
+• Set [POWER MANAGEMENT] to [OFF] if you don't need to use the 
+Power Management function.
+• Power consumption may increase when this setting is set to [OFF].
+DISPLAY BRT.
+Sets the brightness of the effects section 
+display.
+• Setting values: 1, 2, 3*
+CR FDR CUT LAG
+Adjusts the range where no sound is heard 
+at both edges of the crossfader (cut lag).
+• Setting values: 0 - 6, 7*, 8 - 52
+FACTORY RESET
+Select [RESET] to restore the factory 
+settings.
+• Setting values: CANCEL*, RESET
+Setting item
+ Explanation
+
+
+===== PDF PAGE 158 =====
+Changing the settings
+158 En
+Talkover mode
+• [ADVANCED]:
+Only the mid-range sound, other than the microphone channel, is 
+attenuated according to the set value of the Talkover level.
+• [NORMAL]:
+Sound, other than the microphone channel, is attenuated according 
+to the set value of the Talkover level.
+Volume
+Frequency
+Volume
+Frequency
+
+
+===== PDF PAGE 159 =====
+Changing the settings
+159 En
+Setting Utility software
+You can use the Setting Utility to perform checks and change settings 
+for connections between the unit and your PC/Mac.
+Displaying the Setting Utility
+For Mac
+In Finder, open the [Applications] folder, then click the [Pioneer] > 
+[DDJ-FLX10] > [DDJ-FLX10 Setting Utility].
+For Windows 11
+In the [Start] menu, open the [All apps] screen, then click [Pioneer] > 
+[DDJ-FLX10 Setting Utility].
+For Windows 10
+In the [Start] menu, click [Pioneer] > [DDJ-FLX10 Setting Utility].
+
+
+===== PDF PAGE 160 =====
+Changing the settings
+160 En
+Adjusting the buffer size (when using Windows ASIO)
+• If an application (DJ software, etc.) is running and using the unit as 
+the default audio device, quit the application before adjusting the 
+buffer size.
+1
+Click the [ASIO] tab.
+2
+Adjust the buffer size with the slider.
+• If a large buffer size is set, drops in audio data (breaks in the sound) 
+are less likely to happen, but the time lag due to the delay in the 
+transfer of the audio data (latency) increases.
+
+
+===== PDF PAGE 161 =====
+Changing the settings
+161 En
+Changing the settings in the Setting Utility
+When using rekordbox, change the settings on the Preferences screen 
+in rekordbox.
+ Read: Changing the settings in rekordbox (page 107)
+1
+Click the [PREFERENCE] tab.
+2
+Change the settings.
+Setting item
+ Explanation
+Software
+The way setting items are arranged on this 
+tab depends on the software selected.
+Slip Mode Flashing
+Selects whether to enable or disable the 
+function that flashes the LEDs of related 
+controls when Slip mode is on (when 
+[Serato DJ Pro] is selected as the 
+software).
+
+
+===== PDF PAGE 162 =====
+Changing the settings
+162 En
+Slip button LED while Slip 
+mode is on
+Sets the lighting of the [SLIP] button when 
+Slip mode is on (when [Serato DJ Pro] is 
+selected as the software).
+Light is on: Lights when Slip mode is on, and 
+flashes when Slip is being used.
+Blink: Flashes constantly when Slip mode is 
+on.
+Fader Start options
+Select [ON] to enable the Fader Start 
+function (when [Serato DJ Pro] or [Other 
+software] is selected as the software). 
+Check the checkbox to also enable the 
+Sync function when using Fader Start.
+ Read: Using Fader Start (page 139)
+JOG RING COLOR
+Selects the lighting color of the jog ring 
+illumination from [MODE 1], [MODE 2], and 
+[MODE 3] (when [Serato DJ Pro] is 
+selected as the software).
+Time Mode
+Sets the time display format ([Elapsed] or 
+[Remaining]) on the Waveform mode 
+screen of the On Jog Display (when [Serato 
+DJ Pro] is selected as the software).
+Display HOT CUE 
+INDICATOR
+Displays Hot Cues on Virtual Deck mode of 
+the On Jog Display (when [Serato DJ Pro] 
+is selected as the software).
+If this setting isn't selected, Hot Cue 
+information is displayed the same as it is on 
+Serato DJ Pro's virtual deck when Virtual 
+Deck mode is selected.
+REC OUT
+Sets the microphone's output ([WITH MIC] 
+or [WITHOUT MIC]) for recording (when 
+[Serato DJ Pro] or [Other software] is 
+selected as the software).
+Setting item
+ Explanation
+
+
+===== PDF PAGE 163 =====
+Changing the settings
+163 En
+Checking the version of the firmware and the dedicated 
+software
+1
+Click the [About] tab.
+• You can change the image for DJ Logo on this tab.
+Setting the image for DJ Logo
+Set the image to display on DJ Logo Display of the On Jog Display.
+1
+Click [Setting].
+[DDJ-FLX10 Image Transfer Tool] starts.
+2
+Click [Open].
+3
+Select an image (bmp / jpeg / png / gif format) to display on the On 
+Jog Display.
+4
+Click [Transfer].
+The selected image is transferred to the unit and set.
+
+
+===== PDF PAGE 164 =====
+Changing the settings
+164 En
+5
+Switch to DJ Logo Display (page 48) and make sure that the set 
+image is displayed of the On Jog Display.
+• To delete the set image, click [Delete] in [DDJ-FLX10 Image Transfer 
+Tool].
+• Before using [DDJ-FLX10 Image Transfer Tool], quit your DJ software.
+
+
+===== PDF PAGE 165 =====
+165 En
+Additional information
+Troubleshooting
+If you think something is wrong with the unit, check the information 
+below and refer to the [FAQ] for the DDJ-FLX10 on the Pioneer DJ 
+website.
+pioneerdj.com/support/
+Sometimes, the problem may be caused by another device. Inspect 
+the other devices and electrical appliances you’re using and refer to 
+their manuals and FAQ if necessary. If the problems continue, read the 
+Precautions for Use and consult an authorized service company or 
+your dealer.
+• The unit may not work properly if it’s subjected to static electricity or 
+other external influences. In this case, turn the unit off and on again 
+to restore proper operation.
+Power
+The unit does not power up.
+• Check the power cord is connected properly.
+• Press the [] switch on the unit’s rear panel to turn the unit on.
+
+
+===== PDF PAGE 166 =====
+Additional information
+166 En
+Connection
+The unit isn’t recognized by your PC/Mac.
+• Connect the supplied USB cable correctly. See: Connections 
+(page 62)
+• When using a USB hub, be sure it's a product recommended by the 
+manufacturer of your PC/Mac.
+• If another USB device is connected to your PC/Mac, disconnect it.
+• Install the dedicated audio driver software and/or Setting Utility on 
+your PC/Mac. If it has already been installed, install it again. See: PC/
+Mac setup (page 8)
+• Quit any other open applications including screen savers and 
+antivirus security software on your PC/Mac. (When quitting antivirus 
+security software, before doing so, disable the internet connection to 
+ensure the security of your PC/Mac.)
+• For Windows, if multiple ASIO drivers other than the ones used by 
+this unit are installed on your PC, uninstall unnecessary ASIO 
+drivers.
+• Check if the unit's firmware version can be displayed in the Setting 
+Utility (page 159).
+
+
+===== PDF PAGE 167 =====
+Additional information
+167 En
+Sound
+Sound isn’t output, is too quiet, or is distorted.
+• Set the [
+ A, PHONO/LINE, 
+ B] switch, [
+ A, LINE, 
+ B] 
+switch, [LINE/PHONO] switch, [TRIM] knob, channel fader, 
+crossfader, and [MASTER LEVEL] knob to the correct positions. 
+See: Playing a track (page 73) (page 121)
+• Connect the connection cable properly. See: Connections (page 62)
+• Clean the terminals and plugs before connecting the cable to the unit.
+• For Mac, change the buffer size (latency) for your DJ software.
+• For Windows, change the buffer size in the Setting Utility (page 159).
+Microphone sound can’t be output.
+• Set the [MIC OFF, ON, TALKOVER] switch to the correct position 
+(page 104)(page 151).
+Sound from the Sampler deck can't be monitored with the 
+headphones.
+• Set the [SAMPLER VOL] knob to the correct position.
+• For Serato DJ Pro, set [Sample Player Output Select] to [A].
+
+
+===== PDF PAGE 168 =====
+Additional information
+168 En
+rekordbox
+rekordbox becomes unstable.
+• Update rekordbox to the latest version. See: Installing rekordbox 
+(page 67)
+• Quit any other applications on your PC/Mac. If rekordbox remains 
+unstable, try disabling the wireless network or other wireless 
+connections, antivirus software, screen saver, low-power mode, etc. 
+(When quitting antivirus security software, before doing so, disable 
+the internet connection to ensure the security of your PC/Mac.)
+• If another USB device is connected to your PC/Mac, disconnect it.
+• When using a USB hub, be sure it's a product recommended by the 
+manufacturer of your PC/Mac.
+• If you’re using battery power for your laptop, connect the laptop to an 
+AC power supply.
+rekordbox can’t be controlled by the unit./The platter isn’t 
+displayed on the deck./Settings described in this manual 
+aren’t displayed.
+• Click [EXPORT] at the top-left corner of the rekordbox screen to 
+switch to [PERFORMANCE] mode.
+BPM and beatgrid are not displayed correctly./Beatgrid is 
+misaligned.
+• Change the BPM analysis range and analyze the track again. If it 
+doesn’t work, manually set the beatgrid and BPM.
+• Adjust the beatgrid. For details on how to adjust the beatgrid, see the 
+rekordbox Instruction Manual.
+Sound is interrupted while using rekordbox.
+• Set the buffer size in [Preferences] > [Audio] in rekordbox.
+
+
+===== PDF PAGE 169 =====
+Additional information
+169 En
+Fader Start doesn’t work.
+• Set a cue.
+• To activate Fader Start, mark the [Fader Start] check box in 
+[Preferences] > [Controller] > [Mixer] tab in rekordbox.
+When the unit is disconnected, recording isn’t available in 
+rekordbox.
+• If you don’t have one of the relevant subscription plans, you can’t 
+record without connecting to the unit. Connect the unit or another 
+Hardware Unlock device, or take out one of the relevant subscription 
+plans to enable recording.
+Lighting fixtures
+A Lighting fixture doesn't work with the unit.
+• The [DMX] output terminal of the unit is for use with rekordbox 
+Lighting mode only.
+Check the channel setting of the lighting fixture and that the cable is 
+connected properly.
+Next, check the channel setting and relevant lighting fixture is 
+mapped to the correct channel on the [FIXTURE LIBRARY] screen 
+of the [LIGHTING] mode screen in rekordbox.
+If the mapped item is automatically displayed as [No Assign] in the 
+pull-down menu of the window on the right, the lighting fixture may 
+not be supported by rekordbox. (In this case, change [No Assign] to 
+the other setting, which may solve the problem.)
+
+
+===== PDF PAGE 170 =====
+Additional information
+170 En
+Serato DJ Pro
+Serato DJ Pro becomes unstable.
+• Update Serato DJ Pro to the latest version. See: Installing Serato DJ 
+Pro (page 114)
+• Quit any other applications on your PC/Mac. If Serato DJ Pro 
+remains unstable, try disabling the wireless network or other wireless 
+connections, antivirus software, screen saver, low-power mode, etc. 
+(When quitting antivirus security software, before doing so, disable 
+the internet connection to ensure the security of your PC/Mac.)
+• If another USB device is connected to your PC/Mac, disconnect it.
+• When using a USB hub, be sure it's a product recommended by the 
+manufacturer of your PC/Mac.
+• If you’re using battery power for your laptop, connect the laptop to an 
+AC power supply.
+Tracks aren’t displayed in the library.
+• Import music files. For details about importing music files (tracks), 
+see: Importing music files (tracks) (page 119)
+• If you selected a crate or subcrate which doesn’t contain any tracks, 
+select another crate or subcrate which does contain tracks, or import 
+tracks into the crate or subcrate.
+iTunes tracks aren’t displayed in the library.
+• Activate [Show iTunes Library] in the [Library + Display] tab of the 
+[
+] menu. If [Show iTunes Library] is already activated, 
+deactivate it, then activate it again. For details about importing music 
+files, see the Serato DJ Pro software manual.
+• If you selected a crate or subcrate which doesn’t contain any tracks, 
+select another crate or subcrate which does contain tracks, or import 
+tracks into the crate or subcrate.
+
+
+===== PDF PAGE 171 =====
+Additional information
+171 En
+Music files in the library can’t be edited (such as changing the 
+track name).
+• Deactivate [Protect Library] in the [Library + Display] tab of the 
+[
+] menu.
+Serato DJ Pro virtual deck isn’t displayed. (Offline player is 
+displayed.)
+• Connect the supplied USB cable correctly. See: Connections 
+(page 62)
+• Update Serato DJ Pro to the latest version. See: Installing Serato DJ 
+Pro (page 114)
+BPM isn’t displayed./Sync and Auto Loop don’t work.
+• Mark the [Set Beat Grid / BPM] check box in [Analysis Settings] of 
+the offline player setting, then analyze the track. For details on how 
+to analyze a track, see the Serato DJ Pro software manual.
+BPM and beatgrid are not displayed correctly./Beatgrid is 
+misaligned.
+• Change the BPM analysis range and analyze the track again. If it still 
+doesn’t work, manually set the beatgrid and BPM.
+• Adjust the beatgrid. For details on how to adjust the beatgrid, see the 
+Serato DJ Pro software manual.
+Sound is interrupted while using Serato DJ Pro
+• For Mac, change the Serato DJ Pro buffer size (latency).
+• For Windows, change the buffer size in the Setting Utility (page 159).
+
+
+===== PDF PAGE 172 =====
+Additional information
+172 En
+BPM is displayed, but the beatgrid isn’t displayed./Skip mode 
+doesn’t work.
+• Mark the [Set Beat Grid / BPM] check boxes in [Analysis Settings] 
+of the offline player setting, then analyze the track. For details on how 
+to analyze a track, see the Serato DJ Pro software manual.
+• Set the beatgrid. For details on how to set the beatgrid, see the 
+Serato DJ Pro software manual.
+Others
+The indicator flashes and the unit doesn’t seem to be working 
+properly.
+• If the unit behaves unusually or doesn’t turn on, disconnect the power 
+cord from the power outlet, wait a while, then turn on the unit with 
+reconnecting the power cord. If it still doesn't work, consult an 
+authorized service company or your dealer.
+
+
+===== PDF PAGE 173 =====
+Additional information
+173 En
+LCD display
+• Small black or shining points may appear on the LCD display. This is 
+a phenomenon inherent to LCD displays and not a malfunction.
+• When using the unit in cold places, the LCD display may be dark for 
+a while after the power is turned on. Normal brightness will restore 
+after a while.
+• When the LCD display is exposed to direct sunlight, the light will 
+reflect off it, making it difficult to see. Block the direct sunlight to 
+improve visibility of the display.
+Cleaning
+Wipe with a dry soft cloth.
+• Do not use organic solvents, acids, or alkalis for cleaning.
+
+
+===== PDF PAGE 174 =====
+Additional information
+174 En
+Signal flow
+CH1/2 LINE
+CH1/2 Timecode
+Digital 
+Trim
+BPM Detect 
+CH1/2
+COLOR FX 
+(NOISE)
+BEAT FX 
+Pre-EQ
+3-Band 
+EQ
+COLOR FX 
+(FILTER 
+/CRUSH 
+/PITCH)
+BEAT FX
+Pre-Fader
+CH 1/2 CUE
+CUE
+CH Fader
+CH1/CH2
+CH3/CH4
+CH1/2 LEVEL Meter
+CH3/4 LEVEL Meter
+CH3/4 LINE
+CH3/4 PHONO
+CH3/4 Timecode
+SUBSONIC  
+FILTER
+Digital 
+Trim
+BPM Detect  
+CH3/4
+COLOR FX 
+(NOISE)
+BEAT FX  
+Pre-EQ
+3-Band 
+EQ
+COLOR FX 
+(FILTER 
+/CRUSH 
+/PITCH)
+BEAT FX 
+Pre-Fader
+CH 3/4 CUE
+CUE
+CH Fader
+CH 1/2
+CH 3/4
+MIC
+MIC 
+Peak 
+Limiter
+MASTER 
+Mono/Stereo
+Master 
+MASTER CUE
+Master Level Meter
+Master ATT
+Peak 
+Limiter
+MASTER OUT
+Booth 
+Mono/Stereo
+Booth 
+Booth ATT
+BOOTH OUT
+MIC
+MIC to Booth
+On/Off
+COLOR FX 
+(DUB ECHO/ 
+SPACE)
+BEAT FX 
+Post-Fader
+CH1
+CH4
+CH3
+CH2
+Talkover Level
+Talkover Mode
+Talkover
+Talkover 
+Control
+MIC TALKOVER
+On/Off
+USB Audio Stream In USB A
+USB Audio Stream In USB B
+Crossfader
+Crossfader Curve
+ 
+Crossfader Assign (A/B/THRU)
+COLOR FX 
+(DUB ECHO/ 
+SPACE)
+BEAT FX 
+Post-Fader
+Crossfader
+Crossfader Curve
+ 
+Crossfader Assign (A/B/THRU)
+PC-A MASTER
+PC-B MASTER
+MIC
+MIC 
+Level 
+Detect
+MIC IN
+Low Cut 
+Filter
+2-Band 
+MIC EQ
+MIC On/Off
+MIC
+Level
+Talkover 
+Control
+MIC 
+Filter
+MIC 
+REVERB
+BEAT FX 
+MIC
+BEAT FX 
+Master
+BPM Detect 
+Master
+MASTER CUE
+HP OUT
+HP
+LEVEL
+HP CUE 
+On/Off
+HP 
+Mix
++
+HEADPHONE OUT
+CH1 CUE
+CH2 CUE
+CH3 CUE
+CH4 CUE
++
+ PC-A HEADPHONE
+ PC-B HEADPHONE
+SPLIT CUE  
+(STEREO / MONO SPLIT)
+(NORMAL / INVERSE)
+BPM Detect 
+MIC
+PC-A REC OUT
+PC-B REC OUT
+REC OUT with MIC
+REC OUT without MIC
+PC-A REC OUT
+CH1 Timecode
+CH2 Timecode
+CH4 Timecode
+CH3 Timecode
+USB Audio In 2
+USB Audio In 1
+USB Audio In 4
+USB Audio In 3
+USB Audio In 5
+USB A
+USB B
+PC-A MASTER
+USB Audio Out 1
+PC-A HEADPHONE
+USB Audio Out 2
+PC-B REC OUT
+CH1 Timecode
+CH2 Timecode
+CH4 Timecode
+CH3 Timecode
+USB Audio In 2
+USB Audio In 1
+USB Audio In 4
+USB Audio In 3
+USB Audio In 5
+PC-B MASTER
+USB Audio Out 1
+PC-B HEADPHONE
+USB Audio Out 2
++
++
++
++
+MIC 
+Peak
+Limiter
+
+
+===== PDF PAGE 175 =====
+Additional information
+175 En
+Specifications
+AC adapter
+Power requirements .........................AC 100 V – 240 V, 50 Hz / 60 Hz
+Rated current................................................................................0.9 A
+Rated output.....................................................................DC 12 V, 3 A
+General – Main Unit
+Power consumption................................................DC 12 V, 1 800 mA
+Power consumption (off)..............................................................0.2 W
+Main unit weight..........................................................6.7 kg / 14.8 lbs.
+Max. external dimensions (W x D x H)
+........................................ 716 x 400.3 x 73.4 mm / 28.2” x 15.8” x 2.9”
+Tolerable operating temperature...... +5 °C – +35 °C (+41 °F – +95 °F)
+Tolerable operating humidity.................5 % – 85 % (no condensation)
+Audio Section
+Sampling rate .........................................................................44.1 kHz
+A/D, D/A converters..................................................................... 24 bit
+Frequency characteristic
+USB, LINE, MIC1, MIC2............................................20 Hz – 20 kHz
+S/N ratio (rated output, A-WEIGHTED)
+USB ........................................................................................ 110 dB
+LINE .........................................................................................94 dB
+PHONO ....................................................................................83 dB
+MIC 1 ........................................................................................81 dB
+MIC 2 ........................................................................................81 dB
+Total harmonic distortion (20 Hz to 20 kHz BW)
+USB ......................................................................................0.002 %
+LINE .....................................................................................0.007 %
+PHONO ................................................................................0.025 %
+Standard input level / Input impedance
+LINE ......................................................................... -12 dBu / 47 kΩ
+
+
+===== PDF PAGE 176 =====
+Additional information
+176 En
+PHONO .................................................................... -52 dBu / 47 kΩ
+MIC 1 .......................................................................... -57 dBu / 3 kΩ
+MIC 2 .......................................................................... -57 dBu / 3 kΩ
+Standard output level / Load impedance / Output impedance
+MASTER 1 ........................................+6 dBu / 10 kΩ / 330 Ω or less
+MASTER 2 ........................................+2 dBu / 10 kΩ / 750 Ω or less
+BOOTH..............................................+6 dBu / 10 kΩ / 900 Ω or less
+PHONES ...............................................+8 dBu / 32 Ω / 10 Ω or less
+Rated output level / Load impedance
+MASTER 1 .............................................................. +25 dBu / 10 kΩ
+MASTER 2 .............................................................. +21 dBu / 10 kΩ
+BOOTH.................................................................... +25 dBu / 10 kΩ
+Crosstalk
+LINE .........................................................................................88 dB
+PHONO ....................................................................................77 dB
+Channel equalizer characteristic
+HI ................................................................. -26 dB - +6 dB (20 kHz)
+MID ................................................................ -26 dB - +6 dB (1 kHz)
+LOW .............................................................. -26 dB - +6 dB (20 Hz)
+Microphone equalizer characteristic
+HI ............................................................... -12 dB - +12 dB (10 kHz)
+LOW .......................................................... -12 dB - +12 dB (100 Hz)
+DMX Section
+DMX channel......................................................... 1 universe (512 ch)
+Input / Output terminals
+LINE input terminals
+RCA pin jacks ...........................................................................2 sets
+LINE / PHONO input terminals
+RCA pin jacks ...........................................................................2 sets
+MIC input terminals
+XLR connector & 1/4″ TRS jack................................................. 1 set
+1/4” TRS jack............................................................................. 1 set
+
+
+===== PDF PAGE 177 =====
+Additional information
+177 En
+MASTER 1 output terminal
+XLR connector........................................................................... 1 set
+MASTER 2 output terminal
+RCA pin jacks ............................................................................ 1 set
+BOOTH output terminal
+1/4" TRS jacks ........................................................................... 1 set
+PHONES output terminals
+1/4” stereo jack .......................................................................... 1 set
+3.5 mm stereo mini jack............................................................. 1 set
+USB ports
+USB Type-C..............................................................................2 sets
+DMX terminals
+XLR connector (3 pins).............................................................. 1 set
+Specifications of external power supply (for European Union 
+customers)
+Manufacturer’s name........................... ALPHATHETA EMEA LIMITED
+Commercial registration number .......................................... 09230173
+Adress ..... Unit 39, Tileyard Studios, Tileyard Road, London, N7 9AH, 
+U.K. 
+Model identifier ................................................................UNI336-1230
+Input voltage........................................................... AC 100 V to 240 V
+Input AC frequency......................................................... 50 Hz / 60 Hz
+Output voltage ......................................................................DC 12.0 V
+Output current...............................................................................3.0 A
+Output power.............................................................................36.0 W
+Average active efficiency...........................................................88.7 %
+Efficiency at low load (10 %) .....................................................84.9 %
+No-load power consumption......................................................0.04 W
+Information requirements of the European Ecodesign Directive
+• Be sure to use the [MASTER 1] output terminals for a balanced 
+output.
+
+
+===== PDF PAGE 178 =====
+Additional information
+178 En
+If these terminals are connected to an unbalanced input (such as 
+RCA) using an XLR to RCA converter cable (or converter adapter), 
+etc., the sound quality may be lowered or unwanted noise may occur.
+• For connection with an unbalanced input (such as RCA), use the 
+[MASTER 2] output terminals.
+• Be sure to use the [BOOTH] output terminals for a balanced output. 
+If these terminals are connected to an unbalanced input (such as an 
+RCA or TS terminal) with a TRS to RCA converter cable (or converter 
+adapter), TS cable, etc., the sound quality may be lowered or 
+unwanted noise may occur.
+• The specifications and design of this product are subject to change 
+without notice.
+
+
+===== PDF PAGE 179 =====
+Additional information
+179 En
+Using the unit as a controller for other DJ 
+applications
+The unit also outputs operating data for the buttons and knobs in MIDI 
+format. If you connect a PC/Mac with a built-in MIDI-compatible DJ 
+application via the USB cable, you can control the DJ application other 
+than rekordbox and Serato DJ Pro with the unit. (You need to set MIDI 
+details in the DJ application.)
+• For details, see your DJ application’s user guide.
+• To play tracks stored in Windows on the unit, install the dedicated 
+audio driver software on your PC in advance (page 8).
+• Some buttons on the unit may not be used to operate the DJ 
+software.
+About MIDI messages
+For details on the unit's MIDI messages, see the List of MIDI 
+Messages.
+• You can find the List of MIDI Messages on the website below.
+pioneerdj.com/support/
+
+
+===== PDF PAGE 180 =====
+Additional information
+180 En
+Trademarks and registered trademarks
+• Pioneer DJ is a trademark of PIONEER CORPORATION and is used 
+under license.
+• rekordboxTM is a trademark or registered trademark of AlphaTheta 
+Corporation.
+• iTunes, Mac, macOS and Finder are trademarks of Apple Inc., 
+registered in the U.S. and other countries and regions.
+• Windows is a registered trademark of Microsoft Corporation in the 
+United States and other countries.
+• ASIO is a trademark or registered trademark of Steinberg Media 
+Technologies GmbH.
+• Serato DJ Pro, Scratch Live, ITCH and Serato DJ Intro are registered 
+trademarks of Serato Limited.
+Other product, technology and company names, etc. mentioned herein 
+are trademarks or registered trademarks of their respective owners.
+About using MP3 files
+This product has been licensed for nonprofit use. This product has not 
+been licensed for commercial purposes (for profit-making use), such 
+as broadcasting (terrestrial, satellite, cable or other types of 
+broadcasting), streaming on the Internet, Intranet (a corporate 
+network) or other types of networks or distributing of electronic 
+information (online digital music distribution service). You need to 
+acquire the corresponding licenses for such uses. For details, refer to
+http://www.mp3licensing.com.
+
+
+===== PDF PAGE 181 =====
+Additional information
+181 En
+Software license notice
+• This software is based in part on the work of the Independent JPEG 
+Group.
+Apache
+Copyright (c) 2009-2019 ARM Limited. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+Licensed under the Apache License, Version 2.0 (the License); you 
+may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software 
+distributed under the License is distributed on an AS IS BASIS, 
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
+express or implied.
+See the License for the specific language governing permissions and 
+limitations under the License.
+BSD
+The BSD-3-Clause License
+Copyright (c) 2015, Freescale Semiconductor, Inc.
+Copyright 2016-2020 NXP
+All rights reserved.
+Redistribution and use in source and binary forms, with or without 
+modification, are permitted provided that the following conditions are 
+met:
+1. Redistributions of source code must retain the above copyright 
+notice, this list of conditions and the following disclaimer.
+
+
+===== PDF PAGE 182 =====
+Additional information
+182 En
+2. Redistributions in binary form must reproduce the above copyright 
+notice, this list of conditions and the following disclaimer in the 
+documentation and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its 
+contributors may be used to endorse or promote products derived 
+from this software without specific prior written permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS 
+AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED 
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A 
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
+THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR 
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS 
+OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY 
+WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
+OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+===== PDF PAGE 183 =====
+Additional information
+183 En
+Cautions on copyrights
+rekordbox restricts playback and duplication of copyright-protected 
+music contents.
+• When coded data, etc., for protecting the copyright is embedded in 
+the music contents, it may not be possible to operate the program 
+normally.
+• When rekordbox detects that coded data, etc., for protecting the 
+copyright is embedded in the music contents, processing (playback, 
+reading, etc.) may stop.
+Recordings you have made are for your personal enjoyment and 
+according to copyright laws may not be used without the consent of the 
+copyright holder.
+• Music recorded from CDs, etc., is protected by the copyright laws of 
+individual countries and by international treaties. It is the full 
+responsibility of the person who has recorded the music to ensure 
+that it is used legally.
+• When handling music downloaded from the Internet, etc., it is the full 
+responsibility of the person who has downloaded the music to ensure 
+that it is used in accordance with the contract concluded with the 
+download site.
+The specifications and design of this product are subject to change 
+without notice.
+© 2023 AlphaTheta Corporation
+All rights reserved.
+<DRI1822-D>

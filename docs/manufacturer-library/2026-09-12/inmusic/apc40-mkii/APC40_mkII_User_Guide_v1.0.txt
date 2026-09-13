@@ -1,0 +1,1364 @@
+       User Guide
+        English ( 2 – 6 )
+
+  Guía del usuario
+      Español ( 7 – 11 )
+
+Guide d'utilisation
+     Français ( 12 – 16 )
+
+   Guida per l'uso
+      Italiano ( 17 – 21 )
+
+Benutzerhandbuch
+     Deutsch ( 22 – 26 )
+
+          Appendix
+           English ( 27 )
+User Guide (English)
+Introduction
+
+Box Contents
+
+APC40 mkII                               USB Cable
+Ableton Live Lite (download)             User Guide
+Software Download Card                   Safety & Warranty Manual
+
+Support
+
+For the latest information about this product (system requirements, compatibility information,
+etc.) and product registration, visit akaipro.com/apc40-mkii.
+For additional product support, visit akaipro.com/support.
+
+Quick Start
+1.   Use the included USB cable to connect APC40 mkII's USB port to an available USB port
+     on your computer (powered on).
+2.   On your computer, open Ableton Live.
+3.   In Live, open the Preferences:
+       • Windows: Options > Preferences
+       • Mac OS X: Live > Preferences
+4.   Click the MIDI/Sync Tab.
+5.   Click an available Control Surface drop-down menu and select Akai APC40 mkII.
+6.   Click an available Input drop-down menu and select Akai APC40 mkII.
+7.   Click an available Output drop-down menu and select Akai APC40 mkII.
+8.   Close the Preferences window.
+     You can now use APC40 mkII with Live.
+
+Basic Operation
+Refer to this section to learn how to do basic tasks in Ableton Live using APC40 mkII.
+Important: Before doing any of the following, set up APC40 mkII as a controller in Live
+(described in the Quick Start section above).
+
+To start or pause playback, press the Play button.
+
+To start recording, press the Record button (to record normally) or the Session button (to
+execute Live's Session Record feature).
+
+To stop all clips, press the Stop All Clips button.
+
+
+To launch a clip, press one of the Clip Launch buttons that corresponds to a clip in the
+current 8x5 matrix. In Live, this is represented by a rectangle around the clips. The Clip
+Launch buttons' colors will match the clips' colors as assigned in Live.
+
+
+                                               2
+To stop a clip, press the Clip Stop button in the same track (column) as the clip you want to
+stop.
+
+
+To launch a scene, press one of the five Scene Launch buttons to the right of the 8x5 matrix
+of Clip Launch buttons.
+
+To move around the matrix of clips, use the Bank Select buttons to shift the viewable 8x5
+matrix. In Live, this is represented by a rectangle around the clips. The Clip Launch buttons'
+colors will match the clips' colors as assigned in Live.
+
+To solo a track, press its Solo button.
+
+To record-arm a track, press its Record-Arm button.
+
+To mute or unmute a track, press its Track Activator (the button with the track's number
+printed on it, above its Solo button).
+
+To select a track, press its Track Selector (the button below the track's Clip Stop button).
+
+To adjust volumes, use the Track Volume Faders.
+
+To adjust panning, press the Pan button to put APC40 mkII's Assignable Knobs in Pan
+Mode. The eight Assignable Knobs will control the panning positions of the current eight
+tracks.
+
+
+To adjust send levels, press the Sends button to put APC40 mkII's Assignable Knobs in
+Sends Mode, allowing them to control the levels of Send A for the current eight tracks.
+You can select a different send by pressing and holding Sends and then pressing a Track
+Selector (Track Selector 1 will select Send A, Track Selector 2 will select Send B, etc.).
+Note: Your return tracks will be shown in the matrix as the right-most tracks available in the
+Live Set.
+
+
+To use the Assignable Knobs to control other functions, press the User button to put
+APC40 mkII's Assignable Knobs in User Mode. You can then assign them in Live's MIDI Map
+Mode, allowing them (while in User Mode) to control whatever mappable parameters you
+want.
+
+
+To adjust devices:
+1.   Select a track by pressing the desired Track Selector.
+2.   If the Device View is not shown at the bottom of the window, press the Clip/Dev. View
+     until it is.
+3.   Use the Device Left/Right (/) buttons to select the desired device.
+4.   Use the eight Device Control Knobs to control the parameters of the current device's
+     first bank. You can use the Bank Left/Right (/) buttons to select the previous or next
+     bank in that device.
+Tip: Alternatively, you can press the Device Lock button to lock or unlock APC40 mkII to or
+from the currently selected device. When locked, you can use APC40 mkII's controls for that
+device regardless of where the current focus is in your Live Set.
+
+                                              3
+Features
+                                                                3 2 1 4
+13                                                              6
+                                                                     14      32      33   34
+                                                                     15      28      30
+                                                                                           29
+ 5                                                                   16      31      31
+
+
+ 7                                                               8                              20
+ 9
+                                                                     19     19       23   23
+10                                                              11
+                                                                     21     22       18   17
+                                                                                     26   25
+                                                                        24
+12
+                                                                                     27
+
+1.    USB Port: Use a standard USB cable to connect this port to a USB port on your computer. The
+      computer's USB port provides power to APC40 mkII. This connection is also used to send and
+      receive MIDI data to and from your computer.
+2.    Power Switch: Press this button to power APC40 mkII on and off.
+3.    Footswitch Input: Connect an optional 1/4" (6.35mm) TS footswitch to this input.
+4.    Kensington Lock Slot: You can use this Kensington lock slot to secure the APC40 mkII to a
+      table or other surface.
+5.    Clip Launch Buttons: While in Session View, use these buttons in this 8x5 to launch clips.
+      Each button represents a single clip slot. The eight columns represent eight tracks while the
+      five rows represent five scenes. The Clip Launch buttons' colors will match the clips' colors as
+      assigned in Live.
+      You can launch the entire scene by pressing the Scene Launch buttons to the right of the row
+      of clips.
+6.    Scene Launch Buttons: You can press one of these buttons to launch the corresponding
+      scene, represented by the row of clips to its left.
+7.    Clip Stop Buttons: Press one of these buttons to stop the clip that is playing in the
+      corresponding track, represented by the column of clips just above it.
+8.    Stop All Clips: Press this button to stop all clips when they reach the end.
+9.    Track Selectors: Press one of these buttons to select its track, allowing you to use the Device
+      Control Knobs for a device on that track. The right-most button (labeled Master) selects the
+      Master track.
+      Press and hold Shift and then press one of the first eight Track Selectors to select a Global
+      Quantization setting: None, 8 Bars, 4 Bars, 2 Bars, 1 Bar, 1/4, 1/8, or 1/16.
+10.   Track Buttons:
+        • Track Activator (#): Press this button to activate (unmute) or deactivate
+          (mute) the track.
+        • Crossfade Assign (A|B): Press this button to cycle through the track's
+          three possible crossfade assignments: A, B, or Off.
+        • Solo (S): Press this button to solo the track.
+        • Record-Arm (): Press this button to record-arm the track.
+                                                   4
+11.   Cue Level: Use this knob to control the Cue Volume.
+12.   Track Volume Faders: Use these faders to control each track's volume level. The right-most
+      fader (labeled Master) controls the Master track's volume level.
+13.   Assignable Knobs: Use these knobs controls track panning, track send levels, or other user-
+      assignable parameters. Press the Pan button, Sends button, or User button to put the these
+      knobs in the corresponding mode (described below).
+14.   Pan: Press this button to put the Assignable Knobs in Pan Mode, allowing them to control the
+      panning positions of the current eight tracks.
+15.   Sends: Press this button to put the Assignable Knobs in Sends Mode, allowing them to
+      control the levels of Send A for the current eight tracks.
+      You can select a different send by pressing and holding Sends and then pressing a Track
+      Selector (Track Selector 1 will select Send A, Track Selector 2 will select Send B, etc.).
+16.   User: Press this button to put the Assignable Knobs in User Mode. You can then assign them
+      in Live's MIDI Map Mode, allowing them (while in User Mode) to control whatever mappable
+      parameters you want.
+17.   Detail View: Press this button to hide or show Detail View, which contains the Clip View or
+      Device View. (Select which you are viewing by pressing the Clip/Device View button.)
+      Press and hold Shift and then press this button to select Bank 8 of the currently selected
+      device.
+18.   Clip/Device View: Press this button to switch between Clip View (to view and adjust clip
+      properties) and Device View (to view all devices in the current track).
+      Press and hold Shift and then press this button to select Bank 7 of the currently selected
+      device.
+19.   Device Left/Right (/): Use these buttons to select the previous or next device in a track's
+      device chain. Each of these buttons will light up if there is an available device in that direction.
+      Press and hold Shift and then press one of these buttons to select Bank 1 or Bank 2
+      (respectively) of the currently selected device.
+20.   Device Control Knobs: Use these eight knobs to control the parameters of the current
+      device's first bank. Use the Bank Left/Right (/) buttons to select the previous or next bank
+      in that device. Use the Device Left/Right (/) buttons to select another device.
+21.   Device On/Off: Press this button to activate or deactivate the currently selected device.
+      Press and hold Shift and then press this button to select Bank 5 of the currently selected
+      device.
+22.   Device Lock: Press this button to lock or unlock APC40 mkII to or from a device. When locked,
+      you can use APC40 mkII's controls for that device regardless of where the current focus is in
+      your Live Set.
+      Press and hold Shift and then press this button to select Bank 6 of the currently selected
+      device.
+23.   Bank Left/Right (/): Use these buttons to select the previous or next bank of controls in a
+      device. Each of these buttons will light up if there is an available bank in that direction. The
+      status bar at the bottom of the window displays the current bank.
+      Press and hold Shift and then press one of these buttons to select Bank 3 or Bank 4
+      (respectively) of the currently selected device.
+24.   Bank Select: These cursor buttons move the cursor/selection in your Live Set by one track (left
+      or right) or by one scene (up or down).
+      Press and hold Bank while using these buttons to move the selection by 8 tracks (left or right)
+      or by 5 scenes (up or down), effectively shifting the entire 8x5 matrix controlled by the Clip
+      Launch buttons (represented in Live by a rectangle). The Clip Launch buttons' colors will
+      match the clips' colors as assigned in Live.
+      Note: Your return tracks will be shown in the matrix as the right-most tracks available in the
+      Live Set.
+
+                                                    5
+25.   Bank: Press this button to activate or deactivate while using the Bank Select buttons to move
+      the selection by 8 tracks (left or right) or by 5 scenes (up or down), effectively shifting the entire
+      8x5 matrix controlled by the Clip Launch buttons (represented in Live by a rectangle). The Clip
+      Launch buttons' colors will match the clips' colors as assigned in Live.
+26.   Shift: Press and hold this button to access certain buttons' secondary functions.
+      When holding down this button, the 8x5 matrix of Clip Launch buttons will enter Session
+      Overview Mode. In this view, each Clip Launch button represents an entire 8-track-by-5-scene
+      matrix of clips in Live. You can then press one of them to view that 8x5 matrix in the Clip
+      Launch buttons. This allows you to access and use more than the 5 rows and 8 tracks
+      represented by the Clip Launch buttons. While in Session Overview Mode, the Clip Launch
+      buttons' colors represent the following:
+        • Off: No clips are present in this 8x5 matrix.
+        • Amber: Clips are present in this 8x5 matrix, which is currently selected.
+        • Green: Clips are present in this 8x5 matrix, which contains clip slots that are currently
+          playing.
+        • Red: Clips are present in this 8x5 matrix, but no clip slots are currently playing.
+      Note: If the current matrix of Clip Launch buttons is "between" two 8x5 matrices, when you
+      enter Session Overview Mode, both Clip Launch buttons representing those two matrices will
+      light up amber.
+27.   Crossfader: Use this crossfader to control Live's crossfader.
+28.   Metronome: Use this to activate or deactivate the metronome.
+29.   Tempo Knob: Use this knob to adjust the tempo.
+30.   Tap Tempo: Tap this button at the desired rate to enter a new tempo.
+31.   Nudge -/+: Use these buttons to temporarily increase or decrease tempo.
+32.   Play: Press this button to start/resume or pause playback.
+33.   Record: Press this button to start or stop Arrangement Record.
+34.   Session: Press this button to start or stop Session Record.
+
+
+
+
+                                                     6
+Guía del usuario (Español)
+Introducción
+
+Contenido de la caja
+APC40 mkII                                 Cable USB
+Ableton Live Lite (descarga)               Guía del usuario
+Tarjeta de descarga de software            Manual sobre la seguridad y garantía
+
+Soporte
+Para obtener la información más reciente acerca de este producto (requisitos de sistema,
+información de compatibilidad, etc.) y registrarlo, visite akaipro.com/apc40-mkii.
+Para obtener soporte adicional del producto, visite akaipro.com/support.
+
+Inicio rápido
+1.   Utilice el cable USB incluido para conectar el puerto USB del APC40 mkII a un puerto USB
+     disponible en su ordenador (encendido).
+2.   En su ordenador, abra Ableton Live.
+3.   En Live, abra Preferences (Preferencias):
+        • Windows: Options (Opciones) > Preferences (Preferencias)
+        • Mac OS X: Live > Preferences (Preferencias)
+4.   Haga clic en la pestaña MIDI/Sync (MIDI/Sincronismo).
+5.   Haga clic en un menú desplegable Control Surface (Superficie de control) disponible y
+     seleccione Akai APC40 mkII.
+6.   Haga clic en un menú desplegable Input (Entrada) disponible y seleccione Akai APC40 mkII.
+7.   Haga clic en un menú desplegable Output (Salida) disponible y seleccione Akai APC40 mkII.
+8.   Cierre la ventana Preferences.
+     Ahora puede utilizar el APC40 mkII con Live.
+
+Funcionamiento básico
+Consulte esta sección para aprender a efectuar las tareas básicas en Ableton Live utilizando el
+APC40 mkII.
+Importante: Antes de efectuar lo siguiente, configure el APC40 mkII como un controlador en Live
+(como se describió anteriormente en la sección Inicio rápido).
+
+Para comenzar o realizar una pausa en la reproducción, pulse el botón Play (Reproducir).
+
+Para comenzar a grabar, pulse el botón Record (Grabar) (para grabar normalmente) o el botón
+Session (Sesión) (para ejecutar la característica Session Record [Grabación estilo sesión] de Live).
+
+Para detener todos los clips, pulse el botón Stop All Clips (Detener todos los clips).
+
+Para lanzar un clip, pulse uno de los botones de lanzamiento de clip que corresponde a un clip en
+la grilla de 8x5 actual. En Live, esto se representa con un rectángulo alrededor de los clips. Los
+colores de los botones de lanzamiento de clip coincidirán con los colores de los clips asignados en
+Live.
+                                                 7
+Para detener un clip, pulse el botón Clip Stop (Detener clip) en la misma pista (columna) del clip
+que desea detener.
+
+Para lanzar una escena, pulse uno de los cinco botones Scene Launch (Lanzamiento de escena)
+de la derecha de la grilla de botones de lanzamiento de clip de 8x5.
+
+Para moverse por la grilla de clips, utilice los botones Bank Select (Selección de banco) para
+desplazar la grilla de 8x5 visible. En Live, esto se representa con un rectángulo alrededor de los
+clips. Los colores de los botones de lanzamiento de clip coincidirán con los colores de los clips
+asignados en Live.
+
+Para hacer un solo de pista, pulse el botón de solo.
+
+Para armar una pista para grabación, pulse su botón de armar para grabación.
+
+Para silenciar o anular el silenciamiento de una pista, pulse su botón activador de pista (el
+botón con el número de pista impreso, encima de su botón de solo).
+
+Para seleccionar una pista, pulse su selector de pista (el botón que está debajo del botón de
+detener clip).
+
+Para ajustar los volúmenes, utilice los faders de volumen de pista.
+
+Para ajustar el balance, pulse el botón Pan (Balance) para colocar las perillas asignables del
+APC40 mkII en modo Balance. Las ocho perillas asignables controlan las posiciones de balance de
+las ocho pistas actuales.
+
+Para ajustar los niveles de envío, pulse el botón Sends (Envíos) para colocar las perillas
+asignables del APC40 mkII en modo Envíos, permitiendo que controlen los niveles del envío A para
+las ocho pistas actuales.
+Puede seleccionar un envío diferente manteniendo pulsado Sends y luego pulsando un selector de
+pista (el selector de pista 1 selecciona el envío A, el selector de pista 2 selecciona el envío B, etc.).
+Nota: Sus pistas de retorno se muestran en la grilla como las pistas de más a la derecha disponibles
+en la sesión de Live.
+
+Para utilizar las perillas asignables a fin de controlar otras funciones, pulse el botón User
+(Usuario) para colocar las perillas asignables del APC40 mkII en modo Usuario. Puede asignarlas
+entonces en el modo de mapeo MIDI de Live, permitiéndoles (estando en modo Usuario) controlar
+cualquier parámetro mapeable que desee.
+
+Para ajustar dispositivos:
+1.   Seleccione una pista pulsando el selector de pista deseado.
+2.   Si no se muestra la vista del dispositivo en la parte inferior de la ventana, pulse Clip/Dev. View
+     (Vista clip/dispositivo) hasta que se muestre.
+3.   Utilice los botones Device Left/Right (/) (Dispositivo izquierda/derecha) para seleccionar
+     el dispositivo deseado.
+4.   Utilice las ocho perillas Device Control (Control de dispositivo) para controlar los parámetros
+     del primer banco del dispositivo actual. Puede utilizar los botones Bank Left/Right (/)
+     (Banco izquierda/derecha) para seleccionar el banco anterior o siguiente de ese dispositivo.
+Consejo: Como alternativa, puede pulsar el botón Device Lock (Bloqueo de dispositivo) para
+bloquear o desbloquear el APC40 mkII al o desde el dispositivo actualmente seleccionado. Estando
+bloqueado, puede utilizar los controles del APC40 mkII para ese dispositivo sin importar en dónde
+esté el foco en su sesión de Live.
+
+                                                   8
+Características
+
+                                                              3 2 1 4
+ 13                                                           6
+                                                                   14     32   33    34
+                                                                   15     28   30
+                                                                                       29
+     5                                                             16     31   31
+
+
+  7                                                           8                             20
+  9
+                                                                   19   19     23    23
+ 10                                                           11
+                                                                   21   22     18    17
+                                                                               26    25
+                                                                     24
+ 12
+                                                                               27
+
+1.       Puerto USB: Utilice un cable USB estándar para conectar este puerto a un puerto USB
+         de su ordenador. El puerto USB del ordenador le proporciona corriente al APC40 mkII.
+         Esta conexión también se utiliza para enviar y recibir datos MIDI desde y hacia su
+         ordenador.
+2.       Interruptor de encendido: Pulse este botón para encender y apagar el APC40 mkII.
+3.       Entrada del interruptor de pedal: Conecte un pedal o interruptor de pedal TS de 6,35
+         mm (1/4 pulg.) opcional a esta entrada.
+4.       Ranura de bloqueo Kensington: Puede utilizar esta ranura de bloqueo Kensington a fin
+         de sujetar el APC40 mkII a una mesa u otra superficie.
+5.       Botones de lanzamiento de clip: En la vista de sesión, utilice estos botones de esta
+         grilla de 8x5 para lanzar clips. Cada botón representa una ranura de un único clip. Las
+         ocho columnas representan ocho pistas mientras que las cinco filas representan cinco
+         escenas. Los colores de los botones de lanzamiento de clip coincidirán con los colores
+         de los clips asignados en Live.
+         Puede lanzar la escena entera pulsando los botones Scene Launch (Lanzamiento de
+         escena) de la derecha de la fila de clips.
+6.       Botones de lanzamiento de escena: Puede pulsar uno de estos botones para lanzar la
+         escena correspondiente, representada por la fila de clips de su izquierda.
+7.       Botones para detener clip: Pulse uno de estos botones para detener el clip que se está
+         reproduciendo en la pista correspondiente, representado por la columna de clips situada
+         inmediatamente encima de él.
+8.       Detener todos los clips: Pulse este botón para detener todos los clips cuando lleguen al
+         final.
+9.       Selectores de pista: Pulse uno de estos botones para seleccionar su pista,
+         permitiéndole utilizar las perillas Device Control para un dispositivo en esa pista. El
+         botón de más a la derecha (rotulado Master) selecciona la pista maestra.
+         Mantenga pulsado Shift y luego pulse uno de los primeros ocho selectores de pista
+         para seleccionar un ajuste global de cuantificación: None (Ninguno), 8 Bars (8 Barras), 4
+         Bars (4 Barras), 2 Bars (2 Barras), 1 Bar (1 Barra), 1/4, 1/8 o 1/16.
+
+
+                                                  9
+10. Botones de pista:
+       • Activador de pista (#): Pulse este botón para activar (anular el
+          silenciamiento) o desactivar (silenciar) la pista.
+       • Asignación de Crossfade (fader cruzado) (A|B): Pulse este botón
+          para recorrer las tres posibles asignaciones de fader cruzado de la
+          pista: A, B o desactivado.
+       • Solo (S): Pulse este botón para realizar un solo de pista.
+       • Armar para grabación (): Pulse este botón para preparar la pista para grabación.
+11. Nivel de cue: Utilice esta perilla para controlar el volumen de cue.
+12. Faders de volumen de pista: Utilice estos faders para controlar el nivel de volumen de
+    cada pista. El fader de más a la derecha (rotulado Master) controla el nivel de volumen
+    de la pista maestra.
+13. Perillas asignables: Utilice estas perillas para controlar el balance y los niveles de envío
+    de la pista u otros parámetros asignables por el usuario. Pulse el botón Pan, Sends o
+    User para colocar estas perillas en el modo correspondiente (descrito a continuación).
+14. Balance: Pulse este botón para colocar las perillas asignables en modo Balance,
+    permitiéndoles controlar las posiciones de balance de las ocho pistas actuales.
+15. Envíos: Pulse este botón para colocar las perillas asignables en modo Envíos,
+    permitiéndoles controlar los niveles del envío A de las ocho pistas actuales.
+    Puede seleccionar un envío diferente manteniendo pulsado Sends y luego pulsando un
+    selector de pista (el selector de pista 1 selecciona el envío A, el selector de pista 2
+    selecciona el envío B, etc.).
+16. Usuario: Pulse este botón para colocar las perillas asignables en modo Usuario. Puede
+    asignarlas en el modo de mapeo MIDI de Live, permitiéndoles (estando en modo Usuario)
+    controlar cualquier parámetro mapeable que desee.
+17. Vista detallada: Pulse este botón para ocultar o mostrar la vista detallada, que contiene
+    la vista de clip o la vista de dispositivo. (Seleccione cuál mostrar pulsando el botón
+    Clip/Device View.)
+    Mantenga pulsado Shift y luego pulse este botón para seleccionar el banco 8 del
+    dispositivo seleccionado actualmente.
+18. Vista de clip/dispositivo: Pulse este botón para conmutar entre la vista de clip (para ver
+    y ajustar las propiedades del clip) y la vista de dispositivo (para ver todos los dispositivos
+    en la pista actual).
+    Mantenga pulsado Shift y luego pulse este botón para seleccionar el banco 7 del
+    dispositivo seleccionado actualmente.
+19. Dispositivo izquierda/derecha (/): Utilice estos botones para seleccionar el
+    dispositivo anterior o siguiente en la cadena de dispositivos de la pista. Cada uno de
+    estos botones se iluminará si hay un dispositivo disponible en esa dirección.
+    Mantenga pulsado Shift y luego pulse uno de estos botones para seleccionar el banco 1
+    o el banco 2 (respectivamente) del dispositivo seleccionado actualmente.
+20. Perillas de control de dispositivo: Utilice las ocho perillas para controlar los parámetros
+    del primer banco del dispositivo actual. Utilice los botones Bank izquierda/derecha
+    (/) para seleccionar el banco anterior o siguiente de ese dispositivo. Utilice los
+    botones Device izquierda/derecha (/) para seleccionar otro dispositivo.
+21. Dispositivo activado/desactivado: Pulse este botón para activar o desactivar el
+    dispositivo actualmente seleccionado.
+    Mantenga pulsado Shift y luego pulse este botón para seleccionar el banco 5 del
+    dispositivo seleccionado actualmente.
+22. Bloqueo del dispositivo: Pulse este botón para bloquear o desbloquear el APC40 mkII a
+    o de un dispositivo. Estando bloqueado, puede utilizar los controles del APC40 mkII para
+    ese dispositivo sin importar en dónde esté el foco en su sesión de Live.
+     Mantenga pulsado Shift y luego pulse este botón para seleccionar el banco 6 del
+     dispositivo seleccionado actualmente.
+                                           10
+23. Banco izquierda/derecha (/): Utilice estos botones para seleccionar el banco de
+    controles anterior o siguiente en un dispositivo. Cada uno de estos botones se iluminará
+    si hay un banco disponible en esa dirección. La barra de estado de la parte inferior de la
+    ventana muestra el banco actual.
+     Mantenga pulsado Shift y luego pulse uno de estos botones para seleccionar el banco 3
+     o el banco 4 (respectivamente) del dispositivo seleccionado actualmente.
+24. Selección de banco: Estos botones de cursor mueven el cursor/selección en su sesión
+    de Live una pista (a la izquierda o derecha) o una escena (arriba o abajo).
+     Mantenga pulsado Bank (Banco) mientras utiliza estos botones para mover la selección
+     8 pistas (a la izquierda o derecha) o 5 escenas (hacia arriba o abajo), desplazando
+     efectivamente la grilla de 8x5 entera controlada por los botones Clip Launch
+     (representados en Live mediante un rectángulo). Los colores de los botones de
+     lanzamiento de clip coincidirán con los colores de los clips asignados en Live.
+     Nota: Sus pistas de retorno se muestran en la grilla como las pistas de más a la derecha
+     disponibles en la sesión de Live.
+25. Banco: Pulse este botón para activar o desactivar mientras utiliza los botones Bank
+    Select a fin de mover la selección 8 pistas (a la izquierda o derecha) o 5 escenas (hacia
+    arriba o abajo), desplazando efectivamente la grilla de 8x5 entera controlada por los
+    botones de lanzamiento de clip (representados en Live mediante un rectángulo). Los
+    colores de los botones de lanzamiento de clip coincidirán con los colores de los clips
+    asignados en Live.
+26. Función secundaria: Mantenga pulsado este botón para acceder a las funciones
+    secundarias de ciertos botones:
+     Cuando mantiene pulsado este botón, la grilla de botones de lanzamiento de clip de
+     8x5 entra en el modo Supervisión de sesión. En esta vista, cada botón de lanzamiento de
+     clip representa una grilla de clips entera de 8 pistas por 5 escenas en Live. Entonces
+     puede pulsar uno de ellos para ver esa grilla de 8x5 en los botones de lanzamiento de
+     clip. Esto le permite acceder y usar más que las 5 filas y las 8 pistas representadas por
+     los botones de lanzamiento de clip. En el modo Supervisión de sesión, los colores de los
+     botones de lanzamiento de clip representan lo siguiente:
+       • Apagado: No hay clips presentes en esta grilla de 8x5.
+       • Ámbar: Hay clips presentes en esta grilla de 8x5, que está seleccionada
+         actualmente.
+       • Verde: Hay clips presentes en esta grilla de 8x5, que contiene las ranuras de clips
+         que se están reproduciendo actualmente.
+       • Rojo: Hay clips presentes en esta grilla de 8x5, pero ninguna ranura de clip se está
+         reproduciendo actualmente.
+     Nota: Si la grilla de botones de lanzamiento de clip actual está "entre" dos grillas de
+     8x5, cuando entre al modo Supervisión de sesión, ambos botones de lanzamiento de clip
+     que representan esas dos grillas se iluminarán en ámbar.
+27. Crossfader (fader cruzado): Utilice este crossfader para controlar el crossfader de Live.
+28. Metrónomo: Utilícelo para activar o desactivar el metrónomo.
+29. Perilla de tempo: Utilice esta perilla para ajustar el tempo.
+30. Tap Tempo: Toque ligeramente este botón al ritmo deseado para introducir un nuevo
+    tempo.
+31. Inflexión de tempo -/+: Utilice           estos   botones   para   aumentar    o   disminuir
+    momentáneamente el tempo.
+32. Reproducir: Pulse este botón para iniciar/poner en pausa la reproducción.
+33. Grabar: Pulse este botón para iniciar o detener la grabación estilo arreglo.
+34. Sesión: Pulse este botón para iniciar o detener la grabación estilo sesión.
+                                              11
+Guide d’utilisation (Français)
+Présentation
+
+Contenu de la boîte
+APC40 MKII                                   Guide d’utilisation
+Ableton Live Lite (à télécharger)            Câble USB
+Carte de téléchargement de logiciel          Consignes de sécurité et informations concernant
+                                               la garantie
+
+Assistance technique
+Pour les toutes dernières informations concernant ce produit (configuration système, compatibilité,
+etc.), veuillez visiter le site akaipro.com/apc40-mkii.
+Pour de l’assistance supplémentaire, veuillez visiter akaipro.com/support.
+
+Guide de démarrage
+1.    Utilisez le câble USB inclus pour relier le port USB du APC40 mkII au port USB d’un ordinateur
+      (sous tension).
+2.    Sur votre ordinateur, lancez Ableton Live.
+3.    Dans Live, ouvrez le menu Preferences :
+         • Windows : Options > Preferences
+         • Mac OS X : Live > Preferences
+4.    Cliquez sur l’onglet MIDI/Sync.
+5.    Cliquez sur un des champs déroulants Control Surface disponibles, puis sélectionnez Akai
+      APC40 mkII.
+6.    Cliquez sur un des champs déroulants Input disponibles, puis sélectionnez Akai APC40 mkII.
+7.    Cliquez sur un         des    champs   déroulants    Output    disponibles,   puis   sélectionnez
+      Akai APC40 mkII.
+8.    Fermez ensuite la fenêtre Preferences.
+      Vous pouvez maintenant utiliser l'APC40 mkII avec Live.
+
+Fonctionnement de base
+Consultez cette section afin d'apprendre comment effectuer les fonctions de base dans Ableton Live
+à l'aide du APC40 mkII.
+Important : Avant toute chose, vous devez définir l'APC40 mkII comme contrôleur dans Live (décrit
+dans la section Démarrage rapide ci-dessus).
+
+Pour lancer la lecture ou faire un arrêt de lecture momentané, appuyez sur la touche Play.
+
+Pour lancer l’enregistrement, appuyez sur la touche Record (pour un enregistrement normal) ou la
+touche Session (pour lancer un enregistrement de Session).
+
+Pour arrêter tous les clips, appuyez sur la touche Stop All Clips.
+
+Pour lancer un clip, appuyez sur une des touches de lancement de clip qui correspond à un clip
+dans la grille 8 x 5 sélectionnée. Dans Live, ceci est indiqué par un liseré autour des clips. Les
+couleurs des touches de lancement de clip correspondront aux couleurs des clips tels qu'assignés
+dans Live.
+                                                   12
+Pour arrêter un clip, appuyez sur la touche Clip Stop correspondant à la même piste (colonne) que
+le clip dont vous souhaitez arrêter la lecture.
+
+Pour lancer une scène, appuyez sur l'une des cinq touches Scene Launch à la droite de la grille de
+clips de 8 x 5.
+
+Pour parcourir la grille des clips, utilisez les touches Bank Select afin d’afficher une vue
+d’ensemble de la grille des clips 8 x 5. Dans Live, ceci est indiqué par un liseré autour des clips. Les
+couleurs des touches de lancement de clip correspondront aux couleurs des clips telles
+qu'assignées dans Live.
+
+Pour mettre une piste en solo, appuyez sur la touche Solo correspondante.
+
+Pour préparer une piste pour l’enregistrement, appuyez sur la touche Record-Arm
+correspondante.
+
+Pour mettre une piste en sourdine ou la réactiver, appuyez sur la touche d’activation de piste
+correspondante (identifiée par le numéro de piste, au-dessus de la touche Solo correspondante).
+
+Pour sélectionner une piste, appuyez sur la touche de sélection de piste correspondante (celle
+sous la touche Clip Stop correspondante).
+
+Pour régler le volume, utilisez le potentiomètre correspondant.
+
+Pour régler le panoramique, appuyez sur la touche Pan afin de mettre les boutons assignables du
+APC40 mkII en mode Pan. Les huit boutons assignables permettront de modifier le réglage du
+panoramique des huit pistes en cours.
+
+Pour régler les niveaux de départ, appuyez sur la touche Sends afin de mettre les boutons
+assignables du APC40 mkII en mode Sends, ce qui leur permettra de contrôler les niveaux de Send
+A des huit pistes en cours.
+Vous pouvez sélectionner un autre départ en maintenant la touche Sends enfoncée tout en
+appuyant sur une des touches de sélection de piste (la touche 1 permet de sélectionner Send A, la
+touche 2 permet de sélectionner Send B, etc.).
+Remarque : Vos pistes de retour s’affichent dans la grille comme étant les pistes à l’extrême droite
+du Set Live.
+
+Pour utiliser les boutons assignables pour contrôler d'autres fonctions, appuyez sur la touche
+User afin de mettre les boutons assignables du APC40 mkII en mode User. Vous pouvez ensuite
+les assigner dans le mode MIDI Map de Live, afin qu’ils puissent commander (lorsqu’en mode User)
+tous les paramètres assignables souhaités.
+
+Pour régler les périphériques :
+1.    Sélectionnez une piste en appuyant sur la touche de sélection de la piste désirée.
+2.    Si le la fenêtre Device View n'est pas affichée au bas de la fenêtre, appuyez sur la touche
+      Clip/Device View jusqu’elle s’affiche.
+3.    Utilisez les touches Device gauche/droite (/) afin de sélectionner le périphérique souhaité.
+4.    Utilisez les huit boutons de commande du périphérique pour contrôler les paramètres du
+      périphérique sélectionné. Vous pouvez utiliser les touches Bank gauche/droite (/) afin de
+      sélectionner la banque précédente ou suivante pour ce périphérique.
+Conseil : Vous pouvez également appuyer sur la touche Device Lock afin de verrouiller/déverrouiller
+l’APC40 mkII au périphérique actuellement sélectionné. Lorsqu'il est verrouillé, vous pouvez utiliser
+les commandes du APC40 mkII pour ce périphérique, peu importe où vous en êtes dans votre Set
+Live.
+                                                  13
+Caractéristiques
+
+                                                               3 2 1 4
+13                                                             6
+                                                                    14     32     33     34
+                                                                    15     28    30
+                                                                                           29
+ 5                                                                  16     31    31
+
+
+ 7                                                             8                                20
+ 9
+                                                                    19    19     23     23
+10                                                             11
+                                                                    21    22     18     17
+                                                                                 26     25
+                                                                      24
+12
+                                                                                  27
+
+1.   Port USB : Utilisez un câble USB standard pour relier ce port au port USB de votre ordinateur.
+     Le port USB de l'ordinateur permet d’alimenter le APC40 mkII. Cette connexion est également
+     utilisée pour la transmission de données MIDI vers et depuis votre ordinateur.
+2.   Interrupteur d'alimentation : Cette touche permet de mettre le APC40 mkII sous et hors
+     tension.
+3.   Entrée commande au pied : Cette entrée permet de brancher une pédale sustain TS 6,35 mm
+     (1/4 po) optionnelle.
+4.   Verrou Kensington : Cet emplacement permet d’utiliser un verrou Kinsington pour sécuriser le
+     APC40 mkII sur une table ou autre surface.
+5.   Touches de lancement de clip : À partir de l’écran Session, vous pouvez utiliser ces touches
+     dans la grille des clips 8 x 5 pour lancer des clips. Chaque touche représente l’emplacement
+     d’un clip. Les huit colonnes représentent huit pistes, tandis que les cinq rangées représentent
+     cinq scènes. Les couleurs des touches de lancement de clip correspondront aux couleurs des
+     clips telles qu'assignées dans Live.
+     Vous pouvez lancer toute une scène en appuyant sur les touches Scene Launch à droite de la
+     rangée de clips.
+6.   Touches Scene Launch : Vous pouvez appuyer sur une de ces touches pour lancer la scène
+     correspondante, représentée par la rangée de clips à gauche.
+7.   Touches Clip Stop : Vous pouvez appuyer sur une de ces touches pour arrêter le clip de la
+     piste correspondante, représentée par la colonne de clips juste au-dessus de cette dernière.
+8.   Touche Stop All Clips : Cette touche permet d’arrêter tous les clips lorsqu'ils atteignent la fin
+     de leur durée.
+9.   Touches de sélection de piste : Appuyez sur une de ces touches afin de sélectionner la piste
+     correspondante et de vous permettre d’utiliser les boutons de commande du périphérique
+     sur cette piste. La dernière touche à droite (Master) sélectionne la piste principale.
+     Maintenez Shift enfoncée tout en appuyant sur l'une des huit premières touches de sélection
+     de piste afin de choisir le paramètre de quantification globale : None (aucune), 8 Bars (8
+     mesures), 4 Bars (4 mesures), 2 Bars (2 mesures), 1 Bar (1 mesure), ¼ (à la noire), 1/8 (à la
+     croche) ou 1/16 (à la double-croche).
+
+
+                                                 14
+10.   Touches des pistes :
+        • Touche d’activation de piste (#) : Appuyez sur cette touche pour
+          mettre la piste en sourdine et la réactiver.
+        • Assignation du crossfader (A|B) : Appuyez sur cette touche pour faire
+          défiler les trois options d’affectations du crossfader pour la piste : A, B,
+          ou Off (désactiver).
+        • Mise en solo (S) : Appuyez sur cette touche afin de mettre en solo la piste.
+        • Enregistrement () : Appuyez sur cette touche afin de préparer la piste pour
+          l’enregistrement.
+11.   Touche Cue Level : Utilisez ce bouton pour régler le volume de pré-écoute.
+12.   Potentiomètres du volume des pistes : Ces potentiomètres permettent de régler le volume de
+      chaque piste. Le dernier potentiomètre à droite (Master) commande le volume de la piste
+      principale.
+13.   Boutons assignables : Ces boutons permettent de régler le panoramique, les niveaux de
+      départ, ou autres paramètres assignables des pistes. Appuyez sur la touche Pan, Sends ou
+      User afin de mettre ces touches dans le mode correspondant (décrit ci-dessous).
+14.   Pan : Pour régler le panoramique, appuyez sur la touche Pan afin de mettre les boutons
+      assignables en mode Pan, ce qui leur permettra de contrôler le panoramique des huit pistes
+      chargées.
+15.   Sends : Pour régler les niveaux de départ, appuyez sur la touche Sends afin de mettre les
+      boutons assignables en mode Sends, ce qui leur permettra de contrôler les niveaux de Send
+      A des huit pistes chargées.
+      Vous pouvez sélectionner un autre départ en maintenant la touche Sends enfoncée tout en
+      appuyant sur une des touches de sélection de piste (la touche 1 permet de sélectionner Send
+      A, la touche 2 permet de sélectionner Send B, etc.).
+16.   User : Appuyez sur la touche User afin de mettre les boutons assignables en mode User.
+      Vous pouvez ensuite les assigner dans le mode MIDI Map de Live, afin qu’ils puissent
+      commander (lorsqu’en mode User) tous les paramètres assignables souhaités.
+17.   Detail View : Appuyez sur ce bouton pour afficher ou masquer l’écran Detail View, qui contient
+      la fenêtre Clip et Périphérique. (Sélectionnez celle que vous souhaitez afficher en appuyant sur
+      la touche Clip/Device View.)
+      Maintenez Shift enfoncée tout en appuyant sur cette touche afin de sélectionner la banque 8
+      du périphérique sélectionné.
+18.   Clip/Device View : Appuyez sur cette touche afin de passer de la fenêtre Clip (pour afficher et
+      modifier les réglages du clip) et Périphérique (pour afficher tous les périphériques de la piste en
+      cours).
+      Maintenez Shift enfoncée tout en appuyant sur cette touche afin de sélectionner la banque 8
+      du périphérique sélectionné.
+19.   Touches Device gauche/droite (/) : Utilisez ces touches pour sélectionner le périphérique
+      suivant ou précédent dans la chaîne de périphérique de la piste. Chacune de ces touches
+      s'allume s'il y a un périphérique disponible pour cette direction.
+      Maintenez Shift enfoncée tout en appuyant sur cette touche afin de sélectionner la banque 1
+      ou la banque 2 du périphérique sélectionné.
+20.   Boutons de commande du périphérique : Utilisez ces huit boutons de commande du
+      périphérique pour contrôler les paramètres de la banque 1 du périphérique sélectionné. Vous
+      pouvez utiliser les touches Bank gauche/droite (/) afin de sélectionner la banque
+      précédente ou suivante pour ce périphérique. Utilisez les touches Device gauche/droite
+      (/) pour sélectionner un périphérique différent.
+21.   Device On/Off : Cette touche permet d'activer ou de désactiver le périphérique sélectionné.
+      Maintenez Shift enfoncée tout en appuyant sur cette touche afin de sélectionner la banque 5
+      du périphérique sélectionné.
+                                                   15
+22.   Device Lock : Appuyez sur cette touche afin de verrouiller/déverrouiller l’APC40 mkII au
+      périphérique actuellement sélectionné. Lorsqu'il est verrouillé, vous pouvez utiliser les
+      commandes du APC40 mkII pour ce périphérique, peu importe où vous en êtes dans votre Set
+      Live.
+      Maintenez Shift enfoncée tout en appuyant sur cette touche afin de sélectionner la banque 6
+      du périphérique sélectionné.
+23.   Touches Bank gauche/droite (/) : Vous pouvez utiliser ces touches afin de sélectionner la
+      banque précédente ou suivante pour ce périphérique. Chacune de ces touches s'allume s'il y a
+      une banque disponible pour cette direction. La barre d'état au bas de la fenêtre affiche la
+      banque actuelle.
+      Maintenez Shift enfoncée tout en appuyant sur cette touche afin de sélectionner la banque 3
+      ou la banque 4 du périphérique sélectionné.
+24.   Touches Bank Select : Ces touches permettent de déplacer le curseur/sélection dans le Set
+      Live une piste à la fois (de gauche à droite) ou une scène à la fois (de haut en bas).
+      Maintenez la touche Bank tout en appuyant sur ces touches afin de déplacer la sélection de 8
+      pistes (de gauche à droite) ou de 5 scènes (de haut en bas), changeant toute la grille 8 x 5,
+      contrôlée par les touches de lancement de clip (indiqué par un liseré autour des clips dans
+      Live). Les couleurs des touches de lancement de clip correspondront aux couleurs des clips
+      telles qu'assignées dans Live.
+      Remarque : Vos pistes de retour s’affichent dans la grille comme étant les pistes à l’extrême
+      droite du Set Live.
+25.   Bank : Maintenez cette touche enfoncée tout en appuyant sur les touches Bank Select afin de
+      déplacer la sélection de 8 pistes (de gauche à droite) ou de 5 scènes (de haut en bas),
+      changeant toute la grille 8 x 5, contrôlée par les touches de lancement de clip (indiqué par un
+      liseré autour des clips dans Live). Les couleurs des touches de lancement de clip
+      correspondront aux couleurs des clips telles qu'assignées dans Live.
+26.   Shift : Maintenez cette enfoncée pour accéder aux fonctions secondaires d’autres touches.
+      Lorsque cette touche est enfoncée, la grille 8 x 5 des touches de lancement de clip entre en
+      mode d’affichage Session Overview. Dans ce mode, chaque touche de lancement de clip
+      représente une grille entière de 8 pistes par 5 scènes de clips dans Live. Vous pouvez ensuite
+      appuyer sur l’une d'elles afin d’afficher cette grille de 8 x 5 de lancement de clip. Ceci vous
+      permet d’accéder et d’utiliser au-delà des 5 rangées et 8 pistes représentées des touches de
+      lancement de clip. Dans le mode d’affichage Session Overview, la signification des couleurs
+      des touches de lancement des clips est la suivante :
+        • Éteinte : Aucun clip n’est présent dans cette grille de 8 x 5
+        • Ambré : Des clips sont présents dans cette grille de 8 x 5 présentement sélectionnée
+        • Vert : Des clips sont présents dans cette grille de 8 x 5 qui contient des emplacements
+          pour clips qui sont présentement en mode de lecture
+        • Rouge : Des clips sont présents dans cette grille de 8 x 5 qui contient des emplacements
+          pour clips qui ne sont pas en mode de lecture
+      Remarque : Si la grille de touches de lancement de clip est « entre » deux grilles 8 x 5, lorsque
+      vous entrez dans le mode d’affichage Session Overview, les deux touches de lancement de clip
+      représentant ces deux grilles seront ambrées.
+27.   Crossfader : Utilisez ce crossfader pour contrôler le crossfader de Live.
+28.   Metronome : Cela permet d'activer ou de désactiver le métronome.
+29.   Tempo : Utilisez ce bouton pour modifier le tempo.
+30.   Tap Tempo : Tapez cette touche au rythme désiré afin de régler un nouveau tempo.
+31.   Touches Nudge (-/+) : Utilisez ces touches pour augmenter ou diminuer momentanément le
+      tempo.
+32.   Play : Cette touche permet de lancer/reprendre ou d’interrompre la lecture.
+33.   Record : Cette touche permet de lancer ou d’arrêter l'enregistrement dans la fenêtre
+      Arrangement.
+34.   Session : Cette touche permet de lancer ou d’arrêter l'enregistrement dans la fenêtre Session.
+                                                  16
+Guida per l'uso (Italiano)
+Introduzione
+
+Contenuti della confezione
+APC40 mkII                                  Cavo USB
+Ableton Live Lite (download)                Guida per l'uso
+Scheda di download del Software             Manuale di sicurezza e garanzia
+
+Assistenza
+Per le ultime informazioni in merito a questo prodotto (requisiti di sistema, informazioni sulla
+compatibilità, ecc.) e per effettuarne la registrazione, recarsi alla pagina akaipro.com/apc40-mkii.
+Per ulteriore assistenza sul prodotto, recarsi alla pagina akaipro.com/support.
+
+Guida rapida
+1.   Servirsi del cavo USB in dotazione per collegare la porta USB dell'APC40 ad una porta USB
+     libera del computer (acceso).
+2.   Sul computer, aprire Ableton Live.
+3.   In Live, aprire Preferences (preferiti):
+        • Windows: Options > Preferences (opzioni>preferiti)
+        • Mac OS X: Live > Preferences
+4.   Cliccare sulla scheda MIDI/Sync.
+5.   Cliccare su un menù a discesa Control Surface (superficie di controllo) disponibile e
+     selezionare Akai APC40 mkII.
+6.   Cliccare su un menù a discesa Input (ingressi) disponibile e selezionare Akai APC40 mkII.
+7.   Cliccare su un menù a discesa Output (uscite) disponibile e selezionare Akai APC40 mkII.
+8.   Chiudere la finestra Preferences (Preferiti).
+     Si può ora utilizzare l'APC40 mkII con il Live.
+
+Funzionamento base
+Fare riferimento a questa sezione per imparare ad eseguire operazioni fondamentali in Ableton Live
+utilizzando l'APC40 mkII.
+Importante: prima di svolgere una qualsiasi delle operazioni di cui sotto, configurare l'APC40 mkII
+come controller in Live (come descritto nella precedente sezione Guida rapida).
+
+
+Per avviare o interrompere la riproduzione, premere il tasto Play.
+
+
+Per avviare la registrazione, premere il tasto Record button (per registrare normalmente) o il tasto
+Session (per lanciare la funzione di registrazione di una sessione Live).
+
+
+Per fermare tutte le clip, premere il tasto Stop All Clips.
+
+
+Per lanciare una clip, premere uno dei tasti Clip Launch corrispondenti a una clip nella matrice 8x5
+corrente. In Live, questa è indicata da un rettangolo intorno alle clip. I colori dei tasti Clip Launch
+corrisponderanno ai colori assegnati alle clip in Live.
+
+                                                   17
+Per fermare una clip, premere il tasto Clip Stop nella stessa traccia (colonna) della clip che si
+desidera fermare.
+
+
+Per lanciare una scena, premere uno dei cinque tasti Scene Launch alla destra della matrice 8x5 di
+tasti Clip Launch.
+
+
+Per muoversi nell'ambito della matrice di clip, servirsi dei tasti Bank Select per commutare la
+matrice 8x5 visualizzabile. In Live, questa è indicata da un rettangolo intorno alle clip. I colori dei tasti
+Clip Launch corrisponderanno ai colori assegnati alle clip in Live.
+
+
+Per riprodurre una traccia in assolo, premere il relativo tasto Solo.
+
+
+Per armare la registrazione di una traccia, premere il relativo tasto Record-Arm.
+
+
+Per silenziare una traccia o annullare il silenziamento (mute), premere il relativo Track Activator
+(il tasto con il numero di traccia stampato, al di sopra del tasto Solo).
+
+
+Per selezionare una traccia, premere il relativo Track Selector (il tasto al di sotto del tasto Clip
+Stop della traccia).
+
+
+Per regolare ciascun volume, servirsi dei fader Track Volume.
+
+
+Per regolare il panning, premere il tasto Pan per mettere le manopole assegnabili dell'APC40 mkII
+in modalità Pan. Le otto manopole assegnabili controlleranno le posizioni di panning delle otto
+tracce correnti.
+
+
+Per regolare i livelli send, premere il tasto Sends per mettere le manopole assegnabili dell'APC40
+mkII in modalità Sends, consentendo loro di controllare i livelli di Send A per le otto tracce correnti.
+È possibile selezionare un send diverso tenendo premuto Sends e premendo un Track Selector (il
+Track Selector 1 selezionerà Send A, il Track Selector 2 selezionerà Send B, e così via.).
+Nota bene: le tracce di ritorno saranno illustrate nella matrice come le tracce disponibili all'estrema
+destra del Live Set.
+
+
+Per utilizzare le manopole assegnabili per controllare altre funzioni, premere il tasto User per
+mettere le manopole assegnabili dell'APC40 mkII in modalità User. Si possono assegnare nella
+modalità MIDI Map del Live, consentendo loro (in modalità Utente) di controllare qualsiasi parametro
+mappabile desiderato.
+
+
+Per regolare i dispositivi:
+1.   Selezionare una traccia premendo il Track Selector desiderato.
+2.   Se la Device View (vista dispositivo) non compare in fondo alla finestra, premere Clip/Dev.
+     View fion a quando non compare.
+3.   Servirsi dei tasti Device Left/Right (/) (dispositivo sx/dx) per selezionare il dispositivo
+     desiderato.
+4.   Servirsi delle otto manopole Device Control (controllo dispositivo) per controllare i parametri
+     del primo banco del dispositivo corrente. Si possono utilizzare i tasti Bank Left/Right (/)
+     (banco sx/dx) per selezionare il banco precedente o successivo in quel dispositivo.
+Suggerimento: alternativamente, è possibile premere il tasto Device Lock per bloccare o sbloccare
+l'APC40 mkII al o dal dispositivo correntemente selezionato. Una volta collegato, è possibile
+utilizzare i comandi dell'APC40 mkII per il dispositivo indipendentemente da dove si trova
+l'attenzione attuale nel Live Set.
+
+
+                                                    18
+Caratteristiche
+                                                                 3 2 1 4
+13                                                               6
+                                                                      14     32      33     34
+                                                                      15     28     30
+                                                                                             29
+ 5                                                                    16     31     31
+
+
+ 7                                                               8                                 20
+ 9
+                                                                      19    19      23     23
+10                                                               11
+                                                                      21    22     18      17
+                                                                                    26     25
+                                                                        24
+12
+                                                                                    27
+
+1.   Porta USB: servirsi di un cavo USB standard per collegare questa porta a una porta USB del
+     computer. La porta USB del computer alimenta l'APC40 mkII. Questo collegamento serve
+     anche a inviare e ricevere dati MIDI da e verso il computer.
+2.   Interruttore di alimentazione: premere questo tasto per accendere e spegnere l’APC40 mkII.
+3.   Ingresso interruttore a pedale: collegare un interruttore a pedale TS da 1/4" (6,35 mm)
+     opzionale a questo ingresso.
+4.   Slot per lucchetto Kensington: servirsi di questa apertura per lucchetto Kensington per
+     fissare l'APC40 mkII a un tavolo o ad altre superfici.
+5.   Tasti Clip Launch: in Session View, servirsi di questi tasti nella matrice 8x5 per lanciare clip.
+     Ciascun tasto rappresenta una singola slot per clip. Le otto colonne rappresentano otto tracce,
+     mentre le cinque file rappresentano cinque scene. I colori dei tasti Clip Launch
+     corrisponderanno ai colori assegnati alle clip in Live.
+     È possibile lanciare l'intera scena premendo i tasti Scene Launch alla destra della fila di clip.
+6.   Tasti Scene Launch: è possibile premere uno di questi tasti per lanciare la scena
+     corrispondente, rappresentata dalla fila di clip alla sua sinistra.
+7.   Tasti Clip Stop: premere uno di questi tasti per fermare la clip in corso di riproduzione nella
+     traccia corrispondente, rappresentata dalla colonna di clip subito al di sopra di essa.
+8.   Interrompi tutte le clip: premere questo tasto per fermare tutte le clip quando arrivano alla
+     fine.
+9.   Selettori di tracce: premere uno di questi tasti per selezionare la relativa traccia, in modo da
+     poter utilizzare le manopole Device Control (controllo dispositivo) per un dispositivo presente
+     su tale traccia. Il tasto all'estrema destra (etichettato Master) seleziona la traccia Master.
+     Tenere premuto Shift, quindi premere uno dei primi otto Track Selectors per selezionare
+     un'impostazione di quantizzazione globale (Global Quantization): Nessuna, 8 Bar, 4 Bar, 2 Bar,
+     1 Bar, 1/4, 1/8, o 1/16.
+
+
+
+
+                                                  19
+10.   Tasti Track (traccia):
+        • Track Activator (#) (attivatore traccia): premere questo tasto per
+          attivare (annullare il silenziamento) o disattivare (silenziare) la traccia.
+        • Crossfade Assign (A|B) (assegna crossfade): premere questo tasto
+          per scorrere lungo le tre possibili assegnazioni crossfade. A, B, o Off.
+        • Solo (S): premere questo tasto per riprodurre la traccia in assolo
+        • Record-Arm (): premere questo tasto per armare la registrazione della traccia
+11.   Cue Level (livello cue): servirsi di questa manopola per regolare il volume Cuer.
+12.   Fader Track Volume (volume traccia): servirsi di questi fader per controllare il livello di
+      volume di ciascuna traccia. Il fader all'estrema destra (etichettato Master) controlla il livello del
+      volume della traccia Master.
+13.   Manopole assegnabili: servirsi di queste manopole per comandi, panning delle tracce, send di
+      livelli delle tracce o altri parametri assegnabili dall'utente. Premere il tasto Pan, il tasto Sends o
+      il tasto User per impostare tali manopole nella modalità corrispondente (descritta qui di
+      seguito).
+14.   Pan: premere questo tasto per mettere le manopole assegnabili in modalità Pan, affinché
+      controllino le posizioni di panning delle otto tracce correnti.
+15.   Sends: premere questo tasto per mettere le manopole assegnabili in modalità Sends, affinché
+      controllino i livelli di Send A delle otto tracce correnti.
+      È possibile selezionare un send diverso tenendo premuto Sends e premendo un Track
+      Selector (il Track Selector 1 selezionerà Send A, il Track Selector 2 selezionerà Send B, e così
+      via.).
+16.   User (utente): premere questo tasto per mettere le manopole assegnabili in modalità Utente.
+      Si possono assegnare nella modalità MIDI Map del Live, consentendo loro (in modalità Utente)
+      di controllare qualsiasi parametro mappabile desiderato.
+17.   Detail View: premere questo tasto per nascondere o mostrare la visualizzazione dettagliata,
+      che contiene Clip View o Device View. (Selezionare quella che si sta visualizzando premendo il
+      tasto Clip/Device View.)
+      Tenere premuto Shift e premere questo tasto per selezionare il banco 8 del dispositivo
+      correntemente selezionato.
+18.   Clip/Device View (visualizzazione clip/dispositivo): premere questo tasto per commutare tra
+      Clip View (per visualizzare e regolare le proprietà delle clip) e Device View (per visualizzare tutti i
+      dispositivi nella traccia corrente).
+      Tenere premuto Shift e premere questo tasto per selezionare il banco 7 del dispositivo
+      correntemente selezionato.
+19.   Device Left/Right (/) (dispositivo sx/dx): servirsi di questi tasti per selezionare il
+      dispositivo precedente o successivo nella catena di dispositivi di una traccia. Ciascuno di
+      questi tasti si illuminerà qualora vi sia un dispositivo disponibile in quella direzione.
+      Tenere premuto Shift e premere uno di questi tasti per selezionare il banco 1 o il banco 2
+      (rispettivamente) del dispositivo correntemente selezionato.
+20.   Manopole Device Control (controllo dispositivio): servirsi di queste otto manopole per
+      controllare i parametri del primo banco del dispositivo corrente. Servirsi dei tasti Bank
+      Left/Right (/) (banco sx/dx) per selezionare il banco precedente o successivo in quel
+      dispositivo. Servirsi dei tasti Device Left/Right (/) (dispositivo sx/dx) per selezionare un
+      altro dispositivo.
+21.   Dispositivo On/Off: premere questo tasto per attivare o disattivare il dispositivo attualmente
+      selezionato.
+      Tenere premuto Shift e premere questo tasto per selezionare il banco 5 del dispositivo
+      correntemente selezionato.
+22.   Device Lock (blocco dispositivo): premere questo tasto per bloccare o sbloccare l'APC40
+      mkII da un dispositivo. Una volta collegato, è possibile utilizzare i comandi dell'APC40 mkII per
+      il dispositivo indipendentemente da dove si trova l'attenzione attuale nel Live Set.
+      Tenere premuto Shift e premere questo tasto per selezionare il banco 6 del dispositivo
+      correntemente selezionato.
+                                                    20
+23.   Bank Left/Right (/) (banco sx/dx): servirsi di questi tasti per selezionare il banco di
+      comandi precedente o successivo in un dispositivo. Ciascuno di questi tasti si illuminerà
+      qualora vi sia un banco disponibile in quella direzione. La barra di stato in fondo alla finestra
+      mostra il banco corrente.
+      Tenere premuto Shift e premere uno di questi tasti per selezionare il banco 3 o il banco 4
+      (rispettivamente) del dispositivo correntemente selezionato.
+24.   Bank Select (seleziona banco): questi cursori muovono il cursore / la scelta nel Live Set di
+      una traccia (sinistra o destra) per volta o di una scena (in alto o in basso) per volta.
+      Tenere premuto Bank mentre si utilizzano questi tasti per spostare la selezione di 8 tracce (a
+      sinistra o a destra) o di 5 scene (verso l'alto o verso il basso), spostando effettivamente l'intera
+      matrice 8x5 controllata dai tasti Clip Launch (rappresentati in Live da un rettangolo). I colori dei
+      tasti Clip Launch corrisponderanno ai colori assegnati alle clip in Live.
+      Nota bene: le tracce di ritorno saranno illustrate nella matrice come le tracce disponibili
+      all'estrema destra del Live Set.
+25.   Bank (banco): premere questo tasto per attivare o disattivare mentre si utilizzano i tasti Bank
+      Select per spostare la selezione di 8 tracce (a sinistra o a destra) o di 5 scene (verso l'alto o
+      verso il basso), spostando effettivamente l'intera matrice 8x5 controllata dai tasti Clip Launch
+      (rappresentati in Live da un rettangolo). I colori dei tasti Clip Launch corrisponderanno ai colori
+      assegnati alle clip in Live.
+26.   Shift: tenere premuto questo pulsante per accedere alle funzioni secondarie di determinati
+      tasti.
+      Quando si tiene premuto questo tasto, la matrice 8x5 dei tasti Clip Launch entrerà in modalità
+      Session Overview (panoramica di sessione). In questa visualizzazione, ciascun tasto Clip
+      Launch rappresenta un'intera matrice di clip composta da 8 tracce per 5 scene in Live. Si può
+      quindi premere uno di essi per visualizzare tale matrice 8x5 nei tasti Clip Launch. Questo vi
+      consente di accedere e di utilizzare più delle 5 righe e 8 tracce rappresentate dai tasti Clip
+      Launch. Quando ci si trova in Session Overview, i colori dei tasti Clip Launch rappresentano:
+        • Off: non sono presenti clip in questa matrice 8x5.
+        • Giallo: sono presenti clip nella matrice 8x5 attualmente selezionata.
+        • Verde: sono presenti clip nella matrice 8x5 che contiene slot per clip attualmente
+          riprodotte.
+        • Rosso: sono presenti clip nella matrice 8x5, ma nessuna slot è attualmente riprodotta.
+      Nota bene: se l'attuale matrice di tasti Clip Launch si trova "divisa tra" due matrici 8x5,
+      quando si entra in modalità Session Overview, entrambi i tasti Clip Launch rappresentanti tali
+      due matrici si illumineranno di giallo.
+27.   Crossfader: servirsi di questo crossfader per controllare il crossfader del Live.
+28.   Metronomo: servirsi di questo comando per attivare o disattivare il metronomo.
+29.   Manopola Tempo: servirsi di questa manopola per regolare il tempo.
+30.   Tap Tempo: battere questo pulsante al tempo desiderato per inserire un nuovo tempo.
+31.   Nudge -/+: servirsi di questi tasti per aumentare o diminuire temporaneamente il tempo.
+32.   Play (riproduci): premere questo             tasto   per    avviare/riprendere      o   interrompere
+      momentaneamente la riproduzione.
+33.   Record (registra): premere questo tasto per avviare o interrompere la registrazione
+      dell'arrangiamento.
+34.   Session (sessione): premere questo tasto per avviare o interrompere la registrazione della
+      sessione.
+
+
+
+
+                                                   21
+Benutzerhandbuch (Deutsch)
+Einführung
+
+Lieferumfang
+APC40 mkII                                   USB-Kabel
+Ableton Live Lite (Download)                 Benutzerhandbuch
+Software Download-Karte                      Sicherheitshinweise und Garantieinformationen
+
+Kundendienst
+Für die neuesten Informationen zu diesem Produkt (Systemanforderungen, Informationen zur
+Kompatibilität etc.) und für die Produktregistrierung besuchen Sie akaipro.com/apc40-mkii.
+Für zusätzlichen Produkt-Support besuchen Sie akaipro.com/support.
+
+Schnellstart
+1.   Verwenden Sie das mitgelieferte USB-Kabel, um den USB-Anschluss des APC40 mkII mit
+     einem freien USB-Anschluss Ihres (eingeschalteten) Computers zu verbinden.
+2.   Öffnen Sie Ableton Live auf Ihrem Computer.
+3.   In Live öffnen Sie die Einstellungen:
+        • Windows: Optionen > Einstellungen
+        • Mac OS X: Live > Einstellungen
+4.   Klicken Sie auf die Registerkarte MIDI/Sync.
+5.   Klicken Sie auf ein verfügbares Dropdown-Menü zur Bedienoberfläche und wählen Akai
+     APC40 mkII.
+6.   Klicken Sie auf ein verfügbares Dropdown-Menü für den Eingang und wählen Akai APC40
+     mkII.
+7.   Klicken Sie auf ein verfügbares Dropdown-Menü für den Ausgang und wählen Akai APC40
+     mkII.
+8.   Schließen Sie das Eigenschaften-Fenster.
+     Sie können Ihr APC40 mkII nun mit Live verwenden.
+
+Einfacher Betrieb
+Lesen Sie dieses Kapitel, um zu lernen, wie grundlegende Aufgaben mit APC40 mkII in Ableton Live
+bewerkstelligt werden können.
+Wichtig: Bevor Sie fortfahren, sollten Sie APC40 mkII als Controller in Ableton Live einstellen (im
+Abschnitt Schnellstart oben beschrieben).
+
+
+Um die Wiedergabe zu starten oder zu pausieren, drücken Sie die Taste Wiedergabe.
+
+
+Um die Aufnahme zu starten, drücken Sie die Taste Aufnahme (um normal aufzunehmen) oder die
+Taste Session (um Lives Session-Aufnahmefunktion zu aktivieren).
+
+
+Um alle Clips zu stoppen, drücken Sie die Taste Alle Clips Stoppen.
+
+
+Um einen Clip zu starten, drücken Sie eine der Clip Start-Tasten, die einem Clip in der 8x5-Matrix
+entsprechen. In Live wird dies durch ein Rechteck um die Clips dargestellt. Die Farben der Clip
+Launch-Tasten entsprechen den Farben der Clips, so wie sie in Live zugeordnet wurden.
+                                                  22
+Um einen Clip zu stoppen, drücken Sie die Clip Stopp-Taste im gleichen Track (Spalte) wie der
+Clip, den Sie stoppen möchten.
+
+
+Um eine Szene zu starten, drücken Sie eine der fünf Szene-Start-Tasten rechts von der 8x5-
+Matrix.
+
+
+Um die Matrix des Clips zu bewegen, verwenden Sie die Bank-Wahltasten, um die sichtbare 8x5-
+Matrix zu verschieben. In Live wird dies durch ein Rechteck um die Clips dargestellt. Die Farben der
+Clip Launch-Tasten entsprechen den Farben der Clips, so wie sie in Live zugeordnet wurden.
+
+
+Um einen Track solo zu schalten, drücken Sie seine Solo-Taste.
+
+
+Um einen Track für die Aufnahme scharf zu stellen, drücken Sie seine Scharfstellen-Taste.
+
+
+Um einen Track stumm zu schalten bzw. die Stummschaltung aufzuheben, drücken Sie seinen
+Track-Aktivator (die Taste mit der aufgedruckten Track-Nummer über seiner Solo-Taste).
+
+
+Um einen Track auszuwählen, drücken Sie seinen Track-Selector (die Taste unterhalb der Clip
+Stopp-Taste des Tracks).
+
+
+Um die Lautstärke einzustellen, verwenden Sie die Track-Lautstärkefader.
+
+
+Um die Balance einzustellen, drücken Sie die Pan-Taste, um die zuweisbaren Regler des APC40
+mkII in den Pan-Modus zu versetzen. Die acht zuweisbaren Regler steuern die Panning-Positionen
+der aktuellen acht Tracks.
+
+
+Zur Einstellung der Send-Pegel drücken Sie die Sends-Taste, um die zuweisbaren Regler des
+APC40 mkII in den Sends-Modus zu versetzen, so dass sie die Pegel von Send A für die aktuellen
+acht Tracks einstellen können.
+Sie können ein anderes Send auswählen, indem Sie Sends gedrückt halten und dann eine Track-
+Selector-Taste drücken (Track-Selector 1 wählt Send A, Track-Selector 2 wählt Send B etc.).
+Hinweis: Ihre Return-Tracks werden in der Matrix ganz rechts im Live-Set angezeigt.
+
+
+Um die zuweisbaren Regler zu verwenden, um andere Funktionen zu steuern, drücken Sie die
+Benutzer-Taste, um die Zuweisbaren Regler Ihres APC40 mkII in den Benutzer-Modus zu
+versetzen. Sie können diese dann in Live's MIDI-Zuweisungsmodus zuordnen, so dass sie (im
+Benutzermodus) jeden beliebigen zuweisbaren Parameter steuern können.
+
+
+So passen Sie Geräte an:
+1.   Wählen Sie einen Track, indem Sie den gewünschten Track-Selector drücken.
+2.   Wenn die Geräteansicht nicht am unteren Rand des Fensters angezeigt wird, drücken Sie die
+     Clip/Dev. Ansicht, bis Sie sie sehen.
+3.   Verwenden Sie die Tasten Geräte Links/Rechts (/), um das gewünschte Gerät zu wählen.
+4.   Verwenden Sie die acht Geräteregler, um die Parameter der ersten Bank des aktuellen Geräts
+     anzusteuern. Sie können die Tasten Bank Links/Rechts (/) verwenden, um die vorherige
+     oder nächste Bank in diesem Gerät auszuwählen.
+Tipp: Alternativ können Sie die Gerätesperrtaste drücken, um das APC40 mkII mit dem gerade
+ausgewählten Gerät zu koppeln bzw. zu entkoppeln. Wenn das Gerät gekoppelt ist, können Sie die
+Bedienelemente des APC40 mkII für das Gerät unabhängig vom aktuellen Fokus in Ihrem Live-Set
+verwenden.
+
+                                                23
+Funktionen
+
+                                                            3 2 1 4
+13                                                          6
+                                                                 14      32    33    34
+                                                                 15      28   30
+                                                                                       29
+ 5                                                               16      31   31
+
+
+ 7                                                           8                              20
+ 9
+                                                                 19    19     23     23
+10                                                          11
+                                                                 21    22     18     17
+                                                                              26     25
+                                                                    24
+12
+                                                                               27
+
+1.   USB-Port: Verwenden Sie ein Standard-USB-Kabel, um diesen USB-Port mit Ihrem Computer
+     zu verbinden. Der USB-Anschluss des Computers versorgt das APC40 mkII mit Strom. Diese
+     Verbindung wird auch verwendet, um MIDI-Daten vom und zum Computer zu senden und zu
+     empfangen.
+2.   Netzschalter: Drücken Sie diese Taste, um das APC40 mkII ein- oder auszuschalten.
+3.   Fußschaltereingang: Schließen Sie einen optionalen 1/4" (6,35 mm) TS-Fußschalter an diesen
+     Eingang an.
+4.   Kensington Lock Slot: Sie können diesen Kensington Lock Sicherheits-Slot verwenden, um
+     das APC40 mkII an einem Tisch oder einer anderen Oberfläche zu befestigen.
+5.   Clip Start-Tasten: Während Sie sich in der Session-Ansicht befinden, können Sie diese Tasten
+     in der 8x5-Matrix verwenden, um Clips zu starten. Jede Taste stellt einen einzelnen Clip-Slot
+     dar. Die acht Spalten stellen acht Tracks dar, die fünf Reihen stellen fünf Szenen dar. Die
+     Farben der Clip Launch-Tasten entsprechen den Farben der Clips, so wie sie in Live
+     zugeordnet wurden.
+     Sie können die gesamte Szene starten, indem Sie die Tasten Szene starten rechts von der
+     Clips-Reihe drücken.
+6.   Szene-Start-Tasten: Sie können eine dieser Tasten drücken, um die entsprechende Szene zu
+     starten - diese Szene wird von einer Clip-Reihe auf der linken Seite dargestellt.
+7.   Clip-Stopp-Tasten: Drücken Sie eine dieser Tasten, um den Clip zu stoppen, der im
+     entsprechenden Track gespielt und von der Clip-Spalte direkt darüber repräsentiert wird.
+8.   Alle Clips stoppen: Drücken Sie diese Taste, um alle Clips zu stoppen, wenn diese das Ende
+     erreichen.
+9.   Track-Selectors: Drücken Sie eine dieser Tasten, um ihren jeweiligen Track auszuwählen, so
+     dass Sie die Geräteregler für ein Gerät auf diesem Track verwenden können. Die Taste ganz
+     rechts (mit der Beschriftung Master) wählt den Master-Track aus.
+     Halten Sie die Umschalttaste gedrückt und drücken Sie dann eine der ersten acht Track-
+     Selectors, um eine globale Quantisierung zu wählen: Keine, 8 Takte, 4 Takte, 2 Takte, 1 Takt,
+     1/4, 1/8 oder 1/16.
+
+
+
+                                               24
+10.   Track-Tasten:
+        • Track-Aktivator (#): Drücken Sie diese Taste, um die Stummschaltung
+          des Tracks zu aktivieren oder zu deaktivieren.
+        • Crossfader Zuweisen (A|B): Drücken Sie diese Taste, um durch drei
+          mögliche Crossfade-Zuweisungen des Tracks zu blättern: A, B oder Aus.
+        • Solo (S): Drücken Sie diese Taste, um den Track solo zu schalten.
+        • Scharfstellen (): Drücken Sie diese Taste, um den Track für die Aufnahme scharf zu
+          stellen.
+11.   Cue-Pegel: Verwenden Sie diesen Regler, um den Cue-Pegel einzustellen.
+12.   Tracklautstärke-Fader: Mit diesen Fadern können Sie die Lautstärke jedes Tracks einstellen.
+      Die Fader ganz rechts (mit der Beschriftung Master) steuert die Lautstärke des Master-Tracks.
+13.   Zuweisbare Drehregler: Mit diesen Reglern werden Panning, Track Send-Werte und andere,
+      vom Benutzer zuweisbare Parameter gesteuert. Drücken Sie die Taste Pan, Sends oder
+      Benutzer, um die Regler in die entsprechenden Modi zu bringen (siehe unten).
+14.   Panning: Drücken Sie diese Taste, um die Zuweisbaren Regler in den Pan-Modus zu
+      versetzen, so dass diese die Panning-Positionen der aktuellen acht Tracks steuern.
+15.   Sends: Drücken Sie diese Taste, um die Zuweisbaren Regler in den Sends-Modus zu
+      versetzen, so dass diese die Pegel von Send A für die aktuellen acht Tracks steuern.
+      Sie können ein anderes Send auswählen, indem Sie Sends gedrückt halten und dann eine
+      Track-Selector-Taste drücken (Track-Selector 1 wählt Send A, Track-Selector 2 wählt Send B
+      etc.).
+16.   Benutzer: Drücken Sie diese Taste, um die Zuweisbaren Regler in den Benutzer-Modus zu
+      versetzen. Sie können sie dann in Live's MIDI-Zuweisungsmodus zuordnen, so dass sie
+      (während Sie sich im Benutzermodus befinden) jeden beliebigen zuweisbaren Parameter
+      steuern können.
+17.   Detailansicht: Drücken Sie diese Taste, um die Detailansicht, die die Clip-Ansicht bzw.
+      Geräteansicht enthält, ein- oder auszublenden. (Wählen Sie, welche Sie gerade sehen, indem
+      Sie die Taste Clip/Geräteansicht drücken.)
+      Halten Sie die Umschalttaste gedrückt und drücken Sie diese Taste, um Bank 8 vom aktuell
+      selektierten Gerät auszuwählen.
+18.   Clip/Geräteansicht: Drücken Sie diese Taste, um zwischen der Clip-Ansicht (um Clip-
+      Eigenschaften anzuzeigen und anzupassen) und Geräteansicht (um alle Geräte im aktuellen
+      Track zu sehen) zu wechseln.
+      Halten Sie die Umschalttaste gedrückt und drücken Sie diese Taste, um Bank 7 des aktuell
+      selektierten Gerätes auszuwählen.
+19.   Gerät Links/Rechts (/): Verwenden Sie diese Tasten, um das vorherige oder das nächste
+      Gerät in der Gerätekette eines Tracks auszuwählen. Jede dieser Tasten leuchtet, wenn ein
+      Gerät in dieser Richtung verfügbar ist.
+      Halten Sie die Umschalttaste gedrückt und drücken Sie eine dieser Tasten, um (jeweils) Bank
+      1 oder Bank 2 vom aktuell selektierten Gerät auszuwählen.
+20.   Geräteregler: Verwenden Sie diese acht Regler, um die Parameter der ersten Bank des
+      aktuellen Geräts anzusteuern. Sie können die Tasten Bank Links/Rechts (/) verwenden,
+      um die vorherige oder nächste Bank in diesem Gerät auszuwählen. Verwenden Sie die Tasten
+      Geräte Links/Rechts (/), um ein anderes Gerät zu wählen.
+21.   Gerät Ein/Aus: Drücken Sie diese Taste, um das aktuell ausgewählte Gerät zu aktivieren oder
+      zu deaktivieren.
+      Halten Sie die Umschalttaste gedrückt und drücken Sie diese, um Bank 5 vom aktuell
+      selektierten Gerät auszuwählen.
+22.   Gerätesperre: Drücken Sie diese Taste, um das APC40 mkII mit einem Gerät zu koppeln oder
+      von einem Gerät zu entkoppeln. Wenn das Gerät gekoppelt ist, können Sie die Bedienelemente
+      des APC40 mkII für das Gerät unabhängig vom aktuellen Fokus in Ihrem Live-Set verwenden.
+      Halten Sie die Umschalttaste gedrückt und drücken Sie diese Taste, um Bank 6 vom aktuell
+      selektierten Gerät auszuwählen.
+                                                25
+23.   Bank Links/Rechts (/): Verwenden Sie diese Tasten, um die vorherige oder nächste Bank
+      von Bedienelementen in einem Gerät auszuwählen. Jede dieser Tasten leuchtet, wenn eine
+      Bank in dieser Richtung verfügbar ist. Die Statusleiste am unteren Fensterrand zeigt die
+      aktuelle Bank.
+      Halten Sie die Umschalttaste gedrückt und drücken Sie eine dieser Tasten, um (jeweils) Bank
+      3 oder Bank 4 vom aktuell selektierten Gerät auszuwählen.
+24.   Auswahl der Bank: Diese Cursortasten bewegen den Cursor/die Auswahl in Ihrem Live-Set um
+      einen Track (nach links oder rechts) oder um eine Szene (nach oben oder nach unten).
+      Halten Sie Bank gedrückt während Sie diese Tasten verwenden, um die Auswahl um 8 Tracks
+      (nach links oder rechts) oder um 5 Szenen (nach oben oder unten) zu verschieben, was
+      praktisch die gesamte von den Clip-Start-Tasten kontrollierte 8x5-Matrix verschiebt (in Live
+      durch ein Rechteck dargestellt). Die Farben der Clip Launch-Tasten entsprechen den Farben
+      der Clips, so wie sie in Live zugeordnet wurden.
+      Hinweis: Ihre Return-Tracks werden in der Matrix ganz rechts im Live-Set angezeigt.
+25.   Bank: Halten Sie diese Taste zur Aktivierung/Deaktivierung gedrückt, während Sie die
+      Bankwahl-Tasten verwenden, um die Auswahl um 8 Tracks (nach links oder rechts) oder um 5
+      Szenen (nach oben oder unten) zu verschieben, was praktisch die gesamte von den Clip-Start-
+      Tasten kontrollierte 8x5-Matrix verschiebt (in Live durch ein Rechteck dargestellt). Die Farben
+      der Clip Launch-Tasten entsprechen den Farben der Clips, so wie sie in Live zugeordnet
+      wurden.
+26.   Umschalten: Halten Sie diese Taste gedrückt, um auf bestimmte sekundäre Funktionen der
+      Tasten zuzugreifen.
+      Wenn Sie diese Taste gedrückt halten, wird die 8x5-Matrix der Clip Start-Tasten in den
+      Session-Übersichtsmodus wechseln. In dieser Ansicht stellt jede Clip Start-Taste eine ganze
+      Clip-Matrix von 8 Tracks mal 5 Szenen in Live dar. Sie können dann eine dieser Tasten drücken,
+      um diese 8x5-Matrix in den Clip Start-Tasten anzuzeigen. Dies ermöglicht Ihnen den Zugriff
+      und die Verwendung von mehr als 5 Reihen und 8 Tracks, die durch die Clip Start-Tasten
+      dargestellt werden. Im Session-Übersichtsmodus repräsentieren die Farben der Clip Start-
+      Tasten folgende Informationen:
+        • Aus: In dieser 8x5-Matrix gibt es keine Clips.
+        • Gelb: In dieser 8x5-Matrix sind Clips vorhanden und die Matrix ist aktuell ausgewählt.
+        • Grün: In dieser 8x5-Matrix sind Clips vorhanden und die Matrix enthält Clip-Slots, die
+          derzeit wiedergegeben werden.
+        • Rot: In dieser 8x5-Matrix sind Clips vorhanden, es werden derzeit jedoch keine Clip-Slots
+          abgespielt.
+      Hinweis: Wenn sich die aktuelle Matrix der Clip Start-Tasten "zwischen" zwei 8x5-Matrizen
+      befinden, wenn Sie zum Session-Übersichtsmodus wechseln, werden beide Clip Start-Tasten,
+      die diese beiden Matrizen darstellen, gelb aufleuchten.
+27.   Crossfader: Verwenden Sie diesen Crossfader, um denCrossfader von Live zu steuern.
+28.   Metronom: Verwenden Sie diese Funktion, um das Metronom zu aktivieren oder zu
+      deaktivieren.
+29.   Tempo-Regler: Verwenden Sie diesen Regler, um das Tempo einzustellen.
+30.   Tap-Tempo: Tippen Sie mit der gewünschten Geschwindigkeit auf diese Schaltfläche, um ein
+      neues Tempo per Taktschlag einzugeben.
+31.   Nudge -/+: Verwenden Sie diese Tasten, um das Tempo vorübergehend zu erhöhen oder zu
+      verringern.
+32.   Wiedergabe: Drücken Sie diese Taste, um die Wiedergabe zu starten/wieder aufzunehmen
+      oder zu pausieren.
+33.   Aufnehmen: Drücken Sie diese Taste, um die Arrangement-Aufnahme zu starten/stoppen.
+34.   Session: Drücken Sie diese Taste zum Starten oder Stoppen der Session-Aufnahme.
+
+
+                                                 26
+Appendix (English)
+Technical Specifications
+
+Knobs                                8 360° track pan/send/assignable knobs
+                                     8 360° device control knobs
+                                     1 360° cue level knob
+                                     1 360° tempo knob
+
+Clip Launch Buttons                  40 backlit RGB buttons in a 8x5 matrix
+                                     5 scene launch buttons
+
+Faders                               8 45mm track volume faders
+                                     1 45mm master volume fader
+                                     1 45mm crossfader
+
+Inputs / Outputs                     1 USB port
+                                     1 1/4" (6.35mm) TS jack for footswitch input
+
+Power                                USB-bus-powered
+
+Dimensions                           16.7" x 10.0" x 1.8"
+(width x depth x height; no cable)
+                                     42.4 cm x 25.4 cm x 4.6 cm
+
+Weight                               3.97 lbs.
+(no cable)
+                                     1.8 kg
+
+                                                                Specifications are subject to change without notice.
+
+
+Trademarks and Licenses
+Akai Professional is a trademark of inMusic Brands, Inc., registered in the U.S. and other
+countries.
+Ableton and the Ableton Logo are trademarks of Ableton AG.
+Mac and OS X are trademarks of Apple Inc., registered in the U.S. and other countries.
+Windows is a registered trademark of Microsoft Corporation in the United States and other
+countries.
+Kensington and the K & Lock logo are registered trademarks of ACCO Brands.
+All other product or company names are trademarks or registered trademarks of their
+respective owners.
+
+
+
+
+                                                      27
+akaipro.com   Manual Version 1.0
+

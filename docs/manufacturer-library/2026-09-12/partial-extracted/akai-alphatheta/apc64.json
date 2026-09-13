@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Akai Professional",
+  "model": "APC64",
+  "status": "partial-extraction",
+  "coverage_state": "documentation-only",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "id": "manual",
+      "local_file": "inmusic/apc64/APC64_-_User_Guide_-_v1.0.pdf",
+      "url": "https://cdn.inmusicbrands.com/akai/APC64/APC64%20-%20User%20Guide%20-%20v1.0.pdf",
+      "sha256": "bba9242fdddb90cf0f159e7acf96102d6b50eadf1131fa0f97e88c96d475c1c7"
+    }
+  ],
+  "scope": "Documentation-only: custom pad notes/channels, fader CC assignments, routing, aftertouch and project storage are documented as editable capabilities. No actual project/preset map is present; numeric control addresses are not established.",
+  "bindings": [],
+  "issues": [
+    {
+      "id": "issue-0001",
+      "severity": "scope",
+      "description": "Custom Mode entry, editor assignments and Get Project setup are documented, but no actual selected preset is archived. Ableton chord channel 1/drum channel 16 alone do not establish control addresses.",
+      "evidence": [
+        {
+          "source_id": "manual",
+          "locator": "PDF pp.29,47,50,52,57\u201358"
+        }
+      ],
+      "excluded_bindings": []
+    },
+    {
+      "id": "issue-0002",
+      "severity": "unsupported",
+      "description": "Poly-aftertouch is a documented optional pad capability; no fixed per-pad address evidence is established. Double-CC faders and local color editor settings must not be converted into guessed scalar or LED bindings.",
+      "evidence": [
+        {
+          "source_id": "manual",
+          "locator": "PDF pp.52,57"
+        }
+      ],
+      "excluded_bindings": [
+        "Unspecified poly-aftertouch pad assignments",
+        "Unspecified two-CC fader interpretation",
+        "Unproven host LED feedback"
+      ]
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "manual",
+      "file": "akai-alphatheta/apc64-manual-pages.txt",
+      "extraction_method": "Complete archived PDF text with explicit one-based PDF page markers; original PDF authoritative."
+    }
+  ],
+  "setup_notes": [
+    "Press CUSTOM to open Custom Mode; edit assignments with APC64 Project Editor (manual p.50).",
+    "Use Get Project and choose a stored slot or RAM to retrieve active assignments; save the actual project together with a future mapping (p.58).",
+    "In the editor, choose each pad note/channel, poly-aftertouch enable and USB/MIDI routing; faders have configurable CC1/CC2, optional note and MIDI channel (pp.52,57)."
+  ],
+  "missing_information": [
+    "Actual selected Project/RAM pad-note, fader-CC and channel assignments.",
+    "Double (2 CC) ordering, range and numeric interpretation; do not assume a 14-bit CC pair.",
+    "Host-to-device LED message addresses and color protocol; editor local on/off colors do not establish receive messages.",
+    "Complete fixed Ableton/standalone map and per-pad numeric drum defaults."
+  ]
+}

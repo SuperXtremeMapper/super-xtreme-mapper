@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="en" data-date-format="non_us" dir="ltr">
+
+<head>
+
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="3dYTvSBrrsESNl3rINuqfnw6txepuIGSszvwLXMYv9XW4omAL2MJnwYBqaPZZRcWahAU6TBGGABlSuKBEKbR+g==" />
+
+  <link rel='shortcut icon' href='https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69193778356/fav_icon/qOXAZf5jRPSbwSW3lqih_4AemKRkbLSK6w.png' />
+
+  <title>Native Instruments | Switching Your Controller To MIDI Mode — </title>
+
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta name="description" content= "this article explains how to switch your natie instruments controller to midi mode" />
+      <meta name="author" content= "" />
+       <meta property="og:title" content="Native Instruments | Switching Your Controller To MIDI Mode" />  <meta property="og:url" content="https://support.native-instruments.com/support/solutions/articles/69000880031-native-instruments-switching-your-controller-to-midi-mode" />  <meta property="og:description" content=" Every NI controller uses a &amp;#39;Native&amp;#39; data transfer protocol which allows for the automatic integration and advanced operation of your controller that would not be possible using the MIDI standard protocol. However, it is possible to switch most NI..." />  <meta property="og:image" content="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69193123630/logo/C8jUns3LtmmLkKDpLv6uPwPo8LhxUHgSrw.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;amp;X-Amz-Credential=AKIAS6FNSMY2XLZULJPI%2F20260909%2Fus-east-1%2Fs3%2Faws4_request&amp;amp;X-Amz-Date=20260909T114449Z&amp;amp;X-Amz-Expires=604800&amp;amp;X-Amz-SignedHeaders=host&amp;amp;X-Amz-Signature=0d095ce1d0a572407f75308a07e8976a7456ada0353225008e787978b763da5d" />  <meta property="og:site_name" content="Native Instruments" />  <meta property="og:type" content="article" />  <meta name="twitter:title" content="Native Instruments | Switching Your Controller To MIDI Mode" />  <meta name="twitter:url" content="https://support.native-instruments.com/support/solutions/articles/69000880031-native-instruments-switching-your-controller-to-midi-mode" />  <meta name="twitter:description" content=" Every NI controller uses a &amp;#39;Native&amp;#39; data transfer protocol which allows for the automatic integration and advanced operation of your controller that would not be possible using the MIDI standard protocol. However, it is possible to switch most NI..." />  <meta name="twitter:image" content="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69193123630/logo/C8jUns3LtmmLkKDpLv6uPwPo8LhxUHgSrw.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;amp;X-Amz-Credential=AKIAS6FNSMY2XLZULJPI%2F20260909%2Fus-east-1%2Fs3%2Faws4_request&amp;amp;X-Amz-Date=20260909T114449Z&amp;amp;X-Amz-Expires=604800&amp;amp;X-Amz-SignedHeaders=host&amp;amp;X-Amz-Signature=0d095ce1d0a572407f75308a07e8976a7456ada0353225008e787978b763da5d" />  <meta name="twitter:card" content="summary" />  <meta name="keywords" content="midi mode, switching your controller, activating midi mode, native instruments, midi controller, use as a midi controller" />  <link rel="canonical" href="https://support.native-instruments.com/support/solutions/articles/69000880031-native-instruments-switching-your-controller-to-midi-mode" /> 
+<link rel="apple-touch-icon" href="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69193778356/fav_icon/qOXAZf5jRPSbwSW3lqih_4AemKRkbLSK6w.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69193778356/fav_icon/qOXAZf5jRPSbwSW3lqih_4AemKRkbLSK6w.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69193778356/fav_icon/qOXAZf5jRPSbwSW3lqih_4AemKRkbLSK6w.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69193778356/fav_icon/qOXAZf5jRPSbwSW3lqih_4AemKRkbLSK6w.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" /> 
+
+<!-- Graphik — Native Instruments brand typeface -->
+<style>
+@font-face {
+  font-family: "Graphik";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://storage.googleapis.com/ni-assets/assets/fonts/Graphik-Regular-Web.woff2") format("woff2"),
+       url("https://storage.googleapis.com/ni-assets/assets/fonts/Graphik-Regular-Web.woff") format("woff");
+}
+@font-face {
+  font-family: "Graphik";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://storage.googleapis.com/ni-assets/assets/fonts/Graphik-RegularItalic-Web.woff2") format("woff2"),
+       url("https://storage.googleapis.com/ni-assets/assets/fonts/Graphik-RegularItalic-Web.woff") format("woff");
+}
+@font-face {
+  font-family: "Graphik";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("https://storage.googleapis.com/ni-assets/assets/fonts/Graphik-Medium-Web.woff2") format("woff2"),
+       url("https://storage.googleapis.com/ni-assets/assets/fonts/Graphik-Medium-Web.woff") format("woff");
+}
+@font-face {
+  font-family: "Graphik";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("https://storage.googleapis.com/ni-assets/assets/fonts/Graphik-Semibold-Web.woff2") format("woff2"),
+       url("https://storage.googleapis.com/ni-assets/assets/fonts/Graphik-Semibold-Web.woff") format("woff");
+}
+* { font-family: Graphik, Helvetica, Arial, sans-serif; }
+</style>
+
+<!-- Google Tag Manager — temporarily disabled to diagnose cookie banner issue -->
+<!--
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-92L2');</script>
+-->
+
+<!-- Braze Web SDK — async loader + NI GmbH init -->
+<script type="text/javascript">
+(function(a,p,P,b,y){
+  a.braze={};a.brazeQueue=[];
+  for(var s="DeviceProperties Card ImageOnly CaptionedImage ClassicCard ControlCard ContentCards Feed InAppMessage FullScreenMessage ModalMessage HtmlMessage SlideUpMessage User FeatureFlag Banner automaticallyShowInAppMessages changeUser destroy getDeviceId initialize isPushBlocked isPushPermissionGranted isPushSupported logCardClick logCardImpressions logCustomEvent logInAppMessageButtonClick logInAppMessageClick logInAppMessageImpression logPurchase openSession requestPushPermission removeAllSubscriptions requestContentCardsRefresh refreshFeatureFlags requestImmediateDataFlush showContentCards toggleContentCards subscribeToContentCardsUpdates subscribeToInAppMessage wipeData".split(" "),i=0;i<s.length;i++){
+    for(var m=s[i],k=a.braze,l=m.split("."),j=0;j<l.length-1;j++)k=k[l[j]];
+    k[l[j]]=(new Function("return function "+m.replace(/\./g,"_")+"(){window.brazeQueue.push(arguments);return true}"))();
+  }
+  a.braze.getUser=function(){return new a.braze.User};
+  a.braze.getCachedContentCards=function(){return new a.braze.ContentCards};
+  (y=p.createElement(P)).type="text/javascript";
+  y.src="https://js.appboycdn.com/web-sdk/5.6/braze.min.js";
+  y.async=1;
+  (b=p.getElementsByTagName(P)[0]).parentNode.insertBefore(y,b);
+})(window,document,"script");
+
+braze.initialize("9b7e046b-9681-424c-9eeb-140d5724ee04", {
+  baseUrl: "sdk.fra-01.braze.eu"
+});
+</script>
+<!-- End Braze SDK -->
+
+
+  <link rel="icon" href="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69193778356/fav_icon/qOXAZf5jRPSbwSW3lqih_4AemKRkbLSK6w.png" />
+
+  <link rel="stylesheet" href="/assets/cdn/portal/styles/theme.css?FD008" nonce="MneBNSAaFG5p6sB4WVk94w=="/>
+
+  <style type="text/css" nonce="MneBNSAaFG5p6sB4WVk94w=="> /* theme */ .portal--light {
+              --fw-body-bg: #F5F7F9;
+              --fw-header-bg: #F5F7F9;
+              --fw-header-text-color: #12344D;
+              --fw-helpcenter-bg: #12344D;
+              --fw-helpcenter-text-color: #FFFFFF;
+              --fw-footer-bg: #12344D;
+              --fw-footer-text-color: #FFFFFF;
+              --fw-tab-active-color: #12344D;
+              --fw-tab-active-text-color: #FFFFFF;
+              --fw-tab-hover-color: #FFFFFF;
+              --fw-tab-hover-text-color: #12344D;
+              --fw-btn-background: #FFFFFF;
+              --fw-btn-text-color: #12344D;
+              --fw-btn-primary-background: #12344D;
+              --fw-btn-primary-text-color: #FFFFFF;
+              --fw-baseFont: Source Sans Pro;
+              --fw-textColor: #264966;
+              --fw-headingsFont: Source Sans Pro;
+              --fw-linkColor: #2C5CC5;
+              --fw-linkColorHover: #021519;
+              --fw-inputFocusRingColor: #EBEFF3;
+              --fw-formInputFocusColor: #2E6ED8;
+              --fw-card-bg: #FFFFFF;
+              --fw-card-fg: #264966;
+              --fw-card-border-color: #EBEFF3;
+              --fw-nonResponsive: #F5F7F9;
+              --bs-body-font-family: Source Sans Pro;
+    } </style>
+
+    <style type="text/css" nonce="MneBNSAaFG5p6sB4WVk94w==">
+      /* ============================================================
+   NATIVE INSTRUMENTS — Freshdesk Global Stylesheet
+   Theme:  Light / NI Brand
+   Accent: #3e8cbb (NI Blue)
+   Font:   Graphik
+   ============================================================ */
+
+/* ---------- Design tokens ---------- */
+:root {
+  --accent:        #3e8cbb;
+  --accent-dark:   #0077b6;
+  --accent-soft:   rgba(62, 140, 187, 0.50);
+  --accent-strong: rgba(62, 140, 187, 0.90);
+  --accent-glow:   rgba(62, 140, 187, 0.12);
+  --bg:            #ffffff;
+  --bg-card:       #ffffff;
+  --bg-hover:      #e6f7ff;
+  --bg-secondary:  #f0f0f5;
+  --bg-note:       #e7f3fe;
+  --text:          #161819;
+  --text-secondary:#222222;
+  --text-muted:    #5d5d5d;
+  --border:        #dce1e5;
+  --border-mid:    #bbc1c7;
+  --shadow:        -1px 4px 12px rgba(0, 0, 0, 0.14);
+  --shadow-hover:  0 8px 20px rgba(0, 0, 0, 0.14), 0 3px 6px rgba(0, 0, 0, 0.06);
+  --radius:        5px;
+}
+
+/* ---------- Base ---------- */
+html, body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  font-family: Graphik, Helvetica, Arial, sans-serif !important;
+  color: var(--text) !important;
+  background-color: var(--bg) !important;
+}
+
+/* ============================================================
+   FRESHDESK SEARCH — overflow chain + resilient border
+   ============================================================ */
+
+.fw-helpcenter,
+.fw-search,
+.fw-search > form,
+.fw-search .input-group,
+.fw-sticky.fw-searchbar-wrapper,
+.fw-sticky .fw-search form {
+  overflow: visible !important;
+}
+
+.fw-sticky.fw-searchbar-wrapper {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9999 !important;
+}
+
+/* Hide autocomplete tab bar */
+.fw-search-tab,
+.fw-active-search-tab,
+.fw-autocomplete-header {
+  display: none !important;
+}
+
+/* Suppress Bootstrap focus ring on search button */
+.fw-search button:focus,
+.fw-search button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Search bar — default (light pages) */
+.fw-search {
+  background: transparent !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.fw-search > form,
+.fw-search .input-group {
+  background: var(--bg-card) !important;
+  border: 1.5px solid var(--accent-soft) !important;
+  border-radius: 8px !important;
+  overflow: visible !important;
+}
+
+.fw-search .input-group:focus-within,
+.fw-search > form:focus-within {
+  border-color: var(--accent-strong) !important;
+  box-shadow: 0 0 0 3px var(--accent-glow) !important;
+}
+
+.fw-search input[type="search"],
+.fw-search input[type="text"] {
+  font-family: Graphik, Helvetica, Arial, sans-serif !important;
+  color: var(--text) !important;
+  background: transparent !important;
+}
+
+.fw-search input[type="search"]::placeholder,
+.fw-search input[type="text"]::placeholder {
+  color: var(--text-muted) !important;
+}
+
+.icon-search:before { color: var(--accent) !important; }
+
+/* Search bar on dark hero — override to white input */
+.ni-hero .fw-search > form,
+.ni-hero .fw-search .input-group {
+  background: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.ni-hero .fw-search .input-group:focus-within,
+.ni-hero .fw-search > form:focus-within {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Autocomplete dropdown */
+.fw-autocomplete-wrapper {
+  position: absolute !important;
+  z-index: 10000 !important;
+  top: 100% !important;
+  left: 0 !important;
+  width: 100% !important;
+  margin-top: 6px !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow) !important;
+}
+
+.fw-autocomplete-item:hover,
+.fw-autocomplete-item:focus {
+  background: var(--bg-hover) !important;
+}
+
+.fw-autocomplete-item .match {
+  color: var(--accent) !important;
+  font-weight: 600 !important;
+}
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.ni-hero {
+  padding: 80px 20px 100px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .ni-hero { padding: 100px 40px 120px; }
+}
+
+.ni-hero .fw-search {
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* Background image and heading styles are set in portal_home.txt <style> block */
+
+/* ============================================================
+   PAGE LAYOUT
+   ============================================================ */
+.ni-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (min-width: 768px) {
+  .ni-container { padding: 0 40px; }
+}
+
+.ni-section {
+  margin: 48px 0;
+}
+
+.ni-section-title {
+  font-family: Graphik, Helvetica, Arial, sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  color: var(--text) !important;
+  margin: 0 0 28px !important;
+  text-align: center;
+}
+
+.ni-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+
+/* ============================================================
+   CONTACT CARDS — 3-up (inMusic border + accent hover)
+   ============================================================ */
+.ni-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (min-width: 600px) {
+  .ni-contact-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.ni-contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 36px 24px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--text);
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-decoration: none !important;
+  color: var(--text) !important;
+  transition: background-color 0.22s ease,
+              border-color 0.22s ease,
+              color 0.22s ease,
+              box-shadow 0.22s ease,
+              transform 0.22s ease;
+}
+
+.ni-contact-card:hover,
+.ni-contact-card:focus {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #ffffff !important;
+  box-shadow: var(--shadow-hover) !important;
+  transform: translateY(-2px);
+  text-decoration: none !important;
+}
+
+.ni-contact-card-icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.ni-contact-card-icon path,
+.ni-contact-card-icon rect,
+.ni-contact-card-icon circle,
+.ni-contact-card-icon ellipse,
+.ni-contact-card-icon polygon {
+  fill: var(--text);
+  transition: fill 0.22s ease;
+}
+
+.ni-contact-card:hover .ni-contact-card-icon path,
+.ni-contact-card:hover .ni-contact-card-icon rect,
+.ni-contact-card:hover .ni-contact-card-icon circle,
+.ni-contact-card:hover .ni-contact-card-icon ellipse,
+.ni-contact-card:hover .ni-contact-card-icon polygon {
+  fill: #ffffff !important;
+}
+
+.ni-contact-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.3;
+  color: inherit;
+}
+
+.ni-contact-card-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  transition: color 0.22s ease;
+}
+
+.ni-contact-card:hover .ni-contact-card-desc {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* ============================================================
+   ARTICLE CARDS — Popular articles 3-col grid
+   ============================================================ */
+.ni-articles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 600px) {
+  .ni-articles-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .ni-articles-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.ni-article-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  text-decoration: none !important;
+  color: var(--text) !important;
+  transition: background-color 0.22s ease,
+              box-shadow 0.22s ease,
+              transform 0.22s ease;
+}
+
+.ni-article-card:hover {
+  background-color: var(--bg-hover) !important;
+  box-shadow: var(--shadow-hover) !important;
+  transform: translateY(-1px);
+  text-decoration: none !important;
+}
+
+.ni-article-card:hover .ni-article-title {
+  color: var(--accent-dark) !important;
+}
+
+.ni-article-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color 0.2s ease;
+}
+
+.ni-article-excerpt {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================================================
+   HEADER — uses Freshdesk fw-nav-wrapper (styles in header.txt)
+   ============================================================ */
+
+/* ============================================================
+   FOOTER — NI global footer
+   Two-tone, matching the current native-instruments.com footer:
+   white column section (color-scheme-1) + dark utility bar (color-scheme-2)
+   ============================================================ */
+.ni-footer {
+  background: #ffffff;
+  color: #161819;
+  font-size: 13px;
+  margin-top: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.ni-footer a {
+  color: #161819 !important;
+  text-decoration: none !important;
+  border: none !important;
+}
+
+/* Re-assert the same color explicitly (not just omit it) so this beats the
+   portal-wide "a:hover { color: var(--accent-dark) }" rule used elsewhere —
+   without this, that global rule wins on specificity and turns links blue. */
+.ni-footer a:hover { color: #161819 !important; text-decoration: underline !important; }
+
+.ni-footer-primary {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 24px 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 600px) {
+  .ni-footer-primary {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ni-footer-primary {
+    /* 4 text columns + a 5th column sized to fit the Social icons, matching
+       native-instruments.com's 4-column footer grid. "Learn more about" gets
+       extra share since its links ("Digital audio workstations", "Free
+       Kontakt instruments") run noticeably longer than the other columns'. */
+    grid-template-columns: 1fr 1fr 1fr 1.5fr auto;
+    gap: 32px 20px;
+  }
+}
+
+.ni-footer-col {
+  text-align: left !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.ni-footer-col-title {
+  display: block;
+  width: 100%;
+  font-family: Graphik, Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+  color: #161819;
+  line-height: 1.3;
+  margin: 0 0 12px !important;
+  padding: 0 !important;
+  text-indent: 0 !important;
+  text-align: left !important;
+}
+
+/* Plain block stacking (not flex) — the simplest possible box model, so
+   there's no flex cross-axis behavior that could shift links relative to
+   the heading above them. */
+.ni-footer-col ul {
+  list-style: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+.ni-footer-col ul:not(.ni-social-links) li {
+  margin: 0 0 12px !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+.ni-footer-col ul:not(.ni-social-links) li:last-child {
+  margin-bottom: 0 !important;
+}
+
+.ni-footer-col ul a {
+  display: inline-block;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-indent: 0 !important;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left !important;
+}
+
+.ni-footer-col ul.ni-social-links {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.ni-footer-col ul.ni-social-links li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ni-social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icon artwork is baked directly into each <img>'s base64 SVG data URI in
+   Footer.txt (a dark glyph on a white/invisible circle) rather than
+   referenced here, since CSS mask-image data URIs did not render in this portal. */
+.ni-social-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  transition: opacity 0.15s ease;
+}
+
+.ni-social-links a:hover .ni-social-icon { opacity: 0.75; }
+
+.ni-footer-secondary {
+  background: #161819;
+  padding: 20px 24px;
+}
+
+.ni-footer-secondary-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(248, 249, 250, 0.6);
+}
+
+@media (min-width: 768px) {
+  .ni-footer-secondary-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 8px 24px;
+  }
+
+  .ni-footer-secondary-inner > span:first-child {
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  .ni-footer-secondary-inner > span:last-child {
+    grid-column: 2;
+    justify-self: center;
+    text-align: center;
+  }
+}
+
+.ni-footer-secondary a {
+  color: rgba(248, 249, 250, 0.6) !important;
+  text-decoration: none !important;
+}
+
+.ni-footer-secondary a:hover { color: rgba(248, 249, 250, 0.6) !important; text-decoration: underline !important; }
+
+/* ============================================================
+   GLOBAL FRESHDESK COMPONENT OVERRIDES
+   ============================================================ */
+
+/* Breadcrumbs */
+.breadcrumbs { margin: 0 0 16px; padding: 0; }
+.breadcrumbs li {
+  display: inline;
+  font-size: 14px;
+  font-weight: 300;
+  font-family: Graphik, Helvetica, Arial, sans-serif !important;
+}
+.breadcrumbs li + li:before { content: ">"; margin: 0 4px; }
+
+/* Links */
+a { color: var(--accent) !important; }
+a:hover { color: var(--accent-dark) !important; }
+
+/* Buttons */
+.button, [role=button] {
+  border: 1px solid var(--accent) !important;
+  color: var(--accent) !important;
+  border-radius: var(--radius) !important;
+  font-family: Graphik, Helvetica, Arial, sans-serif !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
+}
+.button:hover, [role=button]:hover {
+  background-color: var(--accent) !important;
+  color: #ffffff !important;
+}
+.button-large, input[type=submit] {
+  background-color: var(--accent) !important;
+  color: #ffffff !important;
+  border: 0 !important;
+  border-radius: var(--radius) !important;
+  font-family: Graphik, Helvetica, Arial, sans-serif !important;
+}
+.button-large:hover, input[type=submit]:hover {
+  background-color: var(--accent-dark) !important;
+}
+
+/* Pagination */
+.pagination-current { background-color: var(--accent) !important; }
+
+/* Status labels */
+.status-label-pinned,
+.status-label-featured,
+.status-label-official { background-color: var(--accent) !important; }
+
+/* Article vote buttons */
+.article-vote { border-color: var(--accent) !important; color: var(--accent) !important; }
+.article-vote:hover { background-color: var(--accent) !important; }
+
+/* Sidenav */
+.sidenav-item.current-article,
+.sidenav-item:hover {
+  background-color: var(--accent) !important;
+  color: #ffffff !important;
+}
+
+/* Sub-nav (category / article list pages) */
+.sub-nav {
+  display: flex;
+  margin: 20px 0;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--text);
+  justify-content: space-between;
+}
+
+@media (max-width: 767px) { .sub-nav { flex-direction: column-reverse; } }
+
+/* Article list links */
+.article-list-item a { color: var(--text-secondary) !important; }
+.article-list-item a:hover { color: var(--accent) !important; }
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hidden { display: none !important; }
+
+    </style>
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,italic,600,700,700italic' rel='stylesheet' type='text/css' nonce='MneBNSAaFG5p6sB4WVk94w=='>
+
+  <script type="text/javascript" nonce="MneBNSAaFG5p6sB4WVk94w==">
+    window.cspNonce = "MneBNSAaFG5p6sB4WVk94w==";
+  </script>
+
+  <script src="/assets/cdn/portal/scripts/nonce.js" nonce="MneBNSAaFG5p6sB4WVk94w=="></script>
+
+  <script src="/assets/cdn/portal/vendor.js" nonce="MneBNSAaFG5p6sB4WVk94w=="></script>
+
+  <script src="/assets/cdn/portal/scripts/head.js" nonce="MneBNSAaFG5p6sB4WVk94w=="></script>
+
+  <script type="text/javascript" nonce="MneBNSAaFG5p6sB4WVk94w==">
+      window.store = {};
+window.store = {
+  assetPath: "/assets/cdn/portal/",
+  defaultLocale: "en",
+  currentLocale: "en",
+  currentPageName: "article_view",
+  portal: {"id":69000094776,"name":"Native Instruments","product_id":69000012869},
+  portalAccess: {"hasSolutions":true,"hasForums":false,"hasTickets":false,"accessCount":1},
+  account: {"id":2016586,"name":"inMusic Brands","time_zone":"Eastern Time (US & Canada)","companies":[]},
+  vault_service: {"url":"https://vault-service.freshworks.com/data","max_try":2,"product_name":"fd"},
+  blockedExtensions: "",
+  allowedExtensions: "",
+  search: {"all":"/support/search","solutions":"/support/search/solutions","topics":"/support/search/topics","tickets":"/support/search/tickets"},
+  portalLaunchParty: {
+    enableStrictSearch: false,
+    ticketFragmentsEnabled: true,
+    homepageNavAccessibilityEnabled: true,
+    channelIdentifierFieldsEnabled: true,
+  },
+    article:{
+      id: "69000880031",
+    },
+
+
+
+
+
+    marketplace: {"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm9kdWN0IjoiZnJlc2hkZXNrIiwiYWNjb3VudF9pZCI6IjIwMTY1ODYiLCJkb21haW4iOiJpbm11c2ljc3VwcG9ydC5mcmVzaGRlc2suY29tIiwib3JnYW5pc2F0aW9uX2lkIjoiMzQ0MTA1OTE2ODU3MDIzOTk1IiwidGltZSI6MTc4OTIwODE5MCwiaXNzIjoiZnJlc2hkZXNrX3Zpc2l0b3JfcG9ydGFsIn0.7F0W1gFIKM-l0Ya8qzK4IEV524MPrFzElTnEqavGtuI","data_pipe_key":"634cd594466a52fa53c54b5b34779134","region":"us","org_domain":"inmusic.myfreshworks.com"},
+
+  pod: "us-east-1",
+  region: "US",
+};
+  </script>
+
+
+</head>
+
+<body class="portal portal--light  ">
+  
+  
+<style>
+/* ── NI Header — white bar, NI blue accent ── */
+header.container-fluid.px-0.fw-nav-wrapper.fixed-top {
+  background: #ffffff !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Edge-to-edge nav row, matching native-instruments.com's header-logo-container
+     (fixed 24px / 32px inset from the true viewport edge, not a centered
+     Bootstrap .container with auto margins) ── */
+nav.navbar.ni-nav-edge {
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+@media (min-width: 992px) {
+  nav.navbar.ni-nav-edge {
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+  }
+}
+
+/* Logo sizing */
+.navbar .fw-brand-logo {
+  height: 28px !important;
+  width: auto !important;
+  max-width: none !important;
+}
+
+/* Hide Freshdesk's default "New Ticket" / "Contact Support" button */
+.contact_support,
+li.nav-item.no-hover,
+.fw-new-ticket-btn,
+a[class*="new-ticket"],
+button[class*="new-ticket"] {
+  display: none !important;
+}
+
+/* Hide Freshdesk's own hamburger toggle */
+.navbar-toggler { display: none !important; }
+
+/* ── Right side wrapper (hamburger + user icon) ── */
+.ni-right-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── Hamburger button — mobile only ── */
+.ni-hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: none !important;
+  border: none !important;
+  padding: 6px !important;
+  cursor: pointer;
+  color: #161819 !important;
+  box-shadow: none !important;
+  line-height: 1;
+  transition: color 0.15s;
+}
+.ni-hamburger:hover { color: #3e8cbb !important; }
+@media (max-width: 1199px) {
+  .ni-hamburger { display: flex !important; }
+}
+.ni-hamburger .ni-ham-close { display: none; }
+.ni-hamburger[aria-expanded="true"] .ni-ham-icon  { display: none; }
+.ni-hamburger[aria-expanded="true"] .ni-ham-close { display: block; }
+
+/* ── Mobile navigation panel ── */
+.ni-mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 1px solid #dce1e5;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  z-index: 9998;
+}
+.ni-mobile-menu.ni-open { display: block; }
+.ni-mobile-menu a {
+  display: block !important;
+  padding: 14px 24px !important;
+  font-family: Graphik, Helvetica, Arial, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: #161819 !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid #f0f0f5 !important;
+  transition: background 0.1s, color 0.1s;
+}
+.ni-mobile-menu a:last-child { border-bottom: none !important; }
+.ni-mobile-menu a:hover {
+  background: #f0f0f5 !important;
+  text-decoration: underline !important;
+}
+.ni-mobile-menu a.ni-mobile-deals { color: #FF4848 !important; }
+.ni-mobile-menu a.ni-mobile-deals:hover { color: #FF4848 !important; }
+
+/* ── Product navigation links — absolutely centred in header ──
+   Two-line title + subtitle, matching native-instruments.com's nav. Hover
+   only underlines the title (never changes color) — same on native-instruments.com. */
+.ni-mainnav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  pointer-events: auto;
+}
+
+.ni-mainnav a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.ni-nav-title {
+  font-family: Graphik, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #161819;
+  letter-spacing: 0.01em;
+}
+
+.ni-nav-sub {
+  font-family: Graphik, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #50555a;
+}
+
+.ni-mainnav a:hover .ni-nav-title {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+/* "Deals" — highlighted in red with a divider, matching native-instruments.com's
+   "is--special" nav treatment; color stays red on hover too, only underlines. */
+.ni-nav-item--special {
+  margin-left: 16px;
+}
+
+.ni-nav-item--special a {
+  position: relative;
+  padding-left: 32px;
+}
+
+.ni-nav-item--special a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 32px;
+  background-color: #dce1e5;
+}
+
+.ni-nav-item--special .ni-nav-title { color: #FF4848; }
+.ni-nav-item--special a:hover .ni-nav-title { color: #FF4848; }
+
+/* Hide nav links on smaller screens */
+@media (max-width: 1199px) {
+  .ni-mainnav { display: none; }
+
+  /* Keep navbar as a single row — Bootstrap wraps it by default below xl */
+  nav.navbar {
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+  }
+
+  /* Allow logo link to shrink so it doesn't push icons off-row */
+  .navbar-brand,
+  a.navbar-brand,
+  .fw-brand {
+    flex-shrink: 1 !important;
+    min-width: 0 !important;
+  }
+
+  /* Scale logo down on mobile */
+  .navbar .fw-brand-logo {
+    height: 24px !important;
+    width: auto !important;
+    max-width: 200px !important;
+  }
+}
+
+/* ── User silhouette icon ── */
+.ni-user-wrap { position: relative; }
+
+.ni-user-icon-btn {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: none !important;
+  border: none !important;
+  padding: 6px !important;
+  cursor: pointer;
+  color: #161819 !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.ni-user-icon-btn:hover { color: #3e8cbb !important; }
+
+/* ── Account dropdown ── */
+.ni-user-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #dce1e5;
+  border-radius: 5px;
+  min-width: 160px;
+  padding: 4px 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  z-index: 10001;
+}
+
+.ni-user-dropdown.ni-open { display: block; }
+
+.ni-user-dropdown a {
+  display: block !important;
+  padding: 10px 16px !important;
+  font-family: Graphik, Helvetica, Arial, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  color: #161819 !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+  transition: background 0.1s;
+}
+
+.ni-user-dropdown a:hover {
+  background: #f0f0f5 !important;
+  color: #3e8cbb !important;
+}
+</style>
+
+<header class="container-fluid px-0 fw-nav-wrapper fixed-top">
+
+  
+  <section class="container-fluid px-0">
+    <nav class="navbar navbar-expand-xl navbar-light ni-nav-edge" style="height:60px;">
+
+      <!-- Custom logo markup (bypasses Freshdesk's built-in header/logo element,
+           which renders the image as data-src/lazyload and never resolves to a
+           real src, leaving a broken image + "Freshworks Logo" alt text) -->
+      <a class="navbar-brand d-flex align-items-center" href="//www.native-instruments.com/">
+        <img src="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69193123630/logo/C8jUns3LtmmLkKDpLv6uPwPo8LhxUHgSrw.png" alt="" class="d-inline-block align-top me-4 fw-brand-logo" />
+        <div class="fs-22 semi-bold fw-brand-name ms-4" title=""></div>
+      </a>
+
+      <!-- Product navigation links -->
+      <ul class="ni-mainnav">
+        <li>
+          <a href="https://www.native-instruments.com/collections/music-creation" target="_blank" rel="noopener noreferrer">
+            <span class="ni-nav-title">Music creation</span>
+            <span class="ni-nav-sub">Produce, play, and compose</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.native-instruments.com/collections/audio-engineering" target="_blank" rel="noopener noreferrer">
+            <span class="ni-nav-title">Audio engineering</span>
+            <span class="ni-nav-sub">Mix, master, and repair</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.native-instruments.com/collections/djing" target="_blank" rel="noopener noreferrer">
+            <span class="ni-nav-title">DJing</span>
+            <span class="ni-nav-sub">Mix, remix, and perform</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.native-instruments.com/pages/360-subscription" target="_blank" rel="noopener noreferrer">
+            <span class="ni-nav-title">Try 360</span>
+            <span class="ni-nav-sub">Start your free trial</span>
+          </a>
+        </li>
+        <li class="ni-nav-item--special">
+          <a href="https://www.native-instruments.com/collections/deals" target="_blank" rel="noopener noreferrer">
+            <span class="ni-nav-title">Deals</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Right side: hamburger (mobile) + user icon -->
+      <div class="ms-auto ni-right-wrap">
+
+        <button class="ni-hamburger" id="ni-hamburger" aria-label="Menu" aria-expanded="false" aria-controls="ni-mobile-menu">
+          <svg class="ni-ham-icon" viewBox="0 0 24 24" fill="none" width="22" height="22" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="ni-ham-close" viewBox="0 0 24 24" fill="none" width="22" height="22" aria-hidden="true">
+            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <div class="ni-user-wrap">
+          
+            <a href="/support/login" class="ni-user-icon-btn" aria-label="Sign in">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M12 14c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/>
+              </svg>
+            </a>
+          
+        </div>
+
+      </div>
+
+    </nav>
+  </section>
+
+  <!-- Mobile navigation panel — drops below the 60px header -->
+  <div class="ni-mobile-menu" id="ni-mobile-menu" role="navigation" aria-label="Mobile navigation">
+    <a href="https://www.native-instruments.com/collections/music-creation" target="_blank" rel="noopener noreferrer">Music creation</a>
+    <a href="https://www.native-instruments.com/collections/audio-engineering" target="_blank" rel="noopener noreferrer">Audio engineering</a>
+    <a href="https://www.native-instruments.com/collections/djing" target="_blank" rel="noopener noreferrer">DJing</a>
+    <a href="https://www.native-instruments.com/pages/360-subscription" target="_blank" rel="noopener noreferrer">Try 360</a>
+    <a href="https://www.native-instruments.com/collections/deals" target="_blank" rel="noopener noreferrer" class="ni-mobile-deals">Deals</a>
+  </div>
+
+  
+
+</header>
+
+<!-- Braze content cards target -->
+<div id="braze_feed" style="display:none;"></div>
+
+<script>
+/* Hide ticket items from search autocomplete */
+(function () {
+  function hideTicketItems(root) {
+    if (!root) return;
+    root.querySelectorAll('*').forEach(function (el) {
+      var t = el.textContent.trim();
+      if (t === 'Tickets' || t === 'Submit a Ticket' || t === 'New Ticket') {
+        el.style.setProperty('display', 'none', 'important');
+        if (el.parentElement) el.parentElement.style.setProperty('display', 'none', 'important');
+      }
+    });
+  }
+  new MutationObserver(function () {
+    var w = document.querySelector('.fw-autocomplete-wrapper');
+    if (w) hideTicketItems(w);
+  }).observe(document.body, { childList: true, subtree: true });
+})();
+
+/* Fix search button Bootstrap override */
+(function () {
+  function fixSearchBtn() {
+    document.querySelectorAll('.fw-search button').forEach(function (btn) {
+      btn.style.setProperty('background',       'transparent', 'important');
+      btn.style.setProperty('background-color', 'transparent', 'important');
+      btn.style.setProperty('box-shadow',       'none',        'important');
+      btn.style.setProperty('border',           'none',        'important');
+    });
+  }
+  document.addEventListener('DOMContentLoaded', fixSearchBtn);
+})();
+
+/* User account dropdown toggle */
+(function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    var toggle   = document.getElementById('ni-user-toggle');
+    var dropdown = document.getElementById('ni-user-dropdown');
+    if (!toggle || !dropdown) return;
+
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = dropdown.classList.toggle('ni-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', function () {
+      if (dropdown.classList.contains('ni-open')) {
+        dropdown.classList.remove('ni-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && dropdown.classList.contains('ni-open')) {
+        dropdown.classList.remove('ni-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.focus();
+      }
+    });
+  });
+})();
+
+/* Hamburger / mobile nav toggle */
+(function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    var hamburger  = document.getElementById('ni-hamburger');
+    var mobileMenu = document.getElementById('ni-mobile-menu');
+    if (!hamburger || !mobileMenu) return;
+
+    hamburger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = mobileMenu.classList.toggle('ni-open');
+      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', function () {
+      if (mobileMenu.classList.contains('ni-open')) {
+        mobileMenu.classList.remove('ni-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    mobileMenu.addEventListener('click', function (e) { e.stopPropagation(); });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('ni-open')) {
+        mobileMenu.classList.remove('ni-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.focus();
+      }
+    });
+  });
+})();
+</script>
+
+
+<main class="fw-main-wrapper" id="fw-main-content">
+  <style>
+  body, .fw-main-wrapper { background-color: #ffffff !important; }
+  .bg-light, .bg-grey, .fw-wrapper-shadow { background-color: #ffffff !important; }
+
+  /* Hide native Freshdesk title wrapper — we render our own */
+  .fw-page-title-wrapper { display: none !important; }
+
+  /* ── Article header ── */
+  .ni-article-header {
+    background: #ffffff;
+    border-bottom: 1px solid #dce1e5;
+    padding: 36px 0 28px;
+  }
+
+  .ni-article-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: Graphik, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #5d5d5d;
+    margin-bottom: 14px;
+  }
+
+  .ni-article-eyebrow a {
+    color: #3e8cbb !important;
+    text-decoration: none !important;
+    transition: color 0.15s;
+  }
+  .ni-article-eyebrow a:hover { color: #0077b6 !important; }
+  .ni-article-eyebrow span { color: #bbc1c7; }
+
+  .ni-article-h1 {
+    font-family: Graphik, Helvetica, Arial, sans-serif !important;
+    font-weight: 600 !important;
+    font-size: clamp(22px, 3vw, 36px) !important;
+    letter-spacing: -0.01em !important;
+    color: #161819 !important;
+    line-height: 1.2 !important;
+    margin: 0 0 4px !important;
+  }
+
+  /* ── Search bar below title ── */
+  .ni-art-search {
+    width: 100%;
+    max-width: 520px;
+    margin: 18px 0 0;
+    overflow: visible !important;
+  }
+
+  .ni-art-search .fw-search {
+    position: relative;
+    max-width: 100%;
+    background: transparent !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .ni-art-search .fw-search > form,
+  .ni-art-search .fw-search .input-group {
+    background: #ffffff !important;
+    border-radius: 8px !important;
+    border: 1px solid #dce1e5 !important;
+    overflow: visible !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .ni-art-search .fw-search .input-group:focus-within,
+  .ni-art-search .fw-search > form:focus-within {
+    border-color: #bbc1c7 !important;
+    box-shadow: none !important;
+  }
+
+  .ni-art-search input#searchInput,
+  .ni-art-search input[type="text"],
+  .ni-art-search input[type="search"] {
+    background: transparent !important;
+    border: none !important;
+    padding: 8px 44px 8px 16px !important;
+    font-family: Graphik, Helvetica, Arial, sans-serif !important;
+    font-size: 14px !important;
+    color: #161819 !important;
+    width: 100% !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .ni-art-search input#searchInput::placeholder { color: #5d5d5d !important; opacity: 1 !important; }
+
+  .ni-art-search .fw-search button[type="submit"],
+  .ni-art-search button.btn.px-20.input-group-text {
+    background: transparent !important;
+    border: none !important;
+    position: absolute !important;
+    right: 10px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: #3e8cbb !important;
+    cursor: pointer;
+    padding: 8px !important;
+    z-index: 2;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .ni-art-search .fw-search .input-group-text,
+  .ni-art-search .fw-search .input-group-append,
+  .ni-art-search .fw-search .input-group-prepend {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* ── Autocomplete dropdown ── */
+  .fw-autocomplete-wrapper,
+  .fw-autocomplete-wrapper.box-shadow.bg-light.br-8.p-16 {
+    background: #ffffff !important;
+    border: 1px solid rgba(62, 140, 187, 0.25) !important;
+    border-radius: 8px !important;
+    position: absolute !important;
+    z-index: 99999 !important;
+    width: 100% !important;
+    top: 100% !important;
+    left: 0 !important;
+    margin-top: 6px !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+    max-height: 340px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+  .fw-autocomplete-wrapper span[class*="icon-"],
+  .fw-autocomplete-wrapper i[class*="icon-"] { display: none !important; }
+  .fw-autocomplete-wrapper .dropdown-item,
+  .fw-autocomplete-wrapper li,
+  .fw-autocomplete-wrapper a {
+    background: transparent !important;
+    color: #161819 !important;
+    border: 0 !important;
+    text-decoration: none !important;
+  }
+  .fw-autocomplete-wrapper .dropdown-item:hover,
+  .fw-autocomplete-wrapper li:hover,
+  .fw-autocomplete-wrapper a:hover { background: #e6f7ff !important; color: #3e8cbb !important; }
+  .fw-autocomplete-wrapper strong,
+  .fw-autocomplete-wrapper mark { color: #3e8cbb !important; background: transparent !important; font-weight: 600 !important; }
+  .fw-autocomplete-wrapper [class*="ticket"],
+  .fw-autocomplete-wrapper .fw-view-all-tickets,
+  .fw-autocomplete-wrapper .fw-autocomplete-footer,
+  .fw-autocomplete-wrapper footer { display: none !important; }
+
+  /* ── Content area ── */
+  section.container-fluid.pt-32.pb-60 { background: #f0f0f5 !important; }
+
+  .fw-content-wrapper { padding: 40px !important; }
+
+  /* ── Article body ── */
+  .fw-content.fw-content--single-article {
+    font-family: Graphik, Helvetica, Arial, sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.8 !important;
+    color: #161819 !important;
+  }
+
+  .fw-content--single-article h1,
+  .fw-content--single-article h2,
+  .fw-content--single-article h3,
+  .fw-content--single-article h4,
+  .fw-content--single-article h5,
+  .fw-content--single-article h6 {
+    font-family: Graphik, Helvetica, Arial, sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em !important;
+    color: #161819 !important;
+    margin-top: 36px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .fw-content--single-article h2 {
+    font-size: 22px !important;
+    border-bottom: 1px solid #dce1e5;
+    padding-bottom: 8px;
+  }
+  .fw-content--single-article h3 { font-size: 18px !important; color: #3e8cbb !important; }
+  .fw-content--single-article h4 { font-size: 16px !important; }
+
+  .fw-content--single-article a {
+    color: #3e8cbb !important;
+    text-decoration: underline;
+    text-decoration-color: rgba(62, 140, 187, 0.3);
+    transition: text-decoration-color 0.2s;
+  }
+  .fw-content--single-article a:hover { text-decoration-color: #3e8cbb; }
+
+  .fw-content--single-article p,
+  .fw-content--single-article li,
+  .fw-content--single-article span,
+  .fw-content--single-article div,
+  .fw-content--single-article td {
+    font-family: Graphik, Helvetica, Arial, sans-serif !important;
+    color: #161819 !important;
+  }
+
+  .fw-content--single-article img {
+    border-radius: 5px;
+    border: 1px solid #dce1e5;
+    margin: 16px 0;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .fw-content--single-article code {
+    background: #f0f0f5 !important;
+    border: 1px solid #dce1e5 !important;
+    border-radius: 4px !important;
+    color: #161819 !important;
+    font-size: 14px !important;
+    padding: 2px 8px !important;
+  }
+  .fw-content--single-article pre {
+    background: #f0f0f5 !important;
+    border: 1px solid #dce1e5 !important;
+    border-radius: 5px !important;
+    padding: 20px !important;
+    overflow-x: auto;
+  }
+  .fw-content--single-article pre code { border: none !important; padding: 0 !important; background: transparent !important; }
+
+  .fw-content--single-article ul,
+  .fw-content--single-article ol { padding-left: 24px !important; color: #161819 !important; }
+  .fw-content--single-article li { margin-bottom: 8px !important; }
+  .fw-content--single-article strong,
+  .fw-content--single-article b { color: #161819 !important; font-weight: 600 !important; }
+  .fw-content--single-article hr { border-color: #dce1e5 !important; margin: 32px 0 !important; }
+
+  .fw-content--single-article blockquote {
+    border-left: 3px solid #3e8cbb !important;
+    padding-left: 16px !important;
+    margin: 24px 0 !important;
+    color: #5d5d5d !important;
+  }
+
+  .fw-content--single-article table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+  .fw-content--single-article th {
+    background: #f0f0f5;
+    color: #161819;
+    font-family: Graphik, Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    padding: 12px 16px;
+    border-bottom: 2px solid #dce1e5;
+    text-align: left;
+  }
+  .fw-content--single-article td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #f0f0f5;
+    color: #161819 !important;
+  }
+  .fw-content--single-article tr:last-child td { border-bottom: none; }
+
+  /* ── Sidebar ── */
+  .fw-sidebar-wrapper {
+    border-left: 1px solid #dce1e5 !important;
+    background: #f7f8fa !important;
+  }
+
+  .fw-sidebar {
+    background: transparent !important;
+    padding: 28px !important;
+  }
+
+  .fw-sidebar h2 {
+    font-family: Graphik, Helvetica, Arial, sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    color: #5d5d5d !important;
+  }
+
+  .fw-sidebar .fw-no-bullet { list-style: none !important; padding: 0 !important; }
+  .fw-sidebar .fw-no-bullet li { border-bottom: 1px solid #dce1e5 !important; }
+  .fw-sidebar .fw-no-bullet li:last-child { border-bottom: none !important; }
+  .fw-sidebar .fw-no-bullet li a::before,
+  .fw-sidebar .fw-no-bullet li a::after,
+  .fw-sidebar .fw-no-bullet li a span[class*="icon"],
+  .fw-sidebar .fw-no-bullet li a i[class*="icon"] { display: none !important; }
+  .fw-sidebar .fw-no-bullet li a {
+    display: block !important;
+    padding: 8px 0 !important;
+    font-family: Graphik, Helvetica, Arial, sans-serif !important;
+    font-size: 13px !important;
+    color: #161819 !important;
+    text-decoration: none !important;
+    transition: color 0.15s, padding-left 0.15s;
+  }
+  .fw-sidebar .fw-no-bullet li a:hover {
+    color: #3e8cbb !important;
+    padding-left: 4px !important;
+  }
+
+  /* ── Hide feedback widget ── */
+  .fw-article-feedback,
+  [class*="article-feedback"],
+  .fw-article-votes,
+  [class*="article-vote"] { display: none !important; }
+
+  @media (max-width: 640px) {
+    .ni-article-header { padding: 24px 0 20px; }
+    .fw-content-wrapper { padding: 24px 16px !important; }
+    .fw-sidebar { padding: 20px 16px !important; }
+  }
+</style>
+
+ <div class="alert alert-with-close notice hide" id="noticeajax"></div> 
+
+<!-- ── Article header: eyebrow + title + search ── -->
+<section class="container-fluid px-0 ni-article-header">
+  <div class="container">
+    <div class="ni-article-eyebrow">
+      <a href="/support/solutions/69000438316">Native Instruments Support</a>
+      <span>›</span>
+      <a href="/support/solutions/folders/69000657013">General and Guidelines</a>
+    </div>
+    <h1 class="ni-article-h1">Native Instruments | Switching Your Controller To MIDI Mode</h1>
+    <div class="ni-art-search">
+      
+<form action="/support/search/solutions" id="fw-search-form" data-current-tab="solutions">
+  <div class="form-group fw-search  my-0">
+    <div class="input-group">
+      <input type="text" class="form-control" id="searchInput" name="term" value="" placeholder="Find some solutions here..." aria-describedby="srSearchUpdateMessage" autocomplete="off" aria-label="Find some solutions here...">
+      <button class="btn px-20 input-group-text btn-search" id="btnSearch" type="submit" aria-label="Search"><span class="icon-search search-input-icon"></span></button>
+    </div>
+
+    <div class="visually-hidden">
+      <span id="srSearchUpdateMessage" aria-live="polite"></span>
+    </div>
+
+    <div class="fw-autocomplete-wrapper box-shadow bg-light br-8 p-16 d-none">
+      <div class="fw-autocomplete-header search_nav_accessibility_lp" role="tablist">
+        <button id="all" class="fw-search-tab " data-tab="all" role="tab" aria-selected="false" aria-controls="all-tabpanel">
+          All
+        </button>
+        
+          <button id="solutions" class="fw-search-tab fw-active-search-tab" data-tab="solutions" role="tab" aria-selected="true" aria-controls="solutions-tabpanel">
+            Articles
+          </button>
+        
+        
+        
+      </div>
+
+      <div class="fw-loading my-80 d-none"></div>
+
+      <div class="fw-autocomplete-focus">
+
+        <div id="all-tabpanel" role="tabpanel" aria-labelledby="all" tabindex="0">
+          <div class="fw-recent-search">
+            <div class="fw-recent-title d-none row align-items-center">
+              <h3 class="col-8 fs-20 semi-bold mb-0"><span class="icon-recent me-8"></span>Recent Searches</h3>
+              <div class="col-4 px-0 text-end"><button class="btn btn-link fw-clear-all">Clear all</button></div>
+            </div>
+            <p class="ps-32 fw-no-recent-searches mb-16 d-none">No recent searches</p>
+            <ul class="fw-no-bullet fw-recent-searches mb-16 d-none"></ul>
+          </div>
+
+          <div class="fw-popular-articles-search">
+            <h3 class="fs-20 semi-bold fw-popular-title d-none mb-16"><span class="icon-article me-8"></span> Popular Articles</h3>
+            <ul class="fw-no-bullet fw-popular-topics d-none"></ul>
+          </div>
+        </div>
+
+        <div id="solutions-tabpanel" class="fw-solutions-search-results fw-results d-none" role="tabpanel" aria-labelledby="solutions" tabindex="0">
+          <hr class="mt-24" />
+          <div class="fw-solutions-search-results-title row align-items-center">
+            <h3 class="col-8 fs-20 semi-bold mb-0"><span class="icon-article me-8"></span>Articles</h3>
+            <div class="col-4 px-0 text-end"><a class="btn btn-link fw-view-all fw-solutions-view-all" href="/support/search/solutions">View all</a></div>
+          </div>
+          <ul class="fw-no-bullet fw-search-results fw-solutions-search-results-container"></ul>
+        </div>
+
+        <div id="topics-tabpanel" class="fw-topics-search-results fw-results d-none" role="tabpanel" aria-labelledby="topics" tabindex="0">
+          <hr class="mt-24" />
+          <div class="fw-topics-search-results-title row align-items-center">
+            <h3 class="col-8 fs-20 semi-bold mb-0"><span class="icon-topic me-8"></span>Topics</h3>
+            <div class="col-4 px-0 text-end"><a class="btn btn-link fw-view-all fw-topics-view-all" href="/support/search/topics">View all</a></div>
+          </div>
+          <ul class="fw-no-bullet fw-search-results fw-topics-search-results-container"></ul>
+        </div>
+
+        <div id="tickets-tabpanel" class="fw-tickets-search-results fw-results d-none" role="tabpanel" aria-labelledby="tickets" tabindex="0">
+          <hr class="mt-24" />
+          <div class="fw-tickets-search-results-title row align-items-center">
+            <h3 class="col-8 fs-20 semi-bold mb-0"><span class="icon-ticket me-8"></span>Tickets</h3>
+            <div class="col-4 px-0 text-end"><a class="btn btn-link fw-view-all fw-tickets-view-all" href="/support/search/tickets">View all</a></div>
+          </div>
+          <ul class="fw-no-bullet fw-search-results fw-tickets-search-results-container"></ul>
+        </div>
+      </div>
+
+      <div class="fw-autocomplete-noresults d-none text-center py-40">
+        <img src="/assets/cdn/portal/images/no-results.png" class="img-fluid fw-no-results-img" alt="no results" />
+        <p class="mt-24 text-secondary">Sorry! nothing found for <br /> <span id="input_term"></span></p>
+      </div>
+    </div>
+  </div>
+</form>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var obs = new MutationObserver(function () {
+      var wrapper = document.querySelector('.fw-autocomplete-wrapper');
+      if (!wrapper) return;
+      wrapper.querySelectorAll('a[href*="/support/tickets/"], a[href*="/tickets/"]').forEach(function(a) {
+        var row = a.closest('li'); if (row) row.remove(); else a.remove();
+      });
+    });
+    obs.observe(document.body, { childList: true, subtree: true });
+  })();
+</script>
+
+<!-- ── Article content + sidebar ── -->
+<section class="container-fluid pt-32 pb-60">
+  <div class="container fw-wrapper-shadow px-0 bg-light">
+    <div class="row mx-0 g-0">
+
+      <!-- Article body -->
+      <div class="col-lg-9 fw-content-wrapper mb-16 mb-lg-0">
+        <div class="fw-content fw-content--single-article line-numbers">
+          <p>Every NI controller uses a 'Native' data transfer protocol which allows for the automatic integration and advanced operation of your controller that would not be possible using the MIDI standard protocol. However, it is possible to switch most NI controllers to MIDI mode.</p><p><br></p><p class="note" dir="ltr">Note: If your NI controller is not listed in the table below, it cannot be switched to MIDI mode.</p><p dir="ltr"><br></p><p dir="ltr">Operating your NI controller in MIDI mode is useful in the following scenarios:<br><br></p><ul><li dir="ltr">Use your NI controller as a remote MIDI controller within a 3rd party application that supports MIDI<br><br></li><li dir="ltr">Use your NI controller as a MIDI controller within another NI application<br><br></li></ul><p dir="ltr">You can switch your controller to/from MIDI mode either manually by pressing a specific button combination or automatically by launching the Controller Editor application.&nbsp;</p><p dir="ltr"><br></p><p dir="ltr">When switching to MIDI mode, your controller will indicate MIDI mode is active by lowering the brightness of specific LEDs to a dimmed state.&nbsp;</p><p dir="ltr"><br></p><p dir="ltr">Additionally, if the controller features displays (e.g. Mikro, Traktor Kontrol S4), they will read MIDI event messages (e.g <strong>CC48</strong>) or simply <strong>ON</strong> (as in the case of Traktor Kontrol S4 / S2's loop display) to indicate MIDI mode is active.</p><p dir="ltr"><br></p><h3 dir="ltr" id="h_01J368K1W1ZH0KJQMNH3BFZF42"><strong dir="ltr">Switching to MIDI Mode Manually by Holding Down a Button Combination on your Controller</strong></h3><p dir="ltr"><br></p><p dir="ltr">To toggle your controller between Native and MIDI mode manually, you need to hold down a specific button combination on your controller. Below is a list of button combinations for each NI controller model.<br><br></p><div class="hscroll"><table class="hc-table table-striped"><thead><tr class="thead"><th dir="ltr" scope="col" style="width: 105.125px;">Brand</th><th scope="col" style="width: 227.656px;">Controller Model</th><th scope="col" style="width: 357.219px;">Switch to / from MIDI Mode</th></tr></thead><tbody><tr><th style="width: 105.125px;">Komplete Kontrol</th><td style="width: 219.656px;">Kontrol S-Series MK3</td><td style="width: 349.219px;">Settings MIDI</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Komplete Kontrol S-Series MK2</td><td style="width: 349.219px;">SHIFT + MIDI / PLUG-IN</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Komplete Kontrol S-Series MK1 <strong>*</strong></td><td style="width: 349.219px;">SHIFT + INSTANCE</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Komplete Kontrol A-Series</td><td style="width: 349.219px;">SHIFT + MIDI / PLUG-IN</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Komplete Kontrol M32</td><td style="width: 349.219px;">SHIFT + MIDI / PLUG-IN</td></tr><tr><th scope="row" style="width: 105.125px;">Maschine</th><td style="width: 219.656px;">Maschine MK1</td><td style="width: 349.219px;">SHIFT + CONTROL</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Maschine&nbsp;MK2</td><td style="width: 349.219px;">SHIFT + CONTROL</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Maschine MK3</td><td style="width: 349.219px;">SHIFT + CHANNEL (MIDI)</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Maschine Mikro</td><td style="width: 349.219px;">SHIFT + F1</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Maschine Mikro&nbsp;MK2</td><td style="width: 349.219px;">SHIFT + F1</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Maschine Mikro MK3</td><td style="width: 349.219px;">SHIFT + Project button</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Maschine Studio</td><td style="width: 349.219px;">SHIFT + CHANNEL</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Maschine Jam</td><td style="width: 349.219px;">SHIFT + headphones button (MIDI)</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Maschine+ <strong>**</strong></td><td style="width: 349.219px;">SHIFT + CHANNEL (MIDI)</td></tr><tr><th style="width: 105.125px;">Traktor</th><td style="width: 219.656px;">Traktor MX2</td><td style="width: 349.219px;">SHIFT (left) + SHIFT (right)</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Traktor Kontrol X1 MK1</td><td style="width: 349.219px;">SHIFT + HOTCUE</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Traktor Kontrol X1 MK2</td><td style="width: 349.219px;">SHIFT + both left and right load buttons (arrow buttons)</td></tr><tr><th style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Traktor Kontrol X1 MK3</td><td style="width: 349.219px;">SHIFT + ☰ button</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Traktor Kontrol S2 MK1</td><td style="width: 349.219px;">SHIFT (left) + SHIFT (right)</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Traktor Kontrol S2 MK2</td><td style="width: 349.219px;">SHIFT (left) + SHIFT (right)</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Traktor KontrolL S2 MK3 <strong>***</strong></td><td style="width: 349.219px;">FLX (left) pressed while device is being connected (Disconnect to turn off MIDI mode)</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Traktor Kontrol S3 <strong>***</strong></td><td style="width: 349.219px;"><p>FLX (left) pressed while device is being connected (Disconnect to turn off MIDI mode)</p></td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Traktor Kontrol S4 MK1</td><td style="width: 349.219px;">SHIFT (left or right Deck) + BROWSE (magnifying glass button)</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Traktor Kontrol S4 MK2</td><td style="width: 349.219px;">SHIFT (left or right Deck) + PREVIEW (headphones button)</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Traktor Kontrol S5</td><td style="width: 349.219px;">SHIFT (left or right Deck) + 'Back' button next to Browse encoder (right Deck)</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Traktor Kontrol S8</td><td style="width: 349.219px;">SHIFT (left or right Deck) + BACK (right Deck)</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Traktor Kontrol D2</td><td style="width: 349.219px;">SHIFT + BACK</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Traktor Kontrol F1</td><td style="width: 349.219px;">SHIFT + BROWSE</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Traktor Kontrol Z1</td><td style="width: 349.219px;">MODE + both left and right cue buttons (A and B)</td></tr><tr><th style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Traktor Kontrol Z1 Mk2</td><td style="width: 349.219px;">Press the --- button together with the ☰ to switch to MIDI mode (the center display will display MIDI MODE).</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Traktor Kontrol Z2</td><td style="width: 349.219px;">SHIFT + SETTINGS (gearwheel button)</td></tr><tr><th scope="row" style="width: 105.125px;">Kore</th><td style="width: 219.656px;">Kore 1</td><td style="width: 349.219px;">VIEW then CONTROL</td></tr><tr><th scope="row" style="width: 105.125px;">&nbsp;</th><td style="width: 219.656px;">Kore 2</td><td style="width: 349.219px;">F1 then CONTROL</td></tr><tr><th scope="row" style="width: 105.125px;">Guitar Rig</th><td style="width: 219.656px;">Rig Kontrol 3</td><td style="width: 349.219px;">Automatic switch only (see next section)</td></tr></tbody></table></div><p class="note" dir="ltr"><br><strong>*</strong> If using Komplete Kontrol MK1 in stand-alone mode, press only <strong>INSTANCE</strong> and then turn the Browse knob to switch to MIDI on the computer screen. Switch back to Native mode by pressing <strong>SHIFT</strong> + <strong>INSTANCE</strong>.</p><p class="note"><strong dir="ltr">**</strong> The MASCHINE+ hardware must be in <strong>Controller</strong> mode. See <a href="https://support.native-instruments.com/hc/articles/360016248297" rel="noopener noreferrer" target="_blank">this article</a> to switch to Controller mode.</p><p class="note" dir="ltr"><strong dir="ltr">***</strong> The latest firmware for the controller needs to be installed. Please find instructions on how to update the firmware <a href="https://support.native-instruments.com/hc/articles/209570629" rel="noopener noreferrer" target="_blank">here</a>.<br><br></p><h3 dir="ltr" id="h_01J368K1YPK89ADK6W3TD80T9Y"><strong dir="ltr">Switching to MIDI Mode Automatically by Launching Controller Editor</strong></h3><p class="note" dir="ltr"><br></p><p class="note" dir="ltr">Note: since Controller Editor 1.8.0, support for legacy Native Instruments devices has been discontinued and therefore they will not show up in Controller Editor.&nbsp;</p><p class="note" dir="ltr"><br></p><p class="note" dir="ltr">Note: this workflow below does not apply to Traktor Kontrol S2 MK3 and S3.</p><p class="note" dir="ltr"><br></p><p dir="ltr">Your controller will switch automatically from Native to MIDI mode when launching Controller Editor. It&nbsp;is located here on your hard drive:<br><br></p><ul><li dir="ltr">OS X: Macintosh HD &gt; Applications &gt; Native Instruments &gt; Controller Editor &gt; "Controller Editor.app"<br><br></li><li dir="ltr">Win: C: &gt; Program Files &gt; Native Instruments &gt; Controller Editor &gt; "Controller Editor. exe".&nbsp;<p class="note" dir="ltr">Note:&nbsp;The NI&nbsp;application your controller is communicating with must be closed to enable automatic switching to MIDI mode.<br><br></p></li></ul><p dir="ltr">The LEDs / displays of your controller will now show MIDI mode is active (see above) and the Controller Editor application will show a layout of your controller as well as display its name on the Application Control Bar on top.<br><br>Additionally, the <strong dir="ltr">Connect</strong> button next to the name will become highlighted in orange to indicate MIDI mode is active.&nbsp;</p><p dir="ltr"><br></p><p dir="ltr"><img src="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69193609976/original/wFcawnCrNBoTqcQu7WATu65HnTCxgwKlxw.png?1780992226" style="width: auto; max-width: 100%;" class="fr-fic fr-fil fr-dib" data-attachment="[object Object]" data-id="69193609976"></p><p dir="ltr"><br></p><p class="note" dir="ltr">Note: If you launch Controller Editor while the dedicated NI software is running, the controller will remain in Native mode. You can click the <strong>Connect</strong> button to toggle to MIDI mode manually.</p><p dir="ltr"><br>With the Controller Editor you can customize every MIDI assignment of your NI controller. You can create entire MIDI templates for your controller in order to to control third-party applications or hardware MIDI devices remotely.&nbsp;</p><p dir="ltr"><br></p><p dir="ltr">You can press / turn a button / fader / encoder on your controller to display its MIDI information on the software. In the example below, we have turned the top left knob on the Traktor Kontrol X1 MK2 and the corresponding button on the software is displaying its MIDI event message (<strong dir="ltr">CC0</strong>).&nbsp;</p><p dir="ltr"><br></p><p dir="ltr">Please consult the Controller Editor documentation in order to learn how to customize your own MIDI templates.</p><p><br></p><p><img src="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/69193610078/original/d2uI5XmsRL5J3vsXFKP3GLBt_jtuMiYNyg.png?1780992323" style="width: auto; max-width: 100%;" class="fr-fic fr-fil fr-dib" data-attachment="[object Object]" data-id="69193610078"></p>
+          
+
+<script type="text/javascript" nonce="MneBNSAaFG5p6sB4WVk94w==">
+  document.querySelectorAll('.portal-attachment-thumbnail-img').forEach(function(img) {
+    img.addEventListener('error', function () {
+      attachment_error_image(this);
+    });
+  });
+
+  const attachment_error_image = (attachment) => {
+    const parentElement = attachment.parentElement;
+    const defaultIcon = `<span class="icon-file-empty"></span><span class="fw-attachment-ext">${escapeHtml(attachment.dataset.extension)}</span>`;
+    parentElement.innerHTML = defaultIcon;
+  };
+</script>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-3 fw-sidebar-wrapper">
+        <aside class="bg-grey fw-sidebar">
+          <section class="mb-20">
+            <h2 class="mb-12 fs-20 semi-bold">Articles in this folder -</h2>
+            <ul class="fw-no-bullet">
+              
+                <li>
+                  <a  id="" href="/support/solutions/articles/69000879990-native-instruments-linux-compatibility-with-native-instruments-products" class="fw-article"
+
+>Native Instruments | Linux compatibility with Native Instruments products</a>
+                </li>
+              
+                <li>
+                  <a  id="" href="/support/solutions/articles/69000879991-native-instruments-how-to-become-a-native-instruments-affiliate" class="fw-article"
+
+>Native Instruments | How to become a Native Instruments affiliate</a>
+                </li>
+              
+                <li>
+                  <a  id="" href="/support/solutions/articles/69000879992-how-to-grant-audio-apps-access-to-your-local-network-on-macos-15-sequoia" class="fw-article"
+
+>How to grant audio apps access to your local network on macOS 15 Sequoia</a>
+                </li>
+              
+                <li>
+                  <a  id="" href="/support/solutions/articles/69000879993-how-to-install-bitwig-studio-8-track" class="fw-article"
+
+>How to install Bitwig Studio 8-Track</a>
+                </li>
+              
+                <li>
+                  <a  id="" href="/support/solutions/articles/69000879994-native-instruments-how-to-install-cubase-le" class="fw-article"
+
+>Native Instruments | How to install Cubase LE</a>
+                </li>
+              
+            </ul>
+          </section>
+
+          
+            <section class="mb-20">
+              <h2 class="mb-12 fs-20 semi-bold">You may like to read -</h2>
+              <ul class="fw-no-bullet">
+                
+                  <li>
+                    <a  id="" href="/support/solutions/articles/69000879868-native-instruments-what-is-controller-editor-" class="fw-article"
+
+>Native Instruments | What is Controller Editor?</a>
+                  </li>
+                
+                  <li>
+                    <a  id="" href="/support/solutions/articles/69000879783-native-instruments-how-to-install-maschine-templates-for-ableton-live" class="fw-article"
+
+>Native Instruments | How to Install Maschine Templates for Ableton Live</a>
+                  </li>
+                
+                  <li>
+                    <a  id="" href="/support/solutions/articles/69000881127-nks-connect-how-to-set-up-and-use" class="fw-article"
+
+>NKS Connect - How to set up and use</a>
+                  </li>
+                
+                  <li>
+                    <a  id="" href="/support/solutions/articles/69000879504-how-to-use-maschine-as-a-midi-controller-for-traktor" class="fw-article"
+
+>How to Use MASCHINE as a MIDI Controller for TRAKTOR</a>
+                  </li>
+                
+                  <li>
+                    <a  id="" href="/support/solutions/articles/69000879626-how-to-use-maschine-controller-in-mackie-control-mode-with-digital-performer" class="fw-article"
+
+>How to Use MASCHINE Controller in Mackie Control Mode with Digital Performer</a>
+                  </li>
+                
+              </ul>
+            </section>
+          
+        </aside>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="modal fade fw-lightbox-gallery">
+  <div class="fw-modal-close">
+    <button class="btn btn-light py-8" data-bs-dismiss="modal" aria-label="Close preview"><strong>X</strong></button>
+  </div>
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content align-items-center border-0">
+      <div class="fw-loading d-none"></div>
+      <img id="fw-lightbox-preview" class="d-none" alt="Preview">
+    </div>
+  </div>
+  <div class="fw-lightbox-actions">
+    <section id="fw-ligthbox-count" class="text-light mb-8">0 of 0</section>
+    <a href="" class="fw-download btn btn-light py-8" aria-label="Download image"><span class="icon-download"></span></a>
+    <button class="fw-prev btn btn-light py-8" aria-label="Previous image"><span class="icon-prev"></span></button>
+    <button class="fw-next btn btn-light py-8" aria-label="Next image"><span class="icon-next"></span></button>
+  </div>
+</div>
+
+</main>
+
+<footer class="ni-footer">
+
+  <!-- ── Primary columns ── -->
+  <div class="ni-footer-primary">
+
+    <!-- Col 1: Company -->
+    <div class="ni-footer-col">
+      <p class="ni-footer-col-title">Company</p>
+      <ul>
+        <li><a href="https://blog.native-instruments.com/" target="_blank" rel="noopener noreferrer">Blog</a></li>
+        <li><a href="//www.native-instruments.com/pages/company" target="_blank" rel="noopener noreferrer">Corporate info</a></li>
+        <li><a href="https://support.native-instruments.com/support/home" target="_blank" rel="noopener noreferrer">Contact us</a></li>
+        <li><a href="https://support.native-instruments.com/support/home" target="_blank" rel="noopener noreferrer">Support</a></li>
+        <li><a href="//www.native-instruments.com/pages/careers" target="_blank" rel="noopener noreferrer">Careers</a></li>
+        <li><a href="https://native-instruments.prowly.com/" target="_blank" rel="noopener noreferrer">Press area</a></li>
+        <li><a href="//www.native-instruments.com/pages/native-instruments-for-students-and-teachers" target="_blank" rel="noopener noreferrer">Education</a></li>
+        <li><a href="//www.native-instruments.com/pages/legal-information" target="_blank" rel="noopener noreferrer">Legal information</a></li>
+      </ul>
+    </div>
+
+    <!-- Col 2: Useful links -->
+    <div class="ni-footer-col">
+      <p class="ni-footer-col-title">Useful links</p>
+      <ul>
+        <li><a href="//www.native-instruments.com/pages/shop-information" target="_blank" rel="noopener noreferrer">Shop info &amp; FAQ</a></li>
+        <li><a href="//www.native-instruments.com/account" target="_blank" rel="noopener noreferrer">My account</a></li>
+        <li><a href="https://account.native-instruments.com/orders" target="_blank" rel="noopener noreferrer">Order history</a></li>
+        <li><a href="//www.native-instruments.com/pages/resellers" target="_blank" rel="noopener noreferrer">Find a dealer</a></li>
+        <li><a href="//www.native-instruments.com/pages/native-access" target="_blank" rel="noopener noreferrer">Native Access</a></li>
+        <li><a href="https://www.subscription.native-instruments.com/en/customer-portal/?web=native-instruments" target="_blank" rel="noopener noreferrer">Cancel subscription</a></li>
+        <li><a href="https://community.native-instruments.com/" target="_blank" rel="noopener noreferrer">Online community</a></li>
+        <li><a href="//www.native-instruments.com/pages/product-downloads" target="_blank" rel="noopener noreferrer">Demo downloads</a></li>
+      </ul>
+    </div>
+
+    <!-- Col 3: Explore products -->
+    <div class="ni-footer-col">
+      <p class="ni-footer-col-title">Explore products</p>
+      <ul>
+        <li><a href="//www.native-instruments.com/collections/free" target="_blank" rel="noopener noreferrer">Free VSTs</a></li>
+        <li><a href="//www.native-instruments.com/collections/instruments" target="_blank" rel="noopener noreferrer">Virtual instruments</a></li>
+        <li><a href="//www.native-instruments.com/collections/keyboards" target="_blank" rel="noopener noreferrer">MIDI keyboards</a></li>
+        <li><a href="//www.native-instruments.com/collections/bass" target="_blank" rel="noopener noreferrer">Bass plugins</a></li>
+        <li><a href="//www.native-instruments.com/collections/synthesizers" target="_blank" rel="noopener noreferrer">VST synths</a></li>
+        <li><a href="//www.native-instruments.com/collections/guitar" target="_blank" rel="noopener noreferrer">VST guitars</a></li>
+        <li><a href="//www.native-instruments.com/collections/drums" target="_blank" rel="noopener noreferrer">VST drums</a></li>
+        <li><a href="//www.native-instruments.com/pages/360-subscription" target="_blank" rel="noopener noreferrer">Plugin subscription</a></li>
+      </ul>
+    </div>
+
+    <!-- Col 4: Learn more about -->
+    <div class="ni-footer-col">
+      <p class="ni-footer-col-title">Learn more about</p>
+      <ul>
+        <li><a href="https://blog.native-instruments.com/best-free-kontakt-instruments/" target="_blank" rel="noopener noreferrer">Free Kontakt instruments</a></li>
+        <li><a href="https://blog.native-instruments.com/category/interviews/" target="_blank" rel="noopener noreferrer">Artist interviews</a></li>
+        <li><a href="https://blog.native-instruments.com/how-to-make-a-beat/" target="_blank" rel="noopener noreferrer">Beat making</a></li>
+        <li><a href="https://blog.native-instruments.com/how-to-produce-music/" target="_blank" rel="noopener noreferrer">Music production</a></li>
+        <li><a href="https://blog.native-instruments.com/dj-equipment/" target="_blank" rel="noopener noreferrer">Beginner DJ equipment</a></li>
+        <li><a href="https://blog.native-instruments.com/guide-to-midi-and-midi-controllers/" target="_blank" rel="noopener noreferrer">MIDI &amp; MIDI controllers</a></li>
+        <li><a href="https://blog.native-instruments.com/what-is-a-daw-in-music-digital-audio-workstations-explained/" target="_blank" rel="noopener noreferrer">Digital audio workstations</a></li>
+        <li><a href="https://blog.native-instruments.com/sound-design/" target="_blank" rel="noopener noreferrer">Sound design</a></li>
+        <li><a href="https://blog.native-instruments.com/song-structure-101/" target="_blank" rel="noopener noreferrer">Song structure</a></li>
+        <li><a href="https://blog.native-instruments.com/common-chord-progressions/" target="_blank" rel="noopener noreferrer">Chord progressions</a></li>
+      </ul>
+    </div>
+
+    <!-- Col 5: Social -->
+    <div class="ni-footer-col">
+      <p class="ni-footer-col-title">Social</p>
+      <ul class="ni-social-links">
+        <li>
+          <a href="https://www.facebook.com/NativeInstruments" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <img class="ni-social-icon" width="24" height="24" alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+PGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iMTAiIGZpbGw9IiNmZmZmZmYiLz48cGF0aCBmaWxsPSIjMTYxODE5IiBkPSJNMTggMTAuMDQ5QzE4IDUuNjAzIDE0LjQxOSAyIDEwIDJjLTQuNDE5IDAtOCAzLjYwMy04IDguMDQ5QzIgMTQuMDY3IDQuOTI1IDE3LjM5NiA4Ljc1IDE4di01LjYyNEg2LjcxOXYtMi4zMjhoMi4wM1Y4LjI3NWMwLTIuMDE3IDEuMTk1LTMuMTMyIDMuMDIzLTMuMTMyLjg3NCAwIDEuNzkuMTU4IDEuNzkuMTU4djEuOThoLTEuMDA5Yy0uOTk0IDAtMS4zMDMuNjIxLTEuMzAzIDEuMjU4djEuNTFoMi4yMTlsLS4zNTUgMi4zMjZIMTEuMjVWMThjMy44MjUtLjYwNCA2Ljc1LTMuOTMzIDYuNzUtNy45NTFaIi8+PC9zdmc+Cg==" />
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/nativeinstruments" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <img class="ni-social-icon" width="24" height="24" alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+PGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iMTAiIGZpbGw9IiNmZmZmZmYiLz48cGF0aCBmaWxsPSIjMTYxODE5IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEzLjIzIDMuNDkyYy0uODQtLjAzNy0xLjA5Ni0uMDQ2LTMuMjMtLjA0Ni0yLjE0NCAwLTIuMzkuMDEtMy4yMzguMDU1LS43NzYuMDI3LTEuMTk1LjE2NC0xLjQ4Ny4yNzNhMi40MyAyLjQzIDAgMCAwLS45MTIuNTkzIDIuNDg2IDIuNDg2IDAgMCAwLS42MDIuOTIyYy0uMTEuMjgyLS4yMzguNzAyLS4yNzQgMS40ODYtLjA0Ni44NC0uMDQ2IDEuMDk1LS4wNDYgMy4yMyAwIDIuMTM0LjAxIDIuMzkuMDQ2IDMuMjI5LjAwNC41MS4wOTcgMS4wMTYuMjc0IDEuNDk1LjE0NS4zNjUuMzE5LjYzOS42MDIuOTEzLjI4Mi4yODIuNTM4LjQ1Ni45Mi42MDIuNDc0LjE3Ni45NzQuMjY4IDEuNDc5LjI3My44NDguMDQ2IDEuMTAzLjA0NiAzLjIzOC4wNDYgMi4xMzQgMCAyLjM5LS4wMSAzLjIzLS4wNDYuNzg0LS4wMzYgMS4yMDMtLjE2NCAxLjQ4Ni0uMjczLjM3NC0uMTQ2LjY0OC0uMzI5LjkyMS0uNjAyLjI4My0uMjgzLjQ0Ny0uNTQ4LjYwMi0uOTIyLjE3Ny0uNDc2LjI3LS45NzkuMjc0LTEuNDg2LjAzNy0uODQuMDQ2LTEuMDk1LjA0Ni0zLjIzIDAtMi4xMzQtLjAxLTIuMzktLjA1NS0zLjIyOS0uMDI3LS43ODQtLjE2NC0xLjIwNC0uMjc0LTEuNDk1YTIuNDMgMi40MyAwIDAgMC0uNTkzLS45MTMgMi42MDQgMi42MDQgMCAwIDAtLjkyLS42MDJjLS4yODQtLjExLS43MDMtLjIzNy0xLjQ4OC0uMjczWk02LjY5NyAyLjA1Yy44NTctLjAzNiAxLjEzMS0uMDQ1IDMuMzAyLS4wNDUgMS4xLS4wMTQgMi4yMDIuMDAxIDMuMzAyLjA0NS42NjQuMDE0IDEuMzIxLjE0IDEuOTQzLjM3NGEzLjk2OCAzLjk2OCAwIDAgMSAxLjQxNC45MjJjLjQxLjM5Ny43MjguODguOTMgMS40MTQuMjMuNjIyLjM1NCAxLjI3OS4zNjUgMS45NDJDMTggNy41NiAxOCA3LjgyNCAxOCAxMC4wMDVjMCAyLjE3LS4wMSAyLjQ0NC0uMDQ2IDMuMjkyLS4wMzYuODU4LS4xNzMgMS40NDItLjM3NCAxLjk0My0uMi41My0uNDc0Ljk3Ni0uOTIgMS40MjNhMy44OTYgMy44OTYgMCAwIDEtMS40MTUuOTIyYy0uNTEuMTkxLTEuMDk1LjMzNy0xLjk0My4zNzQtLjg1Ny4wMzYtMS4xMjIuMDQ1LTMuMzAyLjA0NS0yLjE3MSAwLTIuNDQ1LS4wMDktMy4zMDItLjA1NS0uODQ5LS4wMjctMS40MzItLjE2NC0xLjk0My0uMzY0YTQuMTUyIDQuMTUyIDAgMCAxLTEuNDE0LS45MjIgNC4xMjggNC4xMjggMCAwIDEtLjkzLTEuNDIzYy0uMTgzLS41MS0uMzI5LTEuMDg1LS4zNjUtMS45NDNDMi4wMDkgMTIuNDUgMiAxMi4xNjcgMiAxMC4wMDRjMC0yLjE2MSAwLTIuNDM1LjA1NS0zLjMwMi4wMjctLjg0OC4xNjQtMS40MzIuMzY1LTEuOTQyYTQuNDQgNC40NCAwIDAgMSAuOTItMS40MTQgNC4xOCA0LjE4IDAgMCAxIDEuNDE1LS45M2MuNTEtLjE4MyAxLjA5NC0uMzMgMS45NDMtLjM2NlptLjQyNyA0LjgwNmE0LjEwNSA0LjEwNSAwIDEgMSA1LjgwNSA1LjgwNSA0LjEwNSA0LjEwNSAwIDAgMS01LjgwNS01LjgwNVptMS44ODIgNS4zNzFhMi42NjggMi42NjggMCAxIDAgMi4wNDItNC45MyAyLjY2OCAyLjY2OCAwIDAgMC0yLjA0MiA0LjkzWm01LjkyMi01Ljk0MmEuOTU4Ljk1OCAwIDEgMS0xLjM1NS0xLjM1NS45NTguOTU4IDAgMCAxIDEuMzU1IDEuMzU1WiIvPjwvc3ZnPgo=" />
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/user/NativeInstruments/featured" target="_blank" rel="noopener noreferrer" aria-label="Youtube">
+            <img class="ni-social-icon" width="24" height="24" alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+PGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iMTAiIGZpbGw9IiNmZmZmZmYiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyLjAwMDAgMi42MTg0KSBzY2FsZSgwLjg2NDkpIj48cGF0aCBmaWxsPSIjMTYxODE5IiBkPSJNMTguMTYgNS44N2MuMzQgMS4zMDkuMzQgNC4wOC4zNCA0LjA4czAgMi43NzEtLjM0IDQuMDhhMi4xMjUgMi4xMjUgMCAwIDEtMS41MyAxLjUzYy0xLjMwOS4zNC02LjYzLjM0LTYuNjMuMzRzLTUuMzIxIDAtNi42My0uMzRhMi4xMjUgMi4xMjUgMCAwIDEtMS41My0xLjUzYy0uMzQtMS4zMDktLjM0LTQuMDgtLjM0LTQuMDhzMC0yLjc3MS4zNC00LjA4YTIuMTczIDIuMTczIDAgMCAxIDEuNTMtMS41M0M0LjY3OSA0IDEwIDQgMTAgNHM1LjMyMSAwIDYuNjMuMzRhMi4xNzMgMi4xNzMgMCAwIDEgMS41MyAxLjUzWk04LjMgMTIuNWw0LjQyLTIuNTVMOC4zIDcuNHY1LjFaIi8+PC9nPjwvc3ZnPgo=" />
+          </a>
+        </li>
+        <li>
+          <a href="https://soundcloud.com/nativeinstruments" target="_blank" rel="noopener noreferrer" aria-label="Soundcloud">
+            <img class="ni-social-icon" width="24" height="24" alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAyMCI+PGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iMTAiIGZpbGw9IiNmZmZmZmYiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNS44NjkzIC0xLjc1NTgpIHNjYWxlKDEuMzc1OCkiPjxwYXRoIGZpbGw9IiMxNjE4MTkiIGQ9Ik02LjUgOC4yYy4zLTEuOTUgMi4wMS0zLjQgNC4wMi0zLjQgMS42NCAwIDMuMDcuOTYgMy43NCAyLjM3LjE2LS4wNC4zMy0uMDYuNS0uMDYgMS40MyAwIDIuNTkgMS4xNiAyLjU5IDIuNTkgMCAxLjQzLTEuMTYgMi41OS0yLjU5IDIuNTlINy40OGMtLjk3IDAtMS43Ni0uNzktMS43Ni0xLjc2IDAtLjg1LjYxLTEuNTYgMS40My0xLjczLjEtLjAyLjIxLS4wMy4zMS0uMDMuMzQgMCAuNjYuMTEuOTEuMy0uMDEtLjEyLS4wMi0uMjQtLjAyLS4zNiAwLS4yLjAyLS40LjA1LS41OVoiLz48L2c+PC9zdmc+Cg==" />
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ── Secondary bar: copyright | legal ── -->
+  <div class="ni-footer-secondary">
+    <div class="ni-footer-secondary-inner">
+
+      <span>&copy; <script>document.write(new Date().getFullYear());</script> <a href="https://support.native-instruments.com/support/home" target="_blank" rel="noopener noreferrer">inMusic NI GmbH</a></span>
+
+      <span>
+        <a href="//www.native-instruments.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+        &nbsp;|&nbsp;
+        <a href="//www.native-instruments.com/policies/contact-information" target="_blank" rel="noopener noreferrer">Contact Information</a>
+        &nbsp;|&nbsp;
+        <a href="//www.native-instruments.com/policies/terms-of-service" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+      </span>
+
+    </div>
+  </div>
+
+</footer>
+
+
+  <img src='/support/solutions/articles/69000880031-native-instruments-switching-your-controller-to-midi-mode/hit' class='d-none' alt='Article views count' aria-hidden='true'/>
+
+  <div class="modal-backdrop fade d-none" id="overlay"></div>
+
+  
+
+  <script src="/assets/cdn/portal/scripts/bottom.js" nonce="MneBNSAaFG5p6sB4WVk94w=="></script>
+
+  <script src="/assets/cdn/portal/scripts/locales/en.js" nonce="MneBNSAaFG5p6sB4WVk94w=="></script>
+
+
+    <script src="/assets/cdn/portal/scripts/marketplace.js" nonce="MneBNSAaFG5p6sB4WVk94w==" async></script>
+
+    <script src="/assets/cdn/portal/scripts/single-solution.js" nonce="MneBNSAaFG5p6sB4WVk94w=="></script>
+
+  <script src="/assets/cdn/portal/scripts/integrations.js"  nonce="MneBNSAaFG5p6sB4WVk94w==" async></script>
+  
+
+
+
+
+
+</body>
+
+</html>

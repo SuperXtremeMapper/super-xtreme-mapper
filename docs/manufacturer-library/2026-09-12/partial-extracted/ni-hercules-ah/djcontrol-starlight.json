@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Hercules",
+  "model": "DJControl Starlight",
+  "status": "partial-extraction",
+  "coverage_state": "documentation-only",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "local_file": "ni-hercules-ah/djcontrolstarlight/support.html",
+      "url": "https://support.hercules.com/en/product/djcontrolstarlight-en/",
+      "sha256": "2b3122e6f14d4a740c734d07e4696fec48ccbc4544cbce6e24788fad98657a48",
+      "id": "s1"
+    },
+    {
+      "local_file": "ni-hercules-ah/djcontrolstarlight/manual.pdf",
+      "url": "https://ts.hercules.com/download/sound/manuals/DJC_Starlight/How_To_Use_Hercules_DJControl_Starlight_-_En_Fr_De_Nl_It_Es_Pr_Ru_Cz_Tr_Pl_Zh_Ko_Ar.pdf",
+      "sha256": "5f88cd21b8602c5b6c19d92cdfc4bc75eb60bd3ca722340f525c226584704394",
+      "id": "s2"
+    }
+  ],
+  "scope": "Documentation-only extraction of the archived owner manual and support material. No model-specific numeric MIDI addresses, channels, value encodings or LED receive assignments are established; native/software control descriptions are not wire-message evidence.",
+  "bindings": [],
+  "setup_notes": [
+    "Connect the controller to the computer using its USB cable. Connect speakers to the master/speaker outputs and headphones to the headphone output as described in the installation section.",
+    "The archived getting-started guide uses Serato DJ Lite; install that software for its documented workflow."
+  ],
+  "missing_information": [
+    "Model-specific control-to-Note/CC addresses and MIDI channel assignments.",
+    "Shift, pad-mode and deck-layer wire-message differences.",
+    "Jog-wheel/encoder direction, resolution and acceleration encoding; button press/release values.",
+    "LED, pad-color and meter receive addresses and value semantics.",
+    "Any required generic MIDI mode or firmware-specific protocol setup beyond the documented software workflow."
+  ],
+  "issues": [
+    {
+      "id": "setup-provenance",
+      "severity": "scope",
+      "description": "The setup notes describe the owner-manual connection workflow; they do not establish a generic MIDI mode or numeric mapping.",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 3; Install the DJ equipment"
+        }
+      ],
+      "excluded_bindings": []
+    },
+    {
+      "id": "no-wire-address-chart",
+      "severity": "scope",
+      "description": "The retained control descriptions identify software actions and pad modes, not per-control MIDI status/address/value tables. No Note/CC bindings can be normalized from these descriptions.",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF pages 2–6; English hardware/control and operating descriptions"
+        }
+      ],
+      "excluded_bindings": [
+        "All input controls and all LED/output controls pending manufacturer wire-address documentation"
+      ]
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "s1",
+      "file": "ni-hercules-ah/raw/djcontrol-starlight-s1.txt",
+      "extraction_method": "Complete archived HTML-to-text extraction copied; unpaginated document marker; original HTML remains authoritative"
+    },
+    {
+      "source_id": "s2",
+      "file": "ni-hercules-ah/raw/djcontrol-starlight-s2.txt",
+      "extraction_method": "pdftotext -layout; complete PDF retained as page-addressed text; no OCR or inferred labels"
+    }
+  ]
+}

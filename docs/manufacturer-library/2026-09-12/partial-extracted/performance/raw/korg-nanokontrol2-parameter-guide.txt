@@ -1,0 +1,509 @@
+--- PDF PAGE 1 ---
+
+--- PDF PAGE 2 ---
+               Table of Contents
+
+
+Introduction .................................................................................................................................... 3
+   Preparations .............................................................................................................................................................................................................. 3
+The nanoKONTROL2’s parameters .............................................................................................. 4
+   Overall settings for the nanoKONTROL2 ......................................................................................................................................................... 4
+Settings in CC mode...................................................................................................................... 5
+   Control group ........................................................................................................................................................................................................... 5
+   Knobs ........................................................................................................................................................................................................................... 6
+   Sliders .......................................................................................................................................................................................................................... 6
+   Solo buttons/Mute buttons/Rec buttons........................................................................................................................................................ 7
+   Transport buttons/Function buttons ............................................................................................................................................................... 8
+  LED mode ................................................................................................................................................................................................................... 9
+Operation in DAW control mode ................................................................................................. 10
+   Function button operations ..............................................................................................................................................................................10
+   Function button settings ....................................................................................................................................................................................12
+Restoring the factory settings .................................................................................................... 13
+Troubleshooting ........................................................................................................................... 14
+
+
+
+
+
+- Mac, Mac logo and Mac OS are trademarks of Apple Inc., registered in the U.S. and other countries.
+
+- Windows XP, Windows Vista and Windows 7 are registered trademarks of Microsoft Corporation in the U.S. and other countries.
+
+- All product names and company names are the trademarks or registered trademarks of their respective owners.
+
+- Specifications and appearance are subject to change without notice for improvement.
+--- PDF PAGE 3 ---
+                                                                                                        Introduction
+
+                      Introduction
+
+
+This nanoKONTROL2 parameter guide explains the parameters that can be edited on the nanoKONTROL2.
+
+Read this guide when you want to adjust or refine the settings.
+
+Preparations
+
+You’ll use the KORG KONTROL Editor software to edit the nanoKONTROL2’s parameters.
+
+Please download the latest version of the KORG KONTROL Editor from the KORG website (http://www.korg.co.jp/English/Distributors/ or http://www.korg.com/) and install it.
+
+           For details on how to install and use the KORG KONTROL Editor software, please refer to the KORG KONTROL Editor owner’s manual.
+
+
+
+
+
+                                                            3
+--- PDF PAGE 4 ---
+                                                                         The nanoKONTROL2’s parameters
+
+          The nanoKONTROL2’s parameters
+
+
+Overall settings for the nanoKONTROL2
+
+Global MIDI Channel [1...16]
+
+This specifies the MIDI channel where the nanoKONTROL2 will transmit MIDI messages. This should be set to match the MIDI channel of the application that you’re
+
+controlling.
+
+
+Control Mode [CC/Cubase/Digital Performer/Live/ProTools/SONAR]
+
+The nanoKONTROL2 has operating modes that are specifically designed for controlling popular DAW programs, as well as a CC mode that lets you assign a control change
+
+message to each controller. Choose the setting that’s appropriate for the software that you’re using. For details on how to use each operating mode, please refer to the
+
+“Operating modes” section in the nanoKONTROL2 owner’s manual.
+
+
+ CC                Each of the nanoKONTROL2’s controllers will transmit the control change message that you’ve assigned.
+
+  Cubase            The nanoKONTROL2 will function with settings suitable for controlling Cubase.
+
+  Digital Performer    The nanoKONTROL2 will function with settings suitable for controlling Digital Performer.
+
+  Live              The nanoKONTROL2 will function with settings suitable for controlling Live.
+
+  ProTools           The nanoKONTROL2 will function with settings suitable for controlling ProTools.
+
+ SONAR            The nanoKONTROL2 will function with settings suitable for controlling SONAR.
+
+                If you want to use the nanoKONTROL2 with GarageBand/Logic, download the nanoKONTROL2 Control Surface plug-in for GarageBand/Logic from the
+
+       KORG website, and adjust the settings as directed in the accompanying documentation (http://www.korg.co.jp/English/Distributors/ or http://www.korg.com/).
+
+
+
+
+
+                                                            4
+--- PDF PAGE 5 ---
+                                                                                                     Settings in CC mode
+
+                   Settings in CC mode
+
+
+Here’s how to adjust settings if you’ve chosen “CC” as the operating mode.
+
+Control group
+
+Each group containing a knob, slider, and three buttons (Solo, Mute, Rec) is collectively called a “control group.”
+
+The nanoKONTROL2 has eight control groups.
+
+
+
+
+
+Group MIDI Channel [1...16/Global]
+
+For each control group, this specifies the MIDI channel of the MIDI messages that are transmitted by that control group. This should be set to match the MIDI channel of the
+
+application that you’re controlling. If you choose “Global,” messages will be transmitted on the MIDI channel specified by the Global MIDI Channel setting (p.4).
+
+
+
+
+
+                                                            5
+--- PDF PAGE 6 ---
+                                                                                                     Settings in CC mode
+
+Knobs
+
+                   A control change message will be transmitted when you use a knob.
+
+                         You can enable or disable each knob, specify its control change number, and specify the values that will be transmitted when the knob is
+
+                             turned to the far left or far right.
+
+                Knob Enable [Disable/Enable]
+
+                              This enables or disables the knob.
+
+                                           If you choose “Disable,” no MIDI message will be transmitted when you use the knob.
+
+                 CC Number [0...127]
+
+                              This specifies the control change number of the control change message that will be transmitted.
+
+                      Left Value [0...127]
+
+                              This specifies the value of the control change message that will be transmitted when the knob is turned to the far left.
+
+                    Right Value [0...127]
+
+                              This specifies the value of the control change message that will be transmitted when the knob is turned to the far right.
+
+Sliders
+
+                   A control change message will be transmitted when you use a slider.
+
+                          You can enable or disable each slider, specify its control change number, and specify the values that will be transmitted when the slider is
+
+                        moved to the top or bottom.
+
+                       Slider Enable [Disable/Enable]
+
+                               This enables or disables the slider.
+
+                                            If you choose “Disable,” no MIDI message will be transmitted when you use the slider.
+
+                 CC Number [0...127]
+
+                               This specifies the control change number of the control change message that will be transmitted.
+
+
+                                                            6
+--- PDF PAGE 7 ---
+                                                                                                     Settings in CC mode
+
+                  Lower Value [0...127]
+
+                              This specifies the value of the control change message that will be transmitted when the slider is moved to the bottom.
+
+                 Upper Value [0...127]
+
+                              This specifies the value of the control change message that will be transmitted when the slider is moved to the top.
+
+Solo buttons/Mute buttons/Rec buttons
+
+                      When you use these buttons, a control change message or a note message will be transmitted, according to the Assign Type that you’ve
+
+                                  specified.
+
+                         You can specify the message that’s assigned to each button, how the button will function, the control change number or note number, and the
+
+                              values that are transmitted when the button is turned on or off.
+
+                    Assign Type [No Assign/Control Change/Note]
+
+                              This specifies the type of message that’s assigned to each button. You can assign nothing, a control change message, or a note message.
+
+                   Button Behavior [Momentary/Toggle]
+
+                              This specifies how the button will operate.
+                    Momentary   A message with the On Value or Note On will be transmitted when you press the button, and a message with the Off
+
+                                             Value or Note Off will be transmitted when you release the button.
+                       Toggle      A message with the On Value or Note On and a message with the Off Value or Note Off will be transmitted alternately
+
+                                             each time you press the button.
+
+                   CC/Note Number [0...127/C-1...G9]
+
+                              This specifies the control change number of the control change message or the note number of the note message that is transmitted.
+
+                    Off Value [0...127]
+
+                              This specifies the value of the message that will be transmitted when the button turns off.
+
+                                         This can be set only if Assign Type is “Control Change.”
+
+               On Value [0...127]
+
+                              This specifies the value of the message that will be transmitted when the button turns on.
+
+
+                                                            7
+--- PDF PAGE 8 ---
+                                                                                                     Settings in CC mode
+
+
+                                                           If the Assign Type is “Note,” the note-on message will be transmitted with the On Value as the velocity. If the On Value is “0,” the
+
+                                             velocity will be transmitted as “1”.
+
+Transport buttons/Function buttons
+
+                         By using the transport buttons or function buttons, you can transmit control change messages or note messages, depending on the assign
+
+                             type that you've chosen. For each of these eleven buttons, you can specify a message to assign, how the button will function, the control
+
+                            change number, the note number, and the values that are transmitted when the button is turned on or off.
+
+                    Transport Button MIDI Channel [1...16/Global]
+
+                              This specifies the MIDI channel of the MIDI messages that are transmitted by these buttons. This should be set to match the MIDI channel
+
+                                 of the application that you're controlling. If you choose “Global,” messages will be transmitted on the MIDI channel specified by the Global
+
+                       MIDI Channel setting (p.4).
+
+                                   The Transport Button MIDI Channel setting is common to all eleven of these buttons.
+
+                    Assign Type [No Assign/Control Change/Note]
+
+                              This specifies the type of message that’s assigned to each button. You can assign nothing, a control change message, or a note message.
+
+                   Button Behavior [Momentary/Toggle]
+
+                              This specifies how the button will function.
+                    Momentary   A message with the On Value or Note On will be transmitted when you press the button, and a message with the Off
+
+                                             Value or Note Off will be transmitted when you release the button.
+                       Toggle      A message with the On Value or Note On and a message with the Off Value or Note Off will be transmitted alternately
+
+                                             each time you press the button.
+
+                   CC/Note Number [0...127/C-1...G9]
+
+                              This specifies the control change number of the control change message or the note number of the note message that is transmitted.
+
+                     Off Value [0...127]
+
+                              This specifies the value of the message that will be transmitted when the button turns off.
+
+                                         This can only be set if the Assign Type is “Control Change.”
+
+                                                            8
+--- PDF PAGE 9 ---
+                                                                                                     Settings in CC mode
+
+               On Value [0...127]
+
+                              This specifies the value of the message that will be transmitted when the button turns on.
+
+                                                           If the Assign Type is “Note,” the note-on message will be transmitted with the On Value as the velocity. If the On Value is “0,” the
+
+                                             velocity will be transmitted as “1”.
+
+LED mode
+
+This lets you specify how the LEDs of the transport buttons and the Solo button, Mute button, and Rec button of the control groups will light-up.
+
+This setting specifies how the lit/unlit status of the LEDs will be controlled.
+
+LED Mode [Internal/External]
+
+This specifies how the button’s LED will be controlled.
+Internal       The LED will be lit or unlit according to the button’s on/off status.
+External       The LED will light-up or go dark when a message with the control change number or note number that’s assigned to that button is received from the
+
+                 computer. The LED will light-up when an On Value or Note On message is received, and will go dark when an Off Value or Note Off message is received.
+
+
+
+
+
+                                                            9
+--- PDF PAGE 10 ---
+                                                                               Operation in DAW control mode
+
+            Operation in DAW control mode
+
+
+Here we will explain how the nanoKONTROL2 functions when you’ve chosen one of the DAW control modes (i.e., a mode other than “CC”).
+
+For details on how to use the nanoKONTROL2 in each operating mode, plese refer to the “Operating modes” section in the nanoKONTROL2 owner’s manual, and to the
+
+owner’s manual for the DAW software that you’re using.
+
+Function button operations
+
+The operation of the function buttons will differ depending on your DAW software.
+
+Here we'll explain how the function buttons work for each DAW.
+
+        We cannot guarantee functionality for all versions of the DAW software.
+
+Cubase
+
+1. After connecting the nanoKONTROL2, choose the Cubase menu item “Devices”➔”Device Settings.”
+
+2. In the screen, click “Set Up MIDI Ports.”
+
+3. For “nanoKONTROL2 SLIDER/KNOB” and “nanoKONTROL2 CTRL,” clear the “Include in All MIDI Inputs” check box.
+
+ PREV TRACK
+                       Switch the tracks that are controlled by the control groups to the previous or next group of eight tracks.
+  NEXT TRACK
+
+  SET MARKER       Assigns a marker.
+
+ PREV MARKER
+                   Move to the previous or next marker.
+  NEXT MARKER
+
+Digital Performer
+
+ PREV TRACK
+                       Switch the tracks that are controlled by the control groups to the previous or next group of eight tracks.
+  NEXT TRACK
+
+  SET MARKER       Nothing will occur when you press this button.
+
+ PREV MARKER
+                   Move to the previous or next marker.
+  NEXT MARKER
+
+
+                                                           10
+--- PDF PAGE 11 ---
+                                                                               Operation in DAW control mode
+
+
+        When using Digital Performer, the CYCLE transport button will function as the Memory Cycle on/off. The CYCLE button will not light-up even if you turn the
+
+        Memory Cycle on.
+
+Live
+
+ PREV TRACK
+                       Switch the tracks that are controlled by the control groups to the previous or next group of eight tracks.
+  NEXT TRACK
+
+  SET MARKER       Assigns a marker.
+
+ PREV MARKER
+                   Move to the previous or next marker.
+  NEXT MARKER
+
+ProTools
+
+ PREV TRACK
+                       Switch the tracks that are controlled by the control groups to the previous or next group of eight tracks.
+  NEXT TRACK
+
+  SET MARKER       Assigns a marker.
+
+ PREV MARKER
+                   Move to the previous or next marker.
+  NEXT MARKER
+
+SONAR
+
+ PREV TRACK
+                       Switch the tracks that are controlled by the control groups to the previous or next group of eight tracks.
+  NEXT TRACK
+
+  SET MARKER       Nothing will occur when you press this button.
+
+ PREV MARKER
+                   Move to the previous or next marker.
+  NEXT MARKER
+
+
+
+
+
+                                                           11
+--- PDF PAGE 12 ---
+                                                                               Operation in DAW control mode
+
+Function button settings
+
+You can specify how the function buttons will work when you’ve chosen “Cubase,” “Digital Performer,” “Live,” or “SONAR” as the operating mode.
+
+         You can’t adjust these settings for “ProTools” mode.
+
+DAW Function [Default/No Assign/Send/Pan/Prev Bank/Next Bank/Prev Channel/Next Channel/Flip]
+
+You can choose one of the following tasks for each function button.
+
+  Default            The assigned message will be transmitted (“Function button operations,” p.10).
+
+ No Assign         No message will be transmitted when you use the button.
+
+                 When you press a button that’s assigned to “Send,” the knobs will control the Send parameter.
+ Send
+                       Normally you’ll use this in conjunction with another button assigned to “Pan.”
+
+                 When you press a button that’s assigned to “Pan,” the knobs will control the Pan parameter.
+ Pan
+                       Normally you’ll use this in conjunction with another button assigned to “Send.”
+
+                 When you press a button that’s assigned to “Prev Bank” or “Next Bank,” the tracks controlled by the control groups will be switched to the previous
+  Prev Bank
+                         or next group of eight tracks.
+  Next Bank
+                       Normally you’ll assign one button to “Prev Bank" and another button to “Next Bank.”
+
+                 When you press a button that’s assigned to “Prev Channel” or “Next Channel,” the tracks that are controlled by the control groups will be switched
+  Prev Channel
+                             in steps of one track.
+  Next Channel
+                       Normally you’ll assign one button to “Prev Channel” and another button to “Next Channel.”
+
+  Flip             When you press a button that’s assigned to “Flip,” the function of the knobs and the sliders will be exchanged.
+
+          Depending on your DAW software, some of these operations might not be supported, or they might behave differently.
+
+
+
+
+
+                                                           12
+--- PDF PAGE 13 ---
+                                                                                      Restoring the factory settings
+
+              Restoring the factory settings
+
+
+By turning on the power while holding down the PREV TRACK button, NEXT TRACK button, and CYCLE button, you can return the nanoKONTROL2’s settings to their
+
+original factory-set default state. The transport buttons except the CYCLE button will then blink.
+
+
+
+
+
+          The process of restoring the factory settings will take a few seconds after you turn on the power. Never turn off the power during this time.
+
+
+
+
+
+                                                           13
+--- PDF PAGE 14 ---
+                                                                                                   Troubleshooting
+
+                   Troubleshooting
+
+
+• Your application does not respond to MIDI messages sent from the nanoKONTROL2
+
+    - Make sure that the MIDI channel of the messages that are transmitted by the nanoKONTROL2 matches the MIDI channel of your application.
+
+    - When using the nanoKONTROL2 with DAW software, you’ll need to set the DAW to use the nanoKONTROL2. Select the appropriate settings as described in the
+
+    nanoKONTROL2 owner’s manual section “Operating mode” and in the documentation for your DAW software.
+
+• Buttons do not function as indicated on the nanoKONTROL2 itself
+
+    - The application that you’re using might not support some of the functions, or the operations might be different.
+
+    - Make sure that the nanoKONTROL2’s “Operating mode” is set appropriately for the application that you’re using.
+
+• LED does not light-up when you use a button that has an LED
+
+    - Check the Control Mode (p.4) and LED Mode (p.9) settings.
+
+
+
+
+
+                                                           14

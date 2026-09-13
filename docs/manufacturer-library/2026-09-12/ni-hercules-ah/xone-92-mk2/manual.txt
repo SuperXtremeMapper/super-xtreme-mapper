@@ -1,0 +1,1251 @@
+       ALLEN&HEATH                    ®
+
+
+
+
+              USER GUIDE
+
+
+
+
+ALLEN&HEATH         1      XONE:92 Mk2 User Guide
+                             Limited One Year Manufacturer’s Warranty
+
+Allen & Heath warrants the Allen & Heath - branded hardware product and accessories contained in the original
+packaging ("Allen & Heath Product”) against defects in materials and workmanship when used in accordance
+with Allen & Heath's user manuals, technical specifications and other Allen & Heath product published
+guidelines for a period of ONE (1) YEAR from the date of original purchase by the end-user purchaser
+("Warranty Period").
+
+This warranty does not apply to any non-Allen & Heath branded hardware products or any software, even if
+packaged or sold with Allen & Heath hardware.
+Please refer to the licensing agreement accompanying the software for details of your rights with respect to the
+use of software (“EULA”).
+Details of the EULA, warranty policy and other useful information can be found on the Allen & Heath website:
+www.allen-heath.com/legal.
+
+Repair or replacement under the terms of the warranty does not provide right to extension or renewal of the
+warranty period. Repair or direct replacement of the product under the terms of this warranty may be fulfilled
+with functionally equivalent service exchange units.
+This warranty is not transferable. This warranty does not cover fader wear and tear.
+This warranty will be the purchaser’s sole and exclusive remedy and neither Allen & Heath nor its approved
+service centres shall be liable for any incidental or consequential damages or breach of any express or implied
+warranty of this product.
+Conditions of Warranty
+The equipment has not been subject to misuse either intended or accidental, neglect, or alteration other than as
+described in the User Guide or Service Manual, or approved by Allen & Heath.
+Any necessary adjustment, alteration or repair has been carried out by an authorised Allen & Heath distributor
+or agent.
+The defective unit is to be returned carriage prepaid to the place of purchase, an authorised Allen & Heath
+distributor or agent with proof of purchase. Please discuss this with the distributor or the agent before shipping.
+If the unit is to be repaired in a different country to that of its purchase the repair may take longer than normal,
+whilst the warranty is confirmed and parts are sourced. Units returned should be packed in the original carton
+to avoid transit damage.
+In certain territories the terms may vary. Check with your Allen & Heath distributor or agent for any additional
+warranty information which may apply. If further assistance is required please contact Allen & Heath Ltd.
+DISCLAIMER: Allen & Heath shall not be liable for the loss of any saved/stored data in products that are either
+repaired or replaced.
+
+
+             XONE:92 Mk2 complies with the European Electromagnetic Compatibility directives 2014/30/EU
+             and the European Low Voltage directives 2014/35/EU.
+             Any changes or modifications to the equipment not approved by Allen & Heath could void the
+             compliance of the product and therefore the users authority to operate it.
+
+                                        XONE:92 Mk2 User Guide. Issue 1
+                          Copyright © 2024 Allen & Heath Limited. All rights reserved
+                Allen & Heath Limited Kernick Industrial Estate, Penryn, Cornwall, TR10 9LU, UK
+
+                                           http://www.allen-heath.com
+
+    ALLEN&HEATH                                              2                      XONE:92 Mk2 User Guide
+Packed Items
+
+
+Check that you have received the following:
+                                              XONE:92 Mk2 mixer
+
+
+
+
+                          Spare knobs                                   Dual ground adaptor
+
+
+
+
+                                                     QR Card
+                                               Follow the QR link to
+            Mains Lead                    information about the mixer         Safety and Regulatory Information
+     Check the correct AC mains
+          plug is included
+
+
+
+
+      ALLEN&HEATH                                          3                      XONE:92 Mk2 User Guide
+Introduction
+
+This user guide presents a quick reference to the XONE:92 Mk2. We recommend that you read this fully before
+starting. Included is information on connecting and operating the console, panel drawings, system block diagram
+and technical specification. For further information on the basic principles of audio system engineering, please refer
+to one of the specialist publications available online, from bookshops and audio equipment suppliers.
+
+Whilst we believe the information in this guide to be reliable, we do not assume responsibility for inaccuracies.
+We are able to offer further product support through our world-wide network of approved distribution partners
+and their service agents.
+You can also access our website for information on our product range and assistance with your technical queries.
+To help us provide the most efficient service please keep a record of the date of sale, proof of purchase mixer serial
+number, to be quoted in any communication regarding this product.
+Check out our website for information on the company and its pedigree, our full product range and our design
+philosophy. We also have a section dedicated to the XONE Series models.
+                                                              https//:allen-heath.com
+
+
+
+
+Contents
+
+
+
+      Warranty .................................................... 2            Filter Type Select ....................................... 19
+
+      Packed Items ............................................... 3             Master Mix and Monitor System .............. 21
+
+      Introduction and Contents .......................... 4                     MIDI Control of External Devices .............. 23
+
+      Connecting Mains Power ............................ 5                      MIDI Control Codes ................................... 24
+
+      Cables and Connectors ................................ 6                   MIDI Implementation Chart ...................... 25
+
+      Panel Drawings ............................................ 7              Block Diagram............................................ 26
+
+      Rear Panel Overview ................................... 8                  Specifications............................................. 27
+
+      MIC/RTN Input Channels ........................... 10                      Weights & Dimensions .............................. 29
+
+      PHONO/LINE Input Channels .................... 13                          Rack Ears.................................................... 31
+
+      Crossfader and VCF ................................... 16                  Operating Levels ........................................ 32
+
+      The Xone:VCF Filters ................................. 18                  Installer Link Options................................. 33
+
+      LFO Modulation ......................................... 19
+
+
+
+
+      ALLEN&HEATH                                                            4                              XONE:92 Mk2 User Guide
+Connecting Mains Power
+
+Read the SAFETY INSTRUCTIONS printed at the front of this User Guide and on the rear panel. Check that the
+correct mains lead with moulded plug has been supplied with your console. The power supply accepts mains
+voltages within the range 100-240V without changing any fuses or settings.
+It is standard practice to turn connected power amplifiers down or off before switching the console on or off.
+This prevents any audible switch-on thumps. Ensure that the IEC mains plug is pressed fully into the rear panel
+socket before switching on.
+
+Earthing
+The connection to earth (ground) in an audio system is important for two reasons:
+
+                   1.     SAFETY - To protect the operator from high voltage electric shock, and
+                   2.     AUDIO PERFORMANCE - To minimise the effect of earth (ground) loops which result
+                          in audible hum and buzz, and to shield the audio signals from interference.
+For safety it is important that all equipment earths are connected to mains earth so that exposed metal parts are
+prevented from carrying high voltage which can injure or even kill the operator. It is recommended that the
+system engineer check the continuity of the safety earth from all points in the system including microphone
+bodies, turntable chassis, equipment cases, and so on.
+The same earth is also used to shield audio cables from external interference such as the hum fields associated
+with power transformers, lighting dimmer buzz, and computer radiation. Problems arise when the signal sees
+more than one path to mains earth. An ‘earth loop’ (ground loop) results causing current to flow between the
+different earth paths. This condition is usually detected as a mains frequency audible hum or buzz.
+To ensure safe and trouble-free operation we recommend the following:
+•     Have your mains system checked by a qualified electrician. If the supply earthing is solid to start with you
+      are less likely to experience problems.
+•     Do not remove the earth connection from the console mains plug. The console chassis is connected to
+      mains earth through the power cable to ensure your safety. Audio 0V is connected to the console chassis
+      internally. If problems are encountered with earth loops operate the audio ‘ground lift’ switches on
+      connected equipment accordingly, or disconnect the cable screens at one end, usually at the destination.
+•     Make sure that turntables are correctly earthed. A chassis earth terminal is provided on the console rear
+      panel to connect to turntable earth straps.
+•     Use low impedance sources such as microphones and line level equipment rated at 200 ohms or less to
+      reduce susceptibility to interference. The console outputs are designed to operate at very low impedance
+      to minimise interference problems.
+•     Use balanced connections for microphones and mix output as these provide further immunity by
+      cancelling out interference that may be picked up on long cable runs. To connect an unbalanced source to a
+      balanced console input, link the cold input (XLR pin 3 or jack ring) to 0V earth (XLR pin 1 or jack sleeve) at
+      the console. To connect a balanced XLR output to unbalanced equipment, link the cold output to 0V earth
+      at the console.
+•     Use good quality cables and connectors and check for correct wiring and reliable solder joints. Allow
+      sufficient cable loop to prevent damage through stretching.
+•     If you are not sure ... Contact your service agent or local Allen & Heath dealer for advice.
+
+     ALLEN&HEATH                                              5                      XONE:92 Mk2 User Guide
+Cables and connectors
+
+
+
+
+    ALLEN&HEATH         6   XONE:92 Mk2 User Guide
+Panel Drawings
+
+
+
+
+    ALLEN&HEATH   7   XONE:92 Mk2 User Guide
+Rear Panel Overview
+
+                           1    2                                             3       4       5              6
+
+
+
+
+                   13                12          11           10   9     8                     7
+
+1      MIDI Output
+5 pin DIN socket. Connect to either a MIDI interface, or directly to MIDI compatible equipment using a standard 5
+pin DIN (MIDI) lead.
+2      CH1 - 4 STEREO PHONO Inputs
+RCA phono. Plug in turntables with magnetic cartridges requiring RIAA equalisation. For non-RIAA turntables plug
+into the LINE input instead. Do not plug in line level sources to the phono inputs as these will overload the preamp
+and cause severe high level distortion. Use high grade versions of CABLE A (refer to p.6 for details).
+3     CH1 - 4 STEREO LINE Inputs
+RCA phono. Connect stereo line level music sources such as media players, drum machines, keyboards or other
+instruments. Do not connect turntables which require RIAA equalisation. Use CABLE A. Alternatively, you can
+connect to jack sources using this cable with RCA to jack adapters. Avoid using low grade cables such as those often
+supplied with domestic equipment as these can quickly prove unreliable in use.
+
+4      Chassis Earth Terminal
+A screw terminal is provided for connecting the earth straps from turntables. This connection earths the metal
+parts of the turntable to prevent ground hum, buzz or similar audible noise getting into the system. A dual ground
+adaptor is also included so two turntables can be connected independently in booth environments. Fix in place
+using the chassis earth terminal. Orientate horizontally above the MIC inputs for clear access to rear panel sockets.
+5     MIC/RTN 1 & 2 MIC Inputs
+Balanced XLR. Plug in a DJ, guest or announcement microphone here. Use good quality low impedance dynamic
+mics such as those specifically designed for vocals. Do not use high impedance or unbalanced microphones, or
+condenser types which require phantom power. Use professional grade balanced cables wired as CABLE D.
+Use the best cable and connectors you can afford as these are typically subject to intense use and abuse in club
+environments.
+6     MIC Clean Feed Switches
+The XONE:92 Mk2 implements a ’clean feed’ bus for MIC inputs. By default, MIC 1 & 2 inputs do not route to the
+BOOTH or RECORD outputs, in order to avoid potential acoustic feedback in the booth and to enable music only mix
+recording. Switches on the rear panel enables the clean feed bus for each MIC input to be turned ON or OFF
+independently, allowing microphone signals to be monitored from the BOOTH and captured via the RECORD
+outputs. NOTE: The clean feed switch setting affects routing to both BOOTH and RECORD outputs.
+
+      ALLEN&HEATH                                             8                      XONE:92 Mk2 User Guide
+Rear Panel Overview continued ...
+
+
+7      MIC/RTN 1 & 2 LINE RETURN Inputs
+Unbalanced TRS jacks. Connect mono or stereo line level sources which do not need to route through the
+crossfader. For a mono source plug into the L/M input only. For a stereo source plug the left source into the L/M
+input, and right into the R input. These are 3-pole TRS sockets which can accept balanced or unbalanced TRS or TS
+jack sources. Depending on the source connector type, use CABLE B, C, E, or G. To connect RCA phono jack sources
+you can use the standard CABLE A with RCA to jack adapters, or custom make as required.
+8     AUX 1 & AUX 2 Outputs
+Impedance balanced TRS jacks. Depending on the application of the Aux mix these stereo line level outputs can be
+used to feed samplers and other effects units, an additional monitor, zone or recorder. Connect to balanced or
+unbalanced equipment using CABLE B, C, F, or H. To connect RCA phono jack sources you can use the standard
+CABLE A with RCA to jack adapters, or custom make as required.
+9     MIX 2 Output
+Impedance balanced TRS jacks. This is an additional output that can feed the house PA system or other remote
+audio system. Plug into the house processor/amplifier system using balanced CABLE C, or F. It is not usual for
+unbalanced equipment to be used here.
+10   RECORD Output
+RCA phono. This provides a Pre-Master level, post-Clean Feed, LR mix output unaffected by the main mix control.
+Connect to external hardware recording devices or interface to capture the mix. Use CABLE A with or without
+adapters, or a custom cable, depending on the recorder connector type.
+ 11 MIX 1 Output
+Balanced XLR. This is the main output that feeds the house PA system. Plug into the house processor/amplifier
+system using balanced CABLE D, or E. It is not usual for unbalanced equipment to be used here.
+12      BOOTH Output
+Impedance balanced TRS jacks. Provides a line level music only stereo feed to the DJ local monitor amplifier system.
+It is not affected by the master fader or cue system.
+Connect to balanced or unbalanced equipment using CABLE B, C, F, or H.
+13    AC MAINS Input and Power Switch
+Connect (supplied) IEC cable with moulded plug compatible to the local AC mains supply.
+Turn the AC supply to the mixer ON/OFF. Please refer to the Connecting Mains Power section for more details.
+
+
+
+
+      ALLEN&HEATH                                            9                      XONE:92 Mk2 User Guide
+MIC/RETURN Input channels
+
+These controls adjust the level and tone of each source before they are mixed. Two input channels are provided.
+Each has two inputs. MIC/RETURN channels 1 and 2 are used for microphone or alternative stereo line sources and
+                              provide four-band corrective source equalisation.
+
+
+1                                  1      AUX 1 & AUX 2 Sends
+                                   Adjust the levels of the channel signals to the stereo Aux outputs. Turn fully
+2
+                                   anticlockwise to turn the signal off, fully clockwise for a maximum +6dB boost.
+                                   2      PRE Switches
+                                   With the switch in its up position the signal to the Aux mix is sourced post-
+                                   fader. This means that the Aux send follows the channel fader movements.
+3                                  Press the switch to source the send pre-fader. Set in this way the fader has no
+                                   affect on the Aux level.
+4                                  Post-fade sends are typically used to send channel signals to effects devices.
+                                   The amount of signal sent to the device follows the fader level. The processed
+                                   (wet) signal returned to the mix elsewhere is therefore in proportion to the
+                                   direct (dry) signal regardless of fader position.
+                                   This could, for example, be used to add ambience to the DJ or guest vocal mic.
+                                   Other post-fade uses include special recording or zone feeds.
+5
+                                   Pre-fade sends can be used for effects, auxiliary hardware, external interfaces,
+                                   or to feed monitor speakers such as stage foldback. Here, it is important that
+                                   fader changes made to balance the house mix do not affect the monitor levels.
+                                   When working with a sampler or effects device you can use either post, or pre
+                                   setting. If you wish to cue the sample or effect before raising the source fader
+                                   into the mix then set it pre-fade. Use the return channel fader to bring up or
+6                                  remove the source from the mix.
+
+                                   ☺      You can also use the Aux mix to cue your music when beat or cut mixing.
+                                   Set all sends pre-fade and select the headphones monitor AUX switch to listen
+7                                  to the selected channels. This lets you listen to the effect of mixing the sources
+                                   or matching the beat before you bring it into the house mix.
+                                   3     MIC/RTN Switch
+8
+                                   MIC/RETURN Channels 1 and 2 can sourse either the XLR microphone input or
+                                   the alternative jack stereo line return input. In the up position MIC is selected,
+                                   indicated by the green LED. When pressed, RTN is selected, indicated by the
+                                   LED changing colour to red.
+                                   4      LEVEL Control
+                                   Adjusts the input sensitivity of the channel to compensate for different audio
+9                                  signal sources, matching the connected source to the console 0dB operating
+                                   level. This provides a 35 - 37dB range with continuous adjustment for line level
+                                   signals from -15dBu to +20dBu, and -47dBu to - 10dBu for microphones.
+                                                Use the Cue system to correctly set the level.
+                                                Reduce LEVEL if the red PK! LED flashes.
+
+
+
+     ALLEN&HEATH                                             10                      XONE:92 Mk2 User Guide
+MIC/RETURN Input channels continued ...
+
+5      MIC EQ
+The MIC/RETURN channel 1 and 2 equaliser provides a powerful tool to adjust the tonal quality of the sound to
+correct source problems such as microphone characteristics, proximity effect, noise and feedback, or to adjust the
+overall ‘feel’. Start with the EQ controls set to their mid (flat) position. Then adjust to achieve the desired sound.
+Take time to experiment with these controls.
+The XONE:92 Mk2 equaliser provides separate tone control over four frequency bands.
+The frequencies in each band may be boosted or cut by up to 15dB. The centre flat position is detented for quick
+resetting.
+HI
+Turn this control clockwise to boost and anticlockwise to cut the high (treble) frequencies. This has a shelving
+response with all frequencies above the 12kHz turning point affected. Note that frequencies below 12kHz are
+affected by a decreasing amount. Use HI boost to brighten up the sound by adding sparkle, and cut to reduce
+source hiss and ambient high frequency pickup, or to limit or lift the high response of vocal mics.
+
+HM
+Turn clockwise to boost and anticlockwise to cut the higher midrange frequencies. This has a bell shaped peak/dip
+response that has maximum effect at 2.7kHz. Boosting can enhance the intelligibility of vocals. On the other hand,
+some situations may require cutting to notch out a ringing frequency so increasing gain before feedback.
+LM
+This is similar to HM but affects the lower mid frequencies centred at 270Hz. Boosting can enhance the warmth of
+the sound while cutting can reduce unpleasant resonant or boomy effects.
+
+LO
+This is similar to the shelving HI control but affects the low (bass) frequencies below the 60Hz turning point.
+Note that frequencies above 60Hz are affected but by a decreasing amount. Use LO boost to enhance low end
+punch, or cut to reduce source hum and rumble, or to remove the bassy sound of vocal mic proximity effect.
+
+
+
+
+        LO / HI                       -15 / centre / +15            LM / HM                    -15 / centre / +15
+
+6     CUE switch
+Press this switch to listen to the pre-fader channel signal in the headphones and to display its signal on the main
+meters. This does not affect the house mix or booth speakers and lets you audition the signal to check it before
+adding it to the mix. Cue is post-EQ for MIC/RTN channels so that you can check the effect of adjusting the EQ.
+The LED next to the switch illuminates when pressed so that you can see at a glance which channel is cued.
+
+
+
+
+     ALLEN&HEATH                                               11                      XONE:92 Mk2 User Guide
+MIC/RETURN Input channels continued ...
+
+7     DUCK / ON switch
+For MIC/RETURN channels 1 and 2 use this to introduce the MIC/RTN signal to the mix outputs. Pushing the switch
+upwards (non-latching) ‘DUCK’ will add the channel input to the mix outputs until released and will simultaneously
+duck the stereo channels 1 - 4 by 15dB. Pushing the switch down (latching) ‘ON’ adds the channel input to the mix
+outputs without ducking channels 1 - 4. The central, default position is ‘OFF’ where the channel inputs are not
+added to the mix outputs.
+8     ON / PK! LED
+A dual-colour LED simultaneously displays which MIC/RTN channel is switched ON, and warns of channel signal
+peaks. The LED lights green to indicate that a channel is turned ON. Reduce the gain if the LED PK! flashes red.
+9     Channel fader
+A 60mm stereo fader adjusts the signal level from off to unity at the top of its travel. This allows smooth fade ins
+and a visual indication of its contribution to the mix. The fader does not affect the pre-fade Aux sends.
+
+
+
+
+     ALLEN&HEATH                                               12                      XONE:92 Mk2 User Guide
+PHONO/LINE Input channels
+
+These controls adjust the level and tone of each source before they are mixed. Four STEREO music channels are
+provided. Each has two inputs. STEREO LINE inputs 1 to 4 are used for CD decks or alternative stereo music sources
+and can be routed through the crossfader and FILTER effects stage. STEREO PHONO inputs 1 to 4 are used for the
+turntables and can also be routed through the crossfader and filter. These provide effective equalisation to
+                                      creatively shape the sound during performance.
+                                    1     AUX 1-2 sends
+ 1                                  Adjust the levels of the channel signals to the stereo Aux outputs.
+                                    Turn fully anticlockwise to turn the signal off, fully clockwise for a maximum
+ 2
+                                    +6dB boost.
+                                    2      PRE switches
+                                    With the switch in its up position the signal to the Aux mix is sourced post-
+                                    fader. This means that the Aux send follows the channel fader and crossfader
+ 3                                  movements. Press the switch to source the send pre-fader.
+                                    Set in this way the fader has no affect on the Aux level.
+ 4
+                                    Post-fade sends are typically used to send channel signals to effects devices
+                                    such as reverb or delay processors. The amount of signal sent to the device
+                                    follows the fader level. The processed (wet) signal returned to the mix
+                                    elsewhere is therefore in proportion to the direct (dry) signal regardless of
+                                    fader position.
+                                    Other post-fade uses include special recording or zone feeds.
+ 5
+                                    Pre-fade sends are typically used for DJ effects or to feed monitor speakers
+                                    such as stage foldback.
+                                    Here, it is important that fader changes made to balance the house mix do not
+                                    affect the monitor levels.
+                                    When working with a sampler effects device you could use either post or pre
+                                    setting. If you wish to cue the sampler effect before raising the source fader
+                                    into the mix then set it pre-fade. Use the sampler return channel fader to
+ 6                                  bring up or remove the effect from the mix.
+
+                                    ☺       You can also use the Aux mix to cue your music when beat or cut
+ 7
+                                    mixing. Set all sends pre-fade and select the headphones monitor AUX switch
+                                     to listen to the selected channels. This lets you listen to the effect of mixing
+ 8                                  the sources or matching the beat before you bring it into the house mix.
+                                    3      PHONO/LINE switch
+                                    Channels 1 to 4 are the stereo ‘MUSIC’ channels. In the up position the switch
+                                    selects the PHONO input, indicated by the green LED. This input provides
+                                    standard RIAA equalisation for high quality magnetic cartridge turntables.
+                                    When pressed, LINE is selected, indicated by the LED changing colour to red.
+                                    Use this to select non-RIAA or alternative stereo music sources.
+ 9
+
+
+
+
+     ALLEN&HEATH                                             13                      XONE:92 Mk2 User Guide
+PHONO/LINE Input channels continued ...
+
+ 4    LEVEL control
+ Adjusts the input sensitivity of the channel to compensate for different audio signal source levels, matching the
+ connected source to the console 0dB operating level. This provides adjustment for line level signals and to match a
+ wide range of RIAA turntable cartridges. From -∞ at the fully-anticlockwise position, unity at the centre detent,
+ and +10dBu turned fully -clockwise. Use the Cue system to correctly set the input source signal level.
+Reduce the LEVEL if the RED +10 LED flashes.
+5     MUSIC EQ
+The XONE:92 Mk2 Stereo Channels 1 to 4 features the classic Xone four band equaliser, providing infinite
+attenuation of high and low frequencies and -30dB attenuation of mid frequencies. This provides the DJ with
+effective equalisation to creatively alter and shape the sound during live performance rather than simply correct
+source problems. This type of equaliser is known as ‘asymmetric’ because the amount of boost and cut is not the
+same. Boost is restricted to a safe +6dB to highlight selected sounds while preventing system overload through
+heavy use. Cut on the other hand, is used to reduce the level of frequencies within the EQ control’s range, allowing
+two or more tracks to be mixed together without vocals, harmonies, beats, or bass lines clashing.
+HI
+Turn this control clockwise to boost and anticlockwise to cut the high (treble) frequencies. This has a shelving
+response when turned clockwise with all frequencies above the 2.4kHz turning point affected. When turned fully
+anticlockwise the response changes to a low pass filter (12dB/Oct) with all frequencies above the cut-off point
+being progressively attenuated. Use HI boost to brighten up the sound by adding sparkle, and cut to eliminate all
+HF content.
+HM
+Turn clockwise to boost and anticlockwise to cut the higher mid frequencies. This has a bell shaped peak/dip
+response that has maximum effect at 1.8kHz. Frequencies in this range can be boosted by 6dB or attenuated by
+30dB. The “Q” or frequency bandwidth also alters from a high Q (narrow bandwidth) on boost to a low Q wide
+bandwidth when cutting. This prevents accumulated gain if all EQ controls are fully clockwise.
+LM
+This is similar to MID 1 but affects the lower mid frequencies centred at 320Hz. Boosting can enhance the warmth
+of the sound while cutting can reduce unpleasant resonant or boomy effects.
+LO
+This is similar to the HI control but affects the low (bass) frequencies below the 220Hz turning point.
+When turned fully anticlockwise the response changes to a high pass filter (12dB/Oct) with all frequencies below
+the cut-off point being progressively attenuated. Use LO boost to accentuate the bass lines/beats, and cut to
+eliminate all LF content.
+
+
+
+
+        LO / HI                        -∞/ centre / +6             LM / HM                     -27 / centre / +6
+     ALLEN&HEATH                                              14                      XONE:92 Mk2 User Guide
+PHONO/LINE Input channels continued ...
+
+6     FILTER assign switch
+Toggle this switch to route the channel signal through either of the two FILTER stages. Selecting the switch in the
+central ‘OFF’ position bypasses both the filters.
+The XONE:92 Mk2 implements redesigned, XONE:96 style, analogue soft-switching for enhanced performance,
+ensuring master mix outputs are unaffected by audible electronic artefacts when hot-switching channel
+assignments to the Filters.
+7     XFADE assign switch
+
+Toggle this switch to route the channel signal to either side of the crossfader. Selecting the switch in the central
+‘OFF’ position routes the post-fader signal direct to the mix outputs.
+8     CUE switch
+Press this switch to listen to the pre-fader channel signal in the headphones and to display its signal on the main
+meters. This does not affect the house mix or booth speakers and lets you audition the signal to cue a track before
+adding it to the mix. Cue is typically pre-EQ for music channels so that you do not lose your reference when beat
+mixing, regardless of the EQ effect, but can be selected to be post EQ by selecting the POST EQ switch in the master
+section. The CUE light-pipe illuminates so that you can see at a glance which channel is cued.
+Selecting one cue will automatically cancel the previous cue. Multiple cues can be selected by pressing two or more
+together, but make sure all cues are OFF first.
+9     Channel meter Crossfader
+A 9 LED meter bar always shows the presence of the pre-fader channel signal. Adjust the LEVEL control for normal
+music averaging 0dB with loudest moments reaching +6. Reduce the level if the red +10 LED flashes.
+10    Channel faders
+A 60mm linear stereo VCA fader adjusts the signal level from off to the normal top position. This allows smooth
+fade ins and a visual indication of its contribution to the mix.
+The channel fader position does not affect the pre-fade Aux sends.
+
+
+
+
+     ALLEN&HEATH                                               15                       XONE:92 Mk2 User Guide
+Crossfader and VCF
+
+The crossfader is applied to the stereo music channels and lets you transition from one track to another using a
+single fader. It is also used as a creative performance tool to layer or interact between two sounds when cut or
+scratch mixing.
+The XONE:92 Mk2 uses four stereo high-quality trimmed voltage controlled amplifiers (VCAs) for channels 1 - 4.
+The robust 45mm crossfader produces a DC control voltage which determines the signal level of the VCAs.
+
+
+
+
+                       13
+
+                                                                                             12
+
+                                                                                             15
+
+                       14
+
+
+
+                                                                                              9
+
+                        7
+                        3
+                                                                                             11
+                                                                                             10
+
+                                                                                             16
+
+                                                                                             17
+
+                                                                                             18
+
+
+                                                                                              8
+
+                        2
+
+
+
+
+                                      4                      1               5     6
+
+
+1     VCA Crossfader
+
+A custom mini innoFADER® Pro is now implemented as standard in the crossfader position. It is fully assignable
+from each music channel and can be easily accessed should replacement be required. The XFADER also sends MIDI
+CC messages to the rear panel MIDI OUT port. See page 17 for details.
+2     Crossfader assignment indicators
+Four green LEDs above the crossfader help you visually check which channels are routed to the crossfader.
+3     XFADE select switches
+In the central position the music signal level is unaffected by the crossfader. Toggle to route the VCA control signal
+through the crossfader. To route to the left (X) side make sure the switch is in its left position. Switch to the right
+position to route to the right (Y) side. The relevant channel crossfader assignment indicator [2] will illuminate.
+
+
+     ALLEN&HEATH                                                 16                    XONE:92 Mk2 User Guide
+Crossfader and VCF continued ...
+
+4     XFADE CURVE control
+The XONE:92 Mk2 allows the response of the crossfader to be altered to match all mixing styles.
+
+Turning the crossfade curve control fully anticlockwise gives a progressive curve with a
+dip in level at the centre position.
+Rotating the control clockwise gradually reduces the centre dip and sharpens
+the attack. Fully clockwise the response is almost instantaneous and full
+signal level is reached as soon as the crossfader knob is moved from its end
+stop.
+
+5     CH CURVE switch
+The XONE:92 Mk2 also allows the response of the channel faders to be altered to suit different mixing styles. The
+CH CURVE switch selects a global fader response for channels 1 - 4.
+The default switch position is centred, where the response provides the characteristic increase in
+signal level towards the top of the fader travel that XONE:92 is renowned for.
+
+
+
+
+     ALLEN&HEATH                                              17                      XONE:92 Mk2 User Guide
+The Xone:VCF Filters
+
+Nothing comes close to the sound and power of the acclaimed analogue Xone VCF (Voltage Controlled Filter).
+A Voltage Controlled Filter is an audio filter where the cut-off frequency is altered by a DC control voltage rather
+than a variable resistor. This produces a much wider operating range and more control over the filter response to
+create unlimited combinations of tonal effect.
+Using VCFs as live performance tools can be more powerful than an equaliser or kill switches. They produce the
+same warm analogue resonant frequency sweeping sounds made popular with well-known analogue synthesisers,
+but using high performance analogue switching technology for quiet, stable operation.
+
+The XONE:92 Mk2 refines the classic VCF design first introduced on the XONE:62, preserving the unmistakable sonic
+signature of the original enhanced XONE:92 filters, while taking its performance to a new level.
+Two stereo VCFs are provided, one either side of the crossfader. Each VCF its own frequency sweep and resonance
+controls, either filter can be assigned to any of the four main stereo channel and both can be independently
+switched in or out of the mix. Two independent Low Frequency Oscillators (LFO) provide filter modulation.
+6     FILTER ON switch
+
+Each filter has its own ON switch. The blue light-pipe lights when the filter is switched on. The signal is not affected
+by the filter if the switch is in its off position. Use this to punch the filter effect in or out.
+7     FILTER assign switch
+In the central position the music signal is not affected by the filter. Toggle to route the signal through the filter. To
+route to FILTER 1 (X) make sure the switch is in its left position. Switch to the right position to route to FILTER 2 (Y).
+8     FREQ - Frequency sweep control switch
+The FREQ control sets the cut-off frequency of the filter (-3dB point). Each filter has its own frequency sweep
+control to adjust the cut-off point anywhere from low to high frequency. Rotating the control during performance
+produces dynamic sweeping effects or filter sweeps. These large soft touch controls are positioned either side of
+the crossfader for convenient live operation. .
+9     RESONANCE control
+Adjust this to change the ‘Q’ or ‘sharpness’ of the filter. This affects
+how they respond around the cut-off frequency. At the MILD setting
+the filters have a gentle roll-off ‘knee’ giving a subtle, smooth response.
+At the WILD setting they produce a resonant feedback boost around cut
+-off resulting in some very dramatic performance effects.
+The sound varies according to the filter type selected. To avoid
+unexpected results it is best to start experimenting with RESONANCE
+set to a low position. Or set the control to the centre (’twelve
+o’clock’) position for the flattest frequency response.
+
+          High RESONANCE settings can result in significant boost of selected frequencies. Reduce the channel
+          GAIN if the signal levels increase enough to light the red PK LEDs in the output meters.
+          Failure to do so may result in distortion or system overload.
+
+
+
+
+     ALLEN&HEATH                                                18                       XONE:92 Mk2 User Guide
+LFO Modulation
+
+10     VCF TO XFADER control
+Press this switch to assign either filter to the crossfader. The crossfader can then be used instead of the FREQ
+control to create filter effects whilst crossfading.
+11     VCF LINK 2-1
+Press this switch to link FILTER 2 to FILTER 1. FILTER 2 cut-off frequency can now be adjusted by the FREQ control of
+FILTER 1. This can be used to synchronise the cut-off point of both filters. For instance, assign Channel 1 to FILTER 1
+and Channel 2 to FILTER 2. Select a Low Pass Filter on FILTER 1 and a High Pass Filter on FILTER 2. With both filters
+ON and the link switch selected, the low frequencies of Channel 1 will be accurately joined to the high frequencies
+of Channel 2. This can be used to produce incredibly smooth mixes or to mix tracks that would otherwise clash
+when mixed conventionally.
+The XONE:92 Mk2 Voltage Controlled Filters are further enhanced by two independent LFOs. The LFOs can be
+applied to either filter for additional cyclic VCF modulation effects.
+12     LFO ON switch
+Each LFO has its own ON switch. The red LED lights when the LFO is switched on. The filter is not affected by the
+LFO if the switch is in its off position. Use this to punch the LFO effect in or out.
+13    LFO DEPTH control
+Rotate control knob clockwise to increase the depth (amount) of the LFO modulation applied to the filter.
+14     TAP tempo control
+‘Tapping’ the button sets the speed of the LFO in time with the last two button presses. Once set, the light-pipe
+flashes red in time with the LFO.
+15     X2 tempo switch
+Press this switch to double the LFO speed; determined by setting the TAP tempo [14]
+
+Filter Type Select
+
+The filters are ‘state variable’. This means that they provide three simultaneous filter types, high-pass, band-pass
+and low-pass. Three large illuminated switches select which type is active. You can press any combination together
+to create different response types such as ‘notch’ and an interesting ‘all-pass’ effect.
+Filter switch controls on the XONE:92 Mk2 implements redesigned analogue soft-switching for enhanced
+performance, ensuring LR MIX outputs are unaffected by audible electronic artifacts as FILTER 1 and FILTER 2 are
+turned ON or OFF, when selecting different Filter Types, or if channel assignments to the VCFs are hot-switched.
+NOTE: the last selected filter type is not saved when power to the mixer is turned off. LPF is selected when power
+is applied.
+
+        HIGH PASS FILTER [HPF]                BAND PASS FILTER [BPF]                    LOW PASS FILTER [LPF]
+
+
+
+
+      ALLEN&HEATH                                             19                       XONE:92 Mk2 User Guide
+The Xone:VCF Filters continued ...
+
+The graphs on the preceding page show the effect on the audio frequency response for the three filter types.
+The range of sweep from low to high frequency is shown together with the effect of adjusting the together with the
+effect of adjusting the filter resonance to MILD, WILD and centred positions: one frequency with FREQ and
+RESONANCE set at minimum, centre, and maximum positions. The vertical scale shows the amount of cut or boost
+around the normal 0dB operating level. The horizontal scale shows the change in frequency from low (bass) to high
+(treble).
+16    HPF
+
+Press this switch to select the high-pass filter. Frequencies below the cut-off point are removed. The cut-off point is
+adjusted using the large FREQ control. At minimum little effect is heard as only sub bass frequencies are removed.
+Sweep clockwise to gradually remove the bass line followed by the higher frequencies.
+☺      Tip Use the HPF with the FREQ as a mix aid. Set the FREQ control around the ten o’clock position to
+remove the low frequencies when bringing a track into the mix. Progressively rotate the FREQ control anticlockwise
+to bring in the bass.
+
+17    BPF
+Press this switch to select the band-pass filter. Frequencies above and below the cut-off point are removed leaving
+just a narrow band of sound. Sweep FREQ around its mid position to affect lead sounds such as keyboard and
+vocals.
+☺ Tip Try picking out individual sounds such as vocals and mixing them into the beat and bass of the opposite track
+to create a whole new mix. Add a little resonance to the BPF to lift the sound out of the mix.
+18    LPF
+Press this switch to select the low-pass filter. Frequencies above the cut-off point are removed.
+The cut-off point is adjusted using the FREQ control. At minimum only sub bass remains. Sweep clockwise to
+gradually introduce the bass line followed by higher frequencies into the mix.
+☺     Tip Try sweeping the LPF anti-clockwise to a low setting to keep the beat and energy going while bringing
+another track into the mix. Also try punching in the filter and sweeping it back from high to low in time with the
+beat. Punch it out at the start of the next bar.
+In addition to the three basic filter types you can experiment with new effects by selecting combinations of
+switches together. Press and release the switches together. They illuminate to show which filter types are active.
+For example:
+
+HPF + LPF = NOTCH
+Used with low (MILD) RES settings you get a phasing effect. Try sweeping the effect across the frequency range.
+HPF + BPF + LPF = ALL PASS
+A surprising effect considering that all frequencies are ‘passed’. However, the filter type interaction around the cut-
+off point creates an interesting effect that varies from subtle to dramatic depending on the RESONANCE setting.
+
+☺     Tip    Take some time to experiment with the filters before ‘going live’
+
+
+
+
+     ALLEN&HEATH                                               20                      XONE:92 Mk2 User Guide
+Master Mix and Monitor System
+
+The XONE:92 Mk2 provides two stereo master mix outputs with independent level control on balanced XLR and
+jack connections to drive the house PA amplifier system or additional zone feeds.
+                       Full DJ monitoring facilities are available with independent headphones and booth
+                       monitors, together with stereo metering system.
+                       Every music channel signal can be checked individually or within any mix, ideal for system
+                       setup and performance cueing.
+                       Facilities such as Mono and Split-Cue switching are well suited to the way the professional
+                       DJ works.
+                       You can make a music only recording by connecting to the independent record output, or
+                       including the MIC signal input with the corresponding channel’s clean feed switch set ON.
+                       1      MIX 1 & MIX 2 Master Level Controls
+                       Two rotary master controls adjust the output levels feeding the house PA. These are
+                       stereo controls which adjust the left and right signals simultaneously. They affect the
+                       stereo mix. Note that they do not affect the record and booth outputs. The MIX 1
+                       maximum position represents unity (0dB) gain. The MIX 2 maximum position represents
+                       +10dB gain. If you find yourself normally setting the controls in the lower part of their
+                       travel then the connected equipment may be too sensitive for the operating level of the
+                       console. With the controls set to their maximum positions adjust the input level trim of
+                       connected equipment for the loudest level allowed.
+                                In a club or similar installation strict sound level and noise regulations may
+                                apply. Check that your system levels are set up to comply.
+                       2      MIX / MONITOR Meters
+                       A pair of meter bars displays the level of the selected headphones monitor source.
+                       This is either the main LR mix, an Aux mix or Cue. When SPLIT CUE is selected the left
+                       meter displays the active CUE signal, the right displays PRG (program), both in mono.
+                       Each meter has 9 LEDs to indicate signal levels from a low –20dB. Green and blue LEDs
+                       indicate normal operating levels. The top red LED lights at +10dB still providing a healthy
+                       12dB before clipping. Meter ‘0’ represents +4dBu at the MIX 1 XLR outputs and -2dBu at
+                       the MIX 2 LINE outputs. The meters are peak responding with a fast attack and are
+                       therefore able to display fast transients accurately.
+                       3       CUE ACTIVE Indicator
+                       A large red LED lights when a channel CUE is active. This indicates that the selected
+                       channel CUE signal is heard in the headphones and displayed on the monitor meters.
+                       It is important to use CUE to set the channel levels correctly to maintain the wide dynamic
+                       range achievable with this console. Reduce the gain if the red +10 LEDs flash.
+                       4     HEADPHONES Level Control
+                       Adjusts the level of the signal in the stereo headphones. This does not affect the level of
+                       the local booth monitor.
+                       Start with the level control set to minimum and raise it until a comfortable listening
+                       level is achieved.
+
+
+
+
+     ALLEN&HEATH                                            21                      XONE:92 Mk2 User Guide
+Master Mix and Monitor System continued ...
+
+5     POST EQ Switch
+In the normal up position the headphones and meters monitor the Pre-EQ cue signal from each music channel.
+This means that you will not hear changes made in the EQ, which can be useful if you dramatically alter the
+frequency response by cutting all LF, but still need to monitor the beats to keep a track in sync. Pressing this switch
+will allow you to monitor post EQ and hear any changes made to the channel EQ. Toggling between pre and post
+EQ is useful to compare the effect of the EQ.
+6     SPLIT CUE Switch
+Press this switch to change the way CUE operates. Normally, pressing a channel CUE switch overrides both left and
+right monitor program signals with the stereo cue signal. With the switch pressed, CUE overrides just the left
+channel leaving the program in the right channel. The left monitor meter displays the cue signal, right displays
+program. This is invaluable in club mixing where the main program should remain audible while cueing other
+channels ready to bring them into the mix. It is very useful when beat mixing using headphones. Note that Cue
+does not affect the main output or booth monitor.
+7     AUX 1 & AUX 2 Switches
+
+In the normal up position the headphones and meters monitor the main mix. Press these switches to select either
+of the stereo Aux mixes as the headphones monitor source. Note that this does not affect the main outputs or
+booth monitor.
+8     CUE/ADD MIX Control
+Allows the main mix output to be added to the CUE signal. Turned fully anticlockwise, only the active CUE is heard
+through the headphones when CUE is active. Gradually turning clockwise introduces the main mix output to the
+headphones, together with the active CUE. Selecting SPLIT CUE will automatically override this control.
+9     HEADPHONE OUTPUTS
+Stereo TRS jack and mini-jack. To get the best from your system use closed-ear headphones for maximum acoustic
+isolation. We recommend the use of high quality headphones rated between 35 and 300 Ohms.
+            WARNING: Some headphones are more sensitive than others and can produce higher output levels.
+            To avoid damage to your hearing do not drive headphones at high listening levels for long periods of
+            time.
+10    MONO switch
+Sums the left and right monitor signals together so that the selected stereo source can be checked in mono. Use
+this to check for mono compatibility, especially important in dance floor and recording applications. A drop in level
+or loss of low frequencies when pressed indicates reversed polarity between the left and right signals.
+Alternatively, you can select this if you wish to run the booth monitor in mono rather than stereo. Note that the
+MONO switch does not affect the headphones monitor.
+11    BOOTH MONITOR level control
+Adjusts the level of the signal to the stereo booth monitor output. This does not affect the headphones.
+By default, the microphone signals are not routed to the booth monitor to avoid acoustic feedback. ...
+12    MUTE switch
+Press to mute the booth monitor output. The red LED lights when the monitor is muted. The headphones and main
+outputs are not affected.
+
+     ALLEN&HEATH                                               22                      XONE:92 Mk2 User Guide
+MIDI Control of External Devices
+
+MIDI is short for Musical Instrument Digital Interface conceived in the 1980’s so that keyboards and other
+electronic instruments could have a common interface allowing them to communicate with each another.
+Applications now include sound and lighting consoles, computer sequencing, show control and performance
+effects control. The XONE:92 was unique in being the first DJ mixer to include MIDI functionality.
+The XONE:92 Mk2 retains the original MIDI functionality, equipped with a MIDI out socket, allowing the DJ to
+control other external MIDI devices from featured front panel controls.
+The XONE:92 Mk2 can be used to remotely control effects units, sequencers, drum machines etc via MIDI providing
+the unit you wish to control is compatible with the MIDI controller codes generated. Most computer sequencing
+programs allows you to map different controller codes to virtually any function within the software, so providing
+the greatest flexibility of control. Please refer to the user guide of the device or program you wish to use to check
+for compatibility. The mixer’s default MIDI channel used is 16, this can be changed internally to 15 (Refer to the
+Installer Link Options on p.36 for details).
+
+Basic Setup
+
+Connect MIDI OUT from the XONE:92 to the MIDI IN of the device you wish to control.
+Use a standard 5-pin MIDI lead. Set the peripheral device MIDI channel number to 16. Refer to the device user
+guide for further details. If you want to use the mixer as a master clock, for instance with a drum machine or
+sequencer, you need to set the device to receive External MIDI clocks. Once again, please to refer to the relevant
+user guide for details.
+
+The XONE:92 as a Master Tempo Controller
+
+Using the XONE:92 Mk2 to sync an external sequencer or drum machine to a pre-recorded source takes practice,
+but once learned can be achieved quite quickly, and is a great way to add your own loops, patterns and so on to
+your favourite tracks.
+
+Once you have got the device to respond to the XONE:92 master MIDI clock and stop/start button, use the
+following method:
+Set the Tempo control [1] to its centre (detented) position, with the Stop/Start button [2] OFF.
+Tap in the tempo of the track you want to sync to, using the FILTER 2 LFO Tap Tempo button [3].
+Accuracy here is very important, try to tap in the beat as precisely as possible; you will find that you get more adept
+the more you practice. Once you have a near approximation of the tempo, hit the Start button to set off the
+sequencer on the first beat of a bar.
+
+Depending on how accurately you have tapped in the beat the sequence should play in sync for a short while, but
+will probably drift. If the tempo is too fast, turn the TEMPO ADJ control anti-clockwise to slow down the MIDI
+clock, if it is too slow, turn it clockwise to speed it up. After each adjustment restart the sequencer until the clock
+speed has been set to match the beat and maintain synchronisation. The TEMPO ADJ control has finer effect on
+clock speed in and around its centre position, and greater effect as it is rotated towards either end. For this reason
+the more accurate tap tempo you start with the easier it will be to fine tune to stay in sync.
+
+Remember to always return the TEMPO ADJ control to the centre position before tapping in a new BPM.
+
+
+
+
+     ALLEN&HEATH                                               23                       XONE:92 Mk2 User Guide
+ MIDI Control Codes
+
+         XONE:92 Mk2 control                Controller Code Generated           Controller Name
+             FILTER 1 FREQ                            CC12                       Effect Control 1
+             FILTER 2 FREQ                            CC13                       Effect control 2
+         Crossfader movement                          CC92                       Tremolo Level
+    Data Controller (internal option)                 CC94                        Celeste Level
+            Tap Temp LFO 2                         MIDI Clocks
+                 Start/Stop                   MIDI Start/Stop-rewind
+
+                  1      TEMPO ADJ control.
+                  The default application for this control is to allow adjustment of the MIDI clock speed set
+                  by the FILTER 2 TAP TEMPO button 3 . With the control in its mid position the clock
+                  speed is unaffected. Rotate anti-clockwise to reduce, or clockwise to increase the clock
+                  speed. This allows external sequencers or drum machines to be accurately aligned to the
+                  BPM of pre recorded tracks.
+                  An internal jumper can be reassigned to change the function of this control to a dedicated
+                  DATA send, and will output Control Change CC94.
+                  Refer to the Installer Link Options on p.36 for details.
+                  2      START / STOP button.
+                  Sends MIDI start/stop data to an external sequencer or MIDI device. The Lights yellow
+                  when pressed.
+                  Push once to transmit MIDI start data, push again to transmit MIDI clock stop + rewind
+                  data:
+                  ON (1st press), STOP/REWIND (2nd press).
+                  3      TAP TEMPO button.
+                  The tempo of the MIDI clock is set by tapping it in using the button.
+                  The BPM is determined by the last two button presses.
+                  4      FREQ VCF sweep control.
+                  Both controls independently output MIDI data 0 to 127:
+                  FILTER 1 FREQ:        Control Change CC12
+                  FILTER 2 FREQ:        Control Change CC13
+                  5    CROSSFADER:
+                  Move the crossfader to output MIDI data 0 (farthest left) to 127 (farthest right):
+
+
+
+                                                       XFADER:            Control Change CC92
+
+
+
+             .    6      MIDI OUT socket (chassis, rear panel).
+             .    5 pin DIN socket. Outputs all XONE:92 Mk2 MIDI data to an external MIDI compatible
+                     device.
+
+
+ALLEN&HEATH                                               24                     XONE:92 Mk2 User Guide
+MIDI Implementation Chart
+
+         O = Available    X = Not used
+
+           Function              Transmitted        Received          Remarks
+         Basis Channel
+                                                                 Internal DIP switch
+            Default                  16                X
+                                                                       setting
+            Option                   15                X
+             Mode
+            Default                      X             X
+           Messages                      X             X
+            Altered                      X             X
+
+         Note Number                     X             X
+           Velocity
+           Note ON                       X             X
+           Note OFF                      X             X
+          Aftertouch
+             Keys                        X             X
+            Channel                      X             X
+          Pitch Bend                     X             X
+        Control Change
+              12                     O                 X
+              13                     O                 X
+              92                     O                 X
+              94                     O                 X       Internal jumper option
+
+        Program Change                   X             X
+       System Exclusive                  X             X
+       System Common
+         Song Position                   X             X
+          Song Select                    X             X
+         Tune Request                    X             X
+
+       System Real Time
+            Clock                    O                 X
+          Commands                   O                 X
+         Aux Messages
+          Local On/Off                   X             X
+          All Notes Off                  X             X
+         Active Sensing                  X             X
+         System Reset                    X             X
+
+
+
+
+    ALLEN&HEATH                                25              XONE:92 Mk2 User Guide
+XONE:92 Mk2 Block Diagram
+
+
+
+
+    ALLEN&HEATH             26   XONE:92 Mk2 User Guide
+Hardware Specifications
+
+
+
+ Model                       XONE:922
+ Type                        Analogue
+ Channels                    6+2
+ EQ                          4-Band: CH 1 - 4 ¦ MIC/RTN 1 ¦ MIC/RTN 2
+ BOOTH                       STEREO/MONO ¦ MUTE ¦ Level
+
+ Phono Inputs                4 x RCA: CH 1 - 4
+
+ Earth Ground Terminals      x1
+ Stereo Line Inputs          4 x RCA [CH 1 - 4]
+                             2 x 1/4" TRS [RTN 1 / RTN 2] Mono/Stereo
+ Mic Input                   2 x XLR [MIC 1 / MIC 2]
+ MIX 1 Output                1 x XLR [Balanced]
+ MIX 2 Output                1 x 1/4" TRS [Unbalanced]
+ BOOTH Output                1 x 1/4" TRS [Unbalanced]
+ RECORD Output               1 x RCA [Unbalanced]
+ Stereo Send/Return I/O      2 x 1/4" TRS: AUX1 ¦ AUX2 [Mono/Stereo]
+                             2 x 1/4" TRS: RTN 1 ¦ RTN 2 [Mono/Stereo]
+
+ Aux Sends                   2 x CH 1 - 4 ¦ MIC/RTN 1 ¦ MIC/RTN 2 [selectable Pre/Post]
+
+ Filters                     2 x Stereo analogue Voltage Controlled Filters
+                             HPF / BPF / LPF Response Select ¦ ON/OFF [soft switched]
+                             Adjustable FREQ / RES / LFO
+                             Assignable CH 1- 4 [soft switched]
+
+ Channel 1 - 4 Faders        60mm linear Voltage Controlled Amplifier
+ Channel 1 - 4 Fader Curve   Switched ¦ 3-way Global
+ Cross Fader                 mini innoFADER Pro standard ¦ 45mm linear VCA ¦ User
+                             replaceable
+ Cross Fader Curve           Rotary ¦ Progressive transition to Fast-cut
+
+ MIDI Assignable             Yes: MIDI CC ¦ MIDI Note ON/OFF
+ MIDI Out                    1 x 5-pin DIN
+
+ Power Supply                Internal switch mode power unit [SMPS] with auto sensing mains
+                             input
+ AC Mains                    100 to 240V AC ¦ 50/60Hz
+                             Consumption 30W max
+                             Rear panel mounted ON/OFF switch
+
+ Mains Adaptor               3 pin IEC socket with cable clamp. Molded AC plug [supplied]
+
+
+
+     ALLEN&HEATH                                 27                 XONE:92 Mk2 User Guide
+Technical Specifications
+
+Output Levels; Nom (0VU) / Max       MIX 1                + 4dBu    /     + 25dBu
+                                     MIX 2                + 6dBu    /     + 21dBu
+                                     BOOTH                + 8dBu    /     + 21dBu
+                                     RECORD               - 10dBu   /     + 12dBu
+Internal headroom                    Channels             + 22dB
+Frequency response                   LINE IN to MST out        +1/-0.5dB from 20Hz to 30kHz
+Distortion                           Typically 0.01% @ 1kHz 0dBu (THD+Noise 22Hz to 22kHz)
+Crosstalk                            < -90dB inter-channel @ 1kHz +10dBu
+Residual Noise (22Hz - 22kHz)        MASTER 1 - 85dBu
+                                     MASTER 2 - 85dBu
+                                     BOOTH    - 85dBu
+Mix Noise (22Hz - 22kHz)             Master 1 - 81dBu
+                                     Master 2 - 81dBu
+                                     Booth      - 81dBu
+                                     Record RCA - 90dBu
+Mic Gain                             +30dB, EIN = -126dB       (@ 40dB gain with 150R source)
+
+RIAA Gain                            +35dB @ 1kHz         (14mV RMS= 0VU @ 1kHz)
+Channel Meters                       9 LED                - 20dBu   to    + 10dBu
+Master Meters                        9 LED                - 20dBu   to    + 10dBu
+Channel EQ MIC/RTN                   HI                    12kHz          +/-15dB
+                                     HM                    2.7kHz         +/-15dB
+                                     LM                    270Hz          +/-15dB
+                                     LO                      60Hz         +/-15dB
+Channel EQ 1-4                       HI                    2.4kHz         + 6/- ∞dB
+                                     HM                    1.8kHz         + 6/-30dB
+                                     LM                    320Hz          + 6/-30dB
+                                     LO                    220Hz          + 6/- ∞dB
+Channel faders 1-4                   60mm VCA control individually replaceable.
+                                     < -82dB shutoff @1kHz +10dBu
+Cross-fader                          45mm innoFADER VCA control.
+                                     Plug in replacement - user replaceable (A&H part#: AI11470 )
+Filters                              Dual, stereo, analogue Voltage Controlled Filters.
+Panels                               Steel
+PSU                                  Internal. Switch-mode
+Mains Input                          3 pin IEC socket Power Lead: country dependant.
+AC mains                             100V to 240V AC @ 47/63Hz`
+Consumption                          30W max            Fuse rating 100-240V AC         T500mA L
+              [0dBu = 0.775 Volts rms / +4dBu = 1.23V rms / 0dBV = 1 Volt rms / -10dBV = 316mV rms]
+
+
+
+     ALLEN&HEATH                                             28                     XONE:92 Mk2 User Guide
+Weights and Dimensions
+
+
+     XONE:92 Mk2                 UN-PACKED                   PACKED
+
+        Height           106mm               4.2”    200mm              7.9”
+
+        Width            320mm               12.6”   460mm             18.1”
+
+        Depth            376mm               14.8”   495mm             19.5”
+
+       Weight             7kg            15.4lbs     8.2kg            18.1lbs
+
+
+Top Panel
+
+
+
+
+    ALLEN&HEATH                                29       XONE:92 Mk2 User Guide
+Weights and Dimensions continued ...
+
+Rear Panel
+
+
+
+
+Front Panel
+
+
+
+
+Side View [Left Panel]
+
+
+
+
+    ALLEN&HEATH                        30   XONE:92 Mk2 User Guide
+Rack Ears
+
+The XONE:92 Mk2 is fitted with rubber feet for desktop operation. A screw fit 19” rack mount accessory kit is
+available to order from your Xone supplier, enabling permanent fixing for installation or in racking systems.
+Part number - X:922-RK19/X
+The rack ears can be fixed on to the sides of the mixer in three possible orientations, with the flange flush to the
+top panel, or with the underside of the chassis.
+Fix in place using M6 screws or bolts. Ensure air vents are not obstructed.
+
+
+
+
+     ALLEN&HEATH                                               31                      XONE:92 Mk2 User Guide
+Operating Levels
+
+It is most important that the system level settings are correctly set. It is well known that many DJs push the level
+to maximum with meters peaking hard in the belief that they are getting the best from the system.
+                                               THIS IS NOT THE CASE
+The best can only be achieved if the system levels are set within the normal operating range and not allowed to
+peak. Peaking simply results in signal distortion, not more volume.
+It is the specification of the amplifier / speaker system that sets the maximum volume that can be achieved, not
+the console. The human ear too can fool the operator into believing that more volume is needed. Be careful as
+this is in fact a warning that hearing damage will result if high listening levels are maintained.
+Remember that it is the QUALITY of the sound that pleases the ear, not the VOLUME.
+The diagram below illustrates the NORMAL OPERATING RANGE of the audio signal.
+
+For normal music the signal should range between –6 and +6 on the meters with average around 0dB.
+This allows enough HEADROOM for unexpected peaks before the signal hits its maximum CLIPPING voltage and
+distorts. It also achieves the best SIGNAL-TO-NOISE-RATIO by keeping the signal well above the residual NOISE
+FLOOR (system hiss).
+The DYNAMIC RANGE is the maximum signal swing available between the residual noise floor and clipping.
+
+
+
+
+An important note …      The human ear is a remarkable organ with the ability to compress or ‘shut down’ when
+                         sound levels become too high.
+                         Do not interpret this natural response as a reason to turn the system volume up further !
+   !                   As the session wears on ear fatigue may set in, and the speaker cones may become hot
+                         so reducing the effectiveness of the system and listeners to gain any benefit from
+                         increased volume.
+                                                   BE SENSIBLE. BE SAFE WITH SOUND LEVELS.
+                                    ☺
+     ALLEN&HEATH                                              32                      XONE:92 Mk2 User Guide
+Installer Link Options
+
+
+           CAUTION : The following service instructions are for use by qualified personnel only.
+            To reduce the risk of electric shock do not perform any servicing other than that described in the
+            operating instructions unless you are qualified to do so.
+Refer all servicing to qualified service personnel
+
+The XONE:92 Mk2 has several internal option settings designed in. Some of these are primarily for setting up the
+mixer in a fixed installation situation, and the others can be used to reconfigure the MIDI system.
+To gain access to these options the top panel assembly needs to be separated from the chassis. This operation
+should only be carried out by qualified service personnel.
+          IMPORTANT! Ensure the AC mains input lead is disconnected before removing the top panel.
+Removal of the top panel requires the use of a Torx T10 screwdriver. Use a good quality tool to prevent rounding
+the screw heads. First remove the 4 pipped TORX screws located on rear panel in the center of each block of input
+channel RCA (Phono) connectors, and then undo the 8 M3 x 8 screws that hold the front panel to the chassis. Lift
+the front edge of the top panel until the two filter PCBs are clear of the chassis, and then pull the top panel gently
+forward and up until access can be gained to unplug the power cable from the power supply located on the right
+hand side of the chassis. Continue to lift the front edge of the top panel up until it is possible to unplug the two
+harnesses from the rear connector PCB and unscrew the M3 nylock nut to remove the orange earth cable.
+Lift the top panel clear of the base and place on a clear work surface.
+Reassembly is the reverse procedure, but take great care to refit the harnesses correctly and to ensure that the
+ribbon cables do not get trapped between any of the PCBs and the chassis. Refit the panel screws first and tighten
+evenly with the chassis held firmly on a flat work surface. Finally refit the rear connector screws.
+
+
+                                  8 off AB3820 M3 x 8 SS
+
+
+
+
+               4 off AB2810 Pipped TORX
+
+
+
+
+     ALLEN&HEATH                                               33                      XONE:92 Mk2 User Guide
+Installer Link Options continued ...
+
+Input Channel
+There are two configuration options designed into the input channel; one to convert the RIAA turntable input to
+operate with Line sources, the other to disable the input level +10dB gain. To disable the functions plug the
+jumpers on to one leg of the connector. This retains them for future use if needed.
+Input Gain Disable
+Locate and remove the two jumper sleeves JP5, JP6 (illustrated in detail A) to disable the input gain. Full clockwise
+rotation of the input level control will now provide unity gain and not +10dB.
+RIAA Disable
+To convert the RIAA phono pre-amplifier to a line level input locate and remove the two jumper sleeves JP2, JP4
+(detail B) and the two jumper sleeves JP1, JP3 (detail C).
+
+
+
+
+                                                                                                      C
+                                 A
+
+
+
+
+                                                                       B
+
+
+
+
+     ALLEN&HEATH                                              34                      XONE:92 Mk2 User Guide
+Installer Link Options continued ...
+
+VCF 1 AND 2 Filter PCBA
+There are several configuration options on the filter PCB. These are maximum resonance limit, VCF filter disable,
+and change default MIDI setup (Filter 2 Only). To disable the functions plug the jumpers on to one leg of the
+connector. This retains them for future use if needed.
+Filter Disable
+To prevent the filter from being switched on, locate and remove the DISABLE FILTER jumper sleeve (illustrated in
+detail A). The maximum VCF resonance can also be limited by removing the corresponding RESONANCE jumper
+sleeves.
+
+MIDI ON / OFF
+A four way dip switch selects which controls on the XONE:92 output MIDI data (detail B).
+The default setting is all ON. Each switch can be set off to prevent the associated control from sending MIDI
+messages.
+MIDI Channel
+The MIDI output channel is set to 16 as a factory default. This can be changed to 15 by changing over the
+“CHANNEL” dip switch.
+MIDI TEMPO ADJUST / DATA
+The TEMPO controller default configuration provides a means of fine tuning the MIDI clock speed. This control can
+be reconfigured as a dedicated DATA send control (CC94) by moving the VR4 jumper sleeve (detail B) from the T
+(Tempo) position to the D (Data) position.
+Note: MIDI clock will still be transmitted via the LFO 2 TAP tempo button when the jumper is in the D position.
+
+
+
+
+                                                                                             B
+
+                           A
+
+
+     ALLEN&HEATH                                              35                      XONE:92 Mk2 User Guide
+              Page left intentionally blank.
+
+
+
+
+ALLEN&HEATH                      36            XONE:92 Mk2 User Guide
+

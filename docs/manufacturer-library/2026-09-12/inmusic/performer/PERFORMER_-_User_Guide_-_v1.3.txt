@@ -1,0 +1,2476 @@
+ User Guide
+
+
+
+
+Powered by Serato DJ Pro
+                                    Table of Contents
+
+
+
+
+INTRODUCTION ............................................................. 4
+
+    Box Contents ........................................................................................... 4
+
+    Support ...................................................................................................... 4
+
+    Product Registration ............................................................................. 4
+
+
+SETUP .............................................................................. 5
+
+    Connection Diagram .............................................................................. 5
+
+
+FEATURES ...................................................................... 6
+
+    Top Panel .................................................................................................. 6
+
+          Deck Controls ........................................................................................................ 6
+
+          Performance Pads ............................................................................................... 9
+
+          Platter Display ....................................................................................................... 11
+
+          FX Section ............................................................................................................. 17
+
+                 Using and Changing Effects ................................................................................... 17
+
+          Mixer Controls ...................................................................................................... 19
+
+    Front Panel ............................................................................................. 22
+
+    Rear Panel ............................................................................................... 23
+
+
+2
+OPERATION ................................................................. 24
+
+    Pad Display ............................................................................................ 24
+
+    Stems Mode ........................................................................................... 24
+
+    Pad Modes .............................................................................................. 26
+
+          Hot Cue .................................................................................................................. 26
+
+          Roll ........................................................................................................................... 27
+
+          Sampler .................................................................................................................. 27
+
+          Stems ...................................................................................................................... 27
+
+          Pitch Play .............................................................................................................. 28
+
+          Saved Loops ........................................................................................................ 28
+
+          Scratch Bank ........................................................................................................ 29
+
+          Slicer Mode ........................................................................................................... 29
+
+
+
+APPENDIX .................................................................... 30
+
+    Internal Hardware Effects ................................................................. 30
+
+    System Menu ......................................................................................... 45
+
+    Technical Specifications .................................................................... 47
+
+    Trademarks & Licenses ...................................................................... 49
+
+
+
+
+                                                                                                                                            3
+INTRODUCTION
+
+Thank you for purchasing the PERFORMER. At Rane, performance and reliability
+mean as much to us as they do to you. That’s why we design our equipment with
+only one thing in mind—to make your performance the best it can be.
+
+
+Box Contents
+PERFORMER                                      Rane Sticker Sheet
+USB Cable                                      DeoxIT Fader Lube (2ml
+IEC Power Cable (region-specific)              Serato P’nT DJ Expansion Pack Voucher
+(2) Clear Plastic Slip Rings (pre-installed)   Rane PERFORMER Poster
+(2) White Felt Slip Rings (pre-installed)      Quickstart Guide
+Find Your Feel Slip Ring Pack - (2) Clear      Safety & Warranty Pamphlet
+Plastic and (2) Black Felt Slip Rings
+Display/Vinyl Cleaning Cloth
+
+
+Support
+For the latest information about this product (documentation, technical
+specifications, system requirements, compatibility information, etc.) and product
+registration, visit rane.com.
+For additional product support, visit rane.com/support.
+
+
+Product Registration
+Your product may include exclusive software and/or promotions which can only be
+accessed by registering your new product on the Rane website.
+
+To check eligibility and access the available content, please register your product by
+following the instructions below:
+1.   Visit rane.com and click Account.
+2.   Click Sign In to access your existing account, or create a new account.
+3.   Once signed in, click Register New Product.
+4.   Enter the product serial number into the box and click Check Serial.
+5.   Complete the form and click Register Your Product.
+6.   Upon successful registration, any applicable software downloads, exclusive
+     content, and promotional offers will be shown in your account.
+
+
+
+
+4
+SETUP
+
+1.   Make sure you have downloaded and installed the latest version of your DJ
+     software and driver from rane.com/downloads.
+     Note: Driver installation is required to connect PERFORMER with macOS or
+     Windows computers.
+2. Place PERFORMER on a flat, stable surface.
+3. While the power is switched off, plug the included power cable into PERFORMER
+   first, then plug the cable into a power outlet.
+     Connect audio input sources (microphones, turntables, etc.) to PERFORMER.
+     Connect audio output devices (headphones, power amplifiers, loudspeakers, etc.)
+     to PERFORMER.
+4. Connect all devices to power outlets, and power on the devices in proper order:
+        •   When starting a session, turn on (1) input sources, (2) PERFORMER, (3)
+            output devices.
+        •   When ending a session, turn off (1) output devices, (2) PERFORMER, (3)
+            input sources.
+5. Use a standard USB cable (included) to connect one of the USB Ports to an
+   available USB port on your computer.
+6. Open Serato DJ Pro and go!
+     For more information on how to use Serato DJ Pro with the PERFORMER, please
+     visit support.serato.com.
+
+
+Connection Diagram
+Items not listed under Introduction > Box Contents are sold separately.
+
+
+                                          Booth
+                                         Monitors
+                    Computer                             Turntable
+
+
+
+
+                                                                     Microphone
+
+
+
+Power
+
+                                Main Monitors
+
+
+
+
+                                                                                     5
+FEATURES
+
+
+Top Panel
+
+Deck Controls
+                                                                                9                           12 13
+1.   Deck Layer Section: Press to select the active deck                                                             CENSOR /       3                          2
+                                                                                                   10
+                                                                                                                    SILENT CUE
+
+
+
+
+     layer. Decks 1 and 3 are on the left deck. Decks 2 and                DISPLAY MODE   SEARCH            MOTOR    REVERSE        LOAD PREP
+
+
+
+
+                                                                                                                                                               18
+     4 are on the right deck.                                       STOP TIME
+
+                                                                                                        7
+                                                                11                                                                       1
+2.   Scroll/Load: Turn the encoder to navigate through
+     the software. Push to load a song to the active deck                                                                                            KEYLOCK
+                                                                                                                                                               6
+                                                                                                            8
+     layer. Press this knob twice quickly to load the same
+     track to both decks (“instant doubles”).
+                                                                                                                                                               4
+3.   Back/Load Prep: Press this button to move back
+     through levels of library organization.
+                                                                        SHIFT
+
+
+
+
+                                                                          14
+                                                               17                                                                                                   5
+     Press and hold Shift and press this button to load                                                                                         33 RPM     45 RPM
+
+
+
+
+                                                               16
+     the currently selected track to the Prepare crate.                                                                        RELOOP
+                                                                                                                                                KEY SYNC   RESET
+
+
+
+
+4.   Pitch Fader: Move this fader to adjust the speed               15                                                  LOOP IN   LOOP OUT
+
+
+
+
+     (pitch) of the track. You can adjust its total range
+     with the pitch Range button.
+5.   Pitch Bend -/+: Press and hold one of these buttons to momentarily reduce or
+     increase (respectively) the speed of the track.
+     Press and hold Shift and press these buttons to change the platter playback
+     speed (Pitch Bend - = 33 RPM, Pitch Bend + = 45 RPM).
+6.   Range / Keylock: Press this button to adjust the range of the Pitch Fader to
+     ±8%, ±16%, and ±50%.
+     Press and hold Shift and press this button to activate or deactivate Keylock: the
+     key of the song will lock to whatever position the pitch fader is at when Keylock
+     is activated. This feature allows you to change the speed of the song without
+     changing the key.
+7.   Motorized Platter: These motorized platters are used to control song position,
+     scratching, and pitch bend. To customize the scratch feeling, first remove the
+     acrylic vinyl control disc from the platter. Then you can add, remove, or change
+     the order of the slip rings until you get the desired feel. To return the acrylic
+     vinyl on top of the slip rings, line up the four slots underneath it to fit into the
+     platter’s four magnetic squares.
+     Note: To ensure consistent playback and scratch performance, use a maximum
+     of 2 slip rings per side and ensure the slip ring configuration is identical on both
+     platters.
+8.   Platter Display: This 2” color display provides info for Beat Jump Size, Album
+     Artwork, BPM, Time Remaining/Elapsed, Song Key, Needle Position, Loop, and
+     Moving Waveforms.
+     Tip: For the best playhead and needle position response, make sure that the
+     Serato DJ Library + Display preference Maximum Screen Updates Per Second
+     is set to 30 or higher. The digital needle can also be turned off in the device
+     menu and a needle sticker can be applied to the control disc for greater
+     accuracy.
+9.   Beat Jump: Press these buttons to jump back or forward in the software at the
+     set Beat Jump Length.
+     Press and hold Shift and press either Beat Jump buttons to change the platter
+     display view.
+
+6
+10. Beat Jump Length: Turn to increase or
+    decrease the beat jump length. Push the                         9                      12 13                 CENSOR /
+
+
+    encoder to reset the Beat Jump length
+                                                                                                                SILENT CUE
+
+
+
+
+    to eight beats.                                            DISPLAY MODE
+                                                                                 10
+                                                                              SEARCH           MOTOR             REVERSE
+
+
+
+
+      Press and hold Shift while turning this
+      knob to seek/search through the                   STOP TIME
+
+
+
+      timeline of the track loaded to the deck.    11                                  7
+      Note: Sync must be enabled in Serato
+      DJ Pro to search through the track
+      timeline.
+11.   Stop Time: Turn this knob to the left to
+      lessen the time it takes to stop the
+      platter. Turn to the right to increase the
+      time it takes to stop the platter.
+12.   Slip / Motor Off: Press this button to
+      enable or disable Slip mode. In Slip
+      mode, you can jump to Hot Cue Points,
+      trigger Loop Rolls, or use the platters
+      while the track’s timeline continues. In             SHIFT
+
+
+      other words, when you stop the action,                  14
+      the track will resume normal playback
+                                                   17                                                                                 5
+      from where it would have been if you                                                                        33 RPM     45 RPM
+
+
+
+
+      had never done anything (i.e., as if the     16                                                             KEY SYNC   RESET
+
+
+
+      track had been playing forward the
+      whole time).
+                                                                                                RELOOP
+
+
+
+
+      Press and hold Shift and press this                15                                LOOP IN   LOOP OUT
+
+
+
+
+      button to activate or deactivate the
+      motor for the platter.
+13.   Censor / Silent Cue / Reverse: Press and hold this button to activate Censor,
+      which temporarily reverses the playback of the track. Release the button to
+      resume normal playback from where it would have been if you had never
+      engaged the Censor function (i.e., as if the track had been playing forward the
+      whole time).
+      The primary function of this button can be changed to Silent Cue in the system
+      menu. See the System Menu section for more details. Silent Cue temporarily
+      mutes the deck audio until a Hot Cue or Pitch Play pad is pressed. This allows
+      you to play the song from the desired position and unmute the deck with a
+      single button press.
+      Press and hold Shift and press this button to activate Reverse, which will
+      reverse the playback of the track. Press the button again to resume normal
+      playback from wherever the audio playhead stops.
+14. Shift: Press and hold this button to access secondary functions when used with
+    other controls.
+15.   Start/Stop: Press this button to start or stop the platter. The LED will be dim
+      when no track is loaded, flashing green when a track is paused, and solid green
+      when a track is playing.
+      Press and hold Shift and press this button to perform stutter play if the track is
+      in the play state.
+
+
+
+
+                                                                                                                                          7
+16.   Cue / Previous: When the Deck is              SHIFT
+
+
+
+
+      paused, you can set a Temporary               14
+      Cue Point by moving the platter
+                                            17                                                                                            5
+      to place the playhead at the                                                                                   33 RPM      45 RPM
+
+
+
+
+      desired location and then pressing    16
+      the Cue button.
+                                                                                                                     KEY SYNC    RESET
+
+
+
+
+      During playback, you can press
+                                                                                                   RELOOP
+
+
+
+
+      the Cue Button to return the track          15                                          LOOP IN     LOOP OUT
+
+
+
+
+      to this Temporary Cue Point. (If
+      you did not set a Temporary Cue
+      Point, then it will return to the
+      beginning of the track.)
+      If the Deck is paused, you can press and hold the Cue button to play the track
+      from the Temporary Cue Point. Releasing the Cue button will return the track to
+      the Temporary Cue Point and pause it. To continue playback without returning
+      to the Temporary Cue Point, press and hold the Cue button, then press and
+      hold the Play button, and then release both buttons.
+      Press and hold Shift and press this button to return the track to its beginning.
+      Pressing this button combination again while at the beginning of the track will
+      load the previous track in the playlist to the deck.
+17.   Sync / Sync Off: Press this button to automatically match the corresponding
+      Deck’s tempo with the opposite Deck’s tempo.
+      Press and hold Shift and press this button to deactivate Sync.
+18.   Stem-Split: Pressing this button
+      performs the Stem-Split function                       9                       12 13                       3
+                                                                                              CENSOR /
+
+
+      within Serato DJ. The track that is                                       10                                                        2
+                                                                                             SILENT CUE
+
+
+
+
+      loaded to the deck is instant                     DISPLAY MODE   SEARCH        MOTOR    REVERSE          LOAD PREP
+
+
+
+
+      doubled to the layers of the                                                                                                        18
+      respective side. Decks 1/2 are             STOP TIME
+
+
+
+      always set to the acapella stem        11                                                                      1
+      and decks 3/4 are always set to
+      instrumental stem regardless of
+      what deck is in focus when the                                                                                            KEYLOCK
+                                                                                                                                          6
+      Stem-Split button is pressed. This
+      allows you to adjust level, EQ, and
+      apply effects to the instrumental
+      or acapella independently. By
+      default, deck functions are locked
+      together. To manipulate the stem
+      elements independently from each
+      other, press one of the deck
+      buttons. Press the Stem-Split
+      button again to sync the stem
+      elements.
+      Tip: Ensure the level of your
+      desired channels are the same
+      before triggering Stem-Split.
+
+
+
+
+8
+Performance Pads
+
+1.   Performance Pads: Strike these                  Combination Pad Mode:
+     pads to perform the function of the
+     current pad mode.                       Pressing and holding one of the pad mode
+                                             buttons and then pressing another one will
+     Note: See the Operation > Pad           enter combination pad mode. The first
+     Modes section to learn how to use       button pressed from the top row of pads
+     the pads in each mode.                  (1-4) will be the first pad mode and the
+2.   Hot Cue / Pitch Play: Single press      second pad mode will be accessed from
+     this button to enter the first pad      the lower pads (5-8). While in combination
+     mode, Hot Cue mode. Press the           pad mode the parameter buttons control
+     button two consecutive times in         the first pad mode.
+     quick succession to enter the
+     secondary pad mode, Pitch Play
+     mode.                                             3       4   5         6
+                                                 2
+     Custom User Mode: Press and hold
+     Shift and press this button to access                                                  33 RPM     45 RPM
+
+
+
+     the custom user pad mode where all      7                             11                                   10
+     eight pads and the parameter
+                                                                                            KEY SYNC   RESET
+
+
+
+
+     buttons can be assigned to various                                                                         8
+                                                           1                RELOOP
+
+
+
+     software features.                                                LOOP IN   LOOP OUT                       9
+     Note: The Serato Pitch N Time                                     12 13
+     plugin is required to use Pitch Play
+     mode.
+3.   Roll / Saved Loops: Single press this button to enter the first pad mode, Roll
+     mode. Press the button two consecutive times in quick succession to enter the
+     secondary pad mode, Saved Loop mode.
+4.   Sampler / Scratch Bank: Single press this button to enter the first pad mode,
+     Sampler mode. Press the button two consecutive times in quick succession to
+     enter the secondary pad mode, Scratch Bank mode.
+5.   Stems: Single press this button to enter the first pad mode, Stem mode. Press
+     the button two consecutive times in quick succession to enter the secondary
+     pad mode, Slicer mode.
+6.   Parameter </>: Use these buttons to access various functions in each pad
+     mode.
+7.   Pad Display: Displays the current pad mode and/or specific pad info such as
+     sample name and hot cue names.
+
+
+
+
+                                                                                                                    9
+8.    Acapella: Press to filter out the instrumental and
+      only play the vocals for the current track.
+      Press and hold Shift and press this button to
+      apply an echo out effect to the removed stem
+      elements.
+                                                                    6
+9.    Instrumental: Press this button to filter out the
+                                                                                   33 RPM     45 RPM
+      vocals of the current track to create an
+      instrumental for the current track.                        11
+                                                                 10                                    10
+      Press and hold Shift and press this button to                                KEY SYNC   RESET
+
+
+
+
+                                                                                                       8
+      apply an echo out effect to the removed stem
+      elements.                                                    RELOOP
+
+
+10. Key Adjust: Adjusts the key of the active deck.
+    Use < > to move up or down the key scale.                 LOOP IN   LOOP OUT
+                                                                                                       9
+      Press and hold Shift and press < to turn on Key
+      Sync.                                                  12 13
+      Press and hold Shift and press > to reset the key.
+      Note: The Serato Pitch N Time plugin is required
+      to use Key Adjust.
+11.   Loop On/Off / Reloop: Press this button to create an auto-loop with the length
+      that is set in the software.
+      Press and hold Shift and press this button to skip to the last-played loop and
+      activate it immediately.
+12.   x1/2 / Loop In: Press this button to halve the length of the current loop.
+      Press and hold Shift press this button to create a Loop In point at the current
+      location.
+13.   x2 / Loop Out: Press this button to double the length of the current loop.
+      Press and hold Shift and press this button to create a Loop Out point at the
+      current location.
+
+
+
+
+10
+Platter Display
+
+The platter displays are populated with a waveform, graphics, and text. The display
+view will change depending on the mode you are in, which is detailed in this section.
+Empty Deck:
+Note: The Key and Now Line features will not
+appear until a song is loaded.
+1.   BPM: Displays zeros '000.0' when no
+     song is loaded.                                4
+                                                                 1            2
+2. Pitch Range / Pitch Percentage Offset:
+   Displays the current pitch range value and
+   the pitch percentage offset for the active
+   deck.
+3. LOAD SONG: This appears when the deck
+   has no song loaded.                                                   3
+4. Beat Jump Size: Displays the Beat Jump
+   icon and current beat jump size for the
+   active deck.
+5. Time: Displays the remaining time as all
+   zeros ‘-00:00.0’. The text flashes when              6        5
+   the Track End Warning has been
+   triggered.
+6. Loop Size: Displays the loop icon and
+   current loop size for the active deck. The
+   icon and text are White when a loop is
+   inactive and orange when active.
+
+
+
+
+                                                                                   11
+Performance   View     1      with    moving
+waveforms (Default view):                                                     3
+1.   Song Key / Key Change Offset: Displays         9              2
+     song key value. The key value will change
+     when transposed up or down. When
+     transposed, the + or - offset value is         6
+     shown below the new key value.
+                                                                   5              4
+2. BPM: Displays Beats Per Minute of the
+   current track to the tenth decimal.
+                                                         7
+3. Pitch Range / Pitch Percentage Offset:
+   Displays the current pitch range value and                          11
+   the pitch percentage offset for the active
+   deck.
+4. Waveform Overview: Displays the full
+   track waveform with playhead position                           10
+   (white), temp cue, hot cue indicators            8
+   matching their assigned hot cue colors,                                            1
+   and the active loop region as specified by
+                                                                  Needle On
+   Serato.
+5. Focus Deck Moving Waveform: Four beats of the focus
+   deck’s moving waveform with beat grid markers, bar
+   number, temp cue, hot cue indicators matching their
+   assigned hot cue colors, and the active loop region. The
+   moving waveform zoom level can be adjusted by pressing
+   + and - on your computer keyboard.
+6. Adjacent Deck Moving Waveform: Four beats of the
+   adjacent focus deck's moving waveform with beat grid
+   markers, bar number, temp cue, hot cue indicators
+   matching their assigned hot cue colors, and the active loop
+   region.
+                                                                        Needle Off
+7. Now Line: A horizontal line showing the current playhead
+   position.
+8. Loop Size: Displays the loop icon and current loop size for
+   the active deck. The icon and text are white when a loop is
+   inactive and orange when active.
+9. Beat Jump Size: Displays the Beat Jump icon and current
+   beat jump size for the active deck.
+10. Time: Displays time for the current song. This value may be
+    shown as elapsed or remaining, depending on the setting of
+    the device menu. The text flashes when the Track End
+    Warning has been triggered.                                          Day Mode
+
+11. Needle Indicator: This rotating needle indicator shows the current playhead
+    position. This element can be turned off from the system menu. See the System
+    Menu section for more details.
+     Tip: The display colors can be inverted to Day Mode in the device menu for
+     better visibility in bright environments. See the System Menu section for more
+     details.
+
+12
+Performance View 2 with Progress Ring:
+1.   Song Key / Key Change Offset: Displays
+     song key value. The key value will change     10                                4
+     when transposed up or down. When
+                                                                5
+     transposed, the + or - offset value is
+     shown below the new key value.
+                                                                            3
+2. Track Progress Ring: Displays the total
+   track progress in the outer ring.
+3. Deck Indicator: Displays the current deck            7
+   in focus.
+4. Pitch Range / Pitch Percentage Offset:          2
+   Displays the current pitch range value and
+                                                                                12
+   the pitch percentage offset for the active               8           9
+   deck.
+5. BPM: Displays Beats Per Minute of the            11
+   current track to the tenth decimal.
+                                                                            6            1
+6. Time: Displays time for the current song.
+                                                            Needle On
+   This value may be shown as elapsed or
+   remaining, depending on the setting of the
+   device menu. The text flashes when the
+   Track End Warning has been triggered.
+7. Waveform Overview: Displays the full
+   track waveform with playhead position
+   (white), temp cue, hot cue indicators
+   matching their assigned hot cue colors,
+   and the active loop region as specified by
+   Serato.
+8. Slip Mode Status: Displays Slip mode
+   state.
+9. Sync Status: Displays the Sync state for
+   the deck.                                                        Needle Off
+
+10. Beat Jump Size: Displays the Beat Jump
+    icon and current beat jump size for the
+    active deck.
+11. Loop Size: Displays the loop icon and
+    current loop size for the active deck. The
+    icon and text are white when a loop is
+    inactive and orange when active.
+12. Needle Indicator: This rotating needle
+    indicator shows the current playhead
+    position. This element can be turned off
+    from the system menu. See the System                            Day Mode
+    Menu section for more details.
+     Tip: The display colors can be inverted to Day Mode in the device menu for
+     better visibility in bright environments. See the System Menu section for more
+     details.
+
+                                                                                         13
+Performance View with Album Art:
+
+1.   Song Key / Key Change Offset: Displays
+     song key value. The key value will change    6
+                                                              2                3
+     when transposed up or down. When
+     transposed, the + or - offset value is
+     shown below the new key value.
+2. BPM: Displays Beats Per Minute of the              4
+   current track to the tenth decimal.
+3. Pitch Range / Pitch Percentage Offset:
+   Displays the current pitch range value and                          9
+   the pitch percentage offset for the active
+   deck.
+4. Album Artwork: This shows the artwork of
+   the current track loaded to the deck.              5
+5. Waveform Overview: Displays the full           8
+   track waveform with playhead position                                7          1
+   (white), temp cue, hot cue indicators
+   matching their assigned hot cue colors,                Needle On
+   and the active loop region as specified by
+   Serato.
+6. Beat Jump Size: Displays the Beat Jump
+   icon and current beat jump size for the
+   active deck.
+7. Time: Displays time for the current song.
+   This value may be shown as elapsed or
+   remaining, depending on the setting of the
+   device menu. The text flashes when the
+   Track End Warning has been triggered.
+8. Loop Size: Displays the loop icon and
+   current loop size for the active deck. The
+   icon and text are white when a loop is
+   inactive and orange when active.
+                                                                  Needle Off
+9. Needle Indicator: This rotating needle
+   indicator shows the current playhead
+   position. This element can be turned off
+   from the system menu. See the System
+   Menu section for more details.
+     Tip: The display colors can be inverted to
+     Day Mode in the device menu for better
+     visibility in bright environments. See the
+     System Menu section for more details.
+
+
+
+
+                                                                  Day Mode
+
+14
+Library & Track List View
+The library & track list view is shown automatically when the scroll/load knob is
+turned. This feature can be disabled in the device menu.
+
+1.   Crates: Shows Serato DJ Crate structure
+     including third-party libraries. Longer Crates     1
+                                                                             4    5
+     names scroll momentarily.
+2. Track List: Shows the Track list structure. A
+   blue highlight will follow the current selection.
+   Tracks that have been played are shown in
+   the played color. Longer song titles scroll
+   momentarily. The third column can be set to
+   show TIME instead of KEY in the system
+   menu. See the System Menu section for more                         2
+   details.
+3. Time: Displays time for the current song. This
+   value may be shown as elapsed or remaining,
+   depending on the setting of the device menu.
+   The text flashes when the Track End Warning
+   has been triggered.
+4. BPM: Displays Beats Per Minute of the current
+                                                                Song List - Key
+   track.
+5. Song Key / Key Change Offset: Displays
+   song key value. The key value will change
+   when transposed up or down. When
+   transposed, the + or - offset value is shown
+   below the new key value.
+
+
+             1                   4     3
+
+
+
+
+                                                                1
+                           2
+
+
+
+
+                    Song List - Time               Crate List - Day Mode
+
+
+     Tip: The display colors can be inverted to Day Mode in the device menu for
+     better visibility in bright environments. See the System Menu section for more
+     details.
+
+                                                                                      15
+Line Mode
+
+PERFORMER has USB/LINE 2-way switches for channels 3
+and 4. When channels 3/4 are in line mode, the display will
+show this graphic.
+
+
+
+
+                                                                 Line Mode
+
+Stem Split Mode
+
+PERFORMER has a Stem feature called Stem Split mode. When the feature is
+enabled via the Stem Split button, the platter display momentarily shows the Stem
+Split graphic for one second.
+
+
+
+
+                                                                 Stem Split Mode
+
+
+
+
+16
+FX Section
+
+1.   FX Display: Shows the current effect and its
+     parameters.                                                         1
+                                                                2                         2
+2.   Main FX: Press one of these buttons to              6
+                                                                             REVERB
+
+                                                                                              7
+     arm/disarm a post-fader effect.                                 5       4
+     •   Charging FX: Press and hold an FX              8                                     8
+         button and turn the parameter knob to                   3       9            3
+         cycle through the available FX. Push the
+         parameter knob in to assign the selected
+         FX to the FX slot.
+     •   FX Save: Press and hold this button for four seconds to save the current
+         beats/parameter values to the FX slot. Saved FX are stored to the device
+         and recalled each time Performer is powered on.
+     •   Parameter Reset: Press and hold Shift and press this button to recall the
+         user defined or factory default (if the effect has not been saved)
+         beats/parameter values for the loaded effect.
+3.   Effects Toggle: Move this toggle switch away from you to activate the effects—
+     the toggle will latch to that position. Push down on the paddle to turn the
+     effects on momentarily. Pull the toggle back to the center position to deactivate
+     the effects.
+4.   Tap: Press this button three consecutive times at the desired tempo to manually
+     set the BPM rate for beat-tempo effects, per channel. Press and hold this button
+     for three seconds to return the BPM back to the BPM of the software deck.
+5.   Hardware/Software FX Select: Press to toggle between the internal Hardware
+     FX or software FX. Blue LED = Internal FX (default). Orange LED = Software
+     FX.
+     Press and hold Shift and press this button to access the system menu. See the
+     System Menu section for more details.
+6.   Parameter Encoder: Turn this to control the hardware FX parameters.
+     Push the encoder to cycle through available parameters for the assigned effect.
+     •   Menu Navigation: While the Menu is open, move the joystick to navigate
+         through menu options. Push in the encoder to confirm menu options.
+     •   FX Select: Hold one of the six FX buttons and turn the encoder to scroll
+         through the available effects. Push the encoder to load the selected effect.
+     Press and hold Shift and turn the encoder for Manual BPM Adjust. This will
+     change the tempo of the selected BPM in tenth increments.
+7.   Parameter Joystick: Push this joystick up and down to adjust effect parameters
+     shown on the FX Display. Push this joystick left or right to select the left or right
+     BPM. This is only necessary when making manual FX tempo adjustments.
+     •   Menu Navigation: While the Menu is open, turn the parameter encoder to
+         navigate through menu options.
+     •   Beat Value Reset: Push the joystick button to recall the user-defined or
+         factory default beat value (when the effect has not been saved) for the
+         loaded effect.
+     •   BPM Copy: Press and hold Shift and move the joystick to copy the
+         highlighted tempo and apply it to the left or right BPM, depending on the
+         direction the joystick is moved.
+
+                                                                                                  17
+8.   FX Assign Buttons: Press these buttons to assign which channel
+     will receive effects from the associated toggle: Decks 1 or 3 (Left
+     side) or Decks 2 or 4 (Right side).                                                 8
+     Note: FX assignments can only be changed when the effect is
+     inactive.
+9.   FX Depth: Turn this knob to adjust the “wet-dry” mix of the effects
+     on the corresponding deck. For some effects, this will also change
+     the value of parameters that are also controlled with the Depth                     9
+     knob.
+
+
+Using and Changing Effects
+
+PERFORMER features internal hardware FX and
+control over software FX. Both internal and software
+Main FX are all post-fader. Channel FX from software
+are pre-gain, EQ, and channel fader.                                         Press
+1.   Press the Hardware/Software FX Select button
+     to toggle between internal hardware and
+     Software effects.
+2.   Press and hold one of the FX Select buttons
+                                                                              Press and hold
+     and turn the FX Parameter encoder to scroll
+                                                                     Turn
+     through the available effects.
+3.   Press the FX Select button to select and load
+     the effect to that slot.
+4.   Turn the FX Parameter encoder to adjust the
+     selected parameter value. Press the encoder                            Press
+
+     button to scroll through available parameters of
+     the assigned effect. While the device menu is
+     open, turning this control will adjust setting
+     values.
+     Press and hold Shift and turn the encoder to               Turn to adjust the FX parameter
+                                                        Press to scroll through the FX bank parameters
+     adjust the tempo of the selected BPM in tenth
+     increments.
+5.   Press an FX Assign button to select which
+     channel will be affected by the effects.
+6.   Press the FX On/Off paddle up for continuous
+     effect activation. Pull the paddle down for
+                                                                  Press to assign to channel
+     momentary effect activation. Move the paddle
+     back to the center position to deactivate the
+     effect.
+
+
+
+
+                                                           Toggle up for continous effect activation
+                                                          Pull down for momentary effect activation
+
+
+
+
+18
+Mixer Controls
+
+1.   Deck Source: Set this knob to the desired MIDI                         2                    1                                         1                    2
+     and audio source for the deck, USB A or B.          17
+                                                              MIC 1 ON
+
+
+                                                              TALKOVER
+                                                                                                                                                                        9
+     This allows DJ “handoffs” from one computer                                                                                                                        13
+                                                         18                                                                                    3
+     to another.
+                                                         19                                                                                    4
+2.   USB/Line Source Selection: Adjust this to set
+                                                                                  HIGH / VOCAL   HIGH / VOCAL              HIGH / VOCAL          HIGH / VOCAL
+
+
+
+
+     the channel source to computer audio or line        20                                                                                    5
+                                                                                                                                                                        14
+                                                                                  MID / MELODY       MID / MELODY          MID / MELODY          MID / MELODY
+
+
+
+
+     audio.                                             22               21                                                                    6
+                                                                                                                                                                        15
+                                                              MIC 1 FX            LOW / DRUMS        LOW / DRUMS           LOW / DRUMS           LOW / DRUMS
+
+
+
+
+     When set to USB, MIDI is sent to the same          8                                                           7
+                                                                                                                                                                        16
+     computer connected to the USB port on the                                                                                          REVERB
+
+
+
+
+     rear panel for control for that channel and
+     associated deck.
+     When set to Line, the audio input signals are
+                                                                            CUE                       CUE                            CUE                        CUE
+
+
+
+                                                              10         STEM LEVEL              STEM LEVEL                       STEM LEVEL               STEM LEVEL
+
+
+
+
+     routed to channels 3 and 4 to be digitally
+                                                                                                              PRECISION FEEL
+                                                                                                              ADJUSTABLE FADERS
+
+
+
+
+     mixed. Deck control will no longer be in effect.         11
+     Audio will be mixed internally to the cue and
+     main output signals.
+     Note: If you select Line, set the Phono/Line                                                                                                PERFORMER
+     selector switches on the rear panel properly.                                                              12
+     Note: A deck’s controls will send MIDI
+     information only when its deck source selector
+     is set to USB A or B.
+3.   Deck Audio Level: Turn this knob to set the pre-fader, pre-EQ audio level of the
+     corresponding channel.
+4.   Deck EQ High/Vocals: Turn this knob to adjust the high (treble) frequencies.
+     When Stem Level mode is active, this knob controls the vocal stem level. See
+     the Cue/PFL feature for more info.
+5.   Deck EQ Mid/Melody + Bass: Turn this knob to adjust the mid-range
+     frequencies. When Stem Level mode is active, this knob controls the melody
+     and bass stem level. See the Cue/PFL feature for more info.
+6.   Deck EQ Low/Drums: Turn this knob to adjust the low (bass) frequencies.
+     When Stem Level mode is active, this knob controls the drum stem level. See
+     the Cue/PFL feature for more info.
+Note: All EQ controls are full-kill.
+7.   Channel FX Knob: Turn this knob to adjust the amount of the selected Channel
+     FX. Turning the knob to the left or right applies a different variation of the
+     selected FX. Set it to the center (“12:00”) position to deactivate the filters.
+
+
+
+
+                                                                                                                                                                            19
+8.    Channel FX Select: Press these
+      buttons to select the desired                 8
+      software Channel FX: Filter, Filter                                              7
+      Roll, Noise, or Flanger.
+       •   Filter: Pre-fader. Can be a         9        10
+                                                                             CUE                              CUE             CUE
+
+
+
+
+           software or hardware effect.
+                                                              STEM CUE
+                                                                  LEVEL   STEM LEVEL                       STEM LEVEL      STEM LEVEL
+
+
+
+                                               13                                      PRECISION FEEL
+                                                                                       ADJUSTABLE FADERS
+
+
+
+
+           When used as a hardware                       11
+           effect, it is only available for
+           line/phono sources.
+       •   Filter    Roll:        Pre-fader.   14
+           Software effect.                    15                                                                       PERFORMER
+       •   Flanger: Pre-fader. Software
+                                               16                                        12
+           effect.
+       •   Noise:    Pre-fader.   Software
+           effect.
+      Notes:
+      Upon power-up, the FX BPM will default to 100 BPM.
+      When connected to Serato DJ, the software will send the BPM (from the FX
+      Unit) for only the assigned channel as dictated by the hardware FX Assign
+      buttons (per side).
+      Use the Tap button to manually tap in the tempo in order to obtain the BPM for
+      line input signals.
+9.    Quantize: Press to activate quantize mode in the software.
+10. Cue/PFL: Press this button to send the pre-fader, post-EQ signal to the cue
+    channel for monitoring. When engaged, the button will be lit. To cue multiple
+    channels, press the Cue buttons at the same time for each channel.
+      Press and hold Shift and press this button to change the function of the deck
+      EQ knobs to control Stem Level. When Stem Level mode is active, the Cue/PFL
+      button will flash while Shift is held. In Stem Level mode, High EQ controls the
+      vocal, Mid EQ controls the melody/bass and Low EQ controls the Drums.
+11.   Channel/Deck Fader: Move this fader to adjust the volume level of the
+      corresponding channel/deck. Set the preferred tension of the channel faders by
+      removing the fader plate and adjusting the set screw. Turn to the right to
+      tighten, turn left to loosen.
+      Press and hold Shift and move faders to enable Fader Start.
+12. Crossfader: Move this crossfader to mix between the decks. Set front
+    panel Tension Adjust to your personal preference. Turn right to tighten,
+    turn left to loosen the tension.
+13.   Main Level: Turn this knob to adjust the output volume of the program mix. The
+      meters next to this knob indicate the audio signal level of the program mix.
+14. Booth/Zone Level: Turn this knob to adjust the output volume of the
+    Booth/Zone Outs.
+15.   Sampler Level: Turn to adjust the gain of the software sample player.
+16.   Sampler Assign to Channel 4: Press to route the sampler to channel 4. This will
+      allow the sampler to have all gain, EQ, and FX controls for that channel.
+
+
+
+20
+17.   Mic 1 On/Off / Talkover: Press this                MIC 1 ON
+      button to turn Mic 1 on and off. Press and
+      hold Shift and press this button to use       17   TALKOVER
+
+      the     “talkover”     feature,      which
+      automatically reduces the volume level of
+      the main mix when you speak into the          18
+      microphone. Talkover settings can be
+      adjusted in the system menu. See the
+      System Menu section for more details.         19               HIGH / VOCAL   HIGH / VOCAL
+
+
+18.   Mic 1 Level: Turn to adjust the level of
+      Mic input 1.                                  20               MID / MELODY   MID / MELODY
+
+19.   Mic 1 High: Turn this knob to boost or cut
+      the high frequencies of the Mic 1 input.     22    MIC 1 FX
+                                                                    21
+                                                                     LOW / DRUMS    LOW / DRUMS
+20. Mic 1 Low: Turn this knob to boost or cut
+    the low frequencies of the Mic 1 input.
+21.   Mic 1 Echo: Turn this knob to adjust the
+      Echo level of Mic input 1.
+22. Mic 1 Echo On/Off: Use this switch to
+    turn Echo on or off for Mic input 1.
+
+
+
+
+                                                                                                   21
+Front Panel
+                                            5
+      1
+
+          2   3   4                  6             6                  8 10 9    11
+                                            7
+
+1.    Mic 2 Off/On: When set to Off, the Mic 2 Input is disabled. When set to On, the
+      Mic 2 Input on the rear panel is active, and its audio signal is routed directly to
+      the program mix.
+2.    Mic 2 Level: Turn this knob to adjust the gain of the Mic 2 Input.
+3.    Mic 2 High: Turn this knob to boost or cut the high frequencies of the Mic 2
+      Input.
+4.    Mic 2 Low: Turn this knob to boost or cut the low frequencies of the Mic 2
+      Input.
+5.    Tension Adjust: Set the crossfader tension to your personal preference. Turn
+      right to tighten and turn left to loosen the tension.
+6.    Crossfader Assign: These switches route the audio playing on the
+      corresponding channel to either side of the crossfader (L or R), or bypasses the
+      crossfader and sends the audio directly to the program mix (center position =
+      Thru).
+7.    Crossfader Contour: Adjusts the slope of the crossfader curve. Turn the knob to
+      the left for a slow fade (mixing) or to the right for a fast cut (scratching). The
+      center position is a typical setting for club performances.
+8.    Cue Mix: Turn to mix between the cue channel and program mix in the
+      headphone outputs. When all the way to the left, only the cue channel will be
+      heard. When all the way to the right, only the program mix will be heard.
+9.    Split Cue: When this switch is in the On position, the headphone audio will be
+      “split” such that the cue channel is summed to mono and sent to the left
+      headphone channel while the program mix is summed to mono and sent to the
+      right channel. When the switch is in the Off position, the cue channel and
+      program mix will be “blended” together. In both cases, use the Cue Mix knob to
+      control the blend of the two signals.
+10. Cue Level: Turn this knob to adjust the volume level of the cue channel.
+11.   Headphone Outputs (1/4" or 1/8" [6.35 mm or 3.5 mm], TRS): Connect your
+      headphones to these outputs for cueing and mix monitoring.
+
+
+
+
+22
+Rear Panel
+
+      11   10                           6        5         2 4
+                              9
+
+                                             8       7 3     3   1
+
+1.     Mic Inputs 1–2 (XLR / 1/4" [6.35 mm] TRS): Connect dynamic microphones to
+       these mono inputs. Their mono audio signals are split and routed directly to the
+       stereo program mix and cue channel. If you prefer a stereo line input, the Deck
+       Phono/Line In may be used.
+2.     Deck Phono/Line In (RCA): Connect these inputs to an external audio source or
+       to a turntable, CD player, or other line-level device. Remember to set the
+       corresponding Phono/Line selector to the appropriate position and to set the
+       USB/Line Source Selection switch for that deck to Line to play its audio signal
+       on that deck.
+3.     Line/Phono Selectors: Set this switch to the appropriate position, depending
+       on the device connected to the Phono/Line Ins of the corresponding deck. If
+       you are using phono-level turntables, set this switch to Phono to provide the
+       additional amplification needed for phono-level signals. If you are using a line-
+       level device, such as a line-level turntable, CD player or sampler, set this switch
+       to Line.
+4.     Phono Ground: If you are using phono-level turntables with a grounding wire,
+       connect the grounding wire to this terminal. If you experience a low “hum” or
+       “buzz”, this could mean that your turntables are not grounded.
+       Note: Some turntables have a grounding wire built into the RCA connection, so
+       nothing needs to be connected to the grounding terminal.
+5.     Main Out (RCA): Connect these outputs to another mixer, recording device, etc.
+       The program mix will be sent to these outputs.
+6.     Main Out (XLR): Connect these outputs to loudspeakers or an amplifier system.
+       Use the Main knob on the top panel to control the volume level.
+7.     Booth/Zone (1/4" [6.35 mm]): Connect these outputs to booth monitors or a
+       booth amplifier system. Use the Booth/Zone knob on the top panel to control
+       the volume level.
+8.     Stereo/Mono: Set this switch to have the Main Outs output a stereo or mono
+       audio signal.
+9.     USB Ports (USB Type-B): Use USB cables to connect these USB ports to
+       available USB ports on your computer. These connections send and receive
+       audio and MIDI control information to and from the computer.
+10. Power Input: While PERFORMER is powered off, connect the included power
+    cable to this input and then to a power outlet.
+11.    Power Button: Use this button to power PERFORMER on or off. Power on
+       PERFORMER only after you have connected all your input devices and before
+       you power on your amplifiers and loudspeakers. Power off your amplifiers and
+       loudspeakers before powering off PERFORMER.
+
+
+
+
+                                                                                        23
+OPERATION
+
+
+Pad Display
+PERFORMER has monochrome OLED displays above each performance pad area
+which offer two lines of text. The top line refers to the top row of pads and the
+second line refers to the bottom row of pads. If the text string is longer than the
+length of the screen, the line of text will scroll momentarily to show the full text and
+then return to the first character. Scrolling will only occur the first time the text is
+shown on-screen after changing modes.
+
+
+
+
+ •   In Hot Cue pad mode, the displays will show the Hot Cue name. If the Hot Cue
+     is not named, then the song position (time) is shown.
+ •   In Roll pad mode, the displays will show the Loop Roll value. When a Roll pad is
+     active, the display will show that line inverted with a solid White rectangular
+     box.
+ •   In Sampler pad mode, the displays will show the sample name. If a Sample pad
+     is empty, the display line for the corresponding pad will remain blank. When a
+     sample is playing, the display will show that line inverted with a solid white
+     rectangular box.
+ •   In Stems pad mode, the first line will show the Stem element, and the second
+     line will show the Stem FX. Use pads 1-4 to toggle stems on/off (1-Vocal, 2-
+     Melody, 3-Bass, 4-Drums) and pads 5-8 to toggle stems FX on/off (5-Vocal
+     Echo, 6-Drums Echo, 7-Instrumental Braker, 8-Drums Braker).
+ •   In Pitch Play pad mode, the displays will show the key change value (in
+     semitone) for each pad. When selected, the display will show that line inverted
+     with a solid white rectangular box.
+ •   In Saved Loop pad mode, the displays will show the Saved Loop name. If the
+     Saved Loop is not named, then the Saved Loop start time will be shown. When
+     a Saved Loop is playing, the display will show that line inverted with a solid
+     white rectangular box.
+ •   In Scratch Bank pad mode, the displays will show the name of the loaded
+     sample/song. If a Scratch Bank is empty, the display line for the corresponding
+     pad will remain blank.
+ •   In Slicer pad mode, the displays will show the slice size. When a Slicer pad is
+     active, the display will show that line inverted with a solid white rectangular box.
+ •   In Combination pad mode, the displays show the selected pad modes on the
+     top and bottom section of the display.
+
+
+
+
+24
+Stems Mode
+
+To enter Stems mode, press Stems.
+Adjust the High Vocal knob to control the vocal stem level.
+Adjust the Mid Melody knob to control the melody + bass stem level.
+Adjust the Low Drums knob to control the drums stem level.
+Press the Stem Split button to perform the Stem Split function within       HIGH / VOCAL
+Serato DJ. The main display will show the mode is engaged and informs
+which stem elements are controlled by the channel faders. The track
+that is loaded to the deck will be instantly doubled to the layers on the
+respective side. Decks 1/2 are always set to vocal stem and decks 3/4       MID / MELODY
+
+are always set to instrumental stem regardless of what deck is in focus
+when the Stem Split button is pressed. This allows you to manipulate
+the stem elements independently from each other.
+                                                                            LOW / DRUMS
+Example: A song playing on Deck 1 has the Melody and Vocals toggled
+off. When Stem Split is engaged, Deck 1 will have the Vocal turned ON,
+and Deck 3 will have all three instrumental stems turned ON.
+Notes: All deck controls (e.g. pad modes, looping controls, load track,
+beat jump) will simultaneously trigger on both decks on the same side.
+All mixer controls (EQs, gains, channel faders) and FX will be individual
+per deck.
+Loading a track (standard load, Scratch Bank load, or Instant Double
+from other active decks) to either deck currently in Stem Split mode
+will result in the song being split into vocal and instrumental stems
+using the rules above.
+
+Exiting Stem Split mode:
+Press the Stem Split button to revert the deck control to the primary
+deck. Stems states are also reset. The transport state of the primary
+deck will be preserved. The song from the inactive layer will be
+unloaded/ejected.
+Press either layer button to stop dual control and regain control of
+individual decks. The stem state of currently loaded songs will be
+preserved. The transport state of both decks will be preserved. No
+songs are unloaded.
+Eject either deck to stop dual control and regain control of individual
+decks. Stem state of non-ejected songs will be preserved. The transport
+state of the non-ejected deck will be preserved.
+
+
+
+
+                                                                                           25
+Pad Modes
+This chapter describes the different pad
+modes. Each deck has eight pads, which are            1     2         3         4
+always in one of these modes, and each
+deck’s pads can be in a different mode. Press
+one of the Pad Mode buttons to enter the                    6         7         8
+                                                      5
+corresponding pad mode on that deck. The
+pads will remain dim when unselected, at full
+brightness when a pad mode is selected, and
+flashing between dim and full brightness
+when a secondary pad mode is selected.
+
+
+Hot Cue
+
+In Hot Cue mode, each pad assigns a hot cue point in the software or returns the
+track to that hot cue point. The performance pad LEDs will remain unlit until a hot
+cue is placed or will light if the loaded track already has Hot Cue points assigned.
+To enter Hot Cue mode, press Hot Cue.
+To assign a hot cue point, press an unlit Pad at the desired point in your track. The
+pad will light up when it is assigned (with the corresponding color, if available).
+To jump to a hot cue point, press a lit Pad.
+To delete an assigned hot cue point, press and hold Shift and then press the
+corresponding pad.
+To arm FLIP recording, press Parameter <. The Censor or Hot Cue action initiates
+recording when FLIP mode is record armed. Press Parameter < again to disarm FLIP
+recording.
+To stop recording and turn FLIP on / loop FLIP, press Parameter >.
+Note: FLIP Expansion is required for this function.
+
+
+
+
+26
+Roll
+
+In Roll mode, each of the performance pads will perform a different time division
+loop roll. Releasing the pad stops the loop roll and resumes normal playback where
+the playhead would be if you had not triggered the loop roll (i.e., as if the track had
+been playing forward the whole time). Enable the Show Beat Jump Controls option
+in the software to have the bottom four pads to control beat jump functions.
+Note: Disable Show Beat Jump Controls in the Serato Setup menu to access eight
+loop rolls at once. You can also view and edit the set loop sizes in the software.
+To enter Roll mode, press Roll.
+To trigger a loop roll, press and hold a Pad. The pad LED will be dim when a pad is
+unpressed (roll inactive). The LED will be at full brightness when a pad is pressed
+(roll active).
+To shift the roll range down, press the Parameter < button.
+To shift the roll range up, press the Parameter > button.
+Press the Parameter < button while a roll is active to halve the length of the roll.
+Press the Parameter > button while a roll is active to double the length of the roll.
+
+Sampler
+
+In Sampler mode, each pad triggers a sample, which you can assign in the software.
+To enter Sampler mode, press Sampler. The pad LED will be unlit when no sample
+is loaded to a pad. The LED will be bright pink when a sample is loaded to a pad.
+The LED will flash between off and bright pink when a sample is playing.
+To stop sample playback, press and hold Shift and press the corresponding pad.
+To cycle the Sample bank selection left, press the Parameter < button.
+To cycle the Sample bank selection right, press the Parameter > button.
+To cycle through the sampler outputs, press and hold Shift and then press the
+Parameter < or > button.
+
+Stems
+
+In Stems mode, the top four pads can be
+used to mute stem elements and the
+bottom four pads can be used to activate          VOCAL     MELODY     BASS      DRUMS
+stem FX.
+To enter Stems mode, press Stems.
+                                                    FX                             FX
+                                                            FX INST    FX INST
+For Stem Elements (pads 1-4), the pad             VOCAL                          DRUMS
+                                                             ECHO     BREAKER
+                                                  ECHO                           ECHO
+LED will be unlit when a Stem element is
+muted/removed. The LED will be bright
+Blue when a Stem element is playing.
+For Stem FX (pads 5-8), the pad LED will be unlit when Stem FX is off. The LED will
+be bright Amber when Stem FX are on.
+To activate an instant acapella, press the Parameter < button.
+To activate an instant instrumental, press the Parameter > button.
+
+                                                                                         27
+Pitch Play
+
+To enter Pitch Play mode, quickly double tap this button. In this mode, the
+performance pads offer a range of different keys for the active hot cue (adjustable
+by semitones). The Serato Pitch N Time plugin must be installed to use this mode.
+See Hot Cue to learn how to assign hot cue points.
+To enter Pitch Play mode, quickly double tap Hot Cue pad mode button.
+To select which hot cue point to use, press and hold Shift and press a dimly lit
+Pad.
+To select the range of transpositions the pads will use, press the Parameter </>
+buttons.
+To play the track from the hot cue point, press a lit Pad. Each pad corresponds to
+a specific transposition (by semitones), depending on the current range of
+transposition.
+A pad with no semitone selected will be lit dim. A pad with a semitone selected will
+be lit at full brightness. A pad with no transposition (the original pitch) will be lit
+white.
+
+Saved Loops
+
+In Saved Loops mode, each pad triggers a loop previously saved in your software.
+To enter Saved Loops mode, quickly double tap Roll pad mode button. The pad
+LED will be off when no loop is saved to a pad. The LED will be bright green when a
+loop is saved to a pad. The LED will be bright blue when a saved loop is active.
+To play a loop, press a lit Pad. Each deck’s eight pads will correspond to Saved
+Loops 1–8 in your software.
+To activate the saved loop, press the pad to activate the loop or press and hold
+Shift and press the corresponding pad to activate and jump to the loop position in
+the track.
+To halve the loop size, press the Parameter < button.
+To double the loop size, press the Parameter > button.
+To move the active loop region backward at the current loop size without
+deactivating the loop, press and hold Shift and then press the Parameter < button.
+To move the active loop region forward at the current loop size without
+deactivating the loop, press and hold Shift and then press the Parameter > button.
+
+
+
+
+28
+Scratch Bank
+
+In Scratch Bank mode, each pad loads samples and tracks from your Serato DJ Pro
+library to a pad. You can assign the song and set the starting point in the software.
+This is useful for preparing and performing with song samples for scratching.
+To enter Scratch Bank mode, quickly double tap the Sampler pad mode button.
+The pad LED will be off when no track is loaded. The LED will be bright White when
+a Scratch Bank track is loaded to a pad. Colors can be set in the Scratch Bank panel
+within the Serato DJ Pro software.
+To load the selected track to a pad, press an unlit Pad. When that pad is pressed
+again, the corresponding track will be loaded to the deck.
+To load the track that was previously on the deck before loading a Scratch Bank
+track, press and hold Shift and press the corresponding pad.
+To cycle the Scratch Bank selection left, press the Parameter < button.
+To cycle the Scratch Bank selection right, press the Parameter > button.
+
+Slicer Mode
+
+In Slicer mode, the eight pads represent eight sequential beats (slices) in the
+beatgrid. The currently playing slice is represented by the currently lit pad; the light
+will “move through the pads” as it progresses through the eight-slice phrase. When
+you release the pad, the track will resume normal playback from where it would have
+been if you had never pressed it (i.e., as if the track had been playing forward the
+whole time).
+To enter Slicer mode, quickly double tap the Stems pad mode button. The pad LED
+will be bright red for all sliced pads. The LED will be bright blue for the playhead
+position or current slice. The LED will be bright white while a pad is pressed.
+To play a slice, press the corresponding pad.
+To halve the slice domain size, press the Parameter < button.
+To double the slice domain size, press the Parameter > button.
+
+
+
+
+                                                                                      29
+APPENDIX
+
+
+Internal Hardware Effects
+Effects Notes:
+•    Beat time divisions are unique per effect.
+•    Each effect will initially load at their default values (seen in the tables below).
+•    During a session, the parameter and beat values can be changed. The values for
+     the last used state are recalled when changing between effects.
+•    All saved effects (FX buttons 1-6) and their user-defined parameter/beat values
+     (not the last used settings) are loaded on startup. If an effect assigned to one of
+     the FX buttons 1-6 has not been saved, the factory effect and its default
+     parameter/beat values are loaded for that effect slot.
+
+
+Default FX:
+
+FX1                                             Echo
+FX2                                             Recycler
+FX3                                             Scale Down
+FX4                                             Reverb
+FX5                                             Matrix
+FX6                                             Echo Out
+
+
+
+
+30
+    Name        Description           Control   Beats         Parameter   Depth
+1   Backspin    Simulates a           Paddle    Length        N/A         < 50% - the
+                turntable backspin.             (in beats):               Backspin
+                When FX Depth                   2, 4, 8                   speed is
+                is centered, the                                          slower than
+                                                Default: 8
+                backspin length                                           the speed as
+                is as shown by                                            shown by
+                the beat’s value.                                         the beat's
+                Turn FX Depth                                             value. Beat
+                left or right to                                          values less
+                decrease or                                               than the
+                increase the                                              current beat
+                backspin length                                           selection
+                respectively.                                             are scaled
+                                                                          linearly from
+                                                                          50-0%.
+                                                                          50% - the
+                                                                          Backspin
+                                                                          speed is as
+                                                                          shown by the
+                                                                          beat's value.
+                                                                          >50% - the
+                                                                          Backspin
+                                                                          speed is
+                                                                          faster than
+                                                                          the speed as
+                                                                          shown by the
+                                                                          beat's value.
+                                                                          Beat values
+                                                                          greater than
+                                                                          the current
+                                                                          beat
+                                                                          selection are
+                                                                          scaled
+                                                                          linearly from
+                                                                          50-100%.
+2   Beatbreak   Samples the 4         Paddle    Pattern:      HPF Cut     0-100%
+                beats of each bar               1-10          Off:        The effect
+                of the original                               40 Hz,      wet mix is
+                                                Default: 1
+                signal and                                    80 Hz,      applied on a
+                replays them                                  140 Hz,     linear scale.
+                (within the same                              244 Hz,
+                bar) according to                             427 Hz,
+                the selected                                  748 Hz,
+                pattern. Turn FX                              1308 Hz,
+                Depth to adjust                               2287 Hz,
+                the balance of                                4000 Hz
+                the original and
+                                                              Default:
+                the effected
+                                                              244 Hz
+                signal in the mix.
+
+
+
+
+                                                                                          31
+     Name        Description        Control   Beats         Parameter      Depth
+ 3   Choppa      This effect        Paddle    Pattern:      Reverse: On,   < 50% - The
+                 mutes and                                  Off            effect is mixed
+                                              1-8
+                 unmutes the                                Default: Off   with the
+                                              Default: 7
+                 deck’s audio                                              program audio
+                 signal in a way                                           from the
+                 that emulates                                             assigned deck.
+                 crossfader                                                When the depth
+                 movements.                                                knob is turned
+                                                                           to the left of the
+                                                                           center, the
+                                                                           effect wet mix is
+                                                                           reduced.
+                                                                           50% - The
+                                                                           effect is 100%
+                                                                           wet and no
+                                                                           program audio
+                                                                           from the deck is
+                                                                           heard while the
+                                                                           effect is
+                                                                           engaged.
+                                                                           >50% - The
+                                                                           effect is 100%
+                                                                           wet and no
+                                                                           program audio
+                                                                           from the deck is
+                                                                           heard while the
+                                                                           effect is
+                                                                           engaged.
+ 4   Bit Crush   Adds distortion    Paddle    Average: 8,   Bit Depth:     0-100%
+                 by reducing the              16, 32, 64    8, 16          The effect wet
+                 resolution or                Default: 16   Default: 8     mix is applied
+                 bandwidth of                                              on a linear scale.
+                 the original
+                 audio signal.
+                 Turn FX Depth
+                 to adjust the
+                 balance of the
+                 original and the
+                 effected signal
+                 in the mix.
+
+
+
+
+32
+    Name      Description           Control   Beats              Parameter     Depth
+5   Brake     Simulates a vinyl     Paddle    Beats:             N/A           < 50% - the
+              turntable stop.                 1/2, 1, 2, 4, 8,                 Brake speed
+              When FX Depth is                16, 32                           is slower than
+              centered, the                                                    the speed as
+                                              Default: 2
+              brake length is as                                               shown by the
+              shown by the                                                     beat's value.
+              beat’s value.                                                    Beat
+              Turn FX Depth                                                    values less
+              left or right to                                                 than the
+              decrease or                                                      current beat
+              increase the brake                                               selection are
+              length                                                           scaled linearly
+              respectively.                                                    from 50-0%.
+                                                                               50% - the
+                                                                               Brake speed
+                                                                               is as shown
+                                                                               by the beat's
+                                                                               value.
+                                                                               >50% - the
+                                                                               Brake speed
+                                                                               is faster than
+                                                                               the speed as
+                                                                               shown by the
+                                                                               beat's value.
+                                                                               Beat values
+                                                                               greater than
+                                                                               the current
+                                                                               beat selection
+                                                                               are scaled
+                                                                               linearly from
+                                                                               50-100%.
+6   Cyclone   Adds delays of        Paddle    Beats: 1/64,       Delay Time:   0-100%
+              the original signal             1/32, 1/16,        5-400 ms      The effect
+              at the specified                1/8, 1/4, 1/3,                   wet mix is
+                                                                 Default:
+              beat time or delay              1/2, 3/4, 1,                     applied on a
+                                                                 360 ms
+              time. Turn FX                   3/2, 2, 3, 4                     linear scale.
+              Depth to adjust                 Default:                         As the effect
+              the balance of the              3/4                              wet mix is
+              original and the                                                 increased, the
+              effected signal in                                               program
+              the mix. Turn FX                                                 signal is
+              Depth to the max                                                 reduced. Turn
+              position to hold                                                 Depth to the
+              the current delay                                                max position
+              sample infinitely.                                               to hold the
+                                                                               current delay
+                                                                               sample.
+7   Delay     Adds repeated         Paddle    Beats:             N/A           0-100%
+              instances of the                1/32, 1/16,                      The effect
+              original signal at              1/8, 1/4,                        wet mix is
+              the specified                   1/3, 1/2,                        applied on a
+              beat time. Turn                 3/4, 1, 2, 4                     linear scale.
+              FX Depth to                     Default: 1                       As it is
+              adjust the                                                       increased,
+              balance of the                                                   the program
+              original and                                                     signal is
+              effected signal                                                  reduced.
+              in the mix.
+
+                                                                                               33
+         Name   Description        Control      Beats         Parameter      Depth
+     8   Duck   Creates echoes     Channel      Beats:        HPF Cut        0-100%
+         Echo   of the original    fader of     1/32, 1/16,   Off:           The effect
+                signal at the      the          1/8, 1/4,     40 Hz,         level is applied
+                specified beat     assigned     1/3, 1/2,     80 Hz,         on a linear
+                time when a        deck is      3/4, 1, 2,    140 Hz, 244    scale.
+                channel or         lowered      4, 8, 16      Hz, 427 Hz,
+                crossfader is      or                         748 Hz,
+                                                Default:
+                moved to the       crossfader                 1308 Hz,
+                                                1/2
+                minimum            if the                     2287 Hz,
+                position. Turn     crossfader                 4000 Hz
+                FX Depth to        trigger is                 Default:
+                adjust the         assigned.                  244 Hz
+                balance of the
+                                                              Feedback:
+                original and the
+                                                              0-100%
+                effected signal
+                in the mix.                                   Default:
+                                                              80%
+                                                              Crossfader
+                                                              Trigger:
+                                                              Yes, No
+                                                              Default: Yes
+     9   Echo   Adds echoes of     Paddle       Beats:        HPF Cut        0-100%
+                the original                    1/32, 1/16,   Off:           The effect
+                signal at the                   1/8, 1/4,     40 Hz,         wet mix is
+                specified beat                  1/3, 1/2,     80 Hz,         applied on a
+                time.                           3/4, 1, 2,    140 Hz, 244    linear scale.
+                Turn FX Depth                   4, 8, 16      Hz, 427 Hz,
+                to adjust the                                 748 Hz,
+                                                Default:
+                balance of the                                1308 Hz,
+                                                1/2
+                original and the                              2287 Hz,
+                effected signal                               4000 Hz
+                in the mix.                                   Default:
+                                                              244 Hz
+                                                              Feedback:
+                                                              0-100%
+                                                              Default:
+                                                              80%
+
+
+
+
+34
+     Name           Description      Control   Beats            Parameter       Depth
+10   Echo Out       This creates     Paddle    Beats:           HPF Cut Off:    <50% - The
+                    an echo tail               1/8, 1/4, 1/3,   40 Hz,          effect is mixed
+                    of the                     1/2, 3/4, 1,     80 Hz,          with the
+                    original                   3/2, 2, 3        140 Hz, 244     program audio
+                    signal at the                               Hz, 427 Hz,     from the
+                                               Default: 1/2
+                    specified                                   748 Hz, 1308    assigned deck.
+                    beat size                                   Hz,             When Depth
+                    while muting                                2287 Hz,        knob is turned
+                    the original                                4000 Hz         to the left of
+                    signal.                                     Default:        the center, the
+                    Turn Depth                                  140 Hz          effect wet mix
+                    to the max                                                  is reduced.
+                    position to                                                 50% - The
+                    hold the                                                    effect is 100%
+                    echo tail                                                   wet and no
+                    infinitely.                                                 program audio
+                                                                                from the deck
+                                                                                is heard while
+                                                                                the effect is
+                                                                                engaged.
+                                                                                >50% - The
+                                                                                effect is 100%
+                                                                                wet and no
+                                                                                program audio
+                                                                                from the deck
+                                                                                is heard while
+                                                                                the effect is
+                                                                                engaged.
+                                                                                When Depth
+                                                                                knob is turned
+                                                                                to the right of
+                                                                                the center, the
+                                                                                tail length
+                                                                                (feedback) is
+                                                                                increased.
+11   Fader Filter   This effect      Channel   N/A              Type: Band      0-100%
+                    allows you to    Fader                      Pass, High      The effect wet
+                    use the                                     Pass, Low       mix is applied
+                    channel faders                              Pass            on a linear
+                    apply filter                                Default: High   scale.
+                    sweeps.                                     Pass
+12   Fader Pitch    This effect      Channel   Direction:       Scale: Major,   0-100%
+                    allows you to    Fader     UP, UPW          Minor, Off      The effect wet
+                    repitch the                (wide), DN,      Default: Off    mix is applied
+                    program audio              DNW, CT,                         on a linear
+                    of the                     CTW                              scale.
+                    respective                 Default: Up
+                    channel using
+                    the channel
+                    fader.
+
+
+
+
+                                                                                                 35
+      Name         Description       Control   Beats             Parameter       Depth
+ 13   Fader Ring   This effect       Channel   Frequency:        Mode:           0-100%
+                   allows you to     Fader     800 Hz, 1         Increase,       The effect wet
+                   add ring                    kHz, 1.5 kHz,     Decrease        mix is applied
+                   modulation to               2 kHz, 4 kHz,     Default:        on a linear scale.
+                   the program                 8 kHz             Decrease
+                   audio of the                Default: 2
+                   respective                  kHz
+                   channel using
+                   the channel
+                   fader.
+ 14   Fader Roll   This effect       Channel   N/A               HPF: On, Off    0-100%
+                   allows you to     Fader                       Default: Off    The effect wet
+                   use the                                                       mix is applied
+                   channel faders                                                on a linear scale.
+                   to apply filter
+                   sweeps.
+ 15   Fader Tone   This effect       Channel   Key: C, D, E,     Tone Type:      0-100%
+                   allows you to     Fader     F, G, A, B        Sine,           The output level
+                   use the                     Default: C        Sawtooth,       of the tone
+                   channel faders                                Square,         generator.
+                   to control                                    Triangle
+                   various tone
+                                                                 Default: Sine
+                   generators.
+                                                                 Octave: 0-8
+                                                                 Default: 6
+                                                                 Scale: Major,
+                                                                 Minor, Off
+                                                                 Default: Off
+
+ 16   Flanger      Adds a            Paddle    Beats:            Feedback:       0-100%
+                   slightly                    1/16, 1/8,        0-100%          The effect wet
+                   delayed                     1/4, 1/2, 1, 2,   Default:        mix is applied
+                   copy of the                 4, 8, 16, 32,     34%             on a linear
+                   original                    64                                scale.
+                                                                 Polarity:
+                   signal to
+                                               Default: 16       Positive
+                   create a
+                                                                 (POS),
+                   comb-filter
+                                                                 Negative
+                   effect.
+                                                                 (NEG)
+                   Turn FX
+                                                                 Default:
+                   Depth to
+                                                                 POS
+                   adjust the
+                   balance of
+                   the original
+                   and effected
+                   signal in the
+                   mix.
+
+
+
+
+36
+     Name        Description      Control   Beats             Parameter     Depth
+17   Hold Echo   Adds echoes      Paddle    Beats:            Feedback:     <50% - The
+                 of the                     1/32, 1/16,       0-100%        effect is mixed
+                 original                   1/8, 1/4, 1/3,    Default:      with the
+                 signal at the              1/2, 3/4, 1, 2,   80%           program audio
+                 specified                  4, 8, 16                        from the
+                                                              HPF Cut
+                 beat time.                                                 assigned deck.
+                                            Default: 1        Off:
+                 When FX                                                    When Depth
+                                                              40 Hz,
+                 Depth is                                                   knob is turned
+                                                              80 Hz,
+                 centered,                                                  to the left of the
+                                                              140 Hz, 244
+                 the echo                                                   center, the
+                                                              Hz, 427 Hz,
+                 will repeat                                                effect wet mix
+                                                              748 Hz,
+                 or ‘hold’                                                  is reduced.
+                                                              1308 Hz,
+                 infinitely.                                  2287 Hz,      50% - The
+                 Turn FX                                      4000 Hz       effect is 100%
+                 Depth to                                                   wet and no
+                                                              Default:
+                 the right to                                               program audio
+                                                              244 Hz
+                 increase the                                               from the deck is
+                 echo                                                       heard while the
+                 feedback.                                                  effect is
+                                                                            engaged.
+                                                                            >50% - The
+                                                                            effect is 100%
+                                                                            wet and no
+                                                                            program
+                                                                            audio from
+                                                                            the deck is
+                                                                            heard while
+                                                                            the effect is
+                                                                            engaged.
+                                                                            When Depth
+                                                                            knob is
+                                                                            turned to the
+                                                                            right of the
+                                                                            center, echo
+                                                                            feedback is
+                                                                            increased.
+18   Matrix      Performs a       Paddle    Beats:            Length:       0-100%
+                 rapid sweep                1/32, 1/16,       1-9           The effect
+                 through beat               1/8, 1/4, 1/3,    Default: 5    wet mix is
+                 values lower               1/2, 3/4, 1,                    applied on a
+                 than the                   3/2, 2, 3                       linear scale.
+                 specified beat             Default: 1/2                    As it is
+                 size and then                                              increased, the
+                 echoes out at                                              program signal
+                 the                                                        is reduced.
+                 specified
+                 beat time
+                 division.
+                 Turn FX
+                 Depth to the
+                 max position
+                 to hold the
+                 current echo
+                 infinitely.
+
+
+
+
+                                                                                             37
+      Name     Description       Control   Beats          Parameter      Depth
+ 19   Mute     This effect       Paddle    N/A            Mute Type:     <50% - The
+               allows you to                              Normal,        effect is mixed
+               temporarily                                Inverted       with the
+               cut the audio                              Default:       program audio
+               signal, similar                            Normal         from the
+               to a classic                                              assigned deck.
+               transform                                                 When the
+               switch.                                                   depth knob is
+                                                                         turned to the
+                                                                         left of the
+                                                                         center, the
+                                                                         effect wet mix
+                                                                         is reduced.
+                                                                         50% - The
+                                                                         effect is 100%
+                                                                         wet and no
+                                                                         program audio
+                                                                         from the deck
+                                                                         is heard while
+                                                                         the effect is
+                                                                         engaged.
+                                                                         >50% - The
+                                                                         effect is 100%
+                                                                         wet and no
+                                                                         program audio
+                                                                         from the deck
+                                                                         is heard while
+                                                                         the effect is
+                                                                         engaged.
+ 20   Phaser   This adds a       Paddle    Beats:         Feedback:      0-100%
+               copy of the                 1/16, 1/8,     0-100%         The effect wet
+               original                    1/4, 1/2, 1,   Default: 47%   mix is applied
+               signal with its             2, 4, 8, 16,                  on a linear
+               phase shifted               32, 64                        scale.
+               slightly to                 Default: 16
+               create a
+               subtle,
+               modulated
+               effect.
+               Turn FX
+               Depth to
+               adjust the
+               balance of
+               original and
+               effected
+               signal in the
+               mix.
+
+
+
+
+38
+     Name       Description           Control   Beats           Parameter      Depth
+21   Pitch DN   Samples the           Paddle    Beats:          Length:        <50% - The
+                original signal                 1/16, 1/8,      1-9            effect is
+                and repeats at                  1/4, 1/3,                      mixed with the
+                                                                Default: 7
+                the specified beat              1/2, 3/4, 1,                   program audio
+                time while                      2                              from the
+                pitching the                    Default:                       assigned deck.
+                sample down                     1/4                            When the
+                by semitone                                                    Depth knob
+                steps.                                                         is turned to
+                Turn FX Depth                                                  the left of the
+                to the right                                                   center, the
+                shortens the                                                   effect wet
+                sample length.                                                 mix is
+                                                                               reduced.
+                                                                               50% - The
+                                                                               effect is 100%
+                                                                               wet and no
+                                                                               program audio
+                                                                               from the deck
+                                                                               is heard while
+                                                                               the effect is
+                                                                               engaged.
+                                                                               >50% - The
+                                                                               effect is
+                                                                               100% wet
+                                                                               and no
+                                                                               program audio
+                                                                               from the deck
+                                                                               is heard while
+                                                                               the effect is
+                                                                               engaged.
+                                                                               When Depth
+                                                                               knob is
+                                                                               turned to the
+                                                                               right of the
+                                                                               center, the
+                                                                               length of the
+                                                                               repeated
+                                                                               sample is
+                                                                               reduced.
+22   Pumper     Momentarily           Paddle    Beats:          Offset:        0-100%
+                attenuates the                  1/32, 1/16,     -1/2, -1/4,    The effect
+                original signal at              1/8, 1/4,       -1/8, -1/16,   wet mix is
+                the specified                   1/3, 1/2,       0              applied on a
+                beat time. Turn                 3/4, 1, 2, 4,   Default:       linear scale.
+                FX Depth to                     8, 16, 32
+                                                                -1/2
+                adjust the balance              Default: 1
+                of the original and                             Depth:
+                effected signal in                              -40 dB to
+                the mix.                                        -2 dB
+                                                                Default:
+                                                                 -20 dB
+
+
+
+
+                                                                                               39
+      Name       Description        Control   Beats             Parameter    Depth
+ 23   Recycler   This adds          Paddle    Beats:            Resonance:   0-100%
+                 echoes of the                1/64, 1/32,       Low, Med,    The effect
+                 original signal              1/16, 1/8, 1/4,   High         wet mix is
+                 at the specified             1/3, 1/2, 3/4,    Default:     applied on
+                 beat time or                 1, 3/2, 2, 3, 4   Med          a linear
+                 delay time.                  Default: 3/4                   scale. As it
+                 Turn FX Depth                                               is
+                 to adjust the                                               increased,
+                 balance of the                                              feedback
+                 original and                                                is also
+                 effected                                                    increased.
+                 signal in the
+                 mix and
+                 increases
+                 feedback.
+ 24   Reverb     Adds reflections   Paddle    Room Size:        HPF Cut      0-100%
+                 of the original              Small (SML),      Off:         The effect
+                 signal in                    Large (LRG)       40 Hz,       wet mix is
+                 simulated                    Default:          80 Hz,       applied on
+                 environment.                 LRG               140 Hz,      a linear
+                 Turn FX Depth                                  244 Hz,      scale.
+                 to adjust the                                  427 Hz,
+                 balance of the                                 748 Hz,
+                 original and the                               1308 Hz,
+                 effected signal                                2287 Hz,
+                 in the mix.                                    4000 Hz
+                                                                Default:
+                                                                244 Hz
+                                                                Decay:
+                                                                0-100%
+                                                                Default:
+                                                                75%
+
+
+
+
+40
+     Name    Description            Control   Beats            Parameter     Depth
+25   Rider   This samples the       Paddle    Beats:           Scale:        <50% - The
+             original signal and              1/16, 1/8,       Major,        effect is mixed
+             repeats at the                   1/4, 1/3, 1/2,   Minor,        with the
+             specified beat time              3/4, 1, 2        Oct1, Oct2,   program audio
+             while pitching the               Default: 1/2     Penta         from the
+             sample down and                                   Default:      assigned deck.
+             up repeatedly                                     Major         When the
+             based on the                                                    Depth knob is
+             selected scale. Turn                                            turned to the
+             FX Depth to the                                                 left of the
+             right to shorten the                                            center, the
+             sample length.                                                  effect wet mix is
+                                                                             reduced.
+                                                                             50% - The
+                                                                             effect is 100%
+                                                                             wet and no
+                                                                             program audio
+                                                                             from the deck
+                                                                             is heard while
+                                                                             the effect is
+                                                                             engaged.
+                                                                             >50% - The
+                                                                             effect is 100%
+                                                                             wet and no
+                                                                             program audio
+                                                                             from the deck
+                                                                             is heard while
+                                                                             the effect is
+                                                                             engaged.
+                                                                             When Depth
+                                                                             knob is turned
+                                                                             to the right of
+                                                                             the center, the
+                                                                             length of the
+                                                                             repeated
+                                                                             sample is
+                                                                             reduced.
+
+
+
+
+                                                                                             41
+      Name    Description        Control   Beats            Parameter    Depth
+ 26   Riser   This samples       Paddle    Beats:           Length:      <50% - The
+              the original                 1/4, 1/2, 3/4,   1-9          effect is mixed
+              signal at the                1, 2                          with the
+                                                            Default: 7
+              specified beat                                             program audio
+                                           Default: 3/4
+              time and                                                   from the
+              repeats it while                                           assigned deck.
+              increasing the                                             When Depth
+              repeat speed,                                              knob is turned
+              and pitching                                               to the left of
+              the sample up,                                             the center, the
+              and then fades                                             effect wet mix
+              out.                                                       is reduced.
+              Turn FX Depth                                              50% - The
+              to adjust the                                              effect is 100%
+              rise speed.                                                wet and no
+                                                                         program audio
+                                                                         from the deck
+                                                                         is heard while
+                                                                         the effect is
+                                                                         engaged.
+                                                                         >50% - The
+                                                                         effect is 100%
+                                                                         wet and no
+                                                                         program audio
+                                                                         from the deck
+                                                                         is heard while
+                                                                         the effect is
+                                                                         engaged.
+                                                                         When Depth
+                                                                         knob is turned
+                                                                         to the right of
+                                                                         the center, the
+                                                                         speed of rise
+                                                                         can be
+                                                                         adjusted.
+
+
+
+
+42
+     Name   Description         Control   Beats        Parameter         Depth
+27   Roll   This samples        Paddle    Beats:       HPF Cut Off:      0% - The effect is
+            the original                  1/64,        40 Hz, 80 Hz,     not heard, and the
+            signal and                    1/32,        140 Hz, 244 Hz,   effect buffer is
+            repeats it at the             1/16, 1/8,   427 Hz, 748 Hz,   reset if the effect
+            specified beat                1/4, 1/3,    1308 Hz, 2287     was previously
+            time.                         1/2, 3/4,    Hz, 4000 Hz       engaged.
+            Turn FX Depth                 1, 3/2, 2,   Default: 40 Hz    <50% - The effect
+            to the right to               3, 4                           is mixed with the
+            shorten the roll              Default:                       program audio
+            length                        1/2                            from the assigned
+                                                                         deck. When Depth
+                                                                         knob is turned to
+                                                                         the left of the
+                                                                         center, the effect
+                                                                         wet mix is
+                                                                         decreased linearly.
+                                                                         50% - The effect is
+                                                                         100% wet and no
+                                                                         program audio
+                                                                         from the deck is
+                                                                         heard while the
+                                                                         effect is engaged.
+                                                                         >50% - The effect
+                                                                         is 100% wet and
+                                                                         no program audio
+                                                                         from the deck is
+                                                                         heard while the
+                                                                         effect is engaged.
+                                                                         When Depth knob
+                                                                         is turned to the
+                                                                         right of the center,
+                                                                         the length of the
+                                                                         repeated sample is
+                                                                         reduced.
+
+
+
+
+                                                                                            43
+          Name       Description    Control   Beats            Parameter    Depth
+     28   Scale DN   This           Paddle    Beats:           Scale:       <50% - The
+                     samples the              1/32, 1/16,      Major,       effect is mixed
+                     original                 1/8, 1/4,        Minor,       with the
+                     signal and               1/3, 1/2,        Whole,       program audio
+                     repeats at               3/4, 1, 2, 3     Penta        from the
+                     the                      Default:         Default:     assigned deck.
+                     specified                3/2, 1/2         Major        When Depth
+                     beat time                                              knob is turned
+                     while                                                  to the left of
+                     pitching the                                           the center, the
+                     sample                                                 effect wet mix
+                     down based                                             is reduced.
+                     on the                                                 50% - The
+                     selected                                               effect is 100%
+                     scale.                                                 wet and no
+                     Turn FX                                                program audio
+                     Depth to                                               from the deck
+                     the right to                                           is heard while
+                     shorten the                                            the effect is
+                     sample                                                 engaged.
+                     length.                                                >50% - The
+                                                                            effect is 100%
+                                                                            wet and no
+                                                                            program audio
+                                                                            from the deck
+                                                                            is heard while
+                                                                            the effect is
+                                                                            engaged. When
+                                                                            Depth knob is
+                                                                            turned to the
+                                                                            right of the
+                                                                            center, the
+                                                                            length of the
+                                                                            repeated
+                                                                            sample is
+                                                                            reduced.
+     29   STTR Out   This           Paddle    Pattern:         Bars:        0-100%
+                     samples the              1, 2, 3, 4, 5,   1, 2, 3      The effect wet
+                     original                 6, 7, 8, 9,      Default: 2   mix is applied
+                     signal and               10T, 11T,                     on a linear
+                     repeats the              12T, 13T                      scale. As it is
+                     sample at                Default: 5                    increased, the
+                     the                                                    length of the
+                     specified                                              repeated
+                     rhythmic                                               sample is
+                     pattern and                                            reduced.
+                     then fades
+                     out.
+                     Turn FX
+                     Depth to
+                     the right to
+                     shorten
+                     the sample
+                     length.
+
+
+
+
+44
+System Menu
+The PERFORMER system menu allows you to customize crossfader, microphone,
+display, and other device settings. To access the system menu settings, press and
+hold Shift and press the HW / SW FX button.
+The joystick and the Parameter/FX Select encoder can be used to navigate the
+menu.
+Push the Parameter/FX Select encoder to confirms value changes.
+To exit the system menu settings, use the joystick to navigate back to the root.
+Alternatively, press HW / SW FX or one of the 6 FX slot buttons to exit the system
+menu.
+
+Menu:
+•  SILENT CUE: This setting allows you to change the function of the Censor
+   button to Silent Cue.
+   o   MODE: YES or NO (Default = NO)
+
+•   CH FADERS: This setting allows you to change the channel fader response.
+    o   CONTOUR: 0-100% (Default = 50%)
+    o   REVERSE: ON or OFF (Default = OFF)
+
+•   CROSSFADER: This setting allows you to change the crossfader cut in amount.
+    o  CUT IN LEFT: 0-10 (Default = 3)
+    o  CUT IN RIGHT: 0-10 (Default = 3)
+    o  RESTORE DEFAULTS: CANCEL or RESTORE (Default = CANCEL)
+
+
+•   FADER FX
+    o ON or OFF (Default = ON)
+
+•   MAIN METER: This setting allows you to change what signal the meter displays.
+    o  SIGNAL OUTPUT: POST MAIN, PREMAIN (Default = POST MAIN)
+
+•   MICROPHONE: This menu option allows you to change microphone echo,
+    talkover, and microphone signal routing.
+    o    ECHO FDBK: 0-100% (Default = 80%)
+    o    TALKOVER LVL: LOW (-10 dB), MED (-20 dB), HIGH (-40 dB) (Default =
+         -20 dB)
+    o    TALKOVER HLD: 0.5 - 2.0s (Default = 1.0s)
+    o    TO BOOTH: ON, OFF (Default = OFF)
+    o    TO HEADPHONE: ON, OFF (Default = OFF)
+    o    TO COMPUTER: ON, OFF (Default = ON)
+
+•   MOTOR TORQUE: This menu option allows you to adjust the platter’s motor
+    setting.
+    o    TORQUE: HIGH, LOW (Default = HIGH)
+
+
+
+                                                                                45
+•    WHEEL DISPLAY: This menu option allows you to change wheel display
+     options.
+     o   DAY MODE: ON, OFF (Default = OFF)
+     o   NEEDLE MARKER: ON, OFF (Default = ON)
+     o   TIME: Remaining, Elapsed (Default = Remaining)
+     o   LIBRARY VIEW: ON, OFF (Default = ON)
+     o   LIST TIME/KEY: TIME, KEY (Default = KEY)
+
+•    FILTER (LN/PHONO): This menu option allows you to change wheel display
+     options.
+     o   RESONANCE: 1-10 (Default = 7)
+
+•    FIRMWARE: This menu option shows you the current firmware versions.
+     o   CONTROLLER: x.x.x.xxx
+     o   DISPLAYS: x.x.x.xxx
+     o   DSP: x.x.x.xxx
+     o   MOTOR: x.x.x.xxx
+     o   MAG FADER: x.x.x.xxx
+
+•    FX RESET: This setting allows you to reset all FX settings back to their default
+     values.
+     o   FX RESET: RESTORE, CANCEL (Default = CANCEL)
+
+•    FACTORY RESET: This setting allows you to reset all device settings back to
+     their default values.
+     o    FACTORY RESET: RESTORE, CANCEL (Default = CANCEL)
+
+
+
+
+46
+Technical Specifications
+
+Digital Audio
+Converters                  Cirrus Logic, 24-bit PCM, 48 kHz
+
+Digital Signal Processing   32-bit, Floating Point, Double precision
+
+Dynamic Range               ADC                             113 dB
+(A-weighted, unity gain)
+                            DAC                             113 dB
+
+                            CD Input to Analog Output       110 dB
+
+                            CD Input to USB Output          113 dB
+
+                            USB Input to Analog Output      113 dB
+
+Inputs
+Microphone 1/2              Analog Gain                     25 dB
+(Combo XLR / 1/4" [6.35
+mm] TRS)                    Maximum Input                   110 mV
+
+                            Gain Trim                       Off to +26 dB (unity at center)
+
+                            Tone Control                    2-band
+
+Line/Phono Inputs 3/4       Line                            Line
+(RCA stereo pairs,
+switchable)                 Maximum Input                   4 Vrms
+
+                            Gain Trim                       Off to +12 dB
+
+                            Tone Control                    3-band, full-cut to +10 dB
+
+                            THD+N (20 kHz BW @ 1 kHz)       0.004%
+
+                            Phono                           RIAA
+
+                            RIAA Curve                      +/-0.25 dB
+
+                            Gain (@ 1 kHz)                  31.5 dB
+
+                            Maximum Input (@ 1 kHz)         106 mV
+
+                            Dynamic Range                   102 dB
+                            (A-weighted)
+
+Outputs
+Main Outputs                Gain Trim                       Off to 0 dB
+(XLR)
+                            Maximum Output                  8 Vrms
+
+                            THD+N (20 kHz BW @ 1 kHz)       0.004%
+
+                            Frequency Response              20 Hz – 20 kHz (Flat)
+
+Booth Outputs               Gain Trim                       Off to 0 dB
+(XLR)
+                            Maximum Output                  8 Vrms
+
+                            THD+N (20 kHz BW @ 1 kHz)       0.004%
+
+                            Frequency Response              20 Hz – 20 kHz (Flat)
+
+
+                                                                                              47
+ Outputs (continued)
+ Main Outputs                     Gain Trim                     Off to 0 dB
+ (XLR)
+                                  Maximum Output                8 Vrms
+
+                                  THD+N (20 kHz BW @ 1 kHz)     0.004%
+
+                                  Frequency Response            20 Hz – 20 kHz (Flat)
+
+ Main Outputs                     Maximum Output Voltage 4 Vrms
+ (RCA stereo pair)
+                                  THD+N (20 kHz BW @ 1 kHz)     0.004%
+
+                                  Frequency Response            20 Hz – 20 kHz (Flat)
+
+ Booth Outputs                    Gain Trim                     Off to 0 dB
+ (1/4”)
+                                  Maximum Output                8 Vrms
+
+                                  THD+N (20 kHz BW @ 1 kHz)     0.004%
+
+                                  Frequency Response            20 Hz – 20 kHz (Flat)
+
+ Headphone Outputs                Maximum Output Voltage 4 Vrms (no load)
+ (1/4" / 6.35 mm and 1/8" / 3.5
+ mm TRS)                          Output Power                  50 mW (50 ohms)
+
+                                  Dynamic Range                 108 dB
+                                  (A-weighted)
+
+ General
+ Pads                             (16) on/off multi-color back-lit pads (8 per deck, 9 modes
+                                  each)
+
+ Wheel Displays                   (2) 320 x 240 Color LCD’s
+
+ Pad & FX Displays                (9) 128 x 32 Monochrome OLED’s
+
+ Faders                           (1) MAG PERFORMER tension-adjustable crossfader with
+                                  contour
+
+                                  (4) Precision Feel premium channel faders with internal
+                                  tension adjust
+
+ Connectors                       (2) XLR outputs (Main)
+
+                                  (2) 1/4" outputs (Booth)
+
+                                  (1) RCA stereo output pair (Main)
+
+                                  (2) XLR / 1/4” (6.35 mm) TRS inputs (Mic 1–2)
+
+                                  (2) RCA stereo input pairs (Deck 3–4)
+
+                                  (1) 1/4” (6.35 mm) TRS output (Headphones)
+
+                                  (1) 1/8” (3.5 mm) TRS output (Headphones)
+
+                                  (2) USB Type-B ports
+
+                                  (1) IEC power cable input
+
+
+
+
+48
+ General (continued)
+ Power                           Connection: IEC
+
+                                 Voltage: 100–240 V, 50/60 Hz
+
+                                 Consumption: 150 W
+
+ Dimensions                      30.84” x 15.84” x 4.32”
+ (width x depth x height)
+                                 783 x 402 x 110 mm
+
+ Weight                          28.20 lb.
+ (including platters)
+                                 12.8 kg
+
+Specifications are subject to change without notice.
+
+
+
+Trademarks & Licenses
+Rane is a trademark of inMusic Brands, Inc., registered in the U.S. and other countries.
+
+Serato, Serato DJ Pro, and the Serato logo are registered trademarks of Serato Audio Research.
+
+Windows is a registered trademark of Microsoft Corporation in the United States and other
+countries.
+
+macOS is a trademark of Apple Inc., registered in the U.S. and other countries.
+
+DeoxIT® is a registered trademark of CAIG Laboratories, Inc..
+
+All other product names, company names, trademarks, or trade names are those of their
+respective owners.
+
+
+
+
+                                                                                             49
+Manual Version 1.3
+

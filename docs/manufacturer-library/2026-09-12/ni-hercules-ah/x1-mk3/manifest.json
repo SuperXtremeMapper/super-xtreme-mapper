@@ -1,0 +1,36 @@
+{
+  "manufacturer": "Native Instruments",
+  "model": "Traktor X1 MK3",
+  "retrieved_on": "2026-09-12",
+  "grade": "partial",
+  "scope": "Source extraction readiness only; not a verified SXM profile",
+  "hardware_tested": false,
+  "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+  "notes": "MIDI mode explicitly documented via SHIFT + Mode Select. No numeric address/channel/encoder/LED protocol table found in downloaded manual.",
+  "coverage": {
+    "addresses": "not established by retrieved protocol documentation",
+    "channels": "not established by retrieved protocol documentation",
+    "layers": "not established by retrieved protocol documentation",
+    "encoders": "not established by retrieved protocol documentation",
+    "led_feedback": "not established by retrieved protocol documentation"
+  },
+  "inspected_locators": [
+    "manual.pdf: PDF page 9, printed page 7, section 5 Effect Control > Mode Select Button"
+  ],
+  "sources": [
+    {
+      "url": "https://docs.native-instruments.com/pdf-guides/traktor/Traktor_X1_MK3_Manual_English_0923.pdf",
+      "file": "x1-mk3/manual.pdf",
+      "status_code": 200,
+      "final_url": "https://docs.native-instruments.com/pdf-guides/traktor/Traktor_X1_MK3_Manual_English_0923.pdf",
+      "bytes": 7888393,
+      "sha256": "cfd18346e78dee9cef23df0b43e91ae3815200a573b5e207ccb22859d7ee8b71",
+      "text_file": "x1-mk3/manual.txt",
+      "text_sha256": "7cf04de710dca3d5a3e87fcfd479ad64f998f3c5eebbedf393f402afb2ee56bd"
+    }
+  ],
+  "shared_references": [
+    "shared/ni-current-downloads.html",
+    "shared/ni-midi-mode.html"
+  ]
+}

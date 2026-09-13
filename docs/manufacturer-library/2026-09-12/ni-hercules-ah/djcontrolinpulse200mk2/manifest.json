@@ -1,0 +1,66 @@
+{
+  "manufacturer": "Hercules",
+  "model": "DJControl Inpulse 200 MK2",
+  "retrieved_on": "2026-09-12",
+  "grade": "partial",
+  "scope": "Source extraction readiness only; not a verified SXM profile",
+  "hardware_tested": false,
+  "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+  "notes": "Official user manual/control descriptions archived; no complete manufacturer wire-address/LED chart found in the retrieved support resources. Software action mappings do not prove Note/CC values.",
+  "coverage": {
+    "addresses": "not established by retrieved protocol documentation",
+    "channels": "not established by retrieved protocol documentation",
+    "layers": "Native/software pad modes described in inspected English manual sections; numeric mode addresses not established",
+    "encoders": "not established by retrieved protocol documentation",
+    "led_feedback": "not established by retrieved protocol documentation"
+  },
+  "inspected_locators": [
+    "support.html: official model support and manuals",
+    "manual.pdf: English control descriptions; MIDI keyword inspection",
+    "djuced-midi.html: Controls > Mixer Controls, Decks Controls, Pads Modes (software action mapping, not wire addresses)",
+    "manual.pdf: PDF pages [8, 14, 18, 35, 45]; separately indexed in inspection.txt (English printed page = PDF page - 1, except Starlight)"
+  ],
+  "sources": [
+    {
+      "url": "https://support.hercules.com/en/product/djcontrolinpulse200mk2-en/",
+      "file": "djcontrolinpulse200mk2/support.html",
+      "status_code": 200,
+      "final_url": "https://support.hercules.com/en/product/djcontrolinpulse200mk2-en/",
+      "bytes": 101465,
+      "sha256": "c8e943a55762d277a0b50dd273723491c3230fcdf3b203b20faf4cbe18894af8",
+      "text_file": "djcontrolinpulse200mk2/support.txt",
+      "text_sha256": "01eb56393de67c49b339b6e240c3ca3a7b8ec23f57044ec3e68a113bc7dd76ed"
+    },
+    {
+      "url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse_200_MK2/DJControl_Inpulse_200_MK2_User_Manual_-_21L.pdf",
+      "file": "djcontrolinpulse200mk2/manual.pdf",
+      "status_code": 200,
+      "final_url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse_200_MK2/DJControl_Inpulse_200_MK2_User_Manual_-_21L.pdf",
+      "bytes": 10479445,
+      "sha256": "b864d412bd07ce724253ed0e8a6fd2d12b9d8beb9b41e26f4f175740cd3643a1",
+      "text_file": "djcontrolinpulse200mk2/manual.txt",
+      "text_sha256": "6502c8321819774da8dbb6f61355f88c92556550e24412fedd8038d158396093"
+    },
+    {
+      "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-200-mk2-2023-mapping-and-manual/",
+      "file": "djcontrolinpulse200mk2/djuced-midi.html",
+      "status_code": 200,
+      "final_url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-200-mk2-2023-mapping-and-manual/",
+      "bytes": 430913,
+      "sha256": "4a4dda059387389786d6615f8054fc26abc2e18abd876d434b66093bb99c3189",
+      "text_file": "djcontrolinpulse200mk2/djuced-midi.txt",
+      "text_sha256": "ed06db8dc5555031e2de292c6276f8c885487804557182f1f5482f8ceca3bfcb"
+    },
+    {
+      "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-200-mk2-2023-manuel-et-controles-midi/",
+      "file": "djcontrolinpulse200mk2/djuced-midi.html",
+      "status_code": 200,
+      "final_url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-200-mk2-2023-mapping-and-manual/",
+      "bytes": 430913,
+      "sha256": "4a4dda059387389786d6615f8054fc26abc2e18abd876d434b66093bb99c3189",
+      "text_file": "djcontrolinpulse200mk2/djuced-midi.txt",
+      "text_sha256": "ed06db8dc5555031e2de292c6276f8c885487804557182f1f5482f8ceca3bfcb"
+    }
+  ],
+  "shared_references": []
+}

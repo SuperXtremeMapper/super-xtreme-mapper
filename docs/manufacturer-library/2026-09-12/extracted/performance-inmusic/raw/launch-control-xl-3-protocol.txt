@@ -1,0 +1,681 @@
+
+--- PDF PAGE 1 ---
+                                        ENGLISH
+
+
+
+
+
+Launch Control XL 3 programmer's reference guide
+
+                                                                        Version 1.0
+
+--- PDF PAGE 2 ---
+Table of Contents
+
+    About the Launch Control XL 3 programmer's reference guide .......................................... 3
+     Entering Launch Control XL 3's bootloader ......................................................................... 4
+    MIDI on Launch Control XL 3  ............................................................................................... 5
+    SysEx message format used by Launch Control XL 3  ......................................................... 6
+    Launch Control XL 3 programmer's standalone (MIDI) mode ............................................. 7
+    Launch Control XL 3 programmer's DAW mode .................................................................. 8
+      DAW mode control  ...................................................................................................... 8
+         Colouring the surface ................................................................................................. 11
+
+          Controlling the screen ............................................................................................... 13
+    Launch Control XL 3 feature Controls  ............................................................................... 16
+
+
+
+
+
+                                       2
+
+--- PDF PAGE 3 ---
+About the Launch Control XL 3 programmer's
+reference guide
+
+
+
+This document provides all the information you need to be able to control the Launch Control
+XL 3.
+
+The Launch Control XL 3 communicates using MIDI over USB and DIN. This document
+describes the MIDI implementation for the device, the MIDI events coming from it, and how
+the Launch Control XL 3's various features can be accessed through MIDI messages.
+
+We've expressed MIDI data in several ways:
+
+     • A plain English description of the message.
+
+     • When we describe a musical note, middle C is ‘C3’ or note 60. MIDI channel 1 is the
+     lowest-numbered MIDI channel; channels range from 1 to 16.
+
+     • We also express MIDI messages in plain data, with decimal and hexadecimal equivalents.
+     The hexadecimal number will always be followed by an ‘h’ and the decimal equivalent
+      given in brackets. For example, a note on message on channel 1 is signified by the status
+     byte 90h (144).
+
+
+
+
+
+                                      3
+
+--- PDF PAGE 4 ---
+Entering Launch Control XL 3's bootloader
+
+
+
+The Launch Control XL 3 has a bootloader mode that allows you to view the current FW
+versions, enable/disable Easy Start and set the device ID.
+
+   To enter bootloader
+
+      1.  Unplug the USB cable from your Launch Control XL 3.
+
+     2.  Hold both Page buttons.
+
+     3.  Connect the USB cable to power it on.
+
+     4.  Keep holding the Page buttons until the Launch Control XL 3 is on.
+
+The screen displays the current Application and Bootloader version numbers.
+
+In bootloader mode, you can change the following:
+
+      1.  Easy Start on/off using the record button.
+
+     2.  Device ID - using the buttons. Useful when you're using multiple Launch Control XL 3's
+         in your DAW.
+
+When Easy Start is on, the Launch Control XL 3 shows as a Mass Storage Device to provide
+a more convenient first-time experience. You can turn this off once you are familiar with the
+device to disable this Mass Storage Device.
+
+   To exit bootloader
+
+     •   Press the Play button.
+
+The buttons set the Device ID to 1-8. Launch Control XL 3 appears on your system with the
+device ID appended to the device name. This can be useful when using more than one Launch
+Control XL 3 simultaneously.
+
+
+
+
+
+                                       4
+
+--- PDF PAGE 5 ---
+MIDI on Launch Control XL 3
+
+
+
+The Launch Control XL 3 has a few MIDI interfaces, providing two pairs of MIDI inputs and
+outputs over USB. They are as follows:
+
+     • MIDI In/Out (or first interface on Windows): The main interface used to receive MIDI from
+      the users Custom Modes, and to provide external MIDI input.
+
+     • DAW In/Out (or second interface on Windows): This interface is used by DAWs and
+       similar software to interact with the Launch Control XL 3.
+
+     • To DIN Out/To DIN Out 2 (or the third and fourth interface on Windows) These interfaces
+      are used to send MIDI from a host to the DIN outputs of the Launch Control XL 3.
+
+When using a Custom Mode, you can enable each of the two DIN MIDI out ports and the Main
+USB MIDI In/Out as the output for surface-generated events, independently or all at once. Each
+output can also, optionally, merge the stream of the DIN MIDI in port into it’s output.
+
+If you wish to use Launch Control XL 3 as a control surface for a DAW (Digital Audio
+Workstation) or DAW-like software, you will want to use the DAW interface (See DAW Mode
+in the main user guide).
+
+Otherwise, you may interact with the device using the MIDI interface.
+
+
+
+
+
+                                      5
+
+--- PDF PAGE 6 ---
+SysEx message format used by Launch Control XL 3
+
+
+
+All SysEx messages begin with the following header, regardless of direction (Host → Launch
+Control XL 3 or Launch Control XL 3 → Host):
+
+
+Hex:    F0h    00h    20h    29h    02h   15h
+
+
+Dec:    240    0      32     41     2     21
+
+After the header is a command byte, selecting the function to use, and then whatever data is
+required for that function.
+
+
+
+
+
+                                    6
+
+--- PDF PAGE 7 ---
+Launch Control XL 3 programmer's standalone (MIDI)
+mode
+
+
+
+The Launch Control XL 3 powers up into Standalone mode. This mode does not provide specific
+functionality for interaction with DAWs, the DAW in/out (USB) interface remains unused for this
+purpose.
+
+When using any of the Custom Modes available in Standalone mode, enabling the merging of
+incoming data and port routing noted in the MIDI on Launch Control XL 3 [5] section can be
+done using the Custom Mode Settings menu accessed using Shift + Mode.
+
+The Page, Track, Record, Play, Solo/Arm and Mute/Select buttons are unused in this mode. Shift
+and Mode provide access to menus and extended functionality, the rest of the surface output is
+configurable in our online editor Components
+
+
+
+
+
+                                          7
+
+--- PDF PAGE 8 ---
+Launch Control XL 3 programmer's DAW mode
+
+
+
+DAW mode provides additional functionality, allowing DAWs and DAW-like software to realise
+intuitive user interfaces on the Launch Control XL 3’s surface. The capabilities described in this
+chapter are only available once DAW mode is enabled.
+
+All functionality described in this chapter is accessible through the DAW In/Out (USB)
+interface.
+
+
+
+       NOTE
+
+           MIDI data is not sent from the DIN outputs in this mode.
+
+
+
+DAW mode control
+
+You can enable and disable DAW Mode using either a note, or SysEx message:
+
+Enable DAW Mode:
+
+
+Hex:     9Fh    0Ch    7Fh
+
+
+Dec:     159    12     127
+
+
+Hex:     F0h 00h 20h 29h 02h 15h 02h 7Fh F7h
+
+
+Dec:     240 0   32  41  2   21  2   127 247
+
+Disable DAW Mode:
+
+
+Hex:     9Fh    0Ch    00h
+
+
+Dec:     159    12     0
+
+
+Hex:     F0h 00h 20h 29h 02h 15h 02h 00h F7h
+
+
+Dec:     240 0   32  41  2   21  2   0   247
+
+Once the DAW or DAW-like software has recognised and connected to the Launch Control XL
+3, it should tell the Launch Control XL 3 to enter DAW mode (send either of the ‘Enable DAW
+Mode’ messages above), and then, if necessary, enable the feature controls (see the Launch
+Control XL 3 feature controls [16] section of this document).
+
+
+                                      8
+
+--- PDF PAGE 9 ---
+When the DAW or DAW-like software exits, it should exit from DAW mode on the Launch Control
+XL 3 (send either of the ‘Disable DAW Mode’ messages above), to return it to Standalone (MIDI)
+mode.
+
+The surface in DAW mode
+
+In DAW mode, contrary to standalone (MIDI) mode, all buttons, and surface elements not
+belonging to performance features (such as the Custom Modes) can be accessed and will
+report on the DAW In/Out (USB) interface only. The controls are mapped to Control Change
+events as follows:
+
+
+
+
+
+                       Decimal values                                            Hexadecimal values
+
+
+Encoders and faders output on channel 16; the buttons output on channel 1, except Shift, which
+outputs on channel 7 as this is linked to its feature control [16].
+
+The Control Change indices listed are also used for sending colour to the corresponding LEDs,
+see Colouring the surface [11].
+
+Additional modes available in DAW mode
+
+Once in DAW mode, the following additional modes become available:
+
+     • DAW Control Mode
+
+     • DAW Mixer Mode
+
+Mode report and select
+
+The surface mode can be controlled by MIDI events and are reported back by the Launch
+Control XL 3 whenever it changes mode due to user activity. These messages are important to
+capture, as the DAW should follow them when setting up and using the surfaces as intended
+based on the selected mode.
+
+
+                                    9
+
+--- PDF PAGE 10 ---
+Mode changes are reported or can be changed by the following MIDI event:
+
+     • Channel 7 (MIDI status: B6h, 182), Control Change 1Eh (30)
+
+The modes are mapped to the following values:
+
+     • 01h (1): DAW Mixer
+
+     • 02h (2): DAW Control
+
+     • 06h-09h (6-9): Custom Modes 1 - 4
+
+     • 12h - 15h (18-21) for modes 5 - 8
+
+     • 16h-1dh (22-29): Custom Modes 8 - 16
+
+Absolute and relative encoder modes
+
+By default encoders are in absolute mode and provide standard CCs as described above. If the
+DAW sends them position information, they automatically pick that up.
+
+Each row can be independently switched into relative mode
+
+
+Hex:    B6h <RowID> <7Fh:On/00h:Off>
+
+
+Dec:    182 <RowID> <127:On/0:Off>
+
+
+     • 45h (69): Row 1
+
+     • 48h (72): Row 2
+
+     • 49h (73): Row 3
+
+In Relative mode, the pivot value is 40h(64) (no movement). Values above the pivot point
+encode clockwise movements. Values below the pivot point encode anticlockwise movements.
+For example, 41h(65) corresponds to 1 step clockwise and 3Fh(63) corresponds to 1 step
+anticlockwise.
+
+When in relative mode, the CC numbers increase by 40h(64) for each row of encoders:
+
+Row 1: 4Dh (77) - 54h (84)
+
+Row 2: 55h (85) - 5Ch (92)
+
+Row 3: 5Dh (93) - 64h (100)
+
+Continuous control touch events
+
+Hex:    B6h 47h <7Fh:On/00h:Off>
+
+
+Dec:    182 71 <127:On/0:Off>
+
+
+                                         10
+
+--- PDF PAGE 11 ---
+If Continuous Control Touch events are enabled, the Touch On is sent as a Control Change
+event with Value 127 on Channel 15, while the Touch Off is sent as a Control Change event with
+Value 0 on Channel 15.
+
+For example, the leftmost Fader would send BEh 05h 7Fh (190 5 127) for Touch On, and BEh 05h
+00h (190 5 0) for Touch Off.
+
+Colouring the surface
+
+For all controls, or a control change matching those described in the reports can be sent to
+colour the corresponding LED (if the control has any).
+
+
+Hex:    B0h <control index> <colour index>
+
+
+Dec:    176 <control index> <colour index>
+
+
+
+       NOTE
+
+          The Shift button is excluded as it is tied to a Feature Control message. See
+          Launch Control XL 3 feature Controls [16] section for further information.
+
+
+
+
+
+                                                 11
+
+--- PDF PAGE 12 ---
+Colour palette
+
+When providing colours by MIDI notes or control changes, the colours are chosen according to
+the following table, decimal:
+
+
+
+
+
+The same table with hexadecimal indexing:
+
+
+
+
+
+RGB Colour
+
+Buttons and encoder LEDs can also be set to a custom colour using the following SysEx:
+
+
+Hex:    F0h 00h 20h 29h 02h 15h 01h 53h <control index> <R> <G> <B> F7h
+
+
+Dec:    240 0   32  41  2   21  1   83  <control index> <R> <G> <B> 247
+
+Encoder LEDs can be addressed using the absolute mode control indices when encoders are in
+either absolute or relative mode.
+
+
+
+
+
+                                           12
+
+--- PDF PAGE 13 ---
+Controlling the screen
+
+     • Stationary display: A default display which is shown unless any event requires a different
+      display to be temporarily shown above it.
+
+     • Temporary display: A display triggered by an event, persisting for the length of the
+      display timeout user setting.
+
+     • Parameter name: Used in association with a control, showing what it is controlling. Unless
+      provided by messages (SysEx), typically this is the MIDI entity (such as note or CC).
+
+     • Parameter value: Used in association with a control, showing the current value of it.
+      Unless provided by messages (SysEx), this is the raw value of the MIDI entity controlled
+     (such as a number in range 0 - 127 in case of a 7-bit CC).
+
+Configure displays
+
+Hex:    F0h 00h 20h 29h 02h 15h 04h <target> <config> F7h
+
+
+Dec:    240 0   32  41  2   21  4   <target> <config> 247
+
+Once a display is configured for a given target, it can be triggered.
+
+Targets
+
+     • 05h (5) - 24h (36): Temporary display for Analogue controls (same as CC indices, 05h
+      (5) - 0Ch (12): Faders, 0Dh (13) - 24h (36): Encoders)
+
+     • 35h (53): Permanent/Stationary display
+
+     • 36h (54): Overlay/Temporary display
+
+Config
+
+The <config> byte sets up the arrangement and operation of the display. 00h and 7Fh are
+special values: they cancel (00h) or bring up (7Fh) the display with its current contents (as
+MIDI Event, it is a compact way to trigger display).
+
+     • Bit 6: Allow Launch Control XL 3 to generate temporary display automatically on Change
+       (default: Set).
+
+     • Bit 5: Allow Launch Control XL 3 to generate temporary display automatically on Touch
+       (default: Set; this is the Shift + rotate).
+
+     • Bit 0-4: Display arrangement
+
+Display arrangements:
+
+
+
+
+
+                                          13
+
+--- PDF PAGE 14 ---
+     • 0: Special value for cancelling display.
+
+     • 1-30: Arrangement IDs, see table below.
+
+     • 31: Special value for triggering display.
+
+
+   ID                              Description                    Num      Fields      F0         F1        F2
+
+   1      2 lines: Parameter Name and Text Parameter Value              No       2       Name      Value       -
+
+  2      3 lines: Title, Parameter Name and Text Parameter Value          No      3            Title     Name      Value
+
+  3       1 line + 2x4: Title and 8 names (for encoder designations)         No      9            Title     Name            ...
+
+  4      2 lines: Parameter Name and Numeric Parameter Value (default)      Yes        1        Name      -           -
+
+
+
+       NOTE
+
+          The arrangement is ignored for targets only setting names (22h(34) – 28h(40)),
+          however for changing triggerability, it needs to be set non-zero (since the value
+
+         0 for these still acts for cancelling the display).
+
+
+
+Setting text
+
+Once a display is configured, the following message can be used to fill in the text fields.
+
+
+Hex:    F0h 00h 20h 29h 02h 15h 06h <target> <field> <text…> F7h
+
+
+Dec:    240 0   32  41  2   21  6   <target> <field> <text…> 247
+
+The text uses the standard ASCII character mapping in the range 20h (32) – 7Eh (126) with
+the addition of the below control codes, which have been reassigned to provide additional
+non-ASCII characters.
+
+     • Empty Box - 1Bh (27)
+
+     • Filled Box - 1Ch (28)
+
+     • Flat Symbol - 1Dh (29)
+
+     • Heart - 1Eh (30)
+
+Other control characters should not be used as their behaviour may change in the future.
+
+Bitmap
+
+The screen can also display custom graphics by sending a bitmap to the device.
+
+
+Hex:    F0h 00h 20h 29h 02h 15h 09h <target> <bitmap_data> 7Fh
+
+
+Dec:    240 0   32  41  2   21  9   <target> <bitmap_data> 127
+
+
+                                           14
+
+--- PDF PAGE 15 ---
+The <target> can be either the Stationary display (20h(32)) or the Global temporary display
+(21h(33)). There is no effect on other targets.
+
+The <bitmap_data> is of fixed 1216 bytes, 19 bytes for each pixel row, for a total of 64 rows
+(19 × 64 = 1216). The 7 bits of the SysEx byte encode pixels from left to right (highest bit
+corresponding to the leftmost pixel), the 19 bytes covering the 128 pixels width of the display
+(with five unused bits in the last byte).
+
+Upon success, there is a response to this message, which is suitable for timing fluid animations
+(once receiving it, the Launch Control XL 3 is ready to accept a next Bitmap message):
+
+
+Hex:    F0h 00h 20h 29h 02h 15h 09h 7Fh
+
+
+Dec:    240 0   32  41  2   21  9   127
+
+The display can be cancelled by either cancelling it explicitly (using the Configure Display
+SysEx or MIDI Event), or triggering the normal display (whose parameters are preserved while
+the bitmap is displaying).
+
+
+
+       IMPORTANT
+
+          The firmware can only hold one bitmap in its memory at once.
+
+
+
+
+
+                                           15
+
+--- PDF PAGE 16 ---
+Launch Control XL 3 feature Controls
+
+
+
+Many of the Launch Control XL 3’s features can be controlled by MIDI CC messages sent to
+the Launch Control XL 3's DAW in port on channel 7 and queried by sending the same message
+to channel 8. Reply messages confirming changes or answering queries will always be sent on
+channel 7.
+
+To enable or disable these controls in standalone mode, use the below messages.
+
+Enable feature controls:
+
+
+Hex:    9Fh 0Bh 7Fh
+
+
+Dec:    159 11  127
+
+Disable feature controls:
+
+
+Hex:    9Fh 0Bh 00h
+
+
+Dec:    159 11  0
+
+     • In DAW mode, all feature controls are listening, but will not send the confirmation reply
+     except for a few essential ones.
+
+     • In DAW mode, the above messages can be used to enable all of them or revert to the
+    DAW set.
+
+     • The CC messages must be sent to the Launch Control XL 3's DAW in MIDI port.
+
+     • Features marked with (*) are non-volatile, persisting across power cycles.
+
+     • Features marked with (#) are always fully enabled in DAW mode.
+
+
+
+
+
+                                          16
+
+--- PDF PAGE 17 ---
+      CC Number                          Feature                                    Control type
+
+Hex             Decimal
+
+1Eh (#)         30 (#)           Surface mode select            DAW Mixer: 01h (1)
+
+                                                DAW Control: 02h (2)
+
+                                                           Custom Modes 1-4: 06h-09h (6-9)
+
+                                                           Custom Modes 5-16: 12h-1Dh (18-29)
+
+3Fh (#)         63 (#)             Shift                               On/Off
+
+45h (#)         69 (#)       DAW Encoder, Row 1 Relative         On/Off
+
+                                 output
+
+48h (#)          72 (#)        DAW Encoder, Row 2 Relative         On/Off
+
+                                 output
+
+49h (#)          73 (#)        DAW Encoder, Row 3 Relative         On/Off
+
+                                 output
+
+46h (#)         70 (#)        DAW Fader Pickup                   On/Off
+
+47h (#)           71 (#)        DAW Touch events                   On/Off
+
+6Fh (*)            111 (*)         LED brightness level               00h - 7Fh (0 – 127)
+
+                                                                where 0 is min, 7Fh/127 is max.
+
+70h (*)           112 (*)          Screen brightness level             00h - 7Fh (0 – 127)
+
+                                                                where 0 is min, 7Fh/127 is max.
+
+71h (*)            113 (*)          Temporary display timeout          00h - 63h (0 - 99)
+
+                                                                                1/10 sec units, minimum of 1 sec at 0.
+
+78h (*)          120 (*)         Out2 MIDI Thru Enable/Disable        On/Off
+
+64h (*)          100 (*)           Global MIDI channel                00h - 0eh (0 - 15)
+
+                                                                where 00h (0) is channel 1 and 0Eh (15) is channel 16.
+
+Hex - 79h (*)     Dec - 121 (*)     Encoder Curve                     Slow 00h (0)
+
+                                                         Medium 01h (1)
+
+                                                                         Fast 02h (2)
+
+
+
+
+
+                                           17

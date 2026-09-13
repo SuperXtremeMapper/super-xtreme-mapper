@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Hercules",
+  "model": "DJControl Inpulse 300 MK2",
+  "status": "partial-extraction",
+  "coverage_state": "documentation-only",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "local_file": "ni-hercules-ah/djcontrolinpulse300mk2/support.html",
+      "url": "https://support.hercules.com/en/product/djcontrolinpulse300mk2-en/",
+      "sha256": "a4fd76fa3cd7bde4ff5063a037edb1afb6b023a75c751b74da914e647514798e",
+      "id": "s1"
+    },
+    {
+      "local_file": "ni-hercules-ah/djcontrolinpulse300mk2/manual.pdf",
+      "url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse_300_MK2/HERCULES_DJC_INPULSE_300MK2_-_USER_MANUAL_21_LANGUAGES.pdf",
+      "sha256": "bd9b76e6b8d6704296de7762d51b767b05ec327a3fffee488361105cf88e1bcf",
+      "id": "s2"
+    },
+    {
+      "local_file": "ni-hercules-ah/djcontrolinpulse300mk2/djuced-midi.html",
+      "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-300-mk2-2023-mapping-and-manual/",
+      "sha256": "fa45922ab1a3441f4104d34cec44ac7ed01f969e94ec257ca1411a69c96a808e",
+      "id": "s3"
+    },
+    {
+      "local_file": "ni-hercules-ah/djcontrolinpulse300mk2/djuced-midi.html",
+      "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-300-mk2-2023-manuel-et-controles-midi/",
+      "sha256": "fa45922ab1a3441f4104d34cec44ac7ed01f969e94ec257ca1411a69c96a808e",
+      "id": "s4"
+    }
+  ],
+  "scope": "Documentation-only extraction of the archived owner manual and support material. No model-specific numeric MIDI addresses, channels, value encodings or LED receive assignments are established; native/software control descriptions are not wire-message evidence.",
+  "bindings": [],
+  "setup_notes": [
+    "Connect the controller to the computer using its USB cable. Connect speakers to the master/speaker outputs and headphones to the headphone output as described in the installation section."
+  ],
+  "missing_information": [
+    "Model-specific control-to-Note/CC addresses and MIDI channel assignments.",
+    "Shift, pad-mode and deck-layer wire-message differences.",
+    "Jog-wheel/encoder direction, resolution and acceleration encoding; button press/release values.",
+    "LED, pad-color and meter receive addresses and value semantics.",
+    "Any required generic MIDI mode or firmware-specific protocol setup beyond the documented software workflow."
+  ],
+  "issues": [
+    {
+      "id": "setup-provenance",
+      "severity": "scope",
+      "description": "The setup notes describe the owner-manual connection workflow; they do not establish a generic MIDI mode or numeric mapping.",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 31; Installation / Connections"
+        }
+      ],
+      "excluded_bindings": []
+    },
+    {
+      "id": "no-wire-address-chart",
+      "severity": "scope",
+      "description": "The retained control descriptions identify software actions and pad modes, not per-control MIDI status/address/value tables. No Note/CC bindings can be normalized from these descriptions.",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF pages 8, 15, 21, 38, 39, 56; English hardware/control and operating descriptions"
+        },
+        {
+          "source_id": "s4",
+          "locator": "Controls > Mixer Controls, Decks Controls and Pads Modes; software action mapping"
+        }
+      ],
+      "excluded_bindings": [
+        "All input controls and all LED/output controls pending manufacturer wire-address documentation"
+      ]
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "s1",
+      "file": "ni-hercules-ah/raw/djcontrol-inpulse-300-mk2-s1.txt",
+      "extraction_method": "Complete archived HTML-to-text extraction copied; unpaginated document marker; original HTML remains authoritative"
+    },
+    {
+      "source_id": "s2",
+      "file": "ni-hercules-ah/raw/djcontrol-inpulse-300-mk2-s2.txt",
+      "extraction_method": "pdftotext -layout; complete PDF retained as page-addressed text; no OCR or inferred labels"
+    },
+    {
+      "source_id": "s3",
+      "file": "ni-hercules-ah/raw/djcontrol-inpulse-300-mk2-s3.txt",
+      "extraction_method": "Complete archived HTML-to-text extraction copied; unpaginated document marker; original HTML remains authoritative"
+    },
+    {
+      "source_id": "s4",
+      "file": "ni-hercules-ah/raw/djcontrol-inpulse-300-mk2-s4.txt",
+      "extraction_method": "Complete archived HTML-to-text extraction copied; unpaginated document marker; original HTML remains authoritative"
+    }
+  ]
+}

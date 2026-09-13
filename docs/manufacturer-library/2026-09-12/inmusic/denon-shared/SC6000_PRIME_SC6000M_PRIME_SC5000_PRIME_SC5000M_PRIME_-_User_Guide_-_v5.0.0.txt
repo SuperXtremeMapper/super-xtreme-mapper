@@ -1,0 +1,2862 @@
+User Guide
+     English
+
+
+
+
+Manual Version 5.0.0
+                                   Table of Contents
+
+
+Introduction .............................. 4             Features ................................. 11
+
+   Box Contents ............................. 4              SC6000 PRIME ........................ 11
+                                                                Top Panel ...................................... 11
+   Support ...................................... 5                 Media Selection & Browsing...... 11
+       Product Registration ....................... 5               Playback & Transport Controls .. 12
+                                                                    Sync & Pitch Controls ............... 12
+                                                                    Performance Controls ............... 13
+Setup ........................................ 6
+                                                                Front Panel .................................... 14
+
+   1. Assemble the Platter System                               Rear Panel..................................... 14
+   (SC6000M/SC500M PRIME
+   only) ............................................ 6      SC6000M PRIME ..................... 15
+       SC6000M PRIME ............................ 6             Top Panel ...................................... 15
+       SC5000M PRIME ............................ 6                 Media Selection & Browsing...... 15
+                                                                    Playback & Transport Controls .. 16
+   2. Connect and Start DJing! ..... 7                              Sync & Pitch Controls ............... 16
+                                                                    Performance Controls ............... 17
+   Connection Diagrams ............... 7                        Front Panel .................................... 18
+                                                                Rear Panel..................................... 18
+   Devices & File Analysis ............. 9
+                                                             SC5000 PRIME ........................ 19
+   Networking ................................ 9
+                                                                Top Panel ...................................... 19
+                                                                    Media Selection & Browsing...... 19
+   Configuration ........................... 10
+                                                                    Playback & Transport Controls .. 20
+                                                                    Sync & Pitch Controls ............... 20
+                                                                    Performance Controls ............... 21
+                                                                Front Panel .................................... 22
+                                                                Rear Panel..................................... 22
+
+
+
+
+                                                                                                                 2
+   SC5000M PRIME ..................... 23                          Pad Modes .................................... 43
+      Top Panel...................................... 23                Hot Cue Mode .......................... 43
+          Media Selection & Browsing ..... 23                           Loop Modes ............................. 43
+          Playback & Transport Controls . 24                            Roll Mode ................................. 44
+          Sync & Pitch Controls ............... 24                      Slicer Mode .............................. 44
+          Performance Controls ............... 25                       Sampler Mode .......................... 45
+      Front Panel ................................... 26                Stems Mode ............................. 46
+      Rear Panel .................................... 26           Touch FX ....................................... 47
+
+
+                                                                Control Center ........................ 48
+Operation ................................ 27                      Parameters .................................... 48
+                                                                   Layout ........................................... 49
+   Touchscreen Overview ........... 27
+                                                                   Profile ............................................ 51
+      Performance View ......................... 27
+                                                                   Settings ......................................... 54
+          Track Overview & Waveform ..... 27
+                                                                   Source........................................... 56
+          Performance Library ................. 29
+                                                                        Engine Remote Library .............. 56
+          Toolbar ..................................... 30
+                                                                   Wi-Fi .............................................. 57
+      Library View .................................. 31
+                                                                   Bluetooth® ..................................... 58
+                                                                   Engine Lighting ............................. 59
+   Platter Display Overview
+                                                                        Preferences .............................. 60
+   (SC6000/SC5000 PRIME only) . 33
+
+   Performing ............................... 34             Appendix ................................ 61
+      Loading & Removing Tracks ......... 34
+      Searching & Filtering Tracks ......... 35                 SATA Drive Installation........... 61
+          Match ....................................... 36
+      Editing Playlists............................. 37         Touch FX.................................. 62
+      Playback & Cueing........................ 38
+      Looping & Beat-Jumping .............. 39                  Technical Specifications ........ 64
+      Syncing & Pitch Adjustment ......... 40
+      Beat Grid Editing .......................... 42           Trademarks & Licenses.......... 65
+
+
+
+
+                                                                                                                        3
+Introduction
+Thank you for purchasing your PRIME hardware. At Denon DJ, we know how serious music is to you. That’s
+why we design our equipment with only one thing in mind—to make your performance the best it can be.
+We’re honored and excited to play a part in your musical and creative DJ journey!
+
+
+Features:
+    •   24-bit / 96kHz uncompromised digital audio output
+    •   Built-in Wi-Fi and wired internet connectivity for music streaming
+    •   Dual-layer playback with independent analog & digital outputs
+    •   Plays uncompressed audio formats (FLAC, ALAC, WAV, AIFF)
+    •   On-board analysis of music files & collection management
+    •   Best-in-class time stretch and musical key change/sync algorithms
+    •   Media inputs include: (3) USB, SD, and internal SATA drive bay
+    •   Responsive rubber buttons and multi-function performance pads
+    •   Customizable RGB color around the jog wheel
+    •   LAN output to link players and control pro DJ lighting and video
+    •   Includes Engine DJ music management software
+
+SC6000 PRIME / SC6000M PRIME Features:
+    •   10.1" HD multi-touch display with gesture support
+    •   SC6000 PRIME: 8.5” jog wheel with tension adjust & HD color display
+    •   SC6000M PRIME: 8.5” motorized platter with torque adjust & quick release vinyl
+    •   Locking IEC connector for secured power cable
+
+SC5000 PRIME / SC5000M PRIME Features:
+    •   7” HD display with multi-touch gestures
+    •   SC5000: 8” rugged metal jog wheel with HD jog display
+    •   SC5000M: Motorized platter with real 7" vinyl
+
+
+Box Contents
+(2) RCA Audio Cables (stereo pairs)             Platter Assembly (SC6000M PRIME / SC5000M PRIME only):
+USB Cable                                           •   Aluminum Platter
+USB Extension Cable                                 •   Slipmat
+
+Networking Cable                                    •   Control Disc with Quick Release Adapter (attached)
+                                                    •   Allen wrench (SC5000M only)
+Power Cable
+Cleaning Cloth
+Software Download Card
+User Guide
+Safety & Warranty Manual
+
+
+
+
+                                                                                                             4
+Support
+For the latest information about this product (documentation, technical specifications, system requirements,
+compatibility information, etc.), visit denondj.com.
+For additional product support, visit denondj.com/support.
+
+
+
+Product Registration
+Your product may include exclusive software and/or promotions which can only be accessed by registering
+your new product on the Denon DJ website.
+
+To check eligibility and access the available content, please register your product by following the
+instructions below:
+1. Visit denondj.com and click Account.
+2. Click Sign In to access your existing account, or create a new account.
+3. Once signed in, click Register New Product.
+4. Enter the product serial number into the box and click Check Serial.
+5. Complete the form and click Register Your Product.
+6. Upon successful registration, any applicable software downloads, exclusive content, and promotional
+   offers will be shown in your account.
+
+
+
+
+                                                                                                          5
+Setup
+1. Assemble the Platter System (SC6000M/SC500M PRIME only)
+SC6000M PRIME
+
+1. Remove the SC6000M PRIME base from the packaging. Remove the platter
+   assembly from the package. Place SC6000M PRIME on a flat, stable surface for
+   assembly and operation.
+
+
+2. Place the platter onto the SC6000M PRIME base by aligning the pins in the
+   bottom of the platter with the holes in SC6000M PRIME’s motor. Press it down
+   firmly. Check to make sure that it rotates uniformly and does not wobble
+   excessively.
+
+
+3. Place the slipmat onto the platter. Then place the Control Disc over the spindle
+   (with the attached Quick Release Adapter on top). To lock the Control Disc to
+   the spindle, pinch the top of the spindle while slowly rotating the disc until you
+   hear it click. It locks when the groove in the spindle lines up directly opposite to
+   the button on the side of the Quick Release Adapter.
+
+
+
+
+SC5000M PRIME
+1. Remove the SC5000M base from the packaging. Remove the platter assembly from the package
+   (underneath SC5000M). Place SC5000M on a flat, stable surface for assembly and operation.
+
+
+2. Place the platter onto the SC5000M base by aligning the pins in the bottom of the
+   platter with the holes in SC5000M’s motor. Press it down firmly. Check to make sure
+   that it rotates uniformly and does not wobble excessively.
+
+
+
+
+3. Place the slipmat onto the platter, then place the vinyl over the slipmat.
+
+
+
+
+4. Line up the notch in the spindle with the screw in the spindle lock adapter. Use the
+   Allen wrench (included) to tighten the screw, locking the adapter to the spindle.
+    Note: By pressing down on or lifting up the vinyl while you tighten the spindle screw,
+    you can adjust the slip friction to your preferred feel.
+
+
+
+
+                                                                                             6
+2. Connect and Start DJing!
+
+Important: Occasionally, we may update the PRIME hardware’s firmware to add exciting new features and
+improvements. Visit enginedj.com/downloads to check for available firmware updates, especially after you
+update your software (firmware updates may address new software features).
+1. Visit enginedj.com/downloads to download the Engine DJ software to pre-analyze your music library to
+   use with the PRIME hardware.
+2. Double-click the .exe (Windows®) or .dmg (macOS®) installer file you downloaded, and then follow the
+   on-screen instructions to install Engine DJ.
+3. Make sure all of your devices are powered off or all of their volume levels are at their minimum positions.
+4. Connect the PRIME hardware’s audio outputs (Layer A/B or Digital Outputs A/B) to the inputs of your mixer.
+5. Connect the PRIME hardware’s Link ports according to one of the following connection diagram examples.
+6. Connect any output devices (headphones, power amplifiers, loudspeakers, etc.) to the outputs of your mixer.
+7. Connect all of your devices to power sources.
+     •    When starting a session, power on (1) the PRIME hardware and other input sources, (2) your mixer,
+          and then (3) output devices.
+     • When ending a session, power off (1) output devices, (2) your mixer, and then (3) the PRIME
+       hardware and other input sources.
+8. To use Engine OS (standalone playback): Insert a USB flash drive or SD card (with an Engine-configured
+   music library) to one of the PRIME hardware’s USB ports or SD Card Slot, connect to available
+   streaming and cloud services, or explore the included demo content.
+
+
+Connection Diagrams
+
+Items shown but not listed under Box Contents are sold separately.
+
+Example 1
+
+This example shows two PRIME hardware units with their Link ports connected to each other directly.
+
+SC6000 PRIME                                                                                   SC6000 PRIME
+(rear panel)                                                                                        (rear panel)
+
+
+
+
+                                               Denon DJ mixer
+                                                     (rear panel)
+
+
+
+  Power outlet                                                             Power outlet
+
+
+
+
+                                                                            SC6000 PRIME
+               USB drive                                                    (front panel)
+
+
+
+
+                                           SD card             USB drive
+                                                                                                              7
+Example 2
+
+This example shows four PRIME hardware units with their Link ports connected to Link Ports 1–4 of a
+Denon DJ mixer. All four units are networked through the mixer.
+Note: If you are using a different mixer with this setup, connect the Link ports of all 4 PRIME hardware units
+to an Ethernet hub instead of to the mixer.
+
+
+          SC6000 PRIME                                                                             SC6000 PRIME
+               (rear panel)                                                                          (rear panel)
+
+
+
+
+                                    USB                                                    USB
+Power                               drive                                                  drive                        Power
+outlet                                                                                                                   outlet
+
+
+
+
+SC6000                                                                                                                SC6000
+PRIME                                                                                                                  PRIME
+(rear panel)                                                                                                        (rear panel)
+
+                                                Denon DJ mixer
+                                                      (rear panel)
+
+
+
+Power                                                                                                                   Power
+outlet                                                                                                                   outlet
+                                                                           SC6000 PRIME
+                                                                           (front panel)
+
+
+
+
+                                            SD card            USB drive
+
+
+
+RF Warning: This is a mobile device. Maintain a distance of at least 8 inches / 20 centimeters of separation
+between the transmitter’s radiating structure(s) and your body or other people nearby.
+
+
+
+
+                                                                                                                              8
+Devices & File Analysis
+PRIME hardware can play music files from USB drives, SD cards, or other connected PRIME hardware units.
+Make sure you are using only the supported file systems (for USB drives or SD cards) and file formats (for music
+files) listed below.
+     Supported file systems:        exFAT (recommended), FAT32, HFS+ (SC6000/SC6000M PRIME only)
+     Supported file formats:        AAC/M4A                                   MP3 (32–320 kbps)
+                                    AIF/AIFF (44.1–192 kHz, 16–32-bit)        MP4
+                                    ALAC                                      Ogg Vorbis
+                                    FLAC                                      WAV (44.1–192 kHz, 16–32-bit)
+
+Although PRIME hardware can play tracks that have not been analyzed yet, pre-analyzing them allows its
+features to work most effectively. You can analyze tracks in one of two ways:
+    •   On the PRIME hardware, load the track: When you load a track to play, PRIME hardware will
+        automatically analyze it (if it has not already been analyzed). This may take a moment to complete,
+        depending on the length of the track. You can start playing the track from the beginning
+        immediately, though you will need to wait a moment for the analysis to finish.
+    •   Use Engine DJ software: The included Engine DJ software can pre-analyze your music library to
+        use with the PRIME hardware. You can also use it to organize your library, manage your PRIME
+        hardware preferences, etc. (see Operation to learn more about this).
+        Visit enginedj.com/downloads to download the Engine DJ software.
+
+To eject a USB drive or SD card:
+1. Make sure none of its tracks are being played on any connected PRIME hardware units.
+2. Press the Media Eject button. A list of connected devices will appear in the touchscreen.
+3. Tap the Eject icon on the touchscreen next to the name of your device. If a track on the device is
+    currently playing, you will be asked if you want to continue ejecting, which will stop the track. Tap
+    Cancel to cancel ejecting the device, or tap OK to eject it.
+    To eject additional devices, repeat Step 3.
+    To return to the previous screen, press the Media Eject button again, or tap the X in the upper-right
+    corner.
+
+PRIME hardware also supports installation of a SATA (Serial ATA) drive to create internal storage space. See
+Appendix > SATA Drive Installation for more information.
+
+
+Networking
+You can network up to four PRIME hardware units together, enabling them to share track databases, timing
+and BPM information, and other data seamlessly over this connection.
+This feature provides many advantages while performing. For instance, if you are using four PRIME hardware
+units, you can use one of them to browse through all tracks on all devices (USB drives or SD cards)
+connected to any of those the PRIME hardware units. You can then play any of those tracks immediately
+without having to move a device from one unit to the other.
+
+To network PRIME hardware units together, use the included networking cables to do one of the
+following:
+    •   If you are using only two PRIME hardware units, connect their two Link ports.
+    •   If you are using two or more PRIME hardware units, connect each of their Link ports to a Link port
+        (1–4) on your Denon DJ mixer.
+    •  If you are using two or more PRIME hardware units, connect each of their Link ports to an Ethernet
+       port on a router.
+The Link light will turn on when the PRIME hardware unit is properly connected to a network.
+
+
+
+                                                                                                              9
+Configuration
+When your PRIME hardware is powered on, you will be presented with a Wi-Fi connection menu to connect
+to your local network. You can dismiss this screen each time, or set it to not show again at startup. You can
+adjust your connection settings at any time using the Wi-Fi menu in the Control Center.
+Next, you will be prompted to connect to your Engine DJ profile. With your Engine DJ profile, you can
+register your device, connect streaming and cloud services so you can log into each with a single Engine DJ
+profile login, and access crowd-sourced streaming metadata and beat grid information. You can use a
+mobile device to scan the QR code, or visit device.enginedj.com and enter the code shown. You can also
+dismiss this screen each time, or set it to not show again at startup. To log in to an Engine DJ profile at any
+other time, use the Log In button found in the Profile menu.
+Your PRIME hardware has more settings that you can customize in the Layout, Profile, and Settings
+menus. See Control Center to learn about these settings.
+
+
+
+
+                                                                                                            10
+Features
+SC6000 PRIME
+Top Panel
+
+Media Selection & Browsing
+                                                            2
+1. Touchscreen: This full-color, multi-touch display
+   shows information relevant to SC6000 PRIME’s
+   current operation. Touch the display (and use the
+                                                       4
+   hardware controls) to control the interface. See    8                                         5     6
+   Touchscreen Overview for more information.
+2. Media Selection: These lights will illuminate to
+                                                       3                       1                 7
+   indicate if the corresponding type of media is      9
+   connected: USB, SD, or Link.
+3. Source: Press this button to show a list of             10
+   devices connected to SC6000 PRIME in the
+   touchscreen (other networked SC6000 PRIME
+                                                       34                                            14
+   units, USB drives, SD card, Wi-Fi, etc.). Tap a                                          13
+   device in the list to select it.                                            11                    15
+                                                       33
+4. Media Eject: Press this button to show a list of                                             22     23
+   devices connected to that SC6000 PRIME unit in      26                                             21
+   the touchscreen (i.e., USB drives connected to                             12
+   its USB ports or an SD card inserted into its SD
+   card slot).                                         18
+   To eject a device, make sure none of its tracks     35
+   are being played, and then tap the Eject icon on                                 25
+   the touchscreen and follow the prompts.
+                                                       17          24 28 29 30 31 32   19
+5. Back: While in Library View, press this button to
+   move to the previous window. While in               16
+   Performance View, press this button to enter
+                                                                                                       20
+                                                                               27
+   Library View.
+6. Forward: While in Library View, press this button to move to the next window. While in Performance
+   View, press this button to enter Library View.
+7. Select/Load (Browse) / Zoom: In Performance View, turn this knob to open Library View and navigate
+   through lists.
+   Note: Alternatively, you can change the default Encoder Behavior for this knob to adjust the waveform
+   zoom level in the Settings > Device menu.
+   Press the knob to move forward in the touchscreen, select an item, or load a track to a selected deck.
+   Double-press the knob to load a track to both layers (“instant doubles”).
+   Press and hold the knob to adjust the beat grid (see Beat Grid Editing for more details on adjusting the
+   beat grid).
+   Press and hold Shift and then press and hold this knob to manually adjust cue/loop point locations left
+   or right using the touchscreen controls.
+8. View / Preferences/Utility: Press this button to cycle between Library View and Performance View.
+   Double-press this button to enter the Engine Lighting view. Press and hold this button to enter the
+   Control Center menu.
+   In Performance View, hold Shift and press the View button to cycle between View 1–3 layout presets,
+   which can be customized in the Layout menu. In Library View, hold Shift and press the View button to
+   open or close the collection panel while the track list is in focus.
+9. Shortcuts: Press this button to open the Control Center, which includes quick links to other menus
+   such as Source, Profile and Settings.
+
+                                                                                                          11
+Playback & Transport Controls
+
+10. Layer: Press this button to switch the layer focus of the SC6000 PRIME.
+    Press and hold Shift and press this button to toggle between Single and Dual Layer views.
+    Note: This button will be disabled if the Layer B option under Layout > Deck Behavior is set to Off.
+11. Platter: This capacitive, touch-sensitive platter controls the audio playhead when the wheel is touched
+    and moved. When the Vinyl button is on, move the platter to “scratch” the track as you would with a
+    vinyl record. When the Vinyl button is off (or if you are touching only the side of the platter), move the
+    platter to temporarily adjust the track’s speed.
+12. Platter Display: This display shows information relevant to the performance, including the current playhead
+    position and auto loop size, as well as album artwork. See Platter Display Overview for more information.
+13. Wheel Adjust: Turn this knob to set how resistant the platter is to adjustments. This knob applies a brake
+    to the platter to prevent unintentional drifting due to environmental vibrations from bass frequencies,
+    surface instability, etc.
+14. Stop Time: Controls the rate at which the track slows to a complete stop (“brake time”) when you pause
+    it by pressing Play/Pause (/).
+15. Vinyl: Press this button to activate/deactivate a “vinyl mode” for the platter. When activated, you can use
+    the platter to “scratch” the track as you would with a vinyl record.
+16. Play/Pause (/): This button pauses or resumes playback.
+    Press and hold Shift and then press this button to “stutter-play” the track from the initial cue point.
+17. Cue: During playback, press this button to return the track to the initial cue point and stop playback.
+    To move the initial cue point while the track is paused, move the platter to place the audio playhead at
+    the desired location, and then press this button. Alternatively, if the track is playing, press and hold Shift
+    and then press this button to set the initial cue point at the current playhead position.
+    If the deck is paused, press and hold this button to temporarily play the track from the initial cue point.
+    Release the button to return the track to the initial cue point and pause it. To continue playback without
+    returning to the initial cue point, press and hold this button and then press and hold the Play button, and
+    then release both buttons.
+18. Track Skip: Press either of these buttons to skip to the previous or next track.
+    Press the Previous Track button in the middle of a paused track to return to the beginning of the track.
+    Press and hold Shift and then press one of these buttons to search backward or forward through the track.
+
+Sync & Pitch Controls
+
+19. Pitch Fader: Move this fader to adjust the speed (pitch) of the track. You can adjust its total range by
+    pressing and holding Shift and pressing one of the Pitch Bend buttons.
+    Important: If Sync is activated, moving the pitch fader on the “primary” SC6000 PRIME unit will change
+    the speed of all synced units, while moving the pitch fader on other units will do nothing.
+20. Pitch Bend –/+: Press and hold one of these buttons to momentarily reduce or increase (respectively)
+    the speed of the track.
+    Press and hold Shift and then press one of these buttons to set the range of the pitch fader.
+21. Key Lock/Reset: Press this button to activate or deactivate Key Lock. When Key Lock is activated, the
+    track’s key will remain the same even if you adjust its speed.
+    Press and hold Shift and press this button to reset the track to its original key regardless of the position
+    of the pitch fader or edits made via key change menu.
+22. Sync/Sync Off: Press this button to activate Sync.
+    To sync two or more PRIME units, press Sync on the unit that you want to control the BPM, which
+    becomes the “primary.” After Sync is activated on that unit, press Sync on any additional units. The units
+    will immediately synchronize according to the Sync Mode setting in the Profile > Playback menu.
+    To deactivate Sync, press the Sync button again, or press and hold Shift and press Sync, depending on
+    the Sync Button Action setting in the Profile > Playback menu.
+23. Master: Press this button to set this SC6000 PRIME unit as the one that controls the lead tempo. All
+    connected units with Sync activated will use this tempo. If you stop the sync lead unit, the next-longest-
+    playing unit in the setup will automatically become the new sync lead (unless you change it manually).
+
+                                                                                                               12
+Performance Controls
+
+24. Shift: Press and hold this button to access secondary functions of other controls.
+25. Slip: Press this button to enable or disable Slip Mode. In Slip Mode, you can jump to cue points, use the
+    platter, or pause the track while the track’s timeline continues (half of the waveform in the display will
+    continue moving forward). In other words, when you stop whatever action you are performing, the track
+    will resume normal playback from where it would have been if you had never done anything (i.e., as if the
+    track had been playing forward the whole time).
+26. Censor/Reverse: Press this button to activate the Censor feature: the playback of the track will be
+    reversed, but when you release the button, normal playback will resume from where it would have been if
+    you had never engaged the Censor feature (i.e., as if the track had been playing forward the whole time).
+    Press and hold Shift and then press this button to reverse the playback of the track normally. Press this
+    button again to return playback to the normal forward direction.
+27. Performance Pads: These pads have different functions depending on the current pad mode. See Pad
+    Modes for more information.
+28. Hot Cue: Press this button to enter Hot Cue Mode, and press it again to enter Stems mode.
+    Note: Stems support requires a one-time license purchase and activation. See Stems Mode for more
+    information.
+29. Loop: Press this button once to enter Manual Loop Mode, and press it again to enter Auto Loop Mode.
+30. Roll: Press this button to enter Roll Mode, and press it again to enter Sampler Mode.
+31. Slicer: Press this button once to enter Slicer Mode, and press it again to enter Slicer Loop Mode.
+32. Parameter /: Use these buttons for various functions in certain Pad Modes. See Pad Modes for
+    more information.
+33. Loop In/Loop Out: Press either of these buttons to create a Loop In or Loop Out point at the current
+    location. Their placement will be affected by the Quantize and Smart Loops settings. See Control
+    Center for more information.
+34. Auto Loop/Loop Move: Turn this knob to set the size of an automatic loop. The value will be shown in
+    the touchscreen and platter display.
+    Press this knob to activate or deactivate an automatic loop at the current location of the track.
+    Tip: You can assign auto loops to pads in Manual Loop Mode. See Pad Modes for more information.
+    Press and hold Shift and turn this knob to shift the active loop to the left or right.
+35. Beat Jump: Press either of these buttons to skip backward or forward through the track.
+    Press and hold Shift and then press one of these buttons to increase or decrease the beat jump size.
+
+
+
+
+                                                                                                           13
+Front Panel
+
+1. Front USB Port: Connect a standard USB drive to
+   this USB port. When you select that USB drive as a
+   source (press the Source button), you can select
+   and load tracks from it. There are also two similar
+   USB ports on the rear panel. You can use the
+   included USB extension cable to accommodate
+   larger or smaller USB thumb drives.
+                                                                             2       1
+2. SD Card Slot: Insert a standard SD card to this
+   slot. When you select that SD card as a source
+   (press the Source button), you can select and load
+   tracks from it.
+
+
+Rear Panel
+
+1. Power Input: Use the included locking power cable
+   to connect this input to a power outlet. To remove
+   the power cable, push down on the yellow tab and
+   then pull the cable out of the input. You can also
+   use a standard IEC power cable in place of the                        8                  9
+   included locking power cable.
+   SC6000 PRIME has a protection circuit to safely
+   eject all media after an unexpected power loss to
+                                                                  6 7 5 4 3 2 1
+   protect your data from corruption. Reconnect your
+   power source to return to normal operation.
+2. Power Button: Press this button to power SC6000 PRIME on or off. Power on SC6000 PRIME only after
+   you have connected all of your input devices and before you power on your amplifiers and loudspeakers.
+   Power off your amplifiers and loudspeakers before powering off SC6000 PRIME.
+   Press and hold this button for 10 seconds to reset SC6000 PRIME.
+3. Link Port: Use the included networking cable to connect this port to another SC6000 PRIME or to your
+   Denon DJ mixer. Each networked SC6000 PRIME can share track databases, timing and BPM
+   information, and other track data over this connection. You can also connect this port to an internet
+   access point such as a router for a hardwired internet connection.
+4. USB B Port: Use a standard USB cable (included) to connect this USB port to an available USB port on
+   your computer. This connection sends and receives MIDI messages to and from the computer.
+5. Rear USB Ports 2/3: Connect standard USB drives to these USB ports. When you select one of those
+   USB drives as a source (press the Source button), you can select and load tracks from it. There is also a
+   similar USB port on the front panel.
+6. Layer A/B Outputs: Use standard RCA cables to connect these outputs to your DJ mixer. The Layer A
+   Line Outputs send out the audio signal from Layer A. The Layer B Line Outputs send out the audio signal
+   from Layer B.
+7. Digital Outputs A/B: Use standard digital coaxial cables to connect these 24-bit/96 kHz outputs to
+   devices and mixers such as the Denon DJ X1850 PRIME.
+8. Remote Input: Use a standard remote start cable to connect this input to the remote-start output of your
+   mixer (if available). While connected to a remote-start-compatible mixer, moving the crossfader toward
+   the side that corresponds to this SC6000 PRIME (or raising the channel fader for its channel) will
+   automatically start the track on the currently selected layer.
+9. Kensington® Lock Slot: Use this slot to secure SC6000 PRIME to a table or other surface.
+
+
+
+
+                                                                                                          14
+SC6000M PRIME
+Top Panel
+
+Media Selection & Browsing
+
+1. Touchscreen: This full-color multi-touch                    2
+   display shows information relevant to
+   SC6000M PRIME’s current operation. Touch
+   the display (and use the hardware controls) to
+                                                          4
+   control the interface. See Touchscreen                 8                                      5     6
+   Overview for more information.
+2. Media Selection: These lights will illuminate
+                                                          3                   1                  7
+   to indicate if the corresponding type of media         9
+   is connected: USB, SD, or Link.
+3. Source: Press this button to show a list of
+   available devices connected to SC6000M
+                                                              10
+   PRIME in the touchscreen (other networked
+   SC6000M PRIME units, USB drives, SD card,              33                                         13
+                                                                                            12
+   Wi-Fi, etc.). Tap a device in the list to select it.                                              14
+4. Media Eject: Press this button to show a list
+                                                          32
+                                                                                               21     22
+   of devices connected to that SC6000M                                      11
+   PRIME unit in the touchscreen (i.e., USB               25                                         20
+   drives connected to its USB ports or an SD
+   card inserted into its SD card slot).
+    To eject a device, make sure none of its              17
+    tracks are being played, and then tap the
+    Eject icon on the touchscreen and follow the
+                                                          34
+    prompts.                                                                        24
+5. Back: While in Library View, press this
+                                                          16       23 27 28 29 30 31   18
+   button to move to the previous window. While
+   in Performance View, press this button to              15                                          19
+   enter Library View.                                                       26
+6. Forward: While in Library View, press this button to move to the next window. While in Performance
+   View, press this button to enter Library View.
+7. Select/Load (Browse) / Zoom: In Performance View, turn this knob to open Library View and navigate
+   through lists.
+   Note: Alternatively, you can change the default Encoder Behavior for this knob to adjust the waveform
+   zoom level in the Settings > Device menu.
+   Press the knob to move forward in the touchscreen, select an item, or load a track to a selected deck.
+   Double-press the knob to load a track to both layers (“instant doubles”).
+   Press and hold the knob to adjust the beat grid (see Beat Grid Editing for more details on adjusting the
+   beat grid).
+   Press and hold Shift and then press and hold this knob to manually adjust cue/loop point locations left
+   or right using the touchscreen controls.
+8. View / Preferences/Utility: Press this button to switch between Library View and Performance View.
+   Double-press this button to enter the Engine Lighting view. Press and hold this button to enter the
+   Control Center menu.
+   In Performance View, hold Shift and press the View button to cycle between View 1–3 layout presets,
+   which can be customized in the Layout menu. In Library View, hold Shift and press the View button to
+   open or close the collection panel while the track list is in focus.
+9. Shortcuts: Press this button to open the Control Center, which includes quick links to other menus
+   such as Source, Profile and Settings.
+
+
+                                                                                                         15
+Playback & Transport Controls
+
+10. Layer: Press this button to switch the layer focus of the SC6000M PRIME.
+    Press and hold Shift and press this button to toggle between Single and Dual Layer views.
+    Note: This button will be disabled if the Layer B option under Layout > Deck Behavior is set to Off.
+11. Platter: This motorized platter controls the audio playhead in the software. It can be used to scratch and
+    spin or act as a static pitch platter depending on the setting of the Motor button.
+12. Torque Adjust: Flip this rotary switch to adjust the torque of the platters. At the high setting, the platters
+    will have the heavier, stronger feel of “modern” turntables. At the normal setting, they are lighter and more
+    graceful—the feel of a “classic” turntable.
+13. Stop Time: Controls the rate at which the track slows to a complete stop (“brake time”) when you pause
+    it by pressing Play/Pause (/).
+14. Motor: Press this button to activate or deactivate the platter motor. When the motor is activated, the
+    platter will spin and scratch like a turntable.
+    When the motor is deactivated and audio is playing, move the platter to temporarily adjust the track’s
+    speed, which is useful for beat alignment. When deactivated and audio is paused, move the platter to
+    scratch the track. Audio will not be interrupted if the motor is activated during playback.
+15. Play/Pause (/): This button pauses or resumes playback.
+    Press and hold Shift and then press this button to “stutter-play” the track from the initial cue point.
+16. Cue: During playback, press this button to return the track to the initial cue point and stop playback.
+    To move the initial cue point while the track is paused, move the platter to place the audio playhead at
+    the desired location, and then press this button. Alternatively, if the track is playing, press and hold Shift
+    and then press this button to set the initial cue point at the current playhead position.
+    If the deck is paused, press and hold this button to temporarily play the track from the initial cue point.
+    Release the button to return the track to the initial cue point and pause it. To continue playback without
+    returning to the initial cue point, press and hold this button and then press and hold the Play button, and
+    then release both buttons.
+17. Track Skip: Press either of these buttons to skip to the previous or next track.
+    Press the Previous Track button in the middle of a paused track to return to the beginning of the track.
+    Press and hold Shift and then press one of these buttons to search backward or forward through the track.
+
+Sync & Pitch Controls
+
+18. Pitch Fader: Move this fader to adjust the speed (pitch) of the track. You can adjust its total range by
+    pressing and holding Shift and pressing one of the Pitch Bend buttons.
+    Important: If Sync is activated, moving the pitch fader on the “primary” SC6000M PRIME unit will
+    change the speed of all synced units, while moving the pitch fader on other units will do nothing.
+19. Pitch Bend –/+: Press and hold one of these buttons to momentarily reduce or increase (respectively) the
+    speed of the track.
+    Press and hold Shift and then press one of these buttons to set the range of the pitch fader.
+20. Key Lock/Reset: Press this button to activate or deactivate Key Lock. When Key Lock is activated, the
+    track’s key will remain the same even if you adjust its speed.
+    Press and hold Shift and press this button to reset the track to its original key regardless of the position
+    of the pitch fader or edits made via key change menu.
+21. Sync/Sync Off: Press this button to activate Sync.
+    To sync two or more PRIME units, press Sync on the unit that you want to control the BPM, which
+    becomes the “primary.” After Sync is activated on that unit, press Sync on any additional units. The units
+    will immediately synchronize according to the Sync Mode setting in the Profile > Playback menu.
+    To deactivate Sync, press the Sync button again, or press and hold Shift and press Sync, depending on
+    the Sync Button Action setting in the Profile > Playback menu.
+22. Master: Press this button to set this SC6000M PRIME unit as the one that controls the lead tempo. All
+    connected units with Sync activated will use this tempo. If you stop the sync lead unit, the next-longest-
+    playing unit in the setup will automatically become the new sync lead (unless you change it manually).
+
+                                                                                                               16
+Performance Controls
+
+23. Shift: Press and hold this button to access secondary functions of other controls.
+24. Slip: Press this button to enable or disable Slip Mode. In Slip Mode, you can jump to cue points, use the
+    platter, or pause the track while the track’s timeline continues (half of the waveform in the display will
+    continue moving forward). In other words, when you stop whatever action you are performing, the track
+    will resume normal playback from where it would have been if you had never done anything (i.e., as if the
+    track had been playing forward the whole time).
+25. Censor/Reverse: Press this button to activate the Censor feature: the playback of the track will be
+    reversed, but when you release the button, normal playback will resume from where it would have been if
+    you had never engaged the Censor feature (i.e., as if the track had been playing forward the whole time).
+    Press and hold Shift and then press this button to reverse the playback of the track normally. Press this
+    button again to return playback to the normal forward direction.
+26. Performance Pads: These pads have different functions depending on the current pad mode. See Pad
+    Modes for more information.
+27. Hot Cue: Press this button to enter Hot Cue Mode, and press it again to enter Stems mode.
+    Note: Stems support requires a one-time license purchase and activation. See Stems Mode for more
+    information.
+28. Loop: Press this button once to enter Manual Loop Mode, and press it again to enter Auto Loop Mode.
+29. Roll: Press this button to enter Roll Mode, and press it again to enter Sampler Mode.
+30. Slicer: Press this button once to enter Slicer Mode, and press it again to enter Slicer Loop Mode.
+31. Parameter /: Use these buttons for various functions in certain Pad Modes. See Pad Modes for
+    more information.
+32. Loop In/Loop Out: Press either of these buttons to create a Loop In or Loop Out point at the current
+    location. Their placement will be affected by the Quantize and Smart Loops settings. See Control Center
+    for more information.
+33. Auto Loop/Loop Move: Turn this knob to set the size of an automatic loop. The value will be shown in
+    the touchscreen.
+    Press this knob to activate or deactivate an automatic loop at the current location of the track.
+    Tip: You can assign auto loops to pads in Manual Loop Mode. See Pad Modes for more information.
+    Press and hold Shift and turn this knob to shift the active loop to the left or right.
+34. Beat Jump: Press either of these buttons to skip backward or forward through the track.
+    Press and hold Shift and then press one of these buttons to increase or decrease the beat jump size.
+
+
+
+
+                                                                                                            17
+Front Panel
+
+1. Front USB Port: Connect a standard USB drive to this USB
+   port. When you select that USB drive as a source (press the
+   Source button), you can select and load tracks from it.
+   There are also two similar USB ports on the rear panel. You
+   can use the included USB extension cable to accommodate
+   larger or smaller USB thumb drives.                                            2     1
+2. SD Card Slot: Insert a standard SD card to this slot. When
+   you select that SD card as a source (press the Source
+   button), you can select and load tracks from it.
+
+
+Rear Panel
+
+1. Power Input: Use the included locking power cable to
+   connect this input to a power outlet. To remove the power
+   cable, push down on the yellow tab and then pull the cable
+   out of the input. You can also use a standard IEC power                    8               9
+   cable in place of the included locking power cable.
+   SC6000M PRIME has a protection circuit to safely eject all
+   media after an unexpected power loss to protect your data             6 7 5 4 3 2              1
+   from corruption. Reconnect your power source to return to
+   normal operation.
+2. Power Button: Press this button to power SC6000M PRIME on or off. Power on SC6000M PRIME only
+   after you have connected all of your input devices and before you power on your amplifiers and
+   loudspeakers. Power off your amplifiers and loudspeakers before powering off SC6000M PRIME.
+   Press and hold this button for 10 seconds to reset SC6000M PRIME.
+3. Link Port: Use the included networking cable to connect this port to another SC6000M PRIME or to your
+   Denon DJ mixer. Each networked SC6000M PRIME can share track databases, timing and BPM
+   information, and other track data over this connection. You can also connect this port to an internet
+   access point such as a router for a hardwired internet connection.
+4. USB B Port: Use a standard USB cable (included) to connect this USB port to an available USB port on
+   your computer. This connection sends and receives MIDI messages to and from the computer.
+5. Rear USB Ports 2/3: Connect standard USB drives to these USB ports. When you select one of those
+   USB drives as a source (press the Source button), you can select and load tracks from it. There is also a
+   similar USB port on the front panel.
+6. Layer A/B Outputs: Use standard RCA cables to connect these outputs to your DJ mixer. The Layer A
+   Line Outputs send out the audio signal from Layer A. The Layer B Line Outputs send out the audio signal
+   from Layer B.
+7. Digital Outputs A/B: Use standard digital coaxial cables to connect these 24-bit/96 kHz outputs to
+   devices and mixers such as the Denon DJ X1850 PRIME mixer.
+8. Remote Input: Use a standard remote start cable to connect this input to the remote-start output of your
+   mixer (if available). While connected to a remote-start-compatible mixer, moving the crossfader toward
+   the side that corresponds to this SC6000M PRIME (or raising the channel fader for its channel) will
+   automatically start the track on the currently selected layer.
+9. Kensington® Lock Slot: Use this slot to secure SC6000M PRIME to a table or other surface.
+
+
+
+
+                                                                                                          18
+SC5000 PRIME
+Top Panel
+
+Media Selection & Browsing
+
+1. Touchscreen: This full-color multi-touch        4     8
+   display shows information relevant to
+   SC5000 PRIME’s current operation. Touch                    3                             5        6
+   the display (and use the hardware controls)     2                        1
+   to control the interface. See Touchscreen                  9
+   Overview for more information.                                                                7
+2. Media Selection: These lights will illuminate
+                                                         10
+   to indicate if the corresponding type of
+   media is connected: USB, SD, or Network.        34                                                14
+                                                                                           13
+3. Source: Press this button to show a list of
+                                                   33                      11                        15
+   available devices connected to SC5000
+   PRIME in the touchscreen (other networked                                                  22      23
+   SC5000 PRIME units, USB drives, SD card,        26                                                21
+   etc.). Tap a device in the list to select it.
+                                                                           12
+4. Media Eject: Press this button to show a
+   list of available devices connected to that     18
+   SC5000 PRIME unit in the touchscreen
+   (i.e., USB drives connected to its USB          35
+   ports, or an SD card inserted into its SD                                   25
+   card slot).
+                                                   17         24 28 29 30 31 32   19
+    To eject a device, make sure none of its
+    tracks are being played, and then tap the
+    Eject icon on the touchscreen and follow       16                                                 20
+    the prompts.                                                           27
+5. Back: While in Library View, press this button to move to the previous window. While in Performance
+   View, press this button to enter Library View.
+6. Forward: While in Library View, press this button to move to the next window. While in Performance
+   View, press this button to enter Library View.
+7. Select/Load (Browse) / Zoom: In Performance View, turn this knob to open Library View and navigate
+   through lists.
+   Note: Alternatively, you can change the default Encoder Behavior for this knob to adjust the waveform
+   zoom level in the Settings > Device menu.
+   Press the knob to move forward in the touchscreen, select an item, or load a track to a selected deck.
+   Double-press the knob to load a track to both layers (“instant doubles”).
+   Press and hold the knob to adjust the beat grid (see Beat Grid Editing for more details on adjusting the
+   beat grid).
+   Press and hold Shift and then press and hold this knob to manually adjust cue/loop point locations left
+   or right using the touchscreen controls.
+8. View / Preferences/Utility: Press this button to switch between Library View and Performance View.
+   Double-press this button to enter the Engine Lighting view. Press and hold this button to enter the
+   Control Center menu.
+   In Performance View, hold Shift and press the View button to cycle between View 1–3 layout presets,
+   which can be customized in the Layout menu. In Library View, hold Shift and press the View button to
+   open or close the collection panel while the track list is in focus.
+9. Shortcuts: Press this button to open the Control Center, which includes quick links to other menus
+   such as Source, Profile and Settings.
+
+
+
+                                                                                                          19
+Playback & Transport Controls
+10. Layer: Press this button to switch the layer focus of the SC5000 PRIME.
+    Press and hold Shift and press this button to toggle between Single and Dual Layer views.
+    Note: This button will be disabled if the Layer B option under Layout > Deck Behavior is set to Off.
+11. Platter: This capacitive, touch-sensitive platter controls the audio playhead when the wheel is touched and
+    moved. When the Vinyl button is on, move the platter to “scratch” the track as you would with a vinyl
+    record. When the Vinyl button is off (or if you are touching only the side of the platter), move the platter to
+    temporarily adjust the track’s speed.
+12. Platter Display: This display shows information relevant to the performance, including the current
+    playhead position and auto loop size, as well as album artwork. See Platter Display Overview for more
+    information.
+13. Wheel Adjust: Turn this knob to set how resistant the platter is to adjustments. This knob applies a brake
+    to the platter to prevent unintentional drifting due to environmental vibrations from bass frequencies,
+    surface instability, etc.
+14. Stop Time: Controls the rate at which the track slows to a complete stop (“brake time”) when you pause
+    it by pressing Play/Pause (/).
+15. Vinyl: Press this button to activate or deactivate a “vinyl mode” for the platter. When activated, move the
+    platter to “scratch” the track as you would with a vinyl record. When deactivated, move the platter to
+    temporarily adjust the track’s speed, which is useful for beat alignment.
+16. Play/Pause (/): This button pauses or resumes playback.
+    Press and hold Shift and then press this button to “stutter-play” the track from the initial cue point.
+17. Cue: During playback, press this button to return the track to the initial cue point and stop playback.
+    To move the initial cue point while the track is paused, move the platter to place the audio playhead at
+    the desired location, and then press this button. Alternatively, if the track is playing, press and hold Shift
+    and then press this button to set the initial cue point at the current playhead position.
+    If the deck is paused, press and hold this button to play the track from the initial cue point. Release the
+    button to return the track to the initial cue point and pause it. To continue playback without returning to
+    the initial cue point, press and hold this button and then press and hold the Play button, and then
+    release both buttons.
+18. Track Skip: Press either of these buttons to skip to the previous or next track. Press the Previous Track
+    button in the middle of a track to return to the beginning of the track.
+    Press and hold Shift and then press one of these buttons to search backward or forward through the track.
+
+
+Sync & Pitch Controls
+19. Pitch Fader: Move this fader to adjust the speed (pitch) of the track. You can adjust its total range by
+    pressing and holding Shift and pressing one of the Pitch Bend buttons.
+    Important: If Sync is activated, moving the pitch fader on the “primary” SC5000 PRIME unit will change
+    the speed of all synced units, while moving the pitch fader on other units will do nothing.
+20. Pitch Bend –/+: Press and hold one of these buttons to momentarily reduce or increase (respectively)
+    the speed of the track.
+    Press and hold Shift and then press one of these buttons to set the range of the pitch fader.
+21. Key Lock / Pitch Reset: Press this button to activate or deactivate Key Lock. When Key Lock is
+    activated, the track’s key will remain the same even if you adjust its speed.
+    Press and hold Shift and press this button to reset the track’s pitch to its original pitch (0%) regardless
+    of the position of the pitch fader.
+
+
+
+
+                                                                                                                20
+22. Sync/Sync Off: Press this button to activate Sync. To sync two or more PRIME units, press Sync on the
+    unit that you want to control the BPM, which becomes the “primary.” After Sync is activated on that unit,
+    press Sync on any additional units. The units will immediately synchronize according to the Sync Mode
+    setting in the Profile > Playback menu.
+    To deactivate Sync, press the Sync button again, or press and hold Shift and press Sync, depending on
+    the Sync Button Action setting in the Profile > Playback menu.
+23. Master: Press this button to set this SC5000 PRIME unit as the one that controls the lead tempo. All
+    connected units with Sync activated will use this tempo. If you stop the sync lead unit, the next-longest-
+    playing unit in the setup will automatically become the new sync lead (unless you change it manually).
+
+
+Performance Controls
+24. Shift: Press and hold this button to access secondary functions of other controls.
+25. Slip: Press this button to enable or disable Slip Mode. In Slip Mode, you can jump to cue points, use the
+    platters, or pause the track while the track’s timeline continues (half of the waveform in the display will
+    continue moving forward). In other words, when you stop whatever action you are performing, the track
+    will resume normal playback from where it would have been if you had never done anything (i.e., as if the
+    track had been playing forward the whole time).
+26. Censor / Reverse: Press this button to activate the Censor feature: the playback of the track will be
+    reversed, but when you release the button, normal playback will resume from where it would have been if
+    you had never engaged the Censor feature (i.e., as if the track had been playing forward the whole time).
+    Press and hold Shift and then press this button to reverse the playback of the track normally. Press this
+    button again to return playback to the normal forward direction.
+27. Performance Pads: These pads have different functions on each deck depending on the current pad
+    mode. See Pad Modes for more information.
+28. Hot Cue: Press this button to enter Hot Cue Mode, and press it again to enter Stems mode.
+    Note: Stems support requires a one-time license purchase and activation. See Stems Mode for more
+    information.
+29. Loop: Press this button once to enter Manual Loop Mode. Press it once more to enter Auto Loop Mode.
+30. Roll: Press this button to enter Roll Mode, and press it again to enter Sampler Mode.
+31. Slicer: Press this button to enter Slicer Mode and press it again to enter Slicer Loop Mode.
+32. Parameter /: Use these buttons for various functions in certain Pad Modes. See Pad Modes for
+    more information.
+33. Loop In/Loop Out: Press either of these buttons to create a Loop In or Loop Out point at the current
+    location. Their placement will be affected by the Quantize and Smart Loops settings. See Control
+    Center for more information.
+34. Auto Loop / Loop Move: Turn this knob to set the size of an automatic loop. The value will be shown in
+    the touchscreen and platter display. Press this knob to activate or deactivate an automatic loop at the
+    current location of the track.
+    Tip: You can assign auto loops to pads in Manual Loop Mode. See Pad Modes for more information.
+    Press and hold Shift and turn this knob to shift the active loop to the left or right.
+35. Beat Jump: Press either of these buttons to skip backward or forward through the track.
+    Press and hold Shift and then press one of these buttons to increase or decrease the beat jump size.
+
+
+
+
+                                                                                                            21
+Front Panel
+
+1. Front USB Port: Connect a standard USB drive to
+   this USB port. When you select that USB drive as a
+   source (press the Source button), you can select and
+   load tracks from it. There are also two similar USB
+   ports on the rear panel. You can use the included USB
+   extension cable to accommodate larger or smaller                           2       1
+   USB thumb drives.
+2. SD Card Slot: Insert a standard SD or SDHC card to
+   this slot. When you select that SD card as a source
+   (press the Source button), you can select and load
+   tracks from it.
+
+
+Rear Panel
+
+1. Power Input: Use the included power cable to
+   connect this input to a power outlet.
+   SC5000 PRIME has a protection circuit to safely                        8                 9
+   eject all media after an unexpected power loss to
+   protect your data from corruption. Reconnect your
+   power source to return to normal operation.                     6 7 5 4 3 2                  1
+2. Power Button: Press this button to power SC5000
+   PRIME on or off. Power on SC5000 PRIME only after
+   you have connected all of your input devices and
+   before you power on your amplifiers and
+   loudspeakers. Power off your amplifiers and
+   loudspeakers before powering off SC5000 PRIME.
+   Press and hold this button for 10 seconds to reset
+   SC5000 PRIME.
+3. Link Port: Use the included networking cable to connect this port to another SC5000 PRIME or to your
+   Denon DJ mixer. Each networked SC5000 PRIME can share track databases, timing and BPM
+   information, and other track data over this connection. You can also connect this port to an internet
+   access point such as a router for a hardwired internet connection.
+4. USB Port to PC (USB Out): Use a standard USB cable (included) to connect this USB port to an
+   available USB port on your computer. This connection sends and receives MIDI messages to and from
+   the computer.
+5. Rear USB Ports 2/3: Connect standard USB drives to these USB ports. When you select one of those
+   USB drives as a source (press the Source button), you can select and load tracks from it. There is also a
+   similar USB port on the front panel.
+6. Layer A/B Outputs: Use standard RCA cables to connect these outputs to your DJ mixer. The A Line
+   Outputs send out the audio signal from Layer A. The B Line Outputs send out the audio signal from Layer
+   B.
+7. Digital Outputs A/B: Use standard digital coaxial cables to connect these 24-bit/96 kHz outputs to
+   devices and mixers such as the Denon DJ X1850 PRIME mixer.
+8. Remote Input: Use a standard remote start cable to connect this input to the remote-start output of your
+   mixer (if available). While connected to a remote-start-compatible mixer, moving the crossfader toward
+   the side that corresponds to this SC5000 PRIME (or raising the channel fader for its channel) will
+   automatically start the track on the currently selected layer.
+9. Kensington® Lock Slot: Use this slot to secure SC5000 PRIME to a table or other surface.
+
+
+
+
+                                                                                                         22
+SC5000M PRIME
+Top Panel
+
+Media Selection & Browsing
+
+1. Touchscreen: This full-color multi-touch
+   display shows information relevant to             4    8
+   SC5000M PRIME’s current operation. Touch
+   the display (and use the hardware controls)                 3                            5        6
+   to control the interface. See Touchscreen         2                      1
+   Overview for more information.                              9
+2. Media Selection: These lights will illuminate
+                                                                                                 7
+   to indicate if the corresponding type of
+                                                          10
+   media is connected: USB, SD, or Network.
+                                                     33                                              13
+3. Source: Press this button to show a list of                                             12
+   available devices connected to SC5000M                                                            14
+   PRIME in the touchscreen (other networked
+                                                     32
+                                                                                              21      22
+   SC5000M PRIME units, USB drives, SD                                     11
+   card, etc.). Tap a device in the list to select   25                                              20
+   it.
+4. Media Eject: Press this button to show a
+   list of available devices connected to that       17
+   SC5000M PRIME unit in the touchscreen
+   (i.e., USB drives connected to its USB            34
+   ports, or an SD card inserted into its SD                                    24
+   card slot).
+                                                     16        23 27 28 29 30 31   18
+    To eject a device, make sure none of its
+    tracks are being played, and then tap the
+    Eject icon on the touchscreen and follow
+                                                     15                                               19
+    the prompts.
+                                                                           26
+5. Back: While in Library View, press this button to move to the previous window. While in Performance
+   View, press this button to enter Library View.
+6. Forward: While in Library View, press this button to move to the next window. While in Performance
+   View, press this button to enter Library View.
+7. Select/Load (Browse) / Zoom: In Performance View, turn this knob to open Library View and navigate
+   through lists.
+   Note: Alternatively, you can change the default Encoder Behavior for this knob to adjust the waveform
+   zoom level in the Settings > Device menu.
+   Press the knob to move forward in the touchscreen, select an item, or load a track to a selected deck.
+   Double-press the knob to load a track to both layers (“instant doubles”).
+   Press and hold the knob to adjust the beat grid (see Beat Grid Editing for more details on adjusting the
+   beat grid).
+   Press and hold Shift and then press and hold this knob to manually adjust cue/loop point locations left
+   or right using the touchscreen controls.
+8. View / Preferences/Utility: Press this button to switch between Library View and Performance View.
+   Double-press this button to enter the Engine Lighting view. Press and hold this button to enter the
+   Control Center menu.
+   In Performance View, hold Shift and press the View button to cycle between View 1–3 layout presets,
+   which can be customized in the Layout menu. In Library View, hold Shift and press the View button to
+   open or close the collection panel while the track list is in focus.
+9. Shortcuts: Press this button to open the Control Center, which includes quick links to other menus
+   such as Source, Profile and Settings.
+
+
+                                                                                                         23
+Playback & Transport Controls
+10. Layer: Press this button to switch the layer focus of the SC5000M PRIME.
+    Press and hold Shift and press this button to toggle between Single and Dual Layer views.
+    Note: This button will be disabled if the Layer B option under Layout > Deck Behavior is set to Off.
+11. Platter: This 7" motorized platter controls the audio playhead in the software, and can be used to
+    scratch and spin or act as a static pitch platter depending on the setting of the Motor button.
+12. Torque Adjust: Flip this rotary switch to adjust the torque of the platters. At the High setting, the platters
+    will have the heavier, stronger feel of “modern” turntables. At the Normal setting, they are lighter and
+    more graceful—the feel of a “classic” turntable.
+13. Stop Time: Controls the rate at which the track slows to a complete stop (“brake time”) when you pause
+    it by pressing Play/Pause (/).
+14. Motor: Press this button to activate or deactivate the platter motor. When the motor is activated, the
+    platter will spin and scratch like a turntable. When the motor is deactivated and audio is playing, move
+    the platter to temporarily adjust the track’s speed, which is useful for beat alignment. When deactivated
+    and audio is paused, move the platter to scratch the track. Audio will not be interrupted if the motor is
+    activated during playback.
+15. Play/Pause (/): This button pauses or resumes playback.
+    Press and hold Shift and then press this button to “stutter-play” the track from the initial cue point.
+16. Cue: During playback, press this button to return the track to the initial cue point and stop playback. If you
+    have not set a temporary cue point, then press this button to return to the start of the track.
+    To move the initial cue point while the track is paused, move the platter to place the audio playhead at
+    the desired location, and then press this button. Alternatively, if the track is playing, press and hold Shift
+    and then press this button to set the initial cue point at the current playhead position.
+    If the deck is paused, press and hold this button to play the track from the initial cue point. Release the
+    button to return the track to the initial cue point and pause it. To continue playback without returning to
+    the initial cue point, press and hold this button and then press and hold the Play button, and then
+    release both buttons.
+17. Track Skip: Press either of these buttons to skip to the previous or next track. Press the Previous Track
+    button in the middle of a track to return to the beginning of the track.
+    Press and hold Shift and then press one of these buttons to search backward or forward through the track.
+
+
+Sync & Pitch Controls
+18. Pitch Fader: Move this fader to adjust the speed (pitch) of the track. You can adjust its total range by
+    pressing and holding Shift and pressing one of the Pitch Bend buttons.
+    Important: If Sync is activated, moving the pitch fader on the “primary” SC5000M PRIME unit will
+    change the speed of all synced units, while moving the pitch fader on other units will do nothing.
+19. Pitch Bend –/+: Press and hold one of these buttons to momentarily reduce or increase (respectively)
+    the speed of the track.
+    Press and hold Shift and then press one of these buttons to set the range of the pitch fader.
+20. Key Lock / Pitch Reset: Press this button to activate or deactivate Key Lock. When Key Lock is
+    activated, the track’s key will remain the same even if you adjust its speed.
+    Press and hold Shift and press this button to reset the track’s pitch to its original pitch (0%) regardless
+    of the position of the pitch fader.
+21. Sync/Sync Off: Press this button to activate Sync. To sync two or more PRIME units, press Sync on the
+    unit that you want to control the BPM, which becomes the “primary.” After Sync is activated on that unit,
+    press Sync on any additional units. The units will immediately synchronize according to the Sync Mode
+    setting in the Profile > Playback menu.
+    To deactivate Sync, press the Sync button again, or press and hold Shift and press Sync, depending on
+    the Sync Button Action setting in the Profile > Playback menu.
+22. Master: Press this button to set this SC5000M PRIME unit as the one that controls the lead tempo. All
+    connected units with Sync activated will use this tempo. If you stop the sync lead unit, the next-longest-
+    playing unit in the setup will automatically become the new sync lead (unless you change it manually).
+
+                                                                                                               24
+Performance Controls
+23. Shift: Press and hold this button to access secondary functions of other controls.
+24. Slip: Press this button to enable or disable Slip Mode. In Slip Mode, you can jump to cue points, use the
+    platters, or pause the track while the track’s timeline continues (half of the waveform in the display will
+    continue moving forward). In other words, when you stop whatever action you are performing, the track
+    will resume normal playback from where it would have been if you had never done anything (i.e., as if the
+    track had been playing forward the whole time).
+25. Censor / Reverse: Press this button to activate the Censor feature: the playback of the track will be
+    reversed, but when you release the button, normal playback will resume from where it would have been if
+    you had never engaged the Censor feature (i.e., as if the track had been playing forward the whole time).
+    Press and hold Shift and then press this button to reverse the playback of the track normally. Press this
+    button again to return playback to the normal forward direction.
+26. Performance Pads: These pads have different functions on each deck depending on the current pad
+    mode. See Pad Modes for more information.
+27. Hot Cue: Press this button to enter Hot Cue Mode, and press it again to enter Stems mode.
+    Note: Stems support requires a one-time license purchase and activation. See Stems Mode for more
+    information.
+28. Loop: Press this button once to enter Manual Loop Mode, and press it again to enter Auto Loop Mode.
+29. Roll: Press this button to enter Roll Mode, and press it again to enter Sampler Mode.
+30. Slicer: Press this button to enter Slicer Mode, and press it again to enter Slicer Loop Mode.
+31. Parameter /: Use these buttons for various functions in certain Pad Modes. See Pad Modes for
+    more information.
+32. Loop In/Loop Out: Press either of these buttons to create a Loop In or Loop Out point at the current
+    location. Their placement will be affected by the Quantize and Smart Loops settings. See Control
+    Center for more information.
+33. Auto Loop / Loop Move: Turn this knob to set the size of an automatic loop. The value will be shown in
+    the touchscreen.
+    Press this knob to activate or deactivate an automatic loop at the current location of the track.
+    Tip: You can assign auto loops to pads in Manual Loop Mode. See Pad Modes for more information.
+    Press and hold Shift and turn this knob to shift the active loop to the left or right.
+34. Beat Jump: Press either of these buttons to skip backward or forward through the track.
+    Press and hold Shift and then press one of these buttons to increase or decrease the beat jump size.
+
+
+
+
+                                                                                                            25
+Front Panel
+1. Front USB Port: Connect a standard USB drive to this
+   USB port. When you select that USB drive as a source
+   (press the Source button), you can select and load
+   tracks from it. There are also two similar USB ports on
+   the rear panel. You can use the included USB extension
+   cable to accommodate larger or smaller USB thumb
+                                                                               2       1
+   drives.
+2. SD Card Slot: Insert a standard SD or SDHC card to
+   this slot. When you select that SD card as a source
+   (press the Source button), you can select and load
+   tracks from it.
+
+
+Rear Panel
+1. Power Input: Use the included power cable to connect
+   this input to a power outlet. SC5000M PRIME has a
+   protection circuit to safely eject all media after an
+   unexpected power loss to protect your data from                         8                 9
+   corruption. Reconnect your power source to return to
+   normal operation.
+                                                                     6 7 5 4 3 2                 1
+2. Power Button: Press this button to power SC5000M
+   PRIME on or off. Power on SC5000M PRIME only after
+   you have connected all of your input devices and before
+   you power on your amplifiers and loudspeakers. Power
+   off your amplifiers and loudspeakers before powering
+   off SC5000M PRIME. Press and hold this button for 10
+   seconds to reset SC5000M PRIME.
+3. Link Port: Use the included networking cable to connect this port to another SC5000M PRIME or to your
+   Denon DJ mixer. Each networked SC5000M PRIME can share track databases, timing and BPM
+   information, and other track data over this connection. You can also connect this port to an internet
+   access point such as a router for a hardwired internet connection.
+4. USB Port to PC (USB Out): Use a standard USB cable (included) to connect this USB port to an
+   available USB port on your computer. This connection sends and receives MIDI messages to and from
+   the computer.
+5. Rear USB Ports 2/3: Connect standard USB drives to these USB ports. When you select one of those
+   USB drives as a source (press the Source button), you can select and load tracks from it. There is also a
+   similar USB port on the front panel.
+6. Layer A/B Outputs: Use standard RCA cables to connect these outputs to your DJ mixer. The A Line
+   Outputs send out the audio signal from Layer A. The B Line Outputs send out the audio signal from Layer
+   B.
+7. Digital Outputs A/B: Use standard digital coaxial cables to connect these 24-bit/96 kHz outputs to
+   devices and mixers such as the Denon DJ X1850 PRIME mixer.
+8. Remote Input: Use a standard remote start cable to connect this input to the remote-start output of your
+   mixer (if available). While connected to a remote-start-compatible mixer, moving the crossfader toward
+   the side that corresponds to this SC5000M PRIME (or raising the channel fader for its channel) will
+   automatically start the track on the currently selected layer.
+9. Kensington® Lock Slot: Use this slot to secure SC5000M PRIME to a table or other surface.
+
+
+
+
+                                                                                                         26
+Operation
+Touchscreen Overview
+Performance View
+
+Track Overview & Waveform
+
+                                                     Time remaining/             Track
+                                     Track              elapsed                   Key
+
+                 Browse   Search                   Sync                Track              Track
+                                                 Indicator            overview           tempo
+
+                                                                                                        Toolbar
+
+       Artist
+
+   Auto-loop                                                                                            Total pitch
+      length                                                                                            adjustment
+
+                                                                                                        Pitch fader
+   Beat jump
+                                                                                                        range
+      length
+                                                                                                        Takeover
+   Initial cue                                                                                          Arrows
+      point
+
+       Deck/                                                                                            Waveform
+       Layer
+
+
+ Performance
+        Pads
+
+
+                             Loop regions    Playhead        Hot cue markers      Bar numbers     Beat Markers
+
+
+
+
+Swipe left or right on the track overview to scan through the track while the track is paused.
+Note: You can use this feature during playback if Needle Lock is off. If Needle Lock is on, make sure the
+platter is in Vinyl Mode (press Vinyl so it is lit) and touch the top of the platter while swiping the track
+overview. See Profile to learn about Needle Lock.
+Spread or pinch your fingers on the waveform to zoom in or out of it, respectively. Alternatively, turn the
+ Select/Zoom knob (if the default Encoder Behavior for this knob is set to adjust the waveform zoom level
+ in the Settings > Device menu).
+Tap the time to switch between the elapsed time and remaining time.
+Tap the key to show the Key Change Menu, where you can enable or disable Key Sync and adjust the key
+ of the track. See Syncing & Pitch Adjustment for more information.
+Tap the track artwork to open the track information window. In this window, tap the star icons at the
+ bottom of the screen to add or change a track’s star rating.
+Tap the Q icon in the toolbar to enable or disable quantization.
+Press and hold the Select/Zoom knob for a second to show or hide the beat grid controls. See Beat Grid
+  Editing for more information.
+
+
+
+                                                                                                                      27
+Press and hold Shift and press the View button to cycle between View 1–3 layout presets. Performance View
+  layouts can be customized using the Layout menu.
+
+
+
+
+       Layout 1: Single Layer, Horizontal Waveform              Layout 2: Dual (Stacked) Layers, Horizontal
+                 with Performance Pads                             Waveforms with Performance Pads
+
+
+
+
+                                   Layout 3: Dual (Grouped) Layers, Horizontal
+                                     Waveforms with Performance Pads and
+                                              Performance Library
+
+
+
+
+                                                                                                              28
+Performance Library
+
+
+
+
+ Tap to Preview
+     Track
+
+
+
+
+                    Swipe Right to         Tap and Drag to
+                  Load to Active Layer      Quickly Scroll
+
+
+The Performance Library can be enabled or disabled in the Layout menu of the Control Center. When the
+Performance Library is shown, you can do the following:
+   Swipe up or down to browse tracks.
+   Tap and drag the scroll bar to quickly browse through tracks.
+   Swipe left or right to load a track to the active layer. Alternatively, swipe half-way to the left or right
+    and then tap the Layer A/B button.
+   Double-tap or swipe half-way to the right and then tap the Load button to load a track to a selected
+    layer or sampler slot.
+   Tap the track art to preview the track. Tap again to stop previewing. While previewing, tap along the
+    track entry to scan through the track. Track preview audio will be routed to the active layer if no tracks
+    are loaded. If tracks are loaded to both layers, the preview audio will be routed to opposite layer of the
+    active layer.
+   Tap and hold a track to view track information. In this window, tap the star icons at the bottom of the
+   screen to add or change a track’s star rating.
+
+
+
+
+                                                                                                           29
+Toolbar
+
+The toolbar at the top of the touchscreen features shortcuts to Library View and displays the status of
+certain hardware and feature settings. Swipe down from this area to open the Control Center.
+
+
+
+
+Browse: Tap the stacks icon to open the full Library View screen.
+Search: Tap the magnifying glass icon to search for tracks using the keyboard that appears in the display.
+Touch FX: Tap the target icon to open the Touch FX screen.
+Q: Tap the Q icon to enable or disable quantization. When enabled, time-based features like triggering cues
+ and loops will snap to the beat-grid according to the Cue/Loop Quantization setting in the Profile >
+ Cues Loops menu.
+Link: Shows the current Ableton Link status. Enabling Ableton Link will synchronize the beat, phase, and
+  tempo of Ableton Live and your PRIME hardware over a wireless or wired network.
+Continue: The figure-eight icon indicates Continue is enabled, which will keep playing the next track when
+ the active track has ended.
+Bluetooth: Shows the current Bluetooth connection status when Bluetooth is enabled. Tap here to open the
+  Bluetooth connection menu.
+Wi-Fi: Shows the current Wi-Fi connection status when Wi-Fi is enabled. Tap here to open the Wi-Fi
+ connection menu.
+Time: Displays the current local time. You can adjust the Time in the Settings > Device menu.
+Control Center: Tap the gear icon to open the Control Center.
+
+
+Note: If your PRIME hardware rises above normal operating temperatures, an overheat warning will be
+displayed in the toolbar. Make sure to leave sufficient space around your device for ventilation. If overheating
+persists, shut down the unit and allow it to cool down to prevent damage.
+
+
+
+
+                                                                                                             30
+Library View
+Use the Library View to view your music library and load a track to the deck. You can also search through
+playlists, add tracks to the Prepare list, and search through your tracks using sorting and filtering features.
+Important: Visit enginedj.com/downloads to download the Engine DJ software.
+
+
+                       Search
+
+
+
+      Source
+
+      Playlists
+
+      Prepare
+
+       History
+
+       Folder
+
+
+
+
+Tap the magnifying glass icon to search through your tracks by keyword. The search results are based on
+the album name, artist name, track name, key, and tempo. See Searching & Filtering Tracks for more
+information.
+
+
+Use the five icons on the left side to navigate while in Library View:
+ • Source: Tap here to access the Quick Source Menu, where you can swap
+   between connected sources to view and select tracks. Tap the expand icon to
+   open the full Source menu, where you can connect to available streaming and
+   cloud services, Engine Remote Libraries, and access pre-installed Demo and
+   Sampler content. You can also enable or disable streaming and cloud services
+   using the Settings > Services menu.
+ • Playlists: Your playlists are your collections of tracks, including lists of tracks arranged in a specific
+   order. You may have playlists for different types of clubs or events, for specific genres, etc. You can
+   create playlists to use here directly on your device (see Editing Playlists) or by using the included
+   Engine DJ software.
+ • Prepare: You can load tracks to the Prepare list so that you can refer to them later when you want to play
+   them during your performance (rather than searching through your entire library for the next track to play).
+ • History: Use this option to view your playback history.
+ • Folder: Use this option to browse the list of all files on a USB drive or SD card.
+
+
+        To close the collection panel while browsing a track list, tap the close panel icon at the bottom
+        of the left side. Alternatively, press and hold Shift and press View.
+
+
+
+
+                                                                                                            31
+                                                       Standard/Large
+                  Tap to Preview Track                    Text Size
+
+
+
+
+                                                                                                      Tap and Hold
+                                                                                                      to Show Info
+
+                                                                                                     Tap and Drag to
+                                                                                                      Quickly Scroll
+
+
+
+                                                                                                     Double-tap to
+                                                                                                       Load to a
+                                                                                                     Selected Deck
+
+
+
+
+                                                Swipe Left to Prepare         Swipe Right to Load
+
+Tap the Standard/Large Track View icon (AA) at the top of the display to toggle between standard and large
+text sizes.
+Swipe a list up or down to browse through it (e.g., your list of playlists or your list of tracks). Alternatively,
+ press the Back or Forward buttons to select a list, and then turn the Select/Zoom knob. Press and hold
+ Shift and turn the Select/Zoom knob to scroll quickly through the list. You can also tap and drag the scroll
+ bar on the right edge of the list.
+Tap an icon or item in a list to select it (e.g., the icons for Playlists, Prepare List, or Files on the left side of
+  the Library). Alternatively, press the Select/Zoom knob.
+Swipe a track to the left or right to load it to the active layer. Alternatively, swipe half-way to the left or
+ right and then tap the Layer A/B button, or press the Select/Zoom knob.
+Swipe a track half-way to the right and then tap Load to load it to a selected layer or sampler slot. Then,
+ tap the desired layer or sample slot.
+ Alternatively, double-tap the track, then tap the layer or turn and press the Select/Zoom knob to select the
+ desired layer.
+Partially swipe a track to the left and tap Prepare to add it to the Prepare list. Alternatively, press and hold
+ Shift and press the Select/Zoom knob. Swipe a track to the left in the Prepare list to remove it.
+Tap and hold your finger on a track to show its information
+  window (see image, right). In this window, tap the star icons at
+  the bottom of the screen to add or change a track’s star rating.
+  Tap the X in the corner of the window to close it, or press the
+  Back button. Turn the Browse knob to scroll through the current
+  track list with the information window open.
+Tap the track art to preview the track. Tap again to stop the
+  preview. While previewing, tap along the track entry to scan
+  through the track.
+
+
+
+
+                                                                                                                  32
+Platter Display Overview (SC6000/SC5000 PRIME only)
+Normally, the platter display shows the following information:
+    •   the current position of the playhead.
+    •   the album artwork of the current track.
+
+The platter display temporarily shows the following information:
+    •   the current size of an auto loop after you turn the Auto Loop knob.
+    •   the current beat jump size after you press Shift and one of the Beat Jump
+        buttons to increase or decrease it.
+    •   the current layer after you press the Layer button.
+    •   the position of the secondary playhead when Slip is active.
+    •   the track end warning when 30 seconds of playback remain.
+
+
+
+
+                                                                                    33
+Performing
+Loading & Removing Tracks
+
+While viewing any track list:
+                                                                                  Tap and Hold
+    To load a track to the layer currently in focus                               to Show Info
+     on the deck, swipe the track to the left or
+     right. Alternatively, swipe half-way to the left
+     or right and then tap the Layer A/B button, or
+     press the Select/Zoom knob.
+    To load a track to a selected layer or sampler
+     slot, partially-swipe the track to the right, tap
+     Load, and then select the layer or sampler slot.
+     Alternatively, double-tap the track, then tap the
+     layer or turn and press the Select/Zoom knob
+     to select the desired layer.
+    To add a track to the Prepare list, partially-
+     swipe the track to the left, and then tap
+     Prepare. Alternatively, press and hold Shift
+     and press the Select/Zoom knob.                                Swipe Left to Prepare
+    To show a track’s information, tap and hold
+     your finger on it. In this window, tap the star                            Swipe Right to Load
+     icons at the bottom of the screen to add or
+     change a track’s star rating.
+                                                                       Tap to Clear
+While viewing the Prepare list:
+    To load a track to the layer currently in focus
+     on the deck, swipe the track to the right.
+     Alternatively, press the Select/Zoom knob.
+    To load a track to a selected layer or sampler
+     slot, partially-swipe the track to the right, or
+     double-tap the track, then tap Load and
+     select the layer or sampler slot.
+    To remove a track from the Prepare list,
+     swipe the track to the left.
+    To remove all tracks from the Prepare list,
+     tap the Clear List icon at the top of the
+     display.
+
+                                                         Swipe Left to Remove
+
+                                                                  Swipe Right to Load
+
+
+
+
+                                                                                                      34
+Searching & Filtering Tracks
+
+To search, tap the magnifying glass icon and use            Tap to Search
+ the keyboard that appears in the display. The
+ search results are based on the following criteria:
+ title, artist, album, length, key, comment, BPM,
+ genre, label, year, date added or filename. By
+ default, only Title and Artist are selected. Tap the
+ magnifying glass icon again and then use the
+ dropdown menu to select other categories, or to
+ Search All categories.
+  Note: To reduce search time, only select fields in
+  which you wish to search.
+  When searching from a playlist, you can choose to
+  search only in that playlist (tap the playlist name) or
+  your entire collection (tap All)                          Tap to Select Search Criteria
+  To hide the keyboard, tap the keyboard icon in
+  the lower-right corner of the virtual keyboard, or
+  tap anywhere on the screen other than the
+  keyboard or the Search field.
+  To clear your search term, tap the X icon. Tap
+  Cancel to stop searching
+To filter your tracks, tap Genre, Artist, Album, BPM
+ or Key, and then tap one of the available options.
+ Only tracks tagged with that genre, album, artist, key,
+ or BPM will be shown. (By default, the key is notated
+ using the Camelot system.) You can also use the
+ Search field while tracks are filtered to refine your
+ results, or filter tracks from a search result.                             Tap to Toggle Ascending/Descending
+
+  Note: You can also use the preferences to set              Tap to Filter Tracks
+  whether you want to show tracks with the same key
+  only or tracks with compatible keys as well as the
+  “tolerance” of BPM filter (to include tracks with
+  tempos within 1–15 BPM of the selection). See
+  Profile > Library to learn more.
+To sort the list of results, tap the Sort By icon in the
+ upper-right corner, and then tap one of the available
+ options. Tap the arrow icon next to this to toggle
+ between ascending and descending order.
+
+
+
+
+                                                                                    Tap to Choose Sort Preference
+
+
+
+
+                                                                                                               35
+Match
+                                                                                  Tap to Set Match Rules
+In addition to the examples above, you can also use
+the Match tool to filter tracks that match the current                      Tap to Match
+lead track using a customizable set of parameters.
+The Match function can be used in Playlist, Search,
+Prepare, and History views of the Browser. You can
+also access Match rules when viewing your Engine
+Remote Library.
+
+
+Click the sliders icon to open the Match Rules
+screen, where you can select the following options for
+filtering tracks:
+   Follow Lead Deck: When enabled, tracks will be
+   matched to the current Sync Lead deck. When
+   disabled, use the following option to select the
+   match deck.
+   Match to Deck: When Follow Lead Deck is
+   disabled, use this option to select the deck for
+   matching tracks.
+   BPM: Enable to match tracks by BPM. Use the -
+   and + buttons to set the BPM range to match.
+   Key: Enable to match tracks by key. Select Fuzzy
+   (includes relative keys of the dominant and
+   subdominant keys of the lead track), Compatible
+   (includes relative keys of the lead track), or Exact
+   (includes only the same key of the lead track).
+   Genre: Enable to match track by genres. Select
+   Close to include related genres (e.g., “Deep
+   House” or “Acid House” will match to a track
+   tagged with “House”), or Exact to match only the
+   exact genre of the selected deck’s track.
+   Hide Played: When enabled, previously played
+   tracks (highlighted in green text) will be hidden
+   from the match results.
+   Note: Hide Played is unavailable when using
+   Match in History view.
+
+
+Once the Match Rules are set, tap the match (circles) icon to display the matching tracks in the list. If no
+tracks match the set rules, a message will appear in the track list noting that tracks may be hidden. Match
+results can be further sorted using the Sort By preferences and Ascending/Descending order.
+
+
+
+
+                                                                                                         36
+Editing Playlists
+                                                                           Tap to Enable
+Tap the edit icon at the top of the display while                             Editing
+ viewing the playlist screen. While editing is
+ active, you can do any of the following:
+   To make a new playlist, tap + Create
+    Playlist in Playlist view.
+   To rename a playlist, swipe right on the
+    playlist name. Use the keyboard that appears
+    to type a new name, and then tap Rename
+    to confirm. To exit without renaming, tap
+    Cancel.
+   To add tracks to your playlist, tap a track to
+    select it, and the open circle will become
+    filled. After selecting tracks, tap and hold to
+    move the tracks. You can drag the tracks
+    over a playlist and release your finger to
+    instantly add them.                               Swipe Left   Swipe Right             Tap to Select
+                                                      to Remove    to Rename                  Tracks
+   To remove a track from your playlist, swipe
+     left on the track name, and then tap
+     Remove From Playlist.
+   To reorder tracks in a playlist, first make
+    sure the Sort Preference is set to Play
+    Order. Then, tap and hold on the track
+    name (while editing mode is still active) and
+    move your finger up or down to change the
+    track order. You can also reorder playlists in
+    the same way.
+   To remove a playlist, swipe left on the
+    playlist name. A pop-up will appear for
+    confirmation. Tap Yes to remove the playlist,
+    or No to return to editing. Tracks in a
+    removed playlist will remain in your
+    collection.                                       Tap to Create                              Swipe Left
+                                                       New Playlist                              to Remove
+
+
+                                                                                      Tap, Hold & Drag
+                                                                                       to Move Tracks
+
+
+
+
+                                                                                                              37
+Playback & Cueing
+
+To play or pause a track, press Play/Pause (/).
+To scratch a track, press Vinyl (SC5000 PRIME / SC6000 PRIME) or Motor (SC5000M PRIME / SC6000M
+ PRIME) so it is lit brightly and then move the platter.
+To set the initial cue point, press and hold Shift and press Cue at the desired location during playback.
+To return to the initial cue point and stop, press Cue. The button will flash while the unit is paused at the cue
+ point.
+To return to the initial cue point and keep playing, press and hold Shift and press Play/Pause (/).
+To reverse playback, press and hold Shift and press Censor/Reverse. The button will flash while playback
+ is reversed.
+To return to normal playback, press Censor/Reverse.
+To censor playback, press and hold Censor.
+To return to normal playback, release Censor. Normal playback will resume from where it would have been
+ if you had never engaged the Censor feature (i.e., as if the track had been playing forward the whole time).
+To skip to the previous or next track, press one of the Track Skip / buttons.
+To return to the beginning of a track, press Track Skip  in the middle of a paused track.
+To jump to a specific location in the track:
+    •   If Needle Lock is disabled: tap the desired location in the track overview.
+    •  If Needle Lock is enabled: pause playback and then tap the desired location in the track overview.
+       Alternatively, make sure the platter is in Vinyl Mode (on SC6000 PRIME and SC5000 PRIME, press
+       Vinyl so it is lit) or the Motor is on (on SC6000M PRIME and SC5000M PRIME, press Motor so it is
+       lit), then stop the platter with your hand or palm and tap the desired location in the track overview.
+See Profile > Safety to learn about Needle Lock.
+To scan quickly through the track, press and hold Shift and then press one of the Track Skip buttons. If
+ Needle Lock is enabled, pause playback before doing so.
+To enable or disable Slip Mode, press Slip. In Slip Mode, you can jump to cue points, use the platters, or
+ pause the track while the track’s timeline continues (half of the waveform in the touchscreen will continue
+ moving forward). When you stop whatever action you are performing, the track will resume normal playback
+ from where it would have been if you had never done anything (i.e., as if the track had been playing forward
+ the whole time).
+To zoom in and out of the waveform, place two fingers on the display and spread them apart or pinch
+ them together. Alternatively, turn the Select/Zoom knob.
+
+
+
+
+                                                                                                              38
+Looping & Beat-Jumping
+
+To create and activate an auto loop, press the Auto Loop knob.
+To set the auto loop length, turn the Auto Loop knob to select the number of beats: 1/32, 1/16, 1/8, 1/4,
+ 1/2, 1, 2, 4, 8, 16, 32, or 64. The auto loop length in the layer info will change as the value is adjusted.
+To create and activate a manual loop, press Loop In to set the start point, and then press Loop Out to set
+ the end point. The loop will be activated immediately, and the loop will be indicated as a shaded area in
+ the waveform and track overview.
+To deactivate a loop, press the Auto Loop knob.
+To move the loop, press and hold Shift and turn the Auto Loop knob while the loop is activated.
+To double or halve the length of a loop, turn the Auto Loop knob while the loop is activated.
+To manually edit the beginning or end of a loop, press Loop In or Loop Out respectively, then move the
+ platter left or right to shorten or extend the loop region. Commit the edit by pressing Loop In or Loop Out
+ again.
+To beat-jump through a track, press one of the Beat Jump buttons. Each press will skip through the track
+ by the set length. You can adjust the beat jump length by pressing and holding Shift and pressing either
+ button. The beat jump length in the layer info will change as the value is adjusted.
+
+You can also create and manage loops with the Performance Pads Loop Modes.
+
+
+
+
+                                                                                                          39
+Syncing & Pitch Adjustment
+
+To activate sync, press Sync. The track tempo will turn green when sync is enabled. Tracks that are not
+ synced will have their tempo displayed in white.
+ Note: Colors will appear differently when Day Mode is enabled in the Control Center.
+To set which deck is the primary “sync lead”, or the deck that controls the sync BPM, press Master.
+ Alternatively, tap the layer tempo on the touchscreen. The sync indicator (beat phase meter or beat
+ keeper, described below) for the layer will show “LEAD” when set as the sync lead.
+After Sync is activated and the sync lead is set, press Sync on any additional decks. The tempo of each
+  deck will immediately synchronize to match the tempo of the sync lead deck.
+The Sync behavior is determined by the Sync Mode setting in the Profile > Playback menu.
+To set a different PRIME hardware unit as the sync lead, press Master. All connected units with Sync
+ activated will use the tempo of this unit. You can also tap Sync Lead on the touchscreen to select which
+ layer on the primary unit is used for sync.
+To deactivate sync, press Sync again, or press and hold Shift and press Sync, depending on the setting of
+ Sync Button Action in the Profile > Playback menu.
+
+
+Sync Indicator option in the Profile > Display menu
+ determines whether the Beat Phase meter or Beat
+ Keeper is displayed in Performance View for visually
+ syncing tracks.
+   When set to Beat Phase, the phase meters on each
+   layer can be used to visually match the beat grid phase
+   of your tracks in relation to the current Sync Lead
+   layer.
+   When the beat grid phase of the current deck matches
+   the Sync Lead layer, the meters will be centered and
+   fully lit green. When the beat grid phase of the current
+   deck is behind or ahead of the Sync Lead layer, the
+   meter will be positioned to the left or right of the
+   center, respectively. The phase meter visualizes a 1/2
+   beat in both directions. To manually match the tracks
+   using the phase meter, nudge the current layer until
+   both meters are centered.
+   When a track is paused or unanalyzed, the phase
+   meter will show a grey line.
+When set to Beat Keeper, the sync indicator shows the
+ current beat value of the Sync Lead track in the top row,
+ and the track on the current deck in the bottom row.
+
+
+
+
+To adjust the track’s pitch, move the pitch fader. You can do this only when the deck is not synced.
+Important: If Sync is activated, moving the pitch fader on the “primary” SC6000/SC6000M PRIME hardware
+unit will change the speed of all synced units, while moving the pitch fader on other units will do nothing.
+When active layer’s pitch fader is moved while using dual layer playback, the takeover arrows on the
+ inactive layer will light to indicate which direction to move the pitch fader in order to match the active
+ layer’s pitch.
+To adjust the track’s pitch momentarily, press and hold one of the Pitch Bend –/+ buttons.
+To adjust the range of the pitch fader, press and hold Shift and press one of the Pitch Bend –/+ buttons
+ to select +4%, 8%, 10%, 20%, 50%, or 100%.
+
+                                                                                                         40
+To lock or unlock the track’s key, press Key Lock/Pitch Reset. When Key Lock is activated, the track’s
+ key will remain the same even if you adjust its speed.
+To sync the track’s key to another playing track, press and hold the Key Lock/Pitch Reset button. The
+ key value is dependent on the Key Sync Mode setting in the Profile > Playback menu.
+To reset the track’s pitch to 0% and lock the key, press Key Lock/Pitch Reset. To reset the track’s pitch
+ to 0% without locking the key, press and hold Shift and press Key Lock/Pitch Reset. The track’s pitch
+ will return to its original pitch (0%) regardless of the position of the pitch fader.
+
+
+To change the key, tap the key in Performance View to
+ open the Key Change Menu. In the Key Change Menu,
+ you can access the following controls:
+   Tap the musical note to lock or unlock the track’s
+     key.
+   Tap the Sync button to enable Key Sync.
+   Tap the key values to decrease or increase the key.
+     The key in the center will update to show the new
+     key and the amount of change from the original key,
+    Tap the reset button to reset the key.
+   Tap the X button to close the Key Change Menu.
+
+
+
+
+                                                                                                       41
+Beat Grid Editing
+
+You can edit a track’s beat grid directly from your PRIME hardware, the same way as you can when using
+the Engine DJ software.
+
+To enable beat grid editing, open the Control Center and tap the Beat Grid Edit icon. Alternatively, press
+ and hold the Select/Zoom knob for a second.
+ Note: Beat grid editing is not accessible if there are no tracks added to the decks or if the deck is in use with
+ Bluetooth.
+ Important: When the Cue/Loop Quantization feature is on, hot cue points and loop points will be
+ automatically aligned according to the degree of quantization. See Profile > Cues/Loops to learn about this.
+
+
+
+
+To adjust the position of the beats:
+ • Tap the Downbeat Left/Right buttons to move the beats based on the current analyzed grid.
+ • Tap the Shift Left/Right buttons or nudge the hardware platter to "slip" the entire grid left or right.
+ • Tap the Insert Anchor button to move the closest beat to the position of the playhead. All other beats
+   will also shift accordingly. This allows you to create flexible beat grids for tracks with fluctuating tempo.
+ • Tap the Delete Anchor button to delete the closest anchor within a few beats.
+
+To adjust the tempo:
+ • Tap the BPM field to input a new tempo. Use the number pad that appears to input the new value, and
+   then tap the Enter button to accept it. Tap the X icon to cancel changes and return to the grid edit
+   controls.
+ • Tap in the Tap Tempo icon area to manually set a tempo based on repeated taps.
+ • Tap the Decrease/Increase BPM buttons to decrease and increase BPM in small increments.
+ • Tap the 2X and /2 buttons to double or halve the current BPM.
+
+To reset the beats to the original analyzed tempo and grid, click the Reset button.
+
+To lock the beat grid, click the lock icon. When locked, further editing is prevented and all other Grid Edit
+ controls will be greyed out.
+
+To select another track for editing, tap the Track Information area.
+
+To exit beat grid editing, tap the X in the top-right corner of the touchscreen, or select another mode.
+
+
+                                                                                                               42
+Pad Modes
+
+The 8 pads have different functions in each pad mode.
+   To enter each pad mode, press the corresponding button: Hot Cue, Loop, Roll, or Slicer.
+   To enter Sampler Mode, press Roll twice.
+   To enter Stems Mode, press Hot Cue twice. A one-time license purchase is required to enable Stems
+    Mode. See Stems Mode for more information.
+
+
+Hot Cue Mode
+
+
+                                           Hot      Hot      Hot      Hot      Hot     Hot      Hot      Hot
+                                          Cue 1    Cue 2    Cue 3    Cue 4    Cue 5   Cue 6    Cue 7    Cue 8
+
+In Hot Cue Mode, you can use each pad to jump to an assigned hot cue point. The location of set hot cue
+points and timing of triggered hot cue points will depend on the current Quantize setting, if enabled.
+Tip: You can use the Engine DJ software to set, name, and assign colors to your hot cue points. The names
+and colors will appear in the display for reference.
+   To assign a hot cue to a pad, press a dimly lit pad at the desired location in the track. The pad will light
+    up when a hot cue point is assigned.
+   To jump to a hot cue point, press the corresponding pad.
+   To clear a hot cue from a pad, press Shift and the desired pad. The pad will return to dimly lit when there
+    is no hot cue point assigned to it.
+
+
+Loop Modes
+
+                                          Loop     Loop     Loop     Loop     Loop     Loop     Loop     Loop
+                                            1        2        3        4        5        6        7        8
+
+
+In Manual Loop Mode (first press), you can use each pad to activate an assigned loop. Pressing Loop for the
+first time will always enter Manual Loop Mode.
+Tip: You can use the Engine DJ software to set and name your loops. The names will appear in the display
+for reference.
+   To assign a loop to a pad and enable it, press a dimly lit pad to create a Loop In point at the current
+    location, and then press it again to create the Loop Out point at another location. You can also assign
+    an auto loop to a pad by pressing a dimly lit pad while in the auto loop. The loop will activate
+    immediately, and the pad will light up.
+   To enable a loop, press the corresponding pad. Once a loop has been created, you can retrigger it by
+    pressing the corresponding pad again, depending on the Saved Loop Behavior setting in the Profile
+    > Cues/Loops menu.
+   To enable an active loop, press and hold the Parameter  button and press a pad with a saved loop.
+    Active loops will begin looping automatically as soon as they are reached, and are shown with a striped
+    pattern in the track waveform. You can also set these in the Engine DJ software.
+   To delete a loop, press Shift and the desired pad.
+In Auto Loop Mode (second press), you can use each pad to create and activate an auto loop. Pressing Loop
+while in Manual Loop Mode will enter Auto Loop Mode.
+   To activate an auto loop, press a pad. The display will show the length of the auto loop for each pad.
+   To deactivate an auto loop, press the pad again.
+
+
+                                                                                                            43
+Roll Mode
+                             (T denotes a
+                            triplet-based
+                            time division)   1/8-Beat   1/4T-Beat   1/4-Beat   1/2T-Beat   1/2-Beat   1T-Beat   1-Beat   2-Beat
+                                               Roll        Roll       Roll        Roll       Roll       Roll     Roll     Roll
+
+
+In Roll Mode, you can press and hold each pad to trigger a “loop roll” of a certain length while the track’s
+timeline continues (half of the waveform in the display will continue moving forward). When you release the pad,
+the track will resume normal playback from where it would have been if you had never done anything (i.e., as if
+the track had been playing forward the whole time).
+   To trigger a roll, press the corresponding pad. Pads with triplet-based loop rolls are lit purple.
+
+
+
+Slicer Mode
+
+                                             Slice       Slice       Slice      Slice       Slice     Slice     Slice    Slice
+                                               1           2           3          4           5         6         7        8
+
+
+In Slicer Mode (first press), the eight pads represent eight sequential beats—“slices”—in the beat grid. The
+currently playing slice is represented by the currently lit pad; the light will “move through the pads” as it
+progresses through the eight-slice phrase. You can press a pad to play that slice. When you release the pad,
+the track will resume normal playback from where it would have been if you had never pressed it (i.e., as if
+the track had been playing forward the whole time).
+    To play a slice, press the corresponding pad. Use the parameter buttons to change the length of the
+     repeats.
+
+In Slicer Loop Mode (second press), the eight pads represent eight sequential beats—“slices”—in the beat
+grid. The currently playing slice is represented by the currently lit pad; the light will “move through the pads”
+as it progresses through the eight-slice phrase, which will loop (this is the difference between this mode and
+Slicer Mode). You can press a pad to play that slice. When you release the pad, the track will resume normal
+playback from where it would have been in the loop if you had never pressed it (i.e., as if the track had been
+playing forward the whole time).
+
+
+
+
+                                                                                                                             44
+Sampler Mode
+
+In addition to the Pad Modes above, PRIME hardware also includes a Sampler Mode. This can be accessed
+from your hardware by pressing Roll twice. You can assign and trigger up to eight samples using your
+performance pads.
+
+You can view your assigned samples in Performance View by enabling the Performance Pads option in the
+Layout menu. When the Sampler pad mode is selected, you will see the sample names loaded to each pad
+in the sampler slots in Performance View.
+
+Your hardware includes a set of pre-installed sample content, which you can browse from Library View
+when Sampler Content is selected as a source.
+
+  To load a sample from Library View, half-swipe the sample to the right and then tap Load. Next, instead
+    of selecting a deck, tap one of the eight sampler slots on the touchscreen. Alternatively, press the
+    hardware pad where you want the sample assigned. If a sample is already loaded to the selected pad,
+    the new sample will replace the existing sample.
+     Loaded samples will be retained in memory across device reboots if the same source drive is
+     connected and selected.
+
+  To trigger a sample, press the performance pad on the hardware.
+     The sampler volume can be adjusted using the Sampler Volume slider in the Control Center.
+     Sampler audio routing can be adjusted using the Sampler Output option in the Settings > Mixer
+     menu.
+
+  To stop a playing sample, hold Shift and press the performance pad.
+
+  To remove a sample, you must first exit Performance View. Samples cannot be removed while in
+    Performance View to prevent accidental ejection. While in Library View, Settings, or another page,
+    press and hold Shift and then press the performance pad with the sample you want to remove. If the
+    sample is playing, you will need to stop it first, and then remove it.
+
+
+
+
+                                                                                                      45
+Stems Mode
+
+Your PRIME hardware also supports Stems pad mode. To enable this, you must first activate Stems by
+purchasing a one-time license to add to your Engine DJ profile.
+1. Visit enginedj.com/stems to purchase a one-time license to add to your Engine DJ profile.
+2. Once you have purchased the Stems license, power on your PRIME hardware and make sure you are
+   connected to Wi-Fi and signed into your Engine DJ profile.
+3. A pop-up will appear notifying you that new features are available, and you will need to reboot your unit
+   to activate them. Tap Reboot to restart your unit, or tap Ignore to temporarily dismiss this message.
+4. Once your unit has restarted, stems functionality will be available on your unit.
+
+Track stems must be created using the Engine DJ software and packed to an external drive for use with
+PRIME hardware.
+
+Tracks with stems will show a Stems icon before the track name. All stemmed tracks can be found in the
+Stems list of Library view when it is enabled in the Profile > Library menu (on by default when Stems is
+activated).
+
+Adding a stem track to a deck will allow you to use Stems pad mode. This can be accessed from the
+hardware by pressing the Hot Cue button twice when a stem-enabled track is added to a layer.
+
+When Stems Pad Mode is enabled, the top four pads can be used to isolate stems. From left to right, these
+pads control Vocal, Melody, Bass, and Drums.
+
+   To mute a stem, press the pad so it is dimly lit.
+
+   To unmute a stem, press the pad again so it is brightly lit.
+
+   Use the parameter buttons (/) to quickly isolate Acapella or Instrumental stems. Press  to mute
+   the Melody, Bass, and Drums stems and isolate the Vocal stem. Press  to mute the Vocal and isolate
+   the Melody, Bass, and Drums stems. Press / again to unmute.
+
+
+
+
+                                                                                                         46
+Touch FX
+
+The Touch FX feature allows you to control ten powerful audio effects via the touchscreen to create buildups,
+drops, and transitions with a single touch.
+    To access Touch FX, tap the Touch FX icon in the toolbar at the top of the screen.
+
+
+
+
+Touch FX can be applied to a single layer at a time. Tap the layer letter in the upper-left corner of the screen
+to select the desired layer. The track name, time, BPM, and waveform overview will be shown.
+
+
+Each effect has a pair of parameters, one mapped up and down and one mapped left and right, that can be
+continuously adjusted by tapping and dragging your finger around the center area. See Appendix > FX
+Parameters > Touch FX for more information on the available Touch FX parameters.
+
+
+To change the current effect, use the FX Select menu in the bottom-left corner of the screen to select from
+ the following options:
+    •   LFO Echo                           •   Noise Gate
+    •   Filter Roll                        •   Filter Reverb
+    •   Filter Echo                        •   Flanger
+    •   Filter Dub Echo                    •   LFO Filter
+    •   Filter Gate                        •   Filter
+
+
+To adjust an additional effect parameter, such as a Feedback or Resonance control, use the slider at the
+ bottom of the screen.
+
+
+To mute the incoming signal, tap the Mute button at the bottom-right of the screen. This function emulates
+ pulling a mixer fader down to zero while continuing the effect-processed audio.
+
+
+To hold the current position of the Touch FX, tap the Latch button at the bottom-right of the screen. The
+ effect will remain on in any position you move it to until Latch is turned off. Latch will automatically turn off
+ if you switch active layers or change FX selection while it is enabled.
+
+
+To close Touch FX and return to the previous screen, tap the X icon in the upper-right corner of the screen.
+ Alternatively, press View, Back, or FWD to switch to another screen. If you navigate away from the Touch FX
+ screen with Latch engaged, the Touch FX icon in the Toolbar will pulse to indicate it is still active.
+
+                                                                                                               47
+Control Center
+
+Press the Shortcuts button, swipe down from the toolbar, or tap the gear icon to open the Control
+Center. Here, you can quickly adjust commonly used Parameters using the widgets in the center of the
+screen. You can also access the following pages. Click the links below to jump to that part of the guide:
+    •   Layout – This screen is used to adjust the appearance of Engine OS.
+    •   Profile – This menu is used to edit your performance preferences.
+    •   Settings – This menu is used to edit the settings of the PRIME hardware.
+    •   Source – This menu is used for selecting your source media device.
+    •   Wi-Fi – This menu is used for connecting to and configuring your Wi-Fi network.
+    •   Bluetooth® – This screen is used for linking to and configuring Bluetooth devices.
+    •   Engine Lighting – This menu is used for working with the SoundSwitch Engine Lighting integration.
+Tap the X in the upper-right corner of the screen to exit the Control Center. Alternatively, press Back or
+FWD, or swipe up from the bottom of the screen.
+
+
+Parameters
+
+
+
+
+Quantize: Tap this to enable or disable quantization. When enabled, time-based features like triggering cues
+ and loops will snap to the beat-grid according to the Cue/Loop Quantization setting in the Profile >
+ Cues/Loops menu.
+Continue: Tap this to enable or disable continuous playback, which will keep playing the next track when
+ the active track has ended.
+Beat Grid Edit: Tap this to access beat grid editing from the touchscreen. See Beat Grid Editing for more
+ information.
+Sampler Volume: Use this slider to adjust the sampler volume level. See Sampler Mode for more information.
+Bluetooth Device Volume: Use this slider to adjust the Bluetooth device audio input level.
+Computer Mode: Tap this to switch your PRIME hardware to computer mode. In computer mode, you can
+ use your Engine OS hardware to send and receive MIDI messages to and from your computer.
+Day Mode: Tap this to enable or disable Day Mode. This mode inverts the colors of the Engine OS interface
+ for better visibility in bright daylight environments.
+
+
+
+
+                                                                                                         48
+Layout
+
+Use the View 1–3 buttons to select a saved layout preset, and then use the options below to configure it.
+You can cycle between these options by pressing and holding Shift and pressing the View button on your
+PRIME hardware.
+Press the Reset Current View button to reset the selected layout preset to its default configuration.
+
+
+Performance Layout
+ • Deck Layout: Use this option to determine the layout of the decks in Performance View. Select Single to
+   show only one layer, Dual (Stacked) to show both layers, with Layer A performance controls on top and
+   Layer B performance controls on the bottom, or Dual (Grouped), with both Layers’ performance controls
+   on top.
+
+
+
+
+ • Waveform Orientation: Use this option to select whether the track waveforms are in Horizontal or
+   Vertical display in Performance View.
+
+
+
+
+ • Performance Pads: Tap this to enable or disable the performance pads from appearing in Performance
+   View. When enabled, the pads will be shown under the track overview on the touchscreen (see below).
+
+
+
+
+                                                                                                        Pads
+
+
+
+
+     Pads                                                                                               Pads
+
+
+
+
+                        Pads
+
+
+                                                                                                               49
+• Performance Library: Tap this to enable or disable the Performance Library from appearing in
+  Performance View. The location of the Performance Library will depend on the waveform orientation and
+  the number of layers and waveforms displayed.
+
+
+
+
+Deck Behavior
+• Layer B: This determines whether this PRIME hardware displays the Layer B controls (On) or not (Off).
+   Note: When the Layer B deck controls are hidden, you can still use the layer to route preview, sampler,
+   or Bluetooth audio, and apply Touch FX to it.
+• Deck Swap: Use this option to switch the position of the layer in relation to the A/B Outputs. When set
+  to Regular, Layer A will output to the A Output. When set to Swapped, Layer A will output to the B
+  Output. This can also be used to match your layout to the position of a connected LC6000 PRIME
+  controller.
+
+
+
+
+                                                                                                          50
+Profile
+
+To open the Profile menu, press the Shortcuts button, or swipe down from the toolbar, and then tap the
+ Profile tab.
+To close the Profile menu, press View, swipe up, or tap the X button.
+
+In the Profile menu, swipe up or down to scroll through the options, and tap an option to select it.
+
+Press the Log In button to log into your Engine DJ profile. Once you are logged in, you can access crowd-
+sourced streaming metadata and beat grid information, and automatically connect to associated streaming
+and cloud services. Existing streaming and cloud service logins will be removed, and any tracks loaded to a
+deck will be ejected. To manage your connected services, visit enginedj.com and log into your account.
+Press the Save To My Drive button to save your settings to a connected drive. Profiles can be loaded when
+a media device with an Engine DJ profile is connected to your PRIME hardware.
+
+
+Playback
+ • Motorized Platter Start (SC6000M PRIME only): This setting will determine how quickly your track
+   starts to play. When set to Normal, the track will play in relation to the motor start-up speed. When set
+   to Instant, the song will begin playing immediately, and the motor and platter will catch up to the song
+   within a few milliseconds.
+ • Track Start Position: This setting determines where the beginning of a track is after it loads. Select the actual
+   start of the file (Track Start) or the automatically detected beginning of an audio signal (Cue Position).
+ • Maintain Play State on Load: When enabled, loading a new track will automatically enter the play state of
+   the previous track on the deck where it was loaded. For example, if a track was already playing, the new
+   track will begin playing as soon as it loads. When disabled, tracks will always load with playback paused.
+ • Default Speed Range: This setting determines the range of the pitch fader. Select +4%, 8%, 10%,
+   20%, or 50%.
+ • Nudge Sensitivity (SC6000 PRIME only): This determines the level of sensitivity when moving the
+   platters: Min, Low, Mid, High, or Max.
+ • Sync Mode: This setting determines the degree of synchronization applied when you press the Sync
+   button on your PRIME hardware:
+    o Bar: The tempo will be synced, and the track will be automatically bar-matched with the track on the
+       sync lead deck (the downbeats of each bar will be aligned).
+    o Beat: The tempo will be synced, and the track will automatically beat-matched with the track on the
+       sync lead deck.
+    o Tempo: Only the tempo will be synced (the BPM will match that of the sync lead deck).
+ • Sync Button Action: This setting determines how the Sync button will act when pressed.
+    o Toggle: This mode allows you to toggle sync on and off without having to hold Shift.
+    o Shift Disable: This mode requires Shift to be held in order to turn off sync.
+ • Pitch Control Type: This setting determines the primary function of the Pitch Bend buttons. Select Pitch
+   Bend to keep the primary function as momentarily reducing or increasing the pitch, or select Range to
+   set the primary function to adjusting the range of the pitch fader. The function not used as the primary
+   will still be available by holding Shift and using the Pitch Bend buttons.
+ • Pitch Bend Behavior: This setting determines the behavior of the Pitch Bend button function. When set to
+   Fixed, pressing and holding the Pitch Bend buttons changes the speed of the track at a consistent rate.
+   When set to Progressive, the longer the Pitch Bend buttons are held, the greater the rate of speed change.
+ • Key Sync Mode: This setting determines whether key syncing is Strict or Fuzzy (default). When set to
+   Strict, tracks will only be key synced to the same or relative key (i.e., 7a to 7b). When set to Fuzzy, the
+   available compatible keys are increased to include relative keys of the dominant and subdominant keys
+   of the lead track, decreasing the amount of pitch shifting necessary to match two tracks together.
+                                                                                                                 51
+Cues/Loops
+• Cue/Loop Quantization: This setting determines the degree of quantization for time-based features: hot
+  cue points, loops, and loop rolls. Select 1/8 beat, 1/4 beat, 1/2 beat, 1 beat, or 4 beats.
+• Paused Hot Cue Behavior: This setting determines how pads will play their hot cue points. When set to
+  Momentary, playback will start from a hot cue point when you press and hold its pad—release the pad
+  to return to the hot cue point. When set to Trigger, playback will start from a hot cue point (and
+  continue) when you press and release its pad.
+• Default Loop Size: This setting determines the default size of an auto loop when you load a new track to
+  the deck: None, 1, 2, 4, 8, 16, or 32 beats.
+• Default Beat Jump Size: This setting determines the default size of the beat jump when you load a new
+  track to the deck: None, 1, 2, 4, 8, 16, or 32 beats.
+• Link Beat Jump / Loop Size Controls: This setting determines whether the default loop size and beat
+  jump size are always linked to the same value or not. Select On or Off.
+• Smart Loops: This setting determines whether or not a manual loop will be automatically expanded or
+  reduced to a conventional length (e.g., 2 beats, 4 beats, 8 beats, etc.) when you set it. Select On or Off.
+  This setting works independently of the quantization setting.
+• Move Cue To Loop In: This setting determines whether the song's initial Cue Point will automatically be
+  moved to the start of a loop (On), or remain at its current point (Off).
+• Saved Loop Behavior: This setting determines the action of loops after they have been saved. When set
+  to Reloop, pressing a pad with a saved loop will start playing the loop again. When set to Disable,
+  pressing a pad with a saved loop will turn off the loop.
+• Paused Saved Loop Behavior: This setting determines the action of saved loops that are paused. When
+  set to Trigger, pressing a pad with a saved loop on a paused track will trigger track playback from the
+  point of the active loop. When set to Enable, pressing a pad with a saved loop on a paused track will
+  move the playhead to the start of the loop, but the track will remain paused.
+
+
+Display
+• Reset Played Tracks: Click Reset to reset the played status of all tracks.
+• Track Title: This setting determines whether tracks titles are shown as the track's Filename or its
+  embedded Metadata (tags).
+• Time Format: This setting determines whether or not pitch adjustment affects how the track time is
+  displayed. When set to Static, the track’s time corresponds to locations in the track as usual; adjusting the
+  pitch does not affect it. When set to Dynamic, the track’s time will automatically adjust to account for
+  changes in pitch. For instance, if you set the pitch fader to -8%, the track time will increase so it is 8% longer.
+• Track End Warning: This setting determines how long before the end of a track PRIME hardware will
+  warn you that it is nearing the end. If the track is on the currently selected layer, the platter ring and
+  track overview will flash. If the track is on the opposite layer, the Layer button will flash.
+• On Air Mode: This setting changes the platter ring illumination when the channel fader on the Denon DJ
+  mixer is up or down, indicating an active or "on air" deck. When this setting is On, raising the channel
+  fader will change the platter color from white to the selected color. When this setting is Off, the user-
+  selected color will always be shown regardless of the channel fader position.
+  Note: This requires a connection to a compatible Denon DJ mixer via Ethernet.
+• Sync Indicator: This setting determines whether the Beat Phase indicator or Beat Keeper indicator is
+  active in Performance View.
+• Waveform Style: This setting determines the appearance of track waveforms. Select Tri-Band for
+  Engine OS waveforms where blue represents bass, green is mid-range, and white is treble. Select RGB
+  for software-style waveforms where red represents bass, green is mid-range, and blue is treble.
+  Note: RGB waveforms and track overviews will be built when loading a track to a deck. Alternatively, you
+  can use Engine DJ software to Analyze: Get missing analysis data and reimport your tracks with RGB
+  waveforms.
+
+                                                                                                                  52
+Safety
+• Lock Playing Deck: This setting determines whether or not you will be able to load a track to the deck
+  as it is playing. Select On or Off. When this setting is on, the deck must be paused in order to load a
+  track to it.
+• Needle Lock: This setting determines whether or not you can tap the track overview in the display to
+  jump to that location in the track during playback. Select On or Off. You can use the track overview while
+  playback is stopped regardless of this setting. Alternatively, make sure the platter is in Vinyl Mode (press
+  Vinyl so it is lit), touch the top of the platter, and tap the desired location in the track overview.
+• Pad Lock: This setting determines whether the pads and pad mode buttons (Hot Cue, Loop, Roll,
+  Slicer) are enabled or disabled. Select On or Off.
+
+
+Library
+• Stems List: Use this option to enable or disable the Stems list from appearing in Library view.
+   Note: Stems support requires a one-time license purchase and activation. See Stems Mode for more
+   information.
+• Key Notation: This setting determines how the track key is notated in the display. You can view the key as
+  all Sharps, all Flats, Open Key, or Camelot.
+• Key Filter: This setting determines whether the Key filter shows tracks with the same key only (Match)
+  or tracks with compatible keys (Compatible).
+• BPM Range: This setting determines the lowest- and highest-possible BPM values that will be used
+  when tracks are analyzed: 58–115, 68–135, 78–155, 88–175 or 98–195 BPM.
+• BPM Filter Tolerance: This setting determines the “tolerance” of the BPM filter so you can include tracks
+  with tempos that are within a small range of the selected tempo. Select +0, 1, 2, 3, 5, 10, or 15.
+• Collection Browse Behavior: This setting determines browsing behavior when using the Library. When
+  set to Select, tapping a playlist or folder will select it, and a double-tap is required to open it. When set to
+  Open, tapping a playlist or folder will open it.
+
+
+Deck Colors
+• Deck Colors: These settings determine the layer color, including the color of the light ring around the
+  platter for each layer on each player. Tap the arrow next to A or B to select the layer, and then tap a
+  color to select it. The light ring will change color immediately.
+
+
+
+
+                                                                                                               53
+Settings
+
+To open the Settings menu, press the Shortcuts button, or swipe down from the toolbar, and then tap the
+ Settings tab.
+To close the Settings menu, press View, swipe up, or tap the X button.
+
+In the Settings menu, swipe up or down to scroll through the options, and tap an option to select it:
+
+
+Device
+ • Player #: This setting determines the number of this player. When selecting a source device to browse,
+   this number is shown next to the device name in the display.
+   Note: This number will be automatically assigned when in a network with a Denon DJ X1800/X1850
+   PRIME mixer. You can manually override the assigned number by changing this setting.
+ • Wi-Fi: This determines whether Wi-Fi connectivity is enabled (On) or disabled (Off). Tap the gear icon to
+   open the Wi-Fi settings. See Wi-Fi for more information about the Wi-Fi menu.
+ • Bluetooth: This determines whether Bluetooth connectivity is enabled (On) or disabled (Off). Tap the gear
+   icon to open the Bluetooth settings. See Bluetooth® for more information about the Bluetooth menu.
+ • Time/Date: This displays the current time and date. Tap Sync Time when connected to the internet to
+   automatically sync the time.
+ • 24 Hour Clock: This setting determines whether the Time uses the 12 Hour Clock (Off) or 24 Hour Clock
+   (On).
+ • Time Zone: Displays the current time zone, formatted as Region / City.
+ • Set time zone manually: Enable this setting and then tap the gear icon to manually set your local time
+   zone.
+ • Playhead Position: Use this slider to set the position of the playhead along the track waveform in
+   Performance View.
+ • Hide Title/Artist: Use this setting to enable “trainspotting mode,” which hides the Track Title and Artist
+   from decks.
+ • Track Preview: When active, Track Preview will reveal a play button for each song in the library, allowing
+   the songs to be auditioned in the cue without loading a song to the deck. Select On or Off. When On,
+   track preview audio will be routed to the active layer when no tracks are loaded. When tracks are loaded,
+   the preview audio will be routed to the inactive layer.
+ • Screen Brightness: This setting determines the brightness of the touchscreen: Low, Mid, High, or Max.
+ • Screen Saver Time: This determines if and when the screen saver will turn on after no activity for the
+   selected time: Off, 15 mins, 30 mins, 60 mins. While the screen saver is active, the touchscreen display
+   will dim. Interact with the screen or any hardware control to exit the screen saver.
+ • Encoder Behavior: This setting determines the default behavior when turning the Select/Zoom knob
+   while in Performance View. When set to Open Library, turning the Select/Zoom knob will open Library
+   View. When set to Waveform Zoom, turning the Select/Zoom knob will adjust the zoom level of the
+   waveforms in Performance View.
+
+
+Mixer
+ • Sampler Output: This setting determines where Sampler audio is routed: Layer A or Layer B.
+
+
+
+
+                                                                                                           54
+FX
+     General Settings
+     • Effect Select Behavior: When set to Default, all effects settings will return to their default settings
+       when a new track is loaded. When set to Recall, effects settings will be retained.
+
+
+Services
+• Engine Lighting: This determines whether SoundSwitch Engine Lighting is enabled (On) or disabled
+  (Off). Tap the gear icon to open the lighting control interface.
+• Sync: This determines whether Ableton Link is enabled (On) or disabled (Off). Ableton Link synchronizes
+  beat, phase, and tempo of Ableton Live and Ableton Link-enabled applications over a wireless or wired
+  network. All Link-enabled devices must be connected to the same local network.
+  Use the Ableton Link Offset slider to compensate for phase effects. You can adjust the offset between -
+  200 and 200 ms.
+• Streaming: Use these options to enable or disable connections to streaming service partners. When set
+  to On, the selected service will be available in the Source menu.
+• Cloud: Use this option to retrieve your Engine library database from a cloud storage service. You must
+  first use the Engine DJ software to back up your database. Then, when this option is set to On, the
+  selected service will be available in the Source menu, and you can access these files over an established
+  internet connection.
+  Note: We recommend using only high-quality, name brand USB 3.0 or Class U1 or U3 SD cards as
+  source drives, especially when cloud services are enabled.
+
+
+About / Update
+This page displays the product name, current firmware version, and other device information.
+• Firmware Update Mode: If you are not running the latest firmware, tap Options to restart the PRIME
+  hardware in Update Mode, which enables you to update its firmware. Follow the firmware update
+  instructions included with the firmware update package you downloaded.
+• Send Anonymous Usage Statistics: This determines whether or not your usage statistics will be sent
+  occasionally to us, enabling us to improve the PRIME experience.
+• Legal: Tap here to view the inMusic Brands EULA and patent list.
+• Factory Reset: Tap here to restore the default factory settings for your device.
+
+
+
+
+                                                                                                           55
+Source
+
+The Source menu allows you to select a connected media
+device, streaming service, or cloud service for use with
+your PRIME hardware.
+When the Source menu is open, all connected media
+sources are shown in the top part of the display. New
+sources that are available to connect to are shown at the
+bottom of the display.
+     To select a drive as a media source, tap the device
+      name. The currently selected source device, if any,
+      will be outlined.
+     To select a streaming or cloud service as your source, tap the streaming or cloud service name. If you
+      have not set up a connection to the service yet, you will be prompted to sign in with your username and
+      password or given a web link and code in order to activate your device. Once signed in or activated, you
+      can use the streaming or cloud service to browse and add tracks. Streaming and cloud services may be
+      enabled or disabled in the Settings > Services menu.
+     To open Wi-Fi connection menu, tap the Wi-Fi icon at the top of the display.
+     To eject a drive source, tap the eject icon next to the drive name. If a track from the selected source is
+      currently in use, an alert will appear to note that the tracks will be unloaded. Tap Eject Anyway to
+      continue or tap Cancel to return to the Source menu.
+     To exit the Source menu, tap the X at the top-right of the display. Alternatively, press the View button.
+
+
+
+Engine Remote Library
+
+In addition to connected devices, streaming services, and cloud services, you can also connect to an instance
+of the Engine DJ software running on a computer sharing the same network as your PRIME hardware. This
+allows you to browse and load tracks from your complete library without having to pack files to a portable drive.
+
+To access your Engine Remote Library:
+    1. First, make sure your hardware and your computer are on the same network, and the Engine DJ
+       software is opened. This can be done by connecting to the same Wi-Fi network, or by connecting
+       directly using an Ethernet cable.
+    2. Tap the Source icon in Library View from your hardware, and locate your computer under the Engine
+       DJ Desktop section.
+    3. Tap to select the computer, and your hardware will show “Waiting for confirmation” while another
+       message appears in the Engine DJ software asking to accept or deny access to your hardware. Click
+       Accept to approve and continue.
+       If the connection process is canceled, or if the connection is lost, both libraries will return to their
+       previous selections.
+    4. Once the connection is established, you will be able to browse and load tracks from your Engine DJ
+       software collection directly from your hardware.
+    5. When you load a track from the Engine Remote Library, the track will begin downloading over the
+       network. The download progress will be shown on your hardware touchscreen. If the download fails,
+       a “Failed to Download” message will appear on your hardware. You can remotely load tracks up to
+       250 mb in size.
+       Tracks will download with any performance data associated with the file in your Engine DJ software
+       collection. This includes beat grids, saved cues, and saved loops. If no beat grid information is
+       included with the downloaded track, your PRIME hardware will analyze the file once it is loaded.
+       Any edits made to performance data or track metadata from your PRIME hardware will be pushed
+       back to your Engine DJ software collection, and vice versa.
+
+
+
+
+                                                                                                              56
+Wi-Fi
+
+The Wi-Fi menu allows you to connect to a local internet network so you can browse connected streaming and
+cloud services.
+   To enable Wi-Fi, tap the Wi-Fi switch at the top of the page. Once enabled, a list of local networks will
+     appear on the display.
+   To establish a connection, tap the desired network name. If a password is required, you will be
+    prompted to enter it. Once a connection is established, Connected will appear next to the network
+    name.
+   To view information about the network, tap the three-dots icon next to the network name. Tap Close
+    or anywhere outside the menu to close the Wi-Fi information menu.
+
+A Wi-Fi connection menu will also appear when your PRIME hardware is powered on. On this page:
+ To enable Wi-Fi, tap the Wi-Fi switch at the top of the touchscreen.
+ To establish a connection, tap the desired network name. If a password is required, you will be prompted
+  to enter it. Once a connection is established, the page will be dismissed.
+ To view information about the network, tap the three-dots icon next to the network name.
+ To dismiss this page, tap Next at the top of the touchscreen.
+ To prevent this page from appearing each time your hardware is powered on, tap the Do not show
+  again at startup box so it is checked.
+
+
+
+
+                                                                                                         57
+Bluetooth®
+
+The Bluetooth page allows you to connect to a
+Bluetooth audio input for streaming, or a
+Bluetooth keyboard for searching tracks.
+
+
+To enable Bluetooth, tap the Bluetooth switch at
+ the top of the page. Once enabled, a list of
+ devices will appear on the display. You can also
+ enable Bluetooth from the Device menu in the
+ Settings > Device.
+
+
+To link to an available device:
+1. First, make sure your Bluetooth device is
+   powered on, in range, and available for pairing.
+   You should see the name of your device in the
+   Available Devices list if it is ready to pair.
+2. Select your device from the list of Available Devices. The first time you connect a device, you will be
+   prompted with a passcode to confirm on both Engine OS and Bluetooth devices.
+    Alternatively, for audio input devices such as smartphones or tablets, navigate to the Bluetooth Settings
+    screen on your device. Then, locate the Engine OS device you would like to pair to and select it.
+3. Once successfully linked, your device will appear in the Linked Devices list.
+    Engine OS will automatically determine whether your device is used as an input or output. If your device
+    supports both, a dialog will display to ask you to select one type. You can change this at any time using the
+    three-dots icon.
+
+
+To view device settings, tap the three-dots icon next to the device name.
+  The Auto Connect setting determines how your devices reconnect. When this setting is On, a device you
+    have previously paired with your PRIME hardware will automatically reconnect when Bluetooth is
+    enabled and the device is in range. When set to Off, you will need to manually reconnect each time.
+  The Status field displays the current connection status.
+  The Connection field allows you to manage your device connection. Tap Disconnect to unlink from a
+    connected device. Tap Forget to remove a device from the Linked Devices list.
+  Tap Close or anywhere outside the window to close the Bluetooth device settings window.
+
+
+When paired to an audio device, use the Assign Input To field to select where the Bluetooth audio will be
+ streamed to: None, Layer A, or Layer B.
+When a Layer is selected as the Bluetooth audio assignment, you will be able to view Bluetooth track
+ information and play, pause, and skip tracks from your device in Performance View when viewing the
+ selected Layer.
+  Note: Certain applications may not support track information and performance controls when used with
+  Engine OS devices.
+Use the Bluetooth Device Volume slider to adjust the Bluetooth device audio input level.
+
+
+
+
+                                                                                                              58
+Engine Lighting
+
+The Engine Lighting menu allows you to control
+connected lighting devices such as DMX fixtures and
+Smart Lights using SoundSwitch to seamlessly sync your
+music and lights.
+   To enable Engine Lighting, make sure the Engine
+     Lighting option under Services in the hardware
+     Settings menu is set to On. Once Engine Lighting is
+     enabled, you can tap the gear icon in the Settings
+     menu to open the lighting control page. You can
+     also access this page after enabling it by double-
+     pressing the View button.
+
+The first time you use Engine Lighting, you can select a
+Basic or Pro layout for performing (see right):
+   Basic: A simple interface for controlling Smart Lights,
+      Control Color, Blackout and Strobe Lighting FX.
+   Pro: Full control of all lighting effects for both DMX
+      and Smart Lights, Control Movements, Strobe and
+      more.
+
+You will also be prompted if you want to connect Philips
+Hue or Nanoleaf Smart Lights when you first use Engine
+Lighting. This can also be configured later through the
+Engine Lighting Preferences menu.
+                                                             Basic View
+
+Visit soundswitch.com for more information on using
+SoundSwitch lighting controls with your SC6000 or
+SC6000M PRIME.
+
+
+
+
+                                                             Pro View
+
+
+
+
+                                                                          59
+Preferences
+
+Tap the Preferences tab at the top of the touchscreen to open the Engine Lighting preferences.
+
+
+General
+• Engine Lighting Status: This setting displays the current connection status to Engine Lighting devices.
+  When Running is shown, Engine Lighting is active. Tap Stop to deactivate Engine Lighting. Tap Start to
+  reactivate.
+• Connection Status: These indicators will show whether Engine Lighting is receiving signal from up to
+  four connected players.
+• Sync Offset: Use this slider to apply a time offset for syncing your connected lights, from -1 to 0 to +1
+  seconds.
+• Show Advanced Controls: Enable this option to toggle between the Basic and Pro controls.
+• Randomize Autoloops: This setting determines whether autoloops are randomized or play in order.
+• Override Scripted Tracks: This setting determines whether a scripted track that is paired with an audio
+  file is used (Off) or whether you can override it using the onboard controls (On). This setting takes effect
+  after loading the next track.
+• Loop Auto Strobe: This setting allows you to automatically generate strobe effects when a Loop Roll is
+  engaged, or when Auto Loop is set to smaller than 1 Beat.
+• Broadcast Art-Net: This setting allows you to enable or disable sending Art-Net protocol to control DMX
+  interfaces over a network connection.
+• Strobes: This setting determines whether strobe effects are enabled or disabled.
+• Philips Hue: Enable this option to connect to available Philips Hue Smart devices.
+• Nanoleaf: Enable this option to connect to available Nanoleaf devices.
+• Player Mode: This setting allows you to set whether you are using 2 Player or 4 Player operation.
+• Repeat Autoloops Mode: This setting determines whether autoloops are continuously repeated
+  (Infinite) or repeated for the Track Duration only.
+• Active Faders: This setting allows you to enable or disable Engine Lighting control on up to four
+  channels at a time. Tap the CH1–CH4 names to activate each channel.
+• Version: Displays the current Engine Lighting version.
+
+
+DMX Interfaces
+Use this menu to view connected DMX interfaces and their Universe Assignments.
+
+
+Philips Hue
+Use this menu to set up Philips Hue devices.
+
+
+Nanoleaf
+Use this screen to set up Nanoleaf devices.
+
+
+
+
+                                                                                                           60
+Appendix
+
+SATA Drive Installation
+To create internal storage space on your PRIME hardware, you can purchase a SATA (Serial ATA) drive and
+install it yourself, but read this chapter first.
+Your PRIME can support nearly any standard 2.5” SATA drive on the market—either a solid-state drive (SSD)
+or hard-disk drive (HDD). Make sure it uses a 2.5” (63.5 mm) form factor and uses (or can use) the exFAT or
+FAT32 file systems.
+Note: Alternatively, you could install an mSATA (mini-SATA) drive, but make sure you also purchase an
+adapter that enables it to fit into a typical 2.5” SATA interface.
+
+1. Make sure your PRIME hardware is powered off.
+2. Locate the SATA drive panel in the center of the bottom panel of your PRIME hardware. Use a Phillips-
+   head screwdriver to remove the screws (don’t lose them!), and remove the SATA drive panel.
+3. Gently pull the SATA connector and cable out from inside your PRIME hardware. Be careful not to
+   disturb anything inside—handle just the SATA connector and cable.
+4. Connect your SATA drive to the SATA connector. Make sure the connection is secure.
+5. Use four 3x5 mm mounting screws (included with PRIME hardware or with your SATA drive) to secure
+   the SATA drive to the SATA drive panel. Do not overtighten the screws, but make sure the drive is secure
+   and does not shake.
+6. Place the SATA drive panel back onto the bottom panel of your PRIME hardware, and use the original
+   screws to secure it in place.
+   You can now access this drive while using your PRIME hardware!
+
+
+
+
+                                                                                                         61
+Touch FX
+
+LFO Echo                                                  Parameter               Value Range
+This effect adds echoes of the original signal, with      X-Axis      Beats       8, 4, 2, 1, 3/4, 1/2, 1/4, 1/8
+a filter cutoff frequency varied at a regular rate.
+                                                          Y-Axis      Resonance   0–100
+                                                                      Feedback    0–100
+
+
+Filter Roll                                               Parameter               Value Range
+This effect samples the current audio signal and          X-Axis      Beats       2, 1, 1/2, 1/4, 1/8, 1/16,
+repeats it at a regular rate based on the current                                 1/32
+time division, with an additional filter.
+                                                          Y-Axis      Filter      Lo–Hi
+                                                                      Resonance   0–100
+
+
+Filter Echo                                               Parameter               Value Range
+This effect adds echoes of the original signal with       X-Axis      Beats       1, 3/4, 1/2, 1/4, 1/8, 1/16
+an additional filter.
+                                                          Y-Axis      Filter      Lo–Hi
+                                                                      Amount      0–100
+
+
+Filter Dub Echo                                           Parameter               Value Range
+This effect adds spring reverb-like echoes of the         X-Axis      Beats       1, 1/2, 1/4, 1/8
+original signal with an additional filter for dub style
+effects.                                                  Y-Axis      Filter      Lo–Hi
+
+                                                                      Resonance   0–100
+                                                                      Amount      0–100
+
+
+Filter Gate                                               Parameter               Value Range
+This effect applies filtered level reduction to the       X-Axis      Beats       1, 1/2, 1/4, 1/8, 1/16
+original signal at the set rate.
+                                                          Y-Axis      Filter      Lo–Hi
+                                                                      Resonance   0–100
+
+
+Noise Gate                                                Parameter               Value Range
+This effect applies filtered level reduction and noise X-Axis         Beats       1, 1/2, 1/4, 1/8, 1/16
+to the original signal at the set rate.
+                                                       Y-Axis         Filter      Lo–Hi
+                                                                      Reverb      0–100
+                                                                      Noise       -20 – 15 dB
+                                                                      Volume
+
+
+
+
+                                                                                                                62
+Filter Reverb                                           Parameter               Value Range
+This effect adds filtered reverberation to the original X-Axis      Amount      0–100
+signal.
+                                                        Y-Axis      Filter      Lo–Hi
+                                                                    Room Size   0–100
+
+
+Flanger                                                 Parameter               Value Range
+This effect adds a slightly delayed copy of the         X-Axis      Speed       16, 8, 4, 2, 1, 1/2, 1/4, 1/8
+original signal to create a comb-filter effect (often
+referred to as resembling a jet plane engine).          Y-Axis      Resonance   0–100
+
+
+
+LFO Filter                                              Parameter               Value Range
+This effect varies the cutoff frequency at a regular    X-Axis      Beats       8, 4, 2, 1, 3/4, 1/2, 1/4, 1/8
+rate.
+                                                        Y-Axis      Resonance   0–100
+
+
+Filter                                                  Parameter               Value Range
+This effect adds a resonant filter to the original      X-Axis      Resonance   0–100
+signal.
+                                                        Y-Axis      Cutoff      Lo–Hi
+
+
+
+
+                                                                                                            63
+Technical Specifications
+
+Analog Output           2.0 Vrms (0 dBFS, 1 kHz)
+
+Signal-to-Noise Ratio   116 dB
+
+Distortion (THD+N)      < 0.0015%
+
+Frequency Range         22–22,000 Hz
+
+Digital Output          Sampling Rate                   96 kHz
+
+                        Bit Depth                       24-bit
+
+Playable Media          Type                            SD, SDHC, SDXC card
+                                                        USB mass-storage devices (flash memory, 2.5"
+                                                        internal SATA, external HDD enclosures)
+
+                        File Systems                    exFAT (recommended)
+                                                        FAT32
+                                                        HFS+ (SC6000/SC6000M PRIME only)
+
+                        File Formats                    AAC/M4A
+                                                        AIF/AIFF (44.1–192 kHz, 16–32-bit)
+                                                        ALAC
+                                                        FLAC
+                                                        MP3 (32–320 kbps)
+                                                        MP4
+                                                        Ogg Vorbis
+                                                        WAV (44.1–192 kHz, 16–32-bit)
+
+Platters                8.5” / 216 mm (diameter)
+                        Metal construction.
+                        SC6000/SC5000 with display and capacitive touch
+
+Displays                Main                            10.1” / 256 mm (diagonal)
+                        (SC6000/SC6000M PRIME)          Full-color LED-backlit display with touch interface
+
+                        Main                            7.0” / 178 mm (diagonal)
+                        (SC5000/SC5000M PRIME)          Full-color LED-backlit display with touch interface
+
+                        Platter                         2.2” / 56 mm (diameter)
+                        (SC6000/SC5000 PRIME)           Full-color LED-backlit display
+
+Connections               (2) RCA output pairs
+                          (2) coaxial digital outputs
+                          (1) 1/8” (3.5 mm) mini-TS input (remote start)
+                          (3) USB Type-A ports (for USB drives) (Rear-panel ports supply 900 mA for
+                               USB 3.0 devices, 500 mA for USB 2.0 devices.
+                               Front-panel port supplies 500 mA for USB 2.0 devices only.)
+                          (1) USB Type-B port (for computer connection)
+                          (1) SD card slot
+                          (1) Ethernet link port
+                          (1) IEC power inlet with locking connector
+
+
+
+                                                                                                          64
+ Wi-Fi                      Frequency: 2.4 GHz / 5 GHz
+                            Standard: 802.11a/b/g/n/ac
+                            Power: +17 dBm
+
+ Bluetooth Version          5.0
+
+ Power                      Connection: IEC
+                            Input Voltage: 110–240 VAC, 50/60 Hz
+                            Consumption: 75 W
+
+ Dimensions                 SC6000 PRIME / SC6000M PRIME: 12.6” x 18.2” x 6.0” / 32.0 x 46.2 x 15.2 cm
+ (width x depth x height)
+                            SC5000 PRIME / SC5000M PRIME: 12.6” x 16.5” x 5.3” / 32.0 x 41.9 x 13.5 cm
+
+ Weight                     SC6000 PRIME: 12.67 lb. / 5.75 kg
+                            SC6000M PRIME: 15.62 lb. / 7.08 kg
+                            SC5000 PRIME: 8.79 lb. 3.99 kg
+                            SC5000M PRIME: 13.9 lb. / 6.31 kg
+
+Specifications are subject to change without notice.
+
+
+
+
+Trademarks & Licenses
+
+Denon is a trademark of D&M Holdings Inc., registered in the U.S. and other countries. Denon DJ products
+are produced by inMusic Brands, Inc., Cumberland, RI 02864, USA.
+Kensington and the K & Lock logo are registered trademarks of ACCO Brands.
+macOS is a trademark of Apple Inc., registered in the U.S. and other countries.
+SD, SDHC, and SDXC are registered trademarks of SD-3C, LLC.
+The Bluetooth word mark and logos are owned by the Bluetooth SIG, Inc., and any use of such marks by
+Denon DJ is under license.
+Windows is a registered trademark of Microsoft Corporation in the United States and other countries.
+All other product names, company names, trademarks, or trade names are those of their respective owners.
+
+
+The following technologies are used in Engine OS products:
+    ELASTIQUE efficient V3 by zplane.development
+    TONART V3 by zplane.development
+This product uses other software and technology under license. Please visit enginedj.com/product-legal for
+a complete list.
+
+
+
+
+                                                                                                         65
+denondj.com
+
+enginedj.com
+

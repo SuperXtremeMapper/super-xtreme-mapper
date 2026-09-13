@@ -1,0 +1,1316 @@
+User Guide
+English ( 2 – 6 )
+
+
+Guía del usuario
+Español ( 7 – 11 )
+
+
+Guide d’utilisation
+Français ( 12 – 16 )
+
+
+Guide per l’uso
+Italiano ( 17 – 21 )
+
+
+Benutzerhandbuch
+Deutsch ( 22 – 26 )
+
+
+Appendix
+English ( 27 )
+User Guide (English)
+Introduction
+
+Box Contents
+
+MixTrack Pro FX                                    User Guide
+USB Cable                                          Safety & Warranty Manual
+Software Download Card
+
+Support
+For the latest information about this product (system requirements, compatibility information, etc.)
+and product registration, visit numark.com.
+For additional product support, visit numark.com/support.
+
+Setup
+1.    Place MixTrack Pro FX on a flat, stable surface.
+2.    Make sure all devices are turned off and all faders and gain knobs are set to “zero”.
+3.    If using a microphone, connect it to MixTrack Pro FX’s microphone input.
+4.    Connect MixTrack Pro FX’s outputs to power amplifiers, tape decks, and/or other audio
+      sources.
+5.    Plug all devices into AC power and connect MixTrack Pro FX’s USB port to a computer’s USB
+      port using the included USB cable.
+6.    When powering everything on, power on your devices in the following order:
+          • (1) Your computer, (2) any amplifiers, speakers, or output devices
+7.    Locate the Serato DJ Lite installation card in the box to download and install the software.
+8.    Open your software program and load music to the decks.
+9.    Start DJ’ing!
+10.   When powering everything off, power off your devices in the following order:
+          • (1) Any amplifiers, speakers, or output devices, (2) your computer
+
+Connection Diagram
+
+Items not listed under Introduction > Box Contents are sold separately.
+
+                                                         Computer
+                       Microphone
+
+
+
+
+      Headphones
+
+                                                                          Speakers
+
+
+
+
+2
+Features
+
+Top Panel
+
+       3                                    8 7 1 7               8                                    2
+
+                                             9   20         19     9
+                                                       23
+                                            10                    10
+                                                       21
+                             24             11                     11                        24
+                                       18                                                              18
+                                                       22
+                                            12                    12
+                                                  13         13                                   25
+      26                          25                                    26
+                                                        5
+                                            14                    14
+28
+27         30    31     32   33    16 17                4                27 30
+                                                                         28      31     32   33    16 17
+                                                 6           6
+28                                                                       28
+                                                                         29
+                   34                  35                                          34                  35
+29
+                                                      15                 29
+                                                                         30
+30
+                                  36 37                                                           36 37
+
+1.     Browse Knob: Rotate this knob to cycle through folders and tracks. Press the knob to cycle
+       between the Crates and Library.
+       Hold Shift and rotate the knob to quickly scroll through tracks and folders.
+2.     Master Gain: Adjusts the master volume in the software.
+       Note: This control does not affect the microphone volume, which is summed with the final
+       output of the Master Gain to the Master Output. Use the Mic Gain knob to control the
+       microphone volume.
+3.     Mic Gain: Adjusts the level for the microphone input.
+4.     Cue Mix: Adjusts the audio output to the headphones, mixing between the cue output and the
+       master mix output.
+5.     Cue Gain: Adjusts the volume for headphone cueing.
+6.     Master Output LEDs: Displays the audio level going to the Master Output.
+7.     Load: Press one of these buttons while a track is selected to assign it to Deck 1 or 2,
+       respectively. Quickly double-press a Load button to assign the same track on both decks.
+8.     Level: Adjusts the pre-fader, pre-EQ audio level of the corresponding channel.
+9.     High EQ: Controls the treble frequencies for the individual channels.
+10.    Mid EQ: Controls the mid-range frequencies for the individual channels.
+11.    Low EQ: Controls the bass frequencies for the individual channels.
+12.    Filter: Adjusts the amount of the filter effect. Turning the knob left and right will produce a low-
+       pass filter and high-pass filter, respectively.
+13.    Cue/PFL: Sends pre-fader audio to the cue channel for headphone monitoring.
+14.    Channel Fader: Adjusts the volume of the individual channels in the software.
+15.    Crossfader: Controls the blend between the two decks.
+16.    Pitch Bend Down: Press and hold to momentarily reduce the speed of the track.
+       Hold Shift and this button to adjust the pitch range.
+17.    Pitch Bend Up: Press and hold to momentarily increase the speed of the track.
+       Hold Shift and this button to activate Keylock.
+18.    Pitch Fader: This controls the speed of the music. Moving towards the "+" will speed the
+       music up, while moving towards the "–" will slow it down.
+
+
+                                                                                                            3
+19.   Beats Multiplier: Increases and decreases the rate of the effects to the beat. When using a
+      time-based effect, this knob adjusts its time division.
+20.   FX Wet/Dry Knob: Turn this knob to adjust the wet/dry mix of the effects.
+21.   Software FX: Press one of these buttons to select a software effect.
+      •    HPF (High pass filter)
+      •    LPF (Low pass filter)
+      •    Flanger
+      •    Echo
+      •    Reverb
+      •    Phaser
+22.   FX On/Off: Push up on the toggle switch to latch (lock) the FX in the on position. Push down on
+      the toggle switch to turn the FX on momentarily. When the toggle switch is in the middle
+      position, the FX will be off.
+23.   Tap BPM: Press this 4 or more times to manually enter a new BPM. The software will ignore
+      the track's BPM and follow your manually entered tempo.
+      Press Shift and this button to reset the tempo to the track’s default BPM.
+24.   Platter/Jog Wheel: This capacitive, touch-sensitive jog wheel controls the audio when the
+      wheel is touched and moved. When the Scratch button is not active, use the jog wheel to bend
+      the pitch of the track. When the Scratch button is active, use the jog wheel to grab and move
+      the audio, "scratching" the track as you would with a vinyl record. You can also grab the non-
+      touch-sensitive outer wheel to bend the pitch of the track.
+      Press Shift and move the wheel to quickly search through the audio.
+25.   Scratch: Press this button to turn on the scratch feature for the jog wheel.
+      Hold Shift and press this button to momentarily censor the track.
+26.   Shift: Allows multiple control commands to be triggered when pressed first along with other
+      buttons.
+27.   Sync: Press this button to automatically match the corresponding deck's tempo with the
+      opposite deck's tempo.
+      Press Shift and press this button to deactivate Sync.
+28.   Cue (Transport Control): Sets and recalls the main Cue point in the current track. Hold down
+      the Cue button for temporary play of the cue point. The track will play for as long as the button
+      is held down and return to the cue point once it is released.
+      Press Shift + Cue to return the play head to the start of the track.
+29.   Play/Pause: Starts and suspends playback.
+30.   Cue: With this Pad mode, each pad assigns a Hot Cue Point, or returns the track to that Hot
+      Cue Point. When a pad is unlit, you can assign a Hot Cue Point by pressing it at the desired
+      point in your track.
+31.   Auto Loop: With this Pad mode, each pad triggers an auto loop of a different length. See
+      Operation > Performance Pad Modes for more information.
+32.   Fader Cuts: With this Pad mode, the top 4 performance pads are used to perform transform
+      effects for cuts on scratching. See Operation > Performance Pad Modes for more
+      information.
+33.   Sampler: With this Pad mode, each pad triggers a sample in the software. See Operation >
+      Performance Pad Modes for more information.
+
+
+
+
+4
+34.   Performance Pads: The top row of pads is used to trigger loop points or samples depending
+      on the Pad mode setting. See Operation > Performance Pad Modes for more information.
+      The bottom row of pads is used to trigger Stutter, Previous Track, Search Backward, and
+      Search Forward:
+      •    Stutter: Repeats or “stutters” the sample when the pad is repeatedly tapped.
+      •    Previous Track: Goes to the previous track.
+      •    Search Backward: Searches backward through the current track.
+      •    Search Forward: Searches forward through the current track.
+35.   Loop On/Off: Press to activate auto loop on/off. Hold Shift and press this button to trigger a
+      reloop.
+36.   Loop 1/2: Press this button when a loop is active to decrease the loop size by half. Hold Shift
+      and press this button to set the Loop In point.
+37.   Loop x2: Press this button when a loop is active to double the loop size. Hold Shift and press
+      this button to set the Loop Out point.
+
+
+Front Panel
+
+1.    Headphone Output: Connect headphones to these
+      1/4” (6.35 mm) and 1/8” (3.5 mm) jacks for
+      monitoring the signal. The headphone volume is
+      controlled using the Cue Gain knob.                           1
+
+Rear Panel
+
+1.    Master Output (RCA): Use standard RCA cables to
+      connect this output to speakers or an amplifier
+      system.
+2.    USB: Sends USB MIDI data to control various
+      software parameters.                                      1                           2    3
+3.    Microphone Input: Connect a standard dynamic
+      microphone to this 1/4” (6.35 mm) jack.
+
+
+
+
+                                                                                                     5
+Operation
+
+Performance Pad Modes
+
+The upper row of pads has different functions depending on their mode: Cue, Auto Loop Mode,
+Fader Cuts, and Sample Mode. To select a mode, press one of the Pad mode buttons and press one
+of the upper pads to activate a specific function.
+
+Cue Mode: Press the pad marked Cue and press a lit pad from the upper 4 pads to return a track to
+the assigned Hot Cue Point. Press an unlit pad from the upper 4 pads to assign a Hot Cue Point at
+the desired point in your track.
+
+Auto Loop Mode: Press the pad marked Auto Loop to assign the upper 4 pads to the functions
+listed below:
+• Auto 1: Sets and starts playback of a 1-beat auto loop.
+• Auto 2: Sets and starts playback of a 2-beat auto loop.
+• Auto 4: Sets and starts playback of a 4-beat auto loop.
+• Auto 8: Sets and starts playback of an 8-beat auto loop.
+
+Fader Cuts: The pads will mute
+and unmute the deck’s audio
+signal in a way that emulates
+crossfader movements toward
+that deck.
+
+
+                                                                                  CUE   AUTO LOOP   FADER CUTS   SAMPLE
+
+
+
+
+Sample Mode: Press the pad marked Sampler to assign the upper 4 pads to play a sample. Press
+Shift and one of the upper four pads to stop playback, or to load a sample if the slot is empty.
+
+
+
+
+6
+Guía del usuario (Español)
+Introducción
+
+Contenido de la caja
+MixTrack Pro FX                                   Guía del usuario
+Cable USB                                         Manual sobre la seguridad y garantía
+Tarjeta de descarga de software
+
+Soporte
+Para obtener la información más completa acerca de este product (los requisitos del sistema,
+compatibilidad, etc) y registro del producto, visite numark.com.
+Para soporte adicional del producto, visite numark.com/support.
+
+
+Instalación
+1.    Coloque el MixTrack Pro FX sobre una superficie plana y estable.
+2.    Asegúrese que todos los dispositivos estén apagados y que todos los faders y perillas de
+      ganancia estén en posición "cero".
+3.    Si utiliza un micrófono, conéctelo a la entrada para micrófono del MixTrack Pro FX.
+4.    Conecte las salidas del MixTrack Pro FX a los amplificadores de potencia, bandejas de cinta
+      magnética y/u otras fuentes de audio.
+5.    Enchufe todos los dispositivos a la toma de corriente alterna y conecte el puerto USB del
+      MixTrack Pro FX al puerto USB de su ordenador utilizando el cable USB includio.
+6.    Al encender todos los equipos, hágalo en el siguiente orden:
+         • (1) Su computadora, (2) amplificadores, altavoces o dispositivos de salida
+7.    Localice la tarjeta de instalación de Serato DJ Lite en la caja para descargar e instalar el
+      software.
+8.    Abra su programa de software y cargue la música en las bandejas.
+9.    ¡Comience su sesión como DJ!
+10.   Al apagar todos los equipos, hágalo en el siguiente orden:
+         • (1) Amplificadores, altavoces o dispositivos de salida, (2) su computadora
+
+Diagrama de conexión
+Los elementos que no se enumeran en Introducción > Contenido de la caja se venden por separado.
+
+
+                                                        Computadora
+                         Micrófono
+
+
+
+
+       Auriculares
+
+                                                                        Altavoces
+
+
+
+
+                                                                                                 7
+Características
+
+Panel superior
+
+       3                                    8 7 1 7               8                                    2
+
+                                             9   20         19     9
+                                                       23
+                                            10                    10
+                                                       21
+                             24             11                     11                        24
+                                       18                                                              18
+                                                       22
+                                            12                    12
+                                                  13         13                                   25
+      26                          25                                    26
+                                                        5
+                                            14                    14
+28
+27         30    31     32   33    16 17                4                27 30
+                                                                         28      31     32   33    16 17
+                                                 6           6
+28                                                                       28
+                                                                         29
+                   34                  35                                          34                  35
+29
+                                                      15                 29
+                                                                         30
+30
+                                  36 37                                                           36 37
+
+1.     Perilla de navegación: Gire la perilla para recorrer las carpetas y las pistas. Cuando
+       seleccione una carpeta, pulse la perilla para entrar a la misma.
+       Mantenga presionada la tecla Shift y gire la perilla para desplazarse rápidamente por las pistas
+       y carpetas.
+2.     Ganancia maestra: Ajusta el volume maestro en el software.
+       Nota: Este control no afecta el volumen del micrófono el cual se suma a la salida final de la
+       ganancia maestra hacia la salida maestra. Use la perilla mic gain (ganancia del micrófono) para
+       controlar el volumen del micrófono.
+3.     Mic Gain: Ajusta el nivel para la entrada del micrófono.
+4.     Mezcla de cue: Permite ajustar la salida de audio a los auriculares, mezclando la salida para
+       cue y la salida de mezcla maestra.
+5.     Ganancia de cue: Permite ajustar el volumen del cue por los auriculares.
+6.     LED de salida maestro: Muestra el nivel de audio que sale por la salida maestra.
+7.     Cargar: Pulse uno de estos botones mientras está seleccionada una pista para asignarla a la
+       bandeja 1 o 2, respectivamente. Presione dos veces rápidamente un botón Cargar para asignar
+       la misma pista en ambas cubiertas.
+8.     Nivel: Ajusta el nivel de audio previo al fader y al ecualizador del canal correspondiente en el
+       software.
+9.     Ecualización de agudos: Permite controlar las frecuencias de agudos de los canales
+       individuales.
+10.    Ecualización de medios: Permite controlar las frecuencias de la gama media de los canales
+       individuales.
+11.    Ecualización de graves: Permite controlar las frecuencias de graves de los canales
+       individuales.
+12.    Filtro: Esta perilla permite ajustar el valor del filtro. Girándola a izquierda y derecha se produce
+       un filtro pasa-bajos y un filtro pasa-altos, respectivamente.
+13.    Cue/PFL: Se utiliza para enviar el audio pre-fader al canal de cue para monitoreo con los
+       auriculares.
+14.    Fader de canal: Permite ajustar el volumen de los canales individuales en el software.
+15.    Crossfader: Permite controlar la combinación entre las dos bandejas.
+
+
+
+8
+16.   Reducción del pitch: Mantenga pulsado este control para reducir momentáneamente la
+      velocidad de la pista.
+      Mantenga presionada la tecla Shift y este botón para ajustar el rango de tono.
+17.   Aumento del pitch: Mantenga pulsado este control para aumentar momentáneamente la
+      velocidad de la pista.
+      Mantenga presionada la tecla Shift y este botón para activar Keylock.
+18.   Fader de pitch: Controla la velocidad de la música. Al moverlo hacia el "+" se acelera la
+      música y al moverlo hacia el "–" se reduce su velocidad.
+19.   Multiplicador de beats: Se utiliza para aumentar y disminuir la velocidad del ciclo del efecto
+      en beats. Cuando se usa un efecto basado en el tiempo, con esta perilla se ajusta su división
+      de tiempo.
+20.   Perilla FX Wet/Dry: Gire esta perilla para ajustar la mezcla "con efectos" / "sin efectos".
+21.   Software FX: presione uno de estos botones para seleccionar un efecto de software.
+      •    HPF (filtro de paso alto)
+      •    LPF (filtro de paso bajo)
+      •    Flanger
+      •    Eco
+      •    Reverberación
+      •    Phaser
+22.   Activar / Desactivar FX (efectos): Mueva el interruptor conmutador hacia arriba para trabar
+      (bloquear) los FX en la posición de activación. Mueva el interruptor conmutador hacia abajo
+      para activar los FX momentáneamente. Cuando el interruptor se encuentre en la posición
+      intermedia, los FX estarán apagados.
+23.   Tap BPM (Ajuste de BPM): Púlselo 4 veces o más para introducir manualmente el nuevo
+      BPM. El software ignorará los BPM de la pista y seguirá el tempo que usted introdujo
+      manualmente.
+      Presione Shift y este botón para restablecer el tempo a los BPM predeterminados de la pista.
+24.   Activación del plato: Active este botón para utilizar la rueda para capturar y mover el audio,
+      "rayando" la pista como lo haría con un disco de vinilo. Pulse Shift y pulse este botón para
+      cambiar la visualización del tiempo entre el tiempo de reproducción transcurrido y el tiempo
+      restante en la pista.
+      Presione Shift y mueva la rueda para buscar rápidamente el audio.
+25.   Plato/rueda de avance por pasos: Esta rueda de avance por pasos capacitiva y sensible al
+      tacto controla el audio cuando se toca y se mueve la rueda. Cuando el botón Scratch no está
+      activo, use la rueda para variar el pitch de la pista. Cuando el botón Scratch está activo, use la
+      rueda para capturar y mover el audio, "rayando" la pista como lo haría con un disco de vinilo.
+      También puede tomar la rueda externa insensible al tacto para variar el pitch de la pista.
+      Mantenga presionada la tecla Shift y presione este botón para censurar momentáneamente la
+      pista.
+26.   Shift (Función secundaria): Permite disparar varios comandos de control cuando se pulsan
+      primero junto con otros botones.
+27.   Sync (Sincronización): Pulse este botón para hacer coincidir automáticamente el tempo de la
+      bandeja correspondiente con el tempo de la bandeja opuesta.
+      Pulse Shift y pulse este botón para desactivar el sincronismo.
+28.   Cue (control de transporte): Se utiliza para establecer y recuperar el punto de cue principal en
+      la pista actual. Mantenga pulsado el botón Cue para reproducir temporalmente el punto de
+      cue. La pista se reproduce mientras el botón se mantiene pulsado y retorna al punto de cue
+      cuando se suelta.
+      Pulse Shift + Cue para regresar el cabezal de reproducción al comienzo de la pista.
+29.   Reproducir/Pausa: Se utiliza para iniciar y suspender la reproducción.
+
+
+                                                                                                      9
+30.   Cue: con este modo de almohadilla, cada almohadilla asigna un punto de hot cue o devuelve la
+      pista a ese punto de hot cue. Cuando un pad está apagado, puede asignar un punto de hot
+      cue presionándolo en el punto deseado de su pista.
+31.   Auto Loop: con este modo Pad, cada pad se dispara y un bucle automático de diferente
+      duración. Consulte Funcionamiento > Modos de pad para actuación en vivo más
+      información.
+32.   Fader Cuts: con este modo Pad, los 4 mejores pads de rendimiento se utilizan para realizar
+      efectos de transformación para cortes al rascarse. Consulte Funcionamiento > Modos de pad
+      para actuación en vivo más información.
+33.   Cortes del fader: Con este modo de pad, los 4 pads superiores para actuaciones en vivo se
+      utilizan para disparar efectos de transformación para los cortes al hacer "scratching" (rayar).
+      Consulte Funcionamiento > Modos de pad para actuación en vivo más información.
+34.   Pads para actuación en vivo: La fila superior de pads se utiliza para disparar puntos de bucle
+      o muestras en función del ajuste Pad Mode (Modo de pad). Consulte Funcionamiento >
+      Modos de pad para actuación en vivo para más información.
+      La fila inferior de pads se utiliza para disparar puntos de Tartamudeo, pista anterior, búsqueda
+      hacia atrás y búsqueda hacia adelante:
+      •    Tartamudeo: repite o "tartamudea" la muestra cuando se toca el pad repetidamente.
+      •    Pista anterior: va a la pista anterior.
+      •    Buscar hacia atrás: busca hacia atrás por la pista actual.
+      •    Buscar hacia adelante: busca hacia adelante a través de la pista actual.
+35.   Bucle activado / desactivado: presione para activar / desactivar el bucle automático.
+      Mantenga presionada la tecla Shift y presione este botón para activar una reloop.
+      La fila inferior de pads se utiliza para disparar efectos de tartamudeo, pista anterior y búsqueda
+      hacia atrás y hacia adelante.
+      •    Tartamudeo: Repite o hace tartamudear a la muestra cuando el pad se toca
+           repetidamente.
+      •    Pista anterior: Regresa a la pista anterior.
+      •    Búsqueda hacia atrás: Recorre la pista actual hacia atrás.
+      •    Búsqueda hacia adelante: Recorre la pista actual hacia adelante.
+36.   Bucle 1/2: presione este botón cuando haya un bucle activo para disminuir el tamaño del bucle
+      a la mitad. Mantenga presionada la tecla Shift y presione este botón para establecer el punto
+      de entrada del bucle.
+37.   Bucle x2: presione este botón cuando haya un bucle activo para duplicar el tamaño del bucle.
+      Mantenga presionada la tecla Shift y presione este botón para establecer el punto de salida de
+      bucle.
+
+Panel frontal
+
+1.    Salida para auriculares: Conecte auriculares a estos
+      conectores hembra de 6.35 mm (1/4 pulg.) y 3.5 mm
+      (1/8 pulg.) para monitorear la señal. El volumen de los
+      auriculares se controla con la perilla cue gain.                1
+Panel trasero
+
+1.    Salida maestra (RCA): Use cables RCA estándar
+      para conectar esta salida a un sistema de altavoces o
+      amplificador.
+2.    USB: Permite enviar datos MIDI USB para controlar           1                            2    3
+      diversos parámetros del software.
+3.    Entrada micrófono: Conecte un micrófono dinámico
+      a las entrada de 6,35 mm (1/4 pulg.).
+
+10
+Funcionamiento
+
+Modos de pads para actuación en vivo
+
+Los pads de la fila superior tienen funciones diferentes que dependen del modo en que se
+encuentran: Cue, modo de loop automático, Cortes de fader, y modo de muestras. Para seleccionar
+un modo, presione uno de los botones del modo Pad y presione uno de los botones superiores para
+activar una función específica.
+
+Modo Cue: presione el botón marcado Cue y presione un botón iluminado de los 4 botones
+superiores para devolver una pista al punto Hot Cue asignado. Presione un pad apagado de los 4
+pads superiores para asignar un punto de hot cue en el punto deseado de su pista.
+
+Modo de loop automático: Pulse el pad rotulado Auto Loop para asignar los 4 pads superiores a
+las funciones enumeradas a continuación:
+• Auto 1: Permite establecer e iniciar la reproducción de un loop automático de 1 beat.
+• Auto 2: Permite establecer e iniciar la reproducción de un loop automático de 2 beats.
+• Auto 4: Permite establecer e iniciar la reproducción de un loop automático de 4 beats.
+• Auto 8: Permite establecer e iniciar la reproducción de un loop automático de 8 beats.
+
+Cortes del fader: Los pads
+silencian     y     anulan     el
+silenciamiento de la señal de
+audio de la bandeja de una forma
+que emula los movimientos del
+crossfader hacia esa bandeja.
+
+                                                                                CUE   AUTO LOOP   FADER CUTS   SAMPLE
+
+
+
+
+Modo de muestras: Presione el pad marcado Sampler para asignar los 4 pads superiores para
+reproducir una muestra. Presione Shift y uno de los cuatro pads superiores para detener la
+reproducción o cargar una muestra si la ranura está vacía.
+
+
+
+
+                                                                                                                        11
+Guide d’utilisation (Français)
+Présentation
+
+Contenu de la boîte
+MixTrack Pro FX                        Guide d’utilisation
+Câble USB                              Consignes de sécurité et informations concernant la garantie
+Carte de téléchargement de logiciel
+
+Assistance
+Pour les dernières informations concernant ce produit (la configuration système minimale requise, la
+compatibilité, etc) et l’enregistrement du produit, veuillez visitez le site numark.com.
+Pour toute assistance supplémentaire, veuillez visiter le site numark.com/support.
+
+Démarrage
+1.    Placez le MixTrack Pro FX sur une surface plate et stable.
+2.    Assurez-vous que tous les appareils sont hors tension et que tous les potentiomètres et le gain
+      sont réglés à « zéro ».
+3.    Si vous désirez utiliser un microphone, branchez-le sur l’entrée microphone du MixTrack Pro
+      FX.
+4.    Branchez toutes les sorties du MixTrack Pro FX aux amplificateurs de puissance, aux lecteurs
+      de cassettes et/ou aux autres sources audio.
+5.    Branchez tous les appareils à une alimentation secteur puis utilisez le câble inclus pour
+      brancher le port USB du MixTrack Pro FX au port USB d’un ordinateur.
+6.    Pour mettre les appareils sous tension, utilisez l'ordre suivant :
+         • (1) Votre ordinateur, (2) tous les amplificateurs, haut-parleurs ou appareils de sortie
+7.    Trouvez la carte d’installation du logiciel Serato DJ Lite dans la boîte pour télécharger et
+      installer le logiciel.
+8.    Lancez le logiciel et chargez la musique sur les modules.
+9.    Bon DJing!
+10.   Pour mettre les appareils hors tension, utilisez l'ordre suivant :
+         • (1) Tous les amplificateurs, haut-parleurs ou appareils de sortie, (2) votre ordinateur
+
+Schéma de connexion
+Les articles qui ne figurent pas dans la section Présentation > Contenu de la boîte sont vendus
+séparément.
+                                                             Ordinateur
+
+                        Microphone
+
+
+
+
+        Écouteurs
+
+                                                                          Haut-parleurs
+
+
+
+
+12
+Caractéristiques
+
+Panneau supérieur
+
+       3                                    8 7 1 7              8                                   2
+
+                                             9   20        19     9
+                                                      23
+                                            10                   10
+                                                      21
+                            24              11                    11                       24
+                                      18                                                             18
+                                                      22
+                                            12                   12
+                                                 13         13                                  25
+      26                         25                                    26
+                                                       5
+                                           14                    14
+28
+27         30    31    32   33    16 17                4                27 30
+                                                                        28      31    32   33     16 17
+                                                 6          6
+28                                                                      28
+                                                                        29
+                  34                  35                                         34                  35
+29
+                                                      15                29
+                                                                        30
+30
+                                 36 37                                                          36 37
+
+1.     Browse : Ce bouton permet de parcourir les dossiers et les pistes. Lorsqu’un dossier est
+       sélectionné, vous n’avez qu’à appuyer sur le bouton pour y accéder.
+       Maintenez Shift et tournez le bouton pour faire défiler rapidement les pistes et les dossiers.
+2.     Master gain : Ce bouton permet d’ajuster le niveau du volume général du logiciel.
+       Remarque : Cette commande n’affecte pas le volume du microphone qui est combine avec la
+       sortie finale du Master Gain et Master Output. Utilisez le bouton mic gain pour modifier le
+       volume du microphone.
+3.     Mic Gain: ajuste le niveau de l'entrée du microphone.
+4.     Cue mix : Ce bouton ajuste les sortie au casque d'écoute, mélangeant la sortie du repérage et
+       la sortie principale (master mix).
+5.     Cue gain : Ce bouton ajuste les niveaux de la sortie pour le repérage.
+6.     DEL de la sortie générale : Ce vumètre indique les niveaux du signal acheminé à la sortie
+       Master.
+7.     Load : Ces touches permettent d’assigner la piste sélectionnée au module 1 ou 2,
+       respectivement. Double-appuyez rapidement sur un bouton Load pour assigner la même piste
+       sur les deux platines.
+8.     Niveau : d'ajuster le niveau de pré-atténuation, pré-égalisation du canal correspondant.
+9.     High EQ : Ces boutons permettent de régler les hautes fréquences des canaux individuels.
+10.    Mid EQ : Ces boutons permettent de régler les moyennes fréquences des canaux individuels.
+11.    Low EQ : Ces boutons permettent de régler les basses fréquences des canaux individuels.
+12.    Filter : Ce bouton permet de régler la quantité de filtre ajoutée. En réglant le bouton vers la
+       gauche ou vers la droite cela permet de produire soit un filtre passe-bas ou un filtre passe-
+       haut, respectivement.
+13.    Cue / PFL : Ces touches permettent d’acheminer l’audio pré-atténuation au canal cue pour la
+       pré-écoute.
+14.    Fader de canal : Ces potentiomètres permettent d'ajuster le niveau du signal audio des
+       canaux individuels dans le logiciel.
+15.    Crossfader : Commande le fondu entre les deux modules.
+16.    Pitch bend down : Maintenez ces touches enfoncées afin de réduire momentanément la
+       vitesse de la piste.
+       Maintenez Shift et ce bouton pour régler la plage de hauteur.
+
+                                                                                                          13
+17.   Pitch bend up : Maintenez ces touches enfoncées afin d’augmenter momentanément la
+      vitesse de la piste.
+      Maintenez Shift et ce bouton pour activer Keylock.
+18.   Curseur de hauteur tonale : Ce potentiomètre permet de modifier la vitesse de la musique. Le
+      déplacer vers « + » permet d’accélérer la musique, alors que le déplacer vers « – » permet de la
+      ralentir.
+19.   Bouton beats : Ces boutons permettent d’augmenter et de réduire la vitesse des effets par
+      rapport au tempo. Lors de l’utilisation d’effets à base temporelle, ces boutons permettent de
+      régler la division temporelle appliquée.
+20.   Bouton FX Wet/Dry : Ce bouton permet d'ajuster le mix traité/non traité de l’effet.
+21.   Effets logiciels: appuyez sur l’une de ces touches pour sélectionner un effet logiciel.
+      •    HPF (filtre passe-haut)
+      •    LPF (filtre passe bas)
+      •    Flanger
+      •    Écho
+      •    Reverb
+      •    Phaser
+22.   Commutateur FX : Pousser ce commutateur vers le haut permet de le verrouiller dans cette
+      position et d’activer un effet. Pousser ce commutateur vers le bas permet de déclencher
+      momentanément un effet. Lorsque le commutateur est placé au centre, l’effet est désactivé.
+23.   Tap BPM : Appuyez sur ce pad 4 fois ou plus afin d’entrer manuellement un nouveau BPM. La
+      commande BPM ignorera le BPM de la piste et suivra le tempo que vous avez entré
+      manuellement.
+      Appuyez sur Shift et sur ce bouton pour réinitialiser le tempo au tempo par défaut de la piste.
+24.   Plateau/Molette : Cette molette capacitive sensible à la dynamique permet de commander
+      l’audio lorsque la molette est touchée et déplacée. Lorsque la touche Scratch n’est pas
+      activée, utilisez la molette afin de modifier temporairement la vitesse de lecture de la piste.
+      Lorsque la touche Scratch est activée, utilisez la molette pour saisir et déplacer l’audio et créer
+      un effet de « scratch » sur la piste, comme avec un vinyle. Vous pouvez également saisir le
+      pourtour extérieur non sensible à la dynamique de la molette afin de modifier la tonalité de la
+      piste.
+      Appuyez sur Shift et déplacez la molette pour effectuer une recherche rapide dans l'audio.
+25.   Scratch: Appuyez sur ce bouton pour activer la fonction de scratch pour la molette.
+      Maintenez Shift et appuyez sur ce bouton pour censurer momentanément la piste.
+26.   Shift : Cette touche permet à plusieurs commandes d’être activées en même temps lorsqu’elle
+      est enfoncée simultanément avec d’autres.
+27.   Sync : Appuyez sur cette touche afin de synchroniser automatiquement le tempo du module
+      correspondant aux tempo de l'autre module.
+      Appuyez Shift enfoncée puis appuyez sur cette touche pour désactiver la synchronisation.
+28.   Cue : Cette touche permet de programmer et de rappeler le point de repère de la piste en
+      cours. Vous pouvez maintenir la touche Cue enfoncée afin de relancer momentanément la
+      lecture du point de repère. La piste jouera jusqu’à ce que la touche soit relâchée et reviendra
+      ensuite au point de repère.
+      Appuyez sur Shift + Cue pour ramener la tête de lecture au début de la piste.
+29.   Lecture / Pause : Ces touches permettent de lancer ou de pauser la lecture des modules.
+30.   Cue: avec ce mode Pad, chaque pad attribue un point de repère instantané ou renvoie la piste
+      à ce point de repère instantané. Lorsqu'un pad est éteint, vous pouvez attribuer un point de
+      repère instantané en appuyant dessus au point souhaité de votre piste.
+31.   Auto Loop: Avec ce mode Pad, chaque pad se déclenche et une boucle automatique de
+      longueur différente. Voir Fonctionnement > Modes de fonctionnement des pads pour plus
+      d'informations.
+
+14
+32.   Fader Cuts : Lorsque ce mode est utilisé, les 4 pads supérieurs permettent d’effectuer des
+      effets de transformation pour les coupures lors du scratch. Voir Fonctionnement > Modes de
+      fonctionnement des pads pour plus d'informations.
+33.   Sampler: Avec ce mode Pad, chaque pad déclenche un échantillon dans le logiciel. Voir
+      Fonctionnement > Modes de fonctionnement des pads pour plus d'informations.
+34.   Fonctionnement des pads : La rangée supérieure des pads est utilisée pour déclencher des
+      boucles ou des échantillons selon le réglage de la touche Pad Mode. Veuillez consulter la
+      section Fonctionnement > Modes de fonctionnement des pads pour plus d'information.
+      La rangée inférieure des pads permet de déclencher un effet de bégaiement, de retourner à la
+      piste précédente, d’effectuer une recherche avant et arrière sur la piste :
+      •    Stutter : Cette touche permet de répéter (effet de bégaiement) l'échantillon lorsque le pad
+           est tapé à plusieurs reprises.
+      •    Piste précédente : Cette touche permet de retourner à la piste précédente.
+      •    Recherche arrière : Cette touche permet d'effectuer une recherche arrière sur la piste
+           sélectionnée.
+      •    Recherche avant : Cette touche permet d'effectuer une recherche avant sur la piste
+           sélectionnée.
+35.   Loop On / Off: Appuyez pour activer / désactiver la boucle automatique. Maintenez Shift et
+      appuyez sur ce bouton pour déclencher un reloop.
+36.   Boucle 1/2: Appuyez sur cette touche lorsqu'une boucle est active pour réduire la taille de la
+      boucle de moitié. Maintenez Shift et appuyez sur ce bouton pour définir le point Loop In.
+37.   Loop x2: appuyez sur cette touche lorsqu'une boucle est active pour doubler la taille de la
+      boucle. Maintenez Shift et appuyez sur ce bouton pour définir le point de sortie de boucle.
+
+
+Panneau avant
+
+1.    Sortie casque : Cette sortie permet de brancher un
+      casque d’écoute 6,35 mm (1/4 po) ou 3,5 mm
+      (1/8 po) pour la pré-écoute et le mixage. Vous pouvez
+      ajuster le volume de la sortie du casque d'écoute à            1
+      l’aide du bouton cue gain.
+
+
+Panneau arrière
+
+1.    Sortie master (RCA) : Utilisez des câbles RCA
+      standards afin de brancher cette sortie à un haut-
+      parleur ou à un système de sonorisation.
+2.    USB : Ce port USB permet d'acheminer des données           1                           2    3
+      MIDI USB afin de commander différents paramètres
+      logiciels.
+3.    Entrée microphone : Ce entrée 6.35 mm (1/4")
+      permettent    de  brancher   un   microphone
+      électrodynamique.
+
+
+
+
+                                                                                                    15
+Fonctionnement
+
+Modes de fonctionnement des pads
+
+La rangée supérieure de pads dispose de fonctions différentes selon leur mode : Cue, mode de
+bouclage automatique (Auto Loop), Coupes de faders, et mode d’échantillonnage (Sample). Pour
+sélectionner un mode, appuyez sur l'un des boutons du mode Pad, puis sur l'un des pads supérieurs
+pour activer une fonction spécifique.
+
+Mode Cue: Appuyez sur le pad marqué Cue, puis sur un pad allumé des 4 pads supérieurs pour
+ramener une piste au point Hot Cue attribué. Appuyez sur un pad éteint parmi les 4 pads supérieurs
+pour attribuer un point de repère instantané au point souhaité de votre piste.
+
+Mode Auto Loop : Appuyant sur le pad Auto Loop afin d’assigner les quatre pads de la rangée
+supérieure aux fonctions énumérées ci-dessous :
+• Auto 1 : Cette fonction permet de programmer et de lancer la lecture d’un bouclage automatique
+  d'une mesure.
+• Auto 2 : Cette fonction permet de programmer et de lancer la lecture d’un bouclage automatique
+  de deux mesures.
+• Auto 4 : Cette fonction permet de programmer et de lancer la lecture d’un bouclage automatique
+  de quatre mesures.
+• Auto 8 : Cette fonction permet de programmer et de lancer la lecture d’un bouclage automatique
+  de huit mesures.
+
+Fader Cuts : Les pads permettent
+de désactiver et de réactiver le
+signal audio du module de la
+même manière qu’un crossfader.
+
+
+
+
+                                                                                     CUE   AUTO LOOP   FADER CUTS   SAMPLE
+
+
+
+
+Mode Sample : Appuyez sur le pad marqué Sampler pour affecter les 4 pads supérieurs à la lecture
+d’un échantillon. Appuyez sur Shift et sur l’un des quatre pads supérieurs pour arrêter la lecture ou
+pour charger un échantillon si le logement est vide.
+
+
+
+
+16
+Guida per l’uso (Italiano)
+Introduzione
+
+Contenuti della confezione
+MixTrack Pro FX                                       Guida per l’uso
+Cavo USB                                              Istruzioni di sicurezza e garanzia
+Scheda per il download del software
+
+Assistenza
+Per conoscere le ultime informazioni in merito a questo prodotto (i requisiti di sistema complete,
+compatibilità, ecc) e per la registrazione del prodotto, recarsi alla pagina numark.com.
+Per ulteriore assistenza, recarsi alla pagina numark.com/support.
+
+Installazione
+1.    Collocare il MixTrack Pro FX su una superficie uniforme e stabile.
+2.    Assicurarsi che tutti i dispositivi siano spenti e che tutti i fader e le manopole di guadagno siano
+      impostati su “zero”.
+3.    Se si utilizza un microfono, collegarlo all'ingresso microfono del MixTrack Pro FX.
+4.    Collegare le uscite del MixTrack Pro FX ad amplificatori, mangianastri e/o altre sorgenti audio.
+5.    Collegare tutti i dispositivi alla corrente CA e collegare la porta USB del MixTrack Pro FX a una
+      porta USB del computer servendosi del cavo USB in dotazione.
+6.    Al momento dell'accensione, accendere i dispositivi nel seguente ordine:
+         • (1) Il computer, (2) amplificatori, altoparlanti o dispositivi di uscita
+7.    Individuare la scheda relativa all'installazione del Serato DJ Lite all'interno della confezione per
+      scaricare e installare il software.
+8.    Aprire il software e caricare musica sui deck.
+9.    Iniziate a fare i DJ!
+10.   Al momento dello spegnimento, spegnere i dispositivi nel seguente ordine:
+         • (1) Amplificatori, altoparlanti o dispositivi di uscita, (2) il computer
+
+Schema dei collegamenti
+Elementi non elencati sotto Introduzione > Contenuti della confezione sono venduti separatamente.
+
+                                                            Computer
+
+                           Microfono
+
+
+
+
+            Cuffie
+
+                                                                             Altoparlanti
+
+
+
+
+                                                                                                       17
+Caratteristiche
+
+Pannello superiore
+
+       3                                     8 7 1 7               8                                  2
+
+                                              9   20         19     9
+                                                        23
+                                             10                    10
+                                                        21
+                             24              11                     11                      24
+                                       18                                                             18
+                                                        22
+                                             12                    12
+                                                   13         13                                 25
+      26                          25                                     26
+                                                         5
+                                            14                     14
+28
+27         30    31     32   33    16 17                 4                27 30
+                                                                          28      31   32   33    16 17
+                                                  6           6
+28                                                                        28
+                                                                          29
+                   34                  35                                         34                  35
+29
+                                                       15                 29
+                                                                          30
+30
+                                  36 37                                                        36 37
+1.     Manopola browse: Girare questa manopola per scorrere tra una cartella e l'altra e tra una
+       traccia e l'altra. Quando viene selezionata una cartella, premere la manopola per entrarvi.
+       Tieni premuto Shift e ruota la manopola per scorrere rapidamente tracce e cartelle.
+2.     Master gain: regola il volume master nel software.
+       Nota bene: questo comando non influisce sul volume del microfono, che viene sommato
+       all’uscita finale del Master Gain all’Uscita Master. Servirsi della manopola mic gain per
+       controllare il volume del microfono.
+3.     Mic Gain: regola il livello per l'ingresso del microfono.
+4.     Cue mix: Regola l'uscita audio alle cuffie, mixando tra l'uscita cue e l'uscita del mix master.
+5.     Cue gain: Regola il volume per il cueing cuffie.
+6.     LED uscita master: mostra a display il livello di audio che va all’uscita master.
+7.     Load (carica): Premere uno di questi tasti quando viene selezionata una traccia per assegnarla
+       al Deck 1 o 2, rispettivamente, all'interno. Premi rapidamente due volte un pulsante Load per
+       assegnare la stessa traccia su entrambi i deck.
+8.     Livello: Regola il livello audio pre-fader, pre-EQ del canale corrispondente.
+9.     High EQ: Controlla le frequenze acute per i singoli canali.
+10.    Mid EQ: Controlla le frequenze medie per i singoli canali.
+11.    Low EQ: Controlla le frequenze basse per i singoli canali.
+12.    Filtro: Questa manopola regola la quantità di filtro. Girando la manopola a sinistra e a destra, si
+       produce un filtro passa-basso e un filtro passa-alto, rispettivamente.
+13.    Cue/PFL: Invia audio pre-fader al Canale Cue per il monitoraggio con le cuffie.
+14.    Fader del volume: Regola il volume dei singoli canali nel software.
+15.    Crossfader: Controlla la miscela tra i due deck.
+16.    Bend del pitch giù: Premere e tenere premuto per ridurre momentaneamente la velocità della
+       traccia.
+       Tenere premuto Shift e questo pulsante per regolare la gamma del pitch.
+17.    Bend del pitch su: Premere e tenere premuto per aumentare momentaneamente la velocità
+       della traccia.
+       Tenere premuto Shift e questo pulsante per attivare il blocco tastiera.
+
+
+18
+18.   Fader del pitch: regola la velocità della musica. Uno spostamento verso il “+” accelera la
+      musica, uno spostamento verso il “-“ la rallenta.
+19.   Moltiplicatore dei beat: Aumenta e diminuisce la frequenza degli effetti al beat. Quando si
+      utilizza un effetto basato sul tempo, questa manopola ne regola la divisione temporale.
+20.   Manopola FX Wet/Dry: girare questa manopola per regolare il mix wet/dry degli effetti.
+21.   Software FX: premere uno di questi pulsanti per selezionare un effetto software.
+      •    HPF (filtro passa-alto)
+      •    LPF (filtro passa basso)
+      •    Flanger
+      •    Eco
+      •    Reverb
+      •    Phaser
+22.   FX On/Off: spingere in alto l’interruttore per bloccare l’FX su on. Spingere in basso l’interruttore
+      per accendere momentaneamente l’FX. Quando l’interruttore si trova nella posizione centrale,
+      l’FX sarà spento.
+23.   Tap BPM: premere questo commando 4 o più volte per inserire manualmente un nuovo BPM. Il
+      software ignorerà il BPM della traccia e seguirà il tempo inserito manualmente.
+      Premi Shift e questo pulsante per ripristinare il tempo ai BPM predefiniti della traccia.
+24.   Piatto/Jog wheel: Questa rotella capacitiva, sensibile al tatto controlla l'audio quando viene
+      toccata e spostata. Quando il tasto Scratch non è attivo, servirsi della rotella per effettuare il
+      bend del pitch della traccia. Quando il tasto Scratch è attivo, servirsi della rotella per afferrare e
+      muovere l'audio effettuando lo scratch della traccia come si farebbe con un disco in vinile. È
+      inoltre possibile afferrare la rotella più esterna non sensibile al tatto per effettuare il bend del
+      pitch della traccia.
+      Premi Shift e sposta la rotellina per cercare rapidamente l'audio.
+25.   Scratch: premere questo pulsante per attivare la funzione scratch per la jog wheel.
+      Tieni premuto Shift e premi questo pulsante per censurare momentaneamente la traccia.
+26.   Shift: Consente l'attivazione di più comandi di controllo quando premuto contemporaneamente
+      ad altri tasti.
+27.   Sync: premere questo tasto per abbinare automaticamente il tempo del deck corrispondente
+      con il tempo del deck opposto.
+      Premere Shift e premere questo tasto per disattivare la funzione Sync.
+28.   Cue (comando di trasporto): imposta e richiama il punto Cue principale nella traccia corrente.
+      Tenere premuto il tasto Cue per la riproduzione temporanea del punto cue. La traccia verrà
+      riprodotta per il tempo in cui il pulsante viene tenuto premuto e tornerà al punto Cue non
+      appena questo viene rilasciato.
+      Premi Shift + Cue per riportare la testina di riproduzione all'inizio della traccia.
+29.   Play/Pause: Avvia e interrompe la riproduzione.
+30.   Cue: con questa modalità pad, ogni pad assegna un hot cue point o riporta la traccia a quel
+      hot cue point. Quando un pad è spento, è possibile assegnare un Hot Cue Point premendolo
+      nel punto desiderato della traccia.
+31.   Auto Loop: con questa modalità Pad, ogni pad si innesca e loop automatico di una lunghezza
+      diversa. Vedere Funzionamento > Modalità dei Pad Performance per ulteriori informazioni.
+32.   Fader Cuts: con questa modalità pad, i 4 pad performance superiori sono utilizzati per
+      effettuare effetti di trasformazione per tagli sullo scratch. Vedere Funzionamento > Modalità
+      dei Pad Performance per ulteriori informazioni.
+33.   Sampler: con questa modalità Pad, ogni pad attiva un campione nel software. Vedere
+      Funzionamento > Modalità dei Pad Performance per ulteriori informazioni.
+
+
+
+
+                                                                                                         19
+24.   Pad prestazioni: La fila superiore di pad serve ad attivare punti loop o campioni, a seconda
+      dell'impostazione della modalità Pad. Per maggiori informazioni, si veda Funzionamento >
+      Modalità dei Pad Performance.
+      Le file inferiori di pad sono utilizzate per attivare Stutter, Previous Track, Search Backward e
+      Search Forward:
+      •    Stutter: ripete o riproduce “stutter” del campione quando si tocca ripetutamente il pad.
+      •    Traccia precedente: passa alla traccia precedente.
+      •    Search Backward (cerca indietro): cerca indietro lungo la traccia corrente.
+      •    Search Forward (cerca in avanti): cerca avanti lungo la traccia corrente.
+34.   Loop On / Off: premere per attivare / disattivare il loop automatico. Tieni premuto Shift e premi
+      questo pulsante per attivare una ricarica.
+35.   Loop 1/2: premere questo pulsante quando è attivo un loop per ridurre la dimensione del loop
+      della metà. Tenere premuto Shift e premere questo pulsante per impostare il punto Loop In.
+36.   Loop x2: premere questo pulsante quando è attivo un loop per raddoppiare la dimensione del
+      loop. Tenere premuto Shift e premere questo pulsante per impostare il punto Loop Out.
+
+
+Pannello anteriore
+
+1.    Uscita cuffie: Collegare le cuffie a questi jack da
+      6.35 mm (1/4”) e da 3.5 mm (1/8”) per il monitoraggio
+      del segnale. Il volume delle cuffie è controllato tramite
+      la manopola cue gain.                                           1
+
+Pannello posteriore
+
+1.    Master output (RCA): Servirsi di cavi RCA standard
+      per collegare questa uscita a un altoparlante o a un
+      amplificatore.
+2.    USB: Invia dati USB MIDI per il controllo di vari
+      parametri software.                                         1                           2    3
+3.    Ingresso microfono: collegare un microfono
+      dinamico standard a questo jack da 1/4” (6,35 mm).
+
+
+
+
+20
+Funzionamento
+
+Modalità dei pad performance
+
+La riga superiore dei pad ha funzioni diverse a seconda della rispettiva modalità: Cue, auto loop
+(loop automatico), Fader Cut, e sample (campione). Per selezionare una modalità, premere uno dei
+pulsanti della modalità Pad e premere uno dei pad superiori per attivare una funzione specifica.
+
+Modalità cue: premere il pad contrassegnato come Cue e premere un pad illuminato dai 4 pad
+superiori per riportare una traccia al punto hot cue assegnato. Premi un pad spento dai 4 pad
+superiori per assegnare un Hot Cue Point nel punto desiderato della traccia.
+
+Modalità loop automatico: Premere il pad contrassegnato dalla scritta Auto Loop per assegnare ai
+4 pad superiore le funzioni elencate qui di seguito:
+• Auto 1: Imposta e avvia la riproduzione di un auto loop da 1 beat.
+• Auto 2: Imposta e avvia la riproduzione di un auto loop da 2 beat.
+• Auto 4: Imposta e avvia la riproduzione di un auto loop da 4 beat.
+• Auto 8: Imposta e avvia la riproduzione di un auto loop da 8 beat.
+
+Fader Cuts: i pad silenzieranno
+e annulleranno il silenziamento
+del segnale audio del deck in
+un modo che emula i
+movimenti del crossfader verso
+quel deck.
+
+                                                                                     CUE   AUTO LOOP   FADER CUTS   SAMPLE
+
+
+
+
+Modalità sample: Premere il pad contrassegnato Sampler per assegnare i 4 pad superiori per
+riprodurre un campione. Premi Shift e uno dei quattro pad superiori per interrompere la riproduzione
+o per caricare un campione se lo slot è vuoto.
+
+
+
+
+                                                                                                                             21
+Benutzerhandbuch (Deutsch)
+Einführung
+
+Lieferumfang
+MixTrack Pro FX                          Benutzerhandbuch
+USB-Kabel                                Sicherheitshinweise und Garantieinformationen
+Software-Download-Karte
+
+Kundendienst
+Für aktuelle Informationen zu diesem Produkt (Systemanforderungen,               Informationen   zur
+Kompatibilität etc.) und zur Produktregistrierung besuchen Sie numark.com.
+Um weitere Unterstützung zu Ihrem Produkt zu erhalten, besuchen Sie numark.com/support.
+
+Setup
+1.    Platzieren Sie das MixTrack Pro FX auf einer ebenen, stabilen Oberfläche.
+2.    Stellen Sie sicher, dass alle Geräte ausgeschaltet sind und alle Fader und Gain-Regler auf
+      "Null" stehen.
+3.    Wenn Sie ein Mikrofon verwenden, verbinden Sie es mit dem Mikrofoneingang des MixTrack
+      Pro FX.
+4.    Verbinden Sie die Ausgänge des MixTrack Pro FX mit Verstärkern, Kassettendecks und/oder
+      anderen Audio-Quellen.
+5.    Schließen Sie alle Geräte an das Stromnetz an und verbinden Sie den USB-Anschluss des
+      MixTrack Pro FX mit dem USB-Anschluss eines Computers über das mitgelieferte USB-Kabel.
+6.    Schalten Sie Ihre Geräte in dieser Reihenfolge ein:
+         • (1) Computer, (2) alle Verstärker, Lautsprecher oder Ausgabegeräte
+7.    Nehmen Sie die Serato DJ Lite Installationskarte aus der Schachtel, laden Sie die Software
+      herunter und installieren Sie sie.
+8.    Öffnen Sie Ihre Software und laden Sie Musik in die Decks.
+9.    Beginnen Sie mit dem Mixing!
+10.   Schalten Sie Ihre Geräte in dieser Reihenfolge aus:
+         • (1) Alle Verstärker, Lautsprecher oder Ausgabegeräte, (2) Computer
+
+Anschlussdiagramm
+Produkte, die nicht unter Einführung > Lieferumfang aufgeführt sind, sind separat erhältlich.
+
+                                                         Computer
+
+                           Mikrofon
+
+
+
+
+          Kopförer
+                                                                       Lautsprecher
+
+
+
+
+22
+Funktionen
+
+Oberseite
+
+       3                                   8 7 1 7               8                                  2
+
+                                            9   20         19     9
+                                                      23
+                                           10                    10
+                                                      21
+                            24             11                     11                      24
+                                      18                                                            18
+                                                      22
+                                           12                    12
+                                                 13         13                                 25
+      26                         25                                    26
+                                                       5
+                                           14                    14
+28
+27         30    31    32   33    16 17                4                27 30
+                                                                        28      31   32   33    16 17
+                                                6           6
+28                                                                      28
+                                                                        29
+                  34                  35                                        34                  35
+29
+                                                     15                 29
+                                                                        30
+30
+                                 36 37                                                         36 37
+
+1.     Browse-Regler: Drehen Sie den Regler, um durch Ordner und Tracks zu suchen. Wenn ein
+       Verzeichnis ausgewählt ist, können Sie den Regler drücken, um es zu öffnen.
+       Halten Sie die Shift gedrückt und drehen Sie den Knopf, um schnell durch Titel und Ordner zu
+       scrollen.
+2.     Master Gain: Passt die Gesamtlautstärke in der Software an.
+       Hinweis: Dieses Steuerelement wirkt sich nicht auf die Mikrofonlautstärke aus, die mit der
+       letzten Ausgabe des Master Gain am Master-Ausgang summiert wird. Verwenden Sie den Mic
+       Gain-Regler, um die Lautstärke des Mikrofons zu kontrollieren.
+3.     Mikrofonverstärkung: Stellt den Pegel für den Mikrofoneingang ein.
+4.     Cue Mix: Passt die Audio-Ausgabe für die Kopfhörer an und mixt zwischen Cue-Ausgang und
+       Master-Mix-Ausgang.
+5.     Cue Gain: Regelt die Lautstärke des Kopfhörer-Cueing.
+6.     Master-Ausgang LEDs: Zeigt den Audiopegel, der an den Master-Ausgang geht.
+7.     Laden: Drücken Sie eine dieser Tasten, während ein Track ausgewählt ist, um ihn Deck 1 oder
+       zuzuweisen. Drücken Sie zweimal schnell eine Load-Taste, um auf beiden Decks denselben
+       Track zuzuweisen.
+8.     Pegel: Dient zur Einstellung des Pre-Faders und den Pre-EQ Audiopegel des entsprechenden
+       Kanals.
+9.     Höhen-EQ: Steuert die hohen Frequenzen für die einzelnen Kanäle.
+10.    Mitten-EQ: Steuert die mittleren Frequenzen für die einzelnen Kanäle.
+11.    Bass-EQ: Steuert die Bassfrequenzen für die einzelnen Kanäle.
+12.    Filter: Dieser Regler passt den Filteranteil an. Drehen Sie den Regler nach links oder rechts, um
+       einen Tiefpassfilter oder eine Hochpassfilter zu erzeugen, respektive.
+13.    Cue/PFL: Sendet Pre-Fader-Audio an den Cue-Kanal für das Kopfhörer-Monitoring.
+14.    Kanal-Fader: Regelt die Lautstärke der einzelnen Kanäle innerhalb der Software.
+15.    Crossfader: Steuert den Mix zwischen den beiden Decks.
+16.    Pitch Bend Abwärts: Halten Sie diese Taste gedrückt, um die Geschwindigkeit des Tracks
+       vorübergehend zu reduzieren.
+       Halten Sie die Shift und diese Taste gedrückt, um den Tonhöhenbereich anzupassen.
+
+
+                                                                                                         23
+17.   Pitch Bend Aufwärts: Halten Sie diese Taste gedrückt, um die Geschwindigkeit des Tracks
+      vorübergehend zu erhöhen.
+      Halten Sie die Shift und diese Taste gedrückt, um die Tastensperre zu aktivieren.
+18.   Pitch-Fader: Steuert die Geschwindigkeit der Musik. Mit "+" wird das Tempo der Musik erhöht,
+      mit "–" wird das Tempo verringert.
+19.   Beat-Multiplikator: Erhöht oder verringert die Effektrate des Beats. Wenn Sie einen Effekt
+      verwenden, der auf Zeit basiert, passt dieser Regler die Zeiteinteilung an.
+20.   FX Wet/Dry (FX Nass/Trocken) -Regler: Drehen Sie diesen Regler, um die Nass/Trocken-
+      Mischung der Effekte anzupassen.
+21.   Software FX: Drücken Sie eine dieser Tasten, um einen Softwareeffekt auszuwählen.
+      •    HPF (Hochpassfilter)
+      •    LPF (Tiefpassfilter)
+      •    Flanger
+      •    Echo
+      •    Reverb
+      •    Phaser
+22.   FX Ein / Aus: Drücken Sie den Kippschalter nach oben, um FX in der Ein-Position zu
+      verriegeln. Drücken Sie den Kippschalter nach unten, um FX vorübergehend einzuschalten.
+      Wenn sich der Kippschalter in der mittleren Position befindet, ist FX ausgeschaltet.
+23.   Tap BPM: Drücken Sie diese Taste 4 Mal oder öfter, um manuell eine neue BPM-Anzahl
+      einzugeben. Die Software wird die BPM-Anzahl des Tracks ignorieren und dem Tempo folgen,
+      das Sie manuell eingegeben haben.
+      Drücken Sie die Shift und diese Taste, um das Tempo auf die Standard-BPM des Tracks
+      zurückzusetzen.
+24.   Plattenteller/Jog Wheel: Kapazitives, berührungsempfindliches Jog Wheel, das den Sound
+      verändert, wenn das Rad berührt und bewegt wird. Ist die Scratch-Taste nicht aktiviert, können
+      Sie das Rad verwenden, um die Tonhöhe des Tracks zu verändern. Ist die Scratch-Taste
+      aktiviert, können Sie das Rad bewegen, um sich im Audiotrack vor- und zurückzubewegen und
+      den Track wie eine Vinylplatte zu "scratchen". Sie können auch das äußere Rad bewegen, das
+      nicht berührungsempfindlich ist, um die Tonhöhe des Tracks zu verändern.
+      Drücken Sie die Shift und bewegen Sie das Rad, um schnell durch die Audiodaten zu suchen.
+25.   Scratch: Drücken Sie diese Taste, um die Scratch-Funktion für das Jog Wheel einzuschalten.
+      Halten Sie die Shift gedrückt und drücken Sie diese Taste, um den Track kurzzeitig zu
+      zensieren.
+26.   Shift: Drücken Sie erst diese Taste und anschließend andere Tasten, um alternative Befehle zu
+      triggern.
+27.   Sync: Drücken Sie diese Taste, um Tempo des jeweiligen Decks mit dem Tempo des anderen
+      Decks automatisch zu synchronisieren.
+      Halten Sie die Shift gedrückt und drücken Sie diese Taste, um Sync zu deaktivieren.
+28.   Cue (Transport-Control): Zum Setzen und Abrufen der wichtigsten Cue-Punkte im aktuellen
+      Track. Halten Sie die Cue-Taste gedrückt, um den Track vorübergehend ab dem Cue-Punkt
+      abzuspielen. Solange Sie die Taste gedrückt halten, wird der Track abgespielt. Wenn Sie die
+      Taste loslassen, springt der Track zum Cue-Punkt zurück.
+      Drücken Sie Shift + Cue, um den Abspielkopf an den Anfang des Titels zurückzusetzen.
+29.   Wiedergabe/Pause: Startet und stoppt die Wiedergabe.
+30.   Cue: In diesem Pad-Modus weist jedes Pad einen Hot Cue-Punkt zu oder gibt den Track an
+      diesen Hot Cue-Punkt zurück. Wenn ein Pad nicht leuchtet, können Sie einen Hot-Cue-Punkt
+      zuweisen, indem Sie ihn an der gewünschten Stelle in Ihrer Spur drücken.
+31.   Auto Loop: In diesem Pad-Modus triggert jedes Pad einen Auto Loop mit einer anderen Länge.
+      Weitere Informationen finden Sie unter Betrieb > Performance Pad-Modi.
+
+
+24
+32.   Fader Cuts: In diesem Pad-Modus werden die 4 oberen Performance-Pads verwendet, um
+      Transformationseffekte für Scratching-Cuts auszuführen. Weitere Informationen finden Sie
+      unter Betrieb > Performance Pad-Modi.
+33.   Sampler: In diesem Pad-Modus löst jedes Pad ein Sample in der Software aus. Weitere
+      Informationen finden Sie unter Betrieb > Performance Pad-Modi.
+34.   Performance-Pads: Die obere Pad-Reihe wird verwendet, um Loop-Punkte oder Samples je
+      nach Pad-Modus-Einstellung zu triggern. Siehe Betrieb > Performance Pad-Modi für weitere
+      Informationen.
+      In der unteren Pad-Reihe können Stutter, Vorheriger Track, Suche Rückwärts und Suche
+      Vorwärts getriggert werden:
+      •    Stutter: Wiederholt oder „stottert“ das Sample, wenn das Pad wiederholt angetippt wird.
+      •    Vorheriger Track: Springt zum vorherigen Track.
+      •    Suche Rückwärts: Durchsucht den aktuellen Track rückwärts.
+      •    Suche Vorwärts: Durchsucht den aktuellen Track vorwärts.
+35.   Loop On / Off: Drücken Sie diese Taste, um das automatische Ein- / Ausschalten des Loops
+      zu aktivieren. Halten Sie die Shift gedrückt und drücken Sie diese Taste, um einen Reloop
+      auszulösen.
+36.   Loop 1/2: Drücken Sie diese Taste, wenn ein Loop aktiv ist, um die Loop-Größe um die Hälfte
+      zu verringern. Halten Sie die Shift gedrückt und drücken Sie diese Taste, um den Loop-In-
+      Punkt festzulegen.
+37.   Loop x2: Drücken Sie diese Taste, wenn ein Loop aktiv ist, um die Loop-Größe zu verdoppeln.
+      Halten Sie die Shift gedrückt und drücken Sie diese Taste, um den Loop-Out-Punkt
+      festzulegen.
+
+
+Vorderseite
+
+1.    Kopfhörerausgang: Schließen Sie Kopfhörer an
+      diese 6.35 mm (1/4")- und 3.5 mm (1/8")-Buchsen an,
+      um das Signal zu überwachen. Die Lautstärke des
+      Kopfhörers wird über die Cue Gain-Regler                     1
+      angepasst.
+
+
+Rückseite
+
+1.    Master-Ausgang (RCA): Verwenden Sie ein
+      standardmäßiges Cinch-Kabel, um diesen Ausgang
+      an ein Lautsprecher- oder Verstärkersystem
+      anzuschließen.
+2.    USB: Sendet USB-MIDI-Daten, um verschiedene              1                               3
+      Software-Parameter zu steuern.
+                                                                                          2
+3.    Mikrofoneingang: Schließen Sie ein dynamisches
+      Standardmikrofon an diese 6,35-mm (1/8”)-Buchse
+      an.
+
+
+
+
+                                                                                                 25
+Betrieb
+
+Performance Pad-Modi
+
+Die obere Pad-Reihe hat unterschiedliche Funktionen je nach Modus: Cue, Auto Loop-Modus, Fader
+Cut, und Sample-Modus. Um einen Modus auszuwählen, drücken Sie eine der Pad-Modustasten
+und eines der oberen Pads, um eine bestimmte Funktion zu aktivieren.
+
+Cue-Modus: Drücken Sie das mit Cue gekennzeichnete Pad und ein leuchtendes Pad der oberen 4
+Pads, um einen Track zum zugewiesenen Hot Cue-Punkt zurückzukehren. Drücken Sie ein nicht
+beleuchtetes Pad von den oberen 4 Pads, um einen Hot Cue Point an der gewünschten Stelle in
+Ihrer Spur zuzuweisen.
+
+Auto Loop-Modus: Drücken Sie dann das Pad mit der Bezeichnung Auto Loop (Aufdruck über dem
+Pad), um die obere 4 Pads den unten angeführten Funktionen zuzuweisen:
+• Auto 1: Einstellen und Starten der Wiedergabe eines 1-Beat-Auto loop.
+• Auto 2: Einstellen und Starten der Wiedergabe eines 2-Beat-Auto loop.
+• Auto 4: Einstellen und Starten der Wiedergabe eines 4-Beat-Auto loop.
+• Auto 8: Einstellen und Starten der Wiedergabe eines 8-Beat-Auto loop.
+
+Fader Cuts: Die Pads schalten
+das Deck-Audiosignal stumm
+und laut und emulieren auf
+diese   Weise     Crossfader-
+Bewegungen zu diesem Deck.
+
+
+
+                                                                               CUE   AUTO LOOP   FADER CUTS   SAMPLE
+
+
+
+
+Sample-Modus: Drücken Sie das mit Sampler markierte Pad, um die oberen 4 Pads für die
+Wiedergabe eines Samples zuzuweisen. Drücken Sie die Shift und eines der oberen vier Pads, um
+die Wiedergabe zu stoppen oder ein Sample zu laden, wenn der Slot leer ist.
+
+
+
+
+26
+Appendix (English)
+Technical Specifications
+
+ Outputs                          1 RCA stereo pair
+                                  1 1/4” (6.35 mm) TRS
+                                  1 1/8” (3.5 mm) TRS
+
+ Inputs                           1 1/4” (6.35 mm) TS
+
+ Power                            USB bus power
+
+ Audio                            44.1 kHz, 24-bit
+
+ Dimensions                       21.1” x 9.7” x 2.0”
+ (width x depth x height)         53.6 x 24.6 x 5.1 cm
+
+ Weight                           5.0 lbs.
+                                  2.3 kg
+
+Specifications are subject to change without notice.
+
+
+Trademarks & Licenses
+Numark is a trademark of inMusic Brands, Inc., registered in the U.S. and other countries.
+All other product or company names are trademarks or registered trademarks of their
+respective owners.
+
+
+
+
+                                                                                             27
+numark.com
+
+
+
+
+ Manual Version 1.2
+

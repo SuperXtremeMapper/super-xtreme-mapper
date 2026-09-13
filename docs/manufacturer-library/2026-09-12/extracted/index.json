@@ -1,0 +1,753 @@
+{
+  "schema_version": 1,
+  "stage": 1,
+  "models": 26,
+  "normalized_bindings": 27735,
+  "runtime_profiles_added": 0,
+  "entries": [
+    {
+      "manufacturer": "Akai Professional",
+      "model": "APC mini mk2",
+      "file": "performance-inmusic/akai-apc-mini-mk2.json",
+      "sha256": "ed0952396eada0baea2de1b57783134852566e5eba5382b4657edd965871d68f",
+      "bindings": 1258,
+      "directions": {
+        "device-to-host": 218,
+        "host-to-device": 1040
+      },
+      "app_support": {
+        "requires-adapter": 1258
+      },
+      "issues": {
+        "unsupported": 1
+      },
+      "scope": "Complete clip address range, track/scene/Shift buttons and faders; all sixteen documented RGB behavior channels. Session input channel unspecified within documented 0\u201315 range; Drum/Note port contexts kept separate.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "performance-inmusic/raw/akai-apc-mini-mk2-protocol.txt",
+          "sha256": "9a17da0e084679968dba4f9693fbe345e6bb55b4ab4060cede6f27b0ca7a09a1"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Akai Professional",
+      "model": "APC40 mkII",
+      "file": "performance-inmusic/akai-apc40-mkii.json",
+      "sha256": "2e4ed2f86466f7c807ee3efee5ae191147baf0fb4917d2dcd1491bcafbe719e8",
+      "bindings": 1179,
+      "directions": {
+        "device-to-host": 219,
+        "host-to-device": 960
+      },
+      "app_support": {
+        "requires-adapter": 1179
+      },
+      "issues": {
+        "conflict": 2,
+        "scope": 1
+      },
+      "scope": "Complete unambiguous Mode 1/2 input note chart, track faders, primary knob CC banks, host LED and ring feedback. Generic Mode 0 device-knob banks retained separately. Duplicate/misaligned inbound labels and Cue conflict excluded.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "performance-inmusic/raw/akai-apc40-mkii-protocol.txt",
+          "sha256": "31054643c1e35e0915dd38b8330c9b004ec96c30e77328c6cf5bc567e382cfda"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Allen & Heath",
+      "model": "XONE:K1",
+      "file": "allen-heath-hercules/xone-k1.json",
+      "sha256": "fb6696cba5967fd94cc91ef427d7b6f9c64d667040553cb96cbf2e7cbfba37aa",
+      "bindings": 160,
+      "directions": {
+        "device-to-host": 58,
+        "host-to-device": 102
+      },
+      "app_support": {
+        "existing-profile": 160
+      },
+      "issues": {
+        "scope": 3,
+        "conflict": 1
+      },
+      "scope": "Existing reviewed factory profile facts transcribed with original manufacturer provenance, distinct sends/returns and layers. Mode configuration and reservations retained. This extraction makes no additional hardware or integration claim; custom maps and unspecified velocities remain unresolved.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "allen-heath-hercules/xone-k1-s1.txt",
+          "sha256": "b7fc581db4f0d062a5ad9470cdffb9338699f45ad1c4ade9408ce7beb80d2ba8"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Allen & Heath",
+      "model": "XONE:K2",
+      "file": "allen-heath-hercules/xone-k2.json",
+      "sha256": "6a564842ddcb8c696fbffc2a9dcd1cc08b35fec885bd622e564db52751cfe293",
+      "bindings": 274,
+      "directions": {
+        "device-to-host": 172,
+        "host-to-device": 102
+      },
+      "app_support": {
+        "existing-profile": 274
+      },
+      "issues": {
+        "scope": 5,
+        "conflict": 1
+      },
+      "scope": "Existing reviewed factory profile facts transcribed with original manufacturer provenance, distinct sends/returns and layers. Mode configuration and reservations retained. This extraction makes no additional hardware or integration claim; custom maps and unspecified velocities remain unresolved.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "allen-heath-hercules/xone-k2-s1.txt",
+          "sha256": "568cbecbace1b352d01c75d84c164dfceb92af0bbf41858c5f33afa895bddd99"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Allen & Heath",
+      "model": "XONE:K3",
+      "file": "allen-heath-hercules/xone-k3.json",
+      "sha256": "188f41099f762850c7ed1b6f57cae6ec14a3c9cf13a2faf1fa8a552ed380f0cc",
+      "bindings": 276,
+      "directions": {
+        "device-to-host": 174,
+        "host-to-device": 102
+      },
+      "app_support": {
+        "existing-profile": 276
+      },
+      "issues": {
+        "scope": 7,
+        "conflict": 1
+      },
+      "scope": "Existing reviewed factory profile facts transcribed with original manufacturer provenance, distinct sends/returns and layers. Mode configuration and reservations retained. This extraction makes no additional hardware or integration claim; custom maps and unspecified velocities remain unresolved.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "allen-heath-hercules/xone-k3-s1.txt",
+          "sha256": "60a509cfbee0c65f7c1b1e4b7f003170c5d883651ef9fff4b6e682d97de36a7a"
+        },
+        {
+          "file": "allen-heath-hercules/xone-k3-s2.txt",
+          "sha256": "17d3c1659615831c16637a7f81c9542c325f0579d7a25c430b7765b4e05668fb"
+        },
+        {
+          "file": "allen-heath-hercules/xone-k3-s3.txt",
+          "sha256": "3a96f6b6b4d083bc73a3839faef8a112875eb21a265b1c445ee1408fda3038b3"
+        },
+        {
+          "file": "allen-heath-hercules/xone-k3-s4.txt",
+          "sha256": "57dc74062bd9f4e5c9639c36f3e3efb282f3d1dcefe6dddd934cc48ec55145c1"
+        },
+        {
+          "file": "allen-heath-hercules/xone-k3-s5.txt",
+          "sha256": "b3c3c91838f104b0067a8f7225a730f968b1761d7a625fa422d42b5be95ad7a4"
+        },
+        {
+          "file": "allen-heath-hercules/xone-k3-s6.txt",
+          "sha256": "aa72dacf904506ec66060de7905cf4d74bed91eca0d907abbe20c96524a56ffb"
+        },
+        {
+          "file": "allen-heath-hercules/xone-k3-s7.txt",
+          "sha256": "a701d69d4ebbecf744cabab52af99ad03ad4fc3496517868893a2b28f2b651fd"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Allen & Heath",
+      "model": "Xone:92 Mk2",
+      "file": "allen-heath-hercules/xone-92-mk2.json",
+      "sha256": "1d0159eaa0c7fcec37eba261b4acc0946ec79be51f978af460c21f0df9904c33",
+      "bindings": 6,
+      "directions": {
+        "device-to-host": 6
+      },
+      "app_support": {
+        "requires-adapter": 6
+      },
+      "issues": {
+        "scope": 1
+      },
+      "scope": "Complete four documented CC addresses plus documented clock and transport functions. Transmit only; default channel 16 with internal channel 15 option.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "allen-heath-hercules/xone-92-mk2-s1.txt",
+          "sha256": "92dd9369d2f668e2fc75ebe7bec2386b700ceb18910d2b3bbf8b7c5303f48315"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Allen & Heath",
+      "model": "Xone:96",
+      "file": "allen-heath-hercules/xone-96.json",
+      "sha256": "ef7df99bee5513d3dbe3c6335de928a2e2b8c4c60bd3cb8c3813d47831a51d36",
+      "bindings": 76,
+      "directions": {
+        "device-to-host": 57,
+        "host-to-device": 19
+      },
+      "app_support": {
+        "requires-adapter": 76
+      },
+      "issues": {
+        "scope": 1
+      },
+      "scope": "All explicitly numbered controls in official MIDI Control and input-source matrices; input and output kept separate. Default channel 16, configurable 1\u201316. Rotary selectors send discrete notes, not relative encoder CC.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "allen-heath-hercules/xone-96-s2.txt",
+          "sha256": "35a91c2348fbecb79efdd45f7016bda2eeb5014fb618494dc39ec1b13efa0129"
+        }
+      ]
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "CDJ-3000X",
+      "file": "pioneer-alphatheta/cdj-3000x.json",
+      "sha256": "2da391a7f4cdcc4653859f2c6d677608054d4168fa7b48778689c38d07fa54de",
+      "bindings": 90,
+      "directions": {
+        "device-to-host": 90
+      },
+      "app_support": {
+        "requires-adapter": 90
+      },
+      "issues": {
+        "scope": 1
+      },
+      "scope": "Numeric manufacturer MIDI chart extraction across all protocol pages. Per-channel expansions follow explicit decimal channel lists. Ordered CC pairs, mode/shift contexts and feedback are retained. No runnable profile or native HID/display/motor emulation claim. See issues for unnormalized rows.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "pioneer-alphatheta/cdj-3000x-protocol.txt",
+          "sha256": "286ee5d001010e294e4d4479ac441b0e08423e8bc4009da39b8bf113639553ad"
+        },
+        {
+          "file": "pioneer-alphatheta/cdj-3000x-tables.txt",
+          "sha256": "db5ace58064dde209e917153e7708d3de18da2bae9582f82eee6153d3a8eba60"
+        }
+      ]
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "DDJ-GRV6",
+      "file": "pioneer-alphatheta/ddj-grv6.json",
+      "sha256": "ea49475701d8e2f36fe777f3b84a9c650f2fccd9bb4c9cdcf1716daa9a8a8714",
+      "bindings": 1647,
+      "directions": {
+        "device-to-host": 926,
+        "host-to-device": 721
+      },
+      "app_support": {
+        "requires-adapter": 1647
+      },
+      "issues": {
+        "scope": 1
+      },
+      "scope": "Numeric manufacturer MIDI chart extraction across all protocol pages. Per-channel expansions follow explicit decimal channel lists. Ordered CC pairs, mode/shift contexts and feedback are retained. No runnable profile or native HID/display/motor emulation claim. See issues for unnormalized rows.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "pioneer-alphatheta/ddj-grv6-protocol.txt",
+          "sha256": "b1602d1fc562ff59bfd93801ce5d199f7179ac905daeaf4dd4ad77e994390e46"
+        },
+        {
+          "file": "pioneer-alphatheta/ddj-grv6-tables.txt",
+          "sha256": "70f15471faf02bba35a68ce0cba84cd547cd823fdf66771565209cc29d123cd4"
+        }
+      ]
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "Euphonia",
+      "file": "allen-heath-hercules/euphonia.json",
+      "sha256": "902ee02069d3ee77cc4dc72910ceacefb29af61ee2222b4bc904873401305d34",
+      "bindings": 76,
+      "directions": {
+        "device-to-host": 76
+      },
+      "app_support": {
+        "requires-adapter": 76
+      },
+      "issues": {
+        "scope": 1
+      },
+      "scope": "Entire MIDI message list normalized: transmit-to-computer controls, discrete selectors and timing clock. Chart status bytes 90/B0 identify channel 1; no receive map is asserted.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "allen-heath-hercules/euphonia-s2.txt",
+          "sha256": "35025cbcdc98dcf01fe22622ef94bbfc2982a83b5c65679fec15884b3ac02dd4"
+        },
+        {
+          "file": "allen-heath-hercules/euphonia-s1.txt",
+          "sha256": "f313e06f4ddf5533f88954e35c769474b1ce67f1b50201ddbab7eb34a118b922"
+        }
+      ]
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "OMNIS-DUO",
+      "file": "pioneer-alphatheta/omnis-duo.json",
+      "sha256": "99e760a52b5046140404fd765e70dee2a5008c2a427516c5f183e9388c2292f2",
+      "bindings": 359,
+      "directions": {
+        "device-to-host": 268,
+        "host-to-device": 91
+      },
+      "app_support": {
+        "requires-adapter": 359
+      },
+      "issues": {
+        "scope": 1
+      },
+      "scope": "Numeric manufacturer MIDI chart extraction across all protocol pages. Per-channel expansions follow explicit decimal channel lists. Ordered CC pairs, mode/shift contexts and feedback are retained. No runnable profile or native HID/display/motor emulation claim. See issues for unnormalized rows.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "pioneer-alphatheta/omnis-duo-protocol.txt",
+          "sha256": "fbf9694525298e1f0c85543aa5034625c7dae92023f2e7b732081f5fe915ba7a"
+        },
+        {
+          "file": "pioneer-alphatheta/omnis-duo-tables.txt",
+          "sha256": "a67e4916470609393b6b6c4ccacebbaaed082cd370d2b8268de57ce0ac7d1392"
+        }
+      ]
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "XDJ-AZ",
+      "file": "pioneer-alphatheta/xdj-az.json",
+      "sha256": "5bfe724ca681e9eb62005ffb47d111e78e704440a7c137eb80623fa242415e6d",
+      "bindings": 1442,
+      "directions": {
+        "device-to-host": 834,
+        "host-to-device": 608
+      },
+      "app_support": {
+        "requires-adapter": 1442
+      },
+      "issues": {
+        "scope": 1
+      },
+      "scope": "Numeric manufacturer MIDI chart extraction across all protocol pages. Per-channel expansions follow explicit decimal channel lists. Ordered CC pairs, mode/shift contexts and feedback are retained. No runnable profile or native HID/display/motor emulation claim. See issues for unnormalized rows.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "pioneer-alphatheta/xdj-az-protocol.txt",
+          "sha256": "37d000198327998325975d5c0eb80c92830e1c0519b801d977235d2746ebbfe6"
+        },
+        {
+          "file": "pioneer-alphatheta/xdj-az-tables.txt",
+          "sha256": "8542688711f46b704f769013b9bb7933d4301b137af62a3a9aeb1e98da03ec3c"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Denon DJ",
+      "model": "LC6000 PRIME",
+      "file": "performance-inmusic/denon-lc6000-prime.json",
+      "sha256": "35b382f8b67fc1ef33a0251aecbf2da3ccc61acf2867a8d9fda6a679752116db",
+      "bindings": 78,
+      "directions": {
+        "device-to-host": 41,
+        "host-to-device": 37
+      },
+      "app_support": {
+        "requires-adapter": 78
+      },
+      "issues": {
+        "conflict": 2,
+        "unsupported": 1
+      },
+      "scope": "All definite scalar send buttons/encoders and receive LED addresses; documented paired jog/pitch messages retained as compound. RGB palette interpretation and scrub pair quarantined.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "performance-inmusic/raw/denon-lc6000-prime-protocol.txt",
+          "sha256": "8c233cf5acbf1ccd66ef7cbede9bced8e19376da1f96b97543205dcb295a6b83"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Faderfox",
+      "model": "UC4",
+      "file": "performance-inmusic/faderfox-uc4.json",
+      "sha256": "2f49e0a8d53965971c4443fe4b298e240458a3fdb0c52ee6f3e0f61fbde172f7",
+      "bindings": 8244,
+      "directions": {
+        "device-to-host": 4644,
+        "host-to-device": 3600
+      },
+      "app_support": {
+        "requires-adapter": 8244
+      },
+      "issues": {
+        "unsupported": 1
+      },
+      "scope": "Factory setups 1\u201318: every encoder, push button with an assigned note, green button and all nine faders in each group; feedback uses same assignments. Editable assignments remain configuration dependent.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "performance-inmusic/raw/faderfox-uc4-protocol.txt",
+          "sha256": "ba1f50493d8cb34d7867df7cf6674a31ddf2ae3fdaea99543e0697caa58d7c43"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Hercules",
+      "model": "DJControl Inpulse 500",
+      "file": "allen-heath-hercules/djcontrol-inpulse-500.json",
+      "sha256": "79d45b028e7018562c75b6598b051551a56860a01a9eb2c24a9d67c3ede953b0",
+      "bindings": 786,
+      "directions": {
+        "device-to-host": 416,
+        "host-to-device": 370
+      },
+      "app_support": {
+        "requires-adapter": 786
+      },
+      "issues": {
+        "scope": 4,
+        "conflict": 9
+      },
+      "scope": "Both decks, mixer and browser numeric scalar addresses, explicit pad modes 1\u20138 with Shift, palette and meter data. Source anomalies are quarantined; all 14 protocol pages retained. Human channel derived from status nibble, not printed zero-based Channel column.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "allen-heath-hercules/djcontrol-inpulse-500-s2.txt",
+          "sha256": "b892a16be5bde9de2c553943b401b8f2e26a4bcf764ca232014699a13a5b0e5e"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Novation",
+      "model": "Launch Control XL 3",
+      "file": "performance-inmusic/launch-control-xl-3.json",
+      "sha256": "d6cced2c44ad4e9a761bf39f84041e4da27e9bd81531d94a2cb796745693ea87",
+      "bindings": 223,
+      "directions": {
+        "device-to-host": 125,
+        "host-to-device": 98
+      },
+      "app_support": {
+        "requires-adapter": 223
+      },
+      "issues": {
+        "conflict": 2,
+        "unsupported": 1
+      },
+      "scope": "Complete DAW physical address diagram; encoder absolute and relative variants, touch events, host position/LED feedback, and feature controls with query/report directions. Standalone surface is configurable.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "performance-inmusic/raw/launch-control-xl-3-protocol.txt",
+          "sha256": "ac5272830f1a8074e20b0f8c6fad20b774665a60eef8321ed9565ed15a62f29b"
+        },
+        {
+          "file": "performance-inmusic/raw/launch-control-xl-3.png",
+          "sha256": "c940dbd498a5de9fe01693a842d4312bd0cc771e98657d78d0095afad0452b61"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Novation",
+      "model": "Launchpad Mini MK3",
+      "file": "performance-inmusic/launchpad-mini-mk3.json",
+      "sha256": "e3b5555988fd4adf433768a64eb42c7261eae31c8cf9236b7dea1648e95ed83d",
+      "bindings": 566,
+      "directions": {
+        "device-to-host": 80,
+        "host-to-device": 486
+      },
+      "app_support": {
+        "requires-adapter": 566
+      },
+      "issues": {
+        "scope": 1
+      },
+      "scope": "Entire Programmer mode diagram addresses transcribed individually from original PDF; input type and both accepted feedback types retained. No musical scale grid inferred. Full protocol retained for additional DAW/custom mode work.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "performance-inmusic/raw/launchpad-mini-mk3-protocol.txt",
+          "sha256": "5bbe394e4003cbd0054cfc8c2ccb7d8a0d97b5a2b20b6c494d479f52f2e11fe9"
+        },
+        {
+          "file": "performance-inmusic/raw/launchpad-mini-mk3.png",
+          "sha256": "c1d30e8ca87d95f620a8b4e776deecd28ac649b7611c8fb3721c6134387a983c"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Novation",
+      "model": "Launchpad Pro MK3",
+      "file": "performance-inmusic/launchpad-pro-mk3.json",
+      "sha256": "d3eef8daebb9706246f41f033b9c09cd0a95f5c46f9058fcf95927feafd4f9b2",
+      "bindings": 741,
+      "directions": {
+        "device-to-host": 105,
+        "host-to-device": 636
+      },
+      "app_support": {
+        "requires-adapter": 741
+      },
+      "issues": {
+        "scope": 1
+      },
+      "scope": "Entire Programmer mode diagram addresses transcribed individually from original PDF; input type and both accepted feedback types retained. No musical scale grid inferred. Full protocol retained for additional DAW/custom mode work.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "performance-inmusic/raw/launchpad-pro-mk3-protocol.txt",
+          "sha256": "c3d9a2e31449696b99c3a6d4b5bd1d523569adf0fec1c65f4ce7139b4ec0673e"
+        },
+        {
+          "file": "performance-inmusic/raw/launchpad-pro-mk3.png",
+          "sha256": "eed2d3a0096f77ea63a2a2f85c87e3da68a9772eded50037ea736c167037cc3c"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Novation",
+      "model": "Launchpad X",
+      "file": "performance-inmusic/launchpad-x.json",
+      "sha256": "e862222aa85084ab92ce7567b94957543c0fef2ecb2971937657903237321f8b",
+      "bindings": 566,
+      "directions": {
+        "device-to-host": 80,
+        "host-to-device": 486
+      },
+      "app_support": {
+        "requires-adapter": 566
+      },
+      "issues": {
+        "scope": 1
+      },
+      "scope": "Entire Programmer mode diagram addresses transcribed individually from original PDF; input type and both accepted feedback types retained. No musical scale grid inferred. Full protocol retained for additional DAW/custom mode work.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "performance-inmusic/raw/launchpad-x-protocol.txt",
+          "sha256": "5ebd18be69b742aaa93b3b0c3e2e289627f01341d90eb20edf3dde4d60dbb768"
+        },
+        {
+          "file": "performance-inmusic/raw/launchpad-x.png",
+          "sha256": "d5d2719dae1991e11c8a4a1e9ca5b007f985973a52c66592aa39c2149c6a7694"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DDJ-FLX10",
+      "file": "pioneer-alphatheta/ddj-flx10.json",
+      "sha256": "efbc3b543b96e091d93c56244eccff16002075b9add4cb832a786e543d05b7a9",
+      "bindings": 3012,
+      "directions": {
+        "device-to-host": 1605,
+        "host-to-device": 1407
+      },
+      "app_support": {
+        "requires-adapter": 3012
+      },
+      "issues": {
+        "scope": 1
+      },
+      "scope": "Numeric manufacturer MIDI chart extraction across all protocol pages. Per-channel expansions follow explicit decimal channel lists. Ordered CC pairs, mode/shift contexts and feedback are retained. No runnable profile or native HID/display/motor emulation claim. See issues for unnormalized rows.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "pioneer-alphatheta/ddj-flx10-protocol.txt",
+          "sha256": "478d7124440473b105cdc537c467886fea10e81c30df463a08478582199cd92f"
+        },
+        {
+          "file": "pioneer-alphatheta/ddj-flx10-tables.txt",
+          "sha256": "35d3ed93937e7da0f5740a276255a3c78d59dec5abe6641813bf5e87f09c977f"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DDJ-FLX4",
+      "file": "pioneer-alphatheta/ddj-flx4.json",
+      "sha256": "0b0b0f03b427e64fc1bda3bdc17c4cec7ec09222a1359c7a366c481a3584fdf9",
+      "bindings": 694,
+      "directions": {
+        "device-to-host": 390,
+        "host-to-device": 304
+      },
+      "app_support": {
+        "requires-adapter": 694
+      },
+      "issues": {
+        "conflict": 5,
+        "scope": 1
+      },
+      "scope": "Numeric manufacturer MIDI chart extraction across all protocol pages. Per-channel expansions follow explicit decimal channel lists. Ordered CC pairs, mode/shift contexts and feedback are retained. No runnable profile or native HID/display/motor emulation claim. See issues for unnormalized rows.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "pioneer-alphatheta/ddj-flx4-protocol.txt",
+          "sha256": "42dfa1d159f31057f922ff69b85682d975fb22c038cfd392b9293b39a77f8b96"
+        },
+        {
+          "file": "pioneer-alphatheta/ddj-flx4-tables.txt",
+          "sha256": "29196af7cdeeaf20a7517bfa54de7094edda62e72d50ecdbca48bd1094726c99"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DDJ-REV5",
+      "file": "pioneer-alphatheta/ddj-rev5.json",
+      "sha256": "6c9dcc215c63d2d07c373004fa5b54279c9f7e77b3e0e632b79728ec762a9017",
+      "bindings": 2746,
+      "directions": {
+        "device-to-host": 1476,
+        "host-to-device": 1270
+      },
+      "app_support": {
+        "requires-adapter": 2746
+      },
+      "issues": {
+        "conflict": 11,
+        "scope": 1
+      },
+      "scope": "Numeric manufacturer MIDI chart extraction across all protocol pages. Per-channel expansions follow explicit decimal channel lists. Ordered CC pairs, mode/shift contexts and feedback are retained. No runnable profile or native HID/display/motor emulation claim. See issues for unnormalized rows.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "pioneer-alphatheta/ddj-rev5-protocol.txt",
+          "sha256": "77916e478be2afdc5985da25e2757bc221fc2eeb0aadc50e528bd4a117b28f16"
+        },
+        {
+          "file": "pioneer-alphatheta/ddj-rev5-tables.txt",
+          "sha256": "b8a76295a8da5a3f8b59db21acb51d5bc586602e9a7793f478cec68d572bd92b"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DDJ-REV7",
+      "file": "pioneer-alphatheta/ddj-rev7.json",
+      "sha256": "e9c256a006beb4c2c395b1c48d9fade6271e0e682ade444b2bc64533d89ff7a2",
+      "bindings": 1164,
+      "directions": {
+        "device-to-host": 632,
+        "host-to-device": 532
+      },
+      "app_support": {
+        "requires-adapter": 1164
+      },
+      "issues": {
+        "scope": 1
+      },
+      "scope": "Numeric manufacturer MIDI chart extraction across all protocol pages. Per-channel expansions follow explicit decimal channel lists. Ordered CC pairs, mode/shift contexts and feedback are retained. No runnable profile or native HID/display/motor emulation claim. See issues for unnormalized rows.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "pioneer-alphatheta/ddj-rev7-protocol.txt",
+          "sha256": "b1f87a0fcf6aea83b8bcb56beffcd243b0c9cb7b5c4d236ac083d64741b905bc"
+        },
+        {
+          "file": "pioneer-alphatheta/ddj-rev7-tables.txt",
+          "sha256": "908cde3058c1004d8572a3df5c656ad3c6426e775ed54961a3071089bfc9dd93"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DJM-A9",
+      "file": "pioneer-alphatheta/djm-a9.json",
+      "sha256": "f60ae12b6f27c667b7d9be14e53b1b3d57312a0b96846df6c0b4201664c12358",
+      "bindings": 164,
+      "directions": {
+        "device-to-host": 164
+      },
+      "app_support": {
+        "requires-adapter": 164
+      },
+      "issues": {
+        "scope": 1
+      },
+      "scope": "Numeric manufacturer MIDI chart extraction across all protocol pages. Per-channel expansions follow explicit decimal channel lists. Ordered CC pairs, mode/shift contexts and feedback are retained. No runnable profile or native HID/display/motor emulation claim. See issues for unnormalized rows.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "pioneer-alphatheta/djm-a9-protocol.txt",
+          "sha256": "fd48098b0c6f28bbf96fa4c191752dfa3419aaa80c1c924fa3ffad2aca7f2a33"
+        },
+        {
+          "file": "pioneer-alphatheta/djm-a9-tables.txt",
+          "sha256": "f163d7133432d46bcfd57e59b9ae125e994afb93c18351c234dd29cf12332dde"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "DJM-S11",
+      "file": "pioneer-alphatheta/djm-s11.json",
+      "sha256": "823ea5c477b593e862bb2de17779c25dfa40bc838130d0fc2653d5851751ced6",
+      "bindings": 495,
+      "directions": {
+        "device-to-host": 313,
+        "host-to-device": 182
+      },
+      "app_support": {
+        "requires-adapter": 495
+      },
+      "issues": {
+        "conflict": 16,
+        "scope": 1
+      },
+      "scope": "Numeric manufacturer MIDI chart extraction across all protocol pages. Per-channel expansions follow explicit decimal channel lists. Ordered CC pairs, mode/shift contexts and feedback are retained. No runnable profile or native HID/display/motor emulation claim. See issues for unnormalized rows.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "pioneer-alphatheta/djm-s11-protocol.txt",
+          "sha256": "061171fd6b8a10643f246b16f81c2c61f8938b47723f92363d3320aea694f294"
+        },
+        {
+          "file": "pioneer-alphatheta/djm-s11-tables.txt",
+          "sha256": "9c5706ab49aaa5c6648b9e256a0be8e1942be6cc56d0ea18f852ed6eeeb4f821"
+        }
+      ]
+    },
+    {
+      "manufacturer": "Pioneer DJ",
+      "model": "XDJ-RX3",
+      "file": "pioneer-alphatheta/xdj-rx3.json",
+      "sha256": "e0ae3acaf2847cf780b4d8f66b0406795a5f33d6973b32c2658fd0c1fbf15cdb",
+      "bindings": 1413,
+      "directions": {
+        "device-to-host": 786,
+        "host-to-device": 627
+      },
+      "app_support": {
+        "requires-adapter": 1413
+      },
+      "issues": {
+        "scope": 1
+      },
+      "scope": "Numeric manufacturer MIDI chart extraction across all protocol pages. Per-channel expansions follow explicit decimal channel lists. Ordered CC pairs, mode/shift contexts and feedback are retained. No runnable profile or native HID/display/motor emulation claim. See issues for unnormalized rows.",
+      "hardware_tested": false,
+      "raw_evidence": [
+        {
+          "file": "pioneer-alphatheta/xdj-rx3-protocol.txt",
+          "sha256": "11376d7e96788d027a4280ac94b057d9248773cb94fe0d102a6511350638f200"
+        },
+        {
+          "file": "pioneer-alphatheta/xdj-rx3-tables.txt",
+          "sha256": "d4351038e5dd225c678da94d94baa45f65b3a4cb0524360b7fdfd27e14dbd0e4"
+        }
+      ]
+    }
+  ]
+}

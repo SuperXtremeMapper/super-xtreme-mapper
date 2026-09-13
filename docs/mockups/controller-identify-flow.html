@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Identify your controller — workflow mockup</title>
+<style>
+  :root{
+    --amber:#f59e0b; --amber-light:#fbbf24; --amber-dark:#d97706;
+    --amber-subtle:rgba(245,158,11,.10); --amber-glow:rgba(245,158,11,.35);
+    --stone950:#0c0a09; --stone900:#1c1917; --stone800:#292524; --stone700:#44403c;
+    --stone600:#57534e; --stone500:#78716c; --stone400:#a8a29e; --stone300:#d6d3d1;
+    --stone200:#e7e5e4; --stone100:#f5f5f4;
+    --success:#10b981; --warning:#f59e0b; --danger:#ef4444;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:#141210; font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;
+    color:var(--stone300); padding:36px 20px; line-height:1.45; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1120px; margin:0 auto;}
+  h1.title{color:var(--stone100); font-size:20px; font-weight:600; margin-bottom:6px;}
+  .sub{color:var(--stone500); font-size:13px; margin-bottom:22px;}
+  .beat{color:var(--amber-light); font-size:12px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; margin:26px 0 10px; display:flex; align-items:center; gap:8px;}
+  .beat .num{width:20px;height:20px;border-radius:50%;background:var(--amber);color:var(--stone950);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;}
+
+  /* ---------- Beat 1: load banner ---------- */
+  .banner{padding:8px 12px; border-radius:6px; background:rgba(245,158,11,.12); display:flex; align-items:center; gap:8px; font-size:13px; color:var(--stone200); border:1px solid rgba(245,158,11,.25);}
+  .banner .ico{color:var(--amber); font-size:14px;}
+  .banner b{color:var(--stone100);}
+  .banner .sp{flex:1;}
+  .btn-amber{height:26px; padding:0 12px; border-radius:6px; background:var(--amber); color:var(--stone950); font-size:12px; font-weight:700; border:none;}
+  .btn-ghost{height:26px; padding:0 12px; border-radius:6px; background:transparent; color:var(--stone400); font-size:12px; border:1px solid var(--stone700);}
+
+  /* ---------- Beat 2: identify modal (hero) ---------- */
+  .modal{width:640px; margin:0 auto; background:var(--stone900); border:1px solid var(--stone700); border-radius:14px; box-shadow:0 30px 80px rgba(0,0,0,.6); overflow:hidden;}
+  .m-head{padding:20px 22px 14px;}
+  .m-head h2{color:var(--stone100); font-size:18px; font-weight:600;}
+  .m-head p{color:var(--stone400); font-size:13px; margin-top:4px;}
+  .m-for{display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-size:12px; color:var(--stone400); background:var(--stone800); border:1px solid var(--stone700); padding:4px 10px; border-radius:14px;}
+  .m-for b{color:var(--stone200);}
+  .m-body{padding:0 22px;}
+  .search{display:flex; align-items:center; gap:8px; height:40px; padding:0 12px; background:var(--stone950); border:1px solid var(--amber); border-radius:9px; box-shadow:0 0 0 3px var(--amber-subtle);}
+  .search input{flex:1; background:none; border:none; outline:none; color:var(--stone100); font-size:14px;}
+  .search input::placeholder{color:var(--stone500);}
+  .search .mag{color:var(--stone500); font-size:14px;}
+
+  .list{margin-top:12px; max-height:250px; overflow:auto; border:1px solid var(--stone700); border-radius:9px;}
+  .grp{padding:7px 14px; font-size:10px; text-transform:uppercase; letter-spacing:.6px; color:var(--stone500); background:var(--stone800); border-bottom:1px solid var(--stone700); position:sticky; top:0;}
+  .row{display:flex; align-items:center; gap:10px; padding:9px 14px; border-bottom:1px solid rgba(68,64,60,.5); cursor:default;}
+  .row:hover{background:var(--stone800);}
+  .row.sel{background:var(--amber-subtle); box-shadow:inset 3px 0 0 var(--amber);}
+  .row .name{color:var(--stone100); font-size:13.5px; font-weight:500; flex:1;}
+  .row.sel .name{color:var(--amber-light);}
+  .cov{font-size:10px; font-weight:700; padding:2px 8px; border-radius:10px;}
+  .cov.full{background:rgba(16,185,129,.15); color:#34d399; border:1px solid rgba(16,185,129,.4);}
+  .cov.partial{background:rgba(245,158,11,.15); color:var(--amber-light); border:1px solid rgba(245,158,11,.4);}
+  .cov.doc{background:var(--stone800); color:var(--stone400); border:1px solid var(--stone700);}
+  .check{color:var(--amber); font-size:13px; width:14px;}
+
+  /* selected confirm strip */
+  .confirm{margin-top:14px; padding:14px; background:var(--stone800); border:1px solid var(--stone700); border-radius:10px; display:flex; align-items:center; gap:14px;}
+  .confirm .glyph{width:40px;height:40px;border-radius:9px;background:var(--amber);display:flex;align-items:center;justify-content:center;color:var(--stone950);font-weight:800;font-size:14px;flex:none;}
+  .confirm .info{flex:1;}
+  .confirm .info .n{color:var(--stone100); font-weight:600; font-size:14px;}
+  .confirm .info .d{color:var(--stone500); font-size:12px; margin-top:2px;}
+  .chan{display:flex; align-items:center; gap:8px;}
+  .chan label{font-size:12px; color:var(--stone400);}
+  .chan .dd{height:32px; padding:0 10px; background:var(--stone950); border:1px solid var(--stone700); border-radius:7px; color:var(--stone100); font-size:13px; display:flex; align-items:center; gap:8px;}
+  .chan .dd .caret{color:var(--stone500); font-size:10px;}
+  .chan .hint{font-size:11px; color:var(--stone500);}
+
+  .m-foot{padding:16px 22px 20px; display:flex; align-items:center; gap:10px; margin-top:16px;}
+  .m-foot .note{flex:1; font-size:11px; color:var(--stone500);}
+  .btn-lg-amber{height:36px; padding:0 18px; border-radius:9px; background:var(--amber); color:var(--stone950); font-size:13px; font-weight:700; border:none;}
+  .btn-lg-ghost{height:36px; padding:0 16px; border-radius:9px; background:transparent; color:var(--stone400); font-size:13px; border:1px solid var(--stone700);}
+
+  /* ---------- Beat 3: after ---------- */
+  .after{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .card{background:var(--stone900); border:1px solid var(--stone700); border-radius:11px; padding:0; overflow:hidden;}
+  .card h3{font-size:12px; color:var(--stone300); font-weight:600; padding:11px 14px; border-bottom:1px solid var(--stone700); background:var(--stone800);}
+  .card .cbody{padding:12px 14px;}
+  .maprow{display:flex; align-items:center; gap:10px; padding:7px 0; border-bottom:1px solid rgba(68,64,60,.4); font-size:12.5px;}
+  .maprow .phys{color:var(--stone100); font-weight:600; flex:1;}
+  .maprow .midi{color:var(--stone500); font-size:11px; font-family:"SF Mono",ui-monospace,monospace;}
+  .maprow .cmd{color:var(--stone300);}
+  .cap{list-style:none;}
+  .cap li{display:flex; gap:9px; align-items:flex-start; padding:6px 0; font-size:12.5px; color:var(--stone300);}
+  .cap li .dot{color:var(--amber); font-size:13px; line-height:1.3;}
+  .cap li b{color:var(--stone100); font-weight:600;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="title">Identify your controller — the ask, the screen, and after</h1>
+  <div class="sub">Mockup · AppThemeV2 palette · plain language, jargon moved to the advanced panel</div>
+
+  <!-- BEAT 1 -->
+  <div class="beat"><span class="num">1</span> The ask — on load, when no controller is set</div>
+  <div class="banner">
+    <span class="ico">◈</span>
+    <span>This mapping has <b>no controller set</b>. Tell SXM which hardware it's for and it can show your knobs and buttons by name.</span>
+    <span class="sp"></span>
+    <button class="btn-amber">Identify controller</button>
+    <button class="btn-ghost">Not now</button>
+  </div>
+
+  <!-- BEAT 2 -->
+  <div class="beat"><span class="num">2</span> The screen — clean, one job: pick your hardware</div>
+  <div class="modal">
+    <div class="m-head">
+      <h2>Which controller is this?</h2>
+      <p>Naming your hardware lets SXM read the mapping in your terms — "Play button", "Fader 1" — instead of raw MIDI numbers.</p>
+      <span class="m-for">For device <b>K3_A_v5</b> · 1 of 5 in this file <span style="color:var(--stone600)">▾</span></span>
+    </div>
+    <div class="m-body">
+      <div class="search"><span class="mag">⌕</span><input value="xone" placeholder="Search by brand or model — e.g. Xone:K3, APC40, CDJ"></div>
+      <div class="list">
+        <div class="grp">Allen &amp; Heath</div>
+        <div class="row"><span class="check"></span><span class="name">Xone:K2</span><span class="cov full">FULL MIDI</span></div>
+        <div class="row sel"><span class="check">✓</span><span class="name">Xone:K3</span><span class="cov full">FULL MIDI</span></div>
+        <div class="row"><span class="check"></span><span class="name">Xone:96</span><span class="cov partial">PARTIAL</span></div>
+        <div class="row"><span class="check"></span><span class="name">Xone:PX5</span><span class="cov doc">DOCS ONLY</span></div>
+      </div>
+
+      <div class="confirm">
+        <div class="glyph">K3</div>
+        <div class="info">
+          <div class="n">Allen &amp; Heath Xone:K3</div>
+          <div class="d">58 actions · 34 LED targets · manufacturer-documented</div>
+        </div>
+        <div class="chan">
+          <label>MIDI channel</label>
+          <div class="dd">15 <span class="caret">▾</span></div>
+          <span class="hint">documented<br>default</span>
+        </div>
+      </div>
+    </div>
+    <div class="m-foot">
+      <span class="note">Settings describe your hardware — they never change your mapping or the device.</span>
+      <button class="btn-lg-ghost">Skip — keep generic</button>
+      <button class="btn-lg-amber">Confirm controller</button>
+    </div>
+  </div>
+
+  <!-- BEAT 3 -->
+  <div class="beat"><span class="num">3</span> After — the mapping reads in hardware terms, and you can do this</div>
+  <div class="after">
+    <div class="card">
+      <h3>Rows now name the physical control</h3>
+      <div class="cbody">
+        <div class="maprow"><span class="phys">Play / Cue button</span><span class="midi">Note C1 · ch15</span></div>
+        <div class="maprow"><span class="phys">Fader 1</span><span class="midi">CC 16 · ch15</span></div>
+        <div class="maprow"><span class="phys">Top encoder 1</span><span class="midi">CC 0 · ch15</span></div>
+        <div class="maprow" style="border-bottom:none"><span class="phys">Matrix pad 1·1</span><span class="midi">Note E3 · ch15</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>What you can do with it</h3>
+      <div class="cbody">
+        <ul class="cap">
+          <li><span class="dot">›</span><span><b>Find by control</b> — search "Play button", jump to the rows that use it.</span></li>
+          <li><span class="dot">›</span><span><b>Ask in plain words</b> — the Assistant knows the hardware: "what does my K3 Play button do?"</span></li>
+          <li><span class="dot">›</span><span><b>Fix an address</b> — if your unit differs, capture the real one with MIDI Learn as a saved override.</span></li>
+          <li><span class="dot">›</span><span><b>See what's unknown</b> — partial / docs-only devices say which controls they can't identify.</span></li>
+          <li><span class="dot">›</span><span><b>Keep it</b> — Export JSON retains the profile + overrides (TSI alone can't).</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

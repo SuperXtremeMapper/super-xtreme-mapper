@@ -1,0 +1,1258 @@
+===== PDF PAGE 1 =====
+1-4
+1-1
+1-6
+1-8
+1-9
+1-10
+1-11
+1-12
+1-13
+1-14
+1-15
+1-16
+1-17
+2-1
+2-2
+2-3
+2-4
+3-4
+3-1
+3-2
+3-3
+3-7
+3-8
+3-9
+3-10
+3-11
+3-12
+4-1
+5-1
+5-2
+5-5
+5-3
+5-4
+1-7
+1-5
+1-2
+1-3
+3-5
+3-6
+OMNIS-DUO
+MIDI Message List
+1-19
+1-18
+1-20
+1-21
+1-22
+1-23
+1-24
+1-25
+1-26
+4-2
+1
+
+
+===== PDF PAGE 2 =====
+【MIDI channel assign】
+ MIDI channel is defined as follows.
+0x9*:   Note
+0xB*:   Control Change (CC)
+Channel Category
+Channel No.
+The MIDI messages output from the buttons and knobs of this unit are shown in decimal notation as MIDI assign reference information.
+(Hex)
+Browse
+1
+n=0
+DECK1
+1
+n=0
+NOTE is a MIDI term used for pressing and releasing keys on a piano or keyboard.
+DECK2
+2
+n=1
+CC is an abbreviation for control change.
+DECK3
+3
+n=2
+Control change is a type of MIDI signal used to convey various control information such as sound quality and volume.
+DECK4
+4
+n=3
+EFFECT＆MIXER
+5
+n=4
+DECK1
+6
+n=5
+DECK2
+7
+n=6
+DECK3
+8
+n=7
+DECK4
+9
+n=8
+OTHERS
+12
+n=B
+Condition
+Status
+Data 2
+Status
+Data 1
+Data 2
+(mode)
+(Hex)
+(Dec)
+(Hex)
+(Hex)
+(Hex)
+(Hex)
+(Hex)
+1, DECK
+1/2/3/4
+NOTE
+9n
+45
+2D
+hh
+OFF=0(0x00), ON=127(0x7F)
++SHIFT
+1/2/3/4
+NOTE
+9n
+74
+4A
+hh
+OFF=0(0x00), ON=127(0x7F)
+1/2/3/4
+NOTE
+9n
+44
+2C
+hh
+OFF=0(0x00), ON=127(0x7F)
++SHIFT
+1/2/3/4
+NOTE
+9n
+73
+49
+hh
+OFF=0(0x00), ON=127(0x7F)
+turn
+1/2/3/4
+CC
+Bn
+46
+2E
+hh
+98(0x62)~127(0x7F), 1(0x01)~30(0x1E)
+Transfer difference count value from last operation (±1~±30); ±30 (if exceeds ±30)
+1/2/3/4
+NOTE
+9n
+67
+43
+hh
+OFF=0(0x00), ON=127(0x7F)
++SHIFT
+1/2/3/4
+NOTE
+9n
+68
+44
+hh
+OFF=0(0x00), ON=127(0x7F)
+1/2/3/4
+CC
+Bn
+34
+22
+hh
++SHIFT
+1/2/3/4
+CC
+Bn
+41
+29
+hh
+1/2/3/4
+NOTE
+9n
+32
+20
+hh
+OFF=0(0x00), ON=127(0x7F)
++SHIFT
+1/2/3/4
+NOTE
+9n
+72
+48
+hh
+OFF=0(0x00), ON=127(0x7F)
+1/2/3/4
+CC
+Bn
+33
+21
+hh
++SHIFT
+1/2/3/4
+CC
+Bn
+38
+26
+hh
+5[L,R]
+press
+1/2/3/4
+NOTE
+9n
+63
+3F
+hh
+OFF=0(0x00), ON=127(0x7F)
+1/2/3/4
+NOTE
+9n
+1
+01
+hh
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
++SHIFT
+1/2/3/4
+NOTE
+9n
+5
+05
+hh
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
+7[L,R]
+press
+1/2/3/4
+NOTE
+9n
+0
+00
+hh
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
+6/7/8/9
+NOTE
+9n
+0
+00
+hh
++SHIFT
+6/7/8/9
+NOTE
+9n
+8
+08
+hh
+6/7/8/9
+NOTE
+9n
+1
+01
+hh
++SHIFT
+6/7/8/9
+NOTE
+9n
+9
+09
+hh
+6/7/8/9
+NOTE
+9n
+2
+02
+hh
++SHIFT
+6/7/8/9
+NOTE
+9n
+10
+0A
+hh
+6/7/8/9
+NOTE
+9n
+3
+03
+hh
++SHIFT
+6/7/8/9
+NOTE
+9n
+11
+0B
+hh
+6/7/8/9
+NOTE
+9n
+4
+04
+hh
++SHIFT
+6/7/8/9
+NOTE
+9n
+12
+0C
+hh
+6/7/8/9
+NOTE
+9n
+5
+05
+hh
++SHIFT
+6/7/8/9
+NOTE
+9n
+13
+0D
+hh
+6/7/8/9
+NOTE
+9n
+6
+06
+hh
++SHIFT
+6/7/8/9
+NOTE
+9n
+14
+0E
+hh
+6/7/8/9
+NOTE
+9n
+7
+07
+hh
++SHIFT
+6/7/8/9
+NOTE
+9n
+15
+0F
+hh
+CC
+Bn
+0
+00
+MSB
+CC
+Bn
+32
+20
+LSB
+17
+press
+1/2/3/4
+NOTE
+9n
+81
+51
+hh
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
+18[L,R]
+press
+1/2/3/4
+NOTE
+9n
+18
+12
+hh
+OFF=0(0x00), ON=127(0x7F)
+19[L,R]
+press
+1/2/3/4
+NOTE
+9n
+15
+0F
+hh
+OFF=0(0x00), ON=127(0x7F)
+20[L,R]
+press
+1/2/3/4
+NOTE
+9n
+9
+09
+hh
+OFF=0(0x00), ON=127(0x7F)
+21[L,R]
+press
+1/2/3/4
+NOTE
+9n
+43
+2B
+hh
+OFF=0(0x00), ON=127(0x7F)
+22[L,R]
+press
+1/2/3/4
+NOTE
+9n
+17
+11
+hh
+OFF=0(0x00), ON=127(0x7F)
+23[L,R]
+press
+1/2/3/4
+NOTE
+9n
+31
+1F
+hh
+OFF=0(0x00), ON=127(0x7F)
+press
+1/2/3/4
+NOTE
+9n
+20
+14
+hh
+OFF=0(0x00), ON=127(0x7F)
+press
+1/2/3/4
+NOTE
+9n
+21
+15
+hh
+OFF=0(0x00), ON=127(0x7F)
+press
+1/2/3/4
+NOTE
+9n
+22
+16
+hh
+OFF=0(0x00), ON=127(0x7F)
+press
+1/2/3/4
+NOTE
+9n
+23
+17
+hh
+OFF=0(0x00), ON=127(0x7F)
+press
+1/2/3/4
+NOTE
+9n
+11
+0B
+hh
+OFF=0(0x00), ON=127(0x7F)
+press
+1/2/3/4
+NOTE
+9n
+12
+0C
+hh
+OFF=0(0x00), ON=127(0x7F)
+press
+1/2/3/4
+NOTE
+9n
+10
+0A
+hh
+OFF=0(0x00), ON=127(0x7F)
+1/2/3/4
+CC
+Bn
+28
+1C
+hh
+OFF=0(0x00) 1 -> 127=Left side -> Right side, position data
+1/2/3/4
+NOTE
+9n
+54
+36
+hh
+OFF=0(0x00), ON=127(0x7F)
+2, EFFECT
+5
+CC
+B4
+76
+4C
+hh
+OFF=0(0x00), ON=127(0x7F)
++SHIFT
+5
+CC
+B4
+120
+78
+hh
+OFF=0(0x00), ON=127(0x7F)
+5
+CC
+B4
+77
+4D
+hh
+OFF=0(0x00), ON=127(0x7F)
++SHIFT
+5
+CC
+B4
+121
+79
+hh
+OFF=0(0x00), ON=127(0x7F)
+2
+turn
+5
+CC
+B4
+91
+5B
+hh
+0(0x00)~127(0x7F)  Left side(min)=0(0x00), Right side(max)=127(0x7F) 
+5
+CC
+B4
+114
+72
+hh
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
++SHIFT
+5
+CC
+B4
+52
+34
+hh
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
+Deck 1
+turn
+5
+CC
+B4
+5
+05
+hh
+0(0x00)~127(0x7F)  Left side(LOW)=0(0x00), Right side(HI)=127(0x7F)
+Deck 2
+turn
+5
+CC
+B4
+10
+0A
+hh
+0(0x00)~127(0x7F)  Left side(LOW)=0(0x00), Right side(HI)=127(0x7F)
+Deck 3
+turn
+5
+CC
+B4
+22
+16
+hh
+0(0x00)~127(0x7F)  Left side(LOW)=0(0x00), Right side(HI)=127(0x7F)
+Deck 4
+turn
+5
+CC
+B4
+83
+53
+hh
+0(0x00)~127(0x7F)  Left side(LOW)=0(0x00), Right side(HI)=127(0x7F)
+3, MIXER
+Deck 1
+turn
+5
+CC
+B4
+1
+01
+hh
+0(0x00)~127(0x7F)  Left side(-∞)=0(0x00), Right side(+9)=127(0x7F)
+Deck 2
+turn
+5
+CC
+B4
+6
+06
+hh
+0(0x00)~127(0x7F)  Left side(-∞)=0(0x00), Right side(+9)=127(0x7F)
+Deck 3
+turn
+5
+CC
+B4
+12
+0C
+hh
+0(0x00)~127(0x7F)  Left side(-∞)=0(0x00), Right side(+9)=127(0x7F)
+Deck 4
+turn
+5
+CC
+B4
+80
+50
+hh
+0(0x00)~127(0x7F)  Left side(-∞)=0(0x00), Right side(+9)=127(0x7F)
+Deck 1
+turn
+5
+CC
+B4
+2
+02
+hh
+0(0x00)~127(0x7F)  Left side(-26)=0(0x00), Right side(+6)=127(0x7F)
+Deck 2
+turn
+5
+CC
+B4
+7
+07
+hh
+0(0x00)~127(0x7F)  Left side(-26)=0(0x00), Right side(+6)=127(0x7F)
+Deck 3
+turn
+5
+CC
+B4
+14
+0E
+hh
+0(0x00)~127(0x7F)  Left side(-26)=0(0x00), Right side(+6)=127(0x7F)
+Deck 4
+turn
+5
+CC
+B4
+81
+51
+hh
+0(0x00)~127(0x7F)  Left side(-26)=0(0x00), Right side(+6)=127(0x7F)
+Deck 1
+turn
+5
+CC
+B4
+3
+03
+hh
+0(0x00)~127(0x7F)  Left side(-26)=0(0x00), Right side(+6)=127(0x7F)
+Deck 2
+turn
+5
+CC
+B4
+8
+08
+hh
+0(0x00)~127(0x7F)  Left side(-26)=0(0x00), Right side(+6)=127(0x7F)
+Deck 3
+turn
+5
+CC
+B4
+15
+0F
+hh
+0(0x00)~127(0x7F)  Left side(-26)=0(0x00), Right side(+6)=127(0x7F)
+Deck 4
+turn
+5
+CC
+B4
+92
+5C
+hh
+0(0x00)~127(0x7F)  Left side(-26)=0(0x00), Right side(+6)=127(0x7F)
+Deck 1
+turn
+5
+CC
+B4
+4
+04
+hh
+0(0x00)~127(0x7F)  Left side(-26)=0(0x00), Right side(+6)=127(0x7F)
+Deck 2
+turn
+5
+CC
+B4
+9
+09
+hh
+0(0x00)~127(0x7F)  Left side(-26)=0(0x00), Right side(+6)=127(0x7F)
+Deck 3
+turn
+5
+CC
+B4
+21
+15
+hh
+0(0x00)~127(0x7F)  Left side(-26)=0(0x00), Right side(+6)=127(0x7F)
+Deck 4
+turn
+5
+CC
+B4
+82
+52
+hh
+0(0x00)~127(0x7F)  Left side(-26)=0(0x00), Right side(+6)=127(0x7F)
+Deck 1
+press
+5
+CC
+B4
+70
+46
+hh
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
+Deck 2
+press
+5
+CC
+B4
+71
+47
+hh
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
+Deck 3
+press
+5
+CC
+B4
+72
+48
+hh
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
+Deck 4
+press
+5
+CC
+B4
+73
+49
+hh
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
+4
+turn
+5
+CC
+B4
+27
+1B
+hh
+0(0x00)~127(0x7F)  Left side(CUE)=0(0x00), Right side(MASTER)=127(0x7F) 
+5
+turn
+5
+CC
+B4
+26
+1A
+hh
+0(0x00)~127(0x7F)  Left side(-∞)=0(0x00), Right side(0)=127(0x7F)
+6
+slide
+5
+CC
+B4
+11
+0B
+hh
+0(0x00)~127(0x7F)  Left end=0(0x00), Right end=127(0x7F)
+Deck 1
+slide
+5
+CC
+B4
+17
+11
+hh
+0(0x00)~127(0x7F)  Bottom=0(0x00), Top=127(0x7F)
+Deck 2
+slide
+5
+CC
+B4
+18
+12
+hh
+0(0x00)~127(0x7F)  Bottom=0(0x00), Top=127(0x7F)
+Deck 3
+slide
+5
+CC
+B4
+19
+13
+hh
+0(0x00)~127(0x7F)  Bottom=0(0x00), Top=127(0x7F)
+Deck 4
+slide
+5
+CC
+B4
+20
+14
+hh
+0(0x00)~127(0x7F)  Bottom=0(0x00), Top=127(0x7F)
+8
+1/2/3/4
+CC
+Bn
+2
+hh
+Refer to MIDI-OUT/CH LEVEL METER
+9
+turn
+5
+CC
+B4
+25
+19
+hh
+0(0x00)~127(0x7F)  Left side(-∞)=0(0x00), Right side(0)=127(0x7F)
+10
+turn
+5
+CC
+B4
+24
+18
+hh
+0(0x00)~127(0x7F)  Left side(-∞)=0(0x00), Right side(0)=127(0x7F)
+turn
+5
+CC
+B4
+88
+58
+hh
+0(0x00)~127(0x7F)  Left side(-∞)=0(0x00), Right side(0)=127(0x7F)
+turn
+5
+CC
+B4
+89
+59
+hh
+0(0x00)~127(0x7F)  Left side(-∞)=0(0x00), Right side(0)=127(0x7F)
+12
+press
+5
+CC
+B4
+90
+5A
+hh
+OFF=0(0x00), ON=127(0x7F)
+THRU
+5
+CC
+B4
+95
+5F
+0
+CURVE 1
+5
+CC
+B4
+95
+5F
+40
+CURVE 2
+5
+CC
+B4
+95
+5F
+7F
+*Select on the "SETTINGS" screen.
+MIDI
+Channel
+(Dec)
+NOTE /
+CC
+Data1
+* Functions are the same for both left and right decks.
+LEVEL DEPTH
+3
+BEAT EFFECT ON/OFF
+press
+4
+COLOR
+1
+BEAT LEFT
+press
+11
+3
+7
+1
+2
+EQ MID
+EQ LOW
+BEAT RIGHT
+press
+MIDI assign
+MIDI-IN
+MIDI-OUT
+Details (Data2)
+ reference info.
+(to computer)
+(from computer)
+CH LEVEL METER
+BOOTH MONITOR LEVEL
+MASTER LEVEL
+MIC1 LEVEL
+MIC2 LEVEL
+CH CUE
+(Headphones)
+HEADPHONES CUE / MASTER
+HEADPHONES LEVEL
+CROSSFADER
+CH FADER
+TRIM
+EQ HIGH
+MIDI
+Channel
+Group
+Fig.
+User Interface (UI)
+UI name
+MIC ON
+-
+CROSSFADER CURVE
+SETTINGS
+(*)
+press
+25[L,R]
+CUE/LOOP CALL NEXT
+CUE/LOOP CALL PREV
+MEMORY/DELETE
+26[L,R]
+NEEDLE POSITION
+SYNC
+24[L,R]
+TEMPO RANGE ±6%
+TEMPO RANGE ±10%
+TEMPO RANGE ±16%
+TEMPO RANGE WIDE
+LOAD
+JOG MODE
+AUTO CUE
+QUANTIZE
+SLIP
+MASTER TEMPO
+16[L,R]
+TEMPO
+slide
+1/2/3/4
+0～16383"－" side :   0  "＋" side :   16383
+15[L,R]
+HOT CUE H
+press
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
+[MIDI OUT]　0(0x00) : OFF,1(0x01)-127(0x7F) : ON
+<- same as MIDI IN
+14[L,R]
+HOT CUE G
+press
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
+[MIDI OUT]　0(0x00) : OFF,1(0x01)-127(0x7F) : ON
+<- same as MIDI IN
+13[L,R]
+HOT CUE F
+press
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
+[MIDI OUT]　0(0x00) : OFF,1(0x01)-127(0x7F) : ON
+<- same as MIDI IN
+12[L,R]
+HOT CUE E
+press
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
+[MIDI OUT]　0(0x00) : OFF,1(0x01)-127(0x7F) : ON
+<- same as MIDI IN
+11[L,R]
+HOT CUE D
+press
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
+[MIDI OUT]　0(0x00) : OFF,1(0x01)-127(0x7F) : ON
+<- same as MIDI IN
+10[L,R]
+HOT CUE C
+press
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
+[MIDI OUT]　0(0x00) : OFF,1(0x01)-127(0x7F) : ON
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
+[MIDI OUT]　0(0x00) : OFF,1(0x01)-127(0x7F) : ON
+<- same as MIDI IN
+9[L,R]
+HOT CUE B
+press
+<- same as MIDI IN
+OFF=0(0x00), ON=127(0x7F)
+[MIDI OUT]　0(0x00) : OFF,1(0x01)-127(0x7F) : ON
+<- same as MIDI IN
+PLAY/PAUSE
+8[L,R]
+HOT CUE A
+press
+<- same as MIDI IN
+Difference count value from last operation
+Turn clockwise:   Increases from 65 (0x41)
+Turn counterclockwise:   Decreases from 63 (0x3F)
+SHIFT
+6[L,R]
+CUE
+press
+4[L,R]
+Jog wheel
+(top)
+turn
+Difference count value from last operation
+Turn clockwise:   Increases from 65 (0x41)
+Turn counterclockwise:   Decreases from 63 (0x3F)
+touch
+Jog wheel
+(Side)
+turn
+HOT CUE
+Trigger
+2[L,R]
+BEAT JUMP FWD
+press
+3[L,R]
+BEAT LOOP
+press
+1[L,R]
+BEAT JUMP REV
+press
++SHIFT
+2
+
+
+===== PDF PAGE 3 =====
+Condition
+Status
+Data 2
+Status
+Data 1
+Data 2
+(mode)
+(Hex)
+(Dec)
+(Hex)
+(Hex)
+(Hex)
+(Hex)
+(Hex)
+4, BROWSER
+1
+CC
+B0
+79
+4F
+hh
++SHIFT
+1
+CC
+B0
+96
+60
+hh
+1
+NOTE
+90
+51
+33
+hh
+OFF=0(0x00), ON=127(0x7F)
++SHIFT
+1
+NOTE
+90
+97
+61
+hh
+OFF=0(0x00), ON=127(0x7F)
+2
+press
+1/2/3/4
+CC
+Bn
+102
+66
+hh
+OFF=0(0x00), ON=127(0x7F)
+DECK1/2=B0,B1
+DECK3/4=B2,B3
+5, OTHERS
+－
+1/2/3/4
+CC
+Bn
+100
+64
+hh
+OFF=0(0x00), ON=127(0x7F)
+([BROWSE] > [MIDI] > [LOAD])
+－
+5
+CC
+B4
+101
+65
+hh
+<- same as MIDI IN
+Select MIDI CONTROL mode : 0x00
+Select &EP148 mode : ON=0x7F
+([UTLITY] > [MIXER MODE])
+1
+press
+12
+CC
+BB
+0
+00
+hh
+OFF=0(0x00), ON=127(0x7F)
+2
+press
+12
+CC
+BB
+1
+01
+hh
+OFF=0(0x00), ON=127(0x7F)
+3
+press
+12
+NOTE
+9B
+0
+00
+hh
+OFF=0(0x00), ON=127(0x7F)
+4
+press
+12
+NOTE
+9B
+1
+01
+hh
+OFF=0(0x00), ON=127(0x7F)
+5
+press
+12
+NOTE
+9B
+2
+02
+hh
+OFF=0(0x00), ON=127(0x7F)
+CH LEVEL METER
+MIDI OUT (C.C)
+Red
+12dB
+104~127
+Amber
+6dB
+94~103
+Amber
+3dB
+89~93
+Amber
+0dB
+84~88
+White
+-3dB
+79~83
+White
+-6dB
+75~78
+White
+-15dB
+65~74
+© 2023 AlphaTheta Corporation. All rights reserved. 
+(from computer)
+UI name
+Trigger
++SHIFT
+MIDI
+Channel
+(Dec)
+NOTE /
+CC
+Data1
+Fig.
+User Interface (UI)
+MIDI assign
+MIDI-IN
+ reference info.
+(to computer)
+TRACK FWD
+TRACK REV
+Difference count value from last operation
+Turn clockwise:  1~30(0x01~0x1E)
+Turn counterclockwise:  127~98(0x7F~0x62)
+MIDI-OUT
+Details (Data2)
+Display level
+PC Control mode
+Mixer mode
+Bluetooth ON
+Bluetooth Headphone CUE
+PLAY/PAUSE
+DECK SELECT
+1
+ROTARY SELECTOR
+turn
+press
+Group
+3

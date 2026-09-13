@@ -1,0 +1,1178 @@
+                                                                                      DDJ-REV5
+                                                                                    List of MIDI Messages
+           D4
+                                                                                                 B1          M1     M4                      M7
+           D7
+           D6                                                                    B2              B3
+                                                                                                             M2     M5                      M8
+           D5                               D8          D9           D10
+
+          D11                       D12           D13     D14              D15      D16         D17          M3     M6
+                                                                                                                                        E7               E8
+          D18                             D20      D21       D22        D23         D24          D25         E1     E2         E3                                     E4         E5        E6
+          D19                                                                                                                          E9        E11    E10
+
+                                                                                                         P6       P7
+                                                                                                                                                       E12
+          D26
+                                                                                                             P1      P2           P3        P4
+
+
+                D3
+                                                                                                                             P5
+
+
+
+                                                                                                                                                 M10                      M11         M12
+                                                                                                        M9
+                                                                                                                       M13
+
+
+
+                                                                                                             D1
+
+
+                                                                                                             D2                     M14
+
+
+
+
+                                M15        M16      M17                 M18      M19                  M20                M21                                                           M22      M23          M24        M25
+
+
+
+
+【MIDI channel assignment】
+MIDI channel is defined as shown below.
+0x9* : Note
+0xB* : Control Change (CC)
+
+                     Channel Category                         MIDI               Channel No. (Hex)
+                                                             Channel
+DECK 1                                                           1                        n=0                            1    As a reference for MIDI assign, MIDI message sent from buttons and knobs of this controller are listed in decimal numbers and English scale.
+DECK 2                                                           2                        n=1                                 Use this as a reference for your MIDI compatible software.
+DECK 3                                                           3                        n=2
+DECK 4                                                           4                        n=3                                 NOTE is a MIDI term used for pressing and releasing keys on a piano or keyboard.
+FX (CH1/CH3)                                                     5                        m=4                                 CC is an abbreviation for control change.
+FX (CH2/CH4)                                                     6                        m=5                                 Control change is a type of MIDI signal used to convey various control information such as sound quality and volume.
+BROWSER, Global Section                                          7                        m=6                                 English scale uses alphabetical letters of C, D, E, F, G, A and B as well as # to indicate halftone.
+PERFORMANCE PAD 1-8 (DECK1 without SHIFT)                        8                        p=7
+PERFORMANCE PAD 1-8 (DECK1 with SHIFT)                           9                        s=8
+PERFORMANCE PAD 1-8 (DECK2 without SHIFT)                       10                        p=9
+PERFORMANCE PAD 1-8 (DECK2 with SHIFT)                          11                        s=A
+PERFORMANCE PAD 1-8 (DECK3 without SHIFT)                       12                        p=B
+PERFORMANCE PAD 1-8 (DECK3 with SHIFT)                          13                        s=C
+PERFORMANCE PAD 1-8 (DECK4 without SHIFT)                       14                        p=D
+PERFORMANCE PAD 1-8 (DECK4 with SHIFT)                          15                        s=E
+
+
+
+                                                                                                                                                                             MIDI-IN                      MIDI-OUT
+                                                             User Interface                                                  MIDI assign reference        1               (to computer)               (from computer)
+     Group           Fig.                                                                                           MIDI                    MIDI Data (Data 1)                                                                                        Details (Data 2)
+                                                                                           Condition                           NOTE                                Status    Data 1   Data 2    Status    Data 1   Data 2
+                                        UI name               Trigger      +SHIFT                                 Channel                               (English
+                                                                                            (mode)                              / CC        (Dec)                  (Hex)     (Hex)    (Hex)     (Hex)     (Hex)    (Hex)
+                                                                                                                   (Dec)                                 scale)
+BROWSE                B1                                                                          -                  7            CC         64               -     B6          40        hh      -          -          -   Difference count value from previous operated
+                                                               rotate                                                                                                                                                       Turn clockwise : 1 ～ 30 (0x01 ～ 0x1E)
+                                                                           +SHIFT                 -                  7            CC         100              -     B6          64        hh      -          -          -   Turn counterclockwise : 127 ～ 98 (0x7F ～ 0x62)
+                            BROWSE
+                                                                                                  -                  7         NOTE          65              F4      96         41        hh      -          -          -   OFF=0x00, ON=0x7F
+                                                               press
+                                                                           +SHIFT                 -                  7         NOTE          66           F#4        96         42        hh      -          -          -   OFF=0x00, ON=0x7F
+                      B2                                                                                             7         NOTE          101             F7      96         65        hh      -          -          -   OFF=0x00, ON=0x7F
+                            BACK                               press                              -
+                                                                           +SHIFT                                    7         NOTE          102          F#7        96         66        hh      -          -          -   OFF=0x00, ON=0x7F
+                      B3                                                                                             7         NOTE          70           A#4        96         46        hh      -          -          -   OFF=0x00, ON=0x7F
+                                                                                                Deck1
+                                                                           +SHIFT                                    7         NOTE          93              A6      96         5D        hh      -          -          -   OFF=0x00, ON=0x7F
+                                                                                                                     7         NOTE          71              B4      96         47        hh      -          -          -   OFF=0x00, ON=0x7F
+                                                                                                Deck2
+                                                                           +SHIFT                                    7         NOTE          109          C#8        96         6D        hh      -          -          -   OFF=0x00, ON=0x7F
+                            LOAD                               press
+                                                                                                                     7         NOTE          72              C5      96         48        hh      -          -          -   OFF=0x00, ON=0x7F
+                                                                                                Deck3
+                                                                           +SHIFT                                    7         NOTE          94           A#6        96         5E        hh      -          -          -   OFF=0x00, ON=0x7F
+                                                                                                                     7         NOTE          73           C#5        96         49        hh      -          -          -   OFF=0x00, ON=0x7F
+                                                                                                Deck4
+                                                                           +SHIFT                                    7         NOTE          110             D8      96         6E        hh      -          -          -   OFF=0x00, ON=0x7F
+                                                                                                                                                          MIDI-IN                       MIDI-OUT
+                                              User Interface                                                 MIDI assign reference     1               (to computer)                (from computer)
+       Group   Fig.                                                                               MIDI                   MIDI Data (Data 1)                                                                                            Details (Data 2)
+                                                                           Condition                           NOTE                             Status    Data 1   Data 2    Status     Data 1   Data 2
+                                 UI name       Trigger    +SHIFT                                Channel                              (English
+                                                                            (mode)                              / CC      (Dec)                 (Hex)     (Hex)    (Hex)     (Hex)      (Hex)    (Hex)
+                                                                                                 (Dec)                                scale)
+DECK           D1                                                                                1/2/3/4       NOTE        11          B-1        9n        0B         hh      9n         0B          hh   OFF=0x00, ON=0x7F
+                      PLAY/PAUSE                press                           -
+                                                          +SHIFT                                 1/2/3/4       NOTE        27          D#1        9n        1B         hh      9n         1B          hh   OFF=0x00, ON=0x7F
+               D2                                                                                1/2/3/4       NOTE        12          C0         9n        0C         hh      9n         0C          hh   OFF=0x00, ON=0x7F
+                      CUE                       press                           -
+                                                          +SHIFT                                 1/2/3/4       NOTE        28          E1         9n        1C         hh      9n         1C          hh   OFF=0x00, ON=0x7F
+
+               D3                                                        Vinyl mode on           1/2/3/4        CC         34              -     Bn         22         hh      -           -          -
+                                                                                                                                                                                                           Difference count value from previous operated
+                                                rotate                   Vinyl mode off          1/2/3/4        CC         35              -     Bn         23         hh      -           -          -    Turn clockwise : Increases from 65 (0x41)
+                      JOG                                                                                                                                                                                  Turn counterclockwise : Decreases from 63 (0x3F)
+                      (top)                               +SHIFT                -                1/2/3/4        CC         31              -     Bn         1F         hh      -           -          -
+
+                                                                                -                1/2/3/4        CC         13              -      9n        0D         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                touch
+                                                          +SHIFT                -                1/2/3/4        CC         28              -      9n        1C         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                                -                1/2/3/4        CC         33              -     Bn         21         hh      -           -          -    Difference count value from previous operated
+                      JOG
+                                                rotate                                                                                                                                                     Turn clockwise : Increases from 65 (0x41)
+                      (side)
+                                                          +SHIFT                -                1/2/3/4        CC         38              -     Bn         26         hh      -           -          -    Turn counterclockwise : Decreases from 63 (0x3F)
+
+                      JOG ILLUMINATION                                          -                1/2/3/4         -          -              -      -          -          -     Bn          １E          hh   hh：0x00-0x48 '00' means lights off.
+               D4                                                                                                          0                                00         MSB
+                                                                                                 1/2/3/4        CC                         -     Bn                            -           -          -    Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                                                                                                                           32                               20         LSB
+                      TEMPO                     slide                           -                                                                                                                          "－" side : Min (MSB:0x00 LSB:0x00)
+                                                                                                                           5                                05         MSB
+                                                          +SHIFT                                 1/2/3/4        CC                         -     Bn                            -           -          -    "＋" side : Max (MSB:0x7F LSB:0x7F)
+                                                                                                                           37                               25         LSB
+               D5                                                                                1/2/3/4       NOTE         8         G#-1        9n        08         hh      -           -          -    OFF=0x00, ON=0x7F
+                      TEMPO RANGE               press                           -
+                                                          +SHIFT                                 1/2/3/4       NOTE        24          C1         9n        18         hh      -           -          -    OFF=0x00, ON=0x7F
+               D6                                                                                1/2/3/4       NOTE         9          A-1        9n        09         hh      9n         09          hh   OFF=0x00, ON=0x7F
+                      KEY LOCK                  press                           -
+                                                          +SHIFT                                 1/2/3/4       NOTE        25          C#1        9n        19         hh      9n         19          hh   OFF=0x00, ON=0x7F
+               D7                                                                                1/2/3/4       NOTE        10         A#-1        9n        0A         hh      9n         0A          hh   OFF=0x00, ON=0x7F
+                      SYNC                      press                           -
+                                                          +SHIFT                                 1/2/3/4       NOTE        26          D1         9n        1A         hh      9n         1A          hh   OFF=0x00, ON=0x7F
+               D8     BPM TRANSITION BAR       Indicate                         -                   -            -          -              -      -          -          -      9n         30          hh   OFF=0x00, ON=0x7F
+               D9                                                                                   7          NOTE        62          D4         96        3E         hh      -           -          -    OFF=0x00, ON=0x7F
+                      BPM TRANSITION SELECT     press                           -
+                                                          +SHIFT                                    7          NOTE        48          C3         96        30         hh      -           -          -    OFF=0x00, ON=0x7F
+               D10                                                                               1/2/3/4       NOTE        49          C#3        9n        31         hh      9n         31          hh   OFF=0x00, ON=0x7F
+                      BPM TRANSITION START      press                           -
+                                                          +SHIFT                                 1/2/3/4       NOTE        51          D#3        9n        33         hh      9n         33          hh   OFF=0x00, ON=0x7F
+               D11                                                   Clear the check box in
+                                                                    [LOOP options.] to work
+                                                                                                 1/2/3/4       NOTE         4          E-1        9n        04         hh      9n         04          hh   OFF=0x00, ON=0x7F
+                                                                     as the Auto Beat Loop
+                                                                             button.
+
+                                                                                                                                                                                                           OFF=0x00,
+                                                                                                                                                                                                           1/4 beat = 0x01
+                      AUTO LOOP                 press                    Mark the check                                                                                                                    1/2 beat = 0x02
+                                                                    box in [LOOP options.] to                                                                                                              1 beat = 0x03
+                                                                                                 1/2/3/4       NOTE         5          F-1        9n        05         hh      9n         04          hh
+                                                                     activate the loop length                                                                                                              2 beats = 0x04
+                                                                         set by the slider.                                                                                                                4 beats = 0x05
+                                                                                                                                                                                                           8 beats = 0x06
+                                                                                                                                                                                                           16 beats = 0x07
+
+                                                          +SHIFT                -                1/2/3/4       NOTE        20          G#0        9n        14         hh      9n         14          hh   OFF=0x00, ON=0x7F
+               D12                                                                               1/2/3/4       NOTE         1         C#-1        9n        01         hh      9n         01          hh   OFF=0x00, ON=0x7F
+                      LOOP 1/2X                 press                           -
+                                                          +SHIFT                                 1/2/3/4       NOTE        16          E0         9n        10         hh      9n         10          hh   OFF=0x00, ON=0x7F
+               D13                                                                               1/2/3/4       NOTE         3         D#-1        9n        03         hh      9n         03          hh   OFF=0x00, ON=0x7F
+                      LOOP 2X                   press                           -
+                                                          +SHIFT                                 1/2/3/4       NOTE        18          F#0        9n        12         hh      9n         12          hh   OFF=0x00, ON=0x7F
+               D14                                                                               1/2/3/4       NOTE        40          E2         9n        28         hh      9n         28          hh   OFF=0x00, ON=0x7F
+                      SLIP                      press                           -
+                                                          +SHIFT                                 1/2/3/4       NOTE        56          G#3        9n        38         hh      9n         38          hh   OFF=0x00, ON=0x7F
+               D15                                                                               1/2/3/4       NOTE        41          F2         9n        29         hh      9n         29          hh   OFF=0x00, ON=0x7F
+                      CENSOR                    press                           -
+                                                          +SHIFT                                 1/2/3/4       NOTE        57          A3         9n        39         hh      9n         39          hh   OFF=0x00, ON=0x7F
+               D16                                                                               1/2/3/4       NOTE        42          F#2        9n        2A         hh      9n         2A          hh   OFF=0x00, ON=0x7F
+                      KEY －                     press                           -
+                                                          +SHIFT                                 1/2/3/4       NOTE        58          A#3        9n        3A         hh      9n         3A          hh   OFF=0x00, ON=0x7F
+               D17                                                                               1/2/3/4       NOTE        43          G2         9n        2B         hh      9n         2B          hh   OFF=0x00, ON=0x7F
+                      KEY ＋                     press                           -
+                                                          +SHIFT                                 1/2/3/4       NOTE        59          B3         9n        3B         hh      9n         3B          hh   OFF=0x00, ON=0x7F
+               D18                                                                               1/2/3/4       NOTE        37          C#2        9n        25         hh      -           -          -    OFF=0x00, ON=0x7F
+                      STEMS                     press                           -
+                                                          +SHIFT                                 1/2/3/4       NOTE        53          F3         9n        35         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                           +VOCAL            Deck1                  7          NOTE        32          G#1        96        20         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                             Deck2                  7          NOTE        33          A1         96        21         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                             Deck3                  7          NOTE        34          A#1        96        22         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                             Deck4                  7          NOTE        35          B1         96        23         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                          +MELODY            Deck1                  7          NOTE        36          C2         96        24         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                             Deck2                  7          NOTE        37          C#2        96        25         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                             Deck3                  7          NOTE        38          D2         96        26         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                             Deck4                  7          NOTE        39          D#2        96        27         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                           +BASS             Deck1                  7          NOTE        40          E2         96        28         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                             Deck2                  7          NOTE        41          F2         96        29         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                             Deck3                  7          NOTE        42          F#2        96        2A         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                             Deck4                  7          NOTE        43          G2         96        2B         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                          +DRUMS             Deck1                  7          NOTE        44          G#2        96        2C         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                             Deck2                  7          NOTE        45          A2         96        2D         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                             Deck3                  7          NOTE        46          A#2        96        2E         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                             Deck4                  7          NOTE        47          B2         96        2F         hh      -           -          -    OFF=0x00, ON=0x7F
+               D19    STEMS SOLO               Indicate                         -                   -            -          -              -      -          -          -      9n         34          hh   OFF=0x00, ON=0x7F
+               D20                                                                              8/10/12/14     NOTE        72          C5         9p        48         hh      9p         48          hh   OFF=0x00, ON=0x7F
+                                                press                  HOT CUE MODE
+                                                          +SHIFT                                9/11/13/15     NOTE        72          C5         9s        48         hh      9s         48          hh   OFF=0x00, ON=0x7F
+                                                                                                8/10/12/14     NOTE        88          E6         9p        58         hh      9p         58          hh   OFF=0x00, ON=0x7F
+                                                press                SAVED LOOP MODE
+                                                          +SHIFT                                9/11/13/15     NOTE        88          E6         9s        58         hh      9s         58          hh   OFF=0x00, ON=0x7F
+                                                                                                8/10/12/14     NOTE        104         G#7        9p        68         hh      9p         68          hh   OFF=0x00, ON=0x7F
+                      VOCAL / PAD 1             press               SCRATCH BANK MODE
+                                                          +SHIFT                                9/11/13/15     NOTE        104         G#7        9s        68         hh      9s         68          hh   OFF=0x00, ON=0x7F
+                                                                                                8/10/12/14     NOTE        120         C9         9p        78         hh      9p         78          hh   OFF=0x00, ON=0x7F
+                                                press                  SAMPLER MODE
+                                                          +SHIFT                                9/11/13/15     NOTE        120         C9         9s        78         hh      9s         78          hh   OFF=0x00, ON=0x7F
+
+                                                press                   STEMS MODE               1/2/3/4       NOTE        44          G#2        9n        2C         hh      9n         2C          hh   OFF=0x00, ON=0x7F
+
+               D21                                                                              8/10/12/14     NOTE        73          C#5        9p        49         hh      9p         49          hh   OFF=0x00, ON=0x7F
+                                                press                  HOT CUE MODE
+                                                          +SHIFT                                9/11/13/15     NOTE        73          C#5        9s        49         hh      9s         49          hh   OFF=0x00, ON=0x7F
+                                                                                                8/10/12/14     NOTE        89          F6         9p        59         hh      9p         59          hh   OFF=0x00, ON=0x7F
+                                                press                SAVED LOOP MODE
+                                                          +SHIFT                                9/11/13/15     NOTE        89          F6         9s        59         hh      9s         59          hh   OFF=0x00, ON=0x7F
+                                                                                                8/10/12/14     NOTE        105         A7         9p        69         hh      9p         69          hh   OFF=0x00, ON=0x7F
+                      MELODY / PAD 2            press               SCRATCH BANK MODE
+                                                          +SHIFT                                9/11/13/15     NOTE        105         A7         9s        69         hh      9s         69          hh   OFF=0x00, ON=0x7F
+                                                                                                8/10/12/14     NOTE        121         C#9        9p        79         hh      9p         79          hh   OFF=0x00, ON=0x7F
+                                                press                  SAMPLER MODE
+                                                          +SHIFT                                9/11/13/15     NOTE        121         C#9        9s        79         hh      9s         79          hh   OFF=0x00, ON=0x7F
+
+                                                press                   STEMS MODE               1/2/3/4       NOTE        45          A2         9n        2D         hh      9n         2D          hh   OFF=0x00, ON=0x7F
+
+               D22                                                                              8/10/12/14     NOTE       NOTE          74       D5         4A         hh      9p         4A          hh   OFF=0x00, ON=0x7F
+                                                press                  HOT CUE MODE
+                                                          +SHIFT                                9/11/13/15     NOTE       NOTE          74       D5         4A         hh      9s         4A          hh   OFF=0x00, ON=0x7F
+                                                                                                8/10/12/14     NOTE       NOTE          90       F#6        5A         hh      9p         5A          hh   OFF=0x00, ON=0x7F
+                                                press                SAVED LOOP MODE
+                                                          +SHIFT                                9/11/13/15     NOTE       NOTE          90       F#6        5A         hh      9s         5A          hh   OFF=0x00, ON=0x7F
+                                                                                                8/10/12/14     NOTE       NOTE         106       A#7        6A         hh      9p         6A          hh   OFF=0x00, ON=0x7F
+                      BASS / PAD 3              press               SCRATCH BANK MODE
+                                                          +SHIFT                                9/11/13/15     NOTE       NOTE         106       A#7        6A         hh      9s         6A          hh   OFF=0x00, ON=0x7F
+                                                                                                8/10/12/14     NOTE       NOTE         122       D9         7A         hh      9p         7A          hh   OFF=0x00, ON=0x7F
+                                                press                  SAMPLER MODE
+                                                          +SHIFT                                9/11/13/15     NOTE       NOTE         122       D9         7A         hh      9s         7A          hh   OFF=0x00, ON=0x7F
+
+                                                press                   STEMS MODE               1/2/3/4       NOTE        46          A#2        9n        2E         hh      9n         2E          hh   OFF=0x00, ON=0x7F
+                                                                                                                                                    MIDI-IN                       MIDI-OUT
+                                               User Interface                                          MIDI assign reference     1               (to computer)                (from computer)
+       Group   Fig.                                                                         MIDI                   MIDI Data (Data 1)                                                                                      Details (Data 2)
+                                                                         Condition                       NOTE                             Status    Data 1   Data 2    Status     Data 1   Data 2
+                                 UI name        Trigger    +SHIFT                         Channel                              (English
+                                                                          (mode)                          / CC      (Dec)                 (Hex)     (Hex)    (Hex)     (Hex)      (Hex)    (Hex)
+                                                                                           (Dec)                                scale)
+DECK           D23                                                                        8/10/12/14     NOTE        75          D#5        9p        4B         hh      9p         4B          hh   OFF=0x00, ON=0x7F
+                                                 press                HOT CUE MODE
+                                                           +SHIFT                         9/11/13/15     NOTE        75          D#5        9s        4B         hh      9s         4B          hh   OFF=0x00, ON=0x7F
+                                                                                          8/10/12/14     NOTE        91          G6         9p        5B         hh      9p         5B          hh   OFF=0x00, ON=0x7F
+                                                 press               SAVED LOOP MODE
+                                                           +SHIFT                         9/11/13/15     NOTE        91          G6         9s        5B         hh      9s         5B          hh   OFF=0x00, ON=0x7F
+                                                                                          8/10/12/14     NOTE        107         B7         9p        6B         hh      9p         6B          hh   OFF=0x00, ON=0x7F
+                      DRUMS / PAD 4              press              SCRATCH BANK MODE
+                                                           +SHIFT                         9/11/13/15     NOTE        107         B7         9s        6B         hh      9s         6B          hh   OFF=0x00, ON=0x7F
+                                                                                          8/10/12/14     NOTE        123         D#9        9p        7B         hh      9p         7B          hh   OFF=0x00, ON=0x7F
+                                                 press                SAMPLER MODE
+                                                           +SHIFT                         9/11/13/15     NOTE        123         D#9        9s        7B         hh      9s         7B          hh   OFF=0x00, ON=0x7F
+
+                                                 press                 STEMS MODE          1/2/3/4       NOTE        47          B2         9n        2F         hh      9n         2F          hh   OFF=0x00, ON=0x7F
+
+               D24                                                                         1/2/3/4       NOTE        38          D2         9n        26         hh      -           -          -    OFF=0x00, ON=0x7F
+                      HOT CUE                    press                        -
+                                                           +SHIFT                          1/2/3/4       NOTE        54          F#3        9n        36         hh      -           -          -    OFF=0x00, ON=0x7F
+               D25                                                                         1/2/3/4       NOTE        39          D#2        9n        27         hh      -           -          -    OFF=0x00, ON=0x7F
+                      SCRATCH BANK               press                        -
+                                                           +SHIFT                          1/2/3/4       NOTE        55          G3         9n        37         hh      -           -          -    OFF=0x00, ON=0x7F
+               D26                                                                            3          NOTE         6         F#-1        92        06         hh      -           -          -    OFF=0x00, ON=0x7F
+                      DECK1/3                    press               Switch from Deck3
+                                                                                              1          NOTE        62          D4         90        3E         7F      -           -          -    Deck1 on
+                                                                          to Deck1
+                                                                                              3          NOTE        62          D4         92        3E         00      -           -          -    Deck3 off
+                                                                                              3          NOTE         6         F#-1        92        06         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                     Switch from Deck1
+                                                                                              1          NOTE        62          D4         90        3E         00      -           -          -    Deck1 off
+                                                                          to Deck3
+                                                                                              3          NOTE        62          D4         92        3E         7F      -           -          -    Deck3 on
+                                                           +SHIFT        Dual Deck            7          NOTE        124         E9         96        7C         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                                              4          NOTE         6         F#-1        93        06         hh      -           -          -    OFF=0x00, ON=0x7F
+                      DECK2/4                    press               Switch from Deck4
+                                                                                              2          NOTE        62          D4         91        3E         7F      -           -          -    Deck2 on
+                                                                          to Deck2
+                                                                                              4          NOTE        62          D4         93        3E         00      -           -          -    Deck4 off
+                                                                                              4          NOTE         6         F#-1        93        06         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                     Switch from Deck2
+                                                                                              2          NOTE        62          D4         91        3E         00      -           -          -    Deck2 off
+                                                                          to Deck4
+                                                                                              4          NOTE        62          D4         93        3E         7F      -           -          -    Deck4 on
+                                                           +SHIFT        Dual Deck            7          NOTE        125         F9         96        7D         hh      -           -          -    OFF=0x00, ON=0x7F
+MIXER          M1                                                     Set to 'the USB A    1/2/3/4       NOTE        14          D0         9n        0E         7F      -           -          -    OFF=0x00, ON=0x7F
+                                                                           terminal        1/2/3/4       NOTE        15          D#0        9n        0F         00      -           -          -    OFF=0x00, ON=0x7F
+                      INPUT SELECT               slide
+                                                                      Set to 'the USB B    1/2/3/4       NOTE        14          D0         9n        0E         00      -           -          -    OFF=0x00, ON=0x7F
+                                                                           terminal        1/2/3/4       NOTE        15          D#0        9n        0F         7F      -           -          -    OFF=0x00, ON=0x7F
+               M2
+                                                                                                                     04                               04         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                      TRIM                       rotate                       -            1/2/3/4        CC                         -     Bn                            -           -          -
+                                                                                                                     36                               24         LSB                                 Min at left side, Max at right side
+
+               M3
+                                                                                                                     23                               17         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                                                                           CH 1               7           CC                         -     B6                            -           -          -
+                                                                                                                     55                               37         LSB                                 Min at left side, Max at right side
+
+
+                                                                                                                     24                               18         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                                                                           CH 2               7           CC                         -     B6                            -           -          -
+                                                                                                                     56                               38         LSB                                 Min at left side, Max at right side
+                      FILTER                     rotate
+                                                                                                                     24                               19         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                                                                           CH 3               7           CC                         -     B6                            -           -          -
+                                                                                                                     56                               39         LSB                                 Min at left side, Max at right side
+
+
+                                                                                                                     24                               1A         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                                                                           CH 4               7           CC                         -     B6                            -           -          -
+                                                                                                                     56                               3A         LSB                                 Min at left side, Max at right side
+
+               M4
+                                                                                                                     7                                07         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                      EQ HI                      rotate                       -            1/2/3/4        CC                         -     Bn                            -           -          -
+                                                                                                                     39                               27         LSB                                 Min at left side, Max at right side
+
+               M5
+                                                                                                                     11                               0B         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                      EQ MID                     rotate                       -            1/2/3/4        CC                         -     Bn                            -           -          -
+                                                                                                                     43                               2B         LSB                                 Min at left side, Max at right side
+
+               M6
+                                                                                                                     15                               0F         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                      EQ LOW                     rotate                       -            1/2/3/4        CC                         -     Bn                            -           -          -
+                                                                                                                     47                               2F         LSB                                 Min at left side, Max at right side
+
+               M7
+                                                                                                                     8                                08         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                      MASTER LEVEL               rotate                       -               7           CC                         -     B6                            -           -          -
+                                                                                                                     40                               28         LSB                                 Min at left side, Max at right side
+
+               M8
+                                                                                                                     9                                09         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                      BOOTH LEVEL                rotate                       -               7           CC                         -     B6                            -           -          -
+                                                                                                                     41                               29         LSB                                 Min at left side, Max at right side
+
+               M9
+                                                                                                                     3                                03         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                      SAMPLER LEVEL              rotate                       -               7           CC                         -     B6                            -           -          -
+                                                                                                                     35                               23         LSB                                 Min at left side, Max at right side
+
+               M10    CHANNEL LEVEL METER       Indicate                      -               -            -          -              -      -          -          -     Bn          02          hh   OFF=0x00, ON=0x7F
+               M11                                                                                                    7          G-1        90        07         hh      90         07          hh   OFF=0x00, ON=0x7F
+                                                                           Deck1              1          NOTE
+                                                           +SHIFT                                                    31          G1         90        1F         hh      90         1F          hh   OFF=0x00, ON=0x7F
+                      HEADPHONES CUE CH1/CH3     press
+                                                                                                                      7          G-1        92        07         hh      92         07          hh   OFF=0x00, ON=0x7F
+                                                                           Deck3              3          NOTE
+                                                           +SHIFT                                                    31          G1         92        1F         hh      92         1F          hh   OFF=0x00, ON=0x7F
+               M12                                                                                                    7          G-1        91        07         hh      91         07          hh   OFF=0x00, ON=0x7F
+                                                                           Deck2              2          NOTE
+                                                           +SHIFT                                                    31          G1         91        1F         hh      91         1F          hh   OFF=0x00, ON=0x7F
+                      HEADPHONES CUE CH2/CH4     press
+                                                                                                                      7          G-1        93        07         hh      93         07          hh   OFF=0x00, ON=0x7F
+                                                                           Deck4              4          NOTE
+                                                           +SHIFT                                                    31          G1         93        1F         hh      93         1F          hh   OFF=0x00, ON=0x7F
+               M13                                                                                                   19                               13         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                      CH FADER                   slide                        -            1/2/3/4        CC                         -     Bn                            -           -          -
+                                                                                                                     51                               33         LSB                                 Min at bottom end, Max at top end
+
+                      CH FADER                                            Sync ON          1/2/3/4       NOTE        30          F#1       9ｎ         1E         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                 slide
+                      (Fader Start)
+                                                                            CUE            1/2/3/4       NOTE        21          A0        9ｎ         15         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                           +SHIFT
+                                                                         HOT CUE           1/2/3/4       NOTE        22          A#0       9ｎ         16         hh      -           -          -    OFF=0x00, ON=0x7F
+
+
+                                                                         Fader stop        1/2/3/4       NOTE        23          B0        9ｎ         17         hh      -           -          -    OFF=0x00, ON=0x7F
+                                                                                                                                           MIDI-IN                      MIDI-OUT
+                                          User Interface                                      MIDI assign reference     1               (to computer)               (from computer)
+    Group   Fig.                                                                      MIDI                MIDI Data (Data 1)                                                                                     Details (Data 2)
+                                                                   Condition                    NOTE                             Status    Data 1   Data 2    Status    Data 1   Data 2
+                               UI name     Trigger    +SHIFT                        Channel                           (English
+                                                                    (mode)                       / CC      (Dec)                 (Hex)     (Hex)    (Hex)     (Hex)     (Hex)    (Hex)
+                                                                                     (Dec)                             scale)
+MIXER       M14                                                                                             31                               1F         MSB                                Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                   CROSSFADER               slide                      -               7         CC                         -     B6                            -          -          -
+                                                                                                            63                               3F         LSB                                Min at left side, Max at right side
+                                                     +SHIFT
+                   CROSSFADER                                   Deck2: Sync ON         2        NOTE        30          F#1        91        1E         hh      -          -          -    OFF=0x00, ON=0x7F
+                                            slide
+                   (Fader Start)
+                                                                  Deck2: CUE           2        NOTE        21          A0         91        15         hh      -          -          -    OFF=0x00, ON=0x7F
+
+
+                                                               Deck2: HOT CUE          2        NOTE        22          A#0        91        16         hh      -          -          -    OFF=0x00, ON=0x7F
+
+
+                                                               Deck2: Fader stop       2        NOTE        23          B0         91        17         hh      -          -          -    OFF=0x00, ON=0x7F
+
+
+                                                                Deck1: Sync ON         1        NOTE        30          F#1        90        1E         hh      -          -          -    OFF=0x00, ON=0x7F
+
+
+                                                                  Deck1: CUE           1        NOTE        21          A0         90        15         hh      -          -          -    OFF=0x00, ON=0x7F
+
+
+                                                               Deck1: HOT CUE          1        NOTE        22          A#0        90        16         hh      -          -          -    OFF=0x00, ON=0x7F
+
+
+                                                               Deck1: Fader stop       1        NOTE        23          B0         90        17         hh      -          -          -    OFF=0x00, ON=0x7F
+
+
+                                                                Deck4: Sync ON         4        NOTE        30          F#1        93        1E         hh      -          -          -    OFF=0x00, ON=0x7F
+
+
+                                                                  Deck4: CUE           4        NOTE        21          A0         93        15         hh      -          -          -    OFF=0x00, ON=0x7F
+
+
+                                                               Deck4: HOT CUE          4        NOTE        22          A#0        93        16         hh      -          -          -    OFF=0x00, ON=0x7F
+
+
+                                                               Deck4: Fader stop       4        NOTE        23          B0         93        17         hh      -          -          -    OFF=0x00, ON=0x7F
+
+
+                                                                Deck3: Sync ON         3        NOTE        30          F#1        92        1E         hh      -          -          -    OFF=0x00, ON=0x7F
+
+
+                                                                  Deck3: CUE           3        NOTE        21          A0         92        15         hh      -          -          -    OFF=0x00, ON=0x7F
+
+
+                                                               Deck3: HOT CUE          3        NOTE        22          A#0        92        16         hh      -          -          -    OFF=0x00, ON=0x7F
+
+
+                                                               Deck3: Fader stop       3        NOTE        23          B0         92        17         hh      -          -          -    OFF=0x00, ON=0x7F
+
+            M15                             slide                                                           106         A#7        96        6A         7F      -          -          -    OFF=0x00, ON=0x7F
+                   MIC OFF/ON/TALKOVER                               OFF               7        NOTE
+                                                                                                            107         B7         96        6B         00      -          -          -    OFF=0x00, ON=0x7F
+                                                                                                            107         B7         96        6B         7F      -          -          -    OFF=0x00, ON=0x7F
+                                                                      ON               7        NOTE
+                                                                                                          106/108     A#7/C8       96      6A/6C        00      -          -          -    OFF=0x00, ON=0x7F
+                                                                                                            108         C8         96        6C         7F      -          -          -    OFF=0x00, ON=0x7F
+                                                                  TALKOVER             7        NOTE
+                                                                                                            107         B7         96        6B         00      -          -          -    OFF=0x00, ON=0x7F
+            M16
+                                                                                                            05                               05         MSB                                Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                   MIC 1 LEVEL              rotate                     -               7         CC                         -     B6                            -          -          -
+                                                                                                            37                               25         LSB                                Min at left side, Max at right side
+
+            M17
+                                                                                                            06                               06         MSB                                Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                   MIC 2 LEVEL              rotate                     -               7         CC                         -     B6                            -          -          -
+                                                                                                            38                               26         LSB                                Min at left side, Max at right side
+
+            M18
+                                                                                                            15                               0F         MSB                                Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                   MIC EQ LOW               rotate                     -               7         CC                         -     B6                            -          -          -
+                                                                                                            47                               2F         LSB                                Min at left side, Max at right side
+
+            M19
+                                                                                                            14                               0E         MSB                                Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                   MIC EQ HI                rotate                     -               7         CC                         -     B6                            -          -          -
+                                                                                                            46                               2E         LSB                                Min at left side, Max at right side
+
+            M20
+                   CROSSFADER REVERSE       slide                      -               7        NOTE        84          C6         96        54         hh      -          -          -    OFF=0x00, ON=0x7F
+
+            M21
+                                                                                                            11                               0B         MSB                                Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                   CROSSFADER CURVE         rotate                     -               7         CC                         -     B6                            -          -          -
+                                                                                                            43                               2B         LSB                                Min at left side, Max at right side
+
+            M22
+                                                                                                            13                               0D         MSB                                Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                   HEADPHONES LEVEL         rotate                     -               7         CC                         -     B6                            -          -          -
+                                                                                                            45                               2D         LSB                                Min at left side, Max at right side
+
+            M23
+                                                                                                            12                               0C         MSB                                Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                   HEADPHONES MIX           rotate                     -               7         CC                         -     B6                            -          -          -
+                                                                                                            44                               2C         LSB                                Min at left side, Max at right side
+
+            M24                             slide                                                           97          C#7        96        61         7F      -          -          -    OFF=0x00, ON=0x7F
+                   AUX LINE/PORTABLE SW                              OFF               7        NOTE
+                                                                                                            98          D7         96        62         00      -          -          -    OFF=0x00, ON=0x7F
+                                                                                                            98          D7         96        62         7F      -          -          -    OFF=0x00, ON=0x7F
+                                                                     LINE              7        NOTE
+                                                                                                           97/99      C#7/D#7      96      61/63        00      -          -          -    OFF=0x00, ON=0x7F
+                                                                                                            99          D#7        96        63         7F      -          -          -    OFF=0x00, ON=0x7F
+                                                                  PORTABLE             7        NOTE
+                                                                                                            98          D7         96        62         00      -          -          -    OFF=0x00, ON=0x7F
+            M25
+                                                                                                            12                               07         MSB                                Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                   AUX LEVEL                rotate                     -               7         CC                         -     B6                            -          -          -
+                                                                                                            44                               27         LSB                                Min at left side, Max at right side
+
+EFFECT      E1     FX1-1                                               -               5        NOTE        112         E8        94         70         hh      -          -          -    OFF=0x00, ON=0x7F
+                                            press
+                                                      +SHIFT           -               7        NOTE        48          C3        96         30         hh     96         30          hh   OFF=0x00, ON=0x7F
+            E2     FX1-2                                               -               5        NOTE        113         F8        94         71         hh      -          -          -    OFF=0x00, ON=0x7F
+                                            press
+                                                      +SHIFT           -               7        NOTE        49          C#3       96         31         hh     96         31          hh   OFF=0x00, ON=0x7F
+            E3     FX1-3                                               -               5        NOTE        114         F#8       94         72         hh      -          -          -    OFF=0x00, ON=0x7F
+                                            press
+                                                      +SHIFT           -               7        NOTE        50          D3        96         32         hh     96         32          hh   OFF=0x00, ON=0x7F
+            E4     FX2-1                                               -               6        NOTE        112         E8        95         70         hh      -          -          -    OFF=0x00, ON=0x7F
+                                            press
+                                                      +SHIFT           -               7        NOTE        51          D#3       96         33         hh     96         33          hh   OFF=0x00, ON=0x7F
+            E5     FX2-2                                               -               6        NOTE        113         F8        95         71         hh      -          -          -    OFF=0x00, ON=0x7F
+                                            press
+                                                      +SHIFT           -               7        NOTE        52          E3        96         34         hh     96         34          hh   OFF=0x00, ON=0x7F
+            E6     FX2-3                                               -               6        NOTE        114         F#8       95         72         hh      -          -          -    OFF=0x00, ON=0x7F
+                                            press
+                                                      +SHIFT           -               7        NOTE        53          F3        96         35         hh     96         35          hh   OFF=0x00, ON=0x7F
+            E7     BEAT t                                      FX1-1/2/3 selected      5        NOTE         6         F#-1       94         06         hh      -          -          -    OFF=0x00, ON=0x7F
+                                            press              FX2-1/2/3 selected      6        NOTE         6         F#-1       95         06         hh      -          -          -    OFF=0x00, ON=0x7F
+                                                      +SHIFT         AUTO              7        NOTE        54          F#3       96         36         hh      -          -          -    OFF=0x00, ON=0x7F
+            E8     BEAT u                                      FX1-1/2/3 selected      5        NOTE         7          G-1       94         07         hh      -          -          -    OFF=0x00, ON=0x7F
+                                            press              FX2-1/2/3 selected      6        NOTE         7          G-1       95         07         hh      -          -          -    OFF=0x00, ON=0x7F
+                                                      +SHIFT         TAP               7        NOTE        55          G3        96         37         hh      -          -          -    OFF=0x00, ON=0x7F
+            E9     CH1 EFFECT LEVER                                  CH1               5        NOTE        80          G#5       94         50         hh      -          -          -    OFF=0x00, ON=0x7F
+                                                                     CH3               5        NOTE        81          A5        94         51         hh      -          -          -    OFF=0x00, ON=0x7F
+                                                                 FX1-1 selected        5        NOTE        71          B4        94         47         hh      -          -          -    OFF=0x00, ON=0x7F
+                                                                FX1-2 selected         5        NOTE        72          C5        94         48         hh      -          -          -    OFF=0x00, ON=0x7F
+                                            press               FX1-3 selected         5        NOTE        73          C#5       94         49         hh      -          -          -    OFF=0x00, ON=0x7F
+                                                                 FX2-1 selected        6        NOTE        71          B4        95         47         hh      -          -          -    OFF=0x00, ON=0x7F
+                                                                 FX2-2 selected        6        NOTE        72          C5        95         48         hh      -          -          -    OFF=0x00, ON=0x7F
+                                                                FX2-3 selected         6        NOTE        73          C#5       95         49         hh      -          -          -    OFF=0x00, ON=0x7F
+            E10    CH2 EFFECT LEVER                                  CH2               6        NOTE        80          G#5       95         50         hh      -          -          -    OFF=0x00, ON=0x7F
+                                                                     CH4               6        NOTE        81          A5        95         51         hh      -          -          -    OFF=0x00, ON=0x7F
+                                                                FX1-1 selected         5        NOTE        71          B4        94         47         hh      -          -          -    OFF=0x00, ON=0x7F
+                                                                FX1-2 selected         5        NOTE        72          C5        94         48         hh      -          -          -    OFF=0x00, ON=0x7F
+                                            press               FX1-3 selected         5        NOTE        73          C#5       94         49         hh      -          -          -    OFF=0x00, ON=0x7F
+                                                                FX2-1 selected         6        NOTE        71          B4        95         47         hh      -          -          -    OFF=0x00, ON=0x7F
+                                                                 FX2-2 selected        6        NOTE        72          C5        95         48         hh      -          -          -    OFF=0x00, ON=0x7F
+                                                                FX2-3 selected         6        NOTE        73          C#5       95         49         hh      -          -          -    OFF=0x00, ON=0x7F
+                                                                                                                                                  MIDI-IN                       MIDI-OUT
+                                          User Interface                                             MIDI assign reference     1               (to computer)                (from computer)
+       Group   Fig.                                                                       MIDI                   MIDI Data (Data 1)                                                                                             Details (Data 2)
+                                                                         Condition                     NOTE                             Status    Data 1   Data 2    Status     Data 1   Data 2
+                              UI name      Trigger    +SHIFT                            Channel                              (English
+                                                                          (mode)                        / CC      (Dec)                 (Hex)     (Hex)    (Hex)     (Hex)      (Hex)    (Hex)
+                                                                                         (Dec)                                scale)
+EFFECT         E11    LEVEL/DEPTH
+                                                                                                                   2                                02         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                                                                       FX1-1 selected       5           CC                         -     B4                            -           -          -
+                                                                                                                   34                               22         LSB                                 Min at left side, Max at right side
+
+
+                                                                                                                   4                                04         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                                                                       FX1-2 selected       5           CC                         -     B4                            -           -          -
+                                                                                                                   36                               24         LSB                                 Min at left side, Max at right side
+
+
+                                                                                                                   6                                06         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                                                                       FX1-3 selected       5           CC                         -     B4                            -           -          -
+                                                                                                                   38                               26         LSB                                 Min at left side, Max at right side
+
+
+                                                                                                                   2                                02         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                                                                       FX2-1 selected       6           CC                         -     B5                            -           -          -
+                                                                                                                   34                               22         LSB                                 Min at left side, Max at right side
+
+
+                                                                                                                   4                                04         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                                                                       FX2-2 selected       6           CC                         -     B5                            -           -          -
+                                                                                                                   36                               24         LSB                                 Min at left side, Max at right side
+
+
+                                                                                                                   6                                06         MSB                                 Min (MSB：0x00, LSB：0x00) ～ Max (MSB：0x7F, LSB：0x7F)
+                                                                       FX2-3 selected       6           CC                         -     B5                            -           -          -
+                                                                                                                   38                               26         LSB                                 Min at left side, Max at right side
+
+               M12
+                      SHIFT                 press                            -              7          NOTE        63          D#4        96        3F         hh      -           -          -    -
+
+PERFORMANCE    P1                                                     HOT CUE MODE       1/2/3/4       NOTE        64          E4         9n        40         hh      9n         40          hh   OFF=0x00, ON=0x7F
+                      HOT CUE MODE
+PADS                                        press     +SHIFT         PITCH PLAY MODE     1/2/3/4       NOTE        80          G#5        9n        50         hh      9n         50          hh   OFF=0x00, ON=0x7F
+                                                      press twice       USER MODE        1/2/3/4       NOTE        68          G#4        9n        44         hh      9n         44          hh   OFF=0x00, ON=0x7F
+               P2                                                       ROLL MODE        1/2/3/4       NOTE        65          F4         9n        41         hh      9n         41          hh   OFF=0x00, ON=0x7F
+                      ROLL MODE
+                                            press     +SHIFT         PIANO PLAY MODE     1/2/3/4       NOTE        81          A5         9n        51         hh      9n         51          hh   OFF=0x00, ON=0x7F
+                                                      press twice       USER MODE        1/2/3/4       NOTE        69          A4         9n        45         hh      9n         45          hh   OFF=0x00, ON=0x7F
+               P3                                                    SAVED LOOP MODE     1/2/3/4       NOTE        66          F#4        9n        42         hh      9n         42          hh   OFF=0x00, ON=0x7F
+                      SAVED LOOP MODE
+                                            press     +SHIFT           STEMS MODE        1/2/3/4       NOTE        82          A#5        9n        52         hh      9n         52          hh   OFF=0x00, ON=0x7F
+                                                      press twice       USER MODE        1/2/3/4       NOTE        70          A#4        9n        46         hh      9n         46          hh   OFF=0x00, ON=0x7F
+               P4                                                     SAMPLER MODE       1/2/3/4       NOTE        67          G4         9n        43         hh      9n         43          hh   OFF=0x00, ON=0x7F
+                      SAMPLER MODE
+                                            press     +SHIFT        SCRATCH BANK MODE    1/2/3/4       NOTE        83          B5         9n        53         hh      9n         53          hh   OFF=0x00, ON=0x7F
+                                                      press twice       USER MODE        1/2/3/4       NOTE        71          B4         9n        47         hh      9n         47          hh   OFF=0x00, ON=0x7F
+               P5                                                                                                                                                                                  OFF=0x00, ON=0x7F
+                                                                                        8/10/12/14     NOTE         0          C-1        9p        00         hh      9p         00          hh   MIDI-OUT: lit in color specified in color number(1-127).
+                                                                      HOT CUE MODE                                                                                                                 OFF=0x00(dimmer)
+                                                      +SHIFT                            9/11/13/15     NOTE         0          C-1        9s        00         hh      9s         00          hh
+
+
+                                                                                        8/10/12/14     NOTE        16          E0         9p        10         hh      9p         10          hh
+                                                                       ROLL MODE
+                                                      +SHIFT                            9/11/13/15     NOTE        16          E0         9s        10         hh      9s         10          hh
+
+
+                                                                                        8/10/12/14     NOTE        32          G#1        9p        20         hh      9p         20          hh
+                                                                     SAVED LOOP MODE
+                                                      +SHIFT                            9/11/13/15     NOTE        32          G#1        9s        20         hh      9s         20          hh
+
+
+                                                                                        8/10/12/14     NOTE        48          C3         9p        30         hh      9p         30          hh
+                                                                      SAMPLER MODE
+                                                      +SHIFT                            9/11/13/15     NOTE        48          C3         9s        30         hh      9s         30          hh
+                      PERFORMANCE PAD 1     press
+                                                                                        8/10/12/14     NOTE        64          E4         9p        40         hh      9p         40          hh
+                                                                     PITCH PLAY MODE
+                                                      +SHIFT                            9/11/13/15     NOTE        64          E4         9s        40         hh      9s         40          hh
+
+
+                                                                                        8/10/12/14     NOTE        80          G#5        9p        50         hh      9p         50          hh
+                                                                     PIANO PLAY MODE
+                                                      +SHIFT                            9/11/13/15     NOTE        80          G#5        9s        50         hh      9s         50          hh
+
+
+                                                                                        8/10/12/14     NOTE        96          C7         9p        60         hh      9p         60          hh
+                                                                       STEMS MODE
+                                                      +SHIFT                            9/11/13/15     NOTE        96          C7         9s        60         hh      9s         60          hh
+
+
+                                                                                        8/10/12/14     NOTE        112         E8         9p        70         hh      9p         70          hh
+                                                                    SCRATCH BANK MODE
+                                                      +SHIFT                            9/11/13/15     NOTE        112         E8         9s        70         hh      9s         70          hh
+
+
+                                                                                        8/10/12/14     NOTE         8         G#-1        9p        08         hh      9p         08          hh
+                                                                       USER MODE
+                                                      +SHIFT                            9/11/13/15     NOTE         8         G#-1        9s        08         hh      9s         08          hh
+
+
+                                                                                        8/10/12/14     NOTE        24          C1         9p        18         hh      9p         18          hh
+                                                                       USER MODE
+                                                      +SHIFT                            9/11/13/15     NOTE        24          C1         9s        18         hh      9s         18          hh
+
+
+                                                                                        8/10/12/14     NOTE        40          E2         9p        28         hh      9p         28          hh
+                                                                       USER MODE
+                                                      +SHIFT                            9/11/13/15     NOTE        40          E2         9s        28         hh      9s         28          hh
+
+
+                                                                                        8/10/12/14     NOTE        56          G#3        9p        38         hh      9p         38          hh
+                                                                       USER MODE
+                                                      +SHIFT                            9/11/13/15     NOTE        56          G#3        9s        38         hh      9s         38          hh
+                                                                                                                                            MIDI-IN                      MIDI-OUT
+                                         User Interface                                        MIDI assign reference     1               (to computer)               (from computer)
+    Group     Fig.                                                                  MIDI                   MIDI Data (Data 1)                                                                                            Details (Data 2)
+                                                                   Condition                     NOTE                             Status    Data 1   Data 2   Status     Data 1   Data 2
+                            UI name       Trigger    +SHIFT                       Channel                              (English
+                                                                    (mode)                        / CC      (Dec)                 (Hex)     (Hex)    (Hex)    (Hex)      (Hex)    (Hex)
+                                                                                   (Dec)                                scale)
+PERFORMANCE   P5                                                                                                                                                                            OFF=0x00, ON=0x7F
+PADS                                                                              8/10/12/14     NOTE         1         C#-1        9p        01         hh     9p         01          hh   MIDI-OUT: lit in color specified in color number(1-127).
+                                                                HOT CUE MODE                                                                                                                OFF=0x00(dimmer)
+                                                     +SHIFT                       9/11/13/15     NOTE         1         C#-1        9s        01         hh     9s         01          hh
+
+
+                                                                                  8/10/12/14     NOTE        17          F0         9p        11         hh     9p         11          hh
+                                                                 ROLL MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        17          F0         9s        11         hh     9s         11          hh
+
+
+                                                                                  8/10/12/14     NOTE        33          A1         9p        21         hh     9p         21          hh
+                                                               SAVED LOOP MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        33          A1         9s        21         hh     9s         21          hh
+
+
+                                                                                  8/10/12/14     NOTE        49          C#3        9p        31         hh     9p         31          hh
+                                                                SAMPLER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        49          C#3        9s        31         hh     9s         31          hh
+                     PERFORMANCE PAD 2     press
+                                                                                  8/10/12/14     NOTE        65          F4         9p        41         hh     9p         41          hh
+                                                               PITCH PLAY MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        65          F4         9s        41         hh     9s         41          hh
+
+
+                                                                                  8/10/12/14     NOTE        81          A5         9p        51         hh     9p         51          hh
+                                                               PIANO PLAY MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        81          A5         9s        51         hh     9s         51          hh
+
+
+                                                                                  8/10/12/14     NOTE        97          C#7        9p        61         hh     9p         61          hh
+                                                                 STEMS MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        97          C#7        9s        61         hh     9s         61          hh
+
+
+                                                                                  8/10/12/14     NOTE        113         F8         9p        71         hh     9p         71          hh
+                                                              SCRATCH BANK MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        113         F8         9s        71         hh     9s         71          hh
+
+
+                                                                                  8/10/12/14     NOTE         9          A-1        9p        09         hh     9p         09          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE         9          A-1        9s        09         hh     9s         09          hh
+
+
+                                                                                  8/10/12/14     NOTE        25          C#1        9p        19         hh     9p         19          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        25          C#1        9s        19         hh     9s         19          hh
+
+
+                                                                                  8/10/12/14     NOTE        41          F2         9p        29         hh     9p         29          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        41          F2         9s        29         hh     9s         29          hh
+
+
+                                                                                  8/10/12/14     NOTE        57          A3         9p        39         hh     9p         39          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        57          A3         9s        39         hh     9s         39          hh
+
+              P5                                                                                                                                                                            OFF=0x00, ON=0x7F
+                                                                                  8/10/12/14     NOTE         2          D-1        9p        02         hh     9p         02          hh   MIDI-OUT: lit in color specified in color number(1-127).
+                                                                HOT CUE MODE                                                                                                                OFF=0x00(dimmer)
+                                                     +SHIFT                       9/11/13/15     NOTE         2          D-1        9s        02         hh     9s         02          hh
+
+
+                                                                                  8/10/12/14     NOTE        18          F#0        9p        12         hh     9p         12          hh
+                                                                 ROLL MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        18          F#0        9s        12         hh     9s         12          hh
+
+
+                                                                                  8/10/12/14     NOTE        34          A#1        9p        22         hh     9p         22          hh
+                                                               SAVED LOOP MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        34          A#1        9s        22         hh     9s         22          hh
+
+
+                                                                                  8/10/12/14     NOTE        50          D3         9p        32         hh     9p         32          hh
+                                                                SAMPLER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        50          D3         9s        32         hh     9s         32          hh
+                     PERFORMANCE PAD 3     press
+                                                                                  8/10/12/14     NOTE        66          F#4        9p        42         hh     9p         42          hh
+                                                               PITCH PLAY MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        66          F#4        9s        42         hh     9s         42          hh
+
+
+                                                                                  8/10/12/14     NOTE        82          A#5        9p        52         hh     9p         52          hh
+                                                               PIANO PLAY MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        82          A#5        9s        52         hh     9s         52          hh
+
+
+                                                                                  8/10/12/14     NOTE        98          D7         9p        62         hh     9p         62          hh
+                                                                 STEMS MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        98          D7         9s        62         hh     9s         62          hh
+
+
+                                                                                  8/10/12/14     NOTE        114         F#8        9p        72         hh     9p         72          hh
+                                                              SCRATCH BANK MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        114         F#8        9s        72         hh     9s         72          hh
+
+
+                                                                                  8/10/12/14     NOTE        10         A#-1        9p        0A         hh     9p         0A          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        10         A#-1        9s        0A         hh     9s         0A          hh
+
+
+                                                                                  8/10/12/14     NOTE        26          D1         9p        1A         hh     9p         1A          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        26          D1         9s        1A         hh     9s         1A          hh
+
+
+                                                                                  8/10/12/14     NOTE        42          F#2        9p        2A         hh     9p         2A          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        42          F#2        9s        2A         hh     9s         2A          hh
+
+
+                                                                                  8/10/12/14     NOTE        58          A#3        9p        3A         hh     9p         3A          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        58          A#3        9s        3A         hh     9s         3A          hh
+                                                                                                                                            MIDI-IN                      MIDI-OUT
+                                         User Interface                                        MIDI assign reference     1               (to computer)               (from computer)
+    Group     Fig.                                                                  MIDI                   MIDI Data (Data 1)                                                                                            Details (Data 2)
+                                                                   Condition                     NOTE                             Status    Data 1   Data 2   Status     Data 1   Data 2
+                            UI name       Trigger    +SHIFT                       Channel                              (English
+                                                                    (mode)                        / CC      (Dec)                 (Hex)     (Hex)    (Hex)    (Hex)      (Hex)    (Hex)
+                                                                                   (Dec)                                scale)
+PERFORMANCE   P5                                                                                                                                                                            OFF=0x00, ON=0x7F
+PADS                                                                              8/10/12/14     NOTE         3         D#-1        9p        03         hh     9p         03          hh   MIDI-OUT: lit in color specified in color number(1-127).
+                                                                HOT CUE MODE                                                                                                                OFF=0x00(dimmer)
+                                                     +SHIFT                       9/11/13/15     NOTE         3         D#-1        9s        03         hh     9s         03          hh
+
+
+                                                                                  8/10/12/14     NOTE        19          G0         9p        13         hh     9p         13          hh
+                                                                 ROLL MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        19          G0         9s        13         hh     9s         13          hh
+
+
+                                                                                  8/10/12/14     NOTE        35          B1         9p        23         hh     9p         23          hh
+                                                               SAVED LOOP MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        35          B1         9s        23         hh     9s         23          hh
+
+
+                                                                                  8/10/12/14     NOTE        51          D#3        9p        33         hh     9p         33          hh
+                                                                SAMPLER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        51          D#3        9s        33         hh     9s         33          hh
+                     PERFORMANCE PAD 4     press
+                                                                                  8/10/12/14     NOTE        67          G4         9p        43         hh     9p         43          hh
+                                                               PITCH PLAY MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        67          G4         9s        43         hh     9s         43          hh
+
+
+                                                                                  8/10/12/14     NOTE        83          B5         9p        53         hh     9p         53          hh
+                                                               PIANO PLAY MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        83          B5         9s        53         hh     9s         53          hh
+
+
+                                                                                  8/10/12/14     NOTE        99          D#7        9p        63         hh     9p         63          hh
+                                                                 STEMS MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        99          D#7        9s        63         hh     9s         63          hh
+
+
+                                                                                  8/10/12/14     NOTE        115         G8         9p        73         hh     9p         73          hh
+                                                              SCRATCH BANK MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        115         G8         9s        73         hh     9s         73          hh
+
+
+                                                                                  8/10/12/14     NOTE        11          B-1        9p        0B         hh     9p         0B          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        11          B-1        9s        0B         hh     9s         0B          hh
+
+
+                                                                                  8/10/12/14     NOTE        27          D#1        9p        1B         hh     9p         1B          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        27          D#1        9s        1B         hh     9s         1B          hh
+
+
+                                                                                  8/10/12/14     NOTE        43          G2         9p        2B         hh     9p         2B          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        43          G2         9s        2B         hh     9s         2B          hh
+
+
+                                                                                  8/10/12/14     NOTE        59          B3         9p        3B         hh     9p         3B          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        59          B3         9s        3B         hh     9s         3B          hh
+
+              P5                                                                                                                                                                            OFF=0x00, ON=0x7F
+                                                                                  8/10/12/14     NOTE         4          E-1        9p        04         hh     9p         04          hh   MIDI-OUT: lit in color specified in color number(1-127).
+                                                                HOT CUE MODE                                                                                                                OFF=0x00(dimmer)
+                                                     +SHIFT                       9/11/13/15     NOTE         4          E-1        9s        04         hh     9s         04          hh
+
+
+                                                                                  8/10/12/14     NOTE        20          G#0        9p        14         hh     9p         14          hh
+                                                                 ROLL MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        20          G#0        9s        14         hh     9s         14          hh
+
+
+                                                                                  8/10/12/14     NOTE        36          C2         9p        24         hh     9p         24          hh
+                                                               SAVED LOOP MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        36          C2         9s        24         hh     9s         24          hh
+
+
+                                                                                  8/10/12/14     NOTE        52          E3         9p        34         hh     9p         34          hh
+                                                                SAMPLER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        52          E3         9s        34         hh     9s         34          hh
+                     PERFORMANCE PAD 5     press
+                                                                                  8/10/12/14     NOTE        68          G#4        9p        44         hh     9p         44          hh
+                                                               PITCH PLAY MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        68          G#4        9s        44         hh     9s         44          hh
+
+
+                                                                                  8/10/12/14     NOTE        84          C6         9p        54         hh     9p         54          hh
+                                                               PIANO PLAY MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        84          C6         9s        54         hh     9s         54          hh
+
+
+                                                                                  8/10/12/14     NOTE        100         E7         9p        64         hh     9p         64          hh
+                                                                 STEMS MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        100         E7         9s        64         hh     9s         64          hh
+
+
+                                                                                  8/10/12/14     NOTE        116         G#8        9p        74         hh     9p         74          hh
+                                                              SCRATCH BANK MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        116         G#8        9s        74         hh     9s         74          hh
+
+
+                                                                                  8/10/12/14     NOTE        12          C0         9p        0C         hh     9p         0C          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        12          C0         9s        0C         hh     9s         0C          hh
+
+
+                                                                                  8/10/12/14     NOTE        28          E1         9p        1C         hh     9p         1C          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        28          E1         9s        1C         hh     9s         1C          hh
+
+
+                                                                                  8/10/12/14     NOTE        44          G#2        9p        2C         hh     9p         2C          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        44          G#2        9s        2C         hh     9s         2C          hh
+
+
+                                                                                  8/10/12/14     NOTE        60          C4         9p        3C         hh     9p         3C          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        60          C4         9s        3C         hh     9s         3C          hh
+                                                                                                                                            MIDI-IN                      MIDI-OUT
+                                         User Interface                                        MIDI assign reference     1               (to computer)               (from computer)
+    Group     Fig.                                                                  MIDI                   MIDI Data (Data 1)                                                                                            Details (Data 2)
+                                                                   Condition                     NOTE                             Status    Data 1   Data 2   Status     Data 1   Data 2
+                            UI name       Trigger    +SHIFT                       Channel                              (English
+                                                                    (mode)                        / CC      (Dec)                 (Hex)     (Hex)    (Hex)    (Hex)      (Hex)    (Hex)
+                                                                                   (Dec)                                scale)
+PERFORMANCE   P5                                                                                                                                                                            OFF=0x00, ON=0x7F
+PADS                                                                              8/10/12/14     NOTE         5          F-1        9p        05         hh     9p         05          hh   MIDI-OUT: lit in color specified in color number(1-127).
+                                                                HOT CUE MODE                                                                                                                OFF=0x00(dimmer)
+                                                     +SHIFT                       9/11/13/15     NOTE         5          F-1        9s        05         hh     9s         05          hh
+
+
+                                                                                  8/10/12/14     NOTE        21          A0         9p        15         hh     9p         15          hh
+                                                                 ROLL MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        21          A0         9s        15         hh     9s         15          hh
+
+
+                                                                                  8/10/12/14     NOTE        37          C#2        9p        25         hh     9p         25          hh
+                                                               SAVED LOOP MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        37          C#2        9s        25         hh     9s         25          hh
+
+
+                                                                                  8/10/12/14     NOTE        53          F3         9p        35         hh     9p         35          hh
+                                                                SAMPLER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        53          F3         9s        35         hh     9s         35          hh
+                     PERFORMANCE PAD 6     press
+                                                                                  8/10/12/14     NOTE        69          A4         9p        45         hh     9p         45          hh
+                                                               PITCH PLAY MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        69          A4         9s        45         hh     9s         45          hh
+
+
+                                                                                  8/10/12/14     NOTE        85          C#6        9p        55         hh     9p         55          hh
+                                                               PIANO PLAY MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        85          C#6        9s        55         hh     9s         55          hh
+
+
+                                                                                  8/10/12/14     NOTE        101         F7         9p        65         hh     9p         65          hh
+                                                                 STEMS MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        101         F7         9s        65         hh     9s         65          hh
+
+
+                                                                                  8/10/12/14     NOTE        117         A8         9p        75         hh     9p         75          hh
+                                                              SCRATCH BANK MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        117         A8         9s        75         hh     9s         75          hh
+
+
+                                                                                  8/10/12/14     NOTE        13          C#0        9p        0D         hh     9p         0D          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        13          C#0        9s        0D         hh     9s         0D          hh
+
+
+                                                                                  8/10/12/14     NOTE        29          F1         9p        1D         hh     9p         1D          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        29          F1         9s        1D         hh     9s         1D          hh
+
+
+                                                                                  8/10/12/14     NOTE        45          A2         9p        2D         hh     9p         2D          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        45          A2         9s        2D         hh     9s         2D          hh
+
+
+                                                                                  8/10/12/14     NOTE        61          C#4        9p        3D         hh     9p         3D          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        61          C#4        9s        3D         hh     9s         3D          hh
+
+              P5                                                                                                                                                                            OFF=0x00, ON=0x7F
+                                                                                  8/10/12/14     NOTE         6         F#-1        9p        06         hh     9p         06          hh   MIDI-OUT: lit in color specified in color number(1-127).
+                                                                HOT CUE MODE                                                                                                                OFF=0x00(dimmer)
+                                                     +SHIFT                       9/11/13/15     NOTE         6         F#-1        9s        06         hh     9s         06          hh
+
+
+                                                                                  8/10/12/14     NOTE        22          A#0        9p        16         hh     9p         16          hh
+                                                                 ROLL MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        22          A#0        9s        16         hh     9s         16          hh
+
+
+                                                                                  8/10/12/14     NOTE        38          D2         9p        26         hh     9p         26          hh
+                                                               SAVED LOOP MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        38          D2         9s        26         hh     9s         26          hh
+
+
+                                                                                  8/10/12/14     NOTE        54          F#3        9p        36         hh     9p         36          hh
+                                                                SAMPLER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        54          F#3        9s        36         hh     9s         36          hh
+                     PERFORMANCE PAD 7     press
+                                                                                  8/10/12/14     NOTE        70          A#4        9p        46         hh     9p         46          hh
+                                                               PITCH PLAY MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        70          A#4        9s        46         hh     9s         46          hh
+
+
+                                                                                  8/10/12/14     NOTE        86          D6         9p        56         hh     9p         56          hh
+                                                               PIANO PLAY MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        86          D6         9s        56         hh     9s         56          hh
+
+
+                                                                                  8/10/12/14     NOTE        102         F#7        9p        66         hh     9p         66          hh
+                                                                 STEMS MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        102         F#7        9s        66         hh     9s         66          hh
+
+
+                                                                                  8/10/12/14     NOTE        118         A#8        9p        76         hh     9p         76          hh
+                                                              SCRATCH BANK MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        118         A#8        9s        76         hh     9s         76          hh
+
+
+                                                                                  8/10/12/14     NOTE        14          D0         9p        0E         hh     9p         0E          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        14          D0         9s        0E         hh     9s         0E          hh
+
+
+                                                                                  8/10/12/14     NOTE        30          F#1        9p        1E         hh     9p         1E          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        30          F#1        9s        1E         hh     9s         1E          hh
+
+
+                                                                                  8/10/12/14     NOTE        46          A#2        9p        2E         hh     9p         2E          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        46          A#2        9s        2E         hh     9s         2E          hh
+
+
+                                                                                  8/10/12/14     NOTE        62          D4         9p        3E         hh     9p         3E          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        62          D4         9s        3E         hh     9s         3E          hh
+                                                                                                                                            MIDI-IN                      MIDI-OUT
+                                         User Interface                                        MIDI assign reference     1               (to computer)               (from computer)
+    Group     Fig.                                                                  MIDI                   MIDI Data (Data 1)                                                                                            Details (Data 2)
+                                                                   Condition                     NOTE                             Status    Data 1   Data 2   Status     Data 1   Data 2
+                             UI name      Trigger    +SHIFT                       Channel                              (English
+                                                                    (mode)                        / CC      (Dec)                 (Hex)     (Hex)    (Hex)    (Hex)      (Hex)    (Hex)
+                                                                                   (Dec)                                scale)
+PERFORMANCE   P5                                                                                                                                                                            OFF=0x00, ON=0x7F
+PADS                                                                              8/10/12/14     NOTE         7          G-1        9p        07         hh     9p         07          hh   MIDI-OUT: lit in color specified in color number(1-127).
+                                                                HOT CUE MODE                                                                                                                OFF=0x00(dimmer)
+                                                     +SHIFT                       9/11/13/15     NOTE         7          G-1        9s         7         hh     9s          7          hh
+
+
+                                                                                  8/10/12/14     NOTE        23          B0         9p        17         hh     9p         17          hh
+                                                                 ROLL MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        23          B0         9s        17         hh     9s         17          hh
+
+
+                                                                                  8/10/12/14     NOTE        39          D#2        9p        27         hh     9p         27          hh
+                                                               SAVED LOOP MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        39          D#2        9s        27         hh     9s         27          hh
+
+
+                                                                                  8/10/12/14     NOTE        55          G3         9p        37         hh     9p         37          hh
+                                                                SAMPLER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        55          G3         9s        37         hh     9s         37          hh
+                     PERFORMANCE PAD 8     press
+                                                                                  8/10/12/14     NOTE        71          B4         9p        47         hh     9p         47          hh
+                                                               PITCH PLAY MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        71          B4         9s        47         hh     9s         47          hh
+
+
+                                                                                  8/10/12/14     NOTE        87          D#6        9p        57         hh     9p         57          hh
+                                                               PIANO PLAY MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        87          D#6        9s        57         hh     9s         57          hh
+
+
+                                                                                  8/10/12/14     NOTE        103         G7         9p        67         hh     9p         67          hh
+                                                                 STEMS MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        103         G7         9s        67         hh     9s         67          hh
+
+
+                                                                                  8/10/12/14     NOTE        119         B8         9p        77         hh     9p         77          hh
+                                                              SCRATCH BANK MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        119         B8         9s        77         hh     9s         77          hh
+
+
+                                                                                  8/10/12/14     NOTE        15          D#0        9p        0F         hh     9p         0F          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        15          D#0        9s        0F         hh     9s         0F          hh
+
+
+                                                                                  8/10/12/14     NOTE        31          G1         9p        1F         hh     9p         1F          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        31          G1         9s        1F         hh     9s         1F          hh
+
+
+                                                                                  8/10/12/14     NOTE        47          B2         9p        2F         hh     9p         2F          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        47          B2         9s        2F         hh     9s         2F          hh
+
+
+                                                                                  8/10/12/14     NOTE        63          D#4        9p        3F         hh     9p         3F          hh
+                                                                 USER MODE
+                                                     +SHIFT                       9/11/13/15     NOTE        63          D#4        9s        3F         hh     9s         3F          hh
+
+              P6                                                                   1/2/3/4       NOTE        96          C7         9n        60         hh     9n         60          hh   OFF=0x00, ON=0x7F
+                                                                HOT CUE MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        72          C5         9n        48         hh     9n         48          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        97          C#7        9n        61         hh     9n         61          hh   OFF=0x00, ON=0x7F
+                                                                 ROLL MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        73          C#5        9n        49         hh     9n         49          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        98          D7         9n        62         hh     9n         62          hh   OFF=0x00, ON=0x7F
+                                                               SAVED LOOP MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        74          D5         9n        4A         hh     9n         4A          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        99          D#7        9n        63         hh     9n         63          hh   OFF=0x00, ON=0x7F
+                                                                SAMPLER MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        75          D#5        9n        4B         hh     9n         4B          hh   OFF=0x00, ON=0x7F
+                     PARAMETER 1 ◀         press
+                                                                                   1/2/3/4       NOTE        100         E7         9n        64         hh     9n         64          hh   OFF=0x00, ON=0x7F
+                                                               PITCH PLAY MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        76          E5         9n        4C         hh     9n         4C          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        101         F7         9n        65         hh     9n         65          hh   OFF=0x00, ON=0x7F
+                                                              SLICER LOOP MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        77          F5         9n        4D         hh     9n         4D          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        102         F#7        9n        66         hh     9n         66          hh   OFF=0x00, ON=0x7F
+                                                               SAVED FLIP MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        84          C6         9n        54         hh     9n         54          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        103         G7         9n        67         hh     9n         67          hh   OFF=0x00, ON=0x7F
+                                                              SCRATCH BANK MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        85          C#6        9n        55         hh     9n         55          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        104         G#7        9n        68         hh     9n         68          hh   OFF=0x00, ON=0x7F
+                                                                 USER MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        86          D6         9n        56         hh     9n         56          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        105         A7         9n        69         hh     9n         69          hh   OFF=0x00, ON=0x7F
+                                                                 USER MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        87          D#6        9n        57         hh     9n         57          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        106         A#7        9n        6A         hh     9n         6A          hh   OFF=0x00, ON=0x7F
+                                                                 USER MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        88          E6         9n        58         hh     9n         58          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        107         B7         9n        6B         hh     9n         6B          hh   OFF=0x00, ON=0x7F
+                                                                 USER MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        89          F6         9n        59         hh     9n         59          hh   OFF=0x00, ON=0x7F
+              P7                                                                   1/2/3/4       NOTE        112         E8         9n        70         hh     9n         70          hh   OFF=0x00, ON=0x7F
+                                                                HOT CUE MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        90          F#6        9n        5A         hh     9n         5A          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        113         F8         9n        71         hh     9n         71          hh   OFF=0x00, ON=0x7F
+                                                                 ROLL MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        91          G6         9n        5B         hh     9n         5B          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        114         F#8        9n        72         hh     9n         72          hh   OFF=0x00, ON=0x7F
+                                                               SAVED LOOP MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        92          G#6        9n        5C         hh     9n         5C          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        115         G8         9n        73         hh     9n         73          hh   OFF=0x00, ON=0x7F
+                                                                SAMPLER MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        93          A6         9n        5D         hh     9n         5D          hh   OFF=0x00, ON=0x7F
+                     PARAMETER 1 ▶         press
+                                                                                   1/2/3/4       NOTE        116         G#8        9n        74         hh     9n         74          hh   OFF=0x00, ON=0x7F
+                                                               PITCH PLAY MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        94          A#6        9n        5E         hh     9n         5E          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        117         A8         9n        75         hh     9n         75          hh   OFF=0x00, ON=0x7F
+                                                              SLICER LOOP MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        95          B6         9n        5F         hh     9n         5F          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        118         A#8        9n        76         hh     9n         76          hh   OFF=0x00, ON=0x7F
+                                                               SAVED FLIP MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        108         C8         9n        6C         hh     9n         6C          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        119         B8         9n        77         hh     9n         77          hh   OFF=0x00, ON=0x7F
+                                                              SCRATCH BANK MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        109         C#8        9n        6D         hh     9n         6D          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        120         C9         9n        78         hh     9n         78          hh   OFF=0x00, ON=0x7F
+                                                                 USER MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        110         D8         9n        6E         hh     9n         6E          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        121         C#9        9n        79         hh     9n         79          hh   OFF=0x00, ON=0x7F
+                                                                 USER MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        111         D#8        9n        6F         hh     9n         6F          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        122         D9         9n        7A         hh     9n         7A          hh   OFF=0x00, ON=0x7F
+                                                                 USER MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        124         E9         9n        7C         hh     9n         7C          hh   OFF=0x00, ON=0x7F
+                                                                                   1/2/3/4       NOTE        123         D#9        9n        7B         hh     9n         7B          hh   OFF=0x00, ON=0x7F
+                                                                 USER MODE
+                                                     +SHIFT                        1/2/3/4       NOTE        125         F9         9n        7D         hh     9n         7D          hh   OFF=0x00, ON=0x7F
+
+
+
+                                                                                                                                                                                                        © 2023 AlphaTheta Corporation All rights reserved.
+

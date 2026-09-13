@@ -1,0 +1,1765 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Allen & Heath",
+  "model": "Xone:96",
+  "status": "documented-extraction",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "id": "s1",
+      "local_file": "ni-hercules-ah/xone-96/manual.html",
+      "url": "https://support.allen-heath.com/hc/en-gb/articles/43053562464017-Xone-96-User-Guide",
+      "sha256": "003e455b2721aaf827026dbd244db3150e9de0716eaa8cbbf28eb04800c19829"
+    },
+    {
+      "id": "s2",
+      "local_file": "ni-hercules-ah/xone-96/midi.html",
+      "url": "https://support.allen-heath.com/hc/en-gb/articles/43084536824849-Xone-96-MIDI-Implementation",
+      "sha256": "8f46a0d11cda57a45621afbf165ec6890210f805308bd777dca60ce35132d251"
+    }
+  ],
+  "scope": "All explicitly numbered controls in official MIDI Control and input-source matrices; input and output kept separate. Default channel 16, configurable 1\u201316. Rotary selectors send discrete notes, not relative encoder CC.",
+  "bindings": [
+    {
+      "id": "b0001",
+      "control": "CH 1 fader",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 0,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH FADER"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0002",
+      "control": "CH 2 fader",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 1,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH FADER"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0003",
+      "control": "CH 3 fader",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 2,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH FADER"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0004",
+      "control": "CH 4 fader",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 3,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH FADER"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0005",
+      "control": "Crossfader",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 5,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / XFADER"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0006",
+      "control": "CH 1 CUE",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 0,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH 1 CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0007",
+      "control": "CH 1 CUE",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 0,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH 1 CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0008",
+      "control": "CH 2 CUE",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 1,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH 2 CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0009",
+      "control": "CH 2 CUE",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 1,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH 2 CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0010",
+      "control": "CH 3 CUE",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 2,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH 3 CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0011",
+      "control": "CH 3 CUE",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 2,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH 3 CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0012",
+      "control": "CH 4 CUE",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 3,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH 4 CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0013",
+      "control": "CH 4 CUE",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 3,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH 4 CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0014",
+      "control": "CH A CUE",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 4,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH A CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0015",
+      "control": "CH A CUE",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 4,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH A CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0016",
+      "control": "CH B CUE",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 5,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH B CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0017",
+      "control": "CH B CUE",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 5,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH B CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0018",
+      "control": "CH C CUE",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 6,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH C CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0019",
+      "control": "CH C CUE",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 6,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH C CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0020",
+      "control": "CH D CUE",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 7,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH D CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0021",
+      "control": "CH D CUE",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 7,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH D CUE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0022",
+      "control": "VCF 1 HPF",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 10,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / VCF 1 HPF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0023",
+      "control": "VCF 1 HPF",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 10,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / VCF 1 HPF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0024",
+      "control": "VCF 1 BPF",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 11,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / VCF 1 BPF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0025",
+      "control": "VCF 1 BPF",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 11,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / VCF 1 BPF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0026",
+      "control": "VCF 1 LPF",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 12,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / VCF 1 LPF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0027",
+      "control": "VCF 1 LPF",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 12,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / VCF 1 LPF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0028",
+      "control": "VCF 1 ON/OFF",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 13,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / VCF 1 ON/OFF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0029",
+      "control": "VCF 1 ON/OFF",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 13,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / VCF 1 ON/OFF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0030",
+      "control": "VCF 2 HPF",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 14,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / VCF 2 HPF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0031",
+      "control": "VCF 2 HPF",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 14,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / VCF 2 HPF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0032",
+      "control": "VCF 2 BPF",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 15,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / VCF 2 BPF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0033",
+      "control": "VCF 2 BPF",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 15,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / VCF 2 BPF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0034",
+      "control": "VCF 2 LPF",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 16,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / VCF 2 LPF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0035",
+      "control": "VCF 2 LPF",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 16,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / VCF 2 LPF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0036",
+      "control": "VCF 2 ON/OFF",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 17,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / VCF 2 ON/OFF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0037",
+      "control": "VCF 2 ON/OFF",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 17,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / VCF 2 ON/OFF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0038",
+      "control": "CH C ON/OFF",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 8,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH C ON/OFF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0039",
+      "control": "CH C ON/OFF",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 8,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH C ON/OFF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0040",
+      "control": "CH D ON/OFF",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 9,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH D ON/OFF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0041",
+      "control": "CH D ON/OFF",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 9,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / CH D ON/OFF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0042",
+      "control": "MUTE ON/OFF",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 18,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / MUTE ON/OFF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0043",
+      "control": "MUTE ON/OFF",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 18,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "default channel setting",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / MUTE ON/OFF"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0044",
+      "control": "CH 1 input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 19,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position USB 1",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / 1 / USB 1"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0045",
+      "control": "CH 1 input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 20,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position PHONO",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / 1 / PHONO"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0046",
+      "control": "CH 1 input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 21,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position LINE",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / 1 / LINE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0047",
+      "control": "CH 1 input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 22,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position USB 2",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / 1 / USB 2"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0048",
+      "control": "CH 2 input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 23,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position USB 1",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / 2 / USB 1"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0049",
+      "control": "CH 2 input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 24,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position PHONO",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / 2 / PHONO"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0050",
+      "control": "CH 2 input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 25,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position LINE",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / 2 / LINE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0051",
+      "control": "CH 2 input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 26,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position USB 2",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / 2 / USB 2"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0052",
+      "control": "CH 3 input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 27,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position USB 1",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / 3 / USB 1"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0053",
+      "control": "CH 3 input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 28,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position PHONO",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / 3 / PHONO"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0054",
+      "control": "CH 3 input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 29,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position LINE",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / 3 / LINE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0055",
+      "control": "CH 3 input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 30,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position USB 2",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / 3 / USB 2"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0056",
+      "control": "CH 4 input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 31,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position USB 1",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / 4 / USB 1"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0057",
+      "control": "CH 4 input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 32,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position PHONO",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / 4 / PHONO"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0058",
+      "control": "CH 4 input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 33,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position LINE",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / 4 / LINE"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0059",
+      "control": "CH 4 input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 34,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position USB 2",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / 4 / USB 2"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0060",
+      "control": "CH A input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 35,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position USB 1",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / A / USB 1"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0061",
+      "control": "CH A input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 36,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position MIC A",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / A / MIC A"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0062",
+      "control": "CH A input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 37,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position RTN A",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / A / RTN A"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0063",
+      "control": "CH A input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 38,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position USB 2",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / A / USB 2"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0064",
+      "control": "CH B input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 39,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position USB 1",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / B / USB 1"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0065",
+      "control": "CH B input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 40,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position MIC B",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / B / MIC B"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0066",
+      "control": "CH B input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 41,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position RTN B",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / B / RTN B"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0067",
+      "control": "CH B input source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 42,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position USB 2",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "CH IP SOURCE MIDI VALUES / B / USB 2"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Discrete selector position, not relative encoder."
+      ]
+    },
+    {
+      "id": "b0068",
+      "control": "PHONES 2 source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 43,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position 1",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / PHONES 2 / 1"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0069",
+      "control": "PHONES 2 source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 44,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position 2",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / PHONES 2 / 2"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0070",
+      "control": "PHONES 2 source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 45,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position 3",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / PHONES 2 / 3"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0071",
+      "control": "PHONES 2 source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 46,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position 4",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / PHONES 2 / 4"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0072",
+      "control": "PHONES 2 source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 47,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position A",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / PHONES 2 / A"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0073",
+      "control": "PHONES 2 source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 48,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position B",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / PHONES 2 / B"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0074",
+      "control": "PHONES 2 source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 49,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position C",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / PHONES 2 / C"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0075",
+      "control": "PHONES 2 source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 50,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position D",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / PHONES 2 / D"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b0076",
+      "control": "PHONES 2 source",
+      "direction": "device-to-host",
+      "message_type": "note",
+      "channel": 16,
+      "number": 51,
+      "encoding": "note state",
+      "values": {
+        "off": 0,
+        "on": 127
+      },
+      "mode": "rotary switch position LR MIX",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Control / PHONES 2 / LR MIX"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    }
+  ],
+  "issues": [
+    {
+      "id": "issue-1",
+      "severity": "scope",
+      "description": "Addresses apply to configured channel 1\u201316; bindings show documented default 16.",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "MIDI Channel Setup"
+        }
+      ],
+      "excluded_bindings": []
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "s2",
+      "file": "allen-heath-hercules/xone-96-s2.txt",
+      "extraction_method": "Archived complete manufacturer text snapshot with section headings"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "manufacturer": "Hercules",
+  "model": "DJControl Inpulse T7 / T7 Premium",
+  "retrieved_on": "2026-09-12",
+  "grade": "partial",
+  "scope": "Source extraction readiness only; not a verified SXM profile",
+  "hardware_tested": false,
+  "selection_basis": "Official manufacturer manual/support listing; representative current and explicitly requested legacy models, not sales ranking",
+  "notes": "Official user manual/control descriptions archived; no complete manufacturer wire-address/LED chart found in the retrieved support resources. Software action mappings do not prove Note/CC values.",
+  "coverage": {
+    "addresses": "not established by retrieved protocol documentation",
+    "channels": "not established by retrieved protocol documentation",
+    "layers": "Native/software pad modes described in inspected English manual sections; numeric mode addresses not established",
+    "encoders": "not established by retrieved protocol documentation",
+    "led_feedback": "not established by retrieved protocol documentation"
+  },
+  "inspected_locators": [
+    "support.html: official model support and manuals",
+    "manual.pdf: English control descriptions; MIDI keyword inspection",
+    "djuced-midi.html: Controls > Mixer Controls, Decks Controls, Pads Modes (software action mapping, not wire addresses)",
+    "manual.pdf: PDF page84 / English printed83 MIDI controls test (test procedure, not address table)",
+    "manual.pdf: PDF pages [14, 28, 55, 56, 79, 84]; separately indexed in inspection.txt (English printed page = PDF page - 1, except Starlight)"
+  ],
+  "sources": [
+    {
+      "url": "https://support.hercules.com/en/product/djcontrolinpulset7-en/",
+      "file": "djcontrolinpulset7/support.html",
+      "status_code": 200,
+      "final_url": "https://support.hercules.com/en/product/djcontrolinpulset7-en/",
+      "bytes": 108652,
+      "sha256": "8c4373fd2873fc529b2458b5862fcede0adb67e47aa8b515b18b56aa56862f14",
+      "text_file": "djcontrolinpulset7/support.txt",
+      "text_sha256": "f4ca97b0eede067fe50b00c3251cc4c058def532e9ec68185f6b9fd97e347eef"
+    },
+    {
+      "url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse_T7/DJC_INPULSE_T7_&_PREMIUM_USER_MANUAL_EN_FR_DE_DU_IT_ES_PT_RU_CS_TU_PL_SV_FI_SL_HU_AR_HE_AR_JP_ZH_KO.pdf",
+      "file": "djcontrolinpulset7/manual.pdf",
+      "status_code": 200,
+      "final_url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse_T7/DJC_INPULSE_T7_&_PREMIUM_USER_MANUAL_EN_FR_DE_DU_IT_ES_PT_RU_CS_TU_PL_SV_FI_SL_HU_AR_HE_AR_JP_ZH_KO.pdf",
+      "bytes": 28964456,
+      "sha256": "6c45001093e3836aee3415f91067ee115bd309fc12531d663f05c5017c27e38e",
+      "text_file": "djcontrolinpulset7/manual.txt",
+      "text_sha256": "8c51f0fedbf52349e2654830f6243a1474d3d68ec00318b4c870fe7642adaeea"
+    },
+    {
+      "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-t7-mapping-and-manual/",
+      "file": "djcontrolinpulset7/djuced-midi.html",
+      "status_code": 200,
+      "final_url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-t7-mapping-and-manual/",
+      "bytes": 456739,
+      "sha256": "4fb886791ecc15f341fd93eafec98fcfcf3605b9a881174c22fcaaac198b845f",
+      "text_file": "djcontrolinpulset7/djuced-midi.txt",
+      "text_sha256": "72dff53a551ae6e6873b6c24a0a65db276940e355c5b7dead692067a1b5e9c80"
+    },
+    {
+      "url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-t7-manuel-et-controles-midi/",
+      "file": "djcontrolinpulset7/djuced-midi.html",
+      "status_code": 200,
+      "final_url": "https://www.djuced.com/kb/hercules-djcontrol-inpulse-t7-mapping-and-manual/",
+      "bytes": 456739,
+      "sha256": "4fb886791ecc15f341fd93eafec98fcfcf3605b9a881174c22fcaaac198b845f",
+      "text_file": "djcontrolinpulset7/djuced-midi.txt",
+      "text_sha256": "72dff53a551ae6e6873b6c24a0a65db276940e355c5b7dead692067a1b5e9c80"
+    }
+  ],
+  "shared_references": []
+}

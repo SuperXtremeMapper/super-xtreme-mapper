@@ -1,0 +1,270 @@
+{
+  "models": [
+    {
+      "manufacturer": "Akai Professional",
+      "model": "APC64",
+      "coverage_state": "documentation-only",
+      "bindings": 0,
+      "file": "akai-alphatheta/apc64.json",
+      "missing_information": [
+        "Actual selected Project/RAM pad-note, fader-CC and channel assignments.",
+        "Double (2 CC) ordering, range and numeric interpretation; do not assume a 14-bit CC pair.",
+        "Host-to-device LED message addresses and color protocol; editor local on/off colors do not establish receive messages.",
+        "Complete fixed Ableton/standalone map and per-pad numeric drum defaults."
+      ]
+    },
+    {
+      "manufacturer": "Akai Professional",
+      "model": "MPD218",
+      "coverage_state": "documentation-only",
+      "bindings": 0,
+      "file": "akai-alphatheta/mpd218.json",
+      "missing_information": [
+        "Factory/program-specific pad note numbers, knob CC numbers and MIDI channels for every bank.",
+        "Separate Preset Documentation/editor guide and actual selected program.",
+        "Pressure message type/address semantics and host LED receive protocol.",
+        "Exact knob value encoding; 360-degree travel and CC capability alone do not establish relative or absolute encoding."
+      ]
+    },
+    {
+      "manufacturer": "AlphaTheta",
+      "model": "SLAB",
+      "coverage_state": "partial",
+      "bindings": 765,
+      "file": "akai-alphatheta/slab.json",
+      "missing_information": [
+        "Manufacturer correction for E1 unshifted note 16 and shifted note 17: decimal channel 1 versus hexadecimal 96/channel 7.",
+        "Adapter support for source-specific 01/41 encoder motion, paired strip CCs and color-number feedback.",
+        "Runtime support for poly-aftertouch; all 128 documented pressure rows retained as unsupported.",
+        "Numeric RGB palette for color numbers, zero-value receive behavior where omitted, and encoder touch data2 semantics where blank are not established by the chart.",
+        "Hardware validation and runnable application integration remain outside this extraction."
+      ]
+    },
+    {
+      "manufacturer": "Hercules",
+      "model": "DJControl Inpulse 200 MK2",
+      "coverage_state": "documentation-only",
+      "bindings": 0,
+      "file": "ni-hercules-ah/djcontrol-inpulse-200-mk2.json",
+      "missing_information": [
+        "Model-specific control-to-Note/CC addresses and MIDI channel assignments.",
+        "Shift, pad-mode and deck-layer wire-message differences.",
+        "Jog-wheel/encoder direction, resolution and acceleration encoding; button press/release values.",
+        "LED, pad-color and meter receive addresses and value semantics.",
+        "Any required generic MIDI mode or firmware-specific protocol setup beyond the documented software workflow."
+      ]
+    },
+    {
+      "manufacturer": "Hercules",
+      "model": "DJControl Inpulse 200 MK3",
+      "coverage_state": "documentation-only",
+      "bindings": 0,
+      "file": "ni-hercules-ah/djcontrol-inpulse-200-mk3.json",
+      "missing_information": [
+        "Model-specific control-to-Note/CC addresses and MIDI channel assignments.",
+        "Shift, pad-mode and deck-layer wire-message differences.",
+        "Jog-wheel/encoder direction, resolution and acceleration encoding; button press/release values.",
+        "LED, pad-color and meter receive addresses and value semantics.",
+        "Any required generic MIDI mode or firmware-specific protocol setup beyond the documented software workflow."
+      ]
+    },
+    {
+      "manufacturer": "Hercules",
+      "model": "DJControl Inpulse 300 MK2",
+      "coverage_state": "documentation-only",
+      "bindings": 0,
+      "file": "ni-hercules-ah/djcontrol-inpulse-300-mk2.json",
+      "missing_information": [
+        "Model-specific control-to-Note/CC addresses and MIDI channel assignments.",
+        "Shift, pad-mode and deck-layer wire-message differences.",
+        "Jog-wheel/encoder direction, resolution and acceleration encoding; button press/release values.",
+        "LED, pad-color and meter receive addresses and value semantics.",
+        "Any required generic MIDI mode or firmware-specific protocol setup beyond the documented software workflow."
+      ]
+    },
+    {
+      "manufacturer": "Hercules",
+      "model": "DJControl Inpulse T7 / T7 Premium",
+      "coverage_state": "documentation-only",
+      "bindings": 0,
+      "file": "ni-hercules-ah/djcontrol-inpulse-t7-t7-premium.json",
+      "missing_information": [
+        "Model-specific control-to-Note/CC addresses and MIDI channel assignments.",
+        "Shift, pad-mode and deck-layer wire-message differences.",
+        "Jog-wheel/encoder direction, resolution and acceleration encoding; button press/release values.",
+        "LED, pad-color and meter receive addresses and value semantics.",
+        "Any required generic MIDI mode or firmware-specific protocol setup beyond the documented software workflow."
+      ]
+    },
+    {
+      "manufacturer": "Hercules",
+      "model": "DJControl Starlight",
+      "coverage_state": "documentation-only",
+      "bindings": 0,
+      "file": "ni-hercules-ah/djcontrol-starlight.json",
+      "missing_information": [
+        "Model-specific control-to-Note/CC addresses and MIDI channel assignments.",
+        "Shift, pad-mode and deck-layer wire-message differences.",
+        "Jog-wheel/encoder direction, resolution and acceleration encoding; button press/release values.",
+        "LED, pad-color and meter receive addresses and value semantics.",
+        "Any required generic MIDI mode or firmware-specific protocol setup beyond the documented software workflow."
+      ]
+    },
+    {
+      "manufacturer": "Native Instruments",
+      "model": "Traktor Kontrol F1",
+      "coverage_state": "documentation-only",
+      "bindings": 0,
+      "file": "ni-hercules-ah/traktor-kontrol-f1.json",
+      "missing_information": [
+        "Pinned/exported Controller Editor template with per-page input/output addresses and channels.",
+        "Template-specific encoder turn/push message types, values and direction encoding.",
+        "Selected RGB pad single/dual/HSB modes and display message assignments; no fixed LED address map is established."
+      ]
+    },
+    {
+      "manufacturer": "Native Instruments",
+      "model": "Traktor Kontrol S2 MK3",
+      "coverage_state": "documentation-only",
+      "bindings": 0,
+      "file": "ni-hercules-ah/traktor-kontrol-s2-mk3.json",
+      "missing_information": [
+        "Manufacturer control-to-message table with numeric MIDI addresses and channels.",
+        "Mode/shift/deck-layer address differences in MIDI mode.",
+        "Encoder/jog-wheel value encoding and button press/release bytes.",
+        "LED/display/meter receive protocol and values; native display behavior does not establish MIDI feedback."
+      ]
+    },
+    {
+      "manufacturer": "Native Instruments",
+      "model": "Traktor Kontrol S3",
+      "coverage_state": "documentation-only",
+      "bindings": 0,
+      "file": "ni-hercules-ah/traktor-kontrol-s3.json",
+      "missing_information": [
+        "Manufacturer control-to-message table with numeric MIDI addresses and channels.",
+        "Mode/shift/deck-layer address differences in MIDI mode.",
+        "Encoder/jog-wheel value encoding and button press/release bytes.",
+        "LED/display/meter receive protocol and values; native display behavior does not establish MIDI feedback."
+      ]
+    },
+    {
+      "manufacturer": "Native Instruments",
+      "model": "Traktor MX2",
+      "coverage_state": "documentation-only",
+      "bindings": 0,
+      "file": "ni-hercules-ah/traktor-mx2.json",
+      "missing_information": [
+        "Manufacturer control-to-message table with numeric MIDI addresses and channels.",
+        "Mode/shift/deck-layer address differences in MIDI mode.",
+        "Encoder/jog-wheel value encoding and button press/release bytes.",
+        "LED/display/meter receive protocol and values; native display behavior does not establish MIDI feedback."
+      ]
+    },
+    {
+      "manufacturer": "Native Instruments",
+      "model": "Traktor X1 MK3",
+      "coverage_state": "documentation-only",
+      "bindings": 0,
+      "file": "ni-hercules-ah/traktor-x1-mk3.json",
+      "missing_information": [
+        "Manufacturer control-to-message table with numeric MIDI addresses and channels.",
+        "Mode/shift/deck-layer address differences in MIDI mode.",
+        "Encoder/jog-wheel value encoding and button press/release bytes.",
+        "LED/display/meter receive protocol and values; native display behavior does not establish MIDI feedback."
+      ]
+    },
+    {
+      "manufacturer": "Native Instruments",
+      "model": "Traktor Z1 MK2",
+      "coverage_state": "documentation-only",
+      "bindings": 0,
+      "file": "ni-hercules-ah/traktor-z1-mk2.json",
+      "missing_information": [
+        "Manufacturer control-to-message table with numeric MIDI addresses and channels.",
+        "Mode/shift/deck-layer address differences in MIDI mode.",
+        "Encoder/jog-wheel value encoding and button press/release bytes.",
+        "LED/display/meter receive protocol and values; native display behavior does not establish MIDI feedback."
+      ]
+    },
+    {
+      "manufacturer": "Allen & Heath",
+      "model": "Xone:PX5",
+      "coverage_state": "partial",
+      "bindings": 12,
+      "file": "ni-hercules-ah/xone-px5.json",
+      "missing_information": [
+        "Resolve the mapping-versus-conversion-table Note octave conflict using manufacturer clarification or hardware capture.",
+        "Establish CC value ranges and rotary absolute/relative/direction semantics.",
+        "Document per-control host-to-device receive values and LED feedback semantics.",
+        "Confirm actual configured MIDI channel on the unit; default 16 may have been changed."
+      ]
+    },
+    {
+      "manufacturer": "Faderfox",
+      "model": "EC4",
+      "coverage_state": "partial",
+      "bindings": 9408,
+      "file": "performance/faderfox-ec4.json",
+      "missing_information": [
+        "Original p.15 factory table extends beyond right page edge (visually verified), so do not silently repair clipped values. Special fixed SysEx description not linked by discovered current page. Ready subset: readable factory group ranges; full map requires resolving clipped table and special controls."
+      ]
+    },
+    {
+      "manufacturer": "Korg",
+      "model": "nanoKONTROL2",
+      "coverage_state": "partial",
+      "bindings": 97,
+      "file": "performance/korg-nanokontrol2.json",
+      "missing_information": [
+        "Protocol is detailed but full default control-number map still requires editor scene export or hardware capture. DAW modes can output pitchbend and use different protocols; do not treat capability chart as complete map.",
+        "Native map is documented but untested; normal-mode scene defaults and DAW mode-specific bindings remain unavailable. Packed scene bytes preserved as raw evidence rather than full parameter codec."
+      ]
+    },
+    {
+      "manufacturer": "Novation",
+      "model": "Launch Control XL MK1/MK2",
+      "coverage_state": "partial",
+      "bindings": 122,
+      "file": "performance/launch-control-xl-legacy.json",
+      "missing_information": [
+        "Excellent feedback specification but missing full factory input map; obtain template definitions or hardware capture before ready status."
+      ]
+    },
+    {
+      "manufacturer": "DJ TechTools",
+      "model": "Midi Fighter 3D",
+      "coverage_state": "partial",
+      "bindings": 348,
+      "file": "performance/midi-fighter-3d.json",
+      "missing_information": [
+        "Source p.18 Edge Tilt table visibly contradicts p.7 CC0-7 prose (table contains note names and40/39/38/43). Channel nomenclature must be verified; quarantine conflicting motion rows rather than guess.",
+        "Resolve motion and note-name/numeric contradictions; verify channel convention and bank-side defaults."
+      ]
+    },
+    {
+      "manufacturer": "DJ TechTools",
+      "model": "Midi Fighter Twister",
+      "coverage_state": "partial",
+      "bindings": 720,
+      "file": "performance/midi-fighter-twister.json",
+      "missing_information": [
+        "Mixed channel numbering conventions across source sections require normalization by section and hardware verification; some earlier text still refers to four banks. Ready subset: default encoder/switch address tables with explicit zero-based convention.",
+        "Resolve system/colour channel contradictions and animation value 9; supply bank 5\u20138 per-control tables and Super Knob numbers."
+      ]
+    },
+    {
+      "manufacturer": "Reloop",
+      "model": "Neon",
+      "coverage_state": "partial",
+      "bindings": 6909,
+      "file": "performance/neon.json",
+      "missing_information": [
+        "Unspecified encoder pp values and RGB/LED value semantics need verification; chart has suspected copy errors (e.g. repeated Deck C/D SYNC addresses). Aftertouch messages are outside Note/CC schema.",
+        "Correct Deck C/D SYNC duplicate notes; Deck D sampler/hot-loop performance selection; Deck B hot-loop velocity channel; malformed period/comma range cells; pp and RGB semantics."
+      ]
+    }
+  ],
+  "count": 21,
+  "bindings": 18381
+}

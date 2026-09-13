@@ -1,0 +1,1587 @@
+User Guide               English (3–8)
+
+
+
+Guía del usuario       Español (9–14)
+
+
+
+Guide d’utilisation   Français (15–20)
+
+
+
+Guida per l’uso        Italiano (21–26)
+
+
+
+Benutzerhandbuch      Deutsch (27–32)
+
+
+
+Appendix                   English (34)
+2
+User Guide (English)
+Introduction
+Thank you for purchasing the Twelve MKII. At Rane DJ, we know how serious music is to you.
+That’s why we design our equipment with only one thing in mind—to make your performance
+the best it can be.
+The Twelve MKII is a pure and powerful motorized DJ control system. Keeping things
+consistent with a familiar turntable layout and size in an all-metal body, the only clear
+differentiator is a precision, multi-function touch strip for track searching and setting or
+triggering hot cues in place of the tone arm.
+Designed with the DJ in mind, the Twelve MKII lets you scratch and play with the feel of a
+traditional turntable, but with the precision, repeatability and durability of the best digitally-
+based solutions.
+
+Box Contents
+
+Twelve MKII Base
+Platter Assembly
+ • Aluminum Platter
+ • Slipmat
+ • Control Disc with Quick Release Adapter (attached)
+ • Spacers (4)
+Power Cable
+USB Cable
+Stereo RCA Cables
+User Guide
+Safety & Warranty Manual
+Note: Twelve MKII was designed in collaboration with Serato, making it an Official Serato
+Accessory. Twelve MKII requires a supported Serato DJ Pro interface, controller, mixer, or
+compatible Serato Club Kit solution to control Serato DJ Pro.
+
+Support
+
+For the latest information about this product (documentation, technical specifications, system
+requirements, compatibility information, etc.) and product registration, visit rane.com.
+For additional product support, visit rane.com/support.
+
+
+Setup
+Before getting started:
+ • Read the Safety & Warranty Manual before using Twelve MKII.
+ • Make sure all items listed in Introduction > Box Contents are included. Items not listed
+   are sold separately.
+                                                                                                 3
+1. Assemble the Platter System
+
+1. Remove the Twelve MKII base from the packaging. Remove the
+   platter assembly from the package (underneath Twelve MKII). Place
+   Twelve MKII on a flat, stable surface for assembly and operation.
+
+2. Place the platter onto the Twelve MKII base by aligning the pins in the
+   bottom of the platter with the holes in Twelve MKII’s motor. Press it
+   down firmly. Check to make sure that it rotates uniformly and does not
+   wobble excessively.
+
+3. Place the slipmat onto the platter. Then place the Control Disc over
+   the spindle (with the attached Quick Release Adapter on top). To
+   lock the Control Disc to the spindle, pinch the top of the spindle while
+   slowly rotating the disc until you hear it click. It locks when the groove
+   in the spindle lines up directly opposite to the button on the side of
+   the Quick Release Adapter.
+    Note: If you would like to adjust the slip friction of the disc, consider
+    placing 1-4 of the included spacers over the spindle, underneath the
+    slipmat. The more you elevate the Control Disc with the spacers, the
+    more spinback you will get.
+
+2. Connect and Start DJing!
+
+1. Make sure you have downloaded and installed the latest version of your DJ software.
+2. Place Twelve MKII on a flat, stable surface.
+3. While the power is switched off, plug the included power cable into Twelve MKII first, then
+   plug the cable into a power outlet.
+4. Power on Twelve MKII using the power switch.
+5. Use a standard USB cable (included) to connect the USB Port to one of the following:
+      •   If you are using Twelve MKII with the Rane Seventy-Two mixer (sold separately),
+          connect the USB cable to the Deck 1 or Deck 2 USB ports labeled Twelve MKII/
+          Controller.
+      •   If you are using another mixing interface, connect the USB cable to an available
+          USB port on your computer or a powered hub connected to the computer.
+6. Alternatively, connect standard RCA stereo cables from the Audio Output to the input of a
+   compatible mixer or other DVS-enabled device for timecode control.
+7. Open Serato DJ Pro. The Twelve MKII works with Serato DJ Pro using two modes:
+     • Serato USB: This mode is identical to the operation of the original Rane Twelve, where
+       the software is controlled through a USB connection. When using this mode, the
+       software should be set to Internal Mode.
+     • Serato DVS: This mode will send DVS audio signal through the Audio Out (RCA) ports
+       to control the platter. When using this mode, the software should be set to Relative
+       Mode.
+    It is recommended to connect your Twelve MKII using both the Audio Out (RCA) ports (for
+    DVS platter control) and USB (for MIDI controls such as Browse, Load/Instant Doubles,
+    Hot Cues, etc.).
+    For more information on how to use Serato DJ Pro with the Twelve MKII, please visit
+    support.serato.com.
+
+4
+Connection Diagram, Example 1 (Battle Style):
+
+                                                        Computer
+
+         Rane Twelve MKII                                                     Rane Twelve MKII
+            Rear Panel                                                           Rear Panel
+
+
+
+
+ Rane Twelve                                 Rane Seventy-Two                              Rane Twelve
+ MKII Bottom                                    Rear Panel                                 MKII Bottom
+ Panel Recess                                                                              Panel Recess
+                                       Power             Power
+
+
+
+
+                  Rane Twelve MKII          Rane Seventy-Two       Rane Twelve MKII
+                     Top Panel                 Top Panel              Top Panel
+
+
+
+Connection Diagram, Example 2 (Club Style):
+
+                                                        Computer
+                 Rane Twelve MKII                                       Rane Twelve MKII
+                    Side Panel                                             Side Panel
+
+
+
+
+  Rane Twelve                                     Rane                                 Rane Twelve
+  MKII Bottom                                  Seventy-Two                             MKII Bottom
+  Panel Recess                                  Rear Panel                             Panel Recess
+                                    Power                       Power
+
+
+
+
+                  Rane Twelve MKII                                 Rane Twelve MKII
+                                            Rane Seventy-Two          Top Panel
+                     Top Panel
+                                               Top Panel
+                                                                                                          5
+Connection Diagram, Example 3:
+
+                                                  Supported Serato
+    Rane Twelve                                     DJ Pro Device
+     MKII Rear                                                                 Computer
+                                                   (e.g. Rane SL4)
+       Panel
+
+                                       Rane Twelve
+                                       MKII Bottom
+                                       Panel Recess
+       Power
+
+
+
+Features
+
+Top Panel
+
+1. High Torque Direct Drive Platter: A 5.0                                                       12
+                                                      14         13
+   kgf-cm motor turns this aluminum platter                                                    11
+   with speed position dots.
+                                                                                                   9
+      Note: The platter itself should not be held 15        16                            10
+      in position for sustained periods while
+                                                                                                   8
+      powered to rotate.                                                                           7
+2. Control Disc with Slipmat: This full-size
+   12" (30.5 cm) disc controls the audio
+   playhead in your DJ software. Place the
+   included slipmat under the Control Disc
+   (or a different slipmat can be used, if                                 3
+   preferred). To get a looser feel with more
+   spinback on your Control Disc, place 1-4                      2
+   of the included spacers over the spindle,
+   underneath the slipmat.                                 1                                       6
+      Note: The Control Disc can be user
+      replaced by attaching the Quick Release
+      Adapter to your own modified disc. The                                              4    5
+      replacement disc must have three 6 mm
+      holes, and the included disc should be
+      used as a reference.
+3. Quick Release Adapter: This secures the Control Disc to the platter. It comes attached
+   to the top of the Control Disc. To remove the Control Disc or slipmat from the platter,
+   hold in the button on the side of the Quick Release Adapter while lifting the disc off the
+   spindle. After placing the disc back on the spindle, pinch the top of the spindle while
+   slowly rotating the disc until you hear it click. It locks when the groove in the spindle lines
+   up directly opposite to the button on the side of the Quick Release Adapter.
+4. Motor On/Off & Strobe Light: Turn this dial at the top of the strobe light to turn the platter
+   motor on or off. The unit will remain powered on, allowing for wind down effects.
+      The strobe light illuminates the edge of the platter, which indicates whether or not the
+      phase of the platter’s rotation is constant. As the platter rotates, look at the dots on its
+      edge under the light’s strobing. If the phase is constant, the dots will appear to be still. If
+      the rotation is out of phase, the dots will appear to move or “drift.”
+
+
+
+
+6
+5. Start/Stop: Press this button to start and stop the platter. The LED around this button will
+   be dim when power is on and no track is playing, bright when a track is playing, and
+   flashing red when the track is near its end.
+6. 33 & 45 RPM: Press one of these buttons to set the rotation speed (RPM) of the platter.
+   The lit button indicates the current selection.
+7. Instant Doubles: Press this button to load the currently playing song to the active deck.
+8. Scroll/Load: Turn this knob to browse through lists and press it to select an item or load
+   the currently selected track to the deck.
+   Tip: Press this knob twice quickly to load the same track to both decks (“instant doubles”).
+9. Back: Press this button to view the previous screen in the software.
+10. Pitch Range: Press one of these buttons to adjust the range of the Pitch Fader to ±8%,
+    ±16%, and ±50%.
+11. Pitch Fader: Move this fader to adjust the speed (pitch) of the track. You can adjust its
+    total range with the Pitch Range buttons.
+12. Takeover LEDs: When you select another Deck with the Deck Select buttons, the
+    position of the Twelve MKII’s Pitch Fader may not match the Pitch setting for that Deck in
+    the software. Slowly move the Pitch Fader in the direction indicated by the Takeover LED
+    arrow until it turns off. At this point, the Pitch Fader matches the Pitch setting in the
+    software and can control it again.
+13. Touch Strip: This pressure sensitive strip replaces the tone arm and allows the user to set
+    track position depending on the Touch Strip Mode setting.
+14. Cue Mode: Press this button to toggle the Touch Strip between Needle Drop and Hot
+    Cue modes. When Needle Drop is selected (default when Twelve MKII is powered on), the
+    button will be dimly lit. When Hot Cue is selected, the button will be brightly lit.
+      • Needle Drop Mode
+         i. Press the Cue Mode button so it is dimly lit. (This is the default mode when Twelve
+            MKII is first powered on.)
+        ii. The length of the Touch Strip represents the length of the entire track. Place your
+            finger on a point along this sensor to jump to that point in the track. White LEDs on
+            the Touch Strip will give a visual representation of the position of the needle in the
+            track.
+      • Hot Cue Mode
+         i. Press the Cue Mode button so it is brightly lit.
+         ii. When a section of the Touch Strip is unlit, you can assign a Hot Cue Point by
+             pressing it at the desired point in your track. Once it is assigned, the section will
+             light. The software determines the color of the Hot Cue Point.
+        iii. While the track is playing, press the Hot Cue Point to return the track to that point.
+       iv. To delete a Hot Cue Point, press and hold the Cue Mode button and press the
+           section you would like to delete.
+15. DVS Mode: Press and hold this button to enable changing of the active DVS mode. Once
+    the button begins to flash, tap this button to cycle through the available timecode signal
+    options, which will be shown in the OLED screen below this button. Once the desired
+    mode is shown in the display, wait three seconds to confirm the selection. Shortly after a
+    selection is made and the button stops flashing, the OLED screen will also turn off. Quickly
+    tap the DVS Mode button again to show the active mode.
+
+                                                                                                  7
+16. Deck Select: Selects which deck in the software is controlled by Twelve MKII. Up to four
+    Twelve MKII controllers can be connected with a Serato DJ Pro-enabled device provided
+    the device has enough channels. For instance, if you are using a two-channel mixer such
+    as the Rane Seventy-Two, only up to two Twelve MKII controllers can be connected and
+    only the first 2 channels will be available for selection. When you are using more than one
+    Twelve MKII controller at a time, you will need to determine which deck each controller is
+    assigned to:
+      i.    Power on each controller. The available Deck Select buttons on all connected
+            Twelve MKII controllers will flash.
+      ii.   Press the Deck Select button that corresponds to which deck you would like to
+            assign each Twelve MKII to. Once a Deck is selected and in use, the button LED will
+            be fully lit, and buttons for other available decks will enter a dim state.
+     iii.   To switch to another available deck, press the corresponding Deck Select button.
+     iv.    To unselect a deck, press and hold the corresponding Deck Select button for 2
+            seconds. When buttons for the available decks start flashing, you are ready to select
+            a new deck.
+
+
+Bottom Panel Recess
+
+
+
+
+                       2                            4          5
+                       1                 3
+
+1. Power Input: Use a standard IEC power cable (included) to connect Twelve MKII to a
+   power outlet. While the power is switched off, plug the cable into Twelve MKII first, then
+   plug the cable into a power outlet.
+2. Power Switch: Use this switch to power Twelve MKII on and off.
+3. Motor Torque: Flip this switch to adjust the torque of the platter. At the high setting, the
+   platter will have the heavier, stronger feel of “modern” turntables. At the low setting, it is
+   lighter and more graceful—the feel of a “classic” turntable.
+4. USB Port: Use a standard USB cable (included) to connect this USB port to an available
+   USB port on the Rane Seventy-Two (sold separately) or your computer.
+5. Audio Out (RCA): Connect stereo RCA cables to this output to send the internal timecode
+   signals to the input of a compatible mixer or other DVS-enabled device.
+
+
+
+
+8
+Guía del usuario (Español)
+Introducción
+Gracias por comprar el Twelve MKII. En Rane DJ, sabemos que usted se toma la música en serio.
+Por eso es que diseñamos nuestros equipos con una sola cosa en mente—hacer que pueda tocar
+su mejor interpretación.
+El Twelve MKII es un sistema de control de DJ motorizado puro y poderoso. Manteniendo la
+consistencia con las disposiciones típicas y los tamaños de los giradiscos en un cuerpo
+íntegramente de metal, el único diferenciador claro es una tira táctil multifuncional de precisión para
+el recorrido de pistas y el ajuste o disparo de cues rápidos en el lugar del brazo de lectura.
+Diseñado con el DJ en mente, el Twelve MKII le permite rayar y reproducir con la sensación de un
+giradiscos tradicional, pero con la precisión, repetitividad y durabilidad de las mejores soluciones
+digitales.
+
+
+Contenido de la caja
+
+Base del Twelve MKII
+Conjunto de plato
+ • Plato de aluminio
+ • Alfombrilla antideslizante
+ • Disco de control con adaptador de liberación rápida (adjunto)
+ • Espaciadores (4)
+Cable de alimentación
+Cable USB
+Cables RCA a estéreo
+Guía del usuario
+Manual sobre la seguridad y garantía
+
+Nota: El Twelve MKII fue diseñado en colaboración con Serato, lo que lo hace un Official Serato
+Accessory (accesorio oficial de Serato). El Twelve MKII requiere una interfaz, controlador o
+mezclador compatible con Serato DJ Pro o una solución compatible con Serato Club Kit para
+controlar el Serato DJ Pro.
+
+
+Soporte
+
+Para obtener la información más reciente acerca de este producto (documentación, especificaciones
+técnicas, requisitos de sistema, información de compatibilidad, etc.) y registrarlo, visite rane.com.
+Para obtener soporte adicional del producto, visite rane.com/support.
+
+
+Instalación
+Antes de empezar:
+ • Lea el Manual sobre la seguridad y garantía antes de usar el Twelve MKII.
+ • Asegúrese de que estén presentes todos los elementos enumerados en Introducción >
+   Contenido de la caja. Los elementos que no se enumeran se venden por separado.
+
+                                                                                                     9
+1. Armar el plato
+1. Retire la base del Twelve MKII del embalaje. Retire el conjunto del plato del
+   embalaje (debajo del Twelve MKII). Coloque el Twelve MKII sobre una
+   superficie plana y estable para su ensamble y operación.
+
+
+2. Coloque el plato en el motor alineando los pernos de la parte inferior del
+   plato con los orificios del motor. Presiónelo firmemente. Asegúrese de que
+   gire de manera uniforme y sin tambalear en exceso.
+
+
+3. Coloque la alfombrilla sobre el plato. Luego coloque el disco de control
+   sobre el husillo (con el adaptador de liberación rápida en la parte
+   superior). Para bloquear el disco de control al husillo, inmovilice la parte
+   superior del husillo mientras gira el disco hasta escuchar un clic. El mismo
+   se bloquea cuando la ranura del husillo se alinea de forma directamente
+   opuesta al botón del lado del adaptador de liberación rápida.
+     Nota: Si desea ajustar la fricción de deslizamiento del disco, considere
+     colocar 1-4 de los espaciadores incluidos por encima del husillo por
+     debajo de la alfombrilla. Cuanto más alto quede el disco de control
+     debido a los espaciadores, más efecto de "spinback" obtendrá.
+
+2. ¡Conecte y sea el DJ!
+
+1. Asegúrese de haber descargado e instalado la última versión del software.
+2. Coloque el Twelve MKII sobre una superficie plana y estable.
+3. Con la alimentación eléctrica desconectada, enchufe el cable al Twelve MKII primero y a
+   continuación a la toma de corriente.
+4. Encienda el Twelve MKII utilizando el interruptor de encendido.
+5. Utilice un cable USB estándar (incluido) para conectar el puerto USB a uno de los siguientes
+   dispositivos:
+       •   Si está utilizando el Twelve MKII con el mezclador Seventy-Two de Rane (que se vende
+           por separado), conecte el cable USB a los puertos USB de la bandeja 1 o la bandeja 2
+           etiquetados Twelve MKII/Controlador.
+       •   Si está utilizando otra interfaz de mezcla, conecte el cable USB a un puerto USB libre en
+           su ordenador o a un concentrador alimentado conectado al ordenador.
+6. Como alternativa, conecte cables RCA estéreo estándar desde la salida de audio hasta la
+   entrada de un mezclador compatible u otro dispositivo compatible con DVS para el control de
+   codificación por tiempo.
+7. Abra Serato DJ Pro. El Twelve MKII funciona con Serato DJ Pro en dos modos:
+      • Serato USB: Este modo es idéntico al funcionamiento del Rane Twelve original, en el cual el
+        software se controla a través de una conexión USB. Al utilizar este modo, el software debe
+        configurarse en modo interno.
+      • Serato DVS: Este modo enviará una señal de audio DVS a través de los puertos de la salida
+        de audio (RCA) para controlar el plato. Al utilizar este modo, el software debe configurarse
+        en modo relativo.
+     Se recomienda conectar su Twelve MKII utilizando tanto los puertos de la salida de audio
+     (RCA) (para el control del plato mediante DVS) como el puerto USB (para controles MIDI tales
+     como Explorar, Cargar/Dobles instantáneos, Cues rápidos, etc.).
+     Para obtener más información sobre cómo utilizar el Serato DJ Pro con el Twelve MKII, visite
+     support.serato.com.
+
+10
+Diagrama de conexión, Ejemplo 1 (“Battle Style”):
+
+                                                    Computadora
+
+                   Rane Twelve MKII                              Rane Twelve MKII
+                     Panel trasero                                 Panel trasero
+
+
+
+
+                                       Rane Seventy-Two
+  Twelve MKII                            Panel trasero                             Twelve MKII
+  Cavidad del                                                                      Cavidad del
+ panel inferiore                               Alimentacion                       panel inferiore
+
+
+
+
+                    Rane Twelve MKII   Rane Seventy-Two       Rane Twelve MKII
+                     Panel superior      Panel superior        Panel superior
+
+
+Diagrama de conexión, Ejemplo 2 (“Club Style”):
+
+                                                     Computadora
+
+
+         Rane Twelve MKII                                                Rane Twelve MKII
+           Panel lateral                                                   Panel lateral
+
+
+
+
+   Twelve MKII                          Rane Seventy-Two                          Twelve MKII
+   Cavidad del                            Panel trasero                           Cavidad del
+  panel inferiore                                                                panel inferiore
+                                              Alimentacion
+
+
+
+
+                    Rane Twelve MKII                          Rane Twelve MKII
+                     Panel superior    Rane Seventy-Two        Panel superior
+                                         Panel superior
+                                                                                                    11
+Diagrama de conexión, Ejemplo 3:
+                    Rane Twelve MKII
+                      Panel trasero
+                                                 Dispositivo compatible
+                                                 con Serato DJ Pro (por         Computadora
+                                                     ej., Rane SL4)
+
+     Alimentacion                          Rane
+                                        Twelve MKII
+                                        Cavidad del
+                                       panel inferiore
+
+
+
+
+Características
+Panel superior
+
+1. Plato de transmisión directa de alto par de
+   rotación: Un motor de 5,0 kgf-cm gira este 14                    13                            12
+   plato de aluminio con puntos de posición de
+                                                                                                11
+   velocidad.                                                                                       9
+                                               15              16                          10
+   Nota: El plato no debe ser mantenido en una                                                      8
+   posición por períodos prolongados mientras                                                       7
+   se esté accionando su rotación.
+2. Disco de control con alfombrilla: Este disco
+   de 30,5 cm (12 pulg.) de tamaño completo
+   controla el cabezal de reproducción de audio
+   de su software de DJ. Coloque la alfombrilla
+   debajo del disco de control (también se                                  3
+   puede usar una alfombrilla diferente, si se
+   prefiere). Para lograr una sensación más suelta                  2
+   con un mayor efecto de "spinback" en su
+   disco de control, coloque 1-4 de los
+   espaciadores incluidos encima del husillo, por
+                                                             1                                      6
+   debajo de la alfombrilla.
+   Nota: El disco de control puede ser
+   reemplazado y personalizado por el usuario                                             4     5
+   sujetando el adaptador de liberación rápida
+   de eje a su propio disco modificado. Deben
+   añadirse tres orificios (6 mm) y se debe utilizar
+   el disco incluido como referencia.
+3. Adaptador de liberación rápida: Sujeta el disco de control al plato. Viene sujetado a la parte
+   superior del disco de control. Para retirar el disco de control o la alfombrilla del plato,
+   mantenga presionado el botón que se encuentra al costado del adaptador de liberación rápida
+   mientras levanta el disco del husillo. Después de bloquear el disco nuevamente al husillo,
+   inmovilice la parte superior del husillo mientras gira el disco lentamente hasta escuchar un clic.
+   El mismo se bloquea cuando la ranura del husillo se alinea de forma directamente opuesta al
+   botón del lado del adaptador de liberación rápida.
+4. Encendido/Apagado del motor y luz estroboscópica: Gire este cuadrante en la parte superior
+   de la luz estroboscópica para encender o apagar el motor del plato. La unidad permanecerá
+   encendida, permitiendo efectos de desaceleración.
+   La luz estroboscópica ilumina el borde del plato, el cual indica si la fase de la rotación del plato
+   es o no constante. A medida que gira el plato, observe los puntos en su borde bajo la luz
+   estroboscópica. Si la fase es constante, los puntos parecerán estar quietos. Si la rotación está
+   fuera de fase, los puntos parecerán moverse o "desplazarse".
+12
+5. Start/Stop: Pulse este botón para iniciar o detener el plato. El LED que rodea a este botón se
+   atenuará cuando la unidad esté encendida y no se esté reproduciendo ninguna pista, brillará
+   cuando se esté reproduciendo una pista y parpadeará de color rojo cuando la pista se acerque a
+   su fin.
+6. 33 & 45 RPM: Pulse una de estos botones para ajustar la velocidad de rotación (RPM) del plato.
+   El botón iluminado indica la selección actual.
+7. Dobles instantáneos: Pulse este botón para cargar la pista actualmente en reproducción en la
+   bandeja activa.
+8. Scroll/Load: Gire esta perilla para navegar por las listas y púlsela para seleccionar un elemento
+   o cargar en la bandeja la pista actualmente seleccionada.
+    Consejo: Pulse esta perilla dos veces rápidamente para cargar la misma pista en ambas
+    bandejas ("dobles instantáneos").
+9. Back: Pulse este botón para ver la pantalla anterior.
+10. Pitch Range: Pulse una de estos botones ajustar el rango del fader de pitch a ±8%, ±16% y
+    ±50%.
+11. Fader de tono: Mueva este fader para ajustar la velocidad (tono) de la pista. Puede ajustar el
+    rango completo con los botones Pitch Range (rango de tono).
+12. LED de toma de control: Cuando usted selecciona otra bandeja con los botones Deck Select
+    (selección de bandeja), la posición del fader de tono del Twelve MKII puede no coincidir con el
+    ajuste de tono correspondiente a esa bandeja en el software. Mueva lentamente el fader de tono
+    en el sentido indicado por la flecha del LED de toma de control hasta que se apague. En ese
+    punto, el fader de tono iguala el ajuste de pitch del software y puede controlarlo nuevamente.
+13. Tira táctil: Esta tira sensible a la presión sustituye al brazo de lectura y permite al usuario ajustar
+    la posición de la pista en función del ajuste del modo de la tira táctil.
+14. Modo de cue: Pulse este botón para conmutar la tira táctil entre el modo de "dejar caer la púa"
+    y el modo de cue rápido. Cuando se selecciona el modo de "dejar caer la púa" (valor
+    predeterminado cuando se enciende el Twelve MKII), el botón estará levemente iluminado.
+    Cuando se selecciona el modo de cue rápido, el botón estará intensamente iluminado.
+       •   Modo de "dejar caer la púa"
+             i.   Pulse el botón Cue Mode (modo de cue) de manera que se ilumine levemente. (Este
+                  es el modo predeterminado la primera vez que se enciende el Twelve MKII).
+            ii.   La longitud de la tira de búsqueda representa la longitud de la totalidad de la pista.
+                  Coloque su dedo en un punto de este sensor para saltar a ese punto en la pista. Los
+                  LED blancos en la tira táctil le darán una representación visual de la posición de la
+                  púa en la pista.
+       •   Modo de cue rápido
+             i.   Pulse el botón Cue Mode (modo de cue) de manera que se ilumine intensamente.
+            ii.   Cuando una sección de la tira táctil esté apagada, puede asignar un punto de cue
+                  rápido pulsándolo en el punto deseado de su pista. Una vez asignado, la sección se
+                  iluminará. El software determina el color del punto de cue rápido.
+           iii.   Mientras la pista se esté reproduciendo, pulse el punto de cue rápido para regresar
+                  la pista a ese punto.
+           iv.    Para eliminar un punto de cue rápido, mantenga pulsado el botón Cue Mode y
+                  pulse la sección que desea eliminar.
+15. Modo DVS: Mantenga pulsado este botón para activar el cambio del modo DVS activo. Una vez
+    que el botón comienza a parpadear, tóquelo para recorrer las opciones de codificación de
+    tiempo disponibles, las cuales se mostrarán en la pantalla OLED debajo de este botón. Una vez
+    que aparece el modo deseado en la pantalla, espere tres segundos para confirmar la selección.
+    Al poco tiempo de realizar la selección y que el botón deje de parpadear, la pantalla OLED
+    también se apagará. Toque rápidamente el botón del modo DVS de nuevo para mostrar el modo
+    activo.
+
+                                                                                                        13
+16. Selección de bandeja: Selecciona la bandeja en el software que es controlada por el Twelve
+    MKII. Pueden conectarse hasta cuatro controladores Twelve MKII con un dispositivo compatible
+    con Serato DJ Pro siempre y cuando el dispositivo cuente con los suficientes canales. Por
+    ejemplo, si está utilizando un mezclador de dos canales, como por ejemplo, el Seventy-Two de
+    Rane, sólo podrá conectarse hasta dos controladores Twelve MKII y sólo los 2 primeros canales
+    estarán disponibles para ser seleccionados. Cuando esté utilizando más de un controlador
+    Twelve MKII en simultáneo, deberá determinar a qué bandeja está asignado cada controlador:
+      i.    Encienda los controladores. Los botones Deck Select disponibles en todos los
+            controladores Twelve MKII conectados parpadearán.
+      ii.   Pulse el botón Deck Select de cada bandeja a la cual desee asignar cada Twelve MKII.
+            Una vez que una bandeja esté seleccionada y en uso, el LED del botón estará
+            completamente iluminado y los botones de las demás bandejas disponibles se atenuarán.
+     iii.   Para pasar a otra bandeja disponible, pulse el botón Deck Select correspondiente.
+     iv.    Para des-seleccionar una bandeja, mantenga pulsado el botón Deck Select
+            correspondiente durante 2 segundos. Cuando comiencen a parpadear los botones de las
+            bandejas disponibles, ya está en condiciones de seleccionar una nueva bandeja.
+
+
+
+Cavidad del panel inferior
+
+
+
+
+                       2                              4          5
+                       1                  3
+1. Entrada de corriente: Utilice el cable de alimentación IEC estándar incluido para conectar el
+   Twelve MKII a una toma de corriente. Con la alimentación eléctrica desconectada, enchufe el
+   cable al Twelve MKII primero y a continuación a la toma de corriente.
+2. Interruptor de encendido: Utilice este interruptor para encender o apagar el Twelve MKII.
+3. Torque del motor: Accione este interruptor para ajustar el torque del plato. En el ajuste High
+   (alto), el plato tiene la sensación más pesada y fuerte de los giradiscos “modernos.” En el ajuste
+   Low (bajo), son más livianos y suaves—la sensación de un giradiscos “clásico.”
+4. Puerto USB: Utilice un cable USB estándar (incluido) para conectar este puerto USB a un
+   puerto USB disponible en el Seventy-Two de Rane o en su ordenador.
+
+5. Salida de audio (RCA): Conecte cables RCA estéreo en esta salida para enviar las señales de
+   codificación de tiempo internas a la entrada de un mezclador compatible u otro dispositivo
+   compatible con DVS.
+
+
+
+
+14
+Guide d’utilisation (Français)
+Présentation
+Merci d’avoir fait l’acquisition de la Twelve MKII. Chez Rane DJ, nous savons à quel point la musique
+est importante pour vous. C’est pourquoi nous concevons nos produits avec une seule chose en
+tête — faire de votre performance la meilleure qui soit.
+La Twelve MKII est un système de contrôle DJ motorisé simple et puissant. Elle conserve les
+caractéristiques familières des platines vinyles traditionnelles en termes de dimension, d’ergonomie
+et du boîtier tout en métal, mais dispose en plus d’une barre tactile multifonction qui permet de
+rechercher, programmer et de déclencher des points de repère rapides au lieu d’utiliser le bras de
+lecture.
+Conçue avec les DJ en tête, la Twelve MKII permet de scratcher et de performer avec la même
+aisance qu’avec les platines vinyles traditionnels, mais avec la précision, la répétabilité et la
+durabilité des meilleures solutions numériques.
+
+
+Contenu de la boîte
+
+Base de la Twelve MKII
+Plateau
+ • Plateau en aluminium
+ • Feutrine
+ • Disque de contrôle avec adaptateur à dégagement rapide (fixée au disque)
+ • Espaceurs (4)
+Câble d’alimentation
+Câble USB
+Câbles RCA stéréo
+Guide d’utilisation
+Consignes de sécurité et informations concernant la garantie
+Remarque : La Twelve MKII a été conçue en collaboration avec Serato, ce qui en fait un Official
+Accessory de Serato. La Twelve MKII requiert l’utilisation d’une interface, d'un contrôleur ou d’une
+console de mixage pris en charge par Serato DJ Pro, ou d’une solution Serato Club Kit compatible
+afin de pouvoir commander Serato DJ Pro.
+
+
+Assistance
+
+Pour les toutes dernières informations concernant la documentation, les spécifications techniques, la
+configuration requise, la compatibilité et l’enregistrement du produit, veuillez visiter rane.com.
+Pour de l’assistance supplémentaire, veuillez visiter rane.com/support.
+
+
+Démarrage
+Avant de commencer :
+ • Lire le livret des Consignes de sécurité et informations concernant la garantie avant d’utiliser la
+   Twelve MKII.
+ • Assurez-vous que tous les articles énumérés dans la section Présentation > Contenu de la
+   boîte de ce guide sont inclus. Les éléments qui ne figurent pas sont vendus séparément.
+
+                                                                                                   15
+1. Assembler le plateau
+1. Retirez la Twelve MKII de son emballage. Retirez le plateau de l’emballage
+   (sous la Twelve MKII). Placez la Twelve MKII sur une surface plane et
+   stable.
+
+
+2. Placez le plateau sur le moteur en alignant les broches du fond du plateau
+   avec les trous du moteur. Appuyez fermement. Vérifiez qu’il tourne
+   uniformément et qu’il ne vacille pas excessivement.
+
+
+
+3. Placez le tapis sur le plateau. Placez ensuite le disque de contrôle au-
+   dessus de l'axe (avec l'adaptateur à dégagement rapide vers le haut).
+   Pour verrouiller le disque de contrôle sur l’axe, pincez le haut de l’axe
+   tout en faisant tourner le disque lentement jusqu'à ce que vous entendiez
+   un déclic. Il se verrouille lorsque la rainure de l’axe s’aligne face à la
+   touche sur le côté de l’adaptateur à dégagement rapide.
+     Remarque : Pour ajuster la friction de glissement du disque, placez 1 à 4
+     des espaceurs fournis sur l’axe, sous de le tapis. Plus vous élevez le
+     disque de contrôle avec les espaceurs, plus l’effet de retour arrière sera
+     important.
+
+
+2. Faites tous les branchements puis commencer à faire du DJing !
+1. Veuillez vous assurer d’avoir téléchargé et installé la dernière version du logiciel.
+2. Placez la Twelve MKII sur une surface plane et stable.
+3. Avec l’interrupteur en position hors tension, branchez le câble d'alimentation dans la Twelve
+   MKII, puis dans la prise secteur.
+4. Utilisez l'interrupteur d'alimentation pour mettre la Twelve MKII sous tension.
+5. Utilisez un câble USB standard (fourni) pour relier le port USB à l’une des options suivantes :
+       • Si vous souhaitez utiliser la Twelve MKII avec la console de mixage Rane Seventy-Two
+           (vendu séparément), veuillez relier le câble USB au port USB Twelve MKII/Controller du
+           module 1 ou du module 2.
+       • Si vous utilisez une autre interface de mixage, connectez le câble USB à un port USB sur
+           votre ordinateur ou sur un concentrateur USB alimenté connecté à l’ordinateur.
+8. Vous pouvez également connecter des câbles stéréo RCA standard de la sortie audio à l'entrée
+   d'une console de mixage compatible ou d'un autre appareil qui utilise la fonction DVS afin de
+   contrôler l’encodage temporel.
+9. Lancez Serato DJ Pro. La Twelve MKII fonctionne avec Serato DJ Pro en utilisant deux modes :
+     • Serato USB : Ce mode est identique au fonctionnement de la Rane Twelve original, où le
+        logiciel est commandé via une connexion USB. Lorsque vous utilisez ce mode, le logiciel
+        doit être réglé en mode interne (Internal).
+     • Serato DVS : Avec ce mode, un signal audio DVS sera acheminé via les ports de sortie
+        audio (RCA) pour commander le plateau. Lorsque vous utilisez ce mode, le logiciel doit être
+        réglé en mode relatif (Relative).
+   Il est recommandé de connecter la Twelve MKII à l'aide des ports Audio Out (RCA) (pour la
+   commande DVS du plateau) et du port USB (pour les commandes MIDI afin de parcourir les
+   fichiers, de charger la piste d’un des modules sur l'autre module, d’accéder à un point de repère
+   rapide, etc.).
+   Pour plus d'informations sur l'utilisation de Serato DJ Pro avec la Twelve MKII, visitez
+   support.serato.com.
+
+16
+Schéma de connexion, Exemple 1 (« Battle Style ») :
+
+                                                      Ordinateur
+
+
+              Rane Twelve MKII                                     Rane Twelve MKII
+               Panneau arrière                                      Panneau arrière
+
+
+
+
+                                          Rane Seventy-Two
+  Twelve MKII                              Panneau arrière                            Twelve MKII
+   Cavité du                                                                           Cavité du
+panneau inférieur                               Alimentation                        panneau inférieur
+
+
+
+
+                    Rane Twelve MKII    Rane Seventy-Two       Rane Twelve MKII
+                    Panneau supérieur   Panneau supérieur      Panneau supérieur
+
+
+Schéma de connexion, Exemple 2 (« Club Style ») :
+
+                                                        Ordinateur
+
+                    Rane Twelve MKII                                 Rane Twelve MKII
+                     Panneau latéral                                  Panneau latéral
+
+
+
+
+                                          Rane Seventy-Two
+   Twelve MKII                                                                       Twelve MKII
+    Cavité du                              Panneau arrière                            Cavité du
+ panneau inférieur                             Alimentation                        panneau inférieur
+
+
+
+
+               Rane Twelve MKII                                    Rane Twelve MKII
+                                        Rane Seventy-Two
+               Panneau supérieur                                   Panneau supérieur
+                                        Panneau supérieur
+                                                                                                       17
+Schéma de connexion, Exemple 3 :
+                     Rane Twelve MKII
+                      Panneau arrière
+                                               Appareil pris en charge
+                                                 par Serato DJ Pro             Ordinateur
+                                                (p. ex., le Rane SL4)
+
+     Alimentation
+                                       Twelve MKII
+                                        Cavité du
+                                     panneau inférieur
+
+
+
+
+Caractéristiques
+Panneau supérieur
+
+1. Plateau avec moteur à couple élevé à                                                            12
+   entraînement direct : Un moteur de 5 kgf-cm
+                                                          14        13
+                                                                                                 11
+   fait tourner le plateau en aluminium avec des
+   points de position de vitesse.                                                                    9
+                                                         15    16                           10
+   Remarque : Le plateau ne doit pas être retenu                                                     8
+   pour de longues périodes de temps lorsqu’il                                                       7
+   est alimenté par le moteur.
+
+2. Disque de contrôle avec tapis : Le disque
+   pleine grandeur de 30,5 cm permet de
+   contrôler le curseur de lecture dans votre
+   logiciel audionumérique. Placez le tapis fourni
+   sous le disque de contrôle, ou encore,                                  3
+   utilisez-en une autre de votre choix. Pour un                    2
+   ajustement moins ferme du disque de
+   contrôle afin d’obtenir plus d’effet de retour
+   arrière, placez 1 à 4 des espaceurs fournis sur             1                                     6
+   l’axe, sous du tapis.
+   Remarque : Le disque de contrôle peut être
+   remplacé avec un autre disque personnalisé                                               4    5
+   en utilisant l'adaptateur à dégagement rapide.
+   Trois trous (6 mm) doivent être faits en utilisant
+   le disque fourni comme référence.
+
+3. Adaptateur à dégagement rapide : Cet adaptateur permet de verrouiller le disque de contrôle
+   au plateau. Il est préfixé sur le dessus du disque de contrôle. Pour retirer le disque de
+   contrôle ou le tapis du plateau, maintenez la touche située sur le côté de l'adaptateur à
+   dégagement rapide enfoncée tout en soulevant le disque pour le dégager de l'axe. Après avoir
+   replacé le disque de contrôle sur l’axe, pincez le haut de l’axe tout en faisant tourner le disque
+   lentement jusqu'à ce que vous entendiez un déclic. Il se verrouille lorsque la rainure de l’axe
+   s’aligne face à la touche sur le côté de l’adaptateur à dégagement rapide.
+4. Interrupteur du moteur et lumière stroboscopique : Le bouton au-dessus de la lumière
+   stroboscopique permet d’activer et de désactiver le plateau. L’appareil reste sous tension, ce
+   qui permet au plateau de ralentir progressivement lorsqu'il est désactivé.
+   La lumière stroboscopique illumine le rebord du plateau, indiquant si la phase de la rotation du
+   plateau est constante. Lorsque le plateau tourne, regardez les petits points sur le rebord sous la
+   lumière stroboscopique. Si la rotation est en phase, les points sembleront immobiles. Si la
+   rotation est déphasée, les points sembleront se déplacer.
+
+18
+5. Start/Stop : Cette touche permet de lancer et d’arrêter le plateau. L’intensité de la DEL autour
+   de cette touche sera faible lorsque le plateau est activé et qu’aucune piste ne joue, élevée
+   lorsqu’une piste joue, et clignotera rouge lorsque la piste touche à sa fin.
+6. 33 & 45 tr/min : Ces touches permettent de régler la vitesse de rotation du plateau (tr/min).
+   Lorsque la touche est allumée, cela indique la sélection en cours.
+7. Instant Doubles : Cette touche permet de charger la chanson en cours de lecture sur le module
+   actif.
+8. Scroll/Load : Tourner ce bouton permet de parcourir les listes et l’enfoncer permet de
+   sélectionner un des items ou de charger la piste sélectionnée sur le module.
+    Astuce : Appuyer deux fois rapidement permet de charger la même piste sur les deux modules
+    (« double instantané »).
+9. Back : Cette touche permet de revenir à la fenêtre précédente.
+10. Pitch Range : Ces touches permettent d’ajuster la plage du potentiomètre de la vitesse de
+    lecture à ±8 %, ±16 % et ±50 %.
+11. Curseur de hauteur tonale : Ce curseur permet de régler la vitesse (tonalité) de la piste. Vous
+    pouvez ajuster sa plage en utilisant les touches de sélection de la plage de la hauteur tonale.
+12. DEL Takeover : Lorsque vous sélectionnez un autre module à l’aide des touches de sélection,
+    il se peut que la position du curseur de hauteur tonale de la Twelve MKII ne corresponde pas
+    au réglage de ce module dans le logiciel. Déplacez lentement le curseur de hauteur tonale
+    dans la direction indiquée par la flèche de la DEL Takeover jusqu’à ce qu’elle s’éteigne. À cet
+    emplacement, le curseur de hauteur tonale correspond au réglage de la hauteur tonale du
+    logiciel et vous pouvez donc le contrôler à nouveau.
+13. Barre tactile : Cette barre tactile sensible à la pression remplace le bras de lecture et permet de
+    définir la position de la piste selon le réglage du mode de la barre tactile.
+14. Mode de cue : Cette touche permet de basculer la barre tactile entre le mode pointe de lecture
+    (Needle Drop) et le mode points de repère rapide (Hot Cue). Lorsque le mode pointe de lecture
+    est sélectionné (valeur par défaut lorsque la Twelve MKII est mise sous tension), l’intensité de la
+    DEL de la touche est faible. Lorsque le mode point de repère rapide est sélectionné, l’intensité
+    de la touche est élevée.
+      • Mode pointe de lecture
+         i. Appuyez sur la touche Cue Mode afin que l’intensité de la touche soit faible. (C'est le
+            mode par défaut lors de la mise sous tension initiale de la Twelve MKII.)
+         ii. La longueur de la barre tactile représente la durée de la piste. Placez votre doigt sur
+             n’importe quel endroit afin de sauter sur ce point de la piste. Les DEL blanches sur la
+             barre tactile fournissent une représentation visuelle de la position de la pointe de lecture
+             dans la piste.
+      • Mode point de repère rapide
+         i. Appuyez sur la touche Cue Mode afin que l’intensité de la touche soit élevée.
+         ii. Lorsqu’une section de la barre tactile est éteinte, vous pouvez y assigner un point de
+             repère rapide en appuyant sur la barre à l’endroit désiré sur la piste. Une fois la section
+             assignée, elle s’allume. Le logiciel détermine la couleur du point de repère.
+        iii. Lors de la lecture de la piste, appuyez sur le point de repère afin de revenir sur ce point.
+        iv. Pour supprimer un point de repère rapide, maintenez la touche Cue Mode enfoncée
+            puis appuyez sur la section que vous souhaitez supprimer.
+15. Mode DVS : Maintenir cette touche enfoncée permet de changer le mode DVS actif. Une fois
+    que la touche commence à clignoter, appuyez sur cette touche afin de parcourir les options des
+    signaux d’encodage temporel disponibles, qui seront affichées sur l'écran DELO sous la touche.
+    Une fois le mode souhaité affiché, attendez trois secondes pour confirmer la sélection. Peu de
+    temps après que la sélection a été faite et que la touche a cessé de clignoter, l'écran DELO
+    s'éteint. Tapez rapidement de nouveau sur la touche Mode DVS pour afficher le mode actif.
+
+
+                                                                                                        19
+16. Touches de sélection des modules : Ces touches permettent de sélectionner les modules du
+    logiciel contrôlés par la Twelve MKII. Jusqu'à quatre contrôleurs Twelve MKII peuvent être reliés
+    à un appareil Serato DJ Pro pourvu qu’il dispose des canaux nécessaires. Par exemple, si vous
+    utilisez une console de mixage à 2 canaux tels que la Rane Seventy-Two, seulement deux
+    contrôleurs Twelve MKII peuvent être reliés et seulement les 2 premiers canaux pourront être
+    sélectionnés. Lorsque plus d'un contrôleur Twelve MKII est utilisé à la fois, vous devez
+    déterminer quel module est assigné à chaque contrôleur :
+       i. Mettez chaque contrôleur sous tension. Les touches de sélection des modules sur tous
+          les contrôleurs Twelve MKII reliés devraient se mettre à clignoter.
+      ii. Appuyez sur la touche de sélection correspondant au module que vous souhaitez
+          assigner à chaque Twelve MKII. Une fois qu'un module est sélectionné et utilisé, l’intensité
+          de la DEL de la touche devient élevée. L’intensité des autres touches des modules
+          disponibles sera faible.
+      iii. Pour passer à un autre module, appuyez sur la touche de sélection correspondant au
+           module.
+     iv. Pour désélectionner un module, maintenez la touche de sélection du module enfoncée
+         pendant 2 secondes. Lorsque les touches des modules disponibles commencent à
+         clignoter, vous pouvez sélectionner un nouveau module.
+
+
+
+Cavité du panneau arrière
+
+
+
+
+                      2                               4          5
+                      1                   3
+1. Entrée d'alimentation : Utilisez le câble d’alimentation CEI fourni pour brancher la Twelve MKII
+   à une prise d’alimentation secteur. Avec l’interrupteur en position hors tension, branchez le câble
+   d'alimentation dans la Twelve MKII puis dans la prise secteur.
+
+2. Interrupteur d’alimentation : Utilisez cet interrupteur pour activer ou désactiver la Twelve MKII.
+3. Motor Torque : Ce commutateur permet d’ajuster le niveau de couple de plateau. Un réglage
+   plus élevé donne l’impression que le plateau sont plus lourds, semblable aux tourne-disques «
+   modernes ». Un réglage plus bas donne l’impression que le plateau sont plus légers et plus
+   gracieux, semblable aux tourne-disques « classiques ».
+4. Port USB : Utilisez le câble USB fourni pour relier ce port au port USB d’une Rane Seventy-Two
+   (vendue séparément) ou d’un ordinateur.
+5. Sortie audio (RCA) : Connecter des câbles stéréo RCA de cette sortie à l'entrée d'une console
+   de mixage compatible ou d'un autre appareil qui utilise la fonction DVS afin de contrôler les
+   signaux d’encodage temporel.
+
+
+
+
+20
+Guida per l’uso (Italiano)
+Introduzione
+Grazie per aver acquistato il Twelve MKII. Noi di Rane DJ sappiamo che per te la musica è una cosa
+seria. Ecco perché progettiamo i nostri dispositivi con un unico obiettivo in mente: rendere le tue
+prestazioni le migliori possibili.
+Il Twelve MKII è un sistema di controllo puro e potente per DJ. Simile per layout e dimensioni a un
+giradischi tradizionale in un corpo interamente metallico, l’unico elemento che lo rende decisamente
+differente è una banda tattile di precisione multifunzione per la ricerca e l’impostazione delle tracce o
+l’attivazione di hot cue al posto del braccio.
+Progettato per i DJ, il Twelve MKII consente di fare scratch e di suonare con le sensazioni offerte da
+un giradischi tradizionale, ma con la precisione, la ripetibilità e la durata delle migliori soluzioni digitali.
+
+
+Contenuti della confezione
+
+Base del Twelve MKII
+Montaggio del piatto
+ • Piatto in alluminio
+ • Tappetino
+ • Disco di controllo con adattatore a sgancio rapido (fissata)
+ • Distanziatori (4)
+Cavo di alimentazione
+Cavo USB
+Cavi stereo RCA
+Guida per l’uso
+Istruzioni di sicurezza e garanzia
+
+Nota bene: Twelve MKII è stato progettato in collaborazione con Serato, cosa che lo rende un
+Official Serato Accessory. Twelve MKII richiede un’interfaccia Serato DJ Pro supportata, un
+controller, un mixer o una soluzione Serato Club Kit compatibile per il controllo del Serato DJ Pro.
+
+
+Assistenza
+
+Per le ultime informazioni in merito a questo prodotto (documentazione, specifiche tecniche, requisiti
+di sistema, informazioni sulla compatibilità, ecc.) e per effettuarne la registrazione, recarsi alla pagina
+rane.com.
+Per ulteriore assistenza sul prodotto, recarsi alla pagina rane.com/support.
+
+
+Configurazione
+Prima di iniziare:
+ • Leggere attentamente il libretto delle Istruzioni di sicurezza e garanzia prima di utilizzare l’Twelve
+   MKII.
+ • Assicurarsi che gli elementi elencati nella parte Introduzione > Contenuti della confezione
+   siano inclusi. Elementi non elencati sotto sono venduti separatamente.
+
+
+
+                                                                                                             21
+1. Montare il piatto
+1. Estrarre la base del Twelve MKII dalla confezione. Estrarre il gruppo del piatto
+   dalla confezione (sotto il Twelve MKII). Collocare il Twelve MKII su una
+   superficie piana e stabile per il montaggio e l’uso.
+
+2. Collocare il piatto sul motore allineando i perni a livello della parte inferiore del
+   piatto con i fori nel motore. Premerlo verso il basso con decisione. Assicurarsi
+   che ruoti uniformemente e non oscilli eccessivamente.
+
+
+3. Collocare il tappetino sul piatto. Quindi collocare il disco di controllo sull'asse
+   (con l’adattatore a sgancio rapido fissato in alto). Per bloccare il disco di
+   controllo all’asse, fissare la parte superiore dell’asse ruotando lentamente il
+   disco fino a udire un clic. Si blocca quando la scanalatura sull’asse si allinea
+   direttamente dalla parte opposta del pulsante sul lato dell’adattatore a
+   sgancio rapido.
+     Nota bene: se si desidera regolare la frizione sul tappetino del disco, provare a
+     collocare 1-4 dei distanziatori in dotazione sull’asse, sotto il tappetino stesso.
+     Più si solleva il disco di controllo con i distanziatori, maggiore rotazione
+     inversa si ottiene.
+
+
+2. Collegare il tutto e iniziare a fare il DJ!
+1. Assicurarsi di aver scaricato e installato l’ultima versione del software.
+2. Collocare il Twelve MKII su una superficie uniforme e stabile.
+3. Ad alimentazione spenta, collegare il cavo di alimentazione in dotazione innanzitutto al Twelve
+   MKII, quindi ad una presa elettrica.
+4. Accendere il Twelve MKII servendosi dell’interruttore di alimentazione.
+5. Servirsi di un cavo USB standard per collegare la porta USB a:
+       •   Se si utilizza il Twelve MKII con il mixer Rane Seventy-Two (venduto separatamente),
+           collegare il cavo USB alle porte USB del Deck 1 o al Deck 2 denominate Twelve MKII/
+           Controller.
+       •   Se si utilizza un’altra interfaccia di mixaggio, collegare il cavo USB a una porta USB
+           disponibile sul computer o a un hub collegato al computer.
+6. Alternativamente, collegare cavi standard stereo RCA dall’uscita audio all’ingresso di un mixer
+   compatibile o altri dispositivi abilitati DVS per il controllo timecode.
+7. Aprire il Serato DJ Pro. Il Twelve MKII funziona con il Serato DJ Pro tramite due modalità:
+       •   Serato USB: questa modalità è identica al funzionamento del Rane Twelve originale, in
+           cui il software è controllato tramite un collegamento USB. Quando si utilizza questa
+           modalità, il software deve essere impostato su Modalità interna.
+       •   Serato DVS: questa modalità invierà il segnale audio DVS tramite le porte di uscita audio
+           (RCA) per controllare il piatto. Quando si utilizza questa modalità, il software deve essere
+           impostato su Modalità relativa.
+     Si raccomanda di collegare il Twelve MKII utilizzando sia le porte di uscita Audio (RCA) (per il
+     controllo DVS del piatto) sia la porta USB (per i comandi MIDI quali Browse, Load/Instant
+     Doubles, Hot Cues, ecc.).
+     Per maggiori informazioni su come utilizzare il Serato DJ Pro con il Twelve MKII, recarsi alla
+     pagina support.serato.com.
+
+
+
+
+22
+Schema dei collegamenti, Esempio 1 (“Battle Style”):
+
+                                                      Computer
+
+                Rane Twelve MKII                                   Rane Twelve MKII
+                Pannello posteriore                                Pannello posteriore
+
+
+
+
+  Twelve MKII                           Rane Seventy-Two                               Twelve MKII
+  Recesso del                           Pannello posteriore                            Recesso del
+   Pannello                                                                             Pannello
+   inferiore                                   Alimentazione                            inferiore
+
+
+
+
+                  Rane Twelve MKII     Rane Seventy-Two          Rane Twelve MKII
+                  Pannello superiore   Pannello superiore        Pannello superiore
+
+
+Schema dei collegamenti, Esempio 2 (“Club Style”):
+
+                                                       Computer
+
+                 Rane Twelve MKII                                 Rane Twelve MKII
+                  Pannello laterale                                Pannello laterale
+
+
+
+
+                                        Rane Seventy-Two
+   Twelve MKII                                                                         Twelve MKII
+                                        Pannello posteriore
+   Recesso del                                                                         Recesso del
+    pannello                                 Alimentazione                              pannello
+    inferiore                                                                           inferiore
+
+
+
+
+                Rane Twelve MKII                                 Rane Twelve MKII
+                Pannello superiore     Rane Seventy-Two          Pannello superiore
+                                       Pannello superiore
+                                                                                                     23
+Schema dei collegamenti, Esempio 3:
+                     Rane Twelve MKII
+                     Pannello posteriore
+                                                 Dispositivo Serato DJ
+                                                 Pro supportato (ad es.       Computer
+                                                       Rane SL4)
+
+     Alimentazione
+                                       Twelve MKII
+                                       Recesso del
+                                     Pannello inferiore
+
+
+
+
+Caratteristiche
+
+Pannello superiore
+
+1. Piatto con trasmissione diretta ad alta                                                        12
+   coppia un motore da 5.0 kgf-cm fa girare
+                                                           14        13
+                                                                                                11
+   questo piatto in alluminio con punti di
+   posizione.                                                                                       9
+                                                          15    16                         10
+   Nota bene: il piatto in sé non deve essere                                                       8
+   tenuto in posizione per lunghi periodi di tempo                                                  7
+   quando è alimentato per la rotazione.
+2. Disco di controllo con tappetino: questo
+   disco a dimensioni reali (30,5 cm) controlla la
+   testina audio nel proprio software per DJ.
+   Collocare il tappetino in dotazione sotto il
+   disco di controllo (se lo si preferisce, è anche                         3
+   possibile utilizzare un tappetino diverso). Per
+   ottenere una sensazione più morbida con una                       2
+   maggiore rotazione inversa a livello del disco
+   di controllo, collocare 1-4 dei distanziatori in             1                                   6
+   dotazione sull’asse, sotto il tappetino.
+   Nota bene: Il disco di controllo può essere
+   sostituito dall’utente e personalizzato fissando                                       4     5
+   l’adattatore a sgancio rapido al proprio disco
+   modificato. Occorre aggiungere tre fori (6 mm)
+   e il disco in dotazione deve essere utilizzato
+   come riferimento.
+3. Adattatore a sgancio rapido: fissa il disco di controllo al piatto. È fornito collegato alla parte
+   superiore del disco di controllo. Per rimuovere il disco di controllo o il tappetino dal piatto,
+   tenere premuto il pulsante sul lato dell’adattatore a sgancio rapido sollevando il disco
+   dall'asse. Dopo aver riposizionato il disco sull’asse, fissare la parte superiore dell’asse stesso
+   ruotando lentamente il disco fino a udire un clic. Si blocca quando la scanalatura sull’asse si
+   allinea direttamente dalla parte opposta del pulsante sul lato dell’adattatore a sgancio rapido.
+4. Luce stroboscopica motore on/off: Girare questa manopola in cima alla luce stroboscopica
+   per accendere e spegnere il motore del piatto (on e off). L’apparecchio rimane acceso,
+   consentendo effetti di rilassamento.
+   La luce stroboscopica illumina il bordo del piatto, cosa che indica se la fase della rotazione del
+   piatto è costante o meno. Mentre il piatto gira, osservare i punti sul bordo sotto lo strobo della
+   luce. Se la fase è costante, i punti saranno fermi. Se la rotazione è fuori fase, i punti si muovono
+   o "vagano".
+
+24
+5. Start/Stop: premere questo tasto per avviare o arrestare il piatto. I LED attorno a questo tasto
+   saranno soffusi quando l’alimentazione è accesa e non vengono riprodotte tracce, saranno
+   accesi quando una traccia sta suonando e lampeggiano di rosso quando la traccia sta per finire.
+6. 33 & 45 giri: premere uno di questi tasti per impostare la velocità di rotazione (giri al minuto) del
+   piatto. Il tasto acceso indica la scelta corrente.
+7. Instant Doubles: premere questo tasto per caricare la canzone attualmente riprodotta sul deck
+   attivo.
+8. Scroll/Load: girare questa manopola per scorrere lungo gli elenchi e premerla per selezionare
+   una voce o per caricare la traccia selezionata sul deck.
+    Suggerimento: premere la manopola rapidamente due volte per caricare la stessa traccia su
+    entrambi i deck (“raddoppio istantaneo”).
+9. Back: premere questo tasto per visualizzare la schermata precedente.
+10. Pitch Range: premere uno di questi tasti per regolare la gamma del fader del pitch a ±8%,
+    ±16% e ±50%.
+11. Fader del pitch: muovere questo fader per regolare la velocità (pitch) della traccia. Si può
+    regolare l'intero intervallo con i tasti Pitch Range.
+12. LED di takeover: quando si seleziona un altro deck servendosi dell’interruttore Deck Select, la
+    posizione del fader del pitch del Twelve MKII potrebbe non corrispondere all’impostazione del
+    Pitch per quel Deck nel software. Muovere lentamente il fader del pitch nella direzione indicata
+    dalla freccia del LED di Takeover fino a quando non si spegne. A questo punto il fader del pitch
+    corrisponde alla configurazione del Pitch presente nel software e può controllarlo nuovamente.
+13. Touch Strip: Questa striscia sensibile alla pressione sostituisce il braccio e consente all’utente
+    di impostare la posizione della traccia in base all’impostazione della Modalità Touch Strip.
+14. Modalità Cue: premere questo tasto per far commutare il Touch Strip tra le modalità Needle
+    Drop e Hot Cue. Quando si seleziona Needle Drop (modalità predefinita all’accensione del
+    Twelve MKII), il tasto sarà illuminato in maniera smorzata. Quando si seleziona Hot Cue, il tasto
+    sarà illuminato in maniera intensa.
+     •   Modalità Needle Drop
+            i.    Premere il tasto Cue Mode in modo che sia illuminato in maniera smorzata. (Questa
+                  è la modalità predefinita al momento dell'accensione del Twelve MKII.)
+            ii.   La lunghezza della fascia Touch Strip rappresenta la lunghezza dell’intera traccia.
+                  Puntare il dito in un punto lungo questo sensore per saltare a quel punto della
+                  traccia. I LED bianchi lungo la Touch Strip offriranno una rappresentazione visiva
+                  della posizione dell’ago sulla traccia.
+     •   Modalità Hot Cue
+            i.    Premere il tasto Cue Mode in modo che sia illuminato in maniera intensa.
+            ii.   Quando una sezione della banda Touch Strip è spenta, è possibile assegnarvi un
+                  punto hot cue premendolo nel punto desiderato della traccia. Una volta assegnato,
+                  la sezione si illuminerà. Il software stabilisce il colore del punto Hot Cue.
+           iii.   Durante la riproduzione della traccia, premere il punto Hot Cue per far tornare la
+                  traccia a tale punto.
+           iv.    Per cancellare il punto Hot Cue, tenere premuto il tasto Cue Mode e premere la
+                  sezione che si desidera cancellare.
+15. Modalità DVS: tenere premuto questo tasto per abilitare la sostituzione della modalità DVS
+    attiva. Una volta che inizia a lampeggiare, toccare il tasto per scorrere lungo le opzioni di segnale
+    timecode disponibili, che saranno illustrate nella schermata OLED sotto il tasto stesso. Una volta
+    che la modalità desiderata compare a display, attendere per tre secondi per confermare la
+    selezione. Poco dopo aver effettuato una selezione e non appena il pulsante smette di
+    lampeggiare, anche lo schermo OLED si spegne. Toccare rapidamente il tasto Modalità DVS di
+    nuovo per mostrare la modalità attiva.
+
+
+                                                                                                      25
+16. Deck Select: seleziona quale deck nel software è controllato dal Twelve MKII. Fino a un
+    massimo di quattro controller Twelve MKII possono essere collegati a un dispositivo abilitato
+    Serato DJ Pro purché il dispositivo disponga di un numero sufficiente di canali. Ad esempio, se
+    si utilizza un mixer a due canali quale il Rane Seventy-Two, è possibile collegare solo un
+    massimo di due controller Twelve MKII e solo i primi 2 canali potranno essere selezionati.
+    Quando si utilizza più di un controller Twelve MKII alla volta, si dovrà determinare a quale deck è
+    assegnato ciascun controller:
+       i.    Accendere ciascun controller. I tasti Deck Select disponibili su tutti i controller Twelve
+             MKII lampeggiano.
+      ii.    Premere il tasto Deck Select che corrisponde al deck che si desidera assegnare a
+             ciascun Twelve MKII. Una volta che un deck è selezionato e in uso, il tasto LED sarà
+             acceso e i tasti per altri deck disponibili saranno smorzati.
+      iii.   Per passare a un altro deck disponibile, premere il tasto Deck Select corrispondente.
+     iv.     Per deselezionare un deck, tenere premuto il tasto Deck Select corrispondente per 2
+             secondi. Quando i tasti dei deck disponibili iniziano a lampeggiare, si è pronti a
+             selezionare un nuovo deck.
+
+
+Recesso del pannello inferiore
+
+
+
+
+                        2                               4          5
+                        1                  3
+1. Ingresso di alimentazione: servirsi di un cavo standard IEC (in dotazione) per collegare il
+   Twelve MKII a una presa di alimentazione. Ad alimentazione spenta, collegare il cavo di
+   alimentazione in dotazione innanzitutto al Twelve MKII, quindi ad una presa elettrica.
+2. Interruttore di alimentazione: utilizzare questo interruttore per accendere e spegnere il Twelve
+   MKII.
+3. Coppia motore: girare questo interruttore per regolare la coppia del piatto. All’impostazione
+   massima, il piatto avranno la sensazione più forte e pesante dei giradischi “moderni”. Impostato al
+   minimo, saranno più leggeri e pieni di grazia: la sensazione di un giradischi “classico”.
+
+4. Porta USB: servirsi di un cavo USB standard (in dotazione) per collegare questa porta USB a
+   una porta USB disponibile del Rane Seventy-Two (venduto separatamente) o del computer.
+
+5. Uscita audio (RCA): collegare cavi RCA stereo a questa uscita per inviare i segnali timecode
+   interni all’ingresso di un mixer compatibile o di un altro dispositivo abilitato DVS.
+
+
+
+
+26
+Benutzerhandbuch (Deutsch)
+Einführung
+Vielen Dank für den Kauf des Twelve MKII. Wir von Rane DJ wissen, wie wichtig Ihnen die Musik ist.
+Darum entwerfen wir unsere Geräte stets nur mit einem einzigen Ziel vor Augen: Ihre Performance so
+gut wie möglich zu unterstützen.
+Twelve MKII ist ein reines und leistungsstarkes, motorisiertes DJ-Steuerungssystem. Abgesehen von
+den vertrauten Elementen im Plattenspieler-Layout und der Größe des Ganzmetallgehäuses, ist das
+einzig klare Unterscheidungsmerkmal ein präziser Multifunktions-Touch-Strip zum Suchen und
+Einstellen von Tracks bzw. zum Auslösen von Hot Cues anstelle eines Tonarms.
+Twelve MKII wurde speziell für DJs entwickelt und verleiht das Gefühl eines traditionellen
+Plattenspielers - aber mit der Präzision, Wiederholbarkeit und Robustheit bester digitaler Lösungen.
+
+
+Lieferumfang
+
+Twelve MKII-Basis
+Plattentellermontage
+ • Aluminiumplattenteller
+ • Slipmat
+ • Control-Disc mit Schnellwechseladapter (angebracht)
+ • Abstandshalter (4)
+Netzkabel
+USB-Kabel
+Stereo-Cinchkabel
+Benutzerhandbuch
+Sicherheitshinweise und Garantieinformationen
+Hinweis: Twelve MKII wurde in Zusammenarbeit mit Serato entworfen und ist somit ein Official
+Serato Accessory. Twelve MKII benötigt eine unterstützte Serato DJ Pro-Schnittstelle, einen
+Controller, einen Mixer oder eine kompatible Serato Club Kit-Lösung, um Serato DJ Pro zu steuern.
+
+
+Kundendienst
+
+Für die neuesten Informationen zu diesem Produkt (Dokumentation, technische Daten,
+Systemanforderungen, Informationen zur Kompatibilität etc.) und zur Produktregistrierung besuchen
+Sie bitte: rane.com.
+Für zusätzlichen Produkt-Support besuchen Sie rane.com/support.
+
+
+Setup
+Vor Inbetriebnahme:
+ • Lesen Sie vor Inbetriebnahme des Twelve MKII bitte Sicherheitshinweise und Garantieinformationen
+   durch.
+ • Prüfen Sie nach, ob alle unter Einführung > Lieferumfang aufgeführten Teile vorhanden sind. Teile,
+   die nicht angegeben sind, sind separat erhältlich.
+
+                                                                                                   27
+1. Montieren Sie die Plattenteller
+1. Entfernen Sie die Verpackung der Twelve MKII-Basis. Entfernen Sie die
+   Plattenbaugruppe aus der Verpackung (unterhalb des Twelve MKII).
+   Platzieren Sie Twelve MKII auf einer ebenen, stabilen Oberfläche für die
+   Montage und den Betrieb.
+
+2. Legen Sie die Plattenteller auf den Motor, indem Sie die Stifte an der
+   Unterseite des Plattentellers mit den Löchern im Motor ausrichten.
+   Drücken Sie den Teller fest nach unten. Stellen Sie sicher, dass er sich
+   gleichmäßig dreht und nicht zu stark wackelt.
+
+3. Legen Sie zuerst die Slipmat auf den Plattenteller. Bringen Sie dann die
+   Control-Disc über die Spindel (mit dem angebrachten Schnellwechsel-
+   Adapter darüber). Um die Steuerscheibe an der Spindel zu fixieren,
+   drücken Sie auf die Oberseite der Spindel, während Sie die Scheibe
+   langsam drehen, bis Sie ein Klicken hören. Sie rastet ein, wenn die Nut in
+   der Spindel direkt gegenüber der Taste an der Seite des
+   Schnellwechseladapters ausgerichtet ist.
+   Hinweis: Wenn Sie die Gleitreibung der Scheibe anpassen möchten, legen
+   Sie 1-4 der mitgelieferten Abstandshalter über die Spindel unterhalb der
+   Slipmat. Je mehr Sie die Control-Disc mit den Abstandhaltern anheben,
+   desto mehr Spinback erhalten Sie.
+
+2. Schließen Sie die Geräte an und beginnen Sie zu mixen!
+
+1. Vergewissern Sie sich, dass Sie die neueste Version der Software heruntergeladen und installiert
+   haben.
+2. Platzieren Sie Twelve MKII auf einer flachen, stabilen Oberfläche.
+3. Stellen Sie sicher, dass das Gerät ausgeschaltet ist. Verbinden Sie zuerst das mitgelieferte
+   Stromkabel mit dem Twelve MKII und stecken das Netzteil dann in eine Steckdose.
+4. Schalten Sie Twelve MKII mit dem Netzschalter ein.
+5. Verwenden Sie ein Standard-USB-Kabel (im Lieferumfang enthalten), um den USB-Anschluss
+   mit einem der folgenden Geräte zu verbinden:
+      • Wenn Sie Twelve MKII mit dem Rane Seventy-Two-Mixer (separat erhältlich) verwenden,
+          schließen Sie das USB-Kabel an die mit Twelve MKII/Controller gekennzeichneten USB-
+          Anschlüsse von Deck 1 oder Deck 2 an.
+      • Wenn Sie eine andere Mischschnittstelle verwenden, verbinden Sie das USB-Kabel mit
+          einem freien USB-Anschluss an Ihrem Computer oder einem mit dem Computer
+          verbundenen Hub.
+6. Alternativ können Sie auch Standard-Cinch-Stereokabel vom Audioausgang zum Eingang eines
+   kompatiblen Mischpults oder eines anderen DVS-fähigen Geräts für die Timecode-Steuerung
+   anschließen.
+7. Öffnen Sie Serato DJ Pro. Twelve MKII funktioniert mit Serato DJ Pro mit diesen beiden Modi:
+    • Serato USB: Dieser Modus ist identisch mit dem Betrieb des originalen Rane Twelve, bei
+       dem die Software über eine USB-Verbindung gesteuert wird. Wenn Sie diesen Modus
+       verwenden, sollte die Software auf den internen Modus eingestellt sein.
+    • Serato DVS: In diesem Modus wird ein DVS-Audiosignal über die Audioausgänge (RCA)
+       gesendet, um den Plattenteller zu steuern. Wenn Sie diesen Modus verwenden, sollte die
+       Software auf den relativen Modus eingestellt sein.
+   Es wird empfohlen, Ihren Twelve MKII sowohl über die Audio Out (RCA)-Anschlüsse (für die
+   DVS-Plattentellersteuerung) als auch über den USB-Anschluss (für MIDI-Steuerelemente wie
+   Durchsuchen, Laden / Instant Doubles, Hot Cues usw.) anzuschließen.
+   Weitere Informationen zur Verwendung von Serato DJ Pro mit Twelve MKII finden Sie unter
+   support.serato.com.
+28
+Anschlussdiagramm, Bespiel 1 („Battle Style“):
+
+                                                     Computer
+
+                  Rane Twelve MKII                                Rane Twelve MKII
+                     Rückseite                                       Rückseite
+
+
+
+
+  Twelve MKII                            Rane Seventy-Two                             Twelve MKII
+ Vertiefung der                             Rückseite                                Vertiefung der
+  Bodenplatte                                                                         Bodenplatte
+                                                  Steckdose
+
+
+
+
+                    Rane Twelve MKII    Rane Seventy-Two        Rane Twelve MKII
+                       Oberseite            Oberseite              Oberseite
+
+
+Anschlussdiagramm, Bespiel 2 („Club Style“):
+
+                                                      Computer
+
+                    Rane Twelve MKII                              Rane Twelve MKII
+                       Seitenteil                                    Seitenteil
+
+
+
+
+                                          Rane Seventy-Two                          Twelve MKII
+    Twelve MKII
+                                             Rückseite                             Vertiefung der
+   Vertiefung der
+    Bodenplatte                                  Steckdose                          Bodenplatte
+
+
+
+
+                     Rane Twelve MKII   Rane Seventy-Two      Rane Twelve MKII
+                        Oberseite           Oberseite            Oberseite
+
+
+                                                                                                    29
+Anschlussdiagramm, Bespiel 3:
+
+               Rane Twelve MKII Rückseite
+                                               Unterstützte Serato
+                                                  DJ Pro-Gerät            Computer
+                                                (z. B. Rane SL4)
+
+      Steckdose
+                                      Twelve MKII
+                                     Vertiefung der
+                                      Bodenplatte
+
+
+
+
+Funktionen
+
+Oberseite
+
+1. Plattenteller mit Direktantrieb und hohem
+                                                       14       13                            12
+   Drehmoment: Ein 5,0 kgf-cm-Motor dreht
+   diesen Aluminiumteller mit Geschwindigkeits-
+                                                                                            11
+   positionspunkten.                                                                             9
+                                                     15     16                          10
+   Hinweis: Der Plattenteller sollte nicht über                                                  8
+   längere Zeit hinweg in einer Position gehalten                                                7
+   werden, während er sich dreht.
+2. Control-Disc mit Slipmat: Diese 30,5 cm (12")
+   große Scheibe steuert den Abspielkopf Ihrer DJ-
+   Software. Legen Sie die mitgelieferte Slipmat
+   unter die Control-Disc (oder verwenden Sie
+   eine andere Slipmat, falls gewünscht). Um ein                           3
+   loseres Gefühl mit mehr Spinback auf Ihrer
+   Control-Disc zu erzielen, platzieren Sie 1-4                   2
+   der mitgelieferten Abstandshalter über der
+   Spindel unter der Slipmat.                              1                                    6
+   Hinweis: Das Control-Disc kann vom Benutzer
+   ausgetauscht und angepasst werden, indem Sie
+   den Schnellwechseladapter an Ihr eigenes                                            4 5
+   modifiziertes Disc anschließen. Es müssen drei
+   Löcher (6 mm) hinzugefügt werden. Die
+   mitgelieferte Disc sollte als Referenz verwendet
+   werden.
+3. Schnellwechseladapter: Dieser sichert die Control-Disc auf dem Plattenteller. Er ist an der
+   Oberseite der Control-Disc angebracht. Um die Control-Disc oder Slipmat von der Platte zu
+   entfernen, halten Sie die Taste an der Seite des Schnellwechseladapters gedrückt, während
+   Sie die Disc von der Spindel abheben. Nachdem Sie die Disc wieder auf die Spindel gesetzt
+   haben, drücken Sie auf die Oberseite der Spindel, während Sie die Disc langsam drehen, bis Sie
+   ein Klicken hören. Sie rastet ein, wenn die Nut in der Spindel direkt gegenüber der Taste an der
+   Seite des Schnellwechseladapters ausgerichtet ist.
+4. Motor Ein/Aus & Stroboskoplicht: Drehen Sie dieses Einstellrad an der Stroboskoplampe, um
+   den Plattentellermotor ein- oder auszuschalten. Das Gerät bleibt eingeschaltet und ermöglicht
+   so Wind-Down-Effekte.
+   Das Stroboskoplicht beleuchtet die Plattentellerkante, an der zu erkennen ist, ob die
+   Rotationsphase des Plattentellers konstant ist. Beobachten Sie die Punkte an der Kante unter
+   dem Stroboskoplicht, wenn sich der Plattenteller dreht. Wenn die Phase konstant ist, scheinen
+   die Punkte still zu stehen. Ist die Rotationsphase nicht konstant, scheinen die Punkte zu
+   „driften“.
+
+30
+5. Start/Stopp: Drücken Sie diese Taste, um den Plattenteller zu starten oder zu stoppen. Die LED
+    um diese Taste leuchtet nur schwach, wenn das Gerät eingeschaltet ist und kein Titel abgespielt
+    wird. Sie leuchtet hell bei der Wiedergabe eines Titels und blinkt rot, wenn der Titel beinahe am
+    Ende angelangt ist.
+6. 33 & 45 RPM: Drücken Sie eine dieser Tasten, um die Drehzahl (RPM) des Plattentellers
+    einzustellen. Die beleuchtete Taste zeigt die aktuelle Auswahl an.
+7. Instant Doubles: Drücken Sie diese Taste, um den aktuell wiedergegebenen Track in das aktive
+    Deck zu laden.
+8. Scroll/Load: Drehen Sie diesen Regler, um durch die Listen zu blättern und drücken Sie ihn, um
+    ein Element auszuwählen.
+    Tipp: Drücken Sie diesen Regler zweimal schnell hintereinander, um den gleichen Track auf
+    beide Decks zu laden („Instant Doubles“).
+9. Back: Drücken Sie diese Taste, um den vorherigen Bildschirm anzuzeigen.
+10. Pitch Range: Drücken Sie eine dieser Tasten, um den Bereich des Pitch Fader um ±8%, ±16%
+    oder ±50% zu verändern.
+11. Pitch-Fader: Bewegen Sie diesen Fader, um die Geschwindigkeit (Pitch) des Tracks
+    einzustellen. Sie können den Gesamtbereich mit den Pitch Range-Tasten einstellen.
+12. Übernahme-LEDs: Wenn Sie mit den Deck Select-Tasten ein anderes Deck auswählen, stimmt
+    die Position des Twelve MKII-Pitch Faders möglicherweise nicht mit der Pitch-Einstellung für
+    dieses Deck in der Software überein. Bewegen Sie den Pitch-Fader langsam in die Richtung, die
+    durch den Pfeil der Übernahme-LED angezeigt wird, bis die LED erlischt. An diesem Punkt
+    stimmt der Pitch-Fader mit der Pitch-Einstellung in der Software überein und kann sie erneut
+    steuern.
+13. Touch-Leiste: Diese druckempfindliche Leiste ersetzt den Tonarm und ermöglicht es dem
+    Benutzer, die Track-Position abhängig von der Einstellung des Touch Strip-Modus einzustellen.
+14. Cue-Modus: Drücken Sie diese Taste, um den Touch-Strip zwischen Needle-Drop und Hot-
+    Cue-Modus umzuschalten. Wenn Needle-Drop ausgewählt ist (standardmäßige Einstellung beim
+    Einschalten des Twelve MKII), leuchtet die Taste schwach. Wenn Hot Cue ausgewählt ist,
+    leuchtet die Taste hell. Wenn Hot Cue ausgewählt ist, leuchtet die Taste hell.
+       • Needle Drop-Modus
+              i. Drücken Sie die Cue-Modus-Taste, so dass sie schwach leuchtet. (Dies ist der
+                 Standardmodus beim ersten Einschalten des Twelve MKII.
+             ii. Die Länge des Touch Strip repräsentiert die Länge des gesamten Tracks. Legen Sie
+                 Ihren Finger auf einen Punkt dieser Sensorfläche, um zu dieser Stelle im Track zu
+                 springen. Weiße LEDs auf dem Touch Strip geben eine visuelle Darstellung der
+                 Position der Nadel im Track.
+       • Hot Cue-Modus
+              i. Drücken Sie die Cue-Modus-Taste, so dass sie hell leuchtet.
+             ii. Wenn ein Abschnitt des Touch Strip nicht leuchtet, können Sie einen Hot Cue-Punkt
+                 zuweisen, indem Sie diese Taste an der gewünschten Stelle in Ihrem Track drücken.
+                 Der Abschnitt leuchtet nachdem der Punkt zugewiesen wurde. Die Software
+                 bestimmt die Farbe des Hot Cue-Punktes.
+            iii. Während der Track wiedergegeben wird, drücken Sie den Hot Cue-Punkt, um den
+                 Track an diesen Punkt zurückzubringen.
+            iv. Um einen Hot Cue-Punkt zu löschen, halten Sie die Cue-Mode-Taste gedrückt und
+                 drücken Sie den Abschnitt, den Sie löschen möchten.
+15. DVS-Modus: Halten Sie diese Taste gedrückt, um den aktiven DVS-Modus zu ändern. Wenn die
+    Taste zu blinken beginnt, tippen Sie auf diese Taste, um durch die verfügbaren Timecode-
+    Signaloptionen zu blättern, die auf dem OLED-Bildschirm unter dieser Taste angezeigt werden.
+    Sobald der gewünschte Modus im Display angezeigt wird, warten Sie drei Sekunden, um die
+    Auswahl zu bestätigen. Kurz nachdem eine Auswahl getroffen wurde und die Taste nicht mehr
+    blinkt, wird auch der OLED-Bildschirm ausgeschaltet. Tippen Sie erneut kurz auf die Schaltfläche
+    DVS-Modus, um den aktiven Modus anzuzeigen.
+
+                                                                                                  31
+16. Deck-Auswahl: Wählt, welches Deck in der Software von Twelve MKII gesteuert wird. Bis zu
+    vier Twelve MKII-Controller können mit einem Serato DJ Pro-fähigen Gerät verbunden werden,
+    sofern das Gerät über genügend Kanäle verfügt. Wenn Sie beispielsweise einen Zweikanal-Mixer
+    wie den Rane Seventy-Two verwenden, können nur bis zu zwei Twelve MKII-Controller
+    angeschlossen werden und nur die ersten beiden Kanäle stehen dann zur Auswahl. Wenn Sie
+    mehr als einen Twelve MKII-Controller gleichzeitig verwenden, müssen Sie bestimmen, welchem
+    Deck jeder Controller zugewiesen wird:
+       i.    Schalten Sie jeden Controller ein. Die verfügbaren Deck Select-Tasten an allen
+             angeschlossenen Twelve MKII-Controllern blinken.
+      ii.    Drücken Sie die Deck Select-Taste, die dem jeweiligen Deck entspricht, dem Sie die
+             Twelve MKII zuweisen möchten. Sobald ein Deck ausgewählt und verwendet wird,
+             leuchtet die Tasten-LED hell und die Tasten für andere verfügbare Decks beginnen nur
+             schwach zu leuchten.
+      iii.   Um zu einem anderen verfügbaren Deck zu wechseln, drücken Sie die entsprechenden
+             Deck-Auswahltasten.
+     iv.     Um die Auswahl eines Decks aufzuheben, halten Sie die entsprechende Deck-
+             Auswahltaste 2 Sekunden lang gedrückt. Wenn die Tasten für die verfügbaren Decks zu
+             blinken beginnen, können Sie ein neues Deck auswählen.
+
+
+
+Vertiefung der Bodenplatte
+
+
+
+
+                        2                              4          5
+                        1                 3
+1. Netzeingang: Verwenden Sie ein handelsübliches IEC-Kabel (im Lieferumfang enthalten), um
+   Twelve MKII mit einer Steckdose zu verbinden. Stellen Sie sicher, dass das Gerät ausgeschaltet
+   ist. Verbinden Sie zuerst das mitgelieferte Stromkabel mit dem Twelve MKII und stecken das
+   Netzteil dann in eine Steckdose.
+2. Netzschalter: Verwenden Sie diesen Schalter, um Twelve MKII ein- und auszuschalten.
+3. Drehmoment des Motors: Legen Sie diesen Schalter um, um das Drehmoment der Plattenteller
+   einzustellen. Ist der Schalter nach oben gekippt, fühlen sich die Plattenteller so schwer und robust
+   wie die „modernen“ Plattenspieler an. Ist der Schalter nach unten gekippt, sind sie leichter und
+   beweglicher—etwa wie bei einem „klassischen“ Plattenspieler.
+4. USB-Anschluss: Verwenden Sie ein Standard-USB-Kabel (im Lieferumfang enthalten), um
+   diesen USB-Anschluss mit einem verfügbaren USB-Anschluss des Rane Seventy-Two (separat
+   erhältlich) oder Ihres Computers zu verbinden.
+5. Audio-Ausgang (RCA): Schließen Sie Stereo-Cinch-Kabel an diesen Ausgang an, um die
+   internen Timecode-Signale an den Eingang eines kompatiblen Mischpults oder eines anderen
+   DVS-fähigen Geräts zu senden.
+
+
+
+32
+33
+Appendix (English)
+Technical Specifications
+
+Motor                      Drive              Quartz direct-drive
+                           Torque             High: 5.0 kgf/cm (starting/instant); 3.4 kgf/cm (stable)
+                                              Low: 3.2 kgf/cm (starting/instant); 1.4 kgf/cm (stable)
+                           Starting Time      < 0.4 seconds
+                           Braking System Electronic
+Platter                    Material           Aluminum die-cast
+                           Diameter           13.1” / 332 mm
+                           Weight             4.9 lbs. / 2.2 g
+Speeds                     33 1/3, 45 RPM
+Pitch Range                +8%, +16%, +50%
+Connectors                 (1) USB Type-B port
+                           (1) Stereo RCA output
+                           (1) IEC power cable input
+Power                      Connection         IEC
+                           Voltage            100–240 VAC, 50/60 Hz
+                           Consumption        60 W
+Dimensions                 14.5” x 16.2” x 5.3”
+(width x depth x height)   368 x 413 x 90 mm
+Weight                     20.5 lbs.
+                           9.3 kg
+
+Specifications and product images are subject to change without notice.
+
+
+
+Trademarks & Licenses
+Rane is a trademark of inMusic Brands, Inc., registered in the U.S. and other countries.
+Serato, Serato DJ Pro, and the Serato logo are registered trademarks of Serato Limited.
+All other product names, company names, trademarks, or trade names are those of their respective owners.
+
+
+
+
+34
+35
+rane.com
+
+
+
+
+Manual Version v1.1
+

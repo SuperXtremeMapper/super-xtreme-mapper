@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Hercules",
+  "model": "DJControl Inpulse 200 MK3",
+  "status": "partial-extraction",
+  "coverage_state": "documentation-only",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "local_file": "ni-hercules-ah/djcontrolinpulse200mk3/support.html",
+      "url": "https://support.hercules.com/en/product/djcontrolinpulse200mk3-en/",
+      "sha256": "45bbb9152fde732e8f0e51f1478288207207b98af6b7ba60ff49cbb507460d63",
+      "id": "s1"
+    },
+    {
+      "local_file": "ni-hercules-ah/djcontrolinpulse200mk3/manual.pdf",
+      "url": "https://ts.hercules.com/download/sound/manuals/DJC_Inpulse_200_MK3/DJControl_Inpulse_200_MK3_User_Manual_-_21_Languages.pdf",
+      "sha256": "9a45c2ec9a9598f364caa63be1d1d3a8349dc8adf6617fd5f9c2279f4446958c",
+      "id": "s2"
+    }
+  ],
+  "scope": "Documentation-only extraction of the archived owner manual and support material. No model-specific numeric MIDI addresses, channels, value encodings or LED receive assignments are established; native/software control descriptions are not wire-message evidence.",
+  "bindings": [],
+  "setup_notes": [
+    "Connect the controller to the computer using its USB cable. Connect speakers to the master/speaker outputs and headphones to the headphone output as described in the installation section."
+  ],
+  "missing_information": [
+    "Model-specific control-to-Note/CC addresses and MIDI channel assignments.",
+    "Shift, pad-mode and deck-layer wire-message differences.",
+    "Jog-wheel/encoder direction, resolution and acceleration encoding; button press/release values.",
+    "LED, pad-color and meter receive addresses and value semantics.",
+    "Any required generic MIDI mode or firmware-specific protocol setup beyond the documented software workflow."
+  ],
+  "issues": [
+    {
+      "id": "setup-provenance",
+      "severity": "scope",
+      "description": "The setup notes describe the owner-manual connection workflow; they do not establish a generic MIDI mode or numeric mapping.",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF page 29; Installation / Connections"
+        }
+      ],
+      "excluded_bindings": []
+    },
+    {
+      "id": "no-wire-address-chart",
+      "severity": "scope",
+      "description": "The retained control descriptions identify software actions and pad modes, not per-control MIDI status/address/value tables. No Note/CC bindings can be normalized from these descriptions.",
+      "evidence": [
+        {
+          "source_id": "s2",
+          "locator": "PDF pages 8, 15, 19, 38, 49; English hardware/control and operating descriptions"
+        }
+      ],
+      "excluded_bindings": [
+        "All input controls and all LED/output controls pending manufacturer wire-address documentation"
+      ]
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "s1",
+      "file": "ni-hercules-ah/raw/djcontrol-inpulse-200-mk3-s1.txt",
+      "extraction_method": "Complete archived HTML-to-text extraction copied; unpaginated document marker; original HTML remains authoritative"
+    },
+    {
+      "source_id": "s2",
+      "file": "ni-hercules-ah/raw/djcontrol-inpulse-200-mk3-s2.txt",
+      "extraction_method": "pdftotext -layout; complete PDF retained as page-addressed text; no OCR or inferred labels"
+    }
+  ]
+}

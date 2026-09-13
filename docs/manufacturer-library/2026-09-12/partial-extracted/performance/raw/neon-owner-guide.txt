@@ -1,0 +1,769 @@
+
+--- PDF PAGE 1 ---
+      QUICK START GUIDE
+
+
+
+
+
+                                                                                                                                                      Hiermit erklärt “Global Distribution GmbH & Co. KG”, dass dieses Gerät den folgenden
+                                                                                                                                         Anforderungen der Richtlinien 2011/65/EU, 2014/30/EU, 2014/35/EU entspricht. Der
+                                                                                                                                                               vollständige Text der EU-Konformitätserklärung ist unter der folgenden Internetadresse
+                                                                                                                                                           verfügbar: https://www.reloop.com/product-compliance
+
+
+
+
+
+                                                                                                                                                                                                                  This device complies with Part 15 of the FCC rules.
+                                                                                                                                                                                                       Operation is subject to the following two conditions:
+                                                                                                                                                                                                                                                                 (1) this device may not cause harmful Interference, and
+                                                                                                                                                                                                                                                                 (2) this device must accept any interference received,
+                                                                                                                                                                                                                        including  interference that may cause undesired
+                                                                                                                                                                                                                           operation.
+
+
+
+
+
+Der Reloop Neon ist ein mächtiger USB-Modular-Controller, der für Serato DJ
+entwickelt worden ist und damit ‚Plug-and-Play‘ läuft.
+
+Aktuelle Software Updates sind unter www.serato.com erhältlich.
+
+     Deutsch // Seite 1-4
+
+
+
+
+
+       1                  DEUTSCH                          VERSION 2.0
+
+--- PDF PAGE 2 ---
+      QUICK START GUIDE
+
+
+SAMPLER-SEKTION                                          6           SHIFT-TASTE:
+                                                                                           Halten der Shift-Taste aktiviert die
+       1       SAMPLER MODE-TASTE:                                             Sekundärfunktionen (mit grauem Rahmen
+                       Aktiviert die SP-6 Sample Kontrolle.                                       gekennzeichnet).
+
+                 SHIFT+SAMPLER MODE-TASTE:                     7        DRUM PADS:
+                       De/-aktiviert die Anschlagdynamik für                             6 anschlagdynamische, RGB Drum Pads.Durch
+                       die Drum Pads.                                                   Drücken eines leeren Sample-Slot-Pads wird
+                                                                                              der/das selektierte Track/Sample in das
+       2       SAMPLE BANK-TASTEN:                                                      jeweilige Slot geladen.
+                   Wählt zwischen Sample-Bänken A bis D aus.
+                                                            8         SAMPLER-ENCODER:
+                 SHIFT+BANK-TASTEN A BIS D:                                          Shift+Drehen des Sampler-Ecnoders ändert die
+                   Wählt den SP-6 Output 1-4.                                                globale Sampler Master-Lautstärke.
+
+                 SHIFT+BANK-TASTEN C+D:                                             Halten eines Sample Slot-Pads und Drehen
+                   Weist den SP-6 dem Master zu.                                        des Sample Encoders ändert die individuelle
+                                                                                               Sample-Slot-Lautstärke.
+       3         MODE-TASTE:
+                     Halten der Mode-Taste + PAD 1 bis 6 ändert den
+                   Sample Player Modus des jeweiligen Sample-Slots
+                    (One Shot, Toggle, Hold).
+
+       4         REPEAT-TASTE:                                                          1
+                     Halten der Repeat-Taste + PAD 1 bis 6 aktiviert
+                   den Sample Player Repeat (Loop) des jeweiligen                         8
+                      Sample-Slots.
+
+       5         SYNC-TASTE:                     Halten der Sync-Taste + PAD 1 bis 6 aktiviert den                                                                                                            3
+                   Sample Player Sync des jeweiligen Sample-Slots                        2
+                    (Smart Sync muss aktiviert sein).
+                                                                                                                                                                 4
+
+                                                                                                                      7
+                                                                                                                                                                 5
+
+
+                                                                                                                                                                 6
+
+
+
+                                                                                            3    4   5
+
+
+
+
+
+   2                  DEUTSCH                          VERSION 2.0
+
+--- PDF PAGE 3 ---
+      QUICK START GUIDE
+
+
+ PERFORMANCE MODI                      HOT LOOP:                                   PAD FX:
+                                                                                           - Drücken der Hot Loop-Taste aktiviert den Stored                      - Durch zweimaliges Drücken der Sampler Mode-Taste, wird der Pad FX-Mode aktiviert.
+SLICER:                                              Loop-Modus.                                                                          - Es können bis zu 6 verschiedene Effekte, wie in der unten dargestellten Skizze, kontrolliert werden.(Effekte
+- Drücken der Slicer-Taste aktiviert den Continuous-               - Bis zu 8 Loops können pro Track gespeichert und              anschlagdynamisch)
+ Slicer-Modus.                                              abgespielt werden.
+- Erneutes Drücken aktiviert den Looped-Slicer-Modus          - Wenn ein Loop aktiv ist, kann durch Drücken eines leeren
+ (Slicer-Taste blinkt).                                         Loop-Slot-Pads dieser im jeweiligen Slot gespeichert                   MULTI-FX MODE                      SINGLE-FX MODE
+- Halten von Shift und Drücken der Pads 1 & 5 bzw. 4 & 8     werden - basierend auf der eingestellten Loop-Länge (Pad
+ ändert den Slice-Paramter 1 (Domain) bzw. Parameter        leuchtet blau).
+                                                       Erneutes Drücken                                                                              eines                                                                                 Loop-Slots                                                                                                     aktiviert den zuvor      FX Unit 1 2 (Quantize).                                                                      -
+                                                         gespeicherten                                                               Loop                                                                          (Loop                                                                                             Active).                                                                                                                                                        FX+Depth1 ON     FX+Depth2 ON     FX+Depth3 ON      BeatsMultiplierx 2                      FX+Depth1 ON     FXDepthP2       FXDepthP3        BeatsMultiplierx 2
+                                                                                           - Halten der Shift-Taste und Drücken eines Loop-Slot-Pads
+                                                                    triggert einen gespeicherten Loop.
+                                                           Erneutes Drücken                                                                             der Hot Loop-Taste                                                                                                            aktiviert den Manual      FX Unit 2 Slice 1         Slice 2         Slice 3         Slice 4                                   -
+                                                     Loop-Modus                                                                          (Hot Loop-Taste                                                                                                              blinkt).                                                                                                                                                        FX+Depth1 ON     FX+Depth2 ON     FX+Depth3 ON      BeatsMultiplierx 2                      FX+Depth1 ON     FXDepthP2       FXDepthP3        BeatsMultiplierx 2
+
+                                                                                                                SHIFT LAYER                                 SHIFT LAYER
+ Slice 5         Slice 6         Slice 7         Slice 8                             HotLoop 1       HotLoop 2       HotLoop 3       HotLoop 4
+HOT    CUE:                                                                                         FX Unit 1
+- Drücken         der Cue-Taste aktiviert den Hot Cue-Modus.                                                                                                                                                        FXSelect1        FXSelect2        FXSelect3         BeatsMultiplierx 1/2                     FXSelect1        FXToggleP4       FXToggleP5        BeatsMultiplierx 1/2
+- Ist ein Cue-Punkt                im                    Track hinterlegt,                                   so leuchtet das          HotLoop 5       HotLoop 6       HotLoop 7       HotLoop 8 jeweilige        Pad in der                    softwareseitig                              zugewiesenen
+ Farbe         (frei zuweisbar).                                                                                         FX Unit 2
+- Ein gesetzter             Cue-Punkt kann durch erneutes Drücken   MANUAL LOOP:                                                                                                                                                        FXSelect1        FXSelect2        FXSelect3         BeatsMultiplierx 1/2                     FXSelect1        FXToggleP4       FXToggleP5        BeatsMultiplierx 1/2
+ angesteuert werden.                                                          - Im Manual Loop Modus können, wie in der unten
+- Halten von Shift und Drücken eines Cue-Punkts, löscht      dargestellten Skizze, Loops kontrolliert werden.           HOT FLIP                                                                                                                      HOT CUE
+                                     Um einen manuell                                                                          gesetzten                                                                          Loop                                                                                      oder                                                                                       Auto-Loop den Cue-Punkt.                                                                  -                                                                                                                                                                                          -                                                                                                                Erneutes                                                                                                                 Drücken                                                                                                                                     der Cue-Taste aktiviert den Hot Flip-           REC                                                         (Loop-Encoder)                                                                   zu                                                                               speichern,                                                                                    mit ‚Slot                                                                                Up/Down‘                                                                                           den                                                                                              Modus                                                                                                                                 (Cue-Taste                                                                                                                                                                     blinkt).
+                                                    Hot                                                              Loop-Slot                                                               wählen                                                                   und                                                                                 mit ‚Save‘                                                                                             abspeichern.                                                                                                                                                                                          -                                                                                                                                                  Ist ein Flip gespeichert,                                                                                                                                     so                                                                                                                                                     leuchtet das jeweilige Pad in der      ON    Cue 1       Cue 2       Cue 3       Cue 4                                                                                           -                                                 Im aktiven                                                                Loop                                                                   kann der                                                                                                         In- bzw.                                                                                         Out-Punkt                                                                                                 durch erneutes                                                                                                                       softwareseitigen                                                                                                                             Farbe                                                                                                                                                                  auf.
+                                                        Drücken (Pad blinkt) und Drehen des Loop Encoders justiert               - Ein gesetzter Flip kann durch Drücken des jeweiligen Pads      LOOP
+                                                            werden.                                                           aktiviert werden.
+ Cue 1       Cue 2       Cue 3       Cue 4                                                                                                                                   - Shift + Pad springt direkt zum jeweiligen Flip und startet         START   Cue 5       Cue 6       Cue 7       Cue 8
+                                                                                                                                  dieses.
+
+                                                                                                                                                                                                                                                                                                               HOT FLIP
+                                                                     Loopactive                   Loop save    LoopSlot up                   REC (SHIFT + DECK-BUTTON 1)                                             REC
+ Cue 5       Cue 6       Cue 7       Cue 8                                                                  Nimmt die Flip-Sequenz auf.
+                                                                                  ON (SHIFT + DECK-BUTTON 2)                                           ON    HOTFLIP 1      HOTFLIP 2      HOTFLIP 3      HOTFLIP 4
+                                                                                                                                                Stellt die Flip-Sequenz aktiv.
+                                                                     Loop in      Loop out     ReloopExit     /     LoopSlot down                 LOOP (SHIFT + DECK-BUTTON 3)                                          LOOP
+                                                                                                      Looped die Flip-Sequenz.
+                                                                                           START (SHIFT + DECK-BUTTON 4)                                            START   HOTFLIP 5      HOTFLIP 6
+                                                                                                                              Triggert die Flip-Sequenz.
+
+
+
+
+
+     3                  DEUTSCH                          VERSION 2.0
+
+--- PDF PAGE 4 ---
+      QUICK START GUIDE
+
+
+ZUSÄTZLICHE CONTROLS IN                                             8         TRAX-NAVIGATION:
+SLICER, CUE, HOT LOOP, PAD FX & HOT FLIP-MODE                                           Drehen des Encoders navigiert durch die Song Bibliothek.
+
+       1         PERFORMANCE-MODE-TASTEN:                                                Drücken des Encoders lädt einen Track ins aktive Deck.
+                   Wählt den aktiven Performance Modus aus. Taste zweimal
+                   drücken aktiviert den Sekundärmodus (Modus-Taste blinkt).                            Shift+Drücken des Encoders springt eine Ordner-Ebene höher
+                                                                                                                    (Back).
+       2         DECK-TASTEN:
+                   Wählt das aktive Deck 1 bis 4 für die Performance Sektion aus.              9         LOOP-ENCODER:
+                                                                                             Drehen des Encoders selektiert die Loop-Größe.
+       3         CENSOR-TASTE:
+                       Aktiviert den Censor-Mode (Rückwärtslauf) aus.                                   Drücken des Encoders aktiviert einen Loop.
+
+                  SHIFT+CENSOR-TASTE:                                                             Shift+Drehen des Encoders verschiebt den gesetzten Loop
+                       Shift + Drücken aktiviert den Relative DVS Modus.                                     (Loop Shift).
+
+       4          SLIP-TASTE:                                                                      Shift+Drücken des Loop-Encoders aktiviert die Loop-Roll
+                       Aktiviert den Slip-Modus.                                                             Funktion.
+
+                   SHIFT+SLIP-TASTE:
+                       Shift + Drücken aktiviert den Internal DVS Modus.                                                              1
+       5          SYNC-TASTE:                                                      1                                                              9
+                       Aktiviert Deck-Sync.
+                  SHIFT+SYNC-TASTE:                                       8
+                       Shift + Drücken deaktiviert Deck-Sync.
+
+       6          SHIFT-TASTE:                                                                                                                      3
+                     Halten der Shift-Taste aktiviert die Sekundärfunktionen (mit            2                  grauem Rahmen gekennzeichnet).
+
+       7       DRUM PADS:                                                                                                                       4
+                 8 anschlagdynamische, RGB Colour Drum Pads für den jeweilig
+                      aktivierten Performance-Modus.                                                                   7
+                                                                                                                                                5
+
+
+                                                                                                                                                6
+
+
+
+
+
+   4                  DEUTSCH                          VERSION 2.0
+
+--- PDF PAGE 5 ---
+      QUICK START GUIDE
+
+
+
+
+
+                                                                                                                                        Hereby, “Global Distribution GmbH & Co. KG” declares that this unit is in compliance
+                                                                                                                                  with Directive 2011/65/EU, 2014/30/EU, 2014/35/EU.
+                                                                                                                         The full text of the EU declaration of conformity is available at the following internet
+                                                                                                                                              address: https://www.reloop.com/product-compliance
+
+
+
+
+
+                                                                                                                                                                                                                  This device complies with Part 15 of the FCC rules.
+                                                                                                                                                                                                       Operation is subject to the following two conditions:
+                                                                                                                                                                                                                                                                 (1) this device may not cause harmful Interference, and
+                                                                                                                                                                                                                                                                 (2) this device must accept any interference received,
+                                                                                                                                                                                                                        including  interference that may cause undesired
+                                                                                                                                                                                                                           operation.
+
+
+
+
+
+The Reloop Neon is a powerful USB modular controller designed as plug-and-play
+device for Serato DJ.
+
+Up-to-date mappings are available under www.serato.com
+
+       English // page 5-8
+
+
+
+
+
+     5                    ENGLISH                          VERSION 2.0
+
+--- PDF PAGE 6 ---
+      QUICK START GUIDE
+
+
+SAMPLER SECTION                                           6          SHIFT BUTTON:
+                                                                                           Holding the Shift Button activates the
+       1       SAMPLER MODE BUTTON:                                          secondary functions (marked by gray frame).
+                     Activates SP-6 sample control.
+                                                            7       DRUM PADS:
+                 SHIFT+SAMPLER MODE BUTTON:                                6 touch-sensitive RGB colour drum pads.
+                       (De-)activates the drum pads‘
+                       touch-sensitivity.                                            By pressing an empty sample slot pad, the
+                                                                                               selected track/sample will be loaded into the
+       2       SAMPLE BANK BUTTONS:                                               respective slot.
+                      Selection of sample banks A – D.
+                                                            8        SAMPLER ENCODER:
+                 SHIFT+BANK BUTTONS A – D:                                             Shift+turning the Sampler Encoder changes
+                      Selection of SP-6 output 1 – 4.                                              global sampler master volume.
+
+                 SHIFT+BANK BUTTONS C+D:                                           Holding a sample slot pad + turning the Sample
+                    Assigns SP-6 to master.                                             Encoder changes the individual sample slot
+                                                                                        volume.
+       3       MODE BUTTON:
+                     Holding the Mode Button + Pad 1 – 6 changes
+                     the sample player mode of the respective
+                   sample slot (One Shot, Toggle, Hold).
+       4        REPEAT BUTTON:                                                    1
+                     Holding the Repeat Button + Pad 1 – 6 activates
+                   sample player repeat (reloop) of the respective                      8
+                   sample slot.
+
+                     BUTTON:       5        SYNC
+                     Holding                            the Sync Button + Pad 1 – 6 activates                                                                                                           3
+                   sample player sync of the respective sample                       2
+                         slot (Smart Sync has to be activated).
+                                                                                                                                                          4
+
+                                                                                                               7
+                                                                                                                                                          5
+
+
+                                                                                                                                                          6
+
+
+
+                                                                                     3    4   5
+
+
+
+
+   6                    ENGLISH                          VERSION 2.0
+
+--- PDF PAGE 7 ---
+      QUICK START GUIDE
+
+
+ PERFORMANCE MODES                     HOT LOOP:                                   PAD FX:
+                                                            – Pressing the Hot Loop Button activates Stored Loop           – By pressing the Sampler Mode Button twice, Pad FX mode will be activated.
+SLICER:                                             mode.                                                        – Up to 6 different effects can be controlled, as displayed on the drawing below
+– Pressing the Slicer Button activates the Continuous        – Up to 8 loops per track can be stored and played back.           (effects work touch-sensitively).
+  Slicer mode.                                               – By pressing an empty loop slot pad while a loop is
+– Pressing the button again activates Looped Slicer            active, the loop will be saved in the chosen slot -
+ mode (Slicer Button flashes).                            depending on the set loop length (pad lights up in                   MULTI-FX MODE                      SINGLE-FX MODE
+– Holding Shift and pressing Pads 1 & 5 or 4 & 8,                     blue).
+  respectively, changes slicer parameter 1 (domain) &            – Pressing a loop slot again activates the previously set
+                                                           loop                                                                   (loop                                                                                active).                                                                                         FX Unit 1 parameter 2 (quantize), respectively.
+                                                            –                                                         Holding                                                                 the                                                                             Shift Button and pressing a loop slot pad                                                                                                                                                        FX+Depth1 ON     FX+Depth2 ON     FX+Depth3 ON      BeatsMultiplierx 2                      FX+Depth1 ON     FXDepthP2       FXDepthP3        BeatsMultiplierx 2
+                                                                triggers a stored loop.
+                                                            – Pressing the Hot Loop Button again activates Manual
+ Slice 1         Slice 2         Slice 3         Slice 4                     Loop mode (Hot Loop Button flashes).                  FX Unit 2      FX+Depth1 ON     FX+Depth2 ON     FX+Depth3 ON                                                                                                                                                                                                                     BeatsMultiplierx 2                      FX+Depth1 ON     FXDepthP2       FXDepthP3        BeatsMultiplierx 2
+
+                                                                                                                SHIFT LAYER                                 SHIFT LAYER
+ Slice 5         Slice 6         Slice 7         Slice 8                             HotLoop 1       HotLoop 2       HotLoop 3       HotLoop 4
+
+CUE:                                                                                         FX Unit 1
+– Pressing          the Cue                Button                          activates                              Hot                                                                                                                                                        FXSelect1        FXSelect2        FXSelect3         BeatsMultiplierx 1/2                     FXSelect1        FXToggleP4       FXToggleP5        BeatsMultiplierx 1/2                                Cue mode.              HotLoop 5       HotLoop 6       HotLoop 7       HotLoop 8–  If a cue point                   is stored                         for                        a track, the                                   corresponding
+ pad will be illuminated in the colour previously
+                                       MANUAL                                                        LOOP: selected           in            the software                            (freely assignable).                                                                                         FX Unit 2
+                                                                In Manual                                                            Loop mode it is possible to control loops, as– A set cue           point              can be triggered                           by pressing the            –                                                                                                                                                        FXSelect1        FXSelect2        FXSelect3         BeatsMultiplierx 1/2                     FXSelect1        FXToggleP4       FXToggleP5        BeatsMultiplierx 1/2
+ button again.                                             displayed in the drawing below.
+– Holding the Shift Button and pressing a cue point           – To store a manually set loop or auto loop (Loop           HOT FLIP:                                                                                                                     HOT CUE
+                                                                          select deletes the cue point.                                      Encoder),                                                                         the hot loop slot via ‚Slot Up/Down‘           –                                                                                                                     Pressing                                                                                                                              the Cue Button again activates Hot Flip mode (Cue    REC                                                   and store via                                                                                     ‚Save‘.                                                                                                              Button                                                                                                                                                   flashes).
+                                                            –                                                   The                                                                         in and out                                                                           points of                                                                       an                                                                                        active loop                                                                                     can                                                                                        be adjusted                                                                                                                                                                                          -                                                                                                                                                                        If a flip                                                                                                                   has                                                                                                                  been                                                                                                                                               stored,                                                                                                                                           the                                                                                                                                           corresponding                                                                                                                                                                                                                                               ON    Cue 1       Cue 2       Cue 3       Cue 4                                                  by                                                           repeated                                                                       pressing                                                                           (Pad                                                                                             flashes)                                                                               and                                                                                                 turning                                                                                                     the                                                                                                       pad                                                                                                                                                    will                                                                                                                                            flash                                                                                                                                                         in the                                                                                                                                            colour                                                                                                                                                 previously                                                                                                                                                                  set
+                                                   Loop Encoder.                                                       in the software.                                                                 LOOP
+                                                                                                                                                                                          - A set flip can be activated by pressing the respective pad.
+ Cue 1       Cue 2       Cue 3       Cue 4                                                                                                                                   - Shift + pad jumps directly to the respective                             START   Cue 5       Cue 6       Cue 7       Cue 8
+                                                                                                                                                                   flip and starts it.
+
+                                                                                                                                                                                                                                                                                                               HOT FLIP                                                                     Loopactive                   Loop save    LoopSlot up
+                                                                                           REC (SHIFT + DECK BUTTON 1)                                              REC
+ Cue 5       Cue 6       Cue 7       Cue 8                                                                            Records the flip sequence.
+                                                                                  ON (SHIFT                                                                                                                         + DECK                                                                                                  BUTTON 2)                                           ON    HOTFLIP 1      HOTFLIP 2      HOTFLIP 3      HOTFLIP 4                                                                     Loop in      Loop out     ReloopExit     /     LoopSlot down                       Activates                                                                                                                             the                                                                                                                                                                                   flip sequence.
+                                                                                        LOOP (SHIFT + DECK BUTTON 3)                                           LOOP
+                                                                                                         Loops the flip sequence.
+                                                                                           START (SHIFT + DECK BUTTON 4)                                             START   HOTFLIP 5      HOTFLIP 6
+                                                                                                                            Triggers the flip sequence.
+
+
+
+
+
+     7                    ENGLISH                          VERSION 2.0
+
+--- PDF PAGE 8 ---
+      QUICK START GUIDE
+
+
+ADDITIONAL DECK CONTROLS: SLICER, CUE,                               8        TRAX NAVIGATION:
+HOT LOOP, PAD FX AND HOT FLIP MODES                                               By turning the encoder it is possible to browse your
+                                                                                                             track library.
+       1        PERFORMANCE MODE BUTTONS:
+                      Select the active performance mode. Pressing a button twice                           Pushing the encoder loads a track into the active deck.
+                      activates secondary mode (Mode Button flashes).
+                                                                                                              Shift+pressing the encoder takes you back one folder layer.
+       2        DECK BUTTONS:
+                      Selects the active deck 1 – 4 for the performance section.               9         LOOP ENCODER:
+                                                                                                          Turning the encoder selects the loop size.
+       3        CENSOR BUTTON:
+                     Activates Censor mode (reverse mode).                                              Pushing the encoder activates a loop.
+
+                 SHIFT+CENSOR BUTTON:                                                                Shift+turning the encoder shifts the whole set loop.
+                     Activates Relative DVS mode.
+                                                                                                              Shift+pressing the encoder activates the loop roll function.
+       4          SLIP BUTTON:
+                     Activates Slip mode.
+
+                   SHIFT+SLIP BUTTON:
+                     Activates Internal DVS mode.                                                                                 1
+       5        SYNC BUTTON:                                                         1                                                              9
+                     Activates Deck Sync.
+                 SHIFT+SYNC BUTTON:                                          8
+                     Deactivates Deck Sync.
+
+       6          SHIFT BUTTON:                                                                                                                         3
+                     Holding the Shift Button activates secondary functions                    2                   (marked by gray frame).
+
+       7       DRUM PADS:                                                                                                                           4
+                 8 touch-sensitive RGB colour drum pads for the respecitvely
+                      activated performance mode.                                                                          7
+                                                                                                                                                    5
+
+
+                                                                                                                                                    6
+
+
+
+
+
+   8                    ENGLISH                          VERSION 2.0
+
+--- PDF PAGE 9 ---
+      QUICK START GUIDE
+
+
+
+
+
+                                                                                                                               Le soussigné “Global Distribution GmbH & Co. KG”, déclare que cet appareil est
+                                                                                                                            conforme à la Directive 2011/65/EU, 2014/30/EU, 2014/35/EU.
+                                                                                                                               Le texte complet de la déclaration UE de conformité est disponible à l’adresse
+                                                                                                                                                 Internet suivante: https://www.reloop.com/product-compliance
+
+
+
+
+
+                                                                                                                                                                                                                  This device complies with Part 15 of the FCC rules.
+                                                                                                                                                                                                       Operation is subject to the following two conditions:
+                                                                                                                                                                                                                                                                 (1) this device may not cause harmful Interference, and
+                                                                                                                                                                                                                                                                 (2) this device must accept any interference received,
+                                                                                                                                                                                                                        including  interference that may cause undesired
+                                                                                                                                                                                                                           operation.
+
+
+
+
+
+Le Reloop Neon est un contrôleur modulaire USB performant conçu pour Serato DJ et
+fonctionnant en ‚Plug-and-Play‘.
+
+Les dernières mises à jour du logiciel peuvent être téléchargées sur le site
+www.serato.com
+
+      Francais // page 9-12
+
+
+
+
+
+    9                   FRANCAIS                         VERSION 2.0
+
+--- PDF PAGE 10 ---
+      QUICK START GUIDE
+
+
+SECTION SAMPLER                                           6        TOUCHE MAJ :
+                                                                                          enfoncer la touche Maj active les fonctions
+       1        TOUCHE DE MODE SAMPLER :                                          secondaires (marquées dans le cadre gris).
+                      active le contrôle d‘échantillon SP-6.
+                                                            7       DRUM PADS :
+                MAJ+TOUCHE DE MODE SAMPLER :                              6 Drum Pads couleurs RGB à dynamique de
+                      dés/active la dynamique de percussion pour les                            percussion.
+                Drum Pads.
+                                                                                Appuyer sur un Pad Sample-Slot pour charger
+       2        TOUCHES SAMPLE BANK :                                                         la piste ou l‘échantillon sélectionné dans la
+                       sélection entre les bancs d‘échantillon A à D.                               fente respective.
+
+                MAJ+TOUCHES BANK A À D :                        8        SAMPLER-ENCODER :
+                      sélectionne la sortie SP-6 1 à 4.                                         Maj+tourner le Sampler-Encoder modifie le
+                                                                                  volume global Sampler Master.
+                MAJ+TOUCHES BANK C+D :
+                       affecte SP-6 au Master.                                               Enfoncer un pad Sample Slot et tourner le
+                                                                                  Sample Encoder modifie le volume individuel
+       3        TOUCHE MODE :                                                       d‘une fente d‘échantillon.
+                    enfoncer la touche Mode+PAD 1 à 6 change
+                          le mode de lecture de la fente d‘échantillon
+                      respective (One Shot, Toggle, Hold).
+
+       4        TOUCHE REPEAT :                                                          1
+                    enfoncer la touche Repeat+PAD 1 à 6 active la
+                       répétition                                 (boucle) du lecteur d‘échantillon de la                          8                      fente respective.
+
+       5        TOUCHE SYNC :
+                    enfoncer la touche Sync+PAD 1 à 6 active                                                                                                                   3
+                          la fonction Sample Player Sync de la fente                              2
+                       d‘échantillon respective (Smart Sync doit être
+                         activé).
+                                                                                                                                                                 4
+
+                                                                                                                      7
+                                                                                                                                                                 5
+
+
+                                                                                                                                                                 6
+
+
+
+                                                                                            3    4   5
+
+
+
+
+   10                  FRANCAIS                         VERSION 2.0
+
+--- PDF PAGE 11 ---
+      QUICK START GUIDE
+
+
+ MODES PERFORMANCE                     HOT LOOP :                                   PAD FX :
+                                                                                           - Appuyer sur la touche Hot Loop active le mode Stored              - Appuyer deux fois sur la touche de mode Sampler active le mode Pad FX.
+SLICER :                                                 Loop.                                                                                     - Il permet de commander jusque 6 différents effets comme illustré ci-dessous.
+- Enfoncer la touche Slicer active le mode Continuous-            - Jusque 8 boucles peuvent être mémorisées et lues dans          (effets en dynamique de percussion)
+ Slicer.                                              chaque piste.
+- Appuyer de nouveau active le mode Looped-Slicer (la           - Appuyer sur un pad Loop-Slot vide pour définir une
+ touche Slicer clignote).                                   boucle dans la piste et la mémoriser dans la fente                   MULTI-FX MODE                      SINGLE-FX MODE
+- Enfoncer Maj et appuyer sur le Pads 1 & 5 ou 4 & 8           respective en se basant sur la longueur de boucle
+ modifie le paramètre Slice 1 (Domain) ou 2 (Quantize).         réglée.
+                                                                                           -                                                    Appuyer de                                                              nouveau sur                                                                        une Loop-Slot                                                                                                      active la boucle        FX Unit 1
+                                                         auparavant                                                               mémorisée                                                                               (Loop                                                                                                   Active).                                                                                                                                                        FX+Depth1 ON     FX+Depth2 ON     FX+Depth3 ON      BeatsMultiplierx 2                      FX+Depth1 ON     FXDepthP2       FXDepthP3        BeatsMultiplierx 2
+                                                                                           - Enfoncer la touche Maj et appuyer sur un Loop-Slot
+ Slice 1         Slice 2         Slice 3         Slice 4                        lance une boucle mémorisée.
+                                                                                           -                                                   Appuyer                                                            de nouveau                                                                               sur                                                                                                     la touche                                                                                 Hot Loop                                                                                                         active le        FX Unit 2
+                                              mode                                                       Manual                                                              Loop (la                                                                          touche                                                                             Hot Loop                                                                                                               clignote).                                                                                                                                                        FX+Depth1 ON     FX+Depth2 ON     FX+Depth3 ON      BeatsMultiplierx 2                      FX+Depth1 ON     FXDepthP2       FXDepthP3        BeatsMultiplierx 2
+
+ Slice 5         Slice 6         Slice 7         Slice 8                                                                                  SHIFT LAYER                                 SHIFT LAYER
+
+CUE         :
+- Enfoncer            la           touche                Cue                        active                                    le                        mode                                Hot                                        Cue.                                                                          HotLoop 1       HotLoop 2       HotLoop 3       HotLoop 4                   FX Unit 1
+- Si un      point          Cue                est                      défini                      dans                                    la                                     piste,                                              le                                  pad respectif                                                                                                                                                        FXSelect1        FXSelect2        FXSelect3         BeatsMultiplierx 1/2                     FXSelect1        FXToggleP4       FXToggleP5        BeatsMultiplierx 1/2
+ s‘allume dans la couleur affectée dans le logiciel (libre
+ configuration).                                                                          HotLoop 5       HotLoop 6       HotLoop 7       HotLoop 8- Appuyer        une fois de plus pour commander un point                                                                                         FX Unit 2
+ Cue      défini.                                                                                                                                                        FXSelect1        FXSelect2        FXSelect3         BeatsMultiplierx 1/2                     FXSelect1        FXToggleP4       FXToggleP5        BeatsMultiplierx 1/2
+- Enfoncer Maj et appuyer sur un point Cue pour effacer    MANUAL LOOP :
+ le point Cue.                                                                       - Le mode Manual Loop permet de commander les          HOT FLIP:                                                                                                                     HOT CUE
+                                                         boucles                                                 comme illustré                                                                                     ci-dessous.                                                                                                                                                                                          -                                                                                                                Enfoncer                                                                                                                   de                                                                                                                 nouveau                                                                                                                                                                            la touche Cue active le mode Hot Flip      REC                                                                                           -                                                    Pour mémoriser                                                                 une boucle                                                                                              définie manuellement ou                                                                                                                                                         (la                                                                                                                  touche                                                                                                             Cue                                                                                                                                                           clignote).
+                                                    en                                                        Auto-Loop                                                                        (Loop-Encoder),                                                                                          sélectionner                                                                                                                          la fente                                                                                               Hot            -                                                                                                                                          Si un Flip                                                                                                                                     est mémorisé,                                                                                                                                                                               le                                                                                                                            pad                                                                                                                                                      respective s‘allume dans la       ON    Cue 1       Cue 2       Cue 3       Cue 4                                                   Loop                                                           avec ‚Slot                                                              Up/Down‘ et sauvegarder                                                                                           avec                                                                                                                          ‚Save‘.                                                                                                                       couleur                                                                                                                               configurée                                                                                                                           dans                                                                                                                                                                               le                                                                                                                                                                                      logiciel.
+                                                                                           -                                                 Dans la                                                                boucle                                                                                 active,                                                                                                  le                                                                                    point In                                                                             ou                                                                                 Out                                                                                          peut être                                                                                                                                                                                          -                                                                                          Un Flip défini peut être activé en appuyant sur le pad              LOOP Cue 1       Cue 2       Cue 3       Cue 4                                                              ajusté                                                          en                                                                enfonçant                                                                     de                                                                     nouveau                                                                                                                  (le                                                                            Pad                                                                                                           clignote)                                                                                                                 et en                                                                                                                    correspondant.
+                                                         tournant le Loop Encoder.                                                       - Maj+Pad saute directement au Flip respectif et le lance           START   Cue 5       Cue 6       Cue 7       Cue 8
+
+ Cue 5       Cue 6       Cue 7       Cue 8                                                                REC (MAJ+TOUCHE PLATINE 1)                                                                                         HOT FLIP
+                                                                                                                          enregistre                                                                                                                                                              la séquence                                                                                                                                                                              Flip.
+                                                                                  ON (MAJ+TOUCHE                                                                                                               PLATINE                                                                                                                                                       2)                                              REC                                                                     Loopactive                   Loop save    LoopSlot up
+                                                                                                                     Active la séquence Flip.                                                   ON    HOTFLIP 1      HOTFLIP 2      HOTFLIP 3      HOTFLIP 4
+                                                                                        LOOP (MAJ+TOUCHE PLATINE 3)
+                                                                                                                             règle la séquence Flip en boucle.                                            LOOP
+                                                                     Loop in      Loop out     ReloopExit     /     LoopSlot down                  START (MAJ+TOUCHE PLATINE 4)
+                                                                                                                      lance la séquence Flip.                                                              START   HOTFLIP 5      HOTFLIP 6
+
+
+
+
+
+      11                   FRANCAIS                         VERSION 2.0
+
+--- PDF PAGE 12 ---
+      QUICK START GUIDE
+
+
+COMMANDES DE PLATINE : SLICER, CUE, HOT LOOP,                         8         NAVIGATION TRAX :
+MODES HOT FLIP ET FX PAD                                                                                  tourner l‘encodeur pour naviguer dans la bibliothèque des pistes.
+
+       1        TOUCHES PERFORMANCE MODE :                                                         Enfoncer l‘encodeur pour charger une piste dans la platine active.
+                        sélection du mode Performance actif. Appuyer deux fois sur la
+                     touche active le mode secondaire (la touche mode clignote).                                Maj+enfoncer l‘encodeur pour passer au niveau de répertoire
+                                                                                                            supérieur (Back).
+       2        TOUCHES DECK :
+                         sélection de la platine 1 à 4 active pour la section Performance.               9        ENCODEUR LOOP :
+                                                                                                           tourner l‘encodeur sélectionne la taille de la boucle.
+       3        TOUCHE CENSOR :
+                      active le mode Censor (marche inversée).                                             Enfoncer l‘encodeur active une boucle.
+
+                MAJ+TOUCHE CENSOR :                                                            Maj+tourner l‘encodeur pour décaler la boucle réglée (Loop
+                    Maj+tourner active le mode Relative DVS.                                                           Shift).
+
+       4        TOUCHE SLIP :                                                                   Maj+enfoncer l‘encodeur Loop active la fonction Loop-Roll.
+                      active le mode Slip.
+
+                MAJ+TOUCHE SLIP :                                                                                   1                    Maj+tourner active le mode Internal DVS.
+                                                                               1                                                              9
+       5        TOUCHE SYNC :
+                      active Deck-Sync.                                         8
+                MAJ+TOUCHE SYNC :
+                    Maj+tourner désactive Deck-Sync.
+                                                                                                                                                3
+       6        TOUCHE MAJ (SHIFT) :                                      2                    enfoncer la touche Maj active les fonctions secondaires
+                   (marquées dans le cadre gris).
+                                                                                                                                                4
+       7       DRUM PADS :
+                 8 Drum Pads couleur RGB à dynamique de percussion pour le                                                7                 mode Performance respectif activé.
+                                                                                                                                                5
+
+
+                                                                                                                                                6
+
+
+
+
+
+   12                  FRANCAIS                         VERSION 2.0
+
+--- PDF PAGE 13 ---
+      QUICK START GUIDE
+
+
+
+
+
+                                                                                                                                    Por la presente, “Global Distribution GmbH & Co. KG” declara que esta unidad es
+                                                                                                                                 conforme con la Directiva 2011/65/EU, 2014/30/EU, 2014/35/EU.
+                                                                                                                                                           El texto completo de la declaración UE de conformidad está disponible en la dirección de
+                                                                                                                                                        Internet siguiente: https://www.reloop.com/product-compliance
+
+
+
+
+
+                                                                                                                                                                                                                  This device complies with Part 15 of the FCC rules.
+                                                                                                                                                                                                       Operation is subject to the following two conditions:
+                                                                                                                                                                                                                                                                 (1) this device may not cause harmful Interference, and
+                                                                                                                                                                                                                                                                 (2) this device must accept any interference received,
+                                                                                                                                                                                                                        including  interference that may cause undesired
+                                                                                                                                                                                                                           operation.
+
+
+
+
+
+El Reloop Neon es un potente controlador modular USB desarrollado para Serato DJ y
+con tecnología ‚Plug and Play‘.
+
+Las actualizaciones del software están disponibles en www.serato.com
+
+
+     Espanol // página 13-16
+
+
+
+
+
+     13                  ESPANOL                          VERSION 2.0
+
+--- PDF PAGE 14 ---
+      QUICK START GUIDE
+
+
+SECCIÓN SAMPLER                                           6         TECLA SHIFT:
+                                                                                             Al pulsar y mantener pulsada la tecla Shift se
+       1        TECLA SAMPLER MODE:                                                 activan las funciones secundarias (indicadas
+                     Activa el control SP-6 Sample.                                       con marco gris).
+
+                 TECLA SHIFT+SAMPLER MODE:                     7       DRUM PADS:
+                     Desactiva/activa la velocidad para los                             6 drum pads RGB de colores y sensibles al tacto.
+                 drum pads.
+                                                                                             Al pulsar un pad de un sample slot vacío, se
+       2        TECLAS SAMPLE BANK:                                               carga la pista/muestra seleccionada en el slot
+                     Selecciona entre los sample bank A hasta D.                               correspondiente.
+
+                 TECLAS SHIFT+ TECLAS BANK A HASTA D:               8         CODIFICADOR SAMPLER:
+                     Selecciona SP-6 Output 1-4.                                                  Shift+girar el codificador Sampler cambia el
+                                                                                 volumen de Sampler Master.
+                  SHIFT + TECLAS BANK C + D:
+                      Indica el SP-6 al Master.                                                 Al pulsar y mantener pulsado un pad de un
+                                                                                    sample slot y girar el codificador Sampler
+       3        TECLA MODE:                                                    cambia el volumen del sample slot individual.
+                     Al pulsar y mantener pulsada la tecla Mode +
+               PAD 1 hasta 6 se cambia el modo Sample Player
+                 Modus del sample slot correspondiente (One
+                      Shot, Toggle, Hold).
+
+       4        TECLA REPEAT:                                                               1
+                     Al pulsar y mantener pulsada la tecla Repeat +
+               PAD 1 hasta 6 se activa Sample Player Repeat                             8
+                      (Loop) del sample slot correspondiente.
+
+       5        TECLA SYNC:                                                                                                                                          3
+                     Al pulsar y mantener pulsada la tecla Sync +                               2
+               PAD 1 hasta 6 se activa Sample Player Sync del
+                   sample slot correspondiente (Smart Sync debe
+                      estar activado).                                                                                                                                         4
+
+                                                                                                                           7
+                                                                                                                                                                      5
+
+
+                                                                                                                                                                      6
+
+
+
+                                                                                                 3    4   5
+
+
+
+
+
+    14                  ESPANOL                          VERSION 2.0
+
+--- PDF PAGE 15 ---
+      QUICK START GUIDE
+
+
+ MODOS PERFORMANCE                    HOT LOOP:                                   PAD FX:
+                                                                                           - Al pulsar la tecla Hot Loop se activa el modo Stored Loop.                - Al pulsar la tecla Sampler Mode dos veces, el modo Pad FX se activa.
+SLICER:                                                                               - Se pueden almacenar y reproducir hasta 8 loops por pista.              - Se pueden controlar hasta 6 efectos diferentes, como se indica en los esquemas mostrados abajo. (efectos
+- Al pulsar la tecla Slicer se activa el modo Continuous            - Al pulsar un pad de loop slot vacío se fija un loop en la pista          sensibles al tacto)
+ Slicer.                                             y se almacena en el slot correspondiente, basado en la
+- Al pulsar otra vez se activa el modo Looped Slicer            longitud del loop.
+ (tecla Slicer parpadea).                                                       - Al pulsar otra vez un loop slot se activa el loop guardado                 MULTI-FX MODE                      SINGLE-FX MODE
+- Al mantener pulsado Shift y al pulsar los pads 1 y 5          anteriormente (Loop Active).
+ o 4 y 8 se cambia el parámetro 1 Slice (Domain) o el              - Al mantener pulsada la tecla Shift y presionar un pad de
+                                                              loop                                                                             slot se                                                                            activa                                                                                                el loop                                                                                almacenado.                                                                                         FX Unit 1 parámetro 2 (Quantize).
+                                                                                           -                                                          Al pulsar                                                            de                                                             nuevo                                                                                              la tecla                                                                          Hot Loop se activa el modo                                                                                                                                                        FX+Depth1 ON     FX+Depth2 ON     FX+Depth3 ON      BeatsMultiplierx 2                      FX+Depth1 ON     FXDepthP2       FXDepthP3        BeatsMultiplierx 2
+                                                  Manual Loop (tecla Hot Loop parpadea).
+
+
+ Slice 1         Slice 2         Slice 3         Slice 4                                                                                         FX Unit 2
+                                                                                                                                                        FX+Depth1 ON     FX+Depth2 ON     FX+Depth3 ON      BeatsMultiplierx 2                      FX+Depth1 ON     FXDepthP2       FXDepthP3        BeatsMultiplierx 2
+                                                                          HotLoop 1       HotLoop 2       HotLoop 3       HotLoop 4
+                                                                                                                SHIFT LAYER                                 SHIFT LAYER
+ Slice 5         Slice 6         Slice 7         Slice 8
+
+                                                                          HotLoop 5       HotLoop 6       HotLoop 7       HotLoop 8CUE:                                                                                         FX Unit 1
+- Al pulsar la tecla Cue se activa el modo Hot Cue.                                                                                                                                                        FXSelect1        FXSelect2        FXSelect3         BeatsMultiplierx 1/2                     FXSelect1        FXToggleP4       FXToggleP5        BeatsMultiplierx 1/2
+- Si hay un punto Cue almacenado en la pista, el pad      MANUAL LOOP:
+ correspondiente se ilumina en el color asignado por el          - En el modo Manual Loop, como se indica en los
+                                                  esquemas software            (libre                 asignación).                                                              mostrados abajo, se pueden controlar los        FX Unit 2
+                                                               loops.- Un punto         Cue fijado                 puede controlarse con otra                                                                                                                                                        FXSelect1        FXSelect2        FXSelect3         BeatsMultiplierx 1/2                     FXSelect1        FXToggleP4       FXToggleP5        BeatsMultiplierx 1/2
+ pulsación.                                                                          - Para almacenar un loop fijado manualmente o un auto
+- Con Shift presionado y al pulsar un punto Cue, se borra      loop (codificador Loop), seleccione con ‚Slot Up/Down‘      HOT FLIP:                                                                                                                     HOT CUE
+                                                                        el                                                                      slot                                                          de Hot                                                              Loop                                                                  y                                                                       guarde                                                                            con „Save“. el punto Cue.                                                                                                                                                                                          -                                                                                                                       Al pulsar                                                                                                                                     otra                                                                                                                           vez la tecla Cue se activa el modo Hot Flip (el      REC                                                                                           -                                                En                                                                            el loop                                                                            activo,                                                                         se                                                                    puede                                                                                         ajustar                                                                                                                el punto In o                                                                                                             botón                                                                                                          Cue                                                                                                                                 parpadea).
+                                                    Out                                                          pulsando                                                                de nuevo (pad parpadea) y girando el                   -                                                                                                                                          Si hay un                                                                                                                                                                               flip almacenado,                                                                                                                                                                                 el                                                                                                                              pad correspondiente se              ON    Cue 1       Cue 2       Cue 3       Cue 4                                                              codificador                                                                    Loop.                                                                                                                  enciende                                                                                                                  con                                                                                                                                                                   el color en el                                                                                                                                               software.
+ Cue 1       Cue 2       Cue 3       Cue 4                                                                                                                                   - Un flip preparado se puede activar pulsando el pad                 LOOP
+                                                                                                                        correspondiente.
+                                                                                                                                                                                          - Con Shift + Pad se pasa directamente al flip correspondiente    START   Cue 5       Cue 6       Cue 7       Cue 8
+                                                                                                      y lo inicia.
+
+ Cue 5       Cue 6       Cue 7       Cue 8                                                                     Loopactive                   Loop save    LoopSlot up                                                                                                                                                                        HOT FLIP
+                                                                                           REC (BOTÓN SHIFT + DECK 1)                                               REC
+                                                                                                         Graba la secuencia flip.
+                                                                                  ON (BOTÓN                                                                                                              SHIFT +                                                                                                     DECK 2)                                             ON    HOTFLIP 1      HOTFLIP 2      HOTFLIP 3      HOTFLIP 4
+                                                                     Loop in      Loop out     ReloopExit     /     LoopSlot down                       Activa                                                                                                                                                         la secuencia                                                                                                                                                                                                      flip.
+                                                                                        LOOP (BOTÓN SHIFT + DECK 3)                                             LOOP
+                                                                                                                      Repite la secuencia flip.
+                                                                                           START (BOTÓN SHIFT + DECK 4)                                               START   HOTFLIP 5      HOTFLIP 6
+                                                                                                       Desencadena la secuencia flip.
+
+
+
+
+
+     15                  ESPANOL                          VERSION 2.0
+
+--- PDF PAGE 16 ---
+      QUICK START GUIDE
+
+
+CONTROL DE LOS PLATOS: SLICER, CUE, HOT LOOP,                          8         TRAX-NAVIGATION:
+HOT FLIP- Y PAD FX-MODE                                                                                 Girar el codificador para navegar por la biblioteca de
+                                                                                                             canciones.
+       1         TECLAS PERFORMANCE MODE:
+                        Selecciona el modo Performance activo. Al pulsar la tecla dos veces se                             Al presionar el codificador se carga una pista en el plato activo.
+                         activa el modo secundario (la tecla del modo parpadea).
+                                                                                                                   Shift+ pulsar el codificador salta a un nivel de carpeta superior
+       2         TECLAS DE PLATOS:                                                                                  (atrás).
+                       Selecciona el plato activo de 1 a 4 para la sección Performance.               9
+                                                                                     CODIFICADOR LOOP:
+       3         TECLA CENSOR:                                                                       Al girar el codificador se selecciona el tamaño del loop.
+                     Activa el modo Censor (marcha atrás).
+                                                                                                           Al pulsar el codificador se activa un loop.
+                  SHIFT+TECLA CENSOR:
+                       Shift + pulsar activa el modo Relative DVS.                                                   Shift + girar el codificador desplaza el loop fijado (Loop Shift).
+
+       4         TECLA SLIP:                                                                              Shift+pulsar el codificador Loop activa la función Loop Roll.
+                     Activa el modo Slip.
+
+                  SHIFT+TECLA SLIP:                                                                                   1                       Shift + pulsar activa el modo Internal DVS.
+                                                                               1                                                              9
+       5         TECLA SYNC:
+                     Activa Deck Sync.                                         8
+                  SHIFT+TECLA SYNC:
+                   Sync + pulsar desactiva Deck Sync.
+                                                                                                                                                3
+       6         TECLA SHIFT:                                            2                     Al pulsar y mantener pulsada la tecla Shift se activan las
+                     funciones secundarias (indicadas con marco gris).
+                                                                                                                                                4
+       7       DRUM PADS:
+                 8 drum pads RGB de colores y sensibles al tacto para cada                                                  7                modo Performance activo.
+                                                                                                                                                5
+
+
+                                                                                                                                                6
+
+
+
+
+
+   16                  ESPANOL                          VERSION 2.0

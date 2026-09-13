@@ -1,0 +1,2500 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Korg",
+  "model": "nanoKONTROL2",
+  "status": "partial-extraction",
+  "coverage_state": "partial",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "id": "midi-implementation",
+      "local_file": "performance/korg-nanokontrol2/midi-implementation.txt",
+      "url": "https://cdn.korg.com/us/support/download/files/aeb2862daf0cb7db826d8c62f51ec28d.txt?response-content-disposition=attachment%3Bfilename%2A%3DUTF-8%27%27nanoKONTROL2_MIDIimp.txt&response-content-type=application%2Foctet-stream%3B",
+      "sha256": "87d1d5cbd25bdfce29b77a4b7ce1ebb1e53683a5cd22ab41913df8fb1a54d250"
+    },
+    {
+      "id": "midi-chart",
+      "local_file": "performance/korg-nanokontrol2/midi-chart.pdf",
+      "url": "https://cdn.korg.com/us/support/download/files/902f10b95c3bac3b52113b0d8799a9e7.pdf?response-content-disposition=inline%3Bfilename%2A%3DUTF-8%27%27nanoKONTROL2_MIDI_Chart_E1.pdf&response-content-type=application%2Fpdf%3B",
+      "sha256": "a631f078eddcd89c362bf471c81d2bf726d659802a82af1b2e02d5c1003861d3"
+    },
+    {
+      "id": "owner-guide",
+      "local_file": "performance/korg-nanokontrol2/owner-guide.pdf",
+      "url": "https://cdn.korg.com/us/support/download/files/b61f4da2e9b32e7825edc729e7d71a0d.pdf?response-content-disposition=inline%3Bfilename%2A%3DUTF-8%27%27nanoKONTROL2_OM_EFGSCJ2.pdf&response-content-type=application%2Fpdf%3B",
+      "sha256": "f639b322d998de28f797ac943889188f71afecbc8a8189ccfa7205bb294cb09d"
+    },
+    {
+      "id": "parameter-guide",
+      "local_file": "performance/korg-nanokontrol2/parameter-guide.pdf",
+      "url": "https://cdn.korg.com/us/support/download/files/c8d0cd6808e12d3672845cadcdbbfe9b.pdf?response-content-disposition=inline%3Bfilename%2A%3DUTF-8%27%27nanoKONTROL2_PG_E1.pdf&response-content-type=application%2Fpdf%3B",
+      "sha256": "6d08b0475e7629170748ee13e5b1a54b456cc4c2044db9b03bd74b3bd87d289d"
+    }
+  ],
+  "scope": "Complete fixed Native KORG mode input and LED CC tables, plus documented identity/search/native/scene SysEx commands. Normal CC scenes and DAW factory addresses are not inferred from capabilities or parameter offsets.",
+  "bindings": [
+    {
+      "id": "b00001",
+      "control": "Cycle LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 46,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00002",
+      "control": "REW LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 43,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00003",
+      "control": "FF LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 44,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00004",
+      "control": "STOP LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 42,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00005",
+      "control": "PLAY LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 41,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00006",
+      "control": "REC LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 45,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00007",
+      "control": "Group 1 Solo LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 32,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00008",
+      "control": "Group 1 Mute LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 48,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00009",
+      "control": "Group 1 Rec LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 64,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00010",
+      "control": "Group 2 Solo LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 33,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00011",
+      "control": "Group 2 Mute LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 49,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00012",
+      "control": "Group 2 Rec LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 65,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00013",
+      "control": "Group 3 Solo LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 34,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00014",
+      "control": "Group 3 Mute LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 50,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00015",
+      "control": "Group 3 Rec LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 66,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00016",
+      "control": "Group 4 Solo LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 35,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00017",
+      "control": "Group 4 Mute LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 51,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00018",
+      "control": "Group 4 Rec LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 67,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00019",
+      "control": "Group 5 Solo LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 36,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00020",
+      "control": "Group 5 Mute LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 52,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00021",
+      "control": "Group 5 Rec LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 68,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00022",
+      "control": "Group 6 Solo LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 37,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00023",
+      "control": "Group 6 Mute LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 53,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00024",
+      "control": "Group 6 Rec LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 69,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00025",
+      "control": "Group 7 Solo LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 38,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00026",
+      "control": "Group 7 Mute LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 54,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00027",
+      "control": "Group 7 Rec LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 70,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00028",
+      "control": "Group 8 Solo LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 39,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00029",
+      "control": "Group 8 Mute LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 55,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00030",
+      "control": "Group 8 Rec LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 71,
+      "encoding": "7-bit control change",
+      "values": {
+        "off": [
+          0,
+          64
+        ],
+        "on": [
+          65,
+          127
+        ]
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(1) Native KORG mode Display LEDs"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00031",
+      "control": "Cycle",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 46,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00032",
+      "control": "REW",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 43,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00033",
+      "control": "FF",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 44,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00034",
+      "control": "STOP",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 42,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00035",
+      "control": "PLAY",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 41,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00036",
+      "control": "REC",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 45,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00037",
+      "control": "Group 1 Solo",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 32,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00038",
+      "control": "Group 1 Mute",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 48,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00039",
+      "control": "Group 1 Rec",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 64,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00040",
+      "control": "Group 2 Solo",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 33,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00041",
+      "control": "Group 2 Mute",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 49,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00042",
+      "control": "Group 2 Rec",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 65,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00043",
+      "control": "Group 3 Solo",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 34,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00044",
+      "control": "Group 3 Mute",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 50,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00045",
+      "control": "Group 3 Rec",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 66,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00046",
+      "control": "Group 4 Solo",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 35,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00047",
+      "control": "Group 4 Mute",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 51,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00048",
+      "control": "Group 4 Rec",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 67,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00049",
+      "control": "Group 5 Solo",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 36,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00050",
+      "control": "Group 5 Mute",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 52,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00051",
+      "control": "Group 5 Rec",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 68,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00052",
+      "control": "Group 6 Solo",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 37,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00053",
+      "control": "Group 6 Mute",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 53,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00054",
+      "control": "Group 6 Rec",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 69,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00055",
+      "control": "Group 7 Solo",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 38,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00056",
+      "control": "Group 7 Mute",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 54,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00057",
+      "control": "Group 7 Rec",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 70,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00058",
+      "control": "Group 8 Solo",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 39,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00059",
+      "control": "Group 8 Mute",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 55,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00060",
+      "control": "Group 8 Rec",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 71,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00061",
+      "control": "Previous Track",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 58,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00062",
+      "control": "Next Track",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 59,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00063",
+      "control": "Marker Set",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 60,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00064",
+      "control": "Previous Marker",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 61,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00065",
+      "control": "Next Marker",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 62,
+      "encoding": "7-bit control change",
+      "values": {
+        "on": 127,
+        "off": 0
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(2) Native KORG Mode Button Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00066",
+      "control": "Group 1 Knob",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 16,
+      "encoding": "7-bit control change",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(3) Native KORG Mode Knob/Slider Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00067",
+      "control": "Group 1 Slider",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 0,
+      "encoding": "7-bit control change",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(3) Native KORG Mode Knob/Slider Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00068",
+      "control": "Group 2 Knob",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 17,
+      "encoding": "7-bit control change",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(3) Native KORG Mode Knob/Slider Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00069",
+      "control": "Group 2 Slider",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 1,
+      "encoding": "7-bit control change",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(3) Native KORG Mode Knob/Slider Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00070",
+      "control": "Group 3 Knob",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 18,
+      "encoding": "7-bit control change",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(3) Native KORG Mode Knob/Slider Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00071",
+      "control": "Group 3 Slider",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 2,
+      "encoding": "7-bit control change",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(3) Native KORG Mode Knob/Slider Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00072",
+      "control": "Group 4 Knob",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 19,
+      "encoding": "7-bit control change",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(3) Native KORG Mode Knob/Slider Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00073",
+      "control": "Group 4 Slider",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 3,
+      "encoding": "7-bit control change",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(3) Native KORG Mode Knob/Slider Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00074",
+      "control": "Group 5 Knob",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 20,
+      "encoding": "7-bit control change",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(3) Native KORG Mode Knob/Slider Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00075",
+      "control": "Group 5 Slider",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 4,
+      "encoding": "7-bit control change",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(3) Native KORG Mode Knob/Slider Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00076",
+      "control": "Group 6 Knob",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 21,
+      "encoding": "7-bit control change",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(3) Native KORG Mode Knob/Slider Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00077",
+      "control": "Group 6 Slider",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 5,
+      "encoding": "7-bit control change",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(3) Native KORG Mode Knob/Slider Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00078",
+      "control": "Group 7 Knob",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 22,
+      "encoding": "7-bit control change",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(3) Native KORG Mode Knob/Slider Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00079",
+      "control": "Group 7 Slider",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 6,
+      "encoding": "7-bit control change",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(3) Native KORG Mode Knob/Slider Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00080",
+      "control": "Group 8 Knob",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 23,
+      "encoding": "7-bit control change",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(3) Native KORG Mode Knob/Slider Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00081",
+      "control": "Group 8 Slider",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 7,
+      "encoding": "7-bit control change",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "Native KORG mode",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 4(3) Native KORG Mode Knob/Slider Output"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00082",
+      "control": "Current Scene Data Dump Request",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 42 4g 00 01 13 00 1F 10 00 F7",
+        "g": "global channel nibble 0–15"
+      },
+      "mode": "Device configuration/Native mode control",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "3-1(1)"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel-voice channel; global channel parameter g is configurable. Scene dump 339 bytes packed to 388 bytes per NOTE 1/2 and TABLE 1."
+      ]
+    },
+    {
+      "id": "b00083",
+      "control": "Scene Write Request",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 42 4g 00 01 13 00 1F 11 00 F7",
+        "g": "global channel nibble 0–15"
+      },
+      "mode": "Device configuration/Native mode control",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "3-1(2)"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel-voice channel; global channel parameter g is configurable. Scene dump 339 bytes packed to 388 bytes per NOTE 1/2 and TABLE 1."
+      ]
+    },
+    {
+      "id": "b00084",
+      "control": "Native mode In/Out Request",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 42 4g 00 01 13 00 00 00 qq F7",
+        "g": "global channel nibble 0–15",
+        "qq": {
+          "0": "Out request",
+          "1": "In request"
+        },
+        "rr": {
+          "2": "Out",
+          "3": "In"
+        },
+        "mm": {
+          "0": "Normal",
+          "1": "Native"
+        }
+      },
+      "mode": "Device configuration/Native mode control",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "3-1(3)"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel-voice channel; global channel parameter g is configurable. Scene dump 339 bytes packed to 388 bytes per NOTE 1/2 and TABLE 1."
+      ]
+    },
+    {
+      "id": "b00085",
+      "control": "Mode Request",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 42 4g 00 01 13 00 1F 12 00 F7",
+        "g": "global channel nibble 0–15",
+        "qq": {
+          "0": "Out request",
+          "1": "In request"
+        },
+        "rr": {
+          "2": "Out",
+          "3": "In"
+        },
+        "mm": {
+          "0": "Normal",
+          "1": "Native"
+        }
+      },
+      "mode": "Device configuration/Native mode control",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "3-1(4)"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel-voice channel; global channel parameter g is configurable. Scene dump 339 bytes packed to 388 bytes per NOTE 1/2 and TABLE 1."
+      ]
+    },
+    {
+      "id": "b00086",
+      "control": "Current Scene Data Dump",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 42 4g 00 01 13 00 7F 7F 02 03 05 40 [388 packed data bytes] F7",
+        "g": "global channel nibble 0–15"
+      },
+      "mode": "Device configuration/Native mode control",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "3-1(5)"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel-voice channel; global channel parameter g is configurable. Scene dump 339 bytes packed to 388 bytes per NOTE 1/2 and TABLE 1."
+      ]
+    },
+    {
+      "id": "b00087",
+      "control": "Current Scene Data Dump",
+      "direction": "device-to-host",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 42 4g 00 01 13 00 7F 7F 02 03 05 40 [388 packed data bytes] F7",
+        "g": "global channel nibble 0–15"
+      },
+      "mode": "Device configuration/Native mode control",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "3-1(5)"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel-voice channel; global channel parameter g is configurable. Scene dump 339 bytes packed to 388 bytes per NOTE 1/2 and TABLE 1."
+      ]
+    },
+    {
+      "id": "b00088",
+      "control": "Data Load Completed",
+      "direction": "device-to-host",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 42 4g 00 01 13 00 5F 23 00 F7",
+        "g": "global channel nibble 0–15"
+      },
+      "mode": "Device configuration/Native mode control",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "3-1(6)"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel-voice channel; global channel parameter g is configurable. Scene dump 339 bytes packed to 388 bytes per NOTE 1/2 and TABLE 1."
+      ]
+    },
+    {
+      "id": "b00089",
+      "control": "Data Load Error",
+      "direction": "device-to-host",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 42 4g 00 01 13 00 5F 24 00 F7",
+        "g": "global channel nibble 0–15"
+      },
+      "mode": "Device configuration/Native mode control",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "3-1(7)"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel-voice channel; global channel parameter g is configurable. Scene dump 339 bytes packed to 388 bytes per NOTE 1/2 and TABLE 1."
+      ]
+    },
+    {
+      "id": "b00090",
+      "control": "Write Completed",
+      "direction": "device-to-host",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 42 4g 00 01 13 00 5F 21 00 F7",
+        "g": "global channel nibble 0–15"
+      },
+      "mode": "Device configuration/Native mode control",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "3-1(8)"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel-voice channel; global channel parameter g is configurable. Scene dump 339 bytes packed to 388 bytes per NOTE 1/2 and TABLE 1."
+      ]
+    },
+    {
+      "id": "b00091",
+      "control": "Write Error",
+      "direction": "device-to-host",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 42 4g 00 01 13 00 5F 22 00 F7",
+        "g": "global channel nibble 0–15"
+      },
+      "mode": "Device configuration/Native mode control",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "3-1(9)"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel-voice channel; global channel parameter g is configurable. Scene dump 339 bytes packed to 388 bytes per NOTE 1/2 and TABLE 1."
+      ]
+    },
+    {
+      "id": "b00092",
+      "control": "Native mode In/Out",
+      "direction": "device-to-host",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 42 4g 00 01 13 00 40 00 rr F7",
+        "g": "global channel nibble 0–15",
+        "qq": {
+          "0": "Out request",
+          "1": "In request"
+        },
+        "rr": {
+          "2": "Out",
+          "3": "In"
+        },
+        "mm": {
+          "0": "Normal",
+          "1": "Native"
+        }
+      },
+      "mode": "Device configuration/Native mode control",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "3-1(10)"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel-voice channel; global channel parameter g is configurable. Scene dump 339 bytes packed to 388 bytes per NOTE 1/2 and TABLE 1."
+      ]
+    },
+    {
+      "id": "b00093",
+      "control": "Mode Data",
+      "direction": "device-to-host",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 42 4g 00 01 13 00 5F 42 mm F7",
+        "g": "global channel nibble 0–15",
+        "qq": {
+          "0": "Out request",
+          "1": "In request"
+        },
+        "rr": {
+          "2": "Out",
+          "3": "In"
+        },
+        "mm": {
+          "0": "Normal",
+          "1": "Native"
+        }
+      },
+      "mode": "Device configuration/Native mode control",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "3-1(11)"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "No channel-voice channel; global channel parameter g is configurable. Scene dump 339 bytes packed to 388 bytes per NOTE 1/2 and TABLE 1."
+      ]
+    },
+    {
+      "id": "b00094",
+      "control": "Identity request",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 7E gg 06 01 F7",
+        "gg": "00–0F global device channel or 7F any channel",
+        "g": "global channel 0–15",
+        "dd": "echo-back ID",
+        "xx": "firmware version bytes"
+      },
+      "mode": "Device discovery",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "2-1"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Global device ID is configurable; SysEx has no channel-voice channel."
+      ]
+    },
+    {
+      "id": "b00095",
+      "control": "Identity reply",
+      "direction": "device-to-host",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 7E 0g 06 02 42 13 01 00 00 xx xx xx xx F7",
+        "gg": "00–0F global device channel or 7F any channel",
+        "g": "global channel 0–15",
+        "dd": "echo-back ID",
+        "xx": "firmware version bytes"
+      },
+      "mode": "Device discovery",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "1-2"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Global device ID is configurable; SysEx has no channel-voice channel."
+      ]
+    },
+    {
+      "id": "b00096",
+      "control": "Search device request",
+      "direction": "host-to-device",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 42 50 00 dd F7",
+        "gg": "00–0F global device channel or 7F any channel",
+        "g": "global channel 0–15",
+        "dd": "echo-back ID",
+        "xx": "firmware version bytes"
+      },
+      "mode": "Device discovery",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "2-3"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Global device ID is configurable; SysEx has no channel-voice channel."
+      ]
+    },
+    {
+      "id": "b00097",
+      "control": "Search device reply",
+      "direction": "device-to-host",
+      "message_type": "sysex",
+      "channel": null,
+      "number": null,
+      "encoding": "manufacturer SysEx bytes",
+      "values": {
+        "hex_template": "F0 42 50 01 0g dd 13 01 00 00 xx xx xx xx F7",
+        "gg": "00–0F global device channel or 7F any channel",
+        "g": "global channel 0–15",
+        "dd": "echo-back ID",
+        "xx": "firmware version bytes"
+      },
+      "mode": "Device discovery",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "1-4"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": [
+        "Global device ID is configurable; SysEx has no channel-voice channel."
+      ]
+    }
+  ],
+  "issues": [
+    {
+      "id": "i001",
+      "severity": "scope",
+      "description": "Native entry and scene read guidance derive from the manufacturer SysEx protocol.",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Sections 3-1(1),(3),(5),(10); 4"
+        }
+      ],
+      "excluded_bindings": []
+    },
+    {
+      "id": "i002",
+      "severity": "scope",
+      "description": "Scene parameter numbers in TABLE 1 are byte offsets, not factory CC numbers; no normal-mode defaults are extracted. DAW mode pitch-bend capability does not establish per-slider addresses.",
+      "evidence": [
+        {
+          "source_id": "midi-implementation",
+          "locator": "Section 1-1; TABLE 1 Scene Parameter"
+        }
+      ],
+      "excluded_bindings": [
+        "Normal-mode factory map; DAW-mode map"
+      ]
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "midi-implementation",
+      "file": "performance/raw/korg-nanokontrol2-midi-implementation.txt",
+      "extraction_method": "Complete original manufacturer text; unpaginated sections preserved"
+    },
+    {
+      "source_id": "midi-chart",
+      "file": "performance/raw/korg-nanokontrol2-midi-chart.txt",
+      "extraction_method": "Complete archived page-marked PDF text; original PDF authoritative"
+    },
+    {
+      "source_id": "owner-guide",
+      "file": "performance/raw/korg-nanokontrol2-owner-guide.txt",
+      "extraction_method": "Complete archived page-marked PDF text; original PDF authoritative"
+    },
+    {
+      "source_id": "parameter-guide",
+      "file": "performance/raw/korg-nanokontrol2-parameter-guide.txt",
+      "extraction_method": "Complete archived page-marked PDF text; original PDF authoritative"
+    }
+  ],
+  "setup_notes": [
+    "The fixed controls here require Native KORG mode, entered with the documented Native mode In request. Normal CC-mode assignments come from the current scene; read that scene before creating an application mapping."
+  ],
+  "missing_information": [
+    "Protocol is detailed but full default control-number map still requires editor scene export or hardware capture. DAW modes can output pitchbend and use different protocols; do not treat capability chart as complete map.",
+    "Native map is documented but untested; normal-mode scene defaults and DAW mode-specific bindings remain unavailable. Packed scene bytes preserved as raw evidence rather than full parameter codec."
+  ]
+}

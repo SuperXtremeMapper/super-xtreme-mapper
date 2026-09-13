@@ -1,0 +1,1286 @@
+===== PDF PAGE 1 =====
+DJM-A9
+MIDI Message List
+L2
+L1
+L11
+C10
+C1
+C2
+C3
+C5
+C6
+C7
+C8
+C9
+L4
+L3
+L12
+L6
+L19
+L5
+L18
+L20
+L16
+L9
+L22
+L8
+L21
+L7
+R17
+R18
+R20
+R3
+R2
+R4
+R5
+R6
+R7
+R8
+R9
+R10
+R11
+R16
+R19
+R27
+R28
+R29
+CH1
+CH2
+CH3
+CH4
+L10
+R14
+R1
+C4
+L13
+L14
+L15
+L17
+R15
+R21
+R22
+R23
+R25
+C7
+R12
+R13
+R26
+R24
+1
+
+
+===== PDF PAGE 2 =====
+User Interface
+Details(Data2)
+MIDI Type
+L1
+EQ HI
+rotate
+Bn
+1E
+00(Min) - 7F(Max)
+-
+L2
+EQ LOW
+rotate
+Bn
+1F
+00(Min) - 7F(Max)
+-
+L3
+TALK OVER
+press
+9n
+61
+00:OFF
+7F:ON
+Trigger/Toggle
+L4
+MIC FX ECHO
+press
+Bn
+61
+00:OFF
+7F:ON
+Trigger/Toggle
+L5
+MIC FX PITCH
+press
+Bn
+62
+00:OFF
+7F:ON
+Trigger/Toggle
+L6
+MIC FX MEGAPHONE
+press
+Bn
+63
+00:OFF
+7F:ON
+Trigger/Toggle
+L7
+MIC FX PARAMETER
+rotate
+Bn
+64
+00(Min) - 7F(Max)
+-
+L8
+MIC REVERB
+press
+9n
+60
+00:OFF
+7F:ON
+Trigger/Toggle
+L9
+MIC REVERB PARAMETER
+rotate
+Bn
+65
+00(Min) - 7F(Max)
+-
+L10
+MIC ON
+press
+9n
+62
+00:OFF
+7F:ON
+Trigger/Toggle
+BLUETOOTH
+L11
+BLUETOOTH
+press
+9n
+70
+00:OFF
+7F:ON
+Trigger/Toggle
+L12
+press
+SPACE
+9n
+55
+00:OFF
+7F:ON
+Trigger/Toggle
+L13
+press
+DUB ECHO
+9n
+69
+00:OFF
+7F:ON
+Trigger/Toggle
+L14
+press
+CRUSH
+9n
+6A
+00:OFF
+7F:ON
+Trigger/Toggle
+L15
+press
+SWEEP
+9n
+6B
+00:OFF
+7F:ON
+Trigger/Toggle
+L16
+press
+NOISE
+9n
+56
+00:OFF
+7F:ON
+Trigger/Toggle
+L17
+press
+FILTER
+9n
+57
+00:OFF
+7F:ON
+Trigger/Toggle
+L18
+PARAMETER
+rotate
+Bn
+6C
+00(Min) - 7F(Max)
+-
+L19
+LINK CUE A
+press
+9n
+0F
+00:OFF
+7F:ON
+Trigger/Toggle
+L20
+MONO/SPLIT
+press
+9n
+21
+00:OFF
+7F:ON
+Trigger/Toggle
+L21
+MIXING
+rotate
+Bn
+1B
+00(Min) - 7F(Max)
+-
+L22
+LEVEL
+rotate
+Bn
+1A
+00(Min) - 7F(Max)
+-
+CH1
+BLUETOOTH
+51
+00:OFF
+7F:ON
+-
+A
+35
+00:OFF
+7F:ON
+-
+B
+42
+00:OFF
+7F:ON
+-
+DIGITAL
+32
+00:OFF
+7F:ON
+-
+LINE
+33
+00:OFF
+7F:ON
+-
+PHONO
+34
+00:OFF
+7F:ON
+-
+RETURN
+43
+00:OFF
+7F:ON
+-
+USB
+4A
+00:OFF
+7F:ON
+-
+C2
+TRIM
+rotate
+Bn
+01
+00(Min) - 7F(Max)
+-
+C3
+HI
+rotate
+Bn
+02
+00(Min) - 7F(Max)
+-
+C4
+MID
+rotate
+Bn
+03
+00(Min) - 7F(Max)
+-
+C5
+LOW
+rotate
+Bn
+04
+00(Min) - 7F(Max)
+-
+C6
+COLOR
+rotate
+Bn
+05
+00(Min) - 7F(Max)
+-
+CUE A
+9n
+0A
+00:OFF
+7F:ON
+Trigger/Toggle
+CUE B
+9n
+10
+00:OFF
+7F:ON
+Trigger/Toggle
+C8
+CH FADER
+slide
+Bn
+11
+00(Min) - 7F(Max)
+-
+A
+0
+-
+THRU
+40
+-
+B
+7F
+-
+C1
+INPUT SELECTOR *2
+rotate
+9n
+Group
+Part
+No.
+MIDI-IN (to computer)
+UI name
+Trigger
+Condition
+(mode)
+Status *1
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+MIC
+SOUND COLOR FX
+EFFECT
+HEADPHONES A
+C7
+press
+C9
+CROSSFADER ASSIGN
+slide
+41
+Bn
+2
+
+
+===== PDF PAGE 3 =====
+User Interface
+Details(Data2)
+MIDI Type
+Group
+Part
+No.
+MIDI-IN (to computer)
+UI name
+Trigger
+Condition
+(mode)
+Status *1
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+CH2
+BLUETOOTH
+52
+00:OFF
+7F:ON
+-
+A
+39
+00:OFF
+7F:ON
+-
+B
+44
+00:OFF
+7F:ON
+-
+DIGITAL
+36
+00:OFF
+7F:ON
+-
+LINE
+37
+00:OFF
+7F:ON
+-
+PHONO
+38
+00:OFF
+7F:ON
+-
+RETURN
+45
+00:OFF
+7F:ON
+-
+USB
+4B
+00:OFF
+7F:ON
+-
+C2
+TRIM
+rotate
+Bn
+06
+00(Min) - 7F(Max)
+-
+C3
+HI
+rotate
+Bn
+07
+00(Min) - 7F(Max)
+-
+C4
+MID
+rotate
+Bn
+08
+00(Min) - 7F(Max)
+-
+C5
+LOW
+rotate
+Bn
+09
+00(Min) - 7F(Max)
+-
+C6
+COLOR
+rotate
+Bn
+0A
+00(Min) - 7F(Max)
+-
+CUE A
+9n
+0B
+00:OFF
+7F:ON
+Trigger/Toggle
+CUE B
+Bn
+11
+00:OFF
+7F:ON
+Trigger/Toggle
+C8
+CH FADER
+slide
+9n
+12
+00:OFF
+7F:ON
+Trigger/Toggle
+A
+0
+-
+THRU
+40
+-
+B
+7F
+-
+CH3
+BLUETOOTH
+53
+00:OFF
+7F:ON
+-
+A
+3D
+00:OFF
+7F:ON
+-
+B
+46
+00:OFF
+7F:ON
+-
+DIGITAL
+3A
+00:OFF
+7F:ON
+-
+LINE
+3B
+00:OFF
+7F:ON
+-
+PHONO
+3C
+00:OFF
+7F:ON
+-
+RETURN
+47
+00:OFF
+7F:ON
+-
+USB
+4C
+00:OFF
+7F:ON
+-
+C2
+TRIM
+rotate
+Bn
+0C
+00(Min) - 7F(Max)
+-
+C3
+HI
+rotate
+Bn
+0E
+00(Min) - 7F(Max)
+-
+C4
+MID
+rotate
+Bn
+0F
+00(Min) - 7F(Max)
+-
+C5
+LOW
+rotate
+Bn
+15
+00(Min) - 7F(Max)
+-
+C6
+COLOR
+rotate
+Bn
+16
+00(Min) - 7F(Max)
+-
+CUE A
+9n
+0C
+00:OFF
+7F:ON
+Trigger/Toggle
+CUE B
+9n
+12
+00:OFF
+7F:ON
+Trigger/Toggle
+C8
+CH FADER
+slide
+Bn
+13
+00(Min) - 7F(Max)
+-
+A
+0
+-
+THRU
+40
+-
+B
+7F
+-
+C1
+INPUT SELECTOR *2
+rotate
+9n
+C1
+INPUT SELECTOR *2
+rotate
+9n
+C7
+press
+C9
+CROSSFADER ASSIGN
+slide
+Bn
+42
+C7
+press
+C9
+CROSSFADER ASSIGN
+slide
+43
+Bn
+3
+
+
+===== PDF PAGE 4 =====
+User Interface
+Details(Data2)
+MIDI Type
+Group
+Part
+No.
+MIDI-IN (to computer)
+UI name
+Trigger
+Condition
+(mode)
+Status *1
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+CH4
+BLUETOOTH
+54
+00:OFF
+7F:ON
+-
+A
+41
+00:OFF
+7F:ON
+-
+B
+48
+00:OFF
+7F:ON
+-
+DIGITAL
+3E
+00:OFF
+7F:ON
+-
+LINE
+3F
+00:OFF
+7F:ON
+-
+PHONO
+40
+00:OFF
+7F:ON
+-
+RETURN
+49
+00:OFF
+7F:ON
+-
+USB
+4D
+00:OFF
+7F:ON
+-
+C2
+TRIM
+rotate
+Bn
+50
+00(Min) - 7F(Max)
+-
+C3
+HI
+rotate
+Bn
+51
+00(Min) - 7F(Max)
+-
+C4
+MID
+rotate
+Bn
+5C
+00(Min) - 7F(Max)
+-
+C5
+LOW
+rotate
+Bn
+52
+00(Min) - 7F(Max)
+-
+C6
+COLOR
+rotate
+Bn
+53
+00(Min) - 7F(Max)
+-
+CUE A
+9n
+0D
+00:OFF
+7F:ON
+Trigger/Toggle
+CUE B
+9n
+13
+00:OFF
+7F:ON
+Trigger/Toggle
+C8
+CH FADER
+slide
+Bn
+14
+00(Min) - 7F(Max)
+-
+A
+0
+-
+THRU
+40
+-
+B
+7F
+-
+CROSSFADER
+C10
+CROSSFADER
+slide
+Bn
+0B
+00(Min) - 7F(Max)
+-
+MASTER
+R1
+MASTER LEVEL
+rotate
+Bn
+18
+00(Min) - 7F(Max)
+-
+R2
+EQ HI
+rotate
+Bn
+6D
+00(Min) - 7F(Max)
+-
+R3
+EQ LOW
+rotate
+Bn
+6E
+00(Min) - 7F(Max)
+-
+R4
+BOOTH LEVEL
+rotate
+Bn
+19
+00(Min) - 7F(Max)
+-
+R5
+CUE A
+press
+9n
+0E
+00:OFF
+7F:ON
+Trigger/Toggle
+R6
+CUE B
+press
+9n
+14
+00:OFF
+7F:ON
+Trigger/Toggle
+R7
+LINK CUE
+press
+9n
+15
+00:OFF
+7F:ON
+Trigger/Toggle
+R8
+MONO/SPLIT
+press
+Bn
+22
+00:OFF
+7F:ON
+Trigger/Toggle
+R9
+MIXING
+rotate
+Bn
+55
+00(Min) - 7F(Max)
+-
+R10
+LEVEL
+rotate
+Bn
+56
+00(Min) - 7F(Max)
+-
+ISOLATOR
+Bn
+0
+EQ
+Bn
+7F
+-
+LEFT   
+Bn
+0
+-
+CENTER   
+Bn
+40
+-
+RIGHT   
+Bn
+7F
+-
+CROSSFADER
+LEFT   
+Bn
+0
+-
+CENTER   
+Bn
+40
+-
+RIGHT   
+Bn
+7F
+-
+BOOTH MONITOR
+C1
+INPUT SELECTOR *2
+rotate
+9n
+C7
+press
+C9
+CROSSFADER ASSIGN
+slide
+Bn
+44
+MASTER CUE
+HEADPHONES B
+EQ CURVE
+R11
+EQ CURVE
+21
+CH FADER
+R12
+CH FADER CURVE
+slide
+5E
+slide
+R13
+CROSSFADER CURVE
+slide
+5F
+4
+
+
+===== PDF PAGE 5 =====
+User Interface
+Details(Data2)
+MIDI Type
+Group
+Part
+No.
+MIDI-IN (to computer)
+UI name
+Trigger
+Condition
+(mode)
+Status *1
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+MULTI I/O
+CH1
+9n
+22
+00:OFF
+7F:ON
+-
+CH2
+9n
+23
+00:OFF
+7F:ON
+-
+CH3
+9n
+24
+00:OFF
+7F:ON
+-
+CH4
+9n
+25
+00:OFF
+7F:ON
+-
+MIC
+9n
+26
+00:OFF
+7F:ON
+-
+CF.A
+9n
+27
+00:OFF
+7F:ON
+-
+CF.B
+9n
+28
+00:OFF
+7F:ON
+-
+MASTER
+9n
+29
+00:OFF
+7F:ON
+-
+RETURN
+9n
+0
+-
+USB
+9n
+7F
+-
+R16
+SEND LEVEL
+rotate
+Bn
+71
+00(Min) - 7F(Max)
+-
+R17
+INSERT
+press
+Bn
+40
+00:OFF
+7F:ON
+Toggle
+slide
+Bn
+74
+00(Min) - 7F(Max)
+-
+touch
+Bn
+72
+00:OFF
+7F:ON
+-
+R19
+BEAT (LEFT)
+press
+Bn
+4C
+00:OFF
+7F:ON
+Trigger/Toggle
+R20
+BEAT (RIGHT)
+press
+Bn
+4D
+00:OFF
+7F:ON
+Trigger/Toggle
+R21
+AUTO/TAP
+press
+Bn
+45
+00:OFF
+7F:ON
+Trigger/Toggle
+R22
+TAP
+press
+Bn
+4E
+00:OFF
+7F:ON
+Trigger
+R23
+QUANTIZE
+press
+9n
+76
+00:OFF
+7F:ON
+Trigger/Toggle
+LOW
+Bn
+68
+00:OFF
+7F:ON
+Trigger/Toggle
+MID
+Bn
+67
+00:OFF
+7F:ON
+Trigger/Toggle
+HI
+Bn
+66
+00:OFF
+7F:ON
+Trigger/Toggle
+DELAY
+Bn
+2A
+00:OFF
+7F:ON
+-
+ECHO
+Bn
+37
+00:OFF
+7F:ON
+-
+PING PONG
+Bn
+33
+00:OFF
+7F:ON
+-
+SPIRAL
+Bn
+2B
+00:OFF
+7F:ON
+-
+HELIX
+Bn
+3E
+00:OFF
+7F:ON
+-
+REVERB
+Bn
+36
+00:OFF
+7F:ON
+-
+FLANGER
+Bn
+32
+00:OFF
+7F:ON
+-
+PHASER
+Bn
+39
+00:OFF
+7F:ON
+-
+FILTER
+Bn
+3B
+00:OFF
+7F:ON
+-
+TRIPLET FILTER
+Bn
+3A
+00:OFF
+7F:ON
+-
+TRANS
+Bn
+35
+00:OFF
+7F:ON
+-
+ROLL
+Bn
+2E
+00:OFF
+7F:ON
+-
+TRIPLET ROLL
+Bn
+2F
+00:OFF
+7F:ON
+-
+MOBIUS
+Bn
+3D
+00:OFF
+7F:ON
+-
+1
+9n
+01
+00:OFF
+7F:ON
+-
+2
+9n
+02
+00:OFF
+7F:ON
+-
+3
+9n
+03
+00:OFF
+7F:ON
+-
+4
+9n
+04
+00:OFF
+7F:ON
+-
+MIC
+9n
+05
+00:OFF
+7F:ON
+-
+CF.A
+9n
+06
+00:OFF
+7F:ON
+-
+CF.B
+9n
+07
+00:OFF
+7F:ON
+-
+MST
+9n
+08
+00:OFF
+7F:ON
+-
+R14
+SEND CH *2
+rotate
+R15
+INSERT SOURCE
+slide
+6F
+BEAT EFFECTS
+R18
+X-PAD
+R24
+EFFECT FREQUENCY
+press
+R25
+EFFECT SELECT *2
+rotate
+R26
+CH SELECT
+press
+5
+
+
+===== PDF PAGE 6 =====
+User Interface
+Details(Data2)
+MIDI Type
+Group
+Part
+No.
+MIDI-IN (to computer)
+UI name
+Trigger
+Condition
+(mode)
+Status *1
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+Bn
+0D
+MSB
+00(Min) - 7F(Max)
+-
+Bn
+2D
+LSB
+00(Min) - 7F(Max)
+-
+R28
+LEVEL/DEPTH
+rotate
+Bn
+5B
+00(Min) - 7F(Max)
+-
+R29
+ON/OFF
+press
+Bn
+72
+00:OFF
+7F:ON
+Toggle
+Timing Clock
+-
+-
+-
+F8
+-
+-
+-
+*1　n : value of channel No.
+　　 9n : Note
+　　 Bn : Control Change (CC)
+*2　For alternate selection of the user interface (UI) control, the MIDI message will be sent as follows.
+      Previously selected: OFF 
+      Newly selected: ON
+Note is a term used for MIDI to express that a key of a keyboard or a piano is pressed or your finger is released from it.
+CC is an abbreviation of "Control Change".
+Control Change is a kind of MIDI message used to communicate many kinds of control information such as sound quality and volume level.
+R27
+TIME
+rotate
+When FLANGER,
+PHASER or FILTER is
+selected, the value is
+halved. When a
+negative value is
+selected, it is set to a
+positive value.
+6

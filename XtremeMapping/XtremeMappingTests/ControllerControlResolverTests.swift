@@ -156,4 +156,109 @@ final class ControllerControlResolverTests: XCTestCase {
         XCTAssertEqual(resolver.matchingRows(bindings: [receive], device: device), [output.id,all.id])
         XCTAssertEqual(resolver.matchingRows(bindings: sends, device: Device()), [])
     }
+
+    // MARK: - Reverse physical-name mapping (index + remap)
+
+    /// send→input, receive→output, and all-direction rows each map to the control name.
+    func testPhysicalNamesMapEachDirectionToControlName() throws {
+        let resolver = try ControllerControlResolver(library: ControllerProfileLibrary())
+        let config = configuration() // K2, mode "off", channel 1; fader.1 = CC 16, "Fader 1".
+        let input = MappingEntry(ioType: .input, midiChannel: 1, midiCC: 16)
+        let all = MappingEntry(ioType: .all, midiChannel: 1, midiCC: 16)
+        // matrix.1.1 (name "A") has a documented receive (LED) binding at note 36 (base).
+        let output = MappingEntry(ioType: .output, midiChannel: 1, midiNote: 36)
+        let device = Device(mappings: [input, all, output])
+        let names = resolver.physicalNames(configuration: config, device: device)
+        XCTAssertEqual(names[input.id], "Fader 1")
+        XCTAssertEqual(names[all.id], "Fader 1")
+        XCTAssertEqual(names[output.id], "A")
+    }
+
+    /// The one-shot convenience composes reverseNameIndex + physicalNames(index:).
+    func testOneShotComposesTwoStepAPI() throws {
+        let resolver = try ControllerControlResolver(library: ControllerProfileLibrary())
+        let config = configuration()
+        let input = MappingEntry(ioType: .input, midiChannel: 1, midiCC: 16)
+        let device = Device(mappings: [input])
+        let index = resolver.reverseNameIndex(configuration: config)
+        XCTAssertEqual(resolver.physicalNames(index: index, device: device),
+                       resolver.physicalNames(configuration: config, device: device))
+    }
+
+    /// Opaque rows (raw control name / raw binding id) and unassigned MIDI are omitted.
+    func testOpaqueAndUnassignedRowsAreOmitted() throws {
+        let resolver = try ControllerControlResolver(library: ControllerProfileLibrary())
+        let config = configuration()
+        let rawName = MappingEntry(ioType: .input, midiChannel: 1, midiCC: 16, rawMidiControlName: "Native.Thing")
+        let rawBinding = MappingEntry(ioType: .input, midiChannel: 1, midiCC: 16, rawMidiBindingID: 42)
+        let unassigned = MappingEntry(ioType: .input, midiAssignment: try .unassigned(channel: 1))
+        let device = Device(mappings: [rawName, rawBinding, unassigned])
+        let names = resolver.physicalNames(configuration: config, device: device)
+        XCTAssertNil(names[rawName.id])
+        XCTAssertNil(names[rawBinding.id])
+        XCTAssertNil(names[unassigned.id])
+        XCTAssertTrue(names.isEmpty)
+    }
+
+    /// FIX 1: an address shared by two differently named controls resolves to NO name.
+    /// Faderfox UC4: CC ch1 #32 (send) is claimed by both an Encoder and a Fader; the
+    /// unshared CC ch1 #8 belongs only to "Encoder 1".
+    func testAmbiguousSharedAddressYieldsNoName() throws {
+        let resolver = try ControllerControlResolver(library: ControllerProfileLibrary())
+        let config = ControllerConfiguration(profileID: "faderfox.faderfox-uc4", version: "1.0.0",
+                                             globalChannel: 1, layerMode: "setup-1", unitMap: "factory")
+        let ambiguous = MappingEntry(ioType: .input, midiChannel: 1, midiCC: 32)
+        let unambiguous = MappingEntry(ioType: .input, midiChannel: 1, midiCC: 8)
+        let device = Device(mappings: [ambiguous, unambiguous])
+        let names = resolver.physicalNames(configuration: config, device: device)
+        XCTAssertNil(names[ambiguous.id], "Ambiguous shared address must produce a blank name.")
+        XCTAssertEqual(names[unambiguous.id], "Encoder 1 — Factory setup 1, group 1 — Channel 1 — Input")
+    }
+
+    /// FIX 2: a fully port-scoped profile resolves names once a port is defaulted, and
+    /// resolves NOTHING when portID is nil.
+    func testPortScopedProfileResolvesOnlyWithDefaultedPort() throws {
+        let resolver = try ControllerControlResolver(library: ControllerProfileLibrary())
+        // APC mini mk2: every binding is port-scoped. Track Button 1 (port-0) = note 100.
+        let row = MappingEntry(ioType: .input, midiChannel: 1, midiNote: 100)
+        let device = Device(mappings: [row])
+
+        var noPort = ControllerConfiguration(profileID: "akai-professional.akai-apc-mini-mk2", version: "1.0.0",
+                                             globalChannel: 1, layerMode: "documented", unitMap: "factory")
+        XCTAssertTrue(resolver.physicalNames(configuration: noPort, device: device).isEmpty,
+                      "Port-scoped bindings must not resolve when portID is nil.")
+
+        noPort.portID = "port-0" // mirrors chooseProfile defaulting to the first port.
+        XCTAssertEqual(resolver.physicalNames(configuration: noPort, device: device)[row.id],
+                       "Track Button 1 — Port 0 — Channel 1 — Input")
+    }
+
+    /// Rows from multiple devices combine into one name map.
+    func testMultipleDevicesCombine() throws {
+        let resolver = try ControllerControlResolver(library: ControllerProfileLibrary())
+        let config = configuration()
+        let index = resolver.reverseNameIndex(configuration: config)
+        let rowA = MappingEntry(ioType: .input, midiChannel: 1, midiCC: 16)
+        let rowB = MappingEntry(ioType: .input, midiChannel: 1, midiCC: 17) // fader.2 = CC 17.
+        var combined = resolver.physicalNames(index: index, device: Device(mappings: [rowA]))
+        for (id, name) in resolver.physicalNames(index: index, device: Device(mappings: [rowB])) {
+            combined[id] = name
+        }
+        XCTAssertEqual(combined[rowA.id], "Fader 1")
+        XCTAssertEqual(combined[rowB.id], "Fader 2")
+    }
+
+    /// An override address maps to its control's name.
+    func testOverrideAddressMapsToControlName() throws {
+        let resolver = try ControllerControlResolver(library: ControllerProfileLibrary())
+        var config = configuration()
+        let override = ControllerControlOverride(controlID: "fader.1", layerMode: "off", unitMap: "factory",
+                                                 layer: .base, direction: .send,
+                                                 midi: SXMJSONMIDI(try .controlChange(channel: 2, number: 99)),
+                                                 provenance: .userSupplied)
+        config.overrides = [override]
+        let row = MappingEntry(ioType: .input, midiChannel: 2, midiCC: 99)
+        let names = resolver.physicalNames(configuration: config, device: Device(mappings: [row]))
+        XCTAssertEqual(names[row.id], "Fader 1")
+    }
 }

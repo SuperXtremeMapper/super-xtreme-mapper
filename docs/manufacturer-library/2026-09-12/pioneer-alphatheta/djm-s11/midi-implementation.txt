@@ -1,0 +1,3190 @@
+===== PDF PAGE 1 =====
+DJM-S11
+List of MIDI message
+D1-1
+M1-1
+M3-2
+M2-1
+M4-1
+M3-1
+M6-1
+M5-1
+E4
+E5
+E6
+E1
+E2
+E3
+M4-2
+M1-2
+M2-2
+M5-2
+M6-2
+M7
+M8
+M9
+M10
+D1-2
+D1-3
+D1-4
+D1-5
+D1-6
+D2-1
+D2-2
+D2-3
+D2-4
+D2-5
+D2-6
+E10
+E11
+E12
+E7
+E8
+E9
+E13
+E14
+E15
+E17
+E16
+E18
+D1-7
+D1-8
+D2-7
+D2-8
+D1-9
+D1-10
+D1-11
+D1-
+D1-13
+D1-16
+D1-14
+D1-
+D2-9
+D2-10
+D2-11
+D2-12
+D2-
+D2-16
+D2-
+D2-15
+D3
+D5
+M11
+M12
+M13
+M14
+D1-17
+D1-18
+D1-19
+D1-
+D2-17
+D2-18
+D2-19
+D2-20
+M15
+M16
+M19
+M18
+M17
+M20
+M21
+M22
+M23
+M24
+M25
+M26
+M27
+M28
+E19
+
+
+===== PDF PAGE 2 =====
+【MIDI channel assignment】
+MIDI channel is defined as shown below.
+0x9* :Note
+* : value of channel No.(n/m/p)
+0xB* :Control Change（CC）
+Channel Category
+MIDI
+*(Hex)
+As a reference for MIDI assign, MIDI message sent from buttons and knobs of this controller are listed in decimal numbers and English scale.
+Channel
+Please utilize this reference depending on the notation of your MIDI compatible software
+DECK1
+1
+n=0
+DECK2
+2
+n=1
+NOTE is a term used for MIDI to express that a key of a keyboard or a piano is pressed or your finger is released from it.
+DECK3
+3
+n=2
+CC is an abbreviation of "Control Change". Control Change is a kind of MIDI message used to communicate many kinds
+DECK4
+4
+n=3
+of control information such as sound quality and volume level.
+FX DECK1/DECK3
+5
+m=4
+English scale uses alphabetical letters of C, D, E, F, G, A and B as well as # to indicate halftone
+FX DECK2/DECK4
+6
+m=5
+Browser,Global Section
+7
+m=6
+PERFORMANCE PAD (DECK1)
+8
+p=7
+PERFORMANCE PAD (DECK2)
+9
+p=8
+PERFORMANCE PAD (DECK3)
+10
+p=9
+PERFORMANCE PAD (DECK4)
+11
+p=A
+PAD mode change(DECK1)
+12
+m=B
+PAD mode change(DECK2)
+13
+m=C
+PAD mode change(DECK1)
+14
+m=D
+PAD mode change(DECK2)
+15
+m=E
+MIDI-OUT (from computer)
+(Dec)
+(English
+scale)
+MIXER
+M2-1
+M2-2
+TRIM
+rotate
+1/2
+CC
+4
+36
+-
+Bn
+04
+24
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+M3-1
+M3-2
+ISO HIGH
+rotate
+1/2
+CC
+7
+39
+-
+Bn
+07
+27
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+M4-1
+M4-2
+ISO MID
+rotate
+1/2
+CC
+11
+43
+-
+Bn
+0B
+2B
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+M5-1
+M5-2
+ISO LOW
+rotate
+1/2
+CC
+15
+47
+-
+Bn
+0F
+2F
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+M6-1
+M6-2
+FILTER
+rotate
+1/2
+CC
+1
+33
+-
+Bn
+01
+21
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+M7
+BOOTH LEVEL
+rotate
+7
+CC
+9
+41
+-
+B6
+09
+29
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+M8
+MASTER LEVEL
+rotate
+7
+CC
+8
+40
+-
+B6
+08
+28
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+D5
+SHIFT
+push
+7
+NOTE
+63
+D#4
+96
+3F
+hh
+CH FADER
+slide
+1/2
+CC
+19
+51
+-
+Bn
+13
+33
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+Min at bottom end, Max at top end
++SHIFT
+1/2/3/4
+NOTE
+102
+F#7
+9n
+66
+hh
+OFF = 0 (0x00), ON = 127 (0x7F)
+Start with Sync Setting
+1/2/3/4
+NOTE
+81
+A5
+9n
+51
+hh
+OFF = 0 (0x00), ON = 127 (0x7F)
+Start from Current Cue Point.
+1/2/3/4
+NOTE
+83
+B5
+9n
+53
+hh
+OFF = 0 (0x00), ON = 127 (0x7F)
+Start from HOT CUE1 Point.
+not Zero -> Zero
+1/2/3/4
+NOTE
+82
+A#5
+9n
+52
+hh
+OFF = 0 (0x00), ON = 127 (0x7F)
+CROSSFADER
+slide
+7
+CC
+31
+63
+-
+B6
+1F
+3F
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+CROSSFADER REVERSE OFF : Min at left side, Max at right side
+CROSSFADER REVERSE ON : Min at right side, Max at left side
++SHIFT
+2
+NOTE
+102
+F#7
+91
+66
+hh
+OFF = 0 (0x00), ON = 127 (0x7F)
+ Start with Sync Setting
+2
+NOTE
+81
+A5
+91
+51
+hh
+OFF = 0 (0x00), ON = 127 (0x7F)
+Start from Current Cue Point.
+2
+NOTE
+83
+B5
+91
+53
+hh
+OFF = 0 (0x00), ON = 127 (0x7F)
+Start from HOT CUE1 Point.
+not Min -> Min
+2
+NOTE
+82
+A#5
+91
+52
+hh
+OFF = 0 (0x00), ON = 127 (0x7F)
+1
+NOTE
+102
+F#7
+90
+66
+hh
+OFF = 0 (0x00), ON = 127 (0x7F)
+ Start with Sync Setting
+1
+NOTE
+81
+A5
+90
+51
+hh
+OFF = 0 (0x00), ON = 127 (0x7F)
+Start from Current Cue Point.
+1
+NOTE
+83
+B5
+91
+53
+hh
+OFF = 0 (0x00), ON = 127 (0x7F)
+Start from HOT CUE1 Point.
+not Max -> Max
+1
+NOTE
+82
+A#5
+90
+52
+hh
+OFF = 0 (0x00), ON = 127 (0x7F)
+M12
+HEADPHONE
+VOL
+rotate
+7
+CC
+13
+45
+-
+B6
+0D
+2D
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+M13
+HEADPHONE
+MIX
+rotate
+7
+CC
+12
+44
+-
+B6
+0C
+2C
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+M14
+HEADPHONE
+CUEFADER
+slide
+7
+CC
+14
+46
+-
+B6
+0E
+2E
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+M15
+MIC ON/ OFF
+slide
+7
+NOTE
+18
+F#0
+96
+12
+hh
+OFF=0x00, ON=0x7F
+M16
+MIC ECHO
+ON/ OFF
+slide
+7
+NOTE
+19
+G0
+96
+13
+hh
+OFF=0x00, ON=0x7F
+M17
+MIC LEVEL
+rotate
+Hardware Control
+M18
+MIC EQ HI
+rotate
+7
+CC
+4
+36
+-
+B6
+04
+24
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+Group
+Part
+No.
+User Interface
+MIDI assign reference
+MIDI-IN (to computer)
+Details(Data2)
+UI name
+Status
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+Status
+(Hex)
+Data 1
+(Hex)
+Data 2
+(Hex)
+Trigger
++SHIFT
+Condition
+(mode)
+MIDI
+Channel
+(Dec)
+NOTE
+/ CC
+MIDI Data (Data 1)
+Min -> not Min
+Max -> not Max
+Zero -> not Zero
+M9
+M10
+M11
+
+
+===== PDF PAGE 3 =====
+M19
+MIC EQ LOW
+rotate
+7
+CC
+5
+37
+-
+B6
+05
+25
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+M20
+MIC ECHO
+rotate
+7
+CC
+6
+38
+-
+B6
+06
+26
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+M21
+AUX LEVEL
+rotate
+7
+CC
+11
+43
+-
+B6
+0B
+2B
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+M22
+CROSSFADER
+FEELING ADJUST
+rotate
+Hardware Control
+M23
+CROSS FADER
+REVERSE
+slide
+7
+NOTE
+24
+C1
+96
+18
+hh
+OFF=0x00, ON=0x7F
+M24
+CROSS FADER
+CURVE
+rotate
+7
+CC
+1
+33
+-
+B6
+01
+21
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+M25
+CHANNEL 1
+FADER CURVE
+rotate
+7
+CC
+2
+34
+-
+B6
+02
+22
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+M26
+CHANNEL1 FADER
+REVERSE
+slide
+7
+NOTE
+25
+C#1
+96
+19
+hh
+OFF=0x00, ON=0x7F
+M27
+CHANNEL 2FADER
+REVERSE
+slide
+7
+NOTE
+32
+G#1
+96
+20
+hh
+OFF=0x00, ON=0x7F
+M28
+CHANNEL 2
+FADER CURVE
+rotate
+7
+CC
+7
+39
+-
+B6
+07
+27
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+EFFECT
+7
+NOTE
+0
+G-1
+96
+00
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+12
+C0
+96
+0C
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+7
+NOTE
+1
+C#-1
+96
+01
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+13
+C#0
+96
+0D
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+7
+NOTE
+2
+D-1
+96
+02
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+14
+D0
+96
+0E
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+7
+NOTE
+3
+D#-1
+96
+03
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+15
+D#0
+96
+0F
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+7
+NOTE
+4
+E-1
+96
+04
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+16
+E0
+96
+10
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+7
+NOTE
+5
+F-1
+96
+05
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+17
+F0
+96
+11
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+5
+NOTE
+112
+E8
+94
+70
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+5
+NOTE
+99
+D#7
+94
+63
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+5
+NOTE
+113
+F8
+94
+71
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+5
+NOTE
+100
+E7
+94
+64
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+5
+NOTE
+114
+F#8
+94
+72
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+5
+NOTE
+101
+F7
+94
+65
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+6
+NOTE
+112
+E8
+95
+70
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+6
+NOTE
+99
+D#7
+95
+63
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+6
+NOTE
+113
+F8
+95
+71
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+6
+NOTE
+100
+E7
+95
+64
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+6
+NOTE
+114
+F#8
+95
+72
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+6
+NOTE
+101
+F7
+95
+65
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+7
+NOTE
+6
+F#-1
+96
+06
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+21
+F#0
+96
+15
+hh
+OFF=0x00, ON=0x7F
+7
+NOTE
+7
+G-1
+96
+07
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+23
+G0
+96
+17
+hh
+OFF=0x00, ON=0x7F
+7
+NOTE
+10
+A#-1
+96
+0A
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+22
+A#0
+96
+16
+hh
+OFF=0x00, ON=0x7F
+5
+NOTE
+80
+G#5
+94
+50
+hh
+OFF=0x00, ON=0x7F
+FX1_1 selected
+5
+NOTE
+71
+B4
+94
+47
+OFF=0x00, ON=0x7F
+FX1_2 selected
+5
+NOTE
+72
+C5
+94
+48
+OFF=0x00, ON=0x7F
+FX1_3 selected
+5
+NOTE
+73
+C#5
+94
+49
+OFF=0x00, ON=0x7F
+FX2_1 selected
+6
+NOTE
+71
+B4
+95
+47
+OFF=0x00, ON=0x7F
+FX2_2 selected
+6
+NOTE
+72
+C5
+95
+48
+OFF=0x00, ON=0x7F
+E4
+BFX4
+push
+E5
+BFX5
+push
+E6
+BFX6
+push
+E1
+BFX1
+push
+E2
+BFX2
+push
+E3
+BFX3
+push
+E7
+FX1-1
+push
+E8
+FX1-2
+push
+E15
+TAP
+push
+E14
+BEAT RIGHT
+push
+E16
+CH1 EFFECT
+LEVER
+push
+E12
+FX2-3
+push
+E13
+BEAT LEFT
+push
+E11
+FX2-2
+push
+E9
+FX1-3
+push
+E10
+FX2-1
+push
+
+
+===== PDF PAGE 4 =====
+FX2_3 selected
+6
+NOTE
+73
+C#5
+95
+49
+OFF=0x00, ON=0x7F
++SHIFT
+5
+NOTE
+102
+F#7
+94
+66
+hh
+OFF=0x00, ON=0x7F
+6
+NOTE
+80
+G#5
+95
+50
+hh
+OFF=0x00, ON=0x7F
+FX1_1 selected
+5
+NOTE
+71
+B4
+94
+47
+OFF=0x00, ON=0x7F
+FX1_2 selected
+5
+NOTE
+72
+C5
+94
+48
+OFF=0x00, ON=0x7F
+FX1_3 selected
+5
+NOTE
+73
+C#5
+94
+49
+OFF=0x00, ON=0x7F
+FX2_1 selected
+6
+NOTE
+71
+B4
+95
+47
+OFF=0x00, ON=0x7F
+FX2_2 selected
+6
+NOTE
+72
+C5
+95
+48
+OFF=0x00, ON=0x7F
+FX2_3 selected
+6
+NOTE
+73
+C#5
+95
+49
+OFF=0x00, ON=0x7F
++SHIFT
+6
+NOTE
+102
+F#7
+95
+66
+hh
+OFF=0x00, ON=0x7F
+BEAT FX selected
+7
+CC
+2
+34
+-
+B6
+0A
+2A
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+FX1_1 selected
+5
+CC
+4
+36
+-
+B4
+02
+22
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+FX1_2 selected
+5
+CC
+4
+36
+-
+B4
+04
+24
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+FX1_3 selected
+5
+CC
+6
+38
+-
+B4
+06
+26
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+FX2_1 selected
+6
+CC
+2
+34
+-
+B5
+02
+22
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+FX2_2 selected
+6
+CC
+4
+36
+-
+B5
+04
+24
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+FX2_3 selected
+6
+CC
+6
+38
+-
+B5
+06
+26
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+7
+NOTE
+33
+A1
+96
+21
+hh
+OFF=0x00, ON=0x7F
+7
+NOTE
+9
+A-1
+96
+09
+hh
+ON=0x7F
+7
+NOTE
+71
+B4
+94
+47
+hh
+ON=0x7F
+7
+NOTE
+93
+A6
+94
+5D
+hh
+ON=0x7F
+7
+NOTE
+72
+C5
+94
+48
+hh
+ON=0x7F
+7
+NOTE
+94
+A#6
+94
+5E
+hh
+ON=0x7F
+7
+NOTE
+73
+C#5
+94
+49
+hh
+ON=0x7F
+7
+NOTE
+95
+B6
+94
+5F
+hh
+ON=0x7F
+7
+NOTE
+71
+B4
+95
+47
+hh
+ON=0x7F
+7
+NOTE
+96
+C7
+95
+60
+hh
+ON=0x7F
+7
+NOTE
+72
+C5
+95
+48
+hh
+ON=0x7F
+7
+NOTE
+97
+C#7
+95
+61
+hh
+ON=0x7F
+7
+NOTE
+73
+C#5
+95
+49
+hh
+ON=0x7F
+7
+NOTE
+98
+D7
+95
+62
+hh
+ON=0x7F
+DECK
+7
+CC
+64
+-
+Bn
+40
+hh
++SHIFT
+7
+CC
+100
+-
+Bn
+64
+hh
+7
+NOTE
+65
+F4
+9n
+41
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+66
+F#4
+9n
+42
+hh
+OFF=0x00, ON=0x7F
+7
+NOTE
+104
+#7
+9n
+68
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+7
+NOTE
+103
+G7
+96
+67
+hh
+OFF=0x00, ON=0x7F
+1
+NOTE
+70
+A#4
+90
+46
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+1
+NOTE
+103
+G7
+90
+67
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+2
+NOTE
+70
+A#4
+91
+46
+hh
+OFF=0x00, ON=0x7F
++SHIFT
+2
+NOTE
+71
+B4
+91
+47
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+68
+G#4
+9n
+44
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+LOOP OPTION=ON
+1/2/3/4
+NOTE
+20
+G#0
+9n
+14
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+LOOP OPTION=OFF
++SHIFT
+1/2/3/4
+NOTE
+80
+G#5
+9n
+50
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+18
+F#0
+9n
+12
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+16
+E0
+9n
+10
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+E18
+LEVEL/DEPTH
+rotate
++SHIFT
+FX1_1 selected
+FX1_2 selected
+FX1_3 selected
+FX2_1 selected
+FX2_2 selected
+FX2_3 selected
+D1-1
+D2-1
+BROWSE
+rotate
+D1-3
+LOAD
+push
+D2-3
+LOAD
+push
+push
+D1-5
+D2-5
+LOOP HALF
+push
+E19
+SMOOTH ECHO
+push
+E17
+CH2 EFFECT
+LEVER
+push
+D1-2
+D2-2
+BACK
+push
+D1-4
+D2-4
+4BEAT LOOP
+push
+Difference count value from when previous operated
+Turn clockwise: 0x01~0x1E(max)
+     (1~30clicks/40msec)
+Turn counterclockwise: 0x7F~0x62(max)
+     (1~30clicks/40msec)
+
+
+===== PDF PAGE 5 =====
+1/2/3/4
+NOTE
+19
+G0
+9n
+13
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+17
+F0
+9n
+11
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+36
+C2
+9n
+24
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+1
+C#-1
+9n
+01
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+1/2/3/4
+NOTE
+44
+G#2
+9n
+2C
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+1/2/3/4
+NOTE
+9
+A-1
+9n
+09
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+1/2
+NOTE
+27
+D#1
+9n
+1B
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+1/2
+NOTE
+105
+A7
+9n
+69
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+pressing the
+button twice
+14
+NOTE
+64
+E4
+9m
+40
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT pressing the button
+twice
+12
+NOTE
+64
+E4
+9m
+40
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+1/2
+NOTE
+30
+F#1
+9n
+1E
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+1/2
+NOTE
+107
+B7
+9n
+6B
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+pressing the
+button twice
+14
+NOTE
+65
+F4
+9m
+41
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT pressing the button
+twice
+12
+NOTE
+65
+F4
+9m
+41
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+1/2
+NOTE
+32
+G#1
+9n
+20
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+1/2
+NOTE
+109
+C#8
+9n
+6D
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+pressing the
+button twice
+14
+NOTE
+66
+F#4
+9m
+42
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT pressing the button
+twice
+12
+NOTE
+66
+F#4
+9m
+42
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+1/2
+NOTE
+34
+A#1
+9n
+22
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+1/2
+NOTE
+111
+D#8
+9n
+6F
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+pressing the
+button twice
+14
+NOTE
+67
+G4
+9m
+43
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT pressing the button
+twice
+12
+NOTE
+67
+G4
+9m
+43
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+8/9
+NOTE
+0
+C-1
+9p
+00
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+8/9
+NOTE
+8
+G#-1
+9p
+08
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+8/9
+NOTE
+1
+G#-1
+9p
+01
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+8/9
+NOTE
+9
+A-1
+9p
+09
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+8/9
+NOTE
+2
+D-1
+9p
+02
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+8/9
+NOTE
+10
+A#-1
+9p
+0A
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+8/9
+NOTE
+3
+D#-1
+9p
+03
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+8/9
+NOTE
+11
+B-1
+9p
+0B
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+8/9
+NOTE
+4
+E-1
+9p
+04
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+8/9
+NOTE
+12
+C0
+9p
+0C
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+8/9
+NOTE
+5
+F-1
+9p
+05
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+8/9
+NOTE
+13
+C#0
+9p
+0D
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+8/9
+NOTE
+6
+F#-1
+9p
+06
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+8/9
+NOTE
+14
+D0
+9p
+0E
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+8/9
+NOTE
+7
+G-1
+9p
+07
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
++SHIFT
+8/9
+NOTE
+15
+D#0
+9p
+0F
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+D3
+SAMPLER
+VOLUME
+rotate
+7
+CC
+3
+35
+-
+B6
+03
+23
+MSB
+LSB
+Min(MSB:0x00 LSB:0x00)~Max(MSB:0x7F LSB:0x7F)
+When turned fully counterclockwise: Min
+When turned fully clockwise: Max
+PAD4
+push
+PAD5
+push
+PAD1
+push
+PAD2
+push
+PARAM1 (LEFT)
+push
+PARAM1 (RIGHT)
+push
+D1-6
+D2-6
+LOOP DOUBLE
+push
+D1-12
+D2-12
+SAMPLER
+push
+D1-9
+D2-9
+HOT CUE
+push
+D1-10
+D2-10
+ROLL
+push
+D1-17
+D2-17
+D1-18
+D2-18
+D1-19
+D2-19
+D1-20
+D2-20
+D1-7
+D2-7
+D1-8
+D2-8
+D1-13
+D2-13
+D1-14
+D2-14
+D1-15
+D2-15
+D1-16
+D2-16
+PAD6
+push
+PAD7
+push
+PAD 8
+push
+PAD3
+push
+D1-11
+D2-11
+SLICER
+push
+
+
+===== PDF PAGE 6 =====
+【TOUCH SCREEN】
+   (WAVEFORM  SCREEN)
+touch
+-
+1
+NOTE
+88
+E6
+90
+58
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+touch
++SHIFT
+-
+1
+NOTE
+10
+A#-1
+90
+0A
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+touch
+-
+2
+NOTE
+88
+E6
+91
+58
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+touch
++SHIFT
+-
+2
+NOTE
+10
+A#-1
+91
+0A
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-3
+KEY LOCK(DECK1)
+touch
+-
+1
+NOTE
+26
+D1
+90
+1A
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-4
+KEY LOCK(DECK2)
+touch
+-
+2
+NOTE
+26
+D1
+91
+1A
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-5
+BEND+(DECK1)
+touch
+-
+1
+NOTE
+33
+A1
+90
+21
+hh
+OFF=0x00, ON=0x7F
+G-6
+BEND-(DECK1)
+touch
+-
+1
+NOTE
+35
+B1
+90
+23
+hh
+OFF=0x00, ON=0x7F
+G-7
+BEND+(DECK2)
+touch
+-
+2
+NOTE
+33
+A1
+91
+21
+hh
+OFF=0x00, ON=0x7F
+G-8
+BEND-(DECK2)
+touch
+-
+2
+NOTE
+35
+B1
+91
+23
+hh
+OFF=0x00, ON=0x7F
+G-9
+NEEDLE SEARCH
+(DECK1)
+touch
+-
+2
+CC
+67
+G4
+B0
+43
+hh
+needle position(0-127)
+G-10
+NEEDLE SEARCH
+(DECK2)
+touch
+-
+2
+CC
+67
+G4
+B1
+43
+hh
+needle position(0-127)
+G-11
+DECK MOVE
+swipe
+Same as G26
+-
+-
+-
+-
+-
+-
+OFF=0x00, ON=0x7F
+G-12
+DECK MOVE
+swipe
+Same as G26
+-
+-
+-
+-
+-
+-
+OFF=0x00, ON=0x7F
+W
+A
+V
+E
+F
+O
+R
+M
+ 
+S
+C
+R
+E
+E
+N
+-
+-
+-
+-
+G-1
+SYNC(DECK1)
+G-2
+SYNC(DECK2)
+-
+-
+-
+-
+G-3
+G-4
+G-2
+G-1
+G-5
+G-6
+G-7
+G-8
+G-11
+G-12
+G-9
+G-10
+
+
+===== PDF PAGE 7 =====
+   (DECK3/4 SCREEN)
+touch
+-
+3/4
+NOTE
+88
+E6
+92/93
+58
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+touch
++SHIFT
+-
+3/4
+NOTE
+10
+A#-1
+92/93
+0A
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-22
+4 BEAT LOOP
+touch
+-
+3/4
+NOTE
+69
+A4
+92/93
+45
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-23
+HOT CUE 1
+touch
+-
+10/11
+NOTE
+0
+C-1
+99/9A
+00
+hh
+OFF=0x00, ON=0x7F
+G-24
+MUTE
+touch
+-
+3/4
+NOTE
+101
+F7
+92/93
+65
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-25
+PLAY
+touch
+-
+3/4
+NOTE
+11
+B-1
+92/93
+0B
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+DECK MOVE
+DECK2 > DECK3
+touch
+-
+3
+NOTE
+89
+F6
+92
+59
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+DECK MOVE
+DECK1 > DECK4
+touch
+-
+4
+NOTE
+89
+F6
+93
+59
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+touch
+Same as G21
+-
+-
+-
+-
+-
+-
+-
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+touch
++SHIFT Same as G21
+-
+-
+-
+-
+-
+-
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-28
+KEY LOCK
+touch
+-
+3/4
+NOTE
+26
+D1
+92/93
+1A
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-29
+DUAL CONTROL
+touch
+-
+3/4
+NOTE
+98
+D7
+92/93
+62
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-30
+BEND+
+touch
+-
+3/4
+NOTE
+33
+A1
+92/93
+21
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-31
+BEND-
+touch
+-
+3/4
+NOTE
+35
+B1
+92/93
+23
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-32
+HOT CUE 1
+touch
+Same as G23
+-
+-
+-
+-
+-
+-
+-
+OFF=0x00, ON=0x7F
+G-33
+HOT CUE 2
+touch
+-
+10/11
+NOTE
+1
+C#-1
+99/9A
+01
+hh
+OFF=0x00, ON=0x7F
+G-34
+HOT CUE 3
+touch
+-
+10/11
+NOTE
+2
+D-1
+99/9A
+02
+hh
+OFF=0x00, ON=0x7F
+G-35
+HOT CUE 4
+touch
+-
+10/11
+NOTE
+3
+D#-1
+99/9A
+03
+hh
+OFF=0x00, ON=0x7F
+G-36
+HOT CUE 5
+touch
+-
+10/11
+NOTE
+4
+E-1
+99/9A
+04
+hh
+OFF=0x00, ON=0x7F
+G-37
+HOT CUE 6
+touch
+-
+10/11
+NOTE
+5
+F-1
+99/9A
+05
+hh
+OFF=0x00, ON=0x7F
+G-38
+HOT CUE 7
+touch
+-
+10/11
+NOTE
+6
+F#-1
+99/9A
+06
+hh
+OFF=0x00, ON=0x7F
+G-39
+HOT CUE 8
+touch
+-
+10/11
+NOTE
+7
+G-1
+99/9A
+07
+hh
+OFF=0x00, ON=0x7F
+G-40
+CROSSFADER
+touch
+-
+3/4
+NOTE
+22
+A#0
+92/93
+16
+hh
+OFF=0x00, ON=0x7F
+G-41
+HEADPHONE CUE
+touch
+-
+3/4
+NOTE
+84
+C6
+92/93
+54
+hh
+OFF=0x00, ON=0x7F
+G-42
+TRIM
+touch
+-
+3/4
+CC
+4
+E-1
+B2/B3
+04
+hh
+lower：0(0x00)　upper：127(0x7F)
+G-43
+CH FADER
+touch
+-
+3/4
+NOTE
+66
+F#4
+B2/B3
+42
+hh
+lower：0(0x00)　upper：127(0x7F)
+G-21
+SYNC
+G-26
+G-27
+SYNC
+-
+-
+D
+E
+C
+K
+3
+/
+4
+ 
+S
+C
+R
+E
+E
+N
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+G21
+G22
+G23
+G24
+G25
+G27
+G26
+G29
+G30
+G28
+G31
+G32
+G34
+G36
+G38
+G33
+G35
+G37
+G39
+G40
+G41
+G42
+G43
+
+
+===== PDF PAGE 8 =====
+   (TOUCH MIDI  SCREEN)
+G-50
+A(typeA)
+touch
+-
+7
+NOTE
+74
+D5
+96
+4A
+hh
+OFF=0x00, ON=0x7F
+G-51
+B(typeB)
+touch
+-
+7
+NOTE
+75
+D#5
+96
+4B
+hh
+OFF=0x00, ON=0x7F
+G-52
+C(typeC)
+touch
+-
+7
+NOTE
+76
+E5
+96
+4C
+hh
+OFF=0x00, ON=0x7F
+G-53
+D(typeD)
+touch
+-
+7
+NOTE
+77
+F5
+96
+4D
+hh
+OFF=0x00, ON=0x7F
+G-54
+INT
+touch
+-
+7
+NOTE
+78
+F#5
+96
+4E
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-55
+KEY LOCK
+touch
+-
+7
+NOTE
+79
+G5
+96
+4F
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-56
+KEY UP
+touch
+-
+7
+NOTE
+80
+G#5
+96
+50
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-57
+KEY DOWN
+touch
+-
+7
+NOTE
+81
+A5
+96
+51
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-58
+INT
+touch
+-
+7
+NOTE
+82
+A#5
+96
+52
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-59
+KEY LOCK
+touch
+-
+7
+NOTE
+83
+B5
+96
+53
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-60
+KEY UP
+touch
+-
+7
+NOTE
+84
+C6
+96
+54
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-61
+KEY DOWN
+touch
+-
+7
+NOTE
+85
+C#6
+96
+55
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-62
+BEAT SYNC
+touch
+-
+7
+NOTE
+86
+D6
+96
+56
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-63
+SYNC OFF
+touch
+-
+7
+NOTE
+87
+D#6
+96
+57
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-64
+KEY SYNC
+touch
+-
+7
+NOTE
+88
+E6
+96
+58
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-65
+KEY RESET
+touch
+-
+7
+NOTE
+89
+F6
+96
+59
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-66
+SILENT CUE
+touch
+-
+7
+NOTE
+90
+G#5
+96
+5A
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-67
+BEAT SYNC
+touch
+-
+7
+NOTE
+91
+G6
+96
+5B
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-68
+SYNC OFF
+touch
+-
+7
+NOTE
+92
+G#6
+96
+5C
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-69
+KEY SYNC
+touch
+-
+7
+NOTE
+93
+A6
+96
+5D
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-70
+KEY RESET
+touch
+-
+7
+NOTE
+94
+A#6
+96
+5E
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-71
+SILENT CUE
+touch
+-
+7
+NOTE
+95
+B6
+96
+5F
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-72
+INT
+touch
+-
+7
+NOTE
+96
+C7
+96
+60
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-73
+TEMPO RESET
+touch
+-
+7
+NOTE
+97
+C#7
+96
+61
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-74
+SYNC
+touch
+-
+7
+NOTE
+98
+D7
+96
+62
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-75
+PLAY
+touch
+-
+7
+NOTE
+99
+D#7
+96
+63
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-76
+QUANTIZE
+touch
+-
+7
+NOTE
+100
+E7
+96
+64
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-77
+LIBRARY
+VIEW
+touch
+-
+7
+NOTE
+101
+F7
+96
+65
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-78
+REC START
+touch
+-
+7
+NOTE
+102
+F#7
+96
+66
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-79
+REC SAVE
+touch
+-
+7
+NOTE
+103
+G7
+96
+67
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-80
+INT
+touch
+-
+7
+NOTE
+104
+G#7
+96
+68
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-81
+TEMPO RESET
+touch
+-
+7
+NOTE
+105
+A7
+96
+69
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+T
+O
+U
+C
+H
+ 
+M
+I
+D
+I
+ 
+S
+C
+R
+E
+E
+N
+-
+-
+-
+-
+G-51
+G-54
+G-52
+G-55
+G-56
+G-57
+G-58
+G-59
+G-60
+G-61
+G-50
+G-53
+G-62
+G-63
+G-67
+G-68
+G-69
+G-72
+G-74
+G-73
+G-80
+G-83
+G-64
+G-65
+G-66
+G-70
+G-71
+G-75
+G-76
+G-77
+G-78
+G-79
+G-81
+G-82
+G-84
+G-86
+G-87
+G-89
+G-90
+G-92
+
+
+===== PDF PAGE 9 =====
+G-82
+SYNC
+touch
+-
+7
+NOTE
+106
+A#7
+96
+6A
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-83
+PLAY
+touch
+-
+7
+NOTE
+107
+B7
+96
+6B
+hh
+← Same as MIDI-IN
+OFF=0x00, ON=0x7F
+G-84
+FX1-1
+Slider
+touch
+-
+7
+CC
+80
+G#5
+B6
+50
+hh
+lower：0(0x00)　upper：127(0x7F)
+G-86
+FX1-1
+SELECT
+touch
+-
+7
+NOTE
+109
+C#8
+96
+6D
+hh
+OFF=0x00, ON=0x7F
+G-87
+FX1-2
+Slider
+touch
+-
+7
+CC
+81
+A5
+B6
+51
+hh
+lower：0(0x00)　upper：127(0x7F)
+G-89
+FX1-2
+SELECT
+touch
+-
+7
+NOTE
+111
+D#8
+96
+6F
+hh
+OFF=0x00, ON=0x7F
+G-90
+FX1-3
+Slider
+touch
+-
+7
+CC
+82
+A#5
+B6
+52
+hh
+lower：0(0x00)　upper：127(0x7F)
+G-92
+FX1-3
+SELECT
+touch
+-
+7
+NOTE
+113
+F8
+96
+71
+hh
+OFF=0x00, ON=0x7F
+© 2020 Alpha Theta Corporation All right reserved.
+-
+-
+-
+-
+-
+-

@@ -119,6 +119,9 @@ struct MappingsTableView: View {
     var onModifier2Change: ((ModifierCondition?) -> Void)?
     var onInvertToggle: (() -> Void)?
     var sharedMIDIIDs: Set<UUID> = []
+    /// Row id → resolved physical control name for the shown device's associated
+    /// profile. Empty when no profile is associated; the column then shows blanks.
+    var physicalNames: [UUID: String] = [:]
     @Binding var isManualOrder: Bool
     var canReorder: Bool = false
     var onMove: ((Set<UUID>, UUID?) -> Bool)?
@@ -275,6 +278,18 @@ struct MappingsTableView: View {
                         .contentShape(Rectangle())
                 }
                 .width(min: 90, ideal: 110)
+
+                TableColumn("Physical") { entry in
+                    Text(physicalNames[entry.id] ?? "")
+                        .font(AppThemeV2.Typography.body)
+                        .foregroundColor(AppThemeV2.Colors.stone300)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                        .help(physicalNames[entry.id] ?? "")
+                }
+                .width(min: 90, ideal: 140)
 
                 TableColumn("Mod 1", value: \.modifier1SortKey) { entry in
                     Group {

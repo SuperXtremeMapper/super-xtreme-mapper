@@ -1,0 +1,4901 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Novation",
+  "model": "Launch Control XL 3",
+  "status": "documented-extraction",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "id": "protocol",
+      "local_file": "performance/launch-control-xl-3/programmer-reference-1.pdf",
+      "url": "https://fael-downloads-prod.focusrite.com/customer/prod/downloads/launch_control_xl_3_programmer_s_reference_guide-pdf_en.pdf",
+      "sha256": "4ac520cae51280b6c21fee35cb6b30ef4f50d80d5e1161d921ffe3c36c2736ad"
+    }
+  ],
+  "scope": "Complete DAW physical address diagram; encoder absolute and relative variants, touch events, host position/LED feedback, and feature controls with query/report directions. Standalone surface is configurable.",
+  "bindings": [
+    {
+      "id": "b00001",
+      "control": "Fader 1",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 5,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00002",
+      "control": "Fader 1 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 5,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00003",
+      "control": "Fader 2",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 6,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00004",
+      "control": "Fader 2 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 6,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00005",
+      "control": "Fader 3",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 7,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00006",
+      "control": "Fader 3 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 7,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00007",
+      "control": "Fader 4",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 8,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00008",
+      "control": "Fader 4 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 8,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00009",
+      "control": "Fader 5",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 9,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00010",
+      "control": "Fader 5 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 9,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00011",
+      "control": "Fader 6",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 10,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00012",
+      "control": "Fader 6 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 10,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00013",
+      "control": "Fader 7",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 11,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00014",
+      "control": "Fader 7 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 11,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00015",
+      "control": "Fader 8",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 12,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00016",
+      "control": "Fader 8 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 12,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00017",
+      "control": "Encoder row 1 column 1",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 13,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00018",
+      "control": "Encoder row 1 column 1",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 77,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00019",
+      "control": "Encoder row 1 column 1 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 13,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00020",
+      "control": "Encoder row 1 column 1 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 13,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00021",
+      "control": "Encoder row 1 column 1 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 13,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00022",
+      "control": "Encoder row 1 column 2",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 14,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00023",
+      "control": "Encoder row 1 column 2",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 78,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00024",
+      "control": "Encoder row 1 column 2 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 14,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00025",
+      "control": "Encoder row 1 column 2 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 14,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00026",
+      "control": "Encoder row 1 column 2 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 14,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00027",
+      "control": "Encoder row 1 column 3",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 15,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00028",
+      "control": "Encoder row 1 column 3",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 79,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00029",
+      "control": "Encoder row 1 column 3 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 15,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00030",
+      "control": "Encoder row 1 column 3 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 15,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00031",
+      "control": "Encoder row 1 column 3 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 15,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00032",
+      "control": "Encoder row 1 column 4",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 16,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00033",
+      "control": "Encoder row 1 column 4",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 80,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00034",
+      "control": "Encoder row 1 column 4 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 16,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00035",
+      "control": "Encoder row 1 column 4 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 16,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00036",
+      "control": "Encoder row 1 column 4 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 16,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00037",
+      "control": "Encoder row 1 column 5",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 17,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00038",
+      "control": "Encoder row 1 column 5",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 81,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00039",
+      "control": "Encoder row 1 column 5 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 17,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00040",
+      "control": "Encoder row 1 column 5 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 17,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00041",
+      "control": "Encoder row 1 column 5 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 17,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00042",
+      "control": "Encoder row 1 column 6",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 18,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00043",
+      "control": "Encoder row 1 column 6",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 82,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00044",
+      "control": "Encoder row 1 column 6 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 18,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00045",
+      "control": "Encoder row 1 column 6 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 18,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00046",
+      "control": "Encoder row 1 column 6 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 18,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00047",
+      "control": "Encoder row 1 column 7",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 19,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00048",
+      "control": "Encoder row 1 column 7",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 83,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00049",
+      "control": "Encoder row 1 column 7 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 19,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00050",
+      "control": "Encoder row 1 column 7 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 19,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00051",
+      "control": "Encoder row 1 column 7 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 19,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00052",
+      "control": "Encoder row 1 column 8",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 20,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00053",
+      "control": "Encoder row 1 column 8",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 84,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00054",
+      "control": "Encoder row 1 column 8 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 20,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00055",
+      "control": "Encoder row 1 column 8 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 20,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00056",
+      "control": "Encoder row 1 column 8 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 20,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00057",
+      "control": "Encoder row 2 column 1",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 21,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00058",
+      "control": "Encoder row 2 column 1",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 85,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00059",
+      "control": "Encoder row 2 column 1 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 21,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00060",
+      "control": "Encoder row 2 column 1 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 21,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00061",
+      "control": "Encoder row 2 column 1 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 21,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00062",
+      "control": "Encoder row 2 column 2",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 22,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00063",
+      "control": "Encoder row 2 column 2",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 86,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00064",
+      "control": "Encoder row 2 column 2 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 22,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00065",
+      "control": "Encoder row 2 column 2 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 22,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00066",
+      "control": "Encoder row 2 column 2 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 22,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00067",
+      "control": "Encoder row 2 column 3",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 23,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00068",
+      "control": "Encoder row 2 column 3",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 87,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00069",
+      "control": "Encoder row 2 column 3 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 23,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00070",
+      "control": "Encoder row 2 column 3 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 23,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00071",
+      "control": "Encoder row 2 column 3 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 23,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00072",
+      "control": "Encoder row 2 column 4",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 24,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00073",
+      "control": "Encoder row 2 column 4",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 88,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00074",
+      "control": "Encoder row 2 column 4 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 24,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00075",
+      "control": "Encoder row 2 column 4 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 24,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00076",
+      "control": "Encoder row 2 column 4 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 24,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00077",
+      "control": "Encoder row 2 column 5",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 25,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00078",
+      "control": "Encoder row 2 column 5",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 89,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00079",
+      "control": "Encoder row 2 column 5 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 25,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00080",
+      "control": "Encoder row 2 column 5 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 25,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00081",
+      "control": "Encoder row 2 column 5 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 25,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00082",
+      "control": "Encoder row 2 column 6",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 26,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00083",
+      "control": "Encoder row 2 column 6",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 90,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00084",
+      "control": "Encoder row 2 column 6 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 26,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00085",
+      "control": "Encoder row 2 column 6 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 26,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00086",
+      "control": "Encoder row 2 column 6 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 26,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00087",
+      "control": "Encoder row 2 column 7",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 27,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00088",
+      "control": "Encoder row 2 column 7",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 91,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00089",
+      "control": "Encoder row 2 column 7 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 27,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00090",
+      "control": "Encoder row 2 column 7 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 27,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00091",
+      "control": "Encoder row 2 column 7 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 27,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00092",
+      "control": "Encoder row 2 column 8",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 28,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00093",
+      "control": "Encoder row 2 column 8",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 92,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00094",
+      "control": "Encoder row 2 column 8 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 28,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00095",
+      "control": "Encoder row 2 column 8 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 28,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00096",
+      "control": "Encoder row 2 column 8 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 28,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00097",
+      "control": "Encoder row 3 column 1",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 29,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00098",
+      "control": "Encoder row 3 column 1",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 93,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00099",
+      "control": "Encoder row 3 column 1 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 29,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00100",
+      "control": "Encoder row 3 column 1 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 29,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00101",
+      "control": "Encoder row 3 column 1 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 29,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00102",
+      "control": "Encoder row 3 column 2",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 30,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00103",
+      "control": "Encoder row 3 column 2",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 94,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00104",
+      "control": "Encoder row 3 column 2 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 30,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00105",
+      "control": "Encoder row 3 column 2 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 30,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00106",
+      "control": "Encoder row 3 column 2 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 30,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00107",
+      "control": "Encoder row 3 column 3",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 31,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00108",
+      "control": "Encoder row 3 column 3",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 95,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00109",
+      "control": "Encoder row 3 column 3 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 31,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00110",
+      "control": "Encoder row 3 column 3 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 31,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00111",
+      "control": "Encoder row 3 column 3 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 31,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00112",
+      "control": "Encoder row 3 column 4",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 32,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00113",
+      "control": "Encoder row 3 column 4",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 96,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00114",
+      "control": "Encoder row 3 column 4 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 32,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00115",
+      "control": "Encoder row 3 column 4 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 32,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00116",
+      "control": "Encoder row 3 column 4 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 32,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00117",
+      "control": "Encoder row 3 column 5",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 33,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00118",
+      "control": "Encoder row 3 column 5",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 97,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00119",
+      "control": "Encoder row 3 column 5 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 33,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00120",
+      "control": "Encoder row 3 column 5 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 33,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00121",
+      "control": "Encoder row 3 column 5 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 33,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00122",
+      "control": "Encoder row 3 column 6",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 34,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00123",
+      "control": "Encoder row 3 column 6",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 98,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00124",
+      "control": "Encoder row 3 column 6 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 34,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00125",
+      "control": "Encoder row 3 column 6 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 34,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00126",
+      "control": "Encoder row 3 column 6 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 34,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00127",
+      "control": "Encoder row 3 column 7",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 35,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00128",
+      "control": "Encoder row 3 column 7",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 99,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00129",
+      "control": "Encoder row 3 column 7 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 35,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00130",
+      "control": "Encoder row 3 column 7 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 35,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00131",
+      "control": "Encoder row 3 column 7 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 35,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00132",
+      "control": "Encoder row 3 column 8",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 36,
+      "encoding": "absolute 7-bit",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface; absolute",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00133",
+      "control": "Encoder row 3 column 8",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 100,
+      "encoding": "relative offset binary pivot 64",
+      "values": {
+        "stationary": 64,
+        "clockwise": "value-64 for values >64",
+        "anticlockwise": "64-value for values <64"
+      },
+      "mode": "DAW USB interface; row relative enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00134",
+      "control": "Encoder row 3 column 8 position",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 16,
+      "number": 36,
+      "encoding": "absolute position feedback",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB; absolute mode",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p10"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00135",
+      "control": "Encoder row 3 column 8 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 36,
+      "encoding": "palette index",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00136",
+      "control": "Encoder row 3 column 8 touch",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 15,
+      "number": 36,
+      "encoding": "touch on/off",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB; touch events enabled",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10\u201311"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00137",
+      "control": "Upper button 1",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 37,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00138",
+      "control": "Upper button 1 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 37,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00139",
+      "control": "Upper button 2",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 38,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00140",
+      "control": "Upper button 2 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 38,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00141",
+      "control": "Upper button 3",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 39,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00142",
+      "control": "Upper button 3 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 39,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00143",
+      "control": "Upper button 4",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 40,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00144",
+      "control": "Upper button 4 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 40,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00145",
+      "control": "Upper button 5",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 41,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00146",
+      "control": "Upper button 5 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 41,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00147",
+      "control": "Upper button 6",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 42,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00148",
+      "control": "Upper button 6 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 42,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00149",
+      "control": "Upper button 7",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 43,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00150",
+      "control": "Upper button 7 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 43,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00151",
+      "control": "Upper button 8",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 44,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00152",
+      "control": "Upper button 8 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 44,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00153",
+      "control": "Lower button 1",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 45,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00154",
+      "control": "Lower button 1 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 45,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00155",
+      "control": "Lower button 2",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 46,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00156",
+      "control": "Lower button 2 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 46,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00157",
+      "control": "Lower button 3",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 47,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00158",
+      "control": "Lower button 3 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 47,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00159",
+      "control": "Lower button 4",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 48,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00160",
+      "control": "Lower button 4 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 48,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00161",
+      "control": "Lower button 5",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 49,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00162",
+      "control": "Lower button 5 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 49,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00163",
+      "control": "Lower button 6",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 50,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00164",
+      "control": "Lower button 6 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 50,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00165",
+      "control": "Lower button 7",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 51,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00166",
+      "control": "Lower button 7 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 51,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00167",
+      "control": "Lower button 8",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 52,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00168",
+      "control": "Lower button 8 LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 52,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00169",
+      "control": "Page up",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 106,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00170",
+      "control": "Page up LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 106,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00171",
+      "control": "Page down",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 107,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00172",
+      "control": "Page down LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 107,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00173",
+      "control": "Track left",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 103,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00174",
+      "control": "Track left LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 103,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00175",
+      "control": "Track right",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 102,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00176",
+      "control": "Track right LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 102,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00177",
+      "control": "Record",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 118,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00178",
+      "control": "Record LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 118,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00179",
+      "control": "Play",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 116,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00180",
+      "control": "Play LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 116,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00181",
+      "control": "Shift",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 63,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00182",
+      "control": "Solo/Arm",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 65,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00183",
+      "control": "Solo/Arm LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 65,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00184",
+      "control": "Mute/Select",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 66,
+      "encoding": "button CC event",
+      "values": {},
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p9 diagram"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00185",
+      "control": "Mute/Select LED",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 1,
+      "number": 66,
+      "encoding": "palette index if control has LED",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp9,11\u201312"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00186",
+      "control": "Surface mode select",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 30,
+      "encoding": "feature set",
+      "values": {
+        "1": "DAW Mixer",
+        "2": "DAW Control",
+        "6\u20139": "Custom 1\u20134",
+        "18\u201329": "Custom 5\u201316"
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00187",
+      "control": "Surface mode select",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 8,
+      "number": 30,
+      "encoding": "feature query",
+      "values": {},
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00188",
+      "control": "Surface mode select",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 30,
+      "encoding": "feature reply",
+      "values": {
+        "1": "DAW Mixer",
+        "2": "DAW Control",
+        "6\u20139": "Custom 1\u20134",
+        "18\u201329": "Custom 5\u201316"
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00189",
+      "control": "Shift",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 63,
+      "encoding": "feature set",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00190",
+      "control": "Shift",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 8,
+      "number": 63,
+      "encoding": "feature query",
+      "values": {},
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00191",
+      "control": "Shift",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 63,
+      "encoding": "feature reply",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00192",
+      "control": "Encoder row 1 relative",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 69,
+      "encoding": "feature set",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00193",
+      "control": "Encoder row 1 relative",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 8,
+      "number": 69,
+      "encoding": "feature query",
+      "values": {},
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00194",
+      "control": "Encoder row 1 relative",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 69,
+      "encoding": "feature reply",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00195",
+      "control": "Encoder row 2 relative",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 72,
+      "encoding": "feature set",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00196",
+      "control": "Encoder row 2 relative",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 8,
+      "number": 72,
+      "encoding": "feature query",
+      "values": {},
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00197",
+      "control": "Encoder row 2 relative",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 72,
+      "encoding": "feature reply",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00198",
+      "control": "Encoder row 3 relative",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 73,
+      "encoding": "feature set",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00199",
+      "control": "Encoder row 3 relative",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 8,
+      "number": 73,
+      "encoding": "feature query",
+      "values": {},
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00200",
+      "control": "Encoder row 3 relative",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 73,
+      "encoding": "feature reply",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00201",
+      "control": "Fader pickup",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 70,
+      "encoding": "feature set",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00202",
+      "control": "Fader pickup",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 8,
+      "number": 70,
+      "encoding": "feature query",
+      "values": {},
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00203",
+      "control": "Fader pickup",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 70,
+      "encoding": "feature reply",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00204",
+      "control": "Touch events",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 71,
+      "encoding": "feature set",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00205",
+      "control": "Touch events",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 8,
+      "number": 71,
+      "encoding": "feature query",
+      "values": {},
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00206",
+      "control": "Touch events",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 71,
+      "encoding": "feature reply",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00207",
+      "control": "LED brightness",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 111,
+      "encoding": "feature set",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00208",
+      "control": "LED brightness",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 8,
+      "number": 111,
+      "encoding": "feature query",
+      "values": {},
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00209",
+      "control": "LED brightness",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 111,
+      "encoding": "feature reply",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00210",
+      "control": "Screen brightness",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 112,
+      "encoding": "feature set",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00211",
+      "control": "Screen brightness",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 8,
+      "number": 112,
+      "encoding": "feature query",
+      "values": {},
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00212",
+      "control": "Screen brightness",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 112,
+      "encoding": "feature reply",
+      "values": {
+        "min": 0,
+        "max": 127
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00213",
+      "control": "Temporary display timeout",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 113,
+      "encoding": "feature set",
+      "values": {
+        "min": 0,
+        "max": 99,
+        "unit": "1/10 sec; minimum 1 sec at 0"
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00214",
+      "control": "Temporary display timeout",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 8,
+      "number": 113,
+      "encoding": "feature query",
+      "values": {},
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00215",
+      "control": "Temporary display timeout",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 113,
+      "encoding": "feature reply",
+      "values": {
+        "min": 0,
+        "max": 99,
+        "unit": "1/10 sec; minimum 1 sec at 0"
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00216",
+      "control": "Out2 MIDI thru",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 120,
+      "encoding": "feature set",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00217",
+      "control": "Out2 MIDI thru",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 8,
+      "number": 120,
+      "encoding": "feature query",
+      "values": {},
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00218",
+      "control": "Out2 MIDI thru",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 120,
+      "encoding": "feature reply",
+      "values": {
+        "press": 127,
+        "release": 0
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00219",
+      "control": "Encoder curve",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 121,
+      "encoding": "feature set",
+      "values": {
+        "0": "slow",
+        "1": "medium",
+        "2": "fast"
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00220",
+      "control": "Encoder curve",
+      "direction": "host-to-device",
+      "message_type": "cc",
+      "channel": 8,
+      "number": 121,
+      "encoding": "feature query",
+      "values": {},
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00221",
+      "control": "Encoder curve",
+      "direction": "device-to-host",
+      "message_type": "cc",
+      "channel": 7,
+      "number": 121,
+      "encoding": "feature reply",
+      "values": {
+        "0": "slow",
+        "1": "medium",
+        "2": "fast"
+      },
+      "mode": "DAW USB interface feature controls",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp16\u201317"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00222",
+      "control": "Feature controls enable",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 11,
+      "encoding": "enable/disable",
+      "values": {
+        "127": "enable",
+        "0": "disable"
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp8,16"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    },
+    {
+      "id": "b00223",
+      "control": "DAW mode enable",
+      "direction": "host-to-device",
+      "message_type": "note",
+      "channel": 16,
+      "number": 12,
+      "encoding": "enable/disable",
+      "values": {
+        "127": "enable",
+        "0": "disable"
+      },
+      "mode": "DAW USB interface",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp8,16"
+        }
+      ],
+      "app_support": "requires-adapter",
+      "notes": []
+    }
+  ],
+  "issues": [
+    {
+      "id": "global-channel-typo",
+      "severity": "conflict",
+      "description": "Global MIDI channel CC100 table says hex 00\u20130e (0\u201315), and 0Eh (15) channel16. Inconsistent last value excluded.",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF p17"
+        }
+      ],
+      "excluded_bindings": [
+        "Global MIDI channel feature CC100"
+      ]
+    },
+    {
+      "id": "screen-conflicts",
+      "severity": "conflict",
+      "description": "Screen target IDs conflict: configuration stationary 53/temporary54 versus bitmap32/33. Bitmap message/response terminate 7F rather than F7. p10 custom mode ranges overlap Custom8; p17 coherent range retained.",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp10,13\u201315,17"
+        }
+      ],
+      "excluded_bindings": [
+        "Bitmap/screen SysEx; p10 overlapping custom-mode values"
+      ]
+    },
+    {
+      "id": "complex-feedback",
+      "severity": "unsupported",
+      "description": "RGB LED and screen text/bitmap SysEx retained raw; standalone custom mappings are editable, not fixed. Diagram auxiliary CC104 lacks a clear semantic label and is quarantined pending manufacturer clarification.",
+      "evidence": [
+        {
+          "source_id": "protocol",
+          "locator": "PDF pp7,9,12\u201315"
+        }
+      ],
+      "excluded_bindings": [
+        "Standalone custom controls; RGB/screen SysEx; auxiliary CC104"
+      ]
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "protocol",
+      "file": "performance-inmusic/raw/launch-control-xl-3-protocol.txt",
+      "extraction_method": "Archived PDF layout text with PDF page markers; diagrams additionally visually transcribed where noted."
+    },
+    {
+      "source_id": "protocol",
+      "file": "performance-inmusic/raw/launch-control-xl-3.png",
+      "extraction_method": "Original PDF layout diagram rendered with pdftoppm; transcribed numeric cells in bindings; retained as visual evidence."
+    }
+  ]
+}

@@ -1,0 +1,534 @@
+Manual
+MK3
+X1
+Traktor
+Table of Contents
+ 1. Disclaimer ................................................................................................................... 1
+
+ 2. Welcome to the Traktor X1 MK3 Manual .......................................................................... 2
+     Document Conventions ............................................................................................... 2
+
+ 3. Installation & Setup ....................................................................................................... 3
+      Registering the Traktor X1 MK3 ..................................................................................... 3
+      Installing and updating Traktor Pro ................................................................................ 3
+      Connecting the X1 MK3 ............................................................................................... 3
+
+ 4. Hardware Overview ....................................................................................................... 5
+     The Top Panel ............................................................................................................ 5
+     The Rear Panel ........................................................................................................... 6
+     The Bottom Panel ....................................................................................................... 6
+
+ 5. Effect Control ............................................................................................................... 7
+      Loading Effects .......................................................................................................... 8
+      Picking up parameter values with knobs ......................................................................... 9
+
+ 6. Using the Pattern Player .............................................................................................. 10
+
+ 7. Mixer Control ............................................................................................................. 12
+     Transport Control ..................................................................................................... 13
+     Loop and Browse Section .......................................................................................... 13
+     Hotcues .................................................................................................................. 14
+
+ 8. Customizing the Controller .......................................................................................... 15
+                                                                              DISCLAIMER       1
+
+
+
+
+1. Disclaimer
+The information in this document is subject to change without notice and does not represent a
+commitment on the part of Native Instruments GmbH. The software described by this document is
+subject to a License Agreement and may not be copied to other media. No part of this publication
+may be copied, reproduced or otherwise transmitted or recorded, for any purpose, without prior
+written permission by Native Instruments GmbH, hereinafter referred to as Native Instruments.
+“Native Instruments”, “NI” and associated logos are (registered) trademarks of Native Instruments
+GmbH.
+Mac, macOS, GarageBand, Logic and iTunes are registered trademarks of Apple Inc., registered in
+the U.S. and other countries.
+Windows and DirectSound are registered trademarks of Microsoft Corporation in the United States
+and/or other countries.
+Ableton Live™ and LINK™ are a trademarks of Ableton AG.
+All other trademarks are the property of their respective owners and use of them does not imply
+any affiliation with or endorsement by them.
+Document authored by Jonas Körwer
+Software version: 3.10 (9/2023)
+                                               WELCOME TO THE TRAKTOR X1 MK3 MANUAL                    2
+
+
+
+
+2. Welcome to the Traktor X1 MK3
+Manual
+The Traktor X1 MK3 is a modular DJ controller for manipulating effects, looping, and mixing. It
+is highly customizable and includes a USB hub, making it a versatile addition to any DJ setup.
+With five OLED displays, color-coded buttons, tactile features, and bottom lights working as a
+notification system, the X1 MK3 is designed to provide control in any environment.
+This reference manual focuses on the X1 MK3 hardware, describing each section, its controls, and
+functionality. For information about the Traktor Pro software and its effects refer to the Traktor Pro
+Manual.
+
+
+Document Conventions
+In this document the following formatting is used to highlight useful information:
+
+  Italics             Indicates paths to locations on your hard disk or other storage devices
+  Bold                Highlights important names, concepts, software interface elements, and
+                      hardware controls.
+  [Brackets]          References keys on a computer’s keyboard.
+                      Single item instructions are represented by a bullet icon.
+                      Results in procedures are represented by an arrow icon.
+
+
+The following three icons represent different types of information:
+
+
+            The light bulb icon indicates a useful tip, suggestion, or interesting fact.
+
+
+
+
+            The information icon highlights important information that is essential for the given
+            context.
+
+
+
+            The warning icon alerts you of serious issues and potential risks that require your full
+            attention.
+                                                                     INSTALLATION & SETUP            3
+
+
+
+
+3. Installation & Setup
+The Traktor X1 MK3 works out of the box with the latest version of Traktor Pro. If you already have
+the latest version of Traktor Pro installed, start the software on your computer and connect the
+controller using the included USB cable. The software will automatically recognize the device and
+you are ready to get started.
+If you do not have Traktor Pro installed on your computer, you must first register your hardware to
+receive your Traktor Pro license and install the software.
+
+
+
+Registering the Traktor X1 MK3
+Registering your hardware is required to access any bundled offers including the full Traktor Pro
+license. To register your hardware:
+1. Download and install Native Access here.
+2. Create a Native ID if you do not yet have one. You can do this using Native Access.
+3. Login to Native Access using your Native ID.
+4. Click Add Serial.
+5. Enter the 15-digit serial number which can be found on the card in the box or at the bottom of
+   the controller.
+
+→ The hardware is registered and you can proceed to install Traktor Pro.
+
+
+
+Installing and updating Traktor Pro
+The X1 MK3 is designed to work with Traktor Pro. To install Traktor Pro:
+1. Download and install Native Access here.
+2. Create a Native ID if you do not yet have one. You can do this using Native Access.
+3. Login to Native Access using your Native ID.
+4. Click the Available tab.
+5. Click Install for Traktor Pro 3.
+
+→ The software is installed automatically.
+
+
+         If the software is already installed, click the Updates tab and install available updates
+         before proceeding.
+
+
+
+
+Connecting the X1 MK3
+Once you have installed the latest version of Traktor Pro you are ready to set up the X1 MK3.
+1. Start Traktor Pro 3 on your computer.
+2. Connect the X1 MK3 using the USB cable included in the box.
+                                                                     INSTALLATION & SETUP             4
+
+
+
+
+3. Upon startup, the controller will ask you to configure a layout for the FX units and decks.
+   •   Use the arrow buttons at the top of the controller to cycle between different FX unit
+       assignments.
+   •   Use any of the four encoders next to the displays in the center to cycle between deck
+       assignments.
+4. Press any of the four encoders next to the displays in the center to confirm your configuration.
+
+→ Your controller is configured and you are ready to start mixing and using effects.
+
+
+         FX unit and deck assignments can be changed at any time on the Decks Layout page
+         of the Traktor Pro Preferences.
+                                                                     HARDWARE OVERVIEW            5
+
+
+
+
+4. Hardware Overview
+This section provides a general overview of the Traktor X1 MK3 hardware. While it is primarily
+designed for unlocking the creative potential of Traktor Pro's effects, it also enables browsing and
+mixing tracks, using Hotcues, the Pattern Player, and more.
+
+
+The Top Panel
+The top panel of the X1 MK3 can be divided into four main sections, grouping the available
+functions in an intuitive way. All sections comprise two identical sides on the left and right,
+enabling direct access to two decks or FX units.
+                                                                      HARDWARE OVERVIEW             6
+
+
+
+
+1. Effects and Mixer Section: This part of the controller enables direct control of two FX units on
+   the left and right side. Each side has a dedicated FX display for direct visual feedback, assign
+   buttons to assign effects to decks, as well as four buttons and knobs for effect manipulation.
+   The Mode display at the center represents information on the current mode, and the button
+   above switches between them. In mixer mode, this section turns into a dedicated mixer with
+   EQ and volume control. Traktor Pro Plus subscribers can also use this section to control the
+   Pattern Player. For more information refer to Effect Control, Using the Pattern Player, and
+   Mixer Control.
+2. Loop and Browse Section: This section enables setting loops, changing their length and
+   position, and browsing Traktor's track collection. A dedicated display for each deck shows
+   important information including loop status and remaining track time. The SHIFT button
+   combines with many controls to access secondary functions across the device. For more
+   information refer to Loop and Browse Section.
+3. Hotcue Buttons: Four versatile buttons by default enable setting and jumping to Hotcues.
+   These buttons can be customized for various functions in the Preferences of the Traktor Pro
+   software. For more information refer to Hotcues and Customizing the Controller.
+4. Transport Section: Dedicated Cue, Start, Stop, and Sync buttons are found in the lowest part of
+   the device. For more information refer to Transport Control.
+
+
+The Rear Panel
+The rear panel connects the controller to the computer and includes a powered USB hub.
+
+
+
+
+1. USB Host Connector: Connect the controller to the computer via this socket using the included
+   USB cable. The controller itself is USB powered and will work with only this connection.
+2. USB Hub Inputs: Connect other USB devices. Note that the hub will only function correctly
+   when the included power supply is connected.
+3. Power Supply Input: Connect the included power supply to this socket. This enables the USB
+   hub and allows for brighter lit controls.
+
+
+The Bottom Panel
+The bottom panel of the controller features independent LED lights on both the left and right side,
+providing further visual feedback for each deck. By default, a green light is activated if a loop is
+active. A blinking red light indicates a track is nearing its end. This can be turned on or off in the
+Preferences of the Traktor Pro software. For more information refer to Customizing the Controller.
+                                                                             EFFECT CONTROL          7
+
+
+
+
+5. Effect Control
+The X1 MK3 is designed to maximize the creative potential of Traktor Pro's powerful effects. They
+can be controlled using the top half of the controller. The left and right side are identical and allow
+for direct access to two FX units that can either hold a single effect, a group of up to three effects,
+or the Pattern Player (only available in Traktor Pro Plus). Each FX unit can be assigned to a deck
+using the arrow buttons at the top.
+
+
+         The color of various buttons can be customized in the Preferences of the Traktor Pro
+         software. Here we will always describe their default color. For more information refer
+         to Customizing the Controller
+
+
+The X1 MK3's effects section contains the following controls:
+
+
+
+
+1. Mode Select Button: Cycle through various modes including FX units 1 & 2, 3 & 4, and Mixer
+   mode. Holding SHIFT while pressing this button puts the controller in MIDI mode. The active
+   mode is shown in the display right below the button.
+2. Deck Assign Buttons: Assigns the FX unit to a deck. Pressing the left arrow assigns the FX unit
+   to the left deck. Pressing the right arrow assigns the FX unit to the right deck. If four FX units
+   are configured in your layout, you can assign FX units 3 and 4 by holding SHIFT and pressing
+   the assign buttons. When a unit has been assigned, the arrow will light up in a bright orange
+   color and stay lit. To remove a unit from a deck, press the corresponding arrow button again.
+   The light will go back to a dimmed state.
+                                                                            EFFECT CONTROL          8
+
+
+
+
+3. FX and Mode Displays: These three displays give visual feedback depending on the mode and
+   effect loaded. The central Mode display shows the current mode while each FX display on
+   either side visualizes key values of the corresponding FX unit. Turning a knob below will result
+   in the corresponding left or right FX display to immediately show the name of active effect
+   or effect parameter as well as its value. Turning a knob that is not assigned will result in the
+   screen showing empty.
+4. Knobs and Buttons: These knobs and buttons enable controlling Traktor Pro's effects. Their
+   functions depend on whether a single effect or an effect group is loaded. In both cases the first
+   knob from the top controls the Dry/Wet parameter of the FX unit.
+    •   Single Effect: The topmost button switches the effect on or off and provides visual
+        feedback by lighting up when active. The topmost knob blends between the dry and wet
+        signal. Subsequent buttons and knobs change their function depending on which effect
+        is loaded. Refer to the Traktor Pro 3 Manual for more information. Note that the buttons
+        behave differently depending on the parameter. For example, when using the delay effect,
+        the second button from the top can be clicked to bring the filter cutoff to its default value,
+        while the third button can be used to switch delay feedback on or off.
+    •   Effect Group: The topmost button is not assigned. The topmost knob blends between the
+        dry and wet signal. Each subsequent button turns the respective effect on or off while each
+        subsequent knob controls a main parameter of each effect. The parameters are described
+        in detail in the Traktor Pro 3 Manual.
+    •   Pattern Player: The various functions of the Pattern Player are described in Using the
+        Pattern Player.
+
+
+
+Loading Effects
+The X1 MK3 enables you to load and switch effects from the hardware itself. You can either load
+a single effect in the FX unit, enabling fine adjustments of its parameters, or a group of up to three
+effects where each effect has one main controllable parameter.
+Loading a Single Effect
+Loading effects is done via the effects section at the top of the controller. The workflow is the
+same for the left and right FX unit. For the following description we will number the four buttons of
+a FX unit from top to bottom starting with 1.
+1. Make sure your FX unit is configured to hold a single effect. To change this, press and hold
+   SHIFT and press button 1 to cycle through the different possible unit assignments: Single
+   effect, effect group, and Pattern Player (available to Traktor Pro Plus subscribers). The display
+   above button 1 will show the current configuration.
+2. Press and hold the SHIFT button on the controller. Button 2 and 3 now function as up and down
+   arrows respectively and allow you to cycle through the available effects.
+3. When the desired effect appears on the display, release SHIFT.
+
+→ The effect is loaded in the FX unit.
+Loading Effects in an Effect Group
+Loading effects is done via the effects section at the top of the controller. The workflow is the
+same for the left and right FX unit. For the following description we will number the four buttons of
+a FX unit from top to bottom starting with 1.
+1. Make sure your FX unit is configured as an effect group. To change this, press and hold SHIFT
+   and press button 1 to cycle through the different possible unit assignments: Single effect, effect
+   group, and Pattern Player (available to Traktor Pro Plus subscribers). The screen above button 1
+   will show the current configuration.
+                                                                                                 EFFECT CONTROL          9
+
+
+
+
+2. Press and hold SHIFT. Button 2, 3, and 4 now each represent one available slot in the effect
+   group.
+3. Push one of the three buttons to cycle through the available effects in that slot. The FX unit in
+   the Traktor software shows which effect is currently loaded.
+4. Repeat step three for each effect slot until you are satisfied with the selection.
+
+→ Effects are loaded in the effect group.
+
+
+Picking up parameter values with knobs
+The X1 MK3 allows you to control multiple effects, the mixer EQs, and much more using a limited
+number of knobs simultaneously. This can lead to situations in which you switch to a new effect,
+but the knob is already turned to a certain value in the software. In these cases, the knob will not
+force the new effect to jump to its current value. Instead, the X1 MK3's top displays will give you
+a visual indication of where the new effect parameter value is via two up or down arrows next to
+the parameter name. Down arrows mean that this specific knob needs to be turned to the counter
+clockwise before it will pick up the new value and start changing the parameter. Up arrows require
+turning the knob clockwise.
+
+
+
+
+The display of an FX unit indicating that a knob needs to be turned clockwise to start manipulating the loaded filter.
+                                                            USING THE PATTERN PLAYER            10
+
+
+
+
+6. Using the Pattern Player
+Traktor Pro Plus subscribers can control the Pattern Player using the X1 MK3. The Pattern Player
+is a powerful creative tool that allows you to play various rhythmic patterns from many different
+drum samples. Samples are organized in kits which can be loaded directly from the device.
+The Pattern Player can be controlled from the X1 MK3 using the following controls:
+
+
+
+
+1. Deck Assign Buttons: Assign the Pattern Player loaded in this FX unit to a deck by pressing
+   the arrow buttons. When the Pattern Player is assigned to a deck, the arrow button will light up
+   in bright orange and stay lit. To remove the assignment simply press the button again. Traktor
+   Pro treats the Pattern Player like any other FX unit, meaning assigning it to a deck does not
+   replace the deck itself but rather plays on top of it.
+2. Display: Shows the name of the loaded kit at the top, the name of the current sample in the
+   middle, and a representation of the current pattern at the bottom.
+3. Button: Activates the Pattern Player. The button will light up in bright green when a pattern is
+   playing. Pressing it again will deactivate it.
+   Knob: Controls the volume of the pattern. Turning it clockwise increases the volume, while
+   turning it counterclockwise decreases it.
+4. Button: Loads the previous sample. Holding SHIFT while pressing this button loads the
+   previous kit.
+   Knob: Cycles through the various patterns available for this sample.
+5. Button: Loads the next sample. Holding SHIFT while pressing this button loads the next kit.
+   Knob: Controls the pitch of the current sample. Turning it clockwise increases pitch, while
+   turning it counterclockwise decreases it.
+                                                           USING THE PATTERN PLAYER           11
+
+
+
+
+6. Button: Toggles ducking on or off. When on, ducking slightly attenuates the volume of the deck
+   the Pattern Player is assigned to when a sample is played back. The amount of attenuation
+   depends on the volume of the sample as well as the decay of its volume envelope.
+   Knob: Controls the decay of volume envelope of the sample. Turning this knob clockwise
+   increases the decay of the sample. Turning it counterclockwise decreases it.
+                                                                                MIXER CONTROL         12
+
+
+
+
+7. Mixer Control
+The X1 MK3 can be switched to mixer mode in order to control Traktor Pro's mixer using the
+effects section at the top of the device.
+The mixer includes the following controls:
+
+
+
+
+1. Mode Select Button: Press this button to enter mixer mode. If four FX units are configured in
+   your layout you might have to press this button repeatedly until the central Mode display at the
+   top shows MIXER.
+2. Displays: Each deck on the left and right has a dedicated display that shows the value of
+   the control that was last changed using one of the knobs below. Additionally, the headphone
+   icon turns on when Cue is active. The central display includes a volume meter as well as a
+   representation of which decks are active. Active decks are represented by their corresponding
+   letter (A, B, C, or D) in black on a white background, while inactive decks are represented by a
+   white letter on black background.
+3. Hi: The first button and knob controls the high band of Traktor Pro's equalizer. Turning the knob
+   clockwise boosts high frequencies of that deck, while turning it counterclockwise will attenuate
+   high frequencies. Pressing the button activates a high cut filter. The button lights up in bright
+   blue and stays lit while the high-cut is active. Pressing the button again deactivates the filter.
+4. Mid: The second button and knob controls the middle band of Traktor Pro's equalizer. Turning
+   the knob clockwise boosts middle frequencies of that deck, while turning it counter clockwise
+   attenuates middle frequenies. Pressing the button activates a mid-cut filter. The button lights
+   up in bright blue and stays lit while the mid-cut is active. Pressing it again deactivates the filter.
+5. Lo: The third button and knob controls the low band of Traktor Pro's equalizer. Turning the knob
+   clockwise boosts low frequencies of that deck, while turning it counter clockwise attenuates
+   low frequencies. Pressing the button activates a low-cut filter. The button lights up in bright
+   blue and stays lit while the low-cut is active. Pressing it again deactivates the filter.
+6. Cue and Volume: The last button activates the Cue functionality, allowing you to listen to a
+   track through your headphones. The last knob controls the volume of the track.
+                                                                          MIXER CONTROL        13
+
+
+
+
+Transport Control
+The transport section of the X1 MK3 includes controls for playing and navigating tracks in Traktor
+Pro.
+
+
+
+
+1. Nudge Arrows: These two arrow buttons allow you to gently nudge your track. Pressing the left
+   arrow slightly slows the track down while pressing the right arrow speeds it up.
+2. REV: Pressing and holding this button triggers reverse playback, during which Traktor's Flux
+   mode is active. Pressing SHIFT and REV toggles Flux mode on for this deck. This is indicated
+   by the button being lit when holding SHIFT. Pressing SHIFT and REV again turns Flux mode
+   off.
+3. CUE: Triggers the temporary cue point. When a track is paused, pressing CUE will set the
+   temporary cue point at the current position. Pressing CUE while a track is playing jumps to the
+   cue point position and stops playback. Pressing and holding CUE plays the track from the cue
+   point. Upon release the track jumps back to the cue point position and stops playing. Pressing
+   SHIFT and CUE resets the playback position to the start.
+4. PLAY: Starts and stops tracks. When a track is playing, the PLAY button lights up in bright
+   green.
+5. SYNC: Switches sync on or off for the respective deck. When sync is active, the button lights
+   up blue. When sync is active but the track is playing out of phase with the other deck, it
+   lights up red. Pressing SHIFT and SYNC sets the corresponding deck to master. Pressing and
+   holding SYNC while turning the loop encoder changes the tempo of the track. If you also press
+   the loop encoder during this interaction, the tempo changes in larger increments.
+
+
+Loop and Browse Section
+The loop and browse section enables loading and navigating tracks as well as various looping
+functions. The SHIFT button can also be found here, which unlocks many secondary functions
+across the device.
+The Loop and Browse section includes the following controls:
+                                                                             MIXER CONTROL         14
+
+
+
+
+1. Deck Displays: The deck displays provide essential information about their respective track
+   deck. At the top they display the current track name, below the remaining time of a given track,
+   and at the bottom a progress bar indicating the current track position. On the right side of
+   the display, the number at the top represents the loop length, and the letter at the bottom the
+   current deck. When a loop is active or a track is playing, the background of the loop length and
+   track indicator turns white. If a deck is configured as live input, the display will just show Live
+   Input.
+2. Browse Encoder: Browse and load tracks using this encoder. Turning it navigates the track list.
+   Pressing it loads the selected track into the corresponding deck. Holding SHIFT while turning
+   navigates the file tree and pressing while holding SHIFT opens folders in the tree.
+3. Loop Indicator LED: This icon lights up when a loop is active.
+4. Loop Encoder: Turning this encoder changes the loop length. Pressing it activates the loop.
+   Pressing it again deactivates the loop. Holding SHIFT while turning the encoder will jump
+   through the track using the current loop length as increment. Doing this while a loop is active
+   also moves the loop.
+5. SHIFT Button: The SHIFT button unlocks many secondary functions across the controller.
+   These are explained in the respective control description.
+
+
+Hotcues
+Hotcue buttons are used to set and jump to Hotcues. Pressing an unassigned Hotcue button sets
+this Hotcue to the current track position. Pressing it again jumps to that track position. They are
+also highly customizable using the Preferences of the Traktor Pro software. For more information
+on the available options, refer to Customizing the Controller.
+
+
+
+
+Traktor X1 MK3's Hotcue buttons.
+                                                        CUSTOMIZING THE CONTROLLER         15
+
+
+
+
+8. Customizing the Controller
+The X1 MK3 can be customized directly in the Preferences of the Traktor Pro software. Two
+pages are available for customization of the X1 MK3, Color and Main. Traktor X1 MK3 Color
+lets you assign one of 16 colors to various control elements. Traktor X1 MK3 Main changes the
+functionality of certain controls.
+The Traktor X1 MK3 Colors page allows customization of the FX Buttons, Number Buttons,
+Transport Buttons, and the Bottom LEDs. The Global Color Scheme at the top assigns one color
+to all subsequent settings.
+
+
+
+
+The Traktor X1 MK3 Main page include options for changing the functionality of controls.
+The following controls are customizable:
+                                                            CUSTOMIZING THE CONTROLLER                16
+
+
+
+
+•   Browse Encoders: Changes the secondary behavior of the Browse encoders when SHIFT is
+    held down and the encoder is turned. By default this interaction navigates the file tree but can
+    be changed to navigate favorite folders instead.
+•   Loop Encoders: Changes the secondary behavior of the Loop encoders when SHIFT is held
+    down and the encoder is turned. It can be set to change the key of the track in semitones.
+    By default, pressing the encoder while SHIFT is held activates the loop. If the turn interaction
+    is set to key change instead, pressing the encoder while holding SHIFT results in activating/
+    deactivating key lock.
+•   Number Buttons: These buttons are highly flexible and can be mapped to many different
+    interactions. By default they control Hotcues 1 and 2. Other options include up to 8 additional
+    Hotcues, Loop In/Out, Stutter in various beat divisions, and Abs/Rel which toggles absolute or
+    relative mode for timecode vinyls or CDs. These options are also available for the secondary
+    function when holding SHIFT and pressing a button. Additionally, you can set the secondary
+    function to deleting Hotcues.
+    1-2 and 3-4 are grouped together, but their function can differ. This is indicated by a slash (/) in
+    the drop-down menu. For example, setting 1-2 to Loop In/Out configures button 1 as loop start
+    and button 2 as loop end.
+•   Nudge Buttons: Both the primary and secondary behavior of these buttons can be customized
+    to either nudge tracks or jump through them. When set to jump you can also set a fixed jump
+    interval or tie it to loop length.
+•   Displays: Changes which information about the track is shown on the deck displays. Options
+    include remaining time, elapsed time, and loop length.
+•   Global: Restore the default settings of the controller here. Pressing this will require you to select
+    a deck and effects layout again.
+

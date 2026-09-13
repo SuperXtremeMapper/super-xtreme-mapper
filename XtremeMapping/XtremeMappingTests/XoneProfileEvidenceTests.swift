@@ -96,9 +96,9 @@ final class XoneProfileEvidenceTests: XCTestCase {
         try XCTUnwrap(profile.controls.first { $0.id == id }, "Missing \(id)")
     }
     private func sendNumbers(_ profile: ControllerProfile, _ id: String) throws -> [Int] {
-        try control(profile, id).bindings.filter { $0.direction == .send }.map(\.number)
+        try control(profile, id).bindings.filter { $0.direction == .send }.map { try XCTUnwrap($0.number) }
     }
     private func receiveNumbers(_ profile: ControllerProfile, _ id: String) throws -> [Int] {
-        try control(profile, id).bindings.filter { $0.direction == .receive }.map(\.number)
+        try control(profile, id).bindings.filter { $0.direction == .receive }.map { try XCTUnwrap($0.number) }
     }
 }

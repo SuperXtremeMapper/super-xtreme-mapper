@@ -1,0 +1,221 @@
+          CDJ-3000X
+          MIDI Message List
+
+
+
+
+                                                  30        31
+
+
+
+                                                       29
+
+
+
+                    35                            32        33
+26
+
+27
+
+34                                                     12
+
+
+19   20                       21   22        23             11
+
+
+18
+                                        10        8         9
+17
+                                                            7
+
+15
+                                                       6
+16
+
+                                                       5
+14                                       2
+
+
+13
+
+
+
+                1
+                                              4        3
+25
+
+
+
+
+24
+36
+
+
+
+
+28
+
+
+
+
+37
+
+
+
+
+     39   40   38
+As a reference for MIDI assign, MIDI messages sent from buttons and knobs of this unit are listed in decimal numbers.
+
+
+0x9* :Note
+0xB* :Control Change（CC）
+
+
+NOTE is a term used for MIDI to express that a key of a keyboard or a piano is pressed or your finger is released from it.
+CC is an abbreviation of "Control Change". Control Change is a kind of MIDI message used to communicate many kinds
+of control information such as sound quality and volume level.
+n is MIDI channel (1 - 16) set in UTILITY Midi Channel.
+
+                                                User Interface                                          MIDI-IN
+
+  Group            Fig.                                                                                                                                           Detail of Data2
+                                                                             NOTE /   Status           Data1                 Data 2
+                                          UI name                Operation
+                                                                              CC
+                                                                                      (HEX)    (DEC)              (HEX)      (HEX)
+PLAYER                                                                                                                                A linear value corresponding to the speed, from stop to 4X: 64 when
+                                          Jog dial                Rotate      CC       Bn        16                10         hh      stopped, 65(0.06X) - 127(4X) in the forward direction, 63(0.06X) -
+                    1
+                                          (Platter)                                                                                   0(4X) in the reverse direction.
+                                                                  Touch      NOTE      9n        23                17         hh      OFF=0(0x00), ON=127(0x7F)
+                                                                                                                                      A linear value corresponding to the speed from 0.5X to 4X: 64 when
+                                          Jog Dial
+                    2                                             Rotate      CC       Bn        48                30         hh      stopped, 65(0.5X) to 127(4X) in the forward direction, 63(0.5X) to
+                                        (Wheel side)
+                                                                                                                                      0(4X) in the reverse direction.
+                    3                     TEMPO                    Slide      CC       Bn        29                1D         hh      0 - 127, 0 on the - side, 127 on the + side.
+                    4                  TEMPO RESET                Press      NOTE      9n        9                  9         hh      OFF=0(0x00), ON=127(0x7F)
+                    5                 MASTER TEMPO                Press      NOTE      9n        11                B          hh      OFF=0(0x00), ON=127(0x7F)
+                    6                  TEMPO RANGE                Press      NOTE      9n        10                A          hh      OFF=0(0x00), ON=127(0x7F)
+                    7                    KEY SYNC                 Press      NOTE      9n        72                48         hh      OFF=0(0x00), ON=127(0x7F)
+                    8                      SYNC                   Press      NOTE      9n        22                16         hh      OFF=0(0x00), ON=127(0x7F)
+                    9                     MASTER                  Press      NOTE      9n        21                15         hh      OFF=0(0x00), ON=127(0x7F)
+                   10                   JOG ADJUST                Rotate                                                              ( Hardware Control )
+                   11                    JOG MODE                 Press      NOTE      9n        12                C          hh      OFF=0(0x00), ON=127(0x7F)
+                   12              VINYL SPEED ADJUST Vo          Rotate      CC       Bn        30                1E         hh      0 - 127, 0(min.) on the left side, 127(max.) on the right side.
+                                       SEARCH FWD                 Press      NOTE      9n        2                  2         hh      OFF=0(0x00), ON=127(0x7F)
+                   13
+                                       SEARCH REV                 Press      NOTE      9n        3                  3         hh      OFF=0(0x00), ON=127(0x7F)
+                                    TRACK SEARCH FWD              Press      NOTE      9n        4                  4         hh      OFF=0(0x00), ON=127(0x7F)
+                   14
+                                    TRACK SEARCH REV              Press      NOTE      9n        5                  5         hh      OFF=0(0x00), ON=127(0x7F)
+                   15                  SLIP REVERSE               Press      NOTE      9n        24                18         hh      OFF=0(0x00), ON=127(0x7F)
+                   16                    REVERSE                  Press      NOTE      9n        25                19         hh      OFF=0(0x00), ON=127(0x7F)
+                                      BEAT JUMP FWD               Press      NOTE      9n        54                36         hh      OFF=0(0x00), ON=127(0x7F)
+                   17
+                                      BEAT JUMP REV               Press      NOTE      9n        55                37         hh      OFF=0(0x00), ON=127(0x7F)
+                                          4 BEAT                  Press      NOTE      9n        44                2C         hh      OFF=0(0x00), ON=127(0x7F)
+                   18
+                                          8 BEAT                  Press      NOTE      9n        45                2D         hh      OFF=0(0x00), ON=127(0x7F)
+                                          LOOP IN                 Press      NOTE      9n        35                23         hh      OFF=0(0x00), ON=127(0x7F)
+                   19
+                                         LOOP OUT                 Press      NOTE      9n        36                24         hh      OFF=0(0x00), ON=127(0x7F)
+                   20                  RELOOP/EXIT                Press      NOTE      9n        37                25         hh      OFF=0(0x00), ON=127(0x7F)
+                                    CUE/LOOP CALL NEXT            Press      NOTE      9n        14                E          hh      OFF=0(0x00), ON=127(0x7F)
+                   21
+                                    CUE/LOOP CALL PREV            Press      NOTE      9n        15                 F         hh      OFF=0(0x00), ON=127(0x7F)
+                   22                CUE/LOOP DELETE              Press      NOTE      9n        16                10         hh      OFF=0(0x00), ON=127(0x7F)
+                   23                CUE/LOOP MEMORY              Press      NOTE      9n        13                D          hh      OFF=0(0x00), ON=127(0x7F)
+                   24                   PLAY/PAUSE                Press      NOTE      9n        0                  0         hh      OFF=0(0x00), ON=127(0x7F)
+                   25                       CUE                   Press      NOTE      9n        1                  1         hh      OFF=0(0x00), ON=127(0x7F)
+                   26                    QUANTIZE                 Press      NOTE      9n        6                  6         hh      OFF=0(0x00), ON=127(0x7F)
+                   27                       SLIP                  Press      NOTE      9n        7                  7         hh      OFF=0(0x00), ON=127(0x7F)
+                                  NEEDLE POSITION (Overall
+                   28                                             Press       CC       Bn        28                1C         hh      OFF=0(0x00), 1 to 127 position data from left to right side.
+                                        waveform)
+BROWSER                                                                                                                               Count value difference from previous operation
+                                                                                                                                      Turn clockwise: 1~30 (0x01~0x1E)
+                                                                  Rotate      CC       Bn        79                4F         hh
+                   29                ROTARY SELECTOR                                                                                  Turn counterclockwise: 127~98 (0x7F~0x62)
+                                                                                                                                      When over ±30, set at ±30
+                                                                  Press      NOTE      9n        17                11         hh      OFF=0(0x00), ON=127(0x7F)
+                   30                      BACK                   Press      NOTE      9n        18                12         hh      OFF=0(0x00), ON=127(0x7F)
+                   31               TAG TRACK/REMOVE              Press      NOTE      9n        19                13         hh      OFF=0(0x00), ON=127(0x7F)
+                   32                  TRACK FILTER               Press      NOTE      9n        20                14         hh      OFF=0(0x00), ON=127(0x7F)
+                   33                   SHORT CUT                 Press                                                               ( Hardware Control )
+                                  User Interface                                        MIDI-IN
+
+   Group      Fig.                                                                                                                     Detail of Data2
+                                                               NOTE /   Status         Data1           Data 2
+                             UI name               Operation
+                                                                CC
+PERFOR-        34      HOT CUE CALL/DELETE          Press      NOTE      9n      26               1A    hh      OFF=0(0x00), ON=127(0x7F)
+MANCE
+                            HOT CUE A               Press      NOTE      9n      27               1B    hh      OFF=0(0x00), ON=127(0x7F)
+(Hardware)
+                            HOT CUE B               Press      NOTE      9n      28               1C    hh      OFF=0(0x00), ON=127(0x7F)
+                           HOT CUE C                Press      NOTE      9n      29               1D    hh      OFF=0(0x00), ON=127(0x7F)
+                           HOT CUE D                Press      NOTE      9n      30               1E    hh      OFF=0(0x00), ON=127(0x7F)
+               35
+                            HOT CUE E               Press      NOTE      9n      31               1F    hh      OFF=0(0x00), ON=127(0x7F)
+                            HOT CUE F               Press      NOTE      9n      32               20    hh      OFF=0(0x00), ON=127(0x7F)
+                           HOT CUE G                Press      NOTE      9n      33               21    hh      OFF=0(0x00), ON=127(0x7F)
+                           HOT CUE H                Press      NOTE      9n      34               22    hh      OFF=0(0x00), ON=127(0x7F)
+PERFOR-                                                                               BEAT LOOP
+MANCE
+                          BEAT LOOP 1/4             Press      NOTE      9n      40               28    hh      OFF=0(0x00), ON=127(0x7F)
+(GUI)
+                          BEAT LOOP 1/2             Press      NOTE      9n      41               29    hh      OFF=0(0x00), ON=127(0x7F)
+                           BEAT LOOP 1              Press      NOTE      9n      42               2A    hh      OFF=0(0x00), ON=127(0x7F)
+                           BEAT LOOP 2              Press      NOTE      9n      43               2B    hh      OFF=0(0x00), ON=127(0x7F)
+                           BEAT LOOP 4              Press      NOTE      9n      44               2C    hh      OFF=0(0x00), ON=127(0x7F)
+                           BEAT LOOP 8              Press      NOTE      9n      45               2D    hh      OFF=0(0x00), ON=127(0x7F)
+                          BEAT LOOP 16              Press      NOTE      9n      46               2E    hh      OFF=0(0x00), ON=127(0x7F)
+                          BEAT LOOP 32              Press      NOTE      9n      47               2F    hh      OFF=0(0x00), ON=127(0x7F)
+               36
+                          BEAT LOOP 3/4             Press      NOTE      9n      49               31    hh      OFF=0(0x00), ON=127(0x7F)
+                           BEAT LOOP 1              Press      NOTE      9n      42               2A    hh      OFF=0(0x00), ON=127(0x7F)
+                          BEAT LOOP 3/2             Press      NOTE      9n      76               4C    hh      OFF=0(0x00), ON=127(0x7F)
+                           BEAT LOOP 3              Press      NOTE      9n      50               32    hh      OFF=0(0x00), ON=127(0x7F)
+                           BEAT LOOP 5              Press      NOTE      9n      77               4D    hh      OFF=0(0x00), ON=127(0x7F)
+                           BEAT LOOP 6              Press      NOTE      9n      51               33    hh      OFF=0(0x00), ON=127(0x7F)
+                           BEAT LOOP 7              Press      NOTE      9n      78               4E    hh      OFF=0(0x00), ON=127(0x7F)
+                           BEAT LOOP 9              Press      NOTE      9n      52               34    hh      OFF=0(0x00), ON=127(0x7F)
+                                                                                      SLIP LOOP
+                          SLIP LOOP 1/16            Press      NOTE      9n      38               26    hh      OFF=0(0x00), ON=127(0x7F)
+                          SLIP LOOP 1/8             Press      NOTE      9n      39               27    hh      OFF=0(0x00), ON=127(0x7F)
+                          SLIP LOOP 1/4             Press      NOTE      9n      40               28    hh      OFF=0(0x00), ON=127(0x7F)
+                          SLIP LOOP 1/2             Press      NOTE      9n      41               29    hh      OFF=0(0x00), ON=127(0x7F)
+             27 + 36
+                           SLIP LOOP 1              Press      NOTE      9n      42               2A    hh      OFF=0(0x00), ON=127(0x7F)
+                           SLIP LOOP 2              Press      NOTE      9n      43               2B    hh      OFF=0(0x00), ON=127(0x7F)
+                          SLIP LOOP 1/3             Press      NOTE      9n      48               30    hh      OFF=0(0x00), ON=127(0x7F)
+                          SLIP LOOP 3/4             Press      NOTE      9n      49               31    hh      OFF=0(0x00), ON=127(0x7F)
+                                                                                      BEAT JUMP
+                       BEAT JUMP FWD（1/2）           Press      NOTE      9n      56               38    hh      OFF=0(0x00), ON=127(0x7F)
+                       BEAT JUMP REV（1/2）           Press      NOTE      9n      57               39    hh      OFF=0(0x00), ON=127(0x7F)
+                       BEAT JUMP FWD（1）             Press      NOTE      9n      58               3A    hh      OFF=0(0x00), ON=127(0x7F)
+                       BEAT JUMP REV（1）             Press      NOTE      9n      59               3B    hh      OFF=0(0x00), ON=127(0x7F)
+                       BEAT JUMP FWD（2）             Press      NOTE      9n      60               3C    hh      OFF=0(0x00), ON=127(0x7F)
+                       BEAT JUMP REV（2）             Press      NOTE      9n      61               3D    hh      OFF=0(0x00), ON=127(0x7F)
+                       BEAT JUMP FWD（4）             Press      NOTE      9n      62               3E    hh      OFF=0(0x00), ON=127(0x7F)
+                       BEAT JUMP REV（4）             Press      NOTE      9n      63               3F    hh      OFF=0(0x00), ON=127(0x7F)
+               37
+                       BEAT JUMP FWD（8）             Press      NOTE      9n      64               40    hh      OFF=0(0x00), ON=127(0x7F)
+                       BEAT JUMP REV（8）             Press      NOTE      9n      65               41    hh      OFF=0(0x00), ON=127(0x7F)
+                       BEAT JUMP FWD（16）            Press      NOTE      9n      66               42    hh      OFF=0(0x00), ON=127(0x7F)
+                       BEAT JUMP REV（16）            Press      NOTE      9n      67               43    hh      OFF=0(0x00), ON=127(0x7F)
+                       BEAT JUMP FWD（32）            Press      NOTE      9n      68               44    hh      OFF=0(0x00), ON=127(0x7F)
+                       BEAT JUMP REV（32）            Press      NOTE      9n      69               45    hh      OFF=0(0x00), ON=127(0x7F)
+                       BEAT JUMP FWD（64）            Press      NOTE      9n      70               46    hh      OFF=0(0x00), ON=127(0x7F)
+                       BEAT JUMP REV（64）            Press      NOTE      9n      71               47    hh      OFF=0(0x00), ON=127(0x7F)
+                                                                                      KEY SHIFT
+               38          KEY SHIFT +1             Press      NOTE      9n      73               49    hh      OFF=0(0x00), ON=127(0x7F)
+               39          KEY SHIFT -1             Press      NOTE      9n      74               4A    hh      OFF=0(0x00), ON=127(0x7F)
+               40          KEY RESET                Press      NOTE      9n      75               4B    hh      OFF=0(0x00), ON=127(0x7F)
+
+
+
+
+                                                                                                                Copyright © 2025 AlphaTheta Corporation. All rights reserved.
+

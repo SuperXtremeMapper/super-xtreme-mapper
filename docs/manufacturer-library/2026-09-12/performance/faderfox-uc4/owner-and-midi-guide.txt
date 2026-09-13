@@ -1,0 +1,502 @@
+--- PDF PAGE 1 ---
+micromodul UC4
+
+
+
+
+
+     User manual
+--- PDF PAGE 2 ---
+Provision of guarantee and product liability
+
+The seller warrants for faultless material and proper manufacture for a period of 24 months from the date of
+sale to the end user.
+Excluded from the stated guarantee are defects on parts as the result of normal wear-and-tear. These parts are
+mostly faders (sliding guides), potentiometers, encoders, buttons, switches and touchpads.
+Also excluded from the guarantee are damages that are the result of :
+incorrect or inappropriate handling, excessive force, mechanical or chemical influences, incorrectly
+connecting the instrument with other instruments, incorrect or inappropriate use.
+The warranty is void if the instrument is opened or changed. In addition, there is no warranty for individual
+parts and components (in particular, semiconductors) and disposables/ consumables. The seller is not liable
+for consequential damages which are not the result of criminal intent or negligence on his part. The following
+conditions must be met in order to claim the warranty services:
+- Instrument is either in its original packaging or similar packaging.
+- Copy of the invoice with the serial number clearly visible.
+- Meaningful error report or description of the error is attached.
+The buyer assumes all costs and dangers of return shipments to the manufacturer. Since the user’s manual
+which is included with each instrument also affects the warranty conditions (especially regarding safety
+issues), it is absolutely essential that you read through and follow all instructions.
+
+
+
+Safety precautions and servicing
+
+- Instrument's intended use is based on the functions and procedures contained in this manual
+- Read all instructions for use as well as all enclosed literature before using the instrument
+- Use only in closed rooms (not for outdoor use)
+- Never use in a moist or humid environment (laundry rooms, swimming pools, etc, …)
+- Not for use in the vicinity of heat sources (radiators, ovens, etc, …)
+- Operational temperature is in the range of 0° - + 40° C
+- Not for use in the vicinity of flammable material
+- The instrument should not be in direct or prolonged contact with sunlight
+- Dusty environmental conditions should be avoided
+- Connect only to USB ports of computers or hubs
+- No foreign objects are permitted inside the instrument casing
+- No liquids should get inside the instrument casing
+- Never let the instrument fall to the ground (casing and/or control elements may be damaged)
+
+If the instrument must be opened (for example, to remove foreign objects from the casing or for other repairs),
+this may only be done by qualified personnel. The USB-cable must be disconnected before opening the
+instrument. Guarantee is void for defects that occur if the instrument was opened by an unauthorised or
+unqualified person.
+Use a soft towel or brush to clean the instrument. Please do not use any cleaning liquids or water, so you avoid
+any damages to the instrument.
+--- PDF PAGE 3 ---
+Package contents
+
+- Device
+- USB cable (with angle plug)
+- Midi adapter cable (with angled 3.5mm jack plug)
+- Manual / Quick start guide
+--- PDF PAGE 4 ---
+Introduction
+
+
+Thank you for choosing a Faderfox controller. These probably world’s smallest controllers are designed for
+live use on stage. All Faderfox controllers are professionally hand crafted in Germany ensuring high
+quality. The 4th generation brings a lot of new features like additional MIDI connections, black faceplates
+and updatable firmware.
+
+UC4 as successor of the UC3 is a universal controller for all kinds of midi controllable hard- and
+software.
+The all-rounder has 8 push-encoders without detents, 9 faders and 8 buttons, all switchable to 8 controller
+groups that allow to control a total amount of 264 control parameters. A 4-digit-display and 8 LEDs show
+the current values of all controls.
+Various kinds of midi commands like program change, pitchbend, aftertouch and control change in relative
+and absolute mode with  different acceleration amounts are possible. All these properties are  fully
+programmable on the devices very fast and easy for each control separately.
+The encoders can work as high resolution 14bit controllers too (control change or pitchbend) which makes
+them suitable for sensitive parameters like resonating filter cutoffs or similar things.
+Use the internal 18 setups to save your individual settings. Backup and restore of all settings by sysex
+dumps are possible too.
+
+The factory settings are perfect to control music and video software products out of the box if they
+are freely assignable. So any additional device programming isn’t necessary for many applications.
+
+The little box is also a great extension for your Ableton Live setup. There you can control all the
+continuous parameters like track volumes, rack macros, send amounts, track pannings and switchable
+parameters like clip launch/stop, mute, solo, rec arm, monitor and track select. A special control surface
+script for Ableton Live 8/9 with all necessary mappings is enclosed in the package. With that script you can
+also use two UC4 devices to control up to 16 tracks simultaneously.
+
+Check out this amazing power box and you will get a reliable mate...
+
+
+
+
+Extensions to UC3:
+
+-  Midi in/out ports
+-  8 additional Buttons
+-   editable group names
+-   min/max-values
+-  programmable encoder push buttons
+-   fader snap mode
+-  more precise encoders
+-   various software improvements
+--- PDF PAGE 5 ---
+Features
+
+
+-   Universal controller for all kinds of midi controllable hard- and software
+
+-  iPad compatible with camera connection kit
+
+-  Control surface script for Live 8/9 is shipped with the controller
+
+-  USB interface with bus powering - class compliant / no driver necessary (consumption < 500mW)
+
+-  MIDI in and out ports with routing and merge functionality
+
+-  8 push encoders without detents (resolution about 36 pulses)
+
+-  Encoder push buttons can send commands (fully programmable)
+
+-  8 buttons with LED for switchable parameters
+
+-   4-digit-display to show control values and programming data
+
+-  14 bit high resolution encoder mode for sensitive parameters
+
+-  Programmable value ranges with min/max values
+
+-  Data feedback for encoders and faders avoid value jumps
+
+-   All controls (incl. push buttons) fully programmable in the device by channel, type, number and mode
+
+-   Different command types like control change (CC), pitch bend, aftertouch, program change and notes
+
+-  Advanced programming functions like copy, paste and group sets
+
+-  8 independent groups for encoders and faders/buttons (controlled by shift key)
+
+-  About 264 commands per setup (33 controls x 8 groups)
+
+-  18 setups with backup/restore function contain all controller settings
+
+-  Very compact design in a black casing ( 180x105x70 mm, 350 g)
+
+
+System requirements
+
+
+-  PC or Mac with a free USB port (1.0 or higher) or any USB hub (connection by inclosed USB cable)
+
+-  iPad with iOS5 or higher (connection by apples camera connection kit)
+
+-  MIDI device with standard midi in port (5pin DIN socket connection by enclosed adapter cable)
+
+-  USB power adapter (5V min 100mA) if you want to control only midi gear
+--- PDF PAGE 6 ---
+Controller mode
+
+
+Controller mode is the basic mode of the UC4. Here the encoders, faders and buttons are used to control
+any parameters in your soft- or/and hardware by standard midi commands like CC and notes.
+
+First choose the encoder group by holding shift key and press one of the 8 encoders. The display shows the
+group name: GrP1....GrP8 Pay attention that you can edit the group names in edit mode for each setup
+separately.
+
+Turning and pushing of the encoders can send different commands which you can program in edit mode.
+After turning or pushing any encoder you can see the numerical value in the display too. A programmed
+acceleration gives a better feeling for the encoders so you can go from min to max value easily. Hold any
+shift key while you turn the encoders to have a precise control without acceleration.
+
+You can also select a independent group for the faders and buttons by holding shift key and press the green
+buttons. The green LEDs show the selected group 1 to 8.
+The faders can work in snap or jump mode. In snap mode you have to catch the last value which avoids any
+possible value jumps after feedback data or changing the fader group. Jump mode works like a standard
+controller so the data will be send immediately. Hold shift while you move a fader to swap these modes
+temporarily.
+The green buttons can be programmed to various modes too. So they can work as momentary switch or in
+toggled mode, sending notes, CC, program change or aftertouch commands.
+
+The right point in lower right corner of the display shows incoming midi data. It flashes bright when the
+device receives controller data. Low flashing indicates midi clock or other midi data.
+
+
+Ableton Live mode
+
+The setups 17 and 18 are preconfigured for using with Live 8/9. The display shows special group names for
+the encoder groups (see below).
+setup 17 controls tracks 1 to 8,
+setup 18 controls tracks 9 to 16
+
+Encoder groups:
+
+Snd1       (group 1) controls parameter send 1(A) for 8 tracks
+Snd2       (group 2) controls parameter send 2(B) for 8 tracks
+Snd3       (group 3) controls parameter send 3(C) for 8 tracks
+Snd4       (group 4) controls parameter send 4(D) for 8 tracks
+trAC       (group 5) controls various parameters of the selected track
+               (tracks below track 16 are available too in this group)
+              -   encoder 1: track send 1(A)
+              -   encoder 2: track send 2(B)
+              -   encoder 3: track send 3(C), push button 3: stop clip
+              -   encoder 4: scene select, push button 4: launch clip
+              -   encoder 5: track select
+              -   encoder 6: crossfader assign
+              -   encoder 7: track pan
+              -   encoder 8: track volume
+RAC         (group 6) Rack control of macros 1 to 8
+              -   encoder 1: macro 1
+              -   encoder 2: macro 2
+              -   encoder 3: macro 3
+--- PDF PAGE 7 ---
+              -   encoder 4: macro 4
+              -   encoder 5: macro 5
+              -   encoder 6: macro 6
+              -   encoder 7: macro 7
+              -   encoder 8: macro 8
+Pan         (group 7) controls panorama for 8 tracks
+GLob       (group 8) Global controls
+              -  encoder 1: tempo coarse, push button 1: nudge down
+              -   encoder 2: tempo fine, push button 2: nudge up
+              -   encoder 3: quantization, push button 3: stop scene
+              -   encoder 4: scene select, push button 4: start scene
+              -   encoder 5: track select, push button 5: global play
+              -   encoder 6: cue volume, push button 6: global stop
+              -   encoder 7: master pan, push button 7: global record
+              -   encoder 8: master volume, push button 8: view arrangement/session
+
+
+Fader/button groups:
+
+Faders control 8 track volumes in all 8 groups (same function in each group).
+
+Buttons:
+group 1     - launch clips (blinking LED = running clip, LED lit = clip available, LED off = no clip)
+group 2     - stop clips (LED lit = stopped clip)
+group 3     - tracks active (LED lit = active track)
+group 4     - tracks solo (LED lit = track in solo)
+group 5     - tracks arm (LED lit = record arm active)
+group 6     - tracks monitor (LED lit = monitor in or auto)
+group 7     - track control (the 8 buttons control following functions of the selected track:
+            1=launch, 2=stop, 3=active, 4=solo, 5=arm, 6=monitor, 7=device view, 8=clip view)
+group 8     - tracks select (LED lit = track is selected)
+--- PDF PAGE 8 ---
+Edit mode
+
+
+The edit mode allows the programming of the controls (encoders, push buttons, faders, green buttons).
+Start edit mode by holding shift key and press edit key. The activated edit mode is indicated by the red
+edit-LED. To leave edit mode please press the edit button again without shift. Press any encoder shortly to
+see the function behind. Setup data will be stored automatically by leaving the edit mode.
+
+To edit any control choose the group (see controller mode), select the control by encoder 1
+and then set different properties by the encoders 2 to 8 (see below).
+
+To copy properties separately to all controls in same group, hold down the encoder push button of encoder
+2,3,4,5,7 or 8 while running bar lines shown. This makes editing much faster if you want to have same
+functions on all controls in same group.
+
+To assign number, channel and type by incoming midi commands (learn mode) please hold down the
+encoder 6 until the left display point flashes and then send any valid command (control change, program
+change, aftertouch, pitch bend or note). The display point will be off after receiving a valid command or
+pushing the encoder 6 again.
+
+Group names can be modified in edit mode by holding shift and turning encoder 1 to 4.
+
+---- 4 lines in the display means that the property isn’t available
+
+Control number (Encoder 1)
+
+Enc1....Enc8  select encoder 1 to 8 for editing
+Pbt1....Pbt8  select encoder push button 1 to 8 for editing
+btn1....btn8  select green button 1 to 8 for editing
+FAd1....Fad9  select Fader 1 to 9 for editing
+
+
+Display scale (Encoder 2)
+
+
+Encoder / fader:
+OFF        no display control
+Std         standard display-control (0 to 127) by the device and by external command
+bPoL        bipolar display-control (-63 to 63) by the device and by external command
+
+Green button:
+OFF        no LED control
+Std         standard LED control by the device and by external command
+EXt      LED control only by external commands
+(external control by feedback data with same commands as corresponding buttons).
+--- PDF PAGE 9 ---
+Command type (Encoder 3)
+
+Encoder types:
+CCr1        control change command in relative mode 1 (values 1/127)
+CCr2        control change command in relative mode 2 (values 63/65)
+CCAb        control change command in 7 bit absolute mode (values 0 to 127) mostly used as standard
+PrGC       program change command (values 0 to 127)
+CCAh       two control change commands (MSB/LSB) in 14 bit highres mode (values 0 to 16383)
+Pbnd        pitch bend command 14 bit (values 0 to 16383)
+AFtt        aftertouch (channel pressure) command 7 bit (values 0 to 127)
+
+Push button / green button types:
+OFF         button sends no command
+notE        note command
+CC           control change command
+PrGC       program change command
+AFtt        aftertouch (channel pressure) command
+                (for all types: upper value = press/on, lower value = release/off)
+Fader types:
+CCAb        control change command in 7 bit absolute mode (values 0 to 127) mostly used as standard
+PrGC       program change command (values 0 to 127)
+Pbnd        pitch bend command 14 bit (values 0 to 16383)
+AFtt        aftertouch (channel pressure) command 7 bit (values 0 to 127)
+
+
+Command mode (Encoder 4)
+
+Encoder modes:
+Acc0       no acceleration by faster turning
+Acc1       low acceleration by faster turning
+Acc2       middle acceleration by faster turning
+Acc3      max acceleration by faster turning
+
+Fader modes:
+SnAP       sends command not before catching the last value by moving the control
+JMP        jump mode, command will be send immediately by moving the control
+
+Push button modes:
+btn         send momentary command (upper value = press, lower value = release)
+toGL       send toggle command (upper value = on, lower value = off)
+
+
+Command channel (Encoder 5)
+
+Ch01....Ch16 choose midi channel 1 to 16
+
+
+Command number (Encoder 6)
+
+n000....n127 choose controller or note number 0 to 127 for note and CC commands
+              0 to 31 (MSB) for high resolution mode (32 to 63 for LSB follows automatically)
+--- PDF PAGE 10 ---
+Lower / upper value (Encoder 7 / 8)
+
+L000....L127 choose lower value (0 to 127) for all command types except relative modes
+U000....U127 choose upper value (0 to 127) for all command types except relative modes
+
+Set same lower and upper value for buttons with program change type to choose only one program change
+number by the button. Set a higher amount in lower value as upper value to have an inverted control.
+--- PDF PAGE 11 ---
+Setup mode
+
+
+The setup mode allows selection of setups and routings. Further you can copy setups and group parts, reset
+setups (factory reset) and send/receive setup data as sysex (backup/restore). Start setup mode by holding
+shift key and press edit key twice. The activated setup mode is indicated by the red setup-LED. To leave
+setup mode please press the edit button again without shift. Press any encoder shortly to see the function
+behind.
+
+To start any copy, paste, reset, send or receive function please hold down the encoder button (encoder 3 to 8)
+while running bar lines shown in the display.
+Setup and routing selection (encoder 1 and 2) works immediately.
+
+
+Setup (Encoder 1)
+
+SE01....SE18  select setup 1 to 18
+Setup 17 and 18 are preconfigured for use with Ableton live 8/9.
+
+
+Routing (Encoder 2)
+
+Rou0       no Midi routing
+Rou1     USB in to Midi out
+Rou2       Midi in to Midi out
+Rou4       Midi in to USB out
+Rou5       Midi in to USB out + USB in to Midi out
+Rou6       Midi in to Midi out + Midi in to USB out
+Routing will be stored automatically by leaving setup mode.
+
+
+Copy/Paste (Encoder 3)
+
+CPYS       copy current setup completely
+CPYn       copy group name of current encoder group
+CPYE       copy encoder properties of current encoder group (not push buttons)
+CPYP       copy encoder push button properties of current encoder group
+CPYF       copy fader properties of current fader/button group
+CPYb       copy button properties of current fader/button group
+The last copies will be available in the copy memory permanently.
+
+PStS        paste to current setup
+PStn        paste group name to current encoder group
+PStE        paste encoder properties to current encoder group (not push buttons)
+PSTP        paste encoder push button properties to current encoder group
+PSTF        paste fader properties to current fader/button group
+PSTb        paste button properties to current fader/button group
+--- PDF PAGE 12 ---
+Send current setup data (Encoder 4)
+
+Sndc       Send selected setup as sysex data via both USB and Midi ports
+
+
+Reset current setup (Encoder 5)
+
+rESc       Reset selected setup to factory data
+
+
+Reset all setups (Encoder 6)
+
+rESA       Reset all setups to factory data
+
+
+Receive setup data (Encoder 7)
+
+rEc          receives setup data for one or all setups
+rc00....rc99 shows the receive progress when receiving data for all setups.
+             Abort is possible by pressing shift key.
+SE..       shows the current setup after successfully receiving and storing of the setup data.
+Err        shows a receive error. Try again by pressing shift and activating receive mode.
+
+Activating receive mode by holding down encoders 7 while running bar lines shown in the display.
+Then send setup data from any sysex dumper software (e.g. Snoize librarian or MidiOX) to the device.
+It’s strictly recommend to avoid sending sysex data to USB and Midi in ports simultaneously!
+The right point in lower right corner of the display shows incoming midi data.
+
+
+Send all setup data (Encoder 8)
+
+SndA       Send all setup data
+Sn00....Sn99 shows the send progress in percent 0 to 99. Abort is possible by pressing shift key.
+SE..       shows the current setup after finished sending of the setup data.
+Data will be send as sysex dump to both USB and Midi ports
+--- PDF PAGE 13 ---
+Factory settings
+
+
+Commands for setups 1 to 16, 17/18 (Ableton live track 1-8/9-16)
+
+Encoder 1-8:
+disp mode = standard, channel = setup number, mode = Acc3, type = absolute 7 bit
+disp mode = standard, mode = Acc3, type = absolute 7 bit
+Group: 1         2         3         4         5         6         7         8
+CC:   008-015    016-023    024-031    032-039    072-079    080-087    088-095    096-103
+CC:   000-007    008-015    016-023    024-031    056-063    048-055    032-039    056-063
+Chan:  13/14      13/14      13/14      13/14      14/14      13/14      13/14      13/13
+
+Push button 1-8:
+channel = setup number, mode = button (momentary), type = note
+mode = button (momentary), type = note
+Group: 1         2         3         4         5         6         7         8
+Note:  000-007    008-015    016-023    024-031    032-039    040-047    048-055    056-063
+Note:   ----            ----            ----            ----        122-123      ----            ----        120-127
+Chan:   ----            ----            ----            ----        14/14         ----            ----        13/13
+
+Green button 1-8:
+disp mode = standard, channel = setup number, mode = button (momentary), type = note
+disp mode = extern, mode = button (momentary), type = note
+Group: 1         2         3         4         5         6         7         8
+Note:  064-071    072-079    080-087    088-095    096-103    104-111    112-119    120-127
+Note:  064-071    072-079    104-111    096-103    080-087    088-095    120-127    056-063
+Chan:  13/14      13/14      13/14      13/14      13/14      13/14      14/14      13/14
+
+Fader 1-8:
+disp mode = standard, channel = setup number, mode = jump, type = absolute 7 bit
+disp mode = standard, mode = snap, type = absolute 7 bit
+Group: 1         2         3         4         5         6         7         8
+CC:   032-039    040-047    048-055    056-063    104 -111    104-111    104-111    104-111
+CC:   040-047    040-047    040-047    040-047    040-047    040-047    040-047    040-047
+Chan:  13/14      13/14      13/14      13/14      13/14      13/14      13/14      13/14
+
+Fader 9: disp mode = standard, channel number = setup number, mode = jump, type = absolute 7 bit
+All groups: CC112
+          CC048, Chan=14/14
+
+Encoder group names:
+Group: 1         2         3         4         5         6         7         8
+Name: GrP1   GrP2   GrP3   GrP4   GrP5   GrP6   GrP7   GrP8
+Name: Snd1   Snd2   Snd3   Snd4   traC   RAC    PAn    GLOb
+
+
+General setting (effected only by factory reset all):
+Setup:          01
+Routing mode:    6 (midi to midi, midi to usb)
+--- PDF PAGE 14 ---
+
+--- PDF PAGE 15 ---
+
+--- PDF PAGE 16 ---
+   User manual UC4 version 3
+
+Mathias Fuchß Software-Entwicklung
+       Op’n Idenkamp 13a
+        22397 Hamburg
+           Germany
+
+         info@faderfox.de
+         www.faderfox.de

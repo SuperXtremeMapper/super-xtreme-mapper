@@ -1,0 +1,1527 @@
+{
+  "schema_version": 1,
+  "retrieved_at": "2026-09-12T11:31:47.481329+00:00",
+  "collection_date": "2026-09-12",
+  "scope": "Official manufacturer manuals and MIDI protocol documentation; bounded research, no app changes.",
+  "classification_definitions": {
+    "ready-for-extraction": "Documented scalar subset can be transcribed with stated exclusions; not implementation or hardware readiness.",
+    "partial": "Specific MIDI assignment/mode behavior documented but missing full fixed map.",
+    "protocol-gap": "Operational guide acquired but complete addresses/channels/receive map not found.",
+    "inaccessible": "No manufacturer manual PDF acquired within bounded retrieval."
+  },
+  "models": [
+    {
+      "id": "four",
+      "brand": "Rane",
+      "model": "FOUR",
+      "status": "protocol-gap",
+      "selection_basis": "Current/legacy controller and mixer reference coverage; no sales ranking.",
+      "official_support_url": "https://www.rane.com/downloads/",
+      "official_product_url": null,
+      "documents": [
+        {
+          "model": "four",
+          "url": "https://cdn.inmusicbrands.com/rane/four/FOUR%20-%20User%20Guide%20-%20v1.2.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.rane.com/downloads/",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/rane/four/FOUR%20-%20User%20Guide%20-%20v1.2.pdf",
+          "file": "four/FOUR_-_User_Guide_-_v1.2.pdf",
+          "text_file": "four/FOUR_-_User_Guide_-_v1.2.txt",
+          "sha256": "bf80bf957e3897aa46e57a46db094623dc07a9a2b94e47ec02e1c6fd6ab433bf",
+          "bytes": 14597305,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 39,
+          "text_sha256": "c972b4f3689f624beefc9322ea6a2f41e70382e80879bbaa30b3a2a9c132fd95"
+        }
+      ],
+      "findings": "Deck source selects USB A/B MIDI destination; deck controls send MIDI only with source USB A or B. Custom pad mode is software MIDI-mappable.",
+      "evidence": [
+        {
+          "document": "user-manual",
+          "pdf_pages": [
+            10,
+            12,
+            15
+          ],
+          "section": "Features / USB / Custom Pad Sets"
+        }
+      ],
+      "sxm_limits": [
+        "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.",
+        "FOUR jogs are non-motorized. Jog data, screen feedback and hardware effects require separate protocol evidence; the owner guide does not establish scalar Note/CC mappings."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Rane",
+      "source": "https://www.rane.com/downloads/"
+    },
+    {
+      "id": "performer",
+      "brand": "Rane",
+      "model": "PERFORMER",
+      "status": "protocol-gap",
+      "selection_basis": "Current/legacy controller and mixer reference coverage; no sales ranking.",
+      "official_support_url": "https://www.rane.com/downloads/",
+      "official_product_url": null,
+      "documents": [
+        {
+          "model": "performer",
+          "url": "https://cdn.inmusicbrands.com/rane/performer/PERFORMER%20-%20User%20Guide%20-%20v1.3.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.rane.com/downloads/",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/rane/performer/PERFORMER%20-%20User%20Guide%20-%20v1.3.pdf",
+          "file": "performer/PERFORMER_-_User_Guide_-_v1.3.pdf",
+          "text_file": "performer/PERFORMER_-_User_Guide_-_v1.3.txt",
+          "sha256": "d99683788040467a1b07883591f2db5670cc03a098386e9d7a280c9dc0fc6c06",
+          "bytes": 30753704,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 50,
+          "text_sha256": "ae5fa12be40510812c2023385bd6e32e453e102271b5b60b78abc55c529949f8"
+        }
+      ],
+      "findings": "Deck-source USB mode enables MIDI to chosen computer; guide describes on-device parameter encoder and displays without wire addresses.",
+      "evidence": [
+        {
+          "document": "user-manual",
+          "pdf_pages": [
+            19,
+            23
+          ],
+          "section": "Features / USB / Custom Pad Sets"
+        }
+      ],
+      "sxm_limits": [
+        "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.",
+        "Motorized platter data, screen feedback and hardware effects require separate protocol evidence; the owner guide does not establish scalar Note/CC mappings."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Rane",
+      "source": "https://www.rane.com/downloads/"
+    },
+    {
+      "id": "one",
+      "brand": "Rane",
+      "model": "ONE",
+      "status": "protocol-gap",
+      "selection_basis": "Current/legacy controller and mixer reference coverage; no sales ranking.",
+      "official_support_url": "https://www.rane.com/downloads/?legacy=true",
+      "official_product_url": null,
+      "documents": [
+        {
+          "model": "one",
+          "url": "https://cdn.inmusicbrands.com/rane/one/RANE-ONE-User-Guide-v1_5.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.rane.com/downloads/",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/rane/one/RANE-ONE-User-Guide-v1_5.pdf",
+          "file": "one/RANE-ONE-User-Guide-v1_5.pdf",
+          "text_file": "one/RANE-ONE-User-Guide-v1_5.txt",
+          "sha256": "3211b156eb826c07da8e89380de9296fc734ea76c5e43db577d2a9964c45a622",
+          "bytes": 9895172,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 56,
+          "text_sha256": "8ad22d3c348fdedce6fe8b7f678cf16ca76363e57f39554d61b81476a9256071"
+        }
+      ],
+      "findings": "Deck controls send MIDI only when deck source selector is USB A/B.",
+      "evidence": [
+        {
+          "document": "user-manual",
+          "pdf_pages": [
+            5,
+            9
+          ],
+          "section": "Features / USB / Custom Pad Sets"
+        }
+      ],
+      "sxm_limits": [
+        "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.",
+        "Motorized platter data requires separate protocol evidence; the owner guide does not establish scalar Note/CC mappings."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Rane",
+      "source": "https://www.rane.com/downloads/?legacy=true"
+    },
+    {
+      "id": "seventy-two-mkii",
+      "brand": "Rane",
+      "model": "SEVENTY-TWO MKII",
+      "status": "protocol-gap",
+      "selection_basis": "Current/legacy controller and mixer reference coverage; no sales ranking.",
+      "official_support_url": "https://www.rane.com/downloads/?legacy=true",
+      "official_product_url": null,
+      "documents": [
+        {
+          "model": "seventy-two-mkii",
+          "url": "https://cdn.inmusicbrands.com/rane/seventy-twoMKII/Seventy-Two_MKII-UserGuide-v1.4.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.rane.com/downloads/",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/rane/seventy-twoMKII/Seventy-Two_MKII-UserGuide-v1.4.pdf",
+          "file": "seventy-two-mkii/Seventy-Two_MKII-UserGuide-v1.4.pdf",
+          "text_file": "seventy-two-mkii/Seventy-Two_MKII-UserGuide-v1.4.txt",
+          "sha256": "83f6edbb759424e7d742abe5db0bf51b17674b40044d1097768b40e21c8ef4d4",
+          "bytes": 9614548,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 104,
+          "text_sha256": "aae2bcc2548fd728c07976109a48120546dcb965c90316b8d1e132744a6bcd3b"
+        }
+      ],
+      "findings": "Up to three custom pad sets via Serato hardware remapping; guide gives user operation, not protocol identifiers.",
+      "evidence": [
+        {
+          "document": "user-manual",
+          "pdf_pages": [
+            5,
+            7,
+            20
+          ],
+          "section": "Features / USB / Custom Pad Sets"
+        }
+      ],
+      "sxm_limits": [
+        "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.",
+        "Touchscreen feedback, hardware effects and DVS audio behavior require separate protocol evidence; the owner guide does not establish scalar Note/CC mappings."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Rane",
+      "source": "https://www.rane.com/downloads/?legacy=true"
+    },
+    {
+      "id": "twelve-mkii",
+      "brand": "Rane",
+      "model": "TWELVE MKII",
+      "status": "protocol-gap",
+      "selection_basis": "Requested motorized legacy controller coverage.",
+      "official_support_url": "https://www.rane.com/downloads/?product=Twelve%20MKII",
+      "official_product_url": null,
+      "documents": [
+        {
+          "model": "twelve-mkii",
+          "url": "https://cdn.inmusicbrands.com/rane/twelveMKII/Twelve_MKII-UserGuide-v1.1.pdf",
+          "resolved_url": "https://cdn.inmusicbrands.com/rane/twelveMKII/Twelve_MKII-UserGuide-v1.1.pdf",
+          "http_status": 200,
+          "kind": "user-manual",
+          "file": "twelve-mkii/Twelve_MKII-UserGuide-v1.1.pdf",
+          "text_file": "twelve-mkii/Twelve_MKII-UserGuide-v1.1.txt",
+          "sha256": "6ad794ab8fcc99d6ce5d7b3399a9ac4eb90b1989c11aaeac7f1a4390d7af438e",
+          "text_sha256": "d2cc3c084716123f061451a50bf3da6f4e7111d4fc8e7c8cb86d8e7c7b0dd057",
+          "bytes": 7249327,
+          "download_status": "downloaded",
+          "pages": 36,
+          "discovery_method": "Refined official-support web search recovered manufacturer CDN URL after failed filename probes; independently confirmed via parent CUA manufacturer downloads link",
+          "official_source_page": "https://www.rane.com/downloads/?product=Twelve%20MKII"
+        }
+      ],
+      "findings": "Owner guide recovered from official CDN. USB mode and DVS audio mode are distinct; manufacturer recommends RCA for DVS platter control alongside USB for Browse, Load/Instant Doubles and Hot Cues. Touch Strip switches Needle Drop/Hot Cue modes, and Deck Select chooses software deck.",
+      "evidence": [
+        {
+          "document": "User Guide v1.1",
+          "pdf_pages": [
+            4,
+            7,
+            8
+          ],
+          "section": "Connect and Start DJing / Features / Deck Select"
+        }
+      ],
+      "sxm_limits": [
+        "No control address/channel or LED receive implementation chart appears in the owner guide.",
+        "DVS platter timecode is audio, outside scalar MIDI profiles. USB motorized-platter precision and screen protocol are not specified; do not infer scalar maps from behavior."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation performed."
+      ],
+      "manufacturer": "Rane",
+      "source": "https://www.rane.com/downloads/?product=Twelve%20MKII"
+    },
+    {
+      "id": "prime-4-plus",
+      "brand": "Denon DJ",
+      "model": "PRIME 4+",
+      "status": "protocol-gap",
+      "selection_basis": "Manufacturer shared Engine DJ v5.0.0 guide explicitly covers this model.",
+      "official_support_url": "https://www.denondj.com/downloads.html",
+      "official_product_url": null,
+      "documents": [
+        {
+          "model": "denon-shared",
+          "url": "https://cdn.inmusicbrands.com/Software/ENDJ5/PRIME%204%2C%20PRIME%204%2B%2C%20PRIME%202%2C%20PRIME%20GO%2C%20PRIME%20GO%2B%2C%20SC%20LIVE%204%2C%20SC%20LIVE%202%20-%20User%20Guide%20-%20v5.0.0.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.denondj.com/downloads.html",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/Software/ENDJ5/PRIME%204%2C%20PRIME%204%2B%2C%20PRIME%202%2C%20PRIME%20GO%2C%20PRIME%20GO%2B%2C%20SC%20LIVE%204%2C%20SC%20LIVE%202%20-%20User%20Guide%20-%20v5.0.0.pdf",
+          "file": "denon-shared/PRIME_4_PRIME_4_PRIME_2_PRIME_GO_PRIME_GO_SC_LIVE_4_SC_LIVE_2_-_User_Guide_-_v5.0.0.pdf",
+          "text_file": "denon-shared/PRIME_4_PRIME_4_PRIME_2_PRIME_GO_PRIME_GO_SC_LIVE_4_SC_LIVE_2_-_User_Guide_-_v5.0.0.txt",
+          "sha256": "aab8d29d22cd4e286a85009ee47d93fc67485793f35226bc19288592553bd74f",
+          "bytes": 19312626,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 109,
+          "text_sha256": "0cfbc739ffd9ae7129f7a3066d354a40814ae167c85517416b8609b1268cb34c"
+        }
+      ],
+      "findings": "Computer Mode sends/receives MIDI; standalone features and control descriptions are operational documentation, not an address map.",
+      "evidence": [
+        {
+          "document": "shared Engine all-in-one user guide v5.0.0",
+          "pdf_pages": [
+            61
+          ],
+          "section": "Control Center > Parameters > Computer Mode"
+        }
+      ],
+      "sxm_limits": [
+        "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.",
+        "Separate standalone Engine behavior from computer MIDI mode. No supported HID or proprietary protocol address mapping established."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Denon DJ",
+      "source": "https://www.denondj.com/downloads.html"
+    },
+    {
+      "id": "prime-go-plus",
+      "brand": "Denon DJ",
+      "model": "PRIME GO+",
+      "status": "protocol-gap",
+      "selection_basis": "Manufacturer shared Engine DJ v5.0.0 guide explicitly covers this model.",
+      "official_support_url": "https://www.denondj.com/downloads.html",
+      "official_product_url": null,
+      "documents": [
+        {
+          "model": "denon-shared",
+          "url": "https://cdn.inmusicbrands.com/Software/ENDJ5/PRIME%204%2C%20PRIME%204%2B%2C%20PRIME%202%2C%20PRIME%20GO%2C%20PRIME%20GO%2B%2C%20SC%20LIVE%204%2C%20SC%20LIVE%202%20-%20User%20Guide%20-%20v5.0.0.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.denondj.com/downloads.html",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/Software/ENDJ5/PRIME%204%2C%20PRIME%204%2B%2C%20PRIME%202%2C%20PRIME%20GO%2C%20PRIME%20GO%2B%2C%20SC%20LIVE%204%2C%20SC%20LIVE%202%20-%20User%20Guide%20-%20v5.0.0.pdf",
+          "file": "denon-shared/PRIME_4_PRIME_4_PRIME_2_PRIME_GO_PRIME_GO_SC_LIVE_4_SC_LIVE_2_-_User_Guide_-_v5.0.0.pdf",
+          "text_file": "denon-shared/PRIME_4_PRIME_4_PRIME_2_PRIME_GO_PRIME_GO_SC_LIVE_4_SC_LIVE_2_-_User_Guide_-_v5.0.0.txt",
+          "sha256": "aab8d29d22cd4e286a85009ee47d93fc67485793f35226bc19288592553bd74f",
+          "bytes": 19312626,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 109,
+          "text_sha256": "0cfbc739ffd9ae7129f7a3066d354a40814ae167c85517416b8609b1268cb34c"
+        }
+      ],
+      "findings": "Computer Mode sends/receives MIDI; standalone features and control descriptions are operational documentation, not an address map.",
+      "evidence": [
+        {
+          "document": "shared Engine all-in-one user guide v5.0.0",
+          "pdf_pages": [
+            63
+          ],
+          "section": "Control Center > Parameters > Computer Mode"
+        }
+      ],
+      "sxm_limits": [
+        "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.",
+        "Separate standalone Engine behavior from computer MIDI mode. No supported HID or proprietary protocol address mapping established."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Denon DJ",
+      "source": "https://www.denondj.com/downloads.html"
+    },
+    {
+      "id": "sc-live-4",
+      "brand": "Denon DJ",
+      "model": "SC LIVE 4",
+      "status": "protocol-gap",
+      "selection_basis": "Manufacturer shared Engine DJ v5.0.0 guide explicitly covers this model.",
+      "official_support_url": "https://www.denondj.com/downloads.html",
+      "official_product_url": null,
+      "documents": [
+        {
+          "model": "denon-shared",
+          "url": "https://cdn.inmusicbrands.com/Software/ENDJ5/PRIME%204%2C%20PRIME%204%2B%2C%20PRIME%202%2C%20PRIME%20GO%2C%20PRIME%20GO%2B%2C%20SC%20LIVE%204%2C%20SC%20LIVE%202%20-%20User%20Guide%20-%20v5.0.0.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.denondj.com/downloads.html",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/Software/ENDJ5/PRIME%204%2C%20PRIME%204%2B%2C%20PRIME%202%2C%20PRIME%20GO%2C%20PRIME%20GO%2B%2C%20SC%20LIVE%204%2C%20SC%20LIVE%202%20-%20User%20Guide%20-%20v5.0.0.pdf",
+          "file": "denon-shared/PRIME_4_PRIME_4_PRIME_2_PRIME_GO_PRIME_GO_SC_LIVE_4_SC_LIVE_2_-_User_Guide_-_v5.0.0.pdf",
+          "text_file": "denon-shared/PRIME_4_PRIME_4_PRIME_2_PRIME_GO_PRIME_GO_SC_LIVE_4_SC_LIVE_2_-_User_Guide_-_v5.0.0.txt",
+          "sha256": "aab8d29d22cd4e286a85009ee47d93fc67485793f35226bc19288592553bd74f",
+          "bytes": 19312626,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 109,
+          "text_sha256": "0cfbc739ffd9ae7129f7a3066d354a40814ae167c85517416b8609b1268cb34c"
+        }
+      ],
+      "findings": "Computer Mode sends/receives MIDI; standalone features and control descriptions are operational documentation, not an address map.",
+      "evidence": [
+        {
+          "document": "shared Engine all-in-one user guide v5.0.0",
+          "pdf_pages": [
+            64
+          ],
+          "section": "Control Center > Parameters > Computer Mode"
+        }
+      ],
+      "sxm_limits": [
+        "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.",
+        "Separate standalone Engine behavior from computer MIDI mode. No supported HID or proprietary protocol address mapping established."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Denon DJ",
+      "source": "https://www.denondj.com/downloads.html"
+    },
+    {
+      "id": "sc6000",
+      "brand": "Denon DJ",
+      "model": "SC6000 PRIME",
+      "status": "protocol-gap",
+      "selection_basis": "Manufacturer shared player guide v5.0.0.",
+      "official_support_url": "https://www.denondj.com/downloads.html",
+      "official_product_url": null,
+      "documents": [
+        {
+          "model": "denon-shared",
+          "url": "https://cdn.inmusicbrands.com/Software/ENDJ5/SC6000%20PRIME%2C%20SC6000M%20PRIME%2C%20SC5000%20PRIME%2C%20SC5000M%20PRIME%20-%20User%20Guide%20-%20v5.0.0.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.denondj.com/downloads.html",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/Software/ENDJ5/SC6000%20PRIME%2C%20SC6000M%20PRIME%2C%20SC5000%20PRIME%2C%20SC5000M%20PRIME%20-%20User%20Guide%20-%20v5.0.0.pdf",
+          "file": "denon-shared/SC6000_PRIME_SC6000M_PRIME_SC5000_PRIME_SC5000M_PRIME_-_User_Guide_-_v5.0.0.pdf",
+          "text_file": "denon-shared/SC6000_PRIME_SC6000M_PRIME_SC5000_PRIME_SC5000M_PRIME_-_User_Guide_-_v5.0.0.txt",
+          "sha256": "a6ca3afa093288e1c8e69ba47fd7ae4ce7ac0a734cc8d268ec6123a826eded49",
+          "bytes": 10823097,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 66,
+          "text_sha256": "4878af3bbe2e6cea545ffeedf67f89093ea30bead7326500580f1a3d388ed021"
+        }
+      ],
+      "findings": "USB computer connection and Computer Mode send/receive MIDI; no control address implementation chart found.",
+      "evidence": [
+        {
+          "document": "shared player guide v5.0.0",
+          "pdf_pages": [
+            14,
+            48
+          ],
+          "section": "Rear Panel / Control Center > Parameters"
+        }
+      ],
+      "sxm_limits": [
+        "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.",
+        "Jog precision and display feedback cannot be inferred from documented USB MIDI transport."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Denon DJ",
+      "source": "https://www.denondj.com/downloads.html"
+    },
+    {
+      "id": "x1850",
+      "brand": "Denon DJ",
+      "model": "X1850 PRIME",
+      "status": "protocol-gap",
+      "selection_basis": "DJ mixer reference coverage.",
+      "official_support_url": "https://www.denondj.com/downloads.html",
+      "official_product_url": null,
+      "documents": [
+        {
+          "model": "x1850",
+          "url": "https://cdn.inmusicbrands.com/denondj/X1850Prime/X1850 PRIME - User Guide - v1.4.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.denondj.com/downloads.html",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/denondj/X1850Prime/X1850%20PRIME%20-%20User%20Guide%20-%20v1.4.pdf",
+          "file": "x1850/X1850_PRIME_-_User_Guide_-_v1.4.pdf",
+          "text_file": "x1850/X1850_PRIME_-_User_Guide_-_v1.4.txt",
+          "sha256": "ed7b8dc224f5cf6f011f2431fb723cd8282f10dae0e3952a467826be22d1398e",
+          "bytes": 10853553,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 76,
+          "text_sha256": "cc9bff5344e8a5742f5590743ef25d60112e480723e45f37bc3d55ad47cde921"
+        }
+      ],
+      "findings": "Utility MIDI menu separately enables Clock Send and Active Send per USB/DIN destination. Start/Stop button sends MIDI transport.",
+      "evidence": [
+        {
+          "document": "user-manual v1.4",
+          "pdf_pages": [
+            9,
+            10,
+            16
+          ],
+          "section": "MIDI Start/Stop; MIDI Output; Utility > MIDI"
+        }
+      ],
+      "sxm_limits": [
+        "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.",
+        "Clock and transport are system messages, outside scalar Note/CC profile mapping."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Denon DJ",
+      "source": "https://www.denondj.com/downloads.html"
+    },
+    {
+      "id": "lc6000",
+      "brand": "Denon DJ",
+      "model": "LC6000 PRIME",
+      "status": "ready-for-extraction",
+      "selection_basis": "Added because manufacturer publishes explicit MIDI specification.",
+      "official_support_url": "https://www.denondj.com/downloads.html",
+      "official_product_url": null,
+      "documents": [
+        {
+          "model": "lc6000",
+          "url": "https://cdn.inmusicbrands.com/engine/LC6000%20PRIME%20-%20User%20Guide%20-%20v1.4.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.denondj.com/downloads.html",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/engine/LC6000%20PRIME%20-%20User%20Guide%20-%20v1.4.pdf",
+          "file": "lc6000/LC6000_PRIME_-_User_Guide_-_v1.4.pdf",
+          "text_file": "lc6000/LC6000_PRIME_-_User_Guide_-_v1.4.txt",
+          "sha256": "796e58771cf1bd6d2e1eb0499bcaa5e41bf714bdfcea7282fe17378bc3912a94",
+          "bytes": 8502782,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 56,
+          "text_sha256": "dfd4389ee92fbaa86d0361d3f24278771e4de1e0f9c8c3204c65ba7e6ef956a2"
+        },
+        {
+          "model": "lc6000",
+          "url": "https://cdn.inmusicbrands.com/denondj/lc6000/LC6000-PRIME-MIDI-Specification-v1.0.pdf",
+          "kind": "midi-protocol",
+          "official_source_page": "https://www.denondj.com/downloads.html",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/denondj/lc6000/LC6000-PRIME-MIDI-Specification-v1.0.pdf",
+          "file": "lc6000/LC6000-PRIME-MIDI-Specification-v1.0.pdf",
+          "text_file": "lc6000/LC6000-PRIME-MIDI-Specification-v1.0.txt",
+          "sha256": "9fde4d92bc3fa604236678d9d72833dbf669383e7427f33d490c05f872962112",
+          "bytes": 176200,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 9,
+          "text_sha256": "283baf7993af4b867688f1c1d98da4428d5fbad885684dd88f70c4a9cc0ab031"
+        }
+      ],
+      "findings": "Channel 1 Note inputs include Play 0x01, Cue 0x02, pads 0x20\u20130x27. Relative CC Auto Loop Size 0x03 and Select 0x06. LED note receive map includes dim/full states and pad palette.",
+      "evidence": [
+        {
+          "document": "MIDI Specification v1.0",
+          "pdf_pages": [
+            2,
+            3
+          ],
+          "section": "Inbound Send Messages"
+        },
+        {
+          "document": "MIDI Specification v1.0",
+          "pdf_pages": [
+            4
+          ],
+          "section": "Double Precision Control"
+        },
+        {
+          "document": "MIDI Specification v1.0",
+          "pdf_pages": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "section": "Outbound Receive Messages / Color Table"
+        }
+      ],
+      "sxm_limits": [
+        "Ready only to extract well-defined scalar subset; no claim of implemented readiness.",
+        "Jog uses double precision CC 0x37/0x36; pitch 0x08/0x28; do not collapse paired values into independent scalar controls.",
+        "Needle Drop double-precision table repeats CC 0x40 for both bytes: unresolved source ambiguity.",
+        "Wheel display explicitly requires SysEx; not available via manual MIDI mapping (p6).",
+        "Color table p7\u20139 decimal column is offset from hexadecimal (e.g. 1 vs 0x00 OFF); requires source/hardware resolution before palette import."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Denon DJ",
+      "source": "https://www.denondj.com/downloads.html"
+    },
+    {
+      "id": "ns4fx",
+      "brand": "Numark",
+      "model": "NS4FX",
+      "status": "protocol-gap",
+      "selection_basis": "Representative controllers requested for current/legacy coverage; not a sales ranking.",
+      "official_support_url": "https://www.numark.com/product/ns4fx",
+      "official_product_url": "https://www.numark.com/product/ns4fx",
+      "documents": [
+        {
+          "model": "ns4fx",
+          "url": "https://www.numark.com/images/product_downloads/NS4_FX_-_User_Guide_-_v1.3.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.numark.com/product/ns4fx",
+          "http_status": 200,
+          "resolved_url": "https://www.numark.com/images/product_downloads/NS4_FX_-_User_Guide_-_v1.3.pdf",
+          "file": "ns4fx/NS4_FX_-_User_Guide_-_v1.3.pdf",
+          "text_file": "ns4fx/NS4_FX_-_User_Guide_-_v1.3.txt",
+          "sha256": "336b7977dcfc26971b9c798449c81a37993d891e4a2b48e23ee8175cac2dc04d",
+          "bytes": 5309220,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 44,
+          "text_sha256": "89ba16317a80a0b514799867146c56149f1aaa080796cf1b2966d3f84e8e170c"
+        }
+      ],
+      "findings": "USB sends MIDI data to software. Pad modes and deck Layer functions described, with no address implementation.",
+      "evidence": [
+        {
+          "document": "user-manual",
+          "pdf_pages": [
+            7
+          ],
+          "section": "Rear Panel USB / Top Panel Input Selector"
+        }
+      ],
+      "sxm_limits": [
+        "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.",
+        "Deck/layer changes, jog resolution, displays, encoders and LED feedback need independent protocol documentation or hardware capture."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Numark",
+      "source": "https://www.numark.com/product/ns4fx"
+    },
+    {
+      "id": "mixtrack-platinum-fx",
+      "brand": "Numark",
+      "model": "Mixtrack Platinum FX",
+      "status": "protocol-gap",
+      "selection_basis": "Representative controllers requested for current/legacy coverage; not a sales ranking.",
+      "official_support_url": "https://www.numark.com/product/mixtrack-platinum-fx",
+      "official_product_url": "https://www.numark.com/product/mixtrack-platinum-fx",
+      "documents": [
+        {
+          "model": "mixtrack-platinum-fx",
+          "url": "https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtplfx/MixTrackPlatinumFX-UserGuide-v1.2.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.numark.com/product/mixtrack-platinum-fx",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtplfx/MixTrackPlatinumFX-UserGuide-v1.2.pdf",
+          "file": "mixtrack-platinum-fx/MixTrackPlatinumFX-UserGuide-v1.2.pdf",
+          "text_file": "mixtrack-platinum-fx/MixTrackPlatinumFX-UserGuide-v1.2.txt",
+          "sha256": "6eac973b498733d77b7707a97d93e632aa1b4fc3bb83ee1caf4922eea229e4d3",
+          "bytes": 6125409,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 32,
+          "text_sha256": "4ce04a27f21bf7f6090064ea52b4cdac1cc51ed8ef33a20a4567483f3f164568"
+        }
+      ],
+      "findings": "USB MIDI documented; capacitive jog and display operation described without receive protocol.",
+      "evidence": [
+        {
+          "document": "user-manual",
+          "pdf_pages": [
+            5
+          ],
+          "section": "Rear Panel USB / Top Panel Input Selector"
+        }
+      ],
+      "sxm_limits": [
+        "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.",
+        "Deck/layer changes, jog resolution, displays, encoders and LED feedback need independent protocol documentation or hardware capture."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Numark",
+      "source": "https://www.numark.com/product/mixtrack-platinum-fx"
+    },
+    {
+      "id": "mixtrack-pro-fx",
+      "brand": "Numark",
+      "model": "Mixtrack Pro FX",
+      "status": "protocol-gap",
+      "selection_basis": "Representative controllers requested for current/legacy coverage; not a sales ranking.",
+      "official_support_url": "https://www.numark.com/product/mixtrack-pro-fx",
+      "official_product_url": "https://www.numark.com/product/mixtrack-pro-fx",
+      "documents": [
+        {
+          "model": "mixtrack-pro-fx",
+          "url": "https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtprfx/MixTrackProFX-UserGuide-v1.2.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.numark.com/product/mixtrack-pro-fx",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtprfx/MixTrackProFX-UserGuide-v1.2.pdf",
+          "file": "mixtrack-pro-fx/MixTrackProFX-UserGuide-v1.2.pdf",
+          "text_file": "mixtrack-pro-fx/MixTrackProFX-UserGuide-v1.2.txt",
+          "sha256": "b6577e1207a20f0887dd5ef4235a0690a641482af83fddc4ecd138738f0118a3",
+          "bytes": 5907060,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 28,
+          "text_sha256": "56386fd5f1d08d4a5c9dcd836e655d9148dfaceabf6c034d3904596a8254286d"
+        }
+      ],
+      "findings": "USB MIDI documented; pad modes described without address implementation.",
+      "evidence": [
+        {
+          "document": "user-manual",
+          "pdf_pages": [
+            5
+          ],
+          "section": "Rear Panel USB / Top Panel Input Selector"
+        }
+      ],
+      "sxm_limits": [
+        "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.",
+        "Deck/layer changes, jog resolution, displays, encoders and LED feedback need independent protocol documentation or hardware capture."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Numark",
+      "source": "https://www.numark.com/product/mixtrack-pro-fx"
+    },
+    {
+      "id": "ns6ii",
+      "brand": "Numark",
+      "model": "NS6II",
+      "status": "protocol-gap",
+      "selection_basis": "Representative controllers requested for current/legacy coverage; not a sales ranking.",
+      "official_support_url": "https://www.numark.com/product/ns6ii",
+      "official_product_url": "https://www.numark.com/product/ns6ii",
+      "documents": [
+        {
+          "model": "ns6ii",
+          "url": "https://www.numark.com/images/product_downloads/NS6II_-_Quickstart_Guide_-_v1.1.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.numark.com/product/ns6ii",
+          "http_status": 200,
+          "resolved_url": "https://www.numark.com/images/product_downloads/NS6II_-_Quickstart_Guide_-_v1.1.pdf",
+          "file": "ns6ii/NS6II_-_Quickstart_Guide_-_v1.1.pdf",
+          "text_file": "ns6ii/NS6II_-_Quickstart_Guide_-_v1.1.txt",
+          "sha256": "771bbcc372d9ba57d2da303aa4bce59a1ecd19ee44cc20c4f3829c6e640791d1",
+          "bytes": 10327088,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 52,
+          "text_sha256": "048c6cc841914f17d3a9538ad8f95e33a691aa24a372a810e3236936912ff056"
+        },
+        {
+          "model": "ns6ii",
+          "url": "https://www.numark.com/images/product_downloads/NS6II-UserGuide-v1.1.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.numark.com/product/ns6ii",
+          "http_status": 200,
+          "resolved_url": "https://www.numark.com/images/product_downloads/NS6II-UserGuide-v1.1.pdf",
+          "file": "ns6ii/NS6II-UserGuide-v1.1.pdf",
+          "text_file": "ns6ii/NS6II-UserGuide-v1.1.txt",
+          "sha256": "3a6bc85fcccf4b55ff1092d4b373b1352d8ecff926e0e0bec3010f62f2f3990d",
+          "bytes": 11016570,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 76,
+          "text_sha256": "8da8ddeb5fc3e32c653afba10a04c3047aa7ef0b4ce834d863183dd42b0cab00"
+        }
+      ],
+      "findings": "Channel controls send MIDI only when Input Selector is PC; legacy user guide and quickstart both acquired.",
+      "evidence": [
+        {
+          "document": "user-manual",
+          "pdf_pages": [
+            7
+          ],
+          "section": "Rear Panel USB / Top Panel Input Selector"
+        }
+      ],
+      "sxm_limits": [
+        "No complete manufacturer Note/CC address/channel chart or LED receive protocol was located in acquired documentation. Do not infer from USB MIDI compatibility or Serato mapping.",
+        "Deck/layer changes, jog resolution, displays, encoders and LED feedback need independent protocol documentation or hardware capture."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Numark",
+      "source": "https://www.numark.com/product/ns6ii"
+    },
+    {
+      "id": "apc40-mkii",
+      "brand": "Akai Professional",
+      "model": "APC40 mkII",
+      "status": "ready-for-extraction",
+      "selection_basis": "Legacy pad/fader controller with manufacturer protocol.",
+      "official_support_url": "https://www.akaipro.com/downloads-and-support/downloads/",
+      "official_product_url": null,
+      "documents": [
+        {
+          "model": "apc40-mkii",
+          "url": "https://cdn.inmusicbrands.com/akai/attachments/apc40II/APC40Mk2_Communications_Protocol_v1.2.pdf",
+          "kind": "midi-protocol",
+          "official_source_page": "https://www.akaipro.com/apc40-mkii",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/akai/attachments/apc40II/APC40Mk2_Communications_Protocol_v1.2.pdf",
+          "file": "apc40-mkii/APC40Mk2_Communications_Protocol_v1.2.pdf",
+          "text_file": "apc40-mkii/APC40Mk2_Communications_Protocol_v1.2.txt",
+          "sha256": "3af85d0b338a68581360633f38db9267119a34d3e9f7ffaf68be24658ce932b1",
+          "bytes": 794268,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 38,
+          "text_sha256": "0a31b545abec7079a54833ceae117f2ec5d71c15da280c93d72c3c215c567a62"
+        },
+        {
+          "model": "apc40-mkii",
+          "url": "https://cdn.inmusicbrands.com/akai/attachments/apc40II/APC40%20mkII%20-%20User%20Guide%20-%20v1.0.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.akaipro.com/apc40-mkii",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/akai/attachments/apc40II/APC40%20mkII%20-%20User%20Guide%20-%20v1.0.pdf",
+          "file": "apc40-mkii/APC40_mkII_User_Guide_v1.0.pdf",
+          "text_file": "apc40-mkii/APC40_mkII_User_Guide_v1.0.txt",
+          "sha256": "231beae35e607ff9034a5dec19b5df352293500525f836791ad6eb81dc9c2d8a",
+          "bytes": 3895214,
+          "download_status": "downloaded",
+          "pages": 28,
+          "text_sha256": "f87eef3dc5aa8cdb9743aa62a581f30219d6cc5768f9f52fbfd23a6c7df306ec"
+        }
+      ],
+      "findings": "Protocol provides input Note IDs, absolute CCs, relative controls, LED/ring receive tables. Channel fields are zero-based; track faders use CC 0x07 on channels 0\u20137. Cue Level CC 0x2F and Tempo CC 0x0D have relative encoding +1..63 / -64..-1 as 64..127.",
+      "evidence": [
+        {
+          "document": "Communications Protocol v1.2",
+          "pdf_pages": [
+            10,
+            11,
+            12
+          ],
+          "section": "Generic / Ableton / Alternate modes"
+        },
+        {
+          "document": "Communications Protocol v1.2",
+          "pdf_pages": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "section": "LED receive, palettes and rings"
+        },
+        {
+          "document": "Communications Protocol v1.2",
+          "pdf_pages": [
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "section": "Inbound Note / absolute and relative CC"
+        }
+      ],
+      "sxm_limits": [
+        "Mode 0 starts by default; track-selection changes banks without sending selection MIDI, and some buttons toggle. Modes 1/2 require SysEx introduction and have different host LED ownership.",
+        "Channel normalization must preserve zero-based source indexing. Ring style feedback and initialization exceed a simple per-control scalar mapping.",
+        "Source contains duplicated/misaligned labels and Cue Level in both absolute and relative tables; reconcile before import."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Akai Professional",
+      "source": "https://www.akaipro.com/downloads-and-support/downloads/"
+    },
+    {
+      "id": "apc-mini-mk2",
+      "brand": "Akai Professional",
+      "model": "APC mini mk2",
+      "status": "ready-for-extraction",
+      "selection_basis": "Current compact controller with manufacturer protocol.",
+      "official_support_url": "https://www.akaipro.com/downloads-and-support/downloads/",
+      "official_product_url": null,
+      "documents": [
+        {
+          "model": "apc-mini-mk2",
+          "url": "https://cdn.inmusicbrands.com/akai/attachments/APC%20mini%20mk2%20-%20Communication%20Protocol%20-%20v1.0.pdf",
+          "kind": "midi-protocol",
+          "official_source_page": "https://www.akaipro.com/apc-mini-mk2",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/akai/attachments/APC%20mini%20mk2%20-%20Communication%20Protocol%20-%20v1.0.pdf",
+          "file": "apc-mini-mk2/APC_mini_mk2_-_Communication_Protocol_-_v1.0.pdf",
+          "text_file": "apc-mini-mk2/APC_mini_mk2_-_Communication_Protocol_-_v1.0.txt",
+          "sha256": "38881e0411831a9e67a2896b9dad8d8938b57bda278a6290aa717be4b046d6a7",
+          "bytes": 876384,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 16,
+          "text_sha256": "9283f6f0383e0733c1960ddef27d43490f56106298682f638e36b6dc6eb750c8"
+        },
+        {
+          "model": "apc-mini-mk2",
+          "url": "https://cdn.inmusicbrands.com/akai/apc-mini-mkii/APC%20mini%20mk2%20-%20User%20Guide%20-%20v1.7.pdf",
+          "resolved_url": "https://cdn.inmusicbrands.com/akai/apc-mini-mkii/APC%20mini%20mk2%20-%20User%20Guide%20-%20v1.7.pdf",
+          "http_status": 200,
+          "kind": "user-manual",
+          "file": "apc-mini-mk2/APC_mini_mk2_User_Guide_v1.7.pdf",
+          "text_file": "apc-mini-mk2/APC_mini_mk2_User_Guide_v1.7.txt",
+          "sha256": "41b62c908556828e68373fc3dc070bb23e7158c9322203540be71d8164125395",
+          "text_sha256": "29454c2845a3a16026a5fddbf3c25ae7378093f0d5fb89167e10949dd30214a8",
+          "bytes": 4208796,
+          "download_status": "downloaded",
+          "pages": 76,
+          "discovery_method": "Refined official-support web search recovered manufacturer CDN URL after failed filename probes"
+        }
+      ],
+      "findings": "Protocol maps clip pads 0x00\u20130x3F, track buttons 0x64\u20130x6B, scenes 0x70\u20130x77 and Shift 0x7A. Absolute faders CC 0x30\u20130x38 channel 0 port 0. LED Note-On channel specifies brightness/pulse/blink, velocity specifies palette. Owner guide v1.7 documents Ableton Port 2 input setup and editable Note Mode scale/octave/layout.",
+      "evidence": [
+        {
+          "document": "Communication Protocol v1.0",
+          "pdf_pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "section": "LED messages, behavior, color palette"
+        },
+        {
+          "document": "Communication Protocol v1.0",
+          "pdf_pages": [
+            9,
+            10,
+            13,
+            14
+          ],
+          "section": "SysEx RGB / initialization"
+        },
+        {
+          "document": "Communication Protocol v1.0",
+          "pdf_pages": [
+            15,
+            16
+          ],
+          "section": "Control Mapping"
+        },
+        {
+          "document": "User Guide v1.7",
+          "pdf_pages": [
+            4,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "section": "Setup / Drum Mode / Note Mode configuration"
+        }
+      ],
+      "sxm_limits": [
+        "Ready to extract scalar subset only. Official user guide v1.7 recovered after earlier candidate path failures.",
+        "Session port 0 differs from Drum mode channel 09 and Note mode port 1/channel 00. Do not merge port/channel addresses.",
+        "RGB behavior channel is not necessarily input channel. Full custom RGB and initialization use SysEx. Source has literal typos (00x4F) and initialization response length ambiguity."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Akai Professional",
+      "source": "https://www.akaipro.com/downloads-and-support/downloads/"
+    },
+    {
+      "id": "apc64",
+      "brand": "Akai Professional",
+      "model": "APC64",
+      "status": "partial",
+      "selection_basis": "Current controller with custom-preset editor documented in manual.",
+      "official_support_url": "https://www.akaipro.com/downloads-and-support/downloads/",
+      "official_product_url": null,
+      "documents": [
+        {
+          "model": "apc64",
+          "url": "https://cdn.inmusicbrands.com/akai/APC64/APC64%20-%20User%20Guide%20-%20v1.0.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.akaipro.com/apc64",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/akai/APC64/APC64%20-%20User%20Guide%20-%20v1.0.pdf",
+          "file": "apc64/APC64_-_User_Guide_-_v1.0.pdf",
+          "text_file": "apc64/APC64_-_User_Guide_-_v1.0.txt",
+          "sha256": "bba9242fdddb90cf0f159e7acf96102d6b50eadf1131fa0f97e88c96d475c1c7",
+          "bytes": 9122889,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 66,
+          "text_sha256": "7dab9bb563ff03f817646f6c6825cd0634b67c358882f2676f319e8704692c92"
+        }
+      ],
+      "findings": "Custom pad notes/channels and fader CCs are user editable. Chord mode channel 1 and drum mode channel 16 in Ableton; global drum notes configurable.",
+      "evidence": [
+        {
+          "document": "user-manual v1.0",
+          "pdf_pages": [
+            29,
+            47,
+            50,
+            52,
+            57,
+            58
+          ],
+          "section": "Drum/Chord, Global Menu, Custom Mode / Project Editor"
+        }
+      ],
+      "sxm_limits": [
+        "No complete fixed MIDI map or host LED receive protocol acquired. Custom preset must be captured alongside profile.",
+        "Faders support Single (1 CC) or Double (2 CC); manual does not establish double-message numeric interpretation. Pads can send poly aftertouch, outside scalar Note/CC.",
+        "Editor color settings document local on/off behavior, not proof of host LED receive messages."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Akai Professional",
+      "source": "https://www.akaipro.com/downloads-and-support/downloads/"
+    },
+    {
+      "id": "mpd218",
+      "brand": "Akai Professional",
+      "model": "MPD218",
+      "status": "partial",
+      "selection_basis": "Established pad/knob controller with downloadable manual.",
+      "official_support_url": "https://www.akaipro.com/downloads-and-support/downloads/",
+      "official_product_url": null,
+      "documents": [
+        {
+          "model": "mpd218",
+          "url": "https://cdn.inmusicbrands.com/akai/attachments/MPD218/MPD218-UserGuide-v1.0.pdf",
+          "kind": "user-manual",
+          "official_source_page": "https://www.akaipro.com/mpd218",
+          "http_status": 200,
+          "resolved_url": "https://cdn.inmusicbrands.com/akai/attachments/MPD218/MPD218-UserGuide-v1.0.pdf",
+          "file": "mpd218/MPD218-UserGuide-v1.0.pdf",
+          "text_file": "mpd218/MPD218-UserGuide-v1.0.txt",
+          "sha256": "72bf5f3ae6d3f2266b07875ba175f7b5da3d1653f6f5dc00c6b7d568d3be608b",
+          "bytes": 1319724,
+          "download_status": "downloaded",
+          "extraction_returncode": 0,
+          "pages": 20,
+          "text_sha256": "f38ca7c5e48edc50b60d75b502728f2573b75d6f20dc99a70aaf0ae0f7f833c1"
+        }
+      ],
+      "findings": "Pads/knobs have three banks and 16 programs. Knobs send continuous-controller data. NR Config and Prog Select suppress normal pad MIDI while held.",
+      "evidence": [
+        {
+          "document": "user-manual v1.0",
+          "pdf_pages": [
+            3,
+            4,
+            5
+          ],
+          "section": "Features / Preset Documentation reference"
+        }
+      ],
+      "sxm_limits": [
+        "No preset documentation or editor guide acquired; factory note/CC/channel assignments unresolved.",
+        "Pressure-sensitive pads and MIDI clock repeat cannot be reduced to Note/CC-only semantics. No LED receive protocol established."
+      ],
+      "unresolved": [
+        "No live hardware verification. No profile implementation is authorized or performed in this collection."
+      ],
+      "manufacturer": "Akai Professional",
+      "source": "https://www.akaipro.com/downloads-and-support/downloads/"
+    }
+  ],
+  "downloads": [
+    {
+      "model": "ns4fx",
+      "url": "https://www.numark.com/images/product_downloads/NS4_FX_-_User_Guide_-_v1.3.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.numark.com/product/ns4fx",
+      "http_status": 200,
+      "resolved_url": "https://www.numark.com/images/product_downloads/NS4_FX_-_User_Guide_-_v1.3.pdf",
+      "file": "ns4fx/NS4_FX_-_User_Guide_-_v1.3.pdf",
+      "text_file": "ns4fx/NS4_FX_-_User_Guide_-_v1.3.txt",
+      "sha256": "336b7977dcfc26971b9c798449c81a37993d891e4a2b48e23ee8175cac2dc04d",
+      "bytes": 5309220,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 44,
+      "text_sha256": "89ba16317a80a0b514799867146c56149f1aaa080796cf1b2966d3f84e8e170c"
+    },
+    {
+      "model": "mixtrack-platinum-fx",
+      "url": "https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtplfx/MixTrackPlatinumFX-UserGuide-v1.2.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.numark.com/product/mixtrack-platinum-fx",
+      "http_status": 200,
+      "resolved_url": "https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtplfx/MixTrackPlatinumFX-UserGuide-v1.2.pdf",
+      "file": "mixtrack-platinum-fx/MixTrackPlatinumFX-UserGuide-v1.2.pdf",
+      "text_file": "mixtrack-platinum-fx/MixTrackPlatinumFX-UserGuide-v1.2.txt",
+      "sha256": "6eac973b498733d77b7707a97d93e632aa1b4fc3bb83ee1caf4922eea229e4d3",
+      "bytes": 6125409,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 32,
+      "text_sha256": "4ce04a27f21bf7f6090064ea52b4cdac1cc51ed8ef33a20a4567483f3f164568"
+    },
+    {
+      "model": "mixtrack-pro-fx",
+      "url": "https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtprfx/MixTrackProFX-UserGuide-v1.2.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.numark.com/product/mixtrack-pro-fx",
+      "http_status": 200,
+      "resolved_url": "https://cdn.inmusicbrands.com/Numark/vAC9uYWEnT/mtprfx/MixTrackProFX-UserGuide-v1.2.pdf",
+      "file": "mixtrack-pro-fx/MixTrackProFX-UserGuide-v1.2.pdf",
+      "text_file": "mixtrack-pro-fx/MixTrackProFX-UserGuide-v1.2.txt",
+      "sha256": "b6577e1207a20f0887dd5ef4235a0690a641482af83fddc4ecd138738f0118a3",
+      "bytes": 5907060,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 28,
+      "text_sha256": "56386fd5f1d08d4a5c9dcd836e655d9148dfaceabf6c034d3904596a8254286d"
+    },
+    {
+      "model": "ns6ii",
+      "url": "https://www.numark.com/images/product_downloads/NS6II_-_Quickstart_Guide_-_v1.1.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.numark.com/product/ns6ii",
+      "http_status": 200,
+      "resolved_url": "https://www.numark.com/images/product_downloads/NS6II_-_Quickstart_Guide_-_v1.1.pdf",
+      "file": "ns6ii/NS6II_-_Quickstart_Guide_-_v1.1.pdf",
+      "text_file": "ns6ii/NS6II_-_Quickstart_Guide_-_v1.1.txt",
+      "sha256": "771bbcc372d9ba57d2da303aa4bce59a1ecd19ee44cc20c4f3829c6e640791d1",
+      "bytes": 10327088,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 52,
+      "text_sha256": "048c6cc841914f17d3a9538ad8f95e33a691aa24a372a810e3236936912ff056"
+    },
+    {
+      "model": "ns6ii",
+      "url": "https://www.numark.com/images/product_downloads/NS6II-UserGuide-v1.1.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.numark.com/product/ns6ii",
+      "http_status": 200,
+      "resolved_url": "https://www.numark.com/images/product_downloads/NS6II-UserGuide-v1.1.pdf",
+      "file": "ns6ii/NS6II-UserGuide-v1.1.pdf",
+      "text_file": "ns6ii/NS6II-UserGuide-v1.1.txt",
+      "sha256": "3a6bc85fcccf4b55ff1092d4b373b1352d8ecff926e0e0bec3010f62f2f3990d",
+      "bytes": 11016570,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 76,
+      "text_sha256": "8da8ddeb5fc3e32c653afba10a04c3047aa7ef0b4ce834d863183dd42b0cab00"
+    },
+    {
+      "model": "denon-shared",
+      "url": "https://cdn.inmusicbrands.com/Software/ENDJ5/SC6000%20PRIME%2C%20SC6000M%20PRIME%2C%20SC5000%20PRIME%2C%20SC5000M%20PRIME%20-%20User%20Guide%20-%20v5.0.0.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.denondj.com/downloads.html",
+      "http_status": 200,
+      "resolved_url": "https://cdn.inmusicbrands.com/Software/ENDJ5/SC6000%20PRIME%2C%20SC6000M%20PRIME%2C%20SC5000%20PRIME%2C%20SC5000M%20PRIME%20-%20User%20Guide%20-%20v5.0.0.pdf",
+      "file": "denon-shared/SC6000_PRIME_SC6000M_PRIME_SC5000_PRIME_SC5000M_PRIME_-_User_Guide_-_v5.0.0.pdf",
+      "text_file": "denon-shared/SC6000_PRIME_SC6000M_PRIME_SC5000_PRIME_SC5000M_PRIME_-_User_Guide_-_v5.0.0.txt",
+      "sha256": "a6ca3afa093288e1c8e69ba47fd7ae4ce7ac0a734cc8d268ec6123a826eded49",
+      "bytes": 10823097,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 66,
+      "text_sha256": "4878af3bbe2e6cea545ffeedf67f89093ea30bead7326500580f1a3d388ed021"
+    },
+    {
+      "model": "x1850",
+      "url": "https://cdn.inmusicbrands.com/denondj/X1850Prime/X1850 PRIME - User Guide - v1.4.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.denondj.com/downloads.html",
+      "http_status": 200,
+      "resolved_url": "https://cdn.inmusicbrands.com/denondj/X1850Prime/X1850%20PRIME%20-%20User%20Guide%20-%20v1.4.pdf",
+      "file": "x1850/X1850_PRIME_-_User_Guide_-_v1.4.pdf",
+      "text_file": "x1850/X1850_PRIME_-_User_Guide_-_v1.4.txt",
+      "sha256": "ed7b8dc224f5cf6f011f2431fb723cd8282f10dae0e3952a467826be22d1398e",
+      "bytes": 10853553,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 76,
+      "text_sha256": "cc9bff5344e8a5742f5590743ef25d60112e480723e45f37bc3d55ad47cde921"
+    },
+    {
+      "model": "lc6000",
+      "url": "https://cdn.inmusicbrands.com/engine/LC6000%20PRIME%20-%20User%20Guide%20-%20v1.4.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.denondj.com/downloads.html",
+      "http_status": 200,
+      "resolved_url": "https://cdn.inmusicbrands.com/engine/LC6000%20PRIME%20-%20User%20Guide%20-%20v1.4.pdf",
+      "file": "lc6000/LC6000_PRIME_-_User_Guide_-_v1.4.pdf",
+      "text_file": "lc6000/LC6000_PRIME_-_User_Guide_-_v1.4.txt",
+      "sha256": "796e58771cf1bd6d2e1eb0499bcaa5e41bf714bdfcea7282fe17378bc3912a94",
+      "bytes": 8502782,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 56,
+      "text_sha256": "dfd4389ee92fbaa86d0361d3f24278771e4de1e0f9c8c3204c65ba7e6ef956a2"
+    },
+    {
+      "model": "lc6000",
+      "url": "https://cdn.inmusicbrands.com/denondj/lc6000/LC6000-PRIME-MIDI-Specification-v1.0.pdf",
+      "kind": "midi-protocol",
+      "official_source_page": "https://www.denondj.com/downloads.html",
+      "http_status": 200,
+      "resolved_url": "https://cdn.inmusicbrands.com/denondj/lc6000/LC6000-PRIME-MIDI-Specification-v1.0.pdf",
+      "file": "lc6000/LC6000-PRIME-MIDI-Specification-v1.0.pdf",
+      "text_file": "lc6000/LC6000-PRIME-MIDI-Specification-v1.0.txt",
+      "sha256": "9fde4d92bc3fa604236678d9d72833dbf669383e7427f33d490c05f872962112",
+      "bytes": 176200,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 9,
+      "text_sha256": "283baf7993af4b867688f1c1d98da4428d5fbad885684dd88f70c4a9cc0ab031"
+    },
+    {
+      "model": "denon-shared",
+      "url": "https://cdn.inmusicbrands.com/Software/ENDJ5/PRIME%204%2C%20PRIME%204%2B%2C%20PRIME%202%2C%20PRIME%20GO%2C%20PRIME%20GO%2B%2C%20SC%20LIVE%204%2C%20SC%20LIVE%202%20-%20User%20Guide%20-%20v5.0.0.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.denondj.com/downloads.html",
+      "http_status": 200,
+      "resolved_url": "https://cdn.inmusicbrands.com/Software/ENDJ5/PRIME%204%2C%20PRIME%204%2B%2C%20PRIME%202%2C%20PRIME%20GO%2C%20PRIME%20GO%2B%2C%20SC%20LIVE%204%2C%20SC%20LIVE%202%20-%20User%20Guide%20-%20v5.0.0.pdf",
+      "file": "denon-shared/PRIME_4_PRIME_4_PRIME_2_PRIME_GO_PRIME_GO_SC_LIVE_4_SC_LIVE_2_-_User_Guide_-_v5.0.0.pdf",
+      "text_file": "denon-shared/PRIME_4_PRIME_4_PRIME_2_PRIME_GO_PRIME_GO_SC_LIVE_4_SC_LIVE_2_-_User_Guide_-_v5.0.0.txt",
+      "sha256": "aab8d29d22cd4e286a85009ee47d93fc67485793f35226bc19288592553bd74f",
+      "bytes": 19312626,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 109,
+      "text_sha256": "0cfbc739ffd9ae7129f7a3066d354a40814ae167c85517416b8609b1268cb34c"
+    },
+    {
+      "model": "four",
+      "url": "https://cdn.inmusicbrands.com/rane/four/FOUR%20-%20User%20Guide%20-%20v1.2.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.rane.com/downloads/",
+      "http_status": 200,
+      "resolved_url": "https://cdn.inmusicbrands.com/rane/four/FOUR%20-%20User%20Guide%20-%20v1.2.pdf",
+      "file": "four/FOUR_-_User_Guide_-_v1.2.pdf",
+      "text_file": "four/FOUR_-_User_Guide_-_v1.2.txt",
+      "sha256": "bf80bf957e3897aa46e57a46db094623dc07a9a2b94e47ec02e1c6fd6ab433bf",
+      "bytes": 14597305,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 39,
+      "text_sha256": "c972b4f3689f624beefc9322ea6a2f41e70382e80879bbaa30b3a2a9c132fd95"
+    },
+    {
+      "model": "performer",
+      "url": "https://cdn.inmusicbrands.com/rane/performer/PERFORMER%20-%20User%20Guide%20-%20v1.3.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.rane.com/downloads/",
+      "http_status": 200,
+      "resolved_url": "https://cdn.inmusicbrands.com/rane/performer/PERFORMER%20-%20User%20Guide%20-%20v1.3.pdf",
+      "file": "performer/PERFORMER_-_User_Guide_-_v1.3.pdf",
+      "text_file": "performer/PERFORMER_-_User_Guide_-_v1.3.txt",
+      "sha256": "d99683788040467a1b07883591f2db5670cc03a098386e9d7a280c9dc0fc6c06",
+      "bytes": 30753704,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 50,
+      "text_sha256": "ae5fa12be40510812c2023385bd6e32e453e102271b5b60b78abc55c529949f8"
+    },
+    {
+      "model": "one",
+      "url": "https://cdn.inmusicbrands.com/rane/one/RANE-ONE-User-Guide-v1_5.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.rane.com/downloads/",
+      "http_status": 200,
+      "resolved_url": "https://cdn.inmusicbrands.com/rane/one/RANE-ONE-User-Guide-v1_5.pdf",
+      "file": "one/RANE-ONE-User-Guide-v1_5.pdf",
+      "text_file": "one/RANE-ONE-User-Guide-v1_5.txt",
+      "sha256": "3211b156eb826c07da8e89380de9296fc734ea76c5e43db577d2a9964c45a622",
+      "bytes": 9895172,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 56,
+      "text_sha256": "8ad22d3c348fdedce6fe8b7f678cf16ca76363e57f39554d61b81476a9256071"
+    },
+    {
+      "model": "seventy-two-mkii",
+      "url": "https://cdn.inmusicbrands.com/rane/seventy-twoMKII/Seventy-Two_MKII-UserGuide-v1.4.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.rane.com/downloads/",
+      "http_status": 200,
+      "resolved_url": "https://cdn.inmusicbrands.com/rane/seventy-twoMKII/Seventy-Two_MKII-UserGuide-v1.4.pdf",
+      "file": "seventy-two-mkii/Seventy-Two_MKII-UserGuide-v1.4.pdf",
+      "text_file": "seventy-two-mkii/Seventy-Two_MKII-UserGuide-v1.4.txt",
+      "sha256": "83f6edbb759424e7d742abe5db0bf51b17674b40044d1097768b40e21c8ef4d4",
+      "bytes": 9614548,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 104,
+      "text_sha256": "aae2bcc2548fd728c07976109a48120546dcb965c90316b8d1e132744a6bcd3b"
+    },
+    {
+      "model": "twelve-mkii",
+      "url": "https://cdn.inmusicbrands.com/rane/twelveMKII/TwelveMKII-UserGuide-v1.1.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.rane.com/downloads/",
+      "http_status": 404,
+      "resolved_url": "https://cdn.inmusicbrands.com/rane/twelveMKII/TwelveMKII-UserGuide-v1.1.pdf",
+      "download_status": "failed-non-pdf-or-http"
+    },
+    {
+      "model": "apc64",
+      "url": "https://cdn.inmusicbrands.com/akai/APC64/APC64%20-%20User%20Guide%20-%20v1.0.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.akaipro.com/apc64",
+      "http_status": 200,
+      "resolved_url": "https://cdn.inmusicbrands.com/akai/APC64/APC64%20-%20User%20Guide%20-%20v1.0.pdf",
+      "file": "apc64/APC64_-_User_Guide_-_v1.0.pdf",
+      "text_file": "apc64/APC64_-_User_Guide_-_v1.0.txt",
+      "sha256": "bba9242fdddb90cf0f159e7acf96102d6b50eadf1131fa0f97e88c96d475c1c7",
+      "bytes": 9122889,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 66,
+      "text_sha256": "7dab9bb563ff03f817646f6c6825cd0634b67c358882f2676f319e8704692c92"
+    },
+    {
+      "model": "mpd218",
+      "url": "https://cdn.inmusicbrands.com/akai/attachments/MPD218/MPD218-UserGuide-v1.0.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.akaipro.com/mpd218",
+      "http_status": 200,
+      "resolved_url": "https://cdn.inmusicbrands.com/akai/attachments/MPD218/MPD218-UserGuide-v1.0.pdf",
+      "file": "mpd218/MPD218-UserGuide-v1.0.pdf",
+      "text_file": "mpd218/MPD218-UserGuide-v1.0.txt",
+      "sha256": "72bf5f3ae6d3f2266b07875ba175f7b5da3d1653f6f5dc00c6b7d568d3be608b",
+      "bytes": 1319724,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 20,
+      "text_sha256": "f38ca7c5e48edc50b60d75b502728f2573b75d6f20dc99a70aaf0ae0f7f833c1"
+    },
+    {
+      "model": "apc-mini-mk2",
+      "url": "https://cdn.inmusicbrands.com/akai/attachments/APC%20mini%20mk2%20-%20Communication%20Protocol%20-%20v1.0.pdf",
+      "kind": "midi-protocol",
+      "official_source_page": "https://www.akaipro.com/apc-mini-mk2",
+      "http_status": 200,
+      "resolved_url": "https://cdn.inmusicbrands.com/akai/attachments/APC%20mini%20mk2%20-%20Communication%20Protocol%20-%20v1.0.pdf",
+      "file": "apc-mini-mk2/APC_mini_mk2_-_Communication_Protocol_-_v1.0.pdf",
+      "text_file": "apc-mini-mk2/APC_mini_mk2_-_Communication_Protocol_-_v1.0.txt",
+      "sha256": "38881e0411831a9e67a2896b9dad8d8938b57bda278a6290aa717be4b046d6a7",
+      "bytes": 876384,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 16,
+      "text_sha256": "9283f6f0383e0733c1960ddef27d43490f56106298682f638e36b6dc6eb750c8"
+    },
+    {
+      "model": "apc40-mkii",
+      "url": "https://cdn.inmusicbrands.com/akai/attachments/apc40II/APC40Mk2_Communications_Protocol_v1.2.pdf",
+      "kind": "midi-protocol",
+      "official_source_page": "https://www.akaipro.com/apc40-mkii",
+      "http_status": 200,
+      "resolved_url": "https://cdn.inmusicbrands.com/akai/attachments/apc40II/APC40Mk2_Communications_Protocol_v1.2.pdf",
+      "file": "apc40-mkii/APC40Mk2_Communications_Protocol_v1.2.pdf",
+      "text_file": "apc40-mkii/APC40Mk2_Communications_Protocol_v1.2.txt",
+      "sha256": "3af85d0b338a68581360633f38db9267119a34d3e9f7ffaf68be24658ce932b1",
+      "bytes": 794268,
+      "download_status": "downloaded",
+      "extraction_returncode": 0,
+      "pages": 38,
+      "text_sha256": "0a31b545abec7079a54833ceae117f2ec5d71c15da280c93d72c3c215c567a62"
+    },
+    {
+      "model": "apc-mini-mk2",
+      "url": "https://cdn.inmusicbrands.com/akai/attachments/APC%20mini%20mk2%20-%20User%20Guide%20-%20v1.6.pdf",
+      "kind": "candidate-manual",
+      "official_source_page": "https://www.akaipro.com/apc-mini-mk2",
+      "http_status": 404,
+      "resolved_url": "https://cdn.inmusicbrands.com/akai/attachments/APC%20mini%20mk2%20-%20User%20Guide%20-%20v1.6.pdf",
+      "download_status": "failed-non-pdf-or-http"
+    },
+    {
+      "model": "apc40-mkii",
+      "url": "https://cdn.inmusicbrands.com/akai/attachments/apc40II/APC40mkII-UserGuide-v1.0.pdf",
+      "kind": "candidate-manual",
+      "official_source_page": "https://www.akaipro.com/apc40-mkii",
+      "http_status": 404,
+      "resolved_url": "https://cdn.inmusicbrands.com/akai/attachments/apc40II/APC40mkII-UserGuide-v1.0.pdf",
+      "download_status": "failed-non-pdf-or-http"
+    },
+    {
+      "model": "mpd218",
+      "url": "https://cdn.inmusicbrands.com/akai/attachments/MPD218/MPD218-Preset-Documentation-v1.0.pdf",
+      "kind": "candidate-manual",
+      "official_source_page": "https://www.akaipro.com/mpd218",
+      "http_status": 404,
+      "resolved_url": "https://cdn.inmusicbrands.com/akai/attachments/MPD218/MPD218-Preset-Documentation-v1.0.pdf",
+      "download_status": "failed-non-pdf-or-http"
+    },
+    {
+      "model": "mpd218",
+      "url": "https://cdn.inmusicbrands.com/akai/attachments/MPD218/MPD218-Editor-UserGuide-v1.0.pdf",
+      "kind": "candidate-manual",
+      "official_source_page": "https://www.akaipro.com/mpd218",
+      "http_status": 404,
+      "resolved_url": "https://cdn.inmusicbrands.com/akai/attachments/MPD218/MPD218-Editor-UserGuide-v1.0.pdf",
+      "download_status": "failed-non-pdf-or-http"
+    },
+    {
+      "model": "apc40-mkii",
+      "url": "https://cdn.inmusicbrands.com/akai/attachments/apc40II/APC40%20mkII%20-%20User%20Guide%20-%20v1.0.pdf",
+      "kind": "user-manual",
+      "official_source_page": "https://www.akaipro.com/apc40-mkii",
+      "http_status": 200,
+      "resolved_url": "https://cdn.inmusicbrands.com/akai/attachments/apc40II/APC40%20mkII%20-%20User%20Guide%20-%20v1.0.pdf",
+      "file": "apc40-mkii/APC40_mkII_User_Guide_v1.0.pdf",
+      "text_file": "apc40-mkii/APC40_mkII_User_Guide_v1.0.txt",
+      "sha256": "231beae35e607ff9034a5dec19b5df352293500525f836791ad6eb81dc9c2d8a",
+      "bytes": 3895214,
+      "download_status": "downloaded",
+      "pages": 28,
+      "text_sha256": "f87eef3dc5aa8cdb9743aa62a581f30219d6cc5768f9f52fbfd23a6c7df306ec"
+    },
+    {
+      "model": "apc-mini-mk2",
+      "url": "https://cdn.inmusicbrands.com/akai/attachments/APC%20mini%20mk2%20-%20User%20Guide%20-%20v1.7.pdf",
+      "kind": "candidate-manual",
+      "http_status": 404,
+      "resolved_url": "https://cdn.inmusicbrands.com/akai/attachments/APC%20mini%20mk2%20-%20User%20Guide%20-%20v1.7.pdf",
+      "discovery_method": "bounded legacy CDN path probe",
+      "download_status": "failed-non-pdf-or-http"
+    },
+    {
+      "model": "apc-mini-mk2",
+      "url": "https://cdn.inmusicbrands.com/akai/APCminimk2/APC%20mini%20mk2%20-%20User%20Guide%20-%20v1.7.pdf",
+      "kind": "candidate-manual",
+      "http_status": 404,
+      "resolved_url": "https://cdn.inmusicbrands.com/akai/APCminimk2/APC%20mini%20mk2%20-%20User%20Guide%20-%20v1.7.pdf",
+      "discovery_method": "bounded legacy CDN path probe",
+      "download_status": "failed-non-pdf-or-http"
+    },
+    {
+      "model": "twelve-mkii",
+      "url": "https://cdn.inmusicbrands.com/rane/twelveMKII/Twelve%20MKII%20-%20User%20Guide%20-%20v1.1.pdf",
+      "kind": "candidate-manual",
+      "http_status": 404,
+      "resolved_url": "https://cdn.inmusicbrands.com/rane/twelveMKII/Twelve%20MKII%20-%20User%20Guide%20-%20v1.1.pdf",
+      "discovery_method": "bounded legacy CDN path probe",
+      "download_status": "failed-non-pdf-or-http"
+    },
+    {
+      "model": "twelve-mkii",
+      "url": "https://cdn.inmusicbrands.com/rane/twelveMKII/TwelveMKII-UserGuide-v1_1.pdf",
+      "kind": "candidate-manual",
+      "http_status": 404,
+      "resolved_url": "https://cdn.inmusicbrands.com/rane/twelveMKII/TwelveMKII-UserGuide-v1_1.pdf",
+      "discovery_method": "bounded legacy CDN path probe",
+      "download_status": "failed-non-pdf-or-http"
+    },
+    {
+      "model": "twelve-mkii",
+      "url": "https://cdn.inmusicbrands.com/rane/twelveMKII/Twelve_MKII-UserGuide-v1.1.pdf",
+      "resolved_url": "https://cdn.inmusicbrands.com/rane/twelveMKII/Twelve_MKII-UserGuide-v1.1.pdf",
+      "http_status": 200,
+      "kind": "user-manual",
+      "file": "twelve-mkii/Twelve_MKII-UserGuide-v1.1.pdf",
+      "text_file": "twelve-mkii/Twelve_MKII-UserGuide-v1.1.txt",
+      "sha256": "6ad794ab8fcc99d6ce5d7b3399a9ac4eb90b1989c11aaeac7f1a4390d7af438e",
+      "text_sha256": "d2cc3c084716123f061451a50bf3da6f4e7111d4fc8e7c8cb86d8e7c7b0dd057",
+      "bytes": 7249327,
+      "download_status": "downloaded",
+      "pages": 36,
+      "discovery_method": "Refined official-support web search recovered manufacturer CDN URL after failed filename probes"
+    },
+    {
+      "model": "apc-mini-mk2",
+      "url": "https://cdn.inmusicbrands.com/akai/apc-mini-mkii/APC%20mini%20mk2%20-%20User%20Guide%20-%20v1.7.pdf",
+      "resolved_url": "https://cdn.inmusicbrands.com/akai/apc-mini-mkii/APC%20mini%20mk2%20-%20User%20Guide%20-%20v1.7.pdf",
+      "http_status": 200,
+      "kind": "user-manual",
+      "file": "apc-mini-mk2/APC_mini_mk2_User_Guide_v1.7.pdf",
+      "text_file": "apc-mini-mk2/APC_mini_mk2_User_Guide_v1.7.txt",
+      "sha256": "41b62c908556828e68373fc3dc070bb23e7158c9322203540be71d8164125395",
+      "text_sha256": "29454c2845a3a16026a5fddbf3c25ae7378093f0d5fb89167e10949dd30214a8",
+      "bytes": 4208796,
+      "download_status": "downloaded",
+      "pages": 76,
+      "discovery_method": "Refined official-support web search recovered manufacturer CDN URL after failed filename probes"
+    }
+  ],
+  "retrieval_notes": [
+    "Only manufacturer domains/CDN accepted as PDF sources. Search snippets used to discover URLs, not as protocol evidence.",
+    "Rane and Akai modern download/product pages returned HTTP 200 shell/navigation HTML without direct manuals; saved HTML supports this limitation.",
+    "Candidate CDN filename probes and HTTP failures are retained in downloads; they are not evidence of official link existence.",
+    "PDF page references are one-based file pages. Some color/address diagrams require visual review rather than relying on text extraction.",
+    "All PDFs preserved verbatim with SHA256. No account registration, installers, hardware communication, profiles or app edits."
+  ],
+  "sxm_schema_observed": {
+    "kind": [
+      "note",
+      "controlChange"
+    ],
+    "encoding": [
+      "absolute7Bit",
+      "relativeTwosComplement",
+      "noteGate"
+    ],
+    "layer": [
+      "base",
+      "amber",
+      "green"
+    ],
+    "color": [
+      "red",
+      "amber",
+      "green"
+    ]
+  },
+  "schema_adaptation_limits": [
+    "The app schema cannot represent full RGB palettes or arbitrary protocol modes/channels as its fixed layers/colors. Documentation readiness does not establish schema fit.",
+    "SysEx, paired CC precision, system realtime and aftertouch require runtime/schema support beyond current scalar controls."
+  ],
+  "visual_checks": [
+    {
+      "file": "lc6000/LC6000-PRIME-MIDI-Specification-v1.0.pdf",
+      "pdf_page": 7,
+      "image": "lc6000/color-table-page7.png",
+      "finding": "Visually confirmed primary PDF decimal/hex inconsistency: first row Velocity Dec 1, Velocity Hex 0x00, OFF. Not a pdftotext artifact."
+    }
+  ],
+  "recovery_notes": [
+    "Targeted recovery acquired TWELVE MKII user guide v1.1 and APC mini mk2 user guide v1.7. Prior failed probes retained as history, not current inaccessibility.",
+    "Subagent CUA in-app browser was unavailable (listBrowsers empty); no native Chrome mutation. Parent confirmed TWELVE manufacturer download link using working CUA."
+  ]
+}

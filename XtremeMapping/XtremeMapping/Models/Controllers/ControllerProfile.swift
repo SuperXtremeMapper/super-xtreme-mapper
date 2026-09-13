@@ -17,6 +17,16 @@ nonisolated struct ControllerProfile: Codable, Equatable, Sendable {
     let limitations: [Limitation]
     let configurationEvidence: [String]
 
+    var ports: [Port]? = nil
+    var coverageNotes: [String]? = nil
+    var coverageState: CoverageState? = nil
+    enum CoverageState: String, Codable, Sendable { case partial, documentationOnly }
+
+    struct Port: Codable, Equatable, Sendable {
+        let id: String
+        let name: String
+    }
+
     struct Source: Codable, Equatable, Sendable {
         let id: String
         let url: String
@@ -65,7 +75,7 @@ nonisolated struct ControllerProfile: Codable, Equatable, Sendable {
         let direction: Direction
         let layer: Layer
         let kind: Kind
-        let number: Int
+        let number: Int?
         let encoding: Encoding
         /// Both bounds are absent when the source does not document values.
         let valueMin: Int?
@@ -73,12 +83,26 @@ nonisolated struct ControllerProfile: Codable, Equatable, Sendable {
         let color: Color?
         let evidence: [String]
         let notes: [String]
+        var channel: Int? = nil
+        var modeID: String? = nil
+        var portID: String? = nil
+        var context: String? = nil
+        var support: BindingSupport? = nil
+        var components: [Component]? = nil
+        var semantics: String? = nil
+    }
+
+    enum BindingSupport: String, Codable, Sendable { case available, documentedOnly }
+    struct Component: Codable, Equatable, Sendable {
+        let kind: Kind
+        let number: Int
+        let role: String
     }
 
     enum Direction: String, Codable, Sendable { case send, receive }
     enum Layer: String, Codable, Sendable { case base, amber, green }
-    enum Kind: String, Codable, Sendable { case note, controlChange }
-    enum Encoding: String, Codable, Sendable { case absolute7Bit, relativeTwosComplement, noteGate }
+    enum Kind: String, Codable, Sendable { case note, controlChange, compound, other }
+    enum Encoding: String, Codable, Sendable { case absolute7Bit, relativeTwosComplement, noteGate, documented, relativeBinaryOffset, paired14Bit, palette, unsupported }
     enum Color: String, Codable, Sendable { case red, amber, green }
 
     struct Limitation: Codable, Equatable, Sendable {

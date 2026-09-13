@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "manufacturer": "Akai Professional",
+  "model": "MPD218",
+  "status": "partial-extraction",
+  "coverage_state": "documentation-only",
+  "hardware_tested": false,
+  "sources": [
+    {
+      "id": "manual",
+      "local_file": "inmusic/mpd218/MPD218-UserGuide-v1.0.pdf",
+      "url": "https://cdn.inmusicbrands.com/akai/attachments/MPD218/MPD218-UserGuide-v1.0.pdf",
+      "sha256": "72bf5f3ae6d3f2266b07875ba175f7b5da3d1653f6f5dc00c6b7d568d3be608b"
+    }
+  ],
+  "scope": "Documentation-only: owner guide establishes three pad/control banks, 16 selectable programs, velocity-sensitive pads and CC knobs, but refers to separate unarchived Preset Documentation for the addresses. No factory template is inferred.",
+  "bindings": [],
+  "issues": [
+    {
+      "id": "issue-0001",
+      "severity": "scope",
+      "description": "USB setup, bank/program selection, normal-MIDI suppression and Note Repeat configuration are documented. The guide explicitly directs readers to separate Preset Documentation, absent from this archive.",
+      "evidence": [
+        {
+          "source_id": "manual",
+          "locator": "PDF pp.3\u20135"
+        }
+      ],
+      "excluded_bindings": [
+        "All unverified factory/program note and CC assignments"
+      ]
+    },
+    {
+      "id": "issue-0002",
+      "severity": "unsupported",
+      "description": "Pressure sensitivity and external clock operation are documented capabilities, without complete pressure or feedback protocol bytes in this guide.",
+      "evidence": [
+        {
+          "source_id": "manual",
+          "locator": "PDF pp.4\u20135"
+        }
+      ],
+      "excluded_bindings": [
+        "Unspecified pressure messages",
+        "Unproven LED receive messages"
+      ]
+    }
+  ],
+  "raw_evidence": [
+    {
+      "source_id": "manual",
+      "file": "akai-alphatheta/mpd218-manual-pages.txt",
+      "extraction_method": "Complete archived PDF text with explicit one-based PDF page markers; original PDF authoritative."
+    }
+  ],
+  "setup_notes": [
+    "Connect by USB and select MPD218 as the controller in the DAW preferences (manual p.3).",
+    "Select the intended pad and control banks; hold Prog Select and press a pad to choose the same-numbered program (pp.4\u20135).",
+    "Obtain the MPD218 Editor Software and Preset Documentation identified by the guide before establishing program-specific mappings (pp.3,5).",
+    "Pads suppress normal MIDI while NR Config or Prog Select is held; Note Repeat follows the configured internal or external clock (p.5)."
+  ],
+  "missing_information": [
+    "Factory/program-specific pad note numbers, knob CC numbers and MIDI channels for every bank.",
+    "Separate Preset Documentation/editor guide and actual selected program.",
+    "Pressure message type/address semantics and host LED receive protocol.",
+    "Exact knob value encoding; 360-degree travel and CC capability alone do not establish relative or absolute encoding."
+  ]
+}
