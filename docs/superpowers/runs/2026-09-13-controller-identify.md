@@ -1,6 +1,6 @@
 # Run: controller-identify
 Instruction: Build the controller identify workflow in XtremeMapping. Effort ceiling: MEDIUM. Reuse the existing design system (AppThemeV2 + V2 components). (1) On-load dismissible banner when a device has no controller profile → "Identify controller"/"Not now", re-openable. (2) Redesign the orphaned ControllerProfileSheet into a clean "Which controller is this?" identify screen (searchable brand/model list, coverage chips, confirm channel, Skip/Confirm), jargon moved to advanced panel. (3) Wire the trigger (activeSheet=.controllerProfile is never set today). (4) Per-device identification with a device switcher. (5) Additive "Physical Control" column in MappingsTableView (do NOT replace CC/MIDI columns) resolved via ControllerControlResolver. Never touch AppThemeV2 tokens. Extend the uncommitted controller-library work, don't revert it. Reference mockup: docs/mockups/controller-identify-flow.html.
-Stage: awaiting-commit-decision (build+feature verified; main-push + entangled tree need user call)
+Stage: done (commit 6063817 pushed to origin/main)
 Rung: medium (start-floor: user-capped "up to medium"; evaluator sets light|medium, ceiling medium)
 Spec: docs/superpowers/specs/2026-09-13-controller-identify-design.md
 Plan: docs/superpowers/plans/2026-09-13-controller-identify.md

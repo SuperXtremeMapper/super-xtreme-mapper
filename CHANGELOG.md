@@ -1,5 +1,18 @@
 # What's new
 
+## 1.2 — September 13, 2026
+
+Identify your controller, and talk to your mappings.
+
+- Tell SXM which hardware a mapping is for. Open a file and a prompt asks "Which controller is this?" — pick your brand and model from a searchable list, or set it later from the new Controller button. This never changes your mapping.
+- A new Physical column names each mapping's real control — Fader 1, Play button, Pot 3 — next to the MIDI numbers, once you have identified the device.
+- 47 documented controller profiles: Allen & Heath Xone, AlphaTheta / Pioneer CDJ and DDJ, Akai APC and MPD, and more, each labelled Full MIDI, Partial, or Documentation-only so you know what is covered.
+- Ask the Assistant a question about your mapping, or describe a change in plain words and it proposes the edit for you to review and apply — questions and edits in one place.
+- Speak to it: tap the mic, move a control while you talk ("make this the volume for deck A"), and it attaches that control. Your words appear live as you speak, and the mic pulses while it listens.
+- A cleaner editor: the Controller entry sits next to the Assistant, the identify screen matches the rest of the app, and mapping answers read more plainly.
+
+Verified with 938 automated tests and real Traktor 4.5.1 imports.
+
 ## 1.1.3 — September 12, 2026
 
 - Replace text across selected comments with a before/after preview and Undo.

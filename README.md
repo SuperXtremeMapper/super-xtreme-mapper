@@ -9,11 +9,15 @@ A native macOS TSI editor for Traktor Pro. Create, edit, and manage your MIDI co
 ![macOS](https://img.shields.io/badge/macOS-14.0+-blue)
 ![Universal](https://img.shields.io/badge/macOS-universal-green)
 ![License](https://img.shields.io/badge/license-MIT-orange)
-![Version](https://img.shields.io/badge/version-1.1.3-brightgreen)
+![Version](https://img.shields.io/badge/version-1.2-brightgreen)
 
 ## Features
 
 - **Visual Mapping Table** - See all your mappings at a glance in a clean, sortable table. Filter by I/O type, assignment, or search for specific commands.
+
+- **Identify Your Controller** - Tell SXM which hardware a mapping is for and a Physical column names each mapping's real control (Fader 1, Play button, Pot 3) next to the MIDI numbers. 47 documented profiles across Allen & Heath, AlphaTheta / Pioneer, Akai and more. It never changes your mapping.
+
+- **AI Assistant** - Ask questions about your mapping in plain words, or describe a change and review the proposed edit before applying. Talk to it: move a control while you speak to create a mapping by voice.
 
 - **Full MIDI Control** - Edit channels, CC numbers, notes, and all MIDI parameters. Full support for buttons, faders, encoders, and LEDs.
 
@@ -29,7 +33,7 @@ A native macOS TSI editor for Traktor Pro. Create, edit, and manage your MIDI co
 
 - **Native macOS** - Built with SwiftUI for Apple Silicon. Fast, memory efficient, with full dark mode and keyboard shortcut support.
 
-See the [changelog](CHANGELOG.md) for what changed in 1.1.3.
+See the [changelog](CHANGELOG.md) for what changed in 1.2.
 
 For the editor improvements, see the [large-mapping editing guide](docs/Editor-Workflow.md).
 
@@ -37,7 +41,7 @@ For the editor improvements, see the [large-mapping editing guide](docs/Editor-W
 
 ### Download
 
-Download [SuperXtremeMapper_1.1.3.dmg](https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases/download/v1.1.3/SuperXtremeMapper_1.1.3.dmg).
+Download [SuperXtremeMapper_1.2.dmg](https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases/download/v1.2/SuperXtremeMapper_1.2.dmg).
 
 ### Requirements
 
