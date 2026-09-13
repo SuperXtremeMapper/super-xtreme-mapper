@@ -137,6 +137,13 @@ nonisolated final class MappingAssistantService: MappingAnswering, Sendable {
         if http.statusCode == 429 { throw ServiceError.rateLimited }
         guard (200...299).contains(http.statusCode) else { throw ServiceError.serverStatus(http.statusCode) }
 
+        // A truncated (max_tokens) reply leaves the tool output as incomplete
+        // JSON; report it as truncated rather than an unreadable answer.
+        if let raw = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+           raw["stop_reason"] as? String == "max_tokens" {
+            throw ServiceError.truncated
+        }
+
         let envelope: ResponseEnvelope
         do {
             envelope = try JSONDecoder().decode(ResponseEnvelope.self, from: data)
@@ -177,7 +184,7 @@ nonisolated final class MappingAssistantService: MappingAnswering, Sendable {
         let userText = String(decoding: userData, as: UTF8.self)
         let body: [String: Any] = [
             "model": model.rawValue,
-            "max_tokens": 4_096,
+            "max_tokens": 8_192,
             "system": Self.systemPrompt,
             "messages": [["role": "user", "content": userText]],
             "tools": [[
