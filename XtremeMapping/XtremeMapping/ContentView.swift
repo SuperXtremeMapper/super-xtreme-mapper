@@ -985,12 +985,19 @@ struct V2AddCommandMenuButton: View {
     @State private var isHovered = false
 
     var body: some View {
-        ZStack {
+        // The whole visible button is the menu's label, so a click anywhere on
+        // it opens the dropdown (no tiny transparent hit area).
+        Menu {
+            ForEach(commandCategories) { category in
+                categoryMenu(category)
+            }
+        } label: {
             visualButton
-            transparentMenu
         }
+        .menuStyle(.borderlessButton)
+        .menuIndicator(.hidden)
         .fixedSize()
-        .contentShape(Rectangle())  // Make entire ZStack clickable
+        .disabled(isDisabled)
         .onHover { hovering in
             withAnimation(.easeInOut(duration: 0.15)) {
                 isHovered = hovering
@@ -1022,21 +1029,6 @@ struct V2AddCommandMenuButton: View {
             color: isHovered && !isDisabled ? AppThemeV2.Colors.amberGlow : .clear,
             radius: isHovered && !isDisabled ? 8 : 0
         )
-    }
-
-    private var transparentMenu: some View {
-        Menu {
-            ForEach(commandCategories) { category in
-                categoryMenu(category)
-            }
-        } label: {
-            Color.clear
-                .frame(maxWidth: .infinity, maxHeight: .infinity)  // Fill the ZStack
-                .contentShape(Rectangle())
-        }
-        .menuStyle(.borderlessButton)
-        .menuIndicator(.hidden)
-        .disabled(isDisabled)
     }
 
     @ViewBuilder
