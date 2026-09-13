@@ -251,10 +251,10 @@ struct UnifiedAssistantView: View {
                     Text(verbatim: message.text).lineSpacing(3)
                 }
                 if let answer = message.answer {
-                    answerClaims("Facts", answer.facts, revision: message.revision)
-                    answerClaims("Interpretations", answer.interpretations, revision: message.revision)
+                    answerClaims("What I found", answer.facts, revision: message.revision)
+                    answerClaims("What it means", answer.interpretations, revision: message.revision)
                     if !answer.unknowns.isEmpty {
-                        AssistantSectionLabel("Limitations")
+                        AssistantSectionLabel("What I'm not sure about")
                         ForEach(Array(answer.unknowns.enumerated()), id: \.offset) { _, value in
                             Text(verbatim: value).foregroundStyle(AppThemeV2.Colors.stone400)
                         }
@@ -417,7 +417,7 @@ struct UnifiedAssistantView: View {
             ForEach(Array(claims.enumerated()), id: \.offset) { _, claim in
                 Text(verbatim: claim.text)
                 if !claim.rowIDs.isEmpty {
-                    Button("Show \(claim.rowIDs.count) source rows") { show(Set(claim.rowIDs)) }
+                    Button("Show these \(claim.rowIDs.count) rows") { show(Set(claim.rowIDs)) }
                         .buttonStyle(AssistantLinkButtonStyle()).disabled(revision != document.explanationRevision)
                 }
             }
@@ -426,7 +426,7 @@ struct UnifiedAssistantView: View {
 
     private func localResults(_ context: ExplanationContext) -> some View {
         VStack(alignment: .leading, spacing: 6) {
-            AssistantSectionLabel("Source rows · \(context.rows.count) of \(context.totalRows)")
+            AssistantSectionLabel("Rows I checked · \(context.rows.count) of \(context.totalRows)")
             if context.rows.isEmpty {
                 Text("No matching rows. Try a command, MIDI address, device name or modifier number.")
                     .font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone400)
@@ -447,13 +447,13 @@ struct UnifiedAssistantView: View {
         VStack(alignment: .leading, spacing: 10) {
             V2Divider()
             HStack {
-                AssistantSectionLabel("Review proposed changes")
+                AssistantSectionLabel("Review changes")
                 Spacer()
-                Button("Show these mappings") { show(Set(plan.changes.map(\.rowID))) }
+                Button("Show in editor") { show(Set(plan.changes.map(\.rowID))) }
                     .buttonStyle(AssistantLinkButtonStyle()).fixedSize()
                     .disabled(plan.changes.isEmpty)
             }
-            Text("\(plan.changes.count) affected \(plan.changes.count == 1 ? "row" : "rows") · Pending · not yet applied")
+            Text("\(plan.changes.count) \(plan.changes.count == 1 ? "mapping" : "mappings") will change — nothing is applied until you tap Apply.")
                 .foregroundStyle(AppThemeV2.Colors.stone400)
             ForEach(plan.changes) { change in
                 let entry = document.mappingFile.allMappings.first { $0.id == change.rowID }
@@ -475,7 +475,7 @@ struct UnifiedAssistantView: View {
                     }
                     // Before/after summaries lead; raw identifiers are tucked away.
                     ForEach(Array(change.summaries.enumerated()), id: \.offset) { _, value in Text(verbatim: value) }
-                    DisclosureGroup("Technical details") {
+                    DisclosureGroup("Details") {
                         Text(change.rowID.uuidString).font(AppThemeV2.Typography.mono).textSelection(.enabled)
                     }
                 }
@@ -484,12 +484,12 @@ struct UnifiedAssistantView: View {
                 AssistantNoticeBanner(kind: .warning, text: warning)
             }
             HStack {
-                Button("Apply changes") {
+                Button("Apply") {
                     do { _ = try conversation.apply(document: document, isLocked: isLocked, undoManager: nil); input.clearCapture() }
                     catch { errorMessage = error.localizedDescription }
                 }.buttonStyle(AssistantButtonStyle(primary: true)).disabled(isLocked || conversation.isWorking || plan.isEmpty)
-                Button("Discard proposal") { conversation.discardProposal() }
-                Text("Apply once, then Undo in the editor to revert.").font(.caption).foregroundStyle(AppThemeV2.Colors.stone400)
+                Button("Discard") { conversation.discardProposal() }
+                Text("You can Undo in the editor after applying.").font(.caption).foregroundStyle(AppThemeV2.Colors.stone400)
             }
         }.padding(12)
             .background(AppThemeV2.Colors.stone800, in: RoundedRectangle(cornerRadius: AppThemeV2.Radius.lg))
