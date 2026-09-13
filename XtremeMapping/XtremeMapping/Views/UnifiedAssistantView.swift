@@ -169,11 +169,6 @@ struct UnifiedAssistantView: View {
                     ForEach(conversation.messages) { message in
                         messageView(message).id(message.id)
                     }
-                    if !conversation.isWorking,
-                       let context = conversation.localContext,
-                       context.revision == document.explanationRevision {
-                        localResults(context)
-                    }
                     if !conversation.isWorking, let plan = conversation.pendingPlan, current { review(plan) }
                     if conversation.isWorking {
                         HStack(spacing: 8) {
@@ -418,25 +413,6 @@ struct UnifiedAssistantView: View {
                     Button("Show these \(claim.rowIDs.count) rows") { show(Set(claim.rowIDs)) }
                         .buttonStyle(AssistantLinkButtonStyle()).disabled(revision != document.explanationRevision)
                 }
-            }
-        }
-    }
-
-    private func localResults(_ context: ExplanationContext) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
-            AssistantSectionLabel("Rows I checked · \(context.rows.count) of \(context.totalRows)")
-            if context.rows.isEmpty {
-                Text("No matching rows. Try a command, MIDI address, device name or modifier number.")
-                    .font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone400)
-            }
-            // Only the matched rows — internal preservation notices are omitted.
-            ForEach(context.rows.prefix(12)) { row in
-                Button("\(row.deviceName) · row \(row.position) · \(row.command) · \(row.midi)") { show([row.id]) }
-                    .buttonStyle(AssistantLinkButtonStyle())
-            }
-            if context.rows.count > 12 {
-                Text("+ \(context.rows.count - 12) more matching rows")
-                    .font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone500)
             }
         }
     }
