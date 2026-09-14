@@ -1155,27 +1155,18 @@ struct V2AddCommandMenuButton: View {
     @State private var isHovered = false
 
     var body: some View {
-        // Keep the original styled button + rollover, and overlay a transparent
-        // menu that fills the whole button so a click anywhere opens the dropdown.
         visualButton
             .overlay {
-                Menu {
-                    ForEach(commandCategories) { category in
-                        categoryMenu(category)
-                    }
-                } label: {
-                    Color.clear.contentShape(Rectangle())
+                GeometryReader { geometry in
+                    CommandMenuHitArea(categories: commandCategories, isDisabled: isDisabled,
+                        label: tooltip,
+                        onHover: { hovering in
+                            withAnimation(.easeInOut(duration: 0.15)) { isHovered = hovering }
+                        }, onSelect: onCommandSelected)
+                        .frame(width: geometry.size.width, height: geometry.size.height)
                 }
-                .menuStyle(.borderlessButton)
-                .menuIndicator(.hidden)
-                .disabled(isDisabled)
             }
             .fixedSize(horizontal: !expandsToFit, vertical: true)
-            .onHover { hovering in
-                withAnimation(.easeInOut(duration: 0.15)) {
-                    isHovered = hovering
-                }
-            }
             .help(tooltip)
     }
 
@@ -1203,34 +1194,6 @@ struct V2AddCommandMenuButton: View {
             color: isHovered && !isDisabled ? AppThemeV2.Colors.amberGlow : .clear,
             radius: isHovered && !isDisabled ? 8 : 0
         )
-    }
-
-    @ViewBuilder
-    private func categoryMenu(_ category: CommandCategory2) -> some View {
-        if let subcategories = category.subcategories {
-            Menu(category.name) {
-                ForEach(subcategories) { subcategory in
-                    subcategoryMenu(subcategory)
-                }
-            }
-        } else if let commands = category.commands {
-            Menu(category.name) {
-                ForEach(commands) { command in
-                    Button(command.name) { onCommandSelected(command.descriptor) }
-                }
-            }
-        }
-    }
-
-    @ViewBuilder
-    private func subcategoryMenu(_ subcategory: CommandCategory2) -> some View {
-        if let commands = subcategory.commands {
-            Menu(subcategory.name) {
-                ForEach(commands) { command in
-                    Button(command.name) { onCommandSelected(command.descriptor) }
-                }
-            }
-        }
     }
 
     private var foregroundColor: Color {
