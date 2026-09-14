@@ -8,9 +8,8 @@ struct ControllerProfileSheet: View {
     enum Mode { case identify, advanced }
 
     @ObservedObject var document: TraktorMappingDocument
-    /// Seeded from the passed id; the header switcher can retarget it, reloading
-    /// the draft for the newly chosen device.
-    @State private var deviceID: UUID
+    /// The device is selected in XXDEVICES before this chooser opens.
+    let deviceID: UUID
     let isLocked: Bool
     let undoManager: UndoManager?
     let onShowMappings: (Set<UUID>) -> Void
@@ -35,7 +34,7 @@ struct ControllerProfileSheet: View {
     init(document: TraktorMappingDocument, deviceID: UUID, isLocked: Bool,
          undoManager: UndoManager?, onShowMappings: @escaping (Set<UUID>) -> Void) {
         self.document = document
-        _deviceID = State(initialValue: deviceID)
+        self.deviceID = deviceID
         self.isLocked = isLocked
         self.undoManager = undoManager
         self.onShowMappings = onShowMappings
@@ -43,15 +42,6 @@ struct ControllerProfileSheet: View {
         _draft = State(initialValue: document.mappingFile.interchangeMetadata?.deviceProfiles?.first { $0.deviceID == deviceID }?.configuration)
         do { library = try ControllerProfileLibrary(); libraryError = nil }
         catch { library = nil; libraryError = error.localizedDescription }
-    }
-
-    /// Reload the draft for the currently targeted device (after a switcher change).
-    private func reloadDraftForDevice() {
-        draft = document.mappingFile.interchangeMetadata?.deviceProfiles?.first { $0.deviceID == deviceID }?.configuration
-        controlID = profile?.controls.first?.id
-        query = ""
-        layer = .base
-        direction = .send
     }
 
     private var device: Device? { document.mappingFile.devices.first { $0.id == deviceID } }
@@ -119,10 +109,6 @@ struct ControllerProfileSheet: View {
         .onChange(of: draft?.layerMode) { _, _ in selectFirstVisibleControlIfNeeded() }
         .onChange(of: draft?.portID) { _, _ in selectFirstVisibleControlIfNeeded() }
         .onChange(of: direction) { _, _ in selectFirstVisibleControlIfNeeded() }
-        .onChange(of: deviceID) { _, _ in
-            document.activeDeviceID = deviceID
-            reloadDraftForDevice()
-        }
         .onChange(of: document.midiSourceIDs) { _, _ in resetCapture() }
         .onChange(of: document.mappingFile.devices.map { "\($0.id):\($0.inPort)" }) { _, _ in resetCapture() }
         .onChange(of: midiManager.activeListeningLease) { _, current in
@@ -166,15 +152,11 @@ struct ControllerProfileSheet: View {
                     .font(AppThemeV2.Typography.sectionHeader).tracking(0.5)
                     .foregroundStyle(AppThemeV2.Colors.stone100)
                 Spacer()
-                if document.mappingFile.devices.count > 1 {
-                    V2Dropdown(options: document.mappingFile.devices.map(\.id),
-                               selection: $deviceID,
-                               labelFor: { id in document.mappingFile.devices.first { $0.id == id }?.displayName ?? "Device" })
-                        .frame(maxWidth: 240)
-                } else {
-                    Text(device?.name ?? "Device no longer available")
-                        .font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone400)
-                }
+                Text(device?.displayName ?? "Device no longer available")
+                    .font(AppThemeV2.Typography.caption)
+                    .foregroundStyle(AppThemeV2.Colors.stone400)
+                    .lineLimit(1).truncationMode(.middle)
+                    .frame(maxWidth: 240, alignment: .trailing)
             }
             Text("Name your hardware so SXM can show each mapping's physical control. This never changes your mapping.")
                 .font(AppThemeV2.Typography.caption)
@@ -243,7 +225,7 @@ struct ControllerProfileSheet: View {
         HStack(spacing: AppThemeV2.Spacing.sm) {
             V2ToolbarButton(label: "Advanced…", action: { mode = .advanced })
             Spacer()
-            V2ToolbarButton(label: "Skip — keep generic", action: { stopLearning(); dismiss() })
+            V2ToolbarButton(label: draft == nil ? "Keep generic MIDI" : "Cancel", action: { stopLearning(); dismiss() })
             V2ToolbarButton(label: "Confirm controller", action: { apply(showMappings: false) }, isPrimary: true)
                 .disabled(confirmDisabled)
                 .opacity(confirmDisabled ? 0.45 : 1)
@@ -561,7 +543,7 @@ struct ControllerProfileSheet: View {
                 Button("Remove Override") { removeOverride() }
                     .disabled(!hasContextOverride)
             }
-            Text(lease != nil ? "Move only this control. SXM listens to all connected MIDI inputs."
+            Text(lease != nil ? "Move only this control on the input assigned to this device."
                  : "Overrides apply only to this control, port, map, mode, layer and direction. Mapping rows stay unchanged.")
                 .font(.caption).foregroundStyle(AppThemeV2.Colors.stone400)
         }.disabled(isLocked || controlID == nil || draft == nil)

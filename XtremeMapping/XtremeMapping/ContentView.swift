@@ -19,6 +19,7 @@ struct ContentView: View {
     @State private var isLocked: Bool = false
     @State private var searchText: String = ""
     @State private var activeSheet: SheetType?
+    @State private var isDevicesPaneVisible = false
     @StateObject private var assistantWindow = AssistantWindowController()
     @State private var mappingTransferError: MappingTransferError?
     @State private var workflowDestinationError: MappingTransferError?
@@ -177,7 +178,8 @@ struct ContentView: View {
                 onAbout: { activeSheet = .about },
                 onSettings: { activeSheet = .settings },
                 onAssistant: { launchAssistant() },
-                onController: { if let target = identifyTargetDeviceID { activeSheet = .controllerProfile(target) } },
+                onDevices: { isDevicesPaneVisible.toggle() },
+                devicesAreVisible: isDevicesPaneVisible,
                 onWizard: launchWizard
             )
 
@@ -185,10 +187,8 @@ struct ContentView: View {
                 compatibilityWarningBanner
             }
 
-            DeviceContextBar(document: document, isLocked: isLocked, onManage: { activeSheet = .devices })
-
             // Main content
-            editorSplit
+            deviceWorkspace
 
             // V2 Status bar
             HStack(spacing: AppThemeV2.Spacing.sm) {
@@ -400,6 +400,56 @@ struct ContentView: View {
         .accessibilityValue(warnings.map(\.message).joined(separator: " "))
     }
 
+    // MARK: - Device navigation
+
+    private var deviceProfileNames: [UUID: String] {
+        var names: [UUID: String] = [:]
+        for item in document.mappingFile.interchangeMetadata?.deviceProfiles ?? [] {
+            if let profile = try? Self.sharedProfileLibrary?.profile(id: item.configuration.profileID,
+                                                                    version: item.configuration.version) {
+                names[item.deviceID] = profile.model
+            } else {
+                names[item.deviceID] = "Controller profile saved"
+            }
+        }
+        return names
+    }
+
+    private var deviceWorkspace: some View {
+        HStack(spacing: 0) {
+            if isDevicesPaneVisible {
+                DevicesSidebar(document: document, profileNames: deviceProfileNames, isLocked: isLocked,
+                    onClose: { isDevicesPaneVisible = false },
+                    onAdd: addDeviceFromSidebar,
+                    onChooseController: chooseController,
+                    onSettings: { id in
+                        guard DeviceSidebarActions.selectDevice(id, in: document) else { return }
+                        activeSheet = .devices
+                    })
+                    .frame(width: 220)
+                Rectangle().fill(AppThemeV2.Colors.stone700).frame(width: 1)
+            }
+            editorSplit
+        }
+    }
+
+    private func chooseController(_ id: UUID) {
+        guard DeviceSidebarActions.selectDevice(id, in: document) else { return }
+        isDevicesPaneVisible = true
+        activeSheet = .controllerProfile(id)
+    }
+
+    private func addDeviceFromSidebar() {
+        guard !isLocked else { return }
+        do {
+            if let id = try DeviceSidebarActions.addDevice(to: document, undoManager: undoManager) {
+                chooseController(id)
+            }
+        } catch {
+            mappingTransferError = .preflightFailed(error.localizedDescription)
+        }
+    }
+
     // MARK: - Editor split
 
     /// The table + inspector split. Extracted from `body` so the main view's
@@ -498,7 +548,7 @@ struct ContentView: View {
     // MARK: - Identify controller banner
 
     private var showIdentifyBanner: Bool {
-        !devicesNeedingProfile.isEmpty && !identifyBannerDismissed && !isLocked
+        !isDevicesPaneVisible && !devicesNeedingProfile.isEmpty && !identifyBannerDismissed && !isLocked
     }
 
     /// Soft, dismissible on-load notice matching `AssistantNoticeBanner`'s
@@ -518,8 +568,8 @@ struct ContentView: View {
             Spacer(minLength: AppThemeV2.Spacing.sm)
             // Same button height (24) and spacing (xs) as the toolbar row above.
             HStack(spacing: AppThemeV2.Spacing.xs) {
-                V2ToolbarButton(label: "Select Controller",
-                                action: { if let first = devicesNeedingProfile.first { activeSheet = .controllerProfile(first.id) } })
+                V2ToolbarButton(label: "Devices", action: { isDevicesPaneVisible = true })
+                    .help("Choose a device and identify its controller")
                 V2ToolbarButton(icon: "xmark", label: nil,
                                 action: { withAnimation(.easeInOut(duration: 0.2)) { identifyBannerDismissed = true } })
                     .help("Dismiss")
@@ -539,6 +589,16 @@ struct ContentView: View {
     private var mappingsHeader: some View {
         HStack(spacing: AppThemeV2.Spacing.sm) {
             V2SectionHeader(title: "MAPPINGS")
+            Button {
+                isDevicesPaneVisible = true
+            } label: {
+                Text(document.mappingFile.devices.first(where: { $0.id == document.activeDeviceID })?.displayName ?? "All devices")
+                    .font(AppThemeV2.Typography.caption)
+                    .lineLimit(1).truncationMode(.middle)
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(AppThemeV2.Colors.stone400)
+            .help("Show devices and change the mapping scope")
             if profileMatchIDs != nil {
                 Button("Show all mappings") { profileMatchIDs = nil }
                     .buttonStyle(.plain)
@@ -550,12 +610,6 @@ struct ContentView: View {
         .padding(.horizontal, AppThemeV2.Spacing.lg)
         .frame(height: AppThemeV2.Components.sectionHeaderHeight)
         .background(AppThemeV2.Colors.stone800)
-    }
-
-    /// Device the persistent Controller entry opens: prefer the first still
-    /// needing a profile, else the first device.
-    private var identifyTargetDeviceID: UUID? {
-        document.activeDeviceID ?? devicesNeedingProfile.first?.id ?? document.mappingFile.devices.first?.id
     }
 
     // MARK: - Assistant and Wizard
@@ -886,7 +940,8 @@ struct V2ActionBarFull: View {
     var onAbout: () -> Void
     var onSettings: () -> Void
     var onAssistant: (() -> Void)?
-    var onController: (() -> Void)?
+    var onDevices: (() -> Void)?
+    var devicesAreVisible: Bool = false
     var onWizard: (() -> Void)?
 
     var body: some View {
@@ -906,15 +961,19 @@ struct V2ActionBarFull: View {
                 // removed — mapping creation by moving controls now lives in the
                 // Assistant's Voice Learn (mic in the composer).
                 HStack(spacing: AppThemeV2.Spacing.xs) {
-                    // Controller — sits just to the LEFT of the Assistant button.
-                    if let controllerAction = onController {
+                    // Device navigation and controller selection share one entry point.
+                    if let devicesAction = onDevices {
                         V2ToolbarButton(
-                            icon: "pianokeys",
-                            label: "Controller",
-                            action: controllerAction,
+                            icon: "sidebar.left",
+                            label: "Devices",
+                            action: devicesAction,
+                            isActive: devicesAreVisible,
                             minWidth: 70
                         )
-                        .help("Identify the controller for this mapping")
+                        .help(devicesAreVisible ? "Hide devices" : "Show devices and choose controllers")
+                        .accessibilityLabel("Devices")
+                        .accessibilityValue(devicesAreVisible ? "Expanded" : "Collapsed")
+                        .accessibilityIdentifier("toggle-devices")
                     }
                     // Unified Assistant
                     if let assistantAction = onAssistant {

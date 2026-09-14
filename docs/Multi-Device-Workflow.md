@@ -4,7 +4,7 @@
 
 A document contains mapping devices, each with its own rows, ports and controller profile. Physical MIDI sources are assigned separately, so mapping can happen offline and several mapping devices can deliberately share hardware.
 
-The existing editor now has a device picker and **Manage devices…** entry. Selecting a device filters the table and establishes where new mappings go. **All devices** keeps the combined view. Add and paste use the explicit device, a single selected owner, or the sole device; ambiguous destinations produce an error instead of choosing the first device.
+The **Devices** toolbar button toggles the collapsible **XXDEVICES** pane on the left. Each device shows its label, mapping count, controller profile and input status. **Device settings…** opens management for the selected device. Selecting a device filters the table and establishes where new mappings go. **All devices** keeps the combined view. Add and paste use the explicit device, a single selected owner, or the sole device; ambiguous destinations produce an error instead of choosing the first device.
 
 Management exposes add, label/port editing, duplicate, delete, copy/move selected rows, and separate-device TSI export. Document mutations use Undo. Transfer displays address overlap before the user chooses Copy or Move; existing destination mappings are retained. Controller profile selection, assistant capture and wizard launching use explicit device context.
 
@@ -12,13 +12,17 @@ Traktor's device type and user label are different fields. The editable label is
 
 MIDI learning selects a physical source by saved port name or by an explicitly chosen endpoint for the current session. A selected endpoint is pinned for capture and reconnect; an unavailable or ambiguous route does not switch to another controller. Endpoint choices are session state; exported TSI files use port names, so identical hardware names still require checking port assignments in Traktor. Only one learning workflow owns MIDI capture at a time.
 
-## Recommended next UI iteration
+## Device navigation and controller selection
 
-Keep the current dense table and inspector. Add a collapsible device list to the left, approximately 180–220 points wide, with **All devices** first and each mapping device below it. Each row shows its label and mapping count. A secondary line shows the assigned input or an explicit Offline / Input not set state. Connection status needs an icon and text, not color alone.
+The pane is 220 points wide and starts collapsed. **Devices** opens it without interrupting editing with a dialog. Selecting a device sets the mapping scope and creation destination. **All devices** restores the combined view. Collapsing the pane preserves the selected device; the scope button above the mappings table reopens it.
 
-Selecting a device should update the table, inspector context, creation destination and assistant destination together. In All devices, add a compact Device column so every mapping's ownership is visible. Existing MIDI and command columns should retain their widths where possible. Device labels may repeat; include a distinguishable instance label in navigation.
+**Add device** creates and selects a valid Generic MIDI device with a unique default label, then opens the existing controller chooser for that device. **Keep generic MIDI** dismisses the chooser without removing the device. Existing devices offer **Choose controller…** or **Change controller…**. The chooser is pinned to the device selected when it opens; it no longer contains a second device switcher.
 
-The inspector should have a device settings section for label, profile and input/output assignments. Keep it collapsed while editing mappings. Add device should create a valid Generic MIDI group immediately and focus its label. Profile selection is optional and should not block manual mapping.
+**Device settings…** retains label/port editing, duplication, deletion, row transfers and export. Profile choice remains optional. Keyboard navigation works in the device list, and Delete in that list does not delete selected mapping rows.
+
+## Further UI opportunities
+
+In All devices, add a compact Device column so every mapping's ownership is visible. Existing MIDI and command columns should retain their widths where possible. Device labels may repeat; a distinguishable instance label would improve navigation.
 
 Learning should say **Learning from Left controller** next to the action. If disconnected, keep the route visible and offer a source picker. Do not switch automatically. For multiple identical controllers, show distinguishable endpoint instances and allow the user to identify them by moving a control before committing the route. That identification preview must not write mappings.
 
@@ -42,4 +46,4 @@ Copy and Move should be available in the table's context menu with a destination
 6. Move rows to another device, inspect overlap, apply, Undo, and verify both owners and labels.
 7. Save and reopen a multi-device TSI, then export one device to a new file and reopen it independently.
 
-The functional controls are a baseline for this exploration. The sidebar, persistent Device column, richer connection status and contextual transfer menus are proposed UI work, not implemented visual redesigns.
+The sidebar and combined Devices/controller workflow are implemented. A persistent Device column, richer connection controls and contextual transfer menus remain proposed UI work.

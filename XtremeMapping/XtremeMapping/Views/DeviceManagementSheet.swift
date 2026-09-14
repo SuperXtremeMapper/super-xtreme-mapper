@@ -1,40 +1,6 @@
 import SwiftUI
 import AppKit
 
-/// Small functional entry point while the broader device navigation is designed.
-struct DeviceContextBar: View {
-    @ObservedObject var document: TraktorMappingDocument
-    let isLocked: Bool
-    let onManage: () -> Void
-
-    var body: some View {
-        HStack(spacing: AppThemeV2.Spacing.sm) {
-            Picker("Device", selection: $document.activeDeviceID) {
-                Text("All devices").tag(Optional<UUID>.none)
-                ForEach(Array(document.mappingFile.devices.enumerated()), id: \.element.id) { index, device in
-                    Text("\(index + 1). \(device.displayName) (\(device.mappings.count))")
-                        .tag(Optional(device.id))
-                }
-            }
-            .frame(maxWidth: 350)
-            Button("Manage devices…", action: onManage)
-            Spacer()
-            if let device = document.mappingFile.devices.first(where: { $0.id == document.activeDeviceID }) {
-                Text(device.inPort.isEmpty ? "Input port not set" : "Input: \(device.inPort)")
-                    .lineLimit(1).truncationMode(.middle)
-                    .foregroundStyle(AppThemeV2.Colors.stone400)
-            } else if document.mappingFile.devices.count > 1 {
-                Text("Choose a device before adding mappings")
-                    .foregroundStyle(AppThemeV2.Colors.stone400)
-            }
-        }
-        .font(AppThemeV2.Typography.caption)
-        .padding(.horizontal, AppThemeV2.Spacing.lg)
-        .padding(.vertical, AppThemeV2.Spacing.sm)
-        .background(AppThemeV2.Colors.stone800)
-    }
-}
-
 struct DeviceManagementSheet: View {
     @ObservedObject var document: TraktorMappingDocument
     @Binding var selectedIDs: Set<UUID>
