@@ -1,5 +1,19 @@
 # What's new
 
+## 1.3 — September 14, 2026
+
+Multi-device mapping is here, as requested by the community. Thank you for helping shape SXM!
+
+- Create and edit mappings for several devices in one TSI file. Work on one device at a time, or see everything together with All devices.
+- Open the new Devices panel to switch devices. Use the + button to add one, and the gear beside each device to choose its controller, change its label, and set MIDI ports.
+- Duplicate a device, copy or move selected mappings between devices, or export one device as its own TSI file. Undo is available for device and mapping changes.
+- Keep MIDI Learn focused on the input chosen for that device. You can also prepare mappings offline using saved port names.
+- Enjoy a tidier editor with matching rows and controls, a filter in the mappings header, and IN, OUT and IN/OUT menus that open from the full button surface.
+
+If you use identical controllers, check their input and output port assignments in Traktor after importing.
+
+Verified with 990 automated tests.
+
 ## 1.2 — September 13, 2026
 
 Identify your controller, and talk to your mappings.
