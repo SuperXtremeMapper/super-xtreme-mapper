@@ -191,6 +191,7 @@ struct ContentView: View {
             deviceWorkspace
 
             // V2 Status bar
+            V2Divider()
             HStack(spacing: AppThemeV2.Spacing.sm) {
                 if !sharedMIDIIDs.isEmpty {
                     Label("\(sharedMIDIIDs.count) share MIDI", systemImage: "link")
