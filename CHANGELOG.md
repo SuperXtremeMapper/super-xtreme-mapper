@@ -12,8 +12,6 @@ Multi-device mapping is here, as requested by the community. Thank you for helpi
 
 If you use identical controllers, check their input and output port assignments in Traktor after importing.
 
-Verified with 990 automated tests.
-
 ## 1.2 — September 13, 2026
 
 Identify your controller, and talk to your mappings.
@@ -25,8 +23,6 @@ Identify your controller, and talk to your mappings.
 - Speak to it: tap the mic, move a control while you talk ("make this the volume for deck A"), and it attaches that control. Your words appear live as you speak, and the mic pulses while it listens.
 - A cleaner editor: the Controller entry sits next to the Assistant, the identify screen matches the rest of the app, and mapping answers read more plainly.
 
-Verified with 938 automated tests and real Traktor 4.5.1 imports.
-
 ## 1.1.3 — September 12, 2026
 
 - Replace text across selected comments with a before/after preview and Undo.
@@ -37,8 +33,6 @@ Verified with 938 automated tests and real Traktor 4.5.1 imports.
 - Keep valid interaction modes during MIDI Learn and use labelled, correctly encoded Loop Size Selector values.
 - Keep imported loop value controls consistent when switching interaction modes, and fix ordinary-save compatibility for newly generated FX buttons.
 - Preserve native Traktor metadata when saving comment edits and reordered existing rows. Other edits retain the existing preservation checks.
-
-Verified with 732 automated tests and real Traktor 4.5.1 imports.
 
 ## 1.1.2 — September 11, 2026
 
@@ -60,19 +54,15 @@ A small update to make your mappings easier to read and edit. Thanks for the hel
 
 ## 1.1 — September 10, 2026
 
-More control over your LEDs, and more of Traktor's mapping settings at your fingertips. Thank you to everyone who sent reports and tested mappings on their controllers.
+More control over your LEDs, and more of Traktor's mapping settings at your fingertips. Thank you to everyone who sent reports and shared feedback.
 
 - **Set your LED colours and behaviour.** OUT mappings now let you edit Controller Range, MIDI Range, Blend and Output Invert. Apply changes to one row or a compatible selection, with undo if you need it.
 - **Give different hotcue types different colours.** Hotcue State conditions let you create separate rules for cues, loops and empty pads. A DJM-S7 user confirmed blue and cyan colours, LEDs turning off after cue deletion, and no flickering or stuck LEDs. Colour values depend on your controller.
 - **Choose when a mapping is active — [#1](https://github.com/SuperXtremeMapper/super-xtreme-mapper/issues/1).** Deck Play and Is In Active Loop are now available alongside modifiers and Hotcue State conditions, with Deck A–D or Device Target choices.
 - **Recognise more OUT commands — [#9](https://github.com/SuperXtremeMapper/super-xtreme-mapper/issues/9).** Modifier outputs use the correct global target, and Generate Stems is recognised for both IN and OUT mappings.
-- **Keep the details when you edit.** Condition values, deck targets and LED settings are preserved through the tested save, export and cloning workflows. Unrecognised settings keep their original data.
-
-Checked with 692 automated tests, native Traktor 4.5.1 import/export comparisons, and visual editing and undo checks in SXM.
+- **Keep the details when you edit.** Condition values, deck targets and LED settings are preserved when saving, exporting and cloning mappings. Unrecognised settings keep their original data.
 
 The fixes cover the entries we could identify in #1 and #9. We did not have the complete original mapping from #9 or the full numeric identifier shown in #1. If anything still appears unknown, please open a follow-up with the exact identifier or a small example TSI.
-
-[Download version 1.1](https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases/download/v1.1/SuperXtremeMapper_1.1.dmg). Requires macOS 14 or later; supports Apple Silicon and Intel. As with 1.0.1, the app is signed with Apple Development and is not notarized. See the [installation guide](https://superxtrememapper.github.io/super-xtreme-mapper/download.html) if macOS asks you to allow it to open.
 
 ## Earlier releases
 

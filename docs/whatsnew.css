@@ -129,6 +129,13 @@
     margin-bottom: var(--space-xl);
 }
 
+/* Latest release download */
+.release-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-xl);
+}
+
 /* Change Categories */
 .release-changes {
     display: flex;

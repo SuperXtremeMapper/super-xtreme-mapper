@@ -79,8 +79,9 @@
                         <li>Enjoy a tidier editor with matching rows and controls, a filter in the mappings header, and IN, OUT and IN/OUT menus that open from the full button surface.</li>
                     </ul>
                     <p>If you use identical controllers, check their input and output port assignments in Traktor after importing.</p>
-                    <p>Verified with 990 automated tests.</p>
-                    <a href="download.html" class="btn btn-primary">Download v1.3</a>
+                    <div class="release-actions">
+                        <a href="download.html" class="btn btn-primary">Download v1.3</a>
+                    </div>
                 </div>
             </article>
 
@@ -103,8 +104,6 @@
                         <li>Speak to it: tap the mic, move a control while you talk ("make this the volume for deck A"), and it attaches that control. Your words appear live as you speak.</li>
                         <li>A cleaner editor: the Controller entry sits next to the Assistant, and the identify screen matches the rest of the app.</li>
                     </ul>
-                    <p>Verified with 938 automated tests and real Traktor 4.5.1 imports.</p>
-                    <a href="https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases/download/v1.2/SuperXtremeMapper_1.2.dmg" class="btn btn-primary">Download v1.2</a>
                 </div>
             </article>
 
@@ -118,7 +117,7 @@
                 </div>
                 <div class="release-content">
                     <h3 class="release-headline">Faster Editing for Larger Mappings</h3>
-                    <p>Organise your mappings with fewer repeated edits. Thank you to everyone who shared feedback and tested their controllers.</p>
+                    <p>Organise your mappings with fewer repeated edits. Thank you to everyone who shared feedback.</p>
                     <ul class="change-list">
                         <li>Find and replace text across selected comments, with a preview and Undo.</li>
                         <li>Reorder rows in Manual Order using drag-and-drop or Move Up/Down. Modifier columns can shrink to their original compact width.</li>
@@ -128,8 +127,6 @@
                         <li>MIDI Learn keeps valid interaction modes. Loop Size Selector uses correctly encoded, labelled values from 1/32 to 32.</li>
                         <li>Save comment edits and reordered existing rows in supported native Traktor files while preserving unused MIDI definitions and metadata. Other edits retain the existing preservation checks.</li>
                     </ul>
-                    <p>Verified with 732 automated tests and real Traktor 4.5.1 imports.</p>
-                    <a href="https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases/download/v1.1.3/SuperXtremeMapper_1.1.3.dmg" class="btn btn-primary">Download v1.1.3</a>
                 </div>
             </article>
 
@@ -155,7 +152,6 @@
                             </ul>
                         </div>
                     </div>
-                    <a href="https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases/download/v1.1.2/SuperXtremeMapper_1.1.2.dmg" class="btn btn-primary">Download v1.1.2</a>
                 </div>
             </article>
 
@@ -194,7 +190,7 @@
                 </div>
                 <div class="release-content">
                     <h3 class="release-headline">Your LEDs, Your Colours</h3>
-                    <p class="release-summary">More control over your LEDs, and more of Traktor's mapping settings at your fingertips. Thank you to everyone who sent reports and tested mappings on their controllers.</p>
+                    <p class="release-summary">More control over your LEDs, and more of Traktor's mapping settings at your fingertips. Thank you to everyone who sent reports and shared feedback.</p>
                     <div class="release-changes">
                         <div class="change-category">
                             <h4 class="category-title improved">LEDs and Mapping Conditions</h4>
@@ -203,13 +199,12 @@
                                 <li>Use Hotcue State conditions to give cues, loops and empty pads their own LED rules. A DJM-S7 user confirmed blue and cyan colours, LEDs off after cue deletion, and no flickering or stuck LEDs. Colour values depend on your controller</li>
                                 <li><a href="https://github.com/SuperXtremeMapper/super-xtreme-mapper/issues/1">#1: Special conditions</a> — choose Deck Play or Is In Active Loop, with Deck A–D or Device Target, alongside modifiers and Hotcue State conditions</li>
                                 <li><a href="https://github.com/SuperXtremeMapper/super-xtreme-mapper/issues/9">#9: Unknown OUT commands</a> — modifier outputs use the correct global target, and Generate Stems is recognised for both IN and OUT mappings</li>
-                                <li>Keep condition values, deck targets and LED settings through the tested save, export and cloning workflows. Unrecognised settings retain their original data</li>
+                                <li>Keep condition values, deck targets and LED settings when saving, exporting and cloning mappings. Unrecognised settings retain their original data</li>
                             </ul>
                         </div>
                         <div class="change-category">
-                            <h4 class="category-title improved">Checked with Traktor</h4>
+                            <h4 class="category-title improved">Compatibility notes</h4>
                             <ul class="change-list">
-                                <li>692 automated tests passed, with native Traktor 4.5.1 import/export comparisons and visual editing and undo checks in SXM</li>
                                 <li>The fixes cover the entries identified in #1 and #9. We did not have the complete original mapping or every unknown identifier. If anything still looks unknown, please open a follow-up with the exact identifier or a small example TSI</li>
                             </ul>
                         </div>
@@ -245,7 +240,6 @@
                                 <li>To repair an affected older SXM file, open the original full mapping and use <strong>Export Lossy Converted Copy</strong>, then check the copy in Traktor</li>
                                 <li>Mappings already removed by Traktor cannot be recovered from its reduced re-export</li>
                                 <li>If an older Slot FX OFF setting was saved as ON, select OFF again before exporting</li>
-                                <li>658 automated tests pass; a new live Traktor import/re-export has not yet been verified</li>
                             </ul>
                         </div>
                     </div>
@@ -280,7 +274,6 @@
                             <ul class="change-list">
                                 <li>Native Traktor target data is preserved when equivalent mappings are created for another deck</li>
                                 <li>Clone planning is deterministic across mixed Deck A selections and multiple destinations</li>
-                                <li>Expanded automated coverage protects comments, modifiers, IDs, conflicts, and undo behavior</li>
                             </ul>
                         </div>
                     </div>
@@ -316,7 +309,6 @@
                                 <li>Generated Stem and Remix targets retain their exact deck and part through TSI export and re-import</li>
                                 <li>Large assignment sets remain readable in the wizard with a horizontally scrollable progress row</li>
                                 <li>Unsupported FX Amount target combinations remain safely excluded until verified by real exports</li>
-                                <li>Expanded regression coverage protects input-only command direction and final-step wizard behavior</li>
                             </ul>
                         </div>
                     </div>
@@ -360,7 +352,6 @@
                             <h4 class="category-title improved">Workflow Improvements</h4>
                             <ul class="change-list">
                                 <li>Batch macro transfers now preflight every destination and preserve native command data</li>
-                                <li>Modifier Hold, Increment, Decrement, Reset, Blend, and Invert settings are covered by real-export regressions</li>
                                 <li>Wizard and Voice Learn sessions recover cleanly from cancelled saves, conflicts, and delayed input</li>
                                 <li>Release builds no longer embed obsolete app bundles inside the application resources</li>
                             </ul>
@@ -424,7 +415,7 @@
                 </div>
                 <div class="release-content">
                     <h3 class="release-headline">TSI Round-Trip Integrity & Wizard Reliability</h3>
-                    <p class="release-summary">A deep stability pass across the whole app. TSI files now survive save and reload without corruption in every tested case, and the Mapping Wizard's MIDI capture behaves predictably on every path.</p>
+                    <p class="release-summary">More reliable TSI saving and loading, with fixes to MIDI capture in the Mapping Wizard.</p>
 
                     <div class="release-changes">
                         <div class="change-category">
@@ -508,7 +499,6 @@
                             <ul class="change-list">
                                 <li>Shared MIDI note name utility extracted from duplicated code</li>
                                 <li>Session mapping tracking now uses explicit IDs instead of array position heuristic</li>
-                                <li>New round-trip tests for FX assignments and setToValue zero</li>
                             </ul>
                         </div>
                     </div>
