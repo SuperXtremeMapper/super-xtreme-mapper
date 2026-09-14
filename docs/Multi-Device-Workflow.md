@@ -4,7 +4,7 @@
 
 A document contains mapping devices, each with its own rows, ports and controller profile. Physical MIDI sources are assigned separately, so mapping can happen offline and several mapping devices can deliberately share hardware.
 
-The **Devices** toolbar button toggles the collapsible **XXDEVICES** pane on the left. Each device shows its label, mapping count, controller profile and input status. **Device settings…** opens management for the selected device. Selecting a device filters the table and establishes where new mappings go. **All devices** keeps the combined view. Add and paste use the explicit device, a single selected owner, or the sole device; ambiguous destinations produce an error instead of choosing the first device.
+The **Devices** toolbar button toggles the collapsible **XXDEVICES** pane on the left. Each compact device row shows its label and a settings gear, using the mapping editor’s background and amber selection. Controller and input status remain available in the row tooltip. **Device settings…** opens management for the selected device. Selecting a device filters the table and establishes where new mappings go. **All devices** keeps the combined view. Add and paste use the explicit device, a single selected owner, or the sole device; ambiguous destinations produce an error instead of choosing the first device.
 
 Management exposes add, label/port editing, duplicate, delete, copy/move selected rows, and separate-device TSI export. Document mutations use Undo. Transfer displays address overlap before the user chooses Copy or Move; existing destination mappings are retained. Controller profile selection, assistant capture and wizard launching use explicit device context.
 
@@ -16,9 +16,9 @@ MIDI learning selects a physical source by saved port name or by an explicitly c
 
 The pane is 220 points wide and starts collapsed. **Devices** opens it without interrupting editing with a dialog. Selecting a device sets the mapping scope and creation destination. **All devices** restores the combined view. Collapsing the pane preserves the selected device; the scope button above the mappings table reopens it.
 
-**Add device** creates and selects a valid Generic MIDI device with a unique default label, then opens the existing controller chooser for that device. **Keep generic MIDI** dismisses the chooser without removing the device. Existing devices offer **Choose controller…** or **Change controller…**. The chooser is pinned to the device selected when it opens; it no longer contains a second device switcher.
+**Add device** creates and selects a valid Generic MIDI device with a unique default label, then opens the existing controller chooser for that device. **Keep generic MIDI** dismisses the chooser without removing the device. Each device’s gear opens **Device Settings**, where the Controller row shows the current model and a **Choose…** or **Change…** action. The pane has no separate settings or controller text actions. The chooser is pinned to the device selected when it opens; it no longer contains a second device switcher.
 
-**Device settings…** retains label/port editing, duplication, deletion, row transfers and export. Profile choice remains optional. Keyboard navigation works in the device list, and Delete in that list does not delete selected mapping rows.
+**Device Settings** retains label/port editing, duplication, deletion, row transfers and export. Profile choice remains optional. Keyboard navigation works in the device list, and Delete in that list does not delete selected mapping rows.
 
 ## Further UI opportunities
 

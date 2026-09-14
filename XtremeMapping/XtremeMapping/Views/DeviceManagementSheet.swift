@@ -8,6 +8,7 @@ struct DeviceManagementSheet: View {
     let undoManager: UndoManager?
     @Environment(\.dismiss) private var dismiss
     @ObservedObject private var midiManager = MIDIInputManager.shared
+    @State private var showController = false
     @State private var sourceID: Int32?
     @State private var comment = ""
     @State private var inPort = ""
@@ -45,15 +46,14 @@ struct DeviceManagementSheet: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack {
-                Text("Mapping devices").font(.headline)
+                V2SectionHeader(title: "DEVICE SETTINGS")
                 Spacer()
                 Button("Done") { dismiss() }.keyboardShortcut(.cancelAction)
             }
-            Picker("Edit device", selection: $document.activeDeviceID) {
-                Text("Choose device…").tag(Optional<UUID>.none)
-                ForEach(Array(document.mappingFile.devices.enumerated()), id: \.element.id) { index, item in
-                    Text("\(index + 1). \(item.displayName)").tag(Optional(item.id))
-                }
+            V2FormRow(label: "Device") {
+                V2Dropdown(options: [UUID?.none] + document.mappingFile.devices.map { Optional($0.id) }, selection: $document.activeDeviceID) { id in
+                    document.mappingFile.devices.first { $0.id == id }?.displayName ?? "Choose device…"
+                }.buttonStyle(.plain)
             }
             HStack {
                 Button("Add device") { add() }.disabled(isLocked)
@@ -62,26 +62,26 @@ struct DeviceManagementSheet: View {
                     .disabled(isLocked || device == nil)
             }
             if let device {
-                Form {
-                    TextField("Device label", text: $comment)
-                    LabeledContent("Device type", value: device.name)
-                    Picker("Connected input", selection: $sourceID) {
-                        Text("Use saved port name").tag(Optional<Int32>.none)
-                        if let sourceID, !midiManager.availableSources.contains(where: { $0.uniqueID == sourceID }) {
-                            Text("Selected input disconnected (\(sourceID))").tag(Optional(sourceID))
-                        }
-                        ForEach(Array(midiManager.availableSources.enumerated()), id: \.offset) { _, source in
-                            if let id = source.uniqueID {
-                                Text("\(source.displayName) (\(id))").tag(Optional(id))
-                            }
-                        }
+                VStack(spacing: 8) {
+                    V2FormRow(label: "Controller") {
+                        Text(controllerName).font(AppThemeV2.Typography.body).lineLimit(1)
+                        Button(controllerName == "Generic MIDI" ? "Choose…" : "Change…") { showController = true }
+                            .accessibilityLabel("Choose or change controller")
+                    }
+                    V2FormRow(label: "Label") { V2TextField(placeholder: "Device label", text: $comment) }
+                    V2FormRow(label: "Device type") { Text(device.name) }
+                    V2FormRow(label: "Live input") {
+                        V2Dropdown(options: sourceOptions, selection: $sourceID) { id in
+                            guard let id else { return "Use saved port name" }
+                            return midiManager.availableSources.first { $0.uniqueID == id }.map { "\($0.displayName) (\(id))" } ?? "Disconnected (\(id))"
+                        }.buttonStyle(.plain)
                     }
                     .onChange(of: sourceID) { _, id in
                         if let id, let source = midiManager.availableSources.first(where: { $0.uniqueID == id }) {
                             inPort = source.name
                         }
                     }
-                    TextField("MIDI input port", text: $inPort)
+                    V2FormRow(label: "Input port") { V2TextField(placeholder: "MIDI input port", text: $inPort) }
                         .onChange(of: inPort) { _, port in
                             if let sourceID,
                                let source = midiManager.availableSources.first(where: { $0.uniqueID == sourceID }),
@@ -89,7 +89,7 @@ struct DeviceManagementSheet: View {
                                 self.sourceID = nil
                             }
                         }
-                    TextField("MIDI output port", text: $outPort)
+                    V2FormRow(label: "Output port") { V2TextField(placeholder: "MIDI output port", text: $outPort) }
                 }.disabled(isLocked)
                 Text("Choose a connected input for this session, or enter port names to prepare mappings offline. The saved TSI uses port names; identical names need routing checked in Traktor.")
                     .font(.caption).foregroundStyle(.secondary)
@@ -103,14 +103,13 @@ struct DeviceManagementSheet: View {
                     Spacer()
                     Button("Export this device…") { exportDevice(device.id) }
                 }
-                Divider()
+                V2Divider()
                 Text("Transfer selected mappings").font(.subheadline.bold())
                 Text("\(sourceSelection.count) mappings from \(device.displayName)").font(.caption)
-                Picker("Destination", selection: $transferDestination) {
-                    Text("Choose device…").tag(Optional<UUID>.none)
-                    ForEach(document.mappingFile.devices.filter { $0.id != device.id }) { target in
-                        Text(target.displayName).tag(Optional(target.id))
-                    }
+                V2FormRow(label: "Destination") {
+                    V2Dropdown(options: [UUID?.none] + document.mappingFile.devices.filter { $0.id != device.id }.map { Optional($0.id) }, selection: $transferDestination) { id in
+                        document.mappingFile.devices.first { $0.id == id }?.displayName ?? "Choose device…"
+                    }.buttonStyle(.plain)
                 }
                 if transferOverlapCount > 0 {
                     Text("\(transferOverlapCount) selected mappings share MIDI addresses with destination mappings. Both will be kept.")
@@ -127,8 +126,17 @@ struct DeviceManagementSheet: View {
             if let errorMessage { Text(errorMessage).foregroundStyle(.red).textSelection(.enabled) }
             if let statusMessage { Text(statusMessage).font(.caption).foregroundStyle(.secondary) }
         }
+        .font(AppThemeV2.Typography.body)
+        .foregroundStyle(AppThemeV2.Colors.stone200)
+        .buttonStyle(AssistantButtonStyle())
+        .tint(AppThemeV2.Colors.amber)
         .padding(24).frame(width: 600)
-        .background(AppThemeV2.Colors.stone900).preferredColorScheme(.dark)
+        .sheet(isPresented: $showController) {
+            if let device {
+                ControllerProfileSheet(document: document, deviceID: device.id, isLocked: isLocked, undoManager: undoManager)
+            }
+        }
+        .background(AppThemeV2.Colors.stone800).preferredColorScheme(.dark)
         .onAppear {
             if document.activeDeviceID == nil {
                 document.activeDeviceID = try? document.mappingDestination(selectedIDs: selectedIDs)
@@ -140,6 +148,20 @@ struct DeviceManagementSheet: View {
             Button("Delete device", role: .destructive) { delete() }
             Button("Cancel", role: .cancel) { }
         } message: { Text("You can restore the device with Undo.") }
+    }
+
+    private var sourceOptions: [Int32?] {
+        var ids = midiManager.availableSources.compactMap(\.uniqueID).map(Optional.some)
+        if let sourceID, !ids.contains(sourceID) { ids.append(sourceID) }
+        return [nil] + ids
+    }
+
+    private static let profileLibrary = try? ControllerProfileLibrary()
+
+    private var controllerName: String {
+        guard let device,
+              let saved = document.mappingFile.interchangeMetadata?.deviceProfiles?.first(where: { $0.deviceID == device.id }) else { return "Generic MIDI" }
+        return (try? Self.profileLibrary?.profile(id: saved.configuration.profileID, version: saved.configuration.version))?.model ?? "Saved controller profile"
     }
 
     private func load() {

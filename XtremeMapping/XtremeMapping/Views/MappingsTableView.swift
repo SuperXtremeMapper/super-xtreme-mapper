@@ -674,7 +674,7 @@ private struct TableViewFinder: NSViewRepresentable {
 }
 
 /// Proxy delegate that forwards all calls to original delegate while providing custom row views
-private class AmberSelectionDelegateProxy: NSObject, NSTableViewDelegate, NSOutlineViewDelegate {
+class AmberSelectionDelegateProxy: NSObject, NSTableViewDelegate, NSOutlineViewDelegate {
     private static var associationKey: UInt8 = 0
     private weak var originalDelegate: NSTableViewDelegate?
     private var highlightedRows = IndexSet()

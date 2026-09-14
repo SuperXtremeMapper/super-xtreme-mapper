@@ -421,7 +421,6 @@ struct ContentView: View {
                 DevicesSidebar(document: document, profileNames: deviceProfileNames, isLocked: isLocked,
                     onClose: { isDevicesPaneVisible = false },
                     onAdd: addDeviceFromSidebar,
-                    onChooseController: chooseController,
                     onSettings: { id in
                         guard DeviceSidebarActions.selectDevice(id, in: document) else { return }
                         activeSheet = .devices

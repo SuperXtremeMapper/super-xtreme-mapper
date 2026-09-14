@@ -12,7 +12,7 @@ struct ControllerProfileSheet: View {
     let deviceID: UUID
     let isLocked: Bool
     let undoManager: UndoManager?
-    let onShowMappings: (Set<UUID>) -> Void
+    let onShowMappings: ((Set<UUID>) -> Void)?
     @Environment(\.dismiss) private var dismiss
     @ObservedObject private var midiManager = MIDIInputManager.shared
     @State private var mode: Mode = .identify
@@ -32,7 +32,7 @@ struct ControllerProfileSheet: View {
     private let libraryError: String?
 
     init(document: TraktorMappingDocument, deviceID: UUID, isLocked: Bool,
-         undoManager: UndoManager?, onShowMappings: @escaping (Set<UUID>) -> Void) {
+         undoManager: UndoManager?, onShowMappings: ((Set<UUID>) -> Void)? = nil) {
         self.document = document
         self.deviceID = deviceID
         self.isLocked = isLocked
@@ -301,9 +301,11 @@ struct ControllerProfileSheet: View {
                 Button("Cancel") { stopLearning(); dismiss() }.keyboardShortcut(.cancelAction)
                 Button("Apply Profile") { apply(showMappings: false) }
                     .disabled(!changed || isLocked || stale || library == nil)
+                if onShowMappings != nil {
                 Button(changed ? "Apply & Show Mappings" : "Show Mappings") { apply(showMappings: true) }
                     .disabled(matchingIDs.isEmpty || stale || (changed && isLocked))
                     .keyboardShortcut(.defaultAction)
+                }
             }
         }
     }
@@ -642,7 +644,7 @@ struct ControllerProfileSheet: View {
                         expectedMetadata: initialMetadata, isLocked: isLocked, to: &file)
                 }
             }
-            if showMappings { onShowMappings(Set(matchingIDs)) }
+            if showMappings { onShowMappings?(Set(matchingIDs)) }
             stopLearning()
             dismiss()
         } catch { errorMessage = error.localizedDescription }

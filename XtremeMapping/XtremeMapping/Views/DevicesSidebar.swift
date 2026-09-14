@@ -13,7 +13,6 @@ struct DevicesSidebar: View {
     let isLocked: Bool
     let onClose: () -> Void
     let onAdd: () -> Void
-    let onChooseController: (UUID) -> Void
     let onSettings: (UUID) -> Void
 
     private var selection: Binding<Selection?> {
@@ -24,10 +23,6 @@ struct DevicesSidebar: View {
             case nil: break
             }
         })
-    }
-
-    private var selectedDevice: Device? {
-        document.mappingFile.devices.first { $0.id == document.activeDeviceID }
     }
 
     var body: some View {
@@ -52,30 +47,24 @@ struct DevicesSidebar: View {
             V2Divider()
 
             List(selection: selection) {
-                HStack(spacing: AppThemeV2.Spacing.sm) {
-                    Image(systemName: "square.stack.3d.up")
-                        .foregroundStyle(AppThemeV2.Colors.stone400)
-                    Text("All devices")
-                    Spacer(minLength: 4)
-                    Text("\(document.mappingFile.allMappings.count)")
-                        .monospacedDigit().foregroundStyle(AppThemeV2.Colors.stone400)
-                }
-                .padding(.vertical, AppThemeV2.Spacing.xs)
-                .tag(Selection.all)
-                .accessibilityLabel("All devices, \(document.mappingFile.allMappings.count) mappings")
+                Text("All devices")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(height: AppThemeV2.Components.tableRowHeight)
+                    .tag(Selection.all)
+                    .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
 
                 ForEach(document.mappingFile.devices) { device in
                     deviceRow(device)
                         .tag(Selection.device(device.id))
-                        .contextMenu {
-                            Button(profileNames[device.id] == nil ? "Choose controller…" : "Change controller…") {
-                                onChooseController(device.id)
-                            }
-                            Button("Device settings…") { onSettings(device.id) }
-                        }
+                        .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
                 }
             }
-            .listStyle(.sidebar)
+            .listStyle(.inset)
+            .environment(\.defaultMinListRowHeight, AppThemeV2.Components.tableRowHeight)
+            .introspectTableView { table in
+                AmberSelectionDelegateProxy.configure(table, highlightedRows: [])
+                table.intercellSpacing.height = 0
+            }
             .scrollContentBackground(.hidden)
             .tint(AppThemeV2.Colors.amber)
             .font(AppThemeV2.Typography.body)
@@ -84,85 +73,35 @@ struct DevicesSidebar: View {
             // selected mapping rows while this navigation list has focus.
             .onDeleteCommand { }
 
-            if document.mappingFile.devices.isEmpty {
-                Text("Add a device, then choose its controller or keep a generic MIDI setup.")
-                    .font(AppThemeV2.Typography.caption)
-                    .foregroundStyle(AppThemeV2.Colors.stone400)
-                    .padding(AppThemeV2.Spacing.md)
-            }
-
-            if let device = selectedDevice {
-                selectedDeviceActions(device)
-            } else if !document.mappingFile.devices.isEmpty {
-                Text("Select a device to set up its controller and MIDI ports.")
-                    .font(AppThemeV2.Typography.caption)
-                    .foregroundStyle(AppThemeV2.Colors.stone400)
-                    .padding(AppThemeV2.Spacing.md)
-            }
-
             V2Divider()
-            Button(action: onAdd) {
-                Label("Add device", systemImage: "plus")
-                    .font(AppThemeV2.Typography.body)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .frame(height: 34)
-                    .contentShape(Rectangle())
-            }
-            .buttonStyle(.plain)
-            .foregroundStyle(isLocked ? AppThemeV2.Colors.stone500 : AppThemeV2.Colors.amber)
-            .padding(.horizontal, AppThemeV2.Spacing.md)
-            .disabled(isLocked)
-            .help("Create a device and choose its controller")
+            V2ToolbarButton(icon: "plus", label: "Add device", action: onAdd)
+                .disabled(isLocked)
+                .padding(AppThemeV2.Spacing.sm)
         }
-        .background(AppThemeV2.Colors.stone900)
+        .background(AppThemeV2.Colors.stone800)
         .accessibilityIdentifier("devices-sidebar")
     }
 
     private func deviceRow(_ device: Device) -> some View {
-        let profileName = profileNames[device.id]
         let status = DeviceSidebarPresentation.inputStatus(device: device,
             sourceID: document.midiSourceIDs[device.id], sources: midiManager.availableSources)
-        return VStack(alignment: .leading, spacing: 3) {
-            HStack(alignment: .firstTextBaseline, spacing: 6) {
-                Text(device.displayName)
-                    .fontWeight(.medium)
-                    .lineLimit(1).truncationMode(.middle)
-                Spacer(minLength: 0)
-                Text("\(device.mappings.count)")
-                    .monospacedDigit().foregroundStyle(AppThemeV2.Colors.stone400)
-            }
-            Text(profileName ?? "No controller selected")
-                .font(AppThemeV2.Typography.caption)
-                .foregroundStyle(AppThemeV2.Colors.stone400)
-                .lineLimit(1)
-            Text(status)
-                .font(AppThemeV2.Typography.micro)
-                .foregroundStyle(AppThemeV2.Colors.stone500)
-        }
-        .padding(.vertical, 5)
-        .help("\(device.displayName)\n\(profileName ?? "Choose a controller")\n\(device.inPort.isEmpty ? "Input not set" : device.inPort)")
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(device.displayName), \(device.mappings.count) mappings, \(profileName ?? "No controller selected"), \(status)")
-    }
-
-    private func selectedDeviceActions(_ device: Device) -> some View {
-        VStack(alignment: .leading, spacing: AppThemeV2.Spacing.sm) {
-            V2Divider()
+        return HStack(spacing: 6) {
             Text(device.displayName)
-                .font(AppThemeV2.Typography.caption).fontWeight(.medium)
                 .lineLimit(1).truncationMode(.middle)
-                .foregroundStyle(AppThemeV2.Colors.stone200)
-            Button(profileNames[device.id] == nil ? "Choose controller…" : "Change controller…") {
-                onChooseController(device.id)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Button { onSettings(device.id) } label: {
+                Image(systemName: "gearshape")
+                    .font(.system(size: 12))
+                    .foregroundStyle(AppThemeV2.Colors.stone400)
+                    .frame(width: 24, height: 24)
+                    .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .foregroundStyle(AppThemeV2.Colors.amber)
-            Button("Device settings…") { onSettings(device.id) }
-                .buttonStyle(.plain)
-                .foregroundStyle(AppThemeV2.Colors.stone300)
-                .help("Edit the label and ports, duplicate, delete, transfer, or export")
+            .help("Device settings for \(device.displayName)")
+            .accessibilityLabel("Device settings for \(device.displayName)")
         }
-        .font(AppThemeV2.Typography.body)
-        .padding(AppThemeV2.Spacing.md)
+        .frame(height: AppThemeV2.Components.tableRowHeight)
+        .accessibilityElement(children: .contain)
+        .help("\(device.displayName)\n\(profileNames[device.id] ?? "No controller selected")\n\(status)")
     }
 }
