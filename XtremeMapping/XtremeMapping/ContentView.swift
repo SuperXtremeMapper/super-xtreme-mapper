@@ -1304,7 +1304,7 @@ struct V2ToolbarIconButton: View {
             action()
         } label: {
             Image(systemName: icon)
-                .font(.system(size: 12, weight: .medium))
+                .font(.system(size: AppThemeV2.Components.toolbarIconSymbolSize, weight: .medium))
                 .foregroundColor(highlighted ? AppThemeV2.Colors.amber : AppThemeV2.Colors.stone400)
                 .frame(width: 28, height: 28)
                 .background(

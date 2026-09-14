@@ -105,6 +105,7 @@ enum AppThemeV2 {
 
     enum Components {
         // Toolbar
+        static let toolbarIconSymbolSize: CGFloat = 12
         static let toolbarHeight: CGFloat = 44
         static let toolbarBackground = Colors.stone800
 

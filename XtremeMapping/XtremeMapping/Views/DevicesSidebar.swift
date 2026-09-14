@@ -4,7 +4,7 @@ import AppKit
 private enum DeviceSidebarLayout {
     static let iconSize: CGFloat = 24
     static let trailingInset: CGFloat = 12
-    static let symbolSize: CGFloat = 14
+    static let symbolSize = AppThemeV2.Components.toolbarIconSymbolSize
     static let headerHeight: CGFloat = 28
 }
 
@@ -27,7 +27,7 @@ struct DevicesSidebar: View {
                 Spacer(minLength: 0)
                 Button(action: onClose) {
                     Image(systemName: "sidebar.left")
-                        .font(.system(size: DeviceSidebarLayout.symbolSize))
+                        .font(.system(size: DeviceSidebarLayout.symbolSize, weight: .medium))
                         .frame(width: DeviceSidebarLayout.iconSize, height: DeviceSidebarLayout.iconSize)
                 }
                 .buttonStyle(.plain)
@@ -58,7 +58,7 @@ struct DevicesSidebar: View {
                     .help("Show mappings from all devices")
                     Button(action: onAdd) {
                         Image(systemName: "plus.circle")
-                            .font(.system(size: DeviceSidebarLayout.symbolSize))
+                            .font(.system(size: DeviceSidebarLayout.symbolSize, weight: .medium))
                             .frame(width: DeviceSidebarLayout.iconSize, height: DeviceSidebarLayout.iconSize)
                             .contentShape(Rectangle())
                     }
@@ -158,7 +158,7 @@ private struct NativeDevicesTable: NSViewRepresentable {
             label.textColor = NSColor(AppThemeV2.Colors.stone200)
             label.lineBreakMode = .byTruncatingMiddle
             let gear = NSButton(image: NSImage(systemSymbolName: "gearshape", accessibilityDescription: "Device settings for \(device.displayName)")!, target: self, action: #selector(settings(_:)))
-            gear.symbolConfiguration = NSImage.SymbolConfiguration(pointSize: DeviceSidebarLayout.symbolSize, weight: .regular)
+            gear.symbolConfiguration = NSImage.SymbolConfiguration(pointSize: DeviceSidebarLayout.symbolSize, weight: .medium)
             gear.tag = row - 1
             gear.isBordered = false
             gear.contentTintColor = NSColor(AppThemeV2.Colors.stone400)
