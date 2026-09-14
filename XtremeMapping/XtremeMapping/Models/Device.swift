@@ -30,6 +30,12 @@ nonisolated struct Device: Identifiable, Codable, Sendable, Equatable {
     /// User comment describing the device or its purpose
     var comment: String
 
+    /// Traktor's editable device label is DDIC; DDAT name is its hardware registry type.
+    var displayName: String {
+        let label = comment.trimmingCharacters(in: .whitespacesAndNewlines)
+        return label.isEmpty ? (name.isEmpty ? "Unnamed device" : name) : label
+    }
+
     /// The MIDI input port name for receiving from the controller
     var inPort: String
 

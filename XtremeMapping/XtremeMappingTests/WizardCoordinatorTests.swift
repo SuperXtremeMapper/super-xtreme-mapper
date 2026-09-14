@@ -12,13 +12,45 @@ import AppKit
 @testable import XtremeMapping
 
 @MainActor
+private final class WizardMIDICaptureSpy: MIDICaptureListening {
+    var onSetupChanged: (() -> Void)?
+    var starts: [(port: String?, required: Bool, sourceID: Int32?)] = []
+    var shouldStart = true
+    private(set) var isStarted = false
+    private var callback: ((MIDIMessage) -> Void)?
+
+    func start(
+        desiredInputPort: String?,
+        requireSpecificSource: Bool,
+        desiredSourceID: Int32?,
+        onMIDIReceived: @escaping (MIDIMessage) -> Void
+    ) -> Bool {
+        starts.append((desiredInputPort, requireSpecificSource, desiredSourceID))
+        guard shouldStart else { return false }
+        callback = onMIDIReceived
+        isStarted = true
+        return true
+    }
+
+    func stop() {
+        callback = nil
+        onSetupChanged = nil
+        isStarted = false
+    }
+
+    func send(_ message: MIDIMessage) { callback?(message) }
+}
+
+@MainActor
 final class WizardCoordinatorTests: XCTestCase {
 
     private var coordinator: WizardCoordinator!
+    private var midiCapture: WizardMIDICaptureSpy!
 
     override func setUp() async throws {
         try await super.setUp()
-        coordinator = WizardCoordinator()
+        midiCapture = WizardMIDICaptureSpy()
+        coordinator = WizardCoordinator(midiCapture: midiCapture)
         coordinator.setupConfig.controllerName = "Test Controller"
         coordinator.setupConfig.inputPort = "Test In"
         coordinator.autoAdvanceEnabled = false
@@ -30,6 +62,7 @@ final class WizardCoordinatorTests: XCTestCase {
         // stray hardware input can't reach a dead coordinator mid-suite.
         coordinator.cancel()
         coordinator = nil
+        midiCapture = nil
         try await super.tearDown()
     }
 
@@ -45,6 +78,106 @@ final class WizardCoordinatorTests: XCTestCase {
 
     private func cc(_ controller: Int, channel: Int = 1, value: Int) -> MIDIMessage {
         MIDIMessage(channel: channel, note: nil, cc: controller, value: value)
+    }
+
+    func testBeginLearningRequiresConfiguredSetupInputPortAndUsesBoundSourceID() {
+        coordinator.cancel()
+        midiCapture = WizardMIDICaptureSpy()
+        coordinator = WizardCoordinator(midiCapture: midiCapture)
+        let selected = Device(name: "Selected", inPort: "Old Port")
+        let other = Device(name: "Other", inPort: "Other Port")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [other, selected]))
+        document.midiSourceIDs[selected.id] = 202
+        XCTAssertTrue(coordinator.start(document: document, destinationDeviceID: selected.id))
+        coordinator.setupConfig.controllerName = "Selected"
+        coordinator.setupConfig.inputPort = "New Port"
+
+        coordinator.beginLearning()
+
+        XCTAssertEqual(midiCapture.starts.count, 1)
+        XCTAssertEqual(midiCapture.starts.first?.port, "New Port")
+        XCTAssertEqual(midiCapture.starts.first?.required, true)
+        XCTAssertEqual(midiCapture.starts.first?.sourceID, 202)
+        XCTAssertTrue(coordinator.isListening)
+    }
+
+    func testWizardIgnoresCaptureAfterSetupInputPortChanges() async {
+        coordinator.setupConfig.inputPort = "Changed Port"
+
+        midiCapture.send(noteOn(60))
+        await Task.yield()
+
+        XCTAssertNil(coordinator.pendingMIDI)
+        XCTAssertTrue(coordinator.statusMessage.localizedCaseInsensitiveContains("input port changed"))
+    }
+
+    func testBeginLearningReportsUnavailableSpecificInput() {
+        coordinator.cancel()
+        midiCapture = WizardMIDICaptureSpy()
+        midiCapture.shouldStart = false
+        coordinator = WizardCoordinator(midiCapture: midiCapture)
+        let device = Device(name: "Selected")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [device]))
+        XCTAssertTrue(coordinator.start(document: document, destinationDeviceID: device.id))
+        coordinator.setupConfig.controllerName = "Selected"
+        coordinator.setupConfig.inputPort = "Duplicate Name"
+
+        coordinator.beginLearning()
+
+        XCTAssertEqual(coordinator.phase, .setup)
+        XCTAssertFalse(coordinator.isListening)
+        XCTAssertTrue(coordinator.statusMessage.localizedCaseInsensitiveContains("unavailable"))
+    }
+
+    func testSingleDeviceWizardAllPortsRemainsDeliberatelyUnfiltered() {
+        coordinator.cancel()
+        midiCapture = WizardMIDICaptureSpy()
+        coordinator = WizardCoordinator(midiCapture: midiCapture)
+        let device = Device(name: "Legacy", inPort: "All Ports")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [device]))
+        XCTAssertTrue(coordinator.start(document: document, destinationDeviceID: device.id))
+        coordinator.setupConfig.controllerName = "Legacy"
+        coordinator.setupConfig.inputPort = "All Ports"
+
+        coordinator.beginLearning()
+
+        XCTAssertEqual(midiCapture.starts.first?.port, "All Ports")
+        XCTAssertEqual(midiCapture.starts.first?.required, false)
+        XCTAssertTrue(coordinator.isListening)
+    }
+
+    func testEmptyDocumentWizardAllPortsRemainsDeliberatelyUnfiltered() {
+        coordinator.cancel()
+        midiCapture = WizardMIDICaptureSpy()
+        coordinator = WizardCoordinator(midiCapture: midiCapture)
+        let document = TraktorMappingDocument(mappingFile: MappingFile())
+        XCTAssertTrue(coordinator.start(document: document))
+        coordinator.setupConfig.controllerName = "Legacy"
+        coordinator.setupConfig.inputPort = "All Ports"
+
+        coordinator.beginLearning()
+
+        XCTAssertEqual(midiCapture.starts.first?.required, false)
+        XCTAssertTrue(coordinator.isListening)
+    }
+
+    func testWizardIgnoresCaptureWhenDocumentBecomesMultiDevice() async {
+        coordinator.cancel()
+        midiCapture = WizardMIDICaptureSpy()
+        coordinator = WizardCoordinator(midiCapture: midiCapture)
+        let device = Device(name: "Legacy", inPort: "All Ports")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [device]))
+        XCTAssertTrue(coordinator.start(document: document, destinationDeviceID: device.id))
+        coordinator.setupConfig.controllerName = "Legacy"
+        coordinator.setupConfig.inputPort = "All Ports"
+        coordinator.beginLearning()
+
+        document.mappingFile.devices.append(Device(name: "Second", inPort: "Port B"))
+        midiCapture.send(noteOn(60))
+        await Task.yield()
+
+        XCTAssertNil(coordinator.pendingMIDI)
+        XCTAssertTrue(coordinator.statusMessage.localizedCaseInsensitiveContains("input port changed"))
     }
 
     /// Assigns the given note as the shift button via the Setup tab,
@@ -483,7 +616,7 @@ final class WizardCoordinatorTests: XCTestCase {
 
         // SwiftUI dismisses the alert's binding before running a cancel action.
         coordinator.showOverwriteAlert = false
-        MIDIInputManager.shared.onMIDIReceived?(noteOn(61))
+        midiCapture.send(noteOn(61))
         await Task.yield()
 
         let recaptured = coordinator.capturedMappings.first {
@@ -758,8 +891,8 @@ final class WizardCoordinatorTests: XCTestCase {
 
         XCTAssertEqual(coordinator.phase, .complete)
         XCTAssertFalse(coordinator.isListening, "performSave must stop MIDI listening")
-        XCTAssertNil(MIDIInputManager.shared.onMIDIReceived,
-                     "performSave must clear the manager's MIDI callback")
+        XCTAssertFalse(midiCapture.isStarted,
+                       "performSave must release the MIDI capture")
     }
 
     func testCancelAfterCompletedSavePreservesSavedState() {
@@ -923,18 +1056,18 @@ final class WizardCoordinatorTests: XCTestCase {
         XCTAssertEqual(document.mappingFile.devices[1].mappings[0].midiNote, 61)
         XCTAssertEqual(coordinator.phase, .complete)
         XCTAssertFalse(coordinator.isListening)
-        XCTAssertNil(MIDIInputManager.shared.onMIDIReceived)
+        XCTAssertFalse(midiCapture.isStarted)
     }
 
     func testSetupChangeCallbackIsWiredToManager() {
-        // beginLearning (in setUp) wires onSetupChanged on the shared manager.
+        // beginLearning (in setUp) wires the setup-change callback.
         assignShift(note: 99)
         coordinator.handleMIDIReceived(noteOn(99))
         XCTAssertTrue(coordinator.isShiftHeld)
 
-        XCTAssertNotNil(MIDIInputManager.shared.onSetupChanged,
+        XCTAssertNotNil(midiCapture.onSetupChanged,
                         "startMIDIListening must subscribe to setup changes")
-        MIDIInputManager.shared.onSetupChanged?()
+        midiCapture.onSetupChanged?()
         XCTAssertFalse(coordinator.isShiftHeld,
                        "The manager's setup-change callback must reach the coordinator")
     }

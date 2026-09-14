@@ -116,6 +116,7 @@ struct SettingsPanelV2: View {
     @State private var batchAssignmentKind: MIDIAssignment.Kind = .unassigned
     @State private var batchChannel: Int = 1
     @State private var batchNumber: Int = 0
+    @State private var learnError: String?
     @State private var isLearning: Bool = false
     @State private var midiListeningLease: MIDIInputManager.ListeningLease?
     @State private var hasLearnedMIDI: Bool = false  // True when MIDI received during current learn session
@@ -255,6 +256,11 @@ struct SettingsPanelV2: View {
         .onChange(of: midiManager.activeListeningLease) { _, _ in
             resetLearningStateIfOwnershipWasLost()
         }
+        .alert("MIDI Learn unavailable", isPresented: Binding(get: { learnError != nil }, set: { if !$0 { learnError = nil } })) {
+            Button("OK", role: .cancel) { learnError = nil }
+        } message: { Text(learnError ?? "") }
+        .onChange(of: document.midiSourceIDs) { _, _ in stopLearning() }
+        .onChange(of: document.mappingFile.devices.map { "\($0.id):\($0.inPort)" }) { _, _ in stopLearning() }
         .onChange(of: selectedDeviceID) { _, newDeviceID in
             reconcileDeviceComment(for: newDeviceID)
         }
@@ -883,11 +889,21 @@ struct SettingsPanelV2: View {
 
         hasLearnedMIDI = false  // Reset when starting a new learn session
         learnedCCValues = []    // Reset value tracking
+        guard let ownerID = MappingTransferService.destinationDeviceID(for: selectedMappings, in: document.mappingFile),
+              let owner = document.mappingFile.devices.first(where: { $0.id == ownerID }) else {
+            learnError = "Select mappings from one device before learning."
+            return
+        }
+        learnError = nil
         guard let lease = midiManager.acquireListeningLease(
+            desiredInputPort: owner.inPort,
+            requireSpecificSource: document.mappingFile.devices.count > 1,
+            desiredSourceID: document.midiSourceIDs[ownerID],
             onMIDIReceived: { [self] message in
                 handleMIDILearned(message)
             }
         ) else {
+            learnError = "Set a unique input port for this device and connect its controller before learning."
             return
         }
 

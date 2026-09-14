@@ -32,7 +32,10 @@ struct UnifiedAssistantView: View {
     @State private var credentialRefresh = UUID()
     @State private var showMIDI = false
     @State private var includeSelection = false
-    @State private var destinationID: UUID?
+    private var destinationID: UUID? {
+        get { document.activeDeviceID }
+        nonmutating set { document.activeDeviceID = newValue }
+    }
     @State private var snapshot: MappingExplanationSnapshot?
     @State private var isBuilding = true
     @State private var errorMessage: String?
@@ -85,8 +88,16 @@ struct UnifiedAssistantView: View {
                 question = question.isEmpty ? text : question + " " + text
                 composerFocused = true
             }
-            if document.mappingFile.devices.count == 1 { destinationID = document.mappingFile.devices.first?.id }
+            if destinationID == nil { destinationID = try? document.mappingDestination(selectedIDs: selectedIDs) }
+            configureMIDIRoute()
         }
+        .onChange(of: document.activeDeviceID) { _, _ in
+            input.clearCapture()
+            configureMIDIRoute()
+            conversation.cancel()
+        }
+        .onChange(of: document.explanationRevision) { _, _ in configureMIDIRoute() }
+        .onChange(of: document.midiSourceIDs) { _, _ in configureMIDIRoute() }
         .onChange(of: consent) { _, enabled in
             conversation.cancel()
             if !enabled { credentials.clear() }
@@ -429,10 +440,10 @@ struct UnifiedAssistantView: View {
             HStack(spacing: 8) {
                 Text("Add to").font(AppThemeV2.Typography.caption).foregroundStyle(AppThemeV2.Colors.stone400)
                 V2Dropdown(options: [Optional<UUID>.none] + document.mappingFile.devices.map { Optional($0.id) },
-                           selection: $destinationID,
+                           selection: $document.activeDeviceID,
                            labelFor: { id in
                                guard let id else { return "Choose device…" }
-                               return document.mappingFile.devices.first(where: { $0.id == id })?.name ?? "Device"
+                               return document.mappingFile.devices.first(where: { $0.id == id })?.displayName ?? "Device"
                            })
                     .frame(maxWidth: 260)
                 Spacer(minLength: 0)
@@ -505,10 +516,10 @@ struct UnifiedAssistantView: View {
                 }.disabled(conversation.isWorking || destinationID == nil || isLocked)
                 .help("Capture a MIDI control as context for your request. This does not change any mapping.")
                 V2Dropdown(options: [Optional<UUID>.none] + document.mappingFile.devices.map { Optional($0.id) },
-                           selection: $destinationID,
+                           selection: $document.activeDeviceID,
                            labelFor: { id in
                                guard let id else { return "Choose device…" }
-                               return document.mappingFile.devices.first(where: { $0.id == id })?.name ?? "Device"
+                               return document.mappingFile.devices.first(where: { $0.id == id })?.displayName ?? "Device"
                            })
                     .frame(maxWidth: 310)
                 if let midi = input.capturedMIDI {
@@ -548,7 +559,7 @@ struct UnifiedAssistantView: View {
                 .foregroundStyle(AppThemeV2.Colors.stone400)
             ForEach(plan.changes) { change in
                 let entry = document.mappingFile.allMappings.first { $0.id == change.rowID }
-                let deviceName = document.mappingFile.devices.first(where: { $0.id == change.deviceID })?.name ?? "Device"
+                let deviceName = document.mappingFile.devices.first(where: { $0.id == change.deviceID })?.displayName ?? "Device"
                 VStack(alignment: .leading, spacing: 4) {
                     HStack(spacing: 8) {
                         Text(entry?.commandName ?? "Mapping")
@@ -604,6 +615,13 @@ struct UnifiedAssistantView: View {
         // failure (which flips voiceEnabled back to false) can't strand an
         // armed MIDI listener behind an inactive-looking mic.
         if turningOn { input.learnControl() }
+    }
+
+    private func configureMIDIRoute() {
+        let device = document.mappingFile.devices.first { $0.id == destinationID }
+        input.configureMIDI(desiredInputPort: device?.inPort,
+            requireSpecificSource: document.mappingFile.devices.count > 1 || (destinationID != nil && device == nil),
+            desiredSourceID: destinationID.flatMap { document.midiSourceIDs[$0] })
     }
 
     private func send() {

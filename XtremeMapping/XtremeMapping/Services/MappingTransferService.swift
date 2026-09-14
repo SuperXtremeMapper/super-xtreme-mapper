@@ -20,7 +20,7 @@ enum MappingTransferError: Error, Equatable, Sendable, LocalizedError {
         case .destinationRequired:
             String(
                 localized: "mapping-transfer.destination-required",
-                defaultValue: "Select a mapping in the destination device before pasting."
+                defaultValue: "Choose a destination device, or select mappings belonging to one device, then retry."
             )
         case .destinationUnavailable:
             String(
@@ -39,7 +39,7 @@ enum MappingTransferError: Error, Equatable, Sendable, LocalizedError {
     }
 }
 
-/// Inserts fresh mapping copies only after destination and TSI validation.
+/// Inserts fresh mapping copies only after destination and ordinary-save preflight.
 enum MappingTransferService {
     @discardableResult
     static func insertCopies(
@@ -72,7 +72,7 @@ enum MappingTransferService {
         candidate.devices[destinationIndex].mappings.append(contentsOf: copies)
 
         do {
-            _ = try TSIWriter().writeConverted(candidate)
+            _ = try TSIWriter().makeWritePlan(for: candidate)
         } catch {
             let detail = (error as? LocalizedError)?.errorDescription
                 ?? String(describing: error)
@@ -86,7 +86,7 @@ enum MappingTransferService {
         )
     }
 
-    /// Preflights a complete candidate before committing one document/Undo
+    /// Preflights a complete candidate for an ordinary save before committing one document/Undo
     /// transaction. A thrown error occurs before `performUndoableMutation`, so
     /// failure cannot dirty the document or register an Undo action.
     @MainActor

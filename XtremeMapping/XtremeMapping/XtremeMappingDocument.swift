@@ -52,6 +52,14 @@ final class TraktorMappingDocument: ReferenceFileDocument {
 
     @Published var mappingFile: MappingFile {
         didSet {
+            // Undo/import/port edits must not retain an explicit endpoint for a
+            // different saved route. Ordinary row edits leave routing intact.
+            let retainedSources = midiSourceIDs.filter { id, _ in
+                guard let current = mappingFile.devices.first(where: { $0.id == id }),
+                      let previous = oldValue.devices.first(where: { $0.id == id }) else { return false }
+                return current.inPort == previous.inPort
+            }
+            if retainedSources != midiSourceIDs { midiSourceIDs = retainedSources }
             if mappingFile != oldValue || mappingFile.interchangeMetadata != oldValue.interchangeMetadata {
                 explanationGeneration &+= 1
             }
@@ -63,6 +71,25 @@ final class TraktorMappingDocument: ReferenceFileDocument {
     var explanationRevision: String { "\(explanationIdentity.uuidString):\(explanationGeneration)" }
     @Published private(set) var fileURL: URL?
     @Published private(set) var isDirty = false
+
+    /// Session selection shared by the editor and auxiliary windows. Nil shows all devices.
+    @Published var activeDeviceID: Device.ID?
+    /// Explicit physical endpoints for this session; saved TSI routing still uses port names.
+    @Published var midiSourceIDs: [Device.ID: Int32] = [:]
+
+    func mappingDestination(selectedIDs: Set<MappingEntry.ID>) throws -> Device.ID? {
+        if let activeDeviceID {
+            guard mappingFile.devices.contains(where: { $0.id == activeDeviceID }) else {
+                throw MappingTransferError.destinationUnavailable
+            }
+            return activeDeviceID
+        }
+        let liveIDs = Set(mappingFile.allMappings.map(\.id))
+        guard selectedIDs.isSubset(of: liveIDs) else {
+            throw MappingTransferError.destinationUnavailable
+        }
+        return try MappingTransferService.workflowDestinationDeviceID(for: selectedIDs, in: mappingFile)
+    }
 
     /// Set when a change arrives before the backing NSDocument is resolved;
     /// flushed (once) the moment `backingDocument` attaches.

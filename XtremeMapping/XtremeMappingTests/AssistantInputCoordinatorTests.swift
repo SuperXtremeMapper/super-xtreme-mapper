@@ -3,6 +3,29 @@ import XCTest
 
 @MainActor
 final class AssistantInputCoordinatorTests: XCTestCase {
+    func testChangingInputRouteClearsCaptureAndRejectsLateMessages() {
+        let midi = AssistantTestMIDI()
+        let input = AssistantInputCoordinator(speech: AssistantTestSpeech(), midi: midi)
+        input.learnControl()
+        let oldCallback = midi.callback
+        oldCallback?(MIDIMessage(channel: 1, note: 50, cc: nil, value: 127))
+        XCTAssertNotNil(input.capturedMIDI)
+        input.configureMIDI(desiredInputPort: "Second controller", requireSpecificSource: true)
+        XCTAssertNil(input.capturedMIDI)
+        oldCallback?(MIDIMessage(channel: 1, note: 50, cc: nil, value: 127))
+        XCTAssertNil(input.capturedMIDI)
+    }
+
+    func testLegacyListenerCannotSilentlyCaptureForSpecificDevice() {
+        let midi = AssistantTestMIDI()
+        let input = AssistantInputCoordinator(speech: AssistantTestSpeech(), midi: midi)
+        input.configureMIDI(desiredInputPort: "Second controller", requireSpecificSource: true)
+        input.learnControl()
+        XCTAssertFalse(input.isLearning)
+        XCTAssertNotNil(input.errorMessage)
+        XCTAssertNil(midi.callback)
+    }
+
     func testStartsOffAndLateTranscriptIsIgnoredAfterStop() async throws {
         let speech = AssistantTestSpeech()
         let midi = AssistantTestMIDI()

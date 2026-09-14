@@ -114,11 +114,17 @@ struct ControllerProfileSheet: View {
         .background(AppThemeV2.Colors.stone800)
         .foregroundStyle(AppThemeV2.Colors.stone200)
         .tint(AppThemeV2.Colors.amber)
+        .onAppear { document.activeDeviceID = deviceID }
         .onChange(of: contextKey) { _, _ in resetCapture() }
         .onChange(of: draft?.layerMode) { _, _ in selectFirstVisibleControlIfNeeded() }
         .onChange(of: draft?.portID) { _, _ in selectFirstVisibleControlIfNeeded() }
         .onChange(of: direction) { _, _ in selectFirstVisibleControlIfNeeded() }
-        .onChange(of: deviceID) { _, _ in reloadDraftForDevice() }
+        .onChange(of: deviceID) { _, _ in
+            document.activeDeviceID = deviceID
+            reloadDraftForDevice()
+        }
+        .onChange(of: document.midiSourceIDs) { _, _ in resetCapture() }
+        .onChange(of: document.mappingFile.devices.map { "\($0.id):\($0.inPort)" }) { _, _ in resetCapture() }
         .onChange(of: midiManager.activeListeningLease) { _, current in
             if let lease, current != lease { self.lease = nil; pendingMIDI = nil }
         }
@@ -163,7 +169,7 @@ struct ControllerProfileSheet: View {
                 if document.mappingFile.devices.count > 1 {
                     V2Dropdown(options: document.mappingFile.devices.map(\.id),
                                selection: $deviceID,
-                               labelFor: { id in document.mappingFile.devices.first { $0.id == id }?.name ?? "Device" })
+                               labelFor: { id in document.mappingFile.devices.first { $0.id == id }?.displayName ?? "Device" })
                         .frame(maxWidth: 240)
                 } else {
                     Text(device?.name ?? "Device no longer available")
@@ -608,7 +614,7 @@ struct ControllerProfileSheet: View {
     private func startLearning() {
         guard !isLocked, direction == .send, controlID != nil, draft != nil else { return }
         pendingMIDI = nil
-        guard let acquired = midiManager.acquireListeningLease(onMIDIReceived: { message in
+        guard let acquired = midiManager.acquireListeningLease(desiredInputPort: device?.inPort, requireSpecificSource: document.mappingFile.devices.count > 1, desiredSourceID: document.midiSourceIDs[deviceID], onMIDIReceived: { message in
             guard let lease, midiManager.ownsListeningLease(lease), let assignment = MIDIAssignment(learnMessage: message) else { return }
             pendingMIDI = assignment
             stopLearning()

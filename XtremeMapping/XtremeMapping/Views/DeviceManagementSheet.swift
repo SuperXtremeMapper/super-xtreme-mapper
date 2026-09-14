@@ -1,0 +1,273 @@
+import SwiftUI
+import AppKit
+
+/// Small functional entry point while the broader device navigation is designed.
+struct DeviceContextBar: View {
+    @ObservedObject var document: TraktorMappingDocument
+    let isLocked: Bool
+    let onManage: () -> Void
+
+    var body: some View {
+        HStack(spacing: AppThemeV2.Spacing.sm) {
+            Picker("Device", selection: $document.activeDeviceID) {
+                Text("All devices").tag(Optional<UUID>.none)
+                ForEach(Array(document.mappingFile.devices.enumerated()), id: \.element.id) { index, device in
+                    Text("\(index + 1). \(device.displayName) (\(device.mappings.count))")
+                        .tag(Optional(device.id))
+                }
+            }
+            .frame(maxWidth: 350)
+            Button("Manage devices…", action: onManage)
+            Spacer()
+            if let device = document.mappingFile.devices.first(where: { $0.id == document.activeDeviceID }) {
+                Text(device.inPort.isEmpty ? "Input port not set" : "Input: \(device.inPort)")
+                    .lineLimit(1).truncationMode(.middle)
+                    .foregroundStyle(AppThemeV2.Colors.stone400)
+            } else if document.mappingFile.devices.count > 1 {
+                Text("Choose a device before adding mappings")
+                    .foregroundStyle(AppThemeV2.Colors.stone400)
+            }
+        }
+        .font(AppThemeV2.Typography.caption)
+        .padding(.horizontal, AppThemeV2.Spacing.lg)
+        .padding(.vertical, AppThemeV2.Spacing.sm)
+        .background(AppThemeV2.Colors.stone800)
+    }
+}
+
+struct DeviceManagementSheet: View {
+    @ObservedObject var document: TraktorMappingDocument
+    @Binding var selectedIDs: Set<UUID>
+    let isLocked: Bool
+    let undoManager: UndoManager?
+    @Environment(\.dismiss) private var dismiss
+    @ObservedObject private var midiManager = MIDIInputManager.shared
+    @State private var sourceID: Int32?
+    @State private var comment = ""
+    @State private var inPort = ""
+    @State private var outPort = ""
+    @State private var loadedDevice: Device?
+    @State private var transferDestination: UUID?
+    @State private var errorMessage: String?
+    @State private var statusMessage: String?
+    @State private var confirmDeletion = false
+    @State private var pendingDeletion: Device?
+
+    private var device: Device? {
+        document.mappingFile.devices.first { $0.id == document.activeDeviceID }
+    }
+    private var sourceSelection: Set<UUID> {
+        guard let device else { return [] }
+        let live = Set(device.mappings.map(\.id))
+        return selectedIDs.isSubset(of: live) ? selectedIDs : []
+    }
+    private var draftIsStale: Bool { loadedDevice != device }
+    private var hasChanges: Bool {
+        guard let device else { return false }
+        return sourceID != document.midiSourceIDs[device.id] || comment != device.comment || inPort != device.inPort || outPort != device.outPort
+    }
+    private var transferOverlapCount: Int {
+        guard let device,
+              let target = document.mappingFile.devices.first(where: { $0.id == transferDestination }) else { return 0 }
+        return device.mappings.filter { row in
+            sourceSelection.contains(row.id) && row.midiAssignment.kind != .unassigned && target.mappings.contains {
+                $0.ioType == row.ioType && $0.midiAssignment == row.midiAssignment
+            }
+        }.count
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack {
+                Text("Mapping devices").font(.headline)
+                Spacer()
+                Button("Done") { dismiss() }.keyboardShortcut(.cancelAction)
+            }
+            Picker("Edit device", selection: $document.activeDeviceID) {
+                Text("Choose device…").tag(Optional<UUID>.none)
+                ForEach(Array(document.mappingFile.devices.enumerated()), id: \.element.id) { index, item in
+                    Text("\(index + 1). \(item.displayName)").tag(Optional(item.id))
+                }
+            }
+            HStack {
+                Button("Add device") { add() }.disabled(isLocked)
+                Button("Duplicate device") { duplicate() }.disabled(isLocked || device == nil)
+                Button("Delete device…", role: .destructive) { pendingDeletion = device; confirmDeletion = true }
+                    .disabled(isLocked || device == nil)
+            }
+            if let device {
+                Form {
+                    TextField("Device label", text: $comment)
+                    LabeledContent("Device type", value: device.name)
+                    Picker("Connected input", selection: $sourceID) {
+                        Text("Use saved port name").tag(Optional<Int32>.none)
+                        if let sourceID, !midiManager.availableSources.contains(where: { $0.uniqueID == sourceID }) {
+                            Text("Selected input disconnected (\(sourceID))").tag(Optional(sourceID))
+                        }
+                        ForEach(Array(midiManager.availableSources.enumerated()), id: \.offset) { _, source in
+                            if let id = source.uniqueID {
+                                Text("\(source.displayName) (\(id))").tag(Optional(id))
+                            }
+                        }
+                    }
+                    .onChange(of: sourceID) { _, id in
+                        if let id, let source = midiManager.availableSources.first(where: { $0.uniqueID == id }) {
+                            inPort = source.name
+                        }
+                    }
+                    TextField("MIDI input port", text: $inPort)
+                        .onChange(of: inPort) { _, port in
+                            if let sourceID,
+                               let source = midiManager.availableSources.first(where: { $0.uniqueID == sourceID }),
+                               source.name != port {
+                                self.sourceID = nil
+                            }
+                        }
+                    TextField("MIDI output port", text: $outPort)
+                }.disabled(isLocked)
+                Text("Choose a connected input for this session, or enter port names to prepare mappings offline. The saved TSI uses port names; identical names need routing checked in Traktor.")
+                    .font(.caption).foregroundStyle(.secondary)
+                HStack {
+                    Button("Save device settings") { save() }
+                        .disabled(isLocked || draftIsStale || !hasChanges)
+                    if draftIsStale {
+                        Button("Reload changed device") { load() }
+                        Text("This device changed. Reload before saving.").font(.caption)
+                    }
+                    Spacer()
+                    Button("Export this device…") { exportDevice(device.id) }
+                }
+                Divider()
+                Text("Transfer selected mappings").font(.subheadline.bold())
+                Text("\(sourceSelection.count) mappings from \(device.displayName)").font(.caption)
+                Picker("Destination", selection: $transferDestination) {
+                    Text("Choose device…").tag(Optional<UUID>.none)
+                    ForEach(document.mappingFile.devices.filter { $0.id != device.id }) { target in
+                        Text(target.displayName).tag(Optional(target.id))
+                    }
+                }
+                if transferOverlapCount > 0 {
+                    Text("\(transferOverlapCount) selected mappings share MIDI addresses with destination mappings. Both will be kept.")
+                        .font(.caption).foregroundStyle(.orange)
+                }
+                HStack {
+                    Button("Copy mappings") { transfer(.copy) }
+                    Button("Move mappings") { transfer(.move) }
+                }.disabled(isLocked || sourceSelection.isEmpty || transferDestination == nil)
+            } else {
+                Text("Add a device to give a controller its own mappings, ports, and profile.")
+                    .foregroundStyle(.secondary)
+            }
+            if let errorMessage { Text(errorMessage).foregroundStyle(.red).textSelection(.enabled) }
+            if let statusMessage { Text(statusMessage).font(.caption).foregroundStyle(.secondary) }
+        }
+        .padding(24).frame(width: 600)
+        .background(AppThemeV2.Colors.stone900).preferredColorScheme(.dark)
+        .onAppear {
+            if document.activeDeviceID == nil {
+                document.activeDeviceID = try? document.mappingDestination(selectedIDs: selectedIDs)
+            }
+            load()
+        }
+        .onChange(of: document.activeDeviceID) { _, _ in load() }
+        .confirmationDialog("Delete \(pendingDeletion?.displayName ?? "this device") and its \(pendingDeletion?.mappings.count ?? 0) mappings?", isPresented: $confirmDeletion) {
+            Button("Delete device", role: .destructive) { delete() }
+            Button("Cancel", role: .cancel) { }
+        } message: { Text("You can restore the device with Undo.") }
+    }
+
+    private func load() {
+        loadedDevice = device
+        sourceID = device.flatMap { document.midiSourceIDs[$0.id] }
+        comment = device?.comment ?? ""
+        inPort = device?.inPort ?? ""; outPort = device?.outPort ?? ""
+        transferDestination = nil; errorMessage = nil
+    }
+    private func perform(_ action: String, mutation: (inout MappingFile) throws -> Void) {
+        guard !isLocked else { return }
+        do {
+            try document.performUndoableMutation(actionName: action, undoManager: undoManager, mutation)
+            errorMessage = nil
+            load()
+        } catch { errorMessage = error.localizedDescription }
+    }
+    private func add() {
+        var created: UUID?
+        perform("Add Device") { file in
+            created = try DeviceManagementService.addDevice(name: "Generic MIDI", comment: "MIDI Device \(file.devices.count + 1)", to: &file)
+        }
+        if let created { document.activeDeviceID = created; load() }
+    }
+    private func save() {
+        guard let device, !draftIsStale else { return }
+        let selectedSourceID = sourceID
+        perform("Edit Device") { file in
+            try DeviceManagementService.updateDevice(device.id, name: device.name, comment: comment, inPort: inPort, outPort: outPort, in: &file)
+        }
+        if errorMessage == nil {
+            document.midiSourceIDs[device.id] = selectedSourceID
+            load()
+        }
+    }
+    private func duplicate() {
+        guard let device else { return }
+        var created: UUID?
+        perform("Duplicate Device") { file in
+            created = try DeviceManagementService.duplicateDevice(device.id, in: &file).deviceID
+        }
+        if let created { document.activeDeviceID = created; load() }
+    }
+    private func delete() {
+        guard let pending = pendingDeletion else { return }
+        pendingDeletion = nil
+        guard document.mappingFile.devices.first(where: { $0.id == pending.id }) == pending else {
+            errorMessage = "The device changed while confirmation was open. Review it and try again."
+            return
+        }
+        perform("Delete Device") { file in try DeviceManagementService.deleteDevice(pending.id, in: &file) }
+    }
+    private func transfer(_ mode: DeviceMappingTransferMode) {
+        guard let device, let destination = transferDestination, !sourceSelection.isEmpty else { return }
+        let ids = sourceSelection
+        var result: DeviceManagementResult?
+        perform(mode == .copy ? "Copy Mappings to Device" : "Move Mappings to Device") { file in
+            result = try DeviceManagementService.transferMappings(ids, from: device.id, to: destination, mode: mode, in: &file)
+        }
+        if let result {
+            statusMessage = "\(result.mappingIDs.count) mappings \(mode == .copy ? "copied" : "moved")."
+            selectedIDs = mode == .copy ? ids : []
+        }
+    }
+    private func exportDevice(_ id: UUID) {
+        do {
+            let file = try DeviceManagementService.selectedDeviceExport(id, from: document.mappingFile)
+            let revision = document.explanationRevision
+            let writer = TSIWriter()
+            let plan = try writer.makeConvertedWritePlan(for: file)
+            var risks = writer.preservationReport(for: document.mappingFile).risks
+            risks.append(contentsOf: plan.report.risks.filter { !risks.contains($0) })
+            if !risks.isEmpty {
+                let warning = NSAlert()
+                warning.alertStyle = .warning
+                warning.messageText = "Export a converted device copy?"
+                warning.informativeText = TSIExportRiskPresenter.warningText(for: risks)
+                warning.addButton(withTitle: "Choose Destination…")
+                warning.addButton(withTitle: "Cancel")
+                guard warning.runModal() == .alertFirstButtonReturn else { return }
+            }
+            let panel = NSSavePanel()
+            panel.title = "Export Mapping Device"
+            panel.allowedContentTypes = [.tsi]
+            panel.nameFieldStringValue = "\(device?.displayName ?? "Device").tsi"
+            panel.message = "Export this device as a separate TSI file."
+            guard panel.runModal() == .OK, let url = panel.url else { return }
+            guard document.explanationRevision == revision else {
+                errorMessage = "The mapping changed. Review the device and export again."
+                return
+            }
+            try TSIExportDestinationValidator.validateNewDestination(source: document.fileURL, destination: url)
+            try TSIExclusiveAtomicWriter.publish(plan.output, to: url)
+            statusMessage = "Exported \(url.lastPathComponent)."
+        } catch { errorMessage = error.localizedDescription }
+    }
+}

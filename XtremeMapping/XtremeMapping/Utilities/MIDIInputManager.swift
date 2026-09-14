@@ -9,12 +9,37 @@ import Foundation
 import CoreMIDI
 import Combine
 
+private final class MIDIConnectionContext: @unchecked Sendable {
+    let identity: MIDIEndpointIdentity
+    let token: UUID
+
+    init(identity: MIDIEndpointIdentity, token: UUID = UUID()) {
+        self.identity = identity
+        self.token = token
+    }
+}
+
 /// Represents a received MIDI message
 struct MIDIMessage: Equatable {
     let channel: Int      // 1-16
     let note: Int?        // 0-127 for note messages
     let cc: Int?          // 0-127 for CC messages
     let value: Int        // Velocity or CC value
+    let source: MIDIEndpointIdentity?
+
+    init(
+        channel: Int,
+        note: Int?,
+        cc: Int?,
+        value: Int,
+        source: MIDIEndpointIdentity? = nil
+    ) {
+        self.channel = channel
+        self.note = note
+        self.cc = cc
+        self.value = value
+        self.source = source
+    }
 
     var isNoteOn: Bool { note != nil && value > 0 }
     var isCC: Bool { cc != nil }
@@ -40,17 +65,23 @@ final class MIDIInputManager: ObservableObject {
         private(set) var isListening = false
         private(set) var activeLease: ListeningLease?
         private(set) var callback: Callback?
+        private(set) var setupChangedCallback: (() -> Void)?
+        private(set) var route: MIDIInputRoute?
 
         var hasCallback: Bool {
             callback != nil
         }
 
-        mutating func acquire(_ callback: @escaping Callback) -> ListeningLease? {
+        mutating func acquire(
+            route: MIDIInputRoute = .allSources,
+            _ callback: @escaping Callback
+        ) -> ListeningLease? {
             guard !isListening, self.callback == nil else { return nil }
 
             let lease = ListeningLease()
             activeLease = lease
             self.callback = callback
+            self.route = route
             return lease
         }
 
@@ -64,6 +95,8 @@ final class MIDIInputManager: ObservableObject {
             guard activeLease == lease else { return }
             activeLease = nil
             callback = nil
+            route = nil
+            setupChangedCallback = nil
             isListening = false
         }
 
@@ -71,14 +104,20 @@ final class MIDIInputManager: ObservableObject {
             guard callback != nil || activeLease == nil else { return }
             activeLease = nil
             self.callback = callback
+            setupChangedCallback = nil
+            if callback == nil {
+                route = nil
+            }
         }
 
         mutating func invalidateLease() {
             activeLease = nil
+            setupChangedCallback = nil
         }
 
-        mutating func startLegacyListening() {
+        mutating func startLegacyListening(route: MIDIInputRoute = .allSources) {
             activeLease = nil
+            self.route = route
             isListening = true
         }
 
@@ -86,6 +125,8 @@ final class MIDIInputManager: ObservableObject {
         mutating func stopLegacyListening() -> Bool {
             guard activeLease == nil else { return false }
             isListening = false
+            route = nil
+            setupChangedCallback = nil
             return true
         }
 
@@ -95,6 +136,8 @@ final class MIDIInputManager: ObservableObject {
             }
             activeLease = nil
             isListening = false
+            route = nil
+            setupChangedCallback = nil
         }
 
         @discardableResult
@@ -103,6 +146,8 @@ final class MIDIInputManager: ObservableObject {
             activeLease = nil
             callback = nil
             isListening = false
+            route = nil
+            setupChangedCallback = nil
             return true
         }
 
@@ -111,7 +156,27 @@ final class MIDIInputManager: ObservableObject {
         }
 
         func deliver(_ message: MIDIMessage) {
+            guard route?.accepts(message.source) == true else { return }
             callback?(message)
+        }
+
+        @discardableResult
+        mutating func setSetupChangedCallback(
+            _ callback: (() -> Void)?,
+            for lease: ListeningLease
+        ) -> Bool {
+            guard activeLease == lease else { return false }
+            setupChangedCallback = callback
+            return true
+        }
+
+        mutating func replaceLegacySetupChangedCallback(_ callback: (() -> Void)?) {
+            guard activeLease == nil else { return }
+            setupChangedCallback = callback
+        }
+
+        func deliverSetupChange() {
+            setupChangedCallback?()
         }
     }
 
@@ -121,10 +186,16 @@ final class MIDIInputManager: ObservableObject {
     @Published private(set) var lastMessage: MIDIMessage?
     @Published private(set) var activeListeningLease: ListeningLease?
     @Published private(set) var hasMIDIReceiver = false
+    @Published private(set) var availableSources: [MIDIEndpointIdentity] = []
 
     private var midiClient: MIDIClientRef = 0
     private var inputPort: MIDIPortRef = 0
     private var connectedSources: [MIDIEndpointRef] = []
+    // CoreMIDI owns only an unretained pointer to each connection context. Keep
+    // contexts alive for the manager lifetime so an in-flight callback remains
+    // safe while sources are being disconnected during a setup change.
+    private var connectionContexts: [MIDIConnectionContext] = []
+    private var deliveryGate = MIDIConnectionDeliveryGate()
     private var listenerOwnership = ListenerOwnership()
 
     // Callback for when a MIDI message is received during learn mode
@@ -137,7 +208,10 @@ final class MIDIInputManager: ObservableObject {
     }
 
     // Callback for when the MIDI setup changes (devices connected/disconnected)
-    var onSetupChanged: (() -> Void)?
+    var onSetupChanged: (() -> Void)? {
+        get { listenerOwnership.setupChangedCallback }
+        set { listenerOwnership.replaceLegacySetupChangedCallback(newValue) }
+    }
 
     private init() {
         setupMIDI()
@@ -159,6 +233,7 @@ final class MIDIInputManager: ObservableObject {
         }
 
         createInputPort()
+        refreshAvailableSources()
     }
 
     private func createInputPort() {
@@ -171,7 +246,16 @@ final class MIDIInputManager: ObservableObject {
             ._1_0,
             &inputPort
         ) { [weak self] eventList, srcConnRefCon in
-            self?.handleMIDIEvents(eventList)
+            let source = srcConnRefCon.map {
+                Unmanaged<MIDIConnectionContext>
+                    .fromOpaque($0)
+                    .takeUnretainedValue()
+            }
+            self?.handleMIDIEvents(
+                eventList,
+                source: source?.identity,
+                connectionToken: source?.token
+            )
         }
 
         if status != noErr {
@@ -180,7 +264,67 @@ final class MIDIInputManager: ObservableObject {
         }
     }
 
-    private func connectToMIDISources() -> Bool {
+    private struct AvailableSource {
+        let endpoint: MIDIEndpointRef
+        let identity: MIDIEndpointIdentity
+    }
+
+    private func enumerateMIDISources() -> [AvailableSource] {
+        (0..<MIDIGetNumberOfSources()).compactMap { index in
+            let endpoint = MIDIGetSource(index)
+            guard endpoint != 0 else { return nil }
+
+            var name: Unmanaged<CFString>?
+            let nameStatus = MIDIObjectGetStringProperty(endpoint, kMIDIPropertyName, &name)
+            let endpointName = nameStatus == noErr
+                ? (name?.takeRetainedValue() as String?) ?? ""
+                : ""
+
+            var displayName: Unmanaged<CFString>?
+            let displayNameStatus = MIDIObjectGetStringProperty(
+                endpoint,
+                kMIDIPropertyDisplayName,
+                &displayName
+            )
+            let endpointDisplayName = displayNameStatus == noErr
+                ? (displayName?.takeRetainedValue() as String?) ?? endpointName
+                : endpointName
+
+            var uniqueID: Int32 = 0
+            let idStatus = MIDIObjectGetIntegerProperty(endpoint, kMIDIPropertyUniqueID, &uniqueID)
+            let stableID = idStatus == noErr && uniqueID != 0 ? uniqueID : nil
+
+            return AvailableSource(
+                endpoint: endpoint,
+                identity: MIDIEndpointIdentity(
+                    uniqueID: stableID,
+                    name: endpointName,
+                    displayName: endpointDisplayName
+                )
+            )
+        }
+    }
+
+    private func refreshAvailableSources() {
+        availableSources = enumerateMIDISources().map(\.identity)
+    }
+
+    private func resolveRoute(
+        desiredInputPort: String?,
+        requireSpecificSource: Bool,
+        desiredSourceID: Int32?
+    ) -> MIDIInputRouteResolution {
+        let sources = enumerateMIDISources()
+        availableSources = sources.map(\.identity)
+        return MIDIInputRouteResolver.resolve(
+            desiredInputPort: desiredInputPort,
+            requireSpecificSource: requireSpecificSource,
+            desiredSourceID: desiredSourceID,
+            availableSources: sources.map(\.identity)
+        )
+    }
+
+    private func connectToMIDISources(route: MIDIInputRoute) -> Bool {
         // Recreate port if needed
         createInputPort()
 
@@ -189,17 +333,38 @@ final class MIDIInputManager: ObservableObject {
             return false
         }
 
-        // Connect to all available MIDI sources
-        let sourceCount = MIDIGetNumberOfSources()
+        let availableSources = enumerateMIDISources()
+        let selectedSources: [AvailableSource]
+        switch MIDIInputRouteResolver.reconnect(
+            pinnedRoute: route,
+            availableSources: availableSources.map(\.identity)
+        ) {
+        case .resolved(.allSources):
+            selectedSources = availableSources
+        case .resolved(.specificSource(let selectedIdentity)):
+            selectedSources = availableSources.filter {
+                $0.identity.uniqueID == selectedIdentity.uniqueID
+            }
+        case .unavailable, .ambiguous:
+            return false
+        }
+
         connectedSources.removeAll()
 
-        for i in 0..<sourceCount {
-            let source = MIDIGetSource(i)
-            if source != 0 {
-                let status = MIDIPortConnectSource(inputPort, source, nil)
-                if status == noErr {
-                    connectedSources.append(source)
-                }
+        for source in selectedSources {
+            let context = MIDIConnectionContext(identity: source.identity)
+            connectionContexts.append(context)
+            let status = MIDIPortConnectSource(
+                inputPort,
+                source.endpoint,
+                Unmanaged.passUnretained(context).toOpaque()
+            )
+            if status == noErr {
+                connectedSources.append(source.endpoint)
+                deliveryGate.activate(context.token)
+            } else if case .specificSource = route {
+                disconnectFromMIDISources()
+                return false
             }
         }
 
@@ -208,6 +373,7 @@ final class MIDIInputManager: ObservableObject {
     }
 
     private func disconnectFromMIDISources() {
+        deliveryGate.disconnectAll()
         for source in connectedSources {
             MIDIPortDisconnectSource(inputPort, source)
         }
@@ -227,12 +393,34 @@ final class MIDIInputManager: ObservableObject {
     func acquireListeningLease(
         onMIDIReceived: @escaping (MIDIMessage) -> Void
     ) -> ListeningLease? {
-        guard let lease = listenerOwnership.acquire(onMIDIReceived) else {
+        acquireListeningLease(
+            desiredInputPort: nil,
+            requireSpecificSource: false,
+            desiredSourceID: nil,
+            onMIDIReceived: onMIDIReceived
+        )
+    }
+
+    func acquireListeningLease(
+        desiredInputPort: String?,
+        requireSpecificSource: Bool,
+        desiredSourceID: Int32? = nil,
+        onMIDIReceived: @escaping (MIDIMessage) -> Void
+    ) -> ListeningLease? {
+        guard let route = resolveRoute(
+            desiredInputPort: desiredInputPort,
+            requireSpecificSource: requireSpecificSource,
+            desiredSourceID: desiredSourceID
+        ).route,
+              let lease = listenerOwnership.acquire(
+                route: route,
+                onMIDIReceived
+              ) else {
             return nil
         }
         publishListenerOwnership()
 
-        guard connectToMIDISources(),
+        guard connectToMIDISources(route: route),
               listenerOwnership.startLeasedListening(using: lease) else {
             listenerOwnership.failLeasedListening(using: lease)
             disconnectFromMIDISources()
@@ -254,15 +442,35 @@ final class MIDIInputManager: ObservableObject {
         publishListenerOwnership()
     }
 
-    /// Start listening to all MIDI inputs for a legacy Wizard/Voice owner.
-    func startListening() {
+    @discardableResult
+    func setSetupChangedHandler(
+        _ handler: (() -> Void)?,
+        for lease: ListeningLease
+    ) -> Bool {
+        listenerOwnership.setSetupChangedCallback(handler, for: lease)
+    }
+
+    /// Start legacy callback listening. Passing no route deliberately preserves
+    /// the historical all-source behavior for single-device contexts.
+    @discardableResult
+    func startListening(
+        desiredInputPort: String? = nil,
+        requireSpecificSource: Bool = false,
+        desiredSourceID: Int32? = nil
+    ) -> Bool {
         listenerOwnership.invalidateLease()
         publishListenerOwnership()
-        guard !listenerOwnership.isListening else { return }
+        guard !listenerOwnership.isListening else { return false }
 
-        guard connectToMIDISources() else { return }
-        listenerOwnership.startLegacyListening()
+        guard let route = resolveRoute(
+            desiredInputPort: desiredInputPort,
+            requireSpecificSource: requireSpecificSource,
+            desiredSourceID: desiredSourceID
+        ).route,
+              connectToMIDISources(route: route) else { return false }
+        listenerOwnership.startLegacyListening(route: route)
         publishListenerOwnership()
+        return true
     }
 
     /// Stop listening for a legacy Wizard/Voice owner.
@@ -273,18 +481,25 @@ final class MIDIInputManager: ObservableObject {
     }
 
     private func handleSetupChange() {
+        refreshAvailableSources()
         // If we're listening, reconnect to any new sources
         if listenerOwnership.isListening {
             disconnectFromMIDISources()
-            if !connectToMIDISources() {
-                listenerOwnership.failCurrentListening()
-                publishListenerOwnership()
+            if let route = listenerOwnership.route {
+                // A missing pinned source is expected during unplug/replug. The
+                // listener keeps its lease but receives nothing until the same
+                // stable endpoint identity returns.
+                _ = connectToMIDISources(route: route)
             }
         }
-        onSetupChanged?()
+        listenerOwnership.deliverSetupChange()
     }
 
-    private nonisolated func handleMIDIEvents(_ eventList: UnsafePointer<MIDIEventList>) {
+    private nonisolated func handleMIDIEvents(
+        _ eventList: UnsafePointer<MIDIEventList>,
+        source: MIDIEndpointIdentity?,
+        connectionToken: UUID?
+    ) {
         // unsafeSequence() walks the original packet buffer; words() yields
         // every UMP word in each packet (not just the first).
         for packet in eventList.unsafeSequence() {
@@ -297,8 +512,15 @@ final class MIDIInputManager: ObservableObject {
                 let data1 = UInt8((word >> 8) & 0xFF)
                 let data2 = UInt8(word & 0xFF)
 
-                if let message = parseMIDIBytes(status: status, data1: data1, data2: data2) {
+                if let message = parseMIDIBytes(
+                    status: status,
+                    data1: data1,
+                    data2: data2,
+                    source: source
+                ) {
                     Task { @MainActor in
+                        guard let connectionToken,
+                              self.deliveryGate.accepts(connectionToken) else { return }
                         self.lastMessage = message
                         self.listenerOwnership.deliver(message)
                     }
@@ -307,17 +529,22 @@ final class MIDIInputManager: ObservableObject {
         }
     }
 
-    private nonisolated func parseMIDIBytes(status: UInt8, data1: UInt8, data2: UInt8) -> MIDIMessage? {
+    private nonisolated func parseMIDIBytes(
+        status: UInt8,
+        data1: UInt8,
+        data2: UInt8,
+        source: MIDIEndpointIdentity?
+    ) -> MIDIMessage? {
         let messageType = status & 0xF0
         let channel = Int((status & 0x0F) + 1) // Convert 0-15 to 1-16
 
         switch messageType {
         case 0x90: // Note On (velocity 0 = Note Off equivalent)
-            return MIDIMessage(channel: channel, note: Int(data1), cc: nil, value: Int(data2))
+            return MIDIMessage(channel: channel, note: Int(data1), cc: nil, value: Int(data2), source: source)
         case 0x80: // Note Off
-            return MIDIMessage(channel: channel, note: Int(data1), cc: nil, value: 0)
+            return MIDIMessage(channel: channel, note: Int(data1), cc: nil, value: 0, source: source)
         case 0xB0: // Control Change
-            return MIDIMessage(channel: channel, note: nil, cc: Int(data1), value: Int(data2))
+            return MIDIMessage(channel: channel, note: nil, cc: Int(data1), value: Int(data2), source: source)
         default:
             return nil
         }

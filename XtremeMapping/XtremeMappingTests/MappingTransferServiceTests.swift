@@ -140,6 +140,44 @@ final class MappingTransferServiceTests: XCTestCase {
         XCTAssertTrue(file.devices.isEmpty)
     }
 
+    func testRiskyImportedSourceRejectsPasteBeforeChangingDocument() throws {
+        let data = try TSIWriter().writeConverted(
+            MappingFile(devices: [
+                Device(
+                    name: "Generic MIDI",
+                    mappings: [MappingEntry(commandID: 100)]
+                )
+            ])
+        )
+        var file = try TSIParser().parseDocument(data)
+        let destinationID = file.devices[0].id
+        let envelope = try XCTUnwrap(file.sourceEnvelope)
+        file.sourceEnvelope = TSIRawEnvelope(
+            originalXML: envelope.originalXML,
+            controllerValues: envelope.controllerValues,
+            primaryFrames: envelope.primaryFrames,
+            baseline: envelope.baseline,
+            risks: [.init(code: .partialCMAD, path: "/Device[0]/Mapping[0]/CMAD[0]")]
+        )
+        let before = file
+
+        XCTAssertThrowsError(
+            try MappingTransferService.insertCopies(
+                [MappingEntry(commandID: 201)],
+                into: &file,
+                targetDeviceID: destinationID
+            )
+        ) { error in
+            guard case .preflightFailed(let message) = error as? MappingTransferError else {
+                return XCTFail("Expected ordinary-save preflight failure, got \(error)")
+            }
+            XCTAssertTrue(message.contains("normal save cannot preserve"))
+            XCTAssertTrue(message.contains("partialCMAD"))
+        }
+        XCTAssertEqual(file, before)
+        XCTAssertEqual(file.sourceEnvelope, before.sourceEnvelope)
+    }
+
     func testDuplicateSelectionKeepsRowsInEachSourceDeviceAndDocumentOrder() {
         let firstSelected = MappingEntry(commandID: 100)
         let firstUnselected = MappingEntry(commandID: 7)

@@ -104,6 +104,29 @@ private final class SuspendedSpeechProvider: SpeechRecognitionProvider {
     }
 }
 
+@MainActor
+private final class VoiceMIDICaptureSpy: MIDICaptureListening {
+    var onSetupChanged: (() -> Void)?
+    var starts: [(port: String?, required: Bool, sourceID: Int32?)] = []
+    var shouldStart = true
+    private var callback: ((MIDIMessage) -> Void)?
+
+    func start(
+        desiredInputPort: String?,
+        requireSpecificSource: Bool,
+        desiredSourceID: Int32?,
+        onMIDIReceived: @escaping (MIDIMessage) -> Void
+    ) -> Bool {
+        starts.append((desiredInputPort, requireSpecificSource, desiredSourceID))
+        guard shouldStart else { return false }
+        callback = onMIDIReceived
+        return true
+    }
+
+    func stop() { callback = nil }
+    func send(_ message: MIDIMessage) { callback?(message) }
+}
+
 // MARK: - Tests
 
 @MainActor
@@ -132,6 +155,89 @@ final class VoiceMappingCoordinatorTests: XCTestCase {
 
     private func makeMIDI(cc: Int, value: Int = 64) -> MIDIMessage {
         MIDIMessage(channel: 1, note: nil, cc: cc, value: value)
+    }
+
+    func testActivateRoutesMIDIToSelectedDeviceInputPortAndBoundSourceID() {
+        let midi = VoiceMIDICaptureSpy()
+        let speech = MockSpeechProvider()
+        let first = Device(name: "First", inPort: "Port A")
+        let selected = Device(name: "Selected", inPort: "Port B")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [first, selected]))
+        document.midiSourceIDs[selected.id] = 202
+        coordinator = VoiceMappingCoordinator(
+            midiCapture: midi,
+            voiceManager: VoiceInputManager(provider: speech),
+            claudeService: mock
+        )
+        XCTAssertTrue(coordinator.setDocument(document, destinationDeviceID: selected.id))
+
+        coordinator.activate()
+
+        XCTAssertEqual(midi.starts.count, 1)
+        XCTAssertEqual(midi.starts.first?.port, "Port B")
+        XCTAssertEqual(midi.starts.first?.required, true)
+        XCTAssertEqual(midi.starts.first?.sourceID, 202)
+        XCTAssertTrue(coordinator.isActive)
+    }
+
+    func testSingleDeviceAllPortsRemainsDeliberatelyUnfiltered() {
+        let midi = VoiceMIDICaptureSpy()
+        let device = Device(name: "Legacy", inPort: "All Ports")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [device]))
+        coordinator = VoiceMappingCoordinator(
+            midiCapture: midi,
+            voiceManager: VoiceInputManager(provider: MockSpeechProvider()),
+            claudeService: mock
+        )
+        XCTAssertTrue(coordinator.setDocument(document, destinationDeviceID: device.id))
+
+        coordinator.activate()
+
+        XCTAssertEqual(midi.starts.first?.port, "All Ports")
+        XCTAssertEqual(midi.starts.first?.required, false)
+        XCTAssertTrue(coordinator.isActive)
+    }
+
+    func testVoiceCaptureIgnoresMIDIAfterDestinationPortChanges() async {
+        let midi = VoiceMIDICaptureSpy()
+        let selected = Device(name: "Selected", inPort: "Port A")
+        let other = Device(name: "Other", inPort: "Port B")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [selected, other]))
+        coordinator = VoiceMappingCoordinator(
+            midiCapture: midi,
+            voiceManager: VoiceInputManager(provider: MockSpeechProvider()),
+            claudeService: mock
+        )
+        XCTAssertTrue(coordinator.setDocument(document, destinationDeviceID: selected.id))
+        coordinator.activate()
+
+        document.mappingFile.devices[0].inPort = "Port C"
+        midi.send(makeMIDI(cc: 10))
+        await Task.yield()
+
+        XCTAssertNil(coordinator.pendingMIDI)
+        XCTAssertTrue(coordinator.statusMessage.localizedCaseInsensitiveContains("input port changed"))
+    }
+
+    func testActivateFailsWhenRequiredMIDIInputIsUnavailable() {
+        let midi = VoiceMIDICaptureSpy()
+        midi.shouldStart = false
+        let speech = MockSpeechProvider()
+        let selected = Device(name: "Selected", inPort: "Duplicate Name")
+        let other = Device(name: "Other", inPort: "Other Port")
+        let document = TraktorMappingDocument(mappingFile: MappingFile(devices: [selected, other]))
+        coordinator = VoiceMappingCoordinator(
+            midiCapture: midi,
+            voiceManager: VoiceInputManager(provider: speech),
+            claudeService: mock
+        )
+        XCTAssertTrue(coordinator.setDocument(document, destinationDeviceID: selected.id))
+
+        coordinator.activate()
+
+        XCTAssertFalse(coordinator.isActive)
+        XCTAssertFalse(speech.isListening)
+        XCTAssertTrue(coordinator.statusMessage.localizedCaseInsensitiveContains("MIDI input"))
     }
 
     private func makeResult(

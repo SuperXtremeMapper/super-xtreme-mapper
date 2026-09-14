@@ -76,7 +76,7 @@ final class VoiceMappingCoordinator: ObservableObject {
 
     // MARK: - Dependencies
 
-    private let midiManager: MIDIInputManager
+    private let midiCapture: any MIDICaptureListening
     private let voiceManager: VoiceInputManager
     private let claudeService: CommandInterpreting
 
@@ -84,6 +84,9 @@ final class VoiceMappingCoordinator: ObservableObject {
     private var voiceListeningTask: Task<Void, Never>?
     /// Invalidates every continuation belonging to an earlier session.
     private var lifecycleGeneration: UInt = 0
+    private var activeInputPort: String?
+    private var activeSourceID: Int32?
+    private var activeRouteRequiresSpecificSource = false
 
     // MARK: - Private State
 
@@ -110,7 +113,17 @@ final class VoiceMappingCoordinator: ObservableObject {
         voiceManager: VoiceInputManager,
         claudeService: CommandInterpreting
     ) {
-        self.midiManager = midiManager
+        self.midiCapture = MIDILeaseCaptureListener(manager: midiManager)
+        self.voiceManager = voiceManager
+        self.claudeService = claudeService
+    }
+
+    init(
+        midiCapture: any MIDICaptureListening,
+        voiceManager: VoiceInputManager,
+        claudeService: CommandInterpreting
+    ) {
+        self.midiCapture = midiCapture
         self.voiceManager = voiceManager
         self.claudeService = claudeService
     }
@@ -132,14 +145,36 @@ final class VoiceMappingCoordinator: ObservableObject {
         lifecycleGeneration &+= 1
         let generation = lifecycleGeneration
 
-        // Setup MIDI callback
-        midiManager.onMIDIReceived = { [weak self] message in
+        guard let route = currentMIDIRoute else {
+            statusMessage = "Cannot start: choose a valid destination device."
+            return
+        }
+        activeInputPort = route.inputPort
+        activeSourceID = route.sourceID
+        activeRouteRequiresSpecificSource = route.requiresSpecificSource
+        isActive = true
+
+        let midiStarted = midiCapture.start(
+            desiredInputPort: route.inputPort,
+            requireSpecificSource: route.requiresSpecificSource,
+            desiredSourceID: route.sourceID
+        ) { [weak self] message in
             Task { @MainActor in
                 guard let self,
                       self.isActive,
                       self.lifecycleGeneration == generation else { return }
+                guard self.activeMIDIRouteIsCurrent else {
+                    self.statusMessage = "MIDI input port changed. Restart voice mapping to use the new route."
+                    return
+                }
                 self.handleMIDIReceived(message)
             }
+        }
+        guard midiStarted else {
+            isActive = false
+            clearActiveMIDIRoute()
+            statusMessage = "MIDI input is unavailable or ambiguous. Set one connected input for this device and try again."
+            return
         }
 
         // Setup voice callback
@@ -163,10 +198,6 @@ final class VoiceMappingCoordinator: ObservableObject {
             }
         }
 
-        // Start listening
-        midiManager.startListening()
-
-        isActive = true
         statusMessage = "Activating..."
         startVoiceListening(
             generation: generation,
@@ -177,11 +208,10 @@ final class VoiceMappingCoordinator: ObservableObject {
     /// Stop all listening and reset state.
     func deactivate() {
         invalidateLifecycle()
-        midiManager.stopListening()
+        midiCapture.stop()
         voiceManager.stopListening()
 
         // Clear callbacks
-        midiManager.onMIDIReceived = nil
         voiceManager.onTranscriptReady = nil
         voiceManager.onModelLoadProgress = nil
         clearAllState()
@@ -191,6 +221,7 @@ final class VoiceMappingCoordinator: ObservableObject {
         isProcessing = false
 
         isActive = false
+        clearActiveMIDIRoute()
         statusMessage = ""
     }
 
@@ -352,13 +383,13 @@ final class VoiceMappingCoordinator: ObservableObject {
         stagedMappings = []
         clearAllState()
         invalidateLifecycle()
-        midiManager.stopListening()
+        midiCapture.stop()
         voiceManager.stopListening()
-        midiManager.onMIDIReceived = nil
         voiceManager.onTranscriptReady = nil
         voiceManager.onModelLoadProgress = nil
         isProcessing = false
         isActive = false
+        clearActiveMIDIRoute()
         statusMessage = "Saved \(savedCount) mappings!"
     }
 
@@ -543,6 +574,39 @@ final class VoiceMappingCoordinator: ObservableObject {
             return document.mappingFile.devices.contains { $0.id == destinationDeviceID }
         }
         return MappingTransferService.isTrulyEmpty(document.mappingFile)
+    }
+
+    private var currentMIDIRoute: (
+        inputPort: String?,
+        requiresSpecificSource: Bool,
+        sourceID: Int32?
+    )? {
+        guard let document else { return nil }
+        if let destinationDeviceID {
+            guard let device = document.mappingFile.devices.first(where: { $0.id == destinationDeviceID }) else {
+                return nil
+            }
+            return (
+                device.inPort,
+                document.mappingFile.devices.count > 1,
+                document.midiSourceIDs[destinationDeviceID]
+            )
+        }
+        guard MappingTransferService.isTrulyEmpty(document.mappingFile) else { return nil }
+        return (nil, false, nil)
+    }
+
+    private var activeMIDIRouteIsCurrent: Bool {
+        guard let currentMIDIRoute else { return false }
+        return currentMIDIRoute.inputPort == activeInputPort
+            && currentMIDIRoute.requiresSpecificSource == activeRouteRequiresSpecificSource
+            && currentMIDIRoute.sourceID == activeSourceID
+    }
+
+    private func clearActiveMIDIRoute() {
+        activeInputPort = nil
+        activeSourceID = nil
+        activeRouteRequiresSpecificSource = false
     }
 
     private func invalidateLifecycle() {

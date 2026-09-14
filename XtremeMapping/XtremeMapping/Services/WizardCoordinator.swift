@@ -75,13 +75,16 @@ final class WizardCoordinator: ObservableObject {
 
     // MARK: - Dependencies
 
-    private let midiManager: MIDIInputManager
+    private let midiCapture: any MIDICaptureListening
     /// Strong reference required to prevent document from being released during wizard session.
     /// No retain cycle risk: TraktorMappingDocument does not reference WizardCoordinator.
     private var document: TraktorMappingDocument?
     /// The only device this wizard session may inspect or mutate. A nil value
     /// is valid solely for a genuinely empty new document.
     private var destinationDeviceID: Device.ID?
+    private var activeInputPort: String?
+    private var activeSourceID: Int32?
+    private var activeRouteRequiresSpecificSource = false
 
     // MARK: - Computed Properties
 
@@ -166,7 +169,11 @@ final class WizardCoordinator: ObservableObject {
     // MARK: - Initialization
 
     init(midiManager: MIDIInputManager? = nil) {
-        self.midiManager = midiManager ?? .shared
+        self.midiCapture = MIDILeaseCaptureListener(manager: midiManager ?? .shared)
+    }
+
+    init(midiCapture: any MIDICaptureListening) {
+        self.midiCapture = midiCapture
     }
 
     // MARK: - Public Methods
@@ -210,7 +217,11 @@ final class WizardCoordinator: ObservableObject {
         shiftMIDI = nil
         isShiftHeld = false
         statusMessage = "Press a control on your MIDI device"
-        startMIDIListening()
+        guard startMIDIListening() else {
+            phase = .setup
+            statusMessage = "MIDI input is unavailable or ambiguous. Select one connected input port and try again."
+            return
+        }
     }
 
     func handleMIDIReceived(_ message: MIDIMessage) {
@@ -489,6 +500,9 @@ final class WizardCoordinator: ObservableObject {
         stopMIDIListening()
         document = nil
         destinationDeviceID = nil
+        activeInputPort = nil
+        activeSourceID = nil
+        activeRouteRequiresSpecificSource = false
         phase = .setup
         setupConfig = WizardSetupConfig()
         currentTab = .mixer
@@ -505,23 +519,48 @@ final class WizardCoordinator: ObservableObject {
         statusMessage = ""
     }
 
-    private func startMIDIListening() {
-        midiManager.onMIDIReceived = { [weak self] message in
+    @discardableResult
+    private func startMIDIListening() -> Bool {
+        let sourceID = destinationDeviceID.flatMap { document?.midiSourceIDs[$0] }
+        let requiresSpecificSource = (document?.mappingFile.devices.count ?? 0) > 1
+        activeInputPort = setupConfig.inputPort
+        activeSourceID = sourceID
+        activeRouteRequiresSpecificSource = requiresSpecificSource
+        let started = midiCapture.start(
+            desiredInputPort: setupConfig.inputPort,
+            requireSpecificSource: requiresSpecificSource,
+            desiredSourceID: sourceID
+        ) { [weak self] message in
             Task { @MainActor in
-                self?.handleMIDIReceived(message)
+                guard let self else { return }
+                guard self.setupConfig.inputPort == self.activeInputPort,
+                      ((self.document?.mappingFile.devices.count ?? 0) > 1) == self.activeRouteRequiresSpecificSource,
+                      self.destinationDeviceID.flatMap({ self.document?.midiSourceIDs[$0] }) == self.activeSourceID else {
+                    self.statusMessage = "MIDI input port changed. Restart learning to use the new route."
+                    return
+                }
+                self.handleMIDIReceived(message)
             }
         }
-        midiManager.onSetupChanged = { [weak self] in
+        guard started else {
+            activeInputPort = nil
+            activeSourceID = nil
+            activeRouteRequiresSpecificSource = false
+            isListening = false
+            return false
+        }
+        midiCapture.onSetupChanged = { [weak self] in
             self?.handleMIDISetupChanged()
         }
-        midiManager.startListening()
         isListening = true
+        return true
     }
 
     private func stopMIDIListening() {
-        midiManager.stopListening()
-        midiManager.onMIDIReceived = nil
-        midiManager.onSetupChanged = nil
+        midiCapture.stop()
+        activeInputPort = nil
+        activeSourceID = nil
+        activeRouteRequiresSpecificSource = false
         isListening = false
     }
 

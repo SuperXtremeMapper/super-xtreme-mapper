@@ -67,19 +67,10 @@ struct ContentView: View {
         if isLocked {
             return "Unlock the mapping before pasting."
         }
-        if MappingTransferService.isTrulyEmpty(document.mappingFile) {
+        do {
+            _ = try document.mappingDestination(selectedIDs: selectedMappings)
             return nil
-        }
-        guard !selectedMappings.isEmpty else {
-            return "Select a mapping in the destination device before pasting."
-        }
-        guard MappingTransferService.destinationDeviceID(
-            for: selectedMappings,
-            in: document.mappingFile
-        ) != nil else {
-            return "Select mappings from only one destination device before pasting."
-        }
-        return nil
+        } catch { return error.localizedDescription }
     }
 
     /// The device configuration associated with a device id, if any.
@@ -126,6 +117,7 @@ struct ContentView: View {
 
     // Sheet types for single sheet modifier (avoids crash from multiple sheets)
     enum SheetType: Identifiable {
+        case devices
         case about
         case settings
         case controllerProfile(UUID)
@@ -136,6 +128,7 @@ struct ContentView: View {
 
         var id: String {
             switch self {
+            case .devices: "devices"
             case .about:
                 "about"
             case .settings:
@@ -151,7 +144,7 @@ struct ContentView: View {
     }
 
     var filteredMappings: [MappingEntry] {
-        document.mappingFile.devices.flatMap { device in
+        document.mappingFile.devices.filter { document.activeDeviceID == nil || $0.id == document.activeDeviceID }.flatMap { device in
             device.mappings.filter { entry in
                 let categoryMatch = CommandCategoryMatcher.matches(
                     entry,
@@ -192,6 +185,8 @@ struct ContentView: View {
                 compatibilityWarningBanner
             }
 
+            DeviceContextBar(document: document, isLocked: isLocked, onManage: { activeSheet = .devices })
+
             // Main content
             editorSplit
 
@@ -228,7 +223,7 @@ struct ContentView: View {
         }
     }
 
-    var body: some View {
+    private var interactiveContent: some View {
         rootStack
         .focusedSceneValue(\.mappingDocument, document)
         .focusedSceneValue(\.selectedMappingIDs, $selectedMappings)
@@ -238,6 +233,11 @@ struct ContentView: View {
         .preferredColorScheme(.dark)
         .onChange(of: selectedMappings) { _, selection in
             // Insert/duplicate/clone operations must reveal the rows they select.
+            if let id = document.activeDeviceID,
+               let device = document.mappingFile.devices.first(where: { $0.id == id }),
+               !selection.isSubset(of: Set(device.mappings.map(\.id))) {
+                document.activeDeviceID = nil
+            }
             if let profileMatchIDs, !selection.isSubset(of: profileMatchIDs) {
                 self.profileMatchIDs = nil
             }
@@ -249,12 +249,28 @@ struct ContentView: View {
             // Re-show the notice if the set of preserved assignments changes.
             compatibilityBannerDismissed = false
         }
+        .onChange(of: document.activeDeviceID) { _, id in
+            if let id, let device = document.mappingFile.devices.first(where: { $0.id == id }) {
+                selectedMappings.formIntersection(Set(device.mappings.map(\.id)))
+            }
+            profileMatchIDs = nil
+        }
         .onChange(of: document.explanationRevision) { _, _ in
+            selectedMappings.formIntersection(Set(document.mappingFile.allMappings.map(\.id)))
+            if let id = document.activeDeviceID, !document.mappingFile.devices.contains(where: { $0.id == id }) {
+                document.activeDeviceID = nil
+            }
             // Associations/rows change under the same revision key the explanation uses.
             recomputePhysicalNames()
         }
+    }
+
+    private var sheetContent: some View {
+        interactiveContent
         .sheet(item: $activeSheet) { sheet in
             switch sheet {
+            case .devices:
+                DeviceManagementSheet(document: document, selectedIDs: $selectedMappings, isLocked: isLocked, undoManager: undoManager)
             case .about:
                 AboutSheet()
             case .settings:
@@ -283,6 +299,10 @@ struct ContentView: View {
                 }
             }
         }
+    }
+
+    private var alertContent: some View {
+        sheetContent
         .alert(
             "Couldn't Transfer Mappings",
             isPresented: Binding(
@@ -319,6 +339,10 @@ struct ContentView: View {
         } message: {
             Text(deckCloneError ?? "The clone failed.")
         }
+    }
+
+    var body: some View {
+        alertContent
         .onDisappear { assistantWindow.close() }
         // Handle mode activation from welcome screen
         .onReceive(NotificationCenter.default.publisher(for: .activateVoiceMode)) { notification in
@@ -330,9 +354,7 @@ struct ContentView: View {
             // Delay to ensure document is ready
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 // Set document and notify wizard (works whether window exists or is created fresh)
-                WizardCoordinator.pendingDocument = document
-                NotificationCenter.default.post(name: .wizardDocumentChanged, object: document)
-                openWindow(id: "wizard")
+                launchWizard()
             }
         }
         .onAppear {
@@ -342,9 +364,7 @@ struct ContentView: View {
                 WizardCoordinator.pendingWizardForNextNewDocument = false
                 WizardTrace.write(" ContentView.onAppear: CLAIMED flag, opening wizard")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    WizardCoordinator.pendingDocument = document
-                    NotificationCenter.default.post(name: .wizardDocumentChanged, object: document)
-                    openWindow(id: "wizard")
+                    launchWizard()
                     WizardTrace.write(" ContentView.onAppear: openWindow(wizard) called, pendingDocument set")
                 }
             }
@@ -535,16 +555,13 @@ struct ContentView: View {
     /// Device the persistent Controller entry opens: prefer the first still
     /// needing a profile, else the first device.
     private var identifyTargetDeviceID: UUID? {
-        devicesNeedingProfile.first?.id ?? document.mappingFile.devices.first?.id
+        document.activeDeviceID ?? devicesNeedingProfile.first?.id ?? document.mappingFile.devices.first?.id
     }
 
     // MARK: - Assistant and Wizard
 
     private func resolvedWorkflowDestinationDeviceID() throws -> Device.ID? {
-        try MappingTransferService.workflowDestinationDeviceID(
-            for: selectedMappings,
-            in: document.mappingFile
-        )
+        try document.mappingDestination(selectedIDs: selectedMappings)
     }
 
     private func launchWizard() {
@@ -609,21 +626,7 @@ struct ContentView: View {
     private func addMappings(_ mappings: [MappingEntry], actionName: String) {
         guard !isLocked, !mappings.isEmpty else { return }
 
-        let insertedIDs = document.performUndoableMutation(
-            actionName: actionName,
-            undoManager: undoManager
-        ) { file -> Set<MappingEntry.ID> in
-            if file.devices.isEmpty {
-                file.devices.append(Device(name: "Generic MIDI", mappings: mappings))
-            } else {
-                file.devices[0].mappings.append(contentsOf: mappings)
-            }
-            return Set(mappings.map(\.id))
-        }
-
-        if let insertedIDs {
-            selectedMappings = insertedIDs
-        }
+        insertTransferredMappings(mappings, actionName: actionName)
     }
 
     private func deleteSelectedMappings() {
@@ -848,11 +851,8 @@ struct ContentView: View {
     ) {
         guard !isLocked, !mappings.isEmpty else { return }
 
-        let targetDeviceID = MappingTransferService.destinationDeviceID(
-            for: selectedMappings,
-            in: document.mappingFile
-        )
         do {
+            let targetDeviceID = try document.mappingDestination(selectedIDs: selectedMappings)
             let transfer = try MappingTransferService.insertCopies(
                 mappings,
                 into: document,

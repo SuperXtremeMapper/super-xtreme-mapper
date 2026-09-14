@@ -4,7 +4,16 @@ import Combine
 @MainActor
 protocol AssistantMIDIListening: AnyObject {
     func start(_ callback: @escaping (MIDIMessage) -> Void) -> Bool
+    func start(desiredInputPort: String?, requireSpecificSource: Bool, desiredSourceID: Int32?, _ callback: @escaping (MIDIMessage) -> Void) -> Bool
     func stop()
+}
+
+extension AssistantMIDIListening {
+    func start(desiredInputPort: String?, requireSpecificSource: Bool, desiredSourceID: Int32?, _ callback: @escaping (MIDIMessage) -> Void) -> Bool {
+        // Legacy adapters cannot promise device isolation.
+        guard desiredSourceID == nil, !requireSpecificSource, desiredInputPort == nil || desiredInputPort == "" || desiredInputPort == "All Ports" else { return false }
+        return start(callback)
+    }
 }
 
 @MainActor
@@ -15,6 +24,12 @@ final class AssistantMIDIListener: AssistantMIDIListening {
     func start(_ callback: @escaping (MIDIMessage) -> Void) -> Bool {
         stop()
         lease = manager.acquireListeningLease(onMIDIReceived: callback)
+        return lease != nil
+    }
+    func start(desiredInputPort: String?, requireSpecificSource: Bool, desiredSourceID: Int32?, _ callback: @escaping (MIDIMessage) -> Void) -> Bool {
+        stop()
+        lease = manager.acquireListeningLease(desiredInputPort: desiredInputPort,
+            requireSpecificSource: requireSpecificSource, desiredSourceID: desiredSourceID, onMIDIReceived: callback)
         return lease != nil
     }
     func stop() {
@@ -39,6 +54,19 @@ final class AssistantInputCoordinator: ObservableObject {
     var onTranscript: ((String) -> Void)?
     private let speech: SpeechRecognitionProvider
     private let midi: any AssistantMIDIListening
+    private var desiredInputPort: String?
+    private var requireSpecificSource = false
+    private var desiredSourceID: Int32?
+
+    /// Changing destinations discards capture so a control cannot be reused on a different device accidentally.
+    func configureMIDI(desiredInputPort: String?, requireSpecificSource: Bool, desiredSourceID: Int32? = nil) {
+        guard self.desiredInputPort != desiredInputPort || self.requireSpecificSource != requireSpecificSource || self.desiredSourceID != desiredSourceID else { return }
+        clearCapture()
+        self.desiredInputPort = desiredInputPort
+        self.requireSpecificSource = requireSpecificSource
+        self.desiredSourceID = desiredSourceID
+    }
+
     private var voiceGeneration = 0
     private var midiGeneration = 0
     private var voiceTask: Task<Void, Never>?
@@ -105,7 +133,7 @@ final class AssistantInputCoordinator: ObservableObject {
         capturedMIDI = nil
         let generation = midiGeneration
         isLearning = true
-        let started = midi.start { [weak self] message in
+        let started = midi.start(desiredInputPort: desiredInputPort, requireSpecificSource: requireSpecificSource, desiredSourceID: desiredSourceID) { [weak self] message in
             guard let self, self.isLearning, generation == self.midiGeneration,
                   message.isCC || message.isNoteOn,
                   let assignment = MIDIAssignment(learnMessage: message) else { return }
@@ -114,7 +142,7 @@ final class AssistantInputCoordinator: ObservableObject {
         }
         if !started {
             isLearning = false
-            errorMessage = "MIDI capture is unavailable. Connect a controller and finish any other MIDI Learn session, then try again."
+            errorMessage = "MIDI capture is unavailable. Set a unique input port for this device, connect its controller, and finish other MIDI Learn sessions, then retry."
         }
     }
 
