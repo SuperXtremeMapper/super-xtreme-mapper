@@ -747,7 +747,7 @@ class AmberSelectionDelegateProxy: NSObject, NSTableViewDelegate, NSOutlineViewD
 }
 
 /// Custom row view with amber selection highlight
-private class AmberTableRowView: NSTableRowView {
+class AmberTableRowView: NSTableRowView {
     var isSharedMIDI = false
 
     override func drawBackground(in dirtyRect: NSRect) {

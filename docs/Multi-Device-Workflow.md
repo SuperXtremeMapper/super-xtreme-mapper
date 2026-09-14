@@ -47,3 +47,7 @@ Copy and Move should be available in the table's context menu with a destination
 7. Save and reopen a multi-device TSI, then export one device to a new file and reopen it independently.
 
 The sidebar and combined Devices/controller workflow are implemented. A persistent Device column, richer connection controls and contextual transfer menus remain proposed UI work.
+
+## Native control consistency
+
+Device Settings uses the same V2SmallButton and V2Dropdown components as XXSETTINGS, with no sheet-wide button style or amber tint override. The filter menu sits at the trailing edge of the XXMAPPINGS header. Device rows use an owned native table with the mapping table’s measured 27-point row height and 5-point top inset; All devices is the header action. The native table keeps these dimensions after selection changes and exposes each settings gear as a separate accessible button.

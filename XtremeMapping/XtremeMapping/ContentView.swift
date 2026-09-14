@@ -605,6 +605,7 @@ struct ContentView: View {
                     .foregroundColor(AppThemeV2.Colors.amber)
             }
             Spacer()
+            V2FilterMenu(categoryFilter: $categoryFilter, ioFilter: $ioFilter, isManualOrder: $isManualOrder)
         }
         .padding(.horizontal, AppThemeV2.Spacing.lg)
         .frame(height: AppThemeV2.Components.sectionHeaderHeight)
@@ -992,7 +993,6 @@ struct V2ActionBarFull: View {
             // Filters, search, and app icons as one right-side group with
             // consistent spacing.
             HStack(spacing: AppThemeV2.Spacing.sm) {
-                V2FilterMenu(categoryFilter: $categoryFilter, ioFilter: $ioFilter, isManualOrder: $isManualOrder)
                 V2SearchField(text: $searchText, placeholder: "Search...")
                     .frame(width: 140)
                 V2ToolbarIconButton(icon: "info.circle", action: onAbout)

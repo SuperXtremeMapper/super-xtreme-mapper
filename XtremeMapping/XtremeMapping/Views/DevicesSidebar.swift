@@ -1,12 +1,8 @@
 import SwiftUI
+import AppKit
 
 /// Navigation and controller identity share one entry point; editing remains device-scoped.
 struct DevicesSidebar: View {
-    private enum Selection: Hashable {
-        case all
-        case device(UUID)
-    }
-
     @ObservedObject var document: TraktorMappingDocument
     @ObservedObject private var midiManager = MIDIInputManager.shared
     let profileNames: [UUID: String]
@@ -14,16 +10,6 @@ struct DevicesSidebar: View {
     let onClose: () -> Void
     let onAdd: () -> Void
     let onSettings: (UUID) -> Void
-
-    private var selection: Binding<Selection?> {
-        Binding(get: { document.activeDeviceID.map(Selection.device) ?? .all }, set: { value in
-            switch value {
-            case .all: DeviceSidebarActions.selectDevice(nil, in: document)
-            case .device(let id): DeviceSidebarActions.selectDevice(id, in: document)
-            case nil: break
-            }
-        })
-    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -46,28 +32,24 @@ struct DevicesSidebar: View {
             .frame(height: AppThemeV2.Components.sectionHeaderHeight)
             V2Divider()
 
-            List(selection: selection) {
-                Text("All devices")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .frame(height: AppThemeV2.Components.tableRowHeight)
-                    .tag(Selection.all)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-
-                ForEach(document.mappingFile.devices) { device in
-                    deviceRow(device)
-                        .tag(Selection.device(device.id))
-                        .listRowInsets(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+            NativeDevicesTable(devices: document.mappingFile.devices,
+                selectedID: document.activeDeviceID,
+                toolTips: Dictionary(uniqueKeysWithValues: document.mappingFile.devices.map { device in
+                    (device.id, "\(profileNames[device.id] ?? "No controller selected")\n\(DeviceSidebarPresentation.inputStatus(device: device, sourceID: document.midiSourceIDs[device.id], sources: midiManager.availableSources))")
+                }),
+                onSelect: { DeviceSidebarActions.selectDevice($0, in: document) },
+                onSettings: onSettings)
+            // The native column header aligns with the mappings table header.
+            // Its action restores the combined view rather than sorting devices.
+            .overlay(alignment: .top) {
+                Button { DeviceSidebarActions.selectDevice(nil, in: document) } label: {
+                    Color.clear.frame(height: AppThemeV2.Components.tableHeaderHeight)
+                        .contentShape(Rectangle())
                 }
+                .buttonStyle(.plain)
+                .accessibilityLabel("All devices")
+                .help("Show mappings from all devices")
             }
-            .listStyle(.inset)
-            .environment(\.defaultMinListRowHeight, AppThemeV2.Components.tableRowHeight)
-            .introspectTableView { table in
-                AmberSelectionDelegateProxy.configure(table, highlightedRows: [])
-                table.intercellSpacing.height = 0
-            }
-            .scrollContentBackground(.hidden)
-            .tint(AppThemeV2.Colors.amber)
-            .font(AppThemeV2.Typography.body)
             .accessibilityLabel("Mapping devices")
             // Device deletion is reviewed in settings. Delete must not reach
             // selected mapping rows while this navigation list has focus.
@@ -82,26 +64,97 @@ struct DevicesSidebar: View {
         .accessibilityIdentifier("devices-sidebar")
     }
 
-    private func deviceRow(_ device: Device) -> some View {
-        let status = DeviceSidebarPresentation.inputStatus(device: device,
-            sourceID: document.midiSourceIDs[device.id], sources: midiManager.availableSources)
-        return HStack(spacing: 6) {
-            Text(device.displayName)
-                .lineLimit(1).truncationMode(.middle)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            Button { onSettings(device.id) } label: {
-                Image(systemName: "gearshape")
-                    .font(.system(size: 12))
-                    .foregroundStyle(AppThemeV2.Colors.stone400)
-                    .frame(width: 24, height: 24)
-                    .contentShape(Rectangle())
-            }
-            .buttonStyle(.plain)
-            .help("Device settings for \(device.displayName)")
-            .accessibilityLabel("Device settings for \(device.displayName)")
+}
+
+/// Own the native table so SwiftUI cannot reapply its list sizing after selection.
+private struct NativeDevicesTable: NSViewRepresentable {
+    let devices: [Device]
+    let selectedID: UUID?
+    let toolTips: [UUID: String]
+    let onSelect: (UUID?) -> Void
+    let onSettings: (UUID) -> Void
+
+    func makeCoordinator() -> Coordinator { Coordinator(self) }
+
+    func makeNSView(context: Context) -> NSScrollView {
+        let scroll = NSScrollView()
+        let table = NSTableView()
+        let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("device"))
+        column.title = "All devices"
+        column.headerCell.font = .systemFont(ofSize: 11, weight: .medium)
+        table.addTableColumn(column)
+        table.headerView = NSTableHeaderView(frame: NSRect(x: 0, y: 0, width: 220, height: 28))
+        table.style = .fullWidth
+        table.intercellSpacing = NSSize(width: 17, height: 0)
+        // Measured from the live mappings table: 27-point rows, 5-point top inset.
+        table.rowHeight = 27
+        table.usesAutomaticRowHeights = false
+        table.backgroundColor = NSColor(AppThemeV2.Colors.stone800)
+        table.columnAutoresizingStyle = .lastColumnOnlyAutoresizingStyle
+        table.allowsMultipleSelection = false
+        table.allowsEmptySelection = true
+        table.delegate = context.coordinator
+        table.dataSource = context.coordinator
+        scroll.documentView = table
+        scroll.hasVerticalScroller = true
+        scroll.drawsBackground = false
+        scroll.automaticallyAdjustsContentInsets = false
+        scroll.contentInsets.top = 5
+        return scroll
+    }
+
+    func updateNSView(_ scroll: NSScrollView, context: Context) {
+        guard let table = scroll.documentView as? NSTableView else { return }
+        context.coordinator.parent = self
+        context.coordinator.updating = true
+        table.reloadData()
+        if let index = devices.firstIndex(where: { $0.id == selectedID }) {
+            table.selectRowIndexes(IndexSet(integer: index), byExtendingSelection: false)
+        } else { table.deselectAll(nil) }
+        context.coordinator.updating = false
+    }
+
+    final class Coordinator: NSObject, NSTableViewDataSource, NSTableViewDelegate {
+        var parent: NativeDevicesTable
+        var updating = false
+        init(_ parent: NativeDevicesTable) { self.parent = parent }
+        func numberOfRows(in tableView: NSTableView) -> Int { parent.devices.count }
+        func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
+            AmberTableRowView()
         }
-        .frame(height: AppThemeV2.Components.tableRowHeight)
-        .accessibilityElement(children: .contain)
-        .help("\(device.displayName)\n\(profileNames[device.id] ?? "No controller selected")\n\(status)")
+        func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+            let device = parent.devices[row]
+            let cell = NSTableCellView()
+            cell.toolTip = parent.toolTips[device.id]
+            let label = NSTextField(labelWithString: device.displayName)
+            label.font = .systemFont(ofSize: 12)
+            label.textColor = NSColor(AppThemeV2.Colors.stone200)
+            label.lineBreakMode = .byTruncatingMiddle
+            let gear = NSButton(image: NSImage(systemSymbolName: "gearshape", accessibilityDescription: "Device settings for \(device.displayName)")!, target: self, action: #selector(settings(_:)))
+            gear.tag = row
+            gear.isBordered = false
+            gear.contentTintColor = NSColor(AppThemeV2.Colors.stone400)
+            gear.toolTip = "Device settings for \(device.displayName)"
+            for view in [label, gear] { view.translatesAutoresizingMaskIntoConstraints = false; cell.addSubview(view) }
+            NSLayoutConstraint.activate([
+                label.leadingAnchor.constraint(equalTo: cell.leadingAnchor),
+                label.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
+                label.trailingAnchor.constraint(lessThanOrEqualTo: gear.leadingAnchor, constant: -6),
+                gear.trailingAnchor.constraint(equalTo: cell.trailingAnchor),
+                gear.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
+                gear.widthAnchor.constraint(equalToConstant: 24),
+                gear.heightAnchor.constraint(equalToConstant: 24)
+            ])
+            cell.textField = label
+            return cell
+        }
+        func tableViewSelectionDidChange(_ notification: Notification) {
+            guard !updating, let table = notification.object as? NSTableView else { return }
+            parent.onSelect(parent.devices.indices.contains(table.selectedRow) ? parent.devices[table.selectedRow].id : nil)
+        }
+        @objc private func settings(_ sender: NSButton) {
+            guard parent.devices.indices.contains(sender.tag) else { return }
+            parent.onSettings(parent.devices[sender.tag].id)
+        }
     }
 }

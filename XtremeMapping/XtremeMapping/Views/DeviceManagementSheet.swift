@@ -48,7 +48,7 @@ struct DeviceManagementSheet: View {
             HStack {
                 V2SectionHeader(title: "DEVICE SETTINGS")
                 Spacer()
-                Button("Done") { dismiss() }.keyboardShortcut(.cancelAction)
+                V2SmallButton(label: "Done", action: { dismiss() }).keyboardShortcut(.cancelAction)
             }
             V2FormRow(label: "Device") {
                 V2Dropdown(options: [UUID?.none] + document.mappingFile.devices.map { Optional($0.id) }, selection: $document.activeDeviceID) { id in
@@ -56,16 +56,16 @@ struct DeviceManagementSheet: View {
                 }.buttonStyle(.plain)
             }
             HStack {
-                Button("Add device") { add() }.disabled(isLocked)
-                Button("Duplicate device") { duplicate() }.disabled(isLocked || device == nil)
-                Button("Delete device…", role: .destructive) { pendingDeletion = device; confirmDeletion = true }
+                V2SmallButton(label: "Add device", action: add).disabled(isLocked)
+                V2SmallButton(label: "Duplicate device", action: duplicate).disabled(isLocked || device == nil)
+                V2SmallButton(label: "Delete device…", action: { pendingDeletion = device; confirmDeletion = true })
                     .disabled(isLocked || device == nil)
             }
             if let device {
                 VStack(spacing: 8) {
                     V2FormRow(label: "Controller") {
                         Text(controllerName).font(AppThemeV2.Typography.body).lineLimit(1)
-                        Button(controllerName == "Generic MIDI" ? "Choose…" : "Change…") { showController = true }
+                        V2SmallButton(label: controllerName == "Generic MIDI" ? "Choose…" : "Change…", action: { showController = true })
                             .accessibilityLabel("Choose or change controller")
                     }
                     V2FormRow(label: "Label") { V2TextField(placeholder: "Device label", text: $comment) }
@@ -92,20 +92,20 @@ struct DeviceManagementSheet: View {
                     V2FormRow(label: "Output port") { V2TextField(placeholder: "MIDI output port", text: $outPort) }
                 }.disabled(isLocked)
                 Text("Choose a connected input for this session, or enter port names to prepare mappings offline. The saved TSI uses port names; identical names need routing checked in Traktor.")
-                    .font(.caption).foregroundStyle(.secondary)
+                    .font(AppThemeV2.Typography.caption).foregroundStyle(.secondary)
                 HStack {
-                    Button("Save device settings") { save() }
+                    V2SmallButton(label: "Save device settings", action: save)
                         .disabled(isLocked || draftIsStale || !hasChanges)
                     if draftIsStale {
-                        Button("Reload changed device") { load() }
-                        Text("This device changed. Reload before saving.").font(.caption)
+                        V2SmallButton(label: "Reload changed device", action: load)
+                        Text("This device changed. Reload before saving.").font(AppThemeV2.Typography.caption)
                     }
                     Spacer()
-                    Button("Export this device…") { exportDevice(device.id) }
+                    V2SmallButton(label: "Export this device…", action: { exportDevice(device.id) })
                 }
                 V2Divider()
-                Text("Transfer selected mappings").font(.subheadline.bold())
-                Text("\(sourceSelection.count) mappings from \(device.displayName)").font(.caption)
+                Text("Transfer selected mappings").font(AppThemeV2.Typography.sectionHeader)
+                Text("\(sourceSelection.count) mappings from \(device.displayName)").font(AppThemeV2.Typography.caption)
                 V2FormRow(label: "Destination") {
                     V2Dropdown(options: [UUID?.none] + document.mappingFile.devices.filter { $0.id != device.id }.map { Optional($0.id) }, selection: $transferDestination) { id in
                         document.mappingFile.devices.first { $0.id == id }?.displayName ?? "Choose device…"
@@ -113,23 +113,22 @@ struct DeviceManagementSheet: View {
                 }
                 if transferOverlapCount > 0 {
                     Text("\(transferOverlapCount) selected mappings share MIDI addresses with destination mappings. Both will be kept.")
-                        .font(.caption).foregroundStyle(.orange)
+                        .font(AppThemeV2.Typography.caption).foregroundStyle(.orange)
                 }
                 HStack {
-                    Button("Copy mappings") { transfer(.copy) }
-                    Button("Move mappings") { transfer(.move) }
+                    V2SmallButton(label: "Copy mappings", action: { transfer(.copy) })
+                    V2SmallButton(label: "Move mappings", action: { transfer(.move) })
                 }.disabled(isLocked || sourceSelection.isEmpty || transferDestination == nil)
             } else {
                 Text("Add a device to give a controller its own mappings, ports, and profile.")
                     .foregroundStyle(.secondary)
             }
             if let errorMessage { Text(errorMessage).foregroundStyle(.red).textSelection(.enabled) }
-            if let statusMessage { Text(statusMessage).font(.caption).foregroundStyle(.secondary) }
+            if let statusMessage { Text(statusMessage).font(AppThemeV2.Typography.caption).foregroundStyle(.secondary) }
         }
         .font(AppThemeV2.Typography.body)
         .foregroundStyle(AppThemeV2.Colors.stone200)
-        .buttonStyle(AssistantButtonStyle())
-        .tint(AppThemeV2.Colors.amber)
+
         .padding(24).frame(width: 600)
         .sheet(isPresented: $showController) {
             if let device {
