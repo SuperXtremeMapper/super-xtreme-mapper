@@ -426,7 +426,7 @@ struct ContentView: View {
                         guard DeviceSidebarActions.selectDevice(id, in: document) else { return }
                         activeSheet = .devices
                     })
-                    .frame(width: 220)
+                    .frame(width: AppThemeV2.Components.devicesPanelWidth)
                 Rectangle().fill(AppThemeV2.Colors.stone700).frame(width: 1)
             }
             editorSplit
@@ -949,9 +949,13 @@ struct V2ActionBarFull: View {
         HStack(spacing: AppThemeV2.Spacing.md) {
             // Left side - Add buttons with command menus (labeled style)
             HStack(spacing: AppThemeV2.Spacing.xs) {
-                V2AddCommandMenuButton(icon: "arrow.down", label: "IN", tooltip: "Add Input Mapping", isDisabled: isLocked, direction: .input) { onAddInput($0) }
-                V2AddCommandMenuButton(icon: "arrow.up", label: "OUT", tooltip: "Add Output Mapping", isDisabled: isLocked, direction: .output) { onAddOutput($0) }
-                V2AddCommandMenuButton(icon: "arrow.up.arrow.down", label: "IN/OUT", tooltip: "Add Input/Output Pair", isDisabled: isLocked, direction: .all) { onAddInOut($0) }
+                ProportionalMappingButtonsLayout {
+                    V2AddCommandMenuButton(icon: "arrow.down", label: "IN", tooltip: "Add Input Mapping", isDisabled: isLocked, direction: .input, expandsToFit: true) { onAddInput($0) }
+                    V2AddCommandMenuButton(icon: "arrow.up", label: "OUT", tooltip: "Add Output Mapping", isDisabled: isLocked, direction: .output, expandsToFit: true) { onAddOutput($0) }
+                    V2AddCommandMenuButton(icon: "arrow.up.arrow.down", label: "IN/OUT", tooltip: "Add Input/Output Pair", isDisabled: isLocked, direction: .all) { onAddInOut($0) }
+                }
+                // Include the outer toolbar inset and the separator's two gaps.
+                .frame(width: AppThemeV2.Components.devicesPanelWidth - AppThemeV2.Spacing.lg - 2 * AppThemeV2.Spacing.xs)
 
                 Rectangle()
                     .fill(AppThemeV2.Colors.stone600)
@@ -1141,6 +1145,7 @@ struct V2AddCommandMenuButton: View {
     let tooltip: String
     let isDisabled: Bool
     let direction: IODirection
+    var expandsToFit = false
     let onCommandSelected: (TraktorCommandDescriptor) -> Void
 
     var commandCategories: [CommandCategory2] {
@@ -1165,7 +1170,7 @@ struct V2AddCommandMenuButton: View {
                 .menuIndicator(.hidden)
                 .disabled(isDisabled)
             }
-            .fixedSize()
+            .fixedSize(horizontal: !expandsToFit, vertical: true)
             .onHover { hovering in
                 withAnimation(.easeInOut(duration: 0.15)) {
                     isHovered = hovering
@@ -1184,6 +1189,7 @@ struct V2AddCommandMenuButton: View {
         }
         .foregroundColor(foregroundColor)
         .padding(.horizontal, AppThemeV2.Spacing.sm)
+        .frame(maxWidth: expandsToFit ? .infinity : nil)
         .frame(height: 24)
         .background(
             RoundedRectangle(cornerRadius: AppThemeV2.Radius.sm)
@@ -1562,4 +1568,31 @@ struct V2FilterMenu: View {
 #Preview {
     ContentView(document: TraktorMappingDocument(), fileURL: nil)
         .frame(width: 1000, height: 600)
+}
+
+/// Preserve IN/OUT's natural width and share the extra space proportionally
+/// between IN and OUT, while anchoring the following separator to the pane edge.
+private struct ProportionalMappingButtonsLayout: Layout {
+    private let spacing = AppThemeV2.Spacing.xs
+
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        let sizes = subviews.map { $0.sizeThatFits(.unspecified) }
+        return CGSize(width: proposal.width ?? sizes.reduce(0) { $0 + $1.width } + spacing * CGFloat(max(0, sizes.count - 1)),
+                      height: sizes.map(\.height).max() ?? 24)
+    }
+
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        let sizes = subviews.map { $0.sizeThatFits(.unspecified) }
+        guard sizes.count == 3 else { return }
+        let available = bounds.width - sizes[2].width - 2 * spacing
+        let original = sizes[0].width + sizes[1].width
+        let widths = [available * sizes[0].width / original,
+                      available * sizes[1].width / original, sizes[2].width]
+        var x = bounds.minX
+        for index in subviews.indices {
+            subviews[index].place(at: CGPoint(x: x, y: bounds.midY), anchor: .leading,
+                                 proposal: ProposedViewSize(width: widths[index], height: bounds.height))
+            x += widths[index] + spacing
+        }
+    }
 }

@@ -112,6 +112,8 @@ enum AppThemeV2 {
         static let tableRowHeight: CGFloat = 28
         static let tableHeaderHeight: CGFloat = 24
 
+        static let devicesPanelWidth: CGFloat = 220
+
         // Settings Panel
         static let settingsPanelWidth: CGFloat = 280
         static let formRowHeight: CGFloat = 32
