@@ -99,7 +99,9 @@ private struct NativeDevicesTable: NSViewRepresentable {
         scroll.hasVerticalScroller = true
         scroll.drawsBackground = false
         scroll.automaticallyAdjustsContentInsets = false
-        scroll.contentInsets.top = 5
+        // Keep the header flush with the mapping column header. The delegate
+        // supplies the measured 5-point gap inside the table body instead.
+        scroll.contentInsets.top = 0
         return scroll
     }
 
@@ -109,7 +111,7 @@ private struct NativeDevicesTable: NSViewRepresentable {
         context.coordinator.updating = true
         table.reloadData()
         if let index = devices.firstIndex(where: { $0.id == selectedID }) {
-            table.selectRowIndexes(IndexSet(integer: index), byExtendingSelection: false)
+            table.selectRowIndexes(IndexSet(integer: index + 1), byExtendingSelection: false)
         } else { table.deselectAll(nil) }
         context.coordinator.updating = false
     }
@@ -118,12 +120,20 @@ private struct NativeDevicesTable: NSViewRepresentable {
         var parent: NativeDevicesTable
         var updating = false
         init(_ parent: NativeDevicesTable) { self.parent = parent }
-        func numberOfRows(in tableView: NSTableView) -> Int { parent.devices.count }
+        func numberOfRows(in tableView: NSTableView) -> Int { parent.devices.count + 1 }
+        func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat { row == 0 ? 5 : 27 }
+        func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool { row > 0 }
         func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-            AmberTableRowView()
+            if row == 0 {
+                let spacer = NSTableRowView()
+                spacer.setAccessibilityElement(false)
+                return spacer
+            }
+            return AmberTableRowView()
         }
         func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-            let device = parent.devices[row]
+            guard row > 0 else { return nil }
+            let device = parent.devices[row - 1]
             let cell = NSTableCellView()
             cell.toolTip = parent.toolTips[device.id]
             let label = NSTextField(labelWithString: device.displayName)
@@ -131,7 +141,7 @@ private struct NativeDevicesTable: NSViewRepresentable {
             label.textColor = NSColor(AppThemeV2.Colors.stone200)
             label.lineBreakMode = .byTruncatingMiddle
             let gear = NSButton(image: NSImage(systemSymbolName: "gearshape", accessibilityDescription: "Device settings for \(device.displayName)")!, target: self, action: #selector(settings(_:)))
-            gear.tag = row
+            gear.tag = row - 1
             gear.isBordered = false
             gear.contentTintColor = NSColor(AppThemeV2.Colors.stone400)
             gear.toolTip = "Device settings for \(device.displayName)"
@@ -150,7 +160,8 @@ private struct NativeDevicesTable: NSViewRepresentable {
         }
         func tableViewSelectionDidChange(_ notification: Notification) {
             guard !updating, let table = notification.object as? NSTableView else { return }
-            parent.onSelect(parent.devices.indices.contains(table.selectedRow) ? parent.devices[table.selectedRow].id : nil)
+            let index = table.selectedRow - 1
+            parent.onSelect(parent.devices.indices.contains(index) ? parent.devices[index].id : nil)
         }
         @objc private func settings(_ sender: NSButton) {
             guard parent.devices.indices.contains(sender.tag) else { return }
