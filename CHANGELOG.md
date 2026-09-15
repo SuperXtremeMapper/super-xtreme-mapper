@@ -1,5 +1,13 @@
 # What's new
 
+## 1.3.1 — September 15, 2026
+
+Bulk MIDI channel editing now keeps each mapping’s Note or CC address, including selections across multiple devices.
+
+- Select several mappings, leave Type set to **Keep existing**, choose a channel, and click **Apply**.
+- Each mapping keeps its own Note or CC number. Choose Note, CC or Unassigned explicitly to replace the full assignment.
+- Undo restores the whole batch in one step.
+
 ## 1.3 — September 14, 2026
 
 Multi-device mapping is here, as requested by the community. Thank you for helping shape SXM!

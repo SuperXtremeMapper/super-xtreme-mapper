@@ -9,13 +9,15 @@ A native macOS TSI editor for Traktor Pro. Create, edit, and manage your MIDI co
 ![macOS](https://img.shields.io/badge/macOS-14.0+-blue)
 ![Universal](https://img.shields.io/badge/macOS-universal-green)
 ![License](https://img.shields.io/badge/license-MIT-orange)
-![Version](https://img.shields.io/badge/version-1.3-brightgreen)
+![Version](https://img.shields.io/badge/version-1.3.1-brightgreen)
 
-## What’s new in 1.3
+## What’s new in 1.3.1
 
-Multi-device mapping is here, as requested by the community. Thank you for helping shape SXM! Manage several devices in one TSI file, switch between them in the new Devices panel, and copy, move or export mappings for each device.
+Bulk MIDI channel editing now keeps each mapping’s Note or CC address, including selections across multiple devices.
 
-Click **Devices** to open the panel. Use **+** beside All devices to add a device, then use its **gear** to choose a controller and set MIDI ports. Select a device to edit its mappings, or choose **All devices** to see the whole setup.
+- Select several mappings, leave Type set to **Keep existing**, choose a channel, and click **Apply**.
+- Each mapping keeps its own Note or CC number. Choose Note, CC or Unassigned explicitly to replace the full assignment.
+- Undo restores the whole batch in one step.
 
 ## Features
 
@@ -41,7 +43,7 @@ Click **Devices** to open the panel. Use **+** beside All devices to add a devic
 
 - **Native macOS** - Built with SwiftUI for Apple Silicon. Fast, memory efficient, with full dark mode and keyboard shortcut support.
 
-See the [changelog](CHANGELOG.md) for what changed in 1.3.
+See the [changelog](CHANGELOG.md) for what changed in 1.3.1.
 
 For the editor improvements, see the [large-mapping editing guide](docs/Editor-Workflow.md).
 
@@ -49,7 +51,7 @@ For the editor improvements, see the [large-mapping editing guide](docs/Editor-W
 
 ### Download
 
-Download [SuperXtremeMapper_1.3.dmg](https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases/download/v1.3/SuperXtremeMapper_1.3.dmg).
+Download [SuperXtremeMapper_1.3.1.dmg](https://github.com/SuperXtremeMapper/super-xtreme-mapper/releases/download/v1.3.1/SuperXtremeMapper_1.3.1.dmg).
 
 ### Requirements
 
