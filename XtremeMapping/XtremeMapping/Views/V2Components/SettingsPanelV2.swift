@@ -113,7 +113,7 @@ struct SettingsPanelV2: View {
     @State private var rotaryAcceleration: Float = 0.0
     @State private var encoderModeDraft = EncoderModeDraft()
     @State private var midiChannelDraft = MIDIChannelDraft()
-    @State private var batchAssignmentKind: MIDIAssignment.Kind = .unassigned
+    @State private var batchAssignmentKind: MIDIAssignment.Kind?
     @State private var batchChannel: Int = 1
     @State private var batchNumber: Int = 0
     @State private var learnError: String?
@@ -605,7 +605,7 @@ struct SettingsPanelV2: View {
         VStack(spacing: AppThemeV2.Spacing.sm) {
             V2FormRow(label: "Type") {
                 V2Dropdown(
-                    options: [.note, .controlChange, .unassigned],
+                    options: isMultipleSelection ? [nil, .note, .controlChange, .unassigned] : [.note, .controlChange, .unassigned],
                     selection: $batchAssignmentKind,
                     labelFor: batchAssignmentKindLabel
                 )
@@ -617,7 +617,7 @@ struct SettingsPanelV2: View {
                     .disabled(isLocked)
             }
 
-            if batchAssignmentKind != .unassigned {
+            if let batchAssignmentKind, batchAssignmentKind != .unassigned {
                 V2FormRow(label: batchAssignmentKind == .note ? "Note" : "CC") {
                     V2NumberStepper(value: $batchNumber, range: 0...127, label: nil)
                         .disabled(isLocked)
@@ -647,8 +647,15 @@ struct SettingsPanelV2: View {
                 )
                 .disabled(isLocked)
                 .accessibilityLabel(
-                    "Apply MIDI assignment to \(selectedMappings.count) selected mappings"
+                    batchAssignmentKind == nil
+                        ? "Apply MIDI channel to \(selectedMappings.count) selected mappings"
+                        : "Apply MIDI assignment to \(selectedMappings.count) selected mappings"
                 )
+            }
+            if batchAssignmentKind == nil {
+                Text("Changes only the channel. Each mapping keeps its Note or CC number.")
+                    .font(AppThemeV2.Typography.caption)
+                    .foregroundColor(AppThemeV2.Colors.stone400)
             }
         }
     }
@@ -1083,8 +1090,10 @@ struct SettingsPanelV2: View {
         batchNumber = entry.midiAssignment.number ?? 0
     }
 
-    private func batchAssignmentKindLabel(_ kind: MIDIAssignment.Kind) -> String {
+    private func batchAssignmentKindLabel(_ kind: MIDIAssignment.Kind?) -> String {
         switch kind {
+        case nil:
+            return "Keep existing"
         case .note:
             return "Note"
         case .controlChange:
@@ -1095,8 +1104,8 @@ struct SettingsPanelV2: View {
     }
 
     private func resetBatchAssignmentDraft() {
-        batchAssignmentKind = selectedEntry?.midiAssignment.kind ?? .unassigned
-        batchChannel = selectedEntry?.midiAssignment.channel ?? 1
+        batchAssignmentKind = selectedEntry?.midiAssignment.kind
+        batchChannel = selectedEntries.first?.midiAssignment.channel ?? 1
         batchNumber = selectedEntry?.midiAssignment.number ?? 0
     }
 
@@ -1189,18 +1198,18 @@ struct SettingsPanelV2: View {
     }
 
     private func applyBatchAssignmentDraft() {
-        let assignment: MIDIAssignment?
-        switch batchAssignmentKind {
-        case .note:
-            assignment = try? .note(channel: batchChannel, number: batchNumber)
-        case .controlChange:
-            assignment = try? .controlChange(channel: batchChannel, number: batchNumber)
-        case .unassigned:
-            assignment = try? .unassigned(channel: batchChannel)
+        guard !isLocked, !selectedMappings.isEmpty else { return }
+        do {
+            try document.performUndoableMutation(
+                actionName: batchAssignmentKind == nil ? "Change MIDI Channel" : "Assign MIDI",
+                undoManager: undoManager
+            ) { file in
+                try MappingBatchEditor.applyDraft(kind: batchAssignmentKind, channel: batchChannel,
+                    number: batchNumber, to: selectedMappings, in: &file)
+            }
+        } catch {
+            assertionFailure("Invalid MIDI assignment draft: \(error)")
         }
-
-        guard let assignment else { return }
-        applyBatchAssignment(assignment, actionName: "Assign MIDI")
     }
 
     private func applyBatchAssignment(

@@ -9,6 +9,37 @@ import XCTest
 @MainActor
 final class MappingBatchEditorTests: XCTestCase {
 
+    func testChannelDraftPreservesDifferentAddressesAcrossDevicesAndUndoesTogether() throws {
+        let note = MappingEntry(commandID: 100, midiAssignment: try .note(channel: 1, number: 64))
+        let cc = MappingEntry(commandID: 201, midiAssignment: try .controlChange(channel: 2, number: 22))
+        let untouched = MappingEntry(commandID: 202, midiAssignment: try .note(channel: 3, number: 7))
+        let original = MappingFile(devices: [Device(mappings: [note]), Device(mappings: [cc, untouched])])
+        let document = TraktorMappingDocument(mappingFile: original)
+        let undo = UndoManager()
+
+        try document.performUndoableMutation(actionName: "Change MIDI Channel", undoManager: undo) { file in
+            try MappingBatchEditor.applyDraft(kind: nil, channel: 12, number: 0,
+                to: [note.id, cc.id], in: &file)
+        }
+
+        var expectedNote = note
+        expectedNote.midiAssignment = try .note(channel: 12, number: 64)
+        var expectedCC = cc
+        expectedCC.midiAssignment = try .controlChange(channel: 12, number: 22)
+        XCTAssertEqual(document.mappingFile.devices[0].mappings, [expectedNote])
+        XCTAssertEqual(document.mappingFile.devices[1].mappings, [expectedCC, untouched])
+        undo.undo()
+        XCTAssertEqual(document.mappingFile, original)
+        XCTAssertFalse(undo.canUndo)
+    }
+
+    func testExplicitUnassignedDraftStillClearsSelectedAddresses() throws {
+        let row = MappingEntry(commandID: 100, midiAssignment: try .note(channel: 1, number: 64))
+        var file = MappingFile(devices: [Device(mappings: [row])])
+        try MappingBatchEditor.applyDraft(kind: .unassigned, channel: 4, number: 0, to: [row.id], in: &file)
+        XCTAssertEqual(file.allMappings[0].midiAssignment, try .unassigned(channel: 4))
+    }
+
     func testCommentDraftPreservesUnsavedTextForSamePersistedSelection() {
         var state = CommentDraftState<Int>()
         state.reconcile(selectionID: 7, persistedComment: "stored comment")

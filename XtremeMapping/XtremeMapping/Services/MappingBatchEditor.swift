@@ -7,6 +7,24 @@ import Foundation
 
 /// Pure, selection-scoped mutations for mapping groups.
 enum MappingBatchEditor {
+    /// A nil kind changes only the channel, preserving each row's address.
+    static func applyDraft(
+        kind: MIDIAssignment.Kind?, channel: Int, number: Int,
+        to selectedIDs: Set<MappingEntry.ID>, in mappingFile: inout MappingFile
+    ) throws {
+        guard let kind else {
+            try applyChannel(channel, to: selectedIDs, in: &mappingFile)
+            return
+        }
+        let assignment: MIDIAssignment
+        switch kind {
+        case .note: assignment = try .note(channel: channel, number: number)
+        case .controlChange: assignment = try .controlChange(channel: channel, number: number)
+        case .unassigned: assignment = try .unassigned(channel: channel)
+        }
+        apply(assignment, to: selectedIDs, in: &mappingFile)
+    }
+
     static func apply(
         _ assignment: MIDIAssignment,
         to selectedIDs: Set<MappingEntry.ID>,
